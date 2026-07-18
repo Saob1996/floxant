@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-17T18:41:34.348Z",
+  "generatedAt": "2026-07-18T00:16:57.491Z",
   "limits": {
-    "fileCount": 13157,
+    "fileCount": 13199,
     "fileCountLimit": 20000,
-    "largestFileBytes": 1648880,
+    "largestFileBytes": 1648826,
     "fileSizeLimitBytes": 26214400,
-    "totalBytes": 4356178666
+    "totalBytes": 4360267906
   },
   "counts": {
-    "htmlFiles": 1547,
-    "sitemapUrls": 390,
+    "htmlFiles": 1551,
+    "sitemapUrls": 394,
     "redirects": 622,
     "brokenLinks": 0,
     "missingImages": 0,

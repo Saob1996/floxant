@@ -31,6 +31,9 @@ export function SiteChrome({
 
   return (
     <>
+      <a href="#main-content" className="skip-to-content">
+        {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
+      </a>
       {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
       {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
       {isEnglishSection ? (

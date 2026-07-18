@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T18:40:50.579Z",
+  "generatedAt": "2026-07-18T00:16:46.620Z",
   "source": "Static export and out/sitemap.xml",
   "baseline": {
     "period": "Last 7 days through 2026-07-17",
@@ -26,13 +26,13 @@
     }
   },
   "totals": {
-    "sitemapUrls": 390,
-    "outputFound": 390,
-    "pass": 191,
-    "warn": 194,
+    "sitemapUrls": 394,
+    "outputFound": 394,
+    "pass": 196,
+    "warn": 193,
     "fail": 5,
     "classifications": {
-      "KEEP_AND_STRENGTHEN": 302,
+      "KEEP_AND_STRENGTHEN": 306,
       "CONSOLIDATION_CANDIDATE": 83,
       "REDIRECT_CANDIDATE": 0,
       "NOINDEX_CANDIDATE": 0,
@@ -343,15 +343,15 @@
         "en:https://www.floxant.de/en",
         "x-default:https://www.floxant.de"
       ],
-      "wordCount": 713,
+      "wordCount": 771,
       "wordRepetitions": [
-        "regensburg:21",
-        "düsseldorf:18",
-        "angebot:16",
+        "regensburg:22",
+        "düsseldorf:19",
+        "angebot:17",
         "floxant:15",
         "reinigung:13",
+        "prüfen:13",
         "anfrage:11",
-        "prüfen:10",
         "leistungen:8"
       ],
       "semanticTerms": [
@@ -366,7 +366,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 57,
+      "internalLinkCount": 60,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -399,7 +399,8 @@
         "/angebot-guenstiger-pruefen#guenstiger-form",
         "/diskret-service",
         "/uebergabeakte",
-        "/en"
+        "/en",
+        "/leistungsfinder"
       ],
       "structuredData": [
         "Organization",
@@ -4226,16 +4227,16 @@
         "de-DE:https://www.floxant.de/regensburg/reinigungsfirma",
         "x-default:https://www.floxant.de/regensburg/reinigungsfirma"
       ],
-      "wordCount": 2517,
+      "wordCount": 2568,
       "wordRepetitions": [
-        "regensburg:85",
+        "regensburg:86",
         "fotos:48",
         "floxant:34",
         "angebot:30",
-        "reinigung:29",
+        "reinigung:30",
         "termin:29",
-        "zugang:26",
-        "anfrage:22"
+        "zugang:27",
+        "anfrage:23"
       ],
       "semanticTerms": [
         "Fläche",
@@ -4250,7 +4251,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 101,
+      "internalLinkCount": 104,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -4303,6 +4304,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/leistungen#regensburg",
         "/regensburg/umzugsunternehmen"
       ],
@@ -4400,15 +4402,15 @@
         "de-DE:https://www.floxant.de/angebot-vergleichen-regensburg",
         "x-default:https://www.floxant.de/angebot-vergleichen-regensburg"
       ],
-      "wordCount": 2227,
+      "wordCount": 2278,
       "wordRepetitions": [
-        "regensburg:66",
+        "regensburg:67",
         "angebot:56",
         "fotos:43",
         "floxant:36",
         "termin:34",
-        "zugang:29",
-        "reinigung:27",
+        "zugang:30",
+        "reinigung:28",
         "umfang:27"
       ],
       "semanticTerms": [
@@ -4424,7 +4426,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 87,
+      "internalLinkCount": 90,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -4470,6 +4472,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/leistungen#regensburg",
         "/regensburg/besenreine-uebergabe",
         "/objektbrief#schnellstart",
@@ -5312,16 +5315,16 @@
         "en:https://www.floxant.de/en/regensburg/cleaning",
         "x-default:https://www.floxant.de/regensburg/reinigung"
       ],
-      "wordCount": 698,
+      "wordCount": 762,
       "wordRepetitions": [
-        "cleaning:29",
-        "regensburg:23",
-        "quote:17",
-        "service:16",
+        "cleaning:30",
+        "regensburg:24",
+        "quote:20",
+        "service:19",
         "floxant:13",
         "photos:13",
-        "review:11",
-        "timing:11"
+        "scope:12",
+        "review:11"
       ],
       "semanticTerms": [
         "property",
@@ -5330,7 +5333,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5347,7 +5350,10 @@
         "/en/regensburg/office-cleaning",
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
-        "/en/regensburg/stairwell-cleaning"
+        "/en/regensburg/stairwell-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -5376,7 +5382,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -5404,8 +5410,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Cleaning service",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -5438,16 +5444,16 @@
         "en:https://www.floxant.de/en/regensburg/office-cleaning",
         "x-default:https://www.floxant.de/regensburg/gewerbereinigung"
       ],
-      "wordCount": 682,
+      "wordCount": 746,
       "wordRepetitions": [
-        "cleaning:26",
-        "regensburg:21",
-        "quote:17",
+        "cleaning:27",
+        "regensburg:22",
+        "quote:20",
         "review:13",
         "floxant:13",
+        "scope:13",
         "office:12",
-        "timing:12",
-        "photos:12"
+        "request:12"
       ],
       "semanticTerms": [
         "property",
@@ -5456,7 +5462,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5474,7 +5480,10 @@
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
         "/en/regensburg/stairwell-cleaning",
-        "/regensburg/reinigung"
+        "/regensburg/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -5503,7 +5512,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -5531,8 +5540,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Office cleaning",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -5565,16 +5574,16 @@
         "en:https://www.floxant.de/en/regensburg/apartment-cleaning",
         "x-default:https://www.floxant.de/regensburg/reinigung"
       ],
-      "wordCount": 645,
+      "wordCount": 709,
       "wordRepetitions": [
-        "cleaning:25",
-        "regensburg:21",
-        "quote:14",
+        "cleaning:26",
+        "regensburg:22",
+        "quote:17",
         "floxant:13",
         "photos:12",
         "review:11",
-        "apartment:10",
-        "timing:10"
+        "service:11",
+        "apartment:10"
       ],
       "semanticTerms": [
         "property",
@@ -5583,7 +5592,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5600,7 +5609,10 @@
         "/en/regensburg/office-cleaning",
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
-        "/en/regensburg/stairwell-cleaning"
+        "/en/regensburg/stairwell-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -5629,7 +5641,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -5657,8 +5669,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Apartment cleaning",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -5691,16 +5703,16 @@
         "en:https://www.floxant.de/en/regensburg/deep-cleaning",
         "x-default:https://www.floxant.de/grundreinigung-regensburg"
       ],
-      "wordCount": 662,
+      "wordCount": 726,
       "wordRepetitions": [
-        "cleaning:24",
-        "regensburg:20",
-        "quote:14",
+        "cleaning:25",
+        "regensburg:21",
+        "quote:17",
         "floxant:13",
         "photos:12",
         "deep:11",
         "review:11",
-        "timing:9"
+        "service:11"
       ],
       "semanticTerms": [
         "property",
@@ -5709,7 +5721,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5727,7 +5739,10 @@
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
         "/en/regensburg/stairwell-cleaning",
-        "/regensburg/reinigung"
+        "/regensburg/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -5756,7 +5771,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -5784,8 +5799,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Deep cleaning",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -5818,16 +5833,16 @@
         "en:https://www.floxant.de/en/regensburg/move-out-cleaning",
         "x-default:https://www.floxant.de/regensburg/reinigung"
       ],
-      "wordCount": 647,
+      "wordCount": 711,
       "wordRepetitions": [
-        "cleaning:22",
-        "regensburg:21",
-        "quote:14",
+        "cleaning:23",
+        "regensburg:22",
+        "quote:17",
         "floxant:13",
         "review:12",
         "timing:12",
         "photos:12",
-        "move-out:8"
+        "scope:11"
       ],
       "semanticTerms": [
         "property",
@@ -5836,7 +5851,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5853,7 +5868,10 @@
         "/en/regensburg/office-cleaning",
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
-        "/en/regensburg/stairwell-cleaning"
+        "/en/regensburg/stairwell-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -5882,7 +5900,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -5910,8 +5928,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Move-out cleaning",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -5944,16 +5962,16 @@
         "en:https://www.floxant.de/en/regensburg/stairwell-cleaning",
         "x-default:https://www.floxant.de/treppenhausreinigung-regensburg"
       ],
-      "wordCount": 648,
+      "wordCount": 712,
       "wordRepetitions": [
-        "cleaning:23",
-        "regensburg:20",
-        "quote:14",
+        "cleaning:24",
+        "regensburg:21",
+        "quote:17",
         "floxant:13",
+        "scope:12",
+        "service:12",
         "review:11",
-        "photos:11",
-        "access:10",
-        "stairwell:9"
+        "access:11"
       ],
       "semanticTerms": [
         "property",
@@ -5962,7 +5980,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -5980,7 +5998,10 @@
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
         "/en/regensburg/stairwell-cleaning",
-        "/regensburg/reinigung"
+        "/regensburg/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6009,7 +6030,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6037,8 +6058,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Request Stairwell cleaning",
-        "WhatsApp"
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6071,16 +6092,16 @@
         "en:https://www.floxant.de/en/regensburg/cleaning-quote-review",
         "x-default:https://www.floxant.de/angebot-vergleichen-regensburg"
       ],
-      "wordCount": 656,
+      "wordCount": 718,
       "wordRepetitions": [
-        "quote:23",
+        "quote:26",
         "cleaning:21",
-        "regensburg:20",
+        "regensburg:21",
         "review:16",
         "floxant:14",
         "photos:14",
-        "timing:12",
-        "scope:10"
+        "scope:13",
+        "timing:12"
       ],
       "semanticTerms": [
         "property",
@@ -6089,7 +6110,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 25,
+      "internalLinkCount": 28,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6107,7 +6128,10 @@
         "/en/regensburg/apartment-cleaning",
         "/en/regensburg/deep-cleaning",
         "/en/regensburg/stairwell-cleaning",
-        "/regensburg/reinigung"
+        "/regensburg/reinigung",
+        "/en/quote-check",
+        "/en/create-request",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6136,7 +6160,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6164,8 +6188,8 @@
         "Stairwell cleaning Regensburg Open",
         "Cleaning quote review Open",
         "German cleaning page Open",
-        "Review quote",
-        "WhatsApp"
+        "Check a quote scope",
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6198,12 +6222,12 @@
         "en:https://www.floxant.de/en/regensburg/moving",
         "x-default:https://www.floxant.de/regensburg/umzugsservice"
       ],
-      "wordCount": 659,
+      "wordCount": 722,
       "wordRepetitions": [
-        "regensburg:23",
+        "regensburg:25",
         "moving:19",
-        "quote:16",
-        "service:14",
+        "quote:18",
+        "service:17",
         "review:13",
         "floxant:13",
         "cleaning:13",
@@ -6216,7 +6240,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6235,7 +6259,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6264,7 +6291,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6293,7 +6320,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request Moving service"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6326,16 +6353,16 @@
         "en:https://www.floxant.de/en/regensburg/moving-company",
         "x-default:https://www.floxant.de/regensburg/umzugsunternehmen"
       ],
-      "wordCount": 657,
+      "wordCount": 720,
       "wordRepetitions": [
-        "regensburg:21",
+        "regensburg:23",
         "moving:20",
-        "quote:18",
+        "quote:20",
         "floxant:13",
+        "request:12",
+        "access:12",
         "photos:12",
-        "cleaning:11",
-        "review:11",
-        "timing:11"
+        "cleaning:11"
       ],
       "semanticTerms": [
         "property",
@@ -6344,7 +6371,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6363,7 +6390,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6392,7 +6422,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6421,7 +6451,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request Moving company"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6454,16 +6484,16 @@
         "en:https://www.floxant.de/en/regensburg/moving-costs",
         "x-default:https://www.floxant.de/regensburg/umzug-kosten"
       ],
-      "wordCount": 663,
+      "wordCount": 726,
       "wordRepetitions": [
-        "regensburg:21",
+        "regensburg:23",
         "moving:18",
-        "quote:16",
+        "quote:18",
         "floxant:14",
         "photos:13",
         "review:12",
         "timing:11",
-        "cleaning:10"
+        "request:11"
       ],
       "semanticTerms": [
         "property",
@@ -6472,7 +6502,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6491,7 +6521,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6520,7 +6553,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6549,7 +6582,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request Moving costs"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6582,16 +6615,16 @@
         "en:https://www.floxant.de/en/regensburg/house-clearance",
         "x-default:https://www.floxant.de/regensburg/wohnungsaufloesung"
       ],
-      "wordCount": 656,
+      "wordCount": 718,
       "wordRepetitions": [
-        "clearance:21",
-        "regensburg:20",
-        "cleaning:14",
-        "quote:14",
+        "clearance:23",
+        "regensburg:21",
+        "quote:16",
+        "cleaning:15",
         "floxant:13",
         "photos:13",
-        "moving:11",
-        "review:11"
+        "review:12",
+        "scope:12"
       ],
       "semanticTerms": [
         "property",
@@ -6600,7 +6633,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6619,7 +6652,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6648,7 +6684,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6677,7 +6713,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request House clearance"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6710,12 +6746,12 @@
         "en:https://www.floxant.de/en/regensburg/cleaning-after-moving",
         "x-default:https://www.floxant.de/regensburg/reinigungsfirma"
       ],
-      "wordCount": 662,
+      "wordCount": 725,
       "wordRepetitions": [
+        "regensburg:23",
         "cleaning:21",
-        "regensburg:21",
         "moving:18",
-        "quote:16",
+        "quote:18",
         "floxant:13",
         "review:12",
         "timing:12",
@@ -6728,7 +6764,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6747,7 +6783,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6776,7 +6815,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6805,7 +6844,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request Cleaning after moving"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6838,16 +6877,16 @@
         "en:https://www.floxant.de/en/regensburg/apartment-clearance",
         "x-default:https://www.floxant.de/regensburg/entruempelung"
       ],
-      "wordCount": 661,
+      "wordCount": 723,
       "wordRepetitions": [
-        "regensburg:21",
-        "clearance:20",
-        "quote:14",
-        "cleaning:13",
+        "clearance:22",
+        "regensburg:22",
+        "quote:16",
+        "cleaning:14",
         "floxant:13",
-        "photos:12",
-        "moving:11",
-        "review:11"
+        "review:12",
+        "scope:12",
+        "timing:12"
       ],
       "semanticTerms": [
         "property",
@@ -6856,7 +6895,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -6875,7 +6914,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/regensburg/angebot-vergleichen"
+        "/regensburg/angebot-vergleichen",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -6904,7 +6946,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -6933,7 +6975,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Request Apartment clearance"
+        "Create a request brief"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -6966,16 +7008,16 @@
         "en:https://www.floxant.de/en/regensburg/moving-quote-review",
         "x-default:https://www.floxant.de/angebot-vergleichen-regensburg"
       ],
-      "wordCount": 663,
+      "wordCount": 725,
       "wordRepetitions": [
-        "quote:24",
-        "regensburg:20",
+        "quote:27",
+        "regensburg:21",
         "moving:17",
         "review:17",
         "floxant:13",
         "photos:13",
-        "timing:11",
-        "cleaning:10"
+        "scope:12",
+        "timing:11"
       ],
       "semanticTerms": [
         "property",
@@ -6984,7 +7026,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 26,
+      "internalLinkCount": 29,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7003,7 +7045,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/apartment-clearance",
         "/en/regensburg/cleaning-after-moving",
-        "/en/regensburg/moving-quote-review"
+        "/en/regensburg/moving-quote-review",
+        "/en/quote-check",
+        "/en/create-request",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7032,7 +7077,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7061,7 +7106,7 @@
         "Cleaning after moving Open",
         "Moving quote review Open",
         "German quote review page Open",
-        "Review quote"
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -7094,16 +7139,16 @@
         "en:https://www.floxant.de/en/duesseldorf/cleaning",
         "x-default:https://www.floxant.de/duesseldorf/reinigung"
       ],
-      "wordCount": 697,
+      "wordCount": 763,
       "wordRepetitions": [
-        "cleaning:32",
-        "düsseldorf:23",
-        "quote:16",
-        "service:15",
+        "cleaning:33",
+        "düsseldorf:24",
+        "quote:19",
+        "service:18",
         "floxant:14",
+        "request:12",
         "photos:12",
-        "review:11",
-        "timing:10"
+        "review:11"
       ],
       "semanticTerms": [
         "property",
@@ -7112,7 +7157,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7130,7 +7175,10 @@
         "/en/duesseldorf/apartment-cleaning",
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
-        "/en/duesseldorf/window-cleaning"
+        "/en/duesseldorf/window-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7159,7 +7207,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7221,16 +7269,16 @@
         "en:https://www.floxant.de/en/duesseldorf/office-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/bueroreinigung"
       ],
-      "wordCount": 697,
+      "wordCount": 763,
       "wordRepetitions": [
-        "cleaning:27",
-        "düsseldorf:22",
-        "quote:17",
+        "cleaning:28",
+        "düsseldorf:23",
+        "quote:20",
         "floxant:14",
-        "access:12",
+        "access:13",
+        "scope:12",
         "photos:12",
-        "office:11",
-        "review:10"
+        "office:11"
       ],
       "semanticTerms": [
         "property",
@@ -7239,7 +7287,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7258,7 +7306,10 @@
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
         "/en/duesseldorf/window-cleaning",
-        "/duesseldorf/reinigung"
+        "/duesseldorf/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7287,7 +7338,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7349,16 +7400,16 @@
         "en:https://www.floxant.de/en/duesseldorf/commercial-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/gewerbereinigung"
       ],
-      "wordCount": 702,
+      "wordCount": 768,
       "wordRepetitions": [
-        "cleaning:27",
-        "düsseldorf:22",
-        "quote:14",
+        "cleaning:28",
+        "düsseldorf:23",
+        "quote:17",
+        "scope:15",
+        "service:15",
         "floxant:14",
-        "scope:12",
         "review:12",
-        "photos:12",
-        "service:12"
+        "photos:12"
       ],
       "semanticTerms": [
         "property",
@@ -7367,7 +7418,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7386,7 +7437,10 @@
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
         "/en/duesseldorf/window-cleaning",
-        "/duesseldorf/reinigung"
+        "/duesseldorf/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7415,7 +7469,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7477,16 +7531,16 @@
         "en:https://www.floxant.de/en/duesseldorf/apartment-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/reinigung"
       ],
-      "wordCount": 693,
+      "wordCount": 759,
       "wordRepetitions": [
-        "cleaning:24",
-        "düsseldorf:22",
+        "cleaning:25",
+        "düsseldorf:23",
+        "quote:16",
         "floxant:14",
-        "quote:13",
+        "request:12",
         "photos:12",
-        "timing:11",
-        "apartment:10",
-        "review:10"
+        "scope:11",
+        "timing:11"
       ],
       "semanticTerms": [
         "property",
@@ -7495,7 +7549,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7513,7 +7567,10 @@
         "/en/duesseldorf/apartment-cleaning",
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
-        "/en/duesseldorf/window-cleaning"
+        "/en/duesseldorf/window-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7542,7 +7599,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7604,16 +7661,16 @@
         "en:https://www.floxant.de/en/duesseldorf/deep-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/reinigung"
       ],
-      "wordCount": 699,
+      "wordCount": 765,
       "wordRepetitions": [
-        "cleaning:25",
-        "düsseldorf:22",
+        "cleaning:26",
+        "düsseldorf:23",
+        "quote:17",
         "floxant:14",
-        "quote:14",
+        "service:13",
+        "scope:12",
         "photos:12",
-        "review:10",
-        "timing:10",
-        "open:10"
+        "request:11"
       ],
       "semanticTerms": [
         "property",
@@ -7622,7 +7679,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7640,7 +7697,10 @@
         "/en/duesseldorf/apartment-cleaning",
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
-        "/en/duesseldorf/window-cleaning"
+        "/en/duesseldorf/window-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7669,7 +7729,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7731,16 +7791,16 @@
         "en:https://www.floxant.de/en/duesseldorf/move-out-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/reinigung"
       ],
-      "wordCount": 692,
+      "wordCount": 757,
       "wordRepetitions": [
         "cleaning:24",
-        "düsseldorf:22",
+        "düsseldorf:23",
+        "quote:15",
         "floxant:14",
-        "quote:13",
         "photos:13",
-        "review:10",
-        "timing:10",
-        "open:10"
+        "scope:11",
+        "request:11",
+        "service:11"
       ],
       "semanticTerms": [
         "property",
@@ -7749,7 +7809,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7767,7 +7827,10 @@
         "/en/duesseldorf/apartment-cleaning",
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
-        "/en/duesseldorf/window-cleaning"
+        "/en/duesseldorf/window-cleaning",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7796,7 +7859,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7858,16 +7921,16 @@
         "en:https://www.floxant.de/en/duesseldorf/window-cleaning",
         "x-default:https://www.floxant.de/duesseldorf/fensterreinigung"
       ],
-      "wordCount": 702,
+      "wordCount": 768,
       "wordRepetitions": [
-        "cleaning:30",
-        "düsseldorf:22",
+        "cleaning:31",
+        "düsseldorf:23",
+        "quote:16",
         "floxant:14",
-        "quote:13",
-        "access:12",
+        "access:13",
         "photos:12",
         "window:11",
-        "timing:11"
+        "scope:11"
       ],
       "semanticTerms": [
         "property",
@@ -7876,7 +7939,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -7895,7 +7958,10 @@
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
         "/en/duesseldorf/window-cleaning",
-        "/duesseldorf/reinigung"
+        "/duesseldorf/reinigung",
+        "/en/create-request",
+        "/en/quote-check",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -7924,7 +7990,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -7986,16 +8052,16 @@
         "en:https://www.floxant.de/en/duesseldorf/cleaning-quote-review",
         "x-default:https://www.floxant.de/angebot-vergleichen-duesseldorf"
       ],
-      "wordCount": 694,
+      "wordCount": 758,
       "wordRepetitions": [
+        "quote:25",
+        "düsseldorf:23",
         "cleaning:22",
-        "quote:22",
-        "düsseldorf:22",
         "review:16",
+        "scope:16",
         "floxant:14",
-        "scope:13",
-        "photos:12",
-        "open:11"
+        "service:13",
+        "photos:12"
       ],
       "semanticTerms": [
         "property",
@@ -8004,7 +8070,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 27,
+      "internalLinkCount": 30,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -8023,7 +8089,10 @@
         "/en/duesseldorf/deep-cleaning",
         "/en/duesseldorf/move-out-cleaning",
         "/en/duesseldorf/window-cleaning",
-        "/duesseldorf/reinigung"
+        "/duesseldorf/reinigung",
+        "/en/quote-check",
+        "/en/create-request",
+        "/en/service-finder"
       ],
       "structuredData": [
         "Organization",
@@ -8052,7 +8121,7 @@
         "Answer"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -8113,16 +8182,16 @@
         "en:https://www.floxant.de/en",
         "x-default:https://www.floxant.de"
       ],
-      "wordCount": 659,
+      "wordCount": 736,
       "wordRepetitions": [
         "cleaning:50",
         "english:24",
-        "regensburg:23",
+        "regensburg:24",
         "page:23",
-        "open:22",
-        "quote:18",
-        "access:18",
-        "review:17"
+        "open:23",
+        "quote:21",
+        "review:19",
+        "access:19"
       ],
       "semanticTerms": [
         "property",
@@ -8131,7 +8200,7 @@
         "timing",
         "quote"
       ],
-      "internalLinkCount": 36,
+      "internalLinkCount": 39,
       "internalLinks": [
         "/en",
         "/en/duesseldorf/cleaning",
@@ -8159,7 +8228,10 @@
         "/en/regensburg/house-clearance",
         "/en/regensburg/cleaning-after-moving",
         "/en/regensburg/apartment-clearance",
-        "/en/regensburg/moving-quote-review"
+        "/en/regensburg/moving-quote-review",
+        "/en/service-finder",
+        "/en/create-request",
+        "/en/quote-check"
       ],
       "structuredData": [
         "Organization",
@@ -8181,7 +8253,7 @@
         "Place"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -8197,7 +8269,10 @@
         "Privacy policy",
         "Legal notice",
         "Deutsch",
-        "Send an English request"
+        "Send an English request",
+        "Find the service",
+        "Create a request brief",
+        "Check a quote scope"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -8277,7 +8352,7 @@
         "Place"
       ],
       "visibleCtas": [
-        "Direkt zum Inhalt springen",
+        "Skip to main content",
         "FLOXANT English",
         "English services",
         "Düsseldorf cleaning",
@@ -8306,6 +8381,305 @@
       "snippetStatus": "PASS",
       "classification": "KEEP_AND_STRENGTHEN",
       "shortTitle": "Contact FLOXANT in English"
+    },
+    {
+      "url": "/en/quote-check",
+      "absoluteUrl": "https://www.floxant.de/en/quote-check",
+      "pageType": "quote-or-comparison",
+      "language": "en",
+      "region": "Düsseldorf und Regensburg",
+      "primaryIntent": "quote scope check",
+      "title": "Quote Scope Check: 12 Details to Clarify | FLOXANT",
+      "titleLength": 50,
+      "h1": "Clarify twelve scope details before accepting a service quote",
+      "h1Count": 1,
+      "metaDescription": "Use the client-side FLOXANT Scope Check for a cleaning, moving or clearance quote in Germany. Mark open details and create clear follow-up questions.",
+      "descriptionLength": 149,
+      "canonical": "https://www.floxant.de/en/quote-check",
+      "hreflang": [
+        "de-DE:https://www.floxant.de/angebotscheck",
+        "en:https://www.floxant.de/en/quote-check",
+        "x-default:https://www.floxant.de/angebotscheck"
+      ],
+      "wordCount": 300,
+      "wordRepetitions": [
+        "cleaning:12",
+        "floxant:11",
+        "scope:10",
+        "quote:8",
+        "check:7",
+        "regensburg:7",
+        "service:7",
+        "düsseldorf:6"
+      ],
+      "semanticTerms": [
+        "scope",
+        "access",
+        "timing",
+        "quote"
+      ],
+      "internalLinkCount": 13,
+      "internalLinks": [
+        "/en",
+        "/en/duesseldorf/cleaning",
+        "/en/regensburg/moving",
+        "/en/duesseldorf/cleaning-quote-review",
+        "/en/contact",
+        "/en/regensburg/cleaning",
+        "/datenschutz",
+        "/impressum",
+        "/"
+      ],
+      "structuredData": [
+        "Organization",
+        "City",
+        "AdministrativeArea",
+        "GeoCircle",
+        "WebPage",
+        "Dataset",
+        "CreativeWork",
+        "PostalAddress",
+        "ContactPoint",
+        "ContactAction",
+        "Action",
+        "DataCatalog",
+        "DataDownload",
+        "WebSite",
+        "EntryPoint",
+        "Thing",
+        "Place",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "visibleCtas": [
+        "Skip to main content",
+        "FLOXANT English",
+        "English services",
+        "Düsseldorf cleaning",
+        "Regensburg moving",
+        "Quote review",
+        "Contact FLOXANT",
+        "Düsseldorf cleaning",
+        "Regensburg cleaning",
+        "Regensburg moving",
+        "English contact form",
+        "+49 1577 1105087",
+        "info@floxant.de",
+        "Privacy policy",
+        "Legal notice",
+        "Deutsch",
+        "Start the Scope Check",
+        "Send request"
+      ],
+      "overlapNotes": [],
+      "cannibalization": [],
+      "thinContent": false,
+      "genericSections": [],
+      "visibleInternalTerminology": [],
+      "statusInSitemap": true,
+      "outputFound": true,
+      "issues": [],
+      "snippetStatus": "PASS",
+      "classification": "KEEP_AND_STRENGTHEN",
+      "shortTitle": "Quote Scope Check: 12 Details to Clarify"
+    },
+    {
+      "url": "/en/create-request",
+      "absoluteUrl": "https://www.floxant.de/en/create-request",
+      "pageType": "service-or-information",
+      "language": "en",
+      "region": "Düsseldorf und Regensburg",
+      "primaryIntent": "create a cleaning or moving request brief",
+      "title": "Create a Cleaning or Moving Request Brief | FLOXANT",
+      "titleLength": 51,
+      "h1": "Prepare a clear service request before contacting FLOXANT",
+      "h1Count": 1,
+      "metaDescription": "Create a structured request brief in English for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg. No price or appointment is calculated.",
+      "descriptionLength": 159,
+      "canonical": "https://www.floxant.de/en/create-request",
+      "hreflang": [
+        "de-DE:https://www.floxant.de/objektbrief",
+        "en:https://www.floxant.de/en/create-request",
+        "x-default:https://www.floxant.de/objektbrief"
+      ],
+      "wordCount": 266,
+      "wordRepetitions": [
+        "cleaning:17",
+        "floxant:10",
+        "regensburg:9",
+        "request:8",
+        "düsseldorf:8",
+        "service:8",
+        "moving:6",
+        "brief:6"
+      ],
+      "semanticTerms": [
+        "scope",
+        "access",
+        "timing",
+        "quote"
+      ],
+      "internalLinkCount": 13,
+      "internalLinks": [
+        "/en",
+        "/en/duesseldorf/cleaning",
+        "/en/regensburg/moving",
+        "/en/duesseldorf/cleaning-quote-review",
+        "/en/contact",
+        "/en/regensburg/cleaning",
+        "/datenschutz",
+        "/impressum",
+        "/"
+      ],
+      "structuredData": [
+        "Organization",
+        "City",
+        "AdministrativeArea",
+        "GeoCircle",
+        "WebPage",
+        "Dataset",
+        "CreativeWork",
+        "PostalAddress",
+        "ContactPoint",
+        "ContactAction",
+        "Action",
+        "DataCatalog",
+        "DataDownload",
+        "WebSite",
+        "EntryPoint",
+        "Thing",
+        "Place",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "visibleCtas": [
+        "Skip to main content",
+        "FLOXANT English",
+        "English services",
+        "Düsseldorf cleaning",
+        "Regensburg moving",
+        "Quote review",
+        "Contact FLOXANT",
+        "Düsseldorf cleaning",
+        "Regensburg cleaning",
+        "Regensburg moving",
+        "English contact form",
+        "+49 1577 1105087",
+        "info@floxant.de",
+        "Privacy policy",
+        "Legal notice",
+        "Deutsch",
+        "Add the details",
+        "Send request"
+      ],
+      "overlapNotes": [],
+      "cannibalization": [],
+      "thinContent": false,
+      "genericSections": [],
+      "visibleInternalTerminology": [],
+      "statusInSitemap": true,
+      "outputFound": true,
+      "issues": [],
+      "snippetStatus": "PASS",
+      "classification": "KEEP_AND_STRENGTHEN",
+      "shortTitle": "Create a Cleaning or Moving Request Brief"
+    },
+    {
+      "url": "/en/service-finder",
+      "absoluteUrl": "https://www.floxant.de/en/service-finder",
+      "pageType": "service-or-information",
+      "language": "en",
+      "region": "Düsseldorf und Regensburg",
+      "primaryIntent": "service finder for düsseldorf & regensburg",
+      "title": "Service Finder for Düsseldorf & Regensburg | FLOXANT",
+      "titleLength": 52,
+      "h1": "Find the relevant FLOXANT service for your region and task",
+      "h1Count": 1,
+      "metaDescription": "Use the client-side service finder for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg, Germany, with clear next steps in English.",
+      "descriptionLength": 153,
+      "canonical": "https://www.floxant.de/en/service-finder",
+      "hreflang": [
+        "de-DE:https://www.floxant.de/leistungsfinder",
+        "en:https://www.floxant.de/en/service-finder",
+        "x-default:https://www.floxant.de/leistungsfinder"
+      ],
+      "wordCount": 168,
+      "wordRepetitions": [
+        "regensburg:9",
+        "floxant:9",
+        "düsseldorf:8",
+        "cleaning:7",
+        "service:6"
+      ],
+      "semanticTerms": [
+        "scope",
+        "access",
+        "timing",
+        "quote"
+      ],
+      "internalLinkCount": 13,
+      "internalLinks": [
+        "/en",
+        "/en/duesseldorf/cleaning",
+        "/en/regensburg/moving",
+        "/en/duesseldorf/cleaning-quote-review",
+        "/en/contact",
+        "/en/regensburg/cleaning",
+        "/datenschutz",
+        "/impressum",
+        "/"
+      ],
+      "structuredData": [
+        "Organization",
+        "City",
+        "AdministrativeArea",
+        "GeoCircle",
+        "WebPage",
+        "Dataset",
+        "CreativeWork",
+        "PostalAddress",
+        "ContactPoint",
+        "ContactAction",
+        "Action",
+        "DataCatalog",
+        "DataDownload",
+        "WebSite",
+        "EntryPoint",
+        "Thing",
+        "Place",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "visibleCtas": [
+        "Skip to main content",
+        "FLOXANT English",
+        "English services",
+        "Düsseldorf cleaning",
+        "Regensburg moving",
+        "Quote review",
+        "Contact FLOXANT",
+        "Düsseldorf cleaning",
+        "Regensburg cleaning",
+        "Regensburg moving",
+        "English contact form",
+        "+49 1577 1105087",
+        "info@floxant.de",
+        "Privacy policy",
+        "Legal notice",
+        "Deutsch",
+        "Narrow down the service"
+      ],
+      "overlapNotes": [],
+      "cannibalization": [],
+      "thinContent": false,
+      "genericSections": [],
+      "visibleInternalTerminology": [],
+      "statusInSitemap": true,
+      "outputFound": true,
+      "issues": [],
+      "snippetStatus": "PASS",
+      "classification": "KEEP_AND_STRENGTHEN",
+      "shortTitle": "Service Finder for Düsseldorf & Regensburg"
     },
     {
       "url": "/umzug-bayern",
@@ -20555,35 +20929,32 @@
       "pageType": "quote-or-comparison",
       "language": "de-DE",
       "region": "Düsseldorf und Regensburg",
-      "primaryIntent": "angebot prüfen lassen",
-      "title": "Angebot prüfen lassen | FLOXANT Angebotscheck",
-      "titleLength": 45,
-      "h1": "Angebotscheck: offene Punkte vor der Zusage erkennen",
+      "primaryIntent": "angebotscheck",
+      "title": "Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
+      "titleLength": 54,
+      "h1": "Zwölf Punkte eines Angebots strukturiert klären",
       "h1Count": 1,
-      "metaDescription": "Angebot vor Zusage prüfen lassen: FLOXANT prüft Umfang, Preis, Termin, Zugang, Fotos, Zusatzkosten, Reinigung und Entsorgung. Fotos, Termin, Umfang und Preisrahmen direkt senden und Machbarkeit prüfen lassen.",
-      "descriptionLength": 208,
+      "metaDescription": "Vorhandenes Angebot für Reinigung, Umzug oder Räumung clientseitig prüfen: 12 Bereiche markieren, Rückfragen erstellen und Ergebnis übernehmen.",
+      "descriptionLength": 143,
       "canonical": "https://www.floxant.de/angebotscheck",
       "hreflang": [
         "de-DE:https://www.floxant.de/angebotscheck",
+        "en:https://www.floxant.de/en/quote-check",
         "x-default:https://www.floxant.de/angebotscheck"
       ],
-      "wordCount": 4800,
+      "wordCount": 610,
       "wordRepetitions": [
-        "angebot:110",
-        "prüfen:77",
-        "floxant:66",
-        "keine:64",
-        "termin:53",
-        "fotos:52",
-        "zugang:47",
-        "reinigung:43"
+        "angebot:18",
+        "floxant:17",
+        "regensburg:11",
+        "keine:10",
+        "prüfen:8",
+        "reinigung:7",
+        "anfrage:6",
+        "düsseldorf:6"
       ],
       "semanticTerms": [
-        "Fläche",
-        "Turnus",
         "Zugang",
-        "Zeitfenster",
-        "Objekt",
         "Räume",
         "Fotos",
         "Angebot",
@@ -20592,7 +20963,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 114,
+      "internalLinkCount": 40,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -20620,55 +20991,7 @@
         "/datenschutz",
         "/agb",
         "/buchungsbedingungen",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=price_too_high&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=scope_unclear&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=too_cheap_risky&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=provider_unresponsive&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=date_problem&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=addons_unclear&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=multiple_offers&source=seo",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=no_offer_yet&source=seo",
-        "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=anbieter-vergleichen&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=zweitmeinung&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=plan-b-anbieterabsage&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=reinigungsangebot-pruefen&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=umzugsangebot-pruefen&source=offer-check",
-        "/kontakt?service=angebot-pruefen&intent=entruempelungsangebot-pruefen&source=offer-check",
-        "/angebot-guenstiger-pruefen#guenstiger-form",
-        "/blog/reinigungsangebot-pruefen-regensburg",
-        "/blog/umzugsangebot-pruefen-regensburg-bayern",
-        "/blog/entruempelungsangebot-pruefen-serioes",
-        "/blog/solarreinigung-pv-angebot-pruefen",
-        "/blog/angebot-ohne-besichtigung-riskant",
-        "/blog/anbieter-hat-abgesagt-was-tun",
-        "/angebot-vergleichen-regensburg",
-        "/regensburg/solarreinigung",
-        "/anbieter-vergleichen",
-        "/reinigung",
-        "/umzug",
-        "/entruempelung",
-        "/solarreinigung",
-        "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=seo",
-        "/duesseldorf/reinigung",
-        "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
-        "/duesseldorf/reinigung#hausverwaltung-reinigung",
-        "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=seo",
-        "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo",
-        "/duesseldorf/gewerbereinigung",
-        "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=seo",
-        "/duesseldorf/bueroreinigung",
-        "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=seo",
-        "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=seo",
-        "/duesseldorf/praxisreinigung",
-        "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo",
-        "/duesseldorf/fensterreinigung",
-        "/uebergabeakte",
-        "/schadensbegrenzung",
-        "/plattform-auftrag-pruefen",
-        "/fairpreis-check",
-        "/rueckfahrt-radar",
-        "/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
+        "/reinigungsfirma-angebot"
       ],
       "structuredData": [
         "Organization",
@@ -20690,15 +21013,8 @@
         "Place",
         "CommunicateAction",
         "ReserveAction",
-        "Service",
-        "State",
-        "ServiceChannel",
-        "LocalBusiness",
         "BreadcrumbList",
-        "ListItem",
-        "FAQPage",
-        "Question",
-        "Answer"
+        "ListItem"
       ],
       "visibleCtas": [
         "Direkt zum Inhalt springen",
@@ -20735,19 +21051,14 @@
       "overlapNotes": [],
       "cannibalization": [],
       "thinContent": false,
-      "genericSections": [
-        "Was ist enthalten",
-        "Häufige Fragen"
-      ],
+      "genericSections": [],
       "visibleInternalTerminology": [],
       "statusInSitemap": true,
       "outputFound": true,
-      "issues": [
-        "meta description long"
-      ],
-      "snippetStatus": "WARN",
+      "issues": [],
+      "snippetStatus": "PASS",
       "classification": "KEEP_AND_STRENGTHEN",
-      "shortTitle": "Angebot prüfen lassen"
+      "shortTitle": "Angebotscheck: 12 Punkte zum Leistungsumfang"
     },
     {
       "url": "/makler-vermieter-link",
@@ -22803,16 +23114,16 @@
         "de-DE:https://www.floxant.de/regensburg/bueroreinigung",
         "x-default:https://www.floxant.de/regensburg/bueroreinigung"
       ],
-      "wordCount": 2575,
+      "wordCount": 2626,
       "wordRepetitions": [
-        "regensburg:77",
+        "regensburg:78",
         "fotos:43",
         "floxant:35",
         "angebot:32",
-        "zugang:29",
+        "zugang:30",
         "büroreinigung:28",
-        "reinigung:26",
-        "nach:25"
+        "reinigung:27",
+        "turnus:26"
       ],
       "semanticTerms": [
         "Fläche",
@@ -22827,7 +23138,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 102,
+      "internalLinkCount": 105,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -22883,6 +23194,7 @@
         "/anbieter-vergleichen",
         "/kontakt?service=bueroreinigung&source=b2b-trust",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/umzugsunternehmen"
       ],
       "structuredData": [
@@ -22979,16 +23291,16 @@
         "de-DE:https://www.floxant.de/regensburg/wohnungsaufloesung",
         "x-default:https://www.floxant.de/regensburg/wohnungsaufloesung"
       ],
-      "wordCount": 2198,
+      "wordCount": 2246,
       "wordRepetitions": [
-        "regensburg:62",
+        "regensburg:63",
         "fotos:47",
         "angebot:31",
+        "wohnungsauflösung:28",
         "floxant:28",
-        "wohnungsauflösung:27",
         "reinigung:27",
-        "zugang:22",
-        "anfrage:21"
+        "zugang:23",
+        "prüfen:22"
       ],
       "semanticTerms": [
         "Fläche",
@@ -23003,7 +23315,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 96,
+      "internalLinkCount": 99,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -23047,6 +23359,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/leistungen#regensburg",
         "/regensburg/reinigungsfirma",
         "/regensburg/gewerbereinigung",
@@ -23147,16 +23460,16 @@
         "de-DE:https://www.floxant.de/regensburg/umzugsunternehmen",
         "x-default:https://www.floxant.de/regensburg/umzugsunternehmen"
       ],
-      "wordCount": 1974,
+      "wordCount": 2025,
       "wordRepetitions": [
-        "regensburg:57",
+        "regensburg:59",
         "fotos:46",
-        "termin:32",
-        "umzug:30",
+        "termin:33",
+        "umzug:31",
         "angebot:29",
         "floxant:28",
         "reinigung:26",
-        "anfrage:21"
+        "prüfen:21"
       ],
       "semanticTerms": [
         "Fläche",
@@ -23170,7 +23483,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 86,
+      "internalLinkCount": 89,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -23213,6 +23526,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/leistungen#regensburg",
         "/regensburg/reinigungsfirma",
         "/regensburg/gewerbereinigung"
@@ -25005,7 +25319,7 @@
         "de-DE:https://www.floxant.de/familienumzug-bayern",
         "x-default:https://www.floxant.de/familienumzug-bayern"
       ],
-      "wordCount": 2636,
+      "wordCount": 2637,
       "wordRepetitions": [
         "bayern:75",
         "floxant:39",
@@ -27343,9 +27657,9 @@
         "de-DE:https://www.floxant.de/ratgeber/umzug-versicherung",
         "x-default:https://www.floxant.de/ratgeber/umzug-versicherung"
       ],
-      "wordCount": 259,
+      "wordCount": 272,
       "wordRepetitions": [
-        "floxant:13",
+        "floxant:11",
         "regensburg:9",
         "umzug:7",
         "angebot:6",
@@ -51673,16 +51987,16 @@
         "de-DE:https://www.floxant.de/duesseldorf",
         "x-default:https://www.floxant.de/duesseldorf"
       ],
-      "wordCount": 698,
+      "wordCount": 749,
       "wordRepetitions": [
-        "düsseldorf:33",
-        "prüfen:19",
+        "düsseldorf:34",
+        "prüfen:21",
         "termin:18",
+        "reinigung:15",
         "umfang:15",
-        "reinigung:14",
         "angebot:13",
-        "nach:10",
-        "floxant:9"
+        "turnus:10",
+        "nach:10"
       ],
       "semanticTerms": [
         "Fläche",
@@ -51695,7 +52009,7 @@
         "Angebot",
         "Reinigung"
       ],
-      "internalLinkCount": 29,
+      "internalLinkCount": 32,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -51713,6 +52027,9 @@
         "/duesseldorf/praxisreinigung",
         "/duesseldorf/fensterreinigung",
         "/en",
+        "/objektbrief",
+        "/angebotscheck",
+        "/leistungsfinder",
         "/kontakt?city=duesseldorf&intent=allgemeine-anfrage-duesseldorf&source=sticky",
         "/duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
@@ -51745,6 +52062,9 @@
         "Angebot prüfen",
         "Reinigung anfragen",
         "Services in English",
+        "Anfragebrief erstellen",
+        "Angebotsumfang prüfen",
+        "Leistung einordnen",
         "Anfrage Fall senden",
         "WhatsApp Fotos senden",
         "Anrufen Kurz klären",
@@ -51785,16 +52105,16 @@
         "de-DE:https://www.floxant.de/duesseldorf/bueroreinigung",
         "x-default:https://www.floxant.de/duesseldorf/bueroreinigung"
       ],
-      "wordCount": 1902,
+      "wordCount": 1953,
       "wordRepetitions": [
-        "düsseldorf:42",
-        "turnus:41",
+        "düsseldorf:43",
+        "turnus:42",
         "keine:32",
-        "zugang:26",
+        "zugang:27",
         "floxant:24",
+        "prüfen:24",
         "büroreinigung:23",
-        "prüfen:22",
-        "anfrage:21"
+        "anfrage:22"
       ],
       "semanticTerms": [
         "Fläche",
@@ -51810,7 +52130,7 @@
         "scope",
         "access"
       ],
-      "internalLinkCount": 48,
+      "internalLinkCount": 51,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -51832,6 +52152,8 @@
         "/duesseldorf/fensterreinigung",
         "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
         "/angebotscheck",
+        "/objektbrief",
+        "/leistungsfinder",
         "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=sticky",
         "/angebot-vergleichen-duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
@@ -51885,8 +52207,8 @@
         "Büroreinigungsangebot prüfen lassen",
         "Angebotsprüfung erklärt",
         "Angebotscheck öffnen",
-        "Büroreinigung in Düsseldorf anfragen",
-        "Büroreinigung in Düsseldorf anfragen"
+        "Anfragebrief erstellen",
+        "Angebotsumfang prüfen"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -51920,15 +52242,15 @@
         "de-DE:https://www.floxant.de/duesseldorf/fensterreinigung",
         "x-default:https://www.floxant.de/duesseldorf/fensterreinigung"
       ],
-      "wordCount": 1852,
+      "wordCount": 1903,
       "wordRepetitions": [
-        "düsseldorf:43",
-        "turnus:34",
+        "düsseldorf:44",
+        "turnus:35",
         "keine:34",
-        "zugang:27",
+        "zugang:28",
         "floxant:21",
+        "prüfen:21",
         "anfragen:20",
-        "prüfen:19",
         "fotos:18"
       ],
       "semanticTerms": [
@@ -51946,7 +52268,7 @@
         "scope",
         "access"
       ],
-      "internalLinkCount": 47,
+      "internalLinkCount": 50,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -51966,6 +52288,8 @@
         "/kontakt?service=gebaeudereinigung&city=duesseldorf&intent=gebaeudereinigung-duesseldorf&source=seo",
         "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
         "/angebotscheck",
+        "/objektbrief",
+        "/leistungsfinder",
         "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=sticky",
         "/angebot-vergleichen-duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
@@ -52021,8 +52345,8 @@
         "Fensterreinigungsangebot prüfen lassen",
         "Angebotsprüfung erklärt",
         "Angebotscheck öffnen",
-        "Fensterreinigung in Düsseldorf anfragen",
-        "Fensterreinigung in Düsseldorf anfragen"
+        "Anfragebrief erstellen",
+        "Angebotsumfang prüfen"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -52056,16 +52380,16 @@
         "de-DE:https://www.floxant.de/duesseldorf/gewerbereinigung",
         "x-default:https://www.floxant.de/duesseldorf/gewerbereinigung"
       ],
-      "wordCount": 1863,
+      "wordCount": 1914,
       "wordRepetitions": [
-        "düsseldorf:41",
+        "düsseldorf:42",
+        "turnus:36",
         "keine:36",
-        "turnus:35",
-        "zugang:26",
-        "objektart:24",
+        "zugang:27",
+        "objektart:25",
         "floxant:23",
         "gewerbereinigung:22",
-        "anfragen:19"
+        "prüfen:21"
       ],
       "semanticTerms": [
         "Fläche",
@@ -52081,7 +52405,7 @@
         "scope",
         "access"
       ],
-      "internalLinkCount": 48,
+      "internalLinkCount": 51,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -52103,6 +52427,8 @@
         "/duesseldorf/fensterreinigung",
         "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
         "/angebotscheck",
+        "/objektbrief",
+        "/leistungsfinder",
         "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=sticky",
         "/angebot-vergleichen-duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
@@ -52156,8 +52482,8 @@
         "Gewerbereinigungsangebot prüfen lassen",
         "Angebotsprüfung erklärt",
         "Angebotscheck öffnen",
-        "Gewerbereinigung in Düsseldorf anfragen",
-        "Gewerbereinigung in Düsseldorf anfragen"
+        "Anfragebrief erstellen",
+        "Angebotsumfang prüfen"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -52304,16 +52630,16 @@
         "de-DE:https://www.floxant.de/duesseldorf/praxisreinigung",
         "x-default:https://www.floxant.de/duesseldorf/praxisreinigung"
       ],
-      "wordCount": 1844,
+      "wordCount": 1895,
       "wordRepetitions": [
-        "düsseldorf:41",
+        "düsseldorf:42",
         "keine:37",
-        "turnus:32",
-        "zugang:31",
+        "turnus:33",
+        "zugang:32",
         "floxant:23",
+        "prüfen:21",
         "anfragen:20",
-        "angebot:19",
-        "prüfen:19"
+        "anfrage:20"
       ],
       "semanticTerms": [
         "Fläche",
@@ -52330,7 +52656,7 @@
         "scope",
         "access"
       ],
-      "internalLinkCount": 47,
+      "internalLinkCount": 50,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -52350,6 +52676,8 @@
         "/kontakt?service=gebaeudereinigung&city=duesseldorf&intent=gebaeudereinigung-duesseldorf&source=seo",
         "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
         "/angebotscheck",
+        "/objektbrief",
+        "/leistungsfinder",
         "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=sticky",
         "/angebot-vergleichen-duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
@@ -52405,8 +52733,8 @@
         "Praxisreinigungsangebot prüfen lassen",
         "Angebotsprüfung erklärt",
         "Angebotscheck öffnen",
-        "Praxisreinigung in Düsseldorf anfragen",
-        "Praxisreinigung in Düsseldorf anfragen"
+        "Anfragebrief erstellen",
+        "Angebotsumfang prüfen"
       ],
       "overlapNotes": [],
       "cannibalization": [],
@@ -52440,16 +52768,16 @@
         "de-DE:https://www.floxant.de/duesseldorf/reinigung",
         "x-default:https://www.floxant.de/duesseldorf/reinigung"
       ],
-      "wordCount": 2201,
+      "wordCount": 2252,
       "wordRepetitions": [
-        "düsseldorf:51",
-        "turnus:41",
+        "düsseldorf:52",
+        "turnus:42",
         "keine:35",
-        "zugang:31",
-        "reinigung:30",
+        "zugang:32",
+        "reinigung:31",
         "floxant:24",
         "anfragen:24",
-        "objektart:23"
+        "objektart:24"
       ],
       "semanticTerms": [
         "Fläche",
@@ -52466,7 +52794,7 @@
         "scope",
         "access"
       ],
-      "internalLinkCount": 53,
+      "internalLinkCount": 56,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -52489,6 +52817,8 @@
         "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-duesseldorf&source=seo",
         "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
         "/angebotscheck",
+        "/objektbrief",
+        "/leistungsfinder",
         "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=sticky",
         "/angebot-vergleichen-duesseldorf",
         "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
@@ -55452,6 +55782,133 @@
       "shortTitle": "Leerstandsmanagement Regensburg"
     },
     {
+      "url": "/leistungsfinder",
+      "absoluteUrl": "https://www.floxant.de/leistungsfinder",
+      "pageType": "service-or-information",
+      "language": "de-DE",
+      "region": "Düsseldorf und Regensburg",
+      "primaryIntent": "leistungsfinder",
+      "title": "Leistungsfinder: Reinigung, Umzug oder Räumung | FLOXANT",
+      "titleLength": 56,
+      "h1": "Die passende FLOXANT-Leistung nach Region und Aufgabe finden",
+      "h1Count": 1,
+      "metaDescription": "Ordnen Sie Ihr Anliegen clientseitig ein: Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – mit passenden Angaben und nächstem Schritt.",
+      "descriptionLength": 159,
+      "canonical": "https://www.floxant.de/leistungsfinder",
+      "hreflang": [
+        "de-DE:https://www.floxant.de/leistungsfinder",
+        "en:https://www.floxant.de/en/service-finder",
+        "x-default:https://www.floxant.de/leistungsfinder"
+      ],
+      "wordCount": 196,
+      "wordRepetitions": [
+        "floxant:11",
+        "regensburg:10",
+        "düsseldorf:8"
+      ],
+      "semanticTerms": [
+        "Angebot",
+        "Reinigung",
+        "Umzug",
+        "Entrümpelung"
+      ],
+      "internalLinkCount": 40,
+      "internalLinks": [
+        "/",
+        "/angebot-guenstiger-pruefen",
+        "/kontakt",
+        "/kontakt?intent=allgemeine-anfrage&source=seo",
+        "/anfrage-mit-preisrahmen",
+        "/kontakt?service=reinigung&intent=reinigungsfirma-angebot&source=seo",
+        "/leistungen",
+        "/kontakt?intent=homepage-anfrage&source=seo",
+        "/duesseldorf",
+        "/regensburg",
+        "/regensburg/reinigung",
+        "/regensburg/umzug",
+        "/seniorenumzug-bayern",
+        "/regensburg/entruempelung",
+        "/angebotscheck",
+        "/plan-b-service",
+        "/diskreter-umzug-trennung-scheidung",
+        "/objektbrief",
+        "/rueckfahrt-boerse",
+        "/kontakt?service=sonstiges&intent=unsichere-anfrage&source=footer",
+        "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=footer",
+        "/signature-services",
+        "/impressum",
+        "/datenschutz",
+        "/agb",
+        "/buchungsbedingungen"
+      ],
+      "structuredData": [
+        "Organization",
+        "City",
+        "AdministrativeArea",
+        "GeoCircle",
+        "WebPage",
+        "Dataset",
+        "CreativeWork",
+        "PostalAddress",
+        "ContactPoint",
+        "ContactAction",
+        "Action",
+        "DataCatalog",
+        "DataDownload",
+        "WebSite",
+        "EntryPoint",
+        "Thing",
+        "Place",
+        "CommunicateAction",
+        "ReserveAction",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "visibleCtas": [
+        "Direkt zum Inhalt springen",
+        "FLOXANT Einfach anfragen",
+        "Leistungen",
+        "Standorte",
+        "Angebot prüfen",
+        "Besondere Lösungen",
+        "Kontakt",
+        "Anfrage senden",
+        "Budget nennen",
+        "Angebot anfragen",
+        "WhatsApp",
+        "Leistungen ansehen",
+        "WhatsApp starten",
+        "Kontakt öffnen",
+        "FLOXANT",
+        "info@floxant.de",
+        "+49 1577 1105087",
+        "Standort öffnen",
+        "Standort öffnen",
+        "Reinigung",
+        "Umzug",
+        "Seniorenumzug",
+        "Entrümpelung",
+        "Angebot prüfen",
+        "Düsseldorf",
+        "Regensburg",
+        "Servicegebiet ca. 50 km",
+        "Angebotscheck",
+        "Plan-B-Service",
+        "Diskret-Service"
+      ],
+      "overlapNotes": [],
+      "cannibalization": [],
+      "thinContent": false,
+      "genericSections": [],
+      "visibleInternalTerminology": [],
+      "statusInSitemap": true,
+      "outputFound": true,
+      "issues": [],
+      "snippetStatus": "PASS",
+      "classification": "KEEP_AND_STRENGTHEN",
+      "shortTitle": "Leistungsfinder: Reinigung, Umzug oder Räumung"
+    },
+    {
       "url": "/malerarbeiten",
       "absoluteUrl": "https://www.floxant.de/malerarbeiten",
       "pageType": "service-or-information",
@@ -56056,41 +56513,37 @@
       "pageType": "service-or-information",
       "language": "de-DE",
       "region": "Düsseldorf und Regensburg",
-      "primaryIntent": "floxant objektbrief",
-      "title": "FLOXANT Objektbrief | Anfrage klar vorbereiten",
-      "titleLength": 46,
-      "h1": "Objektbrief: Ihre Anfrage mit Fotos und Eckdaten vorbereiten.",
+      "primaryIntent": "anfragebrief für reinigung, umzug oder räumung",
+      "title": "Anfragebrief für Reinigung, Umzug oder Räumung | FLOXANT",
+      "titleLength": 56,
+      "h1": "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
       "h1Count": 1,
-      "metaDescription": "Mit dem FLOXANT Objektbrief Reinigung, Umzug, Entrümpelung, Haushaltsauflösung oder Übergabe besser anfragen: Region, Ziel, Fotos, Zugang, Termin und Budgetrahmen senden.",
-      "descriptionLength": 170,
+      "metaDescription": "Erstellen Sie clientseitig einen strukturierten Anfragebrief für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
+      "descriptionLength": 160,
       "canonical": "https://www.floxant.de/objektbrief",
-      "hreflang": [],
-      "wordCount": 1381,
+      "hreflang": [
+        "de-DE:https://www.floxant.de/objektbrief",
+        "en:https://www.floxant.de/en/create-request",
+        "x-default:https://www.floxant.de/objektbrief"
+      ],
+      "wordCount": 254,
       "wordRepetitions": [
-        "objektbrief:30",
-        "fotos:26",
-        "angebot:25",
-        "floxant:22",
-        "zugang:21",
-        "anfrage:17",
-        "regensburg:17",
-        "übergabe:15"
+        "floxant:12",
+        "regensburg:10",
+        "düsseldorf:8",
+        "anfragebrief:7",
+        "reinigung:6",
+        "leistungen:6",
+        "angebot:6"
       ],
       "semanticTerms": [
-        "Fläche",
-        "Turnus",
         "Zugang",
-        "Zeitfenster",
-        "Objekt",
-        "Räume",
-        "Fotos",
         "Angebot",
         "Reinigung",
         "Umzug",
-        "Entrümpelung",
-        "quote"
+        "Entrümpelung"
       ],
-      "internalLinkCount": 52,
+      "internalLinkCount": 40,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -56117,15 +56570,7 @@
         "/impressum",
         "/datenschutz",
         "/agb",
-        "/buchungsbedingungen",
-        "/kontakt?service=reinigung&city=regensburg&intent=objektbrief-uebergabe&source=seo",
-        "/regensburg/endreinigung",
-        "/vermieter-ready-service",
-        "/angebot-vergleichen-regensburg",
-        "/regensburg/gewerbereinigung",
-        "/uebergabeakte",
-        "/diskret-service",
-        "/objektbrief#schnellstart"
+        "/buchungsbedingungen"
       ],
       "structuredData": [
         "Organization",
@@ -56147,9 +56592,8 @@
         "Place",
         "CommunicateAction",
         "ReserveAction",
-        "FAQPage",
-        "Question",
-        "Answer"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "visibleCtas": [
         "Direkt zum Inhalt springen",
@@ -56186,16 +56630,14 @@
       "overlapNotes": [],
       "cannibalization": [],
       "thinContent": false,
-      "genericSections": [
-        "Häufige Fragen"
-      ],
+      "genericSections": [],
       "visibleInternalTerminology": [],
       "statusInSitemap": true,
       "outputFound": true,
       "issues": [],
       "snippetStatus": "PASS",
       "classification": "KEEP_AND_STRENGTHEN",
-      "shortTitle": "FLOXANT Objektbrief"
+      "shortTitle": "Anfragebrief für Reinigung, Umzug oder Räumung"
     },
     {
       "url": "/plan-b-service",
@@ -57040,16 +57482,16 @@
       "descriptionLength": 128,
       "canonical": "https://www.floxant.de/regensburg",
       "hreflang": [],
-      "wordCount": 4808,
+      "wordCount": 4864,
       "wordRepetitions": [
-        "regensburg:140",
+        "regensburg:141",
         "reinigung:75",
-        "prüfen:71",
+        "prüfen:74",
         "fotos:71",
         "umzug:65",
+        "leistung:57",
         "nach:57",
-        "ansehen:55",
-        "leistung:55"
+        "ansehen:55"
       ],
       "semanticTerms": [
         "Fläche",
@@ -57065,7 +57507,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 228,
+      "internalLinkCount": 231,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -57231,16 +57673,16 @@
       "descriptionLength": 115,
       "canonical": "https://www.floxant.de/regensburg/besenreine-uebergabe",
       "hreflang": [],
-      "wordCount": 2417,
+      "wordCount": 2468,
       "wordRepetitions": [
-        "regensburg:85",
+        "regensburg:86",
         "fotos:48",
         "floxant:39",
-        "reinigung:35",
+        "reinigung:36",
         "übergabe:29",
         "angebot:29",
         "termin:26",
-        "zugang:24"
+        "zugang:25"
       ],
       "semanticTerms": [
         "Fläche",
@@ -57256,7 +57698,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 116,
+      "internalLinkCount": 119,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -57312,6 +57754,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/wohnungsaufloesung",
         "/regensburg/uebergabereinigung",
         "/regensburg/endreinigung",
@@ -57414,11 +57857,11 @@
       "descriptionLength": 131,
       "canonical": "https://www.floxant.de/regensburg/endreinigung",
       "hreflang": [],
-      "wordCount": 2936,
+      "wordCount": 2987,
       "wordRepetitions": [
-        "regensburg:77",
+        "regensburg:78",
         "fotos:49",
-        "reinigung:37",
+        "reinigung:38",
         "floxant:36",
         "übergabe:33",
         "endreinigung:31",
@@ -57439,7 +57882,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 115,
+      "internalLinkCount": 118,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -57496,6 +57939,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/leistungen#regensburg",
         "/regensburg/reinigungsfirma",
         "/regensburg/umzugsunternehmen"
@@ -57594,15 +58038,15 @@
         "de-DE:https://www.floxant.de/regensburg/entruempelung",
         "x-default:https://www.floxant.de/regensburg/entruempelung"
       ],
-      "wordCount": 2264,
+      "wordCount": 2312,
       "wordRepetitions": [
-        "regensburg:78",
+        "regensburg:79",
         "fotos:61",
-        "entrümpelung:36",
+        "entrümpelung:37",
         "reinigung:33",
         "angebot:30",
         "floxant:29",
-        "zugang:27",
+        "zugang:28",
         "menge:23"
       ],
       "semanticTerms": [
@@ -57617,7 +58061,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 113,
+      "internalLinkCount": 116,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -57663,6 +58107,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/bueroreinigung",
         "/regensburg/wohnungsaufloesung",
         "/regensburg/uebergabereinigung",
@@ -57941,16 +58386,16 @@
         "de-DE:https://www.floxant.de/regensburg/haushaltsaufloesung",
         "x-default:https://www.floxant.de/regensburg/haushaltsaufloesung"
       ],
-      "wordCount": 1929,
+      "wordCount": 1977,
       "wordRepetitions": [
-        "regensburg:76",
+        "regensburg:77",
         "fotos:50",
         "reinigung:32",
         "floxant:29",
         "angebot:23",
         "nach:21",
-        "anfrage:20",
-        "zugang:20"
+        "zugang:21",
+        "anfrage:20"
       ],
       "semanticTerms": [
         "Fläche",
@@ -57964,7 +58409,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 103,
+      "internalLinkCount": 106,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -58010,6 +58455,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/bueroreinigung",
         "/regensburg/wohnungsaufloesung",
         "/regensburg/uebergabereinigung",
@@ -58109,16 +58555,16 @@
       "descriptionLength": 126,
       "canonical": "https://www.floxant.de/regensburg/uebergabereinigung",
       "hreflang": [],
-      "wordCount": 2472,
+      "wordCount": 2523,
       "wordRepetitions": [
-        "regensburg:90",
+        "regensburg:91",
         "fotos:48",
-        "reinigung:37",
+        "reinigung:38",
         "floxant:33",
+        "zugang:26",
         "angebot:25",
         "termin:25",
-        "zugang:25",
-        "anfrage:21"
+        "anfrage:22"
       ],
       "semanticTerms": [
         "Fläche",
@@ -58133,7 +58579,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 116,
+      "internalLinkCount": 119,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -58189,6 +58635,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/wohnungsaufloesung",
         "/regensburg/endreinigung",
         "/regensburg/reinigung-nach-umzug",
@@ -58290,16 +58737,16 @@
         "de-DE:https://www.floxant.de/regensburg/umzug",
         "x-default:https://www.floxant.de/regensburg/umzug"
       ],
-      "wordCount": 1672,
+      "wordCount": 1723,
       "wordRepetitions": [
-        "regensburg:35",
-        "umzug:31",
+        "regensburg:37",
+        "umzug:32",
         "floxant:28",
         "keine:27",
-        "start:19",
-        "termin:19",
+        "start:20",
+        "termin:20",
         "etage:19",
-        "fotos:19"
+        "umfang:19"
       ],
       "semanticTerms": [
         "Zugang",
@@ -58310,7 +58757,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 63,
+      "internalLinkCount": 66,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -58347,6 +58794,7 @@
         "/bueroumzug-regensburg",
         "/regensburg/umzug-reinigung",
         "/leerfahrt-rueckfahrt",
+        "/leistungsfinder",
         "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo"
       ],
       "structuredData": [
@@ -58439,15 +58887,15 @@
       "descriptionLength": 118,
       "canonical": "https://www.floxant.de/regensburg/umzug-reinigung",
       "hreflang": [],
-      "wordCount": 2404,
+      "wordCount": 2455,
       "wordRepetitions": [
-        "regensburg:85",
+        "regensburg:87",
         "reinigung:47",
         "fotos:42",
-        "umzug:39",
+        "umzug:40",
         "floxant:33",
+        "termin:26",
         "angebot:25",
-        "termin:25",
         "anfrage:21"
       ],
       "semanticTerms": [
@@ -58463,7 +58911,7 @@
         "Umzug",
         "Entrümpelung"
       ],
-      "internalLinkCount": 116,
+      "internalLinkCount": 119,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -58518,6 +58966,7 @@
         "/fairpreis-check",
         "/anbieter-vergleichen",
         "/kontakt?city=regensburg&source=local-proof",
+        "/leistungsfinder",
         "/regensburg/wohnungsaufloesung",
         "/regensburg/uebergabereinigung",
         "/regensburg/endreinigung",
@@ -58622,16 +59071,16 @@
         "de-DE:https://www.floxant.de/reinigungsfirma-angebot",
         "x-default:https://www.floxant.de/reinigungsfirma-angebot"
       ],
-      "wordCount": 989,
+      "wordCount": 1041,
       "wordRepetitions": [
-        "angebot:20",
+        "angebot:21",
         "floxant:17",
         "fotos:17",
-        "regensburg:12",
+        "regensburg:13",
         "anfrage:11",
+        "düsseldorf:11",
         "reinigung:11",
-        "besichtigung:11",
-        "düsseldorf:10"
+        "besichtigung:11"
       ],
       "semanticTerms": [
         "Fläche",
@@ -58647,7 +59096,7 @@
         "Entrümpelung",
         "Übergabe"
       ],
-      "internalLinkCount": 49,
+      "internalLinkCount": 52,
       "internalLinks": [
         "/",
         "/angebot-guenstiger-pruefen",
@@ -58680,7 +59129,8 @@
         "/duesseldorf/bueroreinigung",
         "/angebot-vergleichen-duesseldorf",
         "/regensburg/bueroreinigung",
-        "/grundreinigung-regensburg"
+        "/grundreinigung-regensburg",
+        "/leistungsfinder"
       ],
       "structuredData": [
         "Organization",

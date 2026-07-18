@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T23:09:47.446Z",
+  "generatedAt": "2026-07-18T00:17:05.298Z",
   "baselineNote": "Budgets use the measured pre-change export (4.06 GiB, 3.11 MB JS, 475,979 B CSS, 198,492 B largest JS) plus only bounded headroom for the required static tool routes.",
   "budgets": {
     "fileCount": 20000,
@@ -17,13 +17,13 @@
   },
   "measurements": {
     "fileCount": 13199,
-    "largestFileBytes": 1648954,
-    "totalOutputBytes": 4360986711,
-    "totalJavaScriptBytes": 3147003,
+    "largestFileBytes": 1648826,
+    "totalOutputBytes": 4360267906,
+    "totalJavaScriptBytes": 3147132,
     "largestJavaScriptBytes": 198492,
     "totalCssBytes": 475626,
-    "largestHtmlBytes": 1648954,
-    "largestReactServerPayloadBytes": 1081584,
+    "largestHtmlBytes": 1648826,
+    "largestReactServerPayloadBytes": 1081472,
     "largestImageBytes": 341317,
     "totalFontBytes": 0,
     "sourceMapFiles": 0,
@@ -65,19 +65,19 @@
     },
     {
       "name": "largestFileBytes",
-      "actual": 1648954,
+      "actual": 1648826,
       "budget": 26214400,
       "passed": true
     },
     {
       "name": "totalOutputBytes",
-      "actual": 4360986711,
+      "actual": 4360267906,
       "budget": 4450000000,
       "passed": true
     },
     {
       "name": "totalJavaScriptBytes",
-      "actual": 3147003,
+      "actual": 3147132,
       "budget": 4194304,
       "passed": true
     },
@@ -95,13 +95,13 @@
     },
     {
       "name": "largestHtmlBytes",
-      "actual": 1648954,
+      "actual": 1648826,
       "budget": 2097152,
       "passed": true
     },
     {
       "name": "largestReactServerPayloadBytes",
-      "actual": 1081584,
+      "actual": 1081472,
       "budget": 1572864,
       "passed": true
     },
