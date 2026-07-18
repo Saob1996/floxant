@@ -29,7 +29,7 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/reinigung": {
-    seoTitle: "Reinigung Düsseldorf | Büro, Praxis & Wohnung",
+    seoTitle: "Reinigung Düsseldorf anfragen | Objekt, Fläche & Termin",
     shortTitle: "Reinigung Düsseldorf",
     headline: "Reinigung in Düsseldorf für Wohnung, Büro und Objekt anfragen",
     description:
