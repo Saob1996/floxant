@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.floxant.de/schemas/proof-registry.json",
+  "title": "FLOXANT proof registry",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "service",
+      "region",
+      "date",
+      "evidenceType",
+      "source",
+      "verified",
+      "customerConsent",
+      "anonymized",
+      "publicAllowed",
+      "images",
+      "measurableFacts",
+      "notes",
+      "reviewedBy",
+      "reviewedAt"
+    ],
+    "properties": {
+      "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,80}$" },
+      "service": { "type": "string", "minLength": 2, "maxLength": 100 },
+      "region": { "type": "string", "minLength": 2, "maxLength": 100 },
+      "date": { "type": "string", "format": "date" },
+      "evidenceType": {
+        "enum": [
+          "own_project_photo",
+          "written_customer_consent",
+          "anonymized_project_information",
+          "public_company_profile",
+          "process_evidence",
+          "own_document",
+          "real_service_description"
+        ]
+      },
+      "source": { "type": "string", "minLength": 3, "maxLength": 500 },
+      "verified": { "type": "boolean" },
+      "customerConsent": { "enum": ["not_required", "documented", "missing"] },
+      "anonymized": { "type": "boolean" },
+      "publicAllowed": { "type": "boolean" },
+      "images": { "type": "array", "items": { "type": "string", "maxLength": 500 } },
+      "measurableFacts": { "type": "array", "items": { "type": "string", "maxLength": 500 } },
+      "notes": { "type": "string", "maxLength": 2000 },
+      "reviewedBy": { "type": "string", "minLength": 2, "maxLength": 100 },
+      "reviewedAt": { "type": "string", "format": "date-time" }
+    }
+  }
+}
