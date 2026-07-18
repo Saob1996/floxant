@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
@@ -23,6 +23,7 @@ export function EnglishRequestForm({
 }: EnglishRequestFormProps) {
   const [state, setState] = useState<SubmitState>("idle");
   const [details, setDetails] = useState(initialDetails);
+  const formStartedAt = useRef(Date.now());
 
   useEffect(() => {
     if (initialDetails) setDetails(initialDetails);
@@ -39,6 +40,9 @@ export function EnglishRequestForm({
     data.set("source", source);
     data.set("intent", intent);
     data.set("privacyConsent", "true");
+    data.set("language", "en");
+    data.set("locale", "en");
+    data.set("formStartedAt", String(formStartedAt.current));
 
     try {
       const response = await fetch("/api/bookings", { method: "POST", body: data });
@@ -65,22 +69,30 @@ export function EnglishRequestForm({
 
   return (
     <form id={formId} onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label>
+          Company website
+          <input name="companyWebsite" type="text" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+      <input name="language" type="hidden" value="en" />
+      <input name="locale" type="hidden" value="en" />
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name
-          <input name="name" required autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
+          <input name="name" required maxLength={160} autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Email
-          <input name="email" type="email" required autoComplete="email" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
+          <input name="email" type="email" required maxLength={254} autoComplete="email" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Phone (optional)
-          <input name="phone" type="tel" autoComplete="tel" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
+          <input name="phone" type="tel" maxLength={60} autoComplete="tel" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           City or postcode
-          <input name="cityOrZip" required autoComplete="postal-code" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
+          <input name="cityOrZip" required maxLength={120} autoComplete="postal-code" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Location
@@ -111,6 +123,7 @@ export function EnglishRequestForm({
           name="details"
           required
           rows={7}
+          maxLength={12000}
           value={details}
           onChange={(event) => setDetails(event.target.value)}
           placeholder="Please describe the property or move, approximate size, current condition, preferred date, access and whether photos or an existing quote are available."

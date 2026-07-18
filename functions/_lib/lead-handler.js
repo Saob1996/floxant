@@ -1,6 +1,28 @@
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
 const ALLOWED_FILE_TYPES = new Set(["application/pdf", "image/jpeg", "image/png", "image/webp"]);
+const DUPLICATE_WINDOW_MS = 5 * 60 * 1000;
+const recentSubmissionHashes = new Map();
+const TEXT_LIMITS = {
+  name: 160,
+  fullName: 160,
+  contactName: 160,
+  email: 254,
+  phone: 60,
+  city: 120,
+  cityOrZip: 120,
+  postcode: 24,
+  service: 120,
+  type: 120,
+  lead_type: 120,
+  source: 500,
+  sourcePage: 500,
+  landingPage: 500,
+  message: 8000,
+  note: 8000,
+  notes: 8000,
+  details: 12000,
+};
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -28,20 +50,94 @@ function isValidEmail(value) {
   return !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function allowedOrigin(request) {
+function allowedOrigin(request, env) {
   const origin = request.headers.get("Origin");
   if (!origin) return true;
 
   try {
-    const hostname = new URL(origin).hostname.toLowerCase();
-    return hostname === "floxant.de"
-      || hostname === "www.floxant.de"
-      || hostname === "localhost"
-      || hostname === "127.0.0.1"
-      || hostname.endsWith(".pages.dev");
+    const normalized = new URL(origin).origin.toLowerCase();
+    const configured = text(env.ALLOWED_FORM_ORIGINS)
+      .split(",")
+      .map((value) => value.trim().replace(/\/$/, "").toLowerCase())
+      .filter(Boolean);
+    const allowed = new Set([
+      "https://floxant.de",
+      "https://www.floxant.de",
+      "https://floxant.pages.dev",
+      "http://localhost:3000",
+      "http://127.0.0.1:3000",
+      ...configured,
+    ]);
+    return allowed.has(normalized);
   } catch {
     return false;
   }
+}
+
+function httpError(status, clientMessage, code) {
+  return Object.assign(new Error(code), { status, clientMessage, code });
+}
+
+function assertTextLimits(value, key = "value", depth = 0) {
+  if (depth > 8) throw httpError(400, "Die Anfrage enthält eine zu tiefe Datenstruktur.", "PAYLOAD_DEPTH");
+  if (typeof value === "string") {
+    const limit = TEXT_LIMITS[key] || 4000;
+    if (value.length > limit) throw httpError(413, "Eine Eingabe überschreitet die zulässige Länge.", "TEXT_LIMIT");
+    return;
+  }
+  if (Array.isArray(value)) {
+    if (value.length > 100) throw httpError(413, "Die Anfrage enthält zu viele Einträge.", "ARRAY_LIMIT");
+    value.forEach((item) => assertTextLimits(item, key, depth + 1));
+    return;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value);
+    if (entries.length > 150) throw httpError(413, "Die Anfrage enthält zu viele Felder.", "FIELD_LIMIT");
+    entries.forEach(([childKey, item]) => assertTextLimits(item, childKey, depth + 1));
+  }
+}
+
+async function requestWithEnforcedSize(request) {
+  const declaredSize = Number(request.headers.get("Content-Length") || 0);
+  if (declaredSize > MAX_REQUEST_BYTES) throw httpError(413, "Die Anfrage ist zu groß.", "REQUEST_TOO_LARGE");
+  const body = await request.arrayBuffer();
+  if (body.byteLength > MAX_REQUEST_BYTES) throw httpError(413, "Die Anfrage ist zu groß.", "REQUEST_TOO_LARGE");
+  return new Request(request, { body });
+}
+
+function bytesStartWith(bytes, signature) {
+  return signature.every((value, index) => bytes[index] === value);
+}
+
+async function hasValidFileSignature(file) {
+  const bytes = new Uint8Array(await file.slice(0, 16).arrayBuffer());
+  if (file.type === "application/pdf") return bytesStartWith(bytes, [0x25, 0x50, 0x44, 0x46, 0x2d]);
+  if (file.type === "image/jpeg") return bytesStartWith(bytes, [0xff, 0xd8, 0xff]);
+  if (file.type === "image/png") return bytesStartWith(bytes, [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  if (file.type === "image/webp") return bytesStartWith(bytes, [0x52, 0x49, 0x46, 0x46]) && bytesStartWith(bytes.slice(8), [0x57, 0x45, 0x42, 0x50]);
+  return false;
+}
+
+async function submissionHash(payload, contact, service) {
+  const stable = JSON.stringify({
+    contact: { email: contact.email.toLowerCase(), phone: contact.phone.replace(/\D/g, "") },
+    service,
+    source: firstText(payload.source, payload.sourcePage, payload.landingPage),
+    details: firstText(typeof payload.details === "string" ? payload.details : "", payload.message, payload.note).slice(0, 2000),
+  });
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(stable));
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function isRecentDuplicate(payload, contact, service) {
+  const now = Date.now();
+  for (const [hash, timestamp] of recentSubmissionHashes) {
+    if (now - timestamp > DUPLICATE_WINDOW_MS) recentSubmissionHashes.delete(hash);
+  }
+  const hash = await submissionHash(payload, contact, service);
+  if (recentSubmissionHashes.has(hash)) return true;
+  recentSubmissionHashes.set(hash, now);
+  return false;
 }
 
 function parseJson(value, fallback = null) {
@@ -94,17 +190,15 @@ function normalizeService(value) {
 
 async function parsePayload(request) {
   const contentType = request.headers.get("Content-Type") || "";
-  const contentLength = Number(request.headers.get("Content-Length") || 0);
-  if (contentLength > MAX_REQUEST_BYTES) {
-    throw Object.assign(new Error("Die Anfrage ist zu gross."), { status: 413 });
-  }
 
   if (contentType.includes("application/json")) {
-    return { payload: await request.json(), files: [] };
+    const payload = await request.json();
+    assertTextLimits(payload);
+    return { payload, files: [] };
   }
 
   if (!contentType.includes("multipart/form-data") && !contentType.includes("application/x-www-form-urlencoded")) {
-    throw Object.assign(new Error("Nicht unterstuetztes Anfrageformat."), { status: 415 });
+    throw httpError(415, "Nicht unterstütztes Anfrageformat.", "UNSUPPORTED_CONTENT_TYPE");
   }
 
   const formData = await request.formData();
@@ -127,6 +221,8 @@ async function parsePayload(request) {
   if (details) payload.details = details;
   const upgrades = parseJson(payload.upgrades);
   if (upgrades) payload.upgrades = upgrades;
+
+  assertTextLimits(payload);
 
   return { payload, files };
 }
@@ -163,6 +259,7 @@ function buildDetails(payload, contact, service, uploadedFiles) {
       ...(existing.metadata || {}),
       createdAt: firstText(existing.metadata?.createdAt, payload.timestamp, now),
       intakeVersion: firstText(existing.metadata?.intakeVersion, "cloudflare-pages-v1"),
+      locale: firstText(existing.metadata?.locale, payload.locale, payload.language, "unknown").toLowerCase(),
     },
   };
 }
@@ -177,10 +274,13 @@ async function uploadFiles(files, env, requestId) {
   for (let index = 0; index < files.length; index += 1) {
     const { field, file } = files[index];
     if (file.size > MAX_FILE_BYTES) {
-      throw Object.assign(new Error(`${file.name}: maximal 12 MiB pro Datei.`), { status: 413 });
+      throw httpError(413, "Eine Datei überschreitet 12 MiB.", "FILE_TOO_LARGE");
     }
     if (!ALLOWED_FILE_TYPES.has(file.type)) {
-      throw Object.assign(new Error(`${file.name}: nur PDF, JPG, PNG oder WebP sind erlaubt.`), { status: 415 });
+      throw httpError(415, "Nur PDF-, JPG-, PNG- oder WebP-Dateien sind erlaubt.", "FILE_TYPE");
+    }
+    if (!(await hasValidFileSignature(file))) {
+      throw httpError(415, "Der Dateiinhalt stimmt nicht mit dem angegebenen Dateityp überein.", "FILE_SIGNATURE");
     }
 
     const storagePath = `cloudflare-pages/${new Date().toISOString().slice(0, 10)}/${requestId}/${index}_${safeFileName(file.name)}`;
@@ -197,7 +297,7 @@ async function uploadFiles(files, env, requestId) {
     });
 
     if (!response.ok) {
-      throw Object.assign(new Error(`Upload von ${file.name} ist fehlgeschlagen.`), { status: 502 });
+      throw httpError(502, "Eine Datei konnte nicht verarbeitet werden.", "UPLOAD_FAILED");
     }
 
     uploaded.push({
@@ -229,7 +329,7 @@ async function insertBooking(booking, env) {
   });
 
   if (!response.ok) {
-    throw Object.assign(new Error("Die Anfrage konnte nicht gespeichert werden."), { status: 502 });
+    throw httpError(502, "Die Anfrage konnte gerade nicht verarbeitet werden.", "BOOKING_INSERT_FAILED");
   }
 
   const rows = await response.json();
@@ -257,18 +357,32 @@ async function sendNotification({ bookingId, contact, service, details, uploaded
       <h2>Strukturierte Angaben</h2>
       <pre style="white-space:pre-wrap;background:#f8fafc;padding:16px;border-radius:8px">${escapeHtml(JSON.stringify(details, null, 2))}</pre>
     </div>`;
+  const plainText = [
+    "Neue FLOXANT-Anfrage",
+    `Vorgang: ${bookingId}`,
+    `Service: ${service}`,
+    `Name: ${contact.name || "-"}`,
+    `E-Mail: ${contact.email || "-"}`,
+    `Telefon: ${contact.phone || "-"}`,
+    uploadedFiles.length ? `Uploads: ${uploadedFiles.map((item) => item.publicUrl).join("\n")}` : "Uploads: keine",
+    "Strukturierte Angaben:",
+    JSON.stringify(details, null, 2),
+  ].join("\n\n");
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
+      "Idempotency-Key": `floxant-booking-${bookingId}`,
     },
     body: JSON.stringify({
       from,
       to: [recipient],
-      subject: `[FLOXANT Lead] ${service} – ${contact.name}`,
+      reply_to: contact.email || undefined,
+      subject: `[FLOXANT Anfrage] ${service}`,
       html,
+      text: plainText,
     }),
   });
 
@@ -278,7 +392,7 @@ async function sendNotification({ bookingId, contact, service, details, uploaded
 export async function handleLeadSubmission(context) {
   const requestId = crypto.randomUUID();
   try {
-    if (!allowedOrigin(context.request)) {
+    if (!allowedOrigin(context.request, context.env)) {
       return json({ success: false, error: "Ungueltige Anfragequelle.", requestId }, 403);
     }
 
@@ -292,10 +406,11 @@ export async function handleLeadSubmission(context) {
       }, 503);
     }
 
-    const { payload, files } = await parsePayload(context.request);
+    const sizedRequest = await requestWithEnforcedSize(context.request);
+    const { payload, files } = await parsePayload(sizedRequest);
     const honeypot = firstText(payload.companyWebsite, payload.website, payload.url);
     if (honeypot) {
-      return json({ success: false, error: "Spam-Schutz", requestId }, 400);
+      return json({ success: true, requestId }, 202);
     }
 
     const existingContact = payload.details?.contact || payload.contact || {};
@@ -327,8 +442,12 @@ export async function handleLeadSubmission(context) {
       return json({ success: false, error: "Bitte pruefen Sie Ihre Angaben kurz und senden Sie erneut.", requestId }, 400);
     }
 
-    const uploadedFiles = await uploadFiles(files, context.env, requestId);
     const service = normalizeService(firstText(payload.details?.service?.type, payload.service, payload.type, payload.lead_type));
+    if (await isRecentDuplicate(payload, contact, service)) {
+      return json({ success: false, error: "Eine identische Anfrage wurde gerade bereits verarbeitet.", requestId }, 409);
+    }
+
+    const uploadedFiles = await uploadFiles(files, context.env, requestId);
     const details = buildDetails(payload, contact, service, uploadedFiles);
     const booking = {
       name: contact.name || "Interessent",
@@ -343,24 +462,23 @@ export async function handleLeadSubmission(context) {
     };
 
     const bookingId = await insertBooking(booking, context.env);
-    const notification = await sendNotification({ bookingId, contact, service, details, uploadedFiles }, context.env);
+    await sendNotification({ bookingId, contact, service, details, uploadedFiles }, context.env);
 
     return json({
       success: true,
       id: bookingId,
-      mailStatus: notification.status,
-      warning: notification.status === "failed"
-        ? "Die Anfrage wurde gespeichert, aber die interne E-Mail-Benachrichtigung ist fehlgeschlagen."
-        : notification.status === "not_configured"
-          ? "Die Anfrage wurde gespeichert; die E-Mail-Benachrichtigung ist nicht konfiguriert."
-          : undefined,
     });
   } catch (error) {
-    console.error("Cloudflare lead submission failed", { requestId, message: error?.message || String(error) });
+    const status = Number(error?.status) || 500;
+    console.error("Cloudflare lead submission failed", {
+      requestId,
+      status,
+      errorType: error?.code || "UNEXPECTED_ERROR",
+    });
     return json({
       success: false,
-      error: error?.message || "Die Anfrage konnte gerade nicht verarbeitet werden. Bitte nutzen Sie WhatsApp oder Telefon.",
+      error: error?.clientMessage || "Die Anfrage konnte gerade nicht verarbeitet werden. Bitte nutzen Sie WhatsApp oder Telefon.",
       requestId,
-    }, Number(error?.status) || 500);
+    }, status);
   }
 }

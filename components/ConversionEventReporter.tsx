@@ -43,13 +43,29 @@ function persistJourneyCookie(journeyId: string) {
 
 function buildUtmSnapshot() {
  const params = new URLSearchParams(window.location.search);
+ const safe = (value: string | null) => String(value || "").replace(/[^a-zA-Z0-9._ -]+/g, "").slice(0, 100);
  return {
-  utm_source: params.get("utm_source") || "",
-  utm_medium: params.get("utm_medium") || "",
-  utm_campaign: params.get("utm_campaign") || "",
-  utm_content: params.get("utm_content") || "",
-  gclid: params.get("gclid") || "",
+  utm_source: safe(params.get("utm_source")),
+  utm_medium: safe(params.get("utm_medium")),
+  utm_campaign: safe(params.get("utm_campaign")),
+  utm_content: safe(params.get("utm_content")),
  };
+}
+
+function safePageReference(value: string) {
+ if (!value) return "";
+ try {
+  const url = new URL(value, window.location.origin);
+  return `${url.origin}${url.pathname}`.slice(0, 300);
+ } catch {
+  return "";
+ }
+}
+
+function safeEventHref(value: unknown) {
+ const href = String(value || "");
+ if (/^(?:tel|mailto):/i.test(href) || /(?:wa\.me|whatsapp)/i.test(href)) return "contact-channel";
+ return safePageReference(href);
 }
 
 function createBrowserId(prefix: string) {
@@ -106,14 +122,16 @@ function rememberConversionEvent(snapshot: Record<string, unknown>) {
 }
 
 function sendConversionEvent(payload: Record<string, unknown>) {
+ if (!hasAnalyticsConsent()) return;
  const journeyId = getJourneyId();
  const snapshot = {
   ...payload,
   journeyId,
   eventId: createBrowserId("event"),
   path: window.location.pathname,
-  search: window.location.search,
-  referrer: document.referrer,
+  href: safeEventHref(payload.href),
+  search: "",
+  referrer: safePageReference(document.referrer),
   utm: buildUtmSnapshot(),
   timestamp: Date.now(),
  };
@@ -136,6 +154,18 @@ function hasMarketingConsent() {
   if (raw === "all") return true;
   if (!raw.startsWith("{")) return false;
   return JSON.parse(raw)?.marketing === true;
+ } catch {
+  return false;
+ }
+}
+
+function hasAnalyticsConsent() {
+ try {
+  const raw = localStorage.getItem("cookie_consent");
+  if (!raw) return false;
+  if (raw === "all") return true;
+  if (!raw.startsWith("{")) return false;
+  return JSON.parse(raw)?.analytics === true;
  } catch {
   return false;
  }
