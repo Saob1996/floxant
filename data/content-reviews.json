@@ -1,0 +1,8 @@
+[
+  { "route": "/", "locale": "de", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-10-18", "owner": "FLOXANT Redaktion", "priority": "high" },
+  { "route": "/duesseldorf", "locale": "de", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-10-18", "owner": "FLOXANT Redaktion", "priority": "high" },
+  { "route": "/duesseldorf/reinigung", "locale": "de", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-08-15", "owner": "FLOXANT SEO", "priority": "high" },
+  { "route": "/regensburg", "locale": "de", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-10-18", "owner": "FLOXANT Redaktion", "priority": "high" },
+  { "route": "/en", "locale": "en", "sourceRoute": "/", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-10-18", "owner": "FLOXANT Redaktion", "priority": "high" },
+  { "route": "/en/contact", "locale": "en", "lastReviewedAt": "2026-07-18", "reviewedBy": "FLOXANT Redaktion", "evidenceStatus": "reviewed", "nextReviewAt": "2026-10-18", "owner": "FLOXANT Operations", "priority": "high" }
+]

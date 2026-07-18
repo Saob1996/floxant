@@ -1,0 +1,7 @@
+sourceUrl,targetUrl,suggestedAnchor,reason,locale,cluster,priority,alreadyLinked,manualReview
+/duesseldorf,/duesseldorf/reinigung,Reinigungsumfang in Düsseldorf klären,"3143 GSC-Impressionen; Ø Position 11.15; redaktionellen Kontext prüfen",de,duesseldorf-cleaning,high,true,true
+/duesseldorf/reinigung,/duesseldorf/bueroreinigung,Anforderungen an die Büroreinigung,"934 GSC-Impressionen; Ø Position 33.97; redaktionellen Kontext prüfen",de,duesseldorf-cleaning,high,true,true
+/duesseldorf/reinigung,/duesseldorf/fensterreinigung,Fenster- und Glasflächen beschreiben,"Strukturell relevante Weiterführung; GSC-Zieldaten fehlen",de,duesseldorf-cleaning,low,true,true
+/duesseldorf/reinigung,/duesseldorf/gewerbereinigung,Reinigung für gewerblich genutzte Flächen,"454 GSC-Impressionen; Ø Position 39.39; redaktionellen Kontext prüfen",de,duesseldorf-cleaning,high,true,true
+/regensburg,/regensburg/bueroreinigung,Büroreinigung in Regensburg anfragen,"23 GSC-Impressionen; Ø Position 22.26; redaktionellen Kontext prüfen",de,regensburg-cleaning,low,true,true
+/en,/en/contact,describe your service request,"Strukturell relevante Weiterführung; GSC-Zieldaten fehlen",en,english-service,low,true,true
