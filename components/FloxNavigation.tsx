@@ -8,12 +8,13 @@ import { useEffect, useRef, useState } from "react";
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
 import { FloxServicesMegaMenu } from "@/components/FloxServicesMegaMenu";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
+import { HeaderSearch } from "@/components/search/HeaderSearch";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { cn } from "@/lib/utils";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
-type DesktopMenu = "services" | "locations" | "special" | null;
+type DesktopMenu = "services" | "locations" | "special" | "knowledge" | null;
 
 const requestHref = buildLeadHref({
   service: "sonstiges",
@@ -47,6 +48,12 @@ const specialLinks = [
   { label: "Plan-B-Service", href: "/plan-b-service" },
   { label: "Objektbrief", href: "/objektbrief" },
 ] as const;
+const knowledgeLinks = [
+  { label: "Fragen und Antworten", href: "/fragen" },
+  { label: "Service Finder", href: "/service-finder" },
+  { label: "Ratgeber", href: "/blog" },
+] as const;
+
 
 function isActive(pathname: string, href: string) {
   return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
@@ -126,7 +133,7 @@ export function PublicHeader({
       panel
         ? Array.from(
             panel.querySelectorAll<HTMLElement>(
-              'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
+              'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
             ),
           ).filter((element) => element.getClientRects().length > 0)
         : [];
@@ -277,9 +284,35 @@ export function PublicHeader({
               ) : null}
             </div>
 
-            <Link href="/kontakt" onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/kontakt"))}>
-              Kontakt
-            </Link>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={(event) => toggleDesktopMenu("knowledge", event.currentTarget)}
+                className={menuButtonClass(openMenu === "knowledge" || knowledgeLinks.some((item) => isActive(pathname, item.href)))}
+                aria-expanded={openMenu === "knowledge"}
+                aria-controls="knowledge-menu"
+                aria-haspopup="dialog"
+                data-menu-trigger="knowledge"
+              >
+                Wissen &amp; Suche
+                <ChevronDown className={cn("h-4 w-4 transition", openMenu === "knowledge" && "rotate-180")} aria-hidden="true" />
+              </button>
+              {openMenu === "knowledge" ? (
+                <div id="knowledge-menu" role="dialog" aria-label="Wissen und Suche" className="absolute right-0 top-full w-80 pt-3" data-desktop-mega-menu>
+                  <div className="grid gap-2 rounded-xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
+                    <HeaderSearch locale="de" className="mb-1" onNavigate={() => closeDesktopMenu()} />
+                    {knowledgeLinks.map((item) => (
+                      <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeDesktopMenu()} className="flex min-h-11 items-center rounded-md px-3 text-sm font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                        {item.label}
+                      </Link>
+                    ))}
+                    <Link href="/kontakt" onClick={() => closeDesktopMenu()} className="flex min-h-11 items-center rounded-md border-t border-slate-200 px-3 pt-3 text-sm font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                      Kontakt
+                    </Link>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </nav>
 
           <Link
@@ -362,6 +395,7 @@ export function PublicHeader({
                 </button>
               </div>
 
+              <HeaderSearch locale="de" className="mt-5" onNavigate={() => closeMobileMenu()} />
               <nav aria-label="Mobile Hauptnavigation" className="mt-3">
                 <FloxServicesMegaMenu mode="mobile" onNavigate={() => closeMobileMenu()} />
                 <details className="border-b border-slate-200" data-mobile-nav-group>
@@ -381,6 +415,9 @@ export function PublicHeader({
                     ))}
                   </div>
                 </details>
+                {knowledgeLinks.map((item) => (
+                  <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">{item.label}</Link>
+                ))}
                 <Link href="/kontakt" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Kontakt</Link>
               </nav>
 

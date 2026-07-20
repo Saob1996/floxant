@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: ReactNode;
@@ -35,9 +35,6 @@ export default async function RootLayout({
           "min-h-screen bg-background font-sans antialiased text-foreground flox-site-light",
         )}
       >
-        <a href="#main-content" className="skip-to-content">
-          Direkt zum Inhalt springen
-        </a>
         <MotionProvider>
           <GoogleAdsTag />
           <ConversionEventReporter />

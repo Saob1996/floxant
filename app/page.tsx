@@ -15,11 +15,12 @@ import {
   Truck,
 } from "lucide-react";
 
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
-import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
@@ -83,7 +84,7 @@ const mainServices = [
 const locations = [
   {
     title: "Düsseldorf",
-    text: "Reinigung, Büro- und Gewerbereinigung, Umzug, Entrümpelung und Haushaltsauflösung.",
+    text: "Reinigung, Büro-, Gewerbe-, Praxis- und Fensterreinigung sowie Angebotsprüfung.",
     cta: "Leistungen in Düsseldorf",
     href: "/duesseldorf",
   },
@@ -118,33 +119,6 @@ const specialSolutions = [
   },
 ] as const;
 
-const faqItems = [
-  {
-    q: "Welche Leistungen bietet FLOXANT an?",
-    a: "Zu den Hauptleistungen gehören Umzug und Transport, Reinigung, Entrümpelung und Auflösung. Für Unternehmen sowie besondere oder sensible Situationen gibt es passende Kontaktwege.",
-  },
-  {
-    q: "Arbeitet FLOXANT in Düsseldorf und Regensburg?",
-    a: "Ja, FLOXANT nimmt Anfragen für Düsseldorf und Regensburg an. Liegt Ihr Einsatzort im Umfeld, nennen Sie ihn einfach im Formular.",
-  },
-  {
-    q: "Kann ich Fotos mitsenden?",
-    a: "Ja. Fotos sind optional, helfen aber oft dabei, Umfang und Zugang besser einzuschätzen.",
-  },
-  {
-    q: "Kann ich ein vorhandenes Angebot prüfen lassen?",
-    a: "Ja. Sie können ein Angebot, einen Screenshot oder die wichtigsten Angaben senden. FLOXANT betrachtet Leistungsumfang, Preispositionen und mögliche Zusatzkosten.",
-  },
-  {
-    q: "Ist meine Anfrage bereits eine Buchung?",
-    a: "Nein. Ihre Anfrage ist unverbindlich und noch keine Buchung. Ein Auftrag entsteht erst nach einer ausdrücklichen Vereinbarung.",
-  },
-  {
-    q: "Was passiert nach dem Absenden?",
-    a: "Wir sehen uns Ihre Angaben an und melden uns über den gewählten Kontaktweg. Falls Informationen fehlen, fragen wir gezielt nach.",
-  },
-] as const;
-
 export const metadata: Metadata = {
   ...generatePageSEO({ path, title: homepageTitle, description: homepageDescription }),
   metadataBase: new URL(company.url),
@@ -152,7 +126,7 @@ export const metadata: Metadata = {
   description: homepageDescription,
   alternates: {
     canonical,
-    languages: { "de-DE": path, "x-default": path },
+    languages: { "de-DE": path, en: "/en", "x-default": path },
   },
   openGraph: {
     type: "website",
@@ -209,7 +183,6 @@ function JsonLd() {
         telephone: company.phoneRaw,
         sameAs: company.sameAs,
       },
-      buildFaqJsonLd(faqItems),
     ],
   };
 
@@ -397,21 +370,7 @@ export default function HomePage() {
 
       <section data-home-section="faq-final" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <p className="text-sm font-black uppercase tracking-wider text-cyan-200">Häufige Fragen</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Kurz erklärt</h2>
-            <div className="mt-8 divide-y divide-white/15 border-y border-white/15">
-              {faqItems.map((item) => (
-                <details key={item.q} className="group py-1">
-                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200">
-                    {item.q}
-                    <span className="text-cyan-200 transition group-open:rotate-45" aria-hidden="true">+</span>
-                  </summary>
-                  <p className="pb-5 pr-8 text-sm font-semibold leading-7 text-slate-300">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
+          <PriorityFaqSection route="/" includeJsonLd tone="dark" title="Kurz erklärt" className="!px-0 !py-0" />
           <aside className="self-start rounded-2xl bg-white p-7 text-slate-950 sm:p-9">
             <h2 className="text-3xl font-black tracking-tight">Bereit für Ihre Anfrage?</h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">Nennen Sie Leistung, Einsatzort und Terminwunsch. Weitere Angaben können Sie später ergänzen.</p>

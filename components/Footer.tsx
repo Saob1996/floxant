@@ -21,6 +21,9 @@ const legalLinks = [
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
   { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
+  { href: "/redaktion", label: "Redaktion" },
+  { href: "/methodik", label: "Methodik" },
+  { href: "/korrekturen", label: "Korrekturen" },
 ] as const;
 
 const authorityLinks = [
@@ -30,6 +33,9 @@ const authorityLinks = [
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
   { href: "/kontakt", label: "Kontakt" },
   { href: "/signature-services", label: "Besondere Leistungen" },
+  { href: "/fragen", label: "Fragen und Antworten" },
+  { href: "/service-finder", label: "Service Finder" },
+  { href: "/suche", label: "Suche" },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
 ] as const;
