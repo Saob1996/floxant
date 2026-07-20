@@ -18,9 +18,11 @@ import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarityGrid";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
+import { GermanSignatureServicesHub } from "@/components/services/GermanSignatureServicesHub";
 import { company } from "@/lib/company";
 import { signatureServiceClarityItems } from "@/lib/professional-copy";
 import { signatureServiceLinks } from "@/lib/signature-special-services";
+import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   buildBreadcrumbJsonLd,
@@ -113,9 +115,9 @@ const signatureDecisionFaq = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Signature Services | Fairpreis, Objektbrief & Plan B",
+  title: "FLOXANT Signature Services und Speziallösungen",
   description:
-    "FLOXANT Signature Services helfen bei Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt, PV und diskreten Fällen mit klarem nächsten Schritt.",
+    "Geprüfte Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, diskrete Situationen sowie kombinierte Umzugs- und Reinigungsanfragen.",
   alternates: {
     canonical,
   },
@@ -126,7 +128,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Signature Services",
     description:
-      "Fairpreis, Angebotscheck, Anbieter-Vergleich, Objektbrief, Übergabe, Plan B, Rückfahrt, PV und diskrete Fälle sauber einordnen.",
+      "Öffentlich freigegebene Signature Services und Speziallösungen mit Funktion, benötigten Angaben, Ergebnis und klaren Grenzen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -170,6 +172,10 @@ function JsonLd() {
 }
 
 export default function SignatureServicesPage() {
+  if (publicSignatureSolutions.length > 0) {
+    return <GermanSignatureServicesHub />;
+  }
+
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
