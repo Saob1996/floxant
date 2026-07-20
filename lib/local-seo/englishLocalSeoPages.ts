@@ -2,6 +2,7 @@ import { localSeoCities } from "./cities";
 import { getLanguageAlternatesForPath } from "./hreflangMap";
 import { getSeoIntentCluster } from "./keywordStrategy";
 import { localSeoServices } from "./services";
+import { getSearchAuthorityMetadata } from "@/lib/search-authority";
 import type {
   LocalSeoCityRecord,
   LocalSeoFaq,
@@ -62,23 +63,23 @@ function getCity(region: LocalSeoRegionKey, citySlug?: keyof typeof localSeoCiti
 
 function buildEnglishLocalIntro(input: EnglishPageInput, city: LocalSeoCityRecord) {
   if (localSeoServices[input.serviceKey].category === "cleaning") {
-    return "FLOXANT accepts cleaning requests in Regensburg. The useful first details are district, property type, access, photos, timing and desired result.";
+    return `FLOXANT accepts cleaning requests in ${city.displayName}. The useful first details are district, property type, access, photos, timing and desired result.`;
   }
 
-  return "FLOXANT accepts moving, clearance and cleaning-after-moving requests in Regensburg. The useful first details are volume, access, photos, timing and the handover situation.";
+  return `FLOXANT accepts moving, clearance and cleaning-after-moving requests in ${city.displayName}. The useful first details are volume, access, photos, timing and the handover situation.`;
 }
 
 function buildEnglishLocalProofNotes(input: EnglishPageInput, city: LocalSeoCityRecord) {
   if (localSeoServices[input.serviceKey].category === "cleaning") {
     return [
-      "Regensburg cleaning is kept separate from moving pages.",
-      "Districts such as Altstadt, Westenviertel, Galgenberg and Burgweinting are used as real local context.",
+      `${city.displayName} cleaning is kept separate from moving pages.`,
+      `Districts such as ${city.districts.slice(0, 4).join(", ")} are used as real local context.`,
       "The English information describes the real service and the details customers need to provide.",
     ];
   }
 
   return [
-    "Regensburg is the main FLOXANT company location.",
+    `${city.displayName} is the relevant service region for this request.`,
     "Moving, clearance and cleaning after moving are separated before pricing.",
     "The English information describes the real service and links to the matching request.",
   ];
@@ -216,6 +217,113 @@ const regensburgMovingLinks: readonly LocalSeoLink[] = [
   { href: "/en/regensburg/moving-quote-review", label: "Moving quote review" },
   { href: "/regensburg/angebot-vergleichen", label: "German quote review page" },
 ];
+
+const duesseldorfCleaningLinks: readonly LocalSeoLink[] = [
+  { href: "/en/duesseldorf/cleaning", label: "Cleaning service Düsseldorf" },
+  { href: "/en/duesseldorf/office-cleaning", label: "Office cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/commercial-cleaning", label: "Commercial cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/practice-cleaning", label: "Practice cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/window-cleaning", label: "Window cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/cleaning-quote-review", label: "Cleaning quote review" },
+  { href: "/duesseldorf/reinigung", label: "German cleaning page" },
+] as const;
+
+const duesseldorfEnglishSpecs = [
+  {
+    path: "/en/duesseldorf/cleaning",
+    serviceKey: "reinigung",
+    serviceName: "Cleaning service",
+    scope: ["homes", "offices", "practices", "commercial properties", "cleaning quote review"],
+    customerTypes: ["international residents", "office managers", "practice teams", "property managers"],
+    typicalCases: ["regular cleaning", "one-time cleaning", "property handover", "unclear cleaning quote"],
+  },
+  {
+    path: "/en/duesseldorf/office-cleaning",
+    serviceKey: "bueroreinigung",
+    serviceName: "Office cleaning",
+    scope: ["workspaces", "meeting rooms", "kitchens", "sanitary areas", "after-hours access"],
+    customerTypes: ["office managers", "agencies", "law firms", "business owners"],
+    typicalCases: ["weekly schedule", "after-hours cleaning", "key access", "existing office quote"],
+  },
+  {
+    path: "/en/duesseldorf/commercial-cleaning",
+    serviceKey: "gewerbereinigung",
+    serviceName: "Commercial cleaning",
+    scope: ["shops", "studios", "business properties", "customer areas", "service schedules"],
+    customerTypes: ["shop managers", "studio owners", "property managers", "business tenants"],
+    typicalCases: ["cleaning outside opening hours", "mixed floor areas", "regular service", "scope review"],
+  },
+  {
+    path: "/en/duesseldorf/practice-cleaning",
+    serviceKey: "praxisreinigung",
+    serviceName: "Practice cleaning",
+    scope: ["reception", "waiting areas", "offices", "sanitary areas", "agreed ancillary rooms"],
+    customerTypes: ["practice managers", "therapy practices", "medical office teams", "facility contacts"],
+    typicalCases: ["recurring cleaning", "room-list review", "access planning", "existing practice-cleaning quote"],
+  },
+  {
+    path: "/en/duesseldorf/window-cleaning",
+    serviceKey: "fensterreinigung",
+    serviceName: "Window cleaning",
+    scope: ["glass areas", "inside and outside", "frames", "shop windows", "access assessment"],
+    customerTypes: ["households", "offices", "shops", "property managers"],
+    typicalCases: ["one-time window cleaning", "regular glass cleaning", "upper floors", "frame cleaning"],
+  },
+  {
+    path: "/en/duesseldorf/cleaning-quote-review",
+    serviceKey: "angebot-vergleichen",
+    serviceName: "Cleaning quote review",
+    scope: ["service scope", "area assumptions", "frequency", "access", "materials and extras"],
+    customerTypes: ["households", "office managers", "practice teams", "property managers"],
+    typicalCases: ["two different quotes", "unclear extras", "missing room list", "unclear frequency"],
+  },
+] as const satisfies readonly {
+  path: string;
+  serviceKey: LocalSeoServiceKey;
+  serviceName: string;
+  scope: readonly string[];
+  customerTypes: readonly string[];
+  typicalCases: readonly string[];
+}[];
+
+const duesseldorfEnglishPages = duesseldorfEnglishSpecs.map((spec) => {
+  const metadata = getSearchAuthorityMetadata(spec.path);
+  if (!metadata) throw new Error(`Missing search authority metadata for ${spec.path}`);
+
+  return createEnglishPage({
+    key: spec.path.replace(/^\//, "").replace(/\//g, "-"),
+    path: spec.path,
+    region: "duesseldorf",
+    citySlug: "duesseldorf",
+    serviceKey: spec.serviceKey,
+    serviceName: spec.serviceName,
+    metaTitle: metadata.seoTitle,
+    metaDescription: metadata.description,
+    h1: metadata.headline,
+    heroText: `${metadata.ogDescription} Send the details in English and receive a clear reply about the next realistic step.`,
+    scope: spec.scope,
+    customerTypes: spec.customerTypes,
+    typicalCases: spec.typicalCases,
+    sections: [
+      section(
+        `${spec.serviceName} in Düsseldorf with a clear scope`,
+        `A useful request explains ${spec.scope.slice(0, 4).join(", ")}. District, approximate size, current condition and timing help prevent vague assumptions.`,
+      ),
+      section(
+        "What to include in the first message",
+        "Send the property type, approximate area, rooms or surfaces, preferred date, access situation and photos. For recurring cleaning, include frequency and acceptable time windows.",
+      ),
+      section(
+        "A realistic reply before any promise",
+        `Typical situations include ${spec.typicalCases.join(", ")}. FLOXANT checks feasibility and missing information before confirming price or availability.`,
+      ),
+    ],
+    internalLinks: duesseldorfCleaningLinks,
+    primaryCtaHref: `/en/contact?city=duesseldorf&service=${spec.serviceKey}`,
+    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    whatsappMessage: `Hello FLOXANT, I need ${spec.serviceName.toLowerCase()} in Düsseldorf. I can send property type, district, size, photos, access and timing.`,
+  });
+});
 
 const allEnglishLocalSeoPages = [
   createEnglishPage({
@@ -710,11 +818,10 @@ const allEnglishLocalSeoPages = [
     whatsappMessage:
       "Hello FLOXANT, I want to review a moving quote in Regensburg. I can send the quote, photos, start, destination, access and timing.",
   }),
+  ...duesseldorfEnglishPages,
 ] as const;
 
-export const englishLocalSeoPages = allEnglishLocalSeoPages.filter(
-  (page) => page.region === "regensburg",
-) as readonly LocalSeoPageConfig[];
+export const englishLocalSeoPages = allEnglishLocalSeoPages as readonly LocalSeoPageConfig[];
 
 export const englishLocalSeoPaths = englishLocalSeoPages.map((page) => page.path) as readonly string[];
 export const englishLocalSeoIndexablePathSet = new Set(englishLocalSeoPaths);

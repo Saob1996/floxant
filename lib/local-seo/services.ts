@@ -65,6 +65,13 @@ export const localSeoServices = {
     shortScope: ["Objekt", "Gewerbe", "Eingang", "Treppenhaus"],
     searchIntents: ["gebäudereinigung", "gewerbereinigung", "objektreinigung"],
   },
+  fensterreinigung: {
+    key: "fensterreinigung",
+    displayName: "Fensterreinigung",
+    category: "cleaning",
+    shortScope: ["Fenster", "Glasflächen", "Rahmen", "Zugang"],
+    searchIntents: ["fensterreinigung", "window cleaning", "glasreinigung"],
+  },
   bueroreinigung: {
     key: "bueroreinigung",
     displayName: "Büroreinigung",

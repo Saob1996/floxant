@@ -19,8 +19,8 @@ export function buildLocalSeoMetadata(page: LocalSeoPageConfig): Metadata {
     page.languageAlternates.map((alternate) => [alternate.hreflang, alternate.path]),
   );
   const locale = page.locale === "en" ? "en_US" : "de_DE";
-  const title = germanizeText(page.metaTitle);
-  const description = germanizeText(page.metaDescription);
+  const title = page.locale === "en" ? page.metaTitle : germanizeText(page.metaTitle);
+  const description = page.locale === "en" ? page.metaDescription : germanizeText(page.metaDescription);
 
   return {
     metadataBase: new URL(company.url),

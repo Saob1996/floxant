@@ -6,33 +6,31 @@ type HreflangPair = {
 };
 
 const allLocalSeoHreflangPairs = [
+  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/cleaning" },
+  { de: "/duesseldorf/bueroreinigung", en: "/en/duesseldorf/office-cleaning" },
+  { de: "/duesseldorf/gewerbereinigung", en: "/en/duesseldorf/commercial-cleaning" },
+  { de: "/duesseldorf/praxisreinigung", en: "/en/duesseldorf/practice-cleaning" },
+  { de: "/duesseldorf/fensterreinigung", en: "/en/duesseldorf/window-cleaning" },
+  { de: "/angebot-vergleichen-duesseldorf", en: "/en/duesseldorf/cleaning-quote-review" },
   { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
-  { de: "/regensburg/reinigungsfirma", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/bueroreinigung", en: "/en/regensburg/office-cleaning" },
-  { de: "/regensburg/gewerbereinigung", en: "/en/regensburg/office-cleaning" },
-  { de: "/regensburg/reinigung", en: "/en/regensburg/apartment-cleaning" },
-  { de: "/regensburg/reinigung", en: "/en/regensburg/move-out-cleaning" },
   { de: "/grundreinigung-regensburg", en: "/en/regensburg/deep-cleaning" },
   { de: "/treppenhausreinigung-regensburg", en: "/en/regensburg/stairwell-cleaning" },
   { de: "/regensburg/angebot-vergleichen", en: "/en/regensburg/cleaning-quote-review" },
-  { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/cleaning-quote-review" },
-  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
-  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
-  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/umzug", en: "/en/regensburg/moving" },
-  { de: "/regensburg/umzugsservice", en: "/en/regensburg/moving" },
   { de: "/regensburg/umzugsunternehmen", en: "/en/regensburg/moving-company" },
   { de: "/regensburg/umzug-kosten", en: "/en/regensburg/moving-costs" },
   { de: "/regensburg/wohnungsaufloesung", en: "/en/regensburg/house-clearance" },
   { de: "/regensburg/entruempelung", en: "/en/regensburg/apartment-clearance" },
   { de: "/regensburg/reinigung-nach-umzug", en: "/en/regensburg/cleaning-after-moving" },
-  { de: "/regensburg/reinigungsfirma", en: "/en/regensburg/cleaning-after-moving" },
-  { de: "/regensburg/angebot-vergleichen", en: "/en/regensburg/moving-quote-review" },
   { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/moving-quote-review" },
 ] as const satisfies readonly HreflangPair[];
 
 export const localSeoHreflangPairs = allLocalSeoHreflangPairs.filter(
-  (pair) => pair.de.includes("regensburg") || pair.de === "/angebot-vergleichen-regensburg",
+  (pair) =>
+    pair.de.includes("regensburg") ||
+    pair.de.includes("duesseldorf") ||
+    pair.de === "/angebot-vergleichen-regensburg",
 ) as readonly HreflangPair[];
 
 const pairByPath = new Map<string, HreflangPair>();
@@ -47,6 +45,13 @@ export function getLanguageAlternatesForPath(path: string): readonly LocalSeoLan
   const pair = pairByPath.get(normalizedPath);
 
   if (!pair) {
+    if (normalizedPath === "/en" || normalizedPath.startsWith("/en/")) {
+      return [
+        { hreflang: "en", path: normalizedPath },
+        { hreflang: "x-default", path: normalizedPath },
+      ];
+    }
+
     return [
       { hreflang: "de-DE", path: normalizedPath },
       { hreflang: "x-default", path: normalizedPath },
