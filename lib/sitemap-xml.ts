@@ -85,6 +85,11 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
 ] as const;
 
 const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
+  "duesseldorf/reinigung",
+  "duesseldorf/bueroreinigung",
+  "duesseldorf/gewerbereinigung",
+  "duesseldorf/praxisreinigung",
+  "duesseldorf/fensterreinigung",
   "duesseldorf/luxusreinigung",
 ]);
 
@@ -247,6 +252,7 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||

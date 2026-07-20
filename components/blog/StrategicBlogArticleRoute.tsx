@@ -1,4 +1,5 @@
 import { BlogArticlePage } from "@/components/blog/BlogArticlePage";
+import { germanizeDeep } from "@/lib/german-text";
 import type { StrategicBlogArticle } from "@/lib/strategic-blog-articles";
 import {
   buildArticleJsonLd,
@@ -13,6 +14,7 @@ type StrategicBlogArticleRouteProps = {
 
 export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRouteProps) {
   const path = `/blog/${article.slug}`;
+  const normalizedFaqItems = germanizeDeep(article.faqItems);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -33,7 +35,7 @@ export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRoute
         path,
         datePublished: article.datePublished,
       }),
-      buildFaqJsonLd(article.faqItems),
+      buildFaqJsonLd(normalizedFaqItems),
     ],
   };
 
@@ -57,7 +59,7 @@ export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRoute
         highlightPoints={article.highlightPoints}
         ctas={article.ctas}
         faqTitle={article.faqTitle}
-        faqItems={article.faqItems}
+        faqItems={normalizedFaqItems}
       />
     </>
   );

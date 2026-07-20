@@ -15,14 +15,6 @@ return generatePageSEO({
 }
 export default async function Article() {
   var dict = await getDictionary("de");
-  const content = (dict as any)?.pages?.service_umzug || {};
-  const faqJsonLd = {
-    "@context": "https://schema.org", "@type": "FAQPage",
-    "mainEntity": [
-        { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
-        { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
-      ],
-  };
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Umzug vorbereiten in 7 Schritten",
@@ -35,7 +27,6 @@ export default async function Article() {
   return (
     <main className="min-h-screen bg-background">
       <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Umzug vorbereiten in 7 Schritten" }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <section className="pt-8 pb-12 px-6 bg-gradient-to-b from-muted/20 to-background">
         <div className="max-w-3xl mx-auto text-center space-y-6">
