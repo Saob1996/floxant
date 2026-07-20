@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "artifact": "editorial-authority-baseline",
+  "capturedOn": "2026-07-19",
+  "timezone": "Europe/Berlin",
+  "scope": "Pre-change production and rendered-content snapshot",
+  "productionIdentity": {
+    "commit": "7d77d45f17e91b28ef48a5a20ee4949a28f51d7c",
+    "branch": "chore/vercel-hobby-static-optimization",
+    "deploymentId": "cd294387-a2d3-47c3-b681-b8035e86ba0a",
+    "immutableUrl": "https://cd294387.floxant.pages.dev",
+    "deployedAt": "2026-07-18T20:14:03Z",
+    "liveTargetsCompared": [
+      "https://www.floxant.de",
+      "Cloudflare Pages alias",
+      "https://cd294387.floxant.pages.dev"
+    ],
+    "comparisonResult": "byte-identical"
+  },
+  "staticExport": {
+    "nextConfig": {
+      "output": "export",
+      "imagesUnoptimized": true
+    },
+    "prerenderManifest": {
+      "routes": 1571,
+      "isrRoutes": 0,
+      "dynamicTemplates": 10,
+      "allDynamicFallbacksFalse": true
+    },
+    "nextRuntimeManifest": {
+      "serverlessFunctions": 0,
+      "middleware": 0
+    },
+    "outDirectory": {
+      "htmlFiles": 1538,
+      "totalFiles": 13070,
+      "largestFileBytesApproximate": 1650000,
+      "largestFileValueIsRounded": true
+    },
+    "measurementNote": "Manifest entries and physical HTML files have different counting semantics and must not be compared as if they were the same unit."
+  },
+  "cloudflarePagesFunctions": {
+    "outsideNextServerlessManifest": true,
+    "verifiedLiveApiEndpoints": [
+      {
+        "path": "/api/bookings",
+        "optionsStatus": 204,
+        "invalidEmptyPostStatus": 400
+      },
+      {
+        "path": "/api/intake",
+        "optionsStatus": 204,
+        "invalidEmptyPostStatus": 400
+      }
+    ],
+    "productionMutationPerformed": false,
+    "emailTriggered": false
+  },
+  "dashboardAndSecurity": {
+    "staticRoutes": [
+      "/dashboard",
+      "/dashboard/login"
+    ],
+    "robots": "noindex, nofollow",
+    "includedInSitemap": false,
+    "anonymousBookingsRestStatus": 401,
+    "serviceRoleSecretFoundInSourceOrBrowserBundle": false,
+    "trackedEnvFilesFound": false,
+    "privilegedProductionLoginPerformed": false
+  },
+  "editorialContentMap": {
+    "source": "artifacts/editorial-content-map.csv",
+    "rows": 101,
+    "locales": {
+      "de": 101,
+      "en": 0
+    },
+    "quality": {
+      "GOOD": 29,
+      "MEDIUM": 34,
+      "LOW": 38
+    },
+    "actions": {
+      "KEEP": 27,
+      "STRENGTHEN": 44,
+      "MERGE_CANDIDATE": 21,
+      "REDIRECT_CANDIDATE": 4,
+      "MANUAL_REVIEW": 5
+    },
+    "priorities": {
+      "P0": 4,
+      "P1": 26,
+      "P2": 44,
+      "P3": 27
+    },
+    "clusters": {
+      "A_DUESSELDORF_REINIGUNG": 3,
+      "B_REGENSBURG_UMZUG_RAEUMUNG_UEBERGABE": 49,
+      "C_ANGEBOT_UND_LEISTUNGSUMFANG": 17,
+      "OUTSIDE_TARGET_CLUSTER": 32
+    },
+    "renderedSignals": {
+      "faqZero": 26,
+      "articleSchemaPresent": 94,
+      "articleSchemaAbsent": 7,
+      "mainCtaPresent": 82,
+      "mainCtaAbsent": 19,
+      "selfCanonicalPresent": 99,
+      "selfCanonicalAbsent": 2,
+      "visibleEditorialOwnerAbsent": 101,
+      "visibleExternalSourcesAbsent": 101,
+      "repeatedLongBlocksAtLeast50Percent": 46,
+      "repeatedLongBlocksAtLeast80Percent": 18
+    },
+    "coverageLimitation": "The CSV contains German rows only. A zero English-row count is a capture limitation, not evidence that English pages do not exist."
+  },
+  "limitations": [
+    "No Search Console, analytics, CRM, revenue, conversion or ranking data was evaluated.",
+    "No real form submission, email delivery, Supabase migration or production-data mutation was performed.",
+    "No privileged dashboard login was performed.",
+    "Rendered-content signals are heuristic and do not replace editorial, legal or schema review.",
+    "Redirect, merge and quality labels are review candidates and do not authorize automatic changes.",
+    "The largest exported file size is approximate and should be re-measured using the same method."
+  ]
+}
