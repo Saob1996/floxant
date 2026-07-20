@@ -575,7 +575,13 @@ export function OfferCheckInternalLinks({ className = "" }: { className?: string
   );
 }
 
-export function OfferCheckAuthoritySections({ className = "" }: { className?: string }) {
+export function OfferCheckAuthoritySections({
+  className = "",
+  includeFaq = true,
+}: {
+  className?: string;
+  includeFaq?: boolean;
+}) {
   return (
     <div className={className}>
       <OfferCheckQuickAnswer />
@@ -619,7 +625,7 @@ export function OfferCheckAuthoritySections({ className = "" }: { className?: st
       <OfferCheckWarningSigns />
       <OfferCheckRelatedBlogs />
       <OfferCheckLocalLinks />
-      <OfferCheckFAQ />
+      {includeFaq ? <OfferCheckFAQ /> : null}
       <OfferCheckInternalLinks />
     </div>
   );

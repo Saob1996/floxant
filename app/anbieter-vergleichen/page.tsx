@@ -8,6 +8,7 @@ import {
  ServiceClusterLinks,
  SignatureServicesGrid,
 } from "@/components/conversion";
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { OfferConcernSelector } from "@/components/OfferConcernSelector";
 import { OfferCheckScopeBoundary } from "@/components/OfferCheckScopeBoundary";
 import { OfferCheckTrustPanel } from "@/components/OfferCheckTrustPanel";
@@ -28,41 +29,9 @@ import { providerComparisonClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import {
  buildBreadcrumbJsonLd,
- buildFaqJsonLd,
  buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { offerCheckLinks, signatureServiceLinks } from "@/lib/signature-special-services";
-
-const faqItems = [
- {
-  q: "Wie vergleicht man Umzugsfirmen in Regensburg sinnvoll?",
-  a: "Sinnvoll ist ein Vergleich nach Preisrahmen, Zugang, Volumen, Strecke, Terminlage, Kommunikation und Ablauf. Ein sehr niedriger Onlinepreis ohne Kostentreiber ist oft weniger aussagekräftig als eine klare Einschätzung.",
- },
- {
-  q: "Woran erkennt man eine gute Reinigungsfirma?",
-  a: "Eine gute Reinigungsfirma fragt nach Fläche, Objektart, Zustand, Möblierung, Fenstern, Küche, Bad, Termin und Übergabeziel. Je klarer diese Punkte sind, desto realistischer wird die Einschätzung.",
- },
- {
-  q: "Was unterscheidet Entrümpelung von normalem Transport?",
-  a: "Bei Entrümpelung zählen Materialarten, Volumen, Laufwege, Demontage, Sonderaufwand und Entsorgungsgrenzen. Bei Transport steht der Weg von A nach B stärker im Vordergrund.",
- },
- {
-  q: "Warum sollte man nicht nur den niedrigsten Preis vergleichen?",
-  a: "Der niedrigste Preis kann wichtige Faktoren ausblenden. Für Kunden sind am Ende Transparenz, Machbarkeit, Terminrealismus, klare Kommunikation und ein sauberer Leistungsumfang entscheidend.",
- },
- {
-  q: "Wie unterscheidet sich FLOXANT von anderen Anbietern?",
-  a: "FLOXANT prüft die konkreten Eckdaten, nennt einen unverbindlichen Orientierungsrahmen und zeigt passende Anfragemöglichkeiten für Regensburg, Bayern und ausgewählte besondere Fälle.",
- },
- {
-  q: "Was ist der Unterschied zwischen FLOXANT und einem Vergleichsportal?",
-  a: "Ein Vergleichsportal ist oft ein Vermittlungsweg. FLOXANT ist der direkte Dienstleister mit eigener Einschätzung: Anfrage, Preisrahmen, Zusatzleistungen, Region, Ablauf und spätere Umsetzung werden zusammen betrachtet.",
- },
- {
-  q: "Wann ist FLOXANT besser als ein reiner Niedrigpreis?",
-  a: "Wenn der Auftrag reale Kostentreiber hat: Etagen, Laufwege, Montage, Termin, Zugang, Reinigung, Entsorgung, Büroinventar oder Leer-Rückfahrt. Dann ist eine ehrliche Einschätzung wertvoller als ein sehr niedriger Einstiegspreis ohne Kontext.",
- },
-];
 
 const comparisonSteps = [
  "Nicht nur Preis ansehen, sondern klären, ob die Leistung vollständig beschrieben ist.",
@@ -132,7 +101,6 @@ export default function AnbieterVergleichenPage() {
     { name: "FLOXANT", item: "/" },
     { name: "Anbieter vergleichen", item: "/anbieter-vergleichen" },
    ]),
-   buildFaqJsonLd(faqItems),
    {
     "@type": "ItemList",
     name: "Vergleichskriterien für Dienstleister",
@@ -181,7 +149,7 @@ export default function AnbieterVergleichenPage() {
     items={providerComparisonClarityItems}
    />
 
-    <OfferCheckAuthoritySections />
+    <OfferCheckAuthoritySections includeFaq={false} />
     <OfferCheckTrustPanel />
     <ProjectStoryGrid serviceKey="angebot-pruefen" />
     <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
@@ -289,24 +257,12 @@ export default function AnbieterVergleichenPage() {
     </div>
    </section>
 
-   <section className="border-t border-foreground/5 px-6 py-20">
-    <div className="mx-auto max-w-5xl">
-     <div className="mb-8">
-      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 ">FAQ</div>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
-       Häufige Fragen zum Anbieter-Vergleich
-      </h2>
-     </div>
-     <div className="space-y-4">
-      {faqItems.map((item) => (
-       <article key={item.q} className="rounded-[1.5rem] border border-foreground/10 bg-white/[0.025] p-6">
-        <h3 className="text-lg font-semibold text-foreground">{item.q}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-foreground/50">{item.a}</p>
-       </article>
-      ))}
-     </div>
-    </div>
-   </section>
+   <PriorityFaqSection
+    route="/anbieter-vergleichen"
+    includeJsonLd
+    title="Häufige Fragen zum Anbieter-Vergleich"
+    className="border-t border-foreground/5"
+   />
   </main>
  );
 }

@@ -20,9 +20,11 @@ import {
   XCircle,
 } from "lucide-react";
 
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
+import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -782,7 +784,9 @@ function JsonLd({ config }: { config: PageConfig }) {
         { name: "Düsseldorf", item: "/duesseldorf" },
         { name: config.eyebrow, item: config.path },
       ]),
-      buildFaqJsonLd(config.faqItems),
+      ...(getActivePriorityFaqAssignment(config.path)
+        ? []
+        : [buildFaqJsonLd(config.faqItems)]),
     ],
   };
 
@@ -1560,7 +1564,17 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <B2BTrustPanel config={config} />
       <CleaningNoGuaranteePanel />
       <EnglishCleaningHint config={config} />
-      <CleaningFAQ config={config} />
+      {getActivePriorityFaqAssignment(config.path) ? (
+        <PriorityFaqSection
+          route={config.path}
+          includeJsonLd
+          tone="dark"
+          title={`Häufige Fragen zu ${config.eyebrow}`}
+          className="bg-slate-950"
+        />
+      ) : (
+        <CleaningFAQ config={config} />
+      )}
     </main>
   );
 }

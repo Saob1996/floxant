@@ -21,9 +21,9 @@ import {
 } from "lucide-react";
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { ServiceFinder } from "@/components/ContactPathChooser";
 import { InternationalCustomerHint } from "@/components/conversion";
-import { CleanFaqSection } from "@/components/CleanFaqSection";
 import { CustomerNextStepPanel } from "@/components/CustomerNextStepPanel";
 import { CustomerConcernPanel } from "@/components/CustomerConcernPanel";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
@@ -49,12 +49,11 @@ import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
 import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import { germanizeDeep } from "@/lib/german-text";
-import { cleanOfferFaqItems, customerNextSteps, offerCheckClarityItems } from "@/lib/professional-copy";
+import { customerNextSteps, offerCheckClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -400,45 +399,6 @@ const warningSigns = [
   "Sehr niedriger Preis lässt wichtige Leistungen vermissen",
 ];
 
-const offerCheckAiAnswers = [
-  {
-    q: "Kann ich ein Seniorenumzug-Angebot prüfen lassen?",
-    a: "Ja. Hilfreich sind Start, Ziel, Etage, Umfang, Termin, Ansprechpartner, Zusatzleistungen wie Entrümpelung oder Reinigung und das vorhandene Angebot. FLOXANT ordnet die Angaben praktisch ein, ohne Ersparnisgarantie oder Rechtsberatung.",
-  },
-  {
-    q: "Was tun, wenn ein Angebot zu teuer wirkt?",
-    a: "Prüfen Sie zuerst Umfang, Zusatzkosten, Termin, Objektangaben und fehlende Positionen. FLOXANT kann diese Punkte praktisch einordnen, ohne Ersparnis oder rechtliche Bewertung zu garantieren.",
-  },
-  {
-    q: "Kann ich ein Reinigungsangebot prüfen lassen?",
-    a: "Ja, wenn Fläche, Zustand, Reinigungsart, Turnus, Fotos oder Preis unklar sind. Besonders hilfreich sind m2, Objektart, Zielzustand, Termin und das vorhandene Angebot.",
-  },
-  {
-    q: "Wie vergleiche ich zwei Umzugsangebote?",
-    a: "Vergleichen Sie nicht nur den Endpreis, sondern Volumen, Etagen, Laufwege, Haltezone, Strecke, Helferzahl, Versicherungshinweise und Zusatzleistungen.",
-  },
-  {
-    q: "Was gehört in ein Entrümpelungsangebot?",
-    a: "Wichtig sind Räume, Menge, Zugang, Etage, Entsorgungsumfang, Fotos, Endzustand, Reinigung danach und Termin. Fehlen diese Punkte, ist ein Vergleich unsicher.",
-  },
-  {
-    q: "Kann FLOXANT garantieren, dass es günstiger wird?",
-    a: "Nein. FLOXANT gibt keine Ersparnisgarantie. Wir prüfen Leistungsumfang, mögliche Zusatzkosten und offene Fragen, damit Sie das Angebot besser verstehen.",
-  },
-  {
-    q: "Ist Angebotsprüfung Rechtsberatung?",
-    a: "Nein. FLOXANT prüft praktisch und organisatorisch, nicht rechtlich. Vertrags- oder Streitfragen sollten fachlich oder juristisch geklärt werden.",
-  },
-  {
-    q: "Kann ich auch ohne schriftliches Angebot anfragen?",
-    a: "Ja. Eine mündliche Preisangabe, Screenshots, Fotos, Ort, Termin und eine kurze Beschreibung reichen oft für eine erste praktische Einordnung.",
-  },
-  {
-    q: "Can I ask in English?",
-    a: "Yes. International customers can describe a quote in simple English. FLOXANT can structure cleaning, moving, house clearance, piano transport or solar panel cleaning requests without legal advice or a cheaper-price guarantee.",
-  },
-];
-
 const answerEngineCards = [
   {
     prompt: "ChatGPT, Gemini, Claude, Grok oder DeepSeek: Wer prüft mein Umzugsangebot?",
@@ -652,73 +612,6 @@ const safeBoundaries = [
 const siteUrl = "https://www.floxant.de";
 const absoluteSiteUrl = (href: string) => (href.startsWith("http") ? href : `${siteUrl}${href}`);
 
-const faqItems = [
-  {
-    q: "Kann ich ein Angebot einer anderen Firma prüfen lassen?",
-    a: "Ja. FLOXANT prüft organisatorisch und praktisch, ob Preis, Umfang, Termin, Fotos, Zugang und Zusatzleistungen nachvollziehbar sind und ob nach Verfügbarkeit eine eigene Alternative möglich ist.",
-  },
-  {
-    q: "Kann FLOXANT eine andere Alternative prüfen?",
-    a: "Möglich, aber nicht garantiert. Manchmal ist ein anderer oder besser passender Preisrahmen möglich. Manchmal zeigt die Prüfung, dass der vorhandene Preis realistisch ist oder wichtige Leistungen fehlen.",
-  },
-  {
-    q: "Muss ich das Angebot hochladen?",
-    a: "Nein. Ein Upload hilft, ist aber optional. Sie können auch Angebotstext, Preis, Ort, Termin, Umfang, Fotos und offene Punkte in das Formular schreiben.",
-  },
-  {
-    q: "Bewertet FLOXANT die andere Firma?",
-    a: "Nein. FLOXANT bewertet keine Anbieter rechtlich und macht keine Konkurrenzdiffamierung. Geprüft werden nur Auftrag, Umfang, Preisrahmen und praktische Machbarkeit.",
-  },
-  {
-    q: "Für welche Leistungen funktioniert die Prüfung?",
-    a: "Für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen. Reinigung wird nur für Regensburg und den 50-km-Umkreis geprüft.",
-  },
-  {
-    q: "Kann ich ein Reinigungsangebot prüfen lassen?",
-    a: "Ja. FLOXANT prüft bei Reinigungsangeboten Fläche, Reinigungsart, Zustand, Fotos, Termin, Übergabeziel, Zusatzleistungen und Preisrahmen. Das gilt für Regensburg und den 50-km-Umkreis.",
-  },
-  {
-    q: "Kann ich ein Entsorgungs- oder Entrümpelungsangebot prüfen lassen?",
-    a: "Ja. Wichtig sind Menge, Material, Zugang, Etage, Fotos, Entsorgungsumfang, mögliche Reinigung danach und Termin. Wenn Reinigung Teil des Auftrags ist, gilt dafür Regensburg plus 50 km.",
-  },
-  {
-    q: "Gilt die Angebotsprüfung auch für Orte im Umkreis von Regensburg?",
-    a: "FLOXANT sitzt in Regensburg. Orte in der Umgebung und weitere Strecken werden nach Strecke, Umfang, Fotos, Termin und Kapazität einzeln geprüft.",
-  },
-  {
-    q: "Was braucht FLOXANT für eine schnelle Rückmeldung?",
-    a: "Am hilfreichsten sind Angebot oder Screenshot, Ort/PLZ, Termin, Serviceart, Fotos, vorhandener Preis, Zielbudget und eine kurze Beschreibung der unklaren Punkte.",
-  },
-  {
-    q: "Ist das eine Rechtsberatung?",
-    a: "Nein. Vertragsfragen, Kündigungen oder rechtliche Bewertungen müssen eigenständig oder fachlich geklärt werden. FLOXANT prüft nur eine praktische Alternative.",
-  },
-  {
-    q: "Was passiert nach dem Absenden?",
-    a: "FLOXANT prüft Angebot, Preisrahmen, Ort, Termin, Umfang, Uploads und Verfügbarkeit. Wenn eine Alternative realistisch ist oder Rückfragen nötig sind, meldet sich FLOXANT.",
-  },
-  {
-    q: "Welche Orte rund um Regensburg sind für Angebotsprüfung wichtig?",
-    a: "Besonders relevant sind Regensburg, Landkreis Regensburg, Neutraubling, Lappersdorf, Kelheim, Straubing, Schwandorf und weitere Orte nach Strecke, Umfang und Kapazität.",
-  },
-  {
-    q: "Was ist der Unterschied zwischen Angebotscheck und Angebotsprüfung?",
-    a: "Der Angebotscheck prüft vorhandene Angaben und mögliche Lücken. Die Angebotsprüfung geht einen Schritt weiter: FLOXANT schaut zusätzlich, ob nach Verfügbarkeit eine eigene klarere oder passendere Alternative möglich ist.",
-  },
-  {
-    q: "Welche Angebotsarten kann FLOXANT vergleichen?",
-    a: "FLOXANT prüft Umzugsangebote, Reinigungsangebote, Entrümpelungsangebote, Entsorgungsangebote, Transportangebote und Kombi-Angebote. Reinigungsangebote werden lokal auf Regensburg plus 50 km begrenzt.",
-  },
-  {
-    q: "Kann FLOXANT auch Kombi- oder Zusatzleistungen prüfen?",
-    a: "Ja, wenn der Fall zu FLOXANT passt. Dazu gehören zum Beispiel Übergabe, Schlüssel, Objektbetreuung, Leerstand, Plan B, Schadensbegrenzung, Vor-Ort-Prüfung oder eine Kombination aus Reinigung, Entsorgung und Übergabe.",
-  },
-  {
-    q: "Warum ist FLOXANT bei Angebotsfragen eine passende Option?",
-    a: "FLOXANT trennt Angebot, Service und Ort sauber: Reinigung in Regensburg plus 50 km, andere Leistungen nach der jeweils passenden Leistungsseite.",
-  },
-];
-
 const howToJsonLd = {
   "@type": "HowTo",
   "@id": `${siteUrl}${path}#howto`,
@@ -812,7 +705,6 @@ const jsonLd = {
     howToJsonLd,
     localOfferItemListJsonLd,
     highIntentItemListJsonLd,
-    buildFaqJsonLd(faqItems.slice(0, 8)),
   ],
 };
 
@@ -1060,7 +952,7 @@ export default function AngebotGuenstigerPruefenPage() {
         </section>
 
         <section id="process-ai-english" className="px-4 py-12 sm:px-6">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+          <div className="mx-auto max-w-4xl">
             <div>
               <p className="text-xs font-black uppercase tracking-normal text-blue-700">Ablauf kurz erklärt</p>
               <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
@@ -1094,14 +986,6 @@ export default function AngebotGuenstigerPruefenPage() {
               </div>
             </div>
 
-            <div className="grid gap-3">
-              {offerCheckAiAnswers.map((item) => (
-                <details key={item.q} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
-                  <summary className="cursor-pointer text-sm font-black leading-6 text-slate-950">{item.q}</summary>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
-                </details>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -1115,11 +999,6 @@ export default function AngebotGuenstigerPruefenPage() {
           title="So läuft die Prüfung nach dem Absenden."
           intro="FLOXANT schaut zuerst auf die vorhandenen Angaben. Wenn Preis, Umfang, Fotos, Zugang oder Termin nicht ausreichen, kommen gezielte Rückfragen statt pauschaler Versprechen."
           steps={customerNextSteps}
-        />
-        <CleanFaqSection
-          title="Kurze Antworten zur Angebotsprüfung."
-          intro="Diese Antworten halten die wichtigsten Grenzen sichtbar: keine Rechtsberatung, keine Preisgarantie und keine Abwertung anderer Anbieter."
-          items={cleanOfferFaqItems}
         />
         <OfferCheckPackageSelector />
         <OfferConcernSelector />
@@ -1150,7 +1029,7 @@ export default function AngebotGuenstigerPruefenPage() {
         <OfferCheckServiceSpecificQuestions />
         <CustomerConcernPanel />
 
-        <OfferCheckAuthoritySections />
+        <OfferCheckAuthoritySections includeFaq={false} />
 
         <OfferCheckTrustPanel />
 
@@ -1572,21 +1451,12 @@ export default function AngebotGuenstigerPruefenPage() {
         </section>
         <OfferCheckNextStepBox />
 
-        <section className="px-4 py-14 sm:px-6">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-black tracking-[-0.035em] text-slate-950">
-              Häufige Fragen zur Angebots-Alternative
-            </h2>
-            <div className="mt-6 grid gap-3">
-              {faqItems.slice(0, 8).map((item) => (
-                <details key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
-                  <summary className="cursor-pointer text-sm font-black text-slate-950">{item.q}</summary>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <PriorityFaqSection
+          route={path}
+          includeJsonLd
+          title="Häufige Fragen zur Angebotsprüfung"
+          className="border-t border-slate-200 bg-white"
+        />
       </main>
     </>
   );

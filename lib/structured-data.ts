@@ -26,6 +26,7 @@ type WebPageJsonLdInput = {
   name: string;
   description: string;
   path: string;
+  inLanguage?: "de" | "en";
   about?: string[];
   potentialActions?: Array<{
     name: string;
@@ -38,6 +39,7 @@ type ArticleJsonLdInput = {
   headline: string;
   description: string;
   path: string;
+  inLanguage?: "de" | "en";
   datePublished: string;
   dateModified?: string;
 };
@@ -56,6 +58,10 @@ function absoluteUrl(path: string) {
 
 function clean(value: string) {
   return germanizeText(value || "").replace(/\s+/g, " ").trim();
+}
+
+function exactFaqText(value: string) {
+  return String(value || "").replace(/\s+/g, " ").trim();
 }
 
 function schemaPlaceType(area: string) {
@@ -97,8 +103,8 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
 export function buildFaqJsonLd(items: readonly FaqEntry[]) {
   const faqItems = items
     .map((item) => {
-      const question = clean(item.q || item.question || "");
-      const answer = clean(item.a || item.answer || "");
+      const question = exactFaqText(item.q || item.question || "");
+      const answer = exactFaqText(item.a || item.answer || "");
 
       if (!question.trim() || !answer.trim()) {
         return null;
@@ -178,6 +184,7 @@ export function buildWebPageJsonLd({
   name,
   description,
   path,
+  inLanguage = "de",
   about = [],
   potentialActions = [],
 }: WebPageJsonLdInput) {
@@ -188,7 +195,7 @@ export function buildWebPageJsonLd({
     name: clean(name),
     description: clean(description),
     url: absoluteUrl(path),
-    inLanguage: "de",
+    inLanguage,
     isPartOf: {
       "@type": "WebSite",
       "@id": `${company.url}/#website`,
@@ -215,6 +222,7 @@ export function buildArticleJsonLd({
   headline,
   description,
   path,
+  inLanguage = "de",
   datePublished,
   dateModified,
 }: ArticleJsonLdInput) {
@@ -226,7 +234,7 @@ export function buildArticleJsonLd({
     url: absoluteUrl(path),
     datePublished,
     dateModified: dateModified || datePublished,
-    inLanguage: "de",
+    inLanguage,
     image: `${company.url}/opengraph-image`,
     author: {
       "@type": "Organization",

@@ -18,6 +18,7 @@ import {
   SignatureServicesGrid,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
 import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
 import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
@@ -37,6 +38,7 @@ import {
   getServicesByRegionAndCategory,
   type FloxantServiceCategory,
 } from "@/lib/floxant-services";
+import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import type { RegensburgServicePageConfig } from "@/lib/regensburg-service-pages";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
@@ -122,7 +124,9 @@ function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig;
         { name: "Regensburg", item: "/regensburg" },
         { name: config.serviceType, item: config.path },
       ]),
-      buildFaqJsonLd(config.faq),
+      ...(getActivePriorityFaqAssignment(config.path)
+        ? []
+        : [buildFaqJsonLd(config.faq)]),
     ],
   };
 
@@ -874,6 +878,13 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         </div>
       </section>
 
+      {getActivePriorityFaqAssignment(config.path) ? (
+        <PriorityFaqSection
+          route={config.path}
+          includeJsonLd
+          className="border-t border-slate-200 bg-white"
+        />
+      ) : (
       <section className="px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
@@ -907,6 +918,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           </div>
         </div>
       </section>
+      )}
 
       {relatedCategoryServices.length > 0 ? (
         <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">

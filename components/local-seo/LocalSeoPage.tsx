@@ -11,7 +11,9 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { company } from "@/lib/company";
+import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -36,7 +38,7 @@ function getProvider(page: LocalSeoPageConfig) {
     city: company.city,
     state: company.state,
     countryCode: company.countryCode,
-    url: `${company.url}/regensburg`,
+    url: company.url,
   };
 }
 
@@ -49,7 +51,7 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       firstFeedbackTitle: "What matters for the first reply",
       firstFeedbackItems: ["city/district", "photos", "timing", "scope", "existing quote"],
       localEntryLabel: "Local context",
-      localEntryHeading: `${page.city.displayName} without false local claims`,
+      localEntryHeading: `${page.city.displayName} service area and practical details`,
       scopeHeading: "Service scope and customer value",
       scopeText:
         "This page focuses on concrete services, local context, typical customer situations and the right next step: direct request, WhatsApp with photos or a clear quote review.",
@@ -57,8 +59,8 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       processHeading: "First facts, then a clear next step.",
       offerCheckLabel: "Quote review",
       offerCheckButton: "Review quote",
-      linksLabel: "Internal links",
-      linksHeading: "Relevant nearby pages, not a link wall.",
+      linksLabel: "Related services",
+      linksHeading: "Continue with the service that fits your request.",
       linksText:
         "You will find links to the region, the main service, nearby services, quote review and contact options.",
       openLabel: "Open",
@@ -66,7 +68,7 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       faqHeading: `Common questions about ${page.serviceName} in ${page.city.displayName}`,
       nextStepLabel: "Next step",
       nextStepText:
-        "Send city, photos, timing and, if available, an existing quote. FLOXANT checks the request clearly and without invented local promises.",
+        "Send city, photos, timing and, if available, an existing quote. FLOXANT checks the request based on the details provided.",
       languageSwitchLabel: "Deutsch",
       whatsappShort: "WhatsApp",
     } as const;
@@ -87,10 +89,10 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
     processHeading: "Erst Eckdaten, dann Entscheidung.",
     offerCheckLabel: "Angebotsprüfung",
     offerCheckButton: "Angebot prüfen",
-    linksLabel: "Interne Linkstruktur",
-    linksHeading: "Passende Nachbarseiten statt Linkfarm.",
+    linksLabel: "Passende Leistungen",
+    linksHeading: "Mit der passenden Leistung fortfahren.",
     linksText:
-      "Verlinkt werden nur Seiten, die für die aktuelle Suchintention sinnvoll sind: Region, Hauptleistung, Nachbarorte, Angebotsprüfung und Kontaktweg.",
+      "Zur Auswahl stehen die Region, die Hauptleistung, nahe Leistungen, die Angebotsprüfung und der direkte Kontakt.",
     openLabel: "Öffnen",
     faqLabel: "FAQ",
     faqHeading: `Häufige Fragen zu ${page.serviceName} in ${page.city.displayName}`,
@@ -112,6 +114,7 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         name: page.h1,
         description: page.metaDescription,
         path: page.path,
+        inLanguage: page.locale === "en" ? "en" : "de",
         about: [
           page.serviceType,
           page.city.displayName,
@@ -120,7 +123,11 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         ],
         potentialActions: [
           { name: page.primaryCta.label, target: page.primaryCta.href, type: "ContactAction" },
-          { name: "WhatsApp mit Fotos senden", target: whatsappHref, type: "ContactAction" },
+          {
+            name: page.locale === "en" ? "Send photos by WhatsApp" : "WhatsApp mit Fotos senden",
+            target: whatsappHref,
+            type: "ContactAction",
+          },
         ],
       }),
       {
@@ -173,11 +180,12 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
-        { name: "Regensburg", item: "/regensburg" },
-        { name: page.city.displayName, item: page.city.parentHub },
+        { name: page.city.displayName, item: `/${page.region}` },
         { name: page.serviceName, item: page.path },
       ]),
-      buildFaqJsonLd(page.faq),
+      ...(getActivePriorityFaqAssignment(page.path)
+        ? []
+        : [buildFaqJsonLd(page.faq)]),
     ],
   };
 
@@ -190,7 +198,7 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
 }
 
 export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
-  const page = germanizeDeep(rawPage);
+  const page = rawPage.locale === "en" ? rawPage : germanizeDeep(rawPage);
   const provider = getProvider(page);
   const whatsappHref = buildWhatsAppHref(provider.phoneRaw, page.whatsappMessage);
   const copy = getLocalizedCopy(page);
@@ -453,6 +461,14 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
       </section>
 
       <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        {getActivePriorityFaqAssignment(page.path) ? (
+          <PriorityFaqSection
+            route={page.path}
+            locale={page.locale === "en" ? "en" : "de"}
+            includeJsonLd
+            className="!px-0 !py-0"
+          />
+        ) : (
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <article>
             <div className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
@@ -474,6 +490,7 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
             ))}
           </div>
         </div>
+        )}
 
         <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-4 rounded-lg border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
           <div>

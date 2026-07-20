@@ -26,12 +26,12 @@ import {
   XCircle,
 } from "lucide-react";
 
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -285,45 +285,6 @@ const localSignals = [
   "Schwandorf, Neumarkt i.d.OPf. oder Straubing: nur nach Strecke, Umfang und Zeitfenster manuell prüfen.",
 ] as const;
 
-const faqItems = [
-  {
-    q: "Welche Angaben braucht FLOXANT für einen Umzug in Regensburg?",
-    a: "Hilfreich sind Startadresse, Zielort, Etage, Aufzug, Trageweg, Haltemöglichkeit, Umfang, Kartons, Terminwunsch, besondere Möbelstücke, Fotos und der gewünschte Kontaktweg.",
-  },
-  {
-    q: "Kann ich auch einen Mini-Umzug anfragen?",
-    a: "Ja. Beschreiben Sie wenige Möbel, Strecke, Etage, Zugang und Terminfenster. FLOXANT ordnet ein, ob ein kleiner Umzug, Möbeltransport oder Beiladung der sinnvollere Weg ist.",
-  },
-  {
-    q: "Kann ich ein Umzugsangebot prüfen lassen?",
-    a: "Ja. Senden Sie Angebot, Start, Ziel, Etage, Umfang, Termin, Zusatzkosten und Fotos. FLOXANT prüft die Angaben Punkt für Punkt, ohne Ersparnisgarantie und ohne Rechtsberatung.",
-  },
-  {
-    q: "Was beeinflusst den Aufwand bei einem Umzug?",
-    a: "Entscheidend sind Volumen, Kartons, Etage, Aufzug, Trageweg, Haltezone, Entfernung, Terminfenster, Dringlichkeit, Montage, Sonderstücke und Zusatzleistungen wie Reinigung oder Entrümpelung.",
-  },
-  {
-    q: "Ist ein Klaviertransport in Regensburg möglich?",
-    a: "Ein Klaviertransport kann geprüft werden. Wichtig sind Instrumentart, Start, Ziel, Etage, Treppe, Aufzug, Zugang, Fotos und Termin. Eine pauschale Zusage ohne diese Daten gibt es nicht.",
-  },
-  {
-    q: "Gibt es Hilfe bei Seniorenumzug oder Umzug im Alter?",
-    a: "Ja, wenn Angehörige, Freigaben, Reduzierung, Packhilfe, Reinigung oder Entrümpelung ruhig abgestimmt werden. Der Fall wird sensibel und Schritt für Schritt eingeordnet.",
-  },
-  {
-    q: "Kann Umzug mit Reinigung oder Entrümpelung kombiniert werden?",
-    a: "Ja, wenn Reihenfolge, Umfang, Zugang und Termin zusammenpassen. Umzug, Reinigung und Entrümpelung werden getrennt beschrieben und nicht in eine unklare Pauschale gemischt.",
-  },
-  {
-    q: "Was passiert nach dem Absenden?",
-    a: "Die Anfrage ist noch keine Buchung. FLOXANT prüft die Angaben, stellt bei Bedarf Rückfragen und meldet sich über den gewählten Kontaktweg mit dem nächsten Schritt.",
-  },
-  {
-    q: "Kann ich auf Englisch anfragen?",
-    a: "Yes. International customers can describe moving help, moving company, piano transport or relocation support in simple English. Start, destination, floor, volume and preferred date are most useful.",
-  },
-] as const;
-
 function JsonLd() {
   const graph = {
     "@context": "https://schema.org",
@@ -368,7 +329,6 @@ function JsonLd() {
         { name: "Regensburg", item: "/regensburg" },
         { name: "Umzug", item: canonicalPath },
       ]),
-      buildFaqJsonLd(faqItems),
     ],
   };
 
@@ -841,28 +801,13 @@ function EnglishMovingHint() {
 
 function MovingFAQ() {
   return (
-    <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-        <div>
-          <p className="text-sm font-black uppercase tracking-normal text-cyan-200">FAQ</p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-            Häufige Fragen zum Umzug in Regensburg
-          </h2>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <PrimaryCta href={moveContactHref} label="Umzug anfragen" variant="light" />
-            <PrimaryCta href={offerCheckHref} label="Angebot prüfen" variant="outline" />
-          </div>
-        </div>
-        <div className="grid gap-3">
-          {faqItems.map((item, index) => (
-            <details key={item.q} open={index === 0} className="rounded-lg border border-white/12 bg-white/[0.06] p-5">
-              <summary className="cursor-pointer text-base font-black text-white">{item.q}</summary>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-200">{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
+    <PriorityFaqSection
+      route={canonicalPath}
+      includeJsonLd
+      tone="dark"
+      title="Häufige Fragen zum Umzug in Regensburg"
+      className="bg-slate-950"
+    />
   );
 }
 
