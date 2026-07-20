@@ -25,6 +25,7 @@ import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarit
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
+import { ServiceCatalog } from "@/components/services/ServiceCatalog";
 import { company } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
@@ -43,6 +44,7 @@ import {
   specialClearanceLinks,
   specialMovingLinks,
 } from "@/lib/signature-special-services";
+import { publicServices } from "@/lib/services/service-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -51,12 +53,12 @@ import {
 
 const path = "/leistungen";
 const canonical = `${company.url}${path}`;
-const regionOrder: FloxantRegion[] = ["regensburg"];
+const regionOrder: FloxantRegion[] = ["duesseldorf", "regensburg"];
 
 const faqItems = [
   {
     q: "Wo ist Reinigung bei FLOXANT verfügbar?",
-    a: "FLOXANT bündelt Reinigung in Regensburg und im Umkreis von maximal 50 km. Die Trennung hilft Kunden, keine überregionalen Reinigungszusagen zu erwarten.",
+    a: "FLOXANT prüft Reinigungsanfragen für Düsseldorf und Regensburg anhand des konkreten Orts, Objekts und Umfangs. Eine Anfrage ist noch keine Verfügbarkeitszusage.",
   },
   {
     q: "Kann ich ein bestehendes Angebot prüfen lassen?",
@@ -127,7 +129,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Leistungen nach Region und Aufgabe",
     description:
-      "Leistung wählen und mit Ort, Umfang, Fotos und Termin in Regensburg anfragen.",
+      "Leistung wählen und mit Ort, Umfang, Fotos und Termin in Düsseldorf oder Regensburg anfragen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -146,7 +148,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Leistungen",
         description:
-          "Zentrale Leistungsübersicht für FLOXANT Regensburg: Reinigung im 50-km-Umkreis, Umzug, Transport, Entrümpelung, Haushaltsauflösung und Übergabe.",
+          "Zentrale Leistungsübersicht für FLOXANT Düsseldorf und Regensburg: Reinigung, Umzug, Transport, Entrümpelung, Haushaltsauflösung, Übergabe und Angebotsprüfung.",
         path,
         about: [
           "Gewerbereinigung Regensburg",
@@ -222,9 +224,9 @@ export default function LeistungenPage() {
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
-            Regensburg bündelt Reinigung im 50-km-Umkreis, Umzug, Transport, Räumung
-            und Übergabe. Wenn bereits ein Angebot vorliegt,
-            ist die Angebotsprüfung der kuerzere Weg.
+            Düsseldorf und Regensburg bündeln die jeweils öffentlich geprüften Leistungen
+            für Reinigung, Umzug, Transport, Räumung und Übergabe. Wenn bereits ein Angebot
+            vorliegt, ist die Angebotsprüfung der kürzere Weg.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {regionOrder.map((regionId) => {
@@ -257,6 +259,33 @@ export default function LeistungenPage() {
       </section>
 
       <LocationClarityPanel locations={locationClarityItems} />
+
+      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20" aria-labelledby="service-katalog-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Öffentlich geprüftes Service-Register</p>
+            <h2 id="service-katalog-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Leistungen nach Region und Bedarf filtern
+            </h2>
+            <p className="mt-4 font-medium leading-7 text-slate-700">
+              Der Katalog zeigt nur Leistungen, die im zentralen Register für die öffentliche Darstellung freigegeben sind. Die Filter arbeiten ausschließlich lokal im Browser und erzeugen keine indexierbaren Ergebnis-URLs.
+            </p>
+          </div>
+          <noscript>
+            <p className="mb-6 rounded-xl border border-cyan-200 bg-cyan-50 p-4 font-semibold text-slate-800">
+              Alle freigegebenen Leistungen bleiben als Links sichtbar; die Filter benötigen JavaScript.
+            </p>
+          </noscript>
+          <ServiceCatalog services={publicServices} locale="de" />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/service-finder" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">
+              Service Finder öffnen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link href="/fragen" className="inline-flex min-h-12 items-center rounded-xl border border-slate-300 px-5 text-sm font-black text-slate-900 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">Häufige Fragen ansehen</Link>
+          </div>
+        </div>
+      </section>
 
       <ServiceNavigationOverview
         title="Die wichtigsten Leistungen ohne Suchschleife."
