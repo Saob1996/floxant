@@ -1,10 +1,9 @@
-import { floxantServiceGraph } from "@/lib/ai-service-graph";
-import { germanizeDeep } from "@/lib/german-text";
+import { serviceGraph } from "@/lib/ai-discoverability";
 
 export const dynamic = "force-static";
 
 export function GET() {
-  return Response.json(germanizeDeep(floxantServiceGraph), {
+  return Response.json(serviceGraph, {
     headers: {
       "Cache-Control": "public, max-age=86400",
       "X-Content-Type-Options": "nosniff",
