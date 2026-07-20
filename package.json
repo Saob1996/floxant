@@ -6,7 +6,9 @@
   "scripts": {
     "test": "node scripts/cloudflare-functions-test.mjs",
     "dev": "next dev --webpack",
+    "prebuild": "node scripts/build-public-search-index.js && node scripts/validate-public-search-index.js",
     "build": "next build --webpack",
+    "postbuild": "node scripts/fix-static-document-language.mjs",
     "build:turbo": "next build --turbopack",
     "typecheck": "tsc --noEmit",
     "start": "node scripts/serve-static-export.mjs",
