@@ -188,6 +188,12 @@
 /reinigungsservice-duesseldorf /duesseldorf 308
 /gewerbereinigung-duesseldorf /duesseldorf 308
 /fensterreinigung-duesseldorf /duesseldorf 308
+/dusseldorf /duesseldorf 308
+/dusseldorf/* /duesseldorf/:splat 308
+/düsseldorf /duesseldorf 308
+/düsseldorf/* /duesseldorf/:splat 308
+/d%C3%BCsseldorf /duesseldorf 308
+/d%C3%BCsseldorf/* /duesseldorf/:splat 308
 /duesseldorf/b2b-reinigung /duesseldorf 308
 /duesseldorf/baureinigung /duesseldorf 308
 /duesseldorf/endreinigung /duesseldorf 308

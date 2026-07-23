@@ -927,6 +927,83 @@ function CleaningQuickAnswer({ config }: { config: PageConfig }) {
   );
 }
 
+function DuesseldorfCleaningAuthorityBlock({ config }: { config: PageConfig }) {
+  const searchIntents = [
+    {
+      title: "Reinigungsfirma Düsseldorf",
+      text: "Für private Wohnungen, möblierte Apartments, Büros, Praxen und gewerbliche Flächen zählt nicht ein pauschaler Preis, sondern ein prüfbarer Umfang.",
+    },
+    {
+      title: "Büroreinigung und Gewerbereinigung",
+      text: "Arbeitsplätze, Empfang, Sanitär, Küche, Ladenfläche oder Praxis werden nach Fläche, Turnus, Zugang und Reinigungszeit sauber getrennt.",
+    },
+    {
+      title: "Fenster, Übergabe und Sonderfälle",
+      text: "Fensterreinigung, Übergabereinigung, Grundreinigung oder Reinigung nach Auszug brauchen Fotos, Zielzustand und realistische Grenzen.",
+    },
+  ] as const;
+
+  const localSignals = [
+    "Düsseldorf als Hauptort der Anfrage klar nennen",
+    "Stadtteil, Etage, Zugang und Park-/Haltesituation ergänzen",
+    "Objektart: Wohnung, Büro, Praxis, Laden, Hausverwaltung oder Apartment",
+    "Gewünschtes Ergebnis: einmalig, Übergabe, Turnus, Fenster oder Gewerbefläche",
+  ] as const;
+
+  return (
+    <section className="border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10" aria-labelledby="duesseldorf-authority-heading">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.74fr_1.26fr]">
+        <div>
+          <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+            <MapPin className="h-4 w-4" aria-hidden="true" />
+            Düsseldorf stark und verständlich
+          </p>
+          <h2 id="duesseldorf-authority-heading" className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
+            Reinigung in Düsseldorf so beschreiben, dass Google und Kunden sofort verstehen, worum es geht.
+          </h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
+            Diese Seite bündelt die wichtigsten deutschen Suchintentionen rund um {config.eyebrow}: Reinigungsfirma,
+            Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Wohnungsreinigung und möblierte
+            Apartment-Reinigung in Düsseldorf. Der Text bleibt absichtlich praktisch: Was ist das Objekt, was soll
+            sauber werden, bis wann und mit welchem Ziel?
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <CleaningCta cta={config.primaryCta} />
+            <Link
+              href="/reinigung-moeblierte-wohnung-duesseldorf"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:bg-cyan-50"
+            >
+              Apartment-Reinigung Düsseldorf
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+        <div className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-3">
+            {searchIntents.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="text-lg font-black tracking-normal text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="rounded-lg border border-cyan-100 bg-white p-5">
+            <h3 className="text-xl font-black tracking-normal text-slate-950">Was die Anfrage stärker macht</h3>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {localSignals.map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-bold leading-7 text-slate-700">
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-700" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BueroreinigungGewerbereinigungComparison() {
   const items = [
     {
@@ -1554,6 +1631,7 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <JsonLd config={config} />
       <DuesseldorfCleaningHero config={config} />
       <CleaningQuickAnswer config={config} />
+      <DuesseldorfCleaningAuthorityBlock config={config} />
       <RequestBriefChecklistBlock
         serviceKey={config.key}
         ctaHref={config.primaryCta.href}
