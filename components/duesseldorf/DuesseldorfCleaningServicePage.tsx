@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   BadgeCheck,
+  BedDouble,
   Building2,
   CalendarClock,
   CheckCircle2,
@@ -207,6 +208,13 @@ const hubServiceCards: Card[] = [
     text: "Wenn ein Angebot unklar, schwer vergleichbar oder zu pauschal wirkt, helfen Fläche, Turnus, Umfang und Zusatzkosten.",
     href: cleaningOfferContact,
     label: "Angebot prüfen lassen",
+  },
+  {
+    icon: BedDouble,
+    title: "Ferienwohnungs- und Apartmentreinigung",
+    text: "Für Ferienwohnung, möbliertes Apartment oder Gästewechsel mit Checkout, Check-in, Zugang, Fotos und klaren Zusatzgrenzen.",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+    label: "Apartment-Reinigung ansehen",
   },
 ];
 

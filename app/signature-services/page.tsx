@@ -117,7 +117,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Signature Services und Speziallösungen",
   description:
-    "Geprüfte Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, diskrete Situationen sowie kombinierte Umzugs- und Reinigungsanfragen.",
+    "Geprüfte Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, Spezialreinigung, Spezialumzug, Spezialentrümpelung und diskrete Situationen.",
   alternates: {
     canonical,
   },
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Signature Services",
     description:
-      "Öffentlich freigegebene Signature Services und Speziallösungen mit Funktion, benötigten Angaben, Ergebnis und klaren Grenzen.",
+      "Öffentlich freigegebene Signature Services, Spezialreinigung, Spezialumzug und Spezialentrümpelung mit Funktion, Angaben, Ergebnis und klaren Grenzen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",

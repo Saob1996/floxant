@@ -3,6 +3,7 @@ import { ArrowRight, Check, ShieldCheck, Sparkles } from "lucide-react";
 
 import { company } from "@/lib/company";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
+import { problemBasedServiceLinks, signatureSpecialClusters } from "@/lib/signature-special-services";
 
 const path = "/signature-services";
 
@@ -27,6 +28,13 @@ const faqItems = [
     answer:
       "Es gibt keine Preis-, Ersparnis-, Soforteinsatz-, Abnahme- oder Verfügbarkeitsgarantie. Die einzelnen Lösungen nennen ihre zusätzlichen Grenzen ausdrücklich.",
   },
+] as const;
+
+const decisionSteps = [
+  "Angebot unklar: Angebotscheck oder Anbieter-Vergleich nutzen.",
+  "Objekt schwer beschreibbar: Objektbrief oder Uebergabeakte starten.",
+  "Termin wackelt: Plan B, Uebergabe oder Kombi-Anfrage priorisieren.",
+  "Sensible Lage: Diskret-Service oder Private Client ruhig beginnen.",
 ] as const;
 
 const graph = {
@@ -88,6 +96,48 @@ export function GermanSignatureServicesHub() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-slate-50 px-5 py-12 sm:px-8 lg:px-10" aria-labelledby="problem-links-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Schnell zur passenden Lage</p>
+            <h2 id="problem-links-heading" className="mt-3 text-3xl font-black sm:text-4xl">
+              Besondere Services nach echtem Kundenproblem auswaehlen.
+            </h2>
+            <p className="mt-4 font-medium leading-7 text-slate-700">
+              Nicht der interne Servicename ist entscheidend, sondern die Situation: Angebot unklar,
+              Uebergabe naht, Anbieter wackelt, Objekt ist schwer beschreibbar oder der Fall braucht Diskretion.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {decisionSteps.map((item) => (
+              <div
+                key={item}
+                className="rounded-lg border border-blue-100 bg-white p-4 text-sm font-bold leading-6 text-slate-800 shadow-sm"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {problemBasedServiceLinks.slice(0, 8).map((item) => (
+              <Link
+                key={`${item.href}-${item.title}`}
+                href={item.href}
+                className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm outline-none transition hover:-translate-y-0.5 hover:border-cyan-600 focus-visible:ring-2 focus-visible:ring-cyan-600"
+              >
+                <span className="text-xs font-black uppercase tracking-wide text-blue-800">{item.type || "Spezialweg"}</span>
+                <h3 className="mt-3 text-lg font-black leading-tight text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm font-medium leading-6 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-800">
+                  {item.cta || "Mehr erfahren"}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20" aria-labelledby="solutions-heading">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
@@ -113,6 +163,12 @@ export function GermanSignatureServicesHub() {
                 <p className="mt-3 font-medium leading-7 text-slate-700">{solution.actualFunction}</p>
                 <dl className="mt-5 grid gap-4 text-sm">
                   <div>
+                    <dt className="font-black">Passt fuer</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">
+                      {solution.targetGroups.slice(0, 3).join(" - ")}
+                    </dd>
+                  </div>
+                  <div>
                     <dt className="font-black">Situation</dt>
                     <dd className="mt-1 font-medium leading-6 text-slate-700">{solution.problem}</dd>
                   </div>
@@ -124,6 +180,12 @@ export function GermanSignatureServicesHub() {
                     <dt className="font-black">Benötigte Angaben</dt>
                     <dd className="mt-1 font-medium leading-6 text-slate-700">
                       {solution.requiredDetails.slice(0, 4).join(" · ")}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-black">Ablauf</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">
+                      {solution.process.slice(0, 3).join(" - ")}
                     </dd>
                   </div>
                   <div>
@@ -181,6 +243,47 @@ export function GermanSignatureServicesHub() {
               </Link>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10" aria-labelledby="special-clusters-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Spezialbereiche</p>
+            <h2 id="special-clusters-heading" className="mt-3 text-3xl font-black sm:text-4xl">
+              Signature, Spezialreinigung, Spezialumzug und Spezialentruempelung verbinden.
+            </h2>
+            <p className="mt-4 font-medium leading-7 text-slate-700">
+              Fuer komplexe Anfragen fuehrt FLOXANT nicht nur zu einer einzelnen Leistung, sondern zu
+              dem passenden Einstieg: pruefen, einordnen, vorbereiten und dann gezielt anfragen.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {signatureSpecialClusters.map((cluster) => (
+              <article key={cluster.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-xl font-black leading-tight text-slate-950">{cluster.title}</h3>
+                <p className="mt-3 font-medium leading-7 text-slate-700">{cluster.intro}</p>
+                <ul className="mt-5 grid gap-3">
+                  {cluster.links.slice(0, 4).map((item) => (
+                    <li key={`${cluster.title}-${item.href}-${item.title}`}>
+                      <Link
+                        href={item.href}
+                        className="group flex items-start justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-800 outline-none transition hover:border-cyan-600 focus-visible:ring-2 focus-visible:ring-cyan-600"
+                      >
+                        <span>
+                          <span className="block text-xs font-black uppercase tracking-wide text-blue-800">
+                            {item.type || "Service"}
+                          </span>
+                          {item.title}
+                        </span>
+                        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-blue-800 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

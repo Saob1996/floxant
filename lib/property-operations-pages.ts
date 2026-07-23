@@ -49,6 +49,8 @@ export type PropertyOperationsPage = {
   guarantees: string[];
   faq: Array<{ q: string; a: string }>;
   related: PropertyOperationsSlug[];
+  serviceAreas?: string[];
+  localPages?: Array<{ href: string; label: string; text: string }>;
   blogIdeas: Array<{ title: string; angle: string }>;
 };
 
@@ -302,15 +304,16 @@ export const propertyOperationsPages = {
     path: "/airbnb-turnover-express",
     serviceName: "Gästewechsel-Service",
     shortName: "Gästewechsel",
-    seoTitle: "Gästewechsel-Service Regensburg | Ferienwohnung vorbereiten",
+    seoTitle: "Gästewechsel-Service für Ferienwohnungen | FLOXANT",
     metaDescription:
-      "Gästewechsel-Service von FLOXANT: Gästewechsel mit Reinigung, Kontrolle, Fotos, Schlüsselmanagement und Vorbereitung für Ferienwohnungen in Regensburg, Oberpfalz und Regensburg.",
+      "Gästewechsel für Ferienwohnung oder Apartment in Düsseldorf und Regensburg: Reinigung, Kontrolle, Zugang, Fotos und Vorbereitung nach Absprache.",
     keywords: [
+      "Ferienwohnung Reinigung",
+      "Airbnb Reinigung Düsseldorf",
       "Airbnb Reinigung Regensburg",
       "Gästewechsel Service",
       "Ferienwohnung Turnover",
-      "Schlüsselmanagement Airbnb",
-      "Apartment Kontrolle Bayern",
+      "Apartment Reinigung",
     ],
     accent: "#22c55e",
     image: {
@@ -320,15 +323,15 @@ export const propertyOperationsPages = {
         "Perfekt vorbereitetes Apartment mit frischer Bettwäsche, Kontrollliste, Foto-Check und ruhiger Hotelästhetik.",
     },
     hero: {
-      eyebrow: "Gästewechsel ohne Nervenkitzel",
-      headline: "Der nächste Gast kommt. FLOXANT macht das Apartment wieder bereit.",
+      eyebrow: "Gästewechsel für Ferienwohnung & Apartment",
+      headline: "Checkout vorbei. Der nächste Aufenthalt braucht einen klaren Ablauf.",
       subheadline:
-        "Reinigung, Blickkontrolle, frische Vorbereitung, Fotos und Schlüsselwege greifen in einem Ablauf zusammen. Für Hosts, die nicht jedes Detail selbst jagen wollen.",
-      promise: "Checkout vorbei, nächster Check-in vorbereitet.",
+        "FLOXANT prüft Reinigung, Sichtkontrolle, Vorbereitung, Fotos und Schlüsselwege als zusammenhängenden Gästewechsel. Die lokalen Seiten für Düsseldorf und Regensburg führen direkt zur passenden Anfrage.",
+      promise: "Objekt, Zeitfenster und Umfang zuerst klären – dann den Gästewechsel abstimmen.",
       metrics: [
         { label: "Typischer Anlass", value: "Gästewechsel" },
         { label: "Fokus", value: "Reinigung + Kontrolle" },
-        { label: "Ziel", value: "Weniger Host-Stress" },
+        { label: "Regionen", value: "Düsseldorf & Regensburg" },
       ],
     },
     problem: {
@@ -382,7 +385,7 @@ export const propertyOperationsPages = {
       { label: "04", title: "Host-Status senden", text: "Der Host bekommt eine klare Meldung: bereit, auffällig oder Rückfrage nötig." },
     ],
     benefits: [
-      { title: "Bewertungsrisiko sinkt", text: "Wiederkehrende Kontrollpunkte reduzieren übersehene Details." },
+      { title: "Weniger offene Punkte", text: "Wiederkehrende Kontrollpunkte machen übersehene Details früher sichtbar." },
       { title: "Host bleibt steuerungsfähig", text: "Fotos und Status ersetzen Bauchgefühl." },
       { title: "Mehr als Reinigung", text: "Der Service denkt Zugang, Vorbereitung und Gästeerlebnis mit." },
       { title: "Skalierbar nach Objekt", text: "Für einzelne Apartments oder mehrere Einheiten nach Verfügbarkeit." },
@@ -396,7 +399,7 @@ export const propertyOperationsPages = {
     faq: [
       {
         q: "Übernimmt FLOXANT komplette Airbnb-Gästewechsel?",
-        a: "Ja, wenn Objektprofil, Zugang, Zeitfenster und Leistungsumfang geklärt sind. Typisch sind Reinigung, Vorbereitung, Kontrolle, Fotos und Schlüsselmanagement.",
+        a: "Das ist nach Prüfung möglich, wenn Objektprofil, Zugang, Zeitfenster und Leistungsumfang geklärt sind. Reinigung, Vorbereitung, Kontrolle, Fotos oder Schlüsselkoordination werden einzeln vereinbart.",
       },
       {
         q: "Kann FLOXANT Bettwäsche wechseln?",
@@ -404,7 +407,7 @@ export const propertyOperationsPages = {
       },
       {
         q: "Ist der Service nur für Airbnb?",
-        a: "Nein. Er passt auch für Ferienwohnungen, Kurzzeitvermietung, möblierte Apartments und Boardinghouse-nahe Einheiten.",
+        a: "Nein. FLOXANT arbeitet plattformunabhängig. Der Service passt zu Ferienwohnungen, Kurzzeitvermietung, möblierten Apartments und vergleichbaren Einheiten.",
       },
       {
         q: "Wer haftet für Schäden durch Gäste?",
@@ -412,8 +415,21 @@ export const propertyOperationsPages = {
       },
     ],
     related: ["urlaubsretter", "leerstandsmanagement", "property-operations"],
+    serviceAreas: ["Düsseldorf", "Regensburg"],
+    localPages: [
+      {
+        href: "/reinigung-moeblierte-wohnung-duesseldorf",
+        label: "Ferienwohnung-Reinigung Düsseldorf",
+        text: "Lokale Anfrage für Apartment, Checkout, Check-in, Zugang und Zusatzwünsche in Düsseldorf.",
+      },
+      {
+        href: "/reinigung-moeblierte-wohnung-regensburg",
+        label: "Ferienwohnung-Reinigung Regensburg",
+        text: "Lokale Anfrage für Ferienwohnung und möbliertes Apartment in Regensburg plus 50 km.",
+      },
+    ],
     blogIdeas: [
-      { title: "Airbnb-Gästewechsel: Welche Punkte Hosts nicht dem Zufall überlassen sollten", angle: "Turnover-Checkliste für Regensburg." },
+      { title: "Gästewechsel: Welche Punkte Hosts nicht dem Zufall überlassen sollten", angle: "Plattformunabhängige Turnover-Checkliste." },
       { title: "Warum Fotos nach dem Gästewechsel wertvoller sind als ein kurzes 'alles sauber'", angle: "Dokumentation als Host-Schutz." },
       { title: "Schlüsselmanagement bei Kurzzeitvermietung", angle: "Risiken, Zugangswege und klare Verantwortlichkeiten." },
     ],

@@ -332,6 +332,8 @@ export const sitemapRoutes = [
   "/reinigung-mallersdorf-pfaffenberg",
   "/reinigung-maxhuette-haidhof",
   "/reinigung-mintraching",
+  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/reinigung-moeblierte-wohnung-regensburg",
   "/reinigung-moetzing",
   "/reinigung-nach-veranstaltung",
   "/reinigung-neutraubling",

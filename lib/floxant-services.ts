@@ -957,7 +957,7 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
       "Reinigung, Kontrolle, Fotos und Vorbereitung für Ferienwohnung oder Apartment zwischen zwei Aufenthalten.",
     region: "regensburg",
     category: "signature",
-    href: "/airbnb-turnover-express",
+    href: "/reinigung-moeblierte-wohnung-regensburg",
     ctaLabel: "Gästewechsel planen",
     googleAdsRelevant: false,
     priority: 13,

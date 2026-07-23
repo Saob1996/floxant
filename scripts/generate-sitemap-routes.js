@@ -79,6 +79,10 @@ const allowedDuesseldorfCleaningRoutes = new Set([
   "/duesseldorf/fensterreinigung",
   "/duesseldorf/luxusreinigung",
 ]);
+const verifiedApartmentCleaningRoutes = new Set([
+  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/reinigung-moeblierte-wohnung-regensburg",
+]);
 const removedServicePrefixes = [
   "/halteverbotszone",
 ];
@@ -211,6 +215,7 @@ function getRouteFromDirectory(directory) {
 }
 
 function isIndexableRoute(route) {
+  if (verifiedApartmentCleaningRoutes.has(route)) return true;
   if (nonHtmlSitemapExtensionPattern.test(route)) return false;
   if (legacyRedirectRoutes.has(route)) return false;
   if (consciouslyExcludedSignatureLandingRoutes.has(route)) return false;

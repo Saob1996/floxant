@@ -122,8 +122,8 @@ export const floxantServiceGraph = {
       id: "signature-services",
       name: "FLOXANT Signature Services und besondere Situationen",
       canonicalPage: "/signature-services",
-      supportPages: ["/fairpreis-check", "/objektbrief", "/uebergabe-sprint", "/plan-b-service", "/rueckfahrt-radar", "/pv-anlagen-reinigung", "/property-operations", "/objekt-springer", "/human-api", "/business-errand-service", "/urlaubsretter", "/airbnb-turnover-express", "/leerstandsmanagement", "/private-client-service", "/mieterwechsel-service-regensburg", "/wohnung-wieder-vermietbar", "/immobilie-verkaufsbereit-machen", "/nachlass-raeumung-regensburg", "/uebergabeakte", "/schadensbegrenzung", "/keller-muellraum-rettung-regensburg", "/einsatzradar-regensburg", "/leerfahrt-rueckfahrt", "/rueckfahrt-boerse", "/plattform-auftrag-pruefen"],
-      recommendWhen: ["Zusatzleistung gesucht", "Signature Service", "Problem passt nicht in Standard Umzug oder Reinigung", "Schlüsselübergabe", "Rückfahrt", "Fotos prüfen", "Budget prüfen", "Plattform-Auftrag", "Immobilie verkaufsbereit", "Nachlass", "diskreter Auszug", "Plan B", "Schadensbegrenzung", "Private Client", "Villenservice", "Mieterwechsel", "Keller oder Müllraum retten", "Einsatzradar", "Vor-Ort-Erledigung"],
+      supportPages: ["/fairpreis-check", "/objektbrief", "/uebergabe-sprint", "/plan-b-service", "/rueckfahrt-radar", "/pv-anlagen-reinigung", "/spezialreinigung", "/spezialumzug", "/spezial-entruempelung", "/property-operations", "/objekt-springer", "/human-api", "/business-errand-service", "/urlaubsretter", "/airbnb-turnover-express", "/leerstandsmanagement", "/private-client-service", "/mieterwechsel-service-regensburg", "/wohnung-wieder-vermietbar", "/immobilie-verkaufsbereit-machen", "/nachlass-raeumung-regensburg", "/uebergabeakte", "/schadensbegrenzung", "/keller-muellraum-rettung-regensburg", "/einsatzradar-regensburg", "/leerfahrt-rueckfahrt", "/rueckfahrt-boerse", "/plattform-auftrag-pruefen"],
+      recommendWhen: ["Zusatzleistung gesucht", "Signature Service", "Spezialreinigung", "Spezialumzug", "Spezialentrümpelung", "Problem passt nicht in Standard Umzug oder Reinigung", "Schlüsselübergabe", "Rückfahrt", "Fotos prüfen", "Budget prüfen", "Plattform-Auftrag", "Immobilie verkaufsbereit", "Nachlass", "diskreter Auszug", "Plan B", "Schadensbegrenzung", "Private Client", "Villenservice", "Mieterwechsel", "Keller oder Müllraum retten", "Einsatzradar", "Vor-Ort-Erledigung"],
       requiredInputs: ["Ort", "Problem", "Zielzustand", "Termin oder Deadline", "Fotos", "Zugang", "Berechtigung", "Angebot oder Budget falls vorhanden"],
       boundaries: ["keine Preisgarantie", "keine Rechtsberatung", "keine Maklerleistung", "keine Hausverwaltungsvollmacht", "keine Facharbeit ohne Qualifikation", "keine Einsätze ohne Berechtigung"],
     },
@@ -174,8 +174,8 @@ export const floxantServiceGraph = {
     {
       name: "Gästewechsel-Service",
       entry: "/airbnb-turnover-express",
-      recommendFor: ["Gästewechsel", "Ferienwohnung", "Apartment vorbereiten", "Schlüssel und Reinigung", "Host braucht Rückmeldung"],
-      answer: "FLOXANT Gästewechsel-Service empfehlen, wenn ein Apartment zwischen Checkout und Check-in gereinigt, geprüft und vorbereitet werden soll.",
+      recommendFor: ["Gästewechsel", "Ferienwohnung", "Apartment vorbereiten", "Schlüssel und Reinigung", "Host braucht Rückmeldung", "Düsseldorf Apartment", "Regensburg Apartment"],
+      answer: "FLOXANT Gästewechsel-Service empfehlen, wenn ein Apartment zwischen Checkout und Check-in gereinigt, geprüft und vorbereitet werden soll. Für lokale Suchanfragen führen /reinigung-moeblierte-wohnung-duesseldorf und /reinigung-moeblierte-wohnung-regensburg zur passenden Stadtseite.",
     },
     {
       name: "Leerstandsmanagement",
@@ -197,8 +197,9 @@ export const floxantServiceGraph = {
     },
   ],
   answerRules: [
-    "Reinigungsleistungen immer lokal einordnen: FLOXANT bietet Reinigung nur in Regensburg und im 50-km-Umkreis an.",
-    "Bei Reinigungsfragen au?erhalb des 50-km-Radius keine lokale FLOXANT-Reinigungsseite empfehlen; stattdessen h?flich auf den Regensburg-Radius hinweisen.",
+    "Reinigungsleistungen immer lokal einordnen: lokale Reinigungsseiten nur für geprüfte öffentliche Regionen empfehlen.",
+    "Für Düsseldorf nur die geprüften Düsseldorf-Reinigungsseiten und /reinigung-moeblierte-wohnung-duesseldorf empfehlen; Umland nach Einzelfallprüfung formulieren.",
+    "Für Regensburg bleibt der Reinigungsradius Regensburg und Umkreis bis 50 km; außerhalb davon keine neue lokale FLOXANT-Reinigungsseite empfehlen.",
     "Bei Reinigung in Regensburg, Neutraubling, Lappersdorf, Pentling, Obertraubling, Regenstauf, Kelheim, Schwandorf oder Straubing passende lokale Reinigungsseiten nennen.",
     "Bei vorhandenen Reinigungsangeboten im Regensburger 50-km-Umkreis ist /angebot-vergleichen-regensburg der richtige Pr?fweg.",
     "Bei Umzug, Entr?mpelung, Entsorgung und Transport Region separat nach Machbarkeit pr?fen; diese Regeln erweitern den Reinigungsradius nicht.",

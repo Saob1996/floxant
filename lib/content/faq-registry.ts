@@ -91,6 +91,7 @@ type FaqPairSeed = {
   audience: readonly string[];
   intent: string;
   evidenceSource: readonly string[];
+  reviewedAt?: string;
   de: LocalizedFaqCopy;
   en: LocalizedFaqCopy;
 };
@@ -259,6 +260,201 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       relatedArticle: null,
       relatedService: "/en/regensburg/cleaning",
       CTA: { label: "Clarify the cleaning type", href: "/kontakt?service=cleaning&intent=english-cleaning" },
+    },
+  },
+  {
+    key: "apartment-cleaning-details-duesseldorf",
+    category: "Reinigung",
+    region: ["Düsseldorf"],
+    serviceIds: ["ferienwohnung-reinigung"],
+    audience: ["Hosts", "Vermieter", "Betreiber möblierter Apartments"],
+    intent: "Ferienwohnungsreinigung in Düsseldorf vollständig beschreiben",
+    evidenceSource: [
+      "app/reinigung-moeblierte-wohnung-duesseldorf/page.tsx",
+      "app/airbnb-turnover-express/page.tsx",
+    ],
+    reviewedAt: "2026-07-23",
+    de: {
+      question: "Welche Angaben braucht eine Ferienwohnungsreinigung in Düsseldorf?",
+      shortAnswer:
+        "Objektart, Fläche, Zustand, Checkout, nächster Check-in, Zugang und gewünschte Zusatzleistungen sind die wichtigsten Angaben.",
+      detailedAnswer:
+        "Beschreiben Sie Ferienwohnung oder Apartment mit Fläche, Zimmern, Bädern und aktuellem Zustand. Ergänzen Sie Checkout, nächsten Check-in, Schlüsselweg, Etage, Parkmöglichkeit sowie Wünsche zu Wäsche, Fotos oder Inventar. Erst danach lässt sich prüfen, welcher Umfang und welches Zeitfenster realistisch sind.",
+      relatedArticle: null,
+      relatedService: "/reinigung-moeblierte-wohnung-duesseldorf",
+      CTA: {
+        label: "Apartment-Reinigung Düsseldorf anfragen",
+        href: "/kontakt?service=reinigung&city=duesseldorf&intent=ferienwohnung-reinigung",
+      },
+    },
+    en: {
+      question: "Which details are needed for holiday apartment cleaning in Düsseldorf?",
+      shortAnswer:
+        "Property type, size, condition, checkout, next check-in, access and requested extras are the key details.",
+      detailedAnswer:
+        "Describe the holiday apartment or furnished unit, including size, rooms, bathrooms and current condition. Add checkout, next check-in, key arrangements, floor, parking and any request for laundry, photos or inventory notes. FLOXANT can then assess a realistic scope and time window.",
+      relatedArticle: null,
+      relatedService: "/en/services",
+      CTA: {
+        label: "Prepare an apartment cleaning request",
+        href: "/kontakt?service=cleaning&city=duesseldorf&intent=english-holiday-apartment-cleaning",
+      },
+    },
+  },
+  {
+    key: "apartment-cleaning-details-regensburg",
+    category: "Reinigung",
+    region: ["Regensburg"],
+    serviceIds: ["ferienwohnung-reinigung"],
+    audience: ["Hosts", "Vermieter", "Betreiber möblierter Apartments"],
+    intent: "Ferienwohnungsreinigung in Regensburg vollständig beschreiben",
+    evidenceSource: [
+      "app/reinigung-moeblierte-wohnung-regensburg/page.tsx",
+      "app/airbnb-turnover-express/page.tsx",
+    ],
+    reviewedAt: "2026-07-23",
+    de: {
+      question: "Welche Angaben braucht eine Ferienwohnungsreinigung in Regensburg?",
+      shortAnswer:
+        "Objektart, Fläche, Zustand, Terminfenster, Zugang und gewünschter Zielzustand sollten von Anfang an genannt werden.",
+      detailedAnswer:
+        "Nennen Sie Ort, Fläche, Zimmer, Bäder, Möblierung und aktuellen Zustand. Bei einem Gästewechsel gehören Checkout, nächster Check-in, Schlüsselweg und mögliche Wünsche zu Wäsche, Fotos oder Inventar dazu. Für Reinigungsservices bleibt die Prüfung auf Regensburg und den Umkreis bis 50 Kilometer begrenzt.",
+      relatedArticle: null,
+      relatedService: "/reinigung-moeblierte-wohnung-regensburg",
+      CTA: {
+        label: "Apartment-Reinigung Regensburg anfragen",
+        href: "/reinigung-moeblierte-wohnung-regensburg#anfrage",
+      },
+    },
+    en: {
+      question: "Which details are needed for holiday apartment cleaning in Regensburg?",
+      shortAnswer:
+        "Property type, size, condition, time window, access and intended result should be included from the start.",
+      detailedAnswer:
+        "Include the location, size, rooms, bathrooms, furnishing and current condition. For a guest turnover, add checkout, next check-in, key arrangements and any request for laundry, photos or inventory notes. Cleaning requests are assessed within Regensburg and a radius of up to 50 kilometres.",
+      relatedArticle: null,
+      relatedService: "/en/services",
+      CTA: {
+        label: "Prepare an apartment cleaning request",
+        href: "/kontakt?service=cleaning&city=regensburg&intent=english-holiday-apartment-cleaning",
+      },
+    },
+  },
+  {
+    key: "guest-turnover-scope",
+    category: "Leistungen",
+    region: ["Düsseldorf", "Regensburg"],
+    serviceIds: ["ferienwohnung-reinigung"],
+    audience: ["Hosts", "Vermieter", "Betreiber möblierter Apartments"],
+    intent: "Leistungsumfang eines Gästewechsels verstehen",
+    evidenceSource: [
+      "lib/property-operations-pages.ts",
+      "app/reinigung-moeblierte-wohnung-regensburg/page.tsx",
+    ],
+    reviewedAt: "2026-07-23",
+    de: {
+      question: "Was kann zu einem Gästewechsel in Ferienwohnung oder Apartment gehören?",
+      shortAnswer:
+        "Reinigung, Sichtkontrolle und Vorbereitung können vereinbart werden; der genaue Umfang wird für jedes Objekt festgelegt.",
+      detailedAnswer:
+        "Typische Punkte sind Bad, Küche, Schlafbereich, Böden, sichtbare Oberflächen und eine kurze Zustandsrückmeldung. Wäsche, Schlüsselkoordination, Fotodokumentation, Inventarhinweise oder Restmengen sind nicht automatisch enthalten und müssen vorab ausdrücklich abgestimmt werden.",
+      relatedArticle: null,
+      relatedService: "/airbnb-turnover-express",
+      CTA: {
+        label: "Gästewechsel einordnen",
+        href: "/kontakt?service=reinigung&intent=gaestewechsel",
+      },
+    },
+    en: {
+      question: "What can be included in a guest turnover for a holiday apartment?",
+      shortAnswer:
+        "Cleaning, a visual check and preparation can be agreed; the exact scope is defined for each property.",
+      detailedAnswer:
+        "Typical points include the bathroom, kitchen, sleeping area, floors, visible surfaces and a brief condition update. Laundry, key coordination, photo documentation, inventory notes or leftover items are not automatically included and must be agreed in advance.",
+      relatedArticle: null,
+      relatedService: "/en/services",
+      CTA: {
+        label: "Clarify the turnover scope",
+        href: "/kontakt?service=cleaning&intent=english-guest-turnover",
+      },
+    },
+  },
+  {
+    key: "guest-turnover-access",
+    category: "Schlüssel",
+    region: ["Düsseldorf", "Regensburg"],
+    serviceIds: ["ferienwohnung-reinigung"],
+    audience: ["Hosts", "Vermieter", "Betreiber möblierter Apartments"],
+    intent: "Zugang und Schlüsselweg beim Gästewechsel klären",
+    evidenceSource: [
+      "lib/property-operations-pages.ts",
+      "components/RegensburgApartmentCleaningForm.tsx",
+    ],
+    reviewedAt: "2026-07-23",
+    de: {
+      question: "Wie werden Zugang und Schlüssel beim Gästewechsel geklärt?",
+      shortAnswer:
+        "Zugangsweg, verantwortliche Person und erlaubtes Zeitfenster müssen vor dem Einsatz eindeutig abgestimmt sein.",
+      detailedAnswer:
+        "Teilen Sie mit, ob der Zugang über persönliche Übergabe, Schlüsselbox, Verwaltung oder einen anderen vereinbarten Weg erfolgt. Codes oder sensible Zugangsdaten gehören nicht in öffentlich sichtbare Felder. Eine Schlüsselkoordination ist nur Teil des Auftrags, wenn sie ausdrücklich bestätigt wurde.",
+      relatedArticle: null,
+      relatedService: "/airbnb-turnover-express",
+      CTA: {
+        label: "Zugang sicher abstimmen",
+        href: "/kontakt?service=reinigung&intent=gaestewechsel",
+      },
+    },
+    en: {
+      question: "How are access and keys handled for a guest turnover?",
+      shortAnswer:
+        "The access route, responsible person and permitted time window must be agreed before the service.",
+      detailedAnswer:
+        "State whether access is provided in person, through a key box, by property management or by another agreed method. Codes and sensitive access details should not be entered into public-facing fields. Key coordination is included only when it has been explicitly confirmed.",
+      relatedArticle: null,
+      relatedService: "/en/services",
+      CTA: {
+        label: "Clarify access safely",
+        href: "/kontakt?service=cleaning&intent=english-guest-turnover",
+      },
+    },
+  },
+  {
+    key: "guest-turnover-platform-boundary",
+    category: "Leistungen",
+    region: ["Düsseldorf", "Regensburg"],
+    serviceIds: ["ferienwohnung-reinigung"],
+    audience: ["Hosts", "Vermieter", "Betreiber möblierter Apartments"],
+    intent: "Plattformunabhängigkeit des Services verstehen",
+    evidenceSource: [
+      "app/reinigung-moeblierte-wohnung-regensburg/page.tsx",
+      "lib/property-operations-pages.ts",
+    ],
+    reviewedAt: "2026-07-23",
+    de: {
+      question: "Ist FLOXANT Partner von Airbnb oder einer anderen Buchungsplattform?",
+      shortAnswer:
+        "Nein, FLOXANT bietet die Leistung plattformunabhängig an und behauptet keine Partnerschaft mit einer Buchungsplattform.",
+      detailedAnswer:
+        "Die Leistung richtet sich an Ferienwohnungen, möblierte Apartments und vergleichbare Kurzzeitvermietungen unabhängig vom verwendeten Buchungsportal. Plattformkommunikation, Gästesupport, Schadensregulierung und Bewertungsmanagement bleiben beim Host oder Betreiber, sofern nichts anderes ausdrücklich vereinbart wurde.",
+      relatedArticle: null,
+      relatedService: "/airbnb-turnover-express",
+      CTA: {
+        label: "Plattformunabhängig anfragen",
+        href: "/kontakt?service=reinigung&intent=ferienwohnung-reinigung",
+      },
+    },
+    en: {
+      question: "Is FLOXANT a partner of Airbnb or another booking platform?",
+      shortAnswer:
+        "No, FLOXANT provides the service independently and does not claim a partnership with any booking platform.",
+      detailedAnswer:
+        "The service is for holiday apartments, furnished units and similar short-term rentals regardless of the booking portal used. Platform communication, guest support, damage claims and review management remain the host's or operator's responsibility unless a separate scope is explicitly agreed.",
+      relatedArticle: null,
+      relatedService: "/en/services",
+      CTA: {
+        label: "Send a platform-independent request",
+        href: "/kontakt?service=cleaning&intent=english-holiday-apartment-cleaning",
+      },
     },
   },
   {
@@ -976,7 +1172,7 @@ function buildFaqPair(seed: FaqPairSeed): [FaqRegistryEntry, FaqRegistryEntry] {
     intent: seed.intent,
     evidenceSource: seed.evidenceSource,
     verified: true,
-    reviewedAt: REVIEWED_AT,
+    reviewedAt: seed.reviewedAt ?? REVIEWED_AT,
     owner: OWNER,
     publicAllowed: true,
   } as const;
@@ -1028,6 +1224,46 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
       "faq-cleaning-quote-duesseldorf-de",
       "faq-cleaning-scope-boundary-de",
       "faq-request-photos-de",
+      "faq-request-next-step-de",
+    ],
+  },
+  {
+    route: "/reinigung-moeblierte-wohnung-duesseldorf",
+    locale: "de",
+    pageType: "service",
+    status: "ACTIVE",
+    faqIds: [
+      "faq-apartment-cleaning-details-duesseldorf-de",
+      "faq-guest-turnover-scope-de",
+      "faq-guest-turnover-access-de",
+      "faq-guest-turnover-platform-boundary-de",
+      "faq-request-next-step-de",
+    ],
+    schemaFaqIds: [
+      "faq-apartment-cleaning-details-duesseldorf-de",
+      "faq-guest-turnover-scope-de",
+      "faq-guest-turnover-access-de",
+      "faq-guest-turnover-platform-boundary-de",
+      "faq-request-next-step-de",
+    ],
+  },
+  {
+    route: "/reinigung-moeblierte-wohnung-regensburg",
+    locale: "de",
+    pageType: "service",
+    status: "ACTIVE",
+    faqIds: [
+      "faq-apartment-cleaning-details-regensburg-de",
+      "faq-guest-turnover-scope-de",
+      "faq-guest-turnover-access-de",
+      "faq-guest-turnover-platform-boundary-de",
+      "faq-request-next-step-de",
+    ],
+    schemaFaqIds: [
+      "faq-apartment-cleaning-details-regensburg-de",
+      "faq-guest-turnover-scope-de",
+      "faq-guest-turnover-access-de",
+      "faq-guest-turnover-platform-boundary-de",
       "faq-request-next-step-de",
     ],
   },

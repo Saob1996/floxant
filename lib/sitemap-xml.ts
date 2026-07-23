@@ -46,6 +46,7 @@ const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "rout
 
 const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
+  "airbnb-reinigung-duesseldorf",
   "airbnb-reinigung-regensburg",
   "angebot-red-flag-scanner",
   "einsatzgebiet-regensburg-200km",
@@ -91,6 +92,11 @@ const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
   "duesseldorf/praxisreinigung",
   "duesseldorf/fensterreinigung",
   "duesseldorf/luxusreinigung",
+]);
+
+const VERIFIED_APARTMENT_CLEANING_ROUTES = new Set<string>([
+  "reinigung-moeblierte-wohnung-duesseldorf",
+  "reinigung-moeblierte-wohnung-regensburg",
 ]);
 
 const NON_SEO_PUBLIC_ROUTES = new Set([
@@ -253,6 +259,7 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
+  if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(normalizedRoute)) return false;
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
@@ -383,10 +390,11 @@ function priorityForRoute(route: string): string {
     return "0.84";
   }
   if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(route)) return "0.9";
+  if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(route)) return "0.9";
   if (route === "reinigungsfirma-angebot") return "0.91";
   if (route === "fernumzug-muenchen") return "0.89";
   if (growthServicePathSet.has(`/${route}`)) return route.includes("solarreinigung") ? "0.9" : "0.88";
-  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-regensburg", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "signature-services", "spezialreinigung", "spezialumzug", "spezial-entruempelung", "objektbrief", "plan-b-service", "diskret-service", "pv-anlagen-reinigung", "solarreinigung", "reinigung-moeblierte-wohnung-regensburg", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";

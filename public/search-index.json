@@ -512,6 +512,87 @@
       ]
     },
     {
+      "id": "service:ferienwohnung-reinigung:de:-airbnb-turnover-express",
+      "title": "Ferienwohnungs- und Apartmentreinigung",
+      "description": "Reinigung und Vorbereitung möblierter Wohnungen, Ferienwohnungen und Apartments zwischen Aufenthalten oder vor einer Übergabe.",
+      "url": "/airbnb-turnover-express",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments",
+        "Hausverwaltungen",
+        "Ferienwohnung",
+        "möblierte Wohnung",
+        "Apartment",
+        "Serviced Apartment",
+        "Ferienwohnung & Apartment",
+        "Gästewechsel für Ferienwohnung und Apartment klar vorbereiten"
+      ]
+    },
+    {
+      "id": "service:ferienwohnung-reinigung:de:-reinigung-moeblierte-wohnung-duesseldorf",
+      "title": "Ferienwohnungs- und Apartmentreinigung",
+      "description": "Reinigung und Vorbereitung möblierter Wohnungen, Ferienwohnungen und Apartments zwischen Aufenthalten oder vor einer Übergabe.",
+      "url": "/reinigung-moeblierte-wohnung-duesseldorf",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments",
+        "Hausverwaltungen",
+        "Ferienwohnung",
+        "möblierte Wohnung",
+        "Apartment",
+        "Serviced Apartment",
+        "Ferienwohnung & Apartment",
+        "Gästewechsel für Ferienwohnung und Apartment klar vorbereiten"
+      ]
+    },
+    {
+      "id": "service:ferienwohnung-reinigung:de:-reinigung-moeblierte-wohnung-regensburg",
+      "title": "Ferienwohnungs- und Apartmentreinigung",
+      "description": "Reinigung und Vorbereitung möblierter Wohnungen, Ferienwohnungen und Apartments zwischen Aufenthalten oder vor einer Übergabe.",
+      "url": "/reinigung-moeblierte-wohnung-regensburg",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments",
+        "Hausverwaltungen",
+        "Ferienwohnung",
+        "möblierte Wohnung",
+        "Apartment",
+        "Serviced Apartment",
+        "Ferienwohnung & Apartment",
+        "Gästewechsel für Ferienwohnung und Apartment klar vorbereiten"
+      ]
+    },
+    {
       "id": "article:de:fernumzug-bayern-nrw-tipps",
       "title": "Fernumzug ab Bayern: Strecke, Rückfahrt und Planung",
       "description": "Wann Strecke, Beiladung, Leer-Rückfahrt und Terminfenster bei längeren Umzügen besonders wichtig werden.",
@@ -887,6 +968,31 @@
       "keywords": []
     },
     {
+      "id": "guide:de:signature-services",
+      "title": "FLOXANT Signature Services und Spezialloesungen",
+      "description": "Angebot, Objektbrief, Uebergabe, Plan B, Diskretion, Spezialreinigung, Spezialumzug und Spezialentruempelung passend einordnen.",
+      "url": "/signature-services",
+      "locale": "de",
+      "type": "guide",
+      "regions": [
+        "Regensburg",
+        "Duesseldorf"
+      ],
+      "serviceIds": [
+        "angebotscheck",
+        "objektbrief",
+        "uebergabeakte",
+        "plan-b-service",
+        "diskret-service"
+      ],
+      "keywords": [
+        "signature services",
+        "spezialservice",
+        "sonderfall",
+        "angebot pruefen"
+      ]
+    },
+    {
       "id": "service:uebergabeakte:de:-uebergabeakte",
       "title": "FLOXANT Übergabeakte",
       "description": "Fotos, offene Punkte, Schlüsselstatus und Termin für eine Objektübergabe strukturiert zusammenführen.",
@@ -1180,6 +1286,28 @@
         "Angebotsprüfung von Rechtsberatung abgrenzen",
         "Privatkunden",
         "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-guest-turnover-platform-boundary-de",
+      "title": "Ist FLOXANT Partner von Airbnb oder einer anderen Buchungsplattform?",
+      "description": "Nein, FLOXANT bietet die Leistung plattformunabhängig an und behauptet keine Partnerschaft mit einer Buchungsplattform.",
+      "url": "/reinigung-moeblierte-wohnung-duesseldorf",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Plattformunabhängigkeit des Services verstehen",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
       ]
     },
     {
@@ -1804,6 +1932,80 @@
       ]
     },
     {
+      "id": "guide:de:spezial-entruempelung",
+      "title": "Spezialentruempelung, Nachlass und Keller",
+      "description": "Keller, Nachlass, Lager, Restmengen und Uebergabevorbereitung diskret, fotobasiert und realistisch anfragen.",
+      "url": "/spezial-entruempelung",
+      "locale": "de",
+      "type": "guide",
+      "regions": [
+        "Regensburg",
+        "Duesseldorf"
+      ],
+      "serviceIds": [
+        "kellerentruempelung",
+        "nachlassaufloesung",
+        "wohnungsaufloesung",
+        "diskret-service"
+      ],
+      "keywords": [
+        "spezialentruempelung",
+        "nachlass",
+        "kellerentruempelung",
+        "aufloesung"
+      ]
+    },
+    {
+      "id": "guide:de:spezialreinigung",
+      "title": "Spezialreinigung mit klarer Anfrage",
+      "description": "Solarreinigung, PV-Anlagen-Reinigung, Glasreinigung, Bauendreinigung, Praxisreinigung und Hausverwaltungsreinigung sauber vorbereiten.",
+      "url": "/spezialreinigung",
+      "locale": "de",
+      "type": "guide",
+      "regions": [
+        "Regensburg",
+        "Duesseldorf"
+      ],
+      "serviceIds": [
+        "solarreinigung",
+        "pv-anlagen-reinigung",
+        "fensterreinigung",
+        "baureinigung",
+        "praxisreinigung"
+      ],
+      "keywords": [
+        "spezialreinigung",
+        "pv reinigung",
+        "glasreinigung",
+        "baureinigung"
+      ]
+    },
+    {
+      "id": "guide:de:spezialumzug",
+      "title": "Spezialumzug, Mini-Umzug und Transport",
+      "description": "Kleine, dringende oder flexible Transporte mit Route, Volumen, Zugang, Haltezone und Zeitfenster vorab sortieren.",
+      "url": "/spezialumzug",
+      "locale": "de",
+      "type": "guide",
+      "regions": [
+        "Regensburg",
+        "Duesseldorf"
+      ],
+      "serviceIds": [
+        "mini-umzug",
+        "express-umzug",
+        "moebeltransport",
+        "rueckfahrt-radar"
+      ],
+      "keywords": [
+        "spezialumzug",
+        "mini umzug",
+        "express umzug",
+        "moebeltransport",
+        "beiladung"
+      ]
+    },
+    {
       "id": "service:treppenhausreinigung:de:-treppenhausreinigung-regensburg",
       "title": "Treppenhausreinigung",
       "description": "Regelmäßige Reinigung von Eingängen, Treppen, Podesten und vereinbarten Gemeinschaftsflächen.",
@@ -2249,6 +2451,28 @@
       ]
     },
     {
+      "id": "faq:faq-guest-turnover-scope-de",
+      "title": "Was kann zu einem Gästewechsel in Ferienwohnung oder Apartment gehören?",
+      "description": "Reinigung, Sichtkontrolle und Vorbereitung können vereinbart werden; der genaue Umfang wird für jedes Objekt festgelegt.",
+      "url": "/reinigung-moeblierte-wohnung-duesseldorf",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Leistungsumfang eines Gästewechsels verstehen",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
+      ]
+    },
+    {
       "id": "faq:faq-request-next-step-de",
       "title": "Was passiert nach dem Absenden einer Anfrage?",
       "description": "FLOXANT prüft die übermittelten Eckdaten und meldet sich mit Rückfragen oder dem nächsten möglichen Schritt.",
@@ -2315,6 +2539,48 @@
         "Büroreinigungsangebote vergleichbar machen",
         "Unternehmen",
         "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-apartment-cleaning-details-duesseldorf-de",
+      "title": "Welche Angaben braucht eine Ferienwohnungsreinigung in Düsseldorf?",
+      "description": "Objektart, Fläche, Zustand, Checkout, nächster Check-in, Zugang und gewünschte Zusatzleistungen sind die wichtigsten Angaben.",
+      "url": "/reinigung-moeblierte-wohnung-duesseldorf",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Ferienwohnungsreinigung in Düsseldorf vollständig beschreiben",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
+      ]
+    },
+    {
+      "id": "faq:faq-apartment-cleaning-details-regensburg-de",
+      "title": "Welche Angaben braucht eine Ferienwohnungsreinigung in Regensburg?",
+      "description": "Objektart, Fläche, Zustand, Terminfenster, Zugang und gewünschter Zielzustand sollten von Anfang an genannt werden.",
+      "url": "/reinigung-moeblierte-wohnung-regensburg",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Ferienwohnungsreinigung in Regensburg vollständig beschreiben",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
       ]
     },
     {
@@ -2598,6 +2864,28 @@
         "Privatkunden",
         "Unternehmen",
         "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-guest-turnover-access-de",
+      "title": "Wie werden Zugang und Schlüssel beim Gästewechsel geklärt?",
+      "description": "Zugangsweg, verantwortliche Person und erlaubtes Zeitfenster müssen vor dem Einsatz eindeutig abgestimmt sein.",
+      "url": "/reinigung-moeblierte-wohnung-duesseldorf",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Schlüssel",
+        "Zugang und Schlüsselweg beim Gästewechsel klären",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
       ]
     },
     {
@@ -3127,6 +3415,28 @@
       ]
     },
     {
+      "id": "faq:faq-guest-turnover-access-en",
+      "title": "How are access and keys handled for a guest turnover?",
+      "description": "The access route, responsible person and permitted time window must be agreed before the service.",
+      "url": "/en/services",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Schlüssel",
+        "Zugang und Schlüsselweg beim Gästewechsel klären",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
+      ]
+    },
+    {
       "id": "faq:faq-window-access-duesseldorf-en",
       "title": "How are hard-to-reach windows assessed in advance?",
       "description": "Floor, height, opening method, access route and photos are needed before feasibility can be confirmed.",
@@ -3215,6 +3525,28 @@
         "Privatkunden",
         "Angehörige",
         "Bevollmächtigte"
+      ]
+    },
+    {
+      "id": "faq:faq-guest-turnover-platform-boundary-en",
+      "title": "Is FLOXANT a partner of Airbnb or another booking platform?",
+      "description": "No, FLOXANT provides the service independently and does not claim a partnership with any booking platform.",
+      "url": "/en/services",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Plattformunabhängigkeit des Services verstehen",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
       ]
     },
     {
@@ -3461,6 +3793,28 @@
       ]
     },
     {
+      "id": "faq:faq-guest-turnover-scope-en",
+      "title": "What can be included in a guest turnover for a holiday apartment?",
+      "description": "Cleaning, a visual check and preparation can be agreed; the exact scope is defined for each property.",
+      "url": "/en/services",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf",
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Leistungsumfang eines Gästewechsels verstehen",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
+      ]
+    },
+    {
       "id": "faq:faq-cleaning-details-duesseldorf-en",
       "title": "What details are needed for a cleaning request in Düsseldorf?",
       "description": "Property type, approximate size, condition, timing, frequency, access and photos are the key details.",
@@ -3633,6 +3987,48 @@
         "Unternehmen",
         "Kanzleien",
         "Bürobetreiber"
+      ]
+    },
+    {
+      "id": "faq:faq-apartment-cleaning-details-duesseldorf-en",
+      "title": "Which details are needed for holiday apartment cleaning in Düsseldorf?",
+      "description": "Property type, size, condition, checkout, next check-in, access and requested extras are the key details.",
+      "url": "/en/services",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Ferienwohnungsreinigung in Düsseldorf vollständig beschreiben",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
+      ]
+    },
+    {
+      "id": "faq:faq-apartment-cleaning-details-regensburg-en",
+      "title": "Which details are needed for holiday apartment cleaning in Regensburg?",
+      "description": "Property type, size, condition, time window, access and intended result should be included from the start.",
+      "url": "/en/services",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "ferienwohnung-reinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Ferienwohnungsreinigung in Regensburg vollständig beschreiben",
+        "Hosts",
+        "Vermieter",
+        "Betreiber möblierter Apartments"
       ]
     },
     {

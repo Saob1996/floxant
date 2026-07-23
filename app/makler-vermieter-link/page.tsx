@@ -439,7 +439,7 @@ export default function MaklerVermieterLinkPage() {
             <div className="grid gap-4 md:grid-cols-2">
               {[
                 ["Reinigung Regensburg", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/regensburg/reinigung"],
-                ["Moeblierte Wohnung Regensburg", "Apartment-Reset fuer Hosts, Vermieter und Kurzzeitvermietung in Regensburg.", "/regensburg/reinigung"],
+                ["Möblierte Wohnung Regensburg", "Apartment-Reset für Hosts, Vermieter und Kurzzeitvermietung in Regensburg.", "/reinigung-moeblierte-wohnung-regensburg"],
                 ["Entsorgung separat", "Nur Entsorgung; Umzug separat ueber /regensburg/umzug.", "/entsorgung-duesseldorf"],
                 ["Buchung/Rechner", "Falls ein Objektfall doch breiter eingeordnet werden muss.", "/buchung"],
                 ["Angebotscheck", "Wenn bereits ein Fremdangebot vorliegt und Umfang oder Zusatzleistungen unklar sind.", "/angebotscheck"],

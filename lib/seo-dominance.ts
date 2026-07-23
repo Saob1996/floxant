@@ -34,6 +34,8 @@ export const SEO_MONEY_ROUTES = [
  "/keller-muellraum-rettung-regensburg",
  "/einsatzradar-regensburg",
  "/regensburg/reinigung",
+ "/reinigung-moeblierte-wohnung-duesseldorf",
+ "/reinigung-moeblierte-wohnung-regensburg",
  "/entsorgung-regensburg",
  "/regensburg/reinigung",
  "/regensburg/reinigungsfirma",
@@ -153,6 +155,8 @@ export const SEO_SUPPORT_ROUTES = [
  "/keller-muellraum-rettung-regensburg",
  "/einsatzradar-regensburg",
  "/regensburg/reinigung",
+ "/reinigung-moeblierte-wohnung-duesseldorf",
+ "/reinigung-moeblierte-wohnung-regensburg",
  "/entsorgung-regensburg",
  "/regensburg/reinigung",
  "/regensburg/reinigungsfirma",
@@ -342,6 +346,20 @@ const moneySnippets: Record<string, Snippet> = {
   "Keller, Muellraum, Garage oder Nebenflaeche zugestellt? FLOXANT prueft Raeumung, Entsorgung und Reinigung fuer Hausverwaltung, WEG und Gewerbe.",
  cluster: "money",
  intent: "Keller, Muellraum oder Nebenflaeche in Regensburg mit Fotos und Freigabe pruefen lassen",
+},
+"/reinigung-moeblierte-wohnung-duesseldorf": {
+ title: "Ferienwohnung-Reinigung Düsseldorf | Gästewechsel",
+ description:
+  "Ferienwohnung oder möbliertes Apartment in Düsseldorf reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche vorab klären.",
+ cluster: "money",
+ intent: "Ferienwohnung, möbliertes Apartment oder Gästewechsel-Reinigung in Düsseldorf anfragen",
+},
+"/reinigung-moeblierte-wohnung-regensburg": {
+ title: "Ferienwohnung-Reinigung Regensburg | Gästewechsel",
+ description:
+  "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche im 50-km-Umkreis klären.",
+ cluster: "money",
+ intent: "Ferienwohnung, möbliertes Apartment oder Gästewechsel-Reinigung in Regensburg anfragen",
 },
 "/buchung": {
   title: "FLOXANT direkt anfragen | Umzug, Reinigung & Räumung",

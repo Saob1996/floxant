@@ -341,12 +341,12 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Möblierte Wohnung und Kurzzeitvermietung reinigen",
     text:
       "Für Hosts, Vermieter und kleine Betreiber in Regensburg: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
-    href: "/regensburg/reinigung",
+    href: "/reinigung-moeblierte-wohnung-regensburg",
     cta: "Apartment-Reinigung ansehen",
     Icon: Sparkles,
     event: "start_apartment_cleaning_lead",
     service: "regensburg_moeblierte_wohnung_reinigung",
-    region: "duesseldorf",
+    region: "regensburg",
   },
   duesseldorf_disposal_private: {
     badge: "Privat",

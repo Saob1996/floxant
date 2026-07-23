@@ -489,6 +489,11 @@ export const localServiceSeoPages = {
       "Keine Abnahme- oder Kautionsgarantie.",
     ],
     relatedLinks: [
+      {
+        href: "/reinigung-moeblierte-wohnung-regensburg",
+        label: "Ferienwohnung und Apartment reinigen",
+        text: "Für Gästewechsel, Checkout, nächsten Check-in, Zugang und optionale Zusatzpunkte.",
+      },
       ...regensburgServiceLinks,
       {
         href: "/regensburg/gewerbereinigung",

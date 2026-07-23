@@ -4,7 +4,8 @@
 
 /villenservice /private-client-service 308
 /partnercode /empfehlen 308
-/airbnb-reinigung-duesseldorf /duesseldorf 308
+/airbnb-reinigung-duesseldorf /reinigung-moeblierte-wohnung-duesseldorf 308
+/airbnb-reinigung-regensburg /reinigung-moeblierte-wohnung-regensburg 308
 /plattform-angebot-pruefen /plattform-auftrag-pruefen 308
 /angebot-von-plattform-pruefen /plattform-auftrag-pruefen 308
 /angebot-red-flag-scanner /angebotscheck#red-flag-scanner 308
@@ -187,7 +188,6 @@
 /reinigungsservice-duesseldorf /duesseldorf 308
 /gewerbereinigung-duesseldorf /duesseldorf 308
 /fensterreinigung-duesseldorf /duesseldorf 308
-/reinigung-moeblierte-wohnung-duesseldorf /duesseldorf 308
 /duesseldorf/b2b-reinigung /duesseldorf 308
 /duesseldorf/baureinigung /duesseldorf 308
 /duesseldorf/endreinigung /duesseldorf 308

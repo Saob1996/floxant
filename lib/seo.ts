@@ -55,6 +55,7 @@ const OUT_OF_RADIUS_CITY_SLUGS = new Set([
 ]);
 const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/partnercode": "/empfehlen",
+  "/airbnb-reinigung-duesseldorf": "/reinigung-moeblierte-wohnung-duesseldorf",
   "/airbnb-reinigung-regensburg": "/reinigung-moeblierte-wohnung-regensburg",
   "/regensburg/bueroreinigung": "/regensburg/bueroreinigung",
   "/reinigung-regensburg": "/regensburg/reinigung",
