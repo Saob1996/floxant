@@ -78,7 +78,7 @@ const serviceClusterGuide = [
   {
     title: "Reinigung, Solar und Außenflächen",
     text: "Für Büro, Praxis, Gewerbe, Glas, Fassade, Solar/PV und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
-    href: "/regensburg/reinigung",
+    href: "/reinigung",
     cta: "Reinigungswege öffnen",
   },
   {
@@ -111,7 +111,7 @@ const serviceTrustProofs = [
   "Jede Anfrage beginnt mit Ort, Leistung, kurzer Beschreibung und einem Kontaktweg.",
   "Fotos, vorhandene Angebote, Budget, Termin oder Dringlichkeit bleiben optional, aber hilfreich.",
   "Die Leistungsseite führt zu echten Kontaktwegen statt zu dünnen Einzelideen.",
-  "Reinigung bleibt lokal auf Regensburg plus 50 km begrenzt, damit Anfrage und Erwartung zusammenpassen.",
+  "Reinigung wird zuerst nach Standort gewählt: Düsseldorf oder Regensburg, damit Anfrage und Erwartung zusammenpassen.",
 ] as const;
 
 export const metadata: Metadata = {

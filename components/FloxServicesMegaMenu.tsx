@@ -21,10 +21,10 @@ const serviceGroups = [
   {
     title: "Reinigung",
     links: [
-      { label: "Reinigung", href: "/regensburg/reinigung" },
-      { label: "Büroreinigung", href: "/regensburg/bueroreinigung" },
-      { label: "Gewerbereinigung", href: "/regensburg/gewerbereinigung" },
-      { label: "Fensterreinigung", href: "/fensterreinigung-regensburg" },
+      { label: "Reinigung", href: "/reinigung" },
+      { label: "Büroreinigung", href: "/reinigung#bueroreinigung" },
+      { label: "Gewerbereinigung", href: "/reinigung#gewerbereinigung" },
+      { label: "Fensterreinigung", href: "/reinigung#fensterreinigung" },
     ],
   },
   {
