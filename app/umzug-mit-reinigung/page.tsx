@@ -43,16 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "umzug-mit-reinigung",
-    title: "Umzug mit Endreinigung Regensburg & Bayern | FLOXANT",
+    title: "Umzug mit Endreinigung Regensburg & Regensburg | FLOXANT",
     description:
-      "Umzug mit Endreinigung in Regensburg und Bayern nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
-    keywords: [
-      "Umzug mit Endreinigung",
-      "Umzug mit Reinigung Regensburg",
-      "Wohnungsuebergabe Reinigung",
-      "Reinigung nach Umzug",
-      "Umzug und Endreinigung",
-    ],
+      "Umzug mit Endreinigung in Regensburg und Regensburg nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
   });
 }
 
@@ -67,7 +60,7 @@ export default async function UmzugMitReinigungPage() {
         { name: "Umzug mit Reinigung", item: pagePath },
       ]),
       buildServiceJsonLd({
-        name: "Umzug mit Endreinigung in Regensburg und Bayern",
+        name: "Umzug mit Endreinigung in Regensburg und Regensburg",
         description:
           "Abgestimmte Kombination aus Umzug, Endreinigung, Fotos, Schluesselthemen und Uebergabevorbereitung.",
         path: pagePath,
@@ -77,9 +70,9 @@ export default async function UmzugMitReinigungPage() {
       buildWebPageJsonLd({
         name: "Umzug mit Reinigung | FLOXANT",
         description:
-          "Definition, Ablauf und Anfrage fuer die Kombination aus Umzug und Reinigung in Regensburg und Bayern.",
+          "Definition, Ablauf und Anfrage fuer die Kombination aus Umzug und Reinigung in Regensburg und Regensburg.",
         path: pagePath,
-        about: ["Umzug", "Endreinigung", "Wohnungsuebergabe", "Regensburg", "Bayern", "Fotos", "Budget"],
+        about: ["Umzug", "Endreinigung", "Wohnungsuebergabe", "Regensburg", "Regensburg", "Fotos", "Budget"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -98,7 +91,7 @@ export default async function UmzugMitReinigungPage() {
             Kombi-Service fuer Auszug und Uebergabe
           </div>
           <h1 className="mb-8 text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Umzug mit Endreinigung in Regensburg und Bayern
+            Umzug mit Endreinigung in Regensburg und Regensburg
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/62">
             FLOXANT verbindet Umzug, Endreinigung und Uebergabevorbereitung, wenn Auszug und
@@ -117,7 +110,7 @@ export default async function UmzugMitReinigungPage() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
-              href="/reinigung-regensburg"
+              href="/regensburg/reinigung"
               className="inline-flex items-center justify-center rounded-2xl border border-white/12 bg-white/6 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-white/10"
             >
               Endreinigung ansehen
@@ -219,10 +212,10 @@ export default async function UmzugMitReinigungPage() {
       <section className="border-t border-white/5 px-6 py-16">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: "/umzug-regensburg", label: "Umzug in Regensburg anfragen" },
-            { href: "/reinigung-regensburg", label: "Endreinigung in Regensburg pruefen" },
+            { href: "/regensburg/umzug", label: "Umzug in Regensburg anfragen" },
+            { href: "/regensburg/reinigung", label: "Endreinigung in Regensburg pruefen" },
             { href: "/schluesseluebergabe", label: "Schluesseluebergabe mitdenken" },
-            { href: "/service-area-bayern", label: "Servicegebiet Bayern" },
+            { href: "/regensburg", label: "Regensburg-Bereich" },
           ].map((item) => (
             <Link
               key={item.href}

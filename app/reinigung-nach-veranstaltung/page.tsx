@@ -24,6 +24,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 const path = "/reinigung-nach-veranstaltung";
 const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
@@ -67,7 +68,7 @@ const jsonLd = {
         "Reinigung nach Party, Firmenfeier, Event, Empfang, Seminar oder Objektanlass mit Fotos, Fläche, Zugang und Termin prüfen lassen.",
       path,
       serviceType: "Eventreinigung",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Duesseldorf Reinigung nach Verfuegbarkeit"],
+      areaServed: buildRegensburgCleaningAreaServedJsonLd(),
     }),
     buildWebPageJsonLd({
       name: "Reinigung nach Veranstaltung, Party und Event | FLOXANT",
@@ -96,17 +97,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reinigung nach Veranstaltung, Party & Event | FLOXANT",
     description:
       "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe konkret prüfen lassen.",
-    keywords: [
-      "Reinigung nach Veranstaltung",
-      "Reinigung nach Party",
-      "Eventreinigung",
-      "Reinigung nach Firmenfeier",
-      "Reinigung nach Feier",
-      "Veranstaltungsreinigung",
-      "Partyreinigung",
-      "Reinigung nach Anlass",
-      "Gewerbereinigung nach Event",
-    ],
   });
 }
 
@@ -308,12 +298,12 @@ export default function ReinigungNachVeranstaltungPage() {
               </div>
               <div className="grid gap-3">
                 {[
-                  { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h" },
+                  { href: "/notfallreinigung-24h", label: "Kurzfristige Reinigung" },
                   { href: "/reinigung", label: "Reinigung Hauptseite" },
-                  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
-                  { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Duesseldorf" },
-                  { href: "/duesseldorf/bueroreinigung", label: "Bueroreinigung Duesseldorf" },
-                  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Duesseldorf Stadtteile und Umgebung" },
+                  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
+                  { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
+                  { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
+                  { href: "/regensburg/reinigung", label: "Regensburg Stadtteile und 50-km-Umkreis" },
                 ].map((link) => (
                   <Link
                     key={link.href}
@@ -348,7 +338,7 @@ export default function ReinigungNachVeranstaltungPage() {
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-200">Anlass sauber abschliessen</p>
                 <h2 className="mt-3 text-3xl font-black">Senden Sie Anlass, Ort, Fotos und nächste Nutzung. FLOXANT prüft die passende Reinigung.</h2>
                 <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-8 text-slate-200">
-                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Bayern und Duesseldorf Reinigung nach Pruefung</span>
+                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Regensburg und Reinigung Regensburg nach Pruefung</span>
                   <span className="inline-flex items-center gap-2"><Trash2 className="h-4 w-4" /> Reinigung mit Restmengen möglich</span>
                 </p>
               </div>

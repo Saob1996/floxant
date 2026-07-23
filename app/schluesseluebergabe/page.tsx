@@ -33,12 +33,12 @@ const faqItems = [
 
 const relatedServices = [
   {
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     title: "Umzug Regensburg mit Schluesseluebergabe",
     text: "Wenn Transport, Reinigung, Fotos und Uebergabetermin in einem Ablauf gedacht werden sollen.",
   },
   {
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
     title: "Reinigung vor Wohnungsuebergabe",
     text: "Wenn Endreinigung, Zustand, Schluessel und sichtbare Uebergabepunkte zusammenpassen muessen.",
   },
@@ -71,13 +71,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Schluesseluebergabe Service mit Uebergabeprotokoll | FLOXANT",
     description:
       "Schluesseluebergabe nach Umzug, Reinigung oder Auszug: FLOXANT klaert Termin, Fotos, Uebergabepunkte und Protokoll als organisatorische Unterstuetzung.",
-    keywords: [
-      "Schluesseluebergabe Service",
-      "Uebergabeprotokoll Wohnung",
-      "Wohnungsuebergabe vorbereiten",
-      "Umzug mit Schluesseluebergabe",
-      "Endreinigung Uebergabe",
-    ],
   });
 }
 

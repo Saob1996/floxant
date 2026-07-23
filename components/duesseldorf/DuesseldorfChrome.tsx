@@ -33,12 +33,10 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               FLOXANT Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Umzug, Reinigung und Räumung in Düsseldorf klar aufgestellt.
+              Düsseldorf-Anfragen klar aufstellen.
             </h2>
             <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-              Düsseldorf ist ein eigener FLOXANT-Bereich für Umzug, Reinigung, Entrümpelung,
-              Haushaltsauflösung, Endreinigung und gewerbliche Reinigung. Jede Anfrage wird nach
-              Service, Objekt, Umfang, Zugang, Termin und Fotos geprüft.
+              Düsseldorf führt Angebot prüfen, Umzug, Räumung, Haushaltsauflösung und Servicegebiet-Prüfung. Reinigungspfade werden nicht blind wiederhergestellt.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
@@ -59,14 +57,14 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/duesseldorf/umzug"
+                href="/duesseldorf"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
               >
-                Düsseldorf-Services ansehen
+                Düsseldorf-Hub ansehen
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/angebot-vergleichen-duesseldorf"
+                href="/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 text-sm font-black text-slate-800"
               >
                 Angebot prüfen lassen

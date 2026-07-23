@@ -31,13 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Family Office und Private Client in Bayern | Diskrete Umzüge sauber abstimmen",
     description:
       "Wie Eigentümer, Assistenz und Family Office sensible Umzüge, Übergaben und Schutzbedarf in Bayern diskret und sauber koordinieren.",
-    keywords: [
-      "Family Office Umzug Bayern",
-      "Private Client Bayern diskret",
-      "diskreter Umzug Anwesen Bayern",
-      "Luxus Umzug Family Office",
-      "Residenzumzug Bayern",
-    ],
   });
 }
 

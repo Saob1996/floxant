@@ -32,16 +32,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Plan-B-Service für Umzug, Reinigung & Übergabe | FLOXANT",
   description:
     "Ihr Umzug, Ihre Reinigung oder Übergabe wirkt unsicher? FLOXANT prüft nach Verfügbarkeit einen Plan B für Transport, Endreinigung, Entrümpelung, Entsorgung und Schlüsselübergabe.",
-  keywords: [
-    "plan b umzug",
-    "umzug backup regensburg",
-    "ersatz umzugsfirma regensburg",
-    "reinigung plan b",
-    "endreinigung kurzfristig ersatz",
-    "wohnungsuebergabe plan b",
-    "plan b reinigung duesseldorf",
-    "entsorgung kurzfristig duesseldorf",
-  ],
 });
 
 const whatsappHref =
@@ -87,8 +77,8 @@ const triageOptions = [
   },
   {
     title: "Duesseldorf braucht Backup",
-    text: "In Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten, inklusive Umzug, Reinigung, Entruempelung und Entsorgung.",
-    solution: "Duesseldorf Reinigung/Entsorgung",
+    text: "In Regensburg klar getrennt ueber klare lokale Kontaktmöglichkeiten, inklusive Umzug, Reinigung, Entruempelung und Entsorgung.",
+    solution: "Reinigung Regensburg/Entsorgung",
   },
 ];
 
@@ -138,7 +128,7 @@ const packages = [
     title: "Duesseldorf Plan B",
     forText: "Nur Reinigung, Entsorgung, moeblierte Wohnung oder B2B-Reinigung.",
     includes: ["Reinigung", "Entsorgung", "Apartment-Reinigung", "B2B nach Absprache"],
-    cta: "Duesseldorf Reinigung/Entsorgung pruefen",
+    cta: "Reinigung Regensburg/Entsorgung pruefen",
     Icon: Route,
   },
 ];
@@ -207,7 +197,7 @@ const jsonLd = {
         "Machbarkeitspruefung fuer Ersatz- oder Ergaenzungsplan bei unsicherem Umzug, Reinigung, Entruempelung, Entsorgung oder Uebergabe. Keine Notdienstgarantie.",
       path,
       serviceType: "Plan-B-Service fuer Umzug, Reinigung, Entruempelung, Entsorgung und Uebergabe",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -368,7 +358,7 @@ export default function PlanBServicePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Plan-B-Anfrage</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Ort, Termin, Angebot, Fotos und offene Punkte senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT prueft zuerst, ob ein Backup realistisch ist. Wenn nicht genug Angaben vorliegen, melden wir uns mit Rueckfragen. In Duesseldorf geht es nur um Reinigung und Entsorgung.
+                FLOXANT prueft zuerst, ob ein Backup realistisch ist. Wenn nicht genug Angaben vorliegen, melden wir uns mit Rueckfragen. In Regensburg geht es nur um Reinigung und Entsorgung.
               </p>
               <div className="mt-5 grid gap-3">
                 <Link href="/schadensbegrenzung" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
@@ -449,14 +439,14 @@ export default function PlanBServicePage() {
         <section className="px-4 pb-24 pt-6 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-3 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["/umzug-regensburg", "Backup fuer Umzug oder Transport"],
-              ["/reinigung-regensburg", "Reinigungs-Backup Regensburg"],
-              ["/entruempelung-regensburg", "Raeumung/Entsorgung pruefen"],
+              ["/regensburg/umzug", "Backup fuer Umzug oder Transport"],
+              ["/regensburg/reinigung", "Reinigungs-Backup Regensburg"],
+              ["/regensburg/entruempelung", "Raeumung/Entsorgung pruefen"],
               ["/rueckfahrt-boerse", "Rueckfahrt als Alternative"],
               ["/uebergabeakte", "Plan B vor Uebergabe"],
               ["/diskreter-umzug-trennung-scheidung", "Diskreten Auszug absichern"],
               ["/wohnung-wieder-vermietbar", "Objekt wieder nutzbar machen"],
-              ["/duesseldorf/reinigung", "Reinigung Duesseldorf"],
+              ["/regensburg/reinigung", "Reinigung Regensburg"],
               ["/entsorgung-duesseldorf", "Entsorgung Duesseldorf"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50">

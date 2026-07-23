@@ -48,10 +48,10 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-      heroImage="/assets/service-cleaning.png"
+      heroImage="/assets/service-cleaning.webp"
       breadcrumbs={[
         { label: "Home", href: "/" },
-        { label: "Reinigung Regensburg", href: `/reinigung-regensburg` },
+        { label: "Reinigung Regensburg", href: `/regensburg/reinigung` },
         { label: "Endreinigung" }
       ]}
       chips={[

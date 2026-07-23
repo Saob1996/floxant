@@ -129,6 +129,7 @@ export function RegensburgCleaningConversionLift() {
                 <Link
                   key={item.query}
                   href={item.href}
+                  prefetch={false}
                   className="group rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-200 hover:bg-white"
                 >
                   <h3 className="text-base font-black text-slate-950 transition group-hover:text-blue-700">

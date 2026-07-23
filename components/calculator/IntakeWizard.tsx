@@ -326,6 +326,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
             ) : null}
             <button
               type="button"
+              aria-label={currentStep === 1 ? "Zurück zur Auswahl" : "Zurück zum vorherigen Schritt"}
               onClick={handleBack}
               className="group inline-flex items-center gap-3 rounded-2xl px-1 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500 transition-all hover:text-slate-900"
             >

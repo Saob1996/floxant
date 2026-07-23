@@ -9,7 +9,6 @@ const STATIC_ALTERNATIVE_SLUGS = [
   "umzugsfirma-regensburg",
   "umzugsunternehmen-regensburg",
   "reinigungsfirma-regensburg",
-  "reinigungsfirma-duesseldorf",
 ] as const;
 
 export const dynamicParams = false;

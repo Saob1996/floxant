@@ -17,18 +17,18 @@ import {
 import { company } from "@/lib/company";
 
 const regensburgServices = [
-  { label: "Umzug", href: "/umzug-regensburg", text: "Privat, Familie, Firma oder kurzfristiger Wechsel." },
-  { label: "Reinigung", href: "/reinigung-regensburg", text: "Endreinigung, Übergabe, Objekt oder Gewerbe." },
-  { label: "Entrümpelung", href: "/entruempelung-regensburg", text: "Wohnung, Keller, Nachlass oder Restmengen." },
+  { label: "Umzug", href: "/regensburg/umzug", text: "Privat, Familie, Firma oder kurzfristiger Wechsel." },
+  { label: "Reinigung", href: "/regensburg/reinigung", text: "Endreinigung, Übergabe, Objekt oder Gewerbe." },
+  { label: "Entrümpelung", href: "/regensburg/entruempelung", text: "Wohnung, Keller, Nachlass oder Restmengen." },
   { label: "Übergabe", href: "/uebergabeakte", text: "Schlüssel, Fotos, Protokoll und offene Punkte." },
   { label: "Plan B", href: "/plan-b-service", text: "Wenn Termin, Anbieter oder Ablauf kippt." },
   { label: "Rückfahrt", href: "/leerfahrt-rueckfahrt", text: "Transport und freie Kapazität rund um Bayern." },
 ];
 
 const duesseldorfServices = [
-  { label: "Wohnungsreinigung", href: "/duesseldorf/reinigung", text: "Auszug, Grundreinigung oder Übergabe." },
-  { label: "Möblierte Wohnung", href: "/reinigung-moeblierte-wohnung-duesseldorf", text: "Gästewechsel, Endreinigung und sichtbare Flächen." },
-  { label: "Firmenreinigung", href: "/duesseldorf/bueroreinigung", text: "Büro, Praxis, Studio oder Treppenhaus." },
+  { label: "Wohnungsreinigung", href: "/regensburg/reinigung", text: "Auszug, Grundreinigung oder Übergabe." },
+  { label: "Möblierte Wohnung", href: "/regensburg/reinigung", text: "Gästewechsel, Endreinigung und sichtbare Flächen." },
+  { label: "Firmenreinigung", href: "/regensburg/bueroreinigung", text: "Büro, Praxis, Studio oder Treppenhaus." },
   { label: "Entsorgung prüfen", href: "/entsorgung-duesseldorf", text: "Nur ergänzend, wenn Umfang und Zugang passen." },
 ];
 
@@ -55,12 +55,12 @@ export function ServiceRequestCompass() {
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
                   FLOXANT führt Kunden schneller zum passenden Kontaktweg. Regensburg und Bayern
                   bleiben der Ausgangspunkt für Umzug, Reinigung, Entrümpelung und Übergabe.
-                  Düsseldorf bleibt klar nach Umzug, Reinigung, Entrümpelung und passenden Ergänzungen getrennt.
+                  Regensburg bleibt klar nach Umzug, Reinigung, Entrümpelung und passenden Ergänzungen getrennt.
                 </p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {[
-                    ["24h online", "Anfrage jederzeit senden, Rückmeldung nach Prüfung."],
+                    ["Online anfragen", "Anfrage jederzeit senden, Rückmeldung nach Prüfung."],
                     ["Fotos helfen", "Zugang, Zustand, Menge und Fläche schneller klären."],
                     ["Umzug Düsseldorf", "Düsseldorf hat dafür einen eigenen Umzugsbereich."],
                     ["Sauber angekommen", "Ihre Anfrage bleibt sortiert und gut nachvollziehbar."],
@@ -124,11 +124,11 @@ export function ServiceRequestCompass() {
               <ServiceRegionColumn
                 eyebrow="Düsseldorf"
                 title="Reinigung getrennt"
-                text="Düsseldorf mischt die Leistungen nicht: Umzug, Reinigung und Entrümpelung laufen über eigene Kontaktmöglichkeiten."
+                text="Regensburg mischt die Leistungen nicht: Umzug, Reinigung und Entrümpelung laufen über eigene Kontaktmöglichkeiten."
                 Icon={Sparkles}
                 services={duesseldorfServices}
-                actionHref="/buchung?service=reinigung&region=duesseldorf&utm_source=homepage_compass#buchungssystem"
-                actionLabel="Düsseldorf Reinigung anfragen"
+                actionHref="/buchung?service=reinigung&region=regensburg&utm_source=homepage_compass#buchungssystem"
+                actionLabel="Reinigung Regensburg anfragen"
                 source="homepage_compass_duesseldorf"
               />
             </div>

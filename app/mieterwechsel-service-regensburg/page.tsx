@@ -36,13 +36,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Mieterwechsel-Service Regensburg – Räumung, Reinigung & Übergabe | FLOXANT",
   description:
     "FLOXANT unterstützt Vermieter, Hausverwaltungen und Makler beim Mieterwechsel: Räumung, Entsorgung, Endreinigung, Schlüsselkoordination und Übergabevorbereitung im Raum Regensburg.",
-  keywords: [
-    "Mieterwechsel Service Regensburg",
-    "Hausverwaltung Reinigung Regensburg",
-    "Wohnung nach Auszug reinigen Regensburg",
-    "Räumung und Reinigung nach Auszug",
-    "Wohnungsübergabe vorbereiten Regensburg",
-  ],
 });
 
 const whatsappHref =
@@ -77,7 +70,7 @@ const audiences = [
   {
     title: "Für Hausverwaltungen",
     text:
-      "Wiederkehrende Mieterwechsel brauchen keine Einzelimprovisation. FLOXANT prüft Wohnung, Keller, Nebenflächen, Fotos, Termin und Ansprechpartnerlogik für strukturierte Objektfälle.",
+      "Wiederkehrende Mieterwechsel brauchen keine Einzelimprovisation. FLOXANT prüft Wohnung, Keller, Nebenflächen, Fotos, Termin und Ansprechpartnerlogik für Objektfälle mit mehreren Beteiligten.",
     cta: "Mieterwechsel-Fall für Hausverwaltung anfragen",
     Icon: Building2,
   },
@@ -127,7 +120,7 @@ const faqItems = [
   },
   {
     q: "Sind wiederkehrende Aufträge möglich?",
-    a: "Ja. Für Hausverwaltungen, Vermieter oder Eigentümer mit mehreren Mieterwechseln kann eine wiederkehrende Zusammenarbeit angefragt und strukturiert geprüft werden.",
+    a: "Ja. Für Hausverwaltungen, Vermieter oder Eigentümer mit mehreren Mieterwechseln kann eine wiederkehrende Zusammenarbeit angefragt und anhand der Eckdaten geprüft werden.",
   },
   {
     q: "Kann FLOXANT eine Wohnung garantiert wieder vermietbar machen?",

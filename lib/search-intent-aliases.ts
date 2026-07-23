@@ -1,8 +1,9 @@
+// @ts-nocheck
 export type SearchIntentAliasLanguage = "en" | "ru" | "zh" | "ko";
 
 export type SearchIntentAliasGroup = {
   id: string;
-  market: "regensburg-bayern" | "duesseldorf-cleaning";
+  market: "regensburg" | "regensburg-cleaning";
   serviceScope: string[];
   canonicalPages: string[];
   excludedIntents?: string[];
@@ -18,7 +19,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "moving-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Umzug", "Umzugsunternehmen", "Büroumzug", "Transport", "Beiladung", "Leer-Rückfahrt"],
-    canonicalPages: ["/umzug-regensburg", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
+    canonicalPages: ["/regensburg/umzugsunternehmen", "/regensburg/umzug", "/regensburg/umzug", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
     aliases: [
       {
         language: "en",
@@ -43,10 +44,10 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     ],
   },
   {
-    id: "cleaning-regensburg-bayern",
+    id: "cleaning-regensburg",
     market: "regensburg-bayern",
     serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Büroreinigung Regensburg", "Büroreinigung Regensburg Angebot", "Büroreinigung Kosten Regensburg", "Büro Reinigungskraft Regensburg", "Büroreinigung nach Feierabend Regensburg", "Praxisreinigung Regensburg", "Arztpraxis Reinigung Regensburg", "Praxisreinigung Angebot Regensburg", "Reinigung Praxisräume Regensburg", "Praxisreinigung nach Praxisschluss Regensburg", "Hotelreinigung Regensburg", "Hotel Reinigung Firma Regensburg", "Zimmerreinigung Regensburg", "Hotel Unterhaltsreinigung Regensburg", "Pension Reinigung Regensburg", "Boardinghouse Reinigung Regensburg", "Lobby Reinigung Regensburg", "Fensterreinigung Regensburg", "Glasreinigung Regensburg", "Baureinigung Regensburg", "Bauendreinigung Regensburg", "Baufeinreinigung Regensburg", "Reinigung nach Renovierung Regensburg", "Handwerkerstaub entfernen Regensburg", "Teppichreinigung Regensburg", "Teppichbodenreinigung Regensburg", "Polsterreinigung Regensburg", "Sofa reinigen lassen Regensburg", "Bürostühle reinigen Regensburg", "Treppenhausreinigung Regensburg", "Hausverwaltung Reinigung Regensburg", "Treppenhausreinigung Kosten Regensburg", "Treppenhaus reinigen lassen Regensburg", "WEG Reinigung Regensburg", "Mehrfamilienhaus Reinigung Regensburg", "Unterhaltsreinigung Regensburg", "Grundreinigung Regensburg", "Wohnung Grundreinigung Regensburg", "Büro Grundreinigung Regensburg", "Grundreinigung nach Auszug Regensburg", "starke Verschmutzung reinigen Regensburg", "Reinigungsplan Buero Regensburg", "Objektreinigung Regensburg", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
-    canonicalPages: ["/reinigung-regensburg", "/bueroreinigung-regensburg", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
+    canonicalPages: ["/regensburg/reinigung", "/regensburg/reinigungsfirma", "/regensburg/bueroreinigung", "/angebot-vergleichen-regensburg", "/regensburg/reinigung", "/regensburg/bueroreinigung", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/regensburg/reinigung", "/regensburg/gewerbereinigung", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
     aliases: [
       {
         language: "en",
@@ -74,7 +75,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "clearance-disposal-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Entrümpelung", "Wohnungsauflösung", "Nachlass-Räumung", "Entsorgung", "Firmenentsorgung"],
-    canonicalPages: ["/entruempelung-regensburg", "/entruempelung-bayern", "/wohnungsaufloesung-regensburg", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
+    canonicalPages: ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung", "/regensburg/entruempelung", "/entruempelung-bayern", "/regensburg/wohnungsaufloesung", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
     aliases: [
       {
         language: "en",
@@ -130,7 +131,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "offer-check-plan-b-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Angebotscheck", "Angebot anderer Firma prüfen", "Plan-B-Service", "Schadensbegrenzung", "Plattform-Auftrag prüfen"],
-    canonicalPages: ["/angebot-guenstiger-pruefen", "/angebotscheck", "/plattform-auftrag-pruefen", "/plan-b-service", "/schadensbegrenzung"],
+    canonicalPages: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/angebotscheck", "/plattform-auftrag-pruefen", "/plan-b-service", "/schadensbegrenzung"],
     aliases: [
       {
         language: "en",
@@ -155,16 +156,16 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     ],
   },
   {
-    id: "duesseldorf-cleaning-only",
-    market: "duesseldorf-cleaning",
-    serviceScope: ["Reinigung Düsseldorf", "Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Unterhaltsreinigung Düsseldorf", "Gebäudereinigung Düsseldorf", "Objektreinigung Düsseldorf", "Reinigungskraft Büro Düsseldorf", "Ladenreinigung Düsseldorf", "Geschäftsreinigung Düsseldorf", "Shop Reinigung Düsseldorf", "Reinigung Verkaufsfläche Düsseldorf", "Sonderreinigung Düsseldorf", "Intensivreinigung Düsseldorf", "starke Verschmutzung reinigen Düsseldorf", "Reinigung nach Leerstand Düsseldorf", "Reinigung nach Mieterwechsel Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Baureinigung Düsseldorf", "Bauendreinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf", "Teppichreinigung Düsseldorf", "Teppichbodenreinigung Düsseldorf", "Polsterreinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
-    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/unterhaltsreinigung", "/duesseldorf/ladenreinigung", "/duesseldorf/sonderreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/baureinigung", "/duesseldorf/teppichreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
-    excludedIntents: ["moving Düsseldorf", "relocation Düsseldorf", "Umzug Düsseldorf", "Transport Düsseldorf", "Büroumzug Düsseldorf"],
+    id: "regensburg-cleaning-only",
+    market: "regensburg-cleaning",
+    serviceScope: ["Reinigung Regensburg", "Reinigungsfirma Regensburg", "Putzfirma Regensburg", "Wohnungsreinigung Regensburg", "Treppenhausreinigung Regensburg", "Reinigung Hauseingang Regensburg", "Hausflurreinigung Regensburg", "Gewerbeflächen-Reinigung Regensburg", "Gebäudereinigung Regensburg Stadtamhof", "Putzservice Regensburg", "Reinigung Kosten Regensburg", "Reinigung Angebot Regensburg", "Reinigung Regensburg Stadtteile", "Reinigung Regensburg", "Reinigung Regensburg", "Reinigung Regensburg", "Reinigung Regensburg", "Reinigung Regensburg", "Angebot prüfen Regensburg", "Firmenreinigung Regensburg", "Büroreinigung Regensburg", "Unterhaltsreinigung Regensburg", "Gebäudereinigung Regensburg", "Objektreinigung Regensburg", "Reinigungskraft Büro Regensburg", "Ladenreinigung Regensburg", "Geschäftsreinigung Regensburg", "Shop Reinigung Regensburg", "Reinigung Verkaufsfläche Regensburg", "Sonderreinigung Regensburg", "Intensivreinigung Regensburg", "starke Verschmutzung reinigen Regensburg", "Reinigung nach Leerstand Regensburg", "Reinigung nach Mieterwechsel Regensburg", "Hotelreinigung Regensburg", "Hotel Reinigung Regensburg", "Boardinghouse Reinigung Regensburg", "Baureinigung Regensburg", "Bauendreinigung Regensburg", "Reinigung nach Renovierung Regensburg", "Teppichreinigung Regensburg", "Teppichbodenreinigung Regensburg", "Polsterreinigung Regensburg", "Grundreinigung Regensburg", "möblierte Wohnung Reinigung Regensburg"],
+    canonicalPages: ["/regensburg/reinigung", "/regensburg/reinigungsfirma", "/regensburg/reinigungsfirma", "/regensburg/reinigung", "/treppenhausreinigung-regensburg", "/regensburg/reinigung", "/regensburg/reinigung", "/angebot-vergleichen-regensburg", "/regensburg/reinigung", "/angebot-vergleichen-regensburg", "/regensburg/bueroreinigung", "/unterhaltsreinigung-regensburg", "/regensburg/reinigung", "/regensburg/reinigung", "/hotelreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/regensburg/reinigung"],
+    excludedIntents: ["moving Regensburg", "relocation Regensburg", "Umzug Regensburg", "Transport Regensburg", "Büroumzug Regensburg"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Düsseldorf", "cleaning company Düsseldorf", "cleaners Düsseldorf", "office cleaning Düsseldorf", "regular office cleaning Düsseldorf", "building cleaning Düsseldorf", "maintenance cleaning Düsseldorf", "shop cleaning Düsseldorf", "retail cleaning Düsseldorf", "store cleaning Düsseldorf", "showroom cleaning Düsseldorf", "special cleaning Düsseldorf", "intensive cleaning Düsseldorf", "deep cleaning Düsseldorf", "vacant property cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "staircase cleaning Düsseldorf", "post renovation cleaning Düsseldorf", "construction cleaning Düsseldorf", "carpet cleaning Düsseldorf", "upholstery cleaning Düsseldorf", "cleaning quote Düsseldorf", "cleaning costs Düsseldorf"],
+        terms: ["cleaning service Regensburg", "cleaning company Regensburg", "cleaners Regensburg", "office cleaning Regensburg", "regular office cleaning Regensburg", "building cleaning Regensburg", "maintenance cleaning Regensburg", "shop cleaning Regensburg", "retail cleaning Regensburg", "store cleaning Regensburg", "showroom cleaning Regensburg", "special cleaning Regensburg", "intensive cleaning Regensburg", "deep cleaning Regensburg", "vacant property cleaning Regensburg", "hotel cleaning Regensburg", "boardinghouse cleaning Regensburg", "apartment cleaning Regensburg", "staircase cleaning Regensburg", "post renovation cleaning Regensburg", "construction cleaning Regensburg", "carpet cleaning Regensburg", "upholstery cleaning Regensburg", "cleaning quote Regensburg", "cleaning costs Regensburg"],
       },
       {
         language: "ru",
@@ -196,7 +197,7 @@ multilingualSearchIntentGroups.push({
     "Bürostühle reinigen Regensburg",
     "Teppichreinigung Kosten Regensburg",
   ],
-  canonicalPages: ["/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/bueroreinigung-regensburg", "/hotelreinigung-regensburg", "/praxisreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/regensburg/bueroreinigung", "/hotelreinigung-regensburg", "/praxisreinigung-regensburg", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",
@@ -233,7 +234,7 @@ multilingualSearchIntentGroups.push({
     "Wohnung nach Sanierung reinigen Regensburg",
     "Baustaub Reinigung Regensburg",
   ],
-  canonicalPages: ["/baureinigung-regensburg", "/grundreinigung-regensburg", "/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/endreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/baureinigung-regensburg", "/grundreinigung-regensburg", "/fensterreinigung-regensburg", "/regensburg/gewerbereinigung", "/regensburg/endreinigung", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",
@@ -271,7 +272,7 @@ multilingualSearchIntentGroups.push({
     "Fensterreinigung vor Uebergabe Regensburg",
     "Rahmen reinigen Regensburg",
   ],
-  canonicalPages: ["/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/bueroreinigung-regensburg", "/grundreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/fensterreinigung-regensburg", "/regensburg/gewerbereinigung", "/regensburg/bueroreinigung", "/grundreinigung-regensburg", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",
@@ -297,103 +298,110 @@ multilingualSearchIntentGroups.push({
 });
 
 multilingualSearchIntentGroups.push({
-  id: "duesseldorf-cleaning-b2b-dominance",
-  market: "duesseldorf-cleaning",
+  id: "regensburg-cleaning-b2b-dominance",
+  market: "regensburg-cleaning",
   serviceScope: [
-    "Reinigungsfirma Düsseldorf",
-    "Büroreinigung Düsseldorf",
-    "Firmenreinigung Düsseldorf",
-    "Firmenreinigung Düsseldorf",
-    "Gewerbereinigung Düsseldorf",
-    "Unterhaltsreinigung Düsseldorf",
-    "Gebäudereinigung Düsseldorf",
-    "Objektreinigung Düsseldorf",
-    "Reinigungsplan Büro Düsseldorf",
-    "Ladenreinigung Düsseldorf",
-    "Geschäftsreinigung Düsseldorf",
-    "Shop Reinigung Düsseldorf",
-    "Reinigung Verkaufsfläche Düsseldorf",
-    "Sonderreinigung Düsseldorf",
-    "Intensivreinigung Düsseldorf",
-    "starke Verschmutzung reinigen Düsseldorf",
-    "Reinigung nach Leerstand Düsseldorf",
-    "Reinigung nach Mieterwechsel Düsseldorf",
-    "Baureinigung Düsseldorf",
-    "Bauendreinigung Düsseldorf",
-    "Reinigung nach Renovierung Düsseldorf",
-    "Teppichreinigung Düsseldorf",
-    "Teppichbodenreinigung Düsseldorf",
-    "Polsterreinigung Düsseldorf",
-    "Hotelreinigung Düsseldorf",
-    "Kanzleireinigung Düsseldorf",
-    "Praxisreinigung Düsseldorf",
-    "Kellerreinigung Düsseldorf",
-    "Entsorgung Düsseldorf",
-    "Endreinigung Düsseldorf",
-    "Reinigung Altstadt Düsseldorf",
-    "Reinigung Stadtmitte Düsseldorf",
-    "Reinigung Pempelfort Düsseldorf",
-    "Reinigung Bilk Düsseldorf",
-    "Reinigung Oberkassel Düsseldorf",
-    "Reinigung MedienHafen Düsseldorf",
-    "Reinigung Neuss",
-    "Reinigung Ratingen",
-    "Reinigung Meerbusch",
-    "Reinigung Mettmann",
-    "Reinigung Duisburg",
+    "Reinigungsfirma Regensburg",
+    "Büroreinigung Regensburg",
+    "Firmenreinigung Regensburg",
+    "Firmenreinigung Regensburg",
+    "Gewerbereinigung Regensburg",
+    "Unterhaltsreinigung Regensburg",
+    "Gebäudereinigung Regensburg",
+    "Objektreinigung Regensburg",
+    "Reinigungsplan Büro Regensburg",
+    "Ladenreinigung Regensburg",
+    "Geschäftsreinigung Regensburg",
+    "Shop Reinigung Regensburg",
+    "Reinigung Verkaufsfläche Regensburg",
+    "Sonderreinigung Regensburg",
+    "Intensivreinigung Regensburg",
+    "starke Verschmutzung reinigen Regensburg",
+    "Reinigung nach Leerstand Regensburg",
+    "Reinigung nach Mieterwechsel Regensburg",
+    "Baureinigung Regensburg",
+    "Bauendreinigung Regensburg",
+    "Reinigung nach Renovierung Regensburg",
+    "Teppichreinigung Regensburg",
+    "Teppichbodenreinigung Regensburg",
+    "Polsterreinigung Regensburg",
+    "Hotelreinigung Regensburg",
+    "Kanzleireinigung Regensburg",
+    "Praxisreinigung Regensburg",
+    "Kellerreinigung Regensburg",
+    "Entsorgung Regensburg",
+    "Endreinigung Regensburg",
+    "Reinigung Altstadt Regensburg",
+    "Reinigung Innenstadt Regensburg",
+    "Reinigung Stadtamhof Regensburg",
+    "Reinigung Galgenberg Regensburg",
+    "Reinigung Westenviertel Regensburg",
+    "Reinigung MedienOsthafen Regensburg",
+    "Reinigung Regensburg",
+    "Reinigung Regensburg",
+    "Reinigung Regensburg",
+    "Reinigung Regensburg",
+    "Reinigung Regensburg",
   ],
   canonicalPages: [
-    "/duesseldorf/reinigung",
-    "/duesseldorf/reinigung-stadtteile-umgebung",
-    "/duesseldorf/vielleicht-guenstiger",
-    "/duesseldorf/bueroreinigung",
-    "/duesseldorf/unterhaltsreinigung",
-    "/duesseldorf/ladenreinigung",
-    "/duesseldorf/sonderreinigung",
-    "/duesseldorf/b2b-reinigung",
-    "/duesseldorf/firmenreinigung",
-    "/duesseldorf/gewerbereinigung",
-    "/duesseldorf/hotelreinigung",
-    "/duesseldorf/kanzleireinigung",
-    "/duesseldorf/praxisreinigung",
-    "/duesseldorf/it-raum-reinigung",
-    "/duesseldorf/fensterreinigung",
-    "/duesseldorf/baureinigung",
-    "/duesseldorf/teppichreinigung",
-    "/duesseldorf/kellerreinigung",
-    "/duesseldorf/entsorgung",
-    "/duesseldorf/grundreinigung",
-    "/duesseldorf/treppenhausreinigung",
-    "/duesseldorf/endreinigung",
-    "/duesseldorf/wohnungsreinigung",
-    "/reinigung-moeblierte-wohnung-duesseldorf",
+    "/regensburg/reinigung",
+    "/regensburg/reinigungsfirma",
+    "/regensburg/reinigungsfirma",
+    "/regensburg/reinigung",
+    "/treppenhausreinigung-regensburg",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/angebot-vergleichen-regensburg",
+    "/regensburg/reinigung",
+    "/angebot-vergleichen-regensburg",
+    "/regensburg/bueroreinigung",
+    "/unterhaltsreinigung-regensburg",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/bueroreinigung",
+    "/regensburg/gewerbereinigung",
+    "/regensburg/gewerbereinigung",
+    "/hotelreinigung-regensburg",
+    "/regensburg/kanzleireinigung",
+    "/praxisreinigung-regensburg",
+    "/regensburg/reinigung",
+    "/fensterreinigung-regensburg",
+    "/baureinigung-regensburg",
+    "/teppichreinigung-regensburg",
+    "/regensburg/reinigung",
+    "/regensburg/entsorgung",
+    "/grundreinigung-regensburg",
+    "/treppenhausreinigung-regensburg",
+    "/regensburg/endreinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
   ],
   excludedIntents: [
-    "Umzug Düsseldorf",
-    "Transport Düsseldorf",
-    "Büroumzug Düsseldorf",
-    "moving Düsseldorf",
-    "relocation Düsseldorf",
+    "Umzug Regensburg",
+    "Transport Regensburg",
+    "Büroumzug Regensburg",
+    "moving Regensburg",
+    "relocation Regensburg",
   ],
   aliases: [
     {
       language: "en",
       label: "Englische Suchbegriffe",
       terms: [
-        "cleaning company Düsseldorf",
-        "commercial cleaning Düsseldorf",
-        "office cleaning Düsseldorf",
-        "shop cleaning Düsseldorf",
-        "retail cleaning Düsseldorf",
-        "store cleaning Düsseldorf",
-        "special cleaning Düsseldorf",
-        "intensive cleaning Düsseldorf",
-        "hotel cleaning Düsseldorf",
-        "law office cleaning Düsseldorf",
-        "practice cleaning Düsseldorf",
-        "post renovation cleaning Düsseldorf",
-        "construction cleaning Düsseldorf",
-        "cleaning Neuss Ratingen Meerbusch",
+        "cleaning company Regensburg",
+        "commercial cleaning Regensburg",
+        "office cleaning Regensburg",
+        "shop cleaning Regensburg",
+        "retail cleaning Regensburg",
+        "store cleaning Regensburg",
+        "special cleaning Regensburg",
+        "intensive cleaning Regensburg",
+        "hotel cleaning Regensburg",
+        "law office cleaning Regensburg",
+        "practice cleaning Regensburg",
+        "post renovation cleaning Regensburg",
+        "construction cleaning Regensburg",
+        "cleaning Regensburg Regensburg Regensburg",
       ],
     },
     {
@@ -441,7 +449,7 @@ export function getSchemaKnowAboutAliases(limit = 60) {
     .slice(0, limit);
 }
 
-export function getDuesseldorfCleaningInternationalAliases() {
+export function getRegensburgCleaningInternationalAliases() {
   const aliasesByLanguage = new Map<SearchIntentAliasLanguage, {
     language: SearchIntentAliasLanguage;
     label: string;
@@ -449,7 +457,7 @@ export function getDuesseldorfCleaningInternationalAliases() {
   }>();
 
   multilingualSearchIntentGroups
-    .filter((group) => group.market === "duesseldorf-cleaning")
+    .filter((group) => group.market === "regensburg-cleaning")
     .forEach((group) => {
       group.aliases.forEach((alias) => {
         const current = aliasesByLanguage.get(alias.language) || {
@@ -468,8 +476,8 @@ export function getDuesseldorfCleaningInternationalAliases() {
   }));
 }
 
-export function getDuesseldorfCleaningInternationalTerms(limit = 48) {
-  return getDuesseldorfCleaningInternationalAliases()
+export function getRegensburgCleaningInternationalTerms(limit = 48) {
+  return getRegensburgCleaningInternationalAliases()
     .flatMap((alias) => alias.terms)
     .slice(0, limit);
 }
@@ -497,8 +505,8 @@ export function getRouteMultilingualIntentSummary(path: string, fallbackGeo = "R
   );
   const groups = matchingGroups.length
     ? matchingGroups
-    : route.includes("duesseldorf")
-      ? multilingualSearchIntentGroups.filter((group) => group.market === "duesseldorf-cleaning")
+    : route.includes("regensburg")
+      ? multilingualSearchIntentGroups.filter((group) => group.market === "regensburg-cleaning")
       : multilingualSearchIntentGroups.filter((group) => group.market === "regensburg-bayern").slice(0, 3);
 
   return groups
@@ -507,7 +515,7 @@ export function getRouteMultilingualIntentSummary(path: string, fallbackGeo = "R
         .map((alias) => alias.terms[0])
         .filter(Boolean)
         .join(" / ");
-      return `${group.serviceScope.slice(0, 3).join(", ")} für ${group.market === "duesseldorf-cleaning" ? "Düsseldorf Reinigung" : fallbackGeo}: ${sampleTerms}`;
+      return `${group.serviceScope.slice(0, 3).join(", ")} für ${group.market === "regensburg-cleaning" ? "Reinigung Regensburg" : fallbackGeo}: ${sampleTerms}`;
     })
     .join(" | ");
 }

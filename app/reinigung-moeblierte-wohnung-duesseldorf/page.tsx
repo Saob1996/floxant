@@ -3,947 +3,426 @@ import Link from "next/link";
 import {
   ArrowRight,
   BedDouble,
-  Building2,
-  CalendarClock,
   Camera,
+  CalendarClock,
   CheckCircle2,
-  ClipboardCheck,
-  DoorOpen,
-  Home,
+  KeyRound,
   MapPin,
-  RefreshCcw,
-  SearchCheck,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 
-import { DuesseldorfApartmentCleaningForm } from "@/components/DuesseldorfApartmentCleaningForm";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
-  DUESSELDORF_CLEANING,
-  buildDuesseldorfCleaningMetadata,
-} from "@/lib/duesseldorf-cleaning";
+  CostDrivers,
+  DecisionGuide,
+  IncludedExcluded,
+  KeyFacts,
+  NextStep,
+  QuickAnswer,
+  RelatedServices,
+  RequiredDetails,
+  ScopeSummary,
+} from "@/components/editorial/AuthorityBlocks";
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
+import { company } from "@/lib/company";
+import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
+  buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-const path = "/reinigung-moeblierte-wohnung-duesseldorf";
-const apartmentWhatsappMessage =
-  "Hallo FLOXANT, ich möchte eine Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf anfragen. Es geht um [Gästewechsel/Endreinigung/regelmäßige Reinigung]. Termin, Fotos und Objektangaben kann ich senden.";
-const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(apartmentWhatsappMessage)}`;
-const bookingHref =
-  "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
+const pagePath = "/reinigung-moeblierte-wohnung-duesseldorf";
+const contactHref =
+  "/kontakt?service=reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-duesseldorf&source=seo";
+const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
+  "Hallo FLOXANT, ich möchte eine Ferienwohnung oder ein möbliertes Apartment in Düsseldorf reinigen lassen. Objekt, Fläche, Checkout, nächsten Check-in und Fotos kann ich senden.",
+)}`;
 
+const included = [
+  "Bad, Küche, Schlafbereich, Böden und sichtbare Oberflächen nach vereinbartem Umfang",
+  "Einordnung des Zeitfensters zwischen Checkout und nächstem Check-in",
+  "Sichtkontrolle und kurze Zustandsrückmeldung nach Absprache",
+  "Vorbereitung des vereinbarten Zielzustands für den nächsten Aufenthalt",
+] as const;
 
-export async function generateMetadata(): Promise<Metadata> {
-  return buildDuesseldorfCleaningMetadata({
-    path,
-    title: "Reinigung möblierte Wohnung Düsseldorf – Apartment & Kurzzeitvermietung | FLOXANT",
-    description:
-      "FLOXANT prüft Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf: Gästewechsel, Endreinigung, Fotos, Zeitfenster und wiederkehrende Reinigung.",
-  });
+const excluded = [
+  "Wäschewechsel, Waschservice oder Bettenlogistik ohne vorherige Abstimmung",
+  "Schlüsselkoordination, Inventarprüfung oder Fotodokumentation ohne ausdrückliche Bestätigung",
+  "Gästekommunikation, Plattform-Support, Schadensregulierung oder Bewertungsmanagement",
+  "Hotelstandard-, Preis-, Termin- oder Verfügbarkeitsgarantien",
+] as const;
+
+const requiredDetails = [
+  "Adresse oder Stadtteil und Art des Objekts",
+  "ungefähre Fläche, Zimmer, Schlafplätze und Bäder",
+  "Checkout, nächster Check-in und verfügbares Zeitfenster",
+  "aktueller Zustand und gewünschter Zielzustand",
+  "Etage, Aufzug, Park- oder Ladeweg und Zugang",
+  "Wünsche zu Wäsche, Schlüsseln, Fotos oder Inventar",
+] as const;
+
+const effortDrivers = [
+  "Fläche, Raumaufteilung und Anzahl der Schlaf- und Sanitärbereiche",
+  "Verschmutzungsgrad und Rückstände nach dem letzten Aufenthalt",
+  "Zeitpuffer zwischen Checkout und nächstem Check-in",
+  "Zugangsweg, Etage, Aufzug und Parksituation",
+  "Küche, Bad, Glasflächen und besondere Oberflächen",
+  "zusätzliche Abstimmung zu Wäsche, Schlüsseln, Fotos oder Inventar",
+] as const;
+
+const process = [
+  {
+    label: "01",
+    title: "Objektprofil senden",
+    text: "Objektart, Fläche, Räume, Zustand, Zugang und Fotos bilden die Grundlage.",
+  },
+  {
+    label: "02",
+    title: "Zeitfenster abgleichen",
+    text: "Checkout, nächster Check-in und möglicher Puffer werden vor einer Zusage geprüft.",
+  },
+  {
+    label: "03",
+    title: "Umfang festlegen",
+    text: "Reinigung und mögliche Zusatzpunkte werden ausdrücklich voneinander getrennt.",
+  },
+  {
+    label: "04",
+    title: "Nächsten Schritt abstimmen",
+    text: "FLOXANT meldet zurück, was realistisch ist und welche Angaben noch fehlen.",
+  },
+] as const;
+
+const baseMetadata = generatePageSEO({
+  lang: "de",
+  path: "reinigung-moeblierte-wohnung-duesseldorf",
+  title: "Ferienwohnung-Reinigung Düsseldorf | Gästewechsel",
+  description:
+    "Ferienwohnung oder möbliertes Apartment in Düsseldorf reinigen lassen: Checkout, Check-in, Zugang, Fläche, Wäschewunsch und Fotos vorab klären.",
+});
+
+const baseOtherMetadata = Object.fromEntries(
+  Object.entries(baseMetadata.other || {}).filter(([, value]) => value !== undefined),
+) as Record<string, string | number | Array<string | number>>;
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  other: {
+    ...baseOtherMetadata,
+    "geo.region": "DE-NW",
+    "geo.placename": "Düsseldorf",
+    "geo.position": "51.2277;6.7735",
+    "dc.subject":
+      "Ferienwohnung-Reinigung Düsseldorf, Apartmentreinigung Düsseldorf, Gästewechsel Düsseldorf, Reinigung möblierte Wohnung Düsseldorf",
+    "dc.coverage":
+      "Düsseldorf: Ferienwohnung, möbliertes Apartment, Gästewechsel und geprüfte lokale Reinigungsanfrage ohne Plattformpartnerschaft.",
+  },
+};
+
+function JsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildBreadcrumbJsonLd([
+        { name: "FLOXANT", item: "/" },
+        { name: "Reinigung Düsseldorf", item: "/duesseldorf/reinigung" },
+        { name: "Ferienwohnung und Apartment", item: pagePath },
+      ]),
+      buildServiceJsonLd({
+        name: "Ferienwohnungs- und Apartmentreinigung Düsseldorf",
+        description:
+          "Reinigung und Vorbereitung von Ferienwohnungen und möblierten Apartments in Düsseldorf nach Objekt, Zustand, Terminfenster, Zugang und vereinbartem Umfang.",
+        path: pagePath,
+        serviceType:
+          "Ferienwohnungsreinigung, Apartmentreinigung und Gästewechsel-Reinigung in Düsseldorf",
+        areaServed: [
+          "Düsseldorf",
+          "Neuss",
+          "Ratingen",
+          "Meerbusch",
+          "Hilden",
+          "Erkrath",
+          "Mettmann",
+        ],
+        availableLanguage: ["de", "en"],
+      }),
+      buildWebPageJsonLd({
+        name: "Ferienwohnung und möbliertes Apartment in Düsseldorf reinigen lassen",
+        description:
+          "Lokale Leistungsseite für Ferienwohnung, möbliertes Apartment und Gästewechsel in Düsseldorf mit sichtbarem Umfang, Grenzen und Anfrageweg.",
+        path: pagePath,
+        about: [
+          "Ferienwohnung-Reinigung Düsseldorf",
+          "Apartmentreinigung Düsseldorf",
+          "Gästewechsel-Reinigung",
+          "Reinigung nach Checkout",
+          "Reinigung vor Check-in",
+          "plattformunabhängige Reinigung für Kurzzeitvermietung",
+        ],
+        potentialActions: [
+          { name: "Ferienwohnungsreinigung anfragen", target: contactHref, type: "ContactAction" },
+          { name: "Eckdaten per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
+        ],
+      }),
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+    />
+  );
 }
 
-const statusSteps = ["Check-out", "Reinigung", "Sichtprüfung", "Foto", "nächster Gast"];
-
-const objectTypes = [
-  "möblierte Wohnung",
-  "Apartment",
-  "Kurzzeitvermietung",
-  "Ferienwohnung",
-  "Möbliertes Firmen-Apartment",
-];
-
-const serviceBlocks = [
-  "Reinigung nach Gästewechsel",
-  "Endreinigung möblierter Wohnungen",
-  "Reinigung vor Check-in",
-  "Reinigung nach Check-out",
-  "Küche, Bad, Böden und sichtbare Flächen",
-  "Grundreinigung nach Absprache",
-  "Fotoeinschätzung oder Fotos nach Absprache",
-  "kleiner Inventarhinweis nach Absprache",
-  "Wäschewechsel nur nach Absprache und Verfügbarkeit",
-  "Schlüsselkoordination nur nach Absprache",
-  "Entsorgung kleiner Gegenstände nach Absprache",
-  "wiederkehrende Reinigung nach Terminplan",
-];
-
-const targetGroups = [
-  {
-    title: "Für private Hosts",
-    text: "Zwischen Check-out und nächstem Gast bleibt oft wenig Zeit. FLOXANT prüft Reinigung nach Terminfenster, Fotos und klaren Objektangaben.",
-    cta: "Gästewechsel-Reinigung anfragen",
-    Icon: DoorOpen,
-  },
-  {
-    title: "Für Vermieter möblierter Wohnungen",
-    text: "Wenn eine Wohnung nach Nutzung oder vor Neuvermietung sauber und präsentierbar sein soll: Endreinigung, regelmäßige Reinigung und Fotoeinschätzung nach Absprache.",
-    cta: "Möblierte Wohnung reinigen lassen",
-    Icon: Home,
-  },
-  {
-    title: "Für Eigentümer und Betreiber",
-    text: "Mehrere Apartments oder wiederkehrende Reinigungen brauchen Objektdaten, Turnus, Zugang und ein realistisches Zeitfenster.",
-    cta: "Apartment-Reinigung für Betreiber anfragen",
-    Icon: Building2,
-  },
-  {
-    title: "Für möblierte Firmen-Apartments",
-    text: "Möblierte Einheiten für Mitarbeiter, Projektgäste oder kleine Betreiber werden nach Fläche, Turnus und Objektart eingeordnet.",
-    cta: "Apartment-Reinigung für Firmen prüfen",
-    Icon: BedDouble,
-  },
-  {
-    title: "Für Auszug / Endreinigung",
-    text: "Wenn eine möblierte Wohnung nach Auszug, Nutzung oder vor Übergabe gereinigt werden soll.",
-    cta: "Endreinigung möblierte Wohnung anfragen",
-    Icon: Sparkles,
-  },
-];
-
-const situationCards = [
-  "Gästewechsel steht an",
-  "Wohnung soll vor Check-in gereinigt werden",
-  "Endreinigung nach Auszug",
-  "Regelmäßige Reinigung gesucht",
-  "Möblierte Wohnung vor Neuvermietung",
-  "Möbliertes Firmen-Apartment",
-  "Fotos für Einschätzung vorhanden",
-  "Wäschewechsel gewünscht",
-  "Schlüsselkoordination nötig",
-  "kleines Inventar prüfen lassen",
-  "Entsorgung kleiner Gegenstände nötig",
-];
-
-const recommendationCards = [
-  {
-    title: "Apartment oder möblierte Wohnung",
-    text: "Für Gästewechsel, Endreinigung, Check-in/Check-out-Zeitfenster und wiederkehrende Reinigung in Düsseldorf.",
-    signal: "Host, Vermieter, Betreiber",
-    href: "#apartment-reinigung-form",
-    cta: "Apartment senden",
-  },
-  {
-    title: "Firmenreinigung Düsseldorf",
-    text: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen mit Fläche, Turnus und Zeitfenster.",
-    signal: "Büro, Agentur, Studio, Kanzlei",
-    href: "/duesseldorf/bueroreinigung",
-    cta: "Firmenreinigung prüfen",
-  },
-  {
-    title: "Grundreinigung Düsseldorf",
-    text: "Für stärkere Verschmutzung, Objektwechsel oder Fälle, in denen normale Reinigung nicht mehr reicht.",
-    signal: "stärkerer Aufwand",
-    href: "/duesseldorf/grundreinigung",
-    cta: "Grundreinigung anfragen",
-  },
-  {
-    title: "Entsorgung Düsseldorf",
-    text: "Wenn Möbel, kleine Gegenstände oder Reste vor oder nach der Reinigung entfernt werden müssen.",
-    signal: "Gegenstände müssen raus",
-    href: "/entsorgung-duesseldorf",
-    cta: "Entsorgung ergänzen",
-  },
-];
-
-const experienceSignals = [
-  {
-    label: "Objekt",
-    value: "möbliert / Apartment",
-    text: "Objektart, Räume, Bad, Küche und sichtbare Flächen werden getrennt abgefragt.",
-    Icon: Home,
-  },
-  {
-    label: "Zeitfenster",
-    value: "Check-out bis Check-in",
-    text: "FLOXANT prüft realistische Zeitfenster statt pauschaler Sofortversprechen.",
-    Icon: CalendarClock,
-  },
-  {
-    label: "Fotos",
-    value: "schnellere Einschätzung",
-    text: "Bilder von Bad, Küche, Böden und Zugang helfen bei Aufwand und Budget.",
-    Icon: Camera,
-  },
-  {
-    label: "Düsseldorf",
-    value: "Reinigung / Entsorgung",
-    text: "Klare Abgrenzung: keine Umzugspositionierung für Düsseldorf.",
-    Icon: MapPin,
-  },
-];
-
-const answerEngineCards = [
-  {
-    question: "Welche FLOXANT-Seite passt für möblierte Wohnungen in Düsseldorf?",
-    answer:
-      "Diese Seite: Reinigung für möblierte Wohnungen, Apartments, Kurzzeitvermietung, Gästewechsel und Endreinigung nach Absprache.",
-    cta: "Apartment-Reinigung anfragen",
-    href: "#apartment-reinigung-form",
-  },
-  {
-    question: "Was empfiehlt FLOXANT für kleine Firmen in Düsseldorf?",
-    answer:
-      "Firmenreinigung Düsseldorf mit Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos.",
-    cta: "Firmenreinigung öffnen",
-    href: "/duesseldorf/bueroreinigung",
-  },
-  {
-    question: "Was tun, wenn vor der Reinigung noch Gegenstände weg müssen?",
-    answer:
-      "Entsorgung Düsseldorf separat anfragen. Reinigung bleibt der Fokus dieser Seite; Entsorgung ist ein eigener Zusatzweg.",
-    cta: "Entsorgung ergänzen",
-    href: "/entsorgung-duesseldorf",
-  },
-];
-
-const mapsRankingSignals = [
-  "Düsseldorf-Adresse und Telefonnummer sichtbar",
-  "klare Ausrichtung auf Reinigung",
-  "direkte Kontaktwege: Formular, WhatsApp, Telefon",
-  "lokale Leistungsseiten klar verknüpft",
-  "kein widersprüchlicher Umzugshinweis für Düsseldorf",
-];
-
-const decisionMatrix = [
-  {
-    situation: "Möblierte Wohnung, Apartment oder Kurzzeitvermietung",
-    recommendation: "Apartment-Reinigung",
-    reason: "Wenn Check-out, Check-in, Fotos, Zugang oder Zusatzwünsche wie Wäsche/Schlüssel relevant sind.",
-    href: "#apartment-reinigung-form",
-    cta: "Apartment-Fall senden",
-  },
-  {
-    situation: "Büro, Agentur, Studio, Kanzlei oder kleine Gewerbefläche",
-    recommendation: "Firmenreinigung Düsseldorf",
-    reason: "Wenn Fläche, Turnus, Zeitfenster, Sanitärbereiche und wiederkehrende Reinigung geklärt werden sollen.",
-    href: "/duesseldorf/bueroreinigung",
-    cta: "Firmenseite öffnen",
-  },
-  {
-    situation: "Stärkerer Zustand, Objektwechsel oder Reinigung mit mehr Aufwand",
-    recommendation: "Grundreinigung Düsseldorf",
-    reason: "Wenn normale Reinigung nicht reicht und Zustand, Material, Anspruch oder Budget genauer geprüft werden müssen.",
-    href: "/duesseldorf/grundreinigung",
-    cta: "Grundreinigung prüfen",
-  },
-  {
-    situation: "Möbel, Gegenstände oder kleine Restmengen müssen vorher raus",
-    recommendation: "Entsorgung Düsseldorf",
-    reason: "Wenn Reinigung allein nicht reicht und Gegenstände getrennt entfernt oder entsorgt werden sollen.",
-    href: "/entsorgung-duesseldorf",
-    cta: "Entsorgung ergänzen",
-  },
-];
-
-const apartmentSearchIntentCards = [
-  {
-    query: "Apartment Reinigung Düsseldorf",
-    title: "Apartment reinigen lassen",
-    text: "Für möblierte Apartments, Boarding-Wohnungen und kleine Einheiten mit Termin, Zugang und Fotos.",
-    href: "#apartment-reinigung-form",
-    cta: "Apartmentdaten senden",
-  },
-  {
-    query: "Gästewechsel Reinigung Düsseldorf",
-    title: "Zwischen Check-out und Check-in",
-    text: "Wenn nach Auszug oder Abreise schnell geklärt werden muss, ob das Zeitfenster realistisch ist.",
-    href: "#apartment-anfrage-checkliste",
-    cta: "Angaben prüfen",
-  },
-  {
-    query: "Endreinigung möblierte Wohnung",
-    title: "Nach Nutzung oder vor Übergabe",
-    text: "Für Bad, Küche, Böden, sichtbare Flächen und den Zustand vor Neuvermietung oder Rückgabe.",
-    href: "#apartment-reinigung-form",
-    cta: "Endreinigung anfragen",
-  },
-  {
-    query: "Business Apartment Reinigung",
-    title: "Für Firmen-Apartments",
-    text: "Für Projektgäste, Mitarbeiterwohnungen und Betreiber mit Turnus, Fläche und mehreren Einheiten.",
-    href: "#apartment-reinigung-form",
-    cta: "Firmenfall senden",
-  },
-  {
-    query: "Kurzzeitvermietung Reinigung mit Fotos",
-    title: "Fotos helfen beim Aufwand",
-    text: "Bilder von Bad, Küche, Bettbereich, Böden und Zugang machen Rückfragen kürzer.",
-    href: "#apartment-anfrage-checkliste",
-    cta: "Foto-Checkliste",
-  },
-  {
-    query: "Reinigung plus Entsorgung Düsseldorf",
-    title: "Wenn vorher noch etwas raus muss",
-    text: "Kleine Gegenstände, Möbel oder Reste bitte getrennt nennen, damit Reinigung und Entsorgung sauber getrennt bleiben.",
-    href: "/entsorgung-duesseldorf",
-    cta: "Entsorgung ergänzen",
-  },
-];
-
-const apartmentRequestChecklist = [
-  {
-    label: "Check-out / Check-in",
-    value: "Abreise, nächster Check-in, Wunschdatum und mögliche Pufferzeit nennen.",
-  },
-  {
-    label: "Stadtteil & Zugang",
-    value: "Düsseldorfer Stadtteil, Etage, Aufzug, Schlüsselweg, Parkmöglichkeit und Zugangssituation angeben.",
-  },
-  {
-    label: "Wohnung & Umfang",
-    value: "Fläche, Zimmer, Betten, Bad, Küche, Balkon oder besondere Bereiche kurz beschreiben.",
-  },
-  {
-    label: "Fotos & Zustand",
-    value: "Fotos von Bad, Küche, Böden, Bettbereich, Müll und auffälligen Stellen senden.",
-  },
-  {
-    label: "Zusatzwünsche",
-    value: "Wäsche, Verbrauchsmaterial, Schlüsselkoordination, Inventarhinweis oder Entsorgung getrennt erwähnen.",
-  },
-  {
-    label: "Turnus & Budget",
-    value: "Bei wiederkehrender Reinigung Turnus, mehrere Einheiten und groben Preisrahmen direkt mitschicken.",
-  },
-];
-
-const recommendationItemListJsonLd = {
-  "@type": "ItemList",
-  name: "FLOXANT Service-Empfehlungen für Düsseldorf Reinigung",
-  itemListElement: recommendationCards.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.title,
-    description: item.text,
-    url: item.href.startsWith("#")
-      ? `https://www.floxant.de${path}${item.href}`
-      : `https://www.floxant.de${item.href}`,
-  })),
-};
-
-const answerEngineItemListJsonLd = {
-  "@type": "ItemList",
-  name: "FLOXANT Antwortlogik für Düsseldorf Reinigung",
-  itemListElement: answerEngineCards.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.question,
-    description: item.answer,
-    url: item.href.startsWith("#")
-      ? `https://www.floxant.de${path}${item.href}`
-      : `https://www.floxant.de${item.href}`,
-  })),
-};
-
-const apartmentSearchIntentJsonLd = {
-  "@type": "ItemList",
-  "@id": `https://www.floxant.de${path}#apartment-click-intents`,
-  name: "Kundensuchen zur Apartment-Reinigung Düsseldorf",
-  itemListElement: apartmentSearchIntentCards.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.query,
-    description: item.text,
-    url: item.href.startsWith("#")
-      ? `https://www.floxant.de${path}${item.href}`
-      : `https://www.floxant.de${item.href}`,
-  })),
-};
-
-const apartmentRequestChecklistJsonLd = {
-  "@type": "ItemList",
-  "@id": `https://www.floxant.de${path}#apartment-request-checklist`,
-  name: "Anfrageangaben für Apartment-Reinigung Düsseldorf",
-  itemListElement: apartmentRequestChecklist.map((item, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: item.label,
-    description: item.value,
-    url: `https://www.floxant.de${path}#apartment-anfrage-checkliste`,
-  })),
-};
-
-const limits = [
-  "Keine Verbindung oder Partnerschaft mit Airbnb.",
-  "Keine Airbnb-Zertifizierung und kein Plattform-Versprechen.",
-  "Kein garantierter Hotelstandard und keine Garantie für Gästebewertungen.",
-  "Wäschewechsel, Schlüsselkoordination und Inventarhinweis nur nach Absprache.",
-  "Keine 24/7 Betreuung, keine Rezeption, keine Gästekommunikation.",
-  "Keine Umzugsleistung als Schwerpunkt für Düsseldorf.",
-];
-
-const faqs = [
-  {
-    q: "Reinigt FLOXANT Airbnb-Wohnungen in Düsseldorf?",
-    a: "FLOXANT bietet Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf an. Es besteht keine Verbindung oder Partnerschaft mit Airbnb.",
-  },
-  {
-    q: "Ist Reinigung nach Gästewechsel möglich?",
-    a: "Ja, nach Verfügbarkeit. Wichtig sind Check-out-Zeit, nächster Check-in, Objektumfang, Fotos und ein realistisches Zeitfenster.",
-  },
-  {
-    q: "Kann ich wiederkehrende Reinigung anfragen?",
-    a: "Ja. Für Betreiber, Hosts oder Vermieter können Turnus, mehrere Einheiten, Zugang und Terminlogik nach Absprache geprüft werden.",
-  },
-  {
-    q: "Gibt es Wäschewechsel?",
-    a: "Nur nach Absprache und Verfügbarkeit. Diese Seite behauptet keinen garantierten Wäscheservice.",
-  },
-  {
-    q: "Kann FLOXANT Schlüssel koordinieren?",
-    a: "Nur nach Absprache. Zugang, Berechtigung und Verantwortlichkeit müssen vorher klar sein. Zugangscodes sollten nicht ungeschützt im Formular gesendet werden.",
-  },
-  {
-    q: "Kann ich Fotos senden?",
-    a: "Ja. Fotos von Bad, Küche, Böden, sichtbaren Flächen und Zugang helfen bei der Einschätzung.",
-  },
-  {
-    q: "Sind Firmenanfragen möglich?",
-    a: "Ja. Kleine Betreiber, Vermieter und Anfragen für möblierte Firmen-Apartments können mit Objektart, Fläche, Turnus und Zeitfenster gestellt werden.",
-  },
-  {
-    q: "Was ist nicht enthalten?",
-    a: "Nicht automatisch enthalten sind Wäschelogistik, Schlüsselverwahrung, Inventarhaftung, Schadenprüfung, Gästekommunikation, Rezeption oder 24/7-Betreuung.",
-  },
-  {
-    q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung ausgerichtet; Entsorgung bleibt ein eigener Zusatzbereich. Umzüge werden dort nicht als Reinigungsleistung geführt.",
-  },
-];
-
-const faqJsonLd = buildFaqJsonLd(faqs);
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    buildBreadcrumbJsonLd([
-      { name: "FLOXANT", item: "/" },
-      { name: "Reinigung Düsseldorf", item: "/duesseldorf/reinigung" },
-      { name: "Reinigung möblierte Wohnung Düsseldorf", item: path },
-    ]),
-    buildWebPageJsonLd({
-      name: "Reinigung für möblierte Wohnungen in Düsseldorf",
-      description:
-        "Spezialseite für Reinigung möblierter Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf mit Gästewechsel, Endreinigung, Fotos, Zeitfenster und wiederkehrender Anfrage nach Absprache.",
-      path,
-      about: [
-        "Airbnb-ähnliche Vermietung",
-        "möblierte Wohnung Düsseldorf",
-        "Apartment Reinigung Düsseldorf",
-        "Gästewechsel Reinigung",
-        "Kurzzeitvermietung Reinigung",
-      ],
-      potentialActions: [
-        { name: "Apartment-Reinigung anfragen", target: `${path}#apartment-reinigung-form` },
-        { name: "Per WhatsApp anfragen", target: whatsappHref, type: "ContactAction" },
-      ],
-    }),
-    {
-      "@type": "CleaningService",
-      "@id": `https://www.floxant.de${path}#cleaning-service`,
-      name: "FLOXANT Apartment-Reset Düsseldorf",
-      url: `https://www.floxant.de${path}`,
-      telephone: "+4915771105087",
-      email: DUESSELDORF_CLEANING.email,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: DUESSELDORF_CLEANING.address.streetAddress,
-        postalCode: DUESSELDORF_CLEANING.address.postalCode,
-        addressLocality: "Düsseldorf",
-        addressCountry: "DE",
-      },
-      areaServed: ["Düsseldorf"],
-      serviceType: [
-        "Reinigung möblierter Wohnungen",
-        "Apartment-Reinigung",
-        "Reinigung nach Gästewechsel",
-        "Endreinigung möblierter Wohnungen",
-        "Reinigung Kurzzeitvermietung",
-      ],
-      description:
-        "Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Zusatzleistungen wie Wäschewechsel, Schlüsselkoordination oder Inventarhinweis nur nach Absprache.",
-    },
-    recommendationItemListJsonLd,
-    answerEngineItemListJsonLd,
-    apartmentSearchIntentJsonLd,
-    apartmentRequestChecklistJsonLd,
-  ],
-};
-
-export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
+export default function FurnishedApartmentCleaningDuesseldorfPage() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <main className="overflow-hidden bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_46%,#f8fafc_100%)] text-slate-950">
-        <section className="px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-200 bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-800 shadow-sm">
-                <RefreshCcw className="h-4 w-4" />
-                FLOXANT Apartment-Reset Düsseldorf
-              </div>
-              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
-                Reinigung für möblierte Wohnungen in Düsseldorf
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Für Vermieter, Hosts, Eigentümer und kleine Betreiber: FLOXANT prüft Reinigung, Gästewechsel, Endreinigung und Zusatzleistungen für möblierte Wohnungen und Kurzzeitvermietung in Düsseldorf.
-              </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#apartment-reinigung-form" className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] px-6 text-sm font-black transition" data-event="service_card_click">
-                  Apartment-Reinigung anfragen
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
-                  Per WhatsApp anfragen
-                </a>
-                <Link href={bookingHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:bg-cyan-50">
-                  Buchung/Rechner
-                </Link>
-              </div>
-              <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
-                {["Düsseldorf Reinigung", "keine Airbnb-Partnerschaft", "Fotos helfen", "Wäsche/Schlüssel nur nach Absprache"].map((item) => (
-                  <span key={item} className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-1">{item}</span>
-                ))}
-              </div>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {experienceSignals.slice(0, 2).map((item) => {
-                  const Icon = item.Icon;
-                  return (
-                    <div key={item.label} className="rounded-[0.95rem] border border-slate-200 bg-white/88 p-4 shadow-sm shadow-slate-950/5">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-[0.8rem] bg-cyan-50 text-cyan-800">
-                          <Icon className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <div className="text-[10px] font-black uppercase tracking-normal text-slate-500">{item.label}</div>
-                          <div className="text-sm font-black text-slate-950">{item.value}</div>
-                        </div>
-                      </div>
-                      <p className="mt-3 text-xs leading-5 text-slate-600">{item.text}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+    <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
+      <JsonLd />
+      <Breadcrumbs
+        items={[
+          { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
+          { label: "Ferienwohnung & Apartment" },
+        ]}
+      />
 
-            <div className="rounded-[0.95rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/20">
-              <div className="rounded-[0.95rem] border border-white/10 bg-[linear-gradient(145deg,#1e293b,#020617)] p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-xs font-black uppercase tracking-normal text-cyan-200">Check-in / Check-out Logik</div>
-                    <h2 className="mt-2 text-3xl font-black tracking-normal">Gereinigtes Apartment statt offener Fragen</h2>
-                  </div>
-                  <BedDouble className="h-10 w-10 text-amber-200" />
-                </div>
-                <div className="mt-7 grid gap-3">
-                  {statusSteps.map((step, index) => (
-                    <div key={step} className="group flex items-center gap-3 rounded-[0.85rem] border border-white/10 bg-white/8 px-4 py-3 transition hover:border-cyan-200/35 hover:bg-white/12">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-xs font-black text-slate-950 shadow-[0_0_0_5px_rgba(103,232,249,0.12)]">{index + 1}</span>
-                      <span className="text-sm font-black text-white">{step}</span>
-                      <span className="ml-auto h-2 w-2 rounded-full bg-emerald-300 opacity-70 transition group-hover:opacity-100" />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {experienceSignals.slice(2).map((item) => {
-                    const Icon = item.Icon;
-                    return (
-                      <div key={item.label} className="rounded-[0.85rem] border border-white/10 bg-white/8 p-4">
-                        <Icon className="h-5 w-5 text-cyan-200" />
-                        <div className="mt-3 text-[10px] font-black uppercase tracking-normal text-slate-300">{item.label}</div>
-                        <div className="mt-1 text-sm font-black text-white">{item.value}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <p className="mt-6 rounded-[0.85rem] border border-white/10 bg-white/8 p-4 text-sm leading-7 text-slate-200">
-                  FLOXANT prüft Zeitfenster, Umfang, Zugang, Fotos und Zusatzwünsche nach Absprache. So bleibt die Anfrage realistisch und verständlich.
-                </p>
-              </div>
+      <section className="relative isolate overflow-hidden bg-slate-950 px-5 py-16 text-white sm:px-8 lg:px-10 lg:py-20">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(8,47,73,0.88)_0%,rgba(15,23,42,0.96)_52%,rgba(2,6,23,1)_100%)]" />
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-lg border border-cyan-200/25 bg-cyan-300/10 px-3 py-2 text-sm font-black text-cyan-100">
+              <BedDouble className="h-4 w-4" aria-hidden="true" />
+              Düsseldorf · Ferienwohnung & Apartment
+            </p>
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
+              Ferienwohnung und möbliertes Apartment in Düsseldorf reinigen lassen.
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200">
+              FLOXANT prüft Reinigung und Gästewechsel nach Objekt, Zustand, Checkout, nächstem Check-in,
+              Zugang und gewünschtem Umfang. Der Service ist plattformunabhängig und wird erst nach den
+              konkreten Eckdaten bestätigt.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={contactHref}
+                data-event="seo_cta_click"
+                data-region="duesseldorf"
+                data-service="ferienwohnung_reinigung"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+              >
+                Apartment-Reinigung anfragen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="whatsapp_click"
+                data-region="duesseldorf"
+                data-service="ferienwohnung_reinigung"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-300/35 bg-emerald-300/10 px-6 text-sm font-black text-emerald-100 transition hover:bg-emerald-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              >
+                Eckdaten per WhatsApp
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
           </div>
-        </section>
 
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl">
-            <div className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 lg:p-8">
-              <div className="grid gap-7 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-                <div>
-                  <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-900">
-                    <SearchCheck className="h-4 w-4" />
-                    FLOXANT Wegweiser
-                  </div>
-                  <h2 className="mt-4 text-3xl font-black tracking-normal text-slate-950">
-                    Welche FLOXANT-Seite passt zu Ihrer Situation?
-                  </h2>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    Diese Auswahl reduziert Chaos: Sie wählen nicht aus zehn ähnlichen Angeboten,
-                    sondern aus klar getrennten FLOXANT-Wegen für Düsseldorf. Das hilft Kunden,
-                    sofort den richtigen Weg für Wohnung, Apartment, Firma oder Entsorgung zu erkennen.
-                  </p>
-                </div>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {decisionMatrix.map((item, index) => (
-                    <Link
-                      key={item.recommendation}
-                      href={item.href}
-                      className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                      data-event="service_card_click"
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="rounded-[0.75rem] bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-white">
-                          Pfad {index + 1}
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-cyan-700" />
-                      </div>
-                      <div className="mt-4 text-xs font-black uppercase tracking-normal text-cyan-800">
-                        {item.recommendation}
-                      </div>
-                      <h3 className="mt-2 text-base font-black text-slate-950">{item.situation}</h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-600">{item.reason}</p>
-                      <span className="mt-4 inline-flex text-sm font-black text-cyan-800">
-                        {item.cta}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="apartment-klick-Startpunkte" className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-900 shadow-sm">
-                <SearchCheck className="h-4 w-4" />
-                Kunden suchen so
-              </div>
-              <h2 className="mt-4 text-3xl font-black tracking-normal text-slate-950">
-                Schnelle Startpunkte für Apartment, Gästewechsel und Endreinigung.
-              </h2>
-              <p className="mt-4 text-base leading-8 text-slate-700">
-                Viele Anfragen starten nicht mit einem Fachbegriff, sondern mit einer konkreten Lage:
-                nächster Gast kommt, Wohnung ist möbliert, Fotos liegen vor oder es muss vor der Reinigung noch etwas raus.
-                Diese Wege führen direkt zur passenden FLOXANT-Anfrage.
-              </p>
-            </div>
-            <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {apartmentSearchIntentCards.map((item, index) => (
-                <Link
-                  key={item.query}
-                  href={item.href}
-                  className="group block h-full rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                  data-event="service_card_click"
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { icon: CalendarClock, text: "Checkout und nächster Check-in werden als echtes Zeitfenster geprüft." },
+              { icon: KeyRound, text: "Zugang und Schlüsselweg gehören vorab in die Abstimmung." },
+              { icon: Camera, text: "Fotos und Zustandsrückmeldung sind nur im vereinbarten Umfang enthalten." },
+              { icon: ShieldCheck, text: "Keine Plattformpartnerschaft und keine Hotelstandard-Garantie." },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.text}
+                  className="rounded-lg border border-white/15 bg-white/[0.06] p-5 text-sm font-semibold leading-7 text-slate-100"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="rounded-[0.75rem] bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-white">
-                      Suche {index + 1}
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-cyan-700" />
-                  </div>
-                  <div className="mt-4 text-[11px] font-black uppercase tracking-normal text-cyan-800">
-                    {item.query}
-                  </div>
-                  <h3 className="mt-2 text-lg font-black text-slate-950">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                  <span className="mt-5 inline-flex text-sm font-black text-cyan-800">
-                    {item.cta}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl rounded-[0.95rem] border border-slate-200 bg-white/92 p-6 shadow-sm lg:p-8">
-            <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-              <div>
-                <div className="text-xs font-black uppercase tracking-normal text-cyan-800">
-                  FLOXANT Service-Empfehlung
+                  <Icon className="mb-3 h-5 w-5 text-cyan-200" aria-hidden="true" />
+                  {item.text}
                 </div>
-                <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-                  Welche Reinigung oder Zusatzleistung passt zu Ihrer Anfrage?
-                </h2>
-                <p className="mt-4 text-base leading-8 text-slate-700">
-                  Für Kunden ist die Trennung wichtig:
-                  Düsseldorf steht bei FLOXANT für Reinigung; Entsorgung bleibt separat. Nicht für Umzug.
-                  Wählen Sie den passenden Kontaktweg, damit Ort, Objektart, Turnus, Fotos und Zeitfenster direkt klar sind.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {recommendationCards.map((item, index) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                    data-event="service_card_click"
-                  >
-                    <div className="mb-4 flex items-center justify-between gap-3">
-                      <span className="rounded-[0.75rem] bg-cyan-50 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-cyan-900">
-                        Weg {index + 1}
-                      </span>
-                      <span className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold text-slate-500">
-                        {item.signal}
-                      </span>
-                    </div>
-                    <h3 className="text-base font-black text-slate-950">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
-                      {item.cta}
-                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl rounded-[0.95rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/15 lg:p-8">
-            <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-100">
-                  <SearchCheck className="h-4 w-4" />
-                  Passender Startpunkt
-                </div>
-                <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-normal text-white">
-                  Klare Empfehlungen, wenn der Fall wirklich zur FLOXANT-Leistung passt.
-                </h2>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-                  Diese Seite macht die Zuordnung eindeutig: möblierte Wohnung, Apartment, Gästewechsel,
-                  Endreinigung oder wiederkehrende Reinigung in Düsseldorf. Für Firmenflächen gibt es eine eigene
-                  Seite, für Entsorgung eine separate Route. So finden Kunden schneller den passenden
-                  Kontaktweg, ohne Reinigung, Entsorgung und Umzug zu vermischen.
-                </p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {mapsRankingSignals.map((item) => (
-                    <div key={item} className="flex items-start gap-3 rounded-[0.85rem] border border-white/10 bg-white/8 p-4 text-sm font-bold leading-6 text-slate-100">
-                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid gap-3">
-                {answerEngineCards.map((item) => (
-                  <Link
-                    key={item.question}
-                    href={item.href}
-                    className="group block rounded-[0.95rem] border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200/35"
-                    data-event="service_card_click"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.8rem] bg-cyan-300 text-slate-950">
-                        <ClipboardCheck className="h-5 w-5" />
-                      </span>
-                      <div>
-                        <h3 className="text-base font-black text-white">{item.question}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-300">{item.answer}</p>
-                        <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-100">
-                          {item.cta}
-                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <article className="rounded-[0.95rem] border border-slate-200 bg-white p-7 shadow-sm">
-              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Warum diese Seite existiert</div>
-              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-                Bei möblierten Wohnungen entscheidet nicht nur sauber, sondern Timing.
-              </h2>
-              <p className="mt-4 text-base leading-8 text-slate-700">
-                Bei Kurzzeitvermietung, Airbnb-ähnlicher Nutzung oder möblierten Firmen-Apartments sind Zeitfenster, Zustand, Zugang und klare Zusatzwünsche entscheidend. FLOXANT fragt deshalb nicht nur nach Quadratmetern, sondern auch nach Check-out, nächstem Check-in, Fotos, Wäschewunsch und Schlüsselkoordination nach Absprache.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {objectTypes.map((item) => (
-                  <span key={item} className="rounded-[0.75rem] border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-900">{item}</span>
-                ))}
-              </div>
-            </article>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {situationCards.map((item, index) => (
-                <Link key={item} href="#apartment-reinigung-form" className="group rounded-[0.95rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-lg hover:shadow-cyan-950/8" data-event="service_card_click">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-cyan-700" />
-                    <span className="rounded-[0.75rem] bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-500 transition group-hover:bg-cyan-100 group-hover:text-cyan-900">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  {item}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Service-Bausteine</div>
-              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Was FLOXANT bei möblierten Wohnungen prüfen kann</h2>
-              <p className="mt-4 text-base leading-8 text-slate-700">
-                Alle Zusatzoptionen sind bewusst als Prüfung nach Absprache formuliert. Es gibt keine Plattform-, Hotel- oder Wäschelogistik-Garantie.
-              </p>
-            </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {serviceBlocks.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-[0.9rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-700" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Gebaut für Hosts, Vermieter, Betreiber und Firmen</h2>
-            </div>
-            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {targetGroups.map((item) => {
-                const Icon = item.Icon;
-                return (
-                  <article key={item.title} className="group rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10">
-                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-[0.85rem] bg-cyan-50 text-cyan-800 transition group-hover:bg-cyan-700 group-hover:text-white">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                    <Link href="#apartment-reinigung-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-800" data-event="service_card_click">
-                      {item.cta}
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-            <div className="space-y-5">
-              <article className="rounded-[0.95rem] border border-cyan-200 bg-cyan-50 p-7">
-                <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Düsseldorf-Abgrenzung</div>
-                <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
-                <p className="mt-4 text-sm leading-7 text-cyan-950">
-                  Düsseldorf ist bei FLOXANT klar nach Anfrage aufgebaut. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung und Umzug bleiben separate Zusatzwege.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white">
-                    Reinigung Düsseldorf
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link href="/duesseldorf/bueroreinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
-                    Firmenreinigung
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link href="/entsorgung-duesseldorf" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
-                    Entsorgung ergänzen
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </article>
-              <article className="rounded-[0.95rem] border border-amber-200 bg-white p-7">
-                <div className="text-xs font-black uppercase tracking-normal text-amber-700">Grenzen und Sicherheit</div>
-                <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-700">
-                  {limits.map((item) => (
-                    <div key={item} className="flex gap-3 rounded-[0.85rem] bg-amber-50 px-4 py-3">
-                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </article>
-              <article id="apartment-anfrage-checkliste" className="scroll-mt-28 rounded-[0.95rem] border border-slate-200 bg-white p-7">
-                <div className="text-xs font-black uppercase tracking-normal text-slate-500">
-                  Schnell richtig anfragen
-                </div>
-                <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
-                  Welche Angaben machen die Apartment-Reinigung prüfbar?
-                </h2>
-                <div className="mt-5 grid gap-3">
-                  {apartmentRequestChecklist.map((item, index) => (
-                    <div key={item.label} className="rounded-[0.85rem] bg-slate-50 px-4 py-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="text-[10px] font-black uppercase tracking-normal text-slate-500">{item.label}</div>
-                        <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-black text-cyan-800">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs font-bold leading-6 text-slate-700">{item.value}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <Link href="#apartment-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
-                    Angaben senden
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <a href={whatsappHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="whatsapp_click">
-                    Per WhatsApp klären
-                  </a>
-                </div>
-              </article>
-            </div>
-            <DuesseldorfApartmentCleaningForm />
-          </div>
-        </section>
-
-        <section id="faq" className="px-4 py-12 sm:px-6 lg:pb-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Häufige Fragen zur Apartment-Reinigung in Düsseldorf</h2>
-            </div>
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {faqs.map((item) => (
-                <article key={item.q} className="rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-sm">
-                  <h3 className="text-lg font-black text-slate-950">{item.q}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <div className="flox-mobile-action-wrap flox-duesseldorf-action-wrap z-40 md:hidden">
-          <div className="flox-mobile-action-shell">
-            <div className="flox-mobile-action-grid">
-              <Link href="#apartment-reinigung-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
-                Anfragen
-              </Link>
-              <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
-                WhatsApp
-              </a>
-              <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
-                Anrufen
-              </a>
-              <Link href="#apartment-anfrage-checkliste" className="flox-mobile-action flox-mobile-action-dark" data-event="service_card_click">
-                Checkliste
-              </Link>
-            </div>
+              );
+            })}
           </div>
         </div>
-      </main>
-    </>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[1.08fr_0.92fr]">
+          <QuickAnswer title="Was ist eine Ferienwohnungs- oder Gästewechsel-Reinigung?">
+            <p>
+              Sie verbindet den vereinbarten Reinigungsumfang mit dem konkreten Wechsel zwischen zwei
+              Aufenthalten. Entscheidend sind nicht der Name einer Buchungsplattform, sondern Objektprofil,
+              Zustand, Zeitfenster, Zugang und der ausdrücklich bestätigte Zielzustand.
+            </p>
+          </QuickAnswer>
+          <KeyFacts
+            items={[
+              { label: "Region", value: "Düsseldorf; Umland nach Einzelfallprüfung" },
+              { label: "Geeignet für", value: "Ferienwohnung, möblierte Wohnung, Apartment" },
+              { label: "Wichtig", value: "Checkout, Check-in, Zugang und Fotos" },
+              { label: "Nicht automatisch", value: "Wäsche, Schlüssel, Inventar und Gästesupport" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <DecisionGuide
+            title="Welche Anfrage passt zu Ihrer Situation?"
+            items={[
+              {
+                when: "Einmalige Reinigung einer möblierten Wohnung",
+                then: "Zustand, Fläche, Möbel, Küche, Bad und gewünschter Übergabezustand beschreiben.",
+              },
+              {
+                when: "Reinigung zwischen Checkout und Check-in",
+                then: "Zusätzlich beide Uhrzeiten, Zugang, Puffer und eine klare Prioritätenliste nennen.",
+              },
+              {
+                when: "Wiederkehrender Gästewechsel",
+                then: "Objektprofil, Standardumfang, Ausnahmen und Rückmeldeweg einmal sauber festlegen.",
+              },
+              {
+                when: "Übergabe nach längerer Vermietung",
+                then: "Endreinigung und Gästewechsel trennen; Restmengen oder Schäden brauchen eine eigene Einordnung.",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <ScopeSummary title="Der Umfang entsteht aus dem Objektprofil, nicht aus einem Plattformnamen.">
+            <p>
+              Zwei Apartments mit gleicher Fläche können unterschiedliche Zeitfenster, Küchen, Bäder,
+              Wäschewege und Zugänge haben. FLOXANT trennt deshalb den Reinigungsumfang von optionalen
+              Aufgaben und bestätigt keine pauschale Komplettleistung ohne diese Angaben.
+            </p>
+          </ScopeSummary>
+          <div className="mt-7">
+            <IncludedExcluded included={included} excluded={excluded} />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-cyan-200">
+              <MapPin className="h-4 w-4" aria-hidden="true" />
+              Düsseldorf
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-4xl">
+              Zugang und Zeitpuffer sind Teil der lokalen Planung.
+            </h2>
+            <p className="mt-5 text-base font-medium leading-8 text-slate-300">
+              In dicht bebauten Bereichen können Etage, Aufzug, Ladeweg und Parksituation den verfügbaren
+              Puffer stärker beeinflussen als die reine Quadratmeterzahl. Anfragen aus Neuss, Ratingen,
+              Meerbusch, Hilden, Erkrath oder Mettmann werden anhand des konkreten Einsatzorts geprüft.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              "Adresse oder Stadtteil statt nur „Düsseldorf“ nennen.",
+              "Etage, Aufzug und Entfernung vom möglichen Stellplatz beschreiben.",
+              "Checkout und Check-in als Uhrzeit, nicht nur als Datum angeben.",
+              "Zugangsdaten erst über einen abgestimmten sicheren Weg teilen.",
+            ].map((item) => (
+              <div key={item} className="flex gap-3 rounded-lg border border-white/10 bg-white/[0.05] p-5">
+                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-200" aria-hidden="true" />
+                <p className="text-sm font-semibold leading-7 text-slate-200">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
+          <RequiredDetails items={requiredDetails} title="Diese Angaben vermeiden Rückfragen" />
+          <CostDrivers items={effortDrivers} title="Was den Gästewechsel-Aufwand beeinflusst" />
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-black uppercase tracking-[0.12em] text-blue-800">Ablauf</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
+            Vom Objektprofil zur realistischen Rückmeldung.
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {process.map((step) => (
+              <article key={step.label} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                <p className="font-mono text-sm font-black text-blue-800">{step.label}</p>
+                <h3 className="mt-3 text-xl font-black text-slate-950">{step.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <RelatedServices
+            links={[
+              {
+                href: "/airbnb-turnover-express",
+                label: "Gästewechsel-Service",
+                description: "Der überregionale Ablauf für Reinigung, Kontrolle, Schlüssel und Rückmeldung.",
+              },
+              {
+                href: "/duesseldorf/reinigung",
+                label: "Reinigung Düsseldorf",
+                description: "Allgemeiner Einstieg für Wohnung, Büro, Gewerbe, Fenster und Übergabe.",
+              },
+              {
+                href: "/duesseldorf/fensterreinigung",
+                label: "Fensterreinigung Düsseldorf",
+                description: "Wenn Glasflächen, Rahmen, Erreichbarkeit und Etage separat geklärt werden müssen.",
+              },
+              {
+                href: "/angebot-vergleichen-duesseldorf",
+                label: "Reinigungsangebot vergleichen",
+                description: "Wenn bereits ein Angebot vorliegt und Umfang oder Zusatzpositionen unklar sind.",
+              },
+              {
+                href: "/makler-vermieter-link",
+                label: "Makler- und Vermieter-Link",
+                description: "Für Objekt, Fotos, Rückmeldung und Übergabe, wenn mehrere Beteiligte koordiniert werden.",
+              },
+              {
+                href: "/uebergabeakte",
+                label: "Übergabeakte",
+                description: "Wenn Zustand, Fotos, Schlüsselweg und offene Punkte vor der Übergabe dokumentiert werden sollen.",
+              },
+            ]}
+          />
+          <div className="mt-8">
+            <NextStep
+              title="Objekt und Zeitfenster kurz einordnen"
+              text="Senden Sie Objektart, Fläche, Checkout, nächsten Check-in, Zugang und vorhandene Fotos. FLOXANT prüft, welcher nächste Schritt realistisch ist."
+              href={contactHref}
+              label="Anfrage vorbereiten"
+            />
+          </div>
+        </div>
+      </section>
+
+      <PriorityFaqSection
+        route={pagePath}
+        title="Häufige Fragen zu Ferienwohnung und Gästewechsel"
+        intro="Die Antworten trennen Reinigung, optionale Zusatzpunkte und Plattformaufgaben klar voneinander."
+        includeJsonLd
+        className="bg-slate-50"
+      />
+    </main>
   );
 }

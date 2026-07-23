@@ -1,12 +1,17 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import React, { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import {
   AlertCircle,
   Banknote,
   CheckCircle2,
+  Clock3,
   Mail,
+  MapPin,
+  MessageCircle,
   Phone,
   Send,
   Sparkles,
@@ -26,9 +31,13 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
     name: "",
     email: "",
     phone: "",
+    cityOrZip: "",
     service: "umzug",
+    urgency: "normal",
+    preferredContact: "telefon",
     budget: "",
     message: "",
+    privacyConsent: false,
   });
 
   async function handleSubmit(event: React.FormEvent) {
@@ -42,12 +51,18 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
       formData.name.trim().length >= 2 &&
       formData.phone.trim().length >= 6 &&
       formData.budget.trim().length >= 2 &&
-      emailLooksValid;
+      emailLooksValid &&
+      formData.privacyConsent;
 
     if (!hasRequiredBasics) {
+      if (!formData.privacyConsent) {
+        setErrorDetails("Bitte bestaetigen Sie den Datenschutz-Hinweis.");
+        setStatus("error");
+        return;
+      }
       setErrorDetails(
         emailLooksValid
-          ? "Bitte Name, Telefonnummer und Preisrahmen ausfüllen."
+          ? "Bitte Name, Telefonnummer und Preisrahmen ausfüllen. Ort/PLZ hilft bei der Einschätzung."
           : "Bitte eine gültige E-Mail eintragen oder das Feld leer lassen.",
       );
       setStatus("error");
@@ -57,15 +72,39 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
     try {
       const fd = new FormData();
       fd.append("type", "budget_inquiry");
+      fd.append("source", "budget_contact_form");
+      fd.append("sourceComponent", "BudgetContactForm");
+      fd.append("sourcePage", "/anfrage-mit-preisrahmen");
+      fd.append("intent", "budget_inquiry");
       fd.append("name", formData.name.trim());
       fd.append("email", email);
       fd.append("phone", formData.phone.trim());
+      fd.append("cityOrZip", formData.cityOrZip.trim());
       fd.append("service", formData.service);
+      fd.append("serviceCategory", formData.service);
+      fd.append("urgency", formData.urgency);
+      fd.append("preferredContact", formData.preferredContact);
+      fd.append("contactMethod", formData.preferredContact);
+      fd.append("preferredContactMethod", formData.preferredContact);
       fd.append("budget", formData.budget.trim());
-      fd.append("message", formData.message.trim());
+      fd.append("privacyConsent", "true");
+      fd.append("pageType", "budget_contact");
+      fd.append("funnelStage", "lead");
+      fd.append("ctaLabel", "Unverbindlich absenden");
+      fd.append(
+        "message",
+        [
+          formData.message.trim(),
+          formData.cityOrZip.trim() ? `Ort/PLZ: ${formData.cityOrZip.trim()}` : "",
+          `Dringlichkeit: ${formData.urgency}`,
+          `Kontaktwunsch: ${formData.preferredContact}`,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      );
       fd.append("timestamp", new Date().toISOString());
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: fd,
       });
@@ -97,7 +136,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           Preisvorstellung eingegangen
         </h3>
         <p className="max-w-md leading-relaxed text-slate-600">
-          Ihre Anfrage ist sicher bei uns angekommen. FLOXANT prüft jetzt Ihre Angaben und
+          Ihre Anfrage wurde gesendet. FLOXANT prüft jetzt Ihre Angaben und
           gleicht Preisvorstellung, Umfang, Termin und Verfügbarkeit miteinander ab.
         </p>
         <button
@@ -123,9 +162,13 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             Unverbindliche Budget-Anfrage
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">
-            Ihre Preisvorstellung wird als zusätzliches Hinweis gespeichert. Sie ersetzt keine
-            fachliche Einschätzung und ist keine Preiszusage. Name, Telefon und Preisrahmen reichen
-            für den ersten Kontakt; E-Mail ist optional.
+            Ihre Preisvorstellung wird als zusätzlicher Hinweis gespeichert. Sie ersetzt keine
+            fachliche Einschätzung und ist keine Preiszusage. Name, Telefon, Ort und Preisrahmen
+            reichen für den ersten Kontakt; E-Mail ist optional.
+          </p>
+          <p className="mt-2 max-w-xl text-sm font-semibold leading-6 text-blue-700">
+            Anfrage auf Deutsch oder Englisch möglich: cleaning service, moving help, quote check
+            oder house clearance reichen als Stichwort.
           </p>
         </div>
 
@@ -137,6 +180,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="Name"
                 required
                 type="text"
                 placeholder="Max Mustermann"
@@ -154,6 +198,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="E-Mail optional"
                 type="email"
                 placeholder="name@beispiel.de"
                 value={formData.email}
@@ -170,6 +215,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="Telefonnummer"
                 required
                 type="tel"
                 placeholder="+49 123 4567890"
@@ -182,18 +228,80 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
 
           <div className="space-y-2">
             <label className="ml-1 text-xs font-bold uppercase tracking-widest text-slate-500">
+              Ort / PLZ
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <input
+                aria-label="Ort oder PLZ"
+                type="text"
+                placeholder="z.B. Düsseldorf, Regensburg, Neuss"
+                value={formData.cityOrZip}
+                onChange={(event) => setFormData({ ...formData, cityOrZip: event.target.value })}
+                className="w-full rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 placeholder:text-slate-400 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="ml-1 text-xs font-bold uppercase tracking-widest text-slate-500">
               Projekt-Art
             </label>
             <select
+              aria-label="Projekt-Art"
               value={formData.service}
               onChange={(event) => setFormData({ ...formData, service: event.target.value })}
               className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-6 py-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
             >
-              <option value="umzug">Umzug und Transport</option>
-              <option value="reinigung">Reinigung</option>
-              <option value="entsorgung">Entrümpelung</option>
+              <option value="umzug">Umzug und Transport / Moving help</option>
+              <option value="reinigung">Reinigung / Cleaning service</option>
+              <option value="solarreinigung">Solar- / PV-Reinigung / Solar panel cleaning</option>
+              <option value="glas_fassade_event">Glas, Fassade oder Eventreinigung / Glass cleaning</option>
+              <option value="entsorgung">Entrümpelung / Decluttering</option>
+              <option value="nachlass_lager">Keller, Nachlass oder Lagerauflösung / House clearance</option>
+              <option value="mini_transport">Mini-Umzug, Express oder Möbeltransport / Small move</option>
+              <option value="signature">Fairpreis, Plan B oder Übergabe-Service / Second opinion</option>
               <option value="mixed">Kombination</option>
             </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="ml-1 text-xs font-bold uppercase tracking-widest text-slate-500">
+              Dringlichkeit
+            </label>
+            <div className="relative">
+              <Clock3 className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <select
+                aria-label="Dringlichkeit"
+                value={formData.urgency}
+                onChange={(event) => setFormData({ ...formData, urgency: event.target.value })}
+                className="w-full appearance-none rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
+              >
+                <option value="normal">Normal, Termin ist flexibel</option>
+                <option value="soon">Bald, innerhalb von 7 Tagen</option>
+                <option value="urgent">Dringend, Deadline steht</option>
+                <option value="offer_check">Erst Angebot / Preis prüfen</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="ml-1 text-xs font-bold uppercase tracking-widest text-slate-500">
+              Kontaktwunsch
+            </label>
+            <div className="relative">
+              <MessageCircle className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <select
+                aria-label="Kontaktwunsch"
+                value={formData.preferredContact}
+                onChange={(event) => setFormData({ ...formData, preferredContact: event.target.value })}
+                className="w-full appearance-none rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
+              >
+                <option value="telefon">Telefon</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">E-Mail</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -204,6 +312,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           <div className="relative">
             <Banknote className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
+              aria-label="Ihre Preisvorstellung"
               required
               type="text"
               placeholder="z.B. 600 bis 900 EUR"
@@ -223,6 +332,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             Zusatzinfos
           </label>
           <textarea
+            aria-label="Zusatzinfos"
             rows={3}
             placeholder="Ein paar Details zu Ihrem Projekt, z.B. Termin, Umfang oder besondere Bedingungen."
             value={formData.message}
@@ -230,6 +340,16 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             className="w-full rounded-2xl border border-slate-200 bg-white p-6 text-slate-950 placeholder:text-slate-400 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
           />
         </div>
+
+        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+          <input
+            type="checkbox"
+            checked={formData.privacyConsent}
+            onChange={(event) => setFormData({ ...formData, privacyConsent: event.target.checked })}
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700"
+          />
+          <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet.</span>
+        </label>
 
         {errorDetails && status === "error" ? (
           <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
@@ -239,6 +359,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         ) : null}
 
         <button
+          aria-label="Budget-Anfrage senden"
           disabled={status === "loading"}
           type="submit"
           className={cn(
@@ -285,7 +406,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         <div className="flex items-center justify-center gap-4 py-2">
           <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase text-slate-500">
             <Sparkles size={10} className="text-blue-600" />
-            100% unverbindlich
+            Unverbindlich
           </div>
           <div className="h-1 w-1 rounded-full bg-slate-300" />
           <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase text-slate-500">

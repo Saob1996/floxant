@@ -10,7 +10,7 @@ export type EinsatzradarServiceType =
   | "mieterwechsel"
   | "hausverwaltung"
   | "premium"
-  | "duesseldorf_reinigung"
+  | "regensburg_reinigung"
   | "duesseldorf_entsorgung";
 
 export type EinsatzradarRegionZone =
@@ -112,7 +112,7 @@ export const einsatzradarFilters: EinsatzradarFilter[] = ([
   { id: "uebergabeakte", label: "Uebergabeakte" },
   { id: "mieterwechsel", label: "Mieterwechsel" },
   { id: "hausverwaltung", label: "Hausverwaltung" },
-  { id: "duesseldorf_reinigung", label: "Duesseldorf Reinigung" },
+  { id: "regensburg_reinigung", label: "Reinigung Regensburg" },
   { id: "duesseldorf_entsorgung", label: "Duesseldorf Entsorgung" },
 ] satisfies EinsatzradarFilter[]).map(normalizeFilter);
 
@@ -153,8 +153,8 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = ([
     id: "duesseldorf_separat",
     title: "Duesseldorf separat",
     label: "Reinigung & Entsorgung",
-    description: "Duesseldorf bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung.",
-    examples: ["Duesseldorf Reinigung", "Duesseldorf Entsorgung"],
+    description: "Regensburg bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung.",
+    examples: ["Reinigung Regensburg", "Regensburg Entsorgung"],
     services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung", "Entsorgung"],
   },
 ] satisfies EinsatzradarZone[]).map(normalizeZone);
@@ -173,7 +173,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     signature_services: ["Uebergabeakte", "Plan gekippt", "Angebotscheck"],
     customer_type: "Privatkunden, Vermieter, Hausverwaltungen",
     cta_label: "Endreinigung anfragen",
-    target_url: "/reinigung-regensburg",
+    target_url: "/regensburg/reinigung",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
@@ -194,7 +194,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     signature_services: ["Keller-/Muellraum-Rettung", "Wohnung wieder vermietbar", "Uebergabeakte"],
     customer_type: "Privatkunden, Vermieter, WEG",
     cta_label: "Keller mit Fotos anfragen",
-    target_url: "/entruempelung-regensburg",
+    target_url: "/regensburg/entruempelung",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
@@ -215,7 +215,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     signature_services: ["Uebergabeakte", "Schadensbegrenzung", "Diskrete Abstimmung"],
     customer_type: "Privatkunden, Familien, Vermieter",
     cta_label: "Auszugspaket anfragen",
-    target_url: "/umzug-regensburg",
+    target_url: "/regensburg/umzug",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
@@ -252,7 +252,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     approximate_location: "Raum Regensburg",
     direction_or_area: "Regensburg Core",
     timeframe_label: "Typische Einsatzart, keine Live-Daten",
-    description: "Nach Auszug sollen Raeumung, Reinigung, Schluesselstatus und offene Hinweise strukturiert werden.",
+    description: "Nach Auszug sollen Raeumung, Reinigung, Schluesselstatus und offene Hinweise gemeinsam geklärt werden.",
     included_services: ["Raeumung", "Reinigung", "Uebergabeakte"],
     signature_services: ["Mieterwechsel-Service", "Wohnung wieder vermietbar", "Makler-/Vermieter-Link"],
     customer_type: "Hausverwaltungen, Vermieter, Makler",
@@ -308,19 +308,19 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     visibility_status: "published",
   },
   {
-    id: "duesseldorf-reinigung-objekt",
-    title: "Duesseldorf Reinigung fuer Wohnung oder Objekt",
-    service_type: "duesseldorf_reinigung",
+    id: "regensburg-reinigung-objekt",
+    title: "Reinigung Regensburg fuer Wohnung oder Objekt",
+    service_type: "regensburg_reinigung",
     region_zone: "duesseldorf_separat",
-    approximate_location: "Duesseldorf Reinigung",
+    approximate_location: "Reinigung Regensburg",
     direction_or_area: "Duesseldorf separat",
     timeframe_label: "Typische Einsatzart, keine Live-Daten",
-    description: "Wohnungsreinigung, Endreinigung oder B2B-Reinigung wird in Duesseldorf getrennt vom Regensburger Umzugsmarkt geprueft.",
+    description: "Wohnungsreinigung, Endreinigung oder B2B-Reinigung wird in Regensburg getrennt vom Regensburger Umzugsmarkt geprueft.",
     included_services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung"],
     signature_services: ["Apartment-Reset", "Fotoeinschaetzung"],
     customer_type: "Vermieter, Hosts, Unternehmen",
-    cta_label: "Reinigung Duesseldorf anfragen",
-    target_url: "/duesseldorf/reinigung",
+    cta_label: "Reinigung Regensburg anfragen",
+    target_url: "/regensburg/reinigung",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
@@ -354,7 +354,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
 export const einsatzradarFaq = [
   {
     q: "Was ist der FLOXANT Einsatzradar?",
-    a: "Der Einsatzradar zeigt typische Einsatzarten und grobe Servicezonen, die FLOXANT im Raum Regensburg und getrennt fuer Duesseldorf Reinigung/Entsorgung prueft.",
+    a: "Der Einsatzradar zeigt typische Einsatzarten und grobe Servicezonen, die FLOXANT im Raum Regensburg und getrennt fuer Reinigung Regensburg/Entsorgung prueft.",
   },
   {
     q: "Sind das echte Einsaetze?",
@@ -370,7 +370,7 @@ export const einsatzradarFaq = [
   },
   {
     q: "Was bedeutet Duesseldorf separat?",
-    a: "Duesseldorf bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung. Deshalb erscheinen dort passende lokale Beispiele je Leistung.",
+    a: "Regensburg bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung. Deshalb erscheinen dort passende lokale Beispiele je Leistung.",
   },
   {
     q: "Kann ich meinen Fall mit Fotos senden?",

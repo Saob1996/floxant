@@ -7,11 +7,6 @@ const MobileFloatingContact = dynamic(() => import("@/components/MobileFloatingC
   ssr: false,
 });
 
-const PlanGekipptTrigger = dynamic(
-  () => import("@/components/PlanGekipptTrigger").then((mod) => mod.PlanGekipptTrigger),
-  { ssr: false },
-);
-
 export function DeferredSiteWidgets({ showFloatingContact }: { showFloatingContact: boolean }) {
   const [ready, setReady] = useState(false);
 
@@ -36,10 +31,5 @@ export function DeferredSiteWidgets({ showFloatingContact }: { showFloatingConta
 
   if (!ready) return null;
 
-  return (
-    <>
-      {showFloatingContact ? <MobileFloatingContact /> : null}
-      <PlanGekipptTrigger />
-    </>
-  );
+  return showFloatingContact ? <MobileFloatingContact /> : null;
 }

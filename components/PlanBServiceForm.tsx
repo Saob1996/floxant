@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -19,14 +21,17 @@ const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
 const uncertainOptions = [
-  "Transport / Umzug",
-  "Reinigung",
-  "Entruempelung",
-  "Entsorgung",
+  "Transport / Umzug / Moving help",
+  "Reinigung / Cleaning service",
+  "Entruempelung / Decluttering",
+  "Entsorgung / Disposal",
   "Schluesseluebergabe",
   "Uebergabe",
-  "Angebot / Preis",
-  "Duesseldorf Reinigung",
+  "Angebot / Preis / Quote check",
+  "Fairpreis-Check",
+  "Objektbrief",
+  "Solar / PV / Solar panel cleaning",
+  "Reinigung Regensburg / Cleaning service",
   "Duesseldorf Entsorgung",
   "mehrere Punkte",
 ];
@@ -54,11 +59,14 @@ const riskLevels = [
 
 const packageOptions = [
   "Ersatztransport",
-  "Reinigungs-Backup",
-  "Raeumungs-Backup",
+  "Reinigungs-Backup / Cleaning backup",
+  "Raeumungs-Backup / Clearance backup",
   "Uebergabe-Backup",
   "Komplett-Plan-B",
-  "Duesseldorf Reinigung/Entsorgung",
+  "Fairpreis- oder Angebots-Backup",
+  "Objektbrief zur Sortierung",
+  "Solar/PV-Sichtklar",
+  "Reinigung Regensburg/Entsorgung",
   "Diskreter Rueckruf",
 ];
 
@@ -71,6 +79,9 @@ const openItemOptions = [
   "Keller / Sperrmuell offen",
   "Schluessel / Uebergabe unklar",
   "Preisrahmen unrealistisch",
+  "PV- oder Dachzugang unklar",
+  "Objektbrief sinnvoll",
+  "Fairpreis-Check sinnvoll",
   "zweite Absicherung gewuenscht",
   "Fotos vorhanden",
   "Budget vorhanden",
@@ -125,7 +136,7 @@ export function PlanBServiceForm() {
   const whatsappHref = useMemo(() => {
     const text =
       uncertainArea.includes("Duesseldorf") || uncertainArea.includes("Düsseldorf")
-        ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Duesseldorf. Ort, Termin und Fotos kann ich senden."
+        ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
         : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entruempelung/Uebergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
     return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(text)}`;
   }, [uncertainArea]);
@@ -186,6 +197,8 @@ export function PlanBServiceForm() {
     formData.set("type", "plan_b_service");
     formData.set("lead_type", "plan_b_service");
     formData.set("service", "plan_b_service");
+    formData.set("serviceCategory", "plan_b_service");
+    formData.set("intent", "plan-b");
     formData.set("riskLevel", riskLevel);
     formData.set("uncertainArea", uncertainArea);
     formData.set("problemType", uncertainArea);
@@ -193,12 +206,18 @@ export function PlanBServiceForm() {
     formData.set("requestType", desiredPackage);
     formData.set("selectedOpenItems", JSON.stringify(selectedOpenItems));
     formData.set("selectedAddons", JSON.stringify([desiredPackage, ...selectedOpenItems]));
-    formData.set("region", "regensburg_bayern_duesseldorf_cleaning_disposal");
+    formData.set("region", "regensburg_regensburg_regensburg_cleaning_disposal");
     formData.set("timestamp", new Date().toISOString());
     formData.set("leadSource", "plan_b_service");
     formData.set("source", "plan_b_service");
     formData.set("sourceComponent", "plan_b_form");
     formData.set("sourceContext", riskLevel);
+    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", formData.get("preferredContact") === "whatsapp" ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
+    formData.set("privacyConsent", "true");
+    formData.set("pageType", "plan_b");
+    formData.set("funnelStage", "urgent_lead");
+    formData.set("ctaLabel", "Plan B pruefen lassen");
     formData.set("sourcePage", "/plan-b-service");
     formData.set("landingPage", typeof window === "undefined" ? "/plan-b-service" : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
@@ -212,7 +231,7 @@ export function PlanBServiceForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", { method: "POST", body: formData });
+      const response = await bookingFetch("/api/bookings", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
 
@@ -241,6 +260,10 @@ export function PlanBServiceForm() {
       <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B pruefen lassen</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">
         Kurze Angaben reichen fuer den Start. FLOXANT prueft nach Verfuegbarkeit, ob ein Ersatz- oder Ergaenzungsplan realistisch ist.
+      </p>
+      <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
+        Anfrage auf Deutsch oder Englisch moeglich: moving help, cleaning service, quote check
+        oder house clearance reichen als Stichwort.
       </p>
 
       <div className="mt-5 grid gap-3 md:grid-cols-3">

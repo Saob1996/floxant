@@ -48,17 +48,6 @@ export function FloxantSymbolLayer({
       />
 
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 820" fill="none">
-        <defs>
-          <linearGradient id={`stroke-a-${variant}`} x1="0" y1="0" x2="1200" y2="820" gradientUnits="userSpaceOnUse">
-            <stop stopColor={palette.primary} stopOpacity="0.12" />
-            <stop offset="1" stopColor={palette.secondary} stopOpacity="0.03" />
-          </linearGradient>
-          <linearGradient id={`stroke-b-${variant}`} x1="1200" y1="0" x2="0" y2="820" gradientUnits="userSpaceOnUse">
-            <stop stopColor={palette.secondary} stopOpacity="0.12" />
-            <stop offset="1" stopColor={palette.primary} stopOpacity="0.02" />
-          </linearGradient>
-        </defs>
-
         <path
           d="M74 188 H420 L470 238 H816"
           stroke={palette.primary}
@@ -75,14 +64,16 @@ export function FloxantSymbolLayer({
         />
         <path
           d="M-20 640 C220 596 388 716 650 652 C854 602 1012 470 1200 412"
-          stroke={`url(#stroke-a-${variant})`}
+          stroke={palette.primary}
+          strokeOpacity={hero ? "0.12" : "0.08"}
           strokeWidth={hero ? 1.8 : 1.35}
           strokeLinecap="round"
           strokeDasharray={hero ? "14 20" : "10 16"}
         />
         <path
           d="M760 102 C900 88 1042 150 1136 286"
-          stroke={`url(#stroke-b-${variant})`}
+          stroke={palette.secondary}
+          strokeOpacity={hero ? "0.12" : "0.08"}
           strokeWidth="1.1"
           strokeLinecap="round"
         />

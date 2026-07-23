@@ -167,7 +167,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
       </p>
      </div>
 
-     <button onClick={onClose} className="rounded-full p-2 text-white/45 transition-colors hover:bg-white/10 hover:text-white">
+     <button type="button" aria-label="Dokumenteditor schliessen" onClick={onClose} className="rounded-full p-2 text-white/45 transition-colors hover:bg-white/10 hover:text-white">
       <X className="h-5 w-5" />
      </button>
     </header>
@@ -233,6 +233,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
            <label className="text-[11px] text-white/45">Dokumentdatum</label>
            <input
             type="date"
+            aria-label="Dokumentdatum"
             value={doc.editableData.documentDate?.split("T")[0] || ""}
             onChange={(event) =>
              setDoc((prev) => ({
@@ -251,6 +252,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
            <label className="text-[11px] text-white/45">Fälligkeit</label>
            <input
             type="date"
+            aria-label="Faelligkeit"
             value={doc.editableData.dueDate?.split("T")[0] || ""}
             onChange={(event) =>
              setDoc((prev) => ({
@@ -270,6 +272,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
           <label className="text-[11px] text-white/45">Zahlungsbedingungen</label>
           <input
            type="text"
+           aria-label="Zahlungsbedingungen"
            value={doc.editableData.paymentTerms || ""}
            onChange={(event) =>
             setDoc((prev) => ({
@@ -309,6 +312,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
             <div className="space-y-1.5">
              <label className="text-[11px] text-white/45">Beschreibung</label>
              <input
+              aria-label={`Beschreibung Position ${index + 1}`}
               value={item.description}
               onChange={(event) => handleUpdateItem(item.id, { description: event.target.value })}
               className="h-11 w-full rounded-xl border border-white/10 bg-black/20 px-3 text-sm text-white outline-none focus:border-blue-400/30"
@@ -320,6 +324,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
              <label className="text-[11px] text-white/45">Menge</label>
              <input
               type="number"
+              aria-label={`Menge Position ${index + 1}`}
               min="0"
               step="0.1"
               value={item.quantity}
@@ -331,6 +336,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
             <div className="space-y-1.5">
              <label className="text-[11px] text-white/45">Einheit</label>
              <input
+              aria-label={`Einheit Position ${index + 1}`}
               value={item.unit}
               onChange={(event) => handleUpdateItem(item.id, { unit: event.target.value })}
               className="h-11 w-full rounded-xl border border-white/10 bg-black/20 px-3 text-sm text-white outline-none focus:border-blue-400/30"
@@ -342,6 +348,7 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
              <label className="text-[11px] text-white/45">Einzelpreis</label>
              <input
               type="number"
+              aria-label={`Einzelpreis Position ${index + 1}`}
               min="0"
               step="0.01"
               value={item.unitPrice}
@@ -355,6 +362,8 @@ export function QuoteEditor({ document, onClose, onSave }: QuoteEditorProps) {
               {formatPrice(Number(item.quantity || 0) * Number(item.unitPrice || 0))}
              </div>
              <button
+              type="button"
+              aria-label={`Position ${index + 1} entfernen`}
               onClick={() => handleRemoveItem(item.id)}
               className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/20 text-white/45 transition-all hover:border-red-400/30 hover:text-red-300"
              >

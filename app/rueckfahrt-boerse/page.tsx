@@ -19,15 +19,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Rückfahrt-Börse – Leerfahrt & Transportstrecke prüfen | FLOXANT",
   description:
     "Start, Ziel, Datum und Umfang eintragen. FLOXANT prüft, ob Ihre Strecke zu einer Rückfahrt, Leerfahrt oder flexiblen Transportlösung ab Regensburg und Bayern passt.",
-  keywords: [
-    "Rückfahrt Transport",
-    "Leerfahrt Umzug",
-    "Leerfahrt Transport",
-    "Rückfahrt Regensburg",
-    "Transport Rückfahrt Bayern",
-    "Möbeltransport Rückfahrt",
-    "flexible Transportstrecke anfragen",
-  ],
 });
 
 const whatsappHref =

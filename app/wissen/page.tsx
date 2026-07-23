@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{}> }) {
     lang: "de",
     path: "wissen",
     title: "Ratgeber & Wissen rund um Umzug, Reinigung & Entrümpelung | FLOXANT",
-    description: "Praktische Hinweise für Umzug, Reinigung und Entrümpelung in Bayern.",
+    description: "Praktische Hinweise für Umzug, Reinigung und Entrümpelung in Regensburg.",
   });
 }
 export default async function WissenLandingPage() {

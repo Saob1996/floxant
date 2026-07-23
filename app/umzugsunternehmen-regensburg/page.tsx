@@ -13,13 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzugsunternehmen Regensburg | Fotos & Angebot prüfen",
     description:
       "Umzugsunternehmen Regensburg: Möbel, Etage, Strecke, Termin, Fotos und Preisrahmen senden. FLOXANT prüft Transport, Reinigung und Übergabe.",
-    keywords: [
-      "Umzugsunternehmen Regensburg",
-      "Umzugsfirma Regensburg",
-      "Umzug Regensburg",
-      "Umzug mit Reinigung Regensburg",
-      "Wohnungsübergabe Regensburg",
-    ],
   });
 }
 
@@ -52,8 +45,29 @@ const faqItems = [
   },
   {
     q: "Wie bekomme ich einen Preisrahmen?",
-    a: "Der schnellste Startpunkt ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen strukturiert abgefragt.",
+    a: "Der schnellste Startpunkt ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen konkret abgefragt.",
   },
+  {
+    q: "Welche Angaben braucht FLOXANT für ein Umzugsangebot?",
+    a: "Wichtig sind Startadresse, Zieladresse, Etage, Aufzug, Laufweg, Halte- oder Parkmöglichkeit, grobe Möbelmenge, Kartons, große Einzelstücke, Terminfenster und Fotos von Engstellen.",
+  },
+  {
+    q: "Worin unterscheidet sich diese Seite von Umzug Regensburg?",
+    a: "Diese Seite bedient die Suche nach einem Umzugsunternehmen in Regensburg. Die Seite Umzug Regensburg erklärt den konkreten Ablauf für Transport, Zusatzleistungen, Reinigung und Übergabe.",
+  },
+  {
+    q: "Kann FLOXANT kurzfristige Umzüge prüfen?",
+    a: "Ja, nach Verfügbarkeit und Umfang. Für kurzfristige Anfragen sind Fotos, Pflichtumfang, Zugang, Etage und Terminfenster besonders wichtig, damit keine falsche Zusage entsteht.",
+  },
+];
+
+const relatedLinks = [
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+  { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
+  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
+  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
 ];
 
 export default function UmzugsunternehmenRegensburgPage() {
@@ -61,10 +75,10 @@ export default function UmzugsunternehmenRegensburgPage() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "@id": `${company.url}/umzugsunternehmen-regensburg#service`,
+      "@id": `${company.url}/regensburg/umzugsunternehmen#service`,
       name: "Umzugsunternehmen Regensburg",
       serviceType: "MovingService",
-      url: `${company.url}/umzugsunternehmen-regensburg`,
+      url: `${company.url}/regensburg/umzugsunternehmen`,
       provider: {
         "@type": "MovingCompany",
         name: company.name,
@@ -91,7 +105,7 @@ export default function UmzugsunternehmenRegensburgPage() {
           "@type": "ListItem",
           position: 3,
           name: "Umzugsunternehmen Regensburg",
-          item: `${company.url}/umzugsunternehmen-regensburg`,
+          item: `${company.url}/regensburg/umzugsunternehmen`,
         },
       ],
     },
@@ -123,7 +137,7 @@ export default function UmzugsunternehmenRegensburgPage() {
             <div className="inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700">
               Regensburg Kerngebiet
             </div>
-            <h1 className="mt-7 max-w-[15ch] text-4xl font-bold leading-[1.02] tracking-[-0.025em] text-slate-950 md:text-6xl">
+            <h1 className="mt-7 max-w-[15ch] text-4xl font-bold leading-[1.02] tracking-normal text-slate-950 md:text-6xl">
               Umzugsunternehmen Regensburg mit sauberer Planung bis zur Übergabe
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
@@ -183,7 +197,7 @@ export default function UmzugsunternehmenRegensburgPage() {
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[2rem] border border-blue-100 bg-blue-50/70 p-7">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Nächster sinnvoller Schritt
+              So geht es weiter
             </div>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950">
               Erst Aufwand einordnen, dann Angebot prüfen.
@@ -202,6 +216,28 @@ export default function UmzugsunternehmenRegensburgPage() {
                 </summary>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
               </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-7xl rounded-[1.6rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+          <div className="text-[10px] font-black uppercase tracking-normal text-blue-700">
+            Regensburg Cluster
+          </div>
+          <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
+            Passende Seiten für Umzug, Räumung und Übergabe
+          </h2>
+          <div className="mt-5 flex flex-wrap gap-3">
+            {relatedLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-800 transition hover:border-blue-200 hover:bg-white"
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>

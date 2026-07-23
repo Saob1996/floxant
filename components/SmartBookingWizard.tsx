@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
@@ -11,9 +14,11 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
+  FileSearch,
   MessageSquare,
   MapPin,
   PackageOpen,
+  Route,
   Shield,
   Sparkles,
   Trash2,
@@ -303,8 +308,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     isDusseldorfQueryContext && queryServicePreset === "entsorgung";
   const isDusseldorfMovingQueryContext =
     isDusseldorfQueryContext && queryServicePreset === "umzug";
-  const isDusseldorfCleaningQueryContext =
-    isDusseldorfQueryContext && queryServicePreset === "reinigung";
   const storeService = useCalculatorStore((s) => s.serviceType);
   const storeBase = useCalculatorStore((s) => s.baseDetails);
   const storeLead = useCalculatorStore((s) => s.leadDetails);
@@ -345,7 +348,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     },
     headings: {
       service_selection: "Womit dürfen wir starten?",
-      service_subtitle: "Wählen Sie Ihre Hauptleistung.",
+      service_subtitle: "Wählen Sie Ihre Hauptleistung. Anfrage auf Deutsch oder Englisch möglich.",
       details_prefix: "Angaben zu",
       upgrades_title: "Passende Extras",
       upgrades_subtitle: "Ergänzen Sie nur, was für Ihren Auftrag wirklich relevant ist.",
@@ -356,9 +359,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       success_email: "Wir melden uns über {email}",
     },
     services: {
-      umzug: { label: "Umzug", desc: "Wohnungs- und Firmenumzug" },
-      reinigung: { label: "Reinigung", desc: "Objekt, Zustand, Termin und Budget klären" },
-      entsorgung: { label: "Entrümpelung", desc: "Räumung und Entsorgung" },
+      umzug: { label: "Umzug / Moving", desc: "Wohnungs- und Firmenumzug, moving help oder relocation" },
+      reinigung: { label: "Reinigung / Cleaning", desc: "Objekt, Zustand, Termin, cleaning service und Budget klären" },
+      entsorgung: { label: "Entrümpelung / Decluttering", desc: "Räumung, house clearance und Entsorgung" },
     },
     form: {
       start_address: "Startadresse",
@@ -389,8 +392,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         desc: "Besonders sensible Einsätze",
       },
       "24h_service": {
-        title: "24h-Service",
-        desc: "Kurzfristige Verfügbarkeit",
+        title: "Kurzfristige Anfrage",
+        desc: "Wunschtermin und Machbarkeit prüfen",
       },
       furniture_opt: {
         title: "Möbelservice",
@@ -416,6 +419,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   };
 
   const t = germanizeDeep(dict?.booking || defaultBooking);
+  const withEnglishHint = (label: string, hint: string) =>
+    label.toLowerCase().includes(hint.toLowerCase()) ? label : `${label} / ${hint}`;
 
   const [state, setState] = useState<BookingState>({
     step: 1,
@@ -458,9 +463,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         ? "entsorgung"
         : isDusseldorfMovingQueryContext
           ? "umzug"
-          : isDusseldorfCleaningQueryContext
-            ? "reinigung"
-            : (storeService as ServiceType));
+          : (storeService as ServiceType));
 
     if (presetService) {
       setState((prev) => ({
@@ -487,7 +490,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       });
     }
   }, [
-    isDusseldorfCleaningQueryContext,
     isDusseldorfDisposalQueryContext,
     isDusseldorfMovingQueryContext,
     initialService,
@@ -913,8 +915,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       ? "duesseldorf_moving_booking"
       : isDusseldorfDisposalQueryContext
       ? "duesseldorf_disposal_booking"
-      : isDusseldorfCleaningQueryContext
-        ? "duesseldorf_cleaning_booking"
         : normalizedEntry.includes("budget")
           ? "booking_budget_request"
         : normalizedEntry.includes("express")
@@ -940,8 +940,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       ? "/buchung?service=umzug&region=duesseldorf"
       : isDusseldorfDisposalQueryContext
       ? "/buchung?service=entsorgung&region=duesseldorf"
-      : isDusseldorfCleaningQueryContext
-        ? "/buchung?service=reinigung&region=duesseldorf"
         : "/buchung";
     const regionPreset = isDusseldorfQueryContext ? "duesseldorf" : "";
     const landingPage =
@@ -1009,7 +1007,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           ...(files.length ? ["Bildmaterial vorhanden"] : []),
         ].slice(0, 5),
         priceExplanation:
-          "Diese Anfrage enthält die wichtigsten Eckdaten für eine strukturierte Einschätzung. FLOXANT prüft daraus Route, Termin, Zugang und Zusatzleistungen vor dem nächsten Schritt.",
+          "Diese Anfrage enthält die wichtigsten Eckdaten für eine Prüfung der konkreten Eckdaten. FLOXANT prüft daraus Route, Termin, Zugang und Zusatzleistungen vor dem nächsten Schritt.",
         pricingSignals: {
           inquiryMode: bookingSource,
           serviceType: state.service,
@@ -1106,6 +1104,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     submitData.append("name", formData.name.trim());
     submitData.append("email", formData.email.trim());
     submitData.append("phone", formData.phone.trim());
+    submitData.append("privacyConsent", "true");
     submitData.append("timestamp", createdAt);
     if (state.details.budget.trim()) {
       submitData.append("budget", state.details.budget.trim());
@@ -1143,7 +1142,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         }
       }
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -1182,30 +1181,106 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       href?: string;
       eyebrow: string;
       accent: string;
+      actionLabel?: string;
     }> = [
       {
         id: "umzug",
-        label: t?.services?.umzug?.label || "Umzug",
-        desc: t?.services?.umzug?.desc || "Wohnungs- und Firmenumzug",
+        label: withEnglishHint(t?.services?.umzug?.label || "Umzug", "Moving"),
+        desc: t?.services?.umzug?.desc || "Wohnungs- und Firmenumzug, moving help oder relocation",
         icon: Box,
         eyebrow: "Umzug",
         accent: "from-blue-600 to-cyan-500",
       },
       {
         id: "reinigung",
-        label: t?.services?.reinigung?.label || "Reinigung",
-        desc: t?.services?.reinigung?.desc || "Wohnung, Endreinigung oder Objekt sauber einordnen",
+        label: withEnglishHint(t?.services?.reinigung?.label || "Reinigung", "Cleaning"),
+        desc: t?.services?.reinigung?.desc || "Wohnung, Endreinigung, office cleaning oder Objekt sauber einordnen",
         icon: Sparkles,
         eyebrow: "Reinigung",
         accent: "from-teal-500 to-cyan-500",
       },
       {
         id: "entsorgung",
-        label: t?.services?.entsorgung?.label || "Entrümpelung",
-        desc: t?.services?.entsorgung?.desc || "Räumung und Entsorgung",
+        label: withEnglishHint(t?.services?.entsorgung?.label || "Entrümpelung", "Decluttering"),
+        desc: t?.services?.entsorgung?.desc || "Räumung, house clearance und Entsorgung",
         icon: Trash2,
         eyebrow: "Entrümpelung",
         accent: "from-orange-500 to-amber-400",
+      },
+      {
+        id: "leerfahrt",
+        label: "Rückfahrt / Transport",
+        desc: "Flexible Strecke, moving help oder Beiladung mit Route und Volumen prüfen",
+        icon: Route,
+        eyebrow: "Transport",
+        accent: "from-sky-600 to-blue-500",
+        actionLabel: "Strecke prüfen",
+      },
+      {
+        id: "solarreinigung",
+        label: "Solar / PV cleaning",
+        desc: "PV-Anlage mit Modulfläche, Fotos, Dachzugang und Sicherheit einordnen",
+        icon: Sparkles,
+        isLink: true,
+        href: "/buchung?service=reinigung&addon=solarreinigung&entry=solar#buchungssystem",
+        eyebrow: "Solar/PV",
+        accent: "from-emerald-500 to-cyan-500",
+        actionLabel: "Solar/PV anfragen",
+      },
+      {
+        id: "angebot-pruefen",
+        label: "Angebot prüfen / Quote check",
+        desc: "Vorhandenes Angebot, Screenshot oder Preis mit Umfang und Termin prüfen lassen",
+        icon: FileSearch,
+        isLink: true,
+        href: "/angebot-guenstiger-pruefen#guenstiger-form",
+        eyebrow: "Fairpreis",
+        accent: "from-amber-500 to-orange-400",
+        actionLabel: "Angebot prüfen",
+      },
+      {
+        id: "objektbrief",
+        label: "Objektbrief",
+        desc: "Wenn Leistung, Ziel, Zugang, Fotos oder Budget zuerst sortiert werden sollen",
+        icon: Shield,
+        isLink: true,
+        href: "/objektbrief#schnellstart",
+        eyebrow: "Objekt",
+        accent: "from-slate-700 to-blue-600",
+        actionLabel: "Objektbrief öffnen",
+      },
+      {
+        id: "plan-b",
+        label: "Plan B",
+        desc: "Wenn Termin, Anbieter, Reinigung, Räumung oder Übergabe wackeln",
+        icon: Clock,
+        isLink: true,
+        href: "/plan-b-service#plan-b-form",
+        eyebrow: "Backup",
+        accent: "from-red-500 to-amber-500",
+        actionLabel: "Plan B prüfen",
+      },
+      {
+        id: "uebergabe-sprint",
+        label: "Übergabe-Sprint",
+        desc: "Wenn Reinigung, Restmengen, Fotos oder Schlüsselweg vor einem Termin priorisiert werden müssen",
+        icon: Calendar,
+        isLink: true,
+        href: "/uebergabe-sprint",
+        eyebrow: "Übergabe",
+        accent: "from-violet-600 to-blue-500",
+        actionLabel: "Sprint starten",
+      },
+      {
+        id: "diskret-service",
+        label: "Diskret-Service",
+        desc: "Für Nachlass, Trennung, sensible Räumung oder ruhige Rückruf-Abstimmung",
+        icon: Shield,
+        isLink: true,
+        href: "/private-client-service",
+        eyebrow: "Diskret",
+        accent: "from-slate-800 to-slate-600",
+        actionLabel: "Diskret anfragen",
       },
     ];
 
@@ -1213,8 +1288,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       ? options.filter((option) => option.id === "umzug")
       : isDusseldorfDisposalQueryContext
       ? options.filter((option) => option.id === "entsorgung")
-      : isDusseldorfCleaningQueryContext
-        ? options.filter((option) => option.id === "reinigung")
         : options;
 
     return (
@@ -1229,12 +1302,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           <div className="rounded-[1.35rem] border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-950">
             Dieser Düsseldorf-Startpunkt ist auf Umzug ausgerichtet: Volumen,
             Adressen, Zugang, Termin und Fotos helfen bei der Prüfung.
-          </div>
-        ) : null}
-        {isDusseldorfCleaningQueryContext ? (
-          <div className="rounded-[1.35rem] border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-semibold leading-6 text-teal-950">
-            Dieser Düsseldorf-Startpunkt ist auf Reinigung ausgerichtet. Andere
-            Düsseldorfer Leistungen laufen über ihre passenden lokalen Kontaktwege.
           </div>
         ) : null}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -1263,7 +1330,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{option.desc}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
-                Preisrahmen nennen
+                {option.actionLabel || "Startpunkt öffnen"}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
@@ -1299,7 +1366,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{option.desc}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                Startpunkt wählen
+                {option.actionLabel || "Startpunkt wählen"}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </button>
@@ -1364,6 +1431,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               icon={<MapPin className="h-4 w-4" />}
             >
               <input
+                aria-label={primaryLocationLabel}
                 value={state.details.startAddress}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1385,6 +1453,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 required={false}
               >
                 <input
+                  aria-label={`${state.service === "leerfahrt" ? "Zielort oder Richtung" : t?.form?.end_address || "Zieladresse"} falls bekannt`}
                   value={state.details.endAddress}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1406,6 +1475,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 icon={isExpressFlow ? <MessageSquare className="h-4 w-4" /> : <PackageOpen className="h-4 w-4" />}
               >
                 <input
+                  aria-label={flowDetailsIntro.scopeLabel}
                   value={state.details.scope}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1422,6 +1492,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             {showFlowBudgetField ? (
               <FieldBox label={briefingLabels.budget} icon={<Clock className="h-4 w-4" />}>
                 <input
+                  aria-label={briefingLabels.budget}
                   value={state.details.budget}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1466,6 +1537,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 <input
                   type="date"
                   min={todayInputValue || undefined}
+                  aria-label={`${t?.form?.date || "Wunschtermin"} falls bekannt`}
                   value={state.details.date}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1480,6 +1552,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FieldBox label={briefingLabels.scope} icon={<PackageOpen className="h-4 w-4" />} required={false}>
               <input
+                aria-label={briefingLabels.scope}
                 value={state.details.scope}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1494,6 +1567,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
             <FieldBox label={briefingLabels.access} icon={<Shield className="h-4 w-4" />} required={false}>
               <input
+                aria-label={briefingLabels.access}
                 value={state.details.access}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1530,7 +1604,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
           {isDusseldorfServiceConflict ? (
             <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
-              Für Düsseldorf bitte Umzug, Reinigung oder Entrümpelung/Entsorgung
+              Für Düsseldorf bitte Umzug oder Entsorgung
               wählen oder den passenden lokalen Kontaktweg öffnen.
             </div>
           ) : null}
@@ -1562,7 +1636,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       },
       {
         id: "24h_service",
-        title: u?.["24h_service"]?.title || "24h-Service",
+        title: u?.["24h_service"]?.title || "Kurzfristige Anfrage",
         icon: Clock,
         desc: u?.["24h_service"]?.desc || "",
         service: ["umzug", "entsorgung", "reinigung"],
@@ -1827,6 +1901,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             <FieldBox label={t?.form?.name || "Name"}>
               <input
                 required
+                aria-label={t?.form?.name || "Name"}
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -1840,6 +1915,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <input
                 type="tel"
                 required
+                aria-label={t?.form?.phone || "Telefon"}
                 value={formData.phone}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, phone: e.target.value }))
@@ -1869,6 +1945,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <FieldBox label={`${t?.form?.email || "E-Mail"} falls gewünscht`} required={false}>
                 <input
                   type="email"
+                  aria-label={`${t?.form?.email || "E-Mail"} falls gewünscht`}
                   value={formData.email}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
@@ -1908,6 +1985,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </div>
             </div>
           )}
+
+          <PrivacyConsentField />
 
           {submitError ? (
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
@@ -2038,6 +2117,10 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 <p className="mx-auto max-w-2xl text-slate-500">
                   {t?.headings?.service_subtitle ||
                     "Wählen Sie den passenden Kontaktweg für Ihre Anfrage"}
+                </p>
+                <p className="mx-auto max-w-2xl text-sm font-semibold text-blue-700">
+                  Kurze Anfrage auf Deutsch oder Englisch möglich. Stichworte wie cleaning service,
+                  moving help oder house clearance reichen für den Start.
                 </p>
               </div>
               {renderServiceSelection()}

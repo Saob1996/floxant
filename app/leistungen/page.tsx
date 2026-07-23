@@ -3,7 +3,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, FileSearch, MapPin, Sparkles } from "lucide-react";
 
+import {
+  OfferCheckCTA,
+  ProblemBasedServiceLinks,
+  RelatedSpecialServices,
+  ServiceClusterLinks,
+  ServiceDecisionGuide,
+  SignatureServicesGrid,
+  TrustProofSection,
+} from "@/components/conversion";
+import { ServiceFinder } from "@/components/ContactPathChooser";
+import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
+import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
+import { ServiceNavigationOverview } from "@/components/ServiceNavigationOverview";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
+import { LocationClarityPanel } from "@/components/LocationClarityPanel";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarityGrid";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
+import { ServiceCatalog } from "@/components/services/ServiceCatalog";
 import { company } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
@@ -14,7 +36,15 @@ import {
   getServicesByRegionAndCategory,
   type FloxantRegion,
 } from "@/lib/floxant-services";
+import { locationClarityItems, signatureServiceClarityItems } from "@/lib/professional-copy";
 import { regensburgCleaningReviewRoutes } from "@/lib/regional-route-policy";
+import {
+  offerCheckLinks,
+  specialCleaningLinks,
+  specialClearanceLinks,
+  specialMovingLinks,
+} from "@/lib/signature-special-services";
+import { publicServices } from "@/lib/services/service-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -27,8 +57,8 @@ const regionOrder: FloxantRegion[] = ["duesseldorf", "regensburg"];
 
 const faqItems = [
   {
-    q: "Warum sind die Leistungen nach Düsseldorf und Regensburg getrennt?",
-    a: "FLOXANT Düsseldorf steht für gewerbliche Reinigung. FLOXANT Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe. Die Trennung hilft Kunden, direkt den passenden Bereich zu finden.",
+    q: "Wo ist Reinigung bei FLOXANT verfügbar?",
+    a: "FLOXANT prüft Reinigungsanfragen für Düsseldorf und Regensburg anhand des konkreten Orts, Objekts und Umfangs. Eine Anfrage ist noch keine Verfügbarkeitszusage.",
   },
   {
     q: "Kann ich ein bestehendes Angebot prüfen lassen?",
@@ -38,13 +68,57 @@ const faqItems = [
     q: "Sind alle Services sofort buchbar?",
     a: "Nein. Jede Anfrage wird nach Region, Objekt, Umfang, Termin und Machbarkeit geprüft. Danach erhalten Sie eine klare Rückmeldung zum sinnvollen nächsten Schritt.",
   },
+  {
+    q: "Warum sind nicht alle Ideen eigene Seiten?",
+    a: "FLOXANT zeigt eine eigene Seite, wenn die Leistung einen klaren Nutzen und genügend konkrete Informationen bietet. Weitere Themen bleiben als Leistungskarte oder häufige Frage sichtbar.",
+  },
 ];
+
+const serviceClusterGuide = [
+  {
+    title: "Reinigung, Solar und Außenflächen",
+    text: "Für Büro, Praxis, Gewerbe, Glas, Fassade, Solar/PV und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
+    href: "/regensburg/reinigung",
+    cta: "Reinigungswege öffnen",
+  },
+  {
+    title: "Umzug und Transport",
+    text: "Für Wohnungswechsel, Mini-Umzug, Möbeltransport, Express-Umzug oder Rückfahrt. Entscheidend sind Route, Volumen, Etage und Termin.",
+    href: "/regensburg/umzug",
+    cta: "Umzug/Transport wählen",
+  },
+  {
+    title: "Räumung und Auflösung",
+    text: "Für Entrümpelung, Keller, Lager, Nachlass und Haushaltsauflösung. Fotos, Menge, Material, Zugang und gewünschter Endzustand helfen.",
+    href: "/regensburg/entruempelung",
+    cta: "Räumung einordnen",
+  },
+  {
+    title: "Angebot, Fairpreis und Vergleich",
+    text: "Wenn bereits ein Angebot, Preis oder Screenshot vorliegt: Umfang, Zusatzkosten, Termin und Alternative sachlich prüfen lassen.",
+    href: "/angebot-guenstiger-pruefen",
+    cta: "Angebot prüfen",
+  },
+  {
+    title: "Besondere FLOXANT-Leistungen",
+    text: "Für Objektbrief, Fairpreis-Check, Übergabe-Sprint, Plan-B-Service, Rückfahrt-Radar und PV-Sichtklar.",
+    href: "/signature-services",
+    cta: "Besondere Leistungen ansehen",
+  },
+] as const;
+
+const serviceTrustProofs = [
+  "Jede Anfrage beginnt mit Ort, Leistung, kurzer Beschreibung und einem Kontaktweg.",
+  "Fotos, vorhandene Angebote, Budget, Termin oder Dringlichkeit bleiben optional, aber hilfreich.",
+  "Die Leistungsseite führt zu echten Kontaktwegen statt zu dünnen Einzelideen.",
+  "Reinigung bleibt lokal auf Regensburg plus 50 km begrenzt, damit Anfrage und Erwartung zusammenpassen.",
+] as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Leistungen | Düsseldorf Reinigung & Regensburg Übergabe",
+  title: "FLOXANT Leistungen: Reinigung, Umzug und mehr anfragen",
   description:
-    "Alle FLOXANT Leistungen klar nach Region: Düsseldorf für Reinigung von Unternehmen, Praxen und Gewerbe. Regensburg für Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
+    "Wählen Sie Region und Aufgabe: Reinigung, Umzug, Räumung, Angebotsprüfung oder diskrete Hilfe direkt anfragen.",
   alternates: {
     canonical,
   },
@@ -53,9 +127,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "FLOXANT Leistungen nach Region",
+    title: "FLOXANT Leistungen nach Region und Aufgabe",
     description:
-      "Düsseldorf: Reinigung. Regensburg: Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
+      "Leistung wählen und mit Ort, Umfang, Fotos und Termin in Düsseldorf oder Regensburg anfragen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -74,13 +148,18 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Leistungen",
         description:
-          "Zentrale Leistungsübersicht für FLOXANT Düsseldorf Reinigung und FLOXANT Regensburg Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
+          "Zentrale Leistungsübersicht für FLOXANT Düsseldorf und Regensburg: Reinigung, Umzug, Transport, Entrümpelung, Haushaltsauflösung, Übergabe und Angebotsprüfung.",
         path,
         about: [
-          "Gewerbereinigung Düsseldorf",
-          "Büroreinigung Düsseldorf",
-          "Praxisreinigung Düsseldorf",
+          "Gewerbereinigung Regensburg",
+          "Büroreinigung Regensburg",
+          "Praxisreinigung Regensburg",
+          "Reinigung Regensburg 50 km",
+          "Glasreinigung",
+          "Fassadenreinigung",
           "Umzug Regensburg",
+          "Mini-Umzug",
+          "Möbeltransport",
           "Entrümpelung Regensburg",
           "Haushaltsauflösung Regensburg",
           "Angebot prüfen lassen",
@@ -126,10 +205,11 @@ export default function LeistungenPage() {
 
       <section className="relative isolate bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <Image
-          src="/assets/floxant-hero-neu-gedacht.png"
+          src="/assets/floxant-hero-neu-gedacht.webp"
           alt="FLOXANT Leistungen nach Region"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover opacity-45"
         />
@@ -140,12 +220,13 @@ export default function LeistungenPage() {
             Erst Region wählen, dann passende Leistung anfragen
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl lg:text-6xl">
-            FLOXANT Leistungen klar nach Düsseldorf und Regensburg getrennt.
+            Reinigung, Umzug, Räumung und weitere FLOXANT-Leistungen.
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            Düsseldorf bündelt die Reinigungsleistungen für Unternehmen, Praxen, Büros und
-            Gewerbeobjekte. Regensburg bündelt Umzug, Entrümpelung, Haushaltsauflösung,
-            Endreinigung und Übergabe.
+            Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
+            Düsseldorf und Regensburg bündeln die jeweils öffentlich geprüften Leistungen
+            für Reinigung, Umzug, Transport, Räumung und Übergabe. Wenn bereits ein Angebot
+            vorliegt, ist die Angebotsprüfung der kürzere Weg.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {regionOrder.map((regionId) => {
@@ -165,7 +246,7 @@ export default function LeistungenPage() {
               );
             })}
             <Link
-              href="/angebot-vergleichen-duesseldorf"
+              href="/angebot-vergleichen-regensburg"
               data-event="hero_cta_click"
               data-source="leistungen_hero"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200/50 bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-200"
@@ -177,11 +258,53 @@ export default function LeistungenPage() {
         </div>
       </section>
 
+      <LocationClarityPanel locations={locationClarityItems} />
+
+      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20" aria-labelledby="service-katalog-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Öffentlich geprüftes Service-Register</p>
+            <h2 id="service-katalog-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Leistungen nach Region und Bedarf filtern
+            </h2>
+            <p className="mt-4 font-medium leading-7 text-slate-700">
+              Der Katalog zeigt nur Leistungen, die im zentralen Register für die öffentliche Darstellung freigegeben sind. Die Filter arbeiten ausschließlich lokal im Browser und erzeugen keine indexierbaren Ergebnis-URLs.
+            </p>
+          </div>
+          <noscript>
+            <p className="mb-6 rounded-xl border border-cyan-200 bg-cyan-50 p-4 font-semibold text-slate-800">
+              Alle freigegebenen Leistungen bleiben als Links sichtbar; die Filter benötigen JavaScript.
+            </p>
+          </noscript>
+          <ServiceCatalog services={publicServices} locale="de" />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/service-finder" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">
+              Service Finder öffnen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link href="/fragen" className="inline-flex min-h-12 items-center rounded-xl border border-slate-300 px-5 text-sm font-black text-slate-900 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">Häufige Fragen ansehen</Link>
+          </div>
+        </div>
+      </section>
+
+      <ServiceNavigationOverview
+        title="Die wichtigsten Leistungen ohne Suchschleife."
+        intro="Reinigung, Umzug, Räumung, Angebotsprüfung und besondere Leistungen sind nach typischen Kundensituationen geordnet."
+      />
+
+      <DecisionCompassPanel />
+
+      <SignatureServiceClarityGrid
+        title="Zusätzliche Hilfe für besondere Situationen."
+        intro="Wenn Angebot, Objekt, Übergabe oder Plan B unklar sind, hilft eine passende Vorprüfung. So können Sie Ihre Situation verständlich beschreiben und die nötigen Angaben vorbereiten."
+        services={signatureServiceClarityItems}
+      />
+
       <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            "Düsseldorf: Reinigung für Unternehmen, Praxen und Gewerbe",
-            "Regensburg: Umzug, Räumung, Haushaltsauflösung und Übergabe",
+            "Regensburg: Reinigung, Büro, Gewerbe, Praxis und Übergabe",
+            "Regensburg: Umzug, Transport, Räumung, Haushaltsauflösung und Übergabe",
             "FLOXANT Signature für diskrete oder abstimmungsintensive Fälle",
             "Angebotsprüfung, wenn bereits ein Preis oder Angebot vorliegt",
           ].map((item) => (
@@ -192,6 +315,91 @@ export default function LeistungenPage() {
           ))}
         </div>
       </section>
+
+      <ServiceDecisionGuide
+        eyebrow="Leistungen im Überblick"
+        title="Erst die Situation wählen, dann die passende Leistung öffnen."
+        intro="Manche Anfragen betreffen mehrere Aufgaben. Diese Übersicht führt Sie zum passenden Formular."
+        items={serviceClusterGuide}
+      />
+
+      <ServicePackageDecisionExperience
+        variant="default"
+        limitPerGroup={2}
+        heading="Einzelne oder verbundene Leistungen auswählen."
+        intro="Die Übersicht trennt einzelne Leistungen, kombinierte Aufgaben und die Angebotsprüfung. So finden Sie schneller die passende Anfrage."
+      />
+
+      <ServiceFinder
+        compact
+        currentCity="regensburg"
+        title="Welche Leistung möchten Sie anfragen?"
+        intro="Wählen Sie eine Leistung und ergänzen Sie anschließend Ort, Umfang und Termin im Formular."
+        source="leistungen-service-finder"
+      />
+
+      <SignatureServicesGrid
+        title="Zusätzliche Hilfe verbindet mehrere Aufgaben."
+        intro="Angebotsprüfung, Objektbrief, Übergabe, Plan B, Rückfahrt und PV-Reinigung helfen, wenn eine normale Einzelanfrage nicht ausreicht."
+        limit={6}
+      />
+
+      <ProblemBasedServiceLinks limit={6} />
+
+      <ServiceClusterLinks
+        eyebrow="Besondere Leistungen"
+        title="Zusätzliche Hilfe für besondere Situationen"
+        intro="Wählen Sie die passende Unterstützung für Reinigung, Angebot, Übergabe oder dringende Fälle."
+        links={[
+          ...specialCleaningLinks.slice(0, 4),
+          ...specialMovingLinks.slice(0, 3),
+          ...specialClearanceLinks.slice(0, 3),
+        ]}
+      />
+
+      <RelatedSpecialServices
+        kind="offer"
+        title="Angebotsprüfung als eigene Leistung."
+        intro="Wenn Preis, Umfang oder Anbieterwahl schon im Raum stehen, fuehren diese Einstiege zur sachlichen Pruefung statt zu einem weiteren Vergleichsportal."
+        services={offerCheckLinks}
+        limit={3}
+      />
+
+      <OfferCheckCTA />
+
+      <TrustProofSection
+        eyebrow="Diese Angaben helfen"
+        title="Wenige Pflichtangaben, bessere Rückmeldung."
+        intro="FLOXANT fragt nur ab, was für den Start wichtig ist. Alles Weitere verbessert die Einschätzung, bleibt aber freiwillig."
+        proofs={serviceTrustProofs}
+      />
+
+      <TrustProofPanel
+        allowedPage="/leistungen"
+        serviceKey="reinigung"
+        title="Service-Trust bleibt an Angaben gebunden."
+        intro="Die Leistungsübersicht zeigt, welche Belege eine Anfrage verbessern, und welche Aussagen FLOXANT bewusst nicht als unbelegte Garantie nutzt."
+      />
+
+      <ServiceProofChecklist
+        serviceKey="reinigung"
+        title="Proof-Inputs für Reinigung, Umzug und Sonderfälle"
+        intro="Die Checkliste startet mit Reinigung, gilt als Muster für alle Leistungen: Objekt, Zugang, Fotos, Termin und Ziel müssen zusammenpassen."
+      />
+
+      <ProcessProofSteps />
+
+      <ProjectStoryGrid
+        title="Typische Ausgangslagen statt erfundener Case Studies."
+        intro="Die Übersicht nutzt nur abstrakte, klar gekennzeichnete Situationen. Echte Projektstorys bleiben verborgen, bis Einwilligung und Privacy-Check vorliegen."
+      />
+
+      <ServiceVisualProofGrid
+        title="Visual Proof mit Privacy-Grenzen."
+        intro="Sichtbare Visuals sind neutral. Echte Vorher-Nachher-Fotos oder Objektbilder werden erst nach Freigabe und Anonymisierung genutzt."
+      />
+
+      <LocalProofPanel location="regensburg" className="bg-slate-900" />
 
       {regionOrder.map((regionId) => {
         const region = floxantRegions[regionId];

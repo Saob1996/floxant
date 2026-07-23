@@ -69,7 +69,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
   ];
   const authorityActions = [
     {
-      title: "Anfrage strukturiert starten",
+      title: "Anfrage mit konkreten Eckdaten starten",
       desc: `Für ${city}, wenn Leistung, Ort und Termin schon grob feststehen.`,
       href: "/buchung",
       icon: ClipboardCheck,

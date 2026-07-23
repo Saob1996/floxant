@@ -14,6 +14,7 @@ type FloxServiceCardProps = {
   className?: string;
   source?: string;
   onNavigate?: () => void;
+  prefetch?: boolean;
 };
 
 export function FloxServiceCard({
@@ -21,6 +22,7 @@ export function FloxServiceCard({
   compact = false,
   className,
   onNavigate,
+  prefetch = false,
   source = "service_card",
 }: FloxServiceCardProps) {
   const region = floxantRegions[service.region];
@@ -28,6 +30,7 @@ export function FloxServiceCard({
   return (
     <Link
       href={service.href}
+      prefetch={prefetch}
       data-event="service_card_click"
       data-service={service.id}
       data-region={service.region}

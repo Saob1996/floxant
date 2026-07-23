@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Loader2, MessageCircle, Send, ShieldCheck } from "lucide-react";
@@ -21,19 +24,19 @@ const DEFAULT_SERVICE_CONTEXT: CleaningServiceContext = {
  shortLabel: "B2B-Reinigung",
  serviceType: "gewerbereinigung_regensburg",
  source: "gewerbereinigung_regensburg",
- entryPoint: "/gewerbereinigung-regensburg",
+ entryPoint: "/regensburg/gewerbereinigung",
  defaultPropertyType: "Büro & Office",
  helper: "Objektart, Größenordnung, Turnus und Kontaktdaten",
 };
 
 const SERVICE_CONTEXT_BY_PATH: Record<string, CleaningServiceContext> = {
- "/gewerbereinigung-regensburg": DEFAULT_SERVICE_CONTEXT,
- "/bueroreinigung-regensburg": {
+ "/regensburg/gewerbereinigung": DEFAULT_SERVICE_CONTEXT,
+ "/regensburg/bueroreinigung": {
   label: "Büroreinigung Regensburg",
   shortLabel: "Büroreinigung",
   serviceType: "bueroreinigung_regensburg",
   source: "bueroreinigung_regensburg",
-  entryPoint: "/bueroreinigung-regensburg",
+  entryPoint: "/regensburg/bueroreinigung",
   defaultPropertyType: "Büro & Office",
   helper: "Bürofläche, Turnus, Randzeiten und Ansprechpartner",
  },
@@ -150,6 +153,7 @@ export function CommercialCleaningLeadForm() {
   const topDrivers = [serviceContext.label, form.propertyType, form.spaceRange, form.cadence, form.location].filter(Boolean);
 
   const payload = {
+   privacyConsent: true,
    name: form.name,
    email: form.email,
    phone: form.phone,
@@ -238,7 +242,7 @@ export function CommercialCleaningLeadForm() {
   };
 
   try {
-   const response = await fetch("/api/bookings", {
+   const response = await bookingFetch("/api/bookings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -405,6 +409,10 @@ export function CommercialCleaningLeadForm() {
        placeholder="z. B. Zugang, Randzeiten, Hygieneanforderungen, mehrere Etagen, feste Ansprechpartner"
       />
      </label>
+    </div>
+
+    <div className="mt-5">
+     <PrivacyConsentField />
     </div>
 
     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

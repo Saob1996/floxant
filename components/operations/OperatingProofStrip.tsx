@@ -5,7 +5,7 @@ import { m, useInView, useReducedMotion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 const stats = [
-  { value: 4, label: "Servicewege", text: "Umzug, Reinigung, Entrümpelung, Büroumzug" },
+  { value: 4, label: "Leistungen", text: "Umzug, Reinigung, Entrümpelung, Büroumzug" },
   { value: 3, label: "Kontaktwege", text: "Rechner, Buchung, WhatsApp" },
   { value: 1, label: "Ablauf", text: "Geführte Anfrage statt loser Preisfrage" },
 ] as const;

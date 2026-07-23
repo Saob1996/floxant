@@ -3,8 +3,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2, ChevronRight, Clock, Shield, Star, Truck, Zap } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { GrowthServiceLandingPage } from "@/components/GrowthServiceLandingPage";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { company } from "@/lib/company";
+import {
+  buildGrowthServiceMetadata,
+  getGrowthServicePageBySlug,
+  growthServiceRootPageSlugs,
+} from "@/lib/growth-service-pages";
 import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "@/get-dictionary";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
@@ -17,6 +24,8 @@ import {
   resolveNestedField,
 } from "@/lib/specialty-page";
 import { germanizeText } from "@/lib/german-text";
+import { getGscClickPriority } from "@/lib/gsc-click-priorities";
+import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import {
   dynamicLocalSeoRoutes,
   getDynamicLocalSeoRoute,
@@ -24,14 +33,44 @@ import {
 } from "@/lib/local-seo-routes";
 
 const DYNAMIC_CORE_SERVICE_PARAMS = ["fernumzug", "montage"] as const;
+const DEPRIORITIZED_DYNAMIC_CITY_SLUGS = new Set([
+  "forchheim",
+  "friedberg",
+  "wuerzburg",
+  "kempten",
+  "lindau",
+  "memmingen",
+  "kaufbeuren",
+  "traunstein",
+  "berlin",
+  "bremen",
+  "frankfurt",
+  "hamburg",
+  "leipzig",
+  "stuttgart",
+]);
+const LEGACY_REDIRECT_SERVICE_SLUGS = new Set([
+  "umzug-regensburg",
+  "reinigung-regensburg",
+  "entruempelung-regensburg",
+  "gewerbereinigung-regensburg",
+  "bueroreinigung-regensburg",
+  "wohnungsaufloesung-regensburg",
+  "umzugsunternehmen-regensburg",
+  "seniorenumzug-regensburg",
+  "umzug-reinigung-regensburg",
+  "endreinigung-regensburg",
+]);
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return [
-    ...dynamicLocalSeoRoutes.map((entry) => ({
-      serviceSlug: entry.route.replace(/^\//, ""),
-    })),
+    ...dynamicLocalSeoRoutes
+      .map((entry) => entry.route.replace(/^\//, ""))
+      .filter((serviceSlug) => !LEGACY_REDIRECT_SERVICE_SLUGS.has(serviceSlug))
+      .map((serviceSlug) => ({ serviceSlug })),
+    ...growthServiceRootPageSlugs.map((serviceSlug) => ({ serviceSlug })),
     ...DYNAMIC_CORE_SERVICE_PARAMS.map((serviceSlug) => ({ serviceSlug })),
   ];
 }
@@ -87,7 +126,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     {
       title: "Firmenumzug anfragen",
       href: "/buchung?service=umzug#buchungssystem",
-      text: "Wenn Büroflächen, Teamgröße und Zeitfenster strukturiert geprüft werden sollen.",
+      text: "Wenn Büroflächen, Teamgröße und Zeitfenster anhand der Eckdaten geprüft werden sollen.",
     },
     {
       title: "Aufwand vorrechnen",
@@ -279,6 +318,190 @@ function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
   }
 }
 
+function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
+  const gscPriority = getGscClickPriority(route.route);
+
+  if (!gscPriority) return null;
+
+  const serviceLabel = germanizeText(route.label);
+  const bookingHref = buildLeadHref({
+    service: route.service,
+    city: route.citySlug,
+    intent: `${route.service}-${route.citySlug}`,
+    priority: gscPriority.priority.toLowerCase(),
+  });
+
+  if (route.service !== "seniorenumzug") {
+    return (
+      <GscOpportunitySection
+        eyebrow={`${serviceLabel} ${city}`}
+        title={gscPriority.h1}
+        intro={`${serviceLabel} in ${city} wird besser einschätzbar, wenn Ort, Termin, Umfang, Zugang, Fotos und gewünschter Zielzustand zusammen vorliegen. FLOXANT prüft daraus den sinnvollen nächsten Schritt, ohne pauschale Preis- oder Sofortzusage.`}
+        proofTitle="Hilfreich für die Prüfung"
+        proofItems={[
+          `${city}, Stadtteil oder genaue Strecke nennen, damit Anfahrt, Laufwege und Terminfenster realistisch eingeordnet werden können.`,
+          "Fotos von Objekt, Menge, Fläche, Möbeln, Treppenhaus, Zugang oder Zustand verkürzen Rückfragen deutlich.",
+          "Ein vorhandenes Angebot oder Budget kann mitgesendet werden; FLOXANT ordnet Umfang und offene Punkte sachlich ein.",
+        ]}
+        cards={[
+          {
+            title: `${serviceLabel} direkt anfragen`,
+            text: "Starten Sie mit kurzer Beschreibung, Termin, Kontaktweg und den wichtigsten Eckdaten. Ausführliche Texte sind nicht nötig.",
+            href: bookingHref,
+            cta: "Eckdaten senden",
+          },
+          {
+            title: "Fotos und Zugang zeigen",
+            text: "Bilder von Treppenhaus, Laufweg, Räumen, Möbeln, Flächen oder Restmengen helfen mehr als eine grobe Schätzung.",
+            href: bookingHref,
+            cta: "Fotos vorbereiten",
+          },
+          {
+            title: "Angebot oder Budget prüfen",
+            text: "Wenn schon ein Preis oder Angebot vorliegt, können Umfang, Zusatzpunkte, Termin und Fotos zusammen eingeordnet werden.",
+            href: "/angebot-guenstiger-pruefen",
+            cta: "Angebot prüfen",
+          },
+          {
+            title: "Kombinationen früh nennen",
+            text: "Reinigung, Räumung, Restmengen, Übergabe oder Transport sollten früh sichtbar sein, damit der Ablauf nicht zu spät kippt.",
+            href: "/kontakt",
+            cta: "Kontaktweg klären",
+          },
+        ]}
+        checklistTitle={`Diese Angaben helfen bei ${serviceLabel} in ${city}`}
+        checklist={[
+          "Ort, Terminwunsch, Ansprechpartner und gewünschter Kontaktweg.",
+          "Umfang, Räume, Fläche, Möbelmenge, Etage, Aufzug, Laufweg oder Zugang.",
+          "Fotos, vorhandenes Angebot, Budgetrahmen oder spätester Übergabetermin.",
+          "Zusatzbedarf wie Reinigung, Entrümpelung, Entsorgung, Transport oder Übergabe.",
+        ]}
+        combinationsTitle="Häufige Ergänzungen zur Anfrage"
+        combinations={[
+          {
+            title: `${serviceLabel} + Preisrahmen`,
+            text: "Budget oder vorhandenes Angebot direkt mitschicken, damit Rückfragen konkreter werden.",
+            href: "/anfrage-mit-preisrahmen",
+          },
+          {
+            title: `${serviceLabel} + Reinigung`,
+            text: "Wenn danach eine Fläche übergeben oder nutzbar sein soll, Reinigung früh einplanen.",
+            href: "/reinigung",
+          },
+          {
+            title: `${serviceLabel} + Räumung`,
+            text: "Restmengen, Keller, Nebenräume oder alte Möbel separat sichtbar machen.",
+            href: "/entruempelung",
+          },
+          {
+            title: "Angebot sachlich prüfen",
+            text: "Vorhandene Angebote werden nur nach Umfang, Fotos und offenen Punkten eingeordnet.",
+            href: "/angebot-guenstiger-pruefen",
+          },
+        ]}
+        primaryHref={bookingHref}
+        primaryLabel={`${serviceLabel} ${city} anfragen`}
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
+        trackingService={route.service}
+        trackingCity={route.citySlug}
+        trackingPageIntent={route.service}
+        trackingPriority={gscPriority.priority.toLowerCase() as "p0" | "p1" | "p2" | "p3"}
+      />
+    );
+  }
+
+  return (
+    <GscOpportunitySection
+      eyebrow={`Umzug im Alter ${city}`}
+      title={gscPriority.h1}
+      intro={`Ein Umzug im Alter in ${city} braucht ruhige Vorbereitung: Packhilfe, Möbelabbau, Transport, Schlüsselweg, Fotos, Angehörigen-Abstimmung und bei Bedarf Reinigung oder Wohnungsauflösung werden vorab getrennt geklärt.`}
+      proofTitle="Ruhig planbar"
+      proofItems={[
+        "Angehörige können die Anfrage stellen, wenn Kontaktweg, Freigabe, Rückruf und gewünschte Rückmeldung klar benannt sind.",
+        "Packen, kleine Demontage, Transport und Aufbau werden nach Umfang, Etage, Aufzug, Laufweg und Terminfenster realistisch geprüft.",
+        "Entrümpelung, Wohnungsauflösung oder Endreinigung sind optional und werden nicht automatisch versprochen, sondern nach Fotos und Zielzustand eingeordnet.",
+      ]}
+      cards={[
+        {
+          title: "Packhilfe und Vorbereitung",
+          text: "Kartons, Kleidung, persönliche Gegenstände und empfindliche Dinge werden vorab als Bedarf genannt, damit der Umfang nicht erst am Umzugstag sichtbar wird.",
+          href: bookingHref,
+          cta: "Packbedarf nennen",
+        },
+        {
+          title: "Möbelabbau und Transport",
+          text: "Schränke, Bett, Tisch, Regale oder einzelne schwere Stücke sollten mit Fotos beschrieben werden. So wird klar, was zerlegt, getragen und transportiert werden muss.",
+          href: bookingHref,
+          cta: "Möbelumfang senden",
+        },
+        {
+          title: "Angehörige organisieren mit",
+          text: "Wenn Kinder, Verwandte oder Betreuer koordinieren, helfen ein Ansprechpartner, Rückrufzeit, Freigabe, Schlüsselweg und klare Entscheidungen.",
+          href: "/blog/seniorenumzug-fuer-angehoerige",
+          cta: "Ratgeber öffnen",
+        },
+        {
+          title: "Entrümpelung optional",
+          text: "Wenn nicht alles mitzieht, werden Keller, Möbel, Restmengen oder Nebenräume getrennt betrachtet. Fotos machen die Entscheidung leichter.",
+          href: "/entruempelung-bayern",
+          cta: "Räumung prüfen",
+        },
+        {
+          title: "Wohnungsauflösung optional",
+          text: "Bei Aufgabe einer Wohnung zählen Freigabe, Zielzustand, Entsorgung und mögliche Reinigung danach. Das wird ruhig und ohne Druck eingeordnet.",
+          href: "/wohnungsaufloesung-bayern",
+          cta: "Auflösung klären",
+        },
+        {
+          title: "Angebot sachlich prüfen",
+          text: "Wenn schon ein Umzugs- oder Räumungsangebot vorliegt, kann FLOXANT Umfang, Fotos, Termin, Etage und Budget ohne Preisgarantie einordnen.",
+          href: "/angebot-guenstiger-pruefen",
+          cta: "Angebot prüfen",
+        },
+      ]}
+      checklistTitle="Diese Angaben helfen besonders"
+      checklist={[
+        `Start, Ziel, Etage, Aufzug, Laufweg und Terminfenster in ${city}.`,
+        "Möbelmenge, Kartons, Fotos und was nicht mitgenommen werden soll.",
+        "Ob Packhilfe, Möbelabbau, Transport, Reinigung oder Räumung gebraucht wird.",
+        "Wer entscheidet, wer erreichbar ist und ob Angehörige nicht vor Ort sind.",
+      ]}
+      combinationsTitle="Häufige Kombinationen beim Umzug im Alter"
+      combinations={[
+        {
+          title: "Seniorenumzug + Packhilfe",
+          text: "Wenn Vorbereitung, Kartons und kleine Demontage entlasten sollen.",
+          href: bookingHref,
+        },
+        {
+          title: "Umzug + Wohnungsauflösung",
+          text: "Wenn nur ein Teil mitzieht und der Rest geordnet geräumt werden muss.",
+          href: "/wohnungsaufloesung-bayern",
+        },
+        {
+          title: "Umzug + Endreinigung",
+          text: "Für die alte Wohnung vor Übergabe, Verkauf oder Neuvermietung.",
+          href: "/umzug-mit-reinigung",
+        },
+        {
+          title: "Angehörige + Rückruf",
+          text: "Wenn Entscheidungen nicht vor Ort getroffen werden können.",
+          href: "/blog/seniorenumzug-fuer-angehoerige",
+        },
+      ]}
+      primaryHref={bookingHref}
+      primaryLabel="Umzug im Alter anfragen"
+      secondaryHref="/angebot-guenstiger-pruefen"
+      secondaryLabel="Angebot prüfen"
+      trackingService={route.service}
+      trackingCity={route.citySlug}
+      trackingPageIntent="seniorenumzug"
+      trackingPriority={gscPriority.priority.toLowerCase() as "p0" | "p1" | "p2" | "p3"}
+    />
+  );
+}
+
 async function generateLocalSeoMetadata(route: DynamicLocalSeoRoute): Promise<Metadata> {
   const { seoContent, seoFallback, city } = await getSpecialtyPageData({
     locale: "de",
@@ -287,12 +510,28 @@ async function generateLocalSeoMetadata(route: DynamicLocalSeoRoute): Promise<Me
   });
   const resolvedCity = germanizeText(city);
 
-  return generatePageSEO({
+  const metadata = generatePageSEO({
     lang: "de",
     path: route.route.replace(/^\//, ""),
     title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, resolvedCity, "de"),
     description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, resolvedCity, "de"),
   });
+
+  if (!DEPRIORITIZED_DYNAMIC_CITY_SLUGS.has(route.citySlug)) {
+    return metadata;
+  }
+
+  return {
+    ...metadata,
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: false,
+        follow: true,
+      },
+    },
+  };
 }
 
 async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
@@ -303,6 +542,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
     city: route.city,
   });
   const resolvedCity = germanizeText(city);
+  const gscOpportunity = renderLocalGscOpportunity(route, resolvedCity);
 
   return (
     <SpecialtyPageLayout
@@ -355,6 +595,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
         city={resolvedCity}
         currentHref={route.route}
       />
+      {gscOpportunity}
     </SpecialtyPageLayout>
   );
 }
@@ -368,6 +609,11 @@ export async function generateMetadata({
   const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return generateLocalSeoMetadata(localSeoRoute);
+  }
+
+  const growthServicePage = getGrowthServicePageBySlug(serviceSlug);
+  if (growthServicePage) {
+    return buildGrowthServiceMetadata(growthServicePage);
   }
 
   if (!isValidServiceSlug(serviceSlug)) {
@@ -389,12 +635,21 @@ export default async function CoreServicePage({ params }: PageProps) {
     return renderLocalSeoPage(localSeoRoute);
   }
 
+  const growthServicePage = getGrowthServicePageBySlug(serviceSlug);
+  if (growthServicePage) {
+    return <GrowthServiceLandingPage config={growthServicePage} />;
+  }
+
   if (!isValidServiceSlug(serviceSlug)) {
     notFound();
   }
   const dict = (await getDictionary("de")) as unknown as Record<string, unknown>;
   const isDe = true;
   const content = getServiceContent(dict, serviceSlug);
+  const coreServicePath = `/${serviceSlug}`;
+  const coreLead = resolveLeadIntent({ path: coreServicePath });
+  const coreContactHref = buildLeadHref({ path: coreServicePath });
+  const showCoreLeadCta = ["vermieter-ready-service", "uebergabe-sprint"].includes(serviceSlug);
   const area = getNestedRecord(dict, "area");
   const cities = getNestedRecord(area, "cities");
   const common = getNestedRecord(dict, "common");
@@ -496,7 +751,7 @@ export default async function CoreServicePage({ params }: PageProps) {
     { href: "#leistungen", title: "Leistungsbild", text: "Prinzipien und Einordnung auf einen Blick." },
     { href: "#ablauf", title: "Ablauf", text: "So wird Anfrage, Prüfung und Umsetzung geführt." },
     { href: "#faq", title: "FAQ", text: "Häufige Fragen direkt vor der Anfrage klären." },
-    { href: "#anfrage", title: "Anfrage", text: "Zum strukturierten Startpunkt oder WhatsApp-Pfad." },
+    { href: "#anfrage", title: "Anfrage", text: "Zum kurzen Einstieg oder WhatsApp-Pfad." },
   ];
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,
@@ -541,6 +796,24 @@ export default async function CoreServicePage({ params }: PageProps) {
               {content.hero_desc}
             </p>
           )}
+          {showCoreLeadCta ? (
+            <div className="mt-8 flex justify-center">
+              <Link
+                href={coreContactHref}
+                data-event="seo_cta_click"
+                data-service={coreLead.trackingService}
+                data-city={coreLead.trackingCity}
+                data-page-intent={coreLead.trackingIntent}
+                data-priority={coreLead.priority}
+                data-cta-label={coreLead.ctaLabel}
+                data-destination={coreContactHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white shadow-sm transition hover:bg-primary"
+              >
+                {coreLead.ctaLabel}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
       <section className="px-6 pb-10">

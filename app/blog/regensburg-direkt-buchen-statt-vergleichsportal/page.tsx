@@ -31,14 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "In Regensburg direkt buchen statt vergleichen: klare Wege bringen oft mehr",
     description:
       "Warum direkte Buchungswege, feste Ansprechpartner und eine saubere Vorprüfung in Regensburg oft besser funktionieren als unklare Vergleichsportal-Wege.",
-    keywords: [
-      "direkt buchen Regensburg",
-      "Buchung Umzug Regensburg",
-      "direkte Anfrage Regensburg",
-      "Google Maps Buchung Regensburg",
-      "Vergleichsportal Alternative Regensburg",
-      "FLOXANT Buchung",
-    ],
   });
 }
 
@@ -89,7 +81,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
           {
             title: "Warum Klarheit schon vor dem ersten Klick Vertrauen schafft",
             paragraphs: [
-              "Wer nach Umzug, Reinigung oder Entrümpelung sucht, schaut zuerst auf Verständlichkeit. Ist sofort klar, wohin der Weg führt, wirkt der Anbieter strukturierter und näher dran.",
+              "Wer nach Umzug, Reinigung oder Entrümpelung sucht, schaut zuerst auf Verständlichkeit. Ist sofort klar, wohin der Weg führt, wirkt der Anbieter nachvollziehbarer und näher dran.",
               "Gerade in Regensburg und im regionalen Umfeld zählt nicht nur Sichtbarkeit, sondern auch die Frage, ob der nächste Schritt geordnet, menschlich und belastbar wirkt.",
             ],
           },
@@ -122,7 +114,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
         ctas={[
           { href: "/buchung", label: "Direkt zur Buchung" },
           { href: "/kontakt", label: "Kontakt & Standort ansehen" },
-          { href: "/gewerbereinigung-regensburg", label: "Zur B2B-Reinigung" },
+          { href: "/regensburg/gewerbereinigung", label: "Zur B2B-Reinigung" },
         ]}
         faqTitle="FAQ zu direkter Buchung in Regensburg"
         faqItems={faqItems}

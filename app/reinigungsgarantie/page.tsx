@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "reinigungsgarantie",
-    title: content.meta_title || "Reinigungsgarantie | FLOXANT",
-    description: content.meta_desc || "Reinigungsgarantie von FLOXANT in Bayern mit klaren Grenzen.",
+    title: content.meta_title || "Reinigung für die Wohnungsübergabe | FLOXANT",
+    description: content.meta_desc || "Reinigung für eine Wohnungsübergabe anfragen. FLOXANT prüft Fläche, Zustand, Leistungsumfang, Fotos und Termin vorab.",
   });
 }
 
@@ -44,7 +44,7 @@ export default async function ReinigungsgarantiePage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Services", href: "/#services" }, { label: "Reinigungsgarantie" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Leistungen", href: "/#services" }, { label: "Reinigung für die Übergabe" }]} />
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden section-glow">
@@ -57,7 +57,7 @@ export default async function ReinigungsgarantiePage() {
             {content.badge || "FLOXANT Service"}
           </span>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-slate-950 mb-6 leading-[1.05]">
-            {content.hero_title || "Reinigungsgarantie"}
+            {content.hero_title || "Reinigung für die Übergabe"}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             {content.hero_desc}

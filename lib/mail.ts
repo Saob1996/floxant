@@ -1,6 +1,13 @@
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+let resend: Resend | null | undefined;
+
+function getResendClient() {
+ if (resend !== undefined) return resend;
+ const apiKey = process.env.RESEND_API_KEY;
+ resend = apiKey ? new Resend(apiKey) : null;
+ return resend;
+}
 
 export interface MailAttachment {
  filename: string;
@@ -22,6 +29,7 @@ export interface SendDocumentMailParams {
  */
 export async function sendDocumentMail(params: SendDocumentMailParams) {
  const { to, subject, customerName, documentNumber, documentType, previewLink } = params;
+ const resendClient = getResendClient();
 
  const html = `
   <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
@@ -44,7 +52,7 @@ export async function sendDocumentMail(params: SendDocumentMailParams) {
   </div>
  `;
 
- if (!resend) {
+ if (!resendClient) {
   console.warn(`[DRY RUN] No RESEND_API_KEY found. Email to ${to} would contain:`, {
    subject,
    documentNumber,
@@ -54,7 +62,7 @@ export async function sendDocumentMail(params: SendDocumentMailParams) {
  }
 
  try {
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await resendClient.emails.send({
    from: 'FLOXANT <info@floxant.de>',
    to: [to],
    subject: subject,

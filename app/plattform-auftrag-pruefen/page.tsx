@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { PlatformOrderCheckForm } from "@/components/PlatformOrderCheckForm";
+import { OfferCheckInternalLinks, OfferCheckQuickAnswer, OfferCheckScopePanel } from "@/components/offer-check";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -34,18 +35,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Plattform-Auftrag prüfen lassen - zweite Einschätzung | FLOXANT",
   description:
     "Bereits über eine Plattform angefragt? FLOXANT prüft praktisch, ob Umfang, Preis, Termin, Fotos, Reinigung, Entsorgung oder Übergabe klar sind.",
-  keywords: [
-    "Plattform-Angebot prüfen",
-    "Angebot von Plattform prüfen lassen",
-    "Umzugsangebot von Plattform unklar",
-    "zweite Einschätzung Umzug Angebot",
-    "Plattform Reinigung Angebot prüfen",
-    "Plattform Entrümpelung Angebot prüfen",
-    "Entsorgung Düsseldorf Angebot prüfen",
-    "MyHammer Angebot prüfen",
-    "Check24 Angebot prüfen",
-    "Angebot vor Zusage prüfen",
-  ],
 });
 
 const statusSteps = ["Anfrage", "Angebot", "Umfang", "Termin", "Direktprüfung"];
@@ -87,8 +76,8 @@ const platformSituations = [
     Icon: ClipboardCheck,
   },
   {
-    title: "Düsseldorf Reinigung oder Entsorgung",
-    text: "Für Düsseldorf wird je nach Leistung die passende lokale Seite geprüft, inklusive /duesseldorf/umzug.",
+    title: "Reinigung Regensburg oder Entsorgung",
+    text: "Für Düsseldorf wählen Sie die passende Leistung und geben Ort, Umfang und Termin an.",
     action: "Düsseldorf prüfen",
     href: "#plattform-form",
     Icon: Route,
@@ -170,7 +159,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das für Düsseldorf?",
-    a: "Ja, aber nur für Reinigung und Entsorgung. Düsseldorf-Umzüge werden bei FLOXANT separat geprüft.",
+    a: "Ja, aber nur für Reinigung und Entsorgung. Regensburg-Umzüge werden bei FLOXANT separat geprüft.",
   },
   {
     q: "Was passiert nach dem Absenden?",
@@ -202,7 +191,7 @@ const jsonLd = {
         "Regensburg",
         "Umgebung Regensburg ca. 200 km",
         "Bayern nach Verfügbarkeit",
-        "Düsseldorf Reinigung und Entsorgung",
+        "Reinigung Regensburg und Entsorgung",
       ],
     }),
     buildBreadcrumbJsonLd([
@@ -270,6 +259,9 @@ export default function PlattformAuftragPruefenPage() {
           </div>
         </section>
 
+        <OfferCheckQuickAnswer />
+        <OfferCheckScopePanel />
+
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Situation</div>
@@ -292,6 +284,8 @@ export default function PlattformAuftragPruefenPage() {
             </div>
           </div>
         </section>
+
+        <OfferCheckInternalLinks />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
@@ -421,17 +415,17 @@ export default function PlattformAuftragPruefenPage() {
                 ["/angebot-guenstiger-pruefen", "Günstigere Alternative prüfen"],
                 ["/plan-b-service", "Plan B nach Plattform-Anfrage"],
                 ["/schadensbegrenzung", "Schadensbegrenzung"],
-                ["/umzug-regensburg", "Umzug Regensburg"],
-                ["/reinigung-regensburg", "Reinigung Regensburg"],
-                ["/entruempelung-regensburg", "Entrümpelung Regensburg"],
+                ["/regensburg/umzug", "Umzug Regensburg"],
+                ["/regensburg/reinigung", "Reinigung Regensburg"],
+                ["/regensburg/entruempelung", "Entrümpelung Regensburg"],
                 ["/rueckfahrt-boerse", "Rückfahrt-Börse"],
                 ["/uebergabeakte", "Übergabeakte"],
-                ["/duesseldorf/reinigung", "Reinigung Düsseldorf"],
+                ["/regensburg/reinigung", "Reinigung Regensburg"],
                 ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
                 ["/buchung", "Direkt anfragen"],
                 ["/rechner", "Preisrahmen prüfen"],
               ].map(([href, label]) => (
-                <Link key={href} href={href} className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+                <Link key={href} href={href} prefetch={false} className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
                   {label}
                 </Link>
               ))}

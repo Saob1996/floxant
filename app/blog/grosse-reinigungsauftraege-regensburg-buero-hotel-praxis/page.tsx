@@ -12,7 +12,7 @@ import {
 const faqItems = [
   {
     q: "Wann gilt eine Reinigungsanfrage als größerer B2B-Auftrag?",
-    a: "Sobald mehrere Flächen, regelmäßige Einsätze, feste Ansprechpartner, Randzeiten oder besondere Objektanforderungen zusammenkommen, sollte die Anfrage als strukturierter B2B-Auftrag vorbereitet werden.",
+    a: "Sobald mehrere Flächen, regelmäßige Einsätze, feste Ansprechpartner, Randzeiten oder besondere Objektanforderungen zusammenkommen, sollte die Anfrage als B2B-Auftrag mit klaren Eckdaten vorbereitet werden.",
   },
   {
     q: "Welche Angaben helfen bei großen Büro-, Hotel- oder Praxisanfragen am meisten?",
@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Große Reinigungsaufträge in Regensburg: was Büro, Hotel und Praxis klären sollten | FLOXANT",
     description:
       "Welche Angaben bei größeren B2B-Reinigungsanfragen in Regensburg helfen, damit aus Interesse ein belastbarer Auftrag wird.",
-    keywords: [
-      "große Reinigungsaufträge Regensburg",
-      "Büroreinigung Regensburg Anfrage",
-      "Hotelreinigung Regensburg",
-      "Praxisreinigung Regensburg B2B",
-    ],
   });
 }
 
@@ -124,7 +118,7 @@ export default function BlogLargeCommercialCleaningPage() {
         ]}
         ctas={[
           { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
-          { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+          { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
           { href: "/kontakt", label: "Kontakt ansehen" },
         ]}

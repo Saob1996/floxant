@@ -71,7 +71,7 @@ export default function BudgetPage() {
         description:
           "Teilen Sie FLOXANT unverbindlich Ihr Zielbudget mit und lassen Sie die passende Einschätzung vorbereiten.",
         path: "/anfrage-mit-preisrahmen",
-        about: ["Preisvorstellung", "Budgetplanung", "Umzug", "Reinigung", "Entrümpelung", "Bayern"],
+        about: ["Preisvorstellung", "Budgetplanung", "Umzug", "Reinigung", "Entrümpelung", "Regensburg"],
       }),
       buildFaqJsonLd(faqItems),
     ],

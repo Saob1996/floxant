@@ -1,20 +1,10 @@
-import type { Metadata } from "next";
+import {
+  buildDuesseldorfCleaningMetadata,
+  DuesseldorfCleaningServicePage,
+} from "@/components/duesseldorf/DuesseldorfCleaningServicePage";
 
-import { DuesseldorfServicePage } from "@/components/duesseldorf/DuesseldorfServicePage";
-import { getDuesseldorfServicePage } from "@/lib/duesseldorf-service-pages";
-import { buildDuesseldorfCleaningMetadata } from "@/lib/duesseldorf-cleaning";
-
-
-const page = getDuesseldorfServicePage("praxisreinigung");
-
-export async function generateMetadata(): Promise<Metadata> {
-  return buildDuesseldorfCleaningMetadata({
-    path: page.path,
-    title: page.metaTitle,
-    description: page.metaDescription,
-  });
-}
+export const metadata = buildDuesseldorfCleaningMetadata("praxisreinigung");
 
 export default function DuesseldorfPraxisreinigungPage() {
-  return <DuesseldorfServicePage {...page} />;
+  return <DuesseldorfCleaningServicePage pageKey="praxisreinigung" />;
 }

@@ -15,7 +15,7 @@ interface AuthorBoxProps {
  * Displays the verified expert behind the content to boost Google Trust signals.
  * Injects Person schema for entity clarity.
  */
-export function AuthorBox({ name, role, description, headshot = "/assets/expert-alexander.png" }: AuthorBoxProps) {
+export function AuthorBox({ name, role, description, headshot = "/logo_v10.png" }: AuthorBoxProps) {
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",

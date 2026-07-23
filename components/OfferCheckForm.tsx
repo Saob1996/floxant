@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { bookingFetch } from "@/lib/booking-submission-client";
+
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, FileText, Loader2, Mail, Phone, UploadCloud } from "lucide-react";
 
 import type { RedFlagScannerResult } from "@/components/OfferRedFlagScanner";
@@ -14,6 +16,13 @@ const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const allServiceOptions = [
   { value: "umzug", label: "Umzug" },
   { value: "reinigung", label: "Reinigung" },
+  { value: "bueroreinigung", label: "Bueroreinigung" },
+  { value: "gewerbereinigung", label: "Gewerbereinigung" },
+  { value: "haushaltsaufloesung", label: "Haushaltsaufloesung" },
+  { value: "solarreinigung", label: "Solarreinigung" },
+  { value: "pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
+  { value: "fensterreinigung", label: "Glas- / Fensterreinigung" },
+  { value: "klaviertransport", label: "Klaviertransport" },
   { value: "entruempelung", label: "Entrümpelung" },
   { value: "transport", label: "Transport" },
   { value: "entsorgung", label: "Entsorgung" },
@@ -22,7 +31,7 @@ const allServiceOptions = [
 ];
 
 const duesseldorfServiceOptions = [
-  { value: "reinigung", label: "Reinigung Düsseldorf" },
+  { value: "reinigung", label: "Reinigung Regensburg" },
   { value: "entsorgung", label: "Entsorgung Düsseldorf" },
 ];
 
@@ -35,6 +44,36 @@ const addonOptions = [
   "Leerfahrt/Rückfahrt",
   "Diskrete Abstimmung",
 ];
+
+const offerStatusOptions = [
+  { value: "written_offer", label: "Schriftliches Angebot liegt vor" },
+  { value: "verbal_offer", label: "Nur muendliche Preisnennung" },
+  { value: "multiple_offers", label: "Mehrere Angebote vergleichen" },
+  { value: "no_offer_yet", label: "Noch kein Angebot" },
+] as const;
+
+const offerConcernOptions = [
+  { value: "price_too_high", label: "Wirkt zu teuer" },
+  { value: "price_unclear", label: "Preis / Leistungsumfang unklar" },
+  { value: "scope_unclear", label: "Leistungsumfang unklar" },
+  { value: "provider_unresponsive", label: "Anbieter reagiert nicht" },
+  { value: "date_problem", label: "Termin passt nicht" },
+  { value: "multiple_offers", label: "Mehrere Angebote schwer vergleichbar" },
+  { value: "too_cheap_risky", label: "Sehr billiges Angebot wirkt unsicher" },
+  { value: "addons_unclear", label: "Zusatzleistungen oder Nebenkosten unklar" },
+  { value: "deadline", label: "Termin oder Deadline kritisch" },
+  { value: "alternative_needed", label: "Alternative zu bestehendem Angebot gesucht" },
+  { value: "general_second_opinion", label: "Zweite Einschaetzung gewuenscht" },
+  { value: "other", label: "Anderes" },
+] as const;
+
+const deadlineOptions = [
+  { value: "", label: "Wie Termin / Zeitraum" },
+  { value: "today_or_tomorrow", label: "Heute oder morgen" },
+  { value: "this_week", label: "Diese Woche" },
+  { value: "fixed_handover", label: "Feste Uebergabe / Deadline" },
+  { value: "flexible", label: "Flexibel" },
+] as const;
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 type EntryMode = "upload" | "no_upload";
@@ -53,6 +92,7 @@ function validateFiles(files: File[], allowedTypes: string[]) {
 }
 
 export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFlagScannerResult | null }) {
+  const startedAtRef = useRef(Date.now());
   const [entryMode, setEntryMode] = useState<EntryMode>("upload");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -75,7 +115,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
 
   function updateRegion(nextRegion: string) {
     setRegion(nextRegion);
-    if (nextRegion === "duesseldorf" && !["reinigung", "entsorgung"].includes(service)) {
+    if (nextRegion === "regensburg" && !["reinigung", "entsorgung"].includes(service)) {
       setService("reinigung");
     }
   }
@@ -97,6 +137,9 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
     const phone = String(formData.get("phone") || "").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const desiredDate = String(formData.get("desiredDate") || "").trim();
+    const offerStatus = String(formData.get("offerStatus") || "").trim();
+    const offerConcern = String(formData.get("offerConcern") || "").trim();
+    const deadline = String(formData.get("deadline") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
     if (name.length < 2) {
@@ -138,9 +181,13 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
     formData.set("type", "offer_check");
     formData.set("lead_type", "angebotscheck");
     formData.set("service", service);
+    formData.set("serviceCategory", "angebot_pruefen");
+    formData.set("intent", hasRedFlagResult ? "red_flag_angebot_pruefen" : "angebot_pruefen");
     formData.set("region", region);
     formData.set("selectedAddons", JSON.stringify(selectedAddons));
     formData.set("timestamp", new Date().toISOString());
+    formData.set("formStartedAt", String(startedAtRef.current));
+    formData.set("formDurationMs", String(Date.now() - startedAtRef.current));
     formData.set("leadSource", hasRedFlagResult ? "red_flag_scanner" : "offer_check");
     formData.set("source", hasRedFlagResult ? "red_flag_scanner" : "offer_check");
     formData.set("leadSubtype", hasRedFlagResult ? "red_flag_scanner" : "");
@@ -151,6 +198,19 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
     formData.set("redFlagCategories", hasRedFlagResult ? JSON.stringify(redFlagResult?.categories || []) : "[]");
     formData.set("redFlagItems", hasRedFlagResult ? JSON.stringify(redFlagResult?.items || []) : "[]");
     formData.set("redFlagSummary", hasRedFlagResult ? redFlagResult?.summary || "" : "");
+    formData.set("offerStatus", offerStatus);
+    formData.set("existingOffer", offerStatus && offerStatus !== "no_offer_yet" ? "true" : "false");
+    formData.set("offerConcern", offerConcern);
+    formData.set("offerAmount", String(formData.get("quotedPrice") || ""));
+    formData.set("offerProvider", String(formData.get("offerSourceType") || ""));
+    formData.set("deadline", deadline || desiredDate);
+    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("privacyConsent", "true");
+    formData.set("pageType", "offer_check");
+    formData.set("funnelStage", "offer_check");
+    formData.set("ctaLabel", "Angebot pruefen lassen");
+    formData.set("sourcePage", hasRedFlagResult ? "/angebotscheck#red-flag-scanner" : "/angebotscheck");
     formData.set("landingPage", typeof window === "undefined" ? "/angebotscheck" : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
     formData.set("utmSource", getUtmValue("utm_source"));
@@ -166,7 +226,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -229,6 +289,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
         <input type="hidden" name="redFlagCategories" value={hasRedFlagResult ? JSON.stringify(redFlagResult?.categories || []) : "[]"} />
         <input type="hidden" name="redFlagItems" value={hasRedFlagResult ? JSON.stringify(redFlagResult?.items || []) : "[]"} />
         <input type="hidden" name="redFlagSummary" value={hasRedFlagResult ? redFlagResult?.summary || "" : ""} />
+        <input type="hidden" name="serviceCategory" value="angebot_pruefen" />
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -248,7 +309,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
               <option value="regensburg">Regensburg</option>
               <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="duesseldorf">Düsseldorf: Reinigung/Entsorgung</option>
+              <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -272,6 +333,36 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Vorhandener Angebotspreis
             <input name="quotedPrice" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="falls bekannt, z. B. 950 €" />
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Bestehendes Angebot*
+            <select name="offerStatus" defaultValue="written_offer" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {offerStatusOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Wichtigster Pruefgrund
+            <select name="offerConcern" defaultValue="price_unclear" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {offerConcernOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Deadline / Druck
+            <select name="deadline" defaultValue="" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {deadlineOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
 
@@ -298,6 +389,9 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
               <p className="text-sm font-black text-slate-950">Upload für die zweite Einschätzung</p>
               <p className="mt-1 text-xs leading-5 text-slate-600">
                 Angebot und Fotos sind getrennt, damit Umfang und offene Punkte sauber geprüft werden können.
+              </p>
+              <p className="mt-1 text-xs leading-5 text-slate-600">
+                FLOXANT ordnet Angaben, Leistungsumfang und naechste sinnvolle Schritte ein; keine Rechtsberatung und keine Preisgarantie.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -363,8 +457,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
             {hasRedFlagResult
-              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir pruefen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen."
-              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. Wir pruefen Umfang, Termin, Ort, vorhandenes Angebot und moegliche offene Punkte. Wenn Angaben fehlen, melden wir uns mit Rueckfragen."}
+              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir pruefen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Keine Rechtsberatung und keine Preisgarantie."
+              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. FLOXANT prueft Umfang, Termin, Ort, vorhandenes Angebot und offene Punkte organisatorisch und praktisch. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Eine Anfrage ist noch keine Buchung."}
           </div>
         ) : null}
 

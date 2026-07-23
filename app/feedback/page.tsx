@@ -66,8 +66,10 @@ export default function SmartReviewPage() {
      <div className="flex justify-center gap-2 mb-10">
       {[1, 2, 3, 4, 5].map((star) => (
        <button
-        key={star}
+       key={star}
         type="button"
+        aria-label={`${star} von 5 Sternen auswählen`}
+        aria-pressed={rating === star}
         onClick={() => setRating(star)}
         onMouseEnter={() => setHovered(star)}
         onMouseLeave={() => setHovered(0)}
@@ -90,8 +92,9 @@ export default function SmartReviewPage() {
        />
      </div>
      <button 
-      disabled={rating === 0 || isSubmitting}
+     disabled={rating === 0 || isSubmitting}
       onClick={handleSubmit}
+      aria-label="Feedback absenden"
       className="w-full py-4 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white rounded-xl font-medium transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
      >
       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />

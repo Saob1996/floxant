@@ -64,7 +64,7 @@ export function RegensburgCleaningBuyerPath({
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                 </span>
                 <span className="mt-2 block text-xs leading-6 text-slate-600">
-                  Service, Ort, Termin und Fotos strukturiert senden.
+                  Service, Ort, Termin und Fotos übersichtlich senden.
                 </span>
               </Link>
               <a

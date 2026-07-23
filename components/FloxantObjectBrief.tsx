@@ -29,10 +29,10 @@ const objectBriefConfig = {
     title: "Ein guter Auftrag beginnt mit einem klaren Bild.",
     intro:
       "Der Objektbrief ist der kurze FLOXANT-Anfrage für eine bessere Anfrage: Ziel, Fotos, Zugang, Termin und Budgetrahmen werden gemeinsam betrachtet, bevor ein Auftrag geplant wird.",
-    audience: "Für Reinigung in Düsseldorf sowie Umzug, Entrümpelung und Übergabe in Regensburg.",
+    audience: "Für Reinigung in Regensburg sowie Umzug, Entrümpelung und Übergabe in Regensburg.",
     primaryHref: "/objektbrief#schnellstart",
     primaryLabel: "Objektbrief starten",
-    secondaryHref: "/angebot-vergleichen-duesseldorf",
+    secondaryHref: "/angebot-vergleichen-regensburg",
     secondaryLabel: "Angebot prüfen lassen",
     whatsappMessage: [
       "Hallo FLOXANT,",
@@ -55,10 +55,10 @@ const objectBriefConfig = {
     audience: "Für Gewerbereinigung, Büroreinigung, Praxisreinigung, Endreinigung und Angebotsprüfung.",
     primaryHref: "/objektbrief#schnellstart",
     primaryLabel: "Objektbrief ausfüllen",
-    secondaryHref: "/angebot-vergleichen-duesseldorf",
+    secondaryHref: "/angebot-vergleichen-regensburg",
     secondaryLabel: "Angebot prüfen lassen",
     whatsappMessage: [
-      "Hallo FLOXANT Reinigung Düsseldorf,",
+      "Hallo FLOXANT Reinigung Regensburg,",
       "ich möchte einen Objektbrief für Reinigung senden.",
       "Objektart:",
       "Ort / PLZ:",

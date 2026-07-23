@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { type FormEvent, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, Mail, Phone, ShieldCheck } from "lucide-react";
 
@@ -13,23 +15,44 @@ const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const standardServices = [
   { value: "umzug", label: "Umzug" },
   { value: "reinigung", label: "Reinigung" },
+  { value: "bueroreinigung", label: "Büroreinigung" },
+  { value: "gewerbereinigung", label: "Gewerbereinigung" },
+  { value: "praxisreinigung", label: "Praxisreinigung" },
+  { value: "fensterreinigung", label: "Fensterreinigung" },
   { value: "entruempelung", label: "Entrümpelung" },
-  { value: "transport", label: "Transport" },
-  { value: "entsorgung", label: "Entsorgung" },
-  { value: "kombination", label: "Kombination" },
+  { value: "haushaltsaufloesung", label: "Haushaltsauflösung" },
+  { value: "wohnungsaufloesung", label: "Wohnungsauflösung" },
+  { value: "solarreinigung", label: "Solarreinigung / PV" },
+  { value: "klaviertransport", label: "Klaviertransport" },
+  { value: "sonderreinigung", label: "Sonderreinigung" },
+  { value: "b2b", label: "B2B-Service" },
+  { value: "sonstiges", label: "Sonstiges" },
 ];
 
 const duesseldorfServices = [
-  { value: "reinigung", label: "Düsseldorf Reinigung" },
-  { value: "b2b_reinigung", label: "Düsseldorf Firmenreinigung" },
-  { value: "hausverwaltung_reinigung", label: "Düsseldorf Hausverwaltung / WEG" },
-  { value: "mieterwechsel_reinigung", label: "Düsseldorf Mieterwechsel" },
-  { value: "kanzlei_praxis_reinigung", label: "Düsseldorf Kanzlei / Praxis" },
-  { value: "laden_showroom_reinigung", label: "Düsseldorf Laden / Showroom" },
-  { value: "airbnb_business_apartment", label: "Düsseldorf möblierte Wohnung" },
-  { value: "treppenhaus_muellraum", label: "Düsseldorf Treppenhaus / Müllraum" },
-  { value: "hotelreinigung", label: "Düsseldorf Hotelreinigung" },
-  { value: "entsorgung", label: "Düsseldorf Entsorgung" },
+  { value: "reinigung", label: "Reinigung Düsseldorf" },
+  { value: "bueroreinigung", label: "Büroreinigung Düsseldorf" },
+  { value: "gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+  { value: "umzug", label: "Umzug Düsseldorf" },
+  { value: "entruempelung", label: "Entrümpelung Düsseldorf" },
+  { value: "haushaltsaufloesung", label: "Haushaltsauflösung Düsseldorf" },
+  { value: "solarreinigung", label: "Solarreinigung Düsseldorf" },
+  { value: "klaviertransport", label: "Klaviertransport Düsseldorf" },
+  { value: "sonstiges", label: "Sonstiges Düsseldorf" },
+];
+
+const offerStatusOptions = [
+  { value: "written_offer", label: "Schriftliches Angebot liegt vor" },
+  { value: "verbal_offer", label: "Nur mündliche Preisnennung" },
+  { value: "multiple_offers", label: "Mehrere Angebote vergleichen" },
+  { value: "no_offer_yet", label: "Noch kein Angebot, Orientierung gesucht" },
+];
+
+const urgencyOptions = [
+  { value: "today_tomorrow", label: "Heute / morgen dringend" },
+  { value: "this_week", label: "Diese Woche" },
+  { value: "one_two_weeks", label: "In 1-2 Wochen" },
+  { value: "flexible", label: "Flexibel" },
 ];
 
 const concernOptions = [
@@ -129,8 +152,9 @@ export function CheaperAlternativeForm({
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
-    const desiredDate = String(formData.get("desiredDate") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    const offerStatus = String(formData.get("offerStatus") || "").trim();
+    const urgency = String(formData.get("urgency") || "").trim();
 
     if (name.length < 2) {
       setErrorMessage("Bitte geben Sie einen Namen an.");
@@ -142,10 +166,6 @@ export function CheaperAlternativeForm({
     }
     if (!cityOrZip) {
       setErrorMessage("Bitte Ort oder PLZ angeben.");
-      return;
-    }
-    if (!desiredDate) {
-      setErrorMessage("Bitte Termin oder Zeitraum angeben.");
       return;
     }
     if (message.length < 10) {
@@ -170,11 +190,21 @@ export function CheaperAlternativeForm({
     formData.set("leadSource", "cheaper_alternative");
     formData.set("source", "cheaper_alternative");
     formData.set("sourceComponent", sourceComponent);
+    formData.set("intent", "angebot-pruefen");
+    formData.set("sourceContext", "angebot-guenstiger-pruefen");
+    formData.set("serviceCategory", "angebot_pruefen");
+    formData.set("privacyConsent", "true");
+    formData.set("affectedService", service);
     formData.set("service", service);
     formData.set("region", region);
     formData.set("selectedAddons", JSON.stringify(selectedConcerns));
-    formData.set("platformSituation", "Günstigere oder passendere Alternative prüfen");
+    formData.set("platformSituation", "Angebot Punkt für Punkt prüfen");
     formData.set("offerCheckIntent", String(formData.get("offerCheckGoal") || "guenstiger_pruefen"));
+    formData.set("offerStatus", offerStatus);
+    formData.set("existingOffer", offerStatus && offerStatus !== "no_offer_yet" ? "true" : "false");
+    formData.set("offerAmount", String(formData.get("quotedPrice") || "").trim());
+    formData.set("offerConcern", selectedConcerns.join(", "));
+    formData.set("deadline", urgency || String(formData.get("desiredDate") || "").trim());
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", typeof window === "undefined" ? landingPageFallback : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
@@ -189,7 +219,7 @@ export function CheaperAlternativeForm({
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -223,7 +253,7 @@ export function CheaperAlternativeForm({
           <h2 className="mt-2 text-2xl font-black tracking-normal">Angebot senden und Alternative prüfen lassen</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
             Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang, Turnus und Termin. FLOXANT prüft, ob Preis,
-            Leistung, Zeitfenster und die Anforderungen vor Ort zusammenpassen und ob eine wirtschaftlichere, klarere oder passendere Alternative möglich ist.
+            Leistung, Zeitfenster und die Anforderungen vor Ort zusammenpassen und welche offenen Punkte vor einer Zusage geklärt werden sollten.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-normal">
@@ -238,7 +268,8 @@ export function CheaperAlternativeForm({
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
           <p>
             FLOXANT prüft, ob auf Basis von Angebot, Ort, Termin, Umfang, Fotos und Kapazität eine wirtschaftlichere,
-            klarere oder passendere Alternative möglich ist. Es gibt keine Preisgarantie und keine Abwertung anderer Anbieter.
+            klarere oder passendere Einordnung möglich ist. Es gibt keine Rechtsberatung, keine Preisgarantie,
+            keine Ersparnisgarantie und keine Abwertung anderer Anbieter.
           </p>
         </div>
       </div>
@@ -249,6 +280,26 @@ export function CheaperAlternativeForm({
             Was ist Ihr Ziel?
             <select name="offerCheckGoal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               {goalOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Angebotsstatus
+            <select name="offerStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {offerStatusOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Dringlichkeit
+            <select name="urgency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {urgencyOptions.map((item) => (
                 <option key={item.value} value={item.value}>
                   {item.label}
                 </option>
@@ -271,9 +322,9 @@ export function CheaperAlternativeForm({
             Region*
             <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
-              <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="duesseldorf">Düsseldorf: Reinigung oder Entsorgung</option>
+              <option value="regensburg_200km">Regensburg plus ca. 50 km</option>
+              <option value="bayern">Weitere Strecke nach Machbarkeit</option>
+              <option value="duesseldorf">Düsseldorf und Umgebung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -291,7 +342,7 @@ export function CheaperAlternativeForm({
             <input name="cityOrZip" defaultValue={defaultCityOrZip} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Termin / Zeitraum*
+            Termin / Zeitraum
             <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. nächste Woche oder 15.06." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -397,7 +448,7 @@ export function CheaperAlternativeForm({
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Angebot, Preisrahmen, Ort, Termin, Umfang und Verfügbarkeit. Wenn eine wirtschaftlichere oder passendere Alternative möglich ist oder Rückfragen nötig sind, melden wir uns.
+            Danke. Ihre Anfrage zur Angebotsprüfung wurde gesendet. FLOXANT prüft Umfang, offene Punkte und mögliche nächste Schritte und meldet sich bei Rückfragen. Das ist keine Rechtsberatung und keine Ersparnisgarantie.
           </div>
         ) : null}
 
@@ -409,7 +460,7 @@ export function CheaperAlternativeForm({
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 text-sm font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Angebot prüfen und Alternative anfragen
+            Angebot prüfen lassen
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}

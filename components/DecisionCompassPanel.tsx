@@ -1,0 +1,52 @@
+import Link from "next/link";
+import { ArrowRight, Compass } from "lucide-react";
+
+import { decisionCompassItems } from "@/lib/service-navigation";
+
+type DecisionCompassPanelProps = {
+  title?: string;
+  intro?: string;
+  className?: string;
+};
+
+export function DecisionCompassPanel({
+  title = "Ich bin unsicher: von Problem zu Service.",
+  intro = "Nicht immer ist sofort klar, welche Leistung passt. Wählen Sie Ihre Situation und ergänzen Sie die Einzelheiten anschließend im Formular.",
+  className = "",
+}: DecisionCompassPanelProps) {
+  return (
+    <section className={`bg-slate-50 px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`} data-component="DecisionCompassPanel">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-8 max-w-3xl">
+          <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
+            <Compass className="h-4 w-4" aria-hidden="true" />
+            Entscheidungs-Kompass
+          </p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {decisionCompassItems.map((item) => (
+            <Link
+              key={item.problem}
+              href={item.href}
+              className="group flex min-h-[11rem] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200"
+              data-event="seo_cta_click"
+              data-source="decision_compass"
+              data-cta-label={item.problem}
+              data-destination={item.href}
+            >
+              <h3 className="text-lg font-black text-slate-950">{item.problem}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.recommendation}</p>
+              <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-black text-blue-700">
+                Passenden Weg öffnen
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

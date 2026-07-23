@@ -1,0 +1,2525 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-06-20T03:42:05.284Z",
+  "stats": {
+    "files": 697,
+    "imageTags": 35,
+    "imagesMissingAlt": 0,
+    "buttonTags": 235,
+    "unnamedButtons": 27,
+    "inputTags": 446,
+    "unlabeledInputs": 323,
+    "nonInteractiveClickHandlers": 6,
+    "hrefHash": 0,
+    "blankTargetsWithoutRel": 0,
+    "formsWithStatusSignals": 6
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "label": "Skip link present",
+      "detail": "Skip-Link ist im Root Layout vorhanden.",
+      "file": "app/layout.tsx",
+      "line": ""
+    },
+    {
+      "status": "PASS",
+      "label": "Main target focus",
+      "detail": "#main-content ist fokussierbar.",
+      "file": "components/layout/SiteChrome.tsx",
+      "line": ""
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 4789
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 5699
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 6166
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 7162
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 4849
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 7093
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "app/dashboard/DashboardClient.tsx",
+      "line": 7119
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/feedback/page.tsx",
+      "line": 92
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "app/login/LoginForm.tsx",
+      "line": 82
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 370
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 371
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 373
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 374
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 376
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 377
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 378
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 380
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BackhaulOffersBoard.tsx",
+      "line": 445
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BookingForm.tsx",
+      "line": 38
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BookingForm.tsx",
+      "line": 42
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BookingForm.tsx",
+      "line": 52
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BookingForm.tsx",
+      "line": 56
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BookingForm.tsx",
+      "line": 96
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 350
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 180
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 197
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 213
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 230
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BudgetContactForm.tsx",
+      "line": 305
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 177
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 179
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 180
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 183
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 184
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 186
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 188
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 195
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 203
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 210
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/BusinessDisposalForm.tsx",
+      "line": 275
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/calculator/DualCalculator.tsx",
+      "line": 114
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 505
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 223
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 239
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 261
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 286
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 306
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 320
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/ExpressCalculator.tsx",
+      "line": 343
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ArchiveForm.tsx",
+      "line": 52
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ArchiveForm.tsx",
+      "line": 69
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ArchiveForm.tsx",
+      "line": 83
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ArchiveForm.tsx",
+      "line": 101
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/BueroumzugForm.tsx",
+      "line": 115
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/BueroumzugForm.tsx",
+      "line": 129
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/BueroumzugForm.tsx",
+      "line": 308
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/BueroumzugForm.tsx",
+      "line": 318
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/BueroumzugForm.tsx",
+      "line": 327
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/EntsorgungForm.tsx",
+      "line": 64
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/EntsorgungForm.tsx",
+      "line": 152
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/PaintingForm.tsx",
+      "line": 51
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/PaintingForm.tsx",
+      "line": 65
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/PianoForm.tsx",
+      "line": 112
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/PianoForm.tsx",
+      "line": 176
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ReinigungForm.tsx",
+      "line": 285
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/ReinigungForm.tsx",
+      "line": 335
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/StorageForm.tsx",
+      "line": 46
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/StorageForm.tsx",
+      "line": 60
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/StorageForm.tsx",
+      "line": 86
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 81
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 93
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 217
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 460
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 470
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/forms/UmzugForm.tsx",
+      "line": 479
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/calculator/IntakeWizard.tsx",
+      "line": 327
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadCaptureForm.tsx",
+      "line": 295
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadCaptureForm.tsx",
+      "line": 311
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadCaptureForm.tsx",
+      "line": 328
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadClosing.tsx",
+      "line": 258
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadClosing.tsx",
+      "line": 269
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadClosing.tsx",
+      "line": 282
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/calculator/LeadClosing.tsx",
+      "line": 314
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 277
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 281
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 288
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 292
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 326
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 333
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 345
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 425
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 429
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 444
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CellarTrashroomRescueForm.tsx",
+      "line": 448
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 255
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 259
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 263
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 286
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 290
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 294
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 298
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 312
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CheaperAlternativeForm.tsx",
+      "line": 316
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 291
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 301
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 310
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 320
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 383
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/CommercialCleaningLeadForm.tsx",
+      "line": 392
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/CookieBanner.tsx",
+      "line": 116
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/CookieBanner.tsx",
+      "line": 123
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/CookieBanner.tsx",
+      "line": 201
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 436
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 440
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 444
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 448
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 484
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 498
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 502
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 506
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 519
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DamageControlForm.tsx",
+      "line": 523
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/dashboard/AdminHealthControl.tsx",
+      "line": 38
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/dashboard/BookingDetailView.tsx",
+      "line": 683
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 47
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 57
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 66
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 88
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 97
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 108
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 117
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 137
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 146
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 155
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 164
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CostCalculator.tsx",
+      "line": 213
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/CustomerInbox.tsx",
+      "line": 78
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/dashboard/CustomerInbox.tsx",
+      "line": 119
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 437
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 443
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 449
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 475
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 797
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 816
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx",
+      "line": 825
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 170
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 234
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 252
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 271
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 311
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 321
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 333
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/documents/QuoteEditor.tsx",
+      "line": 343
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/IncomeExpenseTracker.tsx",
+      "line": 146
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/IncomeExpenseTracker.tsx",
+      "line": 233
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/IncomeExpenseTracker.tsx",
+      "line": 244
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/IncomeExpenseTracker.tsx",
+      "line": 269
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/InternalPricingWorkbench.tsx",
+      "line": 428
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/dashboard/OperationsControlPanel.tsx",
+      "line": 916
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 342
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 364
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 373
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 382
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 390
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 398
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 407
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 464
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 472
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 480
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 488
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DiscreetMoveForm.tsx",
+      "line": 508
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 508
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 266
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 346
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 354
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 363
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 372
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
+      "line": 383
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 325
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 208
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 211
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 214
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 218
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 244
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
+      "line": 247
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 280
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 292
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 296
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 300
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 326
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 333
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 337
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 341
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 345
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfApartmentCleaningForm.tsx",
+      "line": 352
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 190
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 193
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 196
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 199
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 202
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/DuesseldorfB2BCleaningForm.tsx",
+      "line": 223
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 296
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 314
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 318
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 322
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 340
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 377
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 381
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 385
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 389
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 429
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/EstateClearanceForm.tsx",
+      "line": 433
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/FloxantObjectBriefBuilder.tsx",
+      "line": 611
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/FloxantObjectBriefBuilder.tsx",
+      "line": 393
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/FloxantObjectBriefBuilder.tsx",
+      "line": 440
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/FloxantObjectBriefBuilder.tsx",
+      "line": 453
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/FloxNavigation.tsx",
+      "line": 286
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/FloxNavigation.tsx",
+      "line": 290
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/GalleryModal.tsx",
+      "line": 84
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/GalleryModal.tsx",
+      "line": 124
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/GalleryModal.tsx",
+      "line": 164
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 251
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 255
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 259
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 273
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 277
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 291
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 329
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 333
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 363
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 367
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HandoverFileForm.tsx",
+      "line": 371
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/HeroQuickstart.tsx",
+      "line": 49
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/HeroQuickstart.tsx",
+      "line": 39
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/inquiry/InquiryIntentModal.tsx",
+      "line": 494
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/inquiry/InquiryIntentModal.tsx",
+      "line": 460
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 294
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 298
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 302
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 325
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 329
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 333
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferCheckForm.tsx",
+      "line": 380
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 397
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 401
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 405
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 409
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 423
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 487
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 491
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 495
+    },
+    {
+      "status": "WARN",
+      "label": "Non-interactive click",
+      "detail": "onClick auf <div> gefunden.",
+      "file": "components/OfferComparisonAdsForm.tsx",
+      "line": 500
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/OfferRedFlagScanner.tsx",
+      "line": 315
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/operations/PlzOperationScanner.tsx",
+      "line": 75
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 293
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 297
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 301
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 305
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 323
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 349
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 353
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 357
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 370
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlanBServiceForm.tsx",
+      "line": 374
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 234
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 238
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 242
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 265
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 301
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 305
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PlatformOrderCheckForm.tsx",
+      "line": 309
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PrivateClientInquiryForm.tsx",
+      "line": 223
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 296
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 300
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 326
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 330
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 334
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 352
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 364
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 368
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 372
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 376
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 407
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 411
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 415
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 419
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/PropertyReadyForm.tsx",
+      "line": 451
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/QuickBudgetModal.tsx",
+      "line": 311
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/QuickExpressModal.tsx",
+      "line": 363
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/QuickExpressModal.tsx",
+      "line": 406
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 279
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 283
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 309
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 313
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 317
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 335
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 339
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 343
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 347
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 386
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 390
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RealtorLandlordLinkForm.tsx",
+      "line": 394
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 232
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 212
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 264
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 268
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 272
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 293
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 311
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 315
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReferralPartnerCodeForm.tsx",
+      "line": 319
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 291
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 295
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 330
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 334
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 338
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 352
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 366
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 370
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 374
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 378
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 382
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 395
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/RentalReadyForm.tsx",
+      "line": 399
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 173
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 177
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 181
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 200
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 204
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 208
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 212
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 243
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 247
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/ReturnTripBoardForm.tsx",
+      "line": 251
+    },
+    {
+      "status": "WARN",
+      "label": "Button name",
+      "detail": "Button ohne erkennbaren Namen.",
+      "file": "components/SeoLeadForm.tsx",
+      "line": 931
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SeoLeadForm.tsx",
+      "line": 603
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1446
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1467
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1488
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1504
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1546
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1562
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1576
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1908
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1920
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/SmartBookingWizard.tsx",
+      "line": 1950
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 228
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 232
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 261
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 265
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 269
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 273
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 292
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 296
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 309
+    },
+    {
+      "status": "WARN",
+      "label": "Input label",
+      "detail": "Input ohne label/aria-label gefunden.",
+      "file": "components/TenantTurnoverForm.tsx",
+      "line": 313
+    }
+  ]
+}

@@ -28,7 +28,7 @@ export const serviceComparisonRows = [
   situation: "Übergabe soll sauber funktionieren",
   bestFit: "Reinigung",
   href: "/reinigung",
-  supportHref: "/endreinigung-regensburg",
+  supportHref: "/regensburg/endreinigung",
   supportLabel: "Endreinigung Regensburg",
   text: "Passend, wenn Fläche, Zustand, Fenster, Küche, Bad und ein klares Übergabeziel wichtig sind.",
   signal: "Fläche, Zustand, Extras, Termin",

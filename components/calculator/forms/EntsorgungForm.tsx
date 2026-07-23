@@ -64,6 +64,7 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
           <input
            type="number"
            min={0}
+           aria-label={dic?.calculator?.estimated_waste_volume || "Geschätztes Volumen"}
            value={entsorgungData.wasteVolumeM3 || ""}
            onChange={(event) =>
             updateEntsorgungData({ wasteVolumeM3: parseNumber(event.target.value) })
@@ -134,6 +135,7 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FieldCard label="Zugänglichkeit">
          <select
+          aria-label="Zugänglichkeit"
           value={entsorgungData.accessDifficulty}
           onChange={(event) =>
            updateEntsorgungData({
@@ -152,6 +154,7 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
           <input
            type="number"
            min={0}
+           aria-label="Laufweg zum Fahrzeug"
            value={entsorgungData.loadingDistanceMeters || ""}
            onChange={(event) =>
             updateEntsorgungData({

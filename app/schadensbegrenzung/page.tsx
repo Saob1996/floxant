@@ -33,14 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Schadensbegrenzung bei Umzug, Reinigung & Uebergabe | FLOXANT",
   description:
     "Wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen: FLOXANT prueft nach Verfuegbarkeit, welche Schadensbegrenzung moeglich ist.",
-  keywords: [
-    "umzug kurzfristig hilfe regensburg",
-    "umzugshilfe kurzfristig regensburg",
-    "endreinigung kurzfristig regensburg",
-    "reinigung vor uebergabe kurzfristig",
-    "schadensbegrenzung umzug",
-    "kurzfristige reinigung duesseldorf",
-  ],
 });
 
 const whatsappHref =
@@ -154,7 +146,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das auch in Duesseldorf?",
-    a: "In Duesseldorf prueft FLOXANT ueber klare lokale Kontaktmöglichkeiten, inklusive kurzfristiger Reinigung, Entsorgung und Umzug.",
+    a: "Reinigung wird nur fuer Regensburg und den Umkreis bis 50 km geprueft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",
@@ -192,7 +184,7 @@ const jsonLd = {
         "Kurzfristige Machbarkeitspruefung fuer Umzug, Reinigung, Entruempelung, Entsorgung und Uebergabe, wenn ein Plan kippt. Keine Notdienstgarantie.",
       path,
       serviceType: "Schadensbegrenzung nach Verfuegbarkeit",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -459,13 +451,13 @@ export default function SchadensbegrenzungPage() {
         <section className="px-4 pb-24 pt-6 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-3 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["/umzug-regensburg", "Umzug Regensburg"],
-              ["/reinigung-regensburg", "Kurzfristige Reinigung Regensburg"],
-              ["/entruempelung-regensburg", "Entruempelung Regensburg"],
+              ["/regensburg/umzug", "Umzug Regensburg"],
+              ["/regensburg/reinigung", "Kurzfristige Reinigung Regensburg"],
+              ["/regensburg/entruempelung", "Entruempelung Regensburg"],
               ["/rueckfahrt-boerse", "Rueckfahrt/Leerfahrt pruefen"],
               ["/mieterwechsel-service-regensburg", "Mieterwechsel-Service"],
               ["/wohnung-wieder-vermietbar", "Wohnung wieder vermietbar"],
-              ["/duesseldorf/reinigung", "Reinigung Duesseldorf"],
+              ["/regensburg/reinigung", "Reinigung Regensburg"],
               ["/entsorgung-duesseldorf", "Entsorgung Duesseldorf"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-red-200 hover:bg-red-50">

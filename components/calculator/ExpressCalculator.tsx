@@ -221,6 +221,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
         <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors focus-within:border-blue-500/40 focus-within:bg-white/[0.06]">
          <MapPin className="shrink-0 text-blue-400" size={18} />
          <input
+          aria-label={dic?.calculator?.from_place_placeholder || "Startadresse"}
           type="text"
           placeholder={
            dic?.calculator?.from_place_placeholder || ""
@@ -237,6 +238,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
          <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors focus-within:border-violet-500/40 focus-within:bg-white/[0.06]">
           <MapPin className="shrink-0 text-violet-400" size={18} />
           <input
+           aria-label={dic?.calculator?.to_place_placeholder || "Zieladresse"}
            type="text"
            placeholder={
             dic?.calculator?.to_place_placeholder || ""
@@ -259,6 +261,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
            label={dic?.calculator?.living_area || ""}
           >
            <input
+            aria-label={dic?.calculator?.living_area || "Wohnflaeche"}
             type="number"
             min={0}
             inputMode="numeric"
@@ -284,6 +287,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
             label={dic?.calculator?.rooms || ""}
            >
             <input
+             aria-label={dic?.calculator?.rooms || "Zimmer"}
              type="number"
              min={0}
              inputMode="numeric"
@@ -304,6 +308,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
          <div className="grid gap-4 md:grid-cols-2">
           <FieldCard label={dic?.calculator?.workstations || "Arbeitsplätze"}>
            <input
+            aria-label={dic?.calculator?.workstations || "Arbeitsplaetze"}
             type="number"
             min={1}
             inputMode="numeric"
@@ -318,6 +323,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
           </FieldCard>
           <FieldCard label={dic?.calculator?.archive_meters || "Archivmeter"}>
            <input
+            aria-label={dic?.calculator?.archive_meters || "Archivmeter"}
             type="number"
             min={0}
             inputMode="numeric"
@@ -341,6 +347,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
           </label>
 
           <input
+           aria-label={dic?.calculator?.estimated_waste_volume || "Geschätztes Abfallvolumen"}
            type="range"
            min="1"
            max="50"
@@ -481,12 +488,12 @@ function FieldCard({
  children: React.ReactNode;
 }) {
  return (
-  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-colors focus-within:border-white/20 focus-within:bg-white/[0.06]">
-   <label className="mb-2 block text-xs uppercase tracking-[0.14em] text-white/45">
+  <label className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-colors focus-within:border-white/20 focus-within:bg-white/[0.06]">
+   <span className="mb-2 block text-xs uppercase tracking-[0.14em] text-white/45">
     {label}
-   </label>
+   </span>
    {children}
-  </div>
+  </label>
  );
 }
 
@@ -503,6 +510,7 @@ function ServiceCard({
 }) {
  return (
   <button
+   aria-label={title}
    type="button"
    onClick={onClick}
    className={[

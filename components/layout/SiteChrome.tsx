@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
 import { DeferredSiteWidgets } from "@/components/DeferredSiteWidgets";
@@ -11,6 +11,8 @@ import { RegionalRouteNotice } from "@/components/RegionalRouteNotice";
 import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
+import { EnglishFooter } from "@/components/english/EnglishFooter";
+import { EnglishHeader } from "@/components/english/EnglishHeader";
 
 export function SiteChrome({
   children,
@@ -19,24 +21,46 @@ export function SiteChrome({
 }) {
   const pathname = usePathname();
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
+  const isEnglishSection = pathname === "/en" || pathname.startsWith("/en/");
+
+  useEffect(() => {
+    document.documentElement.lang = isEnglishSection ? "en" : "de";
+  }, [isEnglishSection]);
+
+  const isPrivateSection =
+    pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/login");
   const usesDuesseldorfHeader =
     isDuesseldorfSection ||
-    pathname === "/reinigung-moeblierte-wohnung-duesseldorf" ||
+    pathname === "/regensburg/reinigung" ||
     pathname === "/entsorgung-duesseldorf";
 
   return (
     <>
-      {!isDuesseldorfSection ? <JsonLd lang="de" /> : null}
-      {!isDuesseldorfSection ? <WebSiteJsonLd /> : null}
-      <PublicHeader
-        dic={{}}
-        variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
-      />
-      <RegionalRouteNotice pathname={pathname} />
-      <div id="main-content">{children}</div>
-      {!isDuesseldorfSection ? <Footer /> : null}
-      <GlobalRequestCenter />
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection} />
+      <a href="#main-content" className="skip-to-content">
+        {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
+      </a>
+      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
+      {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
+      {isEnglishSection ? (
+        <EnglishHeader />
+      ) : (
+        <PublicHeader
+          dic={{}}
+          variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
+        />
+      )}
+      {!isEnglishSection ? <RegionalRouteNotice pathname={pathname} /> : null}
+      <div
+        id="main-content"
+        lang={isEnglishSection ? "en" : "de"}
+        tabIndex={-1}
+        className="min-h-[100svh]"
+      >
+        {children}
+      </div>
+      {isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
+      {!isEnglishSection ? <GlobalRequestCenter /> : null}
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection} />
     </>
   );
 }

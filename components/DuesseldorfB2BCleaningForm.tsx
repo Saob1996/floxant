@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, MessageCircle, Phone, UploadCloud } from "lucide-react";
@@ -120,7 +122,18 @@ export function DuesseldorfB2BCleaningForm({
     formData.set("type", `duesseldorf_${context}_cleaning`);
     formData.set("lead_type", `duesseldorf_${context}_cleaning`);
     formData.set("leadSubtype", "b2b_cleaning");
+    formData.set("serviceCategory", "b2b_bueroreinigung");
+    formData.set("intent", "b2b-anfrage");
     formData.set("region", "duesseldorf");
+    formData.set("city", "duesseldorf");
+    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("privacyConsent", "true");
+    formData.set("areaSize", String(formData.get("areaOrRooms") || ""));
+    formData.set("cleaningFrequency", String(formData.get("recurringFrequency") || ""));
+    formData.set("pageType", "b2b_contact");
+    formData.set("funnelStage", "b2b_lead");
+    formData.set("ctaLabel", `${selectedDefaultService} Düsseldorf anfragen`);
     formData.set("sourceComponent", "duesseldorf_b2b_cleaning_form");
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
@@ -133,7 +146,7 @@ export function DuesseldorfB2BCleaningForm({
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -162,7 +175,7 @@ export function DuesseldorfB2BCleaningForm({
           Objekt kurz beschreiben und Rückmeldung erhalten
         </h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-          Die Anfrage ist kostenlos und unverbindlich. Für den Start reichen Ort, Objektart,
+          Die Anfrage startet eine Rückmeldung. Für den Start reichen Ort, Objektart,
           gewünschte Leistung und ein kurzer Hinweis zum Bedarf.
         </p>
       </div>
@@ -176,19 +189,19 @@ export function DuesseldorfB2BCleaningForm({
       >
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Ansprechpartner*">
-            <input name="name" autoComplete="name" className="duesseldorf-input" placeholder="Vorname Nachname" />
+            <input name="name" autoComplete="name" aria-label="Ansprechpartner" className="duesseldorf-input" placeholder="Vorname Nachname" />
           </Field>
           <Field label="Firma oder Organisation">
-            <input name="companyName" autoComplete="organization" className="duesseldorf-input" placeholder="Optional" />
+            <input name="companyName" autoComplete="organization" aria-label="Firma oder Organisation" className="duesseldorf-input" placeholder="Optional" />
           </Field>
           <Field label="Telefon">
-            <input name="phone" type="tel" autoComplete="tel" className="duesseldorf-input" placeholder={duesseldorfCompany.phone} />
+            <input name="phone" type="tel" autoComplete="tel" aria-label="Telefon" className="duesseldorf-input" placeholder={duesseldorfCompany.phone} />
           </Field>
           <Field label="E-Mail">
-            <input name="email" type="email" autoComplete="email" className="duesseldorf-input" placeholder={duesseldorfCompany.email} />
+            <input name="email" type="email" autoComplete="email" aria-label="E-Mail" className="duesseldorf-input" placeholder={duesseldorfCompany.email} />
           </Field>
           <Field label="Objektort / PLZ in Düsseldorf*">
-            <input name="objectLocation" autoComplete="address-level2" className="duesseldorf-input" placeholder="z. B. 40213, Bilk, Pempelfort" />
+            <input name="objectLocation" autoComplete="address-level2" aria-label="Objektort oder PLZ in Düsseldorf" className="duesseldorf-input" placeholder="z. B. 40213, Bilk, Pempelfort" />
           </Field>
           <Field label="Gewünschte Leistung">
             <select name="service" defaultValue={selectedDefaultService} className="duesseldorf-input">
@@ -209,7 +222,7 @@ export function DuesseldorfB2BCleaningForm({
             </select>
           </Field>
           <Field label="Fläche oder Räume">
-            <input name="areaOrRooms" className="duesseldorf-input" placeholder="z. B. 180 m², 6 Räume" />
+            <input name="areaOrRooms" aria-label="Fläche oder Räume" className="duesseldorf-input" placeholder="z. B. 180 m², 6 Räume" />
           </Field>
         </div>
 
@@ -223,7 +236,7 @@ export function DuesseldorfB2BCleaningForm({
         </Field>
 
         <label
-          className="grid cursor-pointer gap-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-white"
+          className="relative grid cursor-pointer gap-3 overflow-hidden rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-white"
           data-event={uploadStarted ? "upload_completed" : "upload_started"}
         >
           <span className="flex items-center gap-2 text-slate-950">
@@ -239,7 +252,7 @@ export function DuesseldorfB2BCleaningForm({
             type="file"
             multiple
             accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf"
-            className="sr-only"
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             onClick={handleUploadStart}
             onChange={handleFiles}
             data-event={uploadStarted ? "upload_completed" : "upload_started"}
@@ -255,7 +268,7 @@ export function DuesseldorfB2BCleaningForm({
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
           <span>
             Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
-            Die Anfrage ist kostenlos und unverbindlich.
+            Die Anfrage führt nicht automatisch zu einer Beauftragung.
           </span>
         </label>
 
@@ -281,7 +294,7 @@ export function DuesseldorfB2BCleaningForm({
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Kostenlos anfragen
+            {selectedDefaultService} Düsseldorf anfragen
           </button>
           <a
             href={whatsappHref}

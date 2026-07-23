@@ -17,7 +17,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 
-type StoryVariant = "operations" | "cleaning" | "clearance" | "offer" | "duesseldorf";
+type StoryVariant = "operations" | "cleaning" | "clearance" | "offer" | "local";
 
 type StoryStep = {
   title: string;
@@ -67,7 +67,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     title: "Aus einer offenen Anfrage wird ein klarer nächster Schritt.",
     intro:
       "FLOXANT führt Kunden vom ersten Foto, Angebot oder Terminwunsch zu einer realistischen Prüfung: Ort, Umfang, Zugang, Budget und passende Leistung werden sichtbar.",
-    region: "Regensburg · 200 km · Bayern nach Verfügbarkeit",
+    region: "Regensburg · Umgebung · nach Machbarkeit",
     primaryHref: "/buchung",
     primaryLabel: "Fall direkt senden",
     secondaryHref: "/angebot-guenstiger-pruefen",
@@ -76,7 +76,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     metrics: [
       { value: "1", label: "klarer Weg" },
       { value: "5", label: "Prüfpunkte" },
-      { value: "200 km", label: "Regensburg-Nahbereich" },
+      { value: "Ort", label: "Umgebung nach Machbarkeit" },
     ],
     steps: [
       {
@@ -103,7 +103,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     title: "Saubere Übergaben beginnen vor dem ersten Wischen.",
     intro:
       "Fläche, Zustand, Termin, Fotos und Ziel der Reinigung werden vorab geklärt. So wirkt Reinigung nicht beliebig, sondern planbar und nachvollziehbar.",
-    region: "Regensburg und Bayern · Düsseldorf klar getrennt",
+    region: "Regensburg und Umgebung · Düsseldorf klar getrennt",
     primaryHref: "/rechner?service=reinigung#rechner-wizard",
     primaryLabel: "Reinigung einschätzen",
     secondaryHref: "/angebot-guenstiger-pruefen",
@@ -139,7 +139,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     title: "Erst Menge und Zugang verstehen, dann Räumung planen.",
     intro:
       "Keller, Garage, Wohnung oder Nebenfläche werden nicht pauschal betrachtet. Entscheidend sind Menge, Material, Laufweg, Entsorgung und gewünschter Zielzustand.",
-    region: "Regensburg · Bayern nach Verfügbarkeit",
+    region: "Regensburg · Umgebung nach Machbarkeit",
     primaryHref: "/rechner?service=entsorgung#rechner-wizard",
     primaryLabel: "Menge einschätzen",
     secondaryHref: "/angebot-guenstiger-pruefen",
@@ -204,17 +204,17 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
       },
     ],
   },
-  duesseldorf: {
+  local: {
     image: "/assets/floxant-story-duesseldorf.svg",
     accent: "from-teal-600 to-sky-500",
-    badge: "Reinigung in Düsseldorf",
-    title: "Düsseldorf bleibt klar: Umzug, Reinigung und Räumung über klare Kontaktmöglichkeiten.",
+    badge: "Reinigung in Regensburg",
+    title: "Regensburg bleibt klar: Umzug, Reinigung und Räumung über klare Kontaktmöglichkeiten.",
     intro:
-      "Für Wohnungen, Apartments, Büros, kleine Unternehmen, Treppenhäuser und Grundreinigung werden Objekt, Fläche, Frequenz, Zeitfenster und Fotos strukturiert abgefragt.",
-    region: "Düsseldorf · Reinigung · Entsorgung separat",
-    primaryHref: "/duesseldorf/reinigung#kontakt",
+      "Für Wohnungen, Apartments, Büros, kleine Unternehmen, Treppenhäuser und Grundreinigung werden Objekt, Fläche, Frequenz, Zeitfenster und Fotos konkret abgefragt.",
+    region: "Regensburg · Reinigung · Entsorgung separat",
+    primaryHref: "/regensburg/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
-    secondaryHref: "/duesseldorf/bueroreinigung",
+    secondaryHref: "/regensburg/bueroreinigung",
     secondaryLabel: "B2B-Reinigung",
     chips: ["Objekt", "Fläche", "Zeitfenster"],
     metrics: [
@@ -383,7 +383,7 @@ export function FloxantStorytellingSection({
               <div className="flox-story-image-card relative min-h-[430px] overflow-hidden rounded-[var(--flox-radius-panel)] bg-slate-950">
                 <Image
                   src={config.image}
-                  alt=""
+                  alt={`${config.badge}: ${config.title}`}
                   fill
                   sizes="(min-width: 1024px) 620px, 100vw"
                   className="object-cover"

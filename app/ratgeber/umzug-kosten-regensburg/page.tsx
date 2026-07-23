@@ -15,14 +15,6 @@ return generatePageSEO({
 }
 export default async function Article() {
   var dict = await getDictionary("de");
-  const content = (dict as any)?.pages?.service_umzug || {};
-  const faqJsonLd = {
-    "@context": "https://schema.org", "@type": "FAQPage",
-    "mainEntity": [
-        { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
-        { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
-      ],
-  };
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Umzug Kosten Regensburg 2026",
@@ -35,7 +27,6 @@ export default async function Article() {
   return (
     <main className="min-h-screen bg-background">
       <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Umzug Kosten Regensburg 2026" }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <section className="pt-8 pb-12 px-6 bg-gradient-to-b from-muted/20 to-background">
         <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -47,8 +38,8 @@ export default async function Article() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Durchschnittliche Umzugskosten in Regensburg</h2>
-            <p className="text-muted-foreground leading-relaxed">Ein lokaler Umzug einer 2-Zimmer-Wohnung kostet in Regensburg durchschnittlich 600 bis 1.200 Euro. Für eine 4-Zimmer-Wohnung müssen Sie mit 1.200 bis 2.500 Euro rechnen. Diese Preise beinhalten Transport, Be- und Entladung durch ein erfahrenes Team.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Wovon die Umzugskosten in Regensburg abhängen</h2>
+            <p className="text-muted-foreground leading-relaxed">Wohnungsgröße, Umzugsgut, Etagen, Laufwege, Entfernung und gewünschte Zusatzleistungen bestimmen den Aufwand. Deshalb erhalten Sie einen belastbaren Preis erst nach Prüfung Ihrer Angaben.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Faktoren, die den Preis beeinflussen</h2>
@@ -62,7 +53,7 @@ export default async function Article() {
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
-              { q: "Was kostet ein Umzug in Regensburg?", a: "Zwischen 400 und 2.500 Euro je nach Wohnungsgröße und Service." },
+              { q: "Wie wird der Preis für einen Umzug in Regensburg ermittelt?", a: "Maßgeblich sind unter anderem Umfang, Etagen, Laufwege, Entfernung und gewünschte Zusatzleistungen." },
               { q: "Gibt es verbindliche Angebote?", a: "Ein Auftrag wird erst verbindlich, wenn Volumen, Zugang, Etagen, Termin, Strecke und Zusatzleistungen geprüft und bestätigt wurden." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
@@ -74,7 +65,7 @@ export default async function Article() {
           </div>
           <div className="border-t border-border pt-8 flex flex-wrap gap-3">
             <Link href={`/ratgeber`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">← Alle Ratgeber</Link>
-            <Link href={`/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
+            <Link href={`/regensburg/umzug`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
             <Link href={`/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
           </div>
         </div>

@@ -5,11 +5,15 @@ import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { company } from "@/lib/company";
+import { floxantLocations } from "@/lib/floxant-locations";
 import {
   floxantRegions,
   getServicesByRegion,
   type FloxantRegion,
 } from "@/lib/floxant-services";
+import { germanText } from "@/lib/german-text";
+import { buildLeadHref } from "@/lib/lead-intents";
+import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
@@ -17,23 +21,23 @@ const legalLinks = [
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
   { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
+  { href: "/redaktion", label: "Redaktion" },
+  { href: "/methodik", label: "Methodik" },
+  { href: "/korrekturen", label: "Korrekturen" },
 ] as const;
 
 const authorityLinks = [
-  { href: "/rechner", label: "Rechner" },
-  { href: "/umzug", label: "Umzug" },
-  { href: "/reinigung", label: "Reinigung" },
-  { href: "/entruempelung", label: "Entrümpelung" },
-  { href: "/bueroumzug", label: "Büroumzug" },
-  { href: "/firmenentsorgung", label: "Firmenentsorgung" },
-  { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
-  { href: "/empfehlen", label: "Empfehlen" },
-  { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
-  { href: "/wohnung-wieder-vermietbar", label: "Wieder vermietbar" },
-  { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
-  { href: "/uebergabeakte", label: "Übergabeakte" },
-  { href: "/private-client-service", label: "Private Client" },
+  { href: "/duesseldorf", label: "Düsseldorf" },
+  { href: "/regensburg", label: "Regensburg" },
+  { href: "/leistungen", label: "Leistungen" },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/signature-services", label: "Besondere Leistungen" },
+  { href: "/fragen", label: "Fragen und Antworten" },
+  { href: "/service-finder", label: "Service Finder" },
+  { href: "/suche", label: "Suche" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
 ] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {
@@ -60,17 +64,24 @@ export function Footer({ dic }: { dic?: any } = {}) {
 
   const isDuesseldorfContext = pathname.includes("duesseldorf");
   const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
-  const regionsToShow: FloxantRegion[] =
-    isDuesseldorfContext && !isRegensburgContext
-      ? ["duesseldorf"]
-      : isRegensburgContext && !isDuesseldorfContext
-        ? ["regensburg"]
-        : ["duesseldorf", "regensburg"];
-  const footerIntro = isDuesseldorfContext
-    ? "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten."
+  const regionsToShow: FloxantRegion[] = [];
+  const locationsToShow: FloxantRegion[] = isDuesseldorfContext
+    ? ["duesseldorf"]
     : isRegensburgContext
-      ? "Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe."
-      : "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten. Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.";
+      ? ["regensburg"]
+      : ["duesseldorf", "regensburg"];
+  const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
+  const footerIntro = isDuesseldorfContext
+    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
+    : isRegensburgContext
+      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
+      : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
+  const footerLead = isRegensburgContext && !isDuesseldorfContext
+    ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage" }
+    : isDuesseldorfContext
+      ? { service: "angebot-pruefen", city: "duesseldorf", intent: "duesseldorf-anfrage" }
+      : { service: "sonstiges", city: "deutschland", intent: "homepage-anfrage" };
+  const footerContactHref = buildLeadHref(footerLead);
 
   return (
     <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
@@ -81,7 +92,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </p>
             <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
-              Passende Anfrage klar senden.
+              Klare Anfrage statt langer Suchwege.
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
               {footerIntro}
@@ -101,14 +112,22 @@ export function Footer({ dic }: { dic?: any } = {}) {
               href={whatsappHref}
               data-event="whatsapp_click"
               data-source="global_footer"
+              data-destination={whatsappHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp starten
             </a>
             <Link
-              href="/kontakt"
-              data-event="hero_cta_click"
+              href={footerContactHref}
+              data-event="seo_cta_click"
+              data-source="global_footer"
+              data-service={footerLead.service}
+              data-city={footerLead.city}
+              data-page-intent={footerLead.intent}
+              data-priority="p2"
+              data-cta-label="Kontakt oeffnen"
+              data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
               Kontakt öffnen
@@ -123,19 +142,64 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </Link>
             <div className="mt-5 grid gap-3 text-sm font-semibold leading-7 text-slate-300">
-              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white">
+              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="seo_email_click">
                 <Mail className="h-4 w-4 text-cyan-200" />
                 {company.email}
               </a>
-              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white">
+              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="seo_phone_click">
                 <Phone className="h-4 w-4 text-cyan-200" />
                 {company.phone}
               </a>
               <div className="flex gap-2">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
-                <span>{company.address}</span>
+                <span>
+                  {locationsToShow.length > 1
+                    ? "Standorte Düsseldorf und Regensburg"
+                    : germanText(footerLocations[0]?.displayName, footerLocations[0]?.displayName || "")}
+                </span>
               </div>
             </div>
+            <div className="mt-5 grid gap-3">
+              {footerLocations.map((location) => (
+                <div key={location.locationKey} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+                  <div className="text-sm font-black text-white">{germanText(location.displayName, location.displayName)}</div>
+                  <div className="mt-1 text-sm font-semibold leading-6 text-slate-300">
+                    {germanText(location.addressLine1, location.addressLine1)}, {location.postalCode} {germanText(location.city, location.city)}
+                  </div>
+                  <Link
+                    href={location.localLandingPage}
+                    prefetch={false}
+                    data-event="region_select"
+                    data-region={location.locationKey}
+                    data-source="global_footer_nap"
+                    className="mt-2 inline-flex items-center gap-2 text-sm font-black text-cyan-100 hover:text-white"
+                  >
+                    Standort öffnen
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {footerNavigationGroups.map((group) => (
+              <nav key={group.title} aria-label={`Footer ${group.title}`} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                <h3 className="text-lg font-black text-white">{group.title}</h3>
+                <div className="mt-4 grid gap-2">
+                  {group.links.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      prefetch={false}
+                      className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+            ))}
           </div>
 
           <div className={`grid gap-5${regionsToShow.length > 1 ? " lg:grid-cols-2" : ""}`}>
@@ -147,18 +211,19 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <div key={regionId} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-lg font-black">{region.label}</h3>
+                      <h3 className="text-lg font-black">{germanText(region.label, region.label)}</h3>
                       <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                        {region.shortDescription}
+                        {germanText(region.shortDescription, region.shortDescription)}
                       </p>
                     </div>
                     <Link
                       href={region.href}
+                      prefetch={false}
                       data-event="region_select"
                       data-region={regionId}
                       data-source="global_footer"
                       className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-slate-950"
-                      aria-label={`${region.label} öffnen`}
+                      aria-label={`${germanText(region.label, region.label)} öffnen`}
                     >
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -168,13 +233,14 @@ export function Footer({ dic }: { dic?: any } = {}) {
                       <Link
                         key={service.id}
                         href={service.href}
+                        prefetch={false}
                         data-event="service_card_click"
                         data-service={service.id}
                         data-region={service.region}
                         data-source="global_footer"
                         className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
                       >
-                        {service.title}
+                        {germanText(service.title, service.title)}
                       </Link>
                     ))}
                   </div>
@@ -187,8 +253,8 @@ export function Footer({ dic }: { dic?: any } = {}) {
         <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <nav aria-label="Wichtige FLOXANT Startpunkte" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
             {authorityLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-white">
-                {item.label}
+              <Link key={item.href} href={item.href} prefetch={false} className="hover:text-white">
+                {germanText(item.label, item.label)}
               </Link>
             ))}
           </nav>
@@ -197,7 +263,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         <section className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-400">
             {legalLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-white">
+              <Link key={item.href} href={item.href} prefetch={false} className="hover:text-white">
                 {item.label}
               </Link>
             ))}

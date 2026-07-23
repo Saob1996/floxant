@@ -42,34 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "rechner",
-    title: "FLOXANT Kostenrechner Regensburg & Bayern | Umzug, Reinigung, Entrümpelung",
+    title: "FLOXANT Kostenrechner Regensburg & Regensburg | Umzug, Reinigung, Entrümpelung",
     description:
-      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Regensburg und Bayern einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
-    keywords: [
-      "Umzug Rechner Regensburg",
-      "Reinigung Rechner Regensburg",
-      "Entrümpelung Rechner Bayern",
-      "Entsorgung Rechner Regensburg",
-      "Büroumzug Rechner Bayern",
-      "Umzug Kosten einschätzen",
-      "Umzug Kosten Regensburg",
-      "Umzug Kosten Bayern",
-      "Reinigung Preisrahmen",
-      "Reinigung Kosten Regensburg",
-      "Kostenrechner Bayern",
-      "Preisvorschlag Umzug Reinigung",
-      "Entrümpelung Kosten Bayern",
-      "Reinigung Kosten Bayern",
-      "Angebot günstiger prüfen",
-      "Budget nennen FLOXANT",
-      "Umzugsfirma Regensburg Rechner",
-      "Reinigungsfirma Regensburg",
-      "Google Maps Umzug Regensburg",
-      "Google Maps Anfrage Regensburg",
-      "Service Regensburg Bayern",
-      "Bayern Umzug Reinigung Entrümpelung",
-      "FLOXANT Rechner",
-    ],
+      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Regensburg und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
   });
 }
 
@@ -480,11 +455,11 @@ export default async function RechnerPage() {
   const regensburgCoreLinks = BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6);
 
   const localSeoTags = [
-    { label: "Umzug Regensburg", href: "/umzug-regensburg" },
-    { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
-    { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
+    { label: "Umzug Regensburg", href: "/regensburg/umzug" },
+    { label: "Reinigung Regensburg", href: "/regensburg/reinigung" },
+    { label: "Entrümpelung Regensburg", href: "/regensburg/entruempelung" },
     { label: "Büroumzug Regensburg", href: "/bueroumzug-regensburg" },
-    { label: "Wohnungsauflösung Regensburg", href: "/wohnungsaufloesung-regensburg" },
+    { label: "Wohnungsauflösung Regensburg", href: "/regensburg/wohnungsaufloesung" },
     { label: "Beiladung Regensburg", href: "/beiladung-regensburg" },
     { label: "Einlagerung Regensburg", href: "/einlagerung" },
     { label: "Kostenrechner Bayern", href: "/rechner" },
@@ -597,7 +572,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#lokale-tags",
         name: "FLOXANT lokale Such-Tags",
         description:
-          "Passende lokale Startpunkte für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
+          "Passende lokale Startpunkte für Regensburg, Regensburg, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
         itemListElement: localSeoTags.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -1142,6 +1117,7 @@ export default async function RechnerPage() {
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Link
                     href={intent.primary.href}
+                    prefetch={false}
                     className="rounded-full bg-blue-600 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-sm shadow-blue-900/20 transition hover:-translate-y-0.5 hover:bg-blue-500"
                   >
                     {germanText(intent.primary.label, intent.primary.label)}
@@ -1150,6 +1126,7 @@ export default async function RechnerPage() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      prefetch={false}
                       className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                     >
                       {germanText(item.label, item.label)}
@@ -1204,7 +1181,7 @@ export default async function RechnerPage() {
       <section className="section-glow relative content-auto px-6 pb-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
-            <span className="label-premium text-blue-700">Bayern-Servicewege</span>
+            <span className="label-premium text-blue-700">Leistungen in Bayern</span>
             <h2 className="mt-4 max-w-[14ch] text-4xl font-bold leading-[1] tracking-[-0.022em] text-slate-950 md:text-5xl">
               Direkte Wege aus Bayern in den passenden Rechner
             </h2>
@@ -1232,6 +1209,7 @@ export default async function RechnerPage() {
                         <div className="text-sm font-bold text-slate-950">{germanText(link.label, link.label)}</div>
                         <Link
                           href={link.href}
+                          prefetch={false}
                           className="text-[11px] font-black uppercase tracking-[0.16em] text-blue-700 hover:text-blue-900"
                         >
                           Seite
@@ -1240,24 +1218,28 @@ export default async function RechnerPage() {
                       <div className="mt-3 flex flex-wrap gap-2">
                         <Link
                           href={buildServiceMarketHref("umzug", link.href)}
+                          prefetch={false}
                           className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                         >
                           Umzug
                         </Link>
                         <Link
                           href={buildServiceMarketHref("reinigung", link.href)}
+                          prefetch={false}
                           className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                         >
                           Reinigung
                         </Link>
                         <Link
                           href={buildServiceMarketHref("entsorgung", link.href)}
+                          prefetch={false}
                           className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                         >
                           Entrümpelung
                         </Link>
                         <Link
                           href={buildServiceMarketHref("bueroumzug", link.href)}
+                          prefetch={false}
                           className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                         >
                           Büroumzug
@@ -1305,7 +1287,7 @@ export default async function RechnerPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Direkte Stadt- und Servicewege
+              Direkte Anfragen nach Stadt und Leistung
             </div>
             <h2 className="mt-3 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
               Wenn der Ort schon feststeht, geht es direkt in die passende Seite
@@ -1321,6 +1303,7 @@ export default async function RechnerPage() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="card-premium rounded-[1.6rem] p-5 transition-all hover:-translate-y-1 hover:border-blue-300/30"
               >
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
@@ -1390,6 +1373,7 @@ export default async function RechnerPage() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
                 {germanText(item.label, item.label)}

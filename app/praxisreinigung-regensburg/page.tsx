@@ -20,6 +20,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { company } from "@/lib/company";
@@ -30,6 +34,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/praxisreinigung-regensburg";
@@ -169,12 +174,15 @@ const relatedLinks = [
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Ratgeber Reinigungsfirma" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
 ];
+
+const praxisLeadHref =
+  "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -183,17 +191,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Praxisreinigung Regensburg | Angebot & Turnus | FLOXANT",
     description:
       "Praxisreinigung in Regensburg für Empfang, Wartebereich, Büro, Sanitär und Nebenflächen. Turnus, Zeitfenster, Fotos und Angebot prüfen.",
-    keywords: [
-      "Praxisreinigung Regensburg",
-      "Arztpraxis Reinigung Regensburg",
-      "Praxisreinigung Angebot Regensburg",
-      "Reinigung Praxisräume Regensburg",
-      "Reinigungsfirma Praxis Regensburg",
-      "Praxis Unterhaltsreinigung Regensburg",
-      "Praxisreinigung nach Praxisschluss Regensburg",
-      "Wartebereich Reinigung Regensburg",
-      "Praxisräume reinigen Regensburg",
-    ],
   });
 }
 
@@ -208,7 +205,7 @@ export default function PraxisreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Praxisreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -218,7 +215,7 @@ export default function PraxisreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Praxisreinigung, Praxis-Unterhaltsreinigung, Arztpraxis Reinigung und gewerbliche Reinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Praxisreinigung Regensburg für Empfang, Wartebereich und Nebenflächen",
@@ -263,7 +260,7 @@ export default function PraxisreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Praxisreinigung Regensburg" },
         ]}
       />
@@ -311,10 +308,21 @@ export default function PraxisreinigungRegensburgPage() {
               </nav>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="#kontakt" className="flox-button-primary px-6">
+                <Link
+                  href={praxisLeadHref}
+                  className="flox-button-primary px-6"
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service="praxisreinigung"
+                  data-city="regensburg"
+                  data-page-intent="praxisreinigung-regensburg"
+                  data-priority="p0"
+                  data-cta-label="Praxisreinigung anfragen"
+                  data-destination={praxisLeadHref}
+                >
                   Praxisreinigung anfragen
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flox-button-secondary px-6">
                   <MessageCircle className="h-4 w-4" />
                   Per WhatsApp senden
@@ -324,7 +332,7 @@ export default function PraxisreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
                 alt="Heller Empfangsbereich als Beispiel für Praxisreinigung in Regensburg"
                 fill
                 priority
@@ -359,6 +367,25 @@ export default function PraxisreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Praxisreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Praxisdaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Praxisreinigung"
+        intro="Diese Links halten Praxisreinigung, Unterhaltsreinigung, Büroreinigung und Gewerbereinigung im Regensburger Cluster zusammen."
+        limit={5}
+      />
 
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
@@ -531,7 +558,7 @@ export default function PraxisreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}

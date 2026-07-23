@@ -82,10 +82,15 @@ function compactDataset(dataset: DOMStringMap) {
  return {
   event: dataset.event || "",
   source: dataset.source || "",
+  service: dataset.service || "",
+  city: dataset.city || "",
   contactChannel: dataset.contactChannel || dataset.channel || "",
-  intent: dataset.intent || "",
+  intent: dataset.intent || dataset.pageIntent || "",
+  pageIntent: dataset.pageIntent || dataset.intent || "",
   priority: dataset.priority || "",
-  label: dataset.label || "",
+  label: dataset.label || dataset.ctaLabel || "",
+  ctaLabel: dataset.ctaLabel || dataset.label || "",
+  destination: dataset.destination || "",
  };
 }
 
@@ -143,7 +148,7 @@ function inferGoogleAdsConversion(payload: Record<string, unknown>): GoogleAdsCo
  const channel = normalizeForTracking(payload.channel);
  const combined = `${event} ${href} ${label} ${channel}`;
 
- if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success")) return "form_success";
+ if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success") || event.includes("lead submit success")) return "form_success";
  if (href.startsWith("tel") || channel === "phone" || event.includes("phone") || event.includes("call")) return "phone";
  if (href.includes("wa me") || href.includes("whatsapp") || channel === "whatsapp" || event.includes("whatsapp")) return "whatsapp";
  if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("offer comparison") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
@@ -178,16 +183,17 @@ function trackConversion(payload: Record<string, unknown>) {
 
 function eventNameFor(element: HTMLElement, href: string) {
  if (element.dataset.event) return element.dataset.event;
- if (href.startsWith("tel:")) return "phone_click";
+ if (href.startsWith("tel:")) return "seo_phone_click";
  if (href.includes("wa.me") || href.includes("whatsapp")) return "whatsapp_click";
+ if (href.startsWith("mailto:")) return "seo_email_click";
  if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebot-vergleichen") || href.includes("angebotscheck")) return "hero_cta_click";
- if (href.includes("rueckruf") || href.includes("anliegen=rueckruf") || href.startsWith("mailto:")) return "hero_cta_click";
+ if (href.includes("rueckruf") || href.includes("anliegen=rueckruf")) return "hero_cta_click";
  return "service_card_click";
 }
 
 function getHighIntentPageSignal(pathname: string) {
  const path = pathname || "/";
- const isDuesseldorf = path.includes("duesseldorf");
+ const isRegensburg = path.includes("regensburg");
 
  if (path === "/buchung") {
   return { path, source: "booking_page_dwell", label: "Buchungsseite aktiv gelesen", priority: "hot", intent: "booking_review" };
@@ -195,7 +201,7 @@ function getHighIntentPageSignal(pathname: string) {
  if (path === "/rechner") {
   return { path, source: "calculator_page_dwell", label: "Rechner aktiv gelesen", priority: "hot", intent: "price_orientation" };
  }
- if (["/angebot-guenstiger-pruefen", "/angebot-vergleichen-duesseldorf", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
+ if (["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
   return { path, source: "offer_check_page_dwell", label: "Angebotsprüfung aktiv gelesen", priority: "hot", intent: "offer_check" };
  }
  if (["/plan-b-service", "/schadensbegrenzung"].includes(path)) {
@@ -210,16 +216,14 @@ function getHighIntentPageSignal(pathname: string) {
  ) {
   return { path, source: "signature_service_page_dwell", label: "Zusatzleistung aktiv gelesen", priority: "warm", intent: "signature_service" };
  }
- if (isDuesseldorf && path.includes("reinigung")) {
-  return { path, source: "duesseldorf_cleaning_page_dwell", label: "Düsseldorf-Reinigung aktiv gelesen", priority: "warm", intent: "duesseldorf_cleaning_only" };
+ if (isRegensburg && path.includes("reinigung")) {
+  return { path, source: "regensburg_cleaning_page_dwell", label: "Regensburg-Reinigung aktiv gelesen", priority: "warm", intent: "regensburg_cleaning_only" };
  }
  if (
   path.startsWith("/umzug") ||
   path.startsWith("/reinigung") ||
   path.startsWith("/entruempelung") ||
-  path.startsWith("/bueroumzug") ||
-  path.includes("service-area-bayern") ||
-  path.includes("einsatzgebiet-regensburg-200km")
+  path.startsWith("/bueroumzug")
  ) {
   return { path, source: "service_area_page_dwell", label: "Service-/Ortsseite aktiv gelesen", priority: "warm", intent: "local_service_review" };
  }
@@ -273,7 +277,7 @@ export function ConversionEventReporter() {
    });
   }
 
-  function handleChange(event: Event) {
+ function handleChange(event: Event) {
    const element = event.target instanceof HTMLElement ? event.target : null;
    if (!element?.dataset.event) return;
 
@@ -290,21 +294,32 @@ export function ConversionEventReporter() {
     label: element.dataset.label || element.getAttribute("aria-label") || element.getAttribute("title") || "",
     fileCount,
     dataset: compactDataset(element.dataset),
-   });
+  });
+  }
+
+  function handleCustomConversionEvent(event: Event) {
+   const customEvent = event as CustomEvent<Record<string, unknown>>;
+   if (!customEvent.detail || typeof customEvent.detail !== "object") return;
+   trackConversion(customEvent.detail);
   }
 
   document.addEventListener("click", handleClick, true);
   document.addEventListener("submit", handleSubmit, true);
   document.addEventListener("change", handleChange, true);
+  window.addEventListener("floxant:conversion-event", handleCustomConversionEvent);
 
   return () => {
    document.removeEventListener("click", handleClick, true);
    document.removeEventListener("submit", handleSubmit, true);
    document.removeEventListener("change", handleChange, true);
+   window.removeEventListener("floxant:conversion-event", handleCustomConversionEvent);
   };
  }, []);
 
  useEffect(() => {
+  const enableSuccessFetchTracking = false;
+  if (!enableSuccessFetchTracking) return;
+
   const nativeFetch = window.fetch.bind(window);
 
   window.fetch = async (input, init) => {
@@ -327,7 +342,7 @@ export function ConversionEventReporter() {
 
      if (successful) {
       trackConversion({
-       event: "submit_form_success",
+       event: "seo_lead_submit_success",
        source: "api_success",
        channel: "form",
        href: requestUrl.pathname,
@@ -354,6 +369,9 @@ export function ConversionEventReporter() {
  }, []);
 
  useEffect(() => {
+  const enableDwellTracking = false;
+  if (!enableDwellTracking) return;
+
   const signal = getHighIntentPageSignal(pathname || window.location.pathname);
   if (!signal) return;
 

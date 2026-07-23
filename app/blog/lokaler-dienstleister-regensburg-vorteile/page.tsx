@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Lokaler Dienstleister in Regensburg | Vorteile für Umzug, Reinigung & Entrümpelung",
   description:
    "Warum regionale Nähe in Regensburg bei Umzug, Reinigung und Entrümpelung oft für bessere Abstimmung, ehrlichere Vorprüfung und weniger Reibung sorgt.",
-  keywords: [
-   "lokaler Dienstleister Regensburg",
-   "Umzugsfirma Regensburg Vorteile",
-   "Reinigungsfirma Regensburg lokal",
-   "Entrümpelung Regensburg lokal",
-  ],
  });
 }
 

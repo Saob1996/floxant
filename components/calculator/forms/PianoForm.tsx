@@ -77,6 +77,7 @@ export default function PianoForm({ dic, currentStep = 1 }: { dic?: any; current
 
        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <button
+         type="button"
          onClick={() => updateKlaviertransportData({ pianoType: "upright" })}
          className={`flex flex-col items-center justify-center rounded-2xl border p-8 transition-all ${klaviertransportData.pianoType === "upright" ? "border-blue-500/30 bg-blue-500/10" : "border-white/5 bg-[#0B0D12] hover:bg-white/5"}`}
         >
@@ -86,6 +87,7 @@ export default function PianoForm({ dic, currentStep = 1 }: { dic?: any; current
         </button>
 
         <button
+         type="button"
          onClick={() => updateKlaviertransportData({ pianoType: "grand" })}
          className={`flex flex-col items-center justify-center rounded-2xl border p-8 transition-all ${klaviertransportData.pianoType === "grand" ? "border-blue-500/30 bg-blue-500/10" : "border-white/5 bg-[#0B0D12] hover:bg-white/5"}`}
         >
@@ -112,6 +114,7 @@ export default function PianoForm({ dic, currentStep = 1 }: { dic?: any; current
           <input
            type="number"
            min={0}
+           aria-label="Transport-Distanz in Kilometern"
            value={klaviertransportData.distanceKm || ""}
            onChange={(e) => updateKlaviertransportData({ distanceKm: parseNumber(e.target.value) })}
            placeholder="z. B. 10"
@@ -173,7 +176,7 @@ function AddressBlock({
    <div className="space-y-4">
     <div className="grid grid-cols-1 gap-4">
      <FieldCard label={floorLabel}>
-      <input type="number" placeholder={floorPlaceholder} value={floorValue} onChange={(e) => onFloorChange(e.target.value)} className="w-full bg-transparent text-sm font-bold text-white outline-none" />
+      <input type="number" aria-label={floorLabel} placeholder={floorPlaceholder} value={floorValue} onChange={(e) => onFloorChange(e.target.value)} className="w-full bg-transparent text-sm font-bold text-white outline-none" />
      </FieldCard>
     </div>
     <div className="grid grid-cols-1 gap-2">

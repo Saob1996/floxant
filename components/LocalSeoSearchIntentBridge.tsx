@@ -46,16 +46,16 @@ function localSearchIntents({
           text: "Für Büro, Praxis, Laden, Objekt oder Treppenhaus zählen Fläche, Turnus, Zeitfenster, Zugang und Fotos. Damit lässt sich der Aufwand schneller und realistischer einschätzen.",
           href:
             city === "Düsseldorf"
-              ? "/duesseldorf/bueroreinigung"
+              ? "/regensburg/bueroreinigung"
               : city === "Regensburg"
-                ? "/bueroreinigung-regensburg"
+                ? "/regensburg/bueroreinigung"
                 : currentHref,
           label: "Firmenreinigung prüfen",
         },
         {
           title: "Bestehendes Reinigungsangebot prüfen",
           text: "Ein Reinigungsangebot wird erst klar, wenn Fläche, Objektart, Zustand, Zugang, Termin, Fotos und gewünschtes Ergebnis zusammenpassen.",
-          href: city === "Düsseldorf" ? "/angebot-vergleichen-duesseldorf" : "/angebot-guenstiger-pruefen",
+          href: city === "Düsseldorf" ? "/angebot-vergleichen-regensburg" : "/angebot-guenstiger-pruefen",
           label: "Angebot prüfen",
         },
         ...(city === "Regensburg"
@@ -77,7 +77,7 @@ function localSearchIntents({
         {
           title: "Kurzfristige Reinigung prüfen",
           text: "Kurzfristige Termine werden nach Machbarkeit geprüft. Ort, Fotos, Deadline, Zugang und Prioritäten sollten direkt mitgesendet werden.",
-          href: city === "Düsseldorf" ? "/duesseldorf/kurzfristige-reinigung" : "/notfallreinigung-24h",
+          href: city === "Regensburg" ? "/regensburg/reinigung" : "/notfallreinigung-24h",
           label: "Machbarkeit prüfen",
         },
       ];
@@ -107,7 +107,7 @@ function localSearchIntents({
         {
           title: "Nach Räumung sauber abschließen",
           text: "Wenn die Fläche anschließend übergeben wird, sollten Räumung, Fotos, Reinigung und Schlüssel in derselben Reihenfolge geplant werden.",
-          href: "/blog/entruempelungsfirma-finden-regensburg-germering",
+          href: "/blog/entruempelung-regensburg-angebot-haushaltsaufloesung-pruefen",
           label: "Ratgeber lesen",
         },
         {
@@ -119,7 +119,7 @@ function localSearchIntents({
         {
           title: "Reinigung nach Entrümpelung mitdenken",
           text: "Nach einer Entrümpelung bleiben oft Staub, Laufwege, Küche, Bad, Keller oder Übergabepunkte offen. Fotos zeigen, ob Grundreinigung oder Endreinigung passt.",
-          href: "/blog/entruempelung-endreinigung-bayern",
+          href: "/blog/entruempelung-endreinigung-regensburg",
           label: "Reinigung danach prüfen",
         },
         {
@@ -131,7 +131,7 @@ function localSearchIntents({
         {
           title: "Haushaltsauflösung ruhig klären",
           text: "Bei Haushalt, Nachlass oder Wohnungsauflösung sollten Räume, Keller, Menge, Fotos, Ansprechpartner, Termin und Endzustand früh geklärt werden.",
-          href: city === "Regensburg" ? "/wohnungsaufloesung-regensburg" : currentHref,
+          href: city === "Regensburg" ? "/regensburg/wohnungsaufloesung" : currentHref,
           label: "Auflösung einordnen",
         },
         {
@@ -141,7 +141,7 @@ function localSearchIntents({
             city === "Neutraubling"
               ? "/wohnungsaufloesung-neutraubling"
               : city === "Regensburg"
-                ? "/wohnungsaufloesung-regensburg"
+                ? "/regensburg/wohnungsaufloesung"
                 : currentHref,
           label: "Haushalt schildern",
         },
@@ -240,7 +240,7 @@ function localSearchIntents({
         },
         {
           title: "Starnberg, Germering, Bamberg und Bayern",
-          text: "Für Seniorenumzüge in Bayern werden Ort, Entfernung, Etage, Packhilfe, Angehörige, Übergabe, Reinigung und Rückrufwunsch ruhig zusammen aufgenommen.",
+          text: "Für Seniorenumzüge in Regensburg werden Ort, Entfernung, Etage, Packhilfe, Angehörige, Übergabe, Reinigung und Rückrufwunsch ruhig zusammen aufgenommen.",
           href: "/seniorenumzug-bayern",
           label: "Bayern-Anfrage starten",
         },
@@ -274,7 +274,7 @@ function localSearchIntents({
         {
           title: "Reinigung nach der Räumung vorbereiten",
           text: "Nach dem Ausräumen wird oft sichtbar, ob Böden, Küche, Bad, Keller, Balkon oder Übergabebereiche noch gereinigt werden müssen.",
-          href: "/blog/entruempelung-endreinigung-bayern",
+          href: "/blog/entruempelung-endreinigung-regensburg",
           label: "Reinigung mitdenken",
         },
         {

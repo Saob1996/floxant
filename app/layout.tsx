@@ -19,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "",
     title: "FLOXANT | Umzug, Reinigung & Entrümpelung lokal prüfen",
     description:
-      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
+      "FLOXANT prüft Umzug, Entrümpelung, Haushaltsauflösung sowie Reinigung und Gewerbereinigung in Regensburg und im 50-km-Umkreis.",
   });
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: ReactNode;
@@ -35,9 +35,6 @@ export default async function RootLayout({
           "min-h-screen bg-background font-sans antialiased text-foreground flox-site-light",
         )}
       >
-        <a href="#main-content" className="skip-to-content">
-          Direkt zum Inhalt springen
-        </a>
         <MotionProvider>
           <GoogleAdsTag />
           <ConversionEventReporter />

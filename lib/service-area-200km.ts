@@ -121,20 +121,20 @@ export const SERVICE_AREA_SERVICES = [
 ] as const;
 
 export const PRIORITY_SERVICE_AREA_LINKS = [
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
   { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/umzug-nuernberg", label: "Umzug Nuernberg" },
   { href: "/entruempelung-nuernberg", label: "Entruempelung Nuernberg" },
   { href: "/bueroumzug-nuernberg", label: "Bueroumzug Nuernberg" },
-  { href: "/reinigung-nuernberg", label: "Reinigung Nuernberg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/umzug-muenchen", label: "Umzug Muenchen" },
   { href: "/entruempelung-muenchen", label: "Entruempelung Muenchen" },
   { href: "/bueroumzug-muenchen", label: "Bueroumzug Muenchen" },
-  { href: "/reinigung-muenchen", label: "Reinigung Muenchen" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/umzug-augsburg", label: "Umzug Augsburg" },
-  { href: "/reinigung-kempten", label: "Reinigung Kempten" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/entruempelung-deggendorf", label: "Entruempelung Deggendorf" },
   { href: "/bueroumzug-passau", label: "Bueroumzug Passau" },
 ];

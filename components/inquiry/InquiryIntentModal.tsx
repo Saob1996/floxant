@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { AnimatePresence, m } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, ExternalLink, MessageCircle, X } from "lucide-react";
 import Link from "next/link";
@@ -34,7 +37,7 @@ const regionLabels: Record<InquiryRegion, { title: string; text: string }> = {
   },
   duesseldorf: {
     title: "Düsseldorf",
-    text: "Reinigung zuerst. Keine Vermischung mit Regensburg/Bayern.",
+    text: "Reinigung zuerst. Keine Vermischung mit Regensburg.",
   },
 };
 
@@ -58,13 +61,13 @@ function getInitialValues(config: InquiryConfig, region?: InquiryRegion) {
 }
 
 function getServiceType(config: InquiryConfig, values: Record<string, string>) {
-  if (config.intent === "cleaning" && values.region === "duesseldorf") {
-    return "duesseldorf_moeblierte_wohnung_reinigung";
+  if (config.intent === "cleaning" && values.region === "regensburg") {
+    return "regensburg_moeblierte_wohnung_reinigung";
   }
 
   if (config.intent === "express") {
     const concern = `${values.concern} ${values.location}`.toLowerCase();
-    if (concern.includes("reinigung") || concern.includes("düsseldorf") || concern.includes("duesseldorf")) return "reinigung";
+    if (concern.includes("reinigung") || concern.includes("Regensburg") || concern.includes("regensburg")) return "reinigung";
     if (concern.includes("entrümpel") || concern.includes("entruempel") || concern.includes("entsorgung")) return "entsorgung";
     return "umzug";
   }
@@ -88,7 +91,7 @@ function buildSummary(config: InquiryConfig, values: Record<string, string>) {
 
   if (config.intent === "cleaning") {
     return [
-      `Region: ${values.region === "duesseldorf" ? "Düsseldorf Reinigung" : "Regensburg/Bayern Reinigung"}`,
+      `Region: ${values.region === "regensburg" ? "Reinigung Regensburg" : "Regensburg Reinigung"}`,
       `Ort: ${values.location || "nicht angegeben"}`,
       `Objektart: ${values.objectType || "nicht angegeben"}`,
       `Größe: ${values.size || "nicht angegeben"}`,
@@ -261,6 +264,7 @@ export function InquiryIntentModal({
     submitData.append("email", values.email?.trim() || "");
     submitData.append("phone", values.phone?.trim() || "");
     submitData.append("message", details.configuration.message);
+    submitData.append("privacyConsent", "true");
     submitData.append("leadSource", "header-modal");
     submitData.append("sourceComponent", "InquiryIntentModal");
     submitData.append("sourcePage", pathname);
@@ -271,7 +275,7 @@ export function InquiryIntentModal({
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -476,6 +480,8 @@ export function InquiryIntentModal({
                     </p>
                   ) : null}
 
+                  <PrivacyConsentField />
+
                   {submitState === "success" ? (
                     <div className="flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-black text-emerald-800">
                       <CheckCircle2 className="h-5 w-5" />
@@ -493,6 +499,7 @@ export function InquiryIntentModal({
                   <div className="sticky bottom-0 -mx-5 -mb-5 grid gap-2 border-t border-slate-100 bg-white/95 p-5 backdrop-blur sm:-mx-7 sm:-mb-7 sm:grid-cols-[1fr_0.9fr] sm:p-7">
                     <button
                       type="submit"
+                      aria-label={submitState === "submitting" ? "Anfrage wird gesendet" : config.primaryCta}
                       disabled={submitState === "submitting" || submitState === "success"}
                       className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-sm font-black text-white shadow-[0_14px_30px_rgba(15,23,42,0.18)] transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
                     >

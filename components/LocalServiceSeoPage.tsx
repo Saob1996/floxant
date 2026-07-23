@@ -14,6 +14,25 @@ import {
 } from "lucide-react";
 
 import { company, duesseldorfCompany } from "@/lib/company";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
+import { AiAnswerBlock } from "@/components/ai-answer";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
+import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import type { LocalServiceSeoPageConfig } from "@/lib/local-service-seo-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
 import {
@@ -21,6 +40,8 @@ import {
   buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
+import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 type LocalServiceSeoPageProps = {
@@ -55,9 +76,103 @@ function getContact(config: LocalServiceSeoPageConfig) {
   };
 }
 
-function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; whatsappHref: string }) {
+function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
+  const service = config.serviceName.toLowerCase();
+
+  if (config.cityKey === "regensburg" && service.includes("gewerbe")) {
+    return {
+      intro:
+        "Gewerbereinigung wird belastbar, wenn Objektart, Raumliste, Turnus, Randzeit und Zugang klar sind. Senden Sie lieber wenige konkrete Eckdaten als eine allgemeine Bitte um Reinigung.",
+      offerLabel: "Gewerbereinigungsangebot vergleichen",
+      checklist: [
+        "Objektart: Büro, Kanzlei, Praxisfläche, Studio, Laden oder Hausverwaltung",
+        "Raumliste mit Arbeitsplätzen, Empfang, Sanitär, Küche und Nebenflächen",
+        "Turnus, Randzeit, Schlüsselweg und Ansprechpartner",
+        "Fotos, Starttermin und vorhandenes Angebot oder Budgetrahmen",
+      ],
+      localLogic: [
+        "In Altstadt, Stadtamhof und Innenstadt sind Zugang, Parken und Reinigungszeitfenster oft früher zu klären als der Quadratmeterpreis.",
+        "In Prüfening, Galgenberg, Burgweinting, Reinhausen oder im Kasernenviertel zählen Raumliste, Turnus und ein fester Ansprechpartner besonders stark.",
+      ],
+    };
+  }
+
+  if (config.cityKey === "regensburg" && service.includes("reinigung")) {
+    return {
+      intro:
+        "Diese Reinigungsseite ist der Regensburger Einstieg für Wohnung, Übergabe und allgemeine Objektfälle. Für Büro oder Gewerbe führen die Links bewusst auf die spezielleren Seiten.",
+      offerLabel: "Reinigungsangebot Regensburg vergleichen",
+      checklist: [
+        "Objektart: Wohnung, Übergabe, Treppenhaus, Büro oder Gewerbefläche",
+        "Fläche, Räume, Zustand, Küche, Bad, Böden und gewünschtes Ergebnis",
+        "Termin, Zugang, Schlüsselweg, Etage und Parkmöglichkeit",
+        "Fotos und vorhandenes Angebot, wenn Umfang oder Preis unklar sind",
+      ],
+      localLogic: [
+        "In Altstadt und Stadtamhof sind Zugang und Zeitfenster oft entscheidend; in Kumpfmühl, Prüfening oder Galgenberg hilft eine klare Raumliste.",
+        "Wenn es um laufende Büro- oder Gewerbereinigung geht, ist die spezialisierte B2B-Seite meist der bessere nächste Schritt.",
+      ],
+    };
+  }
+
+  if (config.cityKey === "duesseldorf" && service.includes("umzug")) {
+    return {
+      intro:
+        "Diese Regensburger Anfrage braucht Start, Ziel, Etage, Volumen und Zugang. Reinigung oder Entsorgung werden nur als Zusatzpunkte getrennt eingeordnet.",
+      offerLabel: "Umzugsangebot Düsseldorf prüfen",
+      checklist: [
+        "Start- und Zieladresse mit Etage, Aufzug und Laufweg",
+        "Möbelmenge, Kartons, große Einzelstücke und Fotos",
+        "Terminfenster, Haltemöglichkeit und gewünschte Zusatzleistungen",
+        "Vorhandenes Angebot oder Budgetrahmen für die Einordnung",
+      ],
+      localLogic: [
+        "In Bilk, Pempelfort, Flingern oder Friedrichstadt entscheiden Haltepunkt, Etage und Treppenhaus oft über den Aufwand.",
+        "Reinigung bleibt in Regensburg ein eigener Serviceweg und wird nicht automatisch in den Umzug gemischt.",
+      ],
+    };
+  }
+
+  return {
+    intro:
+      "Eine gute Rückmeldung entsteht, wenn Leistung, Ort, Umfang, Zugang und Zielzustand zusammenpassen. Diese Punkte helfen, die Anfrage ohne Blindpreis sauber vorzubereiten.",
+    offerLabel: config.cityKey === "regensburg" ? "Angebot Regensburg vergleichen" : "Reinigungsangebot Regensburg prüfen",
+    checklist: [
+      `${config.cityName}, Stadtteil oder PLZ nennen`,
+      `${config.serviceName}: Umfang, Zielzustand und Termin beschreiben`,
+      "Fotos, Raumliste, vorhandenes Angebot oder Budgetrahmen mitschicken",
+      "Zugang, Etage, Parken, Schlüsselweg und Ansprechpartner klären",
+    ],
+    localLogic: [
+      config.localText,
+      config.cityKey === "regensburg"
+        ? "Regensburg wird zuerst lokal geprüft. Weitere Orte gehören in die Angebotsprüfung, wenn Route, Termin oder Kombination den Auftrag realistisch machen."
+        : "Regensburg wird als eigener Reinigungsbereich behandelt. Randlagen werden nach Objekt, Zugang und Zeitfenster eingeordnet.",
+    ],
+  };
+}
+
+function JsonLd({
+  config,
+  whatsappHref,
+  bookingHref,
+}: {
+  config: LocalServiceSeoPageConfig;
+  whatsappHref: string;
+  bookingHref: string;
+}) {
   const canonical = `${company.url}${config.path}`;
   const contact = getContact(config);
+  const isRegensburgCleaningPage = config.cityKey === "regensburg" && config.schemaType === "CleaningService";
+  const areaServed = isRegensburgCleaningPage
+    ? buildRegensburgCleaningAreaServedJsonLd()
+    : [
+        {
+          "@type": "City",
+          name: config.cityName,
+        },
+      ];
+
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -75,12 +190,7 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
           addressLocality: contact.city,
           addressCountry: contact.countryCode,
         },
-        areaServed: [
-          {
-            "@type": "City",
-            name: config.cityName,
-          },
-        ],
+        areaServed,
         sameAs: company.sameAs,
       },
       {
@@ -91,10 +201,12 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
         serviceType: config.serviceType,
         url: canonical,
         provider: { "@id": `${canonical}#localbusiness` },
-        areaServed: [config.cityName, ...config.districts.slice(0, 6)].map((name) => ({
-          "@type": name === config.cityName ? "City" : "Place",
-          name,
-        })),
+        areaServed: isRegensburgCleaningPage
+          ? areaServed
+          : [config.cityName, ...config.districts.slice(0, 6)].map((name) => ({
+              "@type": name === config.cityName ? "City" : "Place",
+              name,
+            })),
         availableChannel: {
           "@type": "ServiceChannel",
           serviceUrl: canonical,
@@ -102,7 +214,7 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
             "@type": "ContactPoint",
             telephone: contact.phoneRaw,
           },
-          availableLanguage: ["de"],
+          availableLanguage: ["de", "en"],
         },
       },
       buildWebPageJsonLd({
@@ -111,7 +223,7 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
         path: config.path,
         about: [config.mainKeyword, ...config.secondaryKeywords.slice(0, 8)],
         potentialActions: [
-          { name: config.primaryCta, target: config.bookingHref, type: "ContactAction" },
+          { name: config.primaryCta, target: bookingHref, type: "ContactAction" },
           { name: "Fotos per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
         ],
       }),
@@ -135,16 +247,46 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
 export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
   const contact = getContact(config);
   const whatsappHref = buildWhatsAppHref(contact.phoneRaw, config.whatsappMessage);
+  const bookingLead = resolveLeadIntent({
+    path: config.path,
+    service: config.serviceName,
+    city: config.cityKey,
+    ctaLabel: config.primaryCta,
+  });
+  const bookingHref = buildLeadHref(bookingLead);
+  const isRegensburgCleaningPage = config.cityKey === "regensburg" && config.schemaType === "CleaningService";
   const visual = getServiceVisual({
     region: config.cityKey,
     slug: config.key,
     path: config.path,
     serviceLabel: config.serviceName,
   });
+  const internationalTags =
+    config.serviceName.toLowerCase().includes("umzug")
+      ? ["Moving company", "Moving service", "Relocation help", "Moving help"]
+      : config.serviceName.toLowerCase().includes("haushalts")
+        ? ["House clearance", "Decluttering", "Junk removal", "Cleaning help"]
+        : config.serviceName.toLowerCase().includes("entr")
+          ? ["Decluttering", "Junk removal", "House clearance", "Cleaning help"]
+          : ["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning"];
+  const relatedSpecialKind = config.serviceName.toLowerCase().includes("umzug")
+    ? "moving"
+    : config.serviceName.toLowerCase().includes("entr") || config.serviceName.toLowerCase().includes("haushalts")
+      ? "clearance"
+      : "cleaning";
+  const proofServiceKey =
+    relatedSpecialKind === "moving"
+      ? "umzug"
+      : relatedSpecialKind === "clearance"
+        ? "entruempelung"
+        : "reinigung";
+  const decisionCopy = buildLocalDecisionCopy(config);
+  const offerCheckHref =
+    config.cityKey === "regensburg" ? "/angebot-vergleichen-regensburg" : "/angebot-vergleichen-regensburg";
 
   return (
     <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
-      <JsonLd config={config} whatsappHref={whatsappHref} />
+      <JsonLd config={config} whatsappHref={whatsappHref} bookingHref={bookingHref} />
 
       <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white sm:pt-28 lg:pt-32">
         <Image
@@ -176,9 +318,15 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href={config.bookingHref}
-                data-event="hero_cta_click"
+                href={bookingHref}
+                data-event="seo_cta_click"
                 data-region={config.cityKey}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label={config.primaryCta}
+                data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-50"
               >
                 {config.primaryCta}
@@ -241,6 +389,30 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         </div>
       </section>
 
+      <InternationalCustomerHint
+        cityLabel={config.cityName}
+        serviceLabel={config.serviceName}
+        tags={internationalTags}
+        primaryHref={config.bookingHref}
+        photoHref={config.bookingHref}
+        offerHref={offerCheckHref}
+      />
+
+      <LocalConversionDecisionBox
+        cityName={config.cityName}
+        serviceName={config.serviceName}
+        region={config.cityKey}
+        primaryHref={config.bookingHref}
+        primaryLabel={config.primaryCta}
+        offerHref={offerCheckHref}
+        offerLabel={decisionCopy.offerLabel}
+        intro={decisionCopy.intro}
+        checklist={decisionCopy.checklist}
+        decisionItems={config.scopeItems.slice(0, 4)}
+        localLogic={decisionCopy.localLogic}
+        trustItems={config.trustItems.slice(0, 3)}
+      />
+
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
@@ -292,10 +464,16 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
               den nächsten Schritt ohne Preis- oder Sofortgarantie.
             </p>
             <Link
-              href={config.bookingHref}
+              href={bookingHref}
               className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-              data-event="hero_cta_click"
+              data-event="seo_cta_click"
               data-region={config.cityKey}
+              data-service={bookingLead.trackingService}
+              data-city={bookingLead.trackingCity}
+              data-page-intent={bookingLead.trackingIntent}
+              data-priority={bookingLead.priority}
+              data-cta-label="Angebot prÃ¼fen lassen"
+              data-destination={bookingHref}
             >
               Angebot prüfen lassen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -303,6 +481,23 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
         </div>
       </section>
+
+      {isRegensburgCleaningPage ? (
+        <>
+          <ServiceAreaBlock
+            compact={false}
+            title={`${config.serviceName} in Regensburg und Umgebung`}
+            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
+          />
+          <LocalTrustBlock ctaHref={bookingHref} ctaLabel={config.primaryCta} />
+          <RequestChecklistBlock ctaHref={bookingHref} ctaLabel="Reinigungsanfrage vorbereiten" />
+          <RelatedServicesBlock
+            currentHref={config.path}
+            title={`Passende Reinigungsseiten zu ${config.serviceName} in Regensburg`}
+            intro="Der Hub verweist bewusst auf speziellere Seiten, damit Büro, Gewerbe, Unterhalt, Praxis, Treppenhaus, Grundreinigung und Angebotsprüfung sauber getrennt bleiben."
+          />
+        </>
+      ) : null}
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.86fr_1.14fr]">
@@ -363,7 +558,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
               Warum FLOXANT für diese Anfrage passt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Der Nutzen liegt in der strukturierten Anfrage: klarer Kontaktweg, prüfbare Fotos,
+              Der Nutzen liegt in der Anfrage mit den wichtigsten Eckdaten: klarer Kontaktweg, prüfbare Fotos,
               realistische Einschätzung und kombinierte Leistungen ohne leere Versprechen.
             </p>
           </article>
@@ -377,6 +572,75 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
         </div>
       </section>
+
+      <TrustProofPanel
+        allowedPage={config.path}
+        serviceKey={proofServiceKey}
+        locationKey={config.cityKey}
+        title={`Was Sie bei ${config.serviceName} in ${config.cityName} erwarten können`}
+        intro="Diese lokale Seite arbeitet mit prüfbaren Angaben statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte bleiben sichtbar."
+      />
+
+      <ServiceProofChecklist
+        serviceKey={proofServiceKey}
+        title={`Welche Angaben ${config.serviceName} belastbarer machen`}
+        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rückmeldung."
+      />
+
+      <RequestBriefChecklistBlock
+        serviceKey={proofServiceKey}
+        ctaHref={bookingHref}
+        ctaLabel="Anfragebrief mit Eckdaten starten"
+        compact
+      />
+
+      <PhotoGuidanceBlock serviceKey={proofServiceKey} compact />
+
+      {isRegensburgCleaningPage ? <B2BTrustPanel /> : null}
+
+      <LocalProofPanel location={config.cityKey} />
+
+      <ServiceVisualProofGrid
+        serviceKey={proofServiceKey}
+        locationKey={config.cityKey}
+        title={`Visual Proof für ${config.serviceName} in ${config.cityName}`}
+        intro="Sichtbare Visuals bleiben neutral oder freigegeben. Echte Fotos brauchen Privacy-Check, Einwilligung und duerfen keine privaten Daten zeigen."
+      />
+
+      <AiAnswerBlock
+        eyebrow="Lokale Antwort"
+        title={`${config.serviceName} in ${config.cityName}: was vor der Anfrage klar sein sollte.`}
+        answer="Eine lokale Anfrage wird belastbarer, wenn Ort, Objekt, Zugang, Termin, Fotos und ein möglicher Preisrahmen direkt sichtbar sind."
+        points={[
+          "Stadtteil oder PLZ hilft bei Anfahrt und Zeitfenster.",
+          "Fotos zeigen Zustand, Menge, Fläche oder Zugang.",
+          "Ein vorhandenes Angebot kann vor der Zusage eingeordnet werden.",
+          isRegensburgCleaningPage
+            ? "FLOXANT trennt Reinigungsanfragen klar auf Regensburg und den 50-km-Umkreis."
+            : "FLOXANT trennt Regionen und Leistungen nach passendem Serviceweg.",
+        ]}
+        usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rückmeldung gebraucht wird"]}
+        notUsefulWhen={["eine Rechtsberatung erwartet wird", "ein Festpreis ohne Angaben erwartet wird"]}
+        neededInfo={["Ort/PLZ", "Termin", "Fotos oder Beschreibung", "Kontaktweg"]}
+      />
+
+      <RelatedSpecialServices
+        kind={relatedSpecialKind}
+        title={`Verwandte Spezialservices für ${config.serviceName} in ${config.cityName}.`}
+        intro="Wenn der konkrete Fall mehr als eine Standardleistung braucht, helfen diese Spezialwege bei Umfang, Fotos, Termin, Zugang und Zielzustand."
+        limit={4}
+      />
+
+      <SignatureServicesGrid
+        title="Passende FLOXANT Signature Services für diese Anfrage."
+        intro="Angebotscheck, Objektbrief, Übergabe, Plan B oder Rückfahrt können helfen, wenn die lokale Anfrage noch unsicher ist."
+        limit={4}
+      />
+
+      <OfferCheckCTA
+        title={`Angebot für ${config.serviceName} schon vorhanden?`}
+        text="FLOXANT prüft Umfang, Preislogik, Fotos, Zusatzpositionen, Termin und offene Risiken sachlich. Keine Preisgarantie, keine Abwertung anderer Anbieter."
+      />
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
@@ -450,10 +714,16 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
             <Link
-              href={config.bookingHref}
+              href={bookingHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-              data-event="hero_cta_click"
+              data-event="seo_cta_click"
               data-region={config.cityKey}
+              data-service={bookingLead.trackingService}
+              data-city={bookingLead.trackingCity}
+              data-page-intent={bookingLead.trackingIntent}
+              data-priority={bookingLead.priority}
+              data-cta-label={config.primaryCta}
+              data-destination={bookingHref}
             >
               {config.primaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -476,10 +746,16 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
       {config.cityKey === "regensburg" ? (
         <div className="fixed inset-x-3 bottom-3 z-40 md:hidden">
           <Link
-            href={config.bookingHref}
+            href={bookingHref}
             className="flex min-h-14 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white shadow-xl shadow-slate-950/25"
-            data-event="mobile_sticky_cta_click"
+            data-event="seo_cta_click"
             data-region={config.cityKey}
+            data-service={bookingLead.trackingService}
+            data-city={bookingLead.trackingCity}
+            data-page-intent={bookingLead.trackingIntent}
+            data-priority={bookingLead.priority}
+            data-cta-label={config.primaryCta}
+            data-destination={bookingHref}
           >
             {config.primaryCta}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

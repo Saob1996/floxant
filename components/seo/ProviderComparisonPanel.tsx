@@ -30,7 +30,7 @@ export const providerComparisonCriteria = [
   icon: MapPinned,
   title: "Region passt wirklich",
   text: "Bei Umzug, Reinigung und Entrümpelung zählen Ort, Strecke, Verfügbarkeit und ein Ablauf, der realistisch planbar ist.",
-  href: "/einsatzgebiet-regensburg-200km",
+  href: "/regensburg",
   signal: "Regensburg, Bayern, Düsseldorf getrennt, Einsatzgebiet geprüft",
  },
  {

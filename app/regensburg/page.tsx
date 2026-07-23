@@ -3,9 +3,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 
+import {
+  InternationalCustomerHint,
+  LocalIntentBlock,
+  ServiceDecisionGuide,
+  TrustProofSection,
+} from "@/components/conversion";
+import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
+import { ServiceFinder } from "@/components/ContactPathChooser";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalContactPanel } from "@/components/LocalContactPanel";
+import { LocationClarityPanel } from "@/components/LocationClarityPanel";
+import { LocationFaq } from "@/components/LocationFaq";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { ServiceClusterGrid } from "@/components/ServiceClusterGrid";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { company } from "@/lib/company";
+import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
+import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
+import { ServiceNavigationOverview } from "@/components/ServiceNavigationOverview";
+import { AiAnswerBlock } from "@/components/ai-answer";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import {
   floxantCategoryDescriptions,
   floxantCategoryLabels,
@@ -13,6 +34,7 @@ import {
   floxantRegions,
   getServicesByRegionAndCategory,
 } from "@/lib/floxant-services";
+import { locationClarityItems } from "@/lib/professional-copy";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const region = floxantRegions.regensburg;
@@ -27,11 +49,69 @@ const whatsappHref = buildWhatsAppHref(
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Regensburg | Umzug, Reinigung & Räumung",
+  title: "FLOXANT Regensburg: Umzug, Reinigung und Räumung anfragen",
   description:
-    "FLOXANT Regensburg prüft Umzug, Reinigung, Gewerbereinigung, Entrümpelung und Haushaltsauflösung. Fotos senden, Angebot erhalten.",
+    "Regensburg-Anfrage für Umzug, Reinigung, Entrümpelung oder Übergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
   alternates: { canonical: "/regensburg" },
 };
+
+const regensburgLocalSignals = [
+  "Regensburg, Landkreis und Umgebung nach Strecke, Termin, Umfang und verfügbarer Kapazität prüfen.",
+  "Bei Umzug und Transport zählen Start/Ziel, Etage, Laufweg, Volumen, Haltezone und mögliche Rückfahrt.",
+  "Bei Entrümpelung, Haushaltsauflösung und Nachlass helfen Fotos, Freigabe, Menge, Material und Endzustand.",
+  "Bei Übergabe und Endreinigung sind Termin, Schlüsselweg, Restpunkte, Fotos und gewünschter Zustand entscheidend.",
+] as const;
+
+const regensburgDecisionGuide = [
+  {
+    title: "Umzug, Mini-Umzug und Transport",
+    text: "Für Wohnungswechsel, Möbeltransport, Express-Umzug oder flexible Rückfahrt mit Route, Volumen und Zugang.",
+    href: "/regensburg/umzugsunternehmen",
+    cta: "Umzug öffnen",
+  },
+  {
+    title: "Region Regensburg und Umgebung",
+    text: "Kuratierter Hub für Umzug, Räumung, Reinigung nach Umzug und Angebotsprüfung im Regensburger Einsatzgebiet.",
+    href: "/region-regensburg",
+    cta: "Region öffnen",
+  },
+  {
+    title: "Umzugskosten und Umzugsservice",
+    text: "Für Kostenfaktoren, Volumen, Etage, Laufweg, Zusatzleistungen und vorhandene Umzugsangebote.",
+    href: "/regensburg/umzug-kosten",
+    cta: "Kosten prüfen",
+  },
+  {
+    title: "Büroreinigung und Reinigungsfirma",
+    text: "Für Büro, Kanzlei, Gewerbefläche oder Endreinigung mit Raumliste, Turnus, Fotos und Angebot.",
+    href: "/regensburg/bueroreinigung",
+    cta: "Büroreinigung prüfen",
+  },
+  {
+    title: "Entrümpelung und Haushaltsauflösung",
+    text: "Für Keller, Wohnung, Nachlass, Lager oder Restmengen mit Fotos, Menge, Material und Zielzustand.",
+    href: "/regensburg/wohnungsaufloesung",
+    cta: "Wohnungsauflösung prüfen",
+  },
+  {
+    title: "Reinigung und Übergabe",
+    text: "Für Endreinigung, Übergabereinigung, Mieterwechsel oder sichtbare Restpunkte vor Rückgabe und Besichtigung.",
+    href: "/regensburg/reinigung-nach-umzug",
+    cta: "Reinigung wählen",
+  },
+  {
+    title: "Signature und Plan B",
+    text: "Wenn Anbieter, Termin, Preis, Rückfahrt, Objektbrief oder Übergabe erst sortiert werden müssen.",
+    href: "/signature-services",
+    cta: "Signature-Hub öffnen",
+  },
+] as const;
+
+const regensburgTrustProofs = [
+  "Regensburg-Anfragen werden nach Umzug, Reinigung, Entrümpelung, Transport und Übergabe getrennt.",
+  "Ort, Leistung, kurze Beschreibung und Kontaktweg reichen für den Start.",
+  "Budget, Fotos, vorhandenes Angebot, Termin oder Dringlichkeit können freiwillig ergänzt werden.",
+] as const;
 
 export default function RegensburgHubPage() {
   return (
@@ -43,10 +123,12 @@ export default function RegensburgHubPage() {
               {region.label}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Umzug, Reinigung und Entrümpelung in Regensburg
+              Umzug, Reinigung, Räumung und Übergabe in Regensburg anfragen
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              {region.description}
+              Beschreiben Sie Start, Ziel, Objekt, Räume, Umfang, Fotos und Terminwunsch.
+              FLOXANT trennt Umzug, Reinigung, Entrümpelung, Wohnungsauflösung und Angebotscheck,
+              damit aus einer groben Anfrage ein sinnvoller nächster Schritt wird.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -78,7 +160,7 @@ export default function RegensburgHubPage() {
 
           <div className="relative min-h-[320px] overflow-hidden rounded-lg border border-white/10 bg-slate-900 shadow-2xl shadow-black/40 sm:min-h-[420px]">
             <Image
-              src="/assets/service-moving.png"
+              src="/assets/service-moving.webp"
               alt="FLOXANT Umzugsfahrzeug für Umzug und Räumung in Regensburg"
               fill
               priority
@@ -100,6 +182,23 @@ export default function RegensburgHubPage() {
       </section>
 
       <FloxantObjectBrief variant="regensburg" className="border-b border-slate-200" />
+
+      <ServiceNavigationOverview
+        location="regensburg"
+        title="Regensburg-Services nach Anfrageziel."
+        intro="Reinigung im Umkreis, Umzug, Räumung, Angebotsprüfung und besondere Leistungen sind getrennt aufgeführt, damit Sie schneller die passende Anfrage finden."
+      />
+
+      <DecisionCompassPanel
+        title="Unsicher in Regensburg?"
+        intro="Der Kompass führt von Übergabe, Angebot, Plan B, B2B, Sonderstück oder PV/Glas direkt zum passenden nächsten Schritt."
+      />
+
+      <LocationClarityPanel
+        title="Regensburg bleibt der eigene Servicebereich für Wechsel und Übergabe."
+        intro="Regensburg wird nicht mit Düsseldorf vermischt. Für die erste Einordnung zählen Start, Ziel, Etage, Laufweg, Menge, Fotos, Zugang und Terminwunsch."
+        locations={locationClarityItems}
+      />
 
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
@@ -130,6 +229,134 @@ export default function RegensburgHubPage() {
           </div>
         </div>
       </section>
+
+      <LocalIntentBlock
+        regionLabel="Regensburg lokal"
+        title="Ort, Termin und Ziel der Übergabe früh nennen."
+        intro="Viele Regensburger Anfragen hängen an Fristen: Auszug, Schlüssel, Keller, Reinigung, Restmengen oder Besichtigung. Je klarer der Zielzustand ist, desto besser wird die Rückmeldung."
+        signals={regensburgLocalSignals}
+        links={[
+          { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen" },
+          { href: "/region-regensburg", label: "Region Regensburg" },
+          { href: "/regensburg/umzugsservice", label: "Umzugsservice" },
+          { href: "/regensburg/umzug-kosten", label: "Umzugskosten" },
+          { href: "/regensburg/seniorenumzug", label: "Seniorenumzug" },
+          { href: "/regensburg/bueroreinigung", label: "Büroreinigung" },
+          { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung" },
+          { href: "/regensburg/reinigungsfirma", label: "Reinigungsfirma" },
+          { href: "/regensburg/entruempelung", label: "Entrümpelung" },
+          { href: "/regensburg/reinigung", label: "Reinigung" },
+          { href: "/regensburg/reinigung-nach-umzug", label: "Reinigung nach Umzug" },
+          { href: "/regensburg/angebot-vergleichen", label: "Angebotsprüfung" },
+          { href: "/angebot-vergleichen-regensburg", label: "Angebot vergleichen" },
+        ]}
+      />
+
+      <AiAnswerBlock
+        eyebrow="Kurze Antwort"
+        title="Regensburg: Umzug, Reinigung oder Entrümpelung zuerst sauber einordnen."
+        answer="FLOXANT Regensburg führt Anfragen über den konkreten Bedarf: Start- und Zielort, Termin, Umfang, Fotos und vorhandene Angebote. So wird klar, ob eine direkte Anfrage, eine Angebotsprüfung oder ein Plan-B-Weg der bessere nächste Schritt ist."
+        points={[
+          "Umzug und Transport brauchen Strecke, Etage, Laufweg und Volumen.",
+          "Reinigung und Übergabe brauchen Zielzustand, Fläche, Fotos und Termin.",
+          "Entrümpelung und Auflösung brauchen Menge, Material, Zugang und Freigabe.",
+          "Klaviertransport und Seniorenumzug werden als Spezialfälle getrennt vorbereitet.",
+        ]}
+        usefulWhen={["Termin oder Frist absehbar ist", "Fotos oder ein Angebot vorliegen", "mehrere Leistungen kombiniert werden müssen"]}
+        notUsefulWhen={["eine Preisgarantie ohne Orts- und Objektangaben erwartet wird", "rechtliche Beratung zur Übergabe gesucht wird"]}
+        neededInfo={["Ort und Termin", "Leistung", "Fotos", "vorhandenes Angebot oder kurze Lagebeschreibung"]}
+        ctaHref="/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo"
+        ctaLabel="Regensburg-Anfrage starten"
+      />
+
+      <LocationFaq
+        location="regensburg"
+        includeJsonLd
+        className="border-y border-slate-200"
+      />
+
+      <LocalContactPanel
+        locationKeys={["regensburg"]}
+        service="umzug"
+        title="FLOXANT Regensburg mit sichtbaren Standortdaten."
+        intro="Adresse, Telefon, E-Mail und Wegbeschreibung stammen aus den aktuellen Kontaktdaten. Einsatzzeiten nennen wir nach Prüfung der konkreten Anfrage."
+      />
+
+      <ServiceFitAdvisor
+        currentCity="regensburg"
+        title="Regensburger Anfrage schnell vorbereiten."
+        intro="Wählen Sie Leistung und Anliegen für Regensburg. Ihre Angaben werden erst im Formular gesendet."
+      />
+
+      <ServicePackageDecisionExperience
+        variant="regensburg"
+        limitPerGroup={2}
+        heading="Regensburg-Anfragen nach Paket, Kombi-Fall und Aufwand sortieren."
+        intro="Bei Reinigung zählt der Einsatzort, bei Umzug und Räumung zusätzlich Strecke, Menge und Termin. Für unklare Angebote oder besondere Situationen gibt es eigene Anfragen."
+      />
+
+      <ServiceFinder
+        compact
+        currentCity="regensburg"
+        title="Welche Leistung brauchen Sie in Regensburg?"
+        intro="Wählen Sie Leistung, Ort und Anliegen. Einzelheiten ergänzen Sie anschließend im Formular."
+        source="regensburg-service-finder"
+      />
+
+      <ServiceClusterGrid
+        locationKey="regensburg"
+        categories={[
+          "umzug_transport",
+          "entruempelung_aufloesung",
+          "reinigung",
+          "angebot_pruefen",
+          "signature_service",
+        ]}
+        title="Regensburger Services nach Umzug, Räumung, Reinigung und Plan B."
+        intro="Die zentrale Inventur zeigt, welche Leistungen direkt gepflegt sind und welche manuell bestätigt werden müssen."
+        limitPerCategory={5}
+      />
+
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel="Umzug, Reinigung, Gewerbereinigung, Entrümpelung oder Haushaltsauflösung in Regensburg"
+        tags={["Moving help", "Cleaning service", "Office cleaning", "House clearance", "Decluttering"]}
+        primaryHref="/kontakt#direktanfrage"
+        photoHref="/buchung#buchungssystem"
+      />
+
+      <ServiceDecisionGuide
+        eyebrow="Regensburg-Service wählen"
+        title="Wechsel, Räumung, Reinigung oder Plan B?"
+        intro="Diese Wege bilden die häufigsten lokalen Situationen ab und führen direkt zu passenden Seiten oder Formularen."
+        items={regensburgDecisionGuide}
+      />
+
+      <TrustProofSection
+        eyebrow="Klare Anfrage"
+        title="Wenige Pflichtfelder, viele hilfreiche optionale Angaben."
+        intro="FLOXANT braucht kein perfektes Briefing. Wichtig ist nur, dass Ort, Leistung, kurze Lage und Kontaktweg stimmen."
+        proofs={regensburgTrustProofs}
+      />
+
+      <LocalProofPanel location="regensburg" />
+
+      <TrustProofPanel
+        allowedPage="/regensburg"
+        serviceKey="umzug"
+        locationKey="regensburg"
+        title="Regensburg-Trust bleibt lokal und prüfbar."
+        intro="In Regensburg finden Sie direkte Kontaktwege für Umzug, Reinigung, Räumung und besondere Situationen. Zusagen erfolgen erst nach Prüfung Ihrer Angaben."
+      />
+
+      <ServiceProofChecklist
+        serviceKey="umzug"
+        title="Was Regensburger Umzugs- und Serviceanfragen belegbarer macht"
+        intro="Route, Zugang, Volumen, Fotos, Termin und Zielzustand helfen, ohne einen Preis oder Termin vorab zu versprechen."
+      />
+
+      <ProjectStoryGrid serviceKey="umzug" locationKey="regensburg" />
+      <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">

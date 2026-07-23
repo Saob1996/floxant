@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Treppenhausreinigung Regensburg für Hausverwaltungen | FLOXANT",
     description:
       "Was Hausverwaltungen in Regensburg bei Treppenhausreinigung, Turnus, Zugang und Ansprechpartnern vor der Anfrage sauber klären sollten.",
-    keywords: [
-      "Treppenhausreinigung Regensburg",
-      "Hausverwaltung Reinigung Regensburg",
-      "Objektreinigung Regensburg",
-      "B2B Reinigung Regensburg",
-    ],
   });
 }
 
@@ -117,7 +111,7 @@ export default function BlogHausverwaltungTreppenhausPage() {
         ]}
         ctas={[
           { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung anfragen" },
-          { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+          { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service prüfen" },
         ]}
         faqTitle="FAQ zur Treppenhausreinigung für Hausverwaltungen"

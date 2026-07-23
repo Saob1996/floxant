@@ -9,6 +9,13 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import {
+  BlogLocalLinks,
+  BlogOfferCheckCTA,
+  BlogQuickAnswer,
+  BlogRelatedArticles,
+  BlogRelatedServices,
+} from "@/components/blog/BlogSupportBlocks";
 import { company } from "@/lib/company";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 
@@ -59,7 +66,6 @@ function toAnchorId(value: string) {
 function resolveStoryVariant(title: string, intro: string) {
   const signal = germanizeText(`${title} ${intro}`).toLowerCase();
 
-  if (signal.includes("düsseldorf")) return "duesseldorf" as const;
   if (
     signal.includes("angebot") ||
     signal.includes("preis") ||
@@ -151,6 +157,8 @@ export function BlogArticlePage({
               Hier geht es um die praktische Frage: Was ist wirklich gemeint, welche Angaben
               braucht FLOXANT und welcher nächste Schritt passt, ohne vorschnelle Versprechen.
             </p>
+
+            <BlogQuickAnswer title={title} intro={intro} ctas={normalizedCtas} />
 
             <div className="mt-8 grid gap-3 md:grid-cols-3">
               <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
@@ -272,6 +280,8 @@ export function BlogArticlePage({
                 </section>
               ) : null}
 
+              <BlogOfferCheckCTA ctas={normalizedCtas} />
+
               <section className="mt-14 border-t border-slate-200 pt-10">
                 <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
                   {germanizeText(faqTitle)}
@@ -295,7 +305,9 @@ export function BlogArticlePage({
 
             <aside className="border-t border-slate-200 bg-slate-50/70 p-8 lg:border-l lg:border-t-0">
               <div className="sticky top-28">
-                <div className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
+                <BlogRelatedServices title={title} intro={intro} />
+
+                <div className="mt-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
                     Nächster Schritt
                   </div>
@@ -326,6 +338,10 @@ export function BlogArticlePage({
                   Kurz per WhatsApp fragen
                   <MessageCircle className="h-4 w-4 text-[#25D366]" />
                 </a>
+
+                <BlogLocalLinks title={title} intro={intro} />
+
+                <BlogRelatedArticles title={title} intro={intro} />
 
                 {sectionAnchors.length ? (
                   <div className="mt-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">

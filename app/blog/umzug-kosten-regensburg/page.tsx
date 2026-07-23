@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Wann sollte ich den Rechner statt einer offenen Anfrage nutzen?",
-  a: "Wenn Sie Aufwand, Umfang und Zusatzleistungen strukturiert erfassen wollen. Dadurch wird die spätere Abstimmung deutlich präziser.",
+  a: "Wenn Sie Aufwand, Umfang und Zusatzleistungen vollständig erfassen wollen. Dadurch wird die spätere Abstimmung deutlich präziser.",
  },
 ];
 
@@ -93,14 +93,14 @@ export default function BlogUmzugKosten() {
      {
       title: "Wie Sie selbst zu einer besseren Ersteinschätzung kommen",
       paragraphs: [
-       "Wer vorab Zimmerzahl, grobe Inventarmenge, Stockwerke, Laufwege und Zusatzleistungen kennt, bekommt eine wesentlich plausiblere Vorprüfung. Genau deshalb ist ein strukturierter Rechner meist hilfreicher als eine sehr offene Kontaktanfrage.",
+       "Wer vorab Zimmerzahl, grobe Inventarmenge, Stockwerke, Laufwege und Zusatzleistungen kennt, bekommt eine wesentlich plausiblere Vorprüfung. Genau deshalb ist ein Rechner mit konkreten Fragen meist hilfreicher als eine sehr offene Kontaktanfrage.",
       ],
      },
     ]}
     highlightPoints={[
      "Ein glaubwürdiger Umzugspreis in Regensburg braucht immer Kontext.",
      "Preisrahmen sind für die Vorprüfung ehrlicher als harte Einzelzahlen.",
-     "Mit strukturierten Angaben wird die spätere Abstimmung deutlich präziser.",
+     "Mit vollständigen Angaben wird die spätere Abstimmung deutlich präziser.",
     ]}
     ctas={[
      { href: "/rechner", label: "Zum Rechner" },

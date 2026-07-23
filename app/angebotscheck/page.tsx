@@ -14,9 +14,31 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { CleanFaqSection } from "@/components/CleanFaqSection";
 import { OfferCheckConversionFlow } from "@/components/OfferCheckConversionFlow";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { OfferConcernSelector } from "@/components/OfferConcernSelector";
+import { OfferCheckNextStepBox } from "@/components/OfferCheckNextStepBox";
+import { OfferCheckPackageSelector } from "@/components/OfferCheckPackageSelector";
+import { OfferCheckScopeBoundary } from "@/components/OfferCheckScopeBoundary";
+import { OfferCheckServiceSpecificQuestions } from "@/components/OfferCheckServiceSpecificQuestions";
+import { OfferCheckTrustPanel } from "@/components/OfferCheckTrustPanel";
+import { OfferDifferenceExplainer } from "@/components/OfferDifferenceExplainer";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceClarityPanel } from "@/components/ServiceClarityPanel";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
+import {
+  RelatedSpecialServices,
+  ServiceClusterLinks,
+  SignatureServicesGrid,
+} from "@/components/conversion";
+import { OfferCheckAuthoritySections } from "@/components/offer-check";
 import { company } from "@/lib/company";
+import { cleanOfferFaqItems, offerCheckClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
+import { offerCheckLinks, signatureServiceLinks } from "@/lib/signature-special-services";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -29,19 +51,9 @@ const path = "/angebotscheck";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebotscheck & Red-Flag-Scanner | FLOXANT",
+  title: "Angebotscheck fuer Reinigung, Umzug und Entruempelung",
   description:
-    "Ist Ihr Angebot vollständig? FLOXANT zeigt, welche Punkte bei Umzug, Reinigung, Entrümpelung oder Entsorgung vor der Zusage geklärt sein sollten.",
-  keywords: [
-    "Angebot prüfen lassen",
-    "Angebot Red Flag Scanner",
-    "Umzugsangebot prüfen",
-    "Angebot vor Zusage prüfen",
-    "versteckte Kosten Umzug",
-    "zweite Einschätzung Umzug Regensburg",
-    "Reinigungsangebot prüfen",
-    "Entrümpelungsangebot prüfen",
-  ],
+    "Kurzer Angebotscheck fuer vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren. Auch fuer Reinigungsangebote in Duesseldorf.",
 });
 
 const whatsappHref =
@@ -90,13 +102,71 @@ const checkAreas = [
 
 const serviceScopes = [
   "Umzug",
+  "Seniorenumzug",
+  "Umzug im Alter",
   "Reinigung",
+  "Reinigung Düsseldorf",
+  "Büroreinigung Düsseldorf",
+  "Gewerbereinigung Düsseldorf",
+  "Praxisreinigung Düsseldorf",
+  "Fensterreinigung Düsseldorf",
   "Entrümpelung",
   "Transport",
   "Entsorgung",
   "Umzug + Endreinigung",
   "Entrümpelung + Reinigung",
   "Sensible Anfrage",
+];
+
+const duesseldorfCleaningOfferLinks = [
+  {
+    title: "Reinigungsangebot Düsseldorf prüfen",
+    text: "Fläche, Objektart, Zielzustand, Termin, Turnus und vorhandenen Preis einordnen.",
+    href: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=seo",
+    route: "/duesseldorf/reinigung",
+  },
+  {
+    title: "Hausverwaltung-Reinigung Düsseldorf prüfen",
+    text: "Objektart, Bereiche, Turnus, Zugang, Ansprechpartner und vorhandenes Angebot strukturieren.",
+    href: "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
+    route: "/duesseldorf/reinigung#hausverwaltung-reinigung",
+  },
+  {
+    title: "Treppenhausreinigung Düsseldorf prüfen",
+    text: "Etagen, Eingang, Geländer, Aufzug, Schlüsselweg, Turnus und Zusatzbereiche einordnen.",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/reinigung#hausverwaltung-reinigung",
+  },
+  {
+    title: "Unterhaltsreinigung Düsseldorf prüfen",
+    text: "Fläche, Leistungsplan, Reinigungszeiten, Turnus, Zugang und Angebot vergleichbar machen.",
+    href: "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    title: "Büroreinigung Düsseldorf prüfen",
+    text: "Turnus, Reinigungszeiten, Räume, Sanitär/Küche, Ansprechpartner und Zugang klären.",
+    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Gewerbereinigung Düsseldorf prüfen",
+    text: "Objektart, Nutzungszeiten, Leistungsplan, Sonderflächen und Zusatzpositionen vergleichen.",
+    href: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    title: "Praxisreinigung Düsseldorf prüfen",
+    text: "Praxisart, sensible Bereiche, Zeiten, Turnus und sachliche Ablaufanforderungen sammeln.",
+    href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/praxisreinigung",
+  },
+  {
+    title: "Fensterreinigung Düsseldorf prüfen",
+    text: "Fensterzahl, Glasflächen, Erreichbarkeit, Rahmen/Falze, Etage und Terminlogik erfassen.",
+    href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo",
+    route: "/duesseldorf/fensterreinigung",
+  },
 ];
 
 const faqItems = [
@@ -129,8 +199,12 @@ const faqItems = [
     a: "Wenn der Auftrag zu Region, Termin und Leistungsumfang passt, kann FLOXANT auf Basis Ihrer Angaben eine eigene Einschätzung oder ein eigenes Angebot vorbereiten.",
   },
   {
-    q: "Funktioniert der Angebotscheck für Düsseldorf?",
-    a: "Für Düsseldorf prüft FLOXANT Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung über klare lokale Kontaktmöglichkeiten.",
+    q: "Wie wird Reinigung außerhalb des Regensburger Umkreises behandelt?",
+    a: "Reinigungsanfragen werden für Regensburg und für die neue Düsseldorf-Route nach Objekt, Ort, Umfang und Machbarkeit geprüft. Umlandorte werden nur als Servicegebiet auf Anfrage behandelt.",
+  },
+  {
+    q: "Kann ich ein Reinigungsangebot für Düsseldorf prüfen lassen?",
+    a: "Ja. Für Düsseldorf helfen Objektart, Fläche, Turnus, Termin, Fotos und vorhandene Preispositionen. FLOXANT prüft praktisch und organisatorisch, ohne Preisgarantie oder Rechtsberatung.",
   },
   {
     q: "Bewertet FLOXANT meinen Anbieter?",
@@ -174,7 +248,7 @@ const jsonLd = {
       { name: "Startseite", item: "/" },
       { name: "Angebotscheck", item: path },
     ]),
-    buildFaqJsonLd(faqItems),
+    buildFaqJsonLd(faqItems.slice(0, 8)),
   ],
 };
 
@@ -190,12 +264,12 @@ export default function AngebotscheckPage() {
                 <FileSearch className="h-4 w-4" />
                 FLOXANT Angebots-Radar
               </div>
-              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                Angebot prüfen lassen: Red-Flag-Scanner vor der Zusage
+              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
+                Angebotscheck: offene Punkte vor der Zusage erkennen
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Scannen Sie in zwei Minuten, welche Punkte im Angebot unklar sind, oder senden Sie Angebot,
-                Fotos und Eckdaten direkt an FLOXANT.
+                Scannen Sie in zwei Minuten, welche Punkte im Angebot unklar sind. Wenn Umfang, Zugang,
+                Fotos, Termin oder Zusatzpositionen offen bleiben, kann FLOXANT die Lage praktisch einordnen.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#red-flag-scanner" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
@@ -203,7 +277,7 @@ export default function AngebotscheckPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="service_card_click">
-                  Günstigere Alternative prüfen
+                  Alternative mit Eckdaten prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -213,7 +287,7 @@ export default function AngebotscheckPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Rechtsberatung</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg + Bayern nach Verfügbarkeit</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg passend zum Anliegen</span>
               </div>
             </div>
 
@@ -245,7 +319,7 @@ export default function AngebotscheckPage() {
                   <div className="flex gap-3">
                     <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
                     <p>
-                      Ein Angebot kann günstig wirken, obwohl Etage, Zugang, Reinigung, Entsorgung oder Übergabe noch nicht eindeutig geregelt sind. Diese Punkte sollten vor einer Zusage klar sein.
+                      Ein Angebot kann niedrig wirken, obwohl Etage, Zugang, Reinigung, Entsorgung oder Übergabe noch nicht eindeutig geregelt sind. Diese Punkte sollten vor einer Zusage klar sein.
                     </p>
                   </div>
                 </div>
@@ -253,6 +327,69 @@ export default function AngebotscheckPage() {
             </div>
           </div>
         </section>
+
+        <ServiceClarityPanel
+          title="Der Angebotscheck ist ein Scanner, keine Preisgarantie."
+          intro="Diese Seite macht offene Punkte sichtbar. Die direkte Angebotsprüfung bleibt der nächste Schritt, wenn ein konkretes Angebot, ein Screenshot oder Preispositionen vorliegen."
+          items={offerCheckClarityItems}
+        />
+
+        <OfferConcernSelector />
+        <OfferDifferenceExplainer />
+        <OfferCheckPackageSelector />
+        <EffortFactorsPanel group="angebot-pruefen" />
+        <WhatWeNeedChecklist group="angebot-pruefen" />
+        <OfferCheckScopeBoundary />
+        <OfferCheckServiceSpecificQuestions />
+
+        <OfferCheckAuthoritySections />
+        <OfferCheckTrustPanel />
+
+        <section className="px-4 py-12 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-7 max-w-3xl">
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Düsseldorf Reinigung</div>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+                Reinigungsangebot in Düsseldorf prüfen lassen
+              </h2>
+              <p className="mt-3 text-base leading-8 text-slate-700">
+                Für Reinigung, Büroreinigung, Gewerbereinigung, Praxisreinigung und Fensterreinigung in Düsseldorf zählt nicht nur der Preis. Entscheidend sind Fläche, Objektart, Turnus, Zugang, Termin, Fotos und was im Angebot ausdrücklich enthalten ist.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {duesseldorfCleaningOfferLinks.map((item) => (
+                <article key={item.href} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
+                  <h3 className="text-base font-black text-slate-950">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                  <div className="mt-5 flex flex-col gap-2">
+                    <Link
+                      href={item.href}
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
+                      data-event="seo_cta_click"
+                      data-city="duesseldorf"
+                      data-source="seo"
+                      data-destination={item.href}
+                    >
+                      Angebot prüfen
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <Link href={item.route} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700">
+                      Zielseite ansehen
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ProjectStoryGrid serviceKey="angebot-pruefen" />
+        <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
+        <ProcessProofSteps
+          title="Angebotscheck als nachvollziehbarer Pruefweg."
+          intro="FLOXANT ordnet sichtbare Angebotsdaten und offene Punkte ein. Das ersetzt keine Rechtsberatung und behauptet keine garantierte Ersparnis."
+        />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
@@ -284,7 +421,7 @@ export default function AngebotscheckPage() {
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-700">
                 <ShieldCheck className="mb-3 h-6 w-6 text-blue-700" />
-                Besonders relevant ist der Angebotscheck für Regensburg, das direkte Umfeld bis ca. 200 km und Bayern nach Verfügbarkeit. Für Düsseldorf prüfen wir je nach Leistung die passende lokale Seite.
+                Besonders relevant ist der Angebotscheck für Regensburg, den Raum Regensburg; für Reinigung gilt maximal der 50-km-Umkreis. Andere Leistungen werden nach Ort und Verfügbarkeit geprüft.
                 <div className="mt-4">
                   <Link href="/rueckfahrt-boerse" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="region_select" data-source="offer_check_internal_link">
                     Flexible Transportstrecke über die Rückfahrt-Börse prüfen
@@ -311,7 +448,7 @@ export default function AngebotscheckPage() {
                 </div>
                 <div className="mt-3">
                   <Link href="/angebot-guenstiger-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="offer_check_internal_link">
-                    Wenn Preis oder Budget knapp sind: günstigere Alternative prüfen
+                    Wenn Preis oder Budget knapp sind: Alternative mit Eckdaten prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -359,7 +496,37 @@ export default function AngebotscheckPage() {
           </div>
         </section>
 
+        <ServiceClusterLinks
+          eyebrow="Angebotscheck-Cluster"
+          title="Welche Pruefung zum vorhandenen Angebot passt."
+          intro="Ein Angebot kann guenstig, teuer, unvollstaendig oder einfach schwer vergleichbar sein. Diese Startpunkte halten die Entscheidung sachlich."
+          links={offerCheckLinks}
+        />
+
+        <SignatureServicesGrid
+          title="Signature Services, die beim Angebotscheck oft mitspielen."
+          intro="Objektbrief, Uebergabe, Plan B und Rueckfahrt koennen erklaeren, warum ein Angebot lueckenhaft wirkt oder warum eine zweite Einschaetzung sinnvoll ist."
+          services={signatureServiceLinks.filter((item) =>
+            ["FLOXANT Fairpreis-Check", "FLOXANT Objektbrief", "FLOXANT Uebergabeakte", "FLOXANT Plan-B-Service", "FLOXANT Rueckfahrt-Radar"].includes(item.title),
+          )}
+        />
+
+        <RelatedSpecialServices
+          kind="offer"
+          title="Wenn der Angebotscheck in einen naechsten Service fuehrt."
+          intro="Nach der Pruefung kann klar werden, ob Reinigung, Umzug, Entruempelung, Rueckfahrt oder ein Objektbrief der bessere naechste Schritt ist."
+          limit={3}
+        />
+
+        <OfferCheckNextStepBox />
+
         <OfferCheckConversionFlow />
+
+        <CleanFaqSection
+          title="Grenzen des Angebotschecks kurz geklärt."
+          intro="Der Scanner soll Orientierung geben und keine juristische oder preisliche Zusage ersetzen."
+          items={cleanOfferFaqItems}
+        />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
@@ -394,7 +561,7 @@ export default function AngebotscheckPage() {
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">FAQ</div>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zum Angebotscheck</h2>
             <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white">
-              {faqItems.map((item) => (
+              {faqItems.slice(0, 8).map((item) => (
                 <details key={item.q} className="group p-5">
                   <summary className="cursor-pointer list-none text-base font-black text-slate-950">
                     {item.q}

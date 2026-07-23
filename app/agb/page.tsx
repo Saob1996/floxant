@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: "agb",
     title: "AGB – FLOXANT",
-    description: "Allgemeine Geschäftsbedingungen von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+    description: "Allgemeine Geschäftsbedingungen von FLOXANT. Fragen zu einer Leistung können Sie per WhatsApp oder Telefon klären: +49 1577 1105087.",
   });
 }
 export default async function AGB() {

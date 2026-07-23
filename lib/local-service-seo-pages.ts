@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type LocalServiceCityKey = "duesseldorf" | "regensburg";
 export type LocalServiceSchemaType = "LocalBusiness" | "MovingCompany" | "CleaningService";
 
@@ -45,16 +47,16 @@ const commonProcess = [
 
 const duesseldorfDistricts = [
   "Zentrum",
-  "Bilk",
-  "Oberkassel",
-  "Pempelfort",
+  "Galgenberg",
+  "Westenviertel",
+  "Stadtamhof",
   "Flingern",
-  "Derendorf",
-  "Benrath",
-  "Eller",
-  "Gerresheim",
-  "Friedrichstadt",
-  "Hafen",
+  "Reinhausen",
+  "Burgweinting",
+  "Kasernenviertel",
+  "Reinhausen",
+  "Innenstadt",
+  "Osthafen",
 ] as const;
 
 const regensburgDistricts = [
@@ -71,23 +73,23 @@ const regensburgDistricts = [
 
 const duesseldorfServiceLinks = [
   {
-    href: "/duesseldorf/reinigung",
-    label: "Reinigung Düsseldorf anfragen",
+    href: "/regensburg/reinigung",
+    label: "Reinigung Regensburg anfragen",
     text: "Wenn nach Umzug, Räumung oder Übergabe eine saubere Fläche gebraucht wird.",
   },
   {
-    href: "/duesseldorf/endreinigung",
-    label: "Endreinigung Düsseldorf prüfen",
+    href: "/regensburg/endreinigung",
+    label: "Endreinigung Regensburg prüfen",
     text: "Für Auszug, Rückgabe, Nachmietertermin oder Übergabe mit Fotos und Deadline.",
   },
   {
-    href: "/duesseldorf/entruempelung",
-    label: "Entrümpelung Düsseldorf einschätzen",
+    href: "/regensburg/entruempelung",
+    label: "Entrümpelung Regensburg einschätzen",
     text: "Für Keller, Wohnung, Nebenräume, Sperrgut und Restmengen vor dem nächsten Schritt.",
   },
   {
-    href: "/duesseldorf/haushaltsaufloesung",
-    label: "Haushaltsauflösung Düsseldorf klären",
+    href: "/regensburg/haushaltsaufloesung",
+    label: "Haushaltsauflösung Regensburg klären",
     text: "Für Wohnung, Haus, Nachlass oder Wohnungsauflösung mit ruhiger Vorprüfung.",
   },
 ] as const;
@@ -116,38 +118,38 @@ const regensburgServiceLinks = [
 ] as const;
 
 export const localServiceSeoPages = {
-  "duesseldorf-umzug": {
-    key: "duesseldorf-umzug",
-    cityKey: "duesseldorf",
-    cityName: "Düsseldorf",
-    path: "/duesseldorf/umzug",
+  "regensburg-umzug": {
+    key: "regensburg-umzug",
+    cityKey: "regensburg",
+    cityName: "Regensburg",
+    path: "/regensburg/umzug",
     serviceName: "Umzug",
-    serviceType: "Umzugsfirma Düsseldorf",
+    serviceType: "Umzugsfirma Regensburg",
     schemaType: "MovingCompany",
-    mainKeyword: "Umzugsfirma Düsseldorf",
+    mainKeyword: "Umzugsfirma Regensburg",
     secondaryKeywords: [
-      "Umzug Düsseldorf",
-      "Umzugsangebot prüfen Düsseldorf",
-      "Online-Besichtigung Umzug Düsseldorf",
-      "Senioren-Umzug Düsseldorf",
-      "Umzug mit Endreinigung Düsseldorf",
+      "Umzug Regensburg",
+      "Umzugsangebot prüfen Regensburg",
+      "Online-Besichtigung Umzug Regensburg",
+      "Senioren-Umzug Regensburg",
+      "Umzug mit Endreinigung Regensburg",
     ],
-    metaTitle: "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
+    metaTitle: "Umzug Regensburg mit Start, Ziel und Angebot klären",
     metaDescription:
-      "FLOXANT prüft Umzug in Düsseldorf mit Start, Ziel, Etage, Laufweg und Fotos. Eckdaten senden, Angebot realistisch klären, Rückmeldung erhalten.",
+      "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klären.",
     titleAlternatives: [
-      "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
-      "Umzugsfirma Düsseldorf | Online-Besichtigung nutzen",
-      "Umzug in Düsseldorf | Angebot fair prüfen lassen",
+      "Umzugsfirma Regensburg | Fotos senden, Ablauf klären",
+      "Umzugsfirma Regensburg | Online-Besichtigung nutzen",
+      "Umzug in Regensburg | Angebot fair prüfen lassen",
     ],
-    headline: "Umzug in Düsseldorf mit klarer Einschätzung vor dem Termin",
+    headline: "Umzug Regensburg mit Start, Ziel und Terminwunsch",
     intro:
-      "FLOXANT prüft Umzüge in Düsseldorf nach Start, Ziel, Volumen, Etage, Laufwegen und Termin. Sie senden Fotos oder wählen eine Besichtigung, damit aus einer groben Anfrage ein belastbarer Ablauf wird.",
-    primaryCta: "Umzug in Düsseldorf anfragen",
+      "FLOXANT prüft Umzüge in Regensburg nach Start, Ziel, Volumen, Etage, Laufwegen und Termin. Sie senden Fotos oder wählen eine Besichtigung, damit aus einer groben Anfrage ein belastbarer Ablauf wird.",
+    primaryCta: "Umzug in Regensburg anfragen",
     secondaryCta: "Bilder hochladen",
-    bookingHref: "/buchung?region=duesseldorf&service=umzug#buchungssystem",
+    bookingHref: "/buchung?region=regensburg&service=umzug#buchungssystem",
     whatsappMessage:
-      "Hallo FLOXANT, ich möchte einen Umzug in Düsseldorf anfragen. Start, Ziel, Termin, Etage, Volumen und Fotos kann ich senden.",
+      "Hallo FLOXANT, ich möchte einen Umzug in Regensburg anfragen. Start, Ziel, Termin, Etage, Volumen und Fotos kann ich senden.",
     proofItems: [
       "Online-Besichtigung oder Vor-Ort-Besichtigung nach Bedarf.",
       "Volumen, Etage, Laufweg und Parkmöglichkeit werden vorab geklärt.",
@@ -174,7 +176,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Düsseldorfer Umzüge brauchen genaue Zugangsdaten",
     localText:
-      "In Düsseldorf verändern zentrale Lagen, Hinterhöfe, Lieferzonen und enge Zeitfenster den Aufwand deutlich. In Bilk, Pempelfort, Flingern oder Friedrichstadt zählen Etage und Haltemöglichkeit oft stärker; in Oberkassel, Benrath, Eller oder Gerresheim sind Strecke, Parken und Zugang früh zu klären.",
+      "In Regensburg verändern zentrale Lagen, Hinterhöfe, Lieferzonen und enge Zeitfenster den Aufwand deutlich. In Galgenberg, Stadtamhof, Flingern oder Innenstadt zählen Etage und Haltemöglichkeit oft stärker; in Westenviertel, Burgweinting, Kasernenviertel oder Reinhausen sind Strecke, Parken und Zugang früh zu klären.",
     districts: duesseldorfDistricts,
     trustItems: [
       "Klare Kommunikation vor dem Termin statt pauschaler Zusage.",
@@ -185,19 +187,19 @@ export const localServiceSeoPages = {
     relatedLinks: [
       ...duesseldorfServiceLinks,
       {
-        href: "/angebot-vergleichen-duesseldorf",
+        href: "/angebot-vergleichen-regensburg",
         label: "Umzugsangebot prüfen lassen",
         text: "Wenn bereits ein Angebot vorliegt und Umfang, Preis oder Zusatzpunkte unklar sind.",
       },
     ],
     faq: [
       {
-        q: "Was kostet ein Umzug in Düsseldorf?",
+        q: "Was kostet ein Umzug in Regensburg?",
         a: "Der Preis hängt von Volumen, Etage, Aufzug, Laufweg, Entfernung, Parkmöglichkeit, Zeitdruck und Zusatzleistungen ab. FLOXANT prüft diese Punkte vor einer Einschätzung.",
       },
       {
         q: "Kann ich den Umzug online besichtigen lassen?",
-        a: "Ja. Fotos und Videos reichen oft für eine erste Einordnung. Bei größeren oder unklaren Umzügen kann eine Vor-Ort-Besichtigung in Düsseldorf sinnvoll sein.",
+        a: "Ja. Fotos und Videos reichen oft für eine erste Einordnung. Bei größeren oder unklaren Umzügen kann eine Vor-Ort-Besichtigung in Regensburg sinnvoll sein.",
       },
       {
         q: "Kann FLOXANT Umzug und Endreinigung kombinieren?",
@@ -208,7 +210,7 @@ export const localServiceSeoPages = {
         a: "Hilfreich sind Start, Ziel, Etage, Aufzug, Laufweg, Parkmöglichkeit, Termin, Möbelmenge, Fotos, gewünschte Zusatzleistungen und ein vorhandenes Angebot oder Budget.",
       },
       {
-        q: "Ist ein kurzfristiger Umzug in Düsseldorf möglich?",
+        q: "Ist ein kurzfristiger Umzug in Regensburg möglich?",
         a: "Kurzfristige Anfragen können geprüft werden. Entscheidend sind Umfang, Zugang, Teamverfügbarkeit, Strecke, Fotos und wie flexibel das Zeitfenster ist.",
       },
       {
@@ -217,38 +219,38 @@ export const localServiceSeoPages = {
       },
     ],
   },
-  "duesseldorf-entruempelung": {
-    key: "duesseldorf-entruempelung",
-    cityKey: "duesseldorf",
-    cityName: "Düsseldorf",
-    path: "/duesseldorf/entruempelung",
+  "regensburg-entruempelung": {
+    key: "regensburg-entruempelung",
+    cityKey: "regensburg",
+    cityName: "Regensburg",
+    path: "/regensburg/entruempelung",
     serviceName: "Entrümpelung",
-    serviceType: "Entrümpelung Düsseldorf",
+    serviceType: "Entrümpelung Regensburg",
     schemaType: "LocalBusiness",
-    mainKeyword: "Entrümpelung Düsseldorf",
+    mainKeyword: "Entrümpelung Regensburg",
     secondaryKeywords: [
-      "Wohnungsauflösung Düsseldorf",
-      "Haushaltsauflösung Düsseldorf",
-      "diskrete Entrümpelung Düsseldorf",
-      "Entrümpelungsangebot prüfen Düsseldorf",
-      "Entrümpelung mit Reinigung Düsseldorf",
+      "Wohnungsauflösung Regensburg",
+      "Haushaltsauflösung Regensburg",
+      "diskrete Entrümpelung Regensburg",
+      "Entrümpelungsangebot prüfen Regensburg",
+      "Entrümpelung mit Reinigung Regensburg",
     ],
-    metaTitle: "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
+    metaTitle: "Entrümpelung Regensburg mit Räumen und Zugang",
     metaDescription:
-      "Entrümpelung in Düsseldorf für Wohnung, Keller und Objekt: Fotos, Menge, Zugang und Termin senden, Reinigung bei Bedarf mitprüfen, Ablauf klären.",
+      "Entrümpelung Regensburg anfragen: Räume, Menge, Zugang, Fotos, Frist und mögliche Reinigung danach anhand der Eckdaten klären.",
     titleAlternatives: [
-      "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
-      "Entrümpelung Düsseldorf | Räume prüfen lassen",
-      "Wohnung entrümpeln Düsseldorf | Angebot einschätzen",
+      "Entrümpelung Regensburg | Fotos senden, Räume klären",
+      "Entrümpelung Regensburg | Räume prüfen lassen",
+      "Wohnung entrümpeln Regensburg | Angebot einschätzen",
     ],
-    headline: "Entrümpelung in Düsseldorf für Wohnung, Keller und Objekt",
+    headline: "Entrümpelung Regensburg mit Räumen, Menge und Zugang",
     intro:
-      "FLOXANT prüft Entrümpelungen in Düsseldorf nach Menge, Material, Zugang, Etage, Parkmöglichkeit und gewünschtem Endzustand. Fotos oder Videos helfen, schnell zwischen Räumung, Entsorgung und Reinigung zu unterscheiden.",
+      "FLOXANT prüft Entrümpelungen in Regensburg nach Menge, Material, Zugang, Etage, Parkmöglichkeit und gewünschtem Endzustand. Fotos oder Videos helfen, schnell zwischen Räumung, Entsorgung und Reinigung zu unterscheiden.",
     primaryCta: "Entrümpelung einschätzen lassen",
     secondaryCta: "Fotos senden",
-    bookingHref: "/buchung?region=duesseldorf&service=entruempelung#buchungssystem",
+    bookingHref: "/buchung?region=regensburg&service=entruempelung#buchungssystem",
     whatsappMessage:
-      "Hallo FLOXANT, ich möchte eine Entrümpelung in Düsseldorf anfragen. Fotos, Ort, Umfang, Zugang und Termin kann ich senden.",
+      "Hallo FLOXANT, ich möchte eine Entrümpelung in Regensburg anfragen. Fotos, Ort, Umfang, Zugang und Termin kann ich senden.",
     proofItems: [
       "Diskrete Vorprüfung mit Fotos oder Online-Besichtigung.",
       "Menge, Material, Laufwege und Entsorgung werden getrennt betrachtet.",
@@ -264,7 +266,7 @@ export const localServiceSeoPages = {
       "Wohnung, Keller, Abstellraum, Nebenfläche, kleines Firmeninventar oder Restmengen.",
       "Möbel, Kartons, Sperrgut und regulär entsorgbare Gegenstände nach Prüfung.",
       "Tragwege, Aufzug, Treppenhaus, Haltezone und mögliche Schutzmaßnahmen.",
-      "Endreinigung, Übergabereinigung oder Haushaltsauflösung als passender nächster Schritt.",
+      "Bei Bedarf Endreinigung, Übergabereinigung oder Haushaltsauflösung ergänzen.",
     ],
     process: commonProcess,
     costFactors: [
@@ -273,27 +275,27 @@ export const localServiceSeoPages = {
       "Entsorgung, Demontage, Zeitdruck und gewünschter Endzustand.",
       "Zusätzliche Reinigung nach Räumung oder Übergabevorbereitung.",
     ],
-    localTitle: "Entrümpelung in Düsseldorf ist oft eine Zugangsfrage",
+    localTitle: "Entrümpelung in Regensburg ist oft eine Zugangsfrage",
     localText:
-      "In Innenstadt, Bilk, Flingern, Pempelfort oder Derendorf sind Treppenhäuser, Ladezonen und Hausordnungen oft entscheidend. In Benrath, Eller, Gerresheim oder Oberkassel zählen zusätzlich Strecke, Parkmöglichkeit und der Zustand der Fläche nach der Räumung.",
+      "In Innenstadt, Galgenberg, Flingern, Stadtamhof oder Reinhausen sind Treppenhäuser, Ladezonen und Hausordnungen oft entscheidend. In Burgweinting, Kasernenviertel, Reinhausen oder Westenviertel zählen zusätzlich Strecke, Parkmöglichkeit und der Zustand der Fläche nach der Räumung.",
     districts: duesseldorfDistricts,
     trustItems: [
       "Diskrete Anfrage bei sensiblen Fällen, Nachlass oder belasteten Räumen.",
       "Keine Zusage für Gefahrstoffe, Asbest, Chemikalien oder Sonderabfälle ohne Prüfung.",
       "Saubere Trennung zwischen Räumung, Entsorgung und Reinigung.",
-      "Vor-Ort-Besichtigung in Düsseldorf möglich, wenn Fotos nicht reichen.",
+      "Vor-Ort-Besichtigung in Regensburg möglich, wenn Fotos nicht reichen.",
     ],
     relatedLinks: [
       ...duesseldorfServiceLinks,
       {
-        href: "/duesseldorf/umzug",
-        label: "Umzug Düsseldorf abstimmen",
+        href: "/regensburg/umzug",
+        label: "Umzug Regensburg abstimmen",
         text: "Wenn nur ein Teil entsorgt wird und der Rest in die neue Wohnung soll.",
       },
     ],
     faq: [
       {
-        q: "Was kostet eine Entrümpelung in Düsseldorf?",
+        q: "Was kostet eine Entrümpelung in Regensburg?",
         a: "Kosten entstehen aus Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit, Entsorgung, Zeitdruck und gewünschter Reinigung danach.",
       },
       {
@@ -318,38 +320,38 @@ export const localServiceSeoPages = {
       },
     ],
   },
-  "duesseldorf-haushaltsaufloesung": {
-    key: "duesseldorf-haushaltsaufloesung",
-    cityKey: "duesseldorf",
-    cityName: "Düsseldorf",
-    path: "/duesseldorf/haushaltsaufloesung",
+  "regensburg-haushaltsaufloesung": {
+    key: "regensburg-haushaltsaufloesung",
+    cityKey: "regensburg",
+    cityName: "Regensburg",
+    path: "/regensburg/haushaltsaufloesung",
     serviceName: "Haushaltsauflösung",
-    serviceType: "Haushaltsauflösung Düsseldorf",
+    serviceType: "Haushaltsauflösung Regensburg",
     schemaType: "LocalBusiness",
-    mainKeyword: "Haushaltsauflösung Düsseldorf",
+    mainKeyword: "Haushaltsauflösung Regensburg",
     secondaryKeywords: [
-      "Wohnungsauflösung Düsseldorf",
-      "Nachlass Räumung Düsseldorf",
-      "Haushalt auflösen Düsseldorf",
-      "Wohnungsauflösung mit Reinigung Düsseldorf",
-      "Angebot Haushaltsauflösung Düsseldorf",
+      "Wohnungsauflösung Regensburg",
+      "Nachlass Räumung Regensburg",
+      "Haushalt auflösen Regensburg",
+      "Wohnungsauflösung mit Reinigung Regensburg",
+      "Angebot Haushaltsauflösung Regensburg",
     ],
-    metaTitle: "Haushaltsauflösung Düsseldorf | Ruhig klären",
+    metaTitle: "Haushaltsauflösung Regensburg mit Freigabe und Zielzustand",
     metaDescription:
-      "Haushaltsauflösung in Düsseldorf für Wohnung, Haus oder Nachlass: Fotos, Freigabe, Zugang und Reinigung nach Räumung prüfen lassen, Termin klären.",
+      "Senden Sie Fotos, Freigabe, Zugang, Ansprechpartner, Frist und Zielzustand. FLOXANT ordnet Haushaltsauflösung Regensburg ruhig ein.",
     titleAlternatives: [
-      "Haushaltsauflösung Düsseldorf | Ruhig klären",
-      "Wohnungsauflösung Düsseldorf | Fotos senden & klären",
-      "Haushalt auflösen Düsseldorf | Ablauf sauber planen",
+      "Haushaltsauflösung Regensburg | Ruhig klären",
+      "Wohnungsauflösung Regensburg | Fotos senden & klären",
+      "Haushalt auflösen Regensburg | Ablauf sauber planen",
     ],
-    headline: "Haushaltsauflösung in Düsseldorf ruhig und strukturiert klären",
+    headline: "Haushaltsauflösung in Regensburg ruhig und anhand der Eckdaten klären",
     intro:
-      "FLOXANT unterstützt bei Haushalts- und Wohnungsauflösungen in Düsseldorf, wenn Räume geordnet geräumt, Restmengen geklärt und eine Reinigung oder Übergabe vorbereitet werden soll.",
+      "FLOXANT unterstützt bei Haushalts- und Wohnungsauflösungen in Regensburg, wenn Räume geordnet geräumt, Restmengen geklärt und eine Reinigung oder Übergabe vorbereitet werden soll.",
     primaryCta: "Haushaltsauflösung anfragen",
     secondaryCta: "Wohnung per Fotos einschätzen",
-    bookingHref: "/buchung?region=duesseldorf&service=haushaltsaufloesung#buchungssystem",
+    bookingHref: "/buchung?region=regensburg&service=haushaltsaufloesung#buchungssystem",
     whatsappMessage:
-      "Hallo FLOXANT, ich möchte eine Haushaltsauflösung in Düsseldorf besprechen. Fotos, Ort, Umfang, Zugang, Freigabe und Ziel kann ich senden.",
+      "Hallo FLOXANT, ich möchte eine Haushaltsauflösung in Regensburg besprechen. Fotos, Ort, Umfang, Zugang, Freigabe und Ziel kann ich senden.",
     proofItems: [
       "Ruhige Vorprüfung bei Nachlass, Auszug oder Veränderung.",
       "Fotos, Freigabe, Zugang und Ansprechpartner werden früh geklärt.",
@@ -374,27 +376,27 @@ export const localServiceSeoPages = {
       "Etage, Aufzug, Laufwege, Parkmöglichkeit und Zeitfenster.",
       "Reinigung, Übergabe, Fotodokumentation oder Vor-Ort-Besichtigung.",
     ],
-    localTitle: "Düsseldorf: Haushaltsauflösung mit Blick auf Zugang und Übergabe",
+    localTitle: "Regensburg: Haushaltsauflösung mit Blick auf Zugang und Übergabe",
     localText:
-      "In zentralen Stadtteilen wie Stadtmitte, Friedrichstadt, Pempelfort oder Hafen sind Zugang und Haltezone oft kritisch. In Bilk, Oberkassel, Benrath, Eller oder Gerresheim entscheidet häufig, ob Wohnung, Keller und Reinigung in einem Ablauf sinnvoll verbunden werden können.",
+      "In zentralen Stadtteilen wie Innenstadt, Innenstadt, Stadtamhof oder Osthafen sind Zugang und Haltezone oft kritisch. In Galgenberg, Westenviertel, Burgweinting, Kasernenviertel oder Reinhausen entscheidet häufig, ob Wohnung, Keller und Reinigung in einem Ablauf sinnvoll verbunden werden können.",
     districts: duesseldorfDistricts,
     trustItems: [
       "Respektvolle Kommunikation bei Nachlass, Seniorenwechsel oder sensiblen Situationen.",
-      "Vor-Ort-Besichtigung in Düsseldorf möglich, wenn Umfang oder Freigabe unklar sind.",
+      "Vor-Ort-Besichtigung in Regensburg möglich, wenn Umfang oder Freigabe unklar sind.",
       "Keine Bewertung von Wertgegenständen und keine rechtliche Beratung.",
       "Räumung, Entsorgung, Reinigung und Übergabe werden offen benannt.",
     ],
     relatedLinks: [
       ...duesseldorfServiceLinks,
       {
-        href: "/duesseldorf/umzug",
-        label: "Senioren-Umzug Düsseldorf prüfen",
+        href: "/regensburg/umzug",
+        label: "Senioren-Umzug Regensburg prüfen",
         text: "Wenn Teile des Haushalts in eine neue Wohnung oder Einrichtung mitgenommen werden.",
       },
     ],
     faq: [
       {
-        q: "Was kostet eine Haushaltsauflösung in Düsseldorf?",
+        q: "Was kostet eine Haushaltsauflösung in Regensburg?",
         a: "Der Preis hängt von Fläche, Raumanzahl, Menge, Sortieraufwand, Entsorgung, Etage, Zugang, Parkmöglichkeit, Zeitdruck und Reinigung danach ab.",
       },
       {
@@ -424,10 +426,10 @@ export const localServiceSeoPages = {
     cityKey: "regensburg",
     cityName: "Regensburg",
     path: "/regensburg/reinigung",
-    serviceName: "Reinigung",
-    serviceType: "Reinigungsfirma Regensburg",
+    serviceName: "Gebäudereinigung",
+    serviceType: "Gebäudereinigung Regensburg",
     schemaType: "CleaningService",
-    mainKeyword: "Reinigungsfirma Regensburg",
+    mainKeyword: "Gebäudereinigung Regensburg",
     secondaryKeywords: [
       "Reinigung Regensburg",
       "Gebäudereinigung Regensburg",
@@ -436,36 +438,36 @@ export const localServiceSeoPages = {
       "Umzugsreinigung Regensburg",
       "Reinigungsangebot prüfen Regensburg",
     ],
-    metaTitle: "Reinigung Regensburg | Fotos senden, Aufwand klären",
+    metaTitle: "Gebäudereinigung Regensburg | Floxant",
     metaDescription:
-      "FLOXANT prüft Reinigung in Regensburg für Wohnung, Büro, Übergabe und Umzug. Fläche, Zustand, Fotos und Termin senden, Budget nennen, Rückmeldung erhalten.",
+      "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
     titleAlternatives: [
       "Reinigung Regensburg | Fotos senden, Aufwand klären",
       "Reinigungsfirma Regensburg | Schnell einschätzen lassen",
       "Reinigung in Regensburg | Angebot sauber klären",
     ],
-    headline: "Reinigung in Regensburg für Wohnung, Büro und Übergabe",
+    headline: "Gebäudereinigung in Regensburg und Umgebung",
     intro:
-      "FLOXANT prüft Reinigungsanfragen in Regensburg nach Objekt, Fläche, Zustand, Termin und gewünschtem Ergebnis. Besonders hilfreich sind Fotos, Videos oder ein vorhandenes Angebot.",
-    primaryCta: "Reinigung in Regensburg anfragen",
-    secondaryCta: "Bilder hochladen",
+      "FLOXANT prüft Gebäudereinigung in Regensburg und im Umkreis bis 50 km nach Objektart, Fläche, Räumen, Zustand, Zugang, Termin und gewünschtem Ergebnis. Für laufende Büro- oder Gewerbereinigung führen die passenden B2B-Seiten weiter.",
+    primaryCta: "Gebäudereinigung in Regensburg anfragen",
+    secondaryCta: "Fotos zum Zustand senden",
     bookingHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Reinigung in Regensburg anfragen. Objektart, Ort, Fläche, Zustand, Termin und Fotos kann ich senden.",
     proofItems: [
-      "Wohnung, Büro, Treppenhaus, Endreinigung oder Reinigung nach Umzug.",
+      "Wohnung, Treppenhaus, Endreinigung oder Reinigung nach Umzug in Regensburg.",
       "Fotos, Fläche und Zielzustand machen die Einschätzung schneller.",
-      "Umzug, Entrümpelung und Reinigung können sauber kombiniert werden.",
+      "Büroreinigung und Gewerbereinigung werden klar verlinkt, damit der Hub nicht kannibalisiert.",
     ],
     problemTitle: "Wenn Reinigung nicht nur Putzen heißt",
     problemText: [
       "Kunden suchen häufig schnelle Hilfe, weil Übergabe, Umzug, Nachmieter, Besuch oder ein Objekttermin näher rückt. Dann zählt nicht nur ein Preis, sondern die Frage, welche Bereiche wirklich gereinigt werden müssen.",
-      "FLOXANT ordnet Küche, Bad, Böden, Fensterbereiche, Treppenhaus, Gewerbeflächen, Restmengen und Zeitdruck getrennt ein. So wird aus einer vagen Anfrage ein klarer Ablauf.",
+      "FLOXANT ordnet Küche, Bad, Böden, Fensterbereiche, Treppenhaus, Restmengen, Zugang und Zeitdruck getrennt ein. Wenn Büro, Turnus oder Gewerbefläche im Mittelpunkt stehen, führt die Seite bewusst weiter.",
     ],
     scopeTitle: "Welche Reinigung in Regensburg geprüft wird",
     scopeItems: [
       "Wohnungsreinigung, Endreinigung, Übergabereinigung und Reinigung nach Umzug.",
-      "Büro, Praxis, Gewerbefläche, Treppenhaus, Grundreinigung und objektbezogene Reinigung.",
+      "Private Reinigung, Umzugsreinigung, Übergabereinigung, Treppenhaus und objektbezogene Reinigung.",
       "Küche, Bad, Böden, sichtbare Rückstände, Fensterbereiche und stark genutzte Flächen.",
       "Vorhandene Angebote, Budgetrahmen und Kombi-Anfragen mit Umzug oder Entrümpelung.",
     ],
@@ -478,7 +480,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Reinigung nach Stadtteil und Objekt einordnen",
     localText:
-      "In der Innenstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug.",
+      "In der Altstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen, Reinhausen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug. Für Reinigungsservices bleibt FLOXANT bei Regensburg plus 50 km.",
     districts: regensburgDistricts,
     trustItems: [
       "Klare Einschätzung statt pauschaler Reinigungsgarantie.",
@@ -487,11 +489,21 @@ export const localServiceSeoPages = {
       "Keine Abnahme- oder Kautionsgarantie.",
     ],
     relatedLinks: [
+      {
+        href: "/reinigung-moeblierte-wohnung-regensburg",
+        label: "Ferienwohnung und Apartment reinigen",
+        text: "Für Gästewechsel, Checkout, nächsten Check-in, Zugang und optionale Zusatzpunkte.",
+      },
       ...regensburgServiceLinks,
       {
         href: "/regensburg/gewerbereinigung",
         label: "Gewerbereinigung Regensburg prüfen",
         text: "Für Büro, Praxis, Hausverwaltung und Objektflächen mit Turnus oder Raumliste.",
+      },
+      {
+        href: "/angebot-vergleichen-regensburg",
+        label: "Reinigungsangebot Regensburg vergleichen",
+        text: "Wenn bereits ein Angebot vorliegt und Umfang, Turnus, Fotos oder Zusatzpunkte unklar sind.",
       },
     ],
     faq: [
@@ -516,6 +528,10 @@ export const localServiceSeoPages = {
         a: "Ja, wenn Umfang und Termin passen. Räumung, Entsorgung und Reinigung werden getrennt eingeordnet.",
       },
       {
+        q: "Bietet FLOXANT Reinigung außerhalb von 50 km an?",
+        a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
+      },
+      {
         q: "Ist eine Vor-Ort-Besichtigung möglich?",
         a: "Ja. Bei größeren, gewerblichen oder unklaren Reinigungsfällen kann eine Besichtigung in Regensburg sinnvoll sein.",
       },
@@ -538,36 +554,37 @@ export const localServiceSeoPages = {
       "Reinigungsangebot Regensburg",
       "Büroreinigung Angebot Regensburg",
     ],
-    metaTitle: "Gewerbereinigung Regensburg | Raumliste senden",
+    metaTitle: "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
     metaDescription:
-      "Gewerbereinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Fotos und bestehendes Angebot senden, Starttermin klären.",
+      "Gewerbereinigung Regensburg für Firmen: Objektart, Fläche, Turnus, Reinigungszeiten, Leistungsumfang und Angebot einordnen.",
     titleAlternatives: [
       "Gewerbereinigung Regensburg | Raumliste senden",
       "Büroreinigung Regensburg | Turnus & Räume klären",
       "Reinigungsfirma Regensburg | Büro und Objekt prüfen",
     ],
-    headline: "Gewerbereinigung in Regensburg für Büro, Praxis und Objekt",
+    headline: "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
     intro:
-      "FLOXANT prüft gewerbliche Reinigung in Regensburg nach Objektart, Raumliste, Turnus, Zeitfenster, Zugang und Fotos. So entsteht ein nachvollziehbarer Leistungsumfang für Büro, Praxis, Kanzlei, Hausverwaltung oder Gewerbefläche.",
-    primaryCta: "Gewerbereinigung anfragen",
-    secondaryCta: "Raumliste senden",
-    bookingHref: "/buchung?region=regensburg&service=gewerbereinigung#buchungssystem",
+      "Bei Gewerbereinigung in Regensburg zählen Objektart, Fläche, Reinigungszeiten, Leistungsumfang, Turnus und Zugang. FLOXANT hilft, die Anfrage klar vorzubereiten und vorhandene Angebote besser einzuordnen. Eine Anfrage ist noch keine Beauftragung.",
+    primaryCta: "Gewerbereinigung Regensburg anfragen",
+    secondaryCta: "Objektangaben senden",
+    bookingHref: "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Gewerbereinigung in Regensburg anfragen. Objektart, Raumliste, Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
     proofItems: [
       "Raumliste, Turnus und Zeitfenster werden vor einem Angebot geklärt.",
-      "Büro, Praxis, Kanzlei, Treppenhaus und Objektflächen nach Absprache.",
+      "Büro, Kanzlei, Praxisfläche, Studio, Treppenhaus, Laden- und Objektflächen nach Absprache.",
       "Vorhandene Angebote können sachlich geprüft werden.",
+      "Büroreinigung und Gewerbereinigung werden nach Objektart und Nutzung getrennt.",
     ],
     problemTitle: "Wenn Gewerbereinigung planbar sein muss",
     problemText: [
-      "Bei Büros, Praxen, Kanzleien oder Hausverwaltungen reicht ein kurzer Satz selten aus. Entscheidend sind Räume, Nutzung, Sanitär, Küche, Boden, Zugang, Schlüsselweg und ob die Reinigung vor Öffnung, nach Feierabend oder am Wochenende stattfinden soll.",
+      "Bei Büros, Praxen, Kanzleien, Studios, Ladenflächen oder Hausverwaltungen reicht ein kurzer Satz selten aus. Entscheidend sind Objektart, Räume, Nutzung, Sanitär, Küche, Boden, Zugang, Schlüsselweg und ob die Reinigung vor Öffnung, nach Feierabend oder am Wochenende stattfinden soll.",
       "FLOXANT macht daraus eine prüfbare Anfrage: Welche Bereiche sind wichtig, wie oft soll gereinigt werden, wer ist Ansprechpartner und welche Punkte müssen im Angebot sichtbar sein?",
     ],
     scopeTitle: "Was zur Gewerbereinigung gehören kann",
     scopeItems: [
-      "Büroreinigung, Unterhaltsreinigung, Praxisflächen nach Absprache und Kanzleireinigung.",
-      "Empfang, Arbeitsplätze, Besprechungsräume, Küchen, Sanitär, Flure und Treppenhaus.",
+      "Gewerbeflächen, Unterhaltsreinigung, Kanzleien, Studios, Praxisflächen nach Absprache und Hausverwaltungsbereiche.",
+      "Empfang, Arbeitsplätze, Besprechungsräume, Küchen, Sanitär, Flure, Lager- oder Nebenflächen und Treppenhaus.",
       "Einmalige Grundreinigung, regelmäßiger Turnus oder Reinigung nach Renovierung.",
       "Angebotsprüfung mit Raumliste, Leistungsumfang, Turnus, Fotos und Budgetrahmen.",
     ],
@@ -580,10 +597,10 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Gewerbeflächen unterschiedlich einordnen",
     localText:
-      "In Innenstadt, Stadtamhof und Altstadt sind Zugang und Zeitfenster oft entscheidend. Im Westenviertel, in Prüfening, Galgenberg, Burgweinting oder im Kasernenviertel zählen vor allem Raumliste, Parkmöglichkeit, Turnus und ein klarer Ansprechpartner.",
+      "In Altstadt, Stadtamhof und Innenstadt sind Zugang und Zeitfenster oft entscheidend. Im Westenviertel, in Prüfening, Galgenberg, Burgweinting, Reinhausen oder im Kasernenviertel zählen vor allem Raumliste, Parkmöglichkeit, Turnus und ein klarer Ansprechpartner.",
     districts: regensburgDistricts,
     trustItems: [
-      "Strukturierte Anfrage mit Raumliste, Fotos und Leistungsumfang.",
+      "Anfrage mit Raumliste, Fotos und gewünschtem Leistungsumfang.",
       "Online-Besichtigung oder Vor-Ort-Besichtigung in Regensburg nach Bedarf.",
       "Keine medizinische Spezialdesinfektion oder Zertifizierung ohne gesonderte Prüfung.",
       "Bestehende Angebote werden sachlich eingeordnet, ohne Preisunterbietung zu versprechen.",
@@ -594,7 +611,17 @@ export const localServiceSeoPages = {
         label: "Reinigung Regensburg",
         text: "Für allgemeine Reinigung, Endreinigung, Wohnung und Übergabe.",
       },
+      {
+        href: "/regensburg/bueroreinigung",
+        label: "Büroreinigung Regensburg",
+        text: "Wenn Raumliste, Arbeitsplätze, Küche, Sanitär, Randzeit und Schlüsselweg den Auftrag bestimmen.",
+      },
       ...regensburgServiceLinks,
+      {
+        href: "/angebot-vergleichen-regensburg",
+        label: "Gewerbereinigungsangebot vergleichen",
+        text: "Wenn Umfang, Turnus, Zusatzpositionen oder Preislogik eines Angebots vorab geklärt werden sollen.",
+      },
       {
         href: "/blog/gewerbereinigung-regensburg-objekte-b2b",
         label: "Ratgeber Gewerbereinigung Regensburg",
@@ -611,12 +638,20 @@ export const localServiceSeoPages = {
         a: "Hilfreich sind Objektart, Quadratmeter, Raumliste, Arbeitsplätze, Sanitär, Küche, Turnus, gewünschte Uhrzeit, Zugang, Fotos und Ansprechpartner.",
       },
       {
+        q: "Wie unterscheidet sich Gewerbereinigung von Büroreinigung?",
+        a: "Büroreinigung fokussiert Arbeitsplätze, Besprechungsräume, Küche, Sanitär und planbare Bürozeiten. Gewerbereinigung ist breiter und hängt stärker von Objektart, Nutzung, Sonderflächen, Zugang und Leistungsumfang ab.",
+      },
+      {
         q: "Ist Reinigung nach Feierabend möglich?",
         a: "Zeitfenster vor Öffnung, nach Feierabend oder am Wochenende können nach Objekt, Zugang und Umfang geprüft werden.",
       },
       {
         q: "Reinigt FLOXANT auch Praxen oder Kanzleien?",
         a: "Allgemeine Praxis- und Kanzleiflächen können nach Absprache geprüft werden. Medizinische Spezialdesinfektion wird nicht pauschal zugesagt.",
+      },
+      {
+        q: "Welches Gebiet deckt die Gewerbereinigung ab?",
+        a: "Gewerbereinigung wird für Regensburg und den Umkreis bis 50 km eingeordnet. Der Radius hilft, Anfahrt, Randzeiten und laufende Betreuung realistisch zu planen.",
       },
       {
         q: "Kann ein bestehendes Angebot geprüft werden?",
@@ -626,6 +661,10 @@ export const localServiceSeoPages = {
         q: "Gibt es regelmäßige Unterhaltsreinigung?",
         a: "Regelmäßige Reinigung kann geprüft werden, wenn Turnus, Raumliste, Zugang, Schlüsselregelung und Ansprechpartner klar sind.",
       },
+      {
+        q: "Can I request commercial cleaning in English?",
+        a: "Yes. International companies can describe commercial cleaning in simple English. FLOXANT needs location, area, cleaning frequency, preferred time window, object type and scope.",
+      },
     ],
   },
 } as const satisfies Record<string, LocalServiceSeoPageConfig>;
@@ -633,5 +672,5 @@ export const localServiceSeoPages = {
 export type LocalServiceSeoPageKey = keyof typeof localServiceSeoPages;
 
 export function getLocalServiceSeoPage(key: LocalServiceSeoPageKey) {
-  return localServiceSeoPages[key];
+  return germanizeDeep(localServiceSeoPages[key]);
 }

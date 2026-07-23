@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -25,7 +27,7 @@ const serviceOptions = [
   "Haushaltsauflösung",
   "Übergabereinigung",
   "Angebotsprüfung",
-  "Düsseldorf Reinigung",
+  "Reinigung Regensburg",
   "Düsseldorf Angebotsprüfung",
   "Regensburg Umzug",
   "Regensburg Entrümpelung",
@@ -174,7 +176,7 @@ export function ReferralPartnerCodeForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -231,6 +233,7 @@ export function ReferralPartnerCodeForm() {
         <div className="mt-4 grid gap-2 sm:grid-cols-3">
           <button
             type="button"
+            aria-label={copied ? "Empfehlungslink kopiert" : "Empfehlungslink kopieren"}
             onClick={copyLink}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-800"
             data-event="form_submit"
@@ -327,7 +330,7 @@ export function ReferralPartnerCodeForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Nachricht optional
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder ein Unternehmen braucht Reinigung in Düsseldorf." />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder ein Unternehmen braucht Reinigung in Regensburg." />
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-700">

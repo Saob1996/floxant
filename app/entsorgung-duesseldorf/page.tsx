@@ -19,14 +19,11 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
 import { company } from "@/lib/company";
-import {
-  buildDuesseldorfCleaningProviderJsonLd,
-  buildDuesseldorfServiceJsonLd,
-} from "@/lib/duesseldorf-cleaning";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
@@ -50,7 +47,7 @@ const businessItems = [
   "Nebenraum oder Lagerbereich",
   "Entsorgung nach Renovierung nach Prüfung",
   "Kleine bis mittlere B2B-Abholung",
-  "Kombination mit Reinigung nach Bedarf",
+  "Dokumentation nach Bedarf",
 ] as const;
 
 const excludedItems = [
@@ -64,7 +61,7 @@ const excludedItems = [
 const faqs = [
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Dieser lokale Bereich ist bewusst für Reinigung und Entsorgung getrennt. Umzugsleistungen werden dort nicht als Hauptservice beworben.",
+    a: "Nein. Dieser lokale Bereich ist bewusst für Entsorgung getrennt. Umzugsleistungen werden dort nicht als Hauptservice beworben.",
   },
   {
     q: "Welche Entsorgung kann ich in Düsseldorf anfragen?",
@@ -75,8 +72,8 @@ const faqs = [
     a: "Ja. Fotos von Menge, Materialart, Etage, Laufweg und Zugang helfen, Aufwand und Preisrahmen realistischer einzuordnen.",
   },
   {
-    q: "Kann ich Entsorgung mit Reinigung kombinieren?",
-    a: "Ja, wenn es zum Auftrag passt. Für Reinigung in Düsseldorf gibt es eine eigene Reinigungsseite und einen getrennten Anfragepfad.",
+    q: "Kann ich Entsorgung mit weiteren Arbeiten kombinieren?",
+    a: "Weitere Arbeiten werden nur nach Ort, Umfang, Fotos und Verfügbarkeit geprüft. Reinigung wird bei FLOXANT auf Regensburg und den 50-km-Umkreis begrenzt.",
   },
   {
     q: "Welche Leistungen werden ausgeschlossen?",
@@ -91,8 +88,8 @@ const faqs = [
     a: "Hilfreich sind Fotos von Menge und Material, Stadtteil oder PLZ, Etage, Aufzug, Laufweg, Park- oder Ladezone, gewünschter Termin und ein realistischer Preisrahmen.",
   },
   {
-    q: "Kann nach der Entsorgung auch Reinigung geprüft werden?",
-    a: "Ja. Wenn nach Auszug, Kellerleerung oder kleiner Räumung noch gereinigt werden soll, wird Reinigung in Düsseldorf separat geprüft. Umzug und Entrümpelung laufen über eigene Düsseldorfer Seiten.",
+    q: "Was passiert nach der Entsorgung?",
+    a: "Nach der Entsorgung kann der Zielzustand dokumentiert werden. Reinigungsanfragen nimmt FLOXANT nur für Regensburg und den Umkreis bis 50 km an.",
   },
 ] as const;
 
@@ -123,10 +120,10 @@ const disposalIntentItems = [
   },
   {
     query: "Entsorgung nach Auszug Düsseldorf",
-    title: "Erst raus, dann Reinigung separat prüfen",
-    text: "Wenn nach Auszug oder Renovierung noch gereinigt werden soll, bleibt Entsorgung getrennt und Reinigung wird als eigener Schritt verlinkt.",
-    href: "/duesseldorf/reinigung",
-    cta: "Reinigung ergänzen",
+    title: "Erst raus, dann Zielzustand klaeren",
+    text: "Wenn nach Auszug oder Renovierung noch weitere Schritte offen sind, bleiben Umfang, Fotos und Termin getrennt dokumentiert.",
+    href: bookingHref,
+    cta: "Zielzustand klaeren",
     external: false,
   },
 ] as const;
@@ -142,7 +139,7 @@ const disposalRequestChecklist = [
   },
   {
     title: "Termin und Zielzustand",
-    text: "Wichtig ist, ob nur abgeholt wird oder ob nach Auszug, Renovierung oder Räumung noch Reinigung folgen soll.",
+    text: "Wichtig ist, ob nur abgeholt wird oder ob nach Auszug, Renovierung oder Raeumung noch Dokumentation, Fotos oder ein weiterer Termin noetig sind.",
   },
   {
     title: "Ausschlüsse offen nennen",
@@ -156,14 +153,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "entsorgung-duesseldorf",
     title: "Entsorgung Düsseldorf – Möbel, Sperrmüll & Abholung | FLOXANT",
     description:
-      "Entsorgung in Düsseldorf für Möbel, Sperrmüll, Haushaltsgegenstände, Keller und kleinere Räumungen: Umfang, Zugang, Etage, Fotos, Termin und Budget senden. Reinigung separat möglich.",
-    keywords: [
-      "Entsorgung Düsseldorf",
-      "Möbelentsorgung Düsseldorf",
-      "Sperrmüll Entsorgung Düsseldorf",
-      "Entsorgung nach Auszug Düsseldorf",
-      "Inventar Entsorgung Düsseldorf",
-    ],
+      "Entsorgung in Düsseldorf für Möbel, Sperrmüll, Haushaltsgegenstände, Keller und kleinere Räumungen: Umfang, Zugang, Etage, Fotos, Termin und Budget senden.",
   });
 }
 
@@ -182,8 +172,7 @@ export default function EntsorgungDuesseldorfPage() {
         path: pagePath,
         about: ["Entsorgung", "Möbelentsorgung", "Sperrmüll", "Düsseldorf", "Fotos", "Budget"],
       }),
-      buildDuesseldorfCleaningProviderJsonLd(),
-      buildDuesseldorfServiceJsonLd({
+      buildServiceJsonLd({
         name: "FLOXANT Entsorgung Düsseldorf",
         description:
           "Entsorgung von Möbeln, Sperrmüll, Haushaltsgegenständen und regulär entsorgbaren Gegenständen in Düsseldorf nach Umfang, Zugang und Fotos.",
@@ -277,7 +266,7 @@ export default function EntsorgungDuesseldorfPage() {
                 WhatsApp mit Fotos
               </a>
               <Link
-                href="/duesseldorf/reinigung"
+                href="/regensburg/reinigung"
                 className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-teal-200"
                 data-event="service_card_click"
                 data-region="duesseldorf"
@@ -285,7 +274,7 @@ export default function EntsorgungDuesseldorfPage() {
                 Reinigung separat ansehen
               </Link>
               <Link
-                href="/reinigung-moeblierte-wohnung-duesseldorf"
+                href="/regensburg/reinigung"
                 className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-bold text-cyan-900 transition hover:-translate-y-0.5 hover:bg-cyan-100"
                 data-event="service_card_click"
                 data-region="duesseldorf"
@@ -416,8 +405,7 @@ export default function EntsorgungDuesseldorfPage() {
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
               Je klarer Fotos, Zugang und Zielzustand sind, desto eher kann FLOXANT sagen,
-              ob Entsorgung in Düsseldorf machbar ist und ob Reinigung danach separat
-              sinnvoll wäre.
+              ob Entsorgung in Duesseldorf machbar ist und welcher Zielzustand danach dokumentiert werden soll.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -467,10 +455,10 @@ export default function EntsorgungDuesseldorfPage() {
       <SignatureServices
         locale="de"
         dict={{ signature_services: { items: {} } }}
-        serviceIds={["duesseldorf_disposal", "photo_check", "budget_check", "clear_cleaning"]}
+        serviceIds={["duesseldorf_disposal", "photo_check", "budget_check"]}
         badge="Düsseldorf Entsorgung"
         title="Entsorgung mit Fotoeinschätzung statt unklarem Pauschalversprechen"
-        subtitle="Diese Seite bleibt bewusst getrennt vom Umzug: Umfang, Zugang, Etage, Materialart, Fotos und Budget werden zuerst geprüft. Reinigung kann separat ergänzt werden."
+        subtitle="Diese Seite bleibt bewusst getrennt vom Umzug: Umfang, Zugang, Etage, Materialart, Fotos und Budget werden zuerst geprüft. Weitere Schritte werden getrennt geprueft."
         compact
         source="duesseldorf_disposal_signature_services"
       />
@@ -488,7 +476,7 @@ export default function EntsorgungDuesseldorfPage() {
         ]}
         badge="Duesseldorf Entsorgung"
         title="Entsorgung in Duesseldorf braucht klare Fotos, Zugang und Grenzen"
-        subtitle="Die Seite staerkt Entsorgung ohne Umzugsdominanz: privat und B2B bleiben getrennt, riskante Stoffe werden ausgeschlossen und Reinigung wird nur als separater Zusatzweg verlinkt."
+        subtitle="Die Seite staerkt Entsorgung ohne Umzugsdominanz: privat und B2B bleiben getrennt, riskante Stoffe werden ausgeschlossen und weitere Schritte werden nur nach Fotos, Umfang und Termin geprueft."
         source="duesseldorf_disposal_authority_modules"
       />
 
@@ -616,7 +604,7 @@ export default function EntsorgungDuesseldorfPage() {
               Anrufen
             </a>
             <Link
-              href="/duesseldorf/reinigung"
+              href="/regensburg/reinigung"
               className="flox-mobile-action flox-mobile-action-dark"
               data-event="service_card_click"
             >

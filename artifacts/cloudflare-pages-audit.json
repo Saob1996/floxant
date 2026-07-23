@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-07-23T18:33:52.264Z",
+  "limits": {
+    "fileCount": 13298,
+    "fileCountLimit": 20000,
+    "largestFileBytes": 1649464,
+    "fileSizeLimitBytes": 26214400,
+    "totalBytes": 4375087167
+  },
+  "counts": {
+    "htmlFiles": 1561,
+    "sitemapUrls": 396,
+    "redirects": 622,
+    "brokenLinks": 0,
+    "missingImages": 0,
+    "noindexSitemapPages": 0,
+    "redirectChains": 0
+  },
+  "failures": {
+    "fileCountExceeded": false,
+    "tooLarge": [],
+    "missingRequired": [],
+    "sitemapIssues": [],
+    "brokenLinks": [],
+    "missingImages": [],
+    "noindexSitemapPages": [],
+    "redirectChains": [],
+    "redirectLoops": [],
+    "invalidRedirectStatuses": []
+  }
+}

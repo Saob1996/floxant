@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzugsunternehmen in Regensburg auswählen: worauf Kunden achten sollten | FLOXANT",
     description:
       "Wie Kunden in Regensburg ein Umzugsunternehmen seriös bewerten: Ansprechpartner, Vorprüfung, Preisrahmen, Zugang, Planung und regionale Erfahrung.",
-    keywords: [
-      "Umzugsunternehmen Regensburg auswählen",
-      "Umzug Regensburg Anbieter Vergleich",
-      "seriöses Umzugsunternehmen Regensburg",
-      "Umzug Regensburg Preisrahmen",
-    ],
   });
 }
 

@@ -20,16 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog",
     title: "Blog für Umzug, Reinigung, Preisrahmen und Servicewissen | FLOXANT",
     description:
-      "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung in Regensburg und Bayern.",
-    keywords: [
-      "Umzug Blog Regensburg",
-      "Reinigung Ratgeber Regensburg",
-      "Gewerbereinigung Regensburg Tipps",
-      "Preisvorstellung Umzug",
-      "Private Client Umzug Bayern",
-      "Umzugsunternehmen Regensburg auswählen",
-      "Reinigungsfirma Regensburg Büro Praxis",
-    ],
+      "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung.",
   });
 }
 
@@ -54,14 +45,14 @@ export default function BlogHubPage() {
       text: "Wenn Schlüssel, Fotos, Reinigung, Restpunkte oder Übergabe trotzdem sauber geklärt werden müssen.",
     },
     {
-      href: "/blog/duesseldorf-buero-praxis-hausverwaltung-reinigung-anfrage",
-      title: "Düsseldorf Reinigung",
-      text: "Klare Kontaktwege für Büro, Praxis, Hausverwaltung, Gewerbereinigung und Angebotsprüfung.",
+      href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
+      title: "Regensburg Reinigung",
+      text: "Klare Auswahlhilfe für Büro, Praxis und gewerbliche Reinigung im 50-km-Umkreis.",
     },
     {
       href: "#lokale-antworten",
       title: "Regionale Antworten",
-      text: "Beiträge für Regensburg, Bayern, Düsseldorf und die Frage, welcher Service vor Ort wirklich passt.",
+      text: "Beiträge für Regensburg, den 50-km-Reinigungsradius und die Frage, welcher Service vor Ort wirklich passt.",
     },
     {
       href: "#alle-beitraege",
@@ -88,7 +79,7 @@ export default function BlogHubPage() {
     {
       href: "/buchung",
       title: "Anfrage sauber starten",
-      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den strukturierten Startpunkt sind.",
+      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den kurzen Einstieg sind.",
     },
     {
       href: "/kontakt",
@@ -116,7 +107,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Hilft der Blog auch bei der Auswahl eines lokalen Dienstleisters?",
-      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg, Bayern und Düsseldorf. So erkennen Sie schneller, welcher nächste Schritt passt.",
+      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg und dem lokalen Umfeld. Für Reinigung gilt der 50-km-Umkreis um Regensburg.",
     },
     {
       q: "Welche Artikel helfen kurz vor einer Entscheidung am meisten?",
@@ -124,15 +115,15 @@ export default function BlogHubPage() {
     },
     {
       q: "Kann der Blog helfen, wenn ich noch nicht weiß, welche Leistung ich brauche?",
-      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Startpunkt.",
+      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung im Regensburger Umfeld.",
     },
     {
       q: "Welche FLOXANT Leistungen werden hier erklärt?",
-      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung, kurzfristige Fälle, Schlüsselübergabe und Hausverwaltung.",
+      a: "FLOXANT steht in Regensburg für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Reinigungsanfragen werden lokal auf Regensburg plus 50 km begrenzt.",
     },
     {
       q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
-      a: "Weil Kunden konkrete Situationen besser verstehen als reine Wortlisten. Deshalb erklären die Artikel Fälle wie Umzug mit Reinigung, Entrümpelung vor Übergabe oder Reinigung in Düsseldorf anhand echter Fragen.",
+      a: "Weil Kunden konkrete Situationen besser verstehen als reine Wortlisten. Deshalb erklären die Artikel Fälle wie Umzug mit Reinigung, Entrümpelung vor Übergabe oder Reinigung im Raum Regensburg anhand echter Fragen.",
     },
     {
       q: "Gibt es einen Artikel, der alle FLOXANT Services nach Situation einordnet?",
@@ -166,7 +157,7 @@ export default function BlogHubPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Blog",
         description:
-          "Blogbeiträge zu Umzug, Reinigung, Entrümpelung, Beiladung, Preisvorstellung, Buchung, Gewerbereinigung und Private Client in Regensburg und Bayern.",
+          "Blogbeiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Beiladung, Preisvorstellung, Buchung, Gewerbereinigung und Private Client.",
         path: "/blog",
         about: [
           "Umzug",
@@ -183,7 +174,7 @@ export default function BlogHubPage() {
         { name: "FLOXANT", item: "/" },
         { name: "Blog", item: "/blog" },
       ]),
-      buildFaqJsonLd(blogHubFaqItems),
+      buildFaqJsonLd(blogHubFaqItems.slice(0, 8)),
       {
         "@context": "https://schema.org",
         "@type": "ItemList",
@@ -299,7 +290,7 @@ export default function BlogHubPage() {
               text: "Kosten, Ablauf, Beiladung und Expressfälle besser verstehen.",
             },
             {
-              href: "/gewerbereinigung-regensburg",
+              href: "/regensburg/gewerbereinigung",
               title: "Gewerbereinigung",
               text: "Büro, Praxis, Hotel und Objektbetrieb gezielt einordnen.",
             },
@@ -419,7 +410,7 @@ export default function BlogHubPage() {
       </section>
 
       <PsychologicalCleaningInternalLinks
-        title="Neue Reinigungsratgeber mit direktem Serviceweg"
+        title="Neue Reinigungsratgeber mit direkter Anfrage"
         intro="Die Blogartikel stuetzen diese Problemseiten. Wer beim Lesen merkt, dass es konkret wird, landet ohne Umweg bei Buchung, WhatsApp oder Telefon."
         focusSlugs={[
           "vermieter-schockschutz-reinigung",
@@ -452,7 +443,7 @@ export default function BlogHubPage() {
             {[
               {
                 title: "Was ist FLOXANT?",
-                text: "Ein lokaler Dienstleister aus Regensburg für Umzug, Reinigung, Entrümpelung, Büroumzug und strukturierte Direktanfragen in Bayern.",
+                text: "Ein lokaler Dienstleister aus Regensburg für Umzug, Reinigung im 50-km-Umkreis, Entrümpelung, Büroumzug und Direktanfragen mit klaren Eckdaten.",
               },
               {
                 title: "Für wen ist der Blog?",
@@ -623,6 +614,7 @@ export default function BlogHubPage() {
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
+                prefetch={false}
                 className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50/40"
               >
                 <div className="flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
@@ -658,7 +650,7 @@ export default function BlogHubPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {blogHubFaqItems.map((item, index) => (
+            {blogHubFaqItems.slice(0, 8).map((item, index) => (
               <details
                 key={item.q}
                 open={index === 0}

@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { useEffect, useMemo, useState } from "react";
 import { m } from "framer-motion";
 import { useCalculatorStore } from "@/store/calculatorStore";
@@ -184,10 +187,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
    formData.append("name", leadDetails.customerName.trim());
    formData.append("email", leadDetails.customerEmail.trim());
    formData.append("phone", leadDetails.customerPhone.trim());
+   formData.append("privacyConsent", "true");
    formData.append("timestamp", new Date().toISOString());
    appendConversionJourneyToFormData(formData);
 
-   const res = await fetch("/api/bookings", {
+   const res = await bookingFetch("/api/bookings", {
     method: "POST",
     body: formData,
    });
@@ -251,6 +255,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     )}
 
     <button
+     type="button"
+     aria-label={dic?.common?.back_to_home || "Zurück"}
      onClick={() => setMode("express")}
      className="rounded-full border border-white/10 bg-white/[0.04] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/[0.08]"
     >
@@ -295,6 +301,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       <input
        required
        type="text"
+       aria-label={dic?.calculator?.contact_person || "Kontaktperson"}
        placeholder={dic?.calculator?.name_placeholder || ""}
        className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
        value={leadDetails.customerName}
@@ -311,6 +318,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       <input
        required
        type="tel"
+       aria-label={dic?.calculator?.phone_number || "Telefonnummer"}
        placeholder="+49 170 1234567"
        className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
        value={leadDetails.customerPhone}
@@ -327,6 +335,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     >
      <input
        type="email"
+      aria-label={dic?.calculator?.email_address || "E-Mail optional"}
       placeholder="max@beispiel.de"
       className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
       value={leadDetails.customerEmail}
@@ -406,6 +415,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       {dic?.calculator?.price_disclaimer || ""}
      </p>
     </div>
+
+    <PrivacyConsentField inverted />
 
     <div className="flex flex-col items-center justify-between gap-4 pt-2 md:flex-row">
      <button

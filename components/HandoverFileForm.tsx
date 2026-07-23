@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { type Dispatch, FormEvent, type SetStateAction, useMemo, useState } from "react";
 import { ArrowRight, Camera, CheckCircle2, FileText, KeyRound, Loader2, Mail, Phone } from "lucide-react";
 
@@ -193,7 +195,7 @@ export function HandoverFileForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });

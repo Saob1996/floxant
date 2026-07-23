@@ -54,7 +54,13 @@ function buildBookingHref(page: PropertyOperationsPage) {
   return `/buchung?utm_source=${page.slug}&utm_medium=premium_landingpage&service=${page.slug}#buchungssystem`;
 }
 
+function getServiceAreas(page: PropertyOperationsPage) {
+  return page.serviceAreas?.length ? page.serviceAreas : ["Regensburg", "Oberpfalz", "Bayern"];
+}
+
 function buildLocalBusinessJsonLd(page: PropertyOperationsPage) {
+  const serviceAreas = getServiceAreas(page);
+
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -77,11 +83,15 @@ function buildLocalBusinessJsonLd(page: PropertyOperationsPage) {
       latitude: company.geo.lat,
       longitude: company.geo.lng,
     },
-    areaServed: [
-      { "@type": "City", name: "Regensburg" },
-      { "@type": "AdministrativeArea", name: "Oberpfalz" },
-      { "@type": "State", name: "Bayern" },
-    ],
+    areaServed: serviceAreas.map((name) => ({
+      "@type":
+        name === "Düsseldorf" || name === "Regensburg"
+          ? "City"
+          : name === "Bayern"
+            ? "State"
+            : "AdministrativeArea",
+      name,
+    })),
     makesOffer: {
       "@type": "Offer",
       itemOffered: {
@@ -94,6 +104,8 @@ function buildLocalBusinessJsonLd(page: PropertyOperationsPage) {
 }
 
 function buildJsonLd(page: PropertyOperationsPage) {
+  const serviceAreas = getServiceAreas(page);
+
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -107,7 +119,7 @@ function buildJsonLd(page: PropertyOperationsPage) {
         description: page.metaDescription,
         path: page.path,
         serviceType: page.serviceName,
-        areaServed: ["Regensburg", "Oberpfalz", "Bayern"],
+        areaServed: serviceAreas,
       }),
       buildWebPageJsonLd({
         name: page.seoTitle,
@@ -116,9 +128,7 @@ function buildJsonLd(page: PropertyOperationsPage) {
         about: [
           page.serviceName,
           "Immobilienbetreuung",
-          "Regensburg",
-          "Oberpfalz",
-          "Bayern",
+          ...serviceAreas,
           "Hilfe vor Ort",
         ],
         potentialActions: [
@@ -159,6 +169,7 @@ export function PropertyOperationsLandingPage({ page }: { page: PropertyOperatio
   const jsonLd = buildJsonLd(page);
   const whatsappHref = buildWhatsAppHref(page);
   const bookingHref = buildBookingHref(page);
+  const serviceAreas = getServiceAreas(page);
 
   return (
     <main className="min-h-screen bg-[#05070a] text-white">
@@ -243,7 +254,7 @@ export function PropertyOperationsLandingPage({ page }: { page: PropertyOperatio
           <div>
             <div className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">
               <MapPin className="h-4 w-4" />
-              Regensburg, Oberpfalz und Bayern
+              {serviceAreas.join(" · ")}
             </div>
             <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[0] text-white sm:text-5xl">
               {page.problem.title}
@@ -262,6 +273,44 @@ export function PropertyOperationsLandingPage({ page }: { page: PropertyOperatio
           </div>
         </div>
       </section>
+
+      {page.localPages?.length ? (
+        <section className="border-y border-white/10 bg-cyan-300/[0.04] px-5 py-16 sm:px-7 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-200">
+                <MapPin className="h-4 w-4" />
+                Lokale Anfragewege
+              </div>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[0] text-white sm:text-5xl">
+                Stadt wählen und den konkreten Gästewechsel beschreiben.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-300">
+                Die lokalen Seiten bündeln Servicegebiet, benötigte Angaben, Leistungsgrenzen und den passenden
+                Anfrageweg. Wählen Sie die passende Stadt, damit Ort, Zeitfenster und Zugang direkt richtig
+                eingeordnet werden können.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {page.localPages.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group rounded-lg border border-white/12 bg-white/[0.06] p-6 transition hover:-translate-y-0.5 hover:border-cyan-200/45 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 motion-reduce:transition-none"
+                >
+                  <MapPin className="h-6 w-6 text-cyan-200" aria-hidden="true" />
+                  <h3 className="mt-5 text-xl font-semibold text-white">{item.label}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{item.text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-cyan-100">
+                    Lokale Seite öffnen
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-16 sm:px-7 lg:px-8">
         <div className="mx-auto max-w-7xl">

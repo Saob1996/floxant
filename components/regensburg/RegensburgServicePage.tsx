@@ -11,27 +11,66 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
+import { AiAnswerBlock } from "@/components/ai-answer";
+import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
+import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
+import { SeoLeadForm } from "@/components/SeoLeadForm";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
 import {
   floxantCategoryLabels,
   getServicesByRegionAndCategory,
   type FloxantServiceCategory,
 } from "@/lib/floxant-services";
+import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import type { RegensburgServicePageConfig } from "@/lib/regensburg-service-pages";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { getServiceVisual } from "@/lib/service-visuals";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 type RegensburgServicePageProps = {
   config: RegensburgServicePageConfig;
 };
 
+function isRegensburgCleaningServiceSlug(slug: string) {
+  return (
+    slug.includes("reinigung") ||
+    ["bueroreinigung", "reinigungsfirma", "besenreine-uebergabe"].includes(slug)
+  );
+}
+
 function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig; whatsappHref: string }) {
   const canonical = `${company.url}${config.path}`;
+  const isCleaningServicePage = isRegensburgCleaningServiceSlug(config.slug);
+  const localAreaServed = isCleaningServicePage
+    ? buildRegensburgCleaningAreaServedJsonLd()
+    : ["Regensburg", "Landkreis Regensburg", "Oberpfalz", "Bayern"].map((name) => ({
+        "@type": "AdministrativeArea",
+        name,
+      }));
+
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -60,10 +99,7 @@ function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig;
           addressRegion: company.state,
           addressCountry: company.countryCode,
         },
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Oberpfalz", "Bayern"].map((name) => ({
-          "@type": "AdministrativeArea",
-          name,
-        })),
+        areaServed: localAreaServed,
       },
       {
         "@type": "Service",
@@ -71,15 +107,26 @@ function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig;
         name: config.serviceType,
         serviceType: config.serviceType,
         provider: { "@id": `${company.url}/regensburg#localbusiness` },
-        areaServed: "Regensburg und Umgebung",
+        areaServed: isCleaningServicePage ? localAreaServed : "Regensburg und Umgebung",
         url: canonical,
+        availableChannel: {
+          "@type": "ServiceChannel",
+          serviceUrl: canonical,
+          servicePhone: {
+            "@type": "ContactPoint",
+            telephone: company.phoneRaw,
+          },
+          availableLanguage: ["de", "en"],
+        },
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Regensburg", item: "/regensburg" },
         { name: config.serviceType, item: config.path },
       ]),
-      buildFaqJsonLd(config.faq),
+      ...(getActivePriorityFaqAssignment(config.path)
+        ? []
+        : [buildFaqJsonLd(config.faq)]),
     ],
   };
 
@@ -142,6 +189,256 @@ function buildRegensburgServiceSummary(config: RegensburgServicePageConfig) {
   return `FLOXANT unterstützt bei ${config.serviceType} mit einer ruhigen Vorprüfung von Ort, Umfang, Zugang, Termin und Fotos. Ziel ist eine klare Rückmeldung, welcher Ablauf für Regensburg und Umgebung sinnvoll ist und welche offenen Punkte vor einem Angebot geklärt werden müssen.`;
 }
 
+function buildRegensburgDecisionCopy(config: RegensburgServicePageConfig) {
+  if (config.slug === "umzug") {
+    return {
+      intro:
+        "Ein Umzug in Regensburg wird erst belastbar, wenn Start, Ziel, Volumen, Etage, Trageweg und Termin zusammen sichtbar sind. Reinigung oder Entrümpelung werden nur als optionale Zusatzpunkte getrennt geplant.",
+      offerLabel: "Umzugsangebot Regensburg vergleichen",
+      checklist: [
+        "Start- und Zieladresse mit Etage, Aufzug und Haltemöglichkeit",
+        "Möbelmenge, Kartons, große Einzelstücke und Fotos",
+        "Terminfenster, Trageweg, Treppenhaus und Ansprechpartner",
+        "Zusatzpunkte wie Montage, Packhilfe, Restmengen oder Reinigung separat nennen",
+      ],
+      localLogic: [
+        "Bei Altstadt-Umzügen sind Zufahrt, Ladezone und Trageweg früh zu klären.",
+        "In Kumpfmühl, Westenviertel oder Prüfening entscheiden Etage, Aufzug und Parkmöglichkeit häufig über den Aufwand.",
+      ],
+    };
+  }
+
+  if (config.slug === "entruempelung") {
+    return {
+      intro:
+        "Entrümpelung braucht Fotos, Menge, Zugang und Zielzustand. So wird klar, ob es um Keller, Wohnung, Nachlass, Übergabevorbereitung oder nur um einzelne Restmengen geht.",
+      offerLabel: "Entrümpelungsangebot Regensburg vergleichen",
+      checklist: [
+        "Räume: Wohnung, Keller, Dachboden, Garage oder Nebenfläche",
+        "Menge, Material, was bleibt und was raus soll",
+        "Fotos, Etage, Aufzug, Laufweg, Parkmöglichkeit und Freigabe",
+        "Termin, Zielzustand und ob danach Reinigung nötig ist",
+      ],
+      localLogic: [
+        "In Altstadt, Stadtamhof oder dicht belegten Wohnhäusern sind Zugang und Laufweg wichtiger als eine grobe Mengenangabe.",
+        "In Burgweinting, Reinhausen oder Prüfening helfen Fotos von Keller, Garage und Haltepunkt, damit der Aufwand realistisch bleibt.",
+      ],
+    };
+  }
+
+  if (config.slug === "wohnungsaufloesung") {
+    return {
+      intro:
+        "Wohnungsauflösung ist kein harter Schnellauftrag. Freigaben, persönliche Gegenstände, Ansprechpartner, Räume und Übergabeziel müssen ruhig geklärt werden.",
+      offerLabel: "Auflösungsangebot Regensburg vergleichen",
+      checklist: [
+        "Situation: Nachlass, Auszug, Pflegeheimwechsel oder Leerstand",
+        "Räume, Keller, Menge, was bleiben soll und wer freigibt",
+        "Fotos von Wohnung, Laufwegen, Möbeln und sensiblen Bereichen",
+        "Zielzustand: geräumt, besenrein, gereinigt oder übergabefähig",
+      ],
+      localLogic: [
+        "Bei Nachlasswohnungen in Regensburg zählen Freigabe, Schlüsselweg und Ansprechpartner mehr als eine schnelle Preisfrage.",
+        "Wenn Vermieterübergabe oder Nachnutzung ansteht, werden Räumung, Entsorgung und Reinigung getrennt eingeordnet.",
+      ],
+    };
+  }
+
+  if (config.slug === "bueroreinigung") {
+    return {
+      intro:
+        "Büroreinigung passt, wenn Arbeitsplätze, Besprechung, Empfang, Teeküche, Sanitär, Turnus und Randzeit konkret beschrieben werden. Für breitere Objektflächen führt Gewerbereinigung weiter.",
+      offerLabel: "Büroreinigungsangebot Regensburg vergleichen",
+      checklist: [
+        "Arbeitsplätze, Besprechungsräume, Empfang, Küche und Sanitär",
+        "Fläche, Raumliste, Boden, Turnus und gewünschte Randzeit",
+        "Schlüsselweg, Zugang, Ansprechpartner und Hausordnung",
+        "Fotos und vorhandenes Angebot, falls ein Vergleich gewünscht ist",
+      ],
+      localLogic: [
+        "Büros in Altstadt oder Stadtamhof brauchen oft klare Randzeiten und Zugangspunkte.",
+        "In Gewerbelagen oder größeren Objekten entscheidet die Raumliste, ob Büroreinigung oder Gewerbereinigung besser passt.",
+      ],
+    };
+  }
+
+  return {
+    intro:
+      "Eine gute Rückmeldung entsteht, wenn Ort, Umfang, Zugang, Termin und Zielzustand zusammenpassen. Diese Punkte helfen, die Anfrage ohne Blindpreis sauber vorzubereiten.",
+    offerLabel: "Angebot Regensburg vergleichen",
+    checklist: [
+      "Regensburg, Stadtteil, PLZ oder Umland-Ort nennen",
+      `${config.serviceType}: Umfang, Zielzustand und Termin beschreiben`,
+      "Fotos, vorhandenes Angebot, Raumliste oder grobe Menge mitschicken",
+      "Zugang, Etage, Parken, Schlüsselweg und Ansprechpartner klären",
+    ],
+    localLogic: [
+      "Regensburg und Landkreis Regensburg werden zuerst nach Machbarkeit, Route und Zeitfenster geprüft.",
+      "Weiter entfernte Orte gehören in die Angebotsprüfung, wenn Route, Rückfahrt oder Kombination den Auftrag realistisch machen.",
+    ],
+  };
+}
+
+const endCleaningSituationCards = [
+  {
+    title: "Endreinigung vor Wohnungsübergabe",
+    text: "Für Auszug, Leerstand oder Nachmietertermin, wenn Küche, Bad, Böden, sichtbare Rückstände, Zugang und Frist zusammen geprüft werden müssen.",
+  },
+  {
+    title: "Reinigung nach Entrümpelung",
+    text: "Für Objekte nach Räumung, Haushaltsauflösung oder Restmengen, wenn erst Entsorgung und danach der sichtbare Zustand sortiert werden.",
+  },
+  {
+    title: "Vermieter-Ready-Service",
+    text: "Für Vermieter, Verwaltung oder Eigentümer, die Reinigung, offene Punkte, Fotos, Schlüsselweg und nächsten Nutzungsschritt zusammen klären wollen.",
+  },
+  {
+    title: "Übergabe-Sprint",
+    text: "Für knappe Fristen, wenn Termin, Zustand, Angebot, Restmengen und Dokumentationsbedarf schnell gemeinsam geklärt werden sollen.",
+  },
+] as const;
+
+const endCleaningEffortFactors = [
+  "Fläche, Raumanzahl, Objektart und Etage",
+  "Küche, Bad, Böden, Fensterbereiche und sichtbare Rückstände",
+  "Restmengen, Sperrmüll, Geruch oder Spuren nach Entrümpelung",
+  "Schlüsselweg, Zugang, Parken, Ansprechpartner und Hausordnung",
+  "Übergabetermin, Besichtigung, Nachnutzung oder Vermieter-Frist",
+  "Vorhandenes Angebot, Fotos, Raumliste oder gewünschte Dokumentation",
+] as const;
+
+const endCleaningAuthorityLinks = [
+  {
+    href: "/objektbrief",
+    title: "Objektbrief",
+    text: "Kurzer klarer Überblick für Objekt, Zustand, Fotos, offene Punkte und nächste Schritte.",
+  },
+  {
+    href: "/uebergabeakte",
+    title: "Übergabeakte",
+    text: "Bündelt Übergabeinformationen, Fotos, Aufgaben und Grenzen für Vermieter, Verwaltung oder Auftraggeber.",
+  },
+  {
+    href: "/vermieter-ready-service",
+    title: "Vermieter-Ready-Service",
+    text: "Sortiert Reinigung, Restmengen, Besichtigung, Schlüsselweg und Wiedervermietungslogik in einem Ablauf.",
+  },
+  {
+    href: "/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=seo",
+    title: "Angebotsprüfung",
+    text: "Hilft, vorhandene Reinigungsangebote nach Umfang, Zusatzpositionen, Frist und praktischen Risiken einzuordnen.",
+  },
+] as const;
+
+function EndCleaningAuthoritySection({
+  bookingHref,
+  offerHref,
+}: {
+  bookingHref: string;
+  offerHref: string;
+}) {
+  return (
+    <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Übergabe-Endreinigung
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Endreinigung, Räumung und Übergabe sauber voneinander trennen.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              FLOXANT behandelt Endreinigung vor Übergabe nicht als pauschale Putzliste. Entscheidend sind Zustand, Frist,
+              Restmengen, Fotos, Schlüsselweg und ob Vermieter-Ready-Service, Objektbrief oder Übergabeakte sinnvoll sind.
+              Es gibt keine Abnahme-, Kautions-, Rechts-, Preis- oder Soforttermin-Garantie.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={bookingHref}
+                data-event="seo_cta_click"
+                data-source="endreinigung_authority_section"
+                data-page-intent="endreinigung-wohnungsuebergabe"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
+              >
+                Übergabe-Endreinigung anfragen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href={offerHref}
+                data-event="seo_cta_click"
+                data-source="endreinigung_authority_offer_check"
+                data-page-intent="uebergabe-angebot-pruefen"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-6 text-sm font-black text-blue-800 transition hover:bg-blue-100"
+              >
+                Angebot vergleichen
+                <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {endCleaningSituationCards.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+            <h3 className="text-xl font-black tracking-normal text-slate-950">
+              Wovon der Aufwand bei Endreinigung und Reinigung nach Entrümpelung abhängt
+            </h3>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {endCleaningEffortFactors.map((item) => (
+                <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg border border-slate-900 bg-slate-950 p-5 text-white">
+            <ShieldCheck className="h-6 w-6 text-cyan-200" aria-hidden="true" />
+            <h3 className="mt-4 text-xl font-black tracking-normal">
+              Grenzen klar halten
+            </h3>
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+              FLOXANT kann einen Zustand vorbereiten, Punkte strukturieren und vorhandene Angebote einordnen. FLOXANT ersetzt
+              keine Wohnungsabnahme, keine Rechtsberatung, keine Kautionsentscheidung und keine verbindliche Verwaltungsaussage.
+            </p>
+            <div className="mt-5 rounded-lg border border-white/12 bg-white/[0.06] p-4 text-sm font-semibold leading-7 text-slate-200">
+              Information in English: end of tenancy cleaning, move-out cleaning, apartment handover cleaning and post-clearance
+              cleaning in Regensburg can start with photos, address area, deadline and object condition.
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {endCleaningAuthorityLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              data-event="service_card_click"
+              data-source="endreinigung_authority_internal_linking"
+              className="group flex min-h-[12rem] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+            >
+              <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+              <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-black text-blue-700">
+                Weiter
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, config.whatsappMessage);
   const serviceVisual = getServiceVisual({
@@ -150,17 +447,46 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
     path: config.path,
     serviceLabel: config.serviceType,
   });
-  const bookingHref = `/buchung?region=regensburg&service=${encodeURIComponent(config.slug)}#buchungssystem`;
+  const bookingLead = resolveLeadIntent(
+    config.slug === "angebot-vergleichen-regensburg"
+      ? {
+          service: "angebot-pruefen",
+          city: "regensburg",
+          intent: "angebot-vergleichen-regensburg",
+          priority: "p0",
+        }
+      : {
+          path: config.path,
+          service: config.slug,
+          city: "regensburg",
+        },
+  );
+  const bookingHref = buildLeadHref(bookingLead);
+  const regensburgOfferHref = "/angebot-vergleichen-regensburg";
   const category: FloxantServiceCategory =
     config.slug === "umzug" ||
+    config.slug === "umzugsunternehmen" ||
     config.slug === "entruempelung" ||
     config.slug === "haushaltsaufloesung" ||
+    config.slug === "wohnungsaufloesung" ||
+    config.slug === "bueroreinigung" ||
+    config.slug === "reinigungsfirma" ||
     config.slug === "uebergabereinigung" ||
     config.slug === "endreinigung"
       ? "normal"
-      : config.slug === "besenreine-uebergabe"
+      : config.slug === "besenreine-uebergabe" || config.slug === "angebot-vergleichen-regensburg"
         ? "special"
         : "signature";
+  const proofServiceKey =
+    config.slug.includes("entruempelung") ||
+    config.slug.includes("haushaltsaufloesung") ||
+    config.slug.includes("wohnungsaufloesung")
+      ? "entruempelung"
+      : config.slug.includes("buero") || config.slug.includes("gewerbe")
+        ? "b2b"
+        : config.slug.includes("umzug") || config.slug.includes("transport") || config.slug.includes("klavier")
+          ? "umzug"
+          : "reinigung";
   const relatedCategoryServices = getServicesByRegionAndCategory("regensburg", category)
     .filter((service) => service.href !== config.path)
     .slice(0, 5);
@@ -176,6 +502,28 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       href: item.href,
     })),
   ];
+  const isCleaningServicePage = isRegensburgCleaningServiceSlug(config.slug);
+  const internationalTags =
+    config.slug === "umzug"
+      ? ["Moving company", "Moving service", "Relocation help", "Moving help"]
+      : config.slug === "entruempelung"
+        ? ["Decluttering", "Junk removal", "House clearance", "Cleaning help"]
+        : config.slug === "haushaltsaufloesung"
+          ? ["House clearance", "Decluttering", "Junk removal", "Moving help"]
+          : isCleaningServicePage
+            ? ["Cleaning service", "Office cleaning", "Commercial cleaning", "End of tenancy cleaning"]
+            : ["Cleaning service", "End of tenancy cleaning", "Moving help", "House clearance"];
+  const relatedSpecialKind =
+    config.slug === "umzug"
+      ? "moving"
+      : config.slug === "entruempelung" || config.slug === "haushaltsaufloesung"
+        ? "clearance"
+        : "cleaning";
+  const decisionCopy = buildRegensburgDecisionCopy(config);
+  const decisionServiceName = config.serviceType.replace(/\s+Regensburg$/u, "");
+  const heroBadges = isCleaningServicePage
+    ? ["Regensburg + 50 km", "Fotos oder Eckdaten reichen zum Start", "Reinigung ohne überregionale Gebietsausweitung"]
+    : ["Regensburg und Umgebung", "Fotos oder Eckdaten reichen zum Start", "Leistung sauber vom Reinigungsbereich getrennt"];
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -219,9 +567,14 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={bookingHref}
-                data-event="hero_cta_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label={config.primaryCta}
+                data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/25 transition hover:bg-cyan-50"
               >
                 {config.primaryCta}
@@ -229,9 +582,15 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </Link>
               <a
                 href={whatsappHref}
-                data-event="whatsapp_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label="Fotos per WhatsApp senden"
+                data-destination={whatsappHref}
+                data-contact-channel="whatsapp"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -239,7 +598,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </a>
               <a
                 href={`tel:${company.phoneRaw}`}
-                data-event="phone_click"
+                data-event="seo_phone_click"
                 data-region="regensburg"
                 data-service={config.slug}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
@@ -249,11 +608,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </a>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {[
-                "Regensburg und Umgebung",
-                "Fotos oder Eckdaten reichen zum Start",
-                "Keine Vermischung mit Düsseldorf-Reinigung",
-              ].map((item) => (
+              {heroBadges.map((item) => (
                 <div key={item} className="rounded-lg border border-white/14 bg-white/8 px-4 py-3 text-sm font-bold leading-6 text-slate-100">
                   {item}
                 </div>
@@ -276,31 +631,101 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-6 grid gap-3">
-              <Link
-                href={bookingHref}
-                data-event="hero_cta_click"
-                data-region="regensburg"
-                data-service={config.slug}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
-              >
-                Anfrageformular öffnen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href={whatsappHref}
-                data-event="whatsapp_click"
-                data-region="regensburg"
-                data-service={config.slug}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
-              >
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp mit Fotos
-              </a>
-            </div>
+            {config.slug === "angebot-vergleichen-regensburg" ? (
+              <div className="mt-6">
+                <SeoLeadForm
+                  initialIntent={bookingLead}
+                  sourcePage={config.path}
+                  initialOfferStatus="written_offer"
+                />
+              </div>
+            ) : (
+              <div className="mt-6 grid gap-3">
+                <Link
+                  href={bookingHref}
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service={bookingLead.trackingService}
+                  data-city={bookingLead.trackingCity}
+                  data-page-intent={bookingLead.trackingIntent}
+                  data-priority={bookingLead.priority}
+                  data-cta-label="Anfrageformular öffnen"
+                  data-destination={bookingHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
+                >
+                  Anfrageformular öffnen
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={whatsappHref}
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service={bookingLead.trackingService}
+                  data-city={bookingLead.trackingCity}
+                  data-page-intent={bookingLead.trackingIntent}
+                  data-priority={bookingLead.priority}
+                  data-cta-label="WhatsApp mit Fotos"
+                  data-destination={whatsappHref}
+                  data-contact-channel="whatsapp"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp mit Fotos
+                </a>
+              </div>
+            )}
           </aside>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel={config.serviceType}
+        tags={internationalTags}
+        primaryHref={bookingHref}
+        photoHref={bookingHref}
+        offerHref={regensburgOfferHref}
+      />
+
+      <LocalConversionDecisionBox
+        cityName="Regensburg"
+        serviceName={decisionServiceName}
+        region="regensburg"
+        primaryHref={bookingHref}
+        primaryLabel={config.primaryCta}
+        offerHref={regensburgOfferHref}
+        offerLabel={decisionCopy.offerLabel}
+        intro={decisionCopy.intro}
+        checklist={decisionCopy.checklist}
+        decisionItems={config.scope.slice(0, 4)}
+        localLogic={decisionCopy.localLogic}
+        trustItems={config.trust.slice(0, 3)}
+      />
+
+      {config.slug === "endreinigung" ? (
+        <EndCleaningAuthoritySection
+          bookingHref={bookingHref}
+          offerHref="/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=seo"
+        />
+      ) : null}
+
+      {isCleaningServicePage ? (
+        <>
+          <ServiceAreaBlock
+            compact
+            title={`${config.serviceType} im Regensburger Servicegebiet`}
+            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Die Seite bewirbt keine Reinigungsaufträge außerhalb dieses Radius."
+          />
+          <LocalTrustBlock ctaHref={bookingHref} ctaLabel={config.primaryCta} />
+          <RequestChecklistBlock ctaHref={bookingHref} ctaLabel="Angaben für diese Reinigung senden" />
+          <RelatedServicesBlock
+            currentHref={config.path}
+            title={`Weitere Reinigungswege passend zu ${config.serviceType}`}
+            intro="Diese Links halten Reinigung in Regensburg zusammen und führen je nach Anliegen zu Hub, Leistungsseite, Angebotsprüfung oder Ratgeber."
+            limit={5}
+          />
+        </>
+      ) : null}
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
@@ -314,10 +739,75 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             summary={buildRegensburgServiceSummary(config)}
             services={customerSectionServices}
             relatedLinks={config.related}
-            offerCheckHref="/anbieter-vergleichen"
+            offerCheckHref={regensburgOfferHref}
           />
         </div>
       </section>
+
+      <AiAnswerBlock
+        eyebrow="Regensburg Antwort"
+        title={`${config.serviceType}: was für eine schnelle Einschätzung zählt.`}
+        answer="FLOXANT kann lokale Regensburg-Anfragen besser einordnen, wenn Ort, Termin, Umfang, Zugang und Fotos früh sichtbar sind."
+        points={[
+          isCleaningServicePage
+            ? "Reinigung wird auf Regensburg und den Umkreis bis 50 km eingegrenzt."
+            : "Regensburg, Landkreis und Bayern werden nach Machbarkeit getrennt.",
+          "Fotos reduzieren Rückfragen zu Zustand, Menge oder Fläche.",
+          "Vorhandene Angebote können praktisch eingeordnet werden.",
+          "Bei Zeitdruck ist Plan B oft wichtiger als ein reiner Preisvergleich.",
+        ]}
+        usefulWhen={["Termin oder Übergabe näherrückt", "Fotos oder Angebot vorliegen", "Serviceumfang noch nicht sauber beschrieben ist"]}
+        notUsefulWhen={["eine Rechtsberatung erwartet wird", "ohne Angaben eine feste Zusage erwartet wird"]}
+        neededInfo={["Ort/PLZ", "Termin", "Fotos", "kurze Beschreibung"]}
+      />
+
+      <RelatedSpecialServices
+        kind={relatedSpecialKind}
+        title={`Spezialservices passend zu ${config.serviceType} in Regensburg.`}
+        intro="Wenn Umzug, Reinigung, Räumung, Übergabe oder Angebot zusammenhängen, helfen diese Spezialseiten beim nächsten sinnvollen Schritt."
+        limit={4}
+      />
+
+      <SignatureServicesGrid
+        title="Signature Services für Regensburger Sonderfälle."
+        intro="Objektbrief, Übergabeakte, Plan B, Fairpreis-Check und Rückfahrt helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
+        limit={4}
+      />
+
+      <OfferCheckCTA
+        title={`Angebot für ${config.serviceType} schon vorhanden?`}
+        text="FLOXANT prüft vorhandene Angebote nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und realistischen Grenzen. Keine Preisgarantie, keine Anbieter-Diffamierung."
+        href={regensburgOfferHref}
+      />
+
+      {proofServiceKey === "b2b" ? <B2BTrustPanel /> : null}
+
+      <TrustProofPanel
+        allowedPage={config.path}
+        serviceKey={proofServiceKey}
+        locationKey="regensburg"
+        title={`Was Sie bei ${config.serviceType} erwarten können`}
+        intro="Diese Regensburger Serviceseite setzt auf prüfbare Eckdaten statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte."
+      />
+
+      <ServiceProofChecklist
+        serviceKey={proofServiceKey}
+        title={`Welche Angaben ${config.serviceType} belastbarer machen`}
+        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rückmeldung."
+      />
+
+      <RequestBriefChecklistBlock
+        serviceKey={proofServiceKey}
+        ctaHref={bookingHref}
+        ctaLabel="Anfragebrief mit Eckdaten starten"
+        compact
+      />
+
+      <PhotoGuidanceBlock serviceKey={proofServiceKey} compact />
+
+      <ServiceVisualProofGrid serviceKey={proofServiceKey} locationKey="regensburg" />
+
+      <LocalProofPanel location="regensburg" />
 
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
@@ -329,9 +819,9 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               Diese Seite gehört klar zu FLOXANT Regensburg.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Diese Seite bezieht sich auf Regensburg und Umgebung. Es geht um Umzug,
-              Entrümpelung, Haushaltsauflösung, Endreinigung oder Übergabevorbereitung.
-              Düsseldorfer Gewerbereinigung bleibt getrennt im eigenen Bereich.
+              {isCleaningServicePage
+                ? "Diese Seite bezieht sich auf Regensburg und den Umkreis bis 50 km. Ort, Umfang, Zugang, Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit Reinigungsanfragen realistisch bleiben."
+                : "Diese Seite bezieht sich auf Regensburg und Umgebung. Ort, Umfang, Zugang, Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit Umzug, Reinigung, Räumung oder Übergabe nicht unsauber vermischt werden. Regensburger Reinigung bleibt im eigenen Bereich."}
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -388,6 +878,13 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         </div>
       </section>
 
+      {getActivePriorityFaqAssignment(config.path) ? (
+        <PriorityFaqSection
+          route={config.path}
+          includeJsonLd
+          className="border-t border-slate-200 bg-white"
+        />
+      ) : (
       <section className="px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
@@ -421,6 +918,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           </div>
         </div>
       </section>
+      )}
 
       {relatedCategoryServices.length > 0 ? (
         <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
@@ -436,7 +934,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
                 <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
                   Wenn dieser Service nicht genau passt, helfen diese regional einsortierten
                   Seiten weiter. Alle Links bleiben im Regensburger Leistungsbereich und
-                  führen nicht in Düsseldorfer Reinigungstexte.
+                  führen nicht in fremde Standorttexte.
                 </p>
               </div>
               <Link

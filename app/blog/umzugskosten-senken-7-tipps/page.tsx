@@ -43,13 +43,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzugskosten senken | 7 realistische Hebel ohne Lockpreis",
     description:
       "Sieben praktische Hebel, um Umzugskosten realistisch einzuordnen: Volumen, Termin, Zugang, Reinigung, Entrümpelung und Preisrahmen.",
-    keywords: [
-      "Umzugskosten senken",
-      "Umzug planen",
-      "Umzug Regensburg",
-      "Preisrahmen Umzug",
-      "Umzug Bayern",
-    ],
   });
 }
 

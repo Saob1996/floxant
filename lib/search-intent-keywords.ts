@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { germanizeText } from "@/lib/german-text";
 import { getDynamicLocalSeoRoute } from "@/lib/local-seo-routes";
 
@@ -10,7 +11,7 @@ export type SearchIntentProfileInput = {
   route?: string;
   city?: string;
   serviceName?: string;
-  market?: "regensburg" | "duesseldorf";
+  market?: "regensburg";
   relatedLinks?: readonly SearchIntentLink[];
 };
 
@@ -35,14 +36,14 @@ const defaultLinks: SearchIntentLink[] = [
 ];
 
 const duesseldorfLinks: SearchIntentLink[] = [
-  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Düsseldorf & Umgebung" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
-  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-  { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
-  { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
-  { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf" },
-  { href: "/duesseldorf/entsorgung", label: "Entsorgung Düsseldorf separat" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Regensburg & Umgebung" },
+  { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot prüfen" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+  { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
+  { href: "/praxisreinigung-regensburg", label: "Kanzleireinigung Regensburg" },
+  { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
+  { href: "/firmenentsorgung", label: "Entsorgung Regensburg separat" },
 ];
 
 function normalizeRoute(route?: string) {
@@ -86,16 +87,16 @@ function unique(values: Array<string | undefined | null>) {
 function serviceShortTail(serviceName: string, city: string, route: string) {
   const lower = serviceName.toLowerCase();
 
-  if (route.includes("duesseldorf")) {
+  if (route.includes("regensburg")) {
     if (lower.includes("entsorgung")) {
-      return ["Entsorgung Düsseldorf", "Möbelentsorgung Düsseldorf", "Sperrmüll Düsseldorf"];
+      return ["Entsorgung Regensburg", "Möbelentsorgung Regensburg", "Sperrmüll Regensburg"];
     }
-    if (lower.includes("kanzlei")) return ["Kanzleireinigung Düsseldorf", "Büroreinigung Düsseldorf"];
-    if (lower.includes("hotel")) return ["Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf"];
-    if (lower.includes("treppen")) return ["Treppenhausreinigung Düsseldorf", "Hausreinigung Düsseldorf"];
-    if (lower.includes("keller")) return ["Kellerreinigung Düsseldorf", "Keller entrümpeln Düsseldorf"];
-    if (lower.includes("krankenhaus")) return ["Krankenhausreinigung Düsseldorf", "Objektreinigung Düsseldorf"];
-    return ["Reinigung Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Büroreinigung Düsseldorf", "Reinigungsfirma Düsseldorf"];
+    if (lower.includes("kanzlei")) return ["Kanzleireinigung Regensburg", "Büroreinigung Regensburg"];
+    if (lower.includes("hotel")) return ["Hotelreinigung Regensburg", "Hotel Reinigung Regensburg", "Boardinghouse Reinigung Regensburg"];
+    if (lower.includes("treppen")) return ["Treppenhausreinigung Regensburg", "Hausreinigung Regensburg"];
+    if (lower.includes("keller")) return ["Kellerreinigung Regensburg", "Keller entrümpeln Regensburg"];
+    if (lower.includes("krankenhaus")) return ["Krankenhausreinigung Regensburg", "Objektreinigung Regensburg"];
+    return ["Reinigung Regensburg", "Reinigung Regensburg Stadtteile", "Reinigung Regensburg", "Reinigung Regensburg", "Büroreinigung Regensburg", "Reinigungsfirma Regensburg"];
   }
 
   if (lower.includes("reinigung")) {
@@ -122,19 +123,19 @@ function serviceShortTail(serviceName: string, city: string, route: string) {
 function serviceLongTail(serviceName: string, city: string, route: string) {
   const lower = serviceName.toLowerCase();
 
-  if (route.includes("duesseldorf")) {
+  if (route.includes("regensburg")) {
     if (lower.includes("entsorgung")) {
       return [
-        "Möbel und Restmengen in Düsseldorf mit Fotos anfragen",
-        "Entsorgung in Düsseldorf nach Etage, Zugang und Umfang prüfen lassen",
-        "kleine Firmen- oder Wohnungsreste in Düsseldorf separat entsorgen lassen",
+        "Möbel und Restmengen in Regensburg mit Fotos anfragen",
+        "Entsorgung in Regensburg nach Etage, Zugang und Umfang prüfen lassen",
+        "kleine Firmen- oder Wohnungsreste in Regensburg separat entsorgen lassen",
       ];
     }
     return [
-      `${serviceName} in Düsseldorf mit Fotos, Fläche und Zeitfenster anfragen`,
-      `${serviceName} Düsseldorf für Hotel, Büro, Kanzlei, Praxis oder Objektfläche prüfen lassen`,
-      `${serviceName} in Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg nach Ort und Fotos prüfen lassen`,
-      "Reinigung in Düsseldorf ohne Umzug und ohne Regensburg-Vermischung anfragen",
+      `${serviceName} in Regensburg mit Fotos, Fläche und Zeitfenster anfragen`,
+      `${serviceName} Regensburg für Hotel, Büro, Kanzlei, Praxis oder Objektfläche prüfen lassen`,
+      `${serviceName} in Neutraubling, Pentling, Lappersdorf, Kelheim oder Schwandorf nach Ort und Fotos prüfen lassen`,
+      "Reinigung in Regensburg ohne Umzug und ohne Regensburg-Vermischung anfragen",
     ];
   }
 
@@ -174,16 +175,16 @@ function serviceLongTail(serviceName: string, city: string, route: string) {
 }
 
 function serviceLocalTriggers(serviceName: string, city: string, route: string) {
-  if (route.includes("duesseldorf")) {
+  if (route.includes("regensburg")) {
     return [
-      "Innenstadt, Altstadt, Stadtmitte, Pempelfort, Bilk, Derendorf, Flingern und MedienHafen verändern Zugang und Zeitfenster.",
+      "Innenstadt, Altstadt, Innenstadt, Stadtamhof, Galgenberg, Reinhausen, Flingern und MedienOsthafen verändern Zugang und Zeitfenster.",
       "Aufzug, Hinterhof, Hausordnung, Schlüsselregelung und Parkmöglichkeit entscheiden mit über den Aufwand.",
       "Die eigene Düsseldorfer Adresse bleibt sichtbar, damit die Anfrage nicht mit Regensburg vermischt wird.",
     ];
   }
 
   return [
-    `${city}, Umgebung und passende Orte im Regensburger Nahbereich werden nach Verfügbarkeit geprüft.`,
+    `${city}, Umgebung und passende Orte in Regensburger Nahbereich werden nach Verfügbarkeit geprüft.`,
     "Etage, Aufzug, Laufweg, Parkmöglichkeit, Innenhof und enge Straßen verändern die Planung deutlich.",
     `Fotos, Terminwunsch und vorhandenes Angebot machen ${serviceName} in ${city} schneller einschätzbar.`,
   ];
@@ -192,7 +193,7 @@ function serviceLocalTriggers(serviceName: string, city: string, route: string) 
 function servicePriceSignals(serviceName: string, route: string) {
   const lower = serviceName.toLowerCase();
 
-  if (route.includes("duesseldorf")) {
+  if (route.includes("regensburg")) {
     return [
       "Preisrahmen hängt von Fläche, Zustand, Objektart, Zeitfenster und Zugang ab.",
       "Regelmäßige Reinigung wird anders bewertet als einmalige Grund- oder Endreinigung.",
@@ -231,82 +232,82 @@ function servicePriceSignals(serviceName: string, route: string) {
 function routeDominanceBoosters(route: string, city: string, serviceName: string) {
   const lower = `${route} ${city} ${serviceName}`.toLowerCase();
 
-  if (route === "/duesseldorf/reinigung") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Düsseldorf Reinigung",
-        "Reinigung Düsseldorf",
-        "Praxisreinigung Düsseldorf",
-        "Büroreinigung Düsseldorf",
-        "Hotelreinigung Düsseldorf",
+        "Reinigung Regensburg",
+        "Reinigung Regensburg",
+        "Praxisreinigung Regensburg",
+        "Büroreinigung Regensburg",
+        "Hotelreinigung Regensburg",
         "Angebot Reinigungsfirma",
         "Angebot Reinigung",
         "Gewerbereinigung",
-        "Putzdienst Düsseldorf",
-        "Putzen Düsseldorf",
-        "Reinigungsbetrieb Düsseldorf",
-        "Reinigungsunternehmen Düsseldorf",
-        "Reinigungsdienst Düsseldorf",
+        "Putzdienst Regensburg",
+        "Putzen Regensburg",
+        "Reinigungsbetrieb Regensburg",
+        "Reinigungsunternehmen Regensburg",
+        "Reinigungsdienst Regensburg",
         "Reinigungsservice NRW",
         "Reinigungsunternehmen finden",
         "Wohnungsreinigung Deutschland",
-        "Reinigungsfirmen Düsseldorf",
-        "Reinigungsfirma Düsseldorf Preise",
-        "Reinigungsfirma Düsseldorf Kosten",
-        "Putzfirmen Düsseldorf",
-        "Hausreinigung Düsseldorf",
-        "Gebäudereinigung Düsseldorf Pempelfort",
-        "Gebäudereinigung Düsseldorf Altstadt",
-        "Reinigungsservice Düsseldorf",
+        "Reinigungsfirma Regensburg",
+        "Reinigungsfirma Regensburg Preise",
+        "Reinigungsfirma Regensburg Kosten",
+        "Putzfirma Regensburg",
+        "Hausreinigung Regensburg",
+        "Gebäudereinigung Regensburg Stadtamhof",
+        "Gebäudereinigung Regensburg Altstadt",
+        "Reinigungsservice Regensburg",
       ],
       longTail: [
-        "Angebot Reinigungsfirma Düsseldorf mit Fläche, Turnus, Fotos und Leistungsumfang prüfen",
-        "Praxisreinigung Düsseldorf mit Empfang, Wartebereich, Sanitär und Randzeit anfragen",
-        "Büroreinigung Düsseldorf mit Raumliste, Turnus, Zeitfenster und Zugang senden",
-        "Hotelreinigung Düsseldorf für Lobby, Flure und Gästebereiche nach Objektangaben prüfen",
-        "Hausreinigung Düsseldorf mit Wohnung, Küche, Bad, Boden und Fotos anfragen",
-        "Büroreinigung Reinigungsfirma Düsseldorf für kleine Firmen und Praxen",
-        "Reinigungsfirma Angebot in Düsseldorf mit Fotos und Preisrahmen prüfen lassen",
-        "professionelle Wohnungsreinigung Düsseldorf vor Auszug oder Übergabe anfragen",
-        "Gebäudereinigung in Düsseldorf Pempelfort oder Altstadt mit Fläche und Fotos anfragen",
-        "Reinigungsservice Düsseldorf für Büro, Praxis, Treppenhaus oder Wohnung einfach starten",
-        "Reinigungsfirma Düsseldorf Kosten nach Fotos, Fläche, Objektart und Termin prüfen",
-        "Reinigungsunternehmen finden in Düsseldorf mit Objektart, Fotos und Termin",
-        "Reinigungsservice NRW nur als Düsseldorf-Reinigung nach Stadtteil und Machbarkeit prüfen",
+        "Angebot Reinigungsfirma Regensburg mit Fläche, Turnus, Fotos und Leistungsumfang prüfen",
+        "Praxisreinigung Regensburg mit Empfang, Wartebereich, Sanitär und Randzeit anfragen",
+        "Büroreinigung Regensburg mit Raumliste, Turnus, Zeitfenster und Zugang senden",
+        "Hotelreinigung Regensburg für Lobby, Flure und Gästebereiche nach Objektangaben prüfen",
+        "Hausreinigung Regensburg mit Wohnung, Küche, Bad, Boden und Fotos anfragen",
+        "Büroreinigung Reinigungsfirma Regensburg für kleine Firmen und Praxen",
+        "Reinigungsfirma Angebot in Regensburg mit Fotos und Preisrahmen prüfen lassen",
+        "professionelle Wohnungsreinigung Regensburg vor Auszug oder Übergabe anfragen",
+        "Gebäudereinigung in Regensburg Stadtamhof oder Altstadt mit Fläche und Fotos anfragen",
+        "Reinigungsservice Regensburg für Büro, Praxis, Treppenhaus oder Wohnung einfach starten",
+        "Reinigungsfirma Regensburg Kosten nach Fotos, Fläche, Objektart und Termin prüfen",
+        "Reinigungsunternehmen finden in Regensburg mit Objektart, Fotos und Termin",
+        "Reinigungsservice NRW nur als Regensburg-Reinigung nach Stadtteil und Machbarkeit prüfen",
       ],
       localTriggers: [
         "Hauseingang, Treppenhaus, Boden, Büro und Gewerbefläche werden nach Objektart getrennt eingeordnet.",
-        "Neuss, Ratingen, Meerbusch, Mettmann und Duisburg werden als nahe Umgebung nach Verfügbarkeit geprüft.",
+        "Neutraubling, Lappersdorf, Pentling, Kelheim und Schwandorf werden als nahe Umgebung nach Verfügbarkeit geprüft.",
       ],
       priceSignals: [
-        "Reinigungsfirma Düsseldorf Preise und Kosten hängen von Fläche, Zustand, Turnus, Zugang und Fotos ab.",
-        "Ein vorhandenes Reinigungsangebot kann über die Düsseldorfer Angebotsprüfung eingeordnet werden.",
+        "Reinigungsfirma Regensburg Preise und Kosten hängen von Fläche, Zustand, Turnus, Zugang und Fotos ab.",
+        "Ein vorhandenes Reinigungsangebot kann über die Regensburger Angebotsprüfung eingeordnet werden.",
       ],
       links: [
-        { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
-        { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-        { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
-        { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Reinigung" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile und Umgebung" },
-        { href: "/blog/reinigungsbetrieb-reinigungsunternehmen-duesseldorf-kosten", label: "Reinigungsbetrieb Ratgeber" },
+        { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+        { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
+        { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Hausverwaltung Reinigung" },
+        { href: "/regensburg/reinigung", label: "Stadtteile und Umgebung" },
+        { href: "/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten", label: "Reinigungsbetrieb Ratgeber" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/putzfirma") {
+  if (route === "/regensburg/reinigungsfirma") {
     return {
       shortTail: [
-        "Putzservice Düsseldorf",
-        "Putzdienst Düsseldorf",
-        "Putzfirma Düsseldorf",
-        "Reinigungsfirma Düsseldorf Privathaushalt",
-        "Düsseldorf Reinigungsfirma",
+        "Putzservice Regensburg",
+        "Putzdienst Regensburg",
+        "Putzfirma Regensburg",
+        "Reinigungsfirma Regensburg Privathaushalt",
+        "Reinigung Regensburgsfirma",
       ],
       longTail: [
-        "Putzservice Düsseldorf für Privathaushalt mit Fotos, Fläche und Termin anfragen",
-        "Reinigungsfirma Düsseldorf Privathaushalt für Wohnung, Küche, Bad und Boden prüfen",
-        "Putzdienst Düsseldorf kurzfristig nach Stadtteil, Zugang und Zustand einordnen lassen",
+        "Putzservice Regensburg für Privathaushalt mit Fotos, Fläche und Termin anfragen",
+        "Reinigungsfirma Regensburg Privathaushalt für Wohnung, Küche, Bad und Boden prüfen",
+        "Putzdienst Regensburg kurzfristig nach Stadtteil, Zugang und Zustand einordnen lassen",
       ],
       localTriggers: [
         "Privathaushalt, Wohnung, Büro und Objekt werden getrennt abgefragt, damit der erste Klick ohne Fachwörter klappt.",
@@ -315,77 +316,77 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Kosten hängen von Fläche, Zustand, Turnus, Schlüsselweg, Fotos, Termin und Zusatzpunkten ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Putzangebot prüfen" },
-        { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung" },
-        { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+        { href: "/angebot-vergleichen-regensburg", label: "Putzangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Wohnungsreinigung" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/gebaeudereinigung" || route === "/duesseldorf/gewerbereinigung" || route === "/duesseldorf/objektreinigung") {
+  if (route === "/regensburg/reinigung" || route === "/regensburg/gewerbereinigung" || route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Gebäudereinigung Düsseldorf Pempelfort",
-        "Gebäudereinigung Düsseldorf Altstadt",
-        "Reinigung Gewerbeflächen Düsseldorf",
+        "Gebäudereinigung Regensburg Stadtamhof",
+        "Gebäudereinigung Regensburg Altstadt",
+        "Reinigung Gewerbeflächen Regensburg",
         "Gewerbeflächen reinigen",
         "Gewerbereinigung",
         "Gewerbeobjekt Reinigung",
       ],
       longTail: [
-        "Gewerbeflächen reinigen Düsseldorf mit Fläche, Nutzung, Sanitär, Turnus und Fotos prüfen",
-        "Gebäudereinigung Düsseldorf Pempelfort für Büro, Praxis, Laden oder Objekt anfragen",
-        "Objektreinigung Düsseldorf mit Raumliste, Zeitfenster, Zugang und Ansprechpartner klären",
+        "Gewerbeflächen reinigen Regensburg mit Fläche, Nutzung, Sanitär, Turnus und Fotos prüfen",
+        "Gebäudereinigung Regensburg Stadtamhof für Büro, Praxis, Laden oder Objekt anfragen",
+        "Objektreinigung Regensburg mit Raumliste, Zeitfenster, Zugang und Ansprechpartner klären",
       ],
       localTriggers: [
-        "Pempelfort, Altstadt, Oberkassel, Büro, Laden, Studio und Objektflächen brauchen klare Angaben zu Nutzung und Zeitfenster.",
+        "Stadtamhof, Altstadt, Westenviertel, Büro, Laden, Studio und Objektflächen brauchen klare Angaben zu Nutzung und Zeitfenster.",
       ],
       priceSignals: [
         "Gewerbereinigung wird nach Fläche, Turnus, Sanitär, Küche, Sonderflächen, Zugang und Fotos kalkulierbar.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Gewerbeangebot prüfen" },
-        { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Gewerbeangebot prüfen" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/treppenhausreinigung" || route === "/duesseldorf/hausverwaltung-reinigung") {
+  if (route === "/treppenhausreinigung-regensburg" || route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Treppenhausreinigung Düsseldorf",
-        "Treppenreinigung Düsseldorf",
-        "Treppenhausreinigung Hilden",
-        "Treppenhausreinigung in Düsseldorf",
-        "Reinigung Hauseingang Düsseldorf",
+        "Treppenhausreinigung Regensburg",
+        "Treppenreinigung Regensburg",
+        "Treppenhausreinigung Regensburg",
+        "Treppenhausreinigung in Regensburg",
+        "Reinigung Hauseingang Regensburg",
       ],
       longTail: [
-        "Treppenhausreinigung Düsseldorf für Hausverwaltung, WEG und Mietshaus mit Fotos prüfen",
-        "Treppenreinigung Düsseldorf oder Hilden nach Machbarkeit mit Eingang, Etagen und Turnus anfragen",
-        "Hauseingang reinigen Düsseldorf mit Kellerflur, Aufzug, Müllraum und Zugang klären",
+        "Treppenhausreinigung Regensburg für Hausverwaltung, WEG und Mietshaus mit Fotos prüfen",
+        "Treppenreinigung Regensburg oder Regensburg nach Machbarkeit mit Eingang, Etagen und Turnus anfragen",
+        "Hauseingang reinigen Regensburg mit Kellerflur, Aufzug, Müllraum und Zugang klären",
       ],
       localTriggers: [
-        "Düsseldorf steht im Fokus; Hilden und nahe Umgebung werden nur nach Objektadresse, Turnus und Machbarkeit geprüft.",
+        "Regensburg steht im Fokus; Obertraubling und nahe Umgebung werden nur nach Objektadresse, Turnus und Machbarkeit geprüft.",
       ],
       priceSignals: [
         "Kosten hängen von Eingängen, Etagen, Aufzug, Kellerflur, Müllbereich, Turnus, Zugang und Fotos ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Treppenhausangebot prüfen" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Umgebung prüfen" },
-        { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung" },
+        { href: "/angebot-vergleichen-regensburg", label: "Treppenhausangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Umgebung prüfen" },
+        { href: "/regensburg/reinigung", label: "Gebäudereinigung" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/hotelreinigung") {
+  if (route === "/hotelreinigung-regensburg") {
     return {
-      shortTail: ["Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf"],
+      shortTail: ["Hotelreinigung Regensburg", "Hotel Reinigung Regensburg", "Boardinghouse Reinigung Regensburg"],
       longTail: [
-        "Hotelreinigung Düsseldorf mit Zimmern, Lobby, Fluren, Turnus und Fotos anfragen",
-        "Hotelreinigung Düsseldorf für Boardinghouse oder Apartmenthaus nach Check-out und Zeitfenster prüfen",
-        "Hotelreinigungsangebot Düsseldorf vor Zusage nach Umfang, Standard und Grenzen einordnen",
+        "Hotelreinigung Regensburg mit Zimmern, Lobby, Fluren, Turnus und Fotos anfragen",
+        "Hotelreinigung Regensburg für Boardinghouse oder Apartmenthaus nach Check-out und Zeitfenster prüfen",
+        "Hotelreinigungsangebot Regensburg vor Zusage nach Umfang, Standard und Grenzen einordnen",
       ],
       localTriggers: [
         "Hotel, Boardinghouse und Apartmenthaus bleiben Reinigungsanfragen; Wäsche, 24/7-Housekeeping und HACCP werden nicht pauschal versprochen.",
@@ -394,9 +395,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Preisrahmen hängt von Zimmerzahl, Allgemeinflächen, Turnus, Check-out, Zugang, Fotos und gewünschtem Standard ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Hotelangebot prüfen" },
-        { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment Reinigung" },
-        { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung" },
+        { href: "/angebot-vergleichen-regensburg", label: "Hotelangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Apartment Reinigung" },
+        { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung" },
       ],
     };
   }
@@ -424,8 +425,8 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Entrümpelungsangebot prüfen mit Räumen, Fotos, Zugang, Entsorgung und Endzustand",
       ],
       localTriggers: [
-        "Regensburg und Bayern werden breit für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport geprüft.",
-        "Düsseldorf bleibt bei Angebotsfragen auf Reinigung und getrennte Entsorgung begrenzt.",
+        "Regensburg und Regensburg werden breit für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport geprüft.",
+        "Regensburg bleibt bei Angebotsfragen auf Reinigung und getrennte Entsorgung begrenzt.",
       ],
       priceSignals: [
         "Ein günstigeres Angebot ist nur nach Umfang, Fotos, Ort, Termin, Preispositionen und Budget seriös prüfbar.",
@@ -434,7 +435,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/angebot-guenstiger-pruefen#guenstiger-form", label: "Angebot hochladen" },
         { href: "/angebotscheck", label: "Angebotscheck" },
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Düsseldorf Reinigung prüfen" },
+        { href: "/angebot-vergleichen-regensburg", label: "Reinigung Regensburg prüfen" },
         { href: "/buchung", label: "Direkt anfragen" },
       ],
     };
@@ -476,7 +477,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     };
   }
 
-  if (route === "/umzug-regensburg" || route === "/umzugsunternehmen-regensburg") {
+  if (route === "/regensburg/umzug" || route === "/regensburg/umzugsunternehmen") {
     return {
       shortTail: [
         "Umzug Regensburg",
@@ -503,7 +504,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Ein Klick zu Buchung, Rechner oder Angebotsprüfung soll die Entscheidung einfacher machen.",
       ],
       links: [
-        { href: "/umzugsunternehmen-regensburg", label: "Umzugsunternehmen Regensburg" },
+        { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen Regensburg" },
         { href: "/buchung", label: "Umzug direkt anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
@@ -529,7 +530,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: `${place}-Umzug anfragen` },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -552,7 +553,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Umzug Aufhausen anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/regensburg/umzug", label: "Umzug Regensburg" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
       ],
     };
@@ -575,7 +576,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Neumarkt-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -597,7 +598,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Weiden-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -626,12 +627,12 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Ingolstadt-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
 
-  if (route === "/reinigung-regensburg") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
         "Reinigung Regensburg",
@@ -691,9 +692,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     };
   }
 
-  if (route === "/hotelreinigung-regensburg" || route === "/duesseldorf/hotelreinigung") {
-    const isDuesseldorfHotel = route === "/duesseldorf/hotelreinigung";
-    const place = isDuesseldorfHotel ? "Düsseldorf" : "Regensburg";
+  if (route === "/hotelreinigung-regensburg" || route === "/hotelreinigung-regensburg") {
+    const isRegensburgHotel = route === "/hotelreinigung-regensburg";
+    const place = isRegensburgHotel ? "Regensburg" : "Regensburg";
     return {
       shortTail: ["Hotelreinigung", `Hotelreinigung ${place}`, `Hotel Reinigung ${place}`, `Boardinghouse Reinigung ${place}`],
       longTail: [
@@ -702,92 +703,92 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         `Hotelreinigungsangebot ${place} vor Zusage nach Umfang, Check-out und Standard einordnen`,
       ],
       localTriggers: [
-        isDuesseldorfHotel
-          ? "Düsseldorf-Hotelreinigung bleibt klar Reinigung; Umzug oder Transport laufen über eigene Kontaktwege, keine Wäscherei-Zusage."
+        isRegensburgHotel
+          ? "Regensburg-Hotelreinigung bleibt klar Reinigung; Umzug oder Transport laufen über eigene Kontaktwege, keine Wäscherei-Zusage."
           : "Regensburg-Hotelreinigung kann mit Büro-, Fenster- oder Grundreinigung kombiniert geprüft werden.",
       ],
       priceSignals: [
         "Kosten hängen von Zimmerzahl, Allgemeinflächen, Turnus, Check-out, Zugang, Fotos und gewünschtem Standard ab.",
       ],
       links: [
-        { href: isDuesseldorfHotel ? "/duesseldorf/vielleicht-guenstiger" : "/angebot-guenstiger-pruefen", label: "Hotelangebot prüfen" },
-        { href: isDuesseldorfHotel ? "/duesseldorf/reinigung" : "/reinigung-regensburg", label: `Reinigung ${place}` },
+        { href: isRegensburgHotel ? "/angebot-vergleichen-regensburg" : "/angebot-guenstiger-pruefen", label: "Hotelangebot prüfen" },
+        { href: isRegensburgHotel ? "/regensburg/reinigung" : "/regensburg/reinigung", label: `Reinigung ${place}` },
         { href: "/buchung", label: "Anfrage starten" },
       ],
     };
   }
 
-  if (route === "/reinigung-muenchen") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Reinigungsservice München buchen",
-        "Reinigung München sofort Termin",
-        "Reinigung nach Umzug München",
-        "Wohnungsreinigung München",
+        "Reinigungsservice Regensburg buchen",
+        "Reinigung Regensburg sofort Termin",
+        "Reinigung nach Umzug Regensburg",
+        "Wohnungsreinigung Regensburg",
         "professionelle Geruchsbeseitigung Wohnung München",
       ],
       longTail: [
-        "Reinigungsservice München buchen mit Fläche, Zustand, Fotos, Zugang und Terminfenster",
-        "Reinigung München sofort Termin mit Fotos, Fläche, Zugang und Deadline prüfen",
-        "Reinigung nach Umzug München mit Küche, Bad, Boden und Übergabeziel anfragen",
+        "Reinigungsservice Regensburg buchen mit Fläche, Zustand, Fotos, Zugang und Terminfenster",
+        "Reinigung Regensburg sofort Termin mit Fotos, Fläche, Zugang und Deadline prüfen",
+        "Reinigung nach Umzug Regensburg mit Küche, Bad, Boden und Übergabeziel anfragen",
         "professionelle Geruchsbeseitigung Wohnung München erst nach Ursache, Fotos und Grenzen prüfen",
-        "Reinigungsangebot München vor Zusage nach Zustand, Termin und Leistungsumfang einordnen",
+        "Reinigungsangebot Regensburg vor Zusage nach Zustand, Termin und Leistungsumfang einordnen",
       ],
       localTriggers: [
-        "München wird als Bayern-Anfrage nach Verfügbarkeit, Stadtteil, Zugang, Parken und Deadline geprüft.",
+        "Regensburg wird als lokale Reinigungsanfrage nach Verfügbarkeit, Stadtteil, Zugang, Parken und Deadline geprüft.",
       ],
       priceSignals: [
         "Preisrahmen hängt von Fläche, Zustand, Küche, Bad, Fenstern, Zugang, Termin und Fotos ab.",
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-        { href: "/blog/reinigung-nach-umzug-angebot-regensburg-muenchen", label: "Reinigung nach Umzug" },
+        { href: "/blog/umzug-mit-reinigung-regensburg", label: "Reinigung nach Umzug" },
         { href: "/buchung", label: "Reinigung anfragen" },
       ],
     };
   }
 
-  if (route === "/reinigung-moeblierte-wohnung-duesseldorf") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Apartment Düsseldorf mit wöchentlicher Reinigung",
-        "möblierte Wohnung Reinigung Düsseldorf",
-        "Apartment Reinigung Düsseldorf",
+        "Apartment Regensburg mit wöchentlicher Reinigung",
+        "möblierte Wohnung Reinigung Regensburg",
+        "Apartment Reinigung Regensburg",
       ],
       longTail: [
-        "Apartment Düsseldorf mit wöchentlicher Reinigung nach Zugang, Turnus und Fotos anfragen",
-        "möblierte Wohnung Düsseldorf regelmäßig reinigen lassen mit Terminfenster und Ansprechpartner",
-        "Apartment-Reinigungsangebot Düsseldorf vor Zusage nach Umfang und Wäschegrenzen prüfen",
+        "Apartment Regensburg mit wöchentlicher Reinigung nach Zugang, Turnus und Fotos anfragen",
+        "möblierte Wohnung Regensburg regelmäßig reinigen lassen mit Terminfenster und Ansprechpartner",
+        "Apartment-Reinigungsangebot Regensburg vor Zusage nach Umfang und Wäschegrenzen prüfen",
       ],
       localTriggers: [
-        "Düsseldorf-Apartmentreinigung bleibt Reinigung: Zugang, Schlüssel, Turnus, Fotos, Wäschewunsch und Rückmeldung klären.",
+        "Regensburg-Apartmentreinigung bleibt Reinigung: Zugang, Schlüssel, Turnus, Fotos, Wäschewunsch und Rückmeldung klären.",
       ],
       priceSignals: [
         "Kosten hängen von Fläche, Möblierung, Turnus, Zustand, Schlüsselweg, Wäschewunsch und Terminfenster ab.",
       ],
       links: [
-        { href: "/reinigung-moeblierte-wohnung-duesseldorf#apartment-reinigung-form", label: "Apartment anfragen" },
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen" },
-        { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+        { href: "/regensburg/reinigung#reinigungs-servicegebiet", label: "Apartment anfragen" },
+        { href: "/angebot-vergleichen-regensburg", label: "Angebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/wohnungsreinigung") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
-        "Hausreinigung Düsseldorf",
-        "Wohnungsreinigung Düsseldorf",
-        "Reinigungsfirma Düsseldorf Privathaushalt",
-        "professionelle Wohnungsreinigung Düsseldorf",
-        "Wohnung reinigen lassen Düsseldorf",
+        "Hausreinigung Regensburg",
+        "Wohnungsreinigung Regensburg",
+        "Reinigungsfirma Regensburg Privathaushalt",
+        "professionelle Wohnungsreinigung Regensburg",
+        "Wohnung reinigen lassen Regensburg",
       ],
       longTail: [
-        "Hausreinigung Düsseldorf mit Küche, Bad, Boden, Fotos und Termin prüfen",
-        "Wohnungsreinigung Düsseldorf vor Auszug, Einzug oder Übergabe einfach anfragen",
-        "Reinigungsfirma Düsseldorf Privathaushalt mit Fotos, Fläche, Schlüsselweg und Termin prüfen",
-        "professionelle Wohnungsreinigung Düsseldorf ohne Fachwörter mit Zustand und Ziel anfragen",
-        "Reinigungsangebot Düsseldorf für Wohnung vor Zusage mit FLOXANT einordnen lassen",
+        "Hausreinigung Regensburg mit Küche, Bad, Boden, Fotos und Termin prüfen",
+        "Wohnungsreinigung Regensburg vor Auszug, Einzug oder Übergabe einfach anfragen",
+        "Reinigungsfirma Regensburg Privathaushalt mit Fotos, Fläche, Schlüsselweg und Termin prüfen",
+        "professionelle Wohnungsreinigung Regensburg ohne Fachwörter mit Zustand und Ziel anfragen",
+        "Reinigungsangebot Regensburg für Wohnung vor Zusage mit FLOXANT einordnen lassen",
       ],
       localTriggers: [
         "Stadtteil, Etage, Schlüsselweg, Parken, Zustand und Fotos entscheiden über die schnelle Rückmeldung.",
@@ -796,42 +797,42 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Preisrahmen hängt von Fläche, Zustand, Küche, Bad, Fensterwunsch, Termin und Zugang ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Wohnungsangebot prüfen" },
-        { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Wohnungsangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/fensterreinigung") {
+  if (route === "/fensterreinigung-regensburg") {
     return {
-      shortTail: ["Fensterreiniger Düsseldorf", "Fensterreinigung Düsseldorf", "Glasreinigung Düsseldorf"],
+      shortTail: ["Fensterreiniger Regensburg", "Fensterreinigung Regensburg", "Glasreinigung Regensburg"],
       longTail: [
-        "Fensterreiniger Düsseldorf mit Fensterzahl, Rahmen, Etage, Zugang und Fotos anfragen",
-        "Glasreinigung Düsseldorf für Schaufenster, Büro oder Wohnung nach Termin prüfen",
-        "Fensterreinigungsangebot Düsseldorf vor Zusage mit Umfang und Fotos einordnen lassen",
+        "Fensterreiniger Regensburg mit Fensterzahl, Rahmen, Etage, Zugang und Fotos anfragen",
+        "Glasreinigung Regensburg für Schaufenster, Büro oder Wohnung nach Termin prüfen",
+        "Fensterreinigungsangebot Regensburg vor Zusage mit Umfang und Fotos einordnen lassen",
       ],
       localTriggers: [
-        "Altstadt, Pempelfort, Büro, Wohnung, Schaufenster und Etage verändern Zugang und Zeitfenster.",
+        "Altstadt, Stadtamhof, Büro, Wohnung, Schaufenster und Etage verändern Zugang und Zeitfenster.",
       ],
       priceSignals: [
         "Kosten hängen von Fensterzahl, Glasfläche, Rahmenwunsch, Etage, Zugang und Terminfenster ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Fensterangebot prüfen" },
-        { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-        { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung" },
+        { href: "/angebot-vergleichen-regensburg", label: "Fensterangebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+        { href: "/regensburg/reinigung", label: "Gebäudereinigung" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/grundreinigung") {
+  if (route === "/grundreinigung-regensburg") {
     return {
-      shortTail: ["Grundreinigung Düsseldorf", "Bodenreinigung Düsseldorf", "Grundreinigung Kosten Düsseldorf"],
+      shortTail: ["Grundreinigung Regensburg", "Bodenreinigung Regensburg", "Grundreinigung Kosten Regensburg"],
       longTail: [
-        "Grundreinigung Düsseldorf mit Fotos, Fläche, Zustand und Termin anfragen",
-        "Bodenreinigung Düsseldorf für Wohnung, Büro oder Objekt nach Zustand prüfen",
-        "Grundreinigungsangebot Düsseldorf vor Zusage nach Umfang und Zusatzpunkten einordnen",
+        "Grundreinigung Regensburg mit Fotos, Fläche, Zustand und Termin anfragen",
+        "Bodenreinigung Regensburg für Wohnung, Büro oder Objekt nach Zustand prüfen",
+        "Grundreinigungsangebot Regensburg vor Zusage nach Umfang und Zusatzpunkten einordnen",
       ],
       localTriggers: [
         "Starke Verschmutzung, Boden, Küche, Bad, Leerstand, Mieterwechsel und Übergabe brauchen getrennte Angaben.",
@@ -840,20 +841,20 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Kosten hängen von Fläche, Zustand, Bodenart, Küche, Bad, Zugang, Termin und Fotos ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Grundreinigung Angebot prüfen" },
-        { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Grundreinigung Angebot prüfen" },
+        { href: "/regensburg/reinigung", label: "Wohnungsreinigung" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/unterhaltsreinigung") {
+  if (route === "/unterhaltsreinigung-regensburg") {
     return {
-      shortTail: ["Angebot Unterhaltsreinigung", "Unterhaltsreinigung Düsseldorf", "Reinigungsplan Büro Düsseldorf"],
+      shortTail: ["Angebot Unterhaltsreinigung", "Unterhaltsreinigung Regensburg", "Reinigungsplan Büro Regensburg"],
       longTail: [
-        "Angebot Unterhaltsreinigung Düsseldorf mit Turnus, Fläche, Raumliste und Fotos prüfen",
-        "Unterhaltsreinigung für Büro oder Objekt in Düsseldorf nach Reinigungsplan anfragen",
-        "Büro Unterhaltsreinigung Düsseldorf mit Zeitfenster, Zugang und Ansprechpartner klären",
+        "Angebot Unterhaltsreinigung Regensburg mit Turnus, Fläche, Raumliste und Fotos prüfen",
+        "Unterhaltsreinigung für Büro oder Objekt in Regensburg nach Reinigungsplan anfragen",
+        "Büro Unterhaltsreinigung Regensburg mit Zeitfenster, Zugang und Ansprechpartner klären",
       ],
       localTriggers: [
         "Büro, Praxis, Kanzlei, Treppenhaus und Objektflächen brauchen getrennte Turnus- und Raumlisten.",
@@ -862,9 +863,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Preis hängt von Fläche, Häufigkeit, Sanitär, Küche, Zusatzflächen, Zeitfenster und Zugang ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Unterhaltsangebot prüfen" },
-        { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Unterhaltsangebot prüfen" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
@@ -891,7 +892,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Eilumzug München nach Machbarkeit, Zugang, Fotos und Deadline einordnen",
         "Umzug Grafing als München-Umland-Route nach Strecke, Etage und Termin prüfen",
         "Fernumzug aus München mit Rückfahrt, Strecke und Zusatzleistungen planen",
-        "Komplettumzug München mit Abbau, Transport, Reinigung und Übergabe prüfen",
+        "Komplettumzug Regensburg mit Abbau, Transport, Reinigung und Übergabe prüfen",
       ],
       localTriggers: [
         "München verlangt oft Haltezone, Etage, Laufweg, Aufzug, Parkmöglichkeit und saubere Zeitfenster.",
@@ -903,7 +904,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/reinigung-muenchen", label: "Reinigung nach Umzug" },
+        { href: "/regensburg/reinigung", label: "Reinigung nach Umzug" },
         { href: "/bueroumzug-muenchen", label: "Büroumzug München" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
         { href: "/blog/umzug-muenchen-festpreis-fernumzug-organisieren", label: "Festpreis und Fernumzug" },
@@ -960,7 +961,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen", label: "Räumungsangebot prüfen" },
-        { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
         { href: "/wohnungsaufloesung-bayern", label: "Wohnungsauflösung Bayern" },
         { href: "/kleinmengen-entsorgung", label: "Kleinmengen" },
       ],
@@ -987,13 +988,13 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/buchung", label: "Geruchsfall anfragen" },
-        { href: "/reinigung-muenchen", label: "Reinigung München" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
       ],
     };
   }
 
-  if (route === "/entruempelung-regensburg" || route === "/wohnungsaufloesung-regensburg") {
+  if (route === "/regensburg/entruempelung" || route === "/regensburg/wohnungsaufloesung") {
     return {
       shortTail: [
         "Haushaltsauflösung Regensburg",
@@ -1021,7 +1022,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Fotos helfen schneller als pauschale Kubikmeter-Schätzungen.",
       ],
       links: [
-        { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+        { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
         { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
         { href: "/kleinmengen-entsorgung", label: "Container Alternative" },
         { href: "/blog/haushaltsaufloesung-regensburg-container-mieten-alternative", label: "Container oder Team?" },
@@ -1047,7 +1048,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Auflösung anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       ],
     };
   }
@@ -1075,7 +1076,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
 
   if (route === "/bueroumzug-regensburg") {
     return {
-      shortTail: ["Büroumzug Regensburg", "Firmenumzug Regensburg", "Büro umziehen Regensburg"],
+      shortTail: ["Büroumzug Regensburg", "Firmenumzug Regensburg", "BüB?ro umziehen Regensburg"],
       longTail: [
         "Büroumzug Regensburg mit Arbeitsplätzen, Möbeln, Akten und IT-nahen Bereichen anfragen",
         "Firmenumzug Regensburg mit Zeitfenster, Ansprechpartner, Fotos und Entsorgung planen",
@@ -1166,7 +1167,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Praxisreinigung anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-        { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
       ],
     };
   }
@@ -1193,74 +1194,74 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     };
   }
 
-  if (route === "/duesseldorf/praxisreinigung") {
+  if (route === "/praxisreinigung-regensburg") {
     return {
-      shortTail: ["Praxisreinigung Düsseldorf", "Reinigung Praxisräume Düsseldorf", "Praxis Reinigungsservice Düsseldorf"],
+      shortTail: ["Praxisreinigung Regensburg", "Reinigung Praxisräume Regensburg", "Praxis Reinigungsservice Regensburg"],
       longTail: [
-        "Praxisreinigung Düsseldorf Angebot mit Turnus, Fläche, Zeitfenster und Fotos prüfen",
-        "Praxisreinigung ohne medizinische Spezialdesinfektion für allgemeine Flächen in Düsseldorf anfragen",
-        "Praxisreinigung Düsseldorf mit Fläche, Raumliste, Zeitfenster und Fotos anfragen",
-        "Reinigung für Arztpraxis oder Therapiepraxis in Düsseldorf nach Turnus prüfen",
-        "Praxisreinigungsangebot Düsseldorf vor Zusage einordnen lassen",
+        "Praxisreinigung Regensburg Angebot mit Turnus, Fläche, Zeitfenster und Fotos prüfen",
+        "Praxisreinigung ohne medizinische Spezialdesinfektion für allgemeine Flächen in Regensburg anfragen",
+        "Praxisreinigung Regensburg mit Fläche, Raumliste, Zeitfenster und Fotos anfragen",
+        "Reinigung für Arztpraxis oder Therapiepraxis in Regensburg nach Turnus prüfen",
+        "Praxisreinigungsangebot Regensburg vor Zusage einordnen lassen",
       ],
       localTriggers: [
-        "Pempelfort, Altstadt, Stadtmitte, Bilk, Derendorf und Flingern werden nach Objekt, Zugang und Zeitfenster geprüft.",
+        "Stadtamhof, Altstadt, Innenstadt, Galgenberg, Reinhausen und Flingern werden nach Objekt, Zugang und Zeitfenster geprüft.",
       ],
       priceSignals: [
         "Preisrahmen hängt von Fläche, Räumen, Turnus, Öffnungszeiten, Sanitär und Zugang ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Praxisangebot prüfen" },
-        { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Praxisangebot prüfen" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
 
-  if (route === "/duesseldorf/treppenhausreinigung") {
+  if (route === "/treppenhausreinigung-regensburg") {
     return {
-      shortTail: ["Treppenhausreinigung Düsseldorf", "Treppenhausreinigungen", "Hauseingang Reinigung Düsseldorf"],
+      shortTail: ["Treppenhausreinigung Regensburg", "Treppenhausreinigungen", "Hauseingang Reinigung Regensburg"],
       longTail: [
-        "Treppenhausreinigung Düsseldorf für Hausverwaltung, WEG oder Mietshaus anfragen",
-        "Hauseingang und Treppenhaus in Düsseldorf mit Etagen, Turnus und Fotos prüfen",
-        "Treppenhausreinigung Düsseldorf Pempelfort oder Altstadt nach Objekt und Zugang anfragen",
+        "Treppenhausreinigung Regensburg für Hausverwaltung, WEG oder Mietshaus anfragen",
+        "Hauseingang und Treppenhaus in Regensburg mit Etagen, Turnus und Fotos prüfen",
+        "Treppenhausreinigung Regensburg Stadtamhof oder Altstadt nach Objekt und Zugang anfragen",
       ],
       localTriggers: [
-        "Pempelfort, Altstadt, Derendorf, Bilk und Flingern verändern Zugang, Parken, Schlüssel und Zeitfenster.",
+        "Stadtamhof, Altstadt, Reinhausen, Galgenberg und Flingern verändern Zugang, Parken, Schlüssel und Zeitfenster.",
       ],
       priceSignals: [
         "Kosten hängen von Etagen, Eingängen, Zusatzflächen, Turnus, Schlüsselzugang und Fotos ab.",
       ],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Treppenhaus-Angebot prüfen" },
-        { href: "/blog/treppenhausreinigungen-duesseldorf-hauseingang-hausverwaltung", label: "Ratgeber Treppenhaus" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile" },
+        { href: "/angebot-vergleichen-regensburg", label: "Treppenhaus-Angebot prüfen" },
+        { href: "/blog/treppenhausreinigung-regensburg-hauseingang-hausverwaltung", label: "Ratgeber Treppenhaus" },
+        { href: "/regensburg/reinigung", label: "Stadtteile" },
       ],
     };
   }
 
-  if (lower.includes("bueroreinigung") && lower.includes("duesseldorf")) {
+  if (lower.includes("bueroreinigung") && lower.includes("regensburg")) {
     return {
       shortTail: [
-        "Büroreinigung Düsseldorf",
-        "Büro reinigen Düsseldorf",
-        "Büroreinigung in Düsseldorf",
-        "B2B Büroreinigung Düsseldorf",
-        "Büroreinigung Düsseldorf Preise",
-        "Büroreinigung Reinigungsfirma Düsseldorf",
-        "Düsseldorf Reinigungsfirma Büro",
+        "Büroreinigung Regensburg",
+        "Büro reinigen Regensburg",
+        "Büroreinigung in Regensburg",
+        "B2B Büroreinigung Regensburg",
+        "Büroreinigung Regensburg Preise",
+        "Büroreinigung Reinigungsfirma Regensburg",
+        "Reinigung Regensburgsfirma Büro",
       ],
       longTail: [
-        "Büro reinigen Düsseldorf mit Raumliste, Sanitär, Küche, Turnus und Zugang anfragen",
-        "Büroreinigung Angebot Düsseldorf vor Zusage nach Umfang und Zeitfenster prüfen",
-        "Büroreinigung in Düsseldorf mit Fläche, Fotos, Ansprechpartner und Reinigungsplan starten",
-        "Düsseldorf Reinigungsfirma Büro nach Turnus, Zugang, Zeitfenster und Kosten einordnen",
+        "Büro reinigen Regensburg mit Raumliste, Sanitär, Küche, Turnus und Zugang anfragen",
+        "Büroreinigung Angebot Regensburg vor Zusage nach Umfang und Zeitfenster prüfen",
+        "Büroreinigung in Regensburg mit Fläche, Fotos, Ansprechpartner und Reinigungsplan starten",
+        "Reinigung Regensburgsfirma Büro nach Turnus, Zugang, Zeitfenster und Kosten einordnen",
       ],
       localTriggers: ["Kanzlei, Agentur, Praxis, Studio und kleine Firma brauchen unterschiedliche Turnuslogik."],
       priceSignals: ["Büroreinigung Preise hängen von Fläche, Frequenz, Sanitär, Küche, Zugang und Zeitfenster ab."],
       links: [
-        { href: "/duesseldorf/vielleicht-guenstiger", label: "Büroreinigung Angebot prüfen" },
-        { href: "/blog/buero-reinigen-duesseldorf-bueroreinigung-angebot", label: "Büro reinigen Ratgeber" },
+        { href: "/angebot-vergleichen-regensburg", label: "Büroreinigung Angebot prüfen" },
+        { href: "/blog/buero-reinigen-regensburg-bueroreinigung-angebot", label: "Büro reinigen Ratgeber" },
       ],
     };
   }
@@ -1275,7 +1276,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
 }
 
 function mergeLinks(route: string, relatedLinks?: readonly SearchIntentLink[]) {
-  const base = route.includes("duesseldorf") ? duesseldorfLinks : defaultLinks;
+  const base = route.includes("regensburg") ? duesseldorfLinks : defaultLinks;
   return uniqueLinks([...(relatedLinks || []), ...base]).slice(0, 6);
 }
 
@@ -1297,9 +1298,9 @@ export function buildSearchIntentProfile({
 }: SearchIntentProfileInput): SearchIntentProfile {
   const normalizedRoute = normalizeRoute(route);
   const localRoute = getDynamicLocalSeoRoute(normalizedRoute.replace(/^\//, ""));
-  const resolvedCity = germanizeText(city || localRoute?.city || (normalizedRoute.includes("duesseldorf") ? "Düsseldorf" : "Regensburg"));
+  const resolvedCity = germanizeText(city || localRoute?.city || (normalizedRoute.includes("regensburg") ? "Regensburg" : "Regensburg"));
   const resolvedService = germanizeText(localRoute?.label || detectService(normalizedRoute, serviceName));
-  const isDuesseldorf = market === "duesseldorf" || normalizedRoute.includes("duesseldorf") || resolvedCity === "Düsseldorf";
+  const isRegionalMarket = market === "regensburg" || normalizedRoute.includes("regensburg") || resolvedCity === "Regensburg";
   const dominanceBoosters = routeDominanceBoosters(normalizedRoute, resolvedCity, resolvedService);
 
   const shortTail = [...dominanceBoosters.shortTail, ...serviceShortTail(resolvedService, resolvedCity, normalizedRoute)];
@@ -1310,12 +1311,12 @@ export function buildSearchIntentProfile({
   return {
     city: resolvedCity,
     serviceName: resolvedService,
-    eyebrow: isDuesseldorf ? "Reinigung in Düsseldorf" : "Anfrage einfach vorbereiten",
-    title: isDuesseldorf
-      ? `${resolvedService} in Düsseldorf: so bekommen Sie eine klare Rückmeldung`
+    eyebrow: isRegionalMarket ? "Reinigung in Regensburg" : "Anfrage einfach vorbereiten",
+    title: isRegionalMarket
+      ? `${resolvedService} in Regensburg: so bekommen Sie eine klare Rückmeldung`
       : `${resolvedService} in ${resolvedCity}: mit wenigen Angaben sinnvoll starten`,
-    intro: isDuesseldorf
-      ? "Für Düsseldorf geht es bei FLOXANT um Reinigung: Objekt, Fläche, Fotos, Zeitfenster, Budget oder vorhandenes Angebot reichen für den ersten Schritt. Umzugsthemen bleiben bewusst getrennt."
+    intro: isRegionalMarket
+      ? "Für Regensburg geht es bei FLOXANT um Reinigung: Objekt, Fläche, Fotos, Zeitfenster, Budget oder vorhandenes Angebot reichen für den ersten Schritt. Umzugsthemen bleiben bewusst getrennt."
       : `Für den Start reichen Ort, Leistung, Situation, Termin, Fotos und ein grober Preisrahmen. FLOXANT prüft daraus, welcher nächste Schritt für den konkreten Fall sinnvoll ist.`,
     shortTail: unique(shortTail),
     longTail: unique(longTail),

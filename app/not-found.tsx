@@ -1,54 +1,52 @@
-"use client";
 import Link from "next/link";
 import { Header } from "@/components/Header";
-import { m } from "framer-motion";
-import { MoveLeft, HelpCircle } from "lucide-react";
+import { ArrowLeft, ClipboardCheck, Home, MapPin, MessageCircle } from "lucide-react";
 import de from "@/dictionaries/de.json";
+
+const helpfulLinks = [
+  { href: "/", label: "Startseite", Icon: Home },
+  { href: "/kontakt", label: "Kontakt", Icon: MessageCircle },
+  { href: "/leistungen", label: "Leistungen", Icon: ClipboardCheck },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen", Icon: ClipboardCheck },
+  { href: "/duesseldorf", label: "Duesseldorf", Icon: MapPin },
+  { href: "/regensburg", label: "Regensburg", Icon: MapPin },
+];
+
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-background flex flex-col">
+    <main className="min-h-screen bg-background text-foreground">
       <Header dic={de as any} />
-      <div className="flex-1 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-        {/* Background Decor */}
-        <div className="absolute top-1/2 start-/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
-        <m.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 p-6 bg-white/5 rounded-full border border-white/10"
+      <section className="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col justify-center px-5 py-14 sm:px-8">
+        <p className="text-sm font-bold uppercase tracking-normal text-primary">404</p>
+        <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-normal text-foreground sm:text-5xl">
+          Diese Seite ist nicht mehr an der erwarteten Stelle.
+        </h1>
+        <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
+          Der Link kann veraltet sein oder die Leistung wurde neu eingeordnet. Sie koennen direkt
+          zur passenden Anfrage, zum Standort oder zur Leistungsuebersicht wechseln.
+        </p>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {helpfulLinks.map(({ href, label, Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="inline-flex min-h-14 items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-sm font-bold text-card-foreground transition hover:border-primary/50 hover:text-primary"
+            >
+              <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              {label}
+            </Link>
+          ))}
+        </div>
+
+        <Link
+          href="/"
+          className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-bold text-primary hover:text-primary/80"
         >
-          <HelpCircle className="w-16 h-16 text-muted-foreground" />
-        </m.div>
-        <m.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-6xl md:text-8xl font-bold mb-4 tracking-tighter"
-        >
-          404
-        </m.h1>
-        <m.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-xl text-muted-foreground max-w-md mb-10"
-        >
-          Ups! Diese Seite scheint umgezogen zu sein oder existiert nicht mehr.
-        </m.p>
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all hover:gap-4"
-          >
-            <MoveLeft className="w-4 h-4" />
-            Zurück zur Startseite
-          </Link>
-        </m.div>
-      </div>
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Zur Startseite
+        </Link>
+      </section>
     </main>
   );
 }

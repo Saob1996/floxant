@@ -34,7 +34,7 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
               {germanText(t.badge, "Einsatzgebiet Regensburg")}
             </div>
             <h2 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight text-slate-950 md:text-[3rem]">
-              Services im strukturierten Raum rund um Regensburg
+              Services im klar abgegrenzten Raum rund um Regensburg
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
               FLOXANT bündelt Umzug, Entrümpelung, Büroumzug, Reinigung und direkte Kontaktwege mit
@@ -43,14 +43,14 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
             </p>
           </div>
 
-          <Link href="/einsatzgebiet-regensburg-200km" className="card-premium card-depth rounded-[2rem] p-6">
+          <Link href="/regensburg" className="card-premium card-depth rounded-[2rem] p-6">
             <div className="flex items-start justify-between gap-5">
               <div>
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                   Regionaler Hub
                 </div>
                 <h3 className="mt-3 text-[1.75rem] font-bold tracking-tight text-slate-950">
-                  Einsatzgebiet um Regensburg öffnen
+                  Regensburg-Bereich oeffnen
                 </h3>
               </div>
               <Radar className="h-9 w-9 shrink-0 text-blue-700" />

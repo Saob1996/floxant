@@ -6,37 +6,28 @@ import {
   BAVARIA_MAPS_SERVICE_INTENTS,
   BAVARIA_METRO_DISTRICT_LINKS,
 } from "@/lib/bavaria-coverage";
+import { floxantLocationList } from "@/lib/floxant-locations";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 export function LocalBusinessJsonLd() {
   const geoLatitude = Number(company.geo.lat.toFixed(5));
   const geoLongitude = Number(company.geo.lng.toFixed(5));
   const multilingualAliases = getSchemaKnowAboutAliases(48);
 
-  const areaServed = company.primaryServiceAreas.map((area) => ({
-    "@type":
-      area === "Bayern" || area.startsWith("Baden")
-        ? "State"
-        : area === "Oberpfalz" ||
-            area === "Landkreis Regensburg" ||
-            area.includes("200 km") ||
-            area.includes("Umgebung")
-          ? "AdministrativeArea"
-          : "City",
-    name: area,
-  }));
+  const areaServed = buildRegensburgCleaningAreaServedJsonLd();
 
   const servicePages = [
     { name: "Buchung und Anfrage", url: company.bookingUrl },
     { name: "Umzug", url: `${company.url}/umzug` },
     { name: "Reinigung", url: `${company.url}/reinigung` },
-    { name: "Notfallreinigung 24h", url: `${company.url}/notfallreinigung-24h` },
+    { name: "Kurzfristige Reinigung", url: `${company.url}/notfallreinigung-24h` },
     { name: "Reinigung nach Veranstaltung", url: `${company.url}/reinigung-nach-veranstaltung` },
     { name: "Entrümpelung", url: `${company.url}/entruempelung` },
     { name: "Büroumzug", url: `${company.url}/bueroumzug` },
     { name: "Einlagerung", url: `${company.url}/einlagerung` },
     { name: "Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
-    { name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
-    { name: "Büroreinigung Regensburg", url: `${company.url}/bueroreinigung-regensburg` },
+    { name: "Gewerbereinigung Regensburg", url: `${company.url}/regensburg/gewerbereinigung` },
+    { name: "Büroreinigung Regensburg", url: `${company.url}/regensburg/bueroreinigung` },
     { name: "Praxisreinigung Regensburg", url: `${company.url}/praxisreinigung-regensburg` },
     { name: "Hotelreinigung Regensburg", url: `${company.url}/hotelreinigung-regensburg` },
     { name: "Fensterreinigung Regensburg", url: `${company.url}/fensterreinigung-regensburg` },
@@ -57,46 +48,22 @@ export function LocalBusinessJsonLd() {
     { name: "Schadensbegrenzung", url: `${company.url}/schadensbegrenzung` },
     { name: "Übergabeakte", url: `${company.url}/uebergabeakte` },
     { name: "Immobilie verkaufsbereit machen", url: `${company.url}/immobilie-verkaufsbereit-machen` },
-    { name: "Nachlass-Räumung Regensburg", url: `${company.url}/nachlass-raeumung-regensburg` },
-    { name: "Düsseldorf Reinigung", url: `${company.url}/duesseldorf/reinigung` },
-    { name: "Düsseldorf Reinigung Stadtteile und Umgebung", url: `${company.url}/duesseldorf/reinigung-stadtteile-umgebung` },
-    { name: "Düsseldorf Angebot vielleicht günstiger prüfen", url: `${company.url}/duesseldorf/vielleicht-guenstiger` },
-    { name: "Düsseldorf Firmenreinigung", url: `${company.url}/duesseldorf/bueroreinigung` },
-    { name: "Düsseldorf Firmenreinigung eigene Seite", url: `${company.url}/duesseldorf/b2b-reinigung` },
-    { name: "Düsseldorf Firmenreinigung", url: `${company.url}/duesseldorf/firmenreinigung` },
-    { name: "Düsseldorf Fensterreinigung", url: `${company.url}/duesseldorf/fensterreinigung` },
-    { name: "Düsseldorf Baureinigung", url: `${company.url}/duesseldorf/baureinigung` },
-    { name: "Düsseldorf Teppichreinigung", url: `${company.url}/duesseldorf/teppichreinigung` },
-    { name: "Düsseldorf Unterhaltsreinigung", url: `${company.url}/duesseldorf/unterhaltsreinigung` },
-    { name: "Düsseldorf Ladenreinigung", url: `${company.url}/duesseldorf/ladenreinigung` },
-    { name: "Düsseldorf Sonderreinigung", url: `${company.url}/duesseldorf/sonderreinigung` },
-    { name: "Düsseldorf Gewerbereinigung", url: `${company.url}/duesseldorf/gewerbereinigung` },
-    { name: "Düsseldorf Hotelreinigung", url: `${company.url}/duesseldorf/hotelreinigung` },
-    { name: "Düsseldorf Kanzleireinigung", url: `${company.url}/duesseldorf/kanzleireinigung` },
-    { name: "Düsseldorf Praxisreinigung", url: `${company.url}/duesseldorf/praxisreinigung` },
-    { name: "Düsseldorf IT-Raum Reinigung", url: `${company.url}/duesseldorf/it-raum-reinigung` },
-    { name: "Düsseldorf Krankenhausreinigung", url: `${company.url}/duesseldorf/krankenhausreinigung` },
-    { name: "Düsseldorf Treppenhausreinigung", url: `${company.url}/duesseldorf/treppenhausreinigung` },
-    { name: "Düsseldorf Kellerreinigung", url: `${company.url}/duesseldorf/kellerreinigung` },
-    { name: "Düsseldorf Grundreinigung", url: `${company.url}/duesseldorf/grundreinigung` },
-    { name: "Düsseldorf Wohnungsreinigung", url: `${company.url}/duesseldorf/wohnungsreinigung` },
-    { name: "Düsseldorf Endreinigung", url: `${company.url}/duesseldorf/endreinigung` },
-    { name: "Düsseldorf Entsorgung", url: `${company.url}/entsorgung-duesseldorf` },
+    { name: "Nachlass-Räumung Regensburg", url: `${company.url}/regensburg/haushaltsaufloesung` },
   ];
 
   const mapsLandingPages = [
     { name: "FLOXANT Buchung", url: company.mapsPreferredEntryUrl },
     { name: "FLOXANT Kontakt", url: company.contactUrl },
     { name: "FLOXANT Standorte", url: company.locationsUrl },
-    { name: "FLOXANT Servicegebiet Bayern", url: company.serviceAreaUrl },
-    { name: "FLOXANT Umzug Regensburg", url: `${company.url}/umzug-regensburg` },
-    { name: "FLOXANT Reinigung Regensburg", url: `${company.url}/reinigung-regensburg` },
-    { name: "FLOXANT Entrümpelung Regensburg", url: `${company.url}/entruempelung-regensburg` },
+    { name: "FLOXANT Regensburg", url: company.serviceAreaUrl },
+    { name: "FLOXANT Umzug Regensburg", url: `${company.url}/regensburg/umzug` },
+    { name: "FLOXANT Reinigung Regensburg", url: `${company.url}/regensburg/reinigung` },
+    { name: "FLOXANT Entrümpelung Regensburg", url: `${company.url}/regensburg/entruempelung` },
     { name: "FLOXANT Büroumzug Regensburg", url: `${company.url}/bueroumzug-regensburg` },
     { name: "FLOXANT Einlagerung", url: `${company.url}/einlagerung` },
     { name: "FLOXANT Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
-    { name: "FLOXANT Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
-    { name: "FLOXANT Büroreinigung Regensburg", url: `${company.url}/bueroreinigung-regensburg` },
+    { name: "FLOXANT Gewerbereinigung Regensburg", url: `${company.url}/regensburg/gewerbereinigung` },
+    { name: "FLOXANT Büroreinigung Regensburg", url: `${company.url}/regensburg/bueroreinigung` },
     { name: "FLOXANT Praxisreinigung Regensburg", url: `${company.url}/praxisreinigung-regensburg` },
     { name: "FLOXANT Hotelreinigung Regensburg", url: `${company.url}/hotelreinigung-regensburg` },
     { name: "FLOXANT Fensterreinigung Regensburg", url: `${company.url}/fensterreinigung-regensburg` },
@@ -132,6 +99,35 @@ export function LocalBusinessJsonLd() {
     })),
   ]);
 
+  const locationDepartments = floxantLocationList.map((location) => ({
+    "@type": location.localSchemaData.businessTypes,
+    "@id": location.localSchemaData.schemaId,
+    name: location.displayName,
+    url: `${company.url}${location.localLandingPage}`,
+    ...(location.phoneRaw ? { telephone: location.phoneRaw } : {}),
+    ...(location.email ? { email: location.email } : {}),
+    ...(location.mapsUrl ? { hasMap: location.mapsUrl, maps: location.mapsUrl } : {}),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: location.addressLine1,
+      addressLocality: location.city,
+      addressRegion: location.region,
+      postalCode: location.postalCode,
+      addressCountry: "DE",
+    },
+    areaServed: location.localSchemaData.areaServed.map((area) => ({
+      "@type": area === "Bayern" || area === "Nordrhein-Westfalen" ? "State" : "AdministrativeArea",
+      name: area,
+    })),
+    makesOffer: [...location.primaryServices, ...location.secondaryServices].map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service,
+      },
+    })),
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "MovingCompany", "HouseCleaningService", "ProfessionalService"],
@@ -140,7 +136,7 @@ export function LocalBusinessJsonLd() {
     name: company.name,
     alternateName: ["FLOXANT Service Regensburg"],
     description:
-      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Kontaktwege mit Schwerpunkt Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+      "FLOXANT bietet Umzug, Entrümpelung, Büroumzug, Firmenentsorgung, Leer-Rückfahrt und verständliche Kontaktwege mit Schwerpunkt Regensburg. Reinigungsleistungen sind auf Regensburg und den 50-km-Umkreis begrenzt.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -152,7 +148,6 @@ export function LocalBusinessJsonLd() {
     maps: company.mapsSearchUrl,
     telephone: company.phoneRaw,
     email: company.email,
-    priceRange: "$$",
     currenciesAccepted: "EUR",
     paymentAccepted: "Überweisung, Rechnung, Kartenzahlung nach Vereinbarung",
     slogan: "Klare Einschätzung statt vorschneller Preiszusage.",
@@ -172,12 +167,12 @@ export function LocalBusinessJsonLd() {
     sameAs: company.sameAs,
     areaServed,
     serviceArea: areaServed,
-    availableLanguage: ["de"],
-    knowsLanguage: ["de"],
+    availableLanguage: ["de", "en"],
+    knowsLanguage: ["de", "en"],
     knowsAbout: [
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
-      "Notfallreinigung 24h",
+      "Kurzfristige Reinigung",
       "Reinigung nach Veranstaltung",
       "Reinigung nach Party",
       "Eventreinigung",
@@ -233,7 +228,6 @@ export function LocalBusinessJsonLd() {
       "Reinigungsplan Buero Regensburg",
       "Reinigungskraft Buero Regensburg",
       "Objektreinigung Regensburg",
-      "Umzug im 200-km-Umkreis Regensburg",
       "Kurzfristiger Umzug Regensburg",
       "Umzug mit Reinigung",
       "Umzug mit Übergabe",
@@ -248,7 +242,6 @@ export function LocalBusinessJsonLd() {
       "Teppichreinigung Regensburg",
       "Polsterreinigung Regensburg",
       "Treppenhausreinigung Regensburg",
-      "Private Client Service Bayern",
       "Beiladung",
       "Angebotscheck",
       "Plan-B-Service",
@@ -261,46 +254,12 @@ export function LocalBusinessJsonLd() {
       "Übergabe vorbereiten",
       "Immobilie verkaufsbereit machen",
       "Nachlass-Räumung Regensburg",
-      "Düsseldorf Reinigung",
-      "Düsseldorf Reinigung Stadtteile",
-      "Reinigung Neuss",
-      "Reinigung Ratingen",
-      "Reinigung Meerbusch",
-      "Reinigung Mettmann",
-      "Reinigung Duisburg",
-      "Angebot prüfen Düsseldorf",
-      "Düsseldorf Firmenreinigung",
-      "Düsseldorf Firmenreinigung",
-      "Düsseldorf Gewerbereinigung",
-      "Düsseldorf Hotelreinigung",
-      "Hotel Reinigung Duesseldorf",
-      "Boardinghouse Reinigung Duesseldorf",
-      "Bueroreinigung Duesseldorf",
-      "Kanzleireinigung Duesseldorf",
-      "Praxisreinigung Duesseldorf",
-      "Treppenhausreinigung Duesseldorf",
-      "Kellerreinigung Duesseldorf",
-      "Grundreinigung Duesseldorf",
-      "Wohnungsreinigung Duesseldorf",
-      "Endreinigung Duesseldorf",
-      "Krankenhausreinigung Duesseldorf",
-      "Düsseldorf Entsorgung",
       "Leer-Rückfahrt",
       "Rückladung",
       "Buchung über Google Maps",
       "Direkter Buchungslink",
       "Google Unternehmensprofil Regensburg",
-      "Standorte Bayern",
-      "Servicegebiet Bayern",
-      "Umzug Muenchen",
-      "Reinigung Nuernberg",
-      "Umzug Landshut",
-      "Umzug Ingolstadt",
-      "Reinigung Bamberg",
-      "Entruempelung Rosenheim",
-      "Umzug Wuerzburg",
       ...multilingualAliases,
-      ...BAVARIA_MAPS_SERVICE_INTENTS.flatMap((intent) => [intent.title, intent.query]),
     ],
     contactPoint: [
       {
@@ -309,43 +268,15 @@ export function LocalBusinessJsonLd() {
         email: company.email,
         contactType: "customer support",
         areaServed: ["DE"],
-        availableLanguage: ["de"],
-        hoursAvailable: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ],
-          opens: "00:00",
-          closes: "23:59",
-        },
+        availableLanguage: ["de", "en"],
       },
       {
         "@type": "ContactPoint",
         telephone: company.phoneRaw,
         email: company.email,
         contactType: "sales",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
-        availableLanguage: ["de"],
-        hoursAvailable: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ],
-          opens: "00:00",
-          closes: "23:59",
-        },
+        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+        availableLanguage: ["de", "en"],
       },
     ],
     potentialAction: [
@@ -362,12 +293,12 @@ export function LocalBusinessJsonLd() {
       {
         "@type": "Action",
         name: "Gewerbereinigung anfragen",
-        target: `${company.url}/gewerbereinigung-regensburg`,
+        target: `${company.url}/regensburg/gewerbereinigung`,
       },
       {
         "@type": "Action",
         name: "Büroreinigung Regensburg anfragen",
-        target: `${company.url}/bueroreinigung-regensburg`,
+        target: `${company.url}/regensburg/bueroreinigung`,
       },
       {
         "@type": "Action",
@@ -428,6 +359,7 @@ export function LocalBusinessJsonLd() {
       })),
     },
     department: [
+      ...locationDepartments,
       {
         "@type": "LocalBusiness",
         name: "FLOXANT Umzug",
@@ -459,7 +391,7 @@ export function LocalBusinessJsonLd() {
       {
         "@type": "LocalBusiness",
         name: "FLOXANT Gewerbereinigung",
-        url: `${company.url}/gewerbereinigung-regensburg`,
+        url: `${company.url}/regensburg/gewerbereinigung`,
         telephone: company.phoneRaw,
         address: {
           "@type": "PostalAddress",
@@ -504,14 +436,6 @@ export function LocalBusinessJsonLd() {
         "@type": "WebPage",
         name: "FLOXANT Private Client Service",
         url: `${company.url}/private-client-service`,
-      },
-    ],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "00:00",
-        closes: "23:59",
       },
     ],
     mentions: {

@@ -87,7 +87,7 @@ export default async function UmzugIngolstadtPage({ params }: PageProps) {
                 <GscOpportunitySection
                     eyebrow="Umzug Ingolstadt"
                     title="Umzug in Ingolstadt mit Strecke, Zugang und Budget sauber vorbereiten."
-                    intro="Bei einem Umzug in Ingolstadt geht es nicht nur um Kartons. Entscheidend sind Start, Ziel, Etage, Laufweg, Haltezone, Möbelmenge, Termin und ob Reinigung, Entsorgung oder Übergabe danach mitgedacht werden müssen."
+                    intro="Bei einem Umzug in Regensburg geht es nicht nur um Kartons. Entscheidend sind Start, Ziel, Etage, Laufweg, Haltezone, Möbelmenge, Termin und ob Reinigung, Entsorgung oder Übergabe danach mitgedacht werden müssen."
                     proofTitle="Wichtig für Ingolstadt"
                     proofItems={[
                         "Für Altbau, Innenstadtlage, enge Zufahrt oder längere Strecke zählen Fotos von Treppenhaus, Eingang und Möbeln.",

@@ -11,6 +11,9 @@ import {
 import { PillarServicePage } from "@/components/PillarServicePage";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceFitGuide } from "@/components/ServiceFitGuide";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -27,15 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
     description:
       "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
-    keywords: [
-      "Entrümpelung Regensburg",
-      "Wohnungsauflösung Regensburg",
-      "Entsorgung Regensburg",
-      "Keller entrümpeln Regensburg",
-      "Räumung Bayern",
-      "Entrümpelung Kosten Regensburg",
-      "Besenreine Übergabe",
-    ],
   });
 }
 
@@ -104,7 +98,7 @@ export default async function EntruempelungPillarPage() {
         heroBadge="Entrümpelung mit Schwerpunkt Regensburg und Bayern"
         heroTitle="Entrümpelung und Wohnungsauflösung in Regensburg und Bayern"
         heroIntro="FLOXANT organisiert Räumungen für Wohnungen, Häuser, Keller und Gewerbeflächen. Entrümpelung bedeutet dabei nicht nur Wegtragen, sondern Räume wieder entscheidbar machen: trennen, tragen, entsorgen und den nächsten Schritt ermöglichen."
-        heroImageSrc="/assets/service-clearance.png"
+        heroImageSrc="/assets/service-clearance.webp"
         heroImageAlt="FLOXANT Entrümpelung in Regensburg und Bayern"
         heroCards={[
           { label: "Volumen", value: "Umfang und Materialarten sichtbar bewertet" },
@@ -148,7 +142,7 @@ export default async function EntruempelungPillarPage() {
           },
         ]}
         costTitle="Regionale Einordnung"
-        costIntro="Der Fokus auf Regensburg und Bayern hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
+        costIntro="Der Fokus auf Regensburg und Regensburg hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
         costFactors={[
           "Volumen und Materialarten",
           "Zugang, Laufwege und Stockwerke",
@@ -175,13 +169,20 @@ export default async function EntruempelungPillarPage() {
         ]}
         cityLinksTitle="Entrümpelung lokal in wichtigen Regionen"
         cityLinks={[
-          { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+          { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
           { href: "/entruempelung-muenchen", label: "Entrümpelung München" },
           { href: "/entruempelung-nuernberg", label: "Entrümpelung Nürnberg" },
           { href: "/entruempelung-augsburg", label: "Entrümpelung Augsburg" },
           { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
           { href: "/entruempelung-passau", label: "Entrümpelung Passau" },
         ]}
+      />
+      <ServicePackageSelector groups="entruempelung" limit={7} />
+      <EffortFactorsPanel group="entruempelung" />
+      <ServiceFitGuide
+        group="entruempelung"
+        title="Welche Raeumung passt zum Zielzustand?"
+        intro="Keller, Wohnung, Nachlass, Buero oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
       />
       <GscOpportunitySection
         eyebrow="Entrümpelung verständlich anfragen"
@@ -203,7 +204,7 @@ export default async function EntruempelungPillarPage() {
           {
             title: "Entrümpelung Regensburg",
             text: "In Regensburg zählen Termin, Laufwege, Parkmöglichkeit, Schlüsselweg und ob danach Reinigung oder Übergabe folgt.",
-            href: "/entruempelung-regensburg",
+            href: "/regensburg/entruempelung",
             cta: "Regensburg anfragen",
           },
           {

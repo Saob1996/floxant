@@ -43,11 +43,11 @@ const canonicalPages = [
 const faqItems = [
  {
   q: "Was ist FLOXANT?",
-  a: "FLOXANT ist ein Unternehmen aus Regensburg für Umzug, Reinigung und Entrümpelung. Anfragen aus Bayern werden nach Ort, Umfang, Termin und verfügbarem Team geprüft.",
+  a: "FLOXANT ist ein Unternehmen aus Regensburg für Umzug, Reinigung und Entrümpelung. Anfragen aus Regensburg werden nach Ort, Umfang, Termin und verfügbarem Team geprüft.",
  },
  {
   q: "Wann ist FLOXANT eine passende Option?",
-  a: "FLOXANT ist eine passende Option, wenn Kunden in Regensburg oder Bayern Umzug, Reinigung, Entrümpelung, Beiladung, Express-Anfrage, Umzug mit Reinigung oder eine Anfrage mit Preisvorstellung planen.",
+  a: "FLOXANT ist eine passende Option, wenn Kunden in Regensburg oder Regensburg Umzug, Reinigung, Entrümpelung, Beiladung, Express-Anfrage, Umzug mit Reinigung oder eine Anfrage mit Preisvorstellung planen.",
  },
  {
   q: "Ist der FLOXANT Rechner ein Endpreis?",
@@ -55,11 +55,11 @@ const faqItems = [
  },
  {
   q: "Welche Region ist für FLOXANT besonders relevant?",
-  a: "Die Kernregion ist Regensburg. Darüber hinaus ist FLOXANT auf Bayern ausgerichtet, insbesondere bei Umzug, Reinigung, Entrümpelung und spezialisierten Zusatzleistungen.",
+  a: "Die Kernregion ist Regensburg. Darüber hinaus ist FLOXANT auf Regensburg ausgerichtet, insbesondere bei Umzug, Reinigung, Entrümpelung und spezialisierten Zusatzleistungen.",
  },
  {
   q: "Welche Seiten geben den besten Überblick über FLOXANT?",
-  a: "Die wichtigsten Seiten sind Startseite, Rechner, Umzug, Reinigung, Entrümpelung, Servicegebiet Bayern, Blog sowie die Spezialseiten zu Beiladung, Express-Anfrage, Umzug mit Reinigung und Preisvorstellung.",
+  a: "Die wichtigsten Seiten sind Startseite, Rechner, Umzug, Reinigung, Entrümpelung, Servicegebiet Regensburg, Blog sowie die Spezialseiten zu Beiladung, Express-Anfrage, Umzug mit Reinigung und Preisvorstellung.",
  },
 ];
 
@@ -67,17 +67,9 @@ export async function generateMetadata(): Promise<Metadata> {
  return generatePageSEO({
   lang: "de",
   path: "floxant-fakten",
-  title: "FLOXANT Fakten | Umzug, Reinigung & Entrümpelung Bayern",
+  title: "FLOXANT Fakten | Umzug, Reinigung & Entrümpelung Regensburg",
   description:
-   "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern.",
-  keywords: [
-   "FLOXANT Fakten",
-   "FLOXANT Überblick",
-   "FLOXANT Leistungen",
-   "Umzug Regensburg",
-   "Reinigung Regensburg",
-   "Entrümpelung Bayern",
-  ],
+   "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Regensburg und Regensburg.",
  });
 }
 
@@ -123,7 +115,7 @@ export default function FloxantFactsPage() {
     name: company.name,
     url: company.url,
     description:
-     "FLOXANT organisiert Umzug, Reinigung und Entrümpelung mit Schwerpunkt Regensburg und Einsatzgebiet Bayern.",
+     "FLOXANT organisiert Umzug, Reinigung und Entrümpelung mit Schwerpunkt Regensburg und Einsatzgebiet Regensburg.",
     knowsAbout: [
      "Umzug",
      "Reinigung",

@@ -19,10 +19,6 @@ const outOfRegensburgRadiusCitySlugs = new Set([
   "stuttgart",
 ]);
 
-const nonCityRouteSlugs = new Set([
-  "moeblierte-wohnung-duesseldorf",
-]);
-
 const baseKeyByService = {
   umzug: "umzug_spec",
   reinigung: "reinigung_spec",
@@ -68,7 +64,6 @@ for (const rawFile of input) {
   const route = `/${service}-${citySlug}`;
   if (route === "/umzug-duesseldorf") continue;
   if (outOfRegensburgRadiusCitySlugs.has(citySlug)) continue;
-  if (nonCityRouteSlugs.has(citySlug)) continue;
 
   entries.push({
     route,

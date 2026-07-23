@@ -33,15 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Keller- & Muellraum-Rettung Regensburg | FLOXANT",
   description:
     "Keller, Muellraum, Garage oder Nebenflaeche zugestellt? FLOXANT prueft Raeumung, Entsorgung und Reinigung fuer Hausverwaltungen, Vermieter und Gewerbe im Raum Regensburg.",
-  keywords: [
-    "keller entruempelung regensburg",
-    "keller raeumen lassen regensburg",
-    "muellraum raeumen lassen",
-    "hausverwaltung entruempelung regensburg",
-    "garage entruempeln regensburg",
-    "nebenraeume raeumen lassen",
-    "gewerbe entruempelung regensburg",
-  ],
 });
 
 const whatsappHref =
@@ -435,11 +426,11 @@ export default function KellerMuellraumRettungPage() {
                 Diese Seite ist keine Sondermuell- oder Gefahrstoff-Seite und keine rechtliche Raeumungsfreigabe.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/entruempelung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
+                <Link href="/regensburg/entruempelung" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
                   Entruempelung Regensburg
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/einsatzgebiet-regensburg-200km" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
+                <Link href="/regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
                   Servicegebiet ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -454,7 +445,7 @@ export default function KellerMuellraumRettungPage() {
                 ["Kellerentrümpelung Regensburg", "Fuer private und objektbezogene Keller mit Fotos, Zugang und Umfang."],
                 ["Hausverwaltung / WEG", "Fuer wiederkehrende oder gemeinschaftliche Flaechen mit Freigabe und Ansprechpartner."],
                 ["Raeumung + Reinigung", "Erst Flaeche freimachen, dann Reinigung nach Raeumung pruefen."],
-                ["Entsorgung Duesseldorf getrennt", "Düsseldorf bleibt eigene Entsorgungs-, Reinigungs- und Umzugslogik über separate Seiten."],
+                ["Entsorgung Regensburg getrennt", "Regensburg bleibt eigene Entsorgungs-, Reinigungs- und Umzugslogik über separate Seiten."],
               ].map(([title, text]) => (
                 <div key={title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
                   <MapPin className="mb-4 h-5 w-5 text-amber-700" />

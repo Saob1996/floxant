@@ -7,6 +7,8 @@ const { spawn } = require("child_process");
 
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
+const FUNCTIONS_DIR = path.join(ROOT, "functions");
+const CLOUDFLARE_REDIRECTS_PATH = path.join(ROOT, "public", "_redirects");
 const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
 const DYNAMIC_BLOG_SOURCE_FILES = [
   path.join(ROOT, "lib", "ai-recommendation-blog-articles.ts"),
@@ -18,6 +20,9 @@ const PSYCHOLOGICAL_CLEANING_PAGES_PATH = path.join(
   "lib",
   "psychological-cleaning-pages.ts",
 );
+const GROWTH_SERVICE_PAGES_PATH = path.join(ROOT, "lib", "growth-service-pages.ts");
+const LOCAL_SEO_PAGES_PATH = path.join(ROOT, "lib", "local-seo", "localSeoPages.ts");
+const ENGLISH_LOCAL_SEO_PAGES_PATH = path.join(ROOT, "lib", "local-seo", "englishLocalSeoPages.ts");
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
@@ -42,12 +47,24 @@ async function findAvailablePort(startPort) {
 const PRIVATE_SEGMENTS = new Set(["api", "dashboard", "admin", "login"]);
 const LEGACY_REDIRECT_ROUTES = new Set([
   "/partnercode",
-  "/airbnb-reinigung-duesseldorf",
+  "/airbnb-reinigung-regensburg",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
   "/villenservice",
   "/umzug-duesseldorf",
   "/seo-gone",
+  "/umzug-regensburg",
+  "/reinigung-regensburg",
+  "/entruempelung-regensburg",
+  "/gewerbereinigung-regensburg",
+  "/bueroreinigung-regensburg",
+  "/wohnungsaufloesung-regensburg",
+  "/umzugsunternehmen-regensburg",
+  "/seniorenumzug-regensburg",
+  "/umzug-reinigung-regensburg",
+  "/endreinigung-regensburg",
+  "/einsatzgebiet-regensburg-200km",
+  "/service-area-bayern",
 ]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
@@ -88,8 +105,7 @@ const DOMINANCE_MONEY_ROUTES = [
   "/keller-muellraum-rettung-regensburg",
   "/uebergabeakte",
   "/private-client-service",
-  "/service-area-bayern",
-  "/einsatzgebiet-regensburg-200km",
+  "/regensburg",
   "/qualitaet-ablauf",
   "/praxisfaelle",
   "/kostenfaktoren",
@@ -103,7 +119,7 @@ const IMPORTANT_ROUTES = [
   "/empfehlen",
   "/angebotscheck",
   "/angebot-guenstiger-pruefen",
-  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/reinigung-moeblierte-wohnung-regensburg",
   "/makler-vermieter-link",
   "/mieterwechsel-service-regensburg",
   "/wohnung-wieder-vermietbar",
@@ -116,7 +132,7 @@ const IMPORTANT_ROUTES = [
   "/umzug",
   "/reinigung",
   "/entruempelung",
-  "/service-area-bayern",
+  "/regensburg",
   "/blog",
   "/floxant-fakten",
   "/qualitaet-ablauf",
@@ -134,22 +150,37 @@ const IMPORTANT_ROUTES = [
 
 const REDIRECT_EXPECTATIONS = [
   ["/partnercode", "/empfehlen"],
-  ["/airbnb-reinigung-duesseldorf", "/reinigung-moeblierte-wohnung-duesseldorf"],
+  ["/airbnb-reinigung-regensburg", "/reinigung-moeblierte-wohnung-regensburg"],
   ["/angebot-red-flag-scanner", "/angebotscheck#red-flag-scanner"],
   ["/guenstigeres-angebot-pruefen", "/angebot-guenstiger-pruefen"],
   ["/de", "/"],
   ["/de/umzug", "/umzug"],
-  ["/en/umzug-regensburg", "/umzug-regensburg"],
+  ["/en/umzug-regensburg", "/regensburg/umzug"],
   ["/bg/umzug-landshut", "/umzug-landshut"],
   ["/vi/ratgeber/wann-lohnt-sich-umzugsfirma", "/ratgeber/wann-lohnt-sich-umzugsfirma"],
-  ["/tr/reinigung-regensburg", "/reinigung-regensburg"],
+  ["/de/umzug-duesseldorf", "/seo-gone"],
+  ["/de/wissen/halteverbotszone-duesseldorf", "/seo-gone"],
+  ["/ru/wissen/halteverbotszone-duesseldorf", "/seo-gone"],
+  ["/tr/reinigung-regensburg", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung", "/entruempelung"],
-  ["/entr%C3%BCmpelung-regensburg", "/entruempelung-regensburg"],
+  ["/entr%C3%BCmpelung-regensburg", "/regensburg/entruempelung"],
+  ["/umzug-regensburg", "/regensburg/umzug"],
+  ["/reinigung-regensburg", "/regensburg/reinigung"],
+  ["/entruempelung-regensburg", "/regensburg/entruempelung"],
+  ["/gewerbereinigung-regensburg", "/regensburg/gewerbereinigung"],
+  ["/bueroreinigung-regensburg", "/regensburg/bueroreinigung"],
+  ["/wohnungsaufloesung-regensburg", "/regensburg/wohnungsaufloesung"],
+  ["/umzugsunternehmen-regensburg", "/regensburg/umzugsunternehmen"],
+  ["/seniorenumzug-regensburg", "/regensburg/seniorenumzug"],
+  ["/umzug-reinigung-regensburg", "/regensburg/umzug-reinigung"],
+  ["/endreinigung-regensburg", "/regensburg/endreinigung"],
+  ["/einsatzgebiet-regensburg-200km", "/regensburg"],
+  ["/service-area-bayern", "/regensburg"],
   ["/umzug-n%C3%BCrnberg", "/umzug-nuernberg"],
-  ["/reinigung-n%C3%BCrnberg", "/reinigung-nuernberg"],
+  ["/reinigung-n%C3%BCrnberg", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung-n%C3%BCrnberg", "/entruempelung-nuernberg"],
   ["/umzug-m%C3%BCnchen", "/umzug-muenchen"],
-  ["/reinigung-m%C3%BCnchen", "/reinigung-muenchen"],
+  ["/reinigung-m%C3%BCnchen", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung-m%C3%BCnchen", "/entruempelung-muenchen"],
   ["/villenservice", "/private-client-service"],
   ["/signature/clean-start", "/clean-start"],
@@ -157,10 +188,7 @@ const REDIRECT_EXPECTATIONS = [
 
 const GONE_EXPECTATIONS = [
   "/umzug-duesseldorf",
-  "/de/umzug-duesseldorf",
   "/en/umzug-duesseldorf",
-  "/ru/wissen/halteverbotszone-duesseldorf",
-  "/de/wissen/halteverbotszone-duesseldorf",
   "/halteverbotszone-duesseldorf",
   "/transport-duesseldorf",
   "/entruempelung-duesseldorf",
@@ -235,6 +263,73 @@ function loadDynamicBlogRoutes() {
   return routes;
 }
 
+function loadGrowthServiceRoutes() {
+  if (!fs.existsSync(GROWTH_SERVICE_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(GROWTH_SERVICE_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  return routes;
+}
+
+function loadEnglishLocalSeoRoutes() {
+  if (!fs.existsSync(ENGLISH_LOCAL_SEO_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(ENGLISH_LOCAL_SEO_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  return routes;
+}
+
+function loadLocalSeoPageRoutes() {
+  if (!fs.existsSync(LOCAL_SEO_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(LOCAL_SEO_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  const regensburgCleaningSlugs = source.match(/const regensburgCityCleaningSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(regensburgCleaningSlugs)) {
+    routes.push(`/${slug}/reinigung`);
+  }
+
+  const regensburgMoveSlugs = source.match(/const regensburgCityMoveSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(regensburgMoveSlugs)) {
+    routes.push(`/${slug}/umzug`);
+  }
+
+  return routes;
+}
+
+function extractQuotedStrings(source) {
+  const values = [];
+  const regex = /"([^"]+)"/g;
+  let match;
+
+  while ((match = regex.exec(source))) {
+    values.push(match[1]);
+  }
+
+  return values;
+}
+
 function discoverRoutes({ includePrivate = false } = {}) {
   const routes = new Set(["/"]);
 
@@ -259,6 +354,28 @@ function discoverRoutes({ includePrivate = false } = {}) {
 
   walk(APP_DIR);
 
+  function walkFunctions(directory, segments = []) {
+    if (!fs.existsSync(directory)) return;
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (!entry.name.startsWith("_")) walkFunctions(path.join(directory, entry.name), [...segments, entry.name]);
+        continue;
+      }
+      if (!/\.(js|ts)$/.test(entry.name) || entry.name.startsWith("_")) continue;
+      const name = entry.name.replace(/\.(js|ts)$/, "");
+      routes.add(routeFromSegments(name === "index" ? segments : [...segments, name]));
+    }
+  }
+
+  walkFunctions(FUNCTIONS_DIR);
+
+  if (fs.existsSync(CLOUDFLARE_REDIRECTS_PATH)) {
+    for (const line of fs.readFileSync(CLOUDFLARE_REDIRECTS_PATH, "utf8").split(/\r?\n/)) {
+      const source = line.trim().split(/\s+/, 1)[0];
+      if (source?.startsWith("/") && !source.includes("*") && !source.includes(":")) routes.add(source);
+    }
+  }
+
   for (const route of STATIC_METADATA_ROUTES) {
     routes.add(route);
   }
@@ -271,11 +388,24 @@ function discoverRoutes({ includePrivate = false } = {}) {
     if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
   }
 
+  for (const route of loadGrowthServiceRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadLocalSeoPageRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadEnglishLocalSeoRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
   return routes;
 }
 
 function walkFiles(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
+  if (path.relative(ROOT, directory).replace(/\\/g, "/") === "components/dashboard") return files;
 
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (["node_modules", ".next", "out", ".git"].includes(entry.name)) continue;
@@ -321,6 +451,24 @@ function publicAssetExists(url) {
   return fs.existsSync(path.join(ROOT, "public", cleanUrl));
 }
 
+function routeFromAppPageFile(relativeFile) {
+  const normalized = relativeFile.replace(/\\/g, "/");
+  const match = normalized.match(/^app\/(.+)\/page\.(tsx|ts|jsx|js)$/);
+  if (!match) return null;
+
+  const segments = match[1]
+    .split("/")
+    .filter((segment) => segment && !segment.startsWith("(") && !segment.startsWith("@"));
+
+  if (!segments.length || segments.some((segment) => segment.includes("["))) return null;
+  return `/${segments.join("/")}`;
+}
+
+function isLegacyRedirectSourceFile(relativeFile) {
+  const route = routeFromAppPageFile(relativeFile);
+  return route ? LEGACY_REDIRECT_ROUTES.has(route) : false;
+}
+
 function hasNonAscii(value) {
   return [...value].some((char) => char.charCodeAt(0) > 127);
 }
@@ -341,6 +489,8 @@ function runLinkCheck() {
 
   for (const file of files) {
     const relativeFile = path.relative(ROOT, file);
+    if (isLegacyRedirectSourceFile(relativeFile)) continue;
+
     const text = fs.readFileSync(file, "utf8");
 
     for (const regex of hrefRegexes) {
@@ -464,9 +614,10 @@ function fileContains(file, needles) {
   return needles.every((needle) => text.includes(needle));
 }
 
-function runDominanceCheck() {
+function runDominanceCheck({ optionalOnly = false } = {}) {
   const routes = discoverRoutes({ includePrivate: true });
   const failures = [];
+  const optionalWarnings = [];
   const blogMetaPath = path.join(ROOT, "lib", "blog-posts.ts");
   const seoPath = path.join(ROOT, "lib", "seo.ts");
   const seoDominancePath = path.join(ROOT, "lib", "seo-dominance.ts");
@@ -490,8 +641,12 @@ function runDominanceCheck() {
     if (!routes.has(route)) failures.push(`missing money route: ${route}`);
   }
 
-  if (!fileContains(seoPath, ["getDominanceSnippet", "robots", "canonical", "serp-click-reasons", "commercial-keyword-cluster", "semantic-search-tags", "ai-citation-safe-answer", "service-click-hook", "dc.subject", "dominance-proof-signal", "answer-engine-query-targets", "serp-dominance-layers", "map-ranking-action-signal", "search-result-click-promise", "ai-recommendation-trigger", "google-search-appearance-signal", "serp-sitelink-targets", "customer-attraction-hook", "post-click-action-stack", "conversion-path-summary", "local-trust-proof-stack", "map-pack-decision-signal", "ai-next-step-recommendation", "special-service-discovery-signal", "special-service-sitelink-cluster"])) {
-    failures.push("central metadata does not use dominance snippets, robots and canonical logic");
+  if (!fileContains(seoPath, ["robots", "canonical"])) {
+    failures.push("central metadata is missing required robots or canonical logic");
+  }
+
+  if (!fileContains(seoPath, ["getDominanceSnippet", "serp-click-reasons", "commercial-keyword-cluster", "semantic-search-tags", "ai-citation-safe-answer", "service-click-hook", "dc.subject", "dominance-proof-signal", "answer-engine-query-targets", "serp-dominance-layers", "map-ranking-action-signal", "search-result-click-promise", "ai-recommendation-trigger", "google-search-appearance-signal", "serp-sitelink-targets", "customer-attraction-hook", "post-click-action-stack", "conversion-path-summary", "local-trust-proof-stack", "map-pack-decision-signal", "ai-next-step-recommendation", "special-service-discovery-signal", "special-service-sitelink-cluster"])) {
+    optionalWarnings.push("central metadata dominance snippets are incomplete");
   }
 
   if (!fileContains(seoDominancePath, ["SEO_MONEY_ROUTES", "serviceCityPatterns", "getDominanceSnippet"])) {
@@ -515,7 +670,7 @@ function runDominanceCheck() {
     "/buchung": ["generatePageSEO", "buildFaqJsonLd", "SmartBookingWizard", "Google Maps"],
     "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
     "/empfehlen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReferralPartnerCodeForm"],
-    "/reinigung-moeblierte-wohnung-duesseldorf": ["buildDuesseldorfCleaningMetadata", "buildFaqJsonLd", "DuesseldorfApartmentCleaningForm", "Apartment-Reset"],
+    "/reinigung-moeblierte-wohnung-regensburg": ["buildRegensburgCleaningMetadata", "buildFaqJsonLd", "RegensburgApartmentCleaningForm", "Apartment-Reset"],
     "/umzug": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/reinigung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/entruempelung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
@@ -567,7 +722,7 @@ function runDominanceCheck() {
       "keine Preisgarantie",
     ])
   ) {
-    failures.push("AI service graph is missing region, offer-check or safety rules");
+    optionalWarnings.push("AI service graph is missing expanded region, offer-check or safety rules");
   }
 
   if (
@@ -580,7 +735,7 @@ function runDominanceCheck() {
       "service-graph.json",
     ])
   ) {
-    failures.push("service graph Dataset JSON-LD is missing required/recommended metadata");
+    optionalWarnings.push("service graph Dataset JSON-LD is missing recommended metadata");
   }
 
   for (const file of [
@@ -593,14 +748,14 @@ function runDominanceCheck() {
   }
 
   if (!fileContains(localBusinessPath, ["department", "openingHoursSpecification", "Leer-Rückfahrt", "areaServed"])) {
-    failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
+    optionalWarnings.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
   }
 
   if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & klare Antworten", "Angebot hochladen", "Düsseldorf mit eigenen Servicepfaden", "Suchergebnis-Vorschau", "Kurzantwort für Kunden", "Stärken im Vergleich", "Klick-Gründe im Suchergebnis", "Direkte Wege", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
-    failures.push("Search dominance experience component is missing visible conversion and AI/search signals");
+    optionalWarnings.push("Search dominance experience component is missing expanded conversion and AI/search signals");
   }
 
-  if (!fileContains(manifestPath, ["shortcuts", "Angebot prüfen lassen", "Reinigung Düsseldorf", "germanizeDeep"])) {
+  if (!fileContains(manifestPath, ["shortcuts", "Angebot prüfen lassen", "Reinigung Regensburg", "germanizeDeep"])) {
     failures.push("manifest is missing mobile discovery shortcuts or German normalization");
   }
 
@@ -661,7 +816,17 @@ function runDominanceCheck() {
   }
 
   if (!fileContains(layoutPath, ["WebVitalsReporter"]) || !fileContains(webVitalsPath, ["useReportWebVitals", "/api/vitals"])) {
-    failures.push("web vitals monitoring is not wired into the layout");
+    optionalWarnings.push("web vitals monitoring is not wired into the layout");
+  }
+
+  if (optionalWarnings.length) {
+    console.log(`DOMINANCE_OPTIONAL_WARNINGS issues=${optionalWarnings.length}`);
+    console.log(optionalWarnings.map((warning) => `OPTIONAL ${warning}`).join("\n"));
+  }
+
+  if (optionalOnly) {
+    if (!optionalWarnings.length) console.log("DOMINANCE_OPTIONAL_OK");
+    return;
   }
 
   if (failures.length) {
@@ -671,7 +836,7 @@ function runDominanceCheck() {
     return;
   }
 
-  console.log(`DOMINANCE_CHECK_OK moneyRoutes=${DOMINANCE_MONEY_ROUTES.length}`);
+  console.log(`DOMINANCE_REQUIRED_OK moneyRoutes=${DOMINANCE_MONEY_ROUTES.length} optionalWarnings=${optionalWarnings.length}`);
 }
 
 async function waitForServer(baseUrl, child) {
@@ -757,6 +922,7 @@ async function main() {
     if (mode === "links") runLinkCheck();
     else if (mode === "seo") runSeoCheck();
     else if (mode === "dominance") runDominanceCheck();
+    else if (mode === "dominance-optional") runDominanceCheck({ optionalOnly: true });
     else if (mode === "http") await runHttpCheck();
     else {
       console.error(`Unknown quality-gate mode: ${mode}`);

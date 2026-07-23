@@ -31,16 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FLOXANT Einsatzradar Regensburg – Umzug, Reinigung & Entrümpelung",
     description:
       "Anonymisierte Einsatzarten und Servicebereiche von FLOXANT im Raum Regensburg: Umzug, Reinigung, Entrümpelung, Transport, Übergabe, Rückfahrt und Objektvorbereitung.",
-    keywords: [
-      "FLOXANT Regensburg Einsaetze",
-      "Umzug Reinigung Entruempelung Regensburg",
-      "Servicegebiet FLOXANT Regensburg",
-      "Umzug Regensburg Umgebung",
-      "Reinigung Regensburg Umgebung",
-      "Rueckfahrt Transport Regensburg",
-      "Wohnungsuebergabe Regensburg",
-      "Mieterwechsel Regensburg",
-    ],
   });
 }
 
@@ -52,7 +42,7 @@ export default function EinsatzradarRegensburgPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Einsatzradar Regensburg",
         description:
-          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Duesseldorf Reinigung/Entsorgung.",
+          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Reinigung Regensburg/Entsorgung.",
         path,
         about: [
           "Einsatzradar",
@@ -76,7 +66,7 @@ export default function EinsatzradarRegensburgPage() {
           "Typische Einsatzarten fuer Umzug, Reinigung, Entruempelung, Transport, Uebergabe, Rueckfahrt und Objektvorbereitung im Raum Regensburg.",
         path,
         serviceType: "Einsatzarten und Servicezonen fuer FLOXANT Regensburg",
-        areaServed: ["Regensburg", "Umgebung Regensburg", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
+        areaServed: ["Regensburg", "Umgebung Regensburg", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -191,7 +181,7 @@ export default function EinsatzradarRegensburgPage() {
                 "Keine personenbezogenen Fotos ohne Freigabe",
                 "Keine Live- oder Heute-Behauptung",
                 "Nur grobe Regionen",
-                "Düsseldorf getrennt fuer Reinigung/Entsorgung",
+                "Regensburg getrennt fuer Reinigung/Entsorgung",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 rounded-[1rem] border border-blue-100 bg-blue-50/70 px-4 py-3 text-sm font-bold leading-6 text-blue-950">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />
@@ -259,7 +249,7 @@ export default function EinsatzradarRegensburgPage() {
               Typische Anfrage senden
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/einsatzgebiet-regensburg-200km" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700">
+            <Link href="/regensburg" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700">
               Servicegebiet ansehen
             </Link>
           </div>

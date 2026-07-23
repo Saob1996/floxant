@@ -36,7 +36,7 @@ export type SignatureServiceId =
   | "short_notice"
   | "plan_b_service"
   | "premium_discreet"
-  | "duesseldorf_b2b_cleaning"
+  | "regensburg_b2b_cleaning"
   | "duesseldorf_disposal";
 
 type ServiceContent = {
@@ -97,7 +97,7 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
   clear_cleaning: {
     title: "Entrümpelung + Reinigung kombiniert",
     desc: "Für Räume, Keller, Wohnungen oder kleinere Räumungen, die nach dem Leeren nicht unfertig zurückbleiben sollen.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     label: "Räumung planen",
     eyebrow: "Räumung",
     icon: PackageOpen,
@@ -131,17 +131,17 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     accent: "from-emerald-600 via-teal-500 to-blue-500",
   },
   platform_order_check: {
-    title: "Plattform-Auftrag neutral pruefen",
-    desc: "Fuer Kunden mit Angebot, Screenshot oder Plattform-Anfrage, wenn Umfang, Preis, Termin oder Zusatzleistungen vor Zusage unklar sind.",
+    title: "Plattform-Auftrag neutral prüfen",
+    desc: "Für Kunden mit Angebot, Screenshot oder Plattform-Anfrage, wenn Umfang, Preis, Termin oder Zusatzleistungen vor Zusage unklar sind.",
     href: "/plattform-auftrag-pruefen",
-    label: "Plattformfall pruefen",
-    eyebrow: "Zweite Einschaetzung",
+    label: "Plattformfall prüfen",
+    eyebrow: "Zweite Einschätzung",
     icon: FileSearch,
     accent: "from-blue-700 via-cyan-500 to-slate-500",
   },
   property_ready_service: {
     title: "Immobilie verkaufsbereit machen",
-    desc: "Fuer Eigentuemer, Makler und Erbengemeinschaften, wenn Raeumung, Reinigung, Entsorgung oder Fotos vor Verkauf oder Besichtigung offen sind.",
+    desc: "Für Eigentümer, Makler und Erbengemeinschaften, wenn Räumung, Reinigung, Entsorgung oder Fotos vor Verkauf oder Besichtigung offen sind.",
     href: "/immobilie-verkaufsbereit-machen",
     label: "Objekt vorbereiten",
     eyebrow: "Property-Ready",
@@ -149,9 +149,9 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     accent: "from-stone-950 via-amber-700 to-stone-400",
   },
   estate_clearance: {
-    title: "Nachlass-Raeumung diskret",
-    desc: "Fuer Angehoerige, Erben und Eigentuemer, wenn Wohnung, Haus, Keller oder Garage nach Erbfall ruhig geraeumt, entsorgt oder gereinigt werden sollen.",
-    href: "/nachlass-raeumung-regensburg",
+    title: "Nachlass-Räumung diskret",
+    desc: "Für Angehörige, Erben und Eigentümer, wenn Wohnung, Haus, Keller oder Garage nach Erbfall ruhig geräumt, entsorgt oder gereinigt werden sollen.",
+    href: "/regensburg/haushaltsaufloesung",
     label: "Nachlass-Fall senden",
     eyebrow: "Diskret",
     icon: Shield,
@@ -159,7 +159,7 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
   },
   discreet_move: {
     title: "Diskreter Auszug bei Trennung",
-    desc: "Fuer sensible private Auszugssituationen mit Rueckruf, sicherer Kontaktmethode, Transport, Reinigung und Uebergabe nach Absprache.",
+    desc: "Für sensible private Auszugssituationen mit Rückruf, sicherer Kontaktmethode, Transport, Reinigung und Übergabe nach Absprache.",
     href: "/diskreter-umzug-trennung-scheidung",
     label: "Diskret anfragen",
     eyebrow: "Diskret",
@@ -176,10 +176,10 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     accent: "from-amber-500 via-orange-500 to-red-400",
   },
   plan_b_service: {
-    title: "Plan-B-Service fuer unsichere Ablaeufe",
-    desc: "Wenn Anbieter, Helfer, Reinigung, Entsorgung oder Uebergabe wackeln, prueft FLOXANT nach Verfuegbarkeit einen Ersatz- oder Ergaenzungsplan.",
+    title: "Plan-B-Service für unsichere Abläufe",
+    desc: "Wenn Anbieter, Helfer, Reinigung, Entsorgung oder Übergabe wackeln, prüft FLOXANT nach Verfügbarkeit einen Ersatz- oder Ergänzungsplan.",
     href: "/plan-b-service",
-    label: "Plan B pruefen",
+    label: "Plan B prüfen",
     eyebrow: "Backup",
     icon: Shield,
     accent: "from-slate-950 via-cyan-700 to-amber-500",
@@ -193,10 +193,10 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     icon: Shield,
     accent: "from-slate-950 via-blue-900 to-amber-500",
   },
-  duesseldorf_b2b_cleaning: {
-    title: "Firmenreinigung Düsseldorf",
+  regensburg_b2b_cleaning: {
+    title: "Firmenreinigung Regensburg",
     desc: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen, wenn Fläche, Turnus, Zeitfenster und Zugang klar geprüft werden sollen.",
-    href: "/duesseldorf/bueroreinigung",
+    href: "/regensburg/bueroreinigung",
     label: "Firmenreinigung",
     eyebrow: "Düsseldorf",
     icon: BriefcaseBusiness,
@@ -243,7 +243,7 @@ const signatureIconBackgrounds = Object.freeze({
   short_notice: "linear-gradient(135deg, #f59e0b 0%, #f97316 54%, #f87171 100%)",
   plan_b_service: "linear-gradient(135deg, #020617 0%, #0e7490 54%, #f59e0b 100%)",
   premium_discreet: "linear-gradient(135deg, #020617 0%, #1e3a8a 55%, #f59e0b 100%)",
-  duesseldorf_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
+  regensburg_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
   duesseldorf_disposal: "linear-gradient(135deg, #ea580c 0%, #f59e0b 55%, #334155 100%)",
 } satisfies Record<SignatureServiceId, string>);
 

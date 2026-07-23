@@ -13,12 +13,18 @@ import {
 
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { FloxantObjectBriefBuilder } from "@/components/FloxantObjectBriefBuilder";
+import { MissingInfoHelper } from "@/components/MissingInfoHelper";
+import { ObjectBriefPreview } from "@/components/ObjectBriefPreview";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RelatedSignatureSuggestion } from "@/components/RelatedSignatureSuggestion";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/objektbrief";
 const canonical = `${company.url}${path}`;
+const objectBriefContactHref = "/kontakt?service=reinigung&city=regensburg&intent=objektbrief-uebergabe&source=seo";
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -37,7 +43,7 @@ const whatsappHref = buildWhatsAppHref(
 const faqItems = [
   {
     q: "Was ist der FLOXANT Objektbrief?",
-    a: "Der Objektbrief ist ein kurzer, strukturierter Startpunkt für Anfragen. Er sammelt Region, Leistung, Ort, Termin, Zugang, Fotos und optional einen Budgetrahmen, damit FLOXANT den Fall besser einordnen kann.",
+    a: "Der Objektbrief ist ein kurzer, kurzer Einstieg für Anfragen. Er sammelt Region, Leistung, Ort, Termin, Zugang, Fotos und optional einen Budgetrahmen, damit FLOXANT den Fall besser einordnen kann.",
   },
   {
     q: "Muss ich den Objektbrief vollständig ausfüllen?",
@@ -70,7 +76,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Objektbrief",
     description:
-      "Ein klarer Weg für bessere Anfragen: Ziel, Fotos, Zugang, Termin und Budgetrahmen strukturiert senden.",
+      "Ein klarer Weg für bessere Anfragen: Ziel, Fotos, Zugang, Termin und Budgetrahmen übersichtlich senden.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -89,11 +95,11 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Objektbrief",
         description:
-          "FLOXANT Objektbrief für strukturierte Anfragen zu Reinigung, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
+          "FLOXANT Objektbrief für Anfragen mit konkreten Eckdaten zu Reinigung, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
         path,
         about: [
           "Objektbrief",
-          "Reinigung Düsseldorf",
+          "Reinigung Regensburg",
           "Umzug Regensburg",
           "Entrümpelung Regensburg",
           "Angebot prüfen",
@@ -101,7 +107,7 @@ function JsonLd() {
         ],
         potentialActions: [
           { name: "Objektbrief per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
-          { name: "Düsseldorf Reinigung anfragen", target: "/duesseldorf/reinigung", type: "Action" },
+          { name: "Regensburg Reinigung anfragen", target: "/regensburg/reinigung", type: "Action" },
           { name: "Regensburg Services ansehen", target: "/regensburg", type: "Action" },
         ],
       }),
@@ -119,23 +125,30 @@ function JsonLd() {
 
 const useCases = [
   {
-    title: "Düsseldorf: Reinigung besser einschätzen",
+    title: "Regensburg: Reinigung besser einschätzen",
     text: "Für Büro, Praxis, Gewerbefläche, Wohnung, Treppenhaus oder Übergabe werden Ort, Fläche, Zustand, Turnus, Fotos und Zugang gemeinsam betrachtet.",
-    href: "/duesseldorf/reinigung",
-    cta: "Reinigung Düsseldorf öffnen",
+    href: "/regensburg/reinigung",
+    cta: "Reinigung Regensburg öffnen",
     Icon: Building2,
   },
   {
     title: "Regensburg: Wechsel und Übergabe vorbereiten",
-    text: "Für Umzug, Entrümpelung, Haushaltsauflösung oder Endreinigung hilft ein klares Bild aus Ort, Termin, Umfang, Zugang und Fotos.",
-    href: "/regensburg",
-    cta: "Regensburg öffnen",
+    text: "Für Umzug, Entrümpelung, Haushaltsauflösung oder Endreinigung vor Übergabe hilft ein klares Bild aus Ort, Termin, Umfang, Zugang und Fotos.",
+    href: "/regensburg/endreinigung",
+    cta: "Endreinigung öffnen",
     Icon: ClipboardCheck,
+  },
+  {
+    title: "Vermieter-Ready: Objekt sortieren",
+    text: "Wenn Reinigung, Restmengen, Schlüsselweg, Fotos und Übergabe-Sprint zusammenhängen, kann der Objektbrief die erste Sortierung übernehmen.",
+    href: "/vermieter-ready-service",
+    cta: "Vermieter-Ready ansehen",
+    Icon: Camera,
   },
   {
     title: "Angebot prüfen lassen",
     text: "Wenn schon ein Angebot vorliegt, kann FLOXANT Umfang, Zusatzpunkte, Termin, Zugang und Preisrahmen besser nachvollziehen.",
-    href: "/angebot-vergleichen-duesseldorf",
+    href: "/angebot-vergleichen-regensburg",
     cta: "Angebot prüfen",
     Icon: BadgeCheck,
   },
@@ -146,7 +159,7 @@ const qualityPoints = [
   "Fotos und Terminlage werden von Anfang an mitgedacht",
   "Ein Anfrage-Kurzzeichen hilft bei WhatsApp, Telefon und Formular",
   "Budgetrahmen möglich, aber ohne Preisgarantie",
-  "Düsseldorf und Regensburg bleiben sauber getrennt",
+  "Regensburg und Umgebung bleiben sauber getrennt",
 ] as const;
 
 export default function ObjektbriefPage() {
@@ -156,10 +169,11 @@ export default function ObjektbriefPage() {
 
       <section className="relative isolate min-h-[78svh] overflow-hidden bg-slate-950 px-5 pb-12 pt-32 text-white sm:px-8 lg:px-10">
         <Image
-          src="/assets/floxant-hero-neu-gedacht.png"
-          alt="FLOXANT Objektbrief für strukturierte Anfragen"
+          src="/assets/floxant-hero-neu-gedacht.webp"
+          alt="FLOXANT Objektbrief für Anfragen mit konkreten Eckdaten"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover object-center opacity-55"
         />
@@ -171,7 +185,7 @@ export default function ObjektbriefPage() {
               FLOXANT Objektbrief
             </p>
             <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.98] tracking-normal sm:text-6xl lg:text-7xl">
-              Besser anfragen. Klarer entscheiden.
+              Objektbrief: Ihre Anfrage mit Fotos und Eckdaten vorbereiten.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-100">
               Der Objektbrief hilft, wenn mehrere Dinge zusammenkommen: Reinigung, Umzug,
@@ -180,13 +194,27 @@ export default function ObjektbriefPage() {
               WhatsApp, Telefon oder Formular nennen können.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={objectBriefContactHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
+                data-event="seo_cta_click"
+                data-service="reinigung"
+                data-city="regensburg"
+                data-page-intent="objektbrief-uebergabe"
+                data-priority="p1"
+                data-cta-label="Objektbrief anfragen"
+                data-destination={objectBriefContactHref}
+              >
+                Objektbrief anfragen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               <a
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
                 data-event="whatsapp_click"
-                data-region="duesseldorf-regensburg"
+                data-region="regensburg-umgebung"
                 data-source="object_brief_hero"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -194,7 +222,7 @@ export default function ObjektbriefPage() {
               </a>
               <a
                 href="#schnellstart"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
                 data-event="hero_cta_click"
                 data-source="object_brief_hero"
               >
@@ -257,6 +285,20 @@ export default function ObjektbriefPage() {
       <div id="schnellstart" className="scroll-mt-24">
         <FloxantObjectBriefBuilder />
       </div>
+
+      <RequestChecklistBlock
+        serviceKey="objektbrief"
+        ctaHref={objectBriefContactHref}
+        ctaLabel="Objektbrief mit Eckdaten senden"
+      />
+
+      <ObjectBriefPreview serviceKey="objektbrief" />
+
+      <PhotoGuidanceBlock serviceKey="objektbrief" />
+
+      <MissingInfoHelper serviceKey="objektbrief" />
+
+      <RelatedSignatureSuggestion serviceKey="objektbrief" />
 
       <FloxantObjectBrief variant="homepage" className="border-t border-slate-200" />
 

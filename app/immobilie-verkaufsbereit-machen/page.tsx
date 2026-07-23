@@ -33,20 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Immobilie verkaufsbereit machen - Raeumung, Reinigung & Entsorgung | FLOXANT",
   description:
     "FLOXANT unterstuetzt Eigentuemer, Makler und Erbengemeinschaften: Wohnung oder Haus vor Verkauf, Besichtigung oder Expose raeumen, entsorgen und reinigen lassen.",
-  keywords: [
-    "immobilie verkaufsbereit machen",
-    "wohnung fuer verkauf vorbereiten",
-    "haus fuer verkauf vorbereiten",
-    "wohnung vor besichtigung reinigen",
-    "immobilie vor besichtigung reinigen",
-    "wohnung entruempeln vor verkauf",
-    "makler wohnung vorbereiten regensburg",
-    "erbengemeinschaft wohnung raeumen lassen",
-    "wohnung fuer expose vorbereiten",
-    "keller raeumen vor verkauf",
-    "garage entruempeln vor hausverkauf",
-    "reinigung vor immobilienverkauf regensburg",
-  ],
 });
 
 const whatsappHref =
@@ -156,7 +142,7 @@ const audiences = [
   {
     title: "Fuer Hausverwaltungen",
     text:
-      "Wenn Objektwechsel, Mieterwechsel, Nebenraeume oder Besichtigungen strukturiert mit Fotos und Termin gesendet werden sollen.",
+      "Wenn Objektwechsel, Mieterwechsel, Nebenraeume oder Besichtigungen zusammen mit Fotos und Termin gesendet werden sollen.",
     cta: "Objektfall fuer Hausverwaltung senden",
     Icon: Building2,
   },
@@ -215,13 +201,13 @@ const relatedLinks = [
   { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
   { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreten Auszug ruhig klaeren" },
   { href: "/keller-muellraum-rettung-regensburg", label: "Keller und Garage vor Verkauf raeumen" },
-  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung vor Besichtigung" },
+  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung vor Besichtigung" },
   { href: "/private-client-service", label: "Diskrete Objektvorbereitung" },
-  { href: "/einsatzgebiet-regensburg-200km", label: "Servicegebiet Regensburg" },
+  { href: "/regensburg", label: "Regensburg-Bereich" },
   { href: "/buchung", label: "Buchung / Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschaetzen" },
-  { href: "/duesseldorf/reinigung", label: "Duesseldorf Reinigung separat" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg separat" },
   { href: "/entsorgung-duesseldorf", label: "Duesseldorf Entsorgung separat" },
 ];
 
@@ -268,7 +254,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt separat auf Reinigung und Entsorgung begrenzt.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Regensburg werden nach Verfuegbarkeit geprueft. Regensburg bleibt separat auf Reinigung und Entsorgung begrenzt.",
   },
   {
     q: "Ist kurzfristige Vorbereitung moeglich?",
@@ -372,7 +358,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                     "Fotos helfen, Umfang und Prioritaet schneller zu klaeren.",
                     "Schluesselstatus und Zugang werden nicht nebenbei behandelt.",
                     "Uebergabeakte und Foto-Dokumentation sind nach Absprache moeglich.",
-                    "Duesseldorf bleibt auf Reinigung und Entsorgung begrenzt.",
+                    "Regensburg bleibt auf Reinigung und Entsorgung begrenzt.",
                   ].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-amber-100 bg-amber-50 p-4 text-sm font-bold leading-6 text-amber-950">
                       <CheckCircle2 className="mb-2 h-5 w-5 text-amber-700" />
@@ -527,7 +513,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                 </div>
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <ShieldCheck className="mb-2 h-5 w-5 text-amber-700" />
-                  <p className="text-sm leading-7 text-stone-700">FLOXANT ersetzt keine Maklerleistung, Bewertung, Renovierung, rechtliche Pruefung oder Verkaufsgarantie.</p>
+                  <p className="text-sm leading-7 text-stone-700">FLOXANT übernimmt weder Maklerleistung noch Bewertung, Renovierung oder rechtliche Prüfung. Über Verkauf und Preis entscheiden die dafür verantwortlichen Beteiligten.</p>
                 </div>
               </div>
             </div>
@@ -566,7 +552,7 @@ export default function ImmobilieVerkaufsbereitPage() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {relatedLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-amber-300 hover:bg-amber-50">
+                <Link key={item.href} href={item.href} prefetch={false} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-amber-300 hover:bg-amber-50">
                   {item.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>

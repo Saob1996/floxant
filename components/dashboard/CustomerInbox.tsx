@@ -77,6 +77,7 @@ export function CustomerInbox({ bookings, onOpenBooking }: CustomerInboxProps) {
       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
       <input
        type="text"
+       aria-label="Kundenanfragen suchen"
        placeholder="Suchen..."
        value={searchTerm}
        onChange={(e) => setSearchTerm(e.target.value)}
@@ -116,10 +117,11 @@ export function CustomerInbox({ bookings, onOpenBooking }: CustomerInboxProps) {
         "Regensburg";
 
        return (
-        <div
+        <button
+         type="button"
          key={booking.id}
          onClick={() => onOpenBooking(booking, "request")}
-         className="group cursor-pointer rounded-[1.5rem] border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-900/5"
+         className="group w-full cursor-pointer rounded-[1.5rem] border border-slate-200 bg-white p-5 text-left transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-900/5"
         >
          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="space-y-3">
@@ -167,13 +169,13 @@ export function CustomerInbox({ bookings, onOpenBooking }: CustomerInboxProps) {
           </div>
 
           <div className="flex items-center gap-3">
-           <button className="flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition group-hover:border-blue-600 group-hover:bg-blue-600 group-hover:text-foreground">
+           <span className="flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition group-hover:border-blue-600 group-hover:bg-blue-600 group-hover:text-foreground">
             Öffnen
             <ArrowRight className="h-4 w-4" />
-           </button>
+           </span>
           </div>
          </div>
-        </div>
+        </button>
        );
       })}
      </div>

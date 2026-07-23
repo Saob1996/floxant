@@ -10,6 +10,9 @@ import {
 
 import { PillarServicePage } from "@/components/PillarServicePage";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceFitGuide } from "@/components/ServiceFitGuide";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -26,15 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzug Regensburg | Umzugsfirma für Bayern",
     description:
       "Umzug in Regensburg und Bayern realistisch einordnen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
-    keywords: [
-      "Umzug Regensburg",
-      "Umzugsfirma Regensburg",
-      "Umzugsunternehmen Bayern",
-      "Privatumzug Regensburg",
-      "Firmenumzug Regensburg",
-      "Umzug mit Reinigung",
-      "Umzug Kosten Regensburg",
-    ],
   });
 }
 
@@ -103,7 +97,7 @@ export default async function UmzugPillarPage() {
         heroBadge="Umzug mit Fokus auf Regensburg und Bayern"
         heroTitle="Umzugsunternehmen für Regensburg und Bayern"
         heroIntro="FLOXANT organisiert Privat- und Firmenumzüge mit klaren Zuständigkeiten, planbaren Zeitfenstern und sauber abgestimmten Zusatzleistungen. Ein Umzug scheitert selten am Tragen allein, sondern an falschem Volumen, fehlenden Zeitfenstern, zu kleinen Fahrzeugen, langen Laufwegen oder ungeklärten Übergabeaufgaben."
-        heroImageSrc="/assets/service-moving.png"
+        heroImageSrc="/assets/service-moving.webp"
         heroImageAlt="FLOXANT Umzug in Regensburg und Bayern"
         heroCards={[
           { label: "Planung", value: "Route, Volumen und Zugang sauber erfasst" },
@@ -115,7 +109,7 @@ export default async function UmzugPillarPage() {
           {
             icon: Package,
             title: "Was ist das?",
-            text: "Ein strukturierter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung statt improvisiertem Transport.",
+            text: "Ein geplanter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung statt improvisiertem Transport.",
           },
           {
             icon: ShieldCheck,
@@ -170,17 +164,24 @@ export default async function UmzugPillarPage() {
           { href: "/property-operations", label: "Immobilienbetreuung mit Uebergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
-          { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
+          { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
         ]}
         cityLinksTitle="Umzug lokal in wichtigen Regionen"
         cityLinks={[
-          { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+          { href: "/regensburg/umzug", label: "Umzug Regensburg" },
           { href: "/umzug-muenchen", label: "Umzug München" },
           { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
           { href: "/umzug-augsburg", label: "Umzug Augsburg" },
           { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
           { href: "/umzug-weiden", label: "Umzug Weiden" },
         ]}
+      />
+      <ServicePackageSelector groups="umzug" limit={7} />
+      <EffortFactorsPanel group="umzug" />
+      <ServiceFitGuide
+        group="umzug"
+        title="Vom Mini-Transport bis Plan B: welcher Umzugspfad passt?"
+        intro="Volumen, Etagen, Zeitfenster und Sonderstuecke entscheiden, ob Mini-Umzug, Privatumzug, Beiladung oder Plan B der bessere Start ist."
       />
       <PsychologicalCleaningInternalLinks
         title="Reinigung und Uebergabe nach dem Umzug"

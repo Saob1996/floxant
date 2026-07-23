@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "24h-umzugsservice",
-    title: content.meta_title || "24h Umzugsservice | FLOXANT",
-    description: content.meta_desc || "24h Umzugsservice von FLOXANT in Bayern mit kurzer Vorprüfung.",
+    title: content.meta_title || "Kurzfristigen Umzug anfragen | FLOXANT",
+    description: content.meta_desc || "Kurzfristigen Umzug in Bayern anfragen. FLOXANT prüft Termin, Umfang, Zugänge und verfügbare Kapazität.",
   });
 }
 
@@ -39,7 +39,7 @@ const urgentMoveCards = [
     Icon: Truck,
     title: "Umzug mit Abbau und Tragen",
     text: "Für Möbel, Kartons, Demontagewunsch und Tragewege. Je genauer die Fotos, desto schneller lässt sich der Aufwand einschätzen.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Umzug anfragen",
   },
   {
@@ -91,7 +91,7 @@ export default async function UmzugsService24hPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Services", href: "/#services" }, { label: "24h Umzugsservice" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Leistungen", href: "/#services" }, { label: "Kurzfristiger Umzug" }]} />
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden section-glow">
@@ -104,7 +104,7 @@ export default async function UmzugsService24hPage() {
             {content.badge || "FLOXANT Service"}
           </span>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-slate-950 mb-6 leading-[1.05]">
-            {content.hero_title || "24h Umzugsservice"}
+            {content.hero_title || "Kurzfristigen Umzug anfragen"}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             {content.hero_desc}

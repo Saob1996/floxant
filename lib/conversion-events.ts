@@ -135,13 +135,13 @@ export function classifyConversionEvent(input: ConversionEventInput): Conversion
  if (/(critical|hot|priority|high)/.test(priorityFlag)) {
   addSignal(state, 16, "priority_cta");
  }
- if (/(view high intent page|page dwell|booking page dwell|calculator page dwell|offer check page dwell|urgent plan page dwell|signature service page dwell|service area page dwell|duesseldorf cleaning page dwell)/.test(combined)) {
+ if (/(view high intent page|page dwell|booking page dwell|calculator page dwell|offer check page dwell|urgent plan page dwell|signature service page dwell|service area page dwell|regensburg cleaning page dwell)/.test(combined)) {
   addSignal(state, 18, "high_intent_page_dwell");
  }
  if (/(angebot guenstiger|angebot vergleichen|offer comparison|angebotscheck|plattform auftrag|plan b|schadensbegrenzung|buchung|rechner)/.test(combined)) {
   addSignal(state, 10, "commercial_page_intent");
  }
- if (/((regensburg|bayern|duesseldorf).*(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal)|(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal).*(regensburg|bayern|duesseldorf))/.test(combined)) {
+ if (/((regensburg|regensburg|regensburg).*(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal)|(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal).*(regensburg|regensburg|regensburg))/.test(combined)) {
   addSignal(state, 8, "local_service_context");
  }
 

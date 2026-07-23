@@ -20,6 +20,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
@@ -31,6 +35,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/baureinigung-regensburg";
@@ -166,12 +171,12 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/endreinigung-regensburg", label: "Endreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -184,17 +189,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Baureinigung Regensburg | Bauendreinigung & Staub | FLOXANT",
     description:
       "Baureinigung und Bauendreinigung in Regensburg nach Renovierung, Sanierung oder Handwerkern. Baustaub, Fenster, Boden, Zugang, Fotos und Angebot prüfen.",
-    keywords: [
-      "Baureinigung Regensburg",
-      "Bauendreinigung Regensburg",
-      "Baufeinreinigung Regensburg",
-      "Reinigung nach Renovierung Regensburg",
-      "Handwerkerstaub entfernen Regensburg",
-      "Wohnung nach Sanierung reinigen Regensburg",
-      "Baustaub Reinigung Regensburg",
-      "Baureinigung Kosten Regensburg",
-      "Reinigung nach Handwerkern Regensburg",
-    ],
   });
 }
 
@@ -209,7 +203,7 @@ export default function BaureinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Baureinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -219,7 +213,7 @@ export default function BaureinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Baureinigung, Bauendreinigung, Baufeinreinigung und Reinigung nach Renovierung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Baureinigung Regensburg nach Renovierung, Sanierung und Handwerkern",
@@ -264,7 +258,7 @@ export default function BaureinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Baureinigung Regensburg" },
         ]}
       />
@@ -324,7 +318,7 @@ export default function BaureinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Renovierungsbereich als Beispiel für Baureinigung und Bauendreinigung in Regensburg"
                 fill
                 priority
@@ -368,9 +362,28 @@ export default function BaureinigungRegensburgPage() {
           "/baustaub-ende",
           "/grundreinigung-regensburg",
           "/fensterreinigung-regensburg",
-          "/gewerbereinigung-regensburg",
+          "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=baureinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Baureinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Bauzustand vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Baureinigung"
+        intro="Diese Links verbinden Baustaub, Grundreinigung, Fensterreinigung, Gewerbe und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">

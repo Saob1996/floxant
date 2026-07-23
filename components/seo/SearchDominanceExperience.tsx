@@ -19,7 +19,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 
-type SearchDominanceVariant = "default" | "offer" | "duesseldorf" | "pillar";
+type SearchDominanceVariant = "default" | "offer" | "regensburg" | "pillar";
 
 type SearchDominanceCard = {
   title: string;
@@ -79,16 +79,16 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Niemand soll raten, welcher Service passt. Diese Seite führt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg ergänzt Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+      "Regensburg und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg bleibt auf die konkrete Anfrage in Regensburg und Umgebung ausgerichtet.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
-      "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
+      "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg und Umgebung.",
     aiAnswer:
-      "FLOXANT passt, wenn Sie Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung oder eine direkte Anfrage im Raum Regensburg/Bayern klären möchten.",
+      "FLOXANT passt, wenn Sie Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung oder eine direkte Anfrage in Regensburg und Umgebung klären möchten.",
     clickReasons: [
       "Direkte Anfrage statt Vergleichsportal",
       "Fotos, Termin und Budget sofort möglich",
-      "Regensburg als Standort mit Bayern-Reichweite",
+      "Regensburg als klarer lokaler Standort",
       "Kunden sehen sofort: anfragen, Preisrahmen prüfen oder Angebot senden",
     ],
     searchAppearance: [
@@ -126,8 +126,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Region ansehen",
-        text: "Regensburg, 200 km und Bayern nach Verfügbarkeit einordnen.",
-        href: "/einsatzgebiet-regensburg-200km",
+        text: "Regensburg und Umgebung nach Ort, Umfang und Termin einordnen.",
+        href: "/regensburg",
         Icon: MapPin,
       },
     ],
@@ -144,7 +144,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Servicegebiet",
-        text: "Regensburg, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sauber erklärt.",
+        text: "Regensburg und Umgebung werden nach Ort, Umfang, Termin und Machbarkeit sauber eingeordnet.",
         Icon: Radar,
       },
       {
@@ -160,7 +160,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchChips: [
       "Umzug Regensburg",
       "Reinigung Regensburg",
-      "Entrümpelung Bayern",
+      "Entrümpelung Regensburg",
       "Angebot prüfen lassen",
       "FLOXANT direkt anfragen",
       "Hausauflösung Regensburg",
@@ -257,7 +257,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Lokal einordnen",
-        text: "Ort, PLZ, Termin und Serviceart verbinden die Angebotsprüfung mit Regensburg/Bayern.",
+        text: "Ort, PLZ, Termin und Serviceart verbinden die Angebotsprüfung mit Regensburg und Umgebung.",
         Icon: MapPin,
       },
       {
@@ -301,20 +301,20 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
     ],
   },
-  duesseldorf: {
-    eyebrow: "Lokale Services in Düsseldorf",
-    title: "Düsseldorf ist bei FLOXANT klar lokal getrennt.",
+  regensburg: {
+    eyebrow: "Lokale Services in Regensburg",
+    title: "Regensburg ist bei FLOXANT klar lokal getrennt.",
     intro:
-      "Für Düsseldorf gibt es eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung nach Absprache.",
+      "Für Regensburg gibt es eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung nach Absprache.",
     proofLine:
-      "Düsseldorf mit klarer Orientierung: Umzug, Reinigung, Entrümpelung und Übergabe werden passend zum Ort geprüft.",
-    serpTitle: "FLOXANT Düsseldorf: Umzug, Reinigung & Räumung",
+      "Regensburg mit klarer Orientierung: Umzug, Reinigung, Entrümpelung und Übergabe werden passend zum Ort geprüft.",
+    serpTitle: "FLOXANT Regensburg: Umzug, Reinigung & Räumung",
     serpDescription:
-      "Düsseldorf ist bei FLOXANT klar lokal geführt. Leistung, Objekt, Fotos, Zugang, Termin und Ziel senden.",
+      "Regensburg ist bei FLOXANT klar lokal geführt. Leistung, Objekt, Fotos, Zugang, Termin und Ziel senden.",
     aiAnswer:
-      "FLOXANT Düsseldorf passt für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung, wenn Ort, Umfang, Fotos, Zugang und Termin geprüft werden sollen.",
+      "FLOXANT Regensburg passt für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung, wenn Ort, Umfang, Fotos, Zugang und Termin geprüft werden sollen.",
     clickReasons: [
-      "Düsseldorf klar getrennt",
+      "Regensburg klar getrennt",
       "Objekt, Fläche und Zeitfenster senden",
       "Umzug, Reinigung und Räumung getrennt anfragen",
       "Vorhandenes Angebot sachlich prüfen",
@@ -323,7 +323,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchAppearance: [
       {
         label: "Titel",
-        text: "Düsseldorf steht mit eigenen Seiten für Umzug, Reinigung und Räumung.",
+        text: "Regensburg steht mit eigenen Seiten für Umzug, Reinigung und Räumung.",
       },
       {
         label: "Kurztext",
@@ -337,39 +337,39 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchActions: [
       {
         label: "Umzug senden",
-        text: "Umzug in Düsseldorf mit Fotos, Etagen, Zugang und Termin prüfen lassen.",
-        href: "/duesseldorf/umzug",
+        text: "Umzug in Regensburg mit Fotos, Etagen, Zugang und Termin prüfen lassen.",
+        href: "/regensburg/umzug",
         Icon: Sparkles,
       },
       {
         label: "Firma prüfen",
         text: "Fläche, Turnus und Zeitfenster für kleine Unternehmen senden.",
-        href: "/duesseldorf/bueroreinigung",
+        href: "/regensburg/bueroreinigung",
         Icon: CheckCircle2,
       },
       {
         label: "Räumung klären",
         text: "Entrümpelung oder Haushaltsauflösung mit Fotos und Zielzustand senden.",
-        href: "/duesseldorf/entruempelung",
+        href: "/regensburg/entruempelung",
         Icon: Camera,
       },
       {
         label: "Entsorgung ergänzen",
         text: "Gegenstände, Möbel oder Restmengen separat prüfen.",
-        href: "/entsorgung-duesseldorf",
+        href: "/firmenentsorgung",
         Icon: Radar,
       },
       {
         label: "Angebot prüfen",
-        text: "Vorhandenes Reinigungsangebot aus Düsseldorf einordnen lassen.",
-        href: "/duesseldorf/vielleicht-guenstiger",
+        text: "Vorhandenes Reinigungsangebot aus Regensburg einordnen lassen.",
+        href: "/angebot-vergleichen-regensburg",
         Icon: FileSearch,
       },
     ],
     localTrustSignals: [
       {
-        label: "Düsseldorf klar",
-        text: "Düsseldorf trennt Umzug, Reinigung, Entrümpelung und Entsorgung über klare Kontaktmöglichkeiten.",
+        label: "Regensburg klar",
+        text: "Regensburg trennt Umzug, Reinigung, Entrümpelung und Entsorgung über klare Kontaktmöglichkeiten.",
         Icon: ShieldCheck,
       },
       {
@@ -388,31 +388,31 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Camera,
       },
     ],
-    primaryHref: "/duesseldorf/umzug",
+    primaryHref: "/regensburg/umzug",
     primaryLabel: "Umzug anfragen",
-    secondaryHref: "/duesseldorf/bueroreinigung",
+    secondaryHref: "/regensburg/bueroreinigung",
     secondaryLabel: "Firmenreinigung",
     searchChips: [
-      "Reinigung Düsseldorf",
-      "Reinigungsbetrieb Düsseldorf",
-      "Reinigungsunternehmen Düsseldorf",
-      "Büroreinigung Düsseldorf",
-      "Büro reinigen Düsseldorf",
+      "Reinigung Regensburg",
+      "Reinigungsbetrieb Regensburg",
+      "Reinigungsunternehmen Regensburg",
+      "Büroreinigung Regensburg",
+      "Büro reinigen Regensburg",
       "Reinigungsfirma Preise",
-      "Bodenreinigung Düsseldorf",
+      "Bodenreinigung Regensburg",
       "Treppenhausreinigung",
       "Hauseingang Reinigung",
       "Gewerbeobjekt Reinigung",
-      "Gebäudereinigung Pempelfort",
+      "Gebäudereinigung Stadtamhof",
       "Gebäudereinigung Altstadt",
-      "Reinigungsservice Düsseldorf",
-      "Praxisreinigung Düsseldorf",
+      "Reinigungsservice Regensburg",
+      "Praxisreinigung Regensburg",
     ],
     steps: ["Objekt", "Fläche", "Turnus", "Zeitfenster", "Anfrage"],
     cards: [
       {
         title: "Leistungen klar getrennt",
-        text: "Düsseldorf-Seiten führen zu Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Gewerbeobjekte.",
+        text: "Regensburg-Seiten führen zu Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Gewerbeobjekte.",
         Icon: Radar,
       },
       {
@@ -566,24 +566,24 @@ function getCustomerChoices(variant: SearchDominanceVariant): CustomerChoice[] {
     ];
   }
 
-  if (variant === "duesseldorf") {
+  if (variant === "regensburg") {
     return [
       {
         label: "Ich brauche Reinigung",
         text: "Wohnung, Büro, Praxis, Treppenhaus oder Objekt mit Fotos anfragen.",
-        href: "/duesseldorf/reinigung#kontakt",
+        href: "/regensburg/reinigung#kontakt",
         Icon: Sparkles,
       },
       {
         label: "Ich habe ein Angebot",
-        text: "Vorhandenen Preis oder Screenshot für Düsseldorf-Reinigung einordnen lassen.",
-        href: "/duesseldorf/vielleicht-guenstiger",
+        text: "Vorhandenen Preis oder Screenshot für Regensburg-Reinigung einordnen lassen.",
+        href: "/angebot-vergleichen-regensburg",
         Icon: FileSearch,
       },
       {
         label: "Ich bin Firma",
         text: "Fläche, Turnus, Sanitär, Büro oder Praxis schnell passend senden.",
-        href: "/duesseldorf/bueroreinigung",
+        href: "/regensburg/bueroreinigung",
         Icon: CheckCircle2,
       },
     ];
@@ -622,7 +622,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       },
       {
         label: "Region",
-        title: "Regensburg und Bayern bündeln",
+        title: "Regensburg sauber bündeln",
         text: "Die Angebotsprüfung verbindet Umzug, Reinigung, Entrümpelung, Entsorgung, Ort, Termin und Budget mit einer direkten Anfrage.",
         Icon: MapPin,
       },
@@ -641,12 +641,12 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     ];
   }
 
-  if (variant === "duesseldorf") {
+  if (variant === "regensburg") {
     return [
       {
-        label: "Düsseldorf",
-        title: "Düsseldorf klar getrennt",
-        text: "Die Seite führt zu Umzug, Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus, Entrümpelung und Entsorgung in Düsseldorf.",
+        label: "Regensburg",
+        title: "Regensburg klar getrennt",
+        text: "Die Seite führt zu Umzug, Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus, Entrümpelung und Entsorgung in Regensburg.",
         Icon: Radar,
       },
       {
@@ -708,20 +708,20 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     },
       {
         label: "Region",
-        title: "Düsseldorf und Regensburg sauber getrennt",
-        text: "Kunden sehen sofort, welche Hilfe in Düsseldorf passt und welche Leistungen über Regensburg und Bayern laufen.",
+        title: "Regensburg und Regensburg sauber getrennt",
+        text: "Kunden sehen sofort, welche Hilfe in Regensburg passt und welche Leistungen klar zu Regensburg gehören.",
         Icon: MapPin,
       },
     {
       label: "Klarer Grund",
-      title: "Passender nächster Schritt",
+      title: "So geht es weiter",
       text: "Kunden sehen sofort, ob Rechner, Buchung, Angebotsprüfung oder WhatsApp der passende nächste Schritt ist.",
       Icon: MousePointerClick,
     },
       {
         label: "Saubere Trennung",
-        title: "Düsseldorf klar getrennt",
-        text: "Kunden in Düsseldorf finden direkt die passende Anfrage für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung.",
+        title: "Regensburg klar getrennt",
+        text: "Kunden in Regensburg finden direkt die passende Anfrage für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung.",
         Icon: ShieldCheck,
       },
   ];
@@ -768,9 +768,9 @@ export function SearchDominanceExperience({
                 Google, Maps & klare Antworten
               </div>
               <div className="flex flex-wrap gap-2">
-                {config.searchChips.map((chip) => (
+                {config.searchChips.map((chip, index) => (
                   <span
-                    key={chip}
+                    key={`${chip}-${index}`}
                     className="flox-search-chip rounded-full border border-white/12 bg-white/8 px-3 py-2 text-xs font-bold text-white"
                   >
                     {chip}

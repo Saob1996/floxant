@@ -41,7 +41,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
     intro:
       "Erst wird das Anliegen sortiert, dann der passende FLOXANT-Anfrage gewählt. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
     boundary:
-      "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport, Übergabe und zusätzliche Hilfe rund um Objekt und Schlüssel. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
+      "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport, Übergabe und zusätzliche Hilfe rund um Objekt und Schlüssel. Regensburg bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
     recommendations: [
       {
         query: "Wohnung, Umzug oder Übergabe in Regensburg ist unklar.",
@@ -76,11 +76,11 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         Icon: Bot,
       },
       {
-        query: "Reinigung in Düsseldorf soll schnell eingeordnet werden.",
+        query: "Reinigung in Regensburg soll schnell eingeordnet werden.",
         answer:
-          "FLOXANT Düsseldorf passt für Wohnung, Büro, Grundreinigung, Treppenhaus, Firmenreinigung oder möblierte Wohnung. Umzug bleibt getrennt.",
-        href: "/duesseldorf/reinigung",
-        label: "Düsseldorf Reinigung",
+          "FLOXANT Regensburg passt für Wohnung, Büro, Grundreinigung, Treppenhaus, Firmenreinigung oder möblierte Wohnung. Umzug bleibt getrennt.",
+        href: "/regensburg/reinigung",
+        label: "Reinigung Regensburg",
         Icon: Sparkles,
       },
       {
@@ -120,7 +120,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
       {
         query: "Gilt das auch für Reinigung oder Entsorgung?",
         answer:
-          "Ja. Angebotsprüfung passt für Umzug, Reinigung, Entrümpelung und Entsorgung. In Düsseldorf über die jeweils passende lokale Seite.",
+          "Ja. Angebotsprüfung passt für Umzug, Reinigung, Entrümpelung und Entsorgung. In Regensburg über die jeweils passende lokale Seite.",
         href: "/plattform-auftrag-pruefen",
         label: "Plattformfall prüfen",
         Icon: CheckCircle2,
@@ -195,17 +195,17 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
   },
   duesseldorf: {
     eyebrow: "Klare Orientierung Düsseldorf",
-    title: "Düsseldorf bedeutet bei FLOXANT: Reinigung für konkrete Objekte.",
+    title: "Regensburg bedeutet bei FLOXANT: Reinigung für konkrete Objekte.",
     intro:
-      "FLOXANT Düsseldorf ist für Wohnungen, möblierte Apartments, Büros, Treppenhäuser, Grundreinigung und Firmenreinigung gedacht.",
+      "FLOXANT Regensburg ist für Wohnungen, möblierte Apartments, Büros, Treppenhäuser, Grundreinigung und Firmenreinigung gedacht.",
     boundary:
-      "Umzug, Transport und Entrümpelung als Hauptmarkt bleiben Regensburg/Bayern. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
+      "Umzug, Transport und Entrümpelung als Hauptmarkt bleiben Regensburg. Regensburg bleibt Reinigung; Entsorgung bleibt separat.",
     recommendations: [
       {
         query: "Wohnung oder Übergabe in Düsseldorf muss sauber werden.",
         answer:
-          "FLOXANT Düsseldorf passt für Wohnungsreinigung, Endreinigung, Grundreinigung, Übergabe oder möblierte Wohnung.",
-        href: "/duesseldorf/reinigung#kontakt",
+          "FLOXANT Regensburg passt für Wohnungsreinigung, Endreinigung, Grundreinigung, Übergabe oder möblierte Wohnung.",
+        href: "/regensburg/reinigung#kontakt",
         label: "Reinigung anfragen",
         Icon: Sparkles,
       },
@@ -213,7 +213,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         query: "Büro, Kanzlei, Studio oder Praxis braucht Reinigung.",
         answer:
           "FLOXANT prüft Firmenreinigung, wenn Fläche, Turnus, Zeitfenster, Zugang und Ansprechpartner geklärt werden können.",
-        href: "/duesseldorf/bueroreinigung",
+        href: "/regensburg/bueroreinigung",
         label: "Firmenreinigung",
         Icon: Building2,
       },
@@ -226,18 +226,18 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         Icon: MapPin,
       },
       {
-        query: "Reinigung im passenden Düsseldorfer Bereich gesucht.",
+        query: "Reinigung im passenden Regensburger Bereich gesucht.",
         answer:
           "Stadtteil, PLZ, Objektart, Fläche, Fotos und Termin machen daraus eine konkrete Reinigungsanfrage.",
-        href: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile",
+        href: "/blog/reinigungsfirma-regensburg-in-der-naehe-stadtteile",
         label: "Stadtteil prüfen",
         Icon: MapPin,
       },
       {
-        query: "Reinigungsunternehmen in Düsseldorf vergleichen.",
+        query: "Reinigungsunternehmen in Regensburg vergleichen.",
         answer:
           "FLOXANT prüft Angebote, wenn Umfang, Turnus, Zeitfenster, Zugang, Fotos und Zusatzpunkte vergleichbar gemacht werden sollen.",
-        href: "/blog/reinigungsunternehmen-duesseldorf-anbieter-vergleichen",
+        href: "/blog/reinigungsunternehmen-regensburg-anbieter-vergleichen",
         label: "Vergleich lesen",
         Icon: FileSearch,
       },

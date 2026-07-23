@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reinigungsfirma in Regensburg für Büro und Praxis auswählen | FLOXANT",
     description:
       "Wie Unternehmen, Praxen und Verwaltungen in Regensburg eine passende Reinigungsfirma bewerten: Turnus, Ansprechpartner, Zugang, Qualitätskontrolle und B2B-Fit.",
-    keywords: [
-      "Reinigungsfirma Regensburg Büro",
-      "Praxisreinigung Regensburg Angebot",
-      "Büroreinigung Regensburg auswählen",
-      "B2B Reinigung Regensburg",
-    ],
   });
 }
 
@@ -114,7 +108,7 @@ export default function BlogReinigungsfirmaRegensburgAuswahlPage() {
         ]}
         ctas={[
           { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },
-          { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+          { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
         ]}
         faqTitle="FAQ zur Auswahl einer Reinigungsfirma in Regensburg"

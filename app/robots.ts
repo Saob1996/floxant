@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { company } from "@/lib/company";
 
+export const dynamic = "force-static";
+
 const publicDisallow = [
   "/api",
   "/api/",

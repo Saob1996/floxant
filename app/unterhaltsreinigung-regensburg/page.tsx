@@ -21,6 +21,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
@@ -32,6 +36,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/unterhaltsreinigung-regensburg";
@@ -132,6 +137,10 @@ const faqItems = [
     a: "Ja, wenn Schlüsselzugang, Verantwortliche, Alarmanlage, Zeitfenster und Ablauf sauber geklärt sind. Viele B2B-Anfragen laufen früh, spät oder in betriebsruhigen Zeiten.",
   },
   {
+    q: "Bietet FLOXANT Unterhaltsreinigung außerhalb von 50 km an?",
+    a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
+  },
+  {
     q: "Welche Angaben braucht FLOXANT für ein Angebot?",
     a: "Wichtig sind Objektart, Ort, Fläche, Räume, Sanitär, Küche, Boden, Turnus, gewünschter Start, Zugang, Ansprechpartner und Fotos. Je klarer die Anfrage, desto schneller kann FLOXANT eine Rückfrage oder ein Angebot senden.",
   },
@@ -148,10 +157,10 @@ const relatedLinks = [
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/blog/bueroreinigung-regensburg-angebot-einholen", label: "Büroreinigung Angebot" },
   { href: "/blog/unterhaltsreinigung-regensburg-buero-praxis-hotel", label: "Ratgeber Unterhaltsreinigung" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -161,20 +170,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "unterhaltsreinigung-regensburg",
-    title: "Unterhaltsreinigung Regensburg | Büro & Objekt | FLOXANT",
+    title: "Unterhaltsreinigung Regensburg | Floxant",
     description:
-      "Unterhaltsreinigung in Regensburg für Büro, Praxis, Kanzlei, Treppenhaus und Gewerbe. Turnus, Fläche, Reinigungsplan, Fotos und Angebot prüfen.",
-    keywords: [
-      "Unterhaltsreinigung Regensburg",
-      "Büroreinigung Regensburg Angebot",
-      "Reinigungsplan Büro Regensburg",
-      "Reinigungskraft Büro Regensburg",
-      "Objektreinigung Regensburg",
-      "Gebäudereinigung Regensburg",
-      "Praxisreinigung Regensburg",
-      "Kanzleireinigung Regensburg",
-      "Treppenhausreinigung Regensburg",
-    ],
+      "Unterhaltsreinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Turnus, Raumliste, Fotos und Angebot im 50-km-Umkreis prüfen.",
   });
 }
 
@@ -189,7 +187,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Unterhaltsreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -199,7 +197,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Unterhaltsreinigung, Büroreinigung, Objektreinigung, Gebäudereinigung, Praxisreinigung, Kanzleireinigung und Treppenhausreinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Unterhaltsreinigung Regensburg für Büro, Praxis, Kanzlei und Objekt",
@@ -245,7 +243,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Unterhaltsreinigung Regensburg" },
         ]}
       />
@@ -292,7 +290,18 @@ export default function UnterhaltsreinigungRegensburgPage() {
               </nav>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="#kontakt" className="flox-button-primary px-6">
+                <a
+                  href="#kontakt"
+                  data-event="seo_cta_click"
+                  data-service="unterhaltsreinigung"
+                  data-city="regensburg"
+                  data-page-intent="unterhaltsreinigung-regensburg"
+                  data-priority="p0"
+                  data-destination="/kontakt?service=unterhaltsreinigung&city=regensburg&intent=unterhaltsreinigung-regensburg&source=seo"
+                  data-source="seo"
+                  data-cta-label="Unterhaltsreinigung anfragen"
+                  className="flox-button-primary px-6"
+                >
                   Angebot anfragen
                   <ArrowRight className="h-4 w-4" />
                 </a>
@@ -305,7 +314,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
                 alt="Helles Büro als Beispiel für Unterhaltsreinigung in Regensburg"
                 fill
                 priority
@@ -346,12 +355,31 @@ export default function UnterhaltsreinigungRegensburgPage() {
         headline="Regelmäßige Reinigung braucht einen Plan, den Kunden sofort verstehen."
         intro="Unterhaltsreinigung wird besser angefragt, wenn Objektart, Turnus, Raumliste, Sanitär, Küche, Schlüsselzugang und Starttermin klar sind. Genau darauf führt der Regensburg-Kundenweg hin."
         focusHrefs={[
-          "/bueroreinigung-regensburg",
+          "/regensburg/bueroreinigung",
           "/praxisreinigung-regensburg",
           "/treppenhausreinigung-regensburg",
-          "/gewerbereinigung-regensburg",
+          "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=unterhaltsreinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Unterhaltsreinigung in Regensburg und Umgebung"
+            intro="Für laufende Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt für Büro, Praxis, Kanzlei, Treppenhaus und andere regelmäßig gereinigte Objekte."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Unterhaltsreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Turnus und Raumliste vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Unterhaltsreinigung"
+        intro="Diese Links verbinden laufende Reinigung mit Büro, Praxis, Treppenhaus, Gewerbe und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">
@@ -530,7 +558,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}

@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { AnimatePresence, m } from "framer-motion";
 import { AlertCircle, Calendar, CheckCircle2, Mail, MapPin, Phone, Send, Sparkles, Truck, User, X, Zap } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -192,11 +195,12 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
   submitData.append("email", formData.email.trim());
   submitData.append("phone", formData.phone.trim());
   submitData.append("message", formData.note.trim());
+  submitData.append("privacyConsent", "true");
   submitData.append("details", JSON.stringify(details));
   submitData.append("timestamp", new Date().toISOString());
 
   try {
-   const response = await fetch("/api/bookings", {
+   const response = await bookingFetch("/api/bookings", {
     method: "POST",
     body: submitData,
    });
@@ -353,6 +357,8 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
           />
          </label>
 
+         <PrivacyConsentField inverted />
+
          {errorMessage ? (
           <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">
            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
@@ -363,6 +369,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          <button
           disabled={isSubmitting}
           type="submit"
+          aria-label={isSubmitting ? "Express-Anfrage wird gesendet" : "Express prüfen lassen"}
           className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-orange-300 font-black uppercase tracking-[0.08em] text-slate-950 shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-200 disabled:opacity-50"
          >
           {isSubmitting ? "Wird gesendet..." : "Express prüfen lassen"}

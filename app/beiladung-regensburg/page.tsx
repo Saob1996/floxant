@@ -48,10 +48,10 @@ export default async function BeiladungRegensburgPage({ params }: PageProps) {
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-      heroImage="/assets/service-moving.png"
+      heroImage="/assets/service-moving.webp"
       breadcrumbs={[
         { label: "Home", href: "/" },
-        { label: "Umzug Regensburg", href: `/umzug-regensburg` },
+        { label: "Umzug Regensburg", href: `/regensburg/umzug` },
         { label: "Beiladung" }
       ]}
       chips={[

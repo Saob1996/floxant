@@ -82,7 +82,7 @@ export function reportOfferComparisonAdsEvent(event: string, data: OfferComparis
     channel: data.channel || "engagement",
     label: data.label || "",
     priority: data.priority || "hot",
-    intent: "duesseldorf_cleaning_offer_comparison",
+    intent: "regensburg_cleaning_offer_comparison",
     path: window.location.pathname,
     search: window.location.search,
     referrer: document.referrer,
@@ -92,7 +92,7 @@ export function reportOfferComparisonAdsEvent(event: string, data: OfferComparis
       source: "google_ads_offer_comparison_landingpage",
       channel: data.channel || "engagement",
       priority: data.priority || "hot",
-      intent: "duesseldorf_cleaning_offer_comparison",
+      intent: "regensburg_cleaning_offer_comparison",
       ...data,
     },
   };

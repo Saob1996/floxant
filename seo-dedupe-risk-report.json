@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-06-20T03:42:07.267Z",
+  "pages": 420,
+  "h1Duplicates": [],
+  "titleDuplicates": [
+    {
+      "value": "$ Preisrahmen in $ | FLOXANT",
+      "files": [
+        "/angebote/[slug]",
+        "/guenstig/[slug]"
+      ]
+    }
+  ],
+  "descriptionDuplicates": [],
+  "clusters": [
+    {
+      "cluster": "angebot-pruefen",
+      "status": "PASS",
+      "pages": 16,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "angebotscheck",
+      "status": "PASS",
+      "pages": 1,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "anbieter-vergleichen",
+      "status": "PASS",
+      "pages": 1,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "reinigungsfirma-angebot",
+      "status": "PASS",
+      "pages": 4,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "bueroreinigung",
+      "status": "PASS",
+      "pages": 4,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "gewerbereinigung",
+      "status": "PASS",
+      "pages": 5,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "duesseldorf-reinigung",
+      "status": "WARN",
+      "pages": 54,
+      "recommendation": "needs_manual_review"
+    },
+    {
+      "cluster": "regensburg-umzug",
+      "status": "WARN",
+      "pages": 83,
+      "recommendation": "needs_manual_review"
+    },
+    {
+      "cluster": "duesseldorf-regensburg",
+      "status": "WARN",
+      "pages": 54,
+      "recommendation": "needs_manual_review"
+    },
+    {
+      "cluster": "seniorenumzug",
+      "status": "PASS",
+      "pages": 11,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "umzug-im-alter",
+      "status": "WARN",
+      "pages": 120,
+      "recommendation": "needs_manual_review"
+    },
+    {
+      "cluster": "klaviertransport-regensburg",
+      "status": "PASS",
+      "pages": 11,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "b2b-bueroreinigung",
+      "status": "PASS",
+      "pages": 2,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "diskret-service",
+      "status": "PASS",
+      "pages": 4,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "solarreinigung",
+      "status": "PASS",
+      "pages": 3,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "pv-anlagen-reinigung",
+      "status": "PASS",
+      "pages": 1,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "landshut-muenchen-bayern",
+      "status": "PASS",
+      "pages": 5,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "de-routen",
+      "status": "PASS",
+      "pages": 23,
+      "recommendation": "keep_as_is"
+    },
+    {
+      "cluster": "stadt-longtail",
+      "status": "PASS",
+      "pages": 6,
+      "recommendation": "keep_as_is"
+    }
+  ],
+  "recommendations": [
+    "No mass deletion.",
+    "No mass noindex.",
+    "Review WARN clusters with real GSC CSV data before canonical/noindex decisions."
+  ]
+}

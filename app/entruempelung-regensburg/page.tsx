@@ -1,8 +1,17 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { InternationalCustomerHint } from "@/components/conversion";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
@@ -21,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         lang: "de",
         path: "entruempelung-regensburg",
         title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+        description: `${resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de")} Anfrage auf Deutsch oder Englisch möglich.`,
     });
 }
 
@@ -84,6 +93,33 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <InternationalCustomerHint
+                    cityLabel="Regensburg"
+                    serviceLabel="Entrümpelung, Haushaltsauflösung, House clearance oder Decluttering"
+                    tags={["Decluttering", "House clearance", "Junk removal", "Flat clearance", "Photos welcome"]}
+                    primaryHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    photoHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+                />
+                <ServicePackageSelector groups="entruempelung" limit={4} />
+                <EffortFactorsPanel group="entruempelung" limit={6} />
+                <TrustProofPanel
+                    allowedPage="/regensburg/entruempelung"
+                    serviceKey="entruempelung"
+                    locationKey="regensburg"
+                    title="Entrümpelung Regensburg mit klaren Grenzen."
+                    intro="Menge, Material, Zugang, Fotos, Freigabe und Endzustand werden sichtbar eingeordnet. Entsorgung, Preis und Termin bleiben prüfpflichtig."
+                />
+                <ServiceProofChecklist serviceKey="entruempelung" />
+                <RequestChecklistBlock
+                    serviceKey="entruempelung"
+                    ctaHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    ctaLabel="Räumungsdaten vorbereiten"
+                    compact
+                />
+                <PhotoGuidanceBlock serviceKey="entruempelung" compact />
+                <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
+                <LocalProofPanel location="regensburg" />
                 <GscOpportunitySection
                     eyebrow="Entrümpelung Regensburg richtig starten"
                     title="Wohnung, Keller, Gewerbefläche oder Nachlass: erst klären, dann räumen."
@@ -98,7 +134,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Wohnung oder Haus räumen",
                             text: "Zimmer, Keller, Balkon, Garage und Restmengen beschreiben. Fotos reichen oft, um den ersten Aufwand einzuschätzen.",
-                            href: "/wohnungsaufloesung-regensburg",
+                            href: "/regensburg/wohnungsaufloesung",
                             cta: "Wohnungsauflösung ansehen",
                         },
                         {
@@ -126,12 +162,12 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Entrümpelung + Endreinigung",
                             text: "Nach dem Räumen werden Küche, Bad, Böden und Laufwege oft erst richtig sichtbar.",
-                            href: "/endreinigung-regensburg",
+                            href: "/regensburg/endreinigung",
                         },
                         {
                             title: "Haushaltsauflösung + Übergabe",
                             text: "Für Nachlass, Umzug ins Pflegeheim oder Wohnungsaufgabe mit klarer Freigabe.",
-                            href: "/wohnungsaufloesung-regensburg",
+                            href: "/regensburg/wohnungsaufloesung",
                         },
                         {
                             title: "Kleinmengen + Entsorgung",
@@ -152,7 +188,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                 <LocalSeoSearchIntentBridge
                     service="entruempelung"
                     city={city}
-                    currentHref="/entruempelung-regensburg"
+                    currentHref="/regensburg/entruempelung"
                 />
             </SpecialtyPageLayout>
     );

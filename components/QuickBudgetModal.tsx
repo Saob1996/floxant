@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { m, AnimatePresence } from "framer-motion";
 import { AlertCircle, MessageSquare, X, Send, User, Mail, Phone, Banknote, ShieldCheck } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -102,6 +105,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
     submitData.append("email", formData.email.trim());
     submitData.append("phone", formData.phone.trim());
     submitData.append("budget", formData.budget.trim());
+    submitData.append("privacyConsent", "true");
     submitData.append(
       "message",
       formData.message.trim() || `Preisvorschlag über den Navigations-Button für ${formData.service}`,
@@ -120,7 +124,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
     submitData.append("timestamp", new Date().toISOString());
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -301,6 +305,8 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                     />
                   </label>
 
+                  <PrivacyConsentField inverted />
+
                   {errorMessage ? (
                     <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">
                       <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
@@ -311,6 +317,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                   <button
                     disabled={isSubmitting}
                     type="submit"
+                    aria-label={isSubmitting ? "Vorschlag wird gesendet" : "Vorschlag senden"}
                     className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-blue-600 font-bold uppercase tracking-wider text-white shadow-xl shadow-blue-900/40 transition-all hover:bg-blue-500 hover:shadow-blue-900/60 disabled:opacity-50"
                   >
                     <span className="relative z-10">

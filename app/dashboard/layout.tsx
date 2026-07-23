@@ -1,25 +1,22 @@
-import { getServerSession } from "next-auth";
 import type { Metadata } from "next";
-import { authOptions } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import AuthProvider from "@/components/session-provider";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Dashboard | FLOXANT Operations Center",
+  title: "Internes Anfrage-Dashboard | FLOXANT",
+  description: "Geschützter interner Bereich für FLOXANT-Anfragen.",
   robots: {
     index: false,
     follow: false,
+    nocache: true,
     googleBot: {
       index: false,
       follow: false,
+      noimageindex: true,
     },
   },
+  alternates: {},
 };
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    redirect("/login");
-  }
-  return <AuthProvider>{children}</AuthProvider>;
+export default function DashboardLayout({ children }: { children: ReactNode }) {
+  return children;
 }

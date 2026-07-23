@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { germanText } from "@/lib/german-text";
 import {
   AlertTriangle,
   ArrowRight,
@@ -47,9 +48,9 @@ export type PublicAuthorityModuleId =
   | "route_board"
   | "empty_return_fit"
   | "premium_discreet"
-  | "duesseldorf_cleaning_private"
-  | "duesseldorf_cleaning_b2b"
-  | "duesseldorf_apartment_cleaning"
+  | "regensburg_cleaning_private"
+  | "regensburg_cleaning_b2b"
+  | "regensburg_cleaning"
   | "duesseldorf_disposal_private"
   | "duesseldorf_disposal_b2b";
 
@@ -71,7 +72,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Regensburg ist der Ausgangspunkt",
     text:
       "Viele Anfragen werden schneller klar, wenn Ort, Termin, Zugang und Ziel der Uebergabe von Regensburg aus eingeordnet werden. Bayern bleibt wichtig, aber Regensburg ist der erste Schwerpunkt.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Regensburg-Services ansehen",
     Icon: MapPin,
     region: "regensburg",
@@ -81,8 +82,8 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Regensburg, Umgebung und Bayern sauber einordnen",
     text:
       "FLOXANT arbeitet mit Regensburg als Kern. Orte wie Neutraubling, Lappersdorf, Pentling, Sinzing oder Regenstauf sind Nahbereich; Bayern wird nach Strecke, Termin und Umfang geprueft.",
-    href: "/einsatzgebiet-regensburg-200km",
-    cta: "Servicegebiet ansehen",
+    href: "/regensburg",
+    cta: "Regensburg ansehen",
     Icon: Route,
     region: "bayern",
   },
@@ -91,8 +92,8 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Bayern nach Verfuegbarkeit",
     text:
       "Bayern wird nicht als pauschales Versprechen behandelt. FLOXANT prueft Strecke, Kapazitaet, Termin und Leistungsumfang, bevor ein Auftrag zugesagt wird.",
-    href: "/service-area-bayern",
-    cta: "Bayern-Logik lesen",
+    href: "/standorte",
+    cta: "Standorte ansehen",
     Icon: ShieldCheck,
     region: "bayern",
   },
@@ -131,7 +132,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Entruempelung und Reinigung kombiniert",
     text:
       "Bei Keller, Wohnung, Garage oder Nachlass ist oft nicht nur der Abtransport wichtig. Nach dem Leeren kann die Flaeche fuer Uebergabe, Verkauf oder Nutzung vorbereitet werden.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     cta: "Kombi anfragen",
     Icon: PackageCheck,
     service: "entruempelung",
@@ -161,7 +162,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Was Reinigung realistisch macht",
     text:
       "Flaeche, Reinigungsart, Zustand, Termin, Fotos und Ziel der Uebergabe bestimmen, ob eine Reinigung sauber kalkuliert werden kann.",
-    href: "/reinigung-regensburg#faq",
+    href: "/regensburg/reinigung#faq",
     cta: "Reinigung einordnen",
     Icon: Sparkles,
     service: "reinigung",
@@ -171,7 +172,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Was Entruempelung oder Entsorgung beeinflusst",
     text:
       "Menge, Materialart, Etage, Zugang, Laufweg, Fotos und Entsorgungsaufwand bestimmen, wie belastbar ein Angebot werden kann.",
-    href: "/entruempelung-regensburg#faq",
+    href: "/regensburg/entruempelung#faq",
     cta: "Aufwand klaeren",
     Icon: Trash2,
     service: "entsorgung",
@@ -313,39 +314,39 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     Icon: ShieldCheck,
     service: "diskret",
   },
-  duesseldorf_cleaning_private: {
+  regensburg_cleaning_private: {
     badge: "Privat",
-    title: "Reinigung Duesseldorf fuer Wohnung und Auszug",
+    title: "Reinigung Regensburg fuer Wohnung und Auszug",
     text:
       "Bei Wohnungsreinigung, Endreinigung und Reinigung nach Auszug zählen Fläche, Zustand, Termin, Fotos und ein klares Übergabeziel.",
-    href: "/duesseldorf/reinigung#leistungen",
+    href: "/regensburg/reinigung#leistungen",
     cta: "Private Reinigung ansehen",
     Icon: Home,
     service: "reinigung",
     region: "duesseldorf",
   },
-  duesseldorf_cleaning_b2b: {
+  regensburg_cleaning_b2b: {
     badge: "Firma",
-    title: "Firmenreinigung Düsseldorf mit Objektangaben",
+    title: "Firmenreinigung Regensburg mit Objektangaben",
     text:
       "Büros und kleine Gewerbeflächen brauchen Angaben zu Objektart, Fläche, Turnus, Zeitfenster und besonderen Bereichen, damit der Ablauf zum Betrieb passt.",
-    href: "/duesseldorf/reinigung#leistungen",
+    href: "/regensburg/reinigung#leistungen",
     cta: "Firmenreinigung anfragen",
     Icon: BriefcaseBusiness,
     service: "reinigung_b2b",
     region: "duesseldorf",
   },
-  duesseldorf_apartment_cleaning: {
+  regensburg_cleaning: {
     badge: "Apartment-Reset",
     title: "Möblierte Wohnung und Kurzzeitvermietung reinigen",
     text:
-      "Für Hosts, Vermieter und kleine Betreiber in Düsseldorf: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
-    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+      "Für Hosts, Vermieter und kleine Betreiber in Regensburg: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
+    href: "/reinigung-moeblierte-wohnung-regensburg",
     cta: "Apartment-Reinigung ansehen",
     Icon: Sparkles,
     event: "start_apartment_cleaning_lead",
-    service: "duesseldorf_moeblierte_wohnung_reinigung",
-    region: "duesseldorf",
+    service: "regensburg_moeblierte_wohnung_reinigung",
+    region: "regensburg",
   },
   duesseldorf_disposal_private: {
     badge: "Privat",
@@ -390,20 +391,33 @@ export function PublicAuthorityModules({
 
   if (modules.length === 0) return null;
 
+  const visibleBadge = germanText(badge, "Gut vorbereitet anfragen");
+  const visibleTitle = germanText(title, "Was vor der Anfrage hilfreich ist");
+  const visibleSubtitle = germanText(
+    subtitle,
+    "Hier sehen Sie, welche Angaben FLOXANT für eine ehrliche Einschätzung braucht: Ort, Objekt, Termin, Fotos, Budgetrahmen und offene Punkte.",
+  );
+
   return (
     <section className="flox-section flox-authority-section content-auto py-14">
       <div className="flox-shell">
         <div className="flox-section-intro mb-8 max-w-3xl">
-          <div className="flox-kicker">{badge}</div>
+          <div className="flox-kicker">{visibleBadge}</div>
           <h2 className="mt-4 flox-title-lg flox-display-section text-slate-950">
-            {title}
+            {visibleTitle}
           </h2>
-          <p className="mt-4 text-base leading-8 text-slate-700">{subtitle}</p>
+          <p className="mt-4 text-base leading-8 text-slate-700">{visibleSubtitle}</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {modules.map((item) => {
             const Icon = item.Icon;
+            const visibleItem = {
+              badge: germanText(item.badge, ""),
+              title: germanText(item.title, ""),
+              text: germanText(item.text, ""),
+              cta: germanText(item.cta, ""),
+            };
 
             return (
               <article
@@ -415,13 +429,13 @@ export function PublicAuthorityModules({
                     <Icon className="h-5 w-5" />
                   </span>
                   <span className="flox-tag text-slate-500">
-                    {item.badge}
+                    {visibleItem.badge}
                   </span>
                 </div>
                 <h3 className="flox-card-title-lg mt-5 text-slate-950">
-                  {item.title}
+                  {visibleItem.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{visibleItem.text}</p>
                 <Link
                   href={item.href}
                   className="flox-row-link mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-700"
@@ -431,7 +445,7 @@ export function PublicAuthorityModules({
                   data-service={item.service}
                   data-region={item.region}
                 >
-                  {item.cta}
+                  {visibleItem.cta}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>

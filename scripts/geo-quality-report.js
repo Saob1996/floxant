@@ -7,7 +7,7 @@ const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
 const PREFIXES = ["umzug-", "reinigung-", "entruempelung-", "bueroumzug-", "wohnungsaufloesung-"];
 const DUESSELDORF_SPECIAL_ROUTES = new Set([
-  "reinigung-moeblierte-wohnung-duesseldorf",
+  "reinigung-moeblierte-wohnung-regensburg",
   "entsorgung-duesseldorf",
 ]);
 const NON_GEO_ROUTES = new Set([
@@ -34,7 +34,7 @@ function scoreDuesseldorfSpecialRoute(routeName) {
 
   const text = fs.readFileSync(pageFile, "utf8");
   const score = [
-    text.includes("buildDuesseldorfCleaningMetadata") || text.includes("generatePageSEO"),
+    text.includes("buildRegensburgCleaningMetadata") || text.includes("generatePageSEO"),
     text.includes("Düsseldorf"),
     text.includes("CleaningService") || text.includes("Service"),
     text.includes("FAQ") || text.includes("buildFaqJsonLd"),

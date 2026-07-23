@@ -24,7 +24,7 @@ const faqItems = [
   },
   {
     q: "In welchen Regionen gelten die Signature Services?",
-    a: "Regensburg, Oberpfalz und Bayern werden breit nach Verfügbarkeit geprüft. Düsseldorf wird bei FLOXANT über klare Kontaktmöglichkeiten für Umzug, Reinigung, Entrümpelung, Endreinigung, Gewerbereinigung und Entsorgung geführt.",
+    a: "Reinigung gilt für Regensburg und den 50-km-Umkreis. Andere Signature-Services werden je nach Ort, Zugang, Termin und Verfügbarkeit separat geprüft.",
   },
 ];
 
@@ -34,20 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog/signatur-services-floxant-bayern",
     title: "FLOXANT Signature Services | Angebotsprüfung & besondere Situationen",
     description:
-      "FLOXANT Signature Services: Angebotsprüfung, Vor-Ort-Prüfung, Objektbetreuung, Plan B, Leerstand, Übergabe und zusätzliche Hilfe für Regensburg, Bayern und Düsseldorf Reinigung.",
-    keywords: [
-      "FLOXANT Signature Services",
-      "besondere Unterstützung FLOXANT",
-      "Angebot prüfen lassen",
-      "Objektbetreuung Regensburg",
-      "Vor-Ort-Prüfung",
-      "Immobilienbetreuung Bayern",
-      "Plan B Service",
-      "Schadensbegrenzung",
-      "Wohnung wieder vermietbar",
-      "Übergabeakte",
-      "Leerstandsmanagement",
-    ],
+      "FLOXANT Signature Services: Angebotsprüfung, Vor-Ort-Prüfung, Objektbetreuung, Plan B, Leerstand, Übergabe und zusätzliche Hilfe ab Regensburg.",
   });
 }
 
@@ -136,8 +123,8 @@ export default function SignaturServicesBlogPage() {
           {
             title: "Regionen sauber trennen",
             paragraphs: [
-              "Regensburg ist der feste Ausgangspunkt. Von dort aus werden Regensburg, Oberpfalz, der Nahbereich und Bayern nach Ort, Strecke, Termin, Zugang und Kapazität geprüft. Das gilt für Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und zusätzliche Hilfe rund um Objekt und Übergabe.",
-              "Düsseldorf bleibt bei FLOXANT separat: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung haben eigene lokale Kontaktmöglichkeiten.",
+              "Regensburg ist der feste Ausgangspunkt. Reinigung wird von dort aus nur für Regensburg und den 50-km-Umkreis geprüft. Andere Leistungen wie Umzug, Entrümpelung, Entsorgung, Transport und zusätzliche Hilfe werden nach Ort, Strecke, Termin, Zugang und Kapazität separat eingeordnet.",
+              "So bleibt die Zuordnung klar: kein überregionaler Reinigungstext, sondern lokale Prüfung für Reinigungsfälle und getrennte Machbarkeit für andere Services.",
             ],
           },
           {
@@ -151,7 +138,7 @@ export default function SignaturServicesBlogPage() {
         highlightPoints={[
           "Angebotsprüfung ist der stärkste Startpunkt, wenn Preis, Umfang oder Leistung unklar sind.",
           "Signature Services machen besondere Situationen unter FLOXANT sichtbar statt sie im Standardangebot zu verstecken.",
-          "FLOXANT hilft bei konkreten Anfragen: Regensburg/Bayern breit, Düsseldorf passend zum Anliegen über klare lokale Kontaktmöglichkeiten.",
+          "FLOXANT hilft bei konkreten Anfragen: Reinigung lokal rund um Regensburg, andere Services nach Machbarkeit und sauberer Einordnung.",
         ]}
         ctas={[
           { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },

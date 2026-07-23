@@ -88,14 +88,14 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             </p>
             <h2>Schritt 3: Die praktische Umsetzung der Wohnungsauflösung</h2>
             <p>
-              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/entruempelung-regensburg`}>Regensburg, München und ganz Bayern</a> am besten vor:
+              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/regensburg/entruempelung`}>Regensburg, München und ganz Bayern</a> am besten vor:
             </p>
             <ol>
               <li>
                 <strong>Persönliches sichern:</strong> Gehen Sie ohne Zeitdruck durch die Räume. Sichern Sie wichtige Dokumente (Testament, Policen, Bankdaten), Bargeld, Schmuck und emotionale Erinnerungsstücke.
               </li>
               <li>
-                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/entruempelung`}>zertifizierten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
+                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/entruempelung`}>geeigneten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
               </li>
               <li>
                 <strong>Möbelverteilung in der Familie:</strong> Klären Sie zügig mit anderen Erben, wer welche Möbelstücke behält. Für den Transport an die neuen Standorte bieten sich <a href={`/kleintransporte`}>günstige Kleintransporte</a> oder Beiladungen an.
@@ -127,7 +127,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
         <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
         <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href={"/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+          <a href={"/regensburg/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
           <a href={"/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
           <a href={"/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
           <a href={"/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>

@@ -19,6 +19,15 @@ import {
 } from "lucide-react";
 
 import { DiscreetMoveForm } from "@/components/DiscreetMoveForm";
+import { DiscreetRequestPanel } from "@/components/DiscreetRequestPanel";
+import { DiscreetTrustPanel } from "@/components/DiscreetTrustPanel";
+import { LeadCta } from "@/components/LeadCta";
+import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
+import { PreferredContactMethodPanel } from "@/components/PreferredContactMethodPanel";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { SensitiveCaseNotice } from "@/components/SensitiveCaseNotice";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -32,30 +41,9 @@ const path = "/diskreter-umzug-trennung-scheidung";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Diskreter Umzug bei Trennung oder Scheidung | FLOXANT",
+  title: "Diskreter Service fuer Umzug, Auszug und Reinigung",
   description:
-    "FLOXANT prüft diskrete Umzüge und sensible Auszüge in Regensburg und Umgebung: Transport, Reinigung, Schlüsselübergabe und Übergabeakte nach Absprache.",
-  keywords: [
-    "diskreter umzug regensburg",
-    "trennungsumzug regensburg",
-    "scheidungsumzug regensburg",
-    "auszug nach trennung",
-    "umzug bei trennung",
-    "diskreter auszug",
-    "diskreter auszug regensburg",
-    "privater umzug diskret",
-    "umzug sensible situation",
-    "auszug aus gemeinsamer wohnung",
-    "möbel abholen nach trennung",
-    "reinigung nach trennungsauszug",
-    "schlüsselübergabe nach auszug",
-    "premium umzug diskret",
-    "diskreter rückruf regensburg",
-    "auszug mit reinigung regensburg",
-    "sensible umzugsanfrage",
-    "diskreter möbeltransport",
-    "übergabeakte nach auszug",
-  ],
+    "Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details.",
 });
 
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(
@@ -83,7 +71,7 @@ const localSearchSignals = [
   },
   {
     title: "Klare Düsseldorf-Grenze",
-    text: "Düsseldorf bleibt bei FLOXANT Reinigung und Entsorgung. Diese Seite sendet kein Düsseldorf-Umzug-Hinweis.",
+    text: "Regensburg bleibt der Startpunkt für Reinigung im 50-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
   },
 ];
 
@@ -154,7 +142,7 @@ const discretionBlocks = [
   },
   {
     title: "Transport / Umzug",
-    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; Düsseldorf-Umzug läuft über den eigenen lokalen Kontaktweg.",
+    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; externe Umzugsanfrage läuft über den eigenen lokalen Kontaktweg.",
     Icon: Truck,
   },
   {
@@ -230,8 +218,8 @@ const notIncluded = [
 
 const relatedLinks = [
   { href: "/private-client-service", label: "Diskrete Abstimmung" },
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung nach Auszug" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung nach Auszug" },
   { href: "/uebergabeakte", label: "Übergabeakte ergänzen" },
   { href: "/schluesseluebergabe", label: "Schlüsselübergabe abstimmen" },
   { href: "/schadensbegrenzung", label: "Wenn der Plan bereits gekippt ist" },
@@ -239,7 +227,7 @@ const relatedLinks = [
   { href: "/immobilie-verkaufsbereit-machen", label: "Objekt nach Auszug vorbereiten" },
   { href: "/buchung", label: "Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschaetzen" },
-  { href: "/einsatzgebiet-regensburg-200km", label: "Servicegebiet Regensburg" },
+  { href: "/regensburg", label: "Regensburg-Bereich" },
 ];
 
 const faqItems = [
@@ -289,7 +277,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern für Bayern/Nahbereich. Für Düsseldorf prüft FLOXANT passende lokale Kontaktwege, darunter /duesseldorf/umzug, /duesseldorf/reinigung und /duesseldorf/entruempelung.",
+    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 50 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
   },
 ];
 
@@ -352,19 +340,31 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreter Auszug, ruhig abgestimmt
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Diskreter Umzug bei Trennung oder Scheidung
+                Diskreter Service fuer Auszug, Reinigung und Uebergabe
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn ein Auszug ruhig, vertraulich und klar abgestimmt werden muss, prüft FLOXANT Transport,
-                Reinigung, Entrümpelung, Schlüsselübergabe und Übergabeakte nach Absprache.
+                Wenn ein Fall ruhig und zurueckhaltend geklaert werden soll, reichen zuerst Ort,
+                Zeitfenster, grober Umfang und bevorzugter Kontaktweg. FLOXANT prueft Transport,
+                Reinigung, Entruempelung, Schluesseluebergabe und Uebergabeakte nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link
-                  href="#diskret-form"
+                <LeadCta
+                  service="diskret-service"
+                  city="deutschland"
+                  intent="diskret-service"
+                  priority="p0"
+                  label="Diskreten Rückruf anfragen"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800"
-                  data-event="service_card_click"
                 >
                   Diskreten Rückruf anfragen
+                  <ArrowRight className="h-4 w-4" />
+                </LeadCta>
+                <Link
+                  href="#diskret-form"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-6 text-sm font-black text-stone-800 transition hover:bg-stone-50"
+                  data-event="service_card_click"
+                >
+                  Formular auf dieser Seite
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
@@ -433,6 +433,22 @@ export default function DiskreterUmzugTrennungScheidungPage() {
           </div>
         </section>
 
+        <DiscreetRequestPanel />
+        <PreferredContactMethodPanel />
+        <SensitiveCaseNotice />
+        <DiscreetTrustPanel />
+        <ServiceProofChecklist serviceKey="diskret" />
+        <ProjectStoryGrid serviceKey="diskret" />
+        <ProcessProofSteps
+          title="Diskrete Anfrage Schritt fuer Schritt."
+          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details koennen spaeter im passenden Kanal geklaert werden."
+        />
+        <section className="px-4 py-8 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <NoFakeClaimsNotice />
+          </div>
+        </section>
+
         <section className="px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-7xl rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-sm shadow-stone-950/5 lg:p-8">
             <div className="grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
@@ -458,7 +474,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                     <Navigation className="h-4 w-4" />
                   </Link>
                   <Link
-                    href="/einsatzgebiet-regensburg-200km"
+                    href="/regensburg"
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-white"
                   >
                     Servicegebiet ansehen
@@ -715,7 +731,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {relatedLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
+                <Link key={item.href} href={item.href} prefetch={false} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
                   {item.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>

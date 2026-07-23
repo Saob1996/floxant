@@ -24,14 +24,15 @@ import { generatePageSEO } from "@/lib/seo";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const pagePath = "/gewerbereinigung";
-const bookingHref = "/buchung?service=gewerbereinigung&region=duesseldorf#buchungssystem";
-const callbackHref = "/kontakt?anliegen=rueckruf-gewerbereinigung-duesseldorf";
-const betterPriceHref = "/duesseldorf/vielleicht-guenstiger";
+const bookingHref = "/buchung?service=gewerbereinigung&region=regensburg#buchungssystem";
+const callbackHref = "/kontakt?anliegen=rueckruf-gewerbereinigung-regensburg";
+const betterPriceHref = "/angebot-vergleichen-regensburg";
+const offerRequestHref = "/reinigungsfirma-angebot";
 const whatsappText =
-  "Hallo FLOXANT, ich moechte gewerbliche Reinigung in Duesseldorf anfragen. Es geht um: ";
+  "Hallo FLOXANT, ich moechte gewerbliche Reinigung in Regensburg anfragen. Es geht um: ";
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(whatsappText)}`;
 const mailHref =
-  "mailto:info@floxant.de?subject=Gewerbliche%20Reinigung%20D%C3%BCsseldorf";
+  "mailto:info@floxant.de?subject=Gewerbliche%20Reinigung%20Regensburg";
 
 const trustItems = [
   "Für Unternehmen, Praxen, Kanzleien, Hotels und Hausverwaltungen",
@@ -47,9 +48,9 @@ const services = [
     title: "Hotelreinigung",
     Icon: Hotel,
     text:
-      "Wenn Zimmerwechsel, öffentliche Bereiche oder Frühstücksflächen sauber laufen müssen, zählt Verlässlichkeit. FLOXANT unterstützt Hotels in Düsseldorf bei regelmäßiger Reinigung und bei zusätzlichem Bedarf durch Ausfälle oder hohe Auslastung.",
+      "Wenn Zimmerwechsel, öffentliche Bereiche oder Frühstücksflächen sauber laufen müssen, zählt Verlässlichkeit. FLOXANT unterstützt Hotels in Regensburg bei regelmäßiger Reinigung und bei zusätzlichem Bedarf durch Ausfälle oder hohe Auslastung.",
     areas: ["Zimmer", "Flure und Lobby", "Frühstücksbereich", "Sanitärbereiche"],
-    href: "/duesseldorf/hotelreinigung",
+    href: "/hotelreinigung-regensburg",
   },
   {
     title: "Praxisreinigung",
@@ -57,7 +58,7 @@ const services = [
     text:
       "In Praxen fällt Unordnung sofort auf. Wir reinigen Empfang, Wartezimmer, Therapieräume und Sanitärbereiche ruhig, diskret und mit Blick auf den Tagesablauf.",
     areas: ["Arztpraxen", "Therapieräume", "Empfang", "Wartezimmer"],
-    href: "/duesseldorf/praxisreinigung",
+    href: "/praxisreinigung-regensburg",
   },
   {
     title: "Kanzleireinigung",
@@ -65,7 +66,7 @@ const services = [
     text:
       "Mandanten achten auf Räume, bevor das Gespräch beginnt. FLOXANT kümmert sich um Besprechungsräume, Arbeitsplätze, Eingangsbereich und Sanitärflächen, ohne den Kanzleibetrieb zu stören.",
     areas: ["Anwaltskanzleien", "Steuerkanzleien", "Beratungsbüros", "Besprechungsräume"],
-    href: "/duesseldorf/kanzleireinigung",
+    href: "/regensburg/gewerbereinigung",
   },
   {
     title: "Büroreinigung",
@@ -73,7 +74,7 @@ const services = [
     text:
       "Ein Büro soll sauber sein, ohne dass jeden Tag jemand hinterhertelefonieren muss. Wir reinigen Arbeitsplätze, Küchen, Besprechungsräume und Sanitärbereiche nach einem klaren Plan.",
     areas: ["Arbeitsplätze", "Küchen", "Meetingräume", "Sanitärbereiche"],
-    href: "/duesseldorf/bueroreinigung",
+    href: "/regensburg/bueroreinigung",
   },
   {
     title: "Treppenhausreinigung",
@@ -81,7 +82,7 @@ const services = [
     text:
       "Bei Mehrfamilienhäusern und verwalteten Objekten entscheidet der Eingang oft über den Eindruck. FLOXANT reinigt Eingangsbereiche, Geländer, Briefkästen und Etagen planbar und nachvollziehbar.",
     areas: ["Mehrfamilienhäuser", "Hausverwaltungen", "Eingang", "Etagen"],
-    href: "/duesseldorf/treppenhausreinigung",
+    href: "/treppenhausreinigung-regensburg",
   },
   {
     title: "Grundreinigung",
@@ -89,7 +90,7 @@ const services = [
     text:
       "Wenn normale Unterhaltsreinigung nicht mehr reicht, braucht das Objekt einen sauberen Neustart. Das gilt vor Übergaben, nach Renovierung oder wenn Böden, Küche und Sanitärbereiche sichtbar belastet sind.",
     areas: ["Übergabe", "Renovierung", "sichtbare Verschmutzung", "starke Nutzung"],
-    href: "/duesseldorf/grundreinigung",
+    href: "/grundreinigung-regensburg",
   },
 ];
 
@@ -179,50 +180,40 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { label: "Büroreinigung Düsseldorf", href: "/duesseldorf/bueroreinigung" },
-  { label: "Praxisreinigung Düsseldorf", href: "/duesseldorf/praxisreinigung" },
-  { label: "Hotelreinigung Düsseldorf", href: "/duesseldorf/hotelreinigung" },
-  { label: "Treppenhausreinigung Düsseldorf", href: "/duesseldorf/treppenhausreinigung" },
-  { label: "Kurzfristige Reinigung", href: "/duesseldorf/kurzfristige-reinigung" },
-  { label: "Schlüsselübergabe Reinigung", href: "/duesseldorf/schluesseluebergabe-reinigung" },
+  { label: "Büroreinigung Regensburg", href: "/regensburg/bueroreinigung" },
+  { label: "Praxisreinigung Regensburg", href: "/praxisreinigung-regensburg" },
+  { label: "Hotelreinigung Regensburg", href: "/hotelreinigung-regensburg" },
+  { label: "Treppenhausreinigung Regensburg", href: "/treppenhausreinigung-regensburg" },
+  { label: "Reinigungsfirma Angebot", href: "/reinigungsfirma-angebot" },
+  { label: "Kurzfristige Reinigung", href: "/regensburg/reinigung" },
+  { label: "Schlüsselübergabe Reinigung", href: "/regensburg/uebergabereinigung" },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung",
-    title: "Gewerbliche Reinigung Düsseldorf | Hotel, Praxis, Büro | FLOXANT",
+    title: "Gewerbliche Reinigung Regensburg | Hotel, Praxis, Büro | FLOXANT",
     description:
-      "Gewerbliche Reinigung in Düsseldorf für Hotel, Praxis, Kanzlei, Büro, Treppenhaus und Objekt. Eckdaten, Fotos und Zeitfenster senden.",
-    keywords: [
-      "Gewerbliche Reinigung Düsseldorf",
-      "Gewerbereinigung Düsseldorf",
-      "Hotelreinigung Düsseldorf",
-      "Praxisreinigung Düsseldorf",
-      "Kanzleireinigung Düsseldorf",
-      "Büroreinigung Düsseldorf",
-      "Treppenhausreinigung Düsseldorf",
-      "Grundreinigung Düsseldorf",
-      "Reinigungsfirma Düsseldorf",
-    ],
+      "Gewerbliche Reinigung in Regensburg für Hotel, Praxis, Kanzlei, Büro, Treppenhaus und Objekt. Eckdaten, Fotos und Zeitfenster senden.",
   });
 }
 
 export default function GewerbereinigungLandingPage() {
   const serviceJsonLd = buildServiceJsonLd({
-    name: "Gewerbliche Reinigung in Düsseldorf",
+    name: "Gewerbliche Reinigung in Regensburg",
     description:
-      "Gewerbliche Reinigung für Hotels, Praxen, Kanzleien, Büros, Treppenhäuser und Objekte in Düsseldorf. Einmalig oder regelmäßig nach Absprache.",
+      "Gewerbliche Reinigung für Hotels, Praxen, Kanzleien, Büros, Treppenhäuser und Objekte in Regensburg. Einmalig oder regelmäßig nach Absprache.",
     path: pagePath,
     serviceType:
       "Gewerbliche Reinigung, Hotelreinigung, Praxisreinigung, Kanzleireinigung, Büroreinigung und Treppenhausreinigung",
-    areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Hilden"],
+    areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
   });
 
   const webPageJsonLd = buildWebPageJsonLd({
     name: "Gewerbliche Reinigung für Hotels, Praxen, Kanzleien und Büros",
     description:
-      "Direkte Anfrage für gewerbliche Reinigung in Düsseldorf mit WhatsApp, Telefon, Rückruf und klarer Angebotserstellung.",
+      "Direkte Anfrage für gewerbliche Reinigung in Regensburg mit WhatsApp, Telefon, Rückruf und klarer Angebotserstellung.",
     path: pagePath,
     about: [
       "Gewerbliche Reinigung",
@@ -232,10 +223,11 @@ export default function GewerbereinigungLandingPage() {
       "Büroreinigung",
       "Treppenhausreinigung",
       "Grundreinigung",
-      "Düsseldorf",
+      "Regensburg",
     ],
     potentialActions: [
       { name: "Kostenlos anfragen", target: bookingHref, type: "ContactAction" },
+      { name: "Reinigungsangebot anfordern", target: offerRequestHref, type: "ContactAction" },
       { name: "WhatsApp senden", target: whatsappHref, type: "ContactAction" },
       { name: "Rückruf anfordern", target: callbackHref, type: "ContactAction" },
     ],
@@ -249,8 +241,7 @@ export default function GewerbereinigungLandingPage() {
     url: company.url,
     telephone: company.phoneRaw,
     email: company.email,
-    image: `${company.url}/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp`,
-    priceRange: "$$",
+    image: `${company.url}/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp`,
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,
@@ -260,11 +251,9 @@ export default function GewerbereinigungLandingPage() {
       addressCountry: company.countryCode,
     },
     areaServed: [
-      { "@type": "City", name: "Düsseldorf" },
-      { "@type": "City", name: "Neuss" },
-      { "@type": "City", name: "Ratingen" },
-      { "@type": "City", name: "Meerbusch" },
-      { "@type": "City", name: "Hilden" },
+      { "@type": "City", name: "Regensburg" },
+      { "@type": "AdministrativeArea", name: "Landkreis Regensburg" },
+      { "@type": "Place", name: "Regensburg plus 50 km" },
     ],
   };
 
@@ -285,8 +274,8 @@ export default function GewerbereinigungLandingPage() {
         <section className="relative overflow-hidden bg-slate-950 text-white">
           <div className="absolute inset-0">
             <Image
-              src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
-              alt="Heller gewerblicher Raum in Düsseldorf mit Reinigungsausstattung"
+              src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
+              alt="Heller gewerblicher Raum in Regensburg mit Reinigungsausstattung"
               fill
               priority
               sizes="100vw"
@@ -299,10 +288,10 @@ export default function GewerbereinigungLandingPage() {
             <div className="max-w-2xl">
               <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-100">
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                Gewerbliche Reinigung in Düsseldorf
+                Gewerbliche Reinigung in Regensburg
               </p>
               <h1 className="text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-                Gewerbliche Reinigung in Düsseldorf für Hotel, Praxis, Kanzlei und Büro
+                Gewerbliche Reinigung in Regensburg für Hotel, Praxis, Kanzlei und Büro
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
                 FLOXANT übernimmt zuverlässige Reinigung für Betriebe, bei denen Sauberkeit direkt mit Vertrauen, Gästen, Patienten, Mandanten oder Mitarbeitenden verbunden ist.
@@ -313,6 +302,13 @@ export default function GewerbereinigungLandingPage() {
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-black text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                 >
                   Kostenlos anfragen
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href={offerRequestHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-cyan-200/60 bg-cyan-50 px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                >
+                  Reinigungsangebot anfordern
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
@@ -356,8 +352,8 @@ export default function GewerbereinigungLandingPage() {
             <div className="rounded-[2rem] border border-white/15 bg-white/10 p-3 shadow-2xl shadow-slate-950/40 backdrop-blur">
               <div className="relative min-h-[420px] overflow-hidden rounded-[1.5rem] bg-slate-900">
                 <Image
-                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
-                  alt="Gereinigtes Hotel- und Büroobjekt in Düsseldorf ohne Personen"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
+                  alt="Gereinigtes Hotel- und Büroobjekt in Regensburg ohne Personen"
                   fill
                   sizes="(min-width: 1024px) 42vw, 92vw"
                   className="object-cover object-[72%_58%] opacity-90"
@@ -365,7 +361,7 @@ export default function GewerbereinigungLandingPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="rounded-2xl border border-white/15 bg-slate-950/80 p-5 backdrop-blur">
-                    <p className="text-sm font-semibold text-cyan-200">Düsseldorf und nahe Umgebung</p>
+                    <p className="text-sm font-semibold text-cyan-200">Regensburg und nahe Umgebung</p>
                     <p className="mt-2 text-2xl font-black">Hotel, Praxis, Kanzlei, Büro, Treppenhaus</p>
                     <p className="mt-2 text-sm leading-6 text-slate-200">
                       Sie schicken uns die Eckdaten. Wir sagen, was realistisch machbar ist.
@@ -396,6 +392,7 @@ export default function GewerbereinigungLandingPage() {
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
               Keine lange Erklärung. Wenn ein Objekt sauber, planbar und ohne ständige Rückfragen laufen muss, geht es meist um diese Bereiche.
+              Gewerbereinigung meint hier gewerbliche Flächen und laufende Betriebe, nicht private Haushaltshilfe oder eine pauschale Wohnungsreinigung.
             </p>
           </div>
 
@@ -415,10 +412,10 @@ export default function GewerbereinigungLandingPage() {
                   ))}
                 </div>
                 <Link
-                  href={bookingHref}
+                  href={service.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-800 hover:text-cyan-950"
                 >
-                  Anfrage senden
+                  Leistung ansehen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </article>
@@ -455,7 +452,7 @@ export default function GewerbereinigungLandingPage() {
               <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/assets/gewerbereinigung/schluessel-treppenhausreinigung-duesseldorf.webp"
+                    src="/assets/gewerbereinigung/schluessel-treppenhausreinigung-regensburg.webp"
                     alt="Sauberes Treppenhaus mit Schlüsselbox und Reinigungszubehör"
                     fill
                     sizes="(min-width: 1024px) 38vw, 92vw"
@@ -500,6 +497,13 @@ export default function GewerbereinigungLandingPage() {
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
+                  href={offerRequestHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  Reinigungsangebot anfordern
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
                   href={whatsappHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100"
                 >
@@ -518,7 +522,7 @@ export default function GewerbereinigungLandingPage() {
             <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/10">
               <div className="relative aspect-[4/5] min-h-[420px]">
                 <Image
-                  src="/assets/gewerbereinigung/reinigungsanfrage-checkliste-duesseldorf.webp"
+                  src="/assets/gewerbereinigung/reinigungsanfrage-checkliste-regensburg.webp"
                   alt="Checkliste, Schlüssel und Reinigungszubehör für gewerbliche Reinigung"
                   fill
                   sizes="(min-width: 1024px) 35vw, 92vw"
@@ -631,7 +635,7 @@ export default function GewerbereinigungLandingPage() {
                   Senden Sie Ort, Räume und Wunschzeit. Wir melden uns mit dem nächsten Schritt.
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-                  Für Düsseldorf prüfen wir gewerbliche Reinigung nach Objekt, Zugang, Zeitfenster und verfügbarem Umfang. Wenn ein Einsatz nicht sauber machbar ist, sagen wir das ehrlich.
+                  Für Regensburg prüfen wir gewerbliche Reinigung nach Objekt, Zugang, Zeitfenster und verfügbarem Umfang. Wenn ein Einsatz nicht sauber machbar ist, sagen wir das ehrlich.
                 </p>
               </div>
               <div className="flex flex-col gap-3">

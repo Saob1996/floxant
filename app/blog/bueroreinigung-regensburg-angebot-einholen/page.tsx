@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Ist diese Art Anfrage auch für mehrere Büroeinheiten oder Verwaltungen geeignet?",
-    a: "Ja. Wenn mehrere Etagen, Gebäude oder Ansprechpartner relevant sind, hilft eine strukturierte Anfrage sogar besonders, weil Turnus, Zugang und Zuständigkeit dann sauber zusammengeführt werden können.",
+    a: "Ja. Wenn mehrere Etagen, Gebäude oder Ansprechpartner relevant sind, hilft eine Anfrage mit den wichtigsten Eckdaten sogar besonders, weil Turnus, Zugang und Zuständigkeit dann sauber zusammengeführt werden können.",
   },
 ];
 
@@ -31,13 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Büroreinigung in Regensburg anfragen: welche Angaben vor dem Angebot zählen",
     description:
       "Welche Angaben zu Fläche, Turnus, Zugang und Randzeiten aus einer Anfrage zur Büroreinigung schneller ein belastbares Angebot machen.",
-    keywords: [
-      "Büroreinigung Regensburg Angebot",
-      "Büroreinigung anfragen Regensburg",
-      "Gewerbereinigung Büro Regensburg",
-      "Unterhaltsreinigung Regensburg Angebot",
-      "B2B Reinigung Regensburg",
-    ],
   });
 }
 
@@ -122,8 +115,8 @@ export default function BlogBueroreinigungRegensburgAngebotEinholenPage() {
           "Eine gute Büroreinigungs-Anfrage spart Rückfragen und macht die spätere Umsetzung stabiler.",
         ]}
         ctas={[
-          { href: "/bueroreinigung-regensburg", label: "Büroreinigung anfragen" },
-          { href: "/gewerbereinigung-regensburg", label: "Zur B2B-Reinigungsseite" },
+          { href: "/regensburg/bueroreinigung", label: "Büroreinigung anfragen" },
+          { href: "/regensburg/gewerbereinigung", label: "Zur B2B-Reinigungsseite" },
           { href: "/buchung", label: "Direkt anfragen" },
           { href: "/kontakt", label: "Kontakt & Standort" },
         ]}

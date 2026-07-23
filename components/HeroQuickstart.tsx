@@ -39,6 +39,7 @@ export default function HeroQuickstart() {
           <input
             type="text"
             maxLength={5}
+            aria-label="Postleitzahl eingeben"
             placeholder="PLZ eingeben..."
             value={plz}
             onChange={(e) => setPlz(e.target.value.replace(/\D/g, ""))}
@@ -49,6 +50,7 @@ export default function HeroQuickstart() {
         <button
           type="submit"
           disabled={plz.length < 5 || status !== "idle"}
+          aria-label={status === "idle" ? "PLZ-Prüfung starten" : "PLZ-Prüfung läuft"}
           className={cn(
             "inline-flex h-11 items-center gap-2 px-6 rounded-xl bg-blue-600 text-xs font-bold uppercase tracking-widest text-white transition-all",
             "hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"

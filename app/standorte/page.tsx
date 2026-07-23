@@ -33,16 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/standorte",
     title: "Standorte & Einsatzgebiet | FLOXANT Regensburg, Bayern und direkter Buchungsweg",
     description:
-      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Bayern.",
-    keywords: [
-      "Standorte Regensburg",
-      "Servicegebiet Bayern",
-      "Umzug Regensburg Umgebung",
-      "Reinigung Regensburg Umgebung",
-      "Entruempelung Bayern",
-      "Buchung Regensburg",
-      "Google Maps Standort Regensburg",
-    ],
+      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Regensburg.",
   });
 }
 
@@ -71,8 +62,8 @@ const regionalSignalCards = [
   {
     title: "Bayern als Einsatzgebiet",
     text: "Die Standortseite zeigt Staedte und Regionen so, dass Kunden schnell sehen, ob ihr Ort sinnvoll angefragt werden kann.",
-    href: "/service-area-bayern",
-    cta: "Bayern-Seite oeffnen",
+    href: "/regensburg",
+    cta: "Regensburg oeffnen",
   },
   {
     title: "Direkter Buchungsweg",
@@ -140,7 +131,7 @@ export default function StandortePage() {
         ],
         potentialActions: [
           { name: "Direkte Anfrage starten", target: "/buchung" },
-          { name: "Servicegebiet Bayern ansehen", target: "/service-area-bayern" },
+          { name: "Regensburg ansehen", target: "/regensburg" },
         ],
       }),
       buildBreadcrumbJsonLd([
@@ -214,10 +205,10 @@ export default function StandortePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/service-area-bayern"
+                  href="/regensburg"
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
                 >
-                  Bayern-Seite öffnen
+                  Regensburg oeffnen
                   <Radar className="h-4 w-4" />
                 </Link>
               </div>
@@ -420,7 +411,7 @@ export default function StandortePage() {
               text: "Der direkteste Weg fuer Google Maps, direkte Empfehlungen und klare Anfragen.",
             },
             {
-              href: "/gewerbereinigung-regensburg",
+              href: "/regensburg/gewerbereinigung",
               title: "Gewerbereinigung Regensburg",
               text: "Gezielter B2B-Startpunkt fuer Buero, Praxis, Hotel, Kanzlei und Objektbetrieb.",
             },
@@ -464,6 +455,7 @@ export default function StandortePage() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="rounded-[1.15rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
                 {item.label}
@@ -490,6 +482,7 @@ export default function StandortePage() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    prefetch={false}
                     className="group flex items-center justify-between rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
                   >
                     <div className="flex items-center gap-4">

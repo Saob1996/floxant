@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { company } from "@/lib/company";
@@ -29,6 +33,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/treppenhausreinigung-regensburg";
@@ -166,7 +171,7 @@ const relatedLinks = [
   { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
@@ -181,17 +186,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Treppenhausreinigung Regensburg | Hausverwaltung & Angebot | FLOXANT",
     description:
       "Treppenhausreinigung in Regensburg für Hausverwaltung, WEG, Mietshaus und Objekt. Etagen, Aufzug, Turnus, Zugang, Fotos und Angebot prüfen.",
-    keywords: [
-      "Treppenhausreinigung Regensburg",
-      "Hausverwaltung Reinigung Regensburg",
-      "Treppenhausreinigung Kosten Regensburg",
-      "Treppenhaus reinigen lassen Regensburg",
-      "Reinigungsfirma Treppenhaus Regensburg",
-      "WEG Reinigung Regensburg",
-      "Mehrfamilienhaus Reinigung Regensburg",
-      "Treppenhaus Unterhaltsreinigung Regensburg",
-      "Mietshaus Reinigung Regensburg",
-    ],
   });
 }
 
@@ -206,7 +200,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Treppenhausreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -216,7 +210,7 @@ export default function TreppenhausreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Treppenhausreinigung, Hausverwaltung Reinigung, WEG Reinigung, Mehrfamilienhaus Reinigung und Unterhaltsreinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Treppenhausreinigung Regensburg für Hausverwaltung, WEG und Mietshaus",
@@ -261,7 +255,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Treppenhausreinigung Regensburg" },
         ]}
       />
@@ -309,7 +303,18 @@ export default function TreppenhausreinigungRegensburgPage() {
               </nav>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="#kontakt" className="flox-button-primary px-6">
+                <a
+                  href="#kontakt"
+                  data-event="seo_cta_click"
+                  data-service="treppenhausreinigung"
+                  data-city="regensburg"
+                  data-page-intent="treppenhausreinigung-regensburg"
+                  data-priority="p0"
+                  data-destination="/kontakt?service=treppenhausreinigung&city=regensburg&intent=treppenhausreinigung-regensburg&source=seo"
+                  data-source="seo"
+                  data-cta-label="Treppenhausreinigung anfragen"
+                  className="flox-button-primary px-6"
+                >
                   Treppenhausreinigung anfragen
                   <ArrowRight className="h-4 w-4" />
                 </a>
@@ -322,7 +327,7 @@ export default function TreppenhausreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/gewerbereinigung/schluessel-treppenhausreinigung-duesseldorf.webp"
+                  src="/assets/gewerbereinigung/schluessel-treppenhausreinigung-regensburg.webp"
                 alt="Gepflegter Hauseingang als Beispiel für Treppenhausreinigung in Regensburg"
                 fill
                 priority
@@ -357,6 +362,25 @@ export default function TreppenhausreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Treppenhausreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Objektdaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Treppenhausreinigung"
+        intro="Diese Links verbinden Hausverwaltung, Unterhaltsreinigung, Gewerbereinigung und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
+      />
 
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">

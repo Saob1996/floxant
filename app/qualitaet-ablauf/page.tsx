@@ -34,7 +34,7 @@ const faqItems = [
  },
  {
   q: "Wie bleibt der Ablauf für Kunden transparent?",
-  a: "Kunden sehen, welche Faktoren relevant sind, welcher Serviceweg passt und welche Anschlussoptionen sinnvoll sind: Rechner, Express-Anfrage, Preisvorstellung oder ein konkreter Service.",
+  a: "Sie sehen, welche Faktoren wichtig sind und wie Sie weitermachen können: mit Rechner, Express-Anfrage, Preisvorstellung oder einer konkreten Leistung.",
  },
  {
   q: "Gilt der Qualitätsprozess auch für Firmen und Private Client?",
@@ -130,8 +130,8 @@ export default function QualityProcessPage() {
       Erst sauber prüfen, dann stark umsetzen.
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/56">
-      FLOXANT arbeitet nicht mit harten Schnellversprechen, sondern mit einer strukturierten
-      Vorprüfung. So werden Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen
+      FLOXANT arbeitet nicht mit harten Schnellversprechen, sondern prüft zuerst die wichtigsten
+      Eckdaten. So werden Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen
       für Regensburg und Bayern realistischer, klarer und besser planbar.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">
@@ -206,7 +206,7 @@ export default function QualityProcessPage() {
     <div className="mx-auto max-w-6xl">
      <div className="mb-8">
       <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 ">
-       Gilt für alle wichtigen Servicewege
+       Gilt für alle wichtigen Leistungen
       </div>
       <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
        Qualität ist kein einzelner Button, sondern die Struktur dahinter.

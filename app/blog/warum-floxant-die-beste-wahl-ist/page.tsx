@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Wann passt FLOXANT besonders gut?",
-  a: "FLOXANT passt besonders dann, wenn Kunden in Regensburg oder Bayern mehrere Faktoren sauber einordnen möchten: Umzug, Reinigung, Entrümpelung, Übergabe, Preisvorstellung oder Express-Anfrage.",
+  a: "FLOXANT passt besonders dann, wenn Kunden in Regensburg mehrere Faktoren sauber einordnen möchten: Umzug, Reinigung im 50-km-Umkreis, Entrümpelung, Übergabe, Preisvorstellung oder Express-Anfrage.",
  },
 ];
 

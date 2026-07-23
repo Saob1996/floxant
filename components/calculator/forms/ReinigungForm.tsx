@@ -285,6 +285,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
            <input
             type="number"
             min={0}
+            aria-label="Zu reinigende Fläche"
             value={reinigungData.areaM2 || ""}
             onChange={(event) =>
              updateReinigungData({ areaM2: parseNumber(event.target.value) })
@@ -317,6 +318,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
          <FieldCard label="Objektart">
          <select
+          aria-label="Objektart"
           value={reinigungData.propertyType}
           onChange={(event) =>
             updateReinigungData({ propertyType: event.target.value as CleaningPropertyType })
@@ -335,6 +337,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
           <input
            type="number"
            min={0}
+           aria-label="Fensteranzahl"
            value={reinigungData.windowsCount || ""}
            onChange={(event) =>
             updateReinigungData({ windowsCount: parseNumber(event.target.value) })

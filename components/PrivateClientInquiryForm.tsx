@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { AnimatePresence, m } from "framer-motion";
 import { CheckCircle2, Loader2, Mail, MapPin, Phone, Send, UserRound } from "lucide-react";
 import { useState } from "react";
@@ -90,11 +93,12 @@ export function PrivateClientInquiryForm() {
   submitData.append("email", form.email.trim());
   submitData.append("phone", form.phone.trim());
   submitData.append("message", form.note.trim());
+  submitData.append("privacyConsent", "true");
   submitData.append("details", JSON.stringify(details));
   submitData.append("timestamp", new Date().toISOString());
 
   try {
-   const response = await fetch("/api/bookings", {
+   const response = await bookingFetch("/api/bookings", {
     method: "POST",
     body: submitData,
    });
@@ -175,6 +179,8 @@ export function PrivateClientInquiryForm() {
       <Field label="Zeitfenster" value={form.preferredWindow} onChange={(value) => update("preferredWindow", value)} placeholder="z. B. nach Besichtigung, diskret am Wochenende, Etappenplan" />
       <Textarea label="Diskretion / Schutzbedarf" value={form.discretionNeeds} onChange={(value) => update("discretionNeeds", value)} placeholder="Zugang, Personal, Sichtschutz, Inventarliste, sensible Räume..." />
       <Textarea label="Hinweis optional" value={form.note} onChange={(value) => update("note", value)} placeholder="Was soll FLOXANT vor dem persönlichen Kontakt wissen?" />
+
+      <PrivacyConsentField inverted />
 
       {submitError ? (
        <div className="rounded-2xl border border-red-300/25 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-100">

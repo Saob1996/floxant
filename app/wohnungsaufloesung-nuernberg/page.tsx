@@ -86,7 +86,7 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
                 <GscOpportunitySection
                     eyebrow="Wohnungsauflösung Nürnberg"
                     title="Wohnung, Keller oder Haushalt in Nürnberg geordnet auflösen."
-                    intro="Eine Wohnungsauflösung in Nürnberg braucht klare Freigaben: Was darf weg, was bleibt, wer hat Schlüssel und welcher Zustand wird für Übergabe, Verkauf oder Neuvermietung gebraucht? FLOXANT prüft Umfang, Fotos, Zugang, Entsorgung und mögliche Endreinigung gemeinsam."
+                    intro="Eine Wohnungsauflösung in Regensburg braucht klare Freigaben: Was darf weg, was bleibt, wer hat Schlüssel und welcher Zustand wird für Übergabe, Verkauf oder Neuvermietung gebraucht? FLOXANT prüft Umfang, Fotos, Zugang, Entsorgung und mögliche Endreinigung gemeinsam."
                     proofTitle="Wichtig für Nürnberg"
                     proofItems={[
                         "Für Wohnung, Keller, Dachboden, Garage oder Nachlass zählen Fotos, Raumliste, Etage und Laufweg.",
@@ -125,7 +125,7 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
                         {
                             title: "Räumung + Endreinigung",
                             text: "Für Übergabe, Verkauf oder Neuvermietung nach der Haushaltsauflösung.",
-                            href: "/endreinigung-regensburg",
+                            href: "/regensburg/endreinigung",
                         },
                         {
                             title: "Keller + Wohnung",

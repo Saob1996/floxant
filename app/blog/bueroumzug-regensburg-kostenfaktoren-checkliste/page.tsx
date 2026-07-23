@@ -87,7 +87,7 @@ export default function BueroumzugRegensburgBlogPage() {
      {
       title: "Checkliste vor der Anfrage",
       paragraphs: [
-       "Je strukturierter die Angaben, desto belastbarer wird die Vorprüfung. Eine kurze Inventarliste, Fotos und ein grober Raumplan helfen mehr als lange, unklare Nachrichten.",
+       "Je vollständiger die Angaben, desto belastbarer wird die Vorprüfung. Eine kurze Inventarliste, Fotos und ein grober Raumplan helfen mehr als lange, unklare Nachrichten.",
        "Hilfreich ist außerdem, wer im Unternehmen entscheiden darf, wer am Umzugstag erreichbar ist und welche Bereiche zuerst wieder arbeitsfähig sein müssen.",
       ],
      },

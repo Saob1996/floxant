@@ -45,7 +45,7 @@ export default async function UmzugReinigungRegensburgPage({ params }: PageProps
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Umzug Regensburg", href: `/umzug-regensburg` },
+          { label: "Umzug Regensburg", href: `/regensburg/umzug` },
           { label: "Kombi-Service" }
         ]}
         chips={[

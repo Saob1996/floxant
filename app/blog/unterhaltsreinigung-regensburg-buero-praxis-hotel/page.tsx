@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Unterhaltsreinigung Regensburg für Büro, Praxis und Hotel | FLOXANT",
   description:
    "Worauf Unternehmen bei Unterhaltsreinigung in Regensburg achten sollten: Turnus, Zugang, Qualitätskontrolle, Ansprechpartner und klare B2B-Abläufe.",
-  keywords: [
-   "Unterhaltsreinigung Regensburg",
-   "Büroreinigung Regensburg",
-   "Praxisreinigung Regensburg",
-   "Hotelreinigung Regensburg",
-  ],
  });
 }
 
@@ -112,7 +106,7 @@ export default function BlogUnterhaltsreinigungPage() {
     ctas={[
      { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg ansehen" },
      { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg ansehen" },
-     { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg ansehen" },
+     { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg ansehen" },
      { href: "/kontakt", label: "Direkt Kontakt aufnehmen" },
     ]}
     faqTitle="FAQ zur Unterhaltsreinigung"

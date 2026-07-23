@@ -1,0 +1,165 @@
+{
+  "generatedAt": "2026-06-20T03:41:59.993Z",
+  "summary": {
+    "PASS": 15
+  },
+  "results": [
+    {
+      "id": "lead-model",
+      "status": "PASS",
+      "message": "P0-P3 normalization, validation and priority helpers exist.",
+      "files": [
+        "lib/lead-types.ts",
+        "lib/lead-normalization.ts",
+        "lib/lead-validation.ts",
+        "lib/lead-priority.ts",
+        "lib/lead-operations.ts"
+      ]
+    },
+    {
+      "id": "lead-intents",
+      "status": "PASS",
+      "message": "Offer-check is available as a first-class lead intent.",
+      "files": [
+        "lib/lead-intents.ts"
+      ]
+    },
+    {
+      "id": "lead-forms",
+      "status": "PASS",
+      "message": "Key forms send standardized lead-quality and offer-check fields.",
+      "files": [
+        "components/SeoLeadForm.tsx",
+        "components/OfferCheckForm.tsx",
+        "components/OfferComparisonAdsForm.tsx",
+        "components/BudgetContactForm.tsx"
+      ]
+    },
+    {
+      "id": "booking-api",
+      "status": "PASS",
+      "message": "Booking API stores lead quality and returns generic server errors with requestId.",
+      "files": [
+        "app/api/bookings/route.ts"
+      ]
+    },
+    {
+      "id": "docs",
+      "status": "PASS",
+      "message": "Lead response and offer-check operations docs exist.",
+      "files": [
+        "docs/LEAD_RESPONSE_PLAYBOOK.md",
+        "docs/OFFER_CHECK_OPERATIONS_FLOW.md",
+        "docs/LEAD_OPERATIONS_FLOW.md",
+        "docs/SALES_OPERATIONS_PLAYBOOK.md"
+      ]
+    },
+    {
+      "id": "lead-operations",
+      "status": "PASS",
+      "message": "Lead operations snapshot covers signature services, lead kind, location and do-not-promise guardrails.",
+      "files": [
+        "lib/lead-operations.ts",
+        "lib/lead-normalization.ts",
+        "lib/lead-priority.ts"
+      ]
+    },
+    {
+      "id": "b2b-lead-fields",
+      "status": "PASS",
+      "message": "B2B leads capture optional company, area, frequency, timing, role and scope fields.",
+      "files": [
+        "components/SeoLeadForm.tsx",
+        "components/DuesseldorfB2BCleaningForm.tsx",
+        "lib/lead-normalization.ts",
+        "lib/lead-validation.ts"
+      ]
+    },
+    {
+      "id": "location-lead-mapping",
+      "status": "PASS",
+      "message": "Duesseldorf/Regensburg are mapped with unknown fallback and manual-location guardrails.",
+      "files": [
+        "lib/floxant-locations.ts",
+        "lib/lead-normalization.ts",
+        "components/SeoLeadForm.tsx"
+      ]
+    },
+    {
+      "id": "service-packages",
+      "status": "PASS",
+      "message": "Service packages define fit, boundaries, needed inputs, effort drivers and CTA parameters.",
+      "files": [
+        "lib/service-packages.ts"
+      ]
+    },
+    {
+      "id": "effort-factors",
+      "status": "PASS",
+      "message": "Effort factors explain scope drivers without prices, guarantees or automatic booking promises.",
+      "files": [
+        "lib/service-effort-factors.ts"
+      ]
+    },
+    {
+      "id": "lead-to-booking-components",
+      "status": "PASS",
+      "message": "Service packaging, trust, routing, offer-check, B2B and discreet-flow components exist with CTA signals.",
+      "files": [
+        "components/ServicePackageSelector.tsx",
+        "components/EffortFactorsPanel.tsx",
+        "components/WhatWeNeedChecklist.tsx",
+        "components/CustomerConcernPanel.tsx",
+        "components/ObjectionAnswerGrid.tsx",
+        "components/ContactPathChooser.tsx",
+        "components/OfferConcernSelector.tsx",
+        "components/OfferCheckScopeBoundary.tsx",
+        "components/B2BRequestPanel.tsx",
+        "components/CommercialCleaningScopeSelector.tsx",
+        "components/DiscreetRequestPanel.tsx",
+        "components/SensitiveCaseNotice.tsx",
+        "components/PreferredContactMethodPanel.tsx"
+      ]
+    },
+    {
+      "id": "lead-success-states",
+      "status": "PASS",
+      "message": "Contact form has intent-specific success copy, preferred contact method and offer-check prefill fields.",
+      "files": [
+        "components/SeoLeadForm.tsx"
+      ]
+    },
+    {
+      "id": "trust-claim-guard",
+      "status": "PASS",
+      "message": "New trust content avoids positive price, certification, legal or acceptance guarantees.",
+      "files": [
+        "lib/service-packages.ts",
+        "lib/service-effort-factors.ts",
+        "components/OfferCheckCommercialHero.tsx",
+        "components/OfferCheckTrustWithoutGuarantee.tsx",
+        "components/BusinessTrustPanel.tsx",
+        "components/SensitiveCaseNotice.tsx",
+        "components/SeoLeadForm.tsx"
+      ]
+    },
+    {
+      "id": "vercel-guards",
+      "status": "PASS",
+      "message": "Public pages avoid forbidden dynamic/runtime/API/tracking patterns and images remain unoptimized.",
+      "files": [
+        "app/**/page.tsx",
+        "next.config.js"
+      ]
+    },
+    {
+      "id": "lead-health-script",
+      "status": "PASS",
+      "message": "package.json exposes npm run lead:health.",
+      "files": [
+        "package.json",
+        "scripts/lead-health-check.ts"
+      ]
+    }
+  ]
+}

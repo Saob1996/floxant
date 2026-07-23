@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   pageLocale: "de" as Locale,
   path: `angebote/${slug}`,
   title: `${service.charAt(0).toUpperCase() + service.slice(1)} Preisrahmen in ${city} | FLOXANT`,
-  description: `Unverbindliche Einschätzung für ${service} in ${city}: Aufwand, Region und Kostentreiber strukturiert einordnen.`,
+  description: `Unverbindliche Einschätzung für ${service} in ${city}: Aufwand, Einsatzort und wichtige Angaben prüfen.`,
  });
 }
 export default async function ProgrammaticSeoCalculator({ params }: { params: Promise<{ slug: string }> }) {
@@ -61,7 +61,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
       {serviceType} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">Kosten in {city}</span>
      </h1>
      <p className="text-white/60 text-lg">
-      Starten Sie eine unverbindliche Einschätzung für {city}. Ihre Angaben werden strukturiert eingeordnet, damit Aufwand, Region und Kostentreiber verständlich werden.
+      Starten Sie eine unverbindliche Einschätzung für {city}. Wir prüfen Ihre Angaben und erklären, wovon Aufwand und mögliche Zusatzkosten abhängen.
      </p>
     </header>
     {/* DualCalculator Orchestrator automatically tracks user data now */}

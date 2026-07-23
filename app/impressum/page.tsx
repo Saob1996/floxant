@@ -5,7 +5,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: "impressum",
     title: "Impressum – FLOXANT",
-    description: "Rechtliche Informationen und Impressum von Floxant. Ihr Partner für Umzug, Reinigung & Entrümpelung in Bayern.",
+    description: "Rechtliche Informationen und Impressum von Floxant. Ihr Partner für Umzug, Reinigung & Entrümpelung in Regensburg.",
   });
 }
 export default function Impressum() {

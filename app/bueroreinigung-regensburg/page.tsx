@@ -22,9 +22,23 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
+import { B2BRequestPanel } from "@/components/B2BRequestPanel";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
+import { BusinessTrustPanel } from "@/components/BusinessTrustPanel";
+import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaningScopeSelector";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
+import { InternationalCustomerHint } from "@/components/conversion";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
+import { RecurringCleaningHint } from "@/components/RecurringCleaningHint";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -33,9 +47,10 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
-const pagePath = "/bueroreinigung-regensburg";
+const pagePath = "/regensburg/bueroreinigung";
 
 type IntentCard = {
   phrase: string;
@@ -157,7 +172,7 @@ const relatedLinks = [
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/blog/bueroreinigung-regensburg-angebot-einholen", label: "Ratgeber Büroreinigung" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -167,20 +182,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "bueroreinigung-regensburg",
-    title: "Büroreinigung Regensburg | Angebot & Kosten | FLOXANT",
+    title: "Büroreinigung Regensburg mit Raumliste und Angebot",
     description:
-      "Büroreinigung in Regensburg für Büro, Kanzlei, Agentur und Verwaltung. Fläche, Turnus, Küche, Sanitär, Zeitfenster, Fotos und Angebot prüfen.",
-    keywords: [
-      "Büroreinigung Regensburg",
-      "Büroreinigung Regensburg Angebot",
-      "Büroreinigung Kosten Regensburg",
-      "Büro Reinigungskraft Regensburg",
-      "Reinigungsfirma Büro Regensburg",
-      "Büro Unterhaltsreinigung Regensburg",
-      "Büroreinigung nach Feierabend Regensburg",
-      "Kanzlei Büroreinigung Regensburg",
-      "Agentur Reinigung Regensburg",
-    ],
+      "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden.",
   });
 }
 
@@ -195,7 +199,7 @@ export default function BueroreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Büroreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -205,7 +209,8 @@ export default function BueroreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Büroreinigung, Büro-Unterhaltsreinigung, Kanzleireinigung, Agenturreinigung und gewerbliche Reinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
+        availableLanguage: ["de", "en"],
       }),
       buildWebPageJsonLd({
         name: "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Verwaltung",
@@ -250,7 +255,7 @@ export default function BueroreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Büroreinigung Regensburg" },
         ]}
       />
@@ -270,14 +275,14 @@ export default function BueroreinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[17ch] text-[clamp(2.1rem,4.3vw,4rem)] font-black leading-[0.98] text-slate-950">
-                Saubere Büros, klare Abläufe, bessere Anfragen.
+                Bueroreinigung Regensburg mit Raumliste, Turnus und Randzeit klaeren.
               </h1>
 
               <p className="mt-5 max-w-[60ch] text-base leading-8 text-slate-700">
-                FLOXANT prüft Büroreinigung in Regensburg nach Bürofläche,
-                Raumliste, Turnus, Küche, Sanitär, Boden, Zeitfenster, Zugang
-                und Fotos. Ideal für Büros, Kanzleien, Agenturen, Studios und
-                Verwaltungsflächen, die zuverlässig sauber bleiben sollen.
+                FLOXANT prueft Bueroreinigung in Regensburg nach Bueroflaeche,
+                Raumliste, Turnus, Kueche, Sanitaer, Boden, Randzeit, Zugang,
+                Schluesselweg und Fotos. So wird sichtbar, ob laufende Reinigung,
+                Grundreinigung oder ein Angebotscheck der passende naechste Schritt ist.
               </p>
 
               <nav
@@ -310,7 +315,7 @@ export default function BueroreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
                 alt="Helles Büro als Beispiel für Büroreinigung in Regensburg"
                 fill
                 priority
@@ -346,6 +351,29 @@ export default function BueroreinigungRegensburgPage() {
         </div>
       </section>
 
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel="Büroreinigung, Unterhaltsreinigung oder gewerbliche Reinigung"
+        tags={["Office cleaning", "Commercial cleaning", "Cleaning service", "Cleaning quote", "Photos welcome"]}
+        primaryHref="#kontakt"
+        photoHref="#kontakt"
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
+
+      <B2BRequestPanel city="regensburg" />
+      <CommercialCleaningScopeSelector city="regensburg" />
+      <EffortFactorsPanel group="b2b" />
+      <BusinessTrustPanel />
+      <B2BTrustPanel />
+      <ServiceProofChecklist serviceKey="b2b" />
+      <RequestBriefChecklistBlock
+        serviceKey="bueroreinigung"
+        ctaHref={`${pagePath}#kontaktformular`}
+        ctaLabel="Buerodaten als Anfragebrief vorbereiten"
+        compact
+      />
+      <PhotoGuidanceBlock serviceKey="bueroreinigung" compact />
+
       <RegensburgCleaningBuyerPath
         serviceLabel="Büroreinigung Regensburg"
         headline="Wenn das Büro sauber wirken muss, soll die Anfrage nicht hängen bleiben."
@@ -354,9 +382,28 @@ export default function BueroreinigungRegensburgPage() {
           "/unterhaltsreinigung-regensburg",
           "/fensterreinigung-regensburg",
           "/teppichreinigung-regensburg",
-          "/gewerbereinigung-regensburg",
+          "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=bueroreinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontaktformular`} ctaLabel="Büroreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontaktformular`} ctaLabel="Bürodaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Büroreinigung"
+        intro="Diese Links verbinden Büroreinigung, Gewerbereinigung, Unterhalt, Praxis und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">
@@ -530,7 +577,7 @@ export default function BueroreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}
@@ -554,6 +601,9 @@ export default function BueroreinigungRegensburgPage() {
             </p>
           </div>
 
+          <div className="mb-5">
+            <RecurringCleaningHint />
+          </div>
           <CommercialCleaningLeadForm />
         </div>
       </section>

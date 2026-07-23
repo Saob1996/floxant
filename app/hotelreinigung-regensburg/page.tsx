@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { company } from "@/lib/company";
@@ -29,6 +33,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/hotelreinigung-regensburg";
@@ -162,13 +167,13 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
   { href: "/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis", label: "Ratgeber B2B-Reinigung" },
@@ -182,17 +187,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Hotelreinigung Regensburg | Zimmer, Lobby & Turnus | FLOXANT",
     description:
       "Hotelreinigung in Regensburg für Hotel, Pension, Boardinghouse, Lobby, Flure, Zimmer, Sanitär und Frühstücksbereich. Fotos, Turnus und Angebot prüfen.",
-    keywords: [
-      "Hotelreinigung Regensburg",
-      "Hotel Reinigung Firma Regensburg",
-      "Zimmerreinigung Regensburg",
-      "Hotel Unterhaltsreinigung Regensburg",
-      "Pension Reinigung Regensburg",
-      "Boardinghouse Reinigung Regensburg",
-      "Lobby Reinigung Regensburg",
-      "Hotelreinigung Angebot Regensburg",
-      "Hotelreinigung Kosten Regensburg",
-    ],
   });
 }
 
@@ -207,7 +201,7 @@ export default function HotelreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Hotelreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -217,7 +211,7 @@ export default function HotelreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Hotelreinigung, Zimmerreinigung, Boardinghouse Reinigung, Lobbyreinigung und Hotel-Unterhaltsreinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse und Objektbetrieb",
@@ -262,7 +256,7 @@ export default function HotelreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Hotelreinigung Regensburg" },
         ]}
       />
@@ -323,7 +317,7 @@ export default function HotelreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Aufgeräumtes Hotelzimmer als Beispiel für Hotelreinigung in Regensburg"
                 fill
                 priority
@@ -358,6 +352,25 @@ export default function HotelreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Hotelreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Hoteldaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Hotelreinigung"
+        intro="Diese Links verbinden Hotel, Unterhaltsreinigung, Gewerbe, Fenster und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
+      />
 
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
@@ -530,7 +543,7 @@ export default function HotelreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}

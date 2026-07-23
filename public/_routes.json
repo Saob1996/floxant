@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/api/bookings",
+    "/api/intake",
+    "/seo-gone",
+    "/umzug-duesseldorf",
+    "/duesseldorf/umzug",
+    "/duesseldorf/entruempelung",
+    "/duesseldorf/haushaltsaufloesung"
+  ],
+  "exclude": []
+}

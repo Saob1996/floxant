@@ -51,6 +51,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
           <input
            type="number"
            min={1}
+           aria-label={dic?.calculator?.painting_area || "Wandfläche gesamt"}
            value={malerarbeitenData.areaM2 || ""}
            onChange={(e) => updateMalerarbeitenData({ areaM2: parseNumber(e.target.value) })}
            placeholder="z. B. 120"
@@ -65,6 +66,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
           <input
            type="number"
            min={1}
+           aria-label={dic?.calculator?.rooms || "Anzahl der Räume"}
            value={malerarbeitenData.roomsCount || ""}
            onChange={(e) => updateMalerarbeitenData({ roomsCount: parseNumber(e.target.value) })}
            placeholder="z. B. 3"
@@ -82,6 +84,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
         {qualities.map((q) => (
          <button
           key={q.id}
+          type="button"
           onClick={() => updateMalerarbeitenData({ paintQuality: q.id as any })}
           className={`flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all ${
            malerarbeitenData.paintQuality === q.id 

@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "FLOXANT - Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt in Regensburg und Bayern";
+export const dynamic = "force-static";
+
+export const alt = "FLOXANT - Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt in Regensburg und Regensburg";
 export const size = {
  width: 1200,
  height: 630,

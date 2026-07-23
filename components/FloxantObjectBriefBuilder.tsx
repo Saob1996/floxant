@@ -28,36 +28,46 @@ const regionOptions = {
     label: "Düsseldorf",
     text: "Reinigung für Büro, Praxis, Gewerbefläche, Wohnung und Übergabe.",
     services: [
-      "Gewerbereinigung",
-      "Büroreinigung",
+      "Gewerbereinigung / Commercial cleaning",
+      "Büroreinigung / Office cleaning",
       "Praxisreinigung",
       "Treppenhausreinigung",
       "Endreinigung",
-      "Angebot prüfen lassen",
+      "Solar- / PV-Reinigung",
+      "Glas- oder Fassadenreinigung",
+      "Büro startklar machen",
+      "Angebot prüfen lassen / Quote check",
     ],
     goals: [
       "Laufende Reinigung sauber starten",
       "Übergabe oder Auszug vorbereiten",
       "Kurzfristige Machbarkeit klären",
       "Vorhandenes Angebot einordnen",
+      "PV, Glas oder Fassade sicher einschätzen",
+      "Büro, Praxis oder Gewerbefläche startklar machen",
     ],
   },
   regensburg: {
     label: "Regensburg",
     text: "Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
     services: [
-      "Umzug",
-      "Entrümpelung",
-      "Haushaltsauflösung",
-      "Endreinigung",
+      "Umzug / Moving help",
+      "Entrümpelung / Decluttering",
+      "Haushaltsauflösung / House clearance",
+      "Endreinigung / End of tenancy cleaning",
       "Übergabevorbereitung",
       "Umzug + Reinigung",
+      "Mini-Umzug / Möbeltransport",
+      "Keller- oder Nachlassauflösung",
+      "Rückfahrt / Beiladung",
     ],
     goals: [
       "Wohnungswechsel vorbereiten",
       "Räumung und Entsorgung klären",
       "Übergabe besenrein vorbereiten",
       "Kombination aus Leistung und Reinigung planen",
+      "Anbieter ist ausgefallen oder reagiert nicht",
+      "Nachlass, Keller oder Übergabe diskret sortieren",
     ],
   },
 } as const;
@@ -78,20 +88,33 @@ const urgencyOptions = [
 
 const serviceLinks: Record<RegionKey, Record<string, string>> = {
   duesseldorf: {
-    Gewerbereinigung: "/duesseldorf/gewerbereinigung",
-    Büroreinigung: "/duesseldorf/bueroreinigung",
-    Praxisreinigung: "/duesseldorf/praxisreinigung",
-    Treppenhausreinigung: "/duesseldorf/treppenhausreinigung",
-    Endreinigung: "/duesseldorf/endreinigung",
-    "Angebot prüfen lassen": "/angebot-vergleichen-duesseldorf",
+    Gewerbereinigung: "/regensburg/gewerbereinigung",
+    "Gewerbereinigung / Commercial cleaning": "/regensburg/gewerbereinigung",
+    Büroreinigung: "/regensburg/bueroreinigung",
+    "Büroreinigung / Office cleaning": "/regensburg/bueroreinigung",
+    Praxisreinigung: "/praxisreinigung-regensburg",
+    Treppenhausreinigung: "/treppenhausreinigung-regensburg",
+    Endreinigung: "/regensburg/endreinigung",
+    "Solar- / PV-Reinigung": "/regensburg/reinigung",
+    "Glas- oder Fassadenreinigung": "/spezialreinigung",
+    "Büro startklar machen": "/regensburg/bueroreinigung",
+    "Angebot prüfen lassen": "/angebot-vergleichen-regensburg",
+    "Angebot prüfen lassen / Quote check": "/angebot-vergleichen-regensburg",
   },
   regensburg: {
     Umzug: "/regensburg/umzug",
+    "Umzug / Moving help": "/regensburg/umzug",
     Entrümpelung: "/regensburg/entruempelung",
+    "Entrümpelung / Decluttering": "/regensburg/entruempelung",
     Haushaltsauflösung: "/regensburg/haushaltsaufloesung",
+    "Haushaltsauflösung / House clearance": "/regensburg/haushaltsaufloesung",
     Endreinigung: "/regensburg/endreinigung",
+    "Endreinigung / End of tenancy cleaning": "/regensburg/endreinigung",
     Übergabevorbereitung: "/regensburg/uebergabereinigung",
     "Umzug + Reinigung": "/regensburg/umzug-reinigung",
+    "Mini-Umzug / Möbeltransport": "/mini-umzug",
+    "Keller- oder Nachlassauflösung": "/nachlassaufloesung",
+    "Rückfahrt / Beiladung": "/rueckfahrt-boerse",
   },
 };
 
@@ -204,7 +227,7 @@ export function FloxantObjectBriefBuilder() {
   );
 
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, message);
-  const serviceHref = serviceLinks[region][service] || (region === "duesseldorf" ? "/duesseldorf/reinigung" : "/regensburg");
+  const serviceHref = serviceLinks[region][service] || "/regensburg";
   const nextAction = useMemo(() => {
     const urgent = deadline.includes("Heute") || deadline.includes("morgen") || deadline.includes("Diese Woche");
 
@@ -232,7 +255,7 @@ export function FloxantObjectBriefBuilder() {
     if (region === "duesseldorf") {
       return {
         label: "Reinigungsumfang sauber festlegen",
-        text: "Für Düsseldorf sind Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos entscheidend. So wird aus einer Anfrage ein planbarer Reinigungsfall.",
+        text: "Für Regensburg sind Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos entscheidend. So wird aus einer Anfrage ein planbarer Reinigungsfall.",
       };
     }
 
@@ -272,6 +295,10 @@ export function FloxantObjectBriefBuilder() {
             Sie müssen keine perfekte Beschreibung vorbereiten. Wählen Sie Region, Leistung,
             Terminlage und Zugang aus, ergänzen Sie Ort, Fotos oder Budgetrahmen und senden Sie
             daraus eine klare WhatsApp-Anfrage.
+          </p>
+          <p className="mt-2 text-sm font-black leading-6 text-blue-700">
+            Der Objektbrief funktioniert auch mit kurzen englischen Stichworten wie cleaning service,
+            moving help, house clearance oder quote check.
           </p>
         </div>
 
@@ -413,7 +440,7 @@ export function FloxantObjectBriefBuilder() {
                   <input
                     value={budget}
                     onChange={(event) => setBudget(event.target.value)}
-                    placeholder="optional, z. B. 500 bis 800 Euro"
+                    placeholder="Ihr gewünschter Rahmen, falls vorhanden"
                     className="min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                   />
                 </label>
@@ -583,6 +610,7 @@ export function FloxantObjectBriefBuilder() {
               </a>
               <button
                 type="button"
+                aria-label={copied ? "Objektbrief-Nachricht kopiert" : "Objektbrief-Nachricht kopieren"}
                 onClick={copyMessage}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
                 data-event="hero_cta_click"
