@@ -24,7 +24,7 @@ const serviceGroups = [
       { label: "Reinigung", href: "/reinigung" },
       { label: "Büroreinigung", href: "/reinigung#bueroreinigung" },
       { label: "Gewerbereinigung", href: "/reinigung#gewerbereinigung" },
-      { label: "Fensterreinigung", href: "/reinigung#fensterreinigung" },
+      { label: "Spezial- & Grundreinigung", href: "/reinigung#grundreinigung" },
     ],
   },
   {

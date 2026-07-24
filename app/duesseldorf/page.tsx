@@ -84,12 +84,30 @@ const duesseldorfCleaningLinks = [
     href: "/duesseldorf/fensterreinigung",
     cta: "Fensterreinigung öffnen",
   },
+  {
+    title: "Grundreinigung Düsseldorf",
+    text: "Intensive Reinigung für Wohnung, Haus, Büro oder Gewerbe mit Schwerpunkten, Fotos und gewünschtem Zielzustand.",
+    href: "/duesseldorf/grundreinigung",
+    cta: "Grundreinigung öffnen",
+  },
+  {
+    title: "Unterhaltsreinigung Düsseldorf",
+    text: "Laufende Reinigung mit Bereichen, Turnus, Zeitfenstern, Zugang und festem Ansprechpartner.",
+    href: "/duesseldorf/unterhaltsreinigung",
+    cta: "Unterhaltsreinigung öffnen",
+  },
+  {
+    title: "Bauendreinigung Düsseldorf",
+    text: "Nach Bau, Umbau oder Renovierung mit Bauphase, Restarbeiten, Oberflächen und Übergabetermin.",
+    href: "/duesseldorf/baureinigung",
+    cta: "Bauendreinigung öffnen",
+  },
 ];
 
 const faqItems = [
   {
     q: "Ist Düsseldorf ein echter FLOXANT Standort?",
-    a: "Düsseldorf wird als eigener FLOXANT Standort geführt. Website, Kontaktweg, Adresse und Google-Business-Profile-Daten müssen vor Production manuell mit den vorhandenen Unternehmensdaten abgeglichen werden.",
+    a: "Ja. Düsseldorf wird als eigener FLOXANT Standort mit einem separaten Kontakt- und Anfrageweg geführt. Leistungen im Umland werden abhängig von Objekt, Strecke, Termin und Kapazität geprüft.",
   },
   {
     q: "Gibt es eine 50-km-Umgebung um Düsseldorf?",
@@ -107,9 +125,9 @@ const faqItems = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Düsseldorf | Servicezentrum, Angebot prüfen, Umzug und Räumung",
+  title: "FLOXANT Düsseldorf | Reinigung & Services persönlich anfragen",
   description:
-    "FLOXANT Düsseldorf bündelt lokale Anfragewege für Angebot prüfen, Umzug, Entrümpelung, Haushaltsauflösung und manuell geprüfte Servicegebiete im Umkreis.",
+    "FLOXANT Düsseldorf: Reinigung, Büro-, Gewerbe-, Grund-, Unterhalts-, Fenster- und Bauendreinigung sowie besondere Services klar und persönlich anfragen.",
   alternates: {
     canonical,
     languages: {
@@ -194,12 +212,12 @@ export default function DuesseldorfHubPage() {
               FLOXANT Düsseldorf
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            FLOXANT in Düsseldorf: Angebot prüfen, Umzug und Räumung anfragen.
+              FLOXANT Düsseldorf: Reinigung und besondere Services klar anfragen.
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-              Starten Sie mit Angebot prüfen, Umzug, Entrümpelung, Haushaltsauflösung oder einer
-              englischen Anfrage. Der Umkreis wird als Servicegebiet geprüft, nicht als weitere
-              Niederlassung behauptet.
+              Wählen Sie Reinigung, Büro, Gewerbe, Grundreinigung, Unterhaltsreinigung,
+              Bauendreinigung oder einen besonderen Anfrageweg. Wir führen Sie mit wenigen
+              verständlichen Angaben zur passenden Leistung.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -236,10 +254,10 @@ export default function DuesseldorfHubPage() {
 
           <div className="grid gap-3">
             {[
-              "Düsseldorf bleibt ein eigener Standort, keine erfundene Zusatzadresse.",
-              "Neuss, Ratingen, Meerbusch und weitere Orte sind Servicegebiet-Kandidaten.",
-              "Reinigung, Büroreinigung, Gewerbereinigung, Praxisreinigung und Fensterreinigung sind direkt gebündelt.",
-              "English customer path: service, city, photos, date and contact preference are enough to start.",
+              "Eigener Düsseldorfer Anfrageweg mit klarer Standortzuordnung.",
+              "Neuss, Ratingen, Meerbusch und weitere Orte werden nach Machbarkeit geprüft.",
+              "Alle wichtigen Reinigungsarten sind übersichtlich und direkt erreichbar.",
+              "Für den Start reichen Objekt, Ort, Umfang, Terminwunsch und optional Fotos.",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-white/15 bg-slate-950/70 p-4 text-sm font-semibold leading-6 text-slate-100 backdrop-blur">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" aria-hidden="true" />
@@ -281,7 +299,7 @@ export default function DuesseldorfHubPage() {
               Reinigung Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Fünf Reinigungsleistungen im direkten Überblick.
+              Reinigungsleistungen in Düsseldorf im direkten Überblick.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
               Die Reinigungsthemen sind auf wenige klare Zielseiten verteilt. Jede Seite führt zu einer Anfrage mit Stadtparameter und zur Angebotsprüfung, ohne Preis-, Termin- oder Verfügbarkeitsgarantie.

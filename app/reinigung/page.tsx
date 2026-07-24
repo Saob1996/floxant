@@ -56,6 +56,27 @@ const cleaningTypes = [
     duesseldorf: "/reinigung-moeblierte-wohnung-duesseldorf",
     regensburg: "/reinigung-moeblierte-wohnung-regensburg",
   },
+  {
+    id: "grundreinigung",
+    title: "Grundreinigung",
+    text: "Intensive Reinigung für Wohnung, Haus, Büro oder Gewerbe mit Raumliste, Schwerpunkten, Fotos und gewünschtem Zielzustand.",
+    duesseldorf: "/duesseldorf/grundreinigung",
+    regensburg: "/grundreinigung-regensburg",
+  },
+  {
+    id: "unterhaltsreinigung",
+    title: "Unterhaltsreinigung",
+    text: "Wiederkehrende Reinigung für Büro, Gewerbe, Treppenhaus oder Objekt mit Turnus, Bereichen, Zeiten und Zugang.",
+    duesseldorf: "/duesseldorf/unterhaltsreinigung",
+    regensburg: "/unterhaltsreinigung-regensburg",
+  },
+  {
+    id: "baureinigung",
+    title: "Bau- und Bauendreinigung",
+    text: "Reinigung nach Bau, Umbau oder Renovierung mit Bauphase, Restarbeiten, Oberflächen und Übergabetermin.",
+    duesseldorf: "/duesseldorf/baureinigung",
+    regensburg: "/baureinigung-regensburg",
+  },
 ] as const;
 
 export const metadata: Metadata = {
@@ -179,8 +200,8 @@ export default function ReinigungLocationChooserPage() {
             <p className="text-sm font-black uppercase tracking-wide text-blue-800">Reinigungsart wählen</p>
             <h2 className="mt-3 text-3xl font-black sm:text-4xl">Direkt zur richtigen Reinigungsleistung.</h2>
             <p className="mt-4 font-medium leading-7 text-slate-700">
-              Wenn Sie schon wissen, ob es um Büro, Gewerbe, Fenster oder Apartment geht, wählen Sie hier zuerst die
-              Reinigungsart und dann die Stadt.
+              Wählen Sie zuerst die Reinigungsart und danach Düsseldorf oder Regensburg. So landen Büro, Gewerbe,
+              Fenster, Apartment, Grund-, Unterhalts- und Baureinigung direkt im richtigen lokalen Anfrageweg.
             </p>
           </div>
 
@@ -189,7 +210,7 @@ export default function ReinigungLocationChooserPage() {
               <article id={item.id} key={item.id} className="scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-100 text-cyan-950">
-                    {item.id === "apartment-reinigung" ? <Home className="h-5 w-5" aria-hidden="true" /> : <Building2 className="h-5 w-5" aria-hidden="true" />}
+                    {item.id === "apartment-reinigung" || item.id === "grundreinigung" ? <Home className="h-5 w-5" aria-hidden="true" /> : <Building2 className="h-5 w-5" aria-hidden="true" />}
                   </span>
                   <h3 className="text-xl font-black">{item.title}</h3>
                 </div>

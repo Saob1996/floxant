@@ -88,6 +88,12 @@ const regensburgDecisionGuide = [
     cta: "Büroreinigung prüfen",
   },
   {
+    title: "Grund-, Unterhalts- und Baureinigung",
+    text: "Für intensive Grundreinigung, wiederkehrende Objektpflege oder Reinigung nach Bau und Renovierung mit klarer Leistungsabgrenzung.",
+    href: "/reinigung#grundreinigung",
+    cta: "Reinigungsart wählen",
+  },
+  {
     title: "Entrümpelung und Haushaltsauflösung",
     text: "Für Keller, Wohnung, Nachlass, Lager oder Restmengen mit Fotos, Menge, Material und Zielzustand.",
     href: "/regensburg/wohnungsaufloesung",

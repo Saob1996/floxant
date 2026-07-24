@@ -23,7 +23,26 @@
       "locale": "de",
       "type": "service",
       "regions": [
+        "Düsseldorf",
         "Regensburg"
+      ],
+      "serviceIds": [
+        "baureinigung"
+      ],
+      "keywords": [
+        "Bauendreinigung",
+        "Bauendreinigung klar anfragen"
+      ]
+    },
+    {
+      "id": "service:baureinigung:de:-duesseldorf-baureinigung",
+      "title": "Bauendreinigung",
+      "description": "Reinigung nach Renovierung, Umbau oder Handwerkerarbeiten mit klarer Grenze zu Sanierung und Mängelhaftung.",
+      "url": "/duesseldorf/baureinigung",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf"
       ],
       "serviceIds": [
         "baureinigung"
@@ -1207,7 +1226,31 @@
       "locale": "de",
       "type": "service",
       "regions": [
+        "Düsseldorf",
         "Regensburg"
+      ],
+      "serviceIds": [
+        "grundreinigung"
+      ],
+      "keywords": [
+        "Wohnung",
+        "Büro",
+        "Küche",
+        "Bad",
+        "Objektfläche",
+        "Grundreinigung",
+        "Grundreinigung klar anfragen"
+      ]
+    },
+    {
+      "id": "service:grundreinigung:de:-duesseldorf-grundreinigung",
+      "title": "Grundreinigung",
+      "description": "Intensivere Reinigung für stärker beanspruchte Flächen, wenn normale Unterhaltsreinigung nicht ausreicht.",
+      "url": "/duesseldorf/grundreinigung",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf"
       ],
       "serviceIds": [
         "grundreinigung"
@@ -2346,7 +2389,29 @@
       "locale": "de",
       "type": "service",
       "regions": [
+        "Düsseldorf",
         "Regensburg"
+      ],
+      "serviceIds": [
+        "unterhaltsreinigung"
+      ],
+      "keywords": [
+        "Unternehmen",
+        "Praxen",
+        "Hausverwaltungen",
+        "Unterhaltsreinigung",
+        "Unterhaltsreinigung klar anfragen"
+      ]
+    },
+    {
+      "id": "service:unterhaltsreinigung:de:-duesseldorf-unterhaltsreinigung",
+      "title": "Unterhaltsreinigung",
+      "description": "Regelmäßige Reinigung von Büros, Praxen, Treppenhäusern und Gewerbeflächen nach Raumliste und Turnus.",
+      "url": "/duesseldorf/unterhaltsreinigung",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf"
       ],
       "serviceIds": [
         "unterhaltsreinigung"

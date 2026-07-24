@@ -179,7 +179,10 @@
 /praxisreinigung-duesseldorf /duesseldorf 308
 /bueroreinigung-duesseldorf /duesseldorf 308
 /hotelreinigung-duesseldorf /duesseldorf 308
-/grundreinigung-duesseldorf /duesseldorf 308
+/grundreinigung-duesseldorf /duesseldorf/grundreinigung 308
+/unterhaltsreinigung-duesseldorf /duesseldorf/unterhaltsreinigung 308
+/baureinigung-duesseldorf /duesseldorf/baureinigung 308
+/bauendreinigung-duesseldorf /duesseldorf/baureinigung 308
 /wohnungsreinigung-duesseldorf /duesseldorf 308
 /treppenhausreinigung-duesseldorf /duesseldorf 308
 /putzfirma-duesseldorf /duesseldorf 308
@@ -195,13 +198,11 @@
 /d%C3%BCsseldorf /duesseldorf 308
 /d%C3%BCsseldorf/* /duesseldorf/:splat 308
 /duesseldorf/b2b-reinigung /duesseldorf 308
-/duesseldorf/baureinigung /duesseldorf 308
 /duesseldorf/endreinigung /duesseldorf 308
 /duesseldorf/firmenreinigung /duesseldorf 308
 /duesseldorf/gebaeudereinigung /duesseldorf 308
 /duesseldorf/geruchsneutralisation /duesseldorf 308
 /duesseldorf/gewerbeflaechen-reinigung /duesseldorf 308
-/duesseldorf/grundreinigung /duesseldorf 308
 /duesseldorf/haushaltsreinigung /duesseldorf 308
 /duesseldorf/hausverwaltung-reinigung /duesseldorf 308
 /duesseldorf/hotelreinigung /duesseldorf 308
@@ -224,7 +225,6 @@
 /duesseldorf/sonderreinigung /duesseldorf 308
 /duesseldorf/teppichreinigung /duesseldorf 308
 /duesseldorf/treppenhausreinigung /duesseldorf 308
-/duesseldorf/unterhaltsreinigung /duesseldorf 308
 /duesseldorf/vielleicht-guenstiger /duesseldorf 308
 /duesseldorf/wohnungsreinigung /duesseldorf 308
 /koeln/reinigung /duesseldorf 308

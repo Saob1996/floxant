@@ -83,6 +83,9 @@ const DUESSELDORF_ALLOWED_SERVICE_PATHS = new Set([
   "/duesseldorf/gewerbereinigung",
   "/duesseldorf/praxisreinigung",
   "/duesseldorf/fensterreinigung",
+  "/duesseldorf/grundreinigung",
+  "/duesseldorf/unterhaltsreinigung",
+  "/duesseldorf/baureinigung",
 ]);
 
 function normalizeGermanPath(pathname: string) {
@@ -221,6 +224,6 @@ export const config = {
     "/:locale(de|ru|bg|vi|tr|ar|fr|es|it|pl|uk|fa|zh|ko)/:path*",
     "/((?=.*[äöüÄÖÜß]).*)",
     "/((?=.*duesseldorf)(?=.*(?:umzug|umzugs|bueroumzug|transport|kleintransport|klaviertransport|halteverbotszone|beiladung|rueckfahrt|leerfahrt|seniorenumzug|studentenumzug|entruempelung|haushaltsaufloesung|wohnungsaufloesung)).*)",
-    "/((?!(?:duesseldorf/(?:reinigung|bueroreinigung|gewerbereinigung|praxisreinigung|fensterreinigung))/?$)(?=.*(?:duesseldorf|koeln|neuss|meerbusch|duisburg|ratingen|hilden|krefeld|moenchengladbach))(?=.*(?:reinigung|cleaning|cleaner|bueroreinigung|office-cleaning|apartment-cleaning|deep-cleaning|move-out-cleaning|stairwell-cleaning|cleaning-quote-review|gewerbereinigung|praxisreinigung|fensterreinigung|grundreinigung|treppenhausreinigung)).*)",
+    "/((?!(?:duesseldorf/(?:reinigung|bueroreinigung|gewerbereinigung|praxisreinigung|fensterreinigung|grundreinigung|unterhaltsreinigung|baureinigung))/?$)(?=.*(?:duesseldorf|koeln|neuss|meerbusch|duisburg|ratingen|hilden|krefeld|moenchengladbach))(?=.*(?:reinigung|cleaning|cleaner|bueroreinigung|office-cleaning|apartment-cleaning|deep-cleaning|move-out-cleaning|stairwell-cleaning|cleaning-quote-review|gewerbereinigung|praxisreinigung|fensterreinigung|grundreinigung|unterhaltsreinigung|baureinigung|bauendreinigung|treppenhausreinigung)).*)",
   ],
 };

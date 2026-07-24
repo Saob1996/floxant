@@ -91,6 +91,9 @@ const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
   "duesseldorf/gewerbereinigung",
   "duesseldorf/praxisreinigung",
   "duesseldorf/fensterreinigung",
+  "duesseldorf/grundreinigung",
+  "duesseldorf/unterhaltsreinigung",
+  "duesseldorf/baureinigung",
   "duesseldorf/luxusreinigung",
 ]);
 

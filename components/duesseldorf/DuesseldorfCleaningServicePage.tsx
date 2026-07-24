@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   ClipboardCheck,
   FileSearch,
+  Home,
   Languages,
   MapPin,
   PanelsTopLeft,
@@ -38,7 +39,10 @@ export type DuesseldorfCleaningPageKey =
   | "bueroreinigung"
   | "gewerbereinigung"
   | "praxisreinigung"
-  | "fensterreinigung";
+  | "fensterreinigung"
+  | "grundreinigung"
+  | "unterhaltsreinigung"
+  | "baureinigung";
 
 type CtaConfig = {
   href: string;
@@ -123,6 +127,16 @@ const windowContact =
   "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo";
 const windowOfferContact =
   "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo";
+const deepCleaningContact =
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
+const deepCleaningOfferContact =
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
+const maintenanceCleaningOfferContact =
+  "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo";
+const constructionCleaningContact =
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo";
+const constructionCleaningOfferContact =
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-angebot-pruefen&source=seo";
 const solarContact =
   "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-duesseldorf&source=seo";
 const solarOfferContact =
@@ -215,6 +229,27 @@ const hubServiceCards: Card[] = [
     text: "Für Ferienwohnung, möbliertes Apartment oder Gästewechsel mit Checkout, Check-in, Zugang, Fotos und klaren Zusatzgrenzen.",
     href: "/reinigung-moeblierte-wohnung-duesseldorf",
     label: "Apartment-Reinigung ansehen",
+  },
+  {
+    icon: Sparkles,
+    title: "Grundreinigung Düsseldorf",
+    text: "Für intensivere Reinigung von Wohnung, Haus, Büro oder Gewerbefläche mit klaren Schwerpunkten und Zielzustand.",
+    href: "/duesseldorf/grundreinigung",
+    label: "Grundreinigung ansehen",
+  },
+  {
+    icon: CalendarClock,
+    title: "Unterhaltsreinigung Düsseldorf",
+    text: "Für wiederkehrende Reinigung mit Bereichen, Turnus, Zeitfenstern, Zugang und festem Ansprechpartner.",
+    href: "/duesseldorf/unterhaltsreinigung",
+    label: "Unterhaltsreinigung ansehen",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Bau- und Bauendreinigung Düsseldorf",
+    text: "Für Bauzwischenstand, Renovierung oder Abschluss vor Übergabe mit Bauphase, Fläche, Restarbeiten und Termin.",
+    href: "/duesseldorf/baureinigung",
+    label: "Baureinigung ansehen",
   },
 ];
 
@@ -326,14 +361,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   reinigung: {
     key: "reinigung",
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf anfragen - Objekt, Umfang und Termin klären",
+    title: "Reinigungsfirma Düsseldorf: Reinigung anfragen | FLOXANT",
     description:
-      "Reinigung in Düsseldorf geplant? Objektart, Fläche, Turnus und Termin beschreiben. FLOXANT prüft Anfrage oder Reinigungsangebot anhand der genannten Eckdaten.",
-    ogTitle: "Reinigung in Düsseldorf vorbereiten - Anfrage mit Objekt, Fläche und Ziel",
+      "Reinigung in Düsseldorf persönlich anfragen: Wohnung, Büro, Praxis, Fenster, Grund- oder Unterhaltsreinigung. Objekt, Umfang und Termin einfach senden.",
+    ogTitle: "Reinigung Düsseldorf – persönlich, klar und passend zum Objekt anfragen",
     eyebrow: "Reinigung Düsseldorf",
-    h1: "Reinigung in Düsseldorf klar anfragen - mit Objekt, Umfang und Terminwunsch",
+    h1: "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt",
     intro:
-      "Sie suchen eine Reinigung in Düsseldorf und möchten Aufwand, Termin und nächsten Schritt besser einschätzen? Beschreiben Sie Objektart, Fläche, gewünschtes Ergebnis und Terminwunsch. FLOXANT prüft die Anfrage anhand der genannten Eckdaten - von Wohnungsreinigung über Büro- und Gewerbereinigung bis Praxis-, Fenster- oder Übergabereinigung.",
+      "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst versteht? Nennen Sie Objektart, Fläche, gewünschtes Ergebnis und Terminwunsch. FLOXANT ordnet Ihre Anfrage ohne Umwege der passenden Reinigung zu – von Wohnung und Apartment über Büro, Praxis und Gewerbe bis Grund-, Unterhalts-, Fenster- oder Bauendreinigung.",
     quickAnswer:
       "Für eine Reinigungsanfrage in Düsseldorf helfen Objektart, Fläche, gewünschter Zustand, Terminwunsch, Turnus und Fotos. FLOXANT kann die Angaben strukturieren und passende nächste Schritte einordnen. Eine Anfrage ist noch keine Buchung.",
     serviceType: "Reinigung, Reinigungsanfrage und Reinigungsangebot-Prüfung",
@@ -733,6 +768,246 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       ...baseFaqItems.slice(1),
     ],
     about: ["Fensterreinigung Düsseldorf", "Glasreinigung Düsseldorf", "Fensterreinigungsangebot prüfen"],
+  },
+  grundreinigung: {
+    key: "grundreinigung",
+    path: "/duesseldorf/grundreinigung",
+    title: "Grundreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
+    description:
+      "Grundreinigung in Düsseldorf anfragen: Räume, Fläche, Verschmutzung, Schwerpunkte und Zielzustand nennen. Für Wohnung, Haus, Büro oder Gewerbe.",
+    ogTitle: "Grundreinigung Düsseldorf – gründlich und passend zum Objekt anfragen",
+    eyebrow: "Grundreinigung Düsseldorf",
+    h1: "Grundreinigung in Düsseldorf: gründlich geplant für Wohnung, Haus und Gewerbe",
+    intro:
+      "Eine Grundreinigung geht über die laufende Reinigung hinaus. Nennen Sie Räume, Fläche, sichtbare Verschmutzungen, schwer erreichbare Bereiche und den gewünschten Zielzustand. FLOXANT prüft, welche Leistungen zum Objekt und Termin passen.",
+    quickAnswer:
+      "Für eine Grundreinigung in Düsseldorf helfen Objektart, Quadratmeter, Raumliste, Verschmutzungsgrad, gewünschte Schwerpunkte, Zugang, Fotos und Termin. So lässt sich klären, was enthalten sein soll und welche Punkte separat geprüft werden müssen.",
+    serviceType: "Grundreinigung für Wohnung, Haus, Büro und Gewerbe in Düsseldorf",
+    primaryCta: {
+      href: deepCleaningContact,
+      label: "Grundreinigung in Düsseldorf anfragen",
+      service: "grundreinigung",
+      intent: "grundreinigung-duesseldorf",
+      priority: "p0",
+    },
+    offerCta: {
+      href: deepCleaningOfferContact,
+      label: "Angebot für Grundreinigung prüfen",
+      service: "grundreinigung",
+      intent: "grundreinigung-angebot-pruefen",
+      priority: "p1",
+    },
+    situations: [
+      {
+        icon: Sparkles,
+        title: "Intensive Wohnungsreinigung",
+        text: "Für Küche, Bad, Böden, Türen, Sockelleisten und festgelegte Detailflächen nach längerer Nutzung.",
+      },
+      {
+        icon: Home,
+        title: "Vor Einzug oder Übergabe",
+        text: "Wenn eine leere oder möblierte Wohnung vor Einzug, Rückgabe oder Besichtigung gründlich vorbereitet werden soll.",
+      },
+      {
+        icon: Store,
+        title: "Büro und Gewerbefläche",
+        text: "Für stärkere Verschmutzung, saisonale Intensivreinigung oder definierte Sonderbereiche außerhalb des normalen Turnus.",
+      },
+    ],
+    needs: [
+      "Objektart, Fläche und Raumanzahl",
+      "möbliert, leer oder teilweise zugänglich",
+      "sichtbare Verschmutzungen und gewünschte Schwerpunkte",
+      "Böden, Küche, Bad, Türen, Sockelleisten oder andere Detailflächen",
+      "Fotos, Zugang und Terminwunsch",
+      "vorhandenes Angebot oder Leistungsverzeichnis optional",
+    ],
+    effortFactors: [
+      "Fläche, Raumanzahl und Möblierung",
+      "Verschmutzungsgrad und Detailtiefe",
+      "Materialien und empfindliche Oberflächen",
+      "schwer erreichbare Bereiche",
+      "gewünschter Zielzustand und Termin",
+      "Zusatzleistungen wie Fenster oder Geräte innen",
+    ],
+    serviceCards: [hubServiceCards[0], hubServiceCards[3], hubServiceCards[8], hubServiceCards[9]],
+    b2bTrust: [
+      "Der gewünschte Umfang wird vorab als Liste geklärt, damit Grundreinigung nicht mit Unterhaltsreinigung verwechselt wird.",
+      "Materialien, empfindliche Oberflächen und schwer erreichbare Bereiche werden vor einer Zusage geprüft.",
+      "Fotos und ein vorhandenes Leistungsverzeichnis helfen, Angebote nachvollziehbar zu vergleichen.",
+    ],
+    faqItems: [
+      {
+        q: "Was gehört zu einer Grundreinigung in Düsseldorf?",
+        a: "Der genaue Umfang wird für jedes Objekt festgelegt. Häufig geht es um Böden, Küche, Bad, Türen, Sockelleisten und definierte Detailflächen. Fenster, Geräte innen oder Sonderflächen sollten ausdrücklich genannt werden.",
+      },
+      {
+        q: "Was ist der Unterschied zur Unterhaltsreinigung?",
+        a: "Grundreinigung ist intensiver und meist einmalig oder in größeren Abständen. Unterhaltsreinigung ist eine wiederkehrende Reinigung nach festem Plan und Turnus.",
+      },
+      ...baseFaqItems.slice(1),
+    ],
+    about: ["Grundreinigung Düsseldorf", "Grundreinigung Wohnung Düsseldorf", "Intensivreinigung Düsseldorf"],
+  },
+  unterhaltsreinigung: {
+    key: "unterhaltsreinigung",
+    path: "/duesseldorf/unterhaltsreinigung",
+    title: "Unterhaltsreinigung Düsseldorf für Büro & Objekt | FLOXANT",
+    description:
+      "Unterhaltsreinigung in Düsseldorf anfragen: Flächen, Bereiche, Turnus, Reinigungszeiten, Zugang und Ansprechpartner für Büro, Gewerbe oder Objekt klären.",
+    ogTitle: "Unterhaltsreinigung Düsseldorf – Turnus und Leistung klar abstimmen",
+    eyebrow: "Unterhaltsreinigung Düsseldorf",
+    h1: "Unterhaltsreinigung in Düsseldorf: klare Abläufe für Büro, Gewerbe und Objekt",
+    intro:
+      "Regelmäßige Reinigung funktioniert dann gut, wenn Bereiche, Turnus, Zeitfenster, Zugang und Ansprechpartner klar sind. FLOXANT hilft, die laufende Reinigung für Büro, Gewerbe, Treppenhaus oder Gemeinschaftsflächen verständlich anzufragen.",
+    quickAnswer:
+      "Für Unterhaltsreinigung in Düsseldorf werden Fläche, Raumarten, gewünschte Bereiche, Häufigkeit, Reinigungszeiten, Zugang und Ansprechpartner benötigt. Ein vorhandenes Leistungsverzeichnis macht den Vergleich einfacher.",
+    serviceType: "Unterhaltsreinigung für Büro, Gewerbe und Objekt in Düsseldorf",
+    primaryCta: {
+      href: maintenanceCleaningContact,
+      label: "Unterhaltsreinigung anfragen",
+      service: "unterhaltsreinigung",
+      intent: "unterhaltsreinigung-duesseldorf",
+      priority: "p0",
+    },
+    offerCta: {
+      href: maintenanceCleaningOfferContact,
+      label: "Unterhaltsreinigungsangebot prüfen",
+      service: "unterhaltsreinigung",
+      intent: "unterhaltsreinigung-angebot-pruefen",
+      priority: "p1",
+    },
+    situations: [
+      {
+        icon: Building2,
+        title: "Büro mit festem Turnus",
+        text: "Arbeitsplätze, Empfang, Küche, Sanitär und Besprechungsräume nach Wochenplan und Zeitfenster.",
+      },
+      {
+        icon: Store,
+        title: "Gewerbe und Objektflächen",
+        text: "Laufende Reinigung passend zu Nutzung, Kundenverkehr, Öffnungszeiten und empfindlichen Bereichen.",
+      },
+      {
+        icon: ClipboardCheck,
+        title: "Hausverwaltung und Gemeinschaftsflächen",
+        text: "Treppenhaus, Eingang, Aufzug oder andere gemeinsam genutzte Flächen mit Zugang und Kontrollpunkten.",
+      },
+    ],
+    needs: [
+      "Objektart, Fläche und Raumliste",
+      "gewünschter Turnus und Wochentage",
+      "Reinigungszeiten und Nutzungszeiten",
+      "Sanitär, Küche, Empfang und Sonderbereiche",
+      "Zugang, Schlüsselregelung und Ansprechpartner",
+      "Leistungsverzeichnis oder vorhandenes Angebot optional",
+    ],
+    effortFactors: [
+      "Fläche, Raumarten und Nutzungsintensität",
+      "Häufigkeit und Wochentage",
+      "Zeitfenster außerhalb oder während der Nutzung",
+      "Sanitär-, Küchen- und Publikumsbereiche",
+      "Zugang und Schlüsselorganisation",
+      "Verbrauchsmaterial oder Zusatzleistungen nach Abstimmung",
+    ],
+    serviceCards: [hubServiceCards[0], hubServiceCards[1], hubServiceCards[5], hubServiceCards[8]],
+    b2bTrust: [
+      "Turnus, Bereiche und Verantwortlichkeiten werden vorab verständlich festgehalten.",
+      "Keine erfundenen Referenzen oder pauschalen Qualitätsgarantien ohne konkreten Leistungsumfang.",
+      "Ein vorhandenes Angebot wird nach enthaltenen Leistungen, Intervallen und Zusatzpositionen geprüft.",
+    ],
+    faqItems: [
+      {
+        q: "Wie oft kann Unterhaltsreinigung stattfinden?",
+        a: "Der passende Turnus hängt von Nutzung, Fläche und Bereichen ab. Möglich sind zum Beispiel mehrere Termine pro Woche, wöchentlich oder andere abgestimmte Intervalle; eine Zusage erfolgt nach Prüfung.",
+      },
+      {
+        q: "Ist Treppenhausreinigung Teil der Unterhaltsreinigung?",
+        a: "Sie kann Teil eines laufenden Objektplans sein. Eingang, Etagen, Geländer, Aufzug und Zusatzbereiche sollten im Leistungsverzeichnis einzeln benannt werden.",
+      },
+      ...baseFaqItems.slice(1),
+    ],
+    about: ["Unterhaltsreinigung Düsseldorf", "laufende Büroreinigung Düsseldorf", "Objektreinigung Düsseldorf"],
+  },
+  baureinigung: {
+    key: "baureinigung",
+    path: "/duesseldorf/baureinigung",
+    title: "Bauendreinigung Düsseldorf nach Bau & Renovierung | FLOXANT",
+    description:
+      "Bau- oder Bauendreinigung in Düsseldorf anfragen: Bauphase, Fläche, Staub, Schutzfolien, Restarbeiten, Zugang und Übergabetermin verständlich beschreiben.",
+    ogTitle: "Bauendreinigung Düsseldorf – sauber zur Abnahme oder Übergabe",
+    eyebrow: "Bauendreinigung Düsseldorf",
+    h1: "Bau- und Bauendreinigung in Düsseldorf: vorbereitet für Abnahme, Einzug oder Übergabe",
+    intro:
+      "Nach Bau, Umbau oder Renovierung kommt es auf Bauphase, Restarbeiten, Staubbelastung, Schutzfolien, Oberflächen und den Übergabetermin an. FLOXANT prüft den gewünschten Umfang, bevor eine Leistung oder ein Termin zugesagt wird.",
+    quickAnswer:
+      "Für Bauendreinigung in Düsseldorf helfen Bauphase, Quadratmeter, Raumliste, Art der Rückstände, empfindliche Oberflächen, Fotos, Wasser- und Stromzugang sowie der geplante Abnahme- oder Übergabetermin.",
+    serviceType: "Bauzwischenreinigung und Bauendreinigung in Düsseldorf",
+    primaryCta: {
+      href: constructionCleaningContact,
+      label: "Bauendreinigung in Düsseldorf anfragen",
+      service: "baureinigung",
+      intent: "bauendreinigung-duesseldorf",
+      priority: "p0",
+    },
+    offerCta: {
+      href: constructionCleaningOfferContact,
+      label: "Baureinigungsangebot prüfen",
+      service: "baureinigung",
+      intent: "bauendreinigung-angebot-pruefen",
+      priority: "p1",
+    },
+    situations: [
+      {
+        icon: ClipboardCheck,
+        title: "Nach Neubau oder Umbau",
+        text: "Baustaub, Etiketten, Schutzfolien und typische Rückstände vor Abnahme oder Nutzung einordnen.",
+      },
+      {
+        icon: Home,
+        title: "Nach Renovierung",
+        text: "Wohnung, Haus, Büro oder Ladenfläche nach Maler-, Boden- oder Montagearbeiten vorbereiten.",
+      },
+      {
+        icon: CalendarClock,
+        title: "Vor Abnahme oder Übergabe",
+        text: "Termin, Restarbeiten und mögliche Nacharbeiten realistisch aufeinander abstimmen.",
+      },
+    ],
+    needs: [
+      "Bauphase und Art der Arbeiten",
+      "Fläche, Räume und Etagen",
+      "Art der Rückstände und sichtbarer Baustaub",
+      "Schutzfolien, Etiketten und empfindliche Oberflächen",
+      "Wasser, Strom, Zugang und Entsorgungssituation",
+      "Fotos sowie Abnahme- oder Übergabetermin",
+    ],
+    effortFactors: [
+      "Bauphase, Fläche und Raumanzahl",
+      "Staub, Folien, Etiketten und Materialreste",
+      "empfindliche neue Oberflächen",
+      "Restarbeiten anderer Gewerke",
+      "Zugang, Wasser, Strom und Laufwege",
+      "Abnahmefrist und gewünschter Zielzustand",
+    ],
+    serviceCards: [hubServiceCards[7], hubServiceCards[8], hubServiceCards[3], hubServiceCards[6]],
+    b2bTrust: [
+      "Bauzwischenreinigung und Bauendreinigung werden nach Bauphase und Zielzustand getrennt.",
+      "Fest anhaftende Rückstände, Gefahrstoffe oder Entsorgung werden nicht pauschal zugesagt.",
+      "Fotos und der aktuelle Stand der Restarbeiten helfen, Termin und Umfang realistisch zu prüfen.",
+    ],
+    faqItems: [
+      {
+        q: "Was ist der Unterschied zwischen Baureinigung und Bauendreinigung?",
+        a: "Baureinigung kann auch während eines Bau- oder Umbauprojekts stattfinden. Bauendreinigung bereitet Flächen nach Abschluss der Arbeiten auf Abnahme, Einzug oder Übergabe vor.",
+      },
+      {
+        q: "Wann sollte die Bauendreinigung angefragt werden?",
+        a: "Sobald Bauphase, Restarbeiten und voraussichtlicher Übergabetermin absehbar sind. Fotos und eine Raumliste helfen, den Umfang früh zu prüfen.",
+      },
+      ...baseFaqItems.slice(1),
+    ],
+    about: ["Bauendreinigung Düsseldorf", "Baureinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf"],
   },
 };
 

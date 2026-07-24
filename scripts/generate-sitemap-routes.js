@@ -77,6 +77,9 @@ const allowedDuesseldorfCleaningRoutes = new Set([
   "/duesseldorf/gewerbereinigung",
   "/duesseldorf/praxisreinigung",
   "/duesseldorf/fensterreinigung",
+  "/duesseldorf/grundreinigung",
+  "/duesseldorf/unterhaltsreinigung",
+  "/duesseldorf/baureinigung",
   "/duesseldorf/luxusreinigung",
 ]);
 const verifiedApartmentCleaningRoutes = new Set([
