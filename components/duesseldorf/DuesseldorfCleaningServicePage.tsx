@@ -1234,10 +1234,10 @@ function DuesseldorfCleaningAuthorityBlock({ config }: { config: PageConfig }) {
             Düsseldorf stark und verständlich
           </p>
           <h2 id="duesseldorf-authority-heading" className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
-            Reinigung in Düsseldorf so beschreiben, dass Google und Kunden sofort verstehen, worum es geht.
+            Reinigung in Düsseldorf klar auswählen und passend anfragen.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-            Diese Seite bündelt die wichtigsten deutschen Suchintentionen rund um {config.eyebrow}: Reinigungsfirma,
+            Hier finden Sie die passenden Leistungen rund um {config.eyebrow}: Reinigungsfirma,
             Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Wohnungsreinigung und möblierte
             Apartment-Reinigung in Düsseldorf. Der Text bleibt absichtlich praktisch: Was ist das Objekt, was soll
             sauber werden, bis wann und mit welchem Ziel?
@@ -1303,7 +1303,7 @@ function BueroreinigungGewerbereinigungComparison() {
         <div>
           <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Büro oder Gewerbe?</p>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Zwei Suchintentionen, zwei klare Anfragewege.
+            Zwei Leistungen, zwei klare Anfragewege.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
             FLOXANT trennt Büroreinigung und Gewerbereinigung bewusst, damit Fläche, Turnus,
@@ -1513,7 +1513,7 @@ function PropertyManagementCleaningSection() {
           <SectionHeading
             eyebrow="Hausverwaltung, Treppenhaus, Unterhalt"
             title="Reinigung für Hausverwaltungen mit Objekt, Turnus und Umfang klären."
-            intro="Dieser Hub ordnet Hausverwaltung-Reinigung, Treppenhausreinigung, Unterhaltsreinigung und Gebäudereinigung auseinander, ohne neue dünne Zielseiten aufzubauen."
+            intro="Hier unterscheiden Sie Hausverwaltung-Reinigung, Treppenhausreinigung, Unterhaltsreinigung und Gebäudereinigung nach Objekt, Bereichen und gewünschtem Turnus."
           />
           <PropertyCleaningQuickAnswer />
         </div>
@@ -1536,7 +1536,7 @@ function PropertyManagementCleaningSection() {
           <article className="min-w-0">
             <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Differenzierung</p>
             <h3 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
-              Eine Suchintention, ein sauberer Anfrageweg.
+              Ein Anliegen, ein sauberer Anfrageweg.
             </h3>
             <div className="mt-5 grid gap-3">
               {propertyCleaningTypes.map((item) => (
@@ -1767,7 +1767,7 @@ function DuesseldorfLocalProofPanel() {
     "Düsseldorf ist der Hauptort dieser Seite; Umland wird nur als Servicegebiet auf Anfrage formuliert.",
     "Neuss, Ratingen, Meerbusch, Hilden, Erkrath und Mettmann sind keine erfundenen Niederlassungen.",
     "Krefeld, Duisburg, Essen, Mönchengladbach, Wuppertal oder Köln werden nur nach Objekt, Strecke und Machbarkeit geprüft.",
-    "Es werden keine neuen Ortsseiten und keine falschen Adressen angelegt.",
+    "Einsätze im Umland werden nach Ort, Objekt, Strecke und Termin einzeln geprüft.",
   ];
 
   return (
@@ -1796,9 +1796,9 @@ function B2BTrustPanel({ config }: { config: PageConfig }) {
     <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.78fr_1.22fr]">
         <div>
-          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">B2B Trust ohne Fake-Belege</p>
+          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Hinweise für Unternehmen</p>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Sachliche Einordnung statt erfundener Referenzen.
+            Klare Abstimmung für gewerbliche Aufträge.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
             FLOXANT nutzt klare Rückfragen, Fotos optional, Angebotsprüfung und einen nachvollziehbaren Kontaktweg.

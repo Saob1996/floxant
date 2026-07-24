@@ -48,7 +48,7 @@ const englishCopy: Record<string, EnglishSignatureCopy> = {
     name: "FLOXANT provider comparison",
     function: "Compares quotes using the same criteria: scope, timing, communication, extra items and open assumptions.",
     problem: "Quotes can look comparable even when their scope and assumptions differ.",
-    result: "A factual comparison of criteria without a provider ranking or lowest-price promise.",
+    result: "A factual comparison of criteria without favouring a provider or promising the lowest price.",
   },
   objektbrief: {
     name: "FLOXANT property brief",

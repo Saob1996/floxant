@@ -28,9 +28,9 @@ const CRITICAL_ROUTES = [
   { route: "/regensburg/reinigung", purpose: "Regensburg practice cleaning", intent: "Practice cleaning Regensburg", funnel: "Lead", service: "praxisreinigung", city: "regensburg", priority: "P0", structuredData: true },
   { route: "/regensburg/reinigung", purpose: "Regensburg window cleaning", intent: "Window cleaning Regensburg", funnel: "Lead", service: "fensterreinigung", city: "regensburg", priority: "P0", structuredData: true },
   { route: "/regensburg/reinigung", purpose: "Regensburg deep cleaning", intent: "Deep cleaning Regensburg", funnel: "Lead", service: "reinigung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/umzug", purpose: "Dusseldorf moving", intent: "Moving Dusseldorf", funnel: "Lead", service: "umzug", city: "duesseldorf", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/entruempelung", purpose: "Dusseldorf clearance", intent: "Clearance Dusseldorf", funnel: "Lead", service: "entruempelung", city: "duesseldorf", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/haushaltsaufloesung", purpose: "Dusseldorf estate clearance", intent: "Household clearance Dusseldorf", funnel: "Lead", service: "wohnungsaufloesung", city: "duesseldorf", priority: "P1", structuredData: true },
+  { route: "/duesseldorf/reinigung", purpose: "Dusseldorf cleaning", intent: "Cleaning Dusseldorf", funnel: "Lead", service: "reinigung", city: "duesseldorf", priority: "P0", structuredData: true },
+  { route: "/duesseldorf/bueroreinigung", purpose: "Dusseldorf office cleaning", intent: "Office cleaning Dusseldorf", funnel: "Lead", service: "bueroreinigung", city: "duesseldorf", priority: "P1", structuredData: true },
+  { route: "/duesseldorf/grundreinigung", purpose: "Dusseldorf deep cleaning", intent: "Deep cleaning Dusseldorf", funnel: "Lead", service: "grundreinigung", city: "duesseldorf", priority: "P1", structuredData: true },
   { route: "/regensburg", purpose: "Regensburg hub", intent: "Local service selection", funnel: "Consideration", service: "multi", city: "regensburg", priority: "P1", structuredData: true },
   { route: "/regensburg/umzug", purpose: "Regensburg moving canonical local route", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P2", structuredData: true },
   { route: "/regensburg/umzug", purpose: "Regensburg moving money page", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P0", structuredData: true },
@@ -123,18 +123,33 @@ function readSitemapRoutes() {
 }
 
 async function loadRedirects() {
+  const redirects = [];
+  const redirectsFile = path.join(ROOT, "public", "_redirects");
+  if (fs.existsSync(redirectsFile)) {
+    for (const rawLine of read(redirectsFile).split(/\r?\n/)) {
+      const line = rawLine.trim();
+      if (!line || line.startsWith("#")) continue;
+      const [source, destination, status] = line.split(/\s+/);
+      if (!source || !destination) continue;
+      redirects.push({
+        source: normalizeRoute(source),
+        destination: normalizeRoute(destination),
+        permanent: ["301", "308"].includes(status),
+      });
+    }
+  }
   const configFile = path.join(ROOT, "next.config.js");
-  if (!fs.existsSync(configFile)) return [];
+  if (!fs.existsSync(configFile)) return redirects;
   try {
     delete require.cache[require.resolve(configFile)];
     const config = require(configFile);
-    if (typeof config.redirects !== "function") return [];
-    const redirects = await config.redirects();
-    return Array.isArray(redirects) ? redirects.map((entry) => ({
+    if (typeof config.redirects !== "function") return redirects;
+    const configRedirects = await config.redirects();
+    return redirects.concat(Array.isArray(configRedirects) ? configRedirects.map((entry) => ({
       source: normalizeRoute(entry.source),
       destination: normalizeRoute(entry.destination),
       permanent: Boolean(entry.permanent),
-    })) : [];
+    })) : []);
   } catch (error) {
     return [{ source: "__ERROR__", destination: error.message, permanent: false }];
   }
@@ -282,7 +297,11 @@ function checkFormsAndSuccess() {
   const results = [];
   const contactFile = path.join(ROOT, "app", "kontakt", "page.tsx");
   const leadFormFile = path.join(ROOT, "components", "SeoLeadForm.tsx");
-  const bookingApiFile = path.join(ROOT, "app", "api", "bookings", "route.ts");
+  const bookingApiFiles = [
+    path.join(ROOT, "functions", "api", "bookings.js"),
+    path.join(ROOT, "functions", "_lib", "lead-handler.js"),
+    path.join(ROOT, "functions", "_lib", "lead-payload.js"),
+  ];
   const offerFiles = [
     path.join(ROOT, "components", "OfferCheckForm.tsx"),
     path.join(ROOT, "components", "OfferComparisonAdsForm.tsx"),
@@ -290,7 +309,7 @@ function checkFormsAndSuccess() {
   ];
   const contactSource = read(contactFile);
   const leadFormSource = read(leadFormFile);
-  const bookingApiSource = read(bookingApiFile);
+  const bookingApiSource = bookingApiFiles.map(read).join("\n");
   const offerSource = offerFiles.map(read).join("\n");
 
   const requiredFormSignals = ["name", "email", "phone", "servicePreset", "city", "message", "Datenschutz", "companyWebsite", "seo_lead_submit_success", "seo_lead_submit_error"];
@@ -299,11 +318,11 @@ function checkFormsAndSuccess() {
     ? item("FAIL", "Lead-Formular", leadFormFile, "/kontakt", `Zentrale Formularsignale fehlen: ${missing.join(", ")}.`, "P0", "SeoLeadForm/Kontaktseite ergaenzen.")
     : item("PASS", "Lead-Formular", leadFormFile, "/kontakt", "Name, Kontaktwege, Service, Ort, Nachricht, Datenschutz, Honeypot, Success- und Error-State vorhanden.", "P0", "Keine Aktion."));
 
-  const apiSignals = ["normalizeLeadSubmission", "validateLeadSubmission", "calculateLeadPriority", "requestId", "companyWebsite", "privacyConsent", "offerStatus", "offerConcern"];
+  const apiSignals = ["normalizeLeadPayload", "validateSubmission", "insertBooking", "requestId", "companyWebsite", "privacyConsent", "offerStatus", "offerConcern"];
   const missingApi = apiSignals.filter((needle) => !bookingApiSource.includes(needle));
   results.push(missingApi.length
-    ? item("FAIL", "Lead-API", bookingApiFile, "/api/bookings", `Lead-API-Signale fehlen: ${missingApi.join(", ")}.`, "P0", "Booking API stabilisieren.")
-    : item("PASS", "Lead-API", bookingApiFile, "/api/bookings", "Lead-API verarbeitet Normalisierung, Datenschutz, Honeypot und Offer-Signale.", "P0", "Keine Aktion."));
+    ? item("FAIL", "Lead-API", bookingApiFiles[1], "/api/bookings", `Lead-API-Signale fehlen: ${missingApi.join(", ")}.`, "P0", "Cloudflare Booking Function stabilisieren.")
+    : item("PASS", "Lead-API", bookingApiFiles[1], "/api/bookings", "Cloudflare Lead-API verarbeitet Normalisierung, Datenschutz, Honeypot und Offer-Signale.", "P0", "Keine Aktion."));
 
   const offerSignals = ["offerStatus", "offerConcern", "privacyConsent", "success", "Preisgarantie"];
   const missingOffer = offerSignals.filter((needle) => !offerSource.includes(needle));

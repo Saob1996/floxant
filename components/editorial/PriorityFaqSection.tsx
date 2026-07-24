@@ -23,7 +23,7 @@ const localizedCopy = {
     eyebrow: "Häufige Fragen",
     title: "Antworten für den nächsten Schritt",
     intro:
-      "Die wichtigsten Fragen zu Umfang, Ablauf und Anfrageweg – öffentlich geprüft und direkt auf dieser Seite lesbar.",
+      "Die wichtigsten Fragen zu Umfang, Ablauf und Anfrageweg – kurz beantwortet und direkt auf dieser Seite lesbar.",
     linkLabel: "Alle Fragen ansehen",
     allQuestionsHref: "/fragen",
   },

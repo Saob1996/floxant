@@ -48,7 +48,7 @@ const mainServices = [
     title: "Reinigung",
     text: "Reinigung für Wohnung, Büro, Gewerbe, Fenster oder Übergabe – einmalig oder regelmäßig.",
     cta: "Reinigung ansehen",
-    href: "/regensburg/reinigung",
+    href: "/reinigung",
     icon: Sparkles,
   },
   {

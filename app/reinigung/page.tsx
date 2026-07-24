@@ -157,8 +157,8 @@ export default function ReinigungLocationChooserPage() {
             <p className="text-sm font-black uppercase tracking-wide text-blue-800">Standort-Auswahl</p>
             <h2 className="mt-3 text-3xl font-black sm:text-4xl">Wo brauchen Sie die Reinigung?</h2>
             <p className="mt-4 font-medium leading-7 text-slate-700">
-              Für gutes Ranking und eine gute Kundenerfahrung müssen Stadt, Objekt und Reinigungsart zusammenpassen.
-              Deshalb führen die nächsten Karten direkt zur richtigen lokalen Seite.
+              Damit Ihre Anfrage direkt zur passenden Leistung gelangt, müssen Stadt, Objekt und Reinigungsart
+              zusammenpassen. Wählen Sie deshalb zuerst Düsseldorf oder Regensburg.
             </p>
           </div>
 

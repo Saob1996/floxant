@@ -319,7 +319,7 @@ export default function RegensburgHubPage() {
           "signature_service",
         ]}
         title="Regensburger Services nach Umzug, Räumung, Reinigung und Plan B."
-        intro="Die zentrale Inventur zeigt, welche Leistungen direkt gepflegt sind und welche manuell bestätigt werden müssen."
+        intro="Die Übersicht zeigt, welche Leistungen Sie direkt anfragen können und wann wir Ort, Umfang oder Termin zunächst persönlich prüfen."
         limitPerCategory={5}
       />
 

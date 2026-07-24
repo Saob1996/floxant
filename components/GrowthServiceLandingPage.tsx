@@ -90,7 +90,7 @@ function getLocalBridgeTargets(config: GrowthServicePageConfig) {
   }
 
   return {
-    duesseldorfHref: "/regensburg",
+    duesseldorfHref: "/duesseldorf",
     regensburgHref: "/regensburg/reinigung",
   };
 }

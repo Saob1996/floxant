@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Service Finder",
   description:
-    "Lokale, unverbindliche Orientierung für öffentlich geprüfte FLOXANT Leistungen in Düsseldorf und Regensburg – ohne Speicherung oder Übertragung der Antworten.",
+    "Lokale, unverbindliche Orientierung für FLOXANT Leistungen in Düsseldorf und Regensburg – ohne Speicherung oder Übertragung der Antworten.",
   alternates: {
     canonical: path,
     languages: { de: path, en: "/en/service-finder", "x-default": path },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: path,
     title: "FLOXANT Service Finder",
-    description: "Öffentlich geprüfte Leistungen anhand weniger Angaben lokal einordnen.",
+    description: "Passende Leistungen anhand weniger Angaben lokal einordnen.",
   },
   robots: { index: true, follow: true },
 };
@@ -67,7 +67,7 @@ export default function ServiceFinderPage() {
             Unverbindliche Orientierung
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] sm:text-5xl lg:text-6xl">
-            Welcher öffentlich geprüfte Service passt zu Ihrer Situation?
+            Welcher Service passt zu Ihrer Situation?
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Zehn kurze Schritte ordnen Ihre Angaben regelbasiert ein. Das Ergebnis ist keine

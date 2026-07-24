@@ -224,7 +224,7 @@ export default function LeistungenPage() {
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
-            Düsseldorf und Regensburg bündeln die jeweils öffentlich geprüften Leistungen
+            Düsseldorf und Regensburg bündeln die jeweils verfügbaren Leistungen
             für Reinigung, Umzug, Transport, Räumung und Übergabe. Wenn bereits ein Angebot
             vorliegt, ist die Angebotsprüfung der kürzere Weg.
           </p>
@@ -263,12 +263,13 @@ export default function LeistungenPage() {
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20" aria-labelledby="service-katalog-heading">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Öffentlich geprüftes Service-Register</p>
+            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Leistungsübersicht</p>
             <h2 id="service-katalog-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
               Leistungen nach Region und Bedarf filtern
             </h2>
             <p className="mt-4 font-medium leading-7 text-slate-700">
-              Der Katalog zeigt nur Leistungen, die im zentralen Register für die öffentliche Darstellung freigegeben sind. Die Filter arbeiten ausschließlich lokal im Browser und erzeugen keine indexierbaren Ergebnis-URLs.
+              Der Katalog zeigt die aktuell angebotenen Leistungen. Die Filter arbeiten direkt in Ihrem Browser,
+              damit Sie schnell nach Region und Bedarf auswählen können.
             </p>
           </div>
           <noscript>
@@ -391,11 +392,11 @@ export default function LeistungenPage() {
 
       <ProjectStoryGrid
         title="Typische Ausgangslagen statt erfundener Case Studies."
-        intro="Die Übersicht nutzt nur abstrakte, klar gekennzeichnete Situationen. Echte Projektstorys bleiben verborgen, bis Einwilligung und Privacy-Check vorliegen."
+        intro="Die Übersicht zeigt klar gekennzeichnete Beispielsituationen. Echte Projektfotos veröffentlichen wir nur mit ausdrücklicher Einwilligung."
       />
 
       <ServiceVisualProofGrid
-        title="Visual Proof mit Privacy-Grenzen."
+        title="Visuelle Orientierung ohne private Daten."
         intro="Sichtbare Visuals sind neutral. Echte Vorher-Nachher-Fotos oder Objektbilder werden erst nach Freigabe und Anonymisierung genutzt."
       />
 

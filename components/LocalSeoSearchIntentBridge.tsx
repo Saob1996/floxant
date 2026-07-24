@@ -46,7 +46,7 @@ function localSearchIntents({
           text: "Für Büro, Praxis, Laden, Objekt oder Treppenhaus zählen Fläche, Turnus, Zeitfenster, Zugang und Fotos. Damit lässt sich der Aufwand schneller und realistischer einschätzen.",
           href:
             city === "Düsseldorf"
-              ? "/regensburg/bueroreinigung"
+              ? "/duesseldorf/bueroreinigung"
               : city === "Regensburg"
                 ? "/regensburg/bueroreinigung"
                 : currentHref,
@@ -55,7 +55,7 @@ function localSearchIntents({
         {
           title: "Bestehendes Reinigungsangebot prüfen",
           text: "Ein Reinigungsangebot wird erst klar, wenn Fläche, Objektart, Zustand, Zugang, Termin, Fotos und gewünschtes Ergebnis zusammenpassen.",
-          href: city === "Düsseldorf" ? "/angebot-vergleichen-regensburg" : "/angebot-guenstiger-pruefen",
+          href: city === "Düsseldorf" ? "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen" : "/angebot-guenstiger-pruefen",
           label: "Angebot prüfen",
         },
         ...(city === "Regensburg"
@@ -77,7 +77,7 @@ function localSearchIntents({
         {
           title: "Kurzfristige Reinigung prüfen",
           text: "Kurzfristige Termine werden nach Machbarkeit geprüft. Ort, Fotos, Deadline, Zugang und Prioritäten sollten direkt mitgesendet werden.",
-          href: city === "Regensburg" ? "/regensburg/reinigung" : "/notfallreinigung-24h",
+          href: city === "Regensburg" ? "/regensburg/reinigung" : currentHref,
           label: "Machbarkeit prüfen",
         },
       ];

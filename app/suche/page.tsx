@@ -42,7 +42,7 @@ export default function SearchPage() {
         <div className="mx-auto max-w-5xl">
           <p className="text-sm font-black uppercase tracking-[0.12em] text-cyan-200">Lokale Seitensuche</p>
           <h1 className="mt-5 text-4xl font-black leading-tight sm:text-6xl">Leistungen, Fragen und Ratgeber finden.</h1>
-          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-slate-200">Die Suche läuft vollständig in Ihrem Browser. Eingaben werden weder gespeichert noch an eine Such- oder AI-API übertragen.</p>
+          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-slate-200">Die Suche läuft vollständig in Ihrem Browser. Ihre Suchbegriffe werden weder gespeichert noch an externe Suchdienste übertragen.</p>
         </div>
       </header>
       <section className="px-5 py-14 sm:px-8 lg:px-10">

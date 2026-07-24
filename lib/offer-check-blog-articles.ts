@@ -185,7 +185,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     title: "Reinigungsangebot prüfen lassen: Fläche, Zustand, Termin und Übergabe klären",
     metaTitle: "Reinigungsangebot prüfen | Regensburg & Regensburg | FLOXANT",
     description:
-      "Reinigungsangebot prüfen lassen: FLOXANT klärt Fläche, Zustand, Fotos, Termin, Übergabeziel und Preisrahmen in Regensburg, Regensburg und Regensburg.",
+      "Reinigungsangebot prüfen lassen: FLOXANT klärt Fläche, Zustand, Fotos, Termin, Übergabeziel und Preisrahmen in Düsseldorf und Regensburg.",
     intro:
       "Ein Reinigungsangebot wirkt oft einfach, solange nur eine Fläche und ein Preis genannt werden. Entscheidend ist aber, welche Reinigung gemeint ist: Endreinigung, Grundreinigung, Übergabereinigung, Büroreinigung oder Objektwechsel. FLOXANT prüft, ob Angaben und Ziel zusammenpassen.",
     about: ["Reinigungsangebot", "Reinigung Regensburg", "Reinigung Regensburg", "Endreinigung", "Grundreinigung", "Büroreinigung"],
@@ -218,7 +218,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regensburg, Bayern und Regensburg richtig trennen",
         paragraphs: [
-          "In Regensburg, Regensburg und Regensburg kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
+          "In Düsseldorf und Regensburg kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
         ],
       },
       {
@@ -398,7 +398,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Praxisreinigung in Regensburg und Umgebung",
         paragraphs: [
-          "Anfragen aus Regensburg, Regensburg, Regensburg oder Regensburg werden nach Ort, Fläche, Nutzung, Terminfenster und Kapazität eingeordnet. FLOXANT prüft praktische Reinigungsanforderungen; spezielle medizinische Hygieneversprechen werden nicht pauschal gegeben.",
+          "Anfragen aus Düsseldorf und Regensburg werden nach Ort, Fläche, Nutzung, Terminfenster und Kapazität eingeordnet. FLOXANT prüft praktische Reinigungsanforderungen; spezielle medizinische Hygieneversprechen werden nicht pauschal gegeben.",
           "Wichtig ist, ehrlich zu beschreiben, welche Räume betroffen sind und welches Ergebnis erwartet wird.",
         ],
       },
@@ -536,7 +536,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     title: "Entsorgungsangebot prüfen lassen: Menge, Material, Zugang und Reinigung danach",
     metaTitle: "Entsorgungsangebot prüfen | FLOXANT Regensburg & Regensburg",
     description:
-      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach in Regensburg, Regensburg und Regensburg.",
+      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach in Düsseldorf und Regensburg.",
     intro:
       "Bei Entsorgung und Entrümpelung ist der Preis stark davon abhängig, was wirklich weg soll. Menge, Material, Zugang, Etage, Laufweg und Fotos entscheiden, ob ein Angebot realistisch ist. FLOXANT prüft diese Punkte und klärt, ob eine passendere Alternative möglich ist.",
     about: ["Entsorgungsangebot", "Entrümpelung", "Entsorgung Regensburg", "Entsorgung Regensburg", "Keller räumen", "Garage räumen"],
@@ -551,7 +551,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Regensburg und Regensburg werden nach Verfügbarkeit geprüft; Regensburg wird passend zum Anliegen über klare lokale Kontaktmöglichkeiten eingeordnet.",
+          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Düsseldorf und Regensburg werden passend zum Anliegen über getrennte lokale Kontaktmöglichkeiten eingeordnet.",
         ],
       },
       {

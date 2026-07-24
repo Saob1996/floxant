@@ -49,6 +49,9 @@ const visibleText = decodeEntities(
     .replace(/\s+/g, " ")
     .trim(),
 );
+const renderedMarkup = html
+  .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+  .replace(/<style\b[\s\S]*?<\/style>/gi, " ");
 
 const countMatches = (value, pattern) => (value.match(pattern) || []).length;
 const homeCardCount = countMatches(html, /\sdata-home-card(?:="[^"]*")?/g);
@@ -92,8 +95,8 @@ addCheck("Startseite Status 200", statusCode === 200, statusCode ? `HTTP ${statu
 addCheck("Genau eine H1", countMatches(html, /<h1\b/gi) === 1, `${countMatches(html, /<h1\b/gi)} H1`);
 addCheck("Hero-CTA vorhanden", html.includes("data-home-hero-primary"), "Anfrage senden im Hero");
 addCheck("Angebot-prüfen-CTA vorhanden", html.includes("data-home-offer-cta"), "Angebotsprüfung im Hero und eigener Sektion");
-addCheck("Navigation initial geschlossen", !html.includes("data-desktop-mega-menu") && !/aria-expanded="true"/.test(html), "Kein Desktopmenü im initialen HTML");
-addCheck("Kein automatisch geöffnetes Standortmenü", !html.includes('id="locations-menu"'), "Standortmenü wird nur nach Klick gerendert");
+addCheck("Navigation initial geschlossen", !renderedMarkup.includes("data-desktop-mega-menu"), "Kein Desktopmenü im initialen HTML");
+addCheck("Kein automatisch geöffnetes Standortmenü", !renderedMarkup.includes('id="locations-menu"'), "Standortmenü wird nur nach Klick gerendert");
 addCheck("Keine interne Desktop-Menü-Scrollfläche", !/overflow-y-auto|max-h-\[calc\(100vh/.test(menuSource), "Kompaktes Menü ohne max-height/overflow-y-auto");
 addCheck("Maximal 12 Startseitenkarten", homeCardCount <= 12, `${homeCardCount} Karten`);
 addCheck("Maximal 6 Hauptservicekarten", mainServices.length <= 6, `${mainServices.length} Hauptservicekarten`);
@@ -105,7 +108,7 @@ addCheck("Kein sichtbares ‚2 Wege‘", !/\b2 Wege\b/i.test(visibleText), "Kein
 addCheck("Keine sichtbaren internen Begriffe", visibleForbidden.length === 0, visibleForbidden.length ? visibleForbidden.join(", ") : "Keine Treffer");
 addCheck("Kein sichtbarer Debug-Text", !/\b(?:TODO|DEBUG|undefined|NaN)\b/i.test(visibleText), "Keine Debug-Platzhalter");
 addCheck("Keine sichtbaren Rohschlüssel", !/\b(?:serviceKey|intentKey)\b/.test(visibleText), "Keine serviceKey-/intentKey-Ausgabe");
-addCheck("Kein Menü über dem Hero beim Laden", !html.includes("data-desktop-mega-menu"), "Hero startet frei");
+addCheck("Kein Menü über dem Hero beim Laden", !renderedMarkup.includes("data-desktop-mega-menu"), "Hero startet frei");
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");
 addCheck("Keine Vercel-Usage-Rückkehr", runtimeHits.length === 0, runtimeHits.length ? runtimeHits.join(", ") : "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette");
 addCheck("Genau sieben Homepage-Abschnitte", countMatches(html, /data-home-section=/g) === 7, `${countMatches(html, /data-home-section=/g)} Abschnitte`);

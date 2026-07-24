@@ -235,7 +235,11 @@ async function main() {
     server = resolved.server;
     serverMode = resolved.serverMode;
 
-    const env = { BASE_URL: baseUrl, SEO_HEALTH_BASE_URL: baseUrl };
+    const env = {
+      BASE_URL: baseUrl,
+      SEO_HEALTH_BASE_URL: baseUrl,
+      SEO_CONVERSION_BASE_URL: baseUrl,
+    };
     runScriptList(results, criticalScripts, env, true);
 
     for (const script of requiredBuildScripts) {

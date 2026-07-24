@@ -85,8 +85,8 @@ function getLocalLinks(signal: string): RelatedLink[] {
 
   if (signal.includes("duesseldorf") || signal.includes("düsseldorf")) {
     links.push(
-      { href: "/regensburg/reinigung", title: "Reinigung Regensburg", text: "Reinigungsanfragen im 50-km-Umkreis lokal pruefen." },
-      { href: "/angebot-vergleichen-regensburg", title: "Reinigungsangebot Regensburg", text: "Turnus, Objektart, Ort und Fotos pruefen lassen." },
+      { href: "/duesseldorf/reinigung", title: "Reinigung Düsseldorf", text: "Passende Reinigung in Düsseldorf direkt auswählen." },
+      { href: "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen", title: "Reinigungsangebot Düsseldorf", text: "Turnus, Objektart, Ort und Fotos prüfen lassen." },
     );
   }
 

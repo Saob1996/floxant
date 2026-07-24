@@ -505,7 +505,7 @@ const seeds: readonly ServiceSeed[] = [
   {
     id: "objektbrief", slug: "objektbrief", status: "SIGNATURE", category: "offer_check", cadence: "one_off",
     audienceTypes: ["private", "business"], germanName: "FLOXANT Objektbrief", englishName: "FLOXANT property brief",
-    shortDescription: "Strukturierter Anfrageeinstieg für Objektart, Ort, Termin, Zugang, Fotos und Zielzustand.",
+    shortDescription: "Klarer Anfrageeinstieg für Objektart, Ort, Termin, Zugang, Fotos und Zielzustand.",
     problemStatement: "Nutzer wissen häufig nicht, welche Angaben für eine belastbare erste Einordnung erforderlich sind.",
     regions: ["Düsseldorf", "Regensburg"], excludedServices: ["automatische Auftragszusage", "verbindliches Angebot ohne Prüfung"],
     canonicalRoute: "/objektbrief", hubRoutes: ["/leistungen", "/signature-services"],
@@ -514,7 +514,7 @@ const seeds: readonly ServiceSeed[] = [
   {
     id: "uebergabeakte", slug: "uebergabeakte", status: "SIGNATURE", category: "offer_check", cadence: "one_off",
     audienceTypes: ["private", "business"], germanName: "FLOXANT Übergabeakte", englishName: "FLOXANT handover brief",
-    shortDescription: "Fotos, offene Punkte, Schlüsselstatus und Termin für eine Objektübergabe strukturiert zusammenführen.",
+    shortDescription: "Fotos, offene Punkte, Schlüsselstatus und Termin für eine Objektübergabe übersichtlich zusammenführen.",
     problemStatement: "Vor Übergaben sind Restpunkte, Fotos, Schlüssel und Zuständigkeiten häufig nicht gemeinsam dokumentiert.",
     regions: ["Düsseldorf", "Regensburg"], excludedServices: ["rechtliche Übergabeberatung", "Abnahme- oder Kautionsgarantie"],
     canonicalRoute: "/uebergabeakte", hubRoutes: ["/leistungen", "/signature-services"],

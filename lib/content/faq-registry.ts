@@ -1117,7 +1117,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       question: "Ist die FLOXANT-Angebotsprüfung eine Rechtsberatung?",
       shortAnswer: "Nein, FLOXANT prüft Angebote praktisch und organisatorisch, nicht rechtlich.",
       detailedAnswer:
-        "FLOXANT kann unklare Leistungspositionen, fehlende Eckdaten, Aufwandstreiber und Rückfragen sichtbar machen. Vertragsauslegung, Kündigungen, Haftung, Streitfragen oder rechtliche Bewertungen gehören nicht zu dieser Leistung und müssen fachlich oder juristisch geklärt werden.",
+        "FLOXANT kann unklare Leistungspositionen, fehlende Eckdaten, wichtige Kostenfaktoren und Rückfragen sichtbar machen. Vertragsauslegung, Kündigungen, Haftung, Streitfragen oder rechtliche Bewertungen gehören nicht zu dieser Leistung und müssen fachlich oder juristisch geklärt werden.",
       relatedArticle: null,
       relatedService: "/angebot-guenstiger-pruefen",
       CTA: { label: "Praktische Prüfung starten", href: "/kontakt?service=angebot-pruefen" },

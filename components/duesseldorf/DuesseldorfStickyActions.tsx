@@ -72,7 +72,7 @@ export function DuesseldorfStickyActions() {
             </span>
           </a>
           <Link
-            href="/angebot-vergleichen-regensburg"
+            href="/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Bestehendes Angebot prüfen lassen"
             data-event="hero_cta_click"
@@ -85,7 +85,7 @@ export function DuesseldorfStickyActions() {
             </span>
           </Link>
           <Link
-            href="/angebot-vergleichen-regensburg"
+            href="/anfrage-mit-preisrahmen?city=duesseldorf&intent=duesseldorf-budget"
             className="flox-mobile-action flox-mobile-action-dark"
             aria-label="Budget oder Preisrahmen nennen"
             data-event="hero_cta_click"

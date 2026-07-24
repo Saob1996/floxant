@@ -351,15 +351,15 @@ export default function DuesseldorfHubPage() {
       <ServiceVisualProofGrid
         serviceKey="angebot-pruefen"
         locationKey="duesseldorf"
-        title="Düsseldorf Visual Proof ohne Kundendaten"
+        title="Visuelle Orientierung für Düsseldorf ohne Kundendaten"
         intro="Sichtbare Grafiken bleiben abstrakt. Echte Projektfotos, Dokumente oder Before-/After-Belege erscheinen nur nach Freigabe."
       />
 
       <ProjectStoryGrid
         serviceKey="angebot-pruefen"
         locationKey="duesseldorf"
-        title="Typische Düsseldorf-Anfragen statt Fake-Cases"
-        intro="Diese Projektlogik beschreibt neutrale Ausgangslagen für Angebotsprüfung und Anfragevorbereitung, keine behaupteten Kundenfälle."
+        title="Typische Anfragen aus Düsseldorf"
+        intro="Diese Beispiele beschreiben neutrale Ausgangslagen für Angebotsprüfung und Anfragevorbereitung. Es sind keine behaupteten Kundenfälle."
       />
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
@@ -389,7 +389,7 @@ export default function DuesseldorfHubPage() {
               <div key={city} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <div className="text-sm font-black text-slate-950">{city}</div>
                 <div className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                  Servicegebiet-Kandidat, manuell zu bestätigen.
+                  Einsatzgebiet wird nach Ihren konkreten Angaben bestätigt.
                 </div>
               </div>
             ))}

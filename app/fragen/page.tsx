@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: path,
     title: "Häufige Fragen zu FLOXANT Leistungen",
     description:
-      "Öffentlich geprüfte Antworten zu Leistungen, Anfrage, Ablauf und Servicegebiet.",
+      "Klare Antworten zu Leistungen, Anfrage, Ablauf und Servicegebiet.",
   },
   robots: { index: true, follow: true },
 };

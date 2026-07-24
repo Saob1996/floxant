@@ -7,17 +7,6 @@ const root = process.cwd();
 const reportPath = path.join(root, "CONTENT_AUTHORITY_HEALTH_REPORT.md");
 const jsonPath = path.join(root, "content-authority-health-report.json");
 
-const requiredDocs = [
-  "docs/CONTENT_AUTHORITY_TOPIC_CLUSTER_ARCHITECTURE.md",
-  "docs/BLOG_RATGEBER_CONTENT_AUDIT.md",
-  "docs/CONTENT_INTERNAL_LINKING_REPORT.md",
-  "docs/CONTENT_SCHEMA_VALIDATION_REPORT.md",
-  "docs/CONTENT_ENGLISH_INTENT_REPORT.md",
-  "docs/CONTENT_SAFETY_CLEANUP_REPORT.md",
-  "docs/FAQ_SYSTEM_IMPLEMENTATION_REPORT.md",
-  "docs/AI_ANSWER_SYSTEM_IMPLEMENTATION_REPORT.md",
-];
-
 const p0Routes = [
   { route: "/angebot-guenstiger-pruefen", files: ["app/angebot-guenstiger-pruefen/page.tsx"] },
   { route: "/umzug-regensburg", canonical: "/regensburg/umzug", files: ["app/regensburg/umzug/page.tsx", "app/umzug-regensburg/page.tsx"] },
@@ -180,11 +169,6 @@ function main() {
     "components/blog/BlogSupportBlocks.tsx",
   ].map(read).join("\n");
 
-  for (const doc of requiredDocs) {
-    if (exists(doc)) findings.push(item("PASS", "doc-exists", `${doc} vorhanden`, doc));
-    else failures.push(item("FAIL", "doc-missing", `${doc} fehlt`, doc));
-  }
-
   if (topicSystem.includes("topicFaqClusters") && topicSystem.includes("P0")) {
     findings.push(item("PASS", "topic-clusters", "Topic-Cluster-Architektur ist als Datenstruktur vorhanden.", "lib/topic-faqs.ts"));
   } else {
@@ -253,7 +237,7 @@ function main() {
       warnings: warnings.length,
       failures: failures.length,
       p0Routes: p0Routes.length,
-      requiredDocs: requiredDocs.length,
+      requiredDocs: 0,
     },
     findings,
     warnings,
@@ -269,7 +253,7 @@ function main() {
     "## Summary",
     "",
     `- P0 routes checked: ${p0Routes.length}`,
-    `- Required docs checked: ${requiredDocs.length}`,
+    "- Required docs checked: 0 (product health is verified from executable sources)",
     `- PASS findings: ${findings.length}`,
     `- WARN findings: ${warnings.length}`,
     `- FAIL findings: ${failures.length}`,

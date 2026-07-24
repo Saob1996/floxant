@@ -111,8 +111,8 @@ const faqItems = [
     a: "Spezialreinigung sind Reinigungsfaelle mit besonderem Zugang, Material, Zeitdruck, Objektbezug oder Risiko: Solar/PV, Glas, Fassade, Event, Bauendreinigung light, Praxis, Hotel, Hausverwaltung oder Reinigung vor Uebergabe.",
   },
   {
-    q: "Warum gibt es nicht fuer jede Reinigungsart eine eigene lokale Seite?",
-    a: "FLOXANT erstellt nur eigene Seiten, wenn Suchintention, Kundennutzen und Inhalt genug Substanz haben. Sonst wird der Service als Abschnitt, FAQ oder interner Link gefuehrt.",
+    q: "Wie finde ich die passende Spezialreinigung?",
+    a: "Beschreiben Sie Objekt, Fläche, Material, Zustand, Zugang und Termin. FLOXANT ordnet die Anfrage der passenden Reinigungsart zu und klärt offene Punkte direkt mit Ihnen.",
   },
   {
     q: "Kann ich ein vorhandenes Reinigungsangebot pruefen lassen?",

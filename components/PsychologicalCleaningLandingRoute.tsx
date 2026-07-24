@@ -43,7 +43,7 @@ export function generatePsychologicalCleaningLandingMetadata(
       lang: "de",
       path: slug,
       title: "FLOXANT Reinigung Regensburg",
-      description: "FLOXANT Reinigung, Übergabe und Objektservice in Regensburg und Regensburg.",
+      description: "FLOXANT Reinigung, Übergabe und Objektservice in Düsseldorf und Regensburg.",
     });
   }
 

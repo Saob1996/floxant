@@ -74,17 +74,17 @@ const variantCopy: Record<
     comboLimit: 4,
   },
   duesseldorf: {
-    eyebrow: "Duesseldorf-Serviceklarheit",
-    heading: "Duesseldorf zuerst als Anfragehub und Servicegebiet sauber klaeren.",
+    eyebrow: "Leistungen in Düsseldorf",
+    heading: "Die passende Hilfe für Ihre Anfrage in Düsseldorf finden.",
     intro:
-      "Umzug, Raeumung, Angebotscheck und Signature Services werden sichtbar. Reinigungsunterseiten werden nicht als ungepruefte Ortsmasse nachgebaut.",
+      "Wählen Sie Reinigung, Umzug, Räumung, Angebotsprüfung oder eine besondere Lösung passend zu Ihrer Situation.",
     comboLimit: 4,
   },
   regensburg: {
-    eyebrow: "Regensburg-Servicefit",
-    heading: "Regensburg trennt Reinigung, Umzug, Raeumung und Uebergabe mit 50-km-Logik.",
+    eyebrow: "Leistungen in Regensburg",
+    heading: "Reinigung, Umzug, Räumung und Übergabe passend auswählen.",
     intro:
-      "Der Block zeigt, wann Reinigung lokal passt, wann Strecke oder Raeumung fuehrt und wann Angebotspruefung der kuerzere Weg ist.",
+      "Die Übersicht zeigt, welche Leistung zu Ihrem Vorhaben passt und welche Angaben wir für eine schnelle Rückmeldung brauchen.",
     comboLimit: 5,
   },
   contact: {
@@ -213,7 +213,7 @@ export function ServicePackageDecisionExperience({
                       <h3 className="mt-2 text-xl font-black tracking-normal text-slate-950">{germanizeText(groupInfo.title)}</h3>
                     </div>
                     <span className="rounded-md border border-blue-100 bg-blue-50 px-2 py-1 text-[10px] font-black uppercase text-blue-800">
-                      {packages.length} Wege
+                      {packages.length} Optionen
                     </span>
                   </div>
                   <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{germanizeText(groupInfo.intro)}</p>
@@ -284,7 +284,7 @@ export function ServicePackageDecisionExperience({
                 </li>
                 <li className="flex gap-2">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-                  Düsseldorf bleibt Anfragehub und Servicegebiet, keine ungeprüfte Ortsseitenmasse.
+                  Anfragen aus Düsseldorf werden nach Leistung, Ort, Umfang und Termin geprüft.
                 </li>
                 <li className="flex gap-2">
                   <CircleSlash2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" aria-hidden="true" />
@@ -385,7 +385,7 @@ export function ServicePackageDecisionExperience({
           <div data-component="SignatureServiceSuggestion" className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
             <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-normal text-blue-700">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
-              Signature-Empfehlung
+              Besondere Empfehlungen
             </p>
             <div className="mt-4 grid gap-3">
               {signaturePackages.map((item) => (

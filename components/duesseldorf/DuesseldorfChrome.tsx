@@ -36,7 +36,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               Düsseldorf-Anfragen klar aufstellen.
             </h2>
             <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-              Düsseldorf führt Angebot prüfen, Umzug, Räumung, Haushaltsauflösung und Servicegebiet-Prüfung. Reinigungspfade werden nicht blind wiederhergestellt.
+              In Düsseldorf können Sie Reinigung, Angebotsprüfung und weitere passende Leistungen anfragen. Ort, Umfang, Zugang und Termin werden vor einer Zusage geprüft.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
@@ -60,7 +60,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 href="/duesseldorf"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
               >
-                Düsseldorf-Hub ansehen
+                Leistungen in Düsseldorf ansehen
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link

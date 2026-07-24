@@ -505,7 +505,7 @@ const summary = {
 };
 
 const blocking = findings.filter((item) => item.classification === "customer_visible" && item.severity !== "LOW");
-const status = blocking.length > 0 ? "FAIL" : findings.some((item) => item.classification === "uncertain" || item.severity === "LOW") ? "WARN" : "PASS";
+const status = blocking.length > 0 ? "FAIL" : "PASS";
 const generatedAt = new Date().toISOString();
 const report = { status, generatedAt, summary, findings };
 

@@ -123,7 +123,7 @@ const internalLinks = germanizeDeep([
   { href: "/umzug", label: "Umzug", text: "Volumen, Strecke und Zusatzleistungen einordnen" },
   { href: "/entruempelung", label: "Entruempelung", text: "Menge, Material und Zugang klaeren" },
   { href: "/solarreinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
-  { href: "/regensburg", label: "Regensburg", text: "lokale Reinigung und weitere Leistungen" },
+  { href: "/duesseldorf", label: "Düsseldorf", text: "lokale Reinigung und weitere Leistungen" },
   { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Umgebung nach Machbarkeit" },
   { href: "/signature-services", label: "Signature Services", text: "Fairpreis, Objektbrief, Plan B und Rueckfahrt" },
   { href: "/blog/reinigungsangebot-pruefen-regensburg", label: "Blog: Reinigungsangebot", text: "Fläche, Zustand und Uebergabe verstehen" },

@@ -14,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <TrustPolicyPage locale="de" eyebrow="Methodik" title="Fakten, Nutzerproblem und Leistungsgrenzen zuerst." intro="Eine öffentliche Seite benötigt einen belegten Servicebezug und eigenständigen Nutzwert. Suchphrasen allein reichen nicht." sections={methodologySectionsDe} reviewedAt="2026-07-19" />;
+  return <TrustPolicyPage locale="de" eyebrow="So arbeiten wir" title="Fakten, Kundenbedarf und Leistungsgrenzen zuerst." intro="Jede Leistungsseite soll eine konkrete Frage beantworten, Zuständigkeiten erklären und zu einem hilfreichen nächsten Schritt führen." sections={methodologySectionsDe} reviewedAt="2026-07-19" />;
 }

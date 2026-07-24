@@ -50,7 +50,7 @@ const excluded = [
   "Wäschewechsel, Waschservice oder Bettenlogistik ohne vorherige Abstimmung",
   "Schlüsselkoordination, Inventarprüfung oder Fotodokumentation ohne ausdrückliche Bestätigung",
   "Gästekommunikation, Plattform-Support, Schadensregulierung oder Bewertungsmanagement",
-  "Hotelstandard-, Preis-, Termin- oder Verfügbarkeitsgarantien",
+  "Pauschale Zusagen zu Hotelstandard, Preis, Termin oder freien Kapazitäten",
 ] as const;
 
 const requiredDetails = [

@@ -818,7 +818,7 @@ function ClosingTrust() {
         <article>
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
             <Handshake className="h-4 w-4" aria-hidden="true" />
-            Trust ohne Fake-Belege
+            Klare Angaben vor der Anfrage
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
             Anfrage mit klaren Eckdaten, klare Rückfragen, keine erfundenen Bewertungen.

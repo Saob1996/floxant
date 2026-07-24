@@ -80,8 +80,8 @@ export function AdminDashboard() {
     if (queryError) {
       setError(
         queryError.code === "42501"
-          ? "Der Datenbankzugriff wurde abgelehnt. Admin-Rolle und RLS-Migration prüfen."
-          : "Die Anfragen konnten nicht geladen werden. Bitte Verbindung und Supabase-Konfiguration prüfen.",
+          ? "Der Zugriff wurde abgelehnt. Bitte prüfen Sie Ihre Berechtigung."
+          : "Die Anfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
       );
       setBookings([]);
     } else {
@@ -189,7 +189,7 @@ export function AdminDashboard() {
       .single();
 
     if (updateError || !data) {
-      setError("Der Status konnte nicht aktualisiert werden. Admin-Rolle und RLS-Policy prüfen.");
+      setError("Der Status konnte nicht aktualisiert werden. Bitte prüfen Sie Ihre Berechtigung und versuchen Sie es erneut.");
     } else {
       setBookings((current) =>
         current.map((booking) => (booking.id === bookingId ? { ...booking, status: data.status } : booking)),
@@ -264,7 +264,7 @@ export function AdminDashboard() {
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">Interne Übersicht</p>
             <h1 className="mt-3 text-3xl font-black tracking-[-0.03em] sm:text-5xl">Kundenanfragen</h1>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-400 sm:text-base">
-              Neueste Anfragen zuerst. Statusänderungen werden direkt und durch RLS abgesichert in Supabase gespeichert.
+              Neueste Anfragen zuerst. Statusänderungen werden geschützt gespeichert und sind nach dem Neuladen weiterhin verfügbar.
             </p>
           </div>
           <button

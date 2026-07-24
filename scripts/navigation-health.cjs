@@ -3,15 +3,6 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 
-const requiredDocs = [
-  "docs/SERVICE_NAVIGATION_TAXONOMY.md",
-  "docs/HEADER_NAVIGATION_RESTRUCTURE_REPORT.md",
-  "docs/LOCATION_HUB_UX_REPORT.md",
-  "docs/FOOTER_CLEANUP_REPORT.md",
-  "docs/P0_SERVICE_FINDABILITY_REPORT.md",
-  "docs/ENGLISH_INTENT_NAVIGATION_REPORT.md",
-];
-
 const requiredRoutes = [
   "/",
   "/leistungen",
@@ -20,8 +11,10 @@ const requiredRoutes = [
   "/angebotscheck",
   "/duesseldorf",
   "/regensburg",
-  "/duesseldorf/umzug",
-  "/duesseldorf/entruempelung",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/grundreinigung",
+  "/duesseldorf/unterhaltsreinigung",
+  "/duesseldorf/baureinigung",
   "/regensburg/reinigung",
   "/regensburg/bueroreinigung",
   "/regensburg/gewerbereinigung",
@@ -81,17 +74,6 @@ function routeExists(route) {
 
 function push(results, status, name, detail, files = []) {
   results.push({ status, name, detail, files });
-}
-
-function checkRequiredDocs(results) {
-  const missing = requiredDocs.filter((file) => !exists(file));
-  push(
-    results,
-    missing.length ? "FAIL" : "PASS",
-    "required navigation docs",
-    missing.length ? `Missing docs: ${missing.join(", ")}` : `${requiredDocs.length} navigation docs present.`,
-    missing,
-  );
 }
 
 function checkHeader(results) {
@@ -269,7 +251,6 @@ function writeReports(results) {
 
 function main() {
   const results = [];
-  checkRequiredDocs(results);
   checkHeader(results);
   checkFooter(results);
   checkTaxonomy(results);

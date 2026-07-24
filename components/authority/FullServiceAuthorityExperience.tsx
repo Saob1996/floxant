@@ -195,7 +195,7 @@ function EnglishIntentRecommendation() {
         </span>
         <div>
           <h3 className="text-lg font-black text-slate-950">Information in English</h3>
-          <p className="text-sm font-semibold text-slate-500">Findable without doorway pages</p>
+          <p className="text-sm font-semibold text-slate-500">Clear guidance for international customers</p>
         </div>
       </div>
       <div className="mt-5 grid gap-3">

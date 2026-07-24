@@ -42,7 +42,7 @@ export default function EnglishSearchPage() {
         <div className="mx-auto max-w-5xl">
           <p className="text-sm font-black uppercase tracking-[0.12em] text-cyan-200">Local site search</p>
           <h1 className="mt-5 text-4xl font-black leading-tight sm:text-6xl">Find services, questions and guides.</h1>
-          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-slate-200">Search runs entirely in your browser. Your terms are not stored or sent to a search or AI API.</p>
+          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-slate-200">Search runs entirely in your browser. Your terms are not stored or sent to external search services.</p>
         </div>
       </header>
       <section className="px-5 py-14 sm:px-8 lg:px-10">

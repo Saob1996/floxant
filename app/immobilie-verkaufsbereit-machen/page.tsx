@@ -254,7 +254,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Regensburg werden nach Verfuegbarkeit geprueft. Regensburg bleibt separat auf Reinigung und Entsorgung begrenzt.",
+    a: "Düsseldorf und Regensburg werden je nach Leistung, Objekt und Verfügbarkeit getrennt geprüft. Senden Sie den Ort direkt mit Ihrer Anfrage.",
   },
   {
     q: "Ist kurzfristige Vorbereitung moeglich?",

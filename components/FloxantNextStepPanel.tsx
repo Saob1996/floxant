@@ -150,10 +150,10 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     eyebrow: "Düsseldorf",
     title: "Reinigung anfragen. Klar getrennt.",
     intro:
-      "Für Regensburg steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
+      "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     signal:
-      "Regensburg und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Kontaktmöglichkeiten.",
-    primaryHref: "/regensburg/reinigung#kontakt",
+      "Düsseldorf und Regensburg bleiben klar getrennt. So landen Sie direkt bei den Leistungen und Kontaktmöglichkeiten für Ihren Ort.",
+    primaryHref: "/duesseldorf/reinigung",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",
     secondaryLabel: "Entsorgung prüfen",
@@ -161,21 +161,21 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       {
         title: "Wohnung reinigen",
         text: "Für Auszug, Übergabe, möblierte Wohnung oder Grundreinigung.",
-        href: "/regensburg/reinigung#kontakt",
+        href: "/duesseldorf/reinigung",
         label: "Reinigung starten",
         Icon: Sparkles,
       },
       {
         title: "Firmenreinigung",
         text: "Für kleine Büros, Agenturen, Studios und Gewerbeflächen.",
-        href: "/regensburg/bueroreinigung",
+        href: "/duesseldorf/bueroreinigung",
         label: "Gewerbe anfragen",
         Icon: ClipboardCheck,
       },
       {
         title: "Direkt schreiben",
         text: "Wenn Fläche, Frequenz, Fotos oder Zeitfenster schon vorliegen.",
-        href: "/buchung?service=reinigung&region=regensburg#buchungssystem",
+        href: "/buchung?service=reinigung&region=duesseldorf#buchungssystem",
         label: "Anfrage senden",
         Icon: MessageCircle,
       },

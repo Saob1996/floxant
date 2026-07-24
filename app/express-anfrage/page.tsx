@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "express-anfrage",
     title: "Express-Anfrage Regensburg | Kurzfristig Umzug & Reinigung",
     description:
-      "Kurzfristiger Umzug, Express-Reinigung oder Räumung in Regensburg und Regensburg. FLOXANT prüft Ihre Anfrage schnell auf realistische Machbarkeit.",
+      "Kurzfristiger Umzug, Express-Reinigung oder Räumung in Düsseldorf und Regensburg. FLOXANT prüft Ihre Anfrage schnell auf realistische Machbarkeit.",
   });
 }
 
@@ -100,7 +100,7 @@ export default async function ExpressPage() {
             Express-Anfrage & Notfall-Service in Regensburg & Bayern
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600">
-            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit klarer Rückmeldung zu Kapazität, Ort und Umfang. Sie bekommen eine erreichbare Anlaufstelle für eilige Fälle in Regensburg und Regensburg.
+            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit klarer Rückmeldung zu Kapazität, Ort und Umfang. Sie bekommen eine erreichbare Anlaufstelle für eilige Fälle in Düsseldorf und Regensburg.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link

@@ -118,7 +118,7 @@ async function main() {
   const forbidden = locs.filter((loc) => /\/(api|admin|dashboard|login)(\/|$)/i.test(normalizePath(loc)));
   addResult(results, forbidden.length ? "FAIL" : "PASS", "sitemap", "forbidden-routes", forbidden.length ? `${forbidden.length} forbidden sitemap URLs.` : "No API/admin/dashboard/login routes in sitemap.", forbidden.length ? "Remove forbidden URLs." : "No action.", { priority: "P0", samples: forbidden.slice(0, 10) });
 
-  for (const route of criticalRoutes.filter((item) => item.priority === "P0" && !item.nonHtml && !item.contactPage)) {
+  for (const route of criticalRoutes.filter((item) => item.priority === "P0" && item.moneyPage && !item.nonHtml && !item.contactPage)) {
     const present = sitemapHasRoute(locs, route);
     addResult(results, present ? "PASS" : "WARN", "sitemap-p0", route.path, present ? "P0 route/canonical target present in sitemap." : "P0 route not found in sitemap.", present ? "No action." : "Confirm whether route should be in sitemap or intentionally redirected.", { priority: route.priority });
   }

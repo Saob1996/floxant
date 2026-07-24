@@ -597,9 +597,9 @@ export function RelatedSeniorMoveServices() {
     <section className="px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Interne Verlinkung"
+          eyebrow="Passende Ergänzungen"
           title="Passende Wege nach einem Seniorenumzug"
-          intro="Diese Links führen zu Support-Seiten, die den Fall differenzieren, statt dieselbe Suchintention zu wiederholen."
+          intro="Diese Seiten helfen Ihnen, Übergabe, Reinigung und weitere Aufgaben passend zum Seniorenumzug zu klären."
         />
         <div className="mt-6 flex flex-wrap gap-3">
           {links.map((link) => (

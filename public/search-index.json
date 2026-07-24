@@ -781,7 +781,7 @@
         "Privatpersonen mit vorhandenem Angebot",
         "Unternehmen mit Reinigungs- oder Umzugsangebot",
         "Ein Endpreis lässt sich nicht sinnvoll bewerten, solange Leistungsumfang und Annahmen unklar sind.",
-        "Eine strukturierte Liste nachvollziehbarer Punkte, offener Angaben und möglicher Rückfragen."
+        "Eine übersichtliche Liste nachvollziehbarer Punkte, offener Angaben und möglicher Rückfragen."
       ]
     },
     {
@@ -842,7 +842,7 @@
         "Privatpersonen",
         "Angehörige",
         "Nutzer möchten eine sensible Lage klären, ohne im ersten Schritt unnötige private Details offenzulegen.",
-        "Eine zurückhaltend strukturierte Anfrage mit bevorzugtem Kontaktweg und nur den nötigen Eckdaten."
+        "Eine zurückhaltende Anfrage mit bevorzugtem Kontaktweg und nur den nötigen Eckdaten."
       ]
     },
     {
@@ -879,7 +879,7 @@
     {
       "id": "service:objektbrief:de:-objektbrief",
       "title": "FLOXANT Objektbrief",
-      "description": "Strukturierter Anfrageeinstieg für Objektart, Ort, Termin, Zugang, Fotos und Zielzustand.",
+      "description": "Klarer Anfrageeinstieg für Objektart, Ort, Termin, Zugang, Fotos und Zielzustand.",
       "url": "/objektbrief",
       "locale": "de",
       "type": "signature",
@@ -898,7 +898,7 @@
     {
       "id": "signature:objektbrief:de",
       "title": "FLOXANT Objektbrief",
-      "description": "Sammelt Objektart, Region, Ort, Termin, Zugang, Fotos und Zielzustand in einer strukturierten Anfrage.",
+      "description": "Führt Objektart, Region, Ort, Termin, Zugang, Fotos und Zielzustand übersichtlich in einer Anfrage zusammen.",
       "url": "/objektbrief",
       "locale": "de",
       "type": "signature",
@@ -1014,7 +1014,7 @@
     {
       "id": "service:uebergabeakte:de:-uebergabeakte",
       "title": "FLOXANT Übergabeakte",
-      "description": "Fotos, offene Punkte, Schlüsselstatus und Termin für eine Objektübergabe strukturiert zusammenführen.",
+      "description": "Fotos, offene Punkte, Schlüsselstatus und Termin für eine Objektübergabe übersichtlich zusammenführen.",
       "url": "/uebergabeakte",
       "locale": "de",
       "type": "signature",

@@ -120,19 +120,25 @@ function checkForms() {
 }
 
 function checkApi() {
-  const file = path.join(ROOT, "app/api/bookings/route.ts");
-  const source = read(file);
+  const files = [
+    path.join(ROOT, "functions/api/bookings.js"),
+    path.join(ROOT, "functions/_lib/lead-handler.js"),
+    path.join(ROOT, "functions/_lib/lead-payload.js"),
+  ];
+  const source = files.map(read).join("\n");
   const required = [
-    "normalizeLeadSubmission",
-    "validateLeadSubmission",
-    "calculateLeadPriority",
-    "attachLeadQuality",
+    "normalizeLeadPayload",
+    "validateSubmission",
+    "insertBooking",
     "requestId",
-    "Speichern fehlgeschlagen",
+    "companyWebsite",
+    "privacyConsent",
+    "offerStatus",
+    "offerConcern",
   ];
   return hasAll(source, required)
-    ? result("booking-api", "PASS", "Booking API stores lead quality and returns generic server errors with requestId.", [rel(file)])
-    : result("booking-api", "FAIL", "Booking API lead-quality integration is incomplete.", [rel(file)]);
+    ? result("booking-api", "PASS", "Cloudflare booking function normalizes, validates and stores leads with generic request IDs.", files.map(rel))
+    : result("booking-api", "FAIL", "Cloudflare booking function integration is incomplete.", files.map(rel));
 }
 
 function checkDocs() {

@@ -28,12 +28,12 @@ const combinedByRegion = {
     {
       title: "Endreinigung vor Übergabe",
       text: "Für Auszug, Leerstand oder Übergabetermin, wenn Küche, Bad, Böden und sichtbare Bereiche stimmen sollen.",
-      href: "/regensburg/endreinigung",
+      href: "/duesseldorf/endreinigung",
     },
     {
       title: "Gewerbereinigung + Angebotsprüfung",
       text: "Für Firmen, Praxen und Hausverwaltungen, wenn ein bestehendes Angebot sachlich geprüft werden soll.",
-      href: "/angebot-vergleichen-regensburg",
+      href: "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen",
     },
   ],
   regensburg: [
@@ -82,7 +82,7 @@ export function ServicePageCustomerSections({
     serviceLabel,
   });
   const offerHref =
-    offerCheckHref || (region === "duesseldorf" ? "/angebot-vergleichen-regensburg" : "/anbieter-vergleichen");
+    offerCheckHref || (region === "duesseldorf" ? "/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen" : "/anbieter-vergleichen");
 
   return (
     <div className={`space-y-8 ${className}`}>

@@ -79,7 +79,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Niemand soll raten, welcher Service passt. Diese Seite führt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Regensburg und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg bleibt auf die konkrete Anfrage in Regensburg und Umgebung ausgerichtet.",
+      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen über eigene Seiten und klare Kontaktmöglichkeiten zur passenden Anfrage.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
       "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg und Umgebung.",
@@ -708,8 +708,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     },
       {
         label: "Region",
-        title: "Regensburg und Regensburg sauber getrennt",
-        text: "Kunden sehen sofort, welche Hilfe in Regensburg passt und welche Leistungen klar zu Regensburg gehören.",
+        title: "Düsseldorf und Regensburg sauber getrennt",
+        text: "Kunden sehen sofort, welche Hilfe in Düsseldorf passt und welche Leistungen klar zu Regensburg gehören.",
         Icon: MapPin,
       },
     {

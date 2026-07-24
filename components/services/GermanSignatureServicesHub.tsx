@@ -11,7 +11,7 @@ const faqItems = [
   {
     question: "Was sind FLOXANT Signature Services?",
     answer:
-      "Signature Services sind geprüfte Anfragewege für Situationen, in denen Angebot, Objektangaben, Übergabe, Ausweichplanung oder sensible Rahmenbedingungen zuerst strukturiert werden müssen.",
+      "Signature Services sind besondere Lösungen für Situationen, in denen Angebot, Objektangaben, Übergabe, Ausweichplanung oder sensible Rahmenbedingungen zuerst geklärt werden müssen.",
   },
   {
     question: "Entsteht durch die Nutzung bereits ein Auftrag?",
@@ -46,7 +46,7 @@ const graph = {
       url: `${company.url}${path}`,
       name: "FLOXANT Signature Services und Speziallösungen",
       description:
-        "Öffentlich geprüfte Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, diskrete Situationen sowie kombinierte Umzugs- und Reinigungsanfragen.",
+        "Klare Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, diskrete Situationen sowie kombinierte Umzugs- und Reinigungsanfragen.",
       inLanguage: "de-DE",
     },
     {
@@ -84,10 +84,10 @@ export function GermanSignatureServicesHub() {
         <div className="mx-auto max-w-7xl">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100">
             <Sparkles className="h-4 w-4" aria-hidden="true" />
-            Öffentlich geprüfte Lösungen
+            Besondere Lösungen
           </p>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] sm:text-5xl lg:text-6xl">
-            Strukturierte Anfragewege für Situationen jenseits eines Standardformulars
+            Persönliche Hilfe für Situationen jenseits eines Standardformulars
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Diese Lösungen ordnen vorhandene Angebote, Objektangaben, Übergaben,

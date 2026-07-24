@@ -141,7 +141,7 @@ const boundaries = [
   "keine Krankenhausreinigung",
   "keine Entsorgung medizinischer Abfälle",
   "keine sterile Aufbereitung von Instrumenten",
-  "keine Hygienezertifizierung oder Audit-Zusage",
+  "Hygieneanforderungen und Nachweise werden vorab konkret abgestimmt",
 ];
 
 const faqItems = [

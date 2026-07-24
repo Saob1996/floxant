@@ -35,8 +35,6 @@ const targets = [
   { route: "/regensburg/reinigung", service: "gewerbereinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "praxisreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "fensterreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
-  { route: "/duesseldorf/umzug", service: "umzug", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/duesseldorf/entruempelung", service: "entruempelung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/regensburg", service: "service", city: "regensburg", offer: false, cta: ["/regensburg/umzug", "/kontakt"] },
   { route: "/regensburg/umzug", service: "umzug", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "reinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
@@ -111,6 +109,19 @@ function readPageSnippet(file) {
   const description = text.match(/description:\s*["'`]([^"'`]+)["'`]/)?.[1] || "";
   const h1 = text.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, " ") || "";
   return { title: unquote(title), description: unquote(description), h1: unquote(h1), source: "page-source" };
+}
+
+function readBuiltSnippet(route) {
+  const relative = route === "/" ? "index.html" : path.join(route.replace(/^\/+/, ""), "index.html");
+  const file = path.join(root, "out", relative);
+  if (!fs.existsSync(file)) return null;
+  const html = fs.readFileSync(file, "utf8");
+  const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "";
+  const descriptionTag = html.match(/<meta\b[^>]*name=["']description["'][^>]*>/i)?.[0] || "";
+  const description = descriptionTag.match(/content=["']([^"']*)["']/i)?.[1] || "";
+  const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, " ") || "";
+  if (!title && !description) return null;
+  return { title: unquote(title), description: unquote(description), h1: unquote(h1), source: "static-export" };
 }
 
 function readCentralSnippet(route) {
@@ -199,7 +210,7 @@ function checkTarget(target, priorityText) {
       ],
     };
   }
-  const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
+  const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readBuiltSnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
   const priorityContext = expandPriorityContext(readPriorityBlock(target.route, priorityText));
   const checks = [];
   const title = snippet.title || "";

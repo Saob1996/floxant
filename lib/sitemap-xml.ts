@@ -102,6 +102,13 @@ const VERIFIED_APARTMENT_CLEANING_ROUTES = new Set<string>([
   "reinigung-moeblierte-wohnung-regensburg",
 ]);
 
+const VERIFIED_REGIONAL_CLEANING_ROUTES = new Set<string>([
+  "grundreinigung-regensburg",
+  "unterhaltsreinigung-regensburg",
+  "baureinigung-regensburg",
+  "pv-anlagen-reinigung",
+]);
+
 const NON_SEO_PUBLIC_ROUTES = new Set([
   "impressum",
   "datenschutz",
@@ -263,6 +270,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
   if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(normalizedRoute)) return false;
+  if (VERIFIED_REGIONAL_CLEANING_ROUTES.has(normalizedRoute)) return false;
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||

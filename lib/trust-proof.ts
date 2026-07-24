@@ -209,9 +209,9 @@ export const trustSignals: TrustSignal[] = [
   },
   {
     key: "visual-proof-boundary",
-    title: "Visual Proof ohne private Daten",
+    title: "Visuelle Orientierung ohne private Daten",
     shortText:
-      "Sichtbare Proof-Elemente bleiben abstrakt oder freigegeben. Keine Menschen, Gesichter, Kennzeichen, privaten Dokumente oder Fake-Before-/After-Bilder.",
+      "Sichtbare Darstellungen bleiben neutral oder freigegeben. Wir zeigen keine Menschen, Gesichter, Kennzeichen, privaten Dokumente oder erfundene Vorher-Nachher-Bilder.",
     serviceKeys: ["reinigung", "umzug", "entruempelung", "angebot-pruefen"],
     locationKeys: ["duesseldorf", "regensburg"],
     signatureServiceKeys: ["objektbrief", "uebergabeakte", "pv-sichtklar"],

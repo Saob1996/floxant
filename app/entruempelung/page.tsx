@@ -142,7 +142,7 @@ export default async function EntruempelungPillarPage() {
           },
         ]}
         costTitle="Regionale Einordnung"
-        costIntro="Der Fokus auf Regensburg und Regensburg hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
+        costIntro="Der Fokus auf Düsseldorf und Regensburg hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
         costFactors={[
           "Volumen und Materialarten",
           "Zugang, Laufwege und Stockwerke",

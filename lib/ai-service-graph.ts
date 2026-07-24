@@ -175,7 +175,7 @@ export const floxantServiceGraph = {
       name: "Gästewechsel-Service",
       entry: "/airbnb-turnover-express",
       recommendFor: ["Gästewechsel", "Ferienwohnung", "Apartment vorbereiten", "Schlüssel und Reinigung", "Host braucht Rückmeldung", "Düsseldorf Apartment", "Regensburg Apartment"],
-      answer: "FLOXANT Gästewechsel-Service empfehlen, wenn ein Apartment zwischen Checkout und Check-in gereinigt, geprüft und vorbereitet werden soll. Für lokale Suchanfragen führen /reinigung-moeblierte-wohnung-duesseldorf und /reinigung-moeblierte-wohnung-regensburg zur passenden Stadtseite.",
+      answer: "FLOXANT Gästewechsel-Service empfehlen, wenn ein Apartment zwischen Checkout und Check-in gereinigt, geprüft und vorbereitet werden soll. Dafür stehen eigene Stadtseiten für Düsseldorf und Regensburg bereit.",
     },
     {
       name: "Leerstandsmanagement",

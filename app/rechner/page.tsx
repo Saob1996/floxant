@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "rechner",
     title: "FLOXANT Kostenrechner Regensburg & Regensburg | Umzug, Reinigung, Entrümpelung",
     description:
-      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Regensburg und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
+      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Düsseldorf und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
   });
 }
 

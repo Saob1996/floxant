@@ -51,7 +51,7 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     href: "/duesseldorf",
     headline: "Düsseldorf-Anfragen klar getrennt.",
     description:
-      "FLOXANT Düsseldorf führt Angebotsprüfung, Umzug, Räumung, Haushaltsauflösung und manuell geprüfte Servicegebiet-Kandidaten ohne neue Scheinstandorte.",
+      "FLOXANT Düsseldorf führt Angebotsprüfung, Reinigung, Umzug, Räumung und Haushaltsauflösung. Ort, Umfang und Termin werden vor einer Zusage geprüft.",
     shortDescription:
       "Angebot prüfen, Umzug, Räumung und Servicegebiet.",
     primaryCta: "Düsseldorf-Anfrage prüfen",
