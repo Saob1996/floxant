@@ -21,6 +21,8 @@ import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServiceClusterGrid } from "@/components/ServiceClusterGrid";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
+import { RegensburgAuthorityModules } from "@/components/dominance/RegensburgAuthorityModules";
+import { ServiceAnswerSummary } from "@/components/editorial/ServiceAnswerSummary";
 import { company } from "@/lib/company";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
 import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
@@ -188,6 +190,8 @@ export default function RegensburgHubPage() {
       </section>
 
       <FloxantObjectBrief variant="regensburg" className="border-b border-slate-200" />
+      <RegensburgAuthorityModules />
+      <ServiceAnswerSummary serviceId="umzug" region="Regensburg" className="border-b border-slate-200" />
 
       <ServiceNavigationOverview
         location="regensburg"

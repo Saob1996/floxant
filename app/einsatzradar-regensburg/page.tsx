@@ -42,17 +42,17 @@ export default function EinsatzradarRegensburgPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Einsatzradar Regensburg",
         description:
-          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Reinigung Regensburg/Entsorgung.",
+          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege für FLOXANT im Raum Regensburg und getrennt für Reinigung Regensburg/Entsorgung.",
         path,
         about: [
           "Einsatzradar",
           "Regensburg",
           "Umzug",
           "Reinigung",
-          "Entruempelung",
+          "Entrümpelung",
           "Transport",
-          "Rueckfahrt",
-          "Uebergabeakte",
+          "Rückfahrt",
+          "Übergabeakte",
           "Mieterwechsel",
         ],
         potentialActions: [
@@ -63,10 +63,10 @@ export default function EinsatzradarRegensburgPage() {
       buildServiceJsonLd({
         name: "FLOXANT Einsatzradar Regensburg",
         description:
-          "Typische Einsatzarten fuer Umzug, Reinigung, Entruempelung, Transport, Uebergabe, Rueckfahrt und Objektvorbereitung im Raum Regensburg.",
+          "Typische Einsatzarten für Umzug, Reinigung, Entrümpelung, Transport, Übergabe, Rückfahrt und Objektvorbereitung im Raum Regensburg.",
         path,
-        serviceType: "Einsatzarten und Servicezonen fuer FLOXANT Regensburg",
-        areaServed: ["Regensburg", "Umgebung Regensburg", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
+        serviceType: "Einsatzarten und Servicezonen für FLOXANT Regensburg",
+        areaServed: ["Regensburg", "Umgebung Regensburg", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -181,7 +181,7 @@ export default function EinsatzradarRegensburgPage() {
                 "Keine personenbezogenen Fotos ohne Freigabe",
                 "Keine Live- oder Heute-Behauptung",
                 "Nur grobe Regionen",
-                "Regensburg getrennt fuer Reinigung/Entsorgung",
+                "Regensburg getrennt für Reinigung/Entsorgung",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 rounded-[1rem] border border-blue-100 bg-blue-50/70 px-4 py-3 text-sm font-bold leading-6 text-blue-950">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />
@@ -210,17 +210,17 @@ export default function EinsatzradarRegensburgPage() {
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Signature Services</div>
             <h2 className="mt-3 text-3xl font-black tracking-tight">Der Radar verbindet Einsatzarten mit echten FLOXANT Startpunkten</h2>
             <p className="mt-4 text-base leading-8 text-slate-300">
-              Nicht jede Anfrage braucht dieselbe Leistung. Deshalb fuehren Einsatzkarten direkt zu
-              passenden Seiten wie Rueckfahrt-Boerse, Uebergabeakte, Mieterwechsel, Keller-/Muellraum
+              Nicht jede Anfrage braucht dieselbe Leistung. Deshalb führen Einsatzkarten direkt zu
+              passenden Seiten wie Rückfahrt-Boerse, Übergabeakte, Mieterwechsel, Keller-/Müllraum
               oder Wohnung wieder vermietbar.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              { label: "Uebergabeakte", href: "/uebergabeakte" },
-              { label: "Rueckfahrt-Boerse", href: "/rueckfahrt-boerse" },
+              { label: "Übergabeakte", href: "/uebergabeakte" },
+              { label: "Rückfahrt-Boerse", href: "/rueckfahrt-boerse" },
               { label: "Mieterwechsel", href: "/mieterwechsel-service-regensburg" },
-              { label: "Keller-/Muellraum", href: "/keller-muellraum-rettung-regensburg" },
+              { label: "Keller-/Müllraum", href: "/keller-muellraum-rettung-regensburg" },
               { label: "Wohnung wieder vermietbar", href: "/wohnung-wieder-vermietbar" },
               { label: "Angebotscheck", href: "/angebotscheck" },
             ].map((item) => (

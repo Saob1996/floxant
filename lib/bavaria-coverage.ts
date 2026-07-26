@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type CoverageLink = {
   href: string;
   label: string;
@@ -11,7 +13,7 @@ export type CoverageGroup = {
   links: CoverageLink[];
 };
 
-export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
+export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = germanizeDeep([
   { href: "/regensburg/umzug", label: "Umzug Regensburg", note: "Lokaler Kernpfad fuer direkte Nachfrage." },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg", note: "Starker Uebergabe- und Objektservice-Startpunkt." },
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
@@ -50,9 +52,9 @@ export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
   { href: "/reinigung-straubing", label: "Reinigung Straubing", note: "Objekt- und Uebergabepfad fuer Niederregensburg." },
   { href: "/entruempelung-fuerth", label: "Entruempelung Fuerth", note: "Raeumung und Entsorgung fuer Haushalte, Keller und Gewerbe." },
   { href: "/entruempelung-bayreuth", label: "Entruempelung Bayreuth", note: "Raeumung, Entsorgung und besenreine Vorbereitung in Oberfranken." },
-];
+]);
 
-export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
+export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = germanizeDeep([
   {
     id: "oberpfalz",
     region: "Regensburg und Oberpfalz",
@@ -195,9 +197,9 @@ export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
       { href: "/umzug-roth", label: "Roth" },
     ],
   },
-];
+]);
 
-export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
+export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = germanizeDeep([
   {
     href: "/umzug-muenchen-schwabing",
     label: "Muenchen Schwabing",
@@ -243,7 +245,7 @@ export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
     label: "Nuernberg Ziegelstein",
     note: "Noerdlicher Stadtteil mit direktem Startpunkt fuer Umzug und Abstimmung.",
   },
-];
+]);
 
 export type MapsServiceIntent = {
   id: string;
@@ -254,7 +256,7 @@ export type MapsServiceIntent = {
   supporting: CoverageLink[];
 };
 
-export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
+export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = germanizeDeep([
   {
     id: "umzug",
     title: "Umzug",
@@ -377,9 +379,9 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
       { href: "/blog/hausverwaltung-treppenhausreinigung-regensburg", label: "Treppenhausreinigung" },
     ],
   },
-];
+]);
 
-export const BAVARIA_REGENSBURG_PROXIMITY_LINKS: CoverageLink[] = [
+export const BAVARIA_REGENSBURG_PROXIMITY_LINKS: CoverageLink[] = germanizeDeep([
   { href: "/regensburg/umzug", label: "Regensburg Zentrum", note: "Hauptanker fuer Maps und direkte lokale Suche." },
   { href: "/umzug-landkreis-regensburg", label: "Landkreis Regensburg", note: "Erweiterter Kernraum fuer Regensburg-nahe Anfragen." },
   { href: "/umzug-neutraubling", label: "Neutraubling", note: "Nahraum mit starker Wohn- und Gewerbenachfrage." },
@@ -398,9 +400,9 @@ export const BAVARIA_REGENSBURG_PROXIMITY_LINKS: CoverageLink[] = [
   { href: "/umzug-sinzing", label: "Sinzing", note: "Suedwestlicher Nahraum Richtung Donau und Autobahn." },
   { href: "/umzug-tegernheim", label: "Tegernheim", note: "Stadtnahe Nachfrage am Donaurand." },
   { href: "/umzug-donaustauf", label: "Donaustauf", note: "Nahe Ortslage mit direktem Bezug zu Regensburg." },
-];
+]);
 
-const CORE_SERVICE_CITY_SPOTLIGHTS = [
+const CORE_SERVICE_CITY_SPOTLIGHTS = germanizeDeep([
   { slug: "regensburg", label: "Regensburg" },
   { slug: "bayern", label: "Bayern" },
   { slug: "muenchen", label: "Muenchen" },
@@ -428,9 +430,9 @@ const CORE_SERVICE_CITY_SPOTLIGHTS = [
   { slug: "erlangen", label: "Erlangen" },
   { slug: "burglengenfeld", label: "Burglengenfeld" },
   { slug: "unterhaching", label: "Unterhaching" },
-] as const;
+] as const);
 
-const CLEANING_SERVICE_CITY_SPOTLIGHTS = [
+const CLEANING_SERVICE_CITY_SPOTLIGHTS = germanizeDeep([
   { slug: "regensburg", label: "Regensburg" },
   { slug: "neutraubling", label: "Neutraubling" },
   { slug: "lappersdorf", label: "Lappersdorf" },
@@ -441,7 +443,7 @@ const CLEANING_SERVICE_CITY_SPOTLIGHTS = [
   { slug: "schwandorf", label: "Schwandorf" },
   { slug: "straubing", label: "Straubing" },
   { slug: "bad-abbach", label: "Bad Abbach" },
-] as const;
+] as const);
 
 function buildGenericServiceHref(serviceSlug: string, citySlug: string) {
   if (serviceSlug === "reinigung" || serviceSlug === "entruempelung" || serviceSlug === "bueroumzug") {

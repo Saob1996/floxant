@@ -41,35 +41,35 @@ const areaGroups = [
     places:
       "Neutraubling, Lappersdorf, Pentling, Sinzing, Tegernheim, Donaustauf, Wenzenbach, Regenstauf, Obertraubling, Barbing, Nittendorf und Zeitlarn",
     text:
-      "Diese Orte sind besonders relevant fuer kurzfristige Anfragen, kleinere Transporte, Endreinigung, Entruempelung und Umzuege im direkten Regensburger Umfeld. FLOXANT bleibt dabei klar in Regensburg verankert und prueft Ort, Zugang, Termin und Umfang.",
+      "Diese Orte sind besonders relevant für kurzfristige Anfragen, kleinere Transporte, Endreinigung, Entrümpelung und Umzüge im direkten Regensburger Umfeld. FLOXANT bleibt dabei klar in Regensburg verankert und prüft Ort, Zugang, Termin und Umfang.",
   },
   {
     title: "Richtung Kelheim, Bad Abbach und Abensberg",
     badge: "Donau- und Suedwestachse",
     places: "Kelheim, Bad Abbach, Abensberg, Hemau, Parsberg, Laaber und Schierling",
     text:
-      "Diese Richtung ist fuer Umzug, Reinigung nach Auszug, Entruempelung und kombinierte Uebergabevorbereitung sinnvoll, wenn Route, Zeitfenster, Fotos und Zusatzleistungen sauber zusammenpassen.",
+      "Diese Richtung ist für Umzug, Reinigung nach Auszug, Entrümpelung und kombinierte Übergabevorbereitung sinnvoll, wenn Route, Zeitfenster, Fotos und Zusatzleistungen sauber zusammenpassen.",
   },
   {
     title: "Richtung Straubing, Deggendorf, Cham und Roding",
     badge: "Ost- und Donaukorridor",
     places: "Straubing, Deggendorf, Cham, Roding und umliegende Orte",
     text:
-      "Auf diesen Strecken sind Transport, Umzug, Leerfahrt/Rueckfahrt und flexible Anfragefenster besonders wichtig. Bei laengeren Wegen wird keine pauschale Verfuegbarkeit versprochen, sondern die Route geprueft.",
+      "Auf diesen Strecken sind Transport, Umzug, Leerfahrt/Rückfahrt und flexible Anfragefenster besonders wichtig. Bei laengeren Wegen wird keine pauschale Verfügbarkeit versprochen, sondern die Route geprüft.",
   },
   {
     title: "Richtung Schwandorf, Amberg und Weiden",
     badge: "Oberpfalz-Achse",
     places: "Schwandorf, Burglengenfeld, Maxhuette-Haidhof, Amberg und Weiden in der Oberpfalz",
     text:
-      "Fuer Umzug, Transport, Entruempelung und kombinierte Services ist diese Achse interessant, wenn Fahrzeugbedarf, Etage, Zugang und Termin realistisch geplant werden koennen.",
+      "Für Umzug, Transport, Entrümpelung und kombinierte Services ist diese Achse interessant, wenn Fahrzeugbedarf, Etage, Zugang und Termin realistisch geplant werden können.",
   },
   {
-    title: "Groessere bayerische Staedte",
+    title: "Größere bayerische Staedte",
     badge: "Erweiterte Einsatzregion",
-    places: "Nuernberg, Ingolstadt, Muenchen, Landshut, Passau und Augsburg",
+    places: "Nürnberg, Ingolstadt, München, Landshut, Passau und Augsburg",
     text:
-      "Diese Orte werden nicht als lokaler Kern dargestellt. Sie sind vor allem fuer planbare Bayern-Anfragen, groessere Strecken, Rueckfahrten und Kombi-Services nach Verfuegbarkeit relevant.",
+      "Diese Orte werden nicht als lokaler Kern dargestellt. Sie sind vor allem für planbare Bayern-Anfragen, größere Strecken, Rückfahrten und Kombi-Services nach Verfügbarkeit relevant.",
   },
 ] as const;
 
@@ -77,7 +77,7 @@ const serviceLinks = [
   {
     title: "Umzug in Regensburg und Umgebung",
     text:
-      "Privatumzug, Transport, Etagen, Zugang, Reinigung und Schluesselthemen werden aus Regensburg heraus geplant.",
+      "Privatumzug, Transport, Etagen, Zugang, Reinigung und Schlüsselthemen werden aus Regensburg heraus geplant.",
     href: "/regensburg/umzug",
     cta: "Umzug anfragen",
     Icon: Truck,
@@ -85,23 +85,23 @@ const serviceLinks = [
   {
     title: "Reinigung nahe Regensburg",
     text:
-      "Endreinigung, Auszugsreinigung und Wohnungsuebergabe sind besonders stark, wenn Fotos, Flaeche und Termin frueh vorliegen.",
+      "Endreinigung, Auszugsreinigung und Wohnungsuebergabe sind besonders stark, wenn Fotos, Fläche und Termin frueh vorliegen.",
     href: "/regensburg/reinigung",
-    cta: "Reinigung pruefen",
+    cta: "Reinigung prüfen",
     Icon: Sparkles,
   },
   {
-    title: "Entruempelung mit Fotoeinschaetzung",
+    title: "Entrümpelung mit Fotoeinschaetzung",
     text:
-      "Wohnung, Keller, Garage, Restmengen oder Nachlass koennen besser eingeordnet werden, wenn Zugang, Etage und Fotos sichtbar sind.",
+      "Wohnung, Keller, Garage, Restmengen oder Nachlass können besser eingeordnet werden, wenn Zugang, Etage und Fotos sichtbar sind.",
     href: "/regensburg/entruempelung",
-    cta: "Entruempelung einschaetzen",
+    cta: "Entrümpelung einschätzen",
     Icon: Trash2,
   },
   {
-    title: "Nachlass-Raeumung diskret klaeren",
+    title: "Nachlass-Räumung diskret klären",
     text:
-      "Nach Erbfall oder Wohnungsaufloesung zaehlen Freigabe, Zugang, Fotos, Rueckruf und eine ruhige Abstimmung besonders stark.",
+      "Nach Erbfall oder Wohnungsauflösung zählen Freigabe, Zugang, Fotos, Rückruf und eine ruhige Abstimmung besonders stark.",
     href: "/nachlass-raeumung-regensburg",
     cta: "Nachlass-Fall senden",
     Icon: ShieldCheck,
@@ -109,7 +109,7 @@ const serviceLinks = [
   {
     title: "Diskreter Auszug bei Trennung",
     text:
-      "Fuer sensible private Auszuege im Raum Regensburg, wenn Rueckruf, sichere Kontaktmethode, Transport, Reinigung und Uebergabe ruhig abgestimmt werden sollen.",
+      "Für sensible private Auszuege im Raum Regensburg, wenn Rückruf, sichere Kontaktmethode, Transport, Reinigung und Übergabe ruhig abgestimmt werden sollen.",
     href: "/diskreter-umzug-trennung-scheidung",
     cta: "Diskret anfragen",
     Icon: ShieldCheck,
@@ -117,9 +117,9 @@ const serviceLinks = [
   {
     title: "Transport und Leerfahrt",
     text:
-      "Fuer Einzelstuecke, Moebel, flexible Strecken und Rueckfahrten zaehlen Startort, Zielort, Datum, Umfang und Verfuegbarkeit.",
+      "Für Einzelstuecke, Möbel, flexible Strecken und Rückfahrten zählen Startort, Zielort, Datum, Umfang und Verfügbarkeit.",
     href: "/leerfahrt-rueckfahrt",
-    cta: "Strecke pruefen",
+    cta: "Strecke prüfen",
     Icon: Route,
   },
 ] as const;
@@ -127,43 +127,43 @@ const serviceLinks = [
 const faqItems = [
   {
     q: "Arbeitet FLOXANT nur in Regensburg?",
-    a: "Nein. FLOXANT sitzt in Regensburg. Anfragen aus der direkten Umgebung und aus Bayern werden nach Ort, Strecke, Termin, Umfang, Zugang und Kapazitaet geprueft.",
+    a: "Nein. FLOXANT sitzt in Regensburg. Anfragen aus der direkten Umgebung und aus Bayern werden nach Ort, Strecke, Termin, Umfang, Zugang und Kapazität geprüft.",
   },
   {
     q: "Welche Orte in der Naehe von Regensburg sind relevant?",
     a: "Besonders naheliegend sind Orte wie Neutraubling, Lappersdorf, Pentling, Sinzing, Tegernheim, Regenstauf, Obertraubling, Barbing, Nittendorf und Zeitlarn. Diese Orte werden als Umfeld verstanden, nicht als eigene FLOXANT-Standorte.",
   },
   {
-    q: "Sind Umzuege ausserhalb Regensburg moeglich?",
-    a: "Ja, wenn Strecke, Volumen, Etagen, Zugang, Termin und Teamkapazitaet zusammenpassen. Fuer laengere Wege kann auch eine Leerfahrt oder Rueckfahrt nach Verfuegbarkeit sinnvoll sein.",
+    q: "Sind Umzüge außerhalb Regensburg möglich?",
+    a: "Ja, wenn Strecke, Volumen, Etagen, Zugang, Termin und Teamkapazitaet zusammenpassen. Für laengere Wege kann auch eine Leerfahrt oder Rückfahrt nach Verfügbarkeit sinnvoll sein.",
   },
   {
     q: "Bietet FLOXANT Reinigung in der Umgebung von Regensburg an?",
-    a: "Ja, vor allem fuer Endreinigung, Auszugsreinigung, Wohnungsuebergabe und Kombi-Anfragen mit Umzug oder Entruempelung. Entscheidend sind Flaeche, Zustand, Termin und Fotos.",
+    a: "Ja, vor allem für Endreinigung, Auszugsreinigung, Wohnungsuebergabe und Kombi-Anfragen mit Umzug oder Entrümpelung. Entscheidend sind Fläche, Zustand, Termin und Fotos.",
   },
   {
-    q: "Sind Entruempelungen ausserhalb Regensburg moeglich?",
-    a: "Ja, nach Pruefung. Wichtig sind Umfang, Etage, Zugang, Materialart, Fotos und ob danach eine Reinigung oder Uebergabevorbereitung sinnvoll ist.",
+    q: "Sind Entrümpelungen außerhalb Regensburg möglich?",
+    a: "Ja, nach Prüfung. Wichtig sind Umfang, Etage, Zugang, Materialart, Fotos und ob danach eine Reinigung oder Übergabevorbereitung sinnvoll ist.",
   },
   {
     q: "Wie weit faehrt FLOXANT?",
-    a: "Die Umgebung bis ca. 200 km wird als Nah- und Pruefbereich verstanden. Bayern ist eine erweiterte Einsatzregion nach Verfuegbarkeit, nicht ein pauschales Versprechen fuer jeden Termin.",
+    a: "Die Umgebung bis ca. 200 km wird als Nah- und Prüfbereich verstanden. Bayern ist eine erweiterte Einsatzregion nach Verfügbarkeit, nicht ein pauschales Versprechen für jeden Termin.",
   },
   {
-    q: "Wann lohnt sich eine Leerfahrt oder Rueckfahrt?",
-    a: "Wenn Startort, Zielort, Datum, Umfang und flexible Zeitfenster zu einer vorhandenen Route passen. Je genauer die Angaben sind, desto besser kann FLOXANT freie Kapazitaet pruefen.",
+    q: "Wann lohnt sich eine Leerfahrt oder Rückfahrt?",
+    a: "Wenn Startort, Zielort, Datum, Umfang und flexible Zeitfenster zu einer vorhandenen Route passen. Je genauer die Angaben sind, desto besser kann FLOXANT freie Kapazität prüfen.",
   },
   {
     q: "Warum soll ich Ort oder PLZ angeben?",
-    a: "Ort und PLZ helfen, Strecke, Fahrzeit, Park- und Zugangssituation, Teamplanung und moegliche Rueckfahrten realistisch einzuordnen.",
+    a: "Ort und PLZ helfen, Strecke, Fahrzeit, Park- und Zugangssituation, Teamplanung und moegliche Rückfahrten realistisch einzuordnen.",
   },
   {
-    q: "Sind kurzfristige Termine in der Umgebung moeglich?",
-    a: "Manchmal, aber nur nach Kapazitaet. Vollstaendige Angaben zu Ort, Datum, Umfang, Fotos und Kontaktweg erhoehen die Chance auf eine schnelle Pruefung.",
+    q: "Sind kurzfristige Termine in der Umgebung möglich?",
+    a: "Manchmal, aber nur nach Kapazität. Vollständige Angaben zu Ort, Datum, Umfang, Fotos und Kontaktweg erhoehen die Chance auf eine schnelle Prüfung.",
   },
   {
     q: "Gilt Bayern als festes Servicegebiet?",
-    a: "Bayern ist eine erweiterte Einsatzregion nach Verfuegbarkeit. Regensburg bleibt der Kern, die Umgebung wird priorisiert, groessere Strecken werden anhand des konkreten Auftrags geprueft.",
+    a: "Bayern ist eine erweiterte Einsatzregion nach Verfügbarkeit. Regensburg bleibt der Kern, die Umgebung wird priorisiert, größere Strecken werden anhand des konkreten Auftrags geprüft.",
   },
 ] as const;
 
@@ -173,7 +173,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "einsatzgebiet-regensburg-200km",
     title: "Servicegebiet Regensburg und Umgebung | FLOXANT",
     description:
-      "FLOXANT arbeitet mit Regensburg als Kern: Umzug, Reinigung, Entruempelung und Transport in der Umgebung bis ca. 200 km und Regensburg nach Verfuegbarkeit.",
+      "FLOXANT arbeitet mit Regensburg als Kern: Umzug, Reinigung, Entrümpelung und Transport in der Umgebung bis ca. 200 km und Regensburg nach Verfügbarkeit.",
   });
 }
 
@@ -193,14 +193,14 @@ export default async function RegensburgServiceArea200KmPage() {
       buildWebPageJsonLd({
         name: "Servicegebiet Regensburg und Umgebung",
         description:
-          "Oeffentliche Servicegebiet-Seite fuer FLOXANT mit Sitz in Regensburg, direkter Umgebung, ca. 200-km-Nahbereich und Bayern nach Verfuegbarkeit.",
+          "Öffentliche Servicegebiet-Seite für FLOXANT mit Sitz in Regensburg, direkter Umgebung, ca. 200-km-Nahbereich und Bayern nach Verfügbarkeit.",
         path: pagePath,
         about: [
           "Regensburg",
           "Servicegebiet",
           "Umzug",
           "Reinigung",
-          "Entruempelung",
+          "Entrümpelung",
           "Transport",
           "Leerfahrt",
         ],
@@ -212,9 +212,9 @@ export default async function RegensburgServiceArea200KmPage() {
       buildServiceJsonLd({
         name: "FLOXANT Servicegebiet Regensburg und Umgebung",
         description:
-          "Umzug, Reinigung, Entruempelung und Transport aus Regensburg heraus mit Umgebung bis ca. 200 km und Regensburg nach Verfuegbarkeit.",
+          "Umzug, Reinigung, Entrümpelung und Transport aus Regensburg heraus mit Umgebung bis ca. 200 km und Regensburg nach Verfügbarkeit.",
         path: pagePath,
-        serviceType: "Servicegebiet fuer Umzug, Reinigung, Entruempelung und Transport",
+        serviceType: "Servicegebiet für Umzug, Reinigung, Entrümpelung und Transport",
         areaServed: [
           "Regensburg",
           "Umgebung Regensburg ca. 200 km",
@@ -260,12 +260,12 @@ export default async function RegensburgServiceArea200KmPage() {
               Regensburg als Ausgangspunkt
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
-              Servicegebiet Regensburg und Umgebung fuer Umzug, Reinigung und Entruempelung
+              Servicegebiet Regensburg und Umgebung für Umzug, Reinigung und Entrümpelung
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
               FLOXANT sitzt in Regensburg. Deshalb sind Anfragen aus dem direkten Umfeld
-              besonders gut planbar. Fuer laengere Strecken innerhalb Bayerns pruefen wir Termin,
-              Umfang, Fahrzeugbedarf, Zugang, Fotos und moegliche Rueckfahrten, bevor etwas
+              besonders gut planbar. Für laengere Strecken innerhalb Bayerns prüfen wir Termin,
+              Umfang, Fahrzeugbedarf, Zugang, Fotos und moegliche Rückfahrten, bevor etwas
               verbindlich zugesagt wird.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -282,7 +282,7 @@ export default async function RegensburgServiceArea200KmPage() {
                 href="/leerfahrt-rueckfahrt"
                 className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
               >
-                Leerfahrt/Rueckfahrt pruefen
+                Leerfahrt/Rückfahrt prüfen
                 <Route className="h-4 w-4" />
               </Link>
             </div>
@@ -295,7 +295,7 @@ export default async function RegensburgServiceArea200KmPage() {
                   Keine falschen Filialen
                 </div>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                  Ort nennen, Machbarkeit pruefen
+                  Ort nennen, Machbarkeit prüfen
                 </h2>
               </div>
               <ShieldCheck className="h-9 w-9 text-blue-600" />
@@ -304,8 +304,8 @@ export default async function RegensburgServiceArea200KmPage() {
               {[
                 { icon: MapPin, label: "Kern", value: "Regensburg" },
                 { icon: Route, label: "Nahbereich", value: "Umgebung bis ca. 200 km" },
-                { icon: Clock3, label: "Erweiterung", value: "Bayern nach Verfuegbarkeit" },
-                { icon: Camera, label: "Pruefung", value: "Ort, PLZ, Fotos, Umfang, Termin" },
+                { icon: Clock3, label: "Erweiterung", value: "Bayern nach Verfügbarkeit" },
+                { icon: Camera, label: "Prüfung", value: "Ort, PLZ, Fotos, Umfang, Termin" },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
@@ -436,12 +436,12 @@ export default async function RegensburgServiceArea200KmPage() {
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600">
               <p>
-                Das Servicegebiet hilft bei der Orientierung. Die konkrete Pruefung bleibt aber
+                Das Servicegebiet hilft bei der Orientierung. Die konkrete Prüfung bleibt aber
                 konkret: Ort, PLZ, Etage, Zugang, Fotos, Termin und gewuenschte Zusatzleistungen
                 entscheiden, ob ein Einsatz realistisch passt.
               </p>
               <p>
-                Fuer Google-Maps-Nutzer ist der schnellste Weg die direkte Buchung. Wer zuerst
+                Für Google-Maps-Nutzer ist der schnellste Weg die direkte Buchung. Wer zuerst
                 Preisrahmen und Aufwand einordnen will, nutzt den Rechner auf derselben Seite.
               </p>
             </div>
@@ -449,7 +449,7 @@ export default async function RegensburgServiceArea200KmPage() {
               {[
                 { icon: MapPin, text: "Ort und PLZ" },
                 { icon: Camera, text: "Fotos und Umfang" },
-                { icon: CheckCircle2, text: "Termin und Kapazitaet" },
+                { icon: CheckCircle2, text: "Termin und Kapazität" },
               ].map((item) => {
                 const Icon = item.icon;
                 return (

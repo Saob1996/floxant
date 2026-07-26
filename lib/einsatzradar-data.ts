@@ -143,7 +143,7 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = ([
   },
   {
     id: "bayern_verfuegbarkeit",
-    title: "Bayern nach Verfuegbarkeit",
+    title: "Bayern nach Verfügbarkeit",
     label: "Erweiterte Region",
     description: "Bayern ist keine pauschale Sofortzusage, sondern eine erweiterte Einsatzregion fuer planbare Anfragen und Streckenlogik nach Verfuegbarkeit.",
     examples: ["Muenchen", "Nuernberg", "Ingolstadt", "Landshut", "Passau", "Augsburg"],
