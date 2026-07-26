@@ -1689,7 +1689,13 @@ export function SpecialtyPageLayout({
         </section>
       ) : null}
 
-      <AuthorityMagnet city={city} region={geo?.region} dic={dict} showNAP />
+      <AuthorityMagnet
+        city={city}
+        region={geo?.region}
+        dic={dict}
+        showNAP
+        hideInsuranceHint={serviceContext.name === "Klaviertransport"}
+      />
 
       <CityServiceCluster locale="de" city={city} citySlug={citySlug} />
     </main>

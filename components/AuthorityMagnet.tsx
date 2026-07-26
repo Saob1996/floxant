@@ -10,9 +10,16 @@ interface AuthorityMagnetProps {
   region?: string;
   showNAP?: boolean;
   dic: any;
+  hideInsuranceHint?: boolean;
 }
 
-export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }: AuthorityMagnetProps) {
+export function AuthorityMagnet({
+  city,
+  region = "Bayern",
+  showNAP = true,
+  dic,
+  hideInsuranceHint = false,
+}: AuthorityMagnetProps) {
   const am = dic?.authority_magnet;
 
   const t = (text: string | undefined, fallback: string) => {
@@ -59,13 +66,13 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
         "Gerade bei Wohnungswechsel, Firmenfläche oder Objektübergabe hilft ein sauberer Ablaufplan mit allen Fristen.",
       ),
     },
-    {
+    ...(!hideInsuranceHint ? [{
       title: t(am?.useful?.insurance?.title, "Haftung und sensible Werte einordnen"),
       desc: t(
         am?.useful?.insurance?.desc,
         "Bei wertvollem Inventar, Technik oder Spezialmöbeln sollte die Absicherung früh angesprochen werden.",
       ),
-    },
+    }] : []),
   ];
   const authorityActions = [
     {
