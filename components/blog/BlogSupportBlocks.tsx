@@ -21,7 +21,7 @@ function getSignal(title: string, intro: string) {
 function getRelatedServices(signal: string): RelatedLink[] {
   const links: RelatedLink[] = [];
 
-  if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("gewerbe")) {
+  if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("büro") || signal.includes("gewerbe")) {
     links.push(
       { href: "/reinigung", title: "Reinigung", text: "Flaeche, Zustand, Termin und Fotos sauber vorbereiten." },
       { href: "/regensburg/bueroreinigung", title: "Bueroreinigung Regensburg", text: "Raumliste, Turnus, Zugang und Fotos lokal einordnen." },
@@ -56,7 +56,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
     signal.includes("diskret") ||
     signal.includes("nachlass") ||
     signal.includes("uebergabe") ||
-    signal.includes("Ã¼bergabe") ||
+    signal.includes("übergabe") ||
     signal.includes("objekt") ||
     signal.includes("fotos")
   ) {
@@ -130,7 +130,7 @@ function getRelatedArticles(signal: string): RelatedLink[] {
     );
   }
 
-  if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("gewerbe")) {
+  if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("büro") || signal.includes("gewerbe")) {
     links.push(
       {
         href: "/blog/bueroreinigung-angebot-pruefen-turnus-flaeche",
@@ -262,10 +262,10 @@ export function BlogRelatedServices({ title, intro }: { title: string; intro: st
             className="group block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-200 hover:bg-blue-50"
           >
             <div className="flex items-center justify-between gap-3 text-sm font-semibold text-slate-950">
-              {item.title}
+              {germanizeText(item.title)}
               <ArrowRight className="h-4 w-4 text-blue-600 transition group-hover:translate-x-0.5" aria-hidden="true" />
             </div>
-            <p className="mt-2 text-xs leading-relaxed text-slate-500">{item.text}</p>
+            <p className="mt-2 text-xs leading-relaxed text-slate-500">{germanizeText(item.text)}</p>
           </Link>
         ))}
       </div>
@@ -280,20 +280,20 @@ export function BlogOfferCheckCTA({ ctas }: { ctas: CtaLink[] }) {
   return (
     <section className="mt-12 rounded-[1.75rem] border border-slate-200 bg-slate-950 p-6 text-white">
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-        Naechster Schritt
+        Nächster Schritt
       </p>
       <h2 className="mt-3 text-2xl font-semibold tracking-tight">
         Unsicheres Angebot oder offene Angaben? Erst einordnen, dann entscheiden.
       </h2>
       <p className="mt-3 text-sm leading-relaxed text-slate-300">
-        FLOXANT prueft Preis, Umfang, Fotos, Termin und Machbarkeit praktisch. Keine Rechtsberatung, keine Preisgarantie.
+        FLOXANT prüft Preis, Umfang, Fotos, Termin und Machbarkeit praktisch. Keine Rechtsberatung, keine Preisgarantie.
       </p>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Link
           href={primary?.href || "/angebot-guenstiger-pruefen"}
           className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-4 text-sm font-bold text-slate-950 transition hover:bg-cyan-50"
         >
-          {primary?.label || "Angebot pruefen lassen"}
+          {germanizeText(primary?.label || "Angebot prüfen lassen")}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
         <Link
@@ -320,8 +320,8 @@ export function BlogLocalLinks({ title, intro }: { title: string; intro: string 
       <div className="mt-4 space-y-2">
         {links.map((item) => (
           <Link key={item.href} href={item.href} className="block rounded-xl px-3 py-3 text-sm text-slate-600 transition hover:bg-blue-50 hover:text-slate-950">
-            <span className="font-semibold text-slate-950">{item.title}</span>
-            <span className="mt-1 block text-xs leading-relaxed text-slate-500">{item.text}</span>
+            <span className="font-semibold text-slate-950">{germanizeText(item.title)}</span>
+            <span className="mt-1 block text-xs leading-relaxed text-slate-500">{germanizeText(item.text)}</span>
           </Link>
         ))}
       </div>
@@ -345,10 +345,10 @@ export function BlogRelatedArticles({ title, intro }: { title: string; intro: st
             className="group block rounded-xl px-3 py-3 text-sm text-slate-600 transition hover:bg-blue-50 hover:text-slate-950"
           >
             <span className="flex items-center justify-between gap-2 font-semibold text-slate-950">
-              {item.title}
+              {germanizeText(item.title)}
               <ArrowRight className="h-4 w-4 text-blue-600 transition group-hover:translate-x-0.5" />
             </span>
-            <span className="mt-1 block text-xs leading-relaxed text-slate-500">{item.text}</span>
+            <span className="mt-1 block text-xs leading-relaxed text-slate-500">{germanizeText(item.text)}</span>
           </Link>
         ))}
       </div>

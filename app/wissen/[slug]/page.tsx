@@ -4,6 +4,7 @@ import { AuthorBox } from "@/components/AuthorBox";
 import { generateCityContent } from "@/lib/content-engine";
 import { generateSemanticLinks } from "@/lib/internal-linking";
 import { generatePageSEO } from "@/lib/seo";
+import { germanizeText } from "@/lib/german-text";
 
 const STATIC_KNOWLEDGE_SERVICES = ["umzug", "reinigung", "entruempelung"] as const;
 const STATIC_KNOWLEDGE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
@@ -26,9 +27,9 @@ export async function generateMetadata({
   const service = parts[0]
     ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1)
     : "Umzug";
-  const city = parts[1]
+  const city = germanizeText(parts[1]
     ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
-    : "Ihrer Region";
+    : "Ihrer Region");
 
   return generatePageSEO({
     lang: "de",
@@ -46,9 +47,9 @@ export default async function KnowledgeHubPage({
   const { slug } = await params;
   const parts = slug.split("-");
   const service = parts[0] || "umzug";
-  const city = parts[1]
+  const city = germanizeText(parts[1]
     ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
-    : "Ihrer Stadt";
+    : "Ihrer Stadt");
 
   const article = await generateCityContent(city, service);
   const semanticLinks = generateSemanticLinks(city, article.category);

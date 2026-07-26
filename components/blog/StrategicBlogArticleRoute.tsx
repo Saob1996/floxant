@@ -9,7 +9,7 @@ import {
 } from "@/lib/structured-data";
 
 type StrategicBlogArticleRouteProps = {
-  article: StrategicBlogArticle;
+  article: StrategicBlogArticle & { owner?: string; reviewedAt?: string };
 };
 
 export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRouteProps) {
@@ -60,6 +60,8 @@ export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRoute
         ctas={article.ctas}
         faqTitle={article.faqTitle}
         faqItems={normalizedFaqItems}
+        owner={article.owner}
+        reviewedAt={article.reviewedAt}
       />
     </>
   );

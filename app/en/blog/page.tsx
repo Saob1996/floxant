@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { dominanceEnglishArticles } from "@/lib/content/dominance-articles";
 
 const path = "/en/blog";
 
@@ -55,6 +56,12 @@ const guides = [
     description: "Check volume assumptions, access, route, additional work and unclear exclusions.",
     topic: "Moving quote",
   },
+  ...dominanceEnglishArticles.map((article) => ({
+    href: `/en/blog/${article.slug}`,
+    title: article.title,
+    description: article.description,
+    topic: article.category,
+  })),
 ] as const;
 
 export const metadata: Metadata = {

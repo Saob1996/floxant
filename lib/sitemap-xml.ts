@@ -12,6 +12,7 @@ import {
   HUB_PAGES,
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
+import { dominanceEnglishArticles } from "./content/dominance-articles";
 import { growthServicePathSet, growthServicePaths } from "./growth-service-pages";
 import {
   getLocalSeoPageByPath,
@@ -116,6 +117,7 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "widerruf",
   "buchungsbedingungen",
   "angebot-vergleichen-duesseldorf/danke",
+  "umzug-regensburg/anfrage",
   "regensburg/reinigung/datenschutz",
   "regensburg/reinigung/agb",
 ]);
@@ -559,6 +561,19 @@ function addBlogEntries(urls: SitemapUrl[]): void {
       lastmod: LASTMOD,
       changefreq: "weekly",
       priority: "0.68",
+    });
+  }
+
+  for (const post of dominanceEnglishArticles) {
+    const route = `en/blog/${post.slug}`;
+    if (shouldSkipSitemapRoute(route)) continue;
+
+    urls.push({
+      pagePath: route,
+      loc: buildAbsoluteUrl(route),
+      lastmod: post.reviewedAt,
+      changefreq: "monthly",
+      priority: "0.64",
     });
   }
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { StrategicBlogArticleRoute } from "@/components/blog/StrategicBlogArticleRoute";
+import { dominanceGermanArticles, getDominanceArticle } from "@/lib/content/dominance-articles";
 import { aiRecommendationBlogArticles } from "@/lib/ai-recommendation-blog-articles";
 import { getOfferCheckBlogArticle, offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
 import {
@@ -23,6 +24,7 @@ function getArticle(slug: string) {
 
   return (
     aiRecommendationBlogArticles.find((article) => article.slug === slug) ||
+    getDominanceArticle(slug, "de") ||
     getOfferCheckBlogArticle(slug) ||
     getPsychologicalCleaningBlogArticle(slug) ||
     getStrategicBlogArticle(slug)
@@ -32,6 +34,7 @@ function getArticle(slug: string) {
 export function generateStaticParams() {
   const slugs = new Set([
     ...aiRecommendationBlogArticles.map((article) => article.slug),
+    ...dominanceGermanArticles.map((article) => article.slug),
     ...offerCheckBlogArticles.map((article) => article.slug),
     ...strategicBlogArticles.map((article) => article.slug),
     ...getPsychologicalCleaningBlogArticleSlugs(),

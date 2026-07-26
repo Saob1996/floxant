@@ -4,6 +4,7 @@ import { offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
 import { psychologicalCleaningBlogArticles } from "@/lib/psychological-cleaning-pages";
 import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
+import { dominanceGermanArticles } from "@/lib/content/dominance-articles";
 
 export type BlogPostMeta = {
  slug: string;
@@ -475,10 +476,20 @@ const psychologicalCleaningBlogPostMetas: BlogPostMeta[] = psychologicalCleaning
   featured: true,
  }));
 
+const dominanceBlogPostMetas: BlogPostMeta[] = dominanceGermanArticles.map((article) => ({
+ slug: article.slug,
+ category: article.category,
+ readTime: article.readTime,
+ title: article.title,
+ description: article.description,
+ featured: true,
+}));
+
 export const blogPosts = germanizeDeep([
  ...rawBlogPosts,
  ...aiRecommendationBlogPostMetas,
  ...offerCheckBlogPostMetas,
  ...psychologicalCleaningBlogPostMetas,
+ ...dominanceBlogPostMetas,
  ...strategicBlogPostMetas,
 ].filter(isBlogPostAllowedForCleaningArea)) as BlogPostMeta[];
