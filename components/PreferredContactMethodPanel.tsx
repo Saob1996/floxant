@@ -1,7 +1,7 @@
 import { Mail, MessageCircle, Phone } from "lucide-react";
 
 const methods = [
-  { title: "Rueckruf", text: "Wenn Details besser muendlich und ruhig geklaert werden.", Icon: Phone },
+  { title: "Rückruf", text: "Wenn Details besser mündlich und ruhig geklärt werden.", Icon: Phone },
   { title: "WhatsApp", text: "Wenn Fotos oder kurze Abstimmung hilfreich sind. Bitte keine Zugangscodes senden.", Icon: MessageCircle },
   { title: "E-Mail", text: "Wenn Sie lieber schriftlich, knapp und mit wenig Details starten moechten.", Icon: Mail },
 ] as const;

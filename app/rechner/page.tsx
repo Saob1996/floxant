@@ -425,7 +425,7 @@ export default async function RechnerPage() {
     },
     {
       q: "Hilft der Rechner auch, wenn ich noch nicht weiss, welche Leistung passt?",
-      a: "Ja. Der Rechner fuehrt von Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug schneller zum passenden FLOXANT-Anfrage, statt alles ueber eine allgemeine Kontaktseite laufen zu lassen.",
+      a: "Ja. Der Rechner führt von Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug schneller zum passenden FLOXANT-Anfrage, statt alles über eine allgemeine Kontaktseite laufen zu lassen.",
     },
     {
       q: "Was fragt der Reinigungs-Rechner besonders ab?",

@@ -30,45 +30,45 @@ const path = "/schadensbegrenzung";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Schadensbegrenzung bei Umzug, Reinigung & Uebergabe | FLOXANT",
+  title: "Schadensbegrenzung bei Umzug, Reinigung & Übergabe | FLOXANT",
   description:
-    "Wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen: FLOXANT prueft nach Verfuegbarkeit, welche Schadensbegrenzung moeglich ist.",
+    "Wenn Umzug, Reinigung, Entrümpelung oder Übergabe kurzfristig kippen: FLOXANT prüft nach Verfügbarkeit, welche Schadensbegrenzung möglich ist.",
 });
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20mein%20Plan%20ist%20kurzfristig%20gekippt.%20Es%20geht%20um%20%5BUmzug%2FReinigung%2FEntruempelung%2FUebergabe%5D%20in%20%5BOrt%5D.%20Deadline%3A%20%5BDatum%5D.%20Fotos%20und%20offene%20Punkte%20kann%20ich%20senden.%20Bitte%20pruefen%2C%20ob%20Schadensbegrenzung%20moeglich%20ist.";
 
-const statusSteps = ["Problem", "Ort", "Termin", "Fotos", "Pruefung"];
+const statusSteps = ["Problem", "Ort", "Termin", "Fotos", "Prüfung"];
 
 const cases = [
   {
     title: "Umzug laeuft nicht wie geplant",
-    text: "Helfer fehlen, Fahrzeug reicht nicht, Volumen ist groesser oder die Zeit laeuft davon.",
-    services: "Transport, Tragen, Zusatzfahrt, Rueckfahrt",
+    text: "Helfer fehlen, Fahrzeug reicht nicht, Volumen ist größer oder die Zeit laeuft davon.",
+    services: "Transport, Tragen, Zusatzfahrt, Rückfahrt",
     Icon: Truck,
   },
   {
     title: "Anbieter oder Helfer hat abgesagt",
-    text: "FLOXANT prueft kurzfristig, ob Kapazitaet, Ort und Umfang noch realistisch zusammenpassen.",
-    services: "Umzug, Reinigung, Entruempelung",
+    text: "FLOXANT prüft kurzfristig, ob Kapazität, Ort und Umfang noch realistisch zusammenpassen.",
+    services: "Umzug, Reinigung, Entrümpelung",
     Icon: AlertTriangle,
   },
   {
-    title: "Wohnung ist nicht uebergabefaehig",
-    text: "Bad, Kueche, Boeden, Keller oder sichtbare Uebergabepunkte sind kurz vor Termin noch offen.",
-    services: "Endreinigung, Uebergabeakte, Schluessel",
+    title: "Wohnung ist nicht übergabefaehig",
+    text: "Bad, Küche, Böden, Keller oder sichtbare Übergabepunkte sind kurz vor Termin noch offen.",
+    services: "Endreinigung, Übergabeakte, Schlüssel",
     Icon: Sparkles,
   },
   {
-    title: "Sperrmuell oder Moebel stehen noch da",
-    text: "Restmoebel, Keller, Garage oder Entsorgung blockieren Uebergabe, Besichtigung oder Weitervermietung.",
-    services: "Entruempelung, Entsorgung, Reinigung",
+    title: "Sperrmuell oder Möbel stehen noch da",
+    text: "Restmoebel, Keller, Garage oder Entsorgung blockieren Übergabe, Besichtigung oder Weitervermietung.",
+    services: "Entrümpelung, Entsorgung, Reinigung",
     Icon: Trash2,
   },
   {
-    title: "Schluesseluebergabe ist unklar",
-    text: "Wenn Zugang, Ansprechpartner oder Uebergabeprotokoll offen sind, muss zuerst die Lage geklaert werden.",
-    services: "Schluessel, Uebergabeakte, Rueckfrage",
+    title: "Schlüsselübergabe ist unklar",
+    text: "Wenn Zugang, Ansprechpartner oder Übergabeprotokoll offen sind, muss zuerst die Lage geklaert werden.",
+    services: "Schlüssel, Übergabeakte, Rückfrage",
     Icon: KeyRound,
   },
   {
@@ -80,28 +80,28 @@ const cases = [
 ];
 
 const timePressure = [
-  ["Heute", "nur pruefbar mit sehr klaren Angaben"],
+  ["Heute", "nur prüfbar mit sehr klaren Angaben"],
   ["Morgen", "Fotos, Ort und Telefonnummer stark priorisieren"],
-  ["In 2-3 Tagen", "Kapazitaet, Umfang und Zugang sauber klaeren"],
-  ["Diese Woche", "realistische Optionen und Alternativen pruefen"],
-  ["Vor Uebergabetermin", "offene Uebergabepunkte sichtbar machen"],
-  ["Flexibel, aber bald", "mehr Spielraum fuer sinnvolle Loesung"],
+  ["In 2-3 Tagen", "Kapazität, Umfang und Zugang sauber klären"],
+  ["Diese Woche", "realistische Optionen und Alternativen prüfen"],
+  ["Vor Übergabetermin", "offene Übergabepunkte sichtbar machen"],
+  ["Flexibel, aber bald", "mehr Spielraum für sinnvolle Lösung"],
 ];
 
 const openItems = [
   "Transport",
   "Tragen",
-  "Moebel / Kartons",
+  "Möbel / Kartons",
   "Reinigung",
-  "Bad / Kueche / Boeden",
+  "Bad / Küche / Böden",
   "Keller / Garage",
   "Sperrmuell / Entsorgung",
-  "Entruempelung",
-  "Schluesseluebergabe",
-  "Uebergabeprotokoll / Uebergabeakte",
+  "Entrümpelung",
+  "Schlüsselübergabe",
+  "Übergabeprotokoll / Übergabeakte",
   "Zugang / Parken",
   "Fahrzeugbedarf",
-  "Rueckfahrt / Leerfahrt",
+  "Rückfahrt / Leerfahrt",
   "Fotos vorhanden",
   "Budget vorhanden",
 ];
@@ -110,51 +110,51 @@ const boundaries = [
   "kein garantierter Notdienst",
   "keine Soforteinsatzgarantie",
   "keine Konkurrenzdiffamierung",
-  "keine Garantie, dass Uebergabe oder Umzug gerettet werden",
+  "keine Garantie, dass Übergabe oder Umzug gerettet werden",
   "keine Rechtsberatung und keine offizielle Abnahme",
-  "Düsseldorf ueber klare lokale Kontaktmöglichkeiten zuordnen",
+  "Düsseldorf über klare lokale Kontaktmöglichkeiten zuordnen",
 ];
 
 const faqItems = [
   {
     q: "Ist FLOXANT ein Notdienst?",
-    a: "Nein. FLOXANT tritt nicht als garantierter Notdienst auf. Kurzfristige Faelle werden nach Ort, Termin, Umfang, Fotos und verfuegbarer Kapazitaet geprueft.",
+    a: "Nein. FLOXANT tritt nicht als garantierter Notdienst auf. Kurzfristige Faelle werden nach Ort, Termin, Umfang, Fotos und verfuegbarer Kapazität geprüft.",
   },
   {
     q: "Was mache ich, wenn mein Umzug gekippt ist?",
-    a: "Senden Sie sofort Ort, Deadline, Start/Ziel, Umfang, Etage, Zugang, Fotos und Telefonnummer. FLOXANT prueft, ob Schadensbegrenzung oder eine Alternative realistisch moeglich ist.",
+    a: "Senden Sie sofort Ort, Deadline, Start/Ziel, Umfang, Etage, Zugang, Fotos und Telefonnummer. FLOXANT prüft, ob Schadensbegrenzung oder eine Alternative realistisch möglich ist.",
   },
   {
     q: "Kann FLOXANT kurzfristig Reinigung uebernehmen?",
-    a: "Ja, nach Verfuegbarkeit. Besonders wichtig sind Objektort, Termin, Flaeche, Zustand, Fotos und welche Bereiche vor Uebergabe wirklich offen sind.",
+    a: "Ja, nach Verfügbarkeit. Besonders wichtig sind Objektort, Termin, Fläche, Zustand, Fotos und welche Bereiche vor Übergabe wirklich offen sind.",
   },
   {
     q: "Kann FLOXANT vor der Wohnungsuebergabe helfen?",
-    a: "FLOXANT kann Reinigung, Entruempelung, Entsorgung, Schluesselkoordination oder Uebergabeakte nach Absprache pruefen. Eine erfolgreiche Abnahme wird nicht garantiert.",
+    a: "FLOXANT kann Reinigung, Entrümpelung, Entsorgung, Schlüsselkoordination oder Übergabeakte nach Absprache prüfen. Eine erfolgreiche Abnahme wird nicht garantiert.",
   },
   {
     q: "Sind Fotos wichtig?",
-    a: "Ja. Fotos helfen bei Umfang, Fahrzeugbedarf, Verschmutzung, Zugang, Etage, Restmenge und Prioritaet. Dadurch kann schneller entschieden werden, ob etwas machbar ist.",
+    a: "Ja. Fotos helfen bei Umfang, Fahrzeugbedarf, Verschmutzung, Zugang, Etage, Restmenge und Priorität. Dadurch kann schneller entschieden werden, ob etwas machbar ist.",
   },
   {
     q: "Kann FLOXANT ein anderes Angebot uebernehmen?",
     a: "FLOXANT uebernimmt kein fremdes Angebot automatisch. Ein vorhandenes Angebot kann aber helfen, offene Punkte, Umfang und Zeitdruck organisatorisch einzuordnen.",
   },
   {
-    q: "Gibt es eine Garantie fuer Soforteinsatz?",
-    a: "Nein. Machbarkeit haengt von Ort, Termin, Umfang, Zugang und Kapazitaet ab. FLOXANT formuliert bewusst keine falsche Sofortzusage.",
+    q: "Gibt es eine Garantie für Soforteinsatz?",
+    a: "Nein. Machbarkeit haengt von Ort, Termin, Umfang, Zugang und Kapazität ab. FLOXANT formuliert bewusst keine falsche Sofortzusage.",
   },
   {
-    q: "Funktioniert das auch in Duesseldorf?",
-    a: "Reinigung wird nur fuer Regensburg und den Umkreis bis 50 km geprueft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
+    q: "Funktioniert das auch in Düsseldorf?",
+    a: "Reinigung wird nur für Regensburg und den Umkreis bis 50 km geprüft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",
-    a: "Ja. Fuer akute Faelle ist WhatsApp oft der schnellste Startpunkt, besonders wenn Fotos, Deadline und offene Punkte direkt mitgesendet werden koennen.",
+    a: "Ja. Für akute Faelle ist WhatsApp oft der schnellste Startpunkt, besonders wenn Fotos, Deadline und offene Punkte direkt mitgesendet werden können.",
   },
   {
     q: "Was sollte ich sofort senden?",
-    a: "Ort/PLZ, Deadline, Problemtyp, offene Punkte, Fotos, Start/Ziel bei Transport, Etage, Aufzug, Zugang, Budget und eine Telefonnummer fuer Rueckfragen.",
+    a: "Ort/PLZ, Deadline, Problemtyp, offene Punkte, Fotos, Start/Ziel bei Transport, Etage, Aufzug, Zugang, Budget und eine Telefonnummer für Rückfragen.",
   },
 ];
 
@@ -164,7 +164,7 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT Schadensbegrenzung",
       description:
-        "Rettungsmodus fuer kippende Umzuege, Reinigungen, Entruempelungen, Entsorgungen und Uebergaben nach Verfuegbarkeit.",
+        "Rettungsmodus für kippende Umzüge, Reinigungen, Entrümpelungen, Entsorgungen und Übergaben nach Verfügbarkeit.",
       path,
       about: [
         "Schadensbegrenzung",
@@ -181,10 +181,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Schadensbegrenzung",
       description:
-        "Kurzfristige Machbarkeitspruefung fuer Umzug, Reinigung, Entruempelung, Entsorgung und Uebergabe, wenn ein Plan kippt. Keine Notdienstgarantie.",
+        "Kurzfristige Machbarkeitspruefung für Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe, wenn ein Plan kippt. Keine Notdienstgarantie.",
       path,
-      serviceType: "Schadensbegrenzung nach Verfuegbarkeit",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
+      serviceType: "Schadensbegrenzung nach Verfügbarkeit",
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -210,8 +210,8 @@ export default function SchadensbegrenzungPage() {
                 Wenn der Plan kippt: FLOXANT Schadensbegrenzung
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Umzug, Reinigung, Entruempelung oder Uebergabe laufen nicht wie geplant? Senden Sie Ort, Termin, Fotos und offene Punkte.
-                FLOXANT prueft nach Verfuegbarkeit, was noch machbar ist.
+                Umzug, Reinigung, Entrümpelung oder Übergabe laufen nicht wie geplant? Senden Sie Ort, Termin, Fotos und offene Punkte.
+                FLOXANT prüft nach Verfügbarkeit, was noch machbar ist.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="whatsapp_click">
@@ -219,13 +219,13 @@ export default function SchadensbegrenzungPage() {
                   Problem per WhatsApp senden
                 </a>
                 <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="service_card_click">
-                  Schadensbegrenzung pruefen lassen
+                  Schadensbegrenzung prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bayern nach Verfuegbarkeit</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bayern nach Verfügbarkeit</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
                 <span className="rounded-full border border-red-200 bg-red-50 px-3 py-2 text-red-700">Keine Notdienstgarantie</span>
               </div>
@@ -243,18 +243,18 @@ export default function SchadensbegrenzungPage() {
                   ))}
                 </div>
                 <div className="mt-5 rounded-[1.5rem] bg-slate-950 p-5 text-white">
-                  <div className="text-xs font-black uppercase tracking-[0.18em] text-red-200">Lage klaeren statt panisch zusagen</div>
+                  <div className="text-xs font-black uppercase tracking-[0.18em] text-red-200">Lage klären statt panisch zusagen</div>
                   <h2 className="mt-2 text-2xl font-black tracking-tight">Kurzfristig heisst: harte Fakten zuerst</h2>
                   <p className="mt-3 text-sm leading-7 text-slate-300">
-                    FLOXANT prueft keine Fantasie-Loesung, sondern Ort, Deadline, Zugang, Umfang, Fotos und Kapazitaet.
-                    Wenn etwas machbar ist, wird daraus der naechste Vorschlag. Wenn nicht, wird nichts falsch versprochen.
+                    FLOXANT prüft keine Fantasie-Lösung, sondern Ort, Deadline, Zugang, Umfang, Fotos und Kapazität.
+                    Wenn etwas machbar ist, wird daraus der nächste Vorschlag. Wenn nicht, wird nichts falsch versprochen.
                   </p>
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    "Telefonnummer + Fotos beschleunigen die Pruefung.",
+                    "Telefonnummer + Fotos beschleunigen die Prüfung.",
                     "Heute/Morgen wird hoeher priorisiert, aber nicht garantiert.",
-                    "Offene Punkte ersetzen lange Erklaerungen.",
+                    "Offene Punkte ersetzen lange Erklärungen.",
                     "Vorhandenes Angebot kann als Kontext hochgeladen werden.",
                   ].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-red-100 bg-red-50 p-4 text-sm font-bold leading-6 text-red-950">
@@ -299,10 +299,10 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-200">Wie dringend?</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight">Zeitdruck sichtbar machen</h2>
               <p className="mt-4 text-base leading-8 text-slate-300">
-                Je vollstaendiger Ort, Fotos, Umfang und Termin sind, desto schneller kann FLOXANT pruefen, ob Schadensbegrenzung moeglich ist. Dringlichkeit erzeugt Prioritaet, aber keine automatische Zusage.
+                Je vollständiger Ort, Fotos, Umfang und Termin sind, desto schneller kann FLOXANT prüfen, ob Schadensbegrenzung möglich ist. Dringlichkeit erzeugt Priorität, aber keine automatische Zusage.
               </p>
               <Link href="#schadensbegrenzung-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="service_card_click">
-                Dringende Pruefung starten
+                Dringende Prüfung starten
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -334,17 +334,17 @@ export default function SchadensbegrenzungPage() {
             </div>
             <div className="rounded-[2rem] border border-red-100 bg-red-50 p-7">
               <Camera className="h-8 w-8 text-red-700" />
-              <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Fotos statt langer Erklaerung</h2>
+              <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Fotos statt langer Erklärung</h2>
               <p className="mt-3 text-sm leading-7 text-slate-700">
-                Bilder von Restmoebeln, Keller, Bad, Kueche, Boeden, Zugang, Etage, Fahrzeugbedarf oder vorhandenen Angeboten helfen, die Lage schneller einzuordnen. Persoenliche Dokumente und Zugangsdaten bitte nicht mitsenden.
+                Bilder von Restmoebeln, Keller, Bad, Küche, Böden, Zugang, Etage, Fahrzeugbedarf oder vorhandenen Angeboten helfen, die Lage schneller einzuordnen. Persönliche Dokumente und Zugangsdaten bitte nicht mitsenden.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link href="/angebotscheck" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="hero_cta_click">
-                  Angebot pruefen lassen
+                  Angebot prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/plattform-auftrag-pruefen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-black text-blue-900" data-event="service_card_click">
-                  Plattform-Auftrag pruefen
+                  Plattform-Auftrag prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/plan-b-service" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-sm font-black text-amber-900" data-event="service_card_click" data-source="damage_control_internal_link">
@@ -352,11 +352,11 @@ export default function SchadensbegrenzungPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/diskreter-umzug-trennung-scheidung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 text-sm font-black text-stone-800" data-event="service_card_click">
-                  Diskreten Auszug ruhig klaeren
+                  Diskreten Auszug ruhig klären
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200 bg-white/70 px-4 text-sm font-black text-red-800" data-event="service_card_click">
-                  Uebergabeakte ergaenzen
+                  Übergabeakte ergaenzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -370,7 +370,7 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">Akut-Anfrage</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Problem, Deadline, Fotos und offene Punkte senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT prueft kurzfristige Anfragen im Raum Regensburg, in Bayern nach Verfuegbarkeit und in Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten.
+                FLOXANT prüft kurzfristige Anfragen im Raum Regensburg, in Bayern nach Verfügbarkeit und in Düsseldorf klar getrennt über klare lokale Kontaktmöglichkeiten.
               </p>
               <div className="mt-5 grid gap-3">
                 <div className="rounded-[1.25rem] border border-slate-200 bg-white p-4">
@@ -393,7 +393,7 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">Abgrenzung</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Nicht Express-Check, sondern Lage-Stabilisierung</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Der Express-Check ist ein schneller Startpunkt fuer enge Zeitfenster. Schadensbegrenzung ist fuer konkrete Kipplagen: etwas ist abgesagt, nicht fertig, zu klein geplant, vor Uebergabe offen oder organisatorisch unklar.
+                Der Express-Check ist ein schneller Startpunkt für enge Zeitfenster. Schadensbegrenzung ist für konkrete Kipplagen: etwas ist abgesagt, nicht fertig, zu klein geplant, vor Übergabe offen oder organisatorisch unklar.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link href="/express-anfrage" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
@@ -405,7 +405,7 @@ export default function SchadensbegrenzungPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 text-sm font-black text-amber-800" data-event="service_card_click">
-                  Keller/Muellraum pruefen
+                  Keller/Müllraum prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -427,7 +427,7 @@ export default function SchadensbegrenzungPage() {
         <section id="faq" className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-5xl">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">FAQ</div>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Haeufige Fragen zur FLOXANT Schadensbegrenzung</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zur FLOXANT Schadensbegrenzung</h2>
             <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white">
               {faqItems.map((item) => (
                 <details key={item.q} className="group p-5">
@@ -438,7 +438,7 @@ export default function SchadensbegrenzungPage() {
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="service_card_click">
-                Kurzfristige Pruefung starten
+                Kurzfristige Prüfung starten
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -453,12 +453,12 @@ export default function SchadensbegrenzungPage() {
             {[
               ["/regensburg/umzug", "Umzug Regensburg"],
               ["/regensburg/reinigung", "Kurzfristige Reinigung Regensburg"],
-              ["/regensburg/entruempelung", "Entruempelung Regensburg"],
-              ["/rueckfahrt-boerse", "Rueckfahrt/Leerfahrt pruefen"],
+              ["/regensburg/entruempelung", "Entrümpelung Regensburg"],
+              ["/rueckfahrt-boerse", "Rückfahrt/Leerfahrt prüfen"],
               ["/mieterwechsel-service-regensburg", "Mieterwechsel-Service"],
               ["/wohnung-wieder-vermietbar", "Wohnung wieder vermietbar"],
               ["/regensburg/reinigung", "Reinigung Regensburg"],
-              ["/entsorgung-duesseldorf", "Entsorgung Duesseldorf"],
+              ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-red-200 hover:bg-red-50">
                 {label}

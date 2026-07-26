@@ -34,7 +34,7 @@ const SERVICE_CONTEXT_BY_PATH: Record<string, CleaningServiceContext> = {
  "/regensburg/bueroreinigung": {
   label: "Büroreinigung Regensburg",
   shortLabel: "Büroreinigung",
-  serviceType: "bueroreinigung_regensburg",
+  serviceType: "büroreinigung_regensburg",
   source: "bueroreinigung_regensburg",
   entryPoint: "/regensburg/bueroreinigung",
   defaultPropertyType: "Büro & Office",

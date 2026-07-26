@@ -48,7 +48,7 @@ const offerHref = "/kontakt?service=diskret-service&intent=diskretes-angebot-pru
 
 const quickTrust = [
   "Bevorzugter Kontaktweg kann angegeben werden.",
-  "Private Details sind im ersten Schritt nicht noetig.",
+  "Private Details sind im ersten Schritt nicht nötig.",
   "Fotos oder ein vorhandenes Angebot sind optional.",
   "Keine automatische Buchung durch die Anfrage.",
 ] as const;
@@ -56,24 +56,24 @@ const quickTrust = [
 const situations = [
   "Trennung oder Scheidung",
   "Nachlass oder Todesfall",
-  "Haushaltsaufloesung mit Angehoerigen",
-  "diskrete Entruempelung",
+  "Haushaltsauflösung mit Angehörigen",
+  "diskrete Entrümpelung",
   "sensible Wohnungssituation",
   "Umzug mit vertraulicher Kommunikation",
-  "Messie-Kontext wuerdevoll und ohne Scham-Sprache",
-  "Vermieter- oder Uebergabe-Fall",
+  "Messie-Kontext würdevoll und ohne Scham-Sprache",
+  "Vermieter- oder Übergabe-Fall",
   "Angebot wirkt unklar",
-  "Kunde will nicht alles telefonisch erklaeren",
+  "Kunde will nicht alles telefonisch erklären",
 ] as const;
 
 const processSteps = [
-  "Situation kurz und zurueckhaltend beschreiben",
-  "bevorzugten Kontaktweg waehlen",
-  "Service grob auswaehlen",
+  "Situation kurz und zurückhaltend beschreiben",
+  "bevorzugten Kontaktweg wählen",
+  "Service grob auswählen",
   "Ort und Frist angeben",
   "Fotos oder Angebot optional ergaenzen",
-  "FLOXANT ordnet Anfrage und naechste Schritte ein",
-  "Rueckmeldung ueber die gewuenschte Kontaktmoeglichkeit",
+  "FLOXANT ordnet Anfrage und nächste Schritte ein",
+  "Rückmeldung über die gewuenschte Kontaktmöglichkeit",
 ] as const;
 
 const neededItems = [
@@ -88,10 +88,10 @@ const neededItems = [
 ] as const;
 
 const notNeededItems = [
-  "keine ausfuehrlichen privaten Details im ersten Schritt",
-  "keine vollstaendige Adresse im ersten Kontakt, wenn nicht noetig",
+  "keine ausführlichen privaten Details im ersten Schritt",
+  "keine vollständige Adresse im ersten Kontakt, wenn nicht nötig",
   "keine Rechtfertigung",
-  "keine Scham-Erklaerung",
+  "keine Scham-Erklärung",
 ] as const;
 
 const boundaries = [
@@ -101,44 +101,44 @@ const boundaries = [
   "keine psychologische Beratung",
   "keine Preisgarantie",
   "keine Soforttermin-Garantie",
-  "keine garantierte Verfuegbarkeit",
+  "keine garantierte Verfügbarkeit",
   "keine automatische Buchung durch Anfrage",
 ] as const;
 
 const serviceLinks = [
   {
-    title: "Diskrete Entruempelung",
-    text: "Raeume, Menge, Freigabe, Fotos und Reinigung danach ruhig einordnen.",
+    title: "Diskrete Entrümpelung",
+    text: "Räume, Menge, Freigabe, Fotos und Reinigung danach ruhig einordnen.",
     href: "/kontakt?service=diskret-service&intent=diskrete-entruempelung&source=seo",
     Icon: ClipboardCheck,
   },
   {
     title: "Diskreter Umzug",
-    text: "Start, Ziel, Zeitraum und Kontaktweg klaeren, ohne private Details zu erzwingen.",
+    text: "Start, Ziel, Zeitraum und Kontaktweg klären, ohne private Details zu erzwingen.",
     href: "/diskreter-umzug-trennung-scheidung",
     Icon: Truck,
   },
   {
-    title: "Haushaltsaufloesung",
+    title: "Haushaltsauflösung",
     text: "Haushalt, Haus oder Wohnung mit Freigabe, Nachlass und Zielzustand sortieren.",
     href: "/regensburg/haushaltsaufloesung",
     Icon: Home,
   },
   {
-    title: "Wohnungsaufloesung",
-    text: "Wohnung, Keller, Restmengen, Zugang und Uebergabe mit den wichtigsten Angaben vorbereiten.",
+    title: "Wohnungsauflösung",
+    text: "Wohnung, Keller, Restmengen, Zugang und Übergabe mit den wichtigsten Angaben vorbereiten.",
     href: "/regensburg/wohnungsaufloesung",
     Icon: KeyRound,
   },
   {
-    title: "Nachlassaufloesung",
+    title: "Nachlassauflösung",
     text: "Nachlassfragen praktisch einordnen, ohne Rechts- oder Wertberatung zu behaupten.",
     href: "/nachlassaufloesung",
     Icon: Handshake,
   },
   {
-    title: "Reinigung nach Entruempelung",
-    text: "Zielzustand, Flaechen, Fotos und Uebergabe nach der Raeumung mitdenken.",
+    title: "Reinigung nach Entrümpelung",
+    text: "Zielzustand, Flächen, Fotos und Übergabe nach der Räumung mitdenken.",
     href: "/regensburg/reinigung",
     Icon: Sparkles,
   },
@@ -149,8 +149,8 @@ const serviceLinks = [
     Icon: FileCheck2,
   },
   {
-    title: "Uebergabeakte",
-    text: "Fotos, Schluesselstatus, Restpunkte und Uebergabehinweise buendeln.",
+    title: "Übergabeakte",
+    text: "Fotos, Schlüsselstatus, Restpunkte und Übergabehinweise buendeln.",
     href: "/uebergabeakte",
     Icon: BriefcaseBusiness,
   },
@@ -161,7 +161,7 @@ const serviceLinks = [
     Icon: ShieldCheck,
   },
   {
-    title: "Angebotspruefung",
+    title: "Angebotsprüfung",
     text: "Umfang, Ort, Frist, Zusatzkosten und offene Punkte sachlich einordnen.",
     href: offerHref,
     Icon: CheckCircle2,
@@ -171,17 +171,17 @@ const serviceLinks = [
 const localLinks = [
   {
     title: "Regensburg diskret starten",
-    text: "Fuer Entruempelung, Umzug, Wohnungsaufloesung, Reinigung oder Uebergabe im echten Servicegebiet.",
+    text: "Für Entrümpelung, Umzug, Wohnungsauflösung, Reinigung oder Übergabe im echten Servicegebiet.",
     href: "/kontakt?service=diskret-service&city=regensburg&intent=diskrete-entruempelung-regensburg&source=seo",
   },
   {
-    title: "Duesseldorf diskret starten",
-    text: "Fuer lokale Entruempelung oder Haushaltsaufloesung in Duesseldorf ohne Fake-Niederlassung.",
+    title: "Düsseldorf diskret starten",
+    text: "Für lokale Entrümpelung oder Haushaltsauflösung in Düsseldorf ohne Fake-Niederlassung.",
     href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung-duesseldorf&source=seo",
   },
   {
-    title: "Angebot sensibel pruefen",
-    text: "Wenn ein Angebot fuer Raeumung, Reinigung oder Umzug unklar wirkt.",
+    title: "Angebot sensibel prüfen",
+    text: "Wenn ein Angebot für Räumung, Reinigung oder Umzug unklar wirkt.",
     href: offerHref,
   },
 ] as const;
@@ -189,26 +189,26 @@ const localLinks = [
 const faqItems = [
   {
     q: "Wann ist der Diskret-Service sinnvoll?",
-    a: "Der Diskret-Service ist sinnvoll, wenn eine Anfrage rueckhaltende Kommunikation braucht: etwa bei Trennung, Nachlass, Todesfall, sensibler Wohnungssituation, diskreter Entruempelung, Umzug, Reinigung, Uebergabe oder einem unklaren Angebot.",
+    a: "Der Diskret-Service ist sinnvoll, wenn eine Anfrage rückhaltende Kommunikation braucht: etwa bei Trennung, Nachlass, Todesfall, sensibler Wohnungssituation, diskreter Entrümpelung, Umzug, Reinigung, Übergabe oder einem unklaren Angebot.",
   },
   {
-    q: "Muss ich sensible Details direkt erklaeren?",
-    a: "Nein. Fuer den ersten Schritt reichen Ort, grober Servicebedarf, Frist und bevorzugter Kontaktweg. Private Details koennen spaeter nur soweit noetig geklaert werden.",
+    q: "Muss ich sensible Details direkt erklären?",
+    a: "Nein. Für den ersten Schritt reichen Ort, grober Servicebedarf, Frist und bevorzugter Kontaktweg. Private Details können später nur soweit nötig geklaert werden.",
   },
   {
-    q: "Kann ich einen bevorzugten Kontaktweg waehlen?",
-    a: "Ja. Sie koennen Rueckruf, WhatsApp, E-Mail oder ein bestimmtes Zeitfenster nennen. FLOXANT nutzt diese Angabe fuer die weitere Einordnung, soweit es praktisch moeglich ist.",
+    q: "Kann ich einen bevorzugten Kontaktweg wählen?",
+    a: "Ja. Sie können Rückruf, WhatsApp, E-Mail oder ein bestimmtes Zeitfenster nennen. FLOXANT nutzt diese Angabe für die weitere Einordnung, soweit es praktisch möglich ist.",
   },
   {
-    q: "Ist der Diskret-Service fuer Trennung oder Nachlass geeignet?",
-    a: "Ja, wenn es um praktische Leistungen wie Umzug, Entruempelung, Wohnungsaufloesung, Reinigung, Schluessel oder Uebergabe geht. FLOXANT gibt dabei keine Rechts-, Pflege-, Medizin- oder psychologische Beratung.",
+    q: "Ist der Diskret-Service für Trennung oder Nachlass geeignet?",
+    a: "Ja, wenn es um praktische Leistungen wie Umzug, Entrümpelung, Wohnungsauflösung, Reinigung, Schlüssel oder Übergabe geht. FLOXANT gibt dabei keine Rechts-, Pflege-, Medizin- oder psychologische Beratung.",
   },
   {
-    q: "Kann eine diskrete Entruempelung angefragt werden?",
-    a: "Ja. Nennen Sie grob Raeume, Menge, Zugang, Freigabe, Zielzustand und Kontaktweg. Fotos sind hilfreich, aber nicht im ersten Schritt verpflichtend.",
+    q: "Kann eine diskrete Entrümpelung angefragt werden?",
+    a: "Ja. Nennen Sie grob Räume, Menge, Zugang, Freigabe, Zielzustand und Kontaktweg. Fotos sind hilfreich, aber nicht im ersten Schritt verpflichtend.",
   },
   {
-    q: "Kann ein Angebot diskret geprueft werden?",
+    q: "Kann ein Angebot diskret geprüft werden?",
     a: "Ja. Ein Angebot kann nach Umfang, Ort, Frist, Leistungsbeschreibung und moeglichen Zusatzkosten eingeordnet werden. Es gibt keine Ersparnisgarantie und keine Rechtsberatung.",
   },
   {
@@ -231,11 +231,11 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Diskret-Service fuer sensible Anfragen",
       description:
-        "Diskrete und sensible Anfragen zu Umzug, Entruempelung, Aufloesung, Nachlass, Reinigung, Uebergabe oder Angebot ruhig einordnen.",
+        "Diskrete und sensible Anfragen zu Umzug, Entrümpelung, Auflösung, Nachlass, Reinigung, Übergabe oder Angebot ruhig einordnen.",
       path,
       about: [
         "diskreter service",
-        "diskrete Entruempelung",
+        "diskrete Entrümpelung",
         "diskreter Umzug",
         "sensible Anfrage",
         "bevorzugter Kontaktweg",
@@ -244,10 +244,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Diskret-Service",
       description:
-        "Rueckhaltender Anfrageweg fuer sensible Faelle rund um Umzug, Entruempelung, Haushaltsaufloesung, Wohnungsaufloesung, Nachlass, Reinigung, Uebergabe und Angebotspruefung.",
+        "Rückhaltender Anfrageweg für sensible Faelle rund um Umzug, Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlass, Reinigung, Übergabe und Angebotsprüfung.",
       path,
       serviceType: "Diskrete Serviceanfrage und praktische Einordnung",
-      areaServed: ["Regensburg", "Duesseldorf", "Bayern nach Machbarkeit", "Deutschland nach Anfrage"],
+      areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Machbarkeit", "Deutschland nach Anfrage"],
     }),
     buildFaqJsonLd(faqItems),
   ],
@@ -298,9 +298,9 @@ export default function DiskretServicePage() {
               Diskret-Service für sensible Anfragen – Umzug, Entrümpelung und Auflösung zurückhaltend klären
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
-              Manche Anfragen brauchen mehr Zurueckhaltung als ein normales Serviceformular. Bei Trennung,
-              Nachlass, Todesfall, sensibler Wohnungssituation, diskreter Entruempelung oder diskretem Umzug
-              koennen Sie kurz beschreiben, worum es geht, und den bevorzugten Kontaktweg waehlen. FLOXANT
+              Manche Anfragen brauchen mehr Zurückhaltung als ein normales Serviceformular. Bei Trennung,
+              Nachlass, Todesfall, sensibler Wohnungssituation, diskreter Entrümpelung oder diskretem Umzug
+              können Sie kurz beschreiben, worum es geht, und den bevorzugten Kontaktweg wählen. FLOXANT
               prüft die Anfrage anhand der genannten Eckdaten - ohne unnoetige Details zu erzwingen.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -322,10 +322,10 @@ export default function DiskretServicePage() {
               </TrackingLink>
               <TrackingLink
                 href={offerHref}
-                label="Angebot diskret pruefen lassen"
+                label="Angebot diskret prüfen lassen"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-900 transition hover:bg-emerald-100"
               >
-                Angebot diskret pruefen lassen
+                Angebot diskret prüfen lassen
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
               </TrackingLink>
             </div>
@@ -343,7 +343,7 @@ export default function DiskretServicePage() {
             <div className="relative overflow-hidden rounded-[1.6rem] border border-white bg-white shadow-2xl shadow-slate-950/10">
               <Image
                 src="/assets/diskret-service-hero.webp"
-                alt="Neutrale Unterlagen, Schluessel und Kartons fuer eine diskrete Serviceanfrage"
+                alt="Neutrale Unterlagen, Schlüssel und Kartons für eine diskrete Serviceanfrage"
                 width={1536}
                 height={1024}
                 priority
@@ -393,10 +393,10 @@ export default function DiskretServicePage() {
               </h2>
             </div>
             <p className="text-base leading-8 text-slate-700">
-              Der FLOXANT Diskret-Service ist fuer sensible Anfragen gedacht, bei denen zurueckhaltende
-              Kommunikation wichtig ist. Dazu gehoeren diskrete Entruempelung, diskreter Umzug,
-              Haushaltsaufloesung, Nachlass, Trennung oder andere private Situationen. Sie muessen im ersten
-              Schritt nur so viel beschreiben, wie fuer eine Einordnung noetig ist.
+              Der FLOXANT Diskret-Service ist für sensible Anfragen gedacht, bei denen zurückhaltende
+              Kommunikation wichtig ist. Dazu gehören diskrete Entrümpelung, diskreter Umzug,
+              Haushaltsauflösung, Nachlass, Trennung oder andere private Situationen. Sie müssen im ersten
+              Schritt nur so viel beschreiben, wie für eine Einordnung nötig ist.
             </p>
           </div>
         </div>
@@ -407,7 +407,7 @@ export default function DiskretServicePage() {
           <div className="max-w-3xl">
             <div className="text-xs font-black uppercase tracking-normal text-slate-500">Kundensituationen</div>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Fuer Situationen, die ruhig eingeordnet werden sollten.
+              Für Situationen, die ruhig eingeordnet werden sollten.
             </h2>
           </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -425,11 +425,11 @@ export default function DiskretServicePage() {
           <div className="rounded-lg bg-slate-950 p-6 text-white lg:p-8">
             <div className="text-xs font-black uppercase tracking-normal text-slate-300">Ablauf</div>
             <h2 className="mt-3 text-3xl font-black tracking-normal">
-              Von kurzer Lagebeschreibung zu naechsten Schritten.
+              Von kurzer Lagebeschreibung zu nächsten Schritten.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
-              FLOXANT prueft zuerst den praktischen Rahmen. Es geht um Service, Ort, Frist, Kontaktweg,
-              Umfang und Grenzen - nicht um Rechtfertigung oder private Erklaerungen.
+              FLOXANT prüft zuerst den praktischen Rahmen. Es geht um Service, Ort, Frist, Kontaktweg,
+              Umfang und Grenzen - nicht um Rechtfertigung oder private Erklärungen.
             </p>
           </div>
           <div className="grid gap-3">
@@ -448,7 +448,7 @@ export default function DiskretServicePage() {
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
           <InfoList title="Was FLOXANT braucht" items={neededItems} tone="white" />
-          <InfoList title="Was nicht noetig ist" items={notNeededItems} tone="white" />
+          <InfoList title="Was nicht nötig ist" items={notNeededItems} tone="white" />
           <InfoList title="Was nicht versprochen wird" items={boundaries} tone="amber" />
         </div>
       </section>
@@ -464,7 +464,7 @@ export default function DiskretServicePage() {
             </div>
             <p className="text-sm leading-7 text-slate-600 lg:text-right">
               Diese Links sind bewusst kuratiert. Sie ersetzen keine Anfrage, helfen aber, Umzug,
-              Entruempelung, Aufloesung, Reinigung, Objektbrief, Uebergabe und Angebot sauber zu trennen.
+              Entrümpelung, Auflösung, Reinigung, Objektbrief, Übergabe und Angebot sauber zu trennen.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
@@ -480,7 +480,7 @@ export default function DiskretServicePage() {
                   <h3 className="mt-4 text-lg font-black tracking-normal text-slate-950">{item.title}</h3>
                   <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900">
-                    Oeffnen
+                    Öffnen
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </Link>
@@ -494,14 +494,14 @@ export default function DiskretServicePage() {
         <div className="mx-auto max-w-7xl rounded-lg border border-emerald-200 bg-emerald-50 p-6 lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
             <div>
-              <div className="text-xs font-black uppercase tracking-normal text-emerald-800">Angebotspruefung</div>
+              <div className="text-xs font-black uppercase tracking-normal text-emerald-800">Angebotsprüfung</div>
               <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-                Angebot fuer einen sensiblen Fall pruefen lassen
+                Angebot für einen sensiblen Fall prüfen lassen
               </h2>
             </div>
             <div>
               <p className="text-sm font-semibold leading-7 text-emerald-950/85">
-                Wenn ein Angebot fuer Entruempelung, Haushaltsaufloesung, Umzug oder Reinigung in einer
+                Wenn ein Angebot für Entrümpelung, Haushaltsauflösung, Umzug oder Reinigung in einer
                 sensiblen Situation unklar wirkt, kann FLOXANT die wichtigsten Angaben prüfen. Wichtig
                 sind Umfang, Ort, Frist, Leistungsbeschreibung und moegliche Zusatzkosten. Es gibt keine
                 Ersparnisgarantie und keine Rechtsberatung.
@@ -509,14 +509,14 @@ export default function DiskretServicePage() {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <TrackingLink
                   href={offerHref}
-                  label="Diskretes Angebot pruefen lassen"
+                  label="Diskretes Angebot prüfen lassen"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-900 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
                 >
-                  Diskretes Angebot pruefen lassen
+                  Diskretes Angebot prüfen lassen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackingLink>
                 <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-100">
-                  Angebotspruefung ansehen
+                  Angebotsprüfung ansehen
                 </Link>
               </div>
             </div>
@@ -529,13 +529,13 @@ export default function DiskretServicePage() {
           <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 lg:p-8">
             <div className="text-xs font-black uppercase tracking-normal text-slate-500">Private Client Service</div>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Wenn der Fall mehr persoenliche Koordination braucht.
+              Wenn der Fall mehr persönliche Koordination braucht.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Private Client Service ist kein Duplikat des Diskret-Service. Er passt, wenn eine hochwertige
-              private Anfrage, ein groesseres Objekt, eine Assistenz, eine Eigentuemervertretung oder ein
+              private Anfrage, ein größeres Objekt, eine Assistenz, eine Eigentuemervertretung oder ein
               besonderer Abstimmungsrahmen gefuehrt werden soll. Diskret-Service bleibt der allgemeine
-              Einstieg fuer sensible Faelle.
+              Einstieg für sensible Faelle.
             </p>
             <Link href="/private-client-service" className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
               Private Client Service ansehen
@@ -589,7 +589,7 @@ export default function DiskretServicePage() {
           <div className="text-center">
             <div className="text-xs font-black uppercase tracking-normal text-slate-500">FAQ</div>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Haeufige Fragen zum Diskret-Service
+              Häufige Fragen zum Diskret-Service
             </h2>
           </div>
           <div className="mt-7 grid gap-3">
@@ -615,8 +615,8 @@ export default function DiskretServicePage() {
               <div className="text-xs font-black uppercase tracking-normal text-slate-300">Naechster Schritt</div>
               <h2 className="mt-3 text-3xl font-black tracking-normal">Sensible Anfrage ruhig starten</h2>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">
-                Senden Sie nur die Angaben, die fuer die erste Einordnung noetig sind. FLOXANT meldet sich
-                ueber den bevorzugten Kontaktweg zurueck.
+                Senden Sie nur die Angaben, die für die erste Einordnung nötig sind. FLOXANT meldet sich
+                über den bevorzugten Kontaktweg zurück.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -626,7 +626,7 @@ export default function DiskretServicePage() {
               </TrackingLink>
               <a href="tel:+4915771105087" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 text-sm font-black text-white transition hover:bg-white/10">
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Rueckruf
+                Rückruf
               </a>
               <a href="mailto:info@floxant.de" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 text-sm font-black text-white transition hover:bg-white/10">
                 <Mail className="h-4 w-4" aria-hidden="true" />

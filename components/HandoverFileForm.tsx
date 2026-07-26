@@ -12,47 +12,47 @@ const PHONE_TEL = "+4915771105087";
 const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
-const objectTypeOptions = ["Wohnung", "Haus", "Zimmer", "Keller", "Garage", "Buero / Gewerbeflaeche", "Sonstiges"];
+const objectTypeOptions = ["Wohnung", "Haus", "Zimmer", "Keller", "Garage", "Büro / Gewerbefläche", "Sonstiges"];
 
 const roleTypeOptions = ["Privatkunde", "Vermieter", "Hausverwaltung", "Makler", "Eigentuemer", "Unternehmen", "Sonstiges"];
 
 const serviceOptions = [
-  "Uebergabeakte allein anfragen",
-  "Uebergabeakte mit Endreinigung",
-  "Uebergabeakte mit Schluesseluebergabe",
-  "Uebergabeakte mit Entruempelung",
-  "Uebergabeakte mit Entsorgung",
-  "Uebergabeakte mit Umzug",
-  "Uebergabeakte im Mieterwechsel-Service",
-  "Uebergabeakte + Wohnung wieder vermietbar",
+  "Übergabeakte allein anfragen",
+  "Übergabeakte mit Endreinigung",
+  "Übergabeakte mit Schlüsselübergabe",
+  "Übergabeakte mit Entrümpelung",
+  "Übergabeakte mit Entsorgung",
+  "Übergabeakte mit Umzug",
+  "Übergabeakte im Mieterwechsel-Service",
+  "Übergabeakte + Wohnung wieder vermietbar",
   "Diskrete Abstimmung",
 ];
 
-const additionalSpaceOptions = ["Keller", "Garage", "Dachboden", "Balkon", "Muellraum"];
+const additionalSpaceOptions = ["Keller", "Garage", "Dachboden", "Balkon", "Müllraum"];
 
 const documentationScopeOptions = [
   "Foto-Dokumentation",
   "Leistungsuebersicht",
-  "Schluesselstatus",
+  "Schlüsselstatus",
   "Offene Hinweise",
-  "Oeffentliche Zusammenfassung",
+  "Öffentliche Zusammenfassung",
 ];
 
-const photoSectionOptions = ["Kueche", "Bad", "Boeden", "Raeume", "Keller", "Garage", "Zugang", "Gegenstaende", "Sonstiges"];
+const photoSectionOptions = ["Küche", "Bad", "Böden", "Räume", "Keller", "Garage", "Zugang", "Gegenstände", "Sonstiges"];
 
-const openItemOptions = ["Reinigung pruefen", "Nebenraeume offen", "Schluesselstatus unklar", "Empfaenger offen", "Fotos fehlen", "Termin kritisch"];
+const openItemOptions = ["Reinigung prüfen", "Nebenraeume offen", "Schlüsselstatus unklar", "Empfaenger offen", "Fotos fehlen", "Termin kritisch"];
 
 const quickEntries = [
   {
     value: "move_out",
     title: "Auszug dokumentieren",
-    text: "Reinigung, Restpunkte, Fotos und Schluesselstatus vor der Uebergabe einordnen.",
+    text: "Reinigung, Restpunkte, Fotos und Schlüsselstatus vor der Übergabe einordnen.",
     Icon: FileText,
   },
   {
     value: "key_handover",
-    title: "Schluesselstatus klaeren",
-    text: "Wenn Schluessel, Zugang oder Uebergabetermin sauber abgestimmt werden sollen.",
+    title: "Schlüsselstatus klären",
+    text: "Wenn Schlüssel, Zugang oder Übergabetermin sauber abgestimmt werden sollen.",
     Icon: KeyRound,
   },
   {
@@ -254,7 +254,7 @@ export function HandoverFileForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
@@ -289,7 +289,7 @@ export function HandoverFileForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Zeitraum / Uebergabetermin*
+            Zeitraum / Übergabetermin*
             <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. vor 15.06. oder diese Woche" />
           </label>
         </div>
@@ -327,7 +327,7 @@ export function HandoverFileForm() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Anzahl Raeume
+            Anzahl Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 3" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -335,15 +335,15 @@ export function HandoverFileForm() {
             <input name="floor" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 2. OG, Aufzug ja/nein" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesselstatus
+            Schlüsselstatus
             <select name="keyStatus" data-event="service_card_click" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               <option value="nicht_relevant">Nicht relevant</option>
-              <option value="schluessel_beim_kunden">Schluessel bei Kunde</option>
+              <option value="schluessel_beim_kunden">Schlüssel bei Kunde</option>
               <option value="bei_floxant_uebernommen">Bei FLOXANT uebernommen</option>
-              <option value="schluessel_beim_vermieter">Schluessel bei Vermieter/Hausverwaltung</option>
+              <option value="schluessel_beim_vermieter">Schlüssel bei Vermieter/Hausverwaltung</option>
               <option value="uebergeben_an_empfaenger">Uebergeben an Vermieter/Hausverwaltung/Makler</option>
-              <option value="uebergabe_geplant">Uebergabe geplant</option>
-              <option value="schluesseluebergabe_gewuenscht">Schluesseluebergabe gewuenscht</option>
+              <option value="uebergabe_geplant">Übergabe geplant</option>
+              <option value="schluesseluebergabe_gewuenscht">Schlüsselübergabe gewünscht</option>
               <option value="unklar">Unklar</option>
             </select>
           </label>
@@ -361,11 +361,11 @@ export function HandoverFileForm() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesseltermin optional
+            Schlüsseltermin optional
             <input name="keyHandoverDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 14.06., 10 Uhr" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluessel-Empfaenger optional
+            Schlüssel-Empfaenger optional
             <input name="keyHandoverRecipient" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. Hausverwaltung / Makler" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -421,12 +421,12 @@ export function HandoverFileForm() {
             <textarea name="specialNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Zugang, Ansprechpartner, offene Punkte, sensible Abstimmung." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesselnotiz optional
-            <textarea name="keyNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll zum Schluesselstatus abgestimmt werden?" />
+            Schlüsselnotiz optional
+            <textarea name="keyNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll zum Schlüsselstatus abgestimmt werden?" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Gewuenschte Zusammenfassung optional
-            <textarea name="publicSummary" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Welche Punkte sollen spaeter in der Akte sichtbar zusammengefasst werden?" />
+            <textarea name="publicSummary" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Welche Punkte sollen später in der Akte sichtbar zusammengefasst werden?" />
           </label>
         </div>
 
@@ -444,16 +444,16 @@ export function HandoverFileForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll dokumentiert werden? Welche Leistungen sollen mit der Uebergabeakte kombiniert werden?" />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll dokumentiert werden? Welche Leistungen sollen mit der Übergabeakte kombiniert werden?" />
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-amber-600" />
-          Rueckruf zur Abstimmung der Uebergabeakte gewuenscht.
+          Rückruf zur Abstimmung der Übergabeakte gewünscht.
         </label>
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-amber-600" />
-          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Die Uebergabeakte ist eine organisatorische Dokumentation und ersetzt keine rechtliche Pruefung.
+          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Die Übergabeakte ist eine organisatorische Dokumentation und ersetzt keine rechtliche Prüfung.
         </label>
 
         {errorMessage ? (
@@ -463,7 +463,7 @@ export function HandoverFileForm() {
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage zur FLOXANT Uebergabeakte ist eingegangen. Wir pruefen Objektart, Termin, gewuenschte Leistungen und Dokumentationsumfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage zur FLOXANT Übergabeakte ist eingegangen. Wir prüfen Objektart, Termin, gewuenschte Leistungen und Dokumentationsumfang. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -475,14 +475,14 @@ export function HandoverFileForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Uebergabeakte anfragen
+            Übergabeakte anfragen
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
             data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
-            Uebergabeakte per WhatsApp anfragen
+            Übergabeakte per WhatsApp anfragen
           </a>
         </div>
 

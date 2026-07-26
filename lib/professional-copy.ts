@@ -20,17 +20,17 @@ export const homepageProblemItems = [
   },
   {
     title: "Ein Angebot wirkt unklar",
-    text: "Preis, Leistungsumfang, Zugang, Fotos und Zusatzpunkte koennen vor einer Zusage praktisch eingeordnet werden.",
+    text: "Preis, Leistungsumfang, Zugang, Fotos und Zusatzpunkte können vor einer Zusage praktisch eingeordnet werden.",
   },
   {
     title: "Der Fall ist zeitlich oder organisatorisch eng",
-    text: "Termin, Rueckmeldung, Fotos und naechster Schritt werden geklaert, ohne eine Zusage vorwegzunehmen.",
+    text: "Termin, Rückmeldung, Fotos und nächster Schritt werden geklaert, ohne eine Zusage vorwegzunehmen.",
   },
 ] as const;
 
 export const offerCheckClarityItems = [
   {
-    title: "Was wird geprueft?",
+    title: "Was wird geprüft?",
     text: "FLOXANT schaut auf Preislogik, Leistungsumfang, Zugang, Termin, Fotos, Zusatzleistungen, offene Punkte und passende Alternativen.",
   },
   {
@@ -69,11 +69,11 @@ export const providerComparisonClarityItems = [
 export const customerNextSteps = [
   {
     title: "Angaben ansehen",
-    text: "Service, Ort, Umfang, Fotos, Termin und vorhandenes Angebot werden zuerst auf Vollstaendigkeit geprueft.",
+    text: "Service, Ort, Umfang, Fotos, Termin und vorhandenes Angebot werden zuerst auf Vollständigkeit geprüft.",
   },
   {
-    title: "Rueckfragen klaeren",
-    text: "Wenn Etage, Zugang, Flaeche, Menge, Turnus oder Zielzustand fehlen, fragt FLOXANT gezielt nach.",
+    title: "Rückfragen klären",
+    text: "Wenn Etage, Zugang, Fläche, Menge, Turnus oder Zielzustand fehlen, fragt FLOXANT gezielt nach.",
   },
   {
     title: "Passenden Weg nennen",
@@ -88,15 +88,15 @@ export const customerNextSteps = [
 export const professionalTrustItems = [
   {
     title: "Keine erfundenen Bewertungen",
-    text: "Trust entsteht ueber klare Angaben, sichtbare Grenzen und nachvollziehbare Schritte, nicht ueber Fake-Sterne.",
+    text: "Trust entsteht über klare Angaben, sichtbare Grenzen und nachvollziehbare Schritte, nicht über Fake-Sterne.",
   },
   {
     title: "Keine Preisgarantie",
-    text: "Aufwand und Preisrahmen haengen von Flaeche, Zugang, Zustand, Termin, Menge und Zielzustand ab.",
+    text: "Aufwand und Preisrahmen haengen von Fläche, Zugang, Zustand, Termin, Menge und Zielzustand ab.",
   },
   {
     title: "Lokale Trennung",
-    text: "Duesseldorf und Regensburg werden getrennt gefuehrt, damit Kunden den passenden Kontaktweg finden.",
+    text: "Düsseldorf und Regensburg werden getrennt gefuehrt, damit Kunden den passenden Kontaktweg finden.",
   },
 ] as const;
 
@@ -105,7 +105,7 @@ export const signatureServiceClarityItems = [
     title: "Fairpreis-Check",
     text: "Vorhandenes Angebot oder Preisrahmen einordnen, wenn Umfang, Zusatzpunkte oder Termin unklar wirken.",
     href: "/angebot-guenstiger-pruefen",
-    cta: "Angebot pruefen",
+    cta: "Angebot prüfen",
   },
   {
     title: "Objektbrief",
@@ -115,19 +115,19 @@ export const signatureServiceClarityItems = [
   },
   {
     title: "Plan-B-Service",
-    text: "Wenn Termin, Anbieter oder Ablauf wackeln, wird die Lage sachlich eingeordnet und der naechste Schritt geklaert.",
+    text: "Wenn Termin, Anbieter oder Ablauf wackeln, wird die Lage sachlich eingeordnet und der nächste Schritt geklaert.",
     href: "/plan-b-service",
-    cta: "Plan B pruefen",
+    cta: "Plan B prüfen",
   },
   {
-    title: "Uebergabeakte",
-    text: "Fotos, Restpunkte, Reinigung, Raeumung und Schluesselweg fuer Uebergabe oder Nachnutzung zusammenfuehren.",
+    title: "Übergabeakte",
+    text: "Fotos, Restpunkte, Reinigung, Räumung und Schlüsselweg für Übergabe oder Nachnutzung zusammenfuehren.",
     href: "/uebergabeakte",
-    cta: "Uebergabe vorbereiten",
+    cta: "Übergabe vorbereiten",
   },
   {
     title: "Diskret-Service",
-    text: "Sensible Faelle ruhig beschreiben, ohne private Details oeffentlich zu machen oder falsche Versprechen zu erzeugen.",
+    text: "Sensible Fälle ruhig beschreiben, ohne private Details öffentlich zu machen oder falsche Versprechen zu erzeugen.",
     href: "/diskreter-umzug-trennung-scheidung",
     cta: "Diskreten Fall beschreiben",
   },
@@ -135,21 +135,21 @@ export const signatureServiceClarityItems = [
     title: "PV-Sichtklar",
     text: "PV- oder Solarreinigung nur mit Fotos, Zugang, Dachlage, Risiko und Terminfenster einordnen.",
     href: "/solarreinigung",
-    cta: "PV-Fall pruefen",
+    cta: "PV-Fall prüfen",
   },
 ] as const;
 
 export const cleanOfferFaqItems = [
   {
-    q: "Kann FLOXANT garantieren, dass ein Angebot guenstiger wird?",
-    a: "Nein. FLOXANT gibt keine Ersparnisgarantie. Die Pruefung hilft, Leistungsumfang, offene Punkte und moegliche naechste Schritte besser einzuordnen.",
+    q: "Kann FLOXANT garantieren, dass ein Angebot günstiger wird?",
+    a: "Nein. FLOXANT gibt keine Ersparnisgarantie. Die Prüfung hilft, Leistungsumfang, offene Punkte und moegliche nächste Schritte besser einzuordnen.",
   },
   {
-    q: "Welche Unterlagen helfen fuer den Angebotscheck?",
+    q: "Welche Unterlagen helfen für den Angebotscheck?",
     a: "Hilfreich sind Angebot oder Screenshot, Ort, Service, Termin, Preis, Fotos, Zugang, Umfang und der Punkt, der unklar wirkt.",
   },
   {
     q: "Ist der Check eine Rechtsberatung?",
-    a: "Nein. FLOXANT prueft praktisch und organisatorisch. Rechtliche Fragen muessen separat geklaert werden.",
+    a: "Nein. FLOXANT prüft praktisch und organisatorisch. Rechtliche Fragen müssen separat geklaert werden.",
   },
 ] as const;

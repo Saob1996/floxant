@@ -32,11 +32,11 @@ import {
 const faqItems = [
   {
     q: "Ist FLOXANT in ganz Bayern aktiv?",
-    a: "FLOXANT arbeitet von Regensburg aus und prueft Bayern-Anfragen nach Strecke, Umfang, Terminlage und freier Kapazitaet.",
+    a: "FLOXANT arbeitet von Regensburg aus und prüft Bayern-Anfragen nach Strecke, Umfang, Terminlage und freier Kapazität.",
   },
   {
-    q: "Welche Seite eignet sich am besten fuer direkte Anfragen?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der beste Startpunkt. Die Bayern-Seite hilft vor allem dabei, Region, Strecke und passende Leistung vorher einzuordnen.",
+    q: "Welche Seite eignet sich am besten für direkte Anfragen?",
+    a: "Für direkte Anfragen ist die Buchungsseite der beste Startpunkt. Die Bayern-Seite hilft vor allem dabei, Region, Strecke und passende Leistung vorher einzuordnen.",
   },
   {
     q: "Warum zeigt diese Seite Regionen statt pauschal ueberall alles zu versprechen?",
@@ -44,7 +44,7 @@ const faqItems = [
   },
   {
     q: "Wann ist der Rechner sinnvoll und wann die direkte Buchung?",
-    a: "Wer zuerst Aufwand und Preisrahmen einordnen moechte, nutzt den Rechner. Wer die wichtigsten Eckdaten schon kennt, geht direkt ueber die Buchungsseite oder eine passende Spezialseite weiter.",
+    a: "Wer zuerst Aufwand und Preisrahmen einordnen möchte, nutzt den Rechner. Wer die wichtigsten Eckdaten schon kennt, geht direkt über die Buchungsseite oder eine passende Spezialseite weiter.",
   },
 ];
 
@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "service-area-bayern",
     title: "Servicegebiet Bayern | FLOXANT in Regensburg und ganz Bayern",
     description:
-      "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Regensburg. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
+      "FLOXANT plant Umzug, Reinigung, Entrümpelung und Büroumzug ab Regensburg in Regensburg. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
   });
 }
 
@@ -87,8 +87,8 @@ export default async function ServiceAreaBayern() {
           "Bayern",
           "Umzug",
           "Reinigung",
-          "Entruempelung",
-          "Bueroumzug",
+          "Entrümpelung",
+          "Büroumzug",
           "Stadtbezirke",
         ],
       }),
@@ -97,7 +97,7 @@ export default async function ServiceAreaBayern() {
         "@type": "ItemList",
         name: "FLOXANT Bayern Service-Intentionen",
         description:
-          "Direkte Regensburg-Pfade fuer Maps- und Suchanfragen nach Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung.",
+          "Direkte Regensburg-Pfade für Maps- und Suchanfragen nach Umzug, Reinigung, Entrümpelung, Entsorgung, Lagerung, Büroumzug und Gewerbereinigung.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -113,67 +113,67 @@ export default async function ServiceAreaBayern() {
     {
       name: "Regensburg und Oberpfalz",
       desc:
-        "Die Regensburger Basis mit kurzer Abstimmung fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
+        "Die Regensburger Basis mit kurzer Abstimmung für Umzug, Reinigung, Entrümpelung und Büroumzug.",
       links: [
         { href: "/regensburg/umzug", label: "Umzug Regensburg" },
         { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-        { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
-        { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+        { href: "/bueroumzug-regensburg", label: "Büroumzug Regensburg" },
       ],
     },
     {
       name: "Nuernberg und Mittelfranken",
       desc:
-        "Wichtige Nachfrage-Region fuer Umzuege, Entruempelung, Bueroumzug und kurzfristige Anfragen im erweiterten Einsatzraum.",
+        "Wichtige Nachfrage-Region für Umzüge, Entrümpelung, Büroumzug und kurzfristige Anfragen im erweiterten Einsatzraum.",
       links: [
-        { href: "/umzug-nuernberg", label: "Umzug Nuernberg" },
+        { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
         { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-        { href: "/entruempelung-nuernberg", label: "Entruempelung Nuernberg" },
-        { href: "/bueroumzug-nuernberg", label: "Bueroumzug Nuernberg" },
+        { href: "/entruempelung-nuernberg", label: "Entrümpelung Nürnberg" },
+        { href: "/bueroumzug-nuernberg", label: "Büroumzug Nürnberg" },
       ],
     },
     {
       name: "Muenchen und Oberbayern",
       desc:
-        "Starker Ausbaukorridor fuer Umzug, Objektservice und kombinierte Leistungen mit klarer wirtschaftlicher Einordnung.",
+        "Starker Ausbaukorridor für Umzug, Objektservice und kombinierte Leistungen mit klarer wirtschaftlicher Einordnung.",
       links: [
-        { href: "/umzug-muenchen", label: "Umzug Muenchen" },
+        { href: "/umzug-muenchen", label: "Umzug München" },
         { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-        { href: "/entruempelung-muenchen", label: "Entruempelung Muenchen" },
-        { href: "/bueroumzug-muenchen", label: "Bueroumzug Muenchen" },
+        { href: "/entruempelung-muenchen", label: "Entrümpelung München" },
+        { href: "/bueroumzug-muenchen", label: "Büroumzug München" },
       ],
     },
     {
       name: "Niederbayern und Donaukorridor",
       desc:
-        "Solide Achse fuer planbare Auftraege zwischen Landshut, Straubing, Deggendorf und Passau mit starkem Regensburg-Bezug.",
+        "Solide Achse für planbare Auftraege zwischen Landshut, Straubing, Deggendorf und Passau mit starkem Regensburg-Bezug.",
       links: [
         { href: "/umzug-landshut", label: "Umzug Landshut" },
         { href: "/reinigung-straubing", label: "Reinigung Straubing" },
-        { href: "/entruempelung-deggendorf", label: "Entruempelung Deggendorf" },
-        { href: "/bueroumzug-passau", label: "Bueroumzug Passau" },
+        { href: "/entruempelung-deggendorf", label: "Entrümpelung Deggendorf" },
+        { href: "/bueroumzug-passau", label: "Büroumzug Passau" },
       ],
     },
     {
       name: "Augsburg und Schwaben",
       desc:
-        "Wichtige Region fuer Umzug, Objektservice, Raeumung und Firmenumzug im westlichen Bayern mit klarer Anfragepruefung.",
+        "Wichtige Region für Umzug, Objektservice, Räumung und Firmenumzug im westlichen Bayern mit klarer Anfragepruefung.",
       links: [
         { href: "/umzug-augsburg", label: "Umzug Augsburg" },
         { href: "/reinigung-kempten", label: "Reinigung Kempten" },
-        { href: "/entruempelung-memmingen", label: "Entruempelung Memmingen" },
-        { href: "/bueroumzug-neu-ulm", label: "Bueroumzug Neu-Ulm" },
+        { href: "/entruempelung-memmingen", label: "Entrümpelung Memmingen" },
+        { href: "/bueroumzug-neu-ulm", label: "Büroumzug Neu-Ulm" },
       ],
     },
     {
       name: "Franken Nord und Bayern-West",
       desc:
-        "Weitere Regionen wie Bamberg, Bayreuth, Schweinfurt und Wuerzburg, wenn Strecke, Umfang und Termin sinnvoll passen.",
+        "Weitere Regionen wie Bamberg, Bayreuth, Schweinfurt und Würzburg, wenn Strecke, Umfang und Termin sinnvoll passen.",
       links: [
         { href: "/umzug-bamberg", label: "Umzug Bamberg" },
         { href: "/reinigung-bayreuth", label: "Reinigung Bayreuth" },
-        { href: "/entruempelung-schweinfurt", label: "Entruempelung Schweinfurt" },
-        { href: "/bueroumzug-wuerzburg", label: "Bueroumzug Wuerzburg" },
+        { href: "/entruempelung-schweinfurt", label: "Entrümpelung Schweinfurt" },
+        { href: "/bueroumzug-wuerzburg", label: "Büroumzug Würzburg" },
       ],
     },
   ];
@@ -181,16 +181,16 @@ export default async function ServiceAreaBayern() {
   const valuePillars = [
     {
       title: "Regensburg als Kern",
-      text: "Von hier aus werden Anfragen, Verfuegbarkeit und Einsatzfenster sauber vorbereitet.",
+      text: "Von hier aus werden Anfragen, Verfügbarkeit und Einsatzfenster sauber vorbereitet.",
       Icon: MapPin,
     },
     {
       title: "Bayern als Ausbaugebiet",
-      text: "Fuer Bayern zaehlen bei FLOXANT immer Strecke, Zugaenge, Termine und Wirtschaftlichkeit.",
+      text: "Für Bayern zählen bei FLOXANT immer Strecke, Zugaenge, Termine und Wirtschaftlichkeit.",
       Icon: Route,
     },
     {
-      title: "Klare Vorpruefung",
+      title: "Klare Vorprüfung",
       text: "Lieber ein ehrlicher erster Rahmen als eine Zahl ohne belastbare Grundlage.",
       Icon: ShieldCheck,
     },
@@ -199,7 +199,7 @@ export default async function ServiceAreaBayern() {
   const quickFacts = [
     "Bayern heisst bei FLOXANT nicht ueberall alles versprechen, sondern jede Region sauber nach Aufwand und Weg einordnen.",
     "Regensburg bleibt die Basis, Bayern wird nach Strecke, Umfang und Termin sauber eingeordnet.",
-    "Wer direkt anfragen moechte, nutzt die Buchung. Wer erst Orientierung braucht, nimmt den passenden Kontaktweg weiter unten.",
+    "Wer direkt anfragen möchte, nutzt die Buchung. Wer erst Orientierung braucht, nimmt den passenden Kontaktweg weiter unten.",
   ];
 
   const businessFlowCards = [
@@ -232,8 +232,8 @@ export default async function ServiceAreaBayern() {
   const hubLinks = [
     { href: "/umzug-bayern", label: "Umzug Bayern" },
     { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-    { href: "/entruempelung-bayern", label: "Entruempelung Bayern" },
-    { href: "/bueroumzug-bayern", label: "Bueroumzug Bayern" },
+    { href: "/entruempelung-bayern", label: "Entrümpelung Bayern" },
+    { href: "/bueroumzug-bayern", label: "Büroumzug Bayern" },
     { href: "/standorte", label: "Standorte in Bayern" },
     { href: "/einsatzgebiet-regensburg-200km", label: "200-km-Einsatzgebiet" },
     { href: "/rueckfahrt-boerse", label: "Rückfahrt-Börse" },
@@ -500,7 +500,7 @@ export default async function ServiceAreaBayern() {
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600 md:text-right">
               Wer schon weiß, wonach er sucht, soll nicht erst im Menü herumirren. Deshalb
-              fuehren die wichtigsten Bayern-Bereiche direkt auf die passenden Kernseiten.
+              führen die wichtigsten Bayern-Bereiche direkt auf die passenden Kernseiten.
             </p>
           </div>
 
@@ -615,7 +615,7 @@ export default async function ServiceAreaBayern() {
 
       <PsychologicalCleaningInternalLinks
         title="Spezial-Reinigung aus dem Regensburger Einsatzgebiet"
-        intro="Diese Problemseiten verbinden Bayern-Reichweite mit konkreten Situationen: Uebergabe, Baustaub, Geruch, Eile und diskrete Hilfe."
+        intro="Diese Problemseiten verbinden Bayern-Reichweite mit konkreten Situationen: Übergabe, Baustaub, Geruch, Eile und diskrete Hilfe."
         focusSlugs={[
           "panikfrei-in-24h",
           "baustaub-ende",
@@ -633,7 +633,7 @@ export default async function ServiceAreaBayern() {
               FAQ
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Haeufige Fragen zum Servicegebiet Bayern
+              Häufige Fragen zum Servicegebiet Bayern
             </h2>
           </div>
           <div className="space-y-4">

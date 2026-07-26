@@ -100,7 +100,7 @@ function getSolarPvOfferLinks(config: GrowthServicePageConfig) {
     config.path.includes("/regensburg") || config.cityLabel.toLowerCase().includes("regensburg")
       ? "&city=regensburg"
       : config.cityLabel.toLowerCase().includes("duesseldorf") || config.cityLabel.toLowerCase().includes("düsseldorf")
-        ? "&city=duesseldorf"
+        ? "&city=düsseldorf"
         : "";
 
   return {
@@ -597,7 +597,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
 
       <SignatureServicesGrid
         title="Passende zusätzliche Unterstützung prüfen."
-        intro="Wenn Angebot, Objekt, Uebergabe, Plan B oder Rueckfahrt Teil des Falls sind, fuehren diese Startpunkte zu einer klareren Anfrage."
+        intro="Wenn Angebot, Objekt, Übergabe, Plan B oder Rückfahrt Teil des Falls sind, führen diese Startpunkte zu einer klareren Anfrage."
         limit={4}
       />
 
@@ -608,7 +608,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
       />
 
       <OfferCheckCTA
-        title="Vorhandenes Angebot zu diesem Service pruefen?"
+        title="Vorhandenes Angebot zu diesem Service prüfen?"
         text="Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, Fotos, Zugang, Termin, Zusatzpositionen und Preislogik sachlich einordnen. Es gibt keine Preisgarantie und keine Abwertung anderer Anbieter."
       />
 

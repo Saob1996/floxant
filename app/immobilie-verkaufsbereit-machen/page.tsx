@@ -30,80 +30,80 @@ const path = "/immobilie-verkaufsbereit-machen";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Immobilie verkaufsbereit machen - Raeumung, Reinigung & Entsorgung | FLOXANT",
+  title: "Immobilie verkaufsbereit machen - Räumung, Reinigung & Entsorgung | FLOXANT",
   description:
-    "FLOXANT unterstuetzt Eigentuemer, Makler und Erbengemeinschaften: Wohnung oder Haus vor Verkauf, Besichtigung oder Expose raeumen, entsorgen und reinigen lassen.",
+    "FLOXANT unterstützt Eigentuemer, Makler und Erbengemeinschaften: Wohnung oder Haus vor Verkauf, Besichtigung oder Expose räumen, entsorgen und reinigen lassen.",
 });
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20moechte%20eine%20Immobilie%20vor%20Verkauf%2FBesichtigung%20vorbereiten%20lassen.%20Es%20geht%20um%20%5BWohnung%2FHaus%2FKeller%2FGarage%5D%20in%20%5BOrt%5D.%20Benoetigt%20werden%20Raeumung%2FReinigung%2FEntsorgung%20nach%20Absprache.%20Fotos%20und%20Termin%20kann%20ich%20senden.";
 const phoneHref = "tel:+4915771105087";
 
-const statusSteps = ["Raeumen", "Entsorgen", "Reinigen", "Dokumentieren", "Praesentieren"];
+const statusSteps = ["Räumen", "Entsorgen", "Reinigen", "Dokumentieren", "Praesentieren"];
 
 const statusCards = [
   {
     title: "Wohnung oder Haus ist noch moebliert",
-    text: "Moebel, Kartons oder Hausrat lenken von Raumwirkung, Zustand und Besichtigung ab.",
-    services: ["Raeumung", "Entsorgung", "Reinigung danach"],
+    text: "Möbel, Kartons oder Hausrat lenken von Raumwirkung, Zustand und Besichtigung ab.",
+    services: ["Räumung", "Entsorgung", "Reinigung danach"],
     Icon: Home,
   },
   {
     title: "Keller / Garage / Dachboden ist voll",
-    text: "Nebenflaechen koennen Verkauf, Besichtigung oder Uebergabe schlechter wirken lassen.",
-    services: ["Nebenflaechen", "Fotoeinschaetzung", "Reinigung optional"],
+    text: "Nebenflächen können Verkauf, Besichtigung oder Übergabe schlechter wirken lassen.",
+    services: ["Nebenflächen", "Fotoeinschaetzung", "Reinigung optional"],
     Icon: Building2,
   },
   {
-    title: "Sperrmuell oder alte Moebel muessen weg",
-    text: "Normale Gegenstaende koennen nach Umfang, Zugang und Materialart geprueft werden.",
+    title: "Sperrmuell oder alte Möbel müssen weg",
+    text: "Normale Gegenstände können nach Umfang, Zugang und Materialart geprüft werden.",
     services: ["Entsorgung", "Zugang", "Materialart"],
     Icon: Trash2,
   },
   {
     title: "Reinigung vor Besichtigung fehlt",
-    text: "Kueche, Bad, Boeden und sichtbare Flaechen brauchen vor Termin oft Prioritaet.",
+    text: "Küche, Bad, Böden und sichtbare Flächen brauchen vor Termin oft Priorität.",
     services: ["Reinigung", "Grundreinigung", "Fotos"],
     Icon: Sparkles,
   },
   {
     title: "Expose-Fotos stehen bald an",
     text: "FLOXANT kann offene Punkte nach Terminfenster und Fotoeinschaetzung priorisieren.",
-    services: ["Besichtigungs-Ready", "Fototermin", "Rueckruf"],
+    services: ["Besichtigungs-Ready", "Fototermin", "Rückruf"],
     Icon: Camera,
   },
   {
     title: "Eigentuemer wohnt nicht vor Ort",
-    text: "Fotos, Zugang, Schluesselstatus und Rueckmeldung machen den Fall besser steuerbar.",
-    services: ["Schluesselstatus", "Dokumentation", "Diskrete Abstimmung"],
+    text: "Fotos, Zugang, Schlüsselstatus und Rückmeldung machen den Fall besser steuerbar.",
+    services: ["Schlüsselstatus", "Dokumentation", "Diskrete Abstimmung"],
     Icon: KeyRound,
   },
   {
     title: "Erbfall / Nachlass muss vorbereitet werden",
-    text: "Sensible Raeumung, Entsorgung und Reinigung koennen diskret abgestimmt werden.",
-    services: ["Nachlass", "Diskret", "Raeumung"],
+    text: "Sensible Räumung, Entsorgung und Reinigung können diskret abgestimmt werden.",
+    services: ["Nachlass", "Diskret", "Räumung"],
     Icon: UsersRound,
   },
   {
     title: "Makler braucht schnelle Objektvorbereitung",
-    text: "Objektstatus, Fotos, Termin und passende Bausteine koennen kurz gebuendelt werden.",
+    text: "Objektstatus, Fotos, Termin und passende Bausteine können kurz gebuendelt werden.",
     services: ["Makler-Fall", "Besichtigung", "Objekt-Link"],
     Icon: ClipboardList,
   },
 ];
 
 const serviceBlocks = [
-  "Wohnung oder Haus raeumen",
-  "Moebel und Gegenstaende entfernen",
-  "Keller / Garage / Dachboden raeumen",
-  "Sperrmuell / normale Gegenstaende nach Absprache entsorgen",
+  "Wohnung oder Haus räumen",
+  "Möbel und Gegenstände entfernen",
+  "Keller / Garage / Dachboden räumen",
+  "Sperrmuell / normale Gegenstände nach Absprache entsorgen",
   "Reinigung vor Besichtigung",
   "Endreinigung / Grundreinigung nach Absprache",
-  "Reinigung nach Entruempelung",
+  "Reinigung nach Entrümpelung",
   "Fotoeinschaetzung",
   "Foto-Dokumentation nach Absprache",
-  "Uebergabeakte als Zusatz",
-  "Schluesselkoordination nach Absprache",
+  "Übergabeakte als Zusatz",
+  "Schlüsselkoordination nach Absprache",
   "Diskrete Abstimmung",
   "Makler-/Vermieter-Link verknuepfen",
   "Mieterwechsel-Service verknuepfen",
@@ -112,38 +112,38 @@ const serviceBlocks = [
 
 const audiences = [
   {
-    title: "Fuer Eigentuemer",
+    title: "Für Eigentuemer",
     text:
       "Wenn ein Objekt vor Verkauf, Besichtigung oder Eigentuemerwechsel geordneter, leerer oder sauberer vorbereitet werden soll.",
     cta: "Objekt vor Verkauf vorbereiten lassen",
     Icon: Home,
   },
   {
-    title: "Fuer Makler",
+    title: "Für Makler",
     text:
-      "Wenn Wohnung oder Haus fuer Besichtigung, Expose-Fotos oder Erstkontakt praesentierbarer vorbereitet werden soll.",
-    cta: "Objekt fuer Besichtigung vorbereiten",
+      "Wenn Wohnung oder Haus für Besichtigung, Expose-Fotos oder Erstkontakt praesentierbarer vorbereitet werden soll.",
+    cta: "Objekt für Besichtigung vorbereiten",
     Icon: Camera,
   },
   {
-    title: "Fuer Erbengemeinschaften",
+    title: "Für Erbengemeinschaften",
     text:
       "Wenn Wohnung, Haus, Keller oder Garage nach Nachlass geordnet, geraeumt, entsorgt oder gereinigt werden muss.",
-    cta: "Nachlass-Objekt pruefen lassen",
+    cta: "Nachlass-Objekt prüfen lassen",
     Icon: UsersRound,
   },
   {
-    title: "Fuer Vermieter",
+    title: "Für Vermieter",
     text:
-      "Wenn nach Auszug Verkauf, Neuvermietung oder Nutzung vorbereitet werden soll und Raeumung, Reinigung oder Dokumentation fehlen.",
+      "Wenn nach Auszug Verkauf, Neuvermietung oder Nutzung vorbereitet werden soll und Räumung, Reinigung oder Dokumentation fehlen.",
     cta: "Wohnung nach Auszug vorbereiten",
     Icon: KeyRound,
   },
   {
-    title: "Fuer Hausverwaltungen",
+    title: "Für Hausverwaltungen",
     text:
       "Wenn Objektwechsel, Mieterwechsel, Nebenraeume oder Besichtigungen zusammen mit Fotos und Termin gesendet werden sollen.",
-    cta: "Objektfall fuer Hausverwaltung senden",
+    cta: "Objektfall für Hausverwaltung senden",
     Icon: Building2,
   },
 ];
@@ -152,31 +152,31 @@ const packages = [
   {
     title: "Besichtigungs-Ready",
     forText: "Objekt soll vor Besichtigung sauberer und geordneter wirken.",
-    includes: ["Reinigung", "sichtbare Flaechen", "Fotoeinschaetzung", "kleine Entsorgung nach Absprache"],
+    includes: ["Reinigung", "sichtbare Flächen", "Fotoeinschaetzung", "kleine Entsorgung nach Absprache"],
     cta: "Besichtigung vorbereiten",
   },
   {
-    title: "Raeumen & Reinigen",
-    forText: "Wohnung oder Haus enthaelt noch Moebel, Hausrat oder Gegenstaende.",
-    includes: ["Raeumung", "Entsorgung nach Absprache", "Reinigung danach"],
-    cta: "Raeumen & Reinigen anfragen",
+    title: "Räumen & Reinigen",
+    forText: "Wohnung oder Haus enthält noch Möbel, Hausrat oder Gegenstände.",
+    includes: ["Räumung", "Entsorgung nach Absprache", "Reinigung danach"],
+    cta: "Räumen & Reinigen anfragen",
   },
   {
     title: "Keller/Garage/Dachboden",
-    forText: "Nebenflaechen stoeren Verkauf, Besichtigung oder Eigentuemerwechsel.",
-    includes: ["Raeumung", "Entsorgung", "Fotoeinschaetzung", "Reinigung optional"],
-    cta: "Nebenflaechen pruefen lassen",
+    forText: "Nebenflächen stoeren Verkauf, Besichtigung oder Eigentuemerwechsel.",
+    includes: ["Räumung", "Entsorgung", "Fotoeinschaetzung", "Reinigung optional"],
+    cta: "Nebenflächen prüfen lassen",
   },
   {
     title: "Eigentuemer-/Makler-Fall",
     forText: "Objekt soll schnell eingeschaetzt und priorisiert werden.",
-    includes: ["Fotos", "Objektstatus", "Termin", "Rueckruf"],
+    includes: ["Fotos", "Objektstatus", "Termin", "Rückruf"],
     cta: "Objektfall senden",
   },
   {
     title: "Diskrete Abstimmung",
     forText: "Sensible Eigentuemer-, Verkaufs-, Trennungs- oder Nachlasssituation.",
-    includes: ["Rueckruf", "diskrete Abstimmung", "Raeumung/Reinigung/Entsorgung nach Absprache"],
+    includes: ["Rückruf", "diskrete Abstimmung", "Räumung/Reinigung/Entsorgung nach Absprache"],
     cta: "Diskrete Anfrage starten",
   },
 ];
@@ -194,31 +194,31 @@ const boundaries = [
 ];
 
 const relatedLinks = [
-  { href: "/nachlass-raeumung-regensburg", label: "Nachlass-Raeumung in Regensburg" },
+  { href: "/nachlass-raeumung-regensburg", label: "Nachlass-Räumung in Regensburg" },
   { href: "/wohnung-wieder-vermietbar", label: "Wohnung wieder vermietbar machen" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
   { href: "/makler-vermieter-link", label: "Makler-/Vermieter-Link" },
-  { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
-  { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreten Auszug ruhig klaeren" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller und Garage vor Verkauf raeumen" },
-  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+  { href: "/uebergabeakte", label: "Übergabeakte ergaenzen" },
+  { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreten Auszug ruhig klären" },
+  { href: "/keller-muellraum-rettung-regensburg", label: "Keller und Garage vor Verkauf räumen" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/regensburg/reinigung", label: "Reinigung vor Besichtigung" },
   { href: "/private-client-service", label: "Diskrete Objektvorbereitung" },
   { href: "/regensburg", label: "Regensburg-Bereich" },
   { href: "/buchung", label: "Buchung / Anfrage starten" },
-  { href: "/rechner", label: "Preisrahmen einschaetzen" },
+  { href: "/rechner", label: "Preisrahmen einschätzen" },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg separat" },
-  { href: "/entsorgung-duesseldorf", label: "Duesseldorf Entsorgung separat" },
+  { href: "/entsorgung-duesseldorf", label: "Düsseldorf Entsorgung separat" },
 ];
 
 const faqItems = [
   {
     q: "Was bedeutet Immobilie verkaufsbereit machen?",
-    a: "Gemeint ist praktische und organisatorische Vorbereitung vor Verkauf, Besichtigung, Expose-Fotos oder Eigentuemerwechsel: Raeumung, Entsorgung, Reinigung, Fotos und Dokumentation nach Absprache.",
+    a: "Gemeint ist praktische und organisatorische Vorbereitung vor Verkauf, Besichtigung, Expose-Fotos oder Eigentuemerwechsel: Räumung, Entsorgung, Reinigung, Fotos und Dokumentation nach Absprache.",
   },
   {
     q: "Garantiert FLOXANT einen besseren Verkaufspreis?",
-    a: "Nein. FLOXANT unterstuetzt bei Raeumung, Reinigung, Entsorgung und Vorbereitung, garantiert aber keinen Verkaufserfolg, keine Wertsteigerung und keinen besseren Preis.",
+    a: "Nein. FLOXANT unterstützt bei Räumung, Reinigung, Entsorgung und Vorbereitung, garantiert aber keinen Verkaufserfolg, keine Wertsteigerung und keinen besseren Preis.",
   },
   {
     q: "Ist FLOXANT ein Makler?",
@@ -226,39 +226,39 @@ const faqItems = [
   },
   {
     q: "Uebernimmt FLOXANT Renovierungen?",
-    a: "Diese Seite behauptet keine Renovierung, Reparatur oder Malerarbeiten. Geprueft werden nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann.",
+    a: "Diese Seite behauptet keine Renovierung, Reparatur oder Malerarbeiten. Geprüft werden nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann.",
   },
   {
     q: "Kann FLOXANT vor Besichtigung reinigen?",
-    a: "Ja, Reinigung vor Besichtigung kann nach Flaeche, Zustand, Termin, Zugang und Fotos geprueft werden.",
+    a: "Ja, Reinigung vor Besichtigung kann nach Fläche, Zustand, Termin, Zugang und Fotos geprüft werden.",
   },
   {
-    q: "Kann FLOXANT Keller, Garage oder Dachboden raeumen?",
-    a: "Ja, nach Pruefung von Umfang, Zugang, Freigabe, Materialart und Fotos. Gefahrstoffe oder Sondermuell werden nicht pauschal zugesagt.",
+    q: "Kann FLOXANT Keller, Garage oder Dachboden räumen?",
+    a: "Ja, nach Prüfung von Umfang, Zugang, Freigabe, Materialart und Fotos. Gefahrstoffe oder Sondermuell werden nicht pauschal zugesagt.",
   },
   {
-    q: "Ist der Service fuer Erbengemeinschaften geeignet?",
-    a: "Ja, wenn Berechtigung, Zugang und Freigabe geklaert sind. FLOXANT kann Raeumung, Entsorgung, Reinigung und diskrete Abstimmung nach Absprache pruefen.",
+    q: "Ist der Service für Erbengemeinschaften geeignet?",
+    a: "Ja, wenn Berechtigung, Zugang und Freigabe geklaert sind. FLOXANT kann Räumung, Entsorgung, Reinigung und diskrete Abstimmung nach Absprache prüfen.",
   },
   {
     q: "Kann ich Fotos senden?",
-    a: "Ja. Fotos von Raeumen, Moebeln, Nebenflaechen, Zugang und Verschmutzung helfen bei Aufwand, Prioritaet und Rueckfragen.",
+    a: "Ja. Fotos von Räumen, Möbeln, Nebenflächen, Zugang und Verschmutzung helfen bei Aufwand, Priorität und Rückfragen.",
   },
   {
-    q: "Kann eine Uebergabeakte ergaenzt werden?",
-    a: "Ja. Die FLOXANT Uebergabeakte kann nach Absprache Leistungen, Fotos, Schluesselstatus und Hinweise organisatorisch buendeln.",
+    q: "Kann eine Übergabeakte ergaenzt werden?",
+    a: "Ja. Die FLOXANT Übergabeakte kann nach Absprache Leistungen, Fotos, Schlüsselstatus und Hinweise organisatorisch buendeln.",
   },
   {
     q: "Was wird nicht entsorgt?",
     a: "Gefahrstoffe, Asbest, Chemikalien, Oele, Farben, kontaminierte Materialien und rechtlich unklare Stoffe werden nicht ungeprueft zugesagt.",
   },
   {
-    q: "In welchem Gebiet ist der Service moeglich?",
+    q: "In welchem Gebiet ist der Service möglich?",
     a: "Düsseldorf und Regensburg werden je nach Leistung, Objekt und Verfügbarkeit getrennt geprüft. Senden Sie den Ort direkt mit Ihrer Anfrage.",
   },
   {
-    q: "Ist kurzfristige Vorbereitung moeglich?",
-    a: "Kurzfristige Vorbereitung kann geprueft werden. Machbarkeit haengt von Ort, Termin, Umfang, Zugang, Fotos und Kapazitaet ab.",
+    q: "Ist kurzfristige Vorbereitung möglich?",
+    a: "Kurzfristige Vorbereitung kann geprüft werden. Machbarkeit haengt von Ort, Termin, Umfang, Zugang, Fotos und Kapazität ab.",
   },
 ];
 
@@ -268,12 +268,12 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Immobilie verkaufsbereit machen",
       description:
-        "Objekt-Service fuer Eigentuemer, Makler, Vermieter, Erbengemeinschaften und Hausverwaltungen: Raeumung, Entsorgung, Reinigung und Dokumentation vor Verkauf oder Besichtigung nach Absprache.",
+        "Objekt-Service für Eigentuemer, Makler, Vermieter, Erbengemeinschaften und Hausverwaltungen: Räumung, Entsorgung, Reinigung und Dokumentation vor Verkauf oder Besichtigung nach Absprache.",
       path,
       about: [
         "Immobilie verkaufsbereit machen",
-        "Wohnung fuer Besichtigung vorbereiten",
-        "Raeumung vor Verkauf",
+        "Wohnung für Besichtigung vorbereiten",
+        "Räumung vor Verkauf",
         "Reinigung vor Immobilienverkauf",
         "Objektvorbereitung Regensburg",
       ],
@@ -285,10 +285,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Verkaufsbereit-Service fuer Immobilien",
       description:
-        "Praktische und organisatorische Vorbereitung von Wohnungen, Haeusern und Nebenflaechen vor Verkauf, Besichtigung, Expose oder Eigentuemerwechsel durch Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache. Keine Maklerleistung, keine Bewertung und keine Verkaufsgarantie.",
+        "Praktische und organisatorische Vorbereitung von Wohnungen, Haeusern und Nebenflächen vor Verkauf, Besichtigung, Expose oder Eigentuemerwechsel durch Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache. Keine Maklerleistung, keine Bewertung und keine Verkaufsgarantie.",
       path,
       serviceType: "Objektvorbereitung vor Immobilienverkauf oder Besichtigung",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit"],
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -314,12 +314,12 @@ export default function ImmobilieVerkaufsbereitPage() {
                 Immobilie verkaufsbereit machen vor Besichtigung oder Verkauf
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn Wohnung, Haus, Keller oder Garage vor Verkauf, Besichtigung oder Expose vorbereitet werden muessen,
-                prueft FLOXANT Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
+                Wenn Wohnung, Haus, Keller oder Garage vor Verkauf, Besichtigung oder Expose vorbereitet werden müssen,
+                prüft FLOXANT Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-amber-800" data-event="service_card_click">
-                  Objektstatus pruefen lassen
+                  Objektstatus prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -339,10 +339,10 @@ export default function ImmobilieVerkaufsbereitPage() {
               <div className="relative rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10">
                 <div className="rounded-[1.5rem] bg-stone-950 p-5 text-white">
                   <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-200">Objektstatus</div>
-                  <h2 className="mt-2 text-3xl font-black tracking-tight">Von "noch offen" zu pruefbar</h2>
+                  <h2 className="mt-2 text-3xl font-black tracking-tight">Von "noch offen" zu prüfbar</h2>
                   <p className="mt-3 text-sm leading-7 text-stone-300">
                     FLOXANT ersetzt keine Maklerleistung, Bewertung oder Renovierung. Der Nutzen liegt in praktischer Vorbereitung:
-                    Raeume leerer, Flaechen sauberer, Nebenbereiche geordneter und der Fall besser dokumentiert.
+                    Räume leerer, Flächen sauberer, Nebenbereiche geordneter und der Fall besser dokumentiert.
                   </p>
                 </div>
                 <div className="mt-4 grid grid-cols-5 gap-2">
@@ -355,9 +355,9 @@ export default function ImmobilieVerkaufsbereitPage() {
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    "Fotos helfen, Umfang und Prioritaet schneller zu klaeren.",
-                    "Schluesselstatus und Zugang werden nicht nebenbei behandelt.",
-                    "Uebergabeakte und Foto-Dokumentation sind nach Absprache moeglich.",
+                    "Fotos helfen, Umfang und Priorität schneller zu klären.",
+                    "Schlüsselstatus und Zugang werden nicht nebenbei behandelt.",
+                    "Übergabeakte und Foto-Dokumentation sind nach Absprache möglich.",
                     "Regensburg bleibt auf Reinigung und Entsorgung begrenzt.",
                   ].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-amber-100 bg-amber-50 p-4 text-sm font-bold leading-6 text-amber-950">
@@ -377,8 +377,8 @@ export default function ImmobilieVerkaufsbereitPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Objektstatus-Terminal</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Was muss vor Besichtigung oder Verkauf noch passieren?</h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Vor Verkauf oder Besichtigung muessen oft noch Raeume, Moebel, Keller, Reinigung, Entsorgung oder Zugang geklaert werden.
-                FLOXANT fragt die Punkte ab, die den naechsten Schritt praktisch beeinflussen.
+                Vor Verkauf oder Besichtigung müssen oft noch Räume, Möbel, Keller, Reinigung, Entsorgung oder Zugang geklaert werden.
+                FLOXANT fragt die Punkte ab, die den nächsten Schritt praktisch beeinflussen.
               </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -395,7 +395,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                       ))}
                     </div>
                     <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="service_card_click">
-                      Objektstatus pruefen lassen
+                      Objektstatus prüfen lassen
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </article>
@@ -409,10 +409,10 @@ export default function ImmobilieVerkaufsbereitPage() {
           <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="rounded-[2rem] bg-stone-950 p-7 text-white">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-200">Service-Bausteine</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight">Was FLOXANT vor Verkauf oder Besichtigung pruefen kann</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight">Was FLOXANT vor Verkauf oder Besichtigung prüfen kann</h2>
               <p className="mt-4 text-base leading-8 text-stone-300">
                 FLOXANT behauptet keine Renovierung, kein Home Staging, keine Bewertung und keinen Verkaufserfolg.
-                Geprueft werden praktische Bausteine rund um Raeumung, Entsorgung, Reinigung, Zugang, Fotos und Dokumentation.
+                Geprüft werden praktische Bausteine rund um Räumung, Entsorgung, Reinigung, Zugang, Fotos und Dokumentation.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-stone-950">
@@ -420,11 +420,11 @@ export default function ImmobilieVerkaufsbereitPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-black text-white">
-                  Uebergabeakte ergaenzen
+                  Übergabeakte ergaenzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/30 bg-amber-950/20 px-4 text-sm font-black text-amber-50">
-                  Nebenflaechen pruefen
+                  Nebenflächen prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -444,7 +444,7 @@ export default function ImmobilieVerkaufsbereitPage() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-7 max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Fuer Eigentuemer, Makler, Erbengemeinschaften, Vermieter und Hausverwaltungen</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Für Eigentuemer, Makler, Erbengemeinschaften, Vermieter und Hausverwaltungen</h2>
             </div>
             <div className="grid gap-4 lg:grid-cols-5">
               {audiences.map((item) => {
@@ -471,7 +471,7 @@ export default function ImmobilieVerkaufsbereitPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Verkaufsbereit-Pakete</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Pakete ohne Festpreis- oder Verkaufsgarantie</h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Die Pakete sind Orientierungen fuer die Anfrage. Preis, Umfang und Termin werden erst nach Objektangaben, Fotos und Zugang geprueft.
+                Die Pakete sind Orientierungen für die Anfrage. Preis, Umfang und Termin werden erst nach Objektangaben, Fotos und Zugang geprüft.
               </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -504,12 +504,12 @@ export default function ImmobilieVerkaufsbereitPage() {
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Fotos, Ziel, Termin und offene Bereiche senden</h2>
               <p className="mt-4 text-base leading-8 text-stone-700">
                 Je klarer Objektart, Ziel, Besichtigungstermin, Fototermin, Zugang, Fotos und gewuenschte Bausteine sind,
-                desto schneller kann FLOXANT Rueckfragen reduzieren und Machbarkeit einordnen.
+                desto schneller kann FLOXANT Rückfragen reduzieren und Machbarkeit einordnen.
               </p>
               <div className="mt-5 grid gap-3">
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <Camera className="mb-2 h-5 w-5 text-amber-700" />
-                  <p className="text-sm leading-7 text-stone-700">Fotos von Raeumen, Keller, Garage, Dachboden, Zugang, Moebeln oder Verschmutzung helfen bei Umfang und Prioritaet.</p>
+                  <p className="text-sm leading-7 text-stone-700">Fotos von Räumen, Keller, Garage, Dachboden, Zugang, Möbeln oder Verschmutzung helfen bei Umfang und Priorität.</p>
                 </div>
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <ShieldCheck className="mb-2 h-5 w-5 text-amber-700" />
@@ -547,7 +547,7 @@ export default function ImmobilieVerkaufsbereitPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Passende nächste Schritte</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Verwandte FLOXANT Wege</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">
-                Wenn Ihr Fall eher Vermietung, Mieterwechsel, Uebergabe oder Nebenflaechen betrifft, fuehren diese Seiten in die passenden Spezialpfade.
+                Wenn Ihr Fall eher Vermietung, Mieterwechsel, Übergabe oder Nebenflächen betrifft, führen diese Seiten in die passenden Spezialpfade.
               </p>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -565,7 +565,7 @@ export default function ImmobilieVerkaufsbereitPage() {
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Haeufige Fragen zum Verkaufsbereit-Service</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Häufige Fragen zum Verkaufsbereit-Service</h2>
             </div>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (
@@ -585,9 +585,9 @@ export default function ImmobilieVerkaufsbereitPage() {
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-200">FLOXANT Property-Ready</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight">Objekt vor Verkauf, Besichtigung oder Expose pruefen lassen</h2>
+                <h2 className="mt-3 text-3xl font-black tracking-tight">Objekt vor Verkauf, Besichtigung oder Expose prüfen lassen</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-300">
-                  Senden Sie Ort, Ziel, Termin, Fotos und offene Bereiche. FLOXANT prueft nach Absprache Raeumung, Reinigung, Entsorgung und Dokumentation.
+                  Senden Sie Ort, Ziel, Termin, Fotos und offene Bereiche. FLOXANT prüft nach Absprache Räumung, Reinigung, Entsorgung und Dokumentation.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">

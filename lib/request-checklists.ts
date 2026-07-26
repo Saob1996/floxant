@@ -114,11 +114,11 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     key: "bueroreinigung",
     label: "Büroreinigungsanfrage",
     shortLabel: "Büroreinigung",
-    contactService: "bueroreinigung",
-    contactIntent: "bueroreinigung-anfragen",
+    contactService: "büroreinigung",
+    contactIntent: "büroreinigung-anfragen",
     requiredCoreInfo: [
-      { label: "Fläche", detail: "Quadratmeter, Raumliste und Anzahl Arbeitsplaetze." },
-      { label: "Turnus", detail: "Einmalig, woechentlich, mehrmals pro Woche oder noch offen." },
+      { label: "Fläche", detail: "Quadratmeter, Raumliste und Anzahl Arbeitsplätze." },
+      { label: "Turnus", detail: "Einmalig, wöchentlich, mehrmals pro Woche oder noch offen." },
       { label: "Zeitfenster", detail: "Vor Arbeitsbeginn, nach Feierabend, Wochenende oder Betriebspause." },
       { label: "Zugang", detail: "Schlüsselweg, Ansprechpartner, Alarm und Hausordnung." },
     ],
@@ -159,7 +159,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     contactIntent: "gewerbereinigung-anfragen",
     requiredCoreInfo: [
       { label: "Objektart", detail: "Laden, Praxisfläche, Objekt, Gewerbefläche, Büro oder gemischte Nutzung." },
-      { label: "Nutzung", detail: "Oeffnungszeiten, Betriebspausen, Publikumsverkehr und Sonderbereiche." },
+      { label: "Nutzung", detail: "Öffnungszeiten, Betriebspausen, Publikumsverkehr und Sonderbereiche." },
       { label: "Leistung", detail: "Turnus, Einmalleistung, Grundreinigung oder Sonderreinigung." },
       { label: "Zugang", detail: "Ansprechpartner, Schlüsselweg, Parken, Alarm oder Freigaben." },
     ],
@@ -201,11 +201,11 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     requiredCoreInfo: [
       { label: "Rolle", detail: "Hausverwaltung, Vermieter, WEG, Unternehmen oder Ansprechpartner." },
       { label: "Objekt", detail: "Mehrfamilienhaus, Wohnanlage, Treppenhaus, Aufzug oder Gemeinschaftsflächen." },
-      { label: "Turnus", detail: "Einmalig, woechentlich, 14-taegig, monatlich oder Angebotsvergleich." },
+      { label: "Turnus", detail: "Einmalig, wöchentlich, 14-taegig, monatlich oder Angebotsvergleich." },
       { label: "Zugang", detail: "Schlüssel, Zeitfenster, Ansprechpartner vor Ort und besondere Regeln." },
     ],
     helpfulOptionalInfo: [
-      { label: "Bereiche", detail: "Eingang, Etagen, Keller, Garage, Müllraum, Aufzug oder Aussenbereich." },
+      { label: "Bereiche", detail: "Eingang, Etagen, Keller, Garage, Müllraum, Aufzug oder Außenbereich." },
       { label: "Angebot", detail: "Vorhandenes Objekt- oder Treppenhausreinigungsangebot." },
     ],
     photoHints: [
@@ -213,7 +213,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
       "Briefkästen, Namensschilder, Kennzeichen und private Türen vermeiden.",
       "Bei Müllraum oder Keller nur die Fläche zeigen, nicht private Gegenstände im Detail.",
     ],
-    missingInfoFlags: ["rolle", "objektart", "bereiche", "turnus", "schluesselweg"],
+    missingInfoFlags: ["rolle", "objektart", "bereiche", "turnus", "schlüsselweg"],
     microcopy: {
       headline: "Objekt- und Hausverwaltungsreinigung vorbereiten",
       intro: "Verwaltungen und Vermieter brauchen klare Angaben zu Objekt, Bereichen, Turnus, Zugang und Ansprechpartner.",
@@ -244,8 +244,8 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     key: "angebot-pruefen",
     label: "Angebotscheck",
     shortLabel: "Angebot prüfen",
-    contactService: "angebot-pruefen",
-    contactIntent: "angebot-pruefen",
+    contactService: "angebot-prüfen",
+    contactIntent: "angebot-prüfen",
     requiredCoreInfo: [
       { label: "Angebot", detail: "Preis, Positionen, Screenshot, PDF oder kurzer Angebotstext." },
       { label: "Leistung", detail: "Worum es geht: Reinigung, Umzug, Entsorgung, Transport oder Kombi-Fall." },
@@ -261,7 +261,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
       "Fotos von Umfang, Zugang oder Zustand reichen oft.",
       "Vertragsdaten, Ausweise, Kontodaten und fremde Telefonnummern vorher schwärzen.",
     ],
-    missingInfoFlags: ["angebot", "serviceart", "umfang", "termin", "pruefgrund"],
+    missingInfoFlags: ["angebot", "serviceart", "umfang", "termin", "prüfgrund"],
     microcopy: {
       headline: "Angebot vergleichbarer machen",
       intro: "Ein Angebot wird erst einordenbar, wenn Umfang, Termin, Zugang, Fotos und offene Positionen sichtbar sind.",
@@ -324,7 +324,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     relatedSignatureServices: [
       ...defaultRelatedSignatureServices,
       {
-        label: "Rueckfahrt-Radar",
+        label: "Rückfahrt-Radar",
         href: "/beiladung-regensburg",
         reason: "Wenn Strecke, Zeitfenster und Transportgut flexibel sind.",
       },
@@ -392,7 +392,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     key: "entruempelung",
     label: "Entrümpelungsanfrage",
     shortLabel: "Entrümpelung",
-    contactService: "entruempelung",
+    contactService: "entrümpelung",
     contactIntent: "entrümpelung-anfragen",
     requiredCoreInfo: [
       { label: "Räume", detail: "Wohnung, Keller, Dachboden, Garage, Lager oder Nebenflächen." },
@@ -439,11 +439,11 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
   wohnungsaufloesung: {
     key: "wohnungsaufloesung",
     label: "Wohnungsauflösungsanfrage",
-    shortLabel: "Wohnungsaufloesung",
-    contactService: "wohnungsaufloesung",
-    contactIntent: "wohnungsaufloesung-anfragen",
+    shortLabel: "Wohnungsauflösung",
+    contactService: "wohnungsauflösung",
+    contactIntent: "wohnungsauflösung-anfragen",
     requiredCoreInfo: [
-      { label: "Situation", detail: "Nachlass, Auszug, Pflegeheimwechsel, Leerstand oder Haushaltsaufloesung." },
+      { label: "Situation", detail: "Nachlass, Auszug, Pflegeheimwechsel, Leerstand oder Haushaltsauflösung." },
       { label: "Objekt", detail: "Wohnung, Haus, Keller, Garage, Etage, Zugang und Schlüsselweg." },
       { label: "Freigabe", detail: "Wer entscheidet, was bleibt, entsorgt, gespendet oder separat behandelt wird." },
       { label: "Ziel", detail: "Geräumt, besenrein, gereinigt, verkaufsbereit oder Übergabefähig." },
@@ -459,7 +459,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     ],
     missingInfoFlags: ["situation", "freigabe", "räume", "zielzustand", "frist"],
     microcopy: {
-      headline: "Wohnungsaufloesung ruhig vorbereiten",
+      headline: "Wohnungsauflösung ruhig vorbereiten",
       intro: "Freigaben, Räume, Ansprechpartner, Fotos, Entsorgung und Endzustand sollten getrennt sichtbar sein.",
       submitReminder: "Eine Anfrage ist noch keine Buchung und keine Rechts- oder Eigentumsbewertung.",
       photoReminder: "Fotos sind hilfreich, aber sensible Nachlassdetails müssen nicht in die erste Anfrage.",
@@ -502,7 +502,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     ],
     photoHints: [
       "Nur Räume, Möbel und Laufwege zeigen, keine privaten Unterlagen.",
-      "Bei Angehoerigenkoordination lieber grobe Übersichten statt Detailfotos.",
+      "Bei Angehörigenkoordination lieber grobe Übersichten statt Detailfotos.",
       "Sensible Situation kann ohne Fotos gestartet werden.",
     ],
     missingInfoFlags: ["rolle", "start-ziel", "umfang", "zusatzbedarf", "frist"],
@@ -553,7 +553,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
       "Zugang, Dachkante und mögliche Standflächen fotografieren.",
       "Keine riskanten Fotos machen; Sicherheit geht vor.",
     ],
-    missingInfoFlags: ["dachart", "zugang", "modulflaeche", "verschmutzung", "sicherheitslage"],
+    missingInfoFlags: ["dachart", "zugang", "modulfläche", "verschmutzung", "sicherheitslage"],
     microcopy: {
       headline: "Solar-/PV-Reinigung sicher einordnen",
       intro: "Dachart, Zugang, Modulumfang, Verschmutzung und Sicherheitslage entscheiden vor jeder Zusage.",
@@ -641,7 +641,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     label: "Übergabe- und Vermieter-Ready-Anfrage",
     shortLabel: "Übergabe",
     contactService: "reinigung",
-    contactIntent: "uebergabe-vorbereiten",
+    contactIntent: "übergabe-vorbereiten",
     requiredCoreInfo: [
       { label: "Situation", detail: "Auszug, Übergabe, Nachnutzung, Vermieter-Ready oder nach Räumung." },
       { label: "Zustand", detail: "Leer, besenrein, sichtbar verschmutzt, Restmengen oder offene Punkte." },
@@ -657,7 +657,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
       "Nur sichtbare Objektpunkte fotografieren, keine Mietvertraege oder privaten Dokumente.",
       "Schlüsselstatus lieber als Text beschreiben, keine Schlüsselfotos mit Adresse.",
     ],
-    missingInfoFlags: ["situation", "zustand", "frist", "schluesselweg", "zusatzbedarf"],
+    missingInfoFlags: ["situation", "zustand", "frist", "schlüsselweg", "zusatzbedarf"],
     microcopy: {
       headline: "Übergabe besser vorbereiten",
       intro: "Bei Auszug und Übergabe helfen Zustand, Frist, Restpunkte, Fotos, Schlüsselweg und Zielzustand.",
@@ -695,7 +695,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     contactService: "reinigung",
     contactIntent: "objektbrief",
     requiredCoreInfo: [
-      { label: "Region", detail: "Regensburg, Duesseldorf oder Servicegebiet auf Anfrage." },
+      { label: "Region", detail: "Regensburg, Düsseldorf oder Servicegebiet auf Anfrage." },
       { label: "Leistung", detail: "Reinigung, Umzug, Entrümpelung, Übergabe, Angebot oder unklar." },
       { label: "Objekt", detail: "Ort/PLZ, Objektart, Zustand, Ziel und Zugang." },
       { label: "Termin", detail: "Deadline, Wunschfenster, Übergabe oder flexible Planung." },
@@ -770,7 +770,7 @@ const aliases: Record<string, RequestChecklistKey> = {
   haushaltsaufloesung: "wohnungsaufloesung",
   haushaltsauflösung: "wohnungsaufloesung",
   nachlassaufloesung: "wohnungsaufloesung",
-  "nachlass-räumung": "wohnungsaufloesung",
+  "nachlass-raeumung": "wohnungsaufloesung",
   "pv-anlagen-reinigung": "solar-pv",
   solarreinigung: "solar-pv",
   "solar-pv-reinigung": "solar-pv",

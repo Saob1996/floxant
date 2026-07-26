@@ -41,12 +41,12 @@ const redFlagCategories: RedFlagCategory[] = [
   {
     id: "umfang",
     title: "Umfang",
-    text: "Leistungen, Ausschluesse, Menge und Fotos sollten nachvollziehbar sein.",
+    text: "Leistungen, Ausschlüsse, Menge und Fotos sollten nachvollziehbar sein.",
     questions: [
       { id: "umfang_leistungen", label: "Welche Leistungen genau enthalten sind" },
       { id: "umfang_ausschluesse", label: "Welche Zusatzleistungen ausgeschlossen sind" },
-      { id: "umfang_moebel_kartons", label: "Moebel, Kartons oder Volumen beschrieben sind" },
-      { id: "umfang_fotos", label: "Fotos oder Besichtigung beruecksichtigt sind" },
+      { id: "umfang_moebel_kartons", label: "Möbel, Kartons oder Volumen beschrieben sind" },
+      { id: "umfang_fotos", label: "Fotos oder Besichtigung berücksichtigt sind" },
     ],
   },
   {
@@ -55,20 +55,20 @@ const redFlagCategories: RedFlagCategory[] = [
     text: "Etage, Aufzug und Laufwege beeinflussen Aufwand und Preis stark.",
     questions: [
       { id: "zugang_etage", label: "Etage am Start oder Ziel genannt ist" },
-      { id: "zugang_aufzug", label: "Aufzug beruecksichtigt ist" },
+      { id: "zugang_aufzug", label: "Aufzug berücksichtigt ist" },
       { id: "zugang_trageweg", label: "Trageweg oder schwieriger Zugang erwaehnt ist" },
-      { id: "zugang_adressen", label: "Start und Ziel grob beruecksichtigt sind" },
+      { id: "zugang_adressen", label: "Start und Ziel grob berücksichtigt sind" },
     ],
   },
   {
     id: "fahrzeug",
     title: "Fahrzeug / Volumen / Fahrten",
-    text: "Unklare Fahrzeug- oder Volumenangaben fuehren oft zu Zusatzfahrten.",
+    text: "Unklare Fahrzeug- oder Volumenangaben führen oft zu Zusatzfahrten.",
     questions: [
       { id: "fahrzeug_anzahl", label: "Fahrzeug oder Anzahl der Fahrten klar ist" },
       { id: "fahrzeug_volumen", label: "Volumen realistisch beschrieben ist" },
       { id: "fahrzeug_zusatzfahrten", label: "Zusatzfahrten geregelt sind" },
-      { id: "fahrzeug_schwer", label: "Grosse oder schwere Gegenstaende genannt sind" },
+      { id: "fahrzeug_schwer", label: "Grosse oder schwere Gegenstände genannt sind" },
     ],
   },
   {
@@ -79,7 +79,7 @@ const redFlagCategories: RedFlagCategory[] = [
       { id: "termin_datum", label: "Datum oder Zeitraum eindeutig ist" },
       { id: "termin_dauer", label: "Dauer oder Zeitfenster genannt ist" },
       { id: "termin_verzoegerung", label: "Verzoegerung oder Mehrzeit geregelt ist" },
-      { id: "termin_uebergabe", label: "Uebergabetermin beruecksichtigt ist" },
+      { id: "termin_uebergabe", label: "Übergabetermin berücksichtigt ist" },
     ],
   },
   {
@@ -88,32 +88,32 @@ const redFlagCategories: RedFlagCategory[] = [
     text: "Parken entscheidet, ob der Ablauf planbar bleibt.",
     questions: [
       { id: "parken_halteverbot", label: "Zugang oder Parken geklaert ist" },
-      { id: "parken_organisation", label: "Wer die Zugangslage prueft" },
+      { id: "parken_organisation", label: "Wer die Zugangslage prüft" },
       { id: "parken_situation", label: "Park- oder Zugangssituation beschrieben ist" },
-      { id: "parken_kosten", label: "Zusatzkosten fuer Parken geregelt sind" },
+      { id: "parken_kosten", label: "Zusatzkosten für Parken geregelt sind" },
     ],
   },
   {
     id: "reinigung_uebergabe",
-    title: "Reinigung / Uebergabe",
-    text: "Reinigung und Uebergabe sind oft nicht automatisch enthalten.",
+    title: "Reinigung / Übergabe",
+    text: "Reinigung und Übergabe sind oft nicht automatisch enthalten.",
     questions: [
       { id: "reinigung_enthalten", label: "Reinigung enthalten oder ausgeschlossen ist" },
       { id: "reinigung_endreinigung", label: "Endreinigung relevant ist" },
-      { id: "reinigung_vorbereitung", label: "Uebergabevorbereitung genannt ist" },
-      { id: "reinigung_schluessel", label: "Schluesseluebergabe erwaehnt ist" },
-      { id: "reinigung_akte", label: "Uebergabeakte oder Dokumentation sinnvoll waere" },
+      { id: "reinigung_vorbereitung", label: "Übergabevorbereitung genannt ist" },
+      { id: "reinigung_schluessel", label: "Schlüsselübergabe erwaehnt ist" },
+      { id: "reinigung_akte", label: "Übergabeakte oder Dokumentation sinnvoll waere" },
     ],
   },
   {
     id: "entruempelung_entsorgung",
-    title: "Entruempelung / Entsorgung",
-    text: "Entsorgungskosten und Ausschluesse muessen sauber getrennt sein.",
+    title: "Entrümpelung / Entsorgung",
+    text: "Entsorgungskosten und Ausschlüsse müssen sauber getrennt sein.",
     questions: [
       { id: "entsorgung_kosten", label: "Entsorgungskosten enthalten sind" },
-      { id: "entsorgung_gegenstaende", label: "Welche Gegenstaende enthalten sind" },
-      { id: "entsorgung_ausschluesse", label: "Ausschluesse genannt sind" },
-      { id: "entsorgung_nebenraeume", label: "Keller, Garage oder Nebenraeume beruecksichtigt sind" },
+      { id: "entsorgung_gegenstaende", label: "Welche Gegenstände enthalten sind" },
+      { id: "entsorgung_ausschluesse", label: "Ausschlüsse genannt sind" },
+      { id: "entsorgung_nebenraeume", label: "Keller, Garage oder Nebenraeume berücksichtigt sind" },
       { id: "entsorgung_gefahrstoffe", label: "Gefaehrliche Stoffe ausgeschlossen sind" },
     ],
   },
@@ -131,22 +131,22 @@ const redFlagCategories: RedFlagCategory[] = [
   {
     id: "haftung",
     title: "Haftung / Versicherung / Schaeden",
-    text: "Empfindliche Gegenstaende und Montage brauchen klare Absprachen.",
+    text: "Empfindliche Gegenstände und Montage brauchen klare Absprachen.",
     questions: [
       { id: "haftung_versicherung", label: "Versicherung oder Haftung erwaehnt ist" },
       { id: "haftung_schaeden", label: "Regelungen bei Schaeden beschrieben sind" },
       { id: "haftung_montage", label: "Montage oder Demontage geregelt ist" },
-      { id: "haftung_empfindlich", label: "Empfindliche Gegenstaende genannt sind" },
+      { id: "haftung_empfindlich", label: "Empfindliche Gegenstände genannt sind" },
     ],
   },
   {
     id: "kommunikation",
     title: "Anbieter-Kommunikation",
-    text: "Klare Rueckfragen und schriftliche Bestaetigung machen Angebote belastbarer.",
+    text: "Klare Rückfragen und schriftliche Bestätigung machen Angebote belastbarer.",
     questions: [
       { id: "kommunikation_ansprechpartner", label: "Ansprechpartner klar ist" },
-      { id: "kommunikation_schriftlich", label: "Schriftliche Bestaetigung vorhanden ist" },
-      { id: "kommunikation_rueckfragen", label: "Rueckfragen moeglich sind" },
+      { id: "kommunikation_schriftlich", label: "Schriftliche Bestätigung vorhanden ist" },
+      { id: "kommunikation_rueckfragen", label: "Rückfragen möglich sind" },
       { id: "kommunikation_dokumentiert", label: "Leistungsumfang eindeutig dokumentiert ist" },
     ],
   },
@@ -270,11 +270,11 @@ export function OfferRedFlagScanner({
             FLOXANT Angebots-Radar
           </div>
           <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-            Angebot-Red-Flag-Scanner: Ist Ihr Angebot vollstaendig?
+            Angebot-Red-Flag-Scanner: Ist Ihr Angebot vollständig?
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
             Markieren Sie die Punkte, die im vorhandenen Angebot unklar sind. Der Score zeigt praktischen
-            Klaerungsbedarf, keine Rechtsbewertung und keine Aussage ueber den Anbieter.
+            Klaerungsbedarf, keine Rechtsbewertung und keine Aussage über den Anbieter.
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
             <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Rechtsberatung</span>
@@ -403,8 +403,8 @@ export function OfferRedFlagScanner({
               </ul>
             ) : (
               <p className="mt-3 text-xs leading-5 text-slate-700">
-                Keine offenen Punkte markiert. Sie koennen das Angebot trotzdem hochladen, wenn Sie eine zweite
-                organisatorische Einschaetzung moechten.
+                Keine offenen Punkte markiert. Sie können das Angebot trotzdem hochladen, wenn Sie eine zweite
+                organisatorische Einschätzung möchten.
               </p>
             )}
           </div>

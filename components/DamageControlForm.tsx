@@ -658,9 +658,9 @@ export function DamageControlForm() {
         <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
           <AlertTriangle className="mr-1 inline h-4 w-4 text-red-700" />
           Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit hängt von Ort, Termin, Umfang und Kapazität ab. Direktkontakt:
-          {" "}
+          {""}
           <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a>
-          {" "}- {EMAIL}
+          {""}- {EMAIL}
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">

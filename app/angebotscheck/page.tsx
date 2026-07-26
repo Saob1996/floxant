@@ -51,9 +51,9 @@ const path = "/angebotscheck";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebotscheck fuer Reinigung, Umzug und Entruempelung",
+  title: "Angebotscheck für Reinigung, Umzug und Entrümpelung",
   description:
-    "Kurzer Angebotscheck fuer vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren. Auch fuer Reinigungsangebote in Duesseldorf.",
+    "Kurzer Angebotscheck für vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klären. Auch für Reinigungsangebote in Düsseldorf.",
 });
 
 const whatsappHref =
@@ -387,7 +387,7 @@ export default function AngebotscheckPage() {
         <ProjectStoryGrid serviceKey="angebot-pruefen" />
         <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
         <ProcessProofSteps
-          title="Angebotscheck als nachvollziehbarer Pruefweg."
+          title="Angebotscheck als nachvollziehbarer Prüfweg."
           intro="FLOXANT ordnet sichtbare Angebotsdaten und offene Punkte ein. Das ersetzt keine Rechtsberatung und behauptet keine garantierte Ersparnis."
         />
 
@@ -498,14 +498,14 @@ export default function AngebotscheckPage() {
 
         <ServiceClusterLinks
           eyebrow="Angebotscheck-Cluster"
-          title="Welche Pruefung zum vorhandenen Angebot passt."
-          intro="Ein Angebot kann guenstig, teuer, unvollstaendig oder einfach schwer vergleichbar sein. Diese Startpunkte halten die Entscheidung sachlich."
+          title="Welche Prüfung zum vorhandenen Angebot passt."
+          intro="Ein Angebot kann günstig, teuer, unvollstaendig oder einfach schwer vergleichbar sein. Diese Startpunkte halten die Entscheidung sachlich."
           links={offerCheckLinks}
         />
 
         <SignatureServicesGrid
           title="Signature Services, die beim Angebotscheck oft mitspielen."
-          intro="Objektbrief, Uebergabe, Plan B und Rueckfahrt koennen erklaeren, warum ein Angebot lueckenhaft wirkt oder warum eine zweite Einschaetzung sinnvoll ist."
+          intro="Objektbrief, Übergabe, Plan B und Rückfahrt können erklären, warum ein Angebot lückenhaft wirkt oder warum eine zweite Einschätzung sinnvoll ist."
           services={signatureServiceLinks.filter((item) =>
             ["FLOXANT Fairpreis-Check", "FLOXANT Objektbrief", "FLOXANT Uebergabeakte", "FLOXANT Plan-B-Service", "FLOXANT Rueckfahrt-Radar"].includes(item.title),
           )}
@@ -513,8 +513,8 @@ export default function AngebotscheckPage() {
 
         <RelatedSpecialServices
           kind="offer"
-          title="Wenn der Angebotscheck in einen naechsten Service fuehrt."
-          intro="Nach der Pruefung kann klar werden, ob Reinigung, Umzug, Entruempelung, Rueckfahrt oder ein Objektbrief der bessere naechste Schritt ist."
+          title="Wenn der Angebotscheck in einen nächsten Service führt."
+          intro="Nach der Prüfung kann klar werden, ob Reinigung, Umzug, Entrümpelung, Rückfahrt oder ein Objektbrief der bessere nächste Schritt ist."
           limit={3}
         />
 

@@ -21,7 +21,7 @@ const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
 const roleOptions = [
-  "Angehoeriger",
+  "Angehöriger",
   "Erbe",
   "Erbengemeinschaft",
   "Eigentuemer",
@@ -46,61 +46,61 @@ const objectTypeOptions = [
 const statusOptions = [
   {
     value: "wohnung_raeumen",
-    title: "Wohnung raeumen",
-    text: "Wohnung oder einzelne Raeume sollen nach Nachlass geordnet und leerer werden.",
-    services: "Raeumung + Entsorgung",
+    title: "Wohnung räumen",
+    text: "Wohnung oder einzelne Räume sollen nach Nachlass geordnet und leerer werden.",
+    services: "Räumung + Entsorgung",
   },
   {
     value: "haus_teilweise",
-    title: "Haus teilweise raeumen",
-    text: "Nicht alles muss auf einmal passieren, aber Umfang und Prioritaet brauchen Struktur.",
-    services: "Teilbereiche pruefen",
+    title: "Haus teilweise räumen",
+    text: "Nicht alles muss auf einmal passieren, aber Umfang und Priorität brauchen Struktur.",
+    services: "Teilbereiche prüfen",
   },
   {
     value: "nebenraeume",
     title: "Keller / Garage / Dachboden",
-    text: "Nebenraeume, Lagerflaechen oder alte Gegenstaende sollen mitgeprueft werden.",
+    text: "Nebenraeume, Lagerflaechen oder alte Gegenstände sollen mitgeprueft werden.",
     services: "Nebenraeume",
   },
   {
     value: "reinigung_danach",
-    title: "Reinigung nach Raeumung",
-    text: "Nach dem Leeren soll die Flaeche sauberer, nutzbarer oder uebergabefaehiger werden.",
+    title: "Reinigung nach Räumung",
+    text: "Nach dem Leeren soll die Fläche sauberer, nutzbarer oder übergabefaehiger werden.",
     services: "Reinigung danach",
   },
   {
     value: "verkauf_vermietung",
     title: "Objekt vorbereiten",
-    text: "Die Wohnung soll spaeter verkauft, vermietet oder uebergeben werden.",
+    text: "Die Wohnung soll später verkauft, vermietet oder uebergeben werden.",
     services: "Objektvorbereitung",
   },
   {
     value: "diskreter_rueckruf",
-    title: "Diskreter Rueckruf",
+    title: "Diskreter Rückruf",
     text: "Die Situation ist sensibel und soll lieber ruhig telefonisch geklaert werden.",
-    services: "Rueckruf",
+    services: "Rückruf",
   },
 ];
 
 const serviceOptions = [
-  "Raeumung / Entruempelung",
+  "Räumung / Entrümpelung",
   "Entsorgung",
-  "Reinigung nach Raeumung",
+  "Reinigung nach Räumung",
   "Keller / Garage / Dachboden",
-  "Objekt fuer Verkauf vorbereiten",
-  "Objekt fuer Vermietung vorbereiten",
-  "Uebergabeakte / Foto-Dokumentation",
-  "Schluesselkoordination",
-  "Diskreter Rueckruf",
+  "Objekt für Verkauf vorbereiten",
+  "Objekt für Vermietung vorbereiten",
+  "Übergabeakte / Foto-Dokumentation",
+  "Schlüsselkoordination",
+  "Diskreter Rückruf",
   "Diskrete Abstimmung",
 ];
 
 const urgencyOptions = [
   "diese Woche",
-  "naechste Woche",
+  "nächste Woche",
   "innerhalb eines Monats",
   "vor Besichtigung",
-  "vor Uebergabe",
+  "vor Übergabe",
   "flexibel",
 ];
 
@@ -261,7 +261,7 @@ export function EstateClearanceForm() {
         <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Objektstatus-Terminal</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">Was muss ruhig geklaert werden?</h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Waehlen Sie die naechstliegende Lage. FLOXANT nutzt diese Angabe nur zur praktischen Vorpruefung und ersetzt keine rechtliche Nachlassklaerung.
+          Wählen Sie die nächstliegende Lage. FLOXANT nutzt diese Angabe nur zur praktischen Vorprüfung und ersetzt keine rechtliche Nachlassklaerung.
         </p>
       </div>
 
@@ -313,7 +313,7 @@ export function EstateClearanceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="fuer diskreten Rueckruf" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="für diskreten Rückruf" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             E-Mail
@@ -339,7 +339,7 @@ export function EstateClearanceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Gewuenschter Zeitraum*
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. flexibel, naechste Woche, vor Uebergabe" />
+            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. flexibel, nächste Woche, vor Übergabe" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Dringlichkeit
@@ -352,7 +352,7 @@ export function EstateClearanceForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
-          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprueft werden?</div>
+          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -375,11 +375,11 @@ export function EstateClearanceForm() {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaM2" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. 80 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Raeume
+            Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. 3" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -427,8 +427,8 @@ export function EstateClearanceForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Zugang / Schluesselstatus
-            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="Schluessel bei Erbe, Verwaltung, Makler..." />
+            Zugang / Schlüsselstatus
+            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="Schlüssel bei Erbe, Verwaltung, Makler..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Budget / Preisrahmen optional
@@ -439,11 +439,11 @@ export function EstateClearanceForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Zugang / Hinweise
-            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Parken, Trageweg, Kellerzugang, Schluessel, Ansprechpartner vor Ort" />
+            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Parken, Trageweg, Kellerzugang, Schlüssel, Ansprechpartner vor Ort" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Kurze Beschreibung*
-            <textarea name="message" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Welche Raeume, Gegenstaende, Nebenbereiche oder Termine sollen geklaert werden?" />
+            <textarea name="message" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Welche Räume, Gegenstände, Nebenbereiche oder Termine sollen geklaert werden?" />
           </label>
         </div>
 
@@ -462,18 +462,18 @@ export function EstateClearanceForm() {
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Diskreter Rueckruf gewuenscht.
+            Diskreter Rückruf gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            WhatsApp fuer Rueckfragen bevorzugt.
+            WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
-            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein muessen.
+            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein müssen.
           </span>
         </label>
 
@@ -483,7 +483,7 @@ export function EstateClearanceForm() {
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage ist eingegangen. FLOXANT prueft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -511,7 +511,7 @@ export function EstateClearanceForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />
-            Rueckruf
+            Rückruf
           </a>
           <a href={`mailto:${EMAIL}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-5 text-sm font-black text-stone-800 transition hover:bg-stone-50">
             <Mail className="h-4 w-4" />
@@ -521,7 +521,7 @@ export function EstateClearanceForm() {
 
         <div className="flex flex-wrap gap-2 text-xs font-bold text-stone-600">
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><ShieldCheck className="h-3 w-3" /> Keine Rechts- oder Erbberatung</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschaetzung</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschätzung</span>
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Phone className="h-3 w-3" /> {PHONE_DISPLAY}</span>
         </div>
       </form>

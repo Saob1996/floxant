@@ -32,36 +32,36 @@ const path = "/makler-vermieter-link";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Fuer Makler & Vermieter - Objekt vorbereiten lassen | FLOXANT",
+  title: "Für Makler & Vermieter - Objekt vorbereiten lassen | FLOXANT",
   description:
-    "Direkter Objekt-Link fuer Makler, Vermieter und Eigentuemer: Wohnung nach Auszug raeumen, reinigen, entsorgen und fuer Besichtigung oder Uebergabe vorbereiten lassen.",
+    "Direkter Objekt-Link für Makler, Vermieter und Eigentuemer: Wohnung nach Auszug räumen, reinigen, entsorgen und für Besichtigung oder Übergabe vorbereiten lassen.",
 });
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20moechte%20einen%20Objektfall%20als%20Makler%2FVermieter%2FEigentuemer%20senden.%20Es%20geht%20um%20ein%20Objekt%20in%20%5BOrt%5D.%20Benoetigt%20werden%20Raeumung%2FReinigung%2FEntsorgung%2FUebergabevorbereitung%20nach%20Absprache.%20Fotos%20und%20Termin%20kann%20ich%20senden.";
 
-const statusSteps = ["Objekt", "Zustand", "Termin", "Fotos", "Rueckmeldung"];
+const statusSteps = ["Objekt", "Zustand", "Termin", "Fotos", "Rückmeldung"];
 
 const objectCases = [
   {
     title: "Wohnung nach Auszug",
-    text: "Wenn Reinigung, Moebel, Keller oder Uebergabe noch offen sind.",
+    text: "Wenn Reinigung, Möbel, Keller oder Übergabe noch offen sind.",
     link: "/wohnung-wieder-vermietbar",
     cta: "Objekt-Ready ansehen",
     Icon: Home,
   },
   {
     title: "Besichtigung vorbereiten",
-    text: "Fuer Makler, wenn Objekt, Fotos oder Termin einen besseren ersten Eindruck brauchen.",
+    text: "Für Makler, wenn Objekt, Fotos oder Termin einen besseren ersten Eindruck brauchen.",
     link: "/immobilie-verkaufsbereit-machen",
     cta: "Immobilie verkaufsbereit machen",
     Icon: Camera,
   },
   {
     title: "Keller / Garage voll",
-    text: "Nebenflaechen, Muellraum oder Garage mit Fotos, Zugang und Freigabe pruefen.",
+    text: "Nebenflächen, Müllraum oder Garage mit Fotos, Zugang und Freigabe prüfen.",
     link: "/keller-muellraum-rettung-regensburg",
-    cta: "Keller/Muellraum pruefen",
+    cta: "Keller/Müllraum prüfen",
     Icon: Trash2,
   },
   {
@@ -79,15 +79,15 @@ const objectCases = [
     Icon: Sparkles,
   },
   {
-    title: "Schluessel / Uebergabe offen",
-    text: "Schluesselkoordination und Uebergabeakte nach Absprache mitdenken.",
+    title: "Schlüssel / Übergabe offen",
+    text: "Schlüsselkoordination und Übergabeakte nach Absprache mitdenken.",
     link: "/uebergabeakte",
-    cta: "Uebergabeakte ergaenzen",
+    cta: "Übergabeakte ergaenzen",
     Icon: KeyRound,
   },
   {
     title: "Mehrere Objektfaelle",
-    text: "Hausverwaltungen und Vermieter koennen den Link fuer wiederkehrende Faelle nutzen.",
+    text: "Hausverwaltungen und Vermieter können den Link für wiederkehrende Faelle nutzen.",
     link: "/mieterwechsel-service-regensburg",
     cta: "Mieterwechsel-Service",
     Icon: Building2,
@@ -95,46 +95,46 @@ const objectCases = [
 ];
 
 const serviceBlocks = [
-  "Wohnung raeumen",
-  "Moebel / Sperrmuell entfernen",
-  "Keller / Garage / Nebenraeume raeumen",
+  "Wohnung räumen",
+  "Möbel / Sperrmuell entfernen",
+  "Keller / Garage / Nebenraeume räumen",
   "Endreinigung / Auszugsreinigung",
   "Grundreinigung nach Absprache",
-  "Entsorgung normaler Gegenstaende nach Absprache",
+  "Entsorgung normaler Gegenstände nach Absprache",
   "Reinigung vor Besichtigung",
   "Foto-Dokumentation nach Absprache",
-  "Uebergabeakte",
-  "Schluesselkoordination nach Absprache",
+  "Übergabeakte",
+  "Schlüsselkoordination nach Absprache",
   "Mieterwechsel-Service",
   "Wohnung wieder vermietbar-Service",
 ];
 
 const audiences = [
   {
-    title: "Fuer Makler",
+    title: "Für Makler",
     text:
       "Wenn eine Wohnung vor Besichtigung, Fototermin oder Vermarktung aufgeraeumter und praesentierbarer wirken soll.",
-    cta: "Objekt fuer Besichtigung vorbereiten",
+    cta: "Objekt für Besichtigung vorbereiten",
     Icon: Camera,
   },
   {
-    title: "Fuer Vermieter",
+    title: "Für Vermieter",
     text:
-      "Wenn nach Auszug Reinigung, Moebel, Keller, Entsorgung oder Uebergabe gebuendelt werden muessen.",
+      "Wenn nach Auszug Reinigung, Möbel, Keller, Entsorgung oder Übergabe gebuendelt werden müssen.",
     cta: "Wohnung nach Auszug vorbereiten",
     Icon: KeyRound,
   },
   {
-    title: "Fuer Eigentuemer",
+    title: "Für Eigentuemer",
     text:
       "Wenn Wohnung, Haus oder Nebenraeume nach Leerstand, Erbfall, Auszug oder Verkaufsvorbereitung nutzbarer werden sollen.",
     cta: "Objektfall senden",
     Icon: Home,
   },
   {
-    title: "Fuer Hausverwaltungen",
+    title: "Für Hausverwaltungen",
     text:
-      "Wenn wiederkehrende Mieterwechsel, Keller, Muellraum oder Objektzustaende schnell als Fall gesendet werden sollen.",
+      "Wenn wiederkehrende Mieterwechsel, Keller, Müllraum oder Objektzustaende schnell als Fall gesendet werden sollen.",
     cta: "Wiederkehrende Objektfaelle anfragen",
     Icon: Building2,
   },
@@ -142,48 +142,48 @@ const audiences = [
 
 const faqItems = [
   {
-    q: "Fuer wen ist der Makler-/Vermieter-Link gedacht?",
-    a: "Der Link ist fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen gedacht, die einen konkreten Objektfall schnell an FLOXANT senden wollen.",
+    q: "Für wen ist der Makler-/Vermieter-Link gedacht?",
+    a: "Der Link ist für Makler, Vermieter, Eigentuemer und Hausverwaltungen gedacht, die einen konkreten Objektfall schnell an FLOXANT senden wollen.",
   },
   {
     q: "Kann ich als Makler ein Objekt direkt senden?",
-    a: "Ja. Senden Sie Objektort, Termin, Fotos und offene Punkte. FLOXANT prueft Raeumung, Reinigung, Entsorgung oder Uebergabevorbereitung nach Absprache.",
+    a: "Ja. Senden Sie Objektort, Termin, Fotos und offene Punkte. FLOXANT prüft Räumung, Reinigung, Entsorgung oder Übergabevorbereitung nach Absprache.",
   },
   {
     q: "Kann FLOXANT eine Wohnung vor Besichtigung reinigen?",
-    a: "Ja, Reinigung vor Besichtigung kann nach Flaeche, Zustand, Termin und Zugang geprueft werden. Fotos helfen bei der Einschaetzung.",
+    a: "Ja, Reinigung vor Besichtigung kann nach Fläche, Zustand, Termin und Zugang geprüft werden. Fotos helfen bei der Einschätzung.",
   },
   {
-    q: "Kann FLOXANT Raeumung und Reinigung kombinieren?",
-    a: "Ja. Raeumung, Entsorgung und Reinigung koennen kombiniert werden, wenn Umfang, Zugang, Materialart und Termin passen.",
+    q: "Kann FLOXANT Räumung und Reinigung kombinieren?",
+    a: "Ja. Räumung, Entsorgung und Reinigung können kombiniert werden, wenn Umfang, Zugang, Materialart und Termin passen.",
   },
   {
     q: "Kann ich Fotos senden?",
-    a: "Ja. Fotos koennen im Formular hochgeladen oder per WhatsApp gesendet werden. Sie helfen, Rueckfragen zu reduzieren.",
+    a: "Ja. Fotos können im Formular hochgeladen oder per WhatsApp gesendet werden. Sie helfen, Rückfragen zu reduzieren.",
   },
   {
-    q: "Kann eine Uebergabeakte ergaenzt werden?",
-    a: "Ja. Die FLOXANT Uebergabeakte kann nach Absprache Fotos, erledigte Leistungen, Schluesselstatus und Hinweise dokumentieren.",
+    q: "Kann eine Übergabeakte ergaenzt werden?",
+    a: "Ja. Die FLOXANT Übergabeakte kann nach Absprache Fotos, erledigte Leistungen, Schlüsselstatus und Hinweise dokumentieren.",
   },
   {
     q: "Unterstuetzt FLOXANT Hausverwaltungen?",
-    a: "Ja. Fuer wiederkehrende Objektfaelle ist der Mieterwechsel-Service passender, dieser Link kann aber als schneller Startpunkt genutzt werden.",
+    a: "Ja. Für wiederkehrende Objektfaelle ist der Mieterwechsel-Service passender, dieser Link kann aber als schneller Startpunkt genutzt werden.",
   },
   {
     q: "Garantiert FLOXANT eine Vermietung?",
-    a: "Nein. FLOXANT unterstuetzt praktisch und organisatorisch, garantiert aber keine Vermietung, Abnahme oder Vermieterentscheidung.",
+    a: "Nein. FLOXANT unterstützt praktisch und organisatorisch, garantiert aber keine Vermietung, Abnahme oder Vermieterentscheidung.",
   },
   {
     q: "Werden Renovierungen uebernommen?",
-    a: "Nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann, werden geprueft. Diese Seite behauptet keine Renovierungs-, Reparatur- oder Maklerleistungen.",
+    a: "Nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann, werden geprüft. Diese Seite behauptet keine Renovierungs-, Reparatur- oder Maklerleistungen.",
   },
   {
-    q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten zuordnen.",
+    q: "In welchem Gebiet ist der Service möglich?",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfügbarkeit geprüft. Für Düsseldorf klar getrennt über klare lokale Kontaktmöglichkeiten zuordnen.",
   },
   {
     q: "Kann der Link wiederholt genutzt werden?",
-    a: "Ja. Der Link ist bewusst fuer E-Mail-Signatur, WhatsApp, QR-Code, Flyer und wiederkehrende Objektfaelle vorbereitet.",
+    a: "Ja. Der Link ist bewusst für E-Mail-Signatur, WhatsApp, QR-Code, Flyer und wiederkehrende Objektfaelle vorbereitet.",
   },
 ];
 
@@ -193,11 +193,11 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT fuer Makler, Vermieter und Eigentuemer",
       description:
-        "Direkter Objekt-Link fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen zur Anfrage von Raeumung, Reinigung, Entsorgung und Uebergabevorbereitung nach Absprache.",
+        "Direkter Objekt-Link für Makler, Vermieter, Eigentuemer und Hausverwaltungen zur Anfrage von Räumung, Reinigung, Entsorgung und Übergabevorbereitung nach Absprache.",
       path,
       about: [
-        "Service fuer Makler Regensburg",
-        "Service fuer Vermieter Regensburg",
+        "Service für Makler Regensburg",
+        "Service für Vermieter Regensburg",
         "Wohnung vor Besichtigung vorbereiten",
         "Wohnung nach Auszug reinigen",
         "Objektfall senden",
@@ -210,10 +210,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Objekt-Link fuer Makler und Vermieter",
       description:
-        "Praktische und organisatorische Unterstuetzung fuer Objektfaelle: Raeumung, Reinigung, Entsorgung, Schluesselkoordination und Uebergabevorbereitung nach Absprache. Keine Maklerleistung und keine Vermietungsgarantie.",
+        "Praktische und organisatorische Unterstützung für Objektfaelle: Räumung, Reinigung, Entsorgung, Schlüsselkoordination und Übergabevorbereitung nach Absprache. Keine Maklerleistung und keine Vermietungsgarantie.",
       path,
-      serviceType: "Objektvorbereitung fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit"],
+      serviceType: "Objektvorbereitung für Makler, Vermieter, Eigentuemer und Hausverwaltungen",
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -236,11 +236,11 @@ export default function MaklerVermieterLinkPage() {
                 FLOXANT Objekt-Link
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                FLOXANT fuer Makler, Vermieter und Eigentuemer
+                FLOXANT für Makler, Vermieter und Eigentuemer
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Ein direkter Link fuer Objektfaelle: Wohnung, Keller oder Nebenflaeche nach Auszug, Leerstand
-                oder Mieterwechsel raeumen, reinigen, entsorgen und nach Absprache dokumentieren lassen.
+                Ein direkter Link für Objektfaelle: Wohnung, Keller oder Nebenflaeche nach Auszug, Leerstand
+                oder Mieterwechsel räumen, reinigen, entsorgen und nach Absprache dokumentieren lassen.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#objektfall-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800" data-event="service_card_click">
@@ -263,7 +263,7 @@ export default function MaklerVermieterLinkPage() {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Direktlink-freundlich</div>
-                    <h2 className="mt-2 text-3xl font-black tracking-tight">Objektfall statt langer Erklaerung</h2>
+                    <h2 className="mt-2 text-3xl font-black tracking-tight">Objektfall statt langer Erklärung</h2>
                   </div>
                   <QrCode className="h-10 w-10 text-amber-200" />
                 </div>
@@ -290,7 +290,7 @@ export default function MaklerVermieterLinkPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Objektfall-Schnelllogik</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Welcher Fall soll an FLOXANT?</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Die Seite ist bewusst kurz: sie sammelt die entscheidenden Objektangaben und fuehrt dann in die passende FLOXANT-Leistung.
+                Die Seite ist bewusst kurz: sie sammelt die entscheidenden Objektangaben und führt dann in die passende FLOXANT-Leistung.
               </p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -316,10 +316,10 @@ export default function MaklerVermieterLinkPage() {
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Service-Bausteine</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Was FLOXANT fuer Makler und Vermieter pruefen kann</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Was FLOXANT für Makler und Vermieter prüfen kann</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT uebernimmt keine Maklerleistung und gibt keine Vermietungsgarantie. Geprueft werden praktische
-                Leistungen rund um Raeumung, Entsorgung, Reinigung, Schluessel und Uebergabevorbereitung.
+                FLOXANT uebernimmt keine Maklerleistung und gibt keine Vermietungsgarantie. Geprüft werden praktische
+                Leistungen rund um Räumung, Entsorgung, Reinigung, Schlüssel und Übergabevorbereitung.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/mieterwechsel-service-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
@@ -331,7 +331,7 @@ export default function MaklerVermieterLinkPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
-                  Uebergabeakte ergaenzen
+                  Übergabeakte ergaenzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -351,7 +351,7 @@ export default function MaklerVermieterLinkPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Ein Link fuer konkrete Immobilien-Situationen</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Ein Link für konkrete Immobilien-Situationen</h2>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audiences.map((item) => {
@@ -399,7 +399,7 @@ export default function MaklerVermieterLinkPage() {
                     "Keine Maklerleistung, keine Vermarktung und keine Verkaufszusage.",
                     "Keine Vermietungsgarantie, keine Abnahmegarantie und keine Rechtsberatung.",
                     "Keine Renovierung, Reparatur, Malerarbeit oder Gefahrstoffentsorgung als pauschales Versprechen.",
-                    "Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten.",
+                    "Düsseldorf klar getrennt über klare lokale Kontaktmöglichkeiten.",
                   ].map((item) => (
                     <div key={item} className="flex gap-3 rounded-xl bg-amber-50 px-4 py-3">
                       <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
@@ -417,9 +417,9 @@ export default function MaklerVermieterLinkPage() {
           <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Region und Verknuepfung</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Regensburg als Kern, Bayern nach Verfuegbarkeit</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Regensburg als Kern, Bayern nach Verfügbarkeit</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Der Objekt-Link ist fuer Regensburg und Umgebung gebaut. Bayern wird nach Termin, Umfang, Zugang und Verfuegbarkeit geprueft.
+                Der Objekt-Link ist für Regensburg und Umgebung gebaut. Bayern wird nach Termin, Umfang, Zugang und Verfügbarkeit geprüft.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
@@ -427,7 +427,7 @@ export default function MaklerVermieterLinkPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/regensburg/entruempelung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
-                  Entruempelung Regensburg
+                  Entrümpelung Regensburg
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/private-client-service" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
@@ -440,7 +440,7 @@ export default function MaklerVermieterLinkPage() {
               {[
                 ["Reinigung Regensburg", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/regensburg/reinigung"],
                 ["Möblierte Wohnung Regensburg", "Apartment-Reset für Hosts, Vermieter und Kurzzeitvermietung in Regensburg.", "/reinigung-moeblierte-wohnung-regensburg"],
-                ["Entsorgung separat", "Nur Entsorgung; Umzug separat ueber /regensburg/umzug.", "/entsorgung-duesseldorf"],
+                ["Entsorgung separat", "Nur Entsorgung; Umzug separat über /regensburg/umzug.", "/entsorgung-duesseldorf"],
                 ["Buchung/Rechner", "Falls ein Objektfall doch breiter eingeordnet werden muss.", "/buchung"],
                 ["Angebotscheck", "Wenn bereits ein Fremdangebot vorliegt und Umfang oder Zusatzleistungen unklar sind.", "/angebotscheck"],
               ].map(([title, text, href]) => (
@@ -458,7 +458,7 @@ export default function MaklerVermieterLinkPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Haeufige Fragen zum Makler-/Vermieter-Link</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zum Makler-/Vermieter-Link</h2>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {faqItems.map((item) => (

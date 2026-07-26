@@ -212,7 +212,7 @@ export default function FernumzugMuenchenPage() {
                   data-destination={leadHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
                 >
-                  Rueckruf anfragen
+                  Rückruf anfragen
                 </Link>
               </div>
             </div>

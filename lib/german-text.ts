@@ -7,6 +7,7 @@ const machineValueKeys = new Set([
   "cityKey",
   "serviceKey",
   "serviceKeys",
+  "service",
   "locationKey",
   "locationKeys",
   "signatureServiceKey",
@@ -24,6 +25,8 @@ const machineValueKeys = new Set([
   "canonical",
   "canonicalPage",
   "canonicalPages",
+  "canonicalRoute",
+  "recommendedRoute",
   "supportPages",
   "localPriorityPages",
   "primaryConversionPaths",
@@ -193,6 +196,10 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bgewuenscht\b/g, "gew\u00fcnscht"],
   [/\bnoetig\b/g, "n\u00f6tig"],
   [/\bNoetig\b/g, "N\u00f6tig"],
+  [/\bUnnoetig/g, "Unn\u00f6tig"],
+  [/\bunnoetig/g, "unn\u00f6tig"],
+  [/\bFaelle\b/g, "F\u00e4lle"],
+  [/\bfaelle\b/g, "f\u00e4lle"],
   [/\bFuehrt\b/g, "F\u00fchrt"],
   [/\bfuehrt\b/g, "f\u00fchrt"],
   [/\bfuehren\b/g, "f\u00fchren"],
@@ -215,6 +222,10 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bhaeuser\b/g, "h\u00e4user"],
   [/\bHaeufige\b/g, "H\u00e4ufige"],
   [/\bhaeufige\b/g, "h\u00e4ufige"],
+  [/\bAngehoer/g, "Angeh\u00f6r"],
+  [/\bangehoer/g, "angeh\u00f6r"],
+  [/\bGehoer/g, "Geh\u00f6r"],
+  [/\bgehoer/g, "geh\u00f6r"],
   [/\bmoechte\b/g, "m\u00f6chte"],
   [/\bmoechten\b/g, "m\u00f6chten"],
   [/\bMoeglich\b/g, "M\u00f6glich"],
@@ -247,6 +258,18 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\baufgeloest/g, "aufgel\u00f6st"],
   [/\bAufgeloest/g, "Aufgel\u00f6st"],
   [/\bgroessere\b/g, "gr\u00f6\u00dfere"],
+  [/\bGroesser/g, "Gr\u00f6\u00dfer"],
+  [/\bgroesser/g, "gr\u00f6\u00dfer"],
+  [/\bGroesse\b/g, "Gr\u00f6\u00dfe"],
+  [/\bgroesse\b/g, "gr\u00f6\u00dfe"],
+  [/\bSpaeter\b/g, "Sp\u00e4ter"],
+  [/\bspaeter\b/g, "sp\u00e4ter"],
+  [/\bPersoen/g, "Pers\u00f6n"],
+  [/\bpersoen/g, "pers\u00f6n"],
+  [/\bGebaeude/g, "Geb\u00e4ude"],
+  [/\bgebaeude/g, "geb\u00e4ude"],
+  [/\bJaehr/g, "J\u00e4hr"],
+  [/\bjaehr/g, "j\u00e4hr"],
   [/\bgroesst/g, "gr\u00f6\u00dft"],
   [/\bzusaetzlich/g, "zus\u00e4tzlich"],
   [/\bnaechst/g, "n\u00e4chst"],
@@ -392,9 +415,13 @@ function isMachineString(value: string) {
   return /^(https?:|mailto:|tel:|sms:|whatsapp:|\/|#)/i.test(trimmed);
 }
 
+function isMachineValueKey(key: string) {
+  return machineValueKeys.has(key) || /Slug$/.test(key);
+}
+
 export function germanizeDeep<T>(value: T, parentKey?: string): T {
   if (typeof value === "string") {
-    if ((parentKey && machineValueKeys.has(parentKey)) || isMachineString(value)) {
+    if ((parentKey && isMachineValueKey(parentKey)) || isMachineString(value)) {
       return value as T;
     }
 

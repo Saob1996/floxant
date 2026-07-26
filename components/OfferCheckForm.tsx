@@ -16,9 +16,9 @@ const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const allServiceOptions = [
   { value: "umzug", label: "Umzug" },
   { value: "reinigung", label: "Reinigung" },
-  { value: "bueroreinigung", label: "Bueroreinigung" },
+  { value: "bueroreinigung", label: "Büroreinigung" },
   { value: "gewerbereinigung", label: "Gewerbereinigung" },
-  { value: "haushaltsaufloesung", label: "Haushaltsaufloesung" },
+  { value: "haushaltsaufloesung", label: "Haushaltsauflösung" },
   { value: "solarreinigung", label: "Solarreinigung" },
   { value: "pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
   { value: "fensterreinigung", label: "Glas- / Fensterreinigung" },
@@ -63,7 +63,7 @@ const offerConcernOptions = [
   { value: "addons_unclear", label: "Zusatzleistungen oder Nebenkosten unklar" },
   { value: "deadline", label: "Termin oder Deadline kritisch" },
   { value: "alternative_needed", label: "Alternative zu bestehendem Angebot gesucht" },
-  { value: "general_second_opinion", label: "Zweite Einschaetzung gewuenscht" },
+  { value: "general_second_opinion", label: "Zweite Einschätzung gewünscht" },
   { value: "other", label: "Anderes" },
 ] as const;
 
@@ -71,7 +71,7 @@ const deadlineOptions = [
   { value: "", label: "Wie Termin / Zeitraum" },
   { value: "today_or_tomorrow", label: "Heute oder morgen" },
   { value: "this_week", label: "Diese Woche" },
-  { value: "fixed_handover", label: "Feste Uebergabe / Deadline" },
+  { value: "fixed_handover", label: "Feste Übergabe / Deadline" },
   { value: "flexible", label: "Flexibel" },
 ] as const;
 
@@ -345,7 +345,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Wichtigster Pruefgrund
+            Wichtigster Prüfgrund
             <select name="offerConcern" defaultValue="price_unclear" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               {offerConcernOptions.map((item) => (
                 <option key={item.value} value={item.value}>
@@ -391,7 +391,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
                 Angebot und Fotos sind getrennt, damit Umfang und offene Punkte sauber geprüft werden können.
               </p>
               <p className="mt-1 text-xs leading-5 text-slate-600">
-                FLOXANT ordnet Angaben, Leistungsumfang und naechste sinnvolle Schritte ein; keine Rechtsberatung und keine Preisgarantie.
+                FLOXANT ordnet Angaben, Leistungsumfang und nächste sinnvolle Schritte ein; keine Rechtsberatung und keine Preisgarantie.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -457,8 +457,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
             {hasRedFlagResult
-              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir pruefen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Keine Rechtsberatung und keine Preisgarantie."
-              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. FLOXANT prueft Umfang, Termin, Ort, vorhandenes Angebot und offene Punkte organisatorisch und praktisch. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Eine Anfrage ist noch keine Buchung."}
+              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir prüfen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rückfragen. Keine Rechtsberatung und keine Preisgarantie."
+              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. FLOXANT prüft Umfang, Termin, Ort, vorhandenes Angebot und offene Punkte organisatorisch und praktisch. Wenn Angaben fehlen, melden wir uns mit Rückfragen. Eine Anfrage ist noch keine Buchung."}
           </div>
         ) : null}
 

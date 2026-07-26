@@ -29,16 +29,16 @@ const path = "/nachlass-raeumung-regensburg";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Nachlass-Raeumung Regensburg - Wohnung diskret raeumen lassen | FLOXANT",
+  title: "Nachlass-Räumung Regensburg - Wohnung diskret räumen lassen | FLOXANT",
   description:
-    "FLOXANT unterstuetzt Angehoerige, Erben und Eigentuemer bei Nachlass-Raeumung, Entsorgung, Reinigung und Objektvorbereitung in Regensburg und Umgebung.",
+    "FLOXANT unterstützt Angehörige, Erben und Eigentuemer bei Nachlass-Räumung, Entsorgung, Reinigung und Objektvorbereitung in Regensburg und Umgebung.",
 });
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20moechte%20eine%20Nachlass-%2FWohnungsraeumung%20anfragen.%20Es%20geht%20um%20ein%20Objekt%20in%20%5BOrt%5D.%20Benoetigt%20werden%20Raeumung%2FEntsorgung%2FReinigung%20nach%20Absprache.%20Fotos%2C%20Zugang%20und%20Zeitraum%20kann%20ich%20senden.%20Bitte%20um%20diskrete%20Rueckmeldung.";
 const phoneHref = "tel:+4915771105087";
 
-const statusSteps = ["Fotos", "Umfang", "Freigabe", "Raeumung", "Reinigung", "Uebergabe"];
+const statusSteps = ["Fotos", "Umfang", "Freigabe", "Räumung", "Reinigung", "Übergabe"];
 
 const processSteps = [
   {
@@ -47,119 +47,119 @@ const processSteps = [
   },
   {
     title: "Fotos oder Beschreibung senden",
-    text: "Raeume, Moebel, Keller, Garage, Dachboden, Zugang und grobe Menge koennen ohne Druck beschrieben werden.",
+    text: "Räume, Möbel, Keller, Garage, Dachboden, Zugang und grobe Menge können ohne Druck beschrieben werden.",
   },
   {
-    title: "Freigabe klaeren",
-    text: "Eigentums- und Berechtigungsfragen muessen durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.",
+    title: "Freigabe klären",
+    text: "Eigentums- und Berechtigungsfragen müssen durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.",
   },
   {
-    title: "Umfang pruefen",
-    text: "FLOXANT prueft Raeumung, Entsorgung, Reinigung, Nebenraeume, Schluessel und Termin nach Absprache.",
+    title: "Umfang prüfen",
+    text: "FLOXANT prüft Räumung, Entsorgung, Reinigung, Nebenraeume, Schlüssel und Termin nach Absprache.",
   },
   {
-    title: "Angebot oder Rueckfrage",
-    text: "Wenn Angaben fehlen, meldet sich FLOXANT mit Rueckfragen statt vorschnell etwas zu versprechen.",
+    title: "Angebot oder Rückfrage",
+    text: "Wenn Angaben fehlen, meldet sich FLOXANT mit Rückfragen statt vorschnell etwas zu versprechen.",
   },
   {
     title: "Durchfuehrung nach Auftrag",
-    text: "Raeumung, Entsorgung und Reinigung erfolgen nur nach Auftrag, Machbarkeit, Freigabe und vereinbartem Umfang.",
+    text: "Räumung, Entsorgung und Reinigung erfolgen nur nach Auftrag, Machbarkeit, Freigabe und vereinbartem Umfang.",
   },
   {
     title: "Dokumentation optional",
-    text: "Uebergabeakte, Fotos, Schluesselstatus oder Hinweise koennen nach Absprache organisatorisch gebuendelt werden.",
+    text: "Übergabeakte, Fotos, Schlüsselstatus oder Hinweise können nach Absprache organisatorisch gebuendelt werden.",
   },
 ];
 
 const serviceBlocks = [
-  "Wohnung raeumen",
-  "Haus oder einzelne Raeume raeumen",
-  "Keller / Garage / Dachboden raeumen",
-  "Moebel und Gegenstaende entfernen",
-  "Entsorgung normaler Gegenstaende nach Absprache",
-  "Reinigung nach Raeumung",
-  "Objekt fuer Uebergabe, Verkauf oder Vermietung vorbereiten",
+  "Wohnung räumen",
+  "Haus oder einzelne Räume räumen",
+  "Keller / Garage / Dachboden räumen",
+  "Möbel und Gegenstände entfernen",
+  "Entsorgung normaler Gegenstände nach Absprache",
+  "Reinigung nach Räumung",
+  "Objekt für Übergabe, Verkauf oder Vermietung vorbereiten",
   "Fotoeinschaetzung",
-  "Uebergabeakte / Foto-Dokumentation nach Absprache",
-  "Schluesselkoordination nach Absprache",
-  "Diskreter Rueckruf",
+  "Übergabeakte / Foto-Dokumentation nach Absprache",
+  "Schlüsselkoordination nach Absprache",
+  "Diskreter Rückruf",
   "Verbindung zu Immobilie verkaufsbereit-Service",
   "Verbindung zu Wohnung wieder vermietbar-Service",
 ];
 
 const audiences = [
   {
-    title: "Fuer Angehoerige",
+    title: "Für Angehörige",
     problem: "Wohnung oder Haus muss geraeumt werden, waehrend die Situation emotional und organisatorisch belastet.",
-    benefit: "Ruhige Anfrage, Fotos, Rueckruf und klare naechste Schritte.",
-    cta: "Diskrete Rueckfrage anfragen",
+    benefit: "Ruhige Anfrage, Fotos, Rückruf und klare nächste Schritte.",
+    cta: "Diskrete Rückfrage anfragen",
     Icon: UsersRound,
   },
   {
-    title: "Fuer Erben / Erbengemeinschaften",
-    problem: "Mehrere Personen muessen Freigabe, Umfang, Zugang und naechste Nutzung klaeren.",
+    title: "Für Erben / Erbengemeinschaften",
+    problem: "Mehrere Personen müssen Freigabe, Umfang, Zugang und nächste Nutzung klären.",
     benefit: "Fotos, Objektstatus, Leistungen und optionale Dokumentation werden konkret abgefragt.",
-    cta: "Nachlass-Objekt pruefen lassen",
+    cta: "Nachlass-Objekt prüfen lassen",
     Icon: FileCheck2,
   },
   {
-    title: "Fuer Eigentuemer / Vermieter",
+    title: "Für Eigentuemer / Vermieter",
     problem: "Eine Wohnung muss nach Nachlass wieder nutzbar, vermietbar oder verkaufsbereit werden.",
-    benefit: "Raeumung, Reinigung, Entsorgung und Objektvorbereitung nach Absprache.",
+    benefit: "Räumung, Reinigung, Entsorgung und Objektvorbereitung nach Absprache.",
     cta: "Objekt vorbereiten lassen",
     Icon: Home,
   },
   {
-    title: "Fuer Makler",
-    problem: "Ein Objekt soll nach Nachlass fuer Besichtigung oder Expose praesentierbarer werden.",
-    benefit: "Raeumung, Reinigung, Fotoeinschaetzung und diskrete Abstimmung.",
-    cta: "Objekt fuer Besichtigung vorbereiten",
+    title: "Für Makler",
+    problem: "Ein Objekt soll nach Nachlass für Besichtigung oder Expose praesentierbarer werden.",
+    benefit: "Räumung, Reinigung, Fotoeinschaetzung und diskrete Abstimmung.",
+    cta: "Objekt für Besichtigung vorbereiten",
     Icon: Camera,
   },
   {
-    title: "Fuer Hausverwaltungen",
-    problem: "Wohnung, Keller oder Nebenraeume muessen nach Nachlass geklaert und vorbereitet werden.",
-    benefit: "Klare Anfrage mit Freigabehinweis, Fotos, Zugang und Rueckfragen.",
-    cta: "Fall fuer Hausverwaltung senden",
+    title: "Für Hausverwaltungen",
+    problem: "Wohnung, Keller oder Nebenraeume müssen nach Nachlass geklaert und vorbereitet werden.",
+    benefit: "Klare Anfrage mit Freigabehinweis, Fotos, Zugang und Rückfragen.",
+    cta: "Fall für Hausverwaltung senden",
     Icon: Building2,
   },
 ];
 
 const objectStatusCards = [
   {
-    title: "Wohnung raeumen",
+    title: "Wohnung räumen",
     text: "Wohnung, Zimmer oder einzelne Bereiche sollen schrittweise geklaert werden.",
-    recommendation: "Raeumung, Entsorgung, Fotos",
+    recommendation: "Räumung, Entsorgung, Fotos",
     Icon: Home,
   },
   {
-    title: "Haus teilweise raeumen",
-    text: "Nicht jeder Bereich muss sofort betroffen sein; Teilbereiche koennen priorisiert werden.",
+    title: "Haus teilweise räumen",
+    text: "Nicht jeder Bereich muss sofort betroffen sein; Teilbereiche können priorisiert werden.",
     recommendation: "Umfang, Etagen, Zugang",
     Icon: Building2,
   },
   {
     title: "Keller / Garage / Dachboden",
-    text: "Nebenraeume werden oft vergessen, sind aber fuer Uebergabe, Verkauf oder Vermietung wichtig.",
-    recommendation: "Nebenraeume pruefen",
+    text: "Nebenraeume werden oft vergessen, sind aber für Übergabe, Verkauf oder Vermietung wichtig.",
+    recommendation: "Nebenraeume prüfen",
     Icon: KeyRound,
   },
   {
-    title: "Moebel / Hausrat entfernen",
-    text: "Normale Gegenstaende koennen nach Materialart, Menge, Zugang und Freigabe geprueft werden.",
+    title: "Möbel / Hausrat entfernen",
+    text: "Normale Gegenstände können nach Materialart, Menge, Zugang und Freigabe geprüft werden.",
     recommendation: "Entsorgung nach Absprache",
     Icon: Trash2,
   },
   {
-    title: "Reinigung nach Raeumung",
-    text: "Nach dem Leeren kann Reinigung die Flaeche nutzbarer und besser uebergabefaehig machen.",
+    title: "Reinigung nach Räumung",
+    text: "Nach dem Leeren kann Reinigung die Fläche nutzbarer und besser übergabefaehig machen.",
     recommendation: "Reinigung danach",
     Icon: Sparkles,
   },
   {
-    title: "Diskreter Rueckruf",
-    text: "Wenn ein Formular zu viel ist, reicht eine kurze Nachricht und ein ruhiger Rueckrufwunsch.",
-    recommendation: "Rueckruf",
+    title: "Diskreter Rückruf",
+    text: "Wenn ein Formular zu viel ist, reicht eine kurze Nachricht und ein ruhiger Rückrufwunsch.",
+    recommendation: "Rückruf",
     Icon: Phone,
   },
 ];
@@ -171,38 +171,38 @@ const boundaries = [
   "keine Wertgegenstaende- oder Antiquitaetenbewertung",
   "keine Nachlassverwaltung",
   "keine psychologische Beratung",
-  "keine Raeumung ohne Freigabe",
+  "keine Räumung ohne Freigabe",
   "keine gefaehrliche Entsorgung oder Sonderstoffzusage",
   "keine Sofortgarantie",
 ];
 
 const relatedLinks = [
-  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/immobilie-verkaufsbereit-machen", label: "Nachlass-Objekt vorbereiten" },
   { href: "/wohnung-wieder-vermietbar", label: "Wohnung wieder vermietbar machen" },
-  { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
+  { href: "/uebergabeakte", label: "Übergabeakte ergaenzen" },
   { href: "/private-client-service", label: "Diskrete Abstimmung" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller, Garage oder Nebenraeume klaeren" },
+  { href: "/keller-muellraum-rettung-regensburg", label: "Keller, Garage oder Nebenraeume klären" },
   { href: "/makler-vermieter-link", label: "Makler-/Vermieter-Fall senden" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
-  { href: "/regensburg/reinigung", label: "Reinigung nach Raeumung" },
+  { href: "/regensburg/reinigung", label: "Reinigung nach Räumung" },
   { href: "/regensburg", label: "Regensburg-Bereich" },
   { href: "/buchung", label: "Buchung / Anfrage starten" },
-  { href: "/rechner", label: "Preisrahmen einschaetzen" },
+  { href: "/rechner", label: "Preisrahmen einschätzen" },
 ];
 
 const faqItems = [
   {
-    q: "Was ist eine Nachlass-Raeumung?",
-    a: "Gemeint ist praktische und organisatorische Unterstuetzung, wenn nach einem Erbfall Wohnung, Haus, Keller, Garage oder Dachboden geraeumt, entsorgt, gereinigt oder vorbereitet werden sollen.",
+    q: "Was ist eine Nachlass-Räumung?",
+    a: "Gemeint ist praktische und organisatorische Unterstützung, wenn nach einem Erbfall Wohnung, Haus, Keller, Garage oder Dachboden geraeumt, entsorgt, gereinigt oder vorbereitet werden sollen.",
   },
   {
-    q: "Fuer wen ist der Service geeignet?",
-    a: "Fuer Angehoerige, Erben, Erbengemeinschaften, Eigentuemer, Bevollmaechtigte, Vermieter, Makler und Hausverwaltungen im Raum Regensburg.",
+    q: "Für wen ist der Service geeignet?",
+    a: "Für Angehörige, Erben, Erbengemeinschaften, Eigentuemer, Bevollmaechtigte, Vermieter, Makler und Hausverwaltungen im Raum Regensburg.",
   },
   {
     q: "Muss die Freigabe vorab geklaert sein?",
-    a: "Ja. Rechtliche Eigentums-, Erb- und Freigabefragen muessen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.",
+    a: "Ja. Rechtliche Eigentums-, Erb- und Freigabefragen müssen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.",
   },
   {
     q: "Uebernimmt FLOXANT rechtliche Nachlassfragen?",
@@ -213,23 +213,23 @@ const faqItems = [
     a: "Nein. FLOXANT bietet keine Wertgegenstaende-, Antiquitaeten- oder Nachlassbewertung und keinen Ankauf als Versprechen an.",
   },
   {
-    q: "Kann nach der Raeumung gereinigt werden?",
-    a: "Ja, Reinigung nach Raeumung kann nach Zustand, Flaeche, Termin, Zugang und Fotos geprueft werden.",
+    q: "Kann nach der Räumung gereinigt werden?",
+    a: "Ja, Reinigung nach Räumung kann nach Zustand, Fläche, Termin, Zugang und Fotos geprüft werden.",
   },
   {
-    q: "Kann eine Uebergabeakte ergaenzt werden?",
-    a: "Ja. Eine Uebergabeakte oder Foto-Dokumentation kann Leistungen, Fotos, Schluesselstatus und Hinweise nach Absprache organisatorisch buendeln.",
+    q: "Kann eine Übergabeakte ergaenzt werden?",
+    a: "Ja. Eine Übergabeakte oder Foto-Dokumentation kann Leistungen, Fotos, Schlüsselstatus und Hinweise nach Absprache organisatorisch buendeln.",
   },
   {
     q: "Kann ich Fotos senden?",
-    a: "Ja. Fotos von Raeumen, Moebeln, Keller, Garage, Dachboden und Zugang helfen bei Umfang und Rueckfragen.",
+    a: "Ja. Fotos von Räumen, Möbeln, Keller, Garage, Dachboden und Zugang helfen bei Umfang und Rückfragen.",
   },
   {
-    q: "Ist diskrete Abstimmung moeglich?",
-    a: "Ja. Die Anfrage kann mit Rueckrufwunsch, WhatsApp oder E-Mail gestartet werden. FLOXANT kommuniziert sachlich und ohne Druck.",
+    q: "Ist diskrete Abstimmung möglich?",
+    a: "Ja. Die Anfrage kann mit Rückrufwunsch, WhatsApp oder E-Mail gestartet werden. FLOXANT kommuniziert sachlich und ohne Druck.",
   },
   {
-    q: "Funktioniert das fuer Erbengemeinschaften?",
+    q: "Funktioniert das für Erbengemeinschaften?",
     a: "Ja, wenn Zustaendigkeit, Freigabe, Zugang und Ansprechpartner geklaert sind oder als offene Punkte benannt werden.",
   },
   {
@@ -237,8 +237,8 @@ const faqItems = [
     a: "Gefahrstoffe, Asbest, Chemikalien, Oele, Farben, kontaminierte Materialien und rechtlich unklare Stoffe werden nicht ungeprueft zugesagt.",
   },
   {
-    q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 50 km geprueft; weitere Leistungen werden nach Verfuegbarkeit getrennt bewertet.",
+    q: "In welchem Gebiet ist der Service möglich?",
+    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 50 km geprüft; weitere Leistungen werden nach Verfügbarkeit getrennt bewertet.",
   },
 ];
 
@@ -248,12 +248,12 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Nachlass-Raeumung Regensburg",
       description:
-        "Diskrete Nachlass-Raeumung fuer Angehoerige, Erben, Eigentuemer und Bevollmaechtigte: Raeumung, Entsorgung, Reinigung und Objektvorbereitung nach Absprache.",
+        "Diskrete Nachlass-Räumung für Angehörige, Erben, Eigentuemer und Bevollmaechtigte: Räumung, Entsorgung, Reinigung und Objektvorbereitung nach Absprache.",
       path,
       about: [
-        "Nachlass-Raeumung Regensburg",
-        "Wohnung nach Erbfall raeumen",
-        "Diskrete Wohnungsaufloesung",
+        "Nachlass-Räumung Regensburg",
+        "Wohnung nach Erbfall räumen",
+        "Diskrete Wohnungsauflösung",
         "Reinigung nach Nachlass",
         "Objektvorbereitung nach Erbfall",
       ],
@@ -265,10 +265,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Nachlass-Raeumung light",
       description:
-        "Praktische und organisatorische Unterstuetzung bei Raeumung, Entsorgung, Reinigung und Objektvorbereitung nach Erbfall oder Nachlass. Keine Rechtsberatung, keine Nachlassbewertung und keine Nachlassverwaltung.",
+        "Praktische und organisatorische Unterstützung bei Räumung, Entsorgung, Reinigung und Objektvorbereitung nach Erbfall oder Nachlass. Keine Rechtsberatung, keine Nachlassbewertung und keine Nachlassverwaltung.",
       path,
-      serviceType: "Nachlass-Raeumung, Wohnungsaufloesung und Reinigung nach Absprache",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit"],
+      serviceType: "Nachlass-Räumung, Wohnungsauflösung und Reinigung nach Absprache",
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -291,11 +291,11 @@ export default function NachlassRaeumungRegensburgPage() {
                 FLOXANT Diskret-Modus
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Nachlass-Raeumung in Regensburg - diskret, ruhig und mit klaren Angaben
+                Nachlass-Räumung in Regensburg - diskret, ruhig und mit klaren Angaben
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn nach einem Erbfall eine Wohnung, ein Haus, Keller oder Nebenraeume geraeumt und gereinigt werden muessen,
-                prueft FLOXANT Umfang, Fotos, Zugang, Termin und gewuenschte Leistungen nach Absprache.
+                Wenn nach einem Erbfall eine Wohnung, ein Haus, Keller oder Nebenraeume geraeumt und gereinigt werden müssen,
+                prüft FLOXANT Umfang, Fotos, Zugang, Termin und gewuenschte Leistungen nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#nachlass-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800" data-event="service_card_click">
@@ -306,12 +306,12 @@ export default function NachlassRaeumungRegensburgPage() {
                   Diskret per WhatsApp anfragen
                 </a>
                 <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-6 text-sm font-black text-stone-800 transition hover:bg-stone-50" data-event="phone_click">
-                  Rueckruf
+                  Rückruf
                 </a>
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-stone-600">
                 <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Regensburg und Umgebung</span>
-                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Angehoerige / Erben / Bevollmaechtigte</span>
+                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Angehörige / Erben / Bevollmaechtigte</span>
                 <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Keine Rechts- oder Erbberatung</span>
                 <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Freigabe muss geklaert sein</span>
               </div>
@@ -322,10 +322,10 @@ export default function NachlassRaeumungRegensburgPage() {
               <div className="relative rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10">
                 <div className="rounded-[1.5rem] bg-stone-950 p-5 text-white">
                   <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">Ruhiger Ablauf</div>
-                  <h2 className="mt-2 text-3xl font-black tracking-tight">Nachlass oder Wohnung ruhig klaeren</h2>
+                  <h2 className="mt-2 text-3xl font-black tracking-tight">Nachlass oder Wohnung ruhig klären</h2>
                   <p className="mt-3 text-sm leading-7 text-stone-300">
-                    FLOXANT arbeitet praktisch und organisatorisch: Fotos, Umfang, Freigabe, Zugang, Raeumung, Reinigung und optionale Dokumentation.
-                    Keine Nachlassverwaltung, keine Bewertung und keine juristische Pruefung.
+                    FLOXANT arbeitet praktisch und organisatorisch: Fotos, Umfang, Freigabe, Zugang, Räumung, Reinigung und optionale Dokumentation.
+                    Keine Nachlassverwaltung, keine Bewertung und keine juristische Prüfung.
                   </p>
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
@@ -338,10 +338,10 @@ export default function NachlassRaeumungRegensburgPage() {
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    "Fotos helfen, ohne sofort vor Ort alles erklaeren zu muessen.",
+                    "Fotos helfen, ohne sofort vor Ort alles erklären zu müssen.",
                     "Freigabe und Berechtigung werden als eigener Punkt behandelt.",
-                    "Raeumung und Reinigung koennen kombiniert werden.",
-                    "Uebergabeakte oder Foto-Dokumentation nur nach Absprache.",
+                    "Räumung und Reinigung können kombiniert werden.",
+                    "Übergabeakte oder Foto-Dokumentation nur nach Absprache.",
                   ].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-stone-200 bg-stone-50 p-4 text-sm font-bold leading-6 text-stone-700">
                       <CheckCircle2 className="mb-2 h-5 w-5 text-stone-700" />
@@ -358,9 +358,9 @@ export default function NachlassRaeumungRegensburgPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Ablauf</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">So laeuft eine Nachlass-Raeumung mit FLOXANT ab</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">So laeuft eine Nachlass-Räumung mit FLOXANT ab</h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Die Anfrage soll keine Huerde sein. FLOXANT sammelt die praktischen Punkte, die fuer Machbarkeit, Umfang und Rueckfragen wichtig sind.
+                Die Anfrage soll keine Huerde sein. FLOXANT sammelt die praktischen Punkte, die für Machbarkeit, Umfang und Rückfragen wichtig sind.
               </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -373,7 +373,7 @@ export default function NachlassRaeumungRegensburgPage() {
               ))}
             </div>
             <div className="mt-5 rounded-[1.5rem] border border-stone-200 bg-stone-50 p-5 text-sm font-bold leading-7 text-stone-700">
-              FLOXANT ersetzt keine rechtliche Nachlassklaerung. Rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen muessen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.
+              FLOXANT ersetzt keine rechtliche Nachlassklaerung. Rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen müssen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein.
             </div>
           </div>
         </section>
@@ -382,9 +382,9 @@ export default function NachlassRaeumungRegensburgPage() {
           <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="rounded-[2rem] bg-stone-950 p-7 text-white">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">Service-Bausteine</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight">Was FLOXANT nach einem Erbfall pruefen kann</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight">Was FLOXANT nach einem Erbfall prüfen kann</h2>
               <p className="mt-4 text-base leading-8 text-stone-300">
-                Der Service ist kein Ankauf, keine Wertbewertung und keine Nachlassverwaltung. Geprueft werden praktische Bausteine rund um Raeumung, Entsorgung, Reinigung, Zugang, Schluessel und Dokumentation.
+                Der Service ist kein Ankauf, keine Wertbewertung und keine Nachlassverwaltung. Geprüft werden praktische Bausteine rund um Räumung, Entsorgung, Reinigung, Zugang, Schlüssel und Dokumentation.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/immobilie-verkaufsbereit-machen" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-stone-950">
@@ -392,7 +392,7 @@ export default function NachlassRaeumungRegensburgPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-black text-white">
-                  Uebergabeakte ergaenzen
+                  Übergabeakte ergaenzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -412,7 +412,7 @@ export default function NachlassRaeumungRegensburgPage() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-7 max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Fuer Angehoerige, Erben, Eigentuemer, Makler und Hausverwaltungen</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Für Angehörige, Erben, Eigentuemer, Makler und Hausverwaltungen</h2>
             </div>
             <div className="grid gap-4 lg:grid-cols-5">
               {audiences.map((item) => {
@@ -440,7 +440,7 @@ export default function NachlassRaeumungRegensburgPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Objektstatus-Terminal</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Was muss geklaert werden?</h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Die Karten fuehren nicht in einen lauten Notfallmodus, sondern in eine ruhige Vorpruefung mit Ort, Fotos, Zugang, Freigabe und Umfang.
+                Die Karten führen nicht in einen lauten Notfallmodus, sondern in eine ruhige Vorprüfung mit Ort, Fotos, Zugang, Freigabe und Umfang.
               </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -467,18 +467,18 @@ export default function NachlassRaeumungRegensburgPage() {
           <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Anfrage starten</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Fotos, Zeitraum, Freigabe und Rueckrufwunsch senden</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Fotos, Zeitraum, Freigabe und Rückrufwunsch senden</h2>
               <p className="mt-4 text-base leading-8 text-stone-700">
-                Es reicht eine erste Beschreibung. FLOXANT prueft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen.
+                Es reicht eine erste Beschreibung. FLOXANT prüft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen.
               </p>
               <div className="mt-5 grid gap-3">
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <Camera className="mb-2 h-5 w-5 text-stone-700" />
-                  <p className="text-sm leading-7 text-stone-700">Fotos helfen, ohne sofort alles vor Ort erklaeren zu muessen. Sensible Familien- oder Nachlassdetails bitte erst nach persoenlicher Abstimmung senden.</p>
+                  <p className="text-sm leading-7 text-stone-700">Fotos helfen, ohne sofort alles vor Ort erklären zu müssen. Sensible Familien- oder Nachlassdetails bitte erst nach persönlicher Abstimmung senden.</p>
                 </div>
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <ShieldCheck className="mb-2 h-5 w-5 text-stone-700" />
-                  <p className="text-sm leading-7 text-stone-700">FLOXANT raeumt nicht ohne klare Berechtigung oder Freigabe und ersetzt keine Nachlass-, Rechts- oder Wertpruefung.</p>
+                  <p className="text-sm leading-7 text-stone-700">FLOXANT räumt nicht ohne klare Berechtigung oder Freigabe und ersetzt keine Nachlass-, Rechts- oder Wertpruefung.</p>
                 </div>
               </div>
             </div>
@@ -492,7 +492,7 @@ export default function NachlassRaeumungRegensburgPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Grenzen</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Was FLOXANT nicht uebernimmt</h2>
               <p className="mt-4 text-base leading-8 text-stone-700">
-                Damit die Kommunikation sicher und wuerdevoll bleibt, trennt FLOXANT praktische Raeumung klar von rechtlichen, fachlichen oder emotionalen Beratungsleistungen.
+                Damit die Kommunikation sicher und würdevoll bleibt, trennt FLOXANT praktische Räumung klar von rechtlichen, fachlichen oder emotionalen Beratungsleistungen.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -512,7 +512,7 @@ export default function NachlassRaeumungRegensburgPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Passende Verknuepfung</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Verwandte FLOXANT Wege</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">
-                Wenn der Fall eher allgemeine Entruempelung, Verkaufsvorbereitung, Vermietung oder Dokumentation betrifft, fuehren diese Seiten in passende Spezialpfade.
+                Wenn der Fall eher allgemeine Entrümpelung, Verkaufsvorbereitung, Vermietung oder Dokumentation betrifft, führen diese Seiten in passende Spezialpfade.
               </p>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -530,7 +530,7 @@ export default function NachlassRaeumungRegensburgPage() {
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Haeufige Fragen zur Nachlass-Raeumung</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Häufige Fragen zur Nachlass-Räumung</h2>
             </div>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (
@@ -550,9 +550,9 @@ export default function NachlassRaeumungRegensburgPage() {
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">FLOXANT Diskret-Modus</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight">Nachlass-Objekt ruhig pruefen lassen</h2>
+                <h2 className="mt-3 text-3xl font-black tracking-tight">Nachlass-Objekt ruhig prüfen lassen</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-300">
-                  Senden Sie Ort, Zeitraum, Fotos, Zugang, Freigabe-Status und offene Bereiche. FLOXANT prueft Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
+                  Senden Sie Ort, Zeitraum, Fotos, Zugang, Freigabe-Status und offene Bereiche. FLOXANT prüft Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -564,7 +564,7 @@ export default function NachlassRaeumungRegensburgPage() {
                   WhatsApp senden
                 </a>
                 <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200/40 bg-white/5 px-6 text-sm font-black text-white" data-event="phone_click">
-                  Rueckruf
+                  Rückruf
                 </a>
               </div>
             </div>
@@ -581,7 +581,7 @@ export default function NachlassRaeumungRegensburgPage() {
             WhatsApp
           </a>
           <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
-            Rueckruf
+            Rückruf
           </a>
             </div>
           </div>

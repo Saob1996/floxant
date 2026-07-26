@@ -349,7 +349,7 @@ export default function WohnungWiederVermietbarPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/30 bg-amber-950/20 px-4 text-sm font-black text-amber-50" data-event="service_card_click">
-                  Keller/Muellraum pruefen
+                  Keller/Müllraum prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200/30 bg-red-950/20 px-4 text-sm font-black text-red-50" data-event="service_card_click">

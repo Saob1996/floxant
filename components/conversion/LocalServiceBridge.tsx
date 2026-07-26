@@ -16,14 +16,14 @@ export function LocalServiceBridge({
 }: LocalServiceBridgeProps) {
   const links = [
     {
-      city: "Duesseldorf",
+      city: "Düsseldorf",
       href: duesseldorfHref,
-      text: "Umzug, Raeumung, Entsorgung oder Objektanfrage mit Stadtteil, Umfang und Fotos einordnen.",
+      text: "Umzug, Räumung, Entsorgung oder Objektanfrage mit Stadtteil, Umfang und Fotos einordnen.",
     },
     {
       city: "Regensburg",
       href: regensburgHref,
-      text: "Umzug, Transport, Entruempelung, Haushaltsaufloesung, Uebergabe oder Solar/PV mit Termin und Zugang klaeren.",
+      text: "Umzug, Transport, Entrümpelung, Haushaltsauflösung, Übergabe oder Solar/PV mit Termin und Zugang klären.",
     },
   ];
 
@@ -49,7 +49,7 @@ export function LocalServiceBridge({
               <h3 className="text-lg font-black text-slate-950">FLOXANT {link.city}</h3>
               <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{link.text}</p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                Lokale Seite oeffnen
+                Lokale Seite öffnen
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </Link>

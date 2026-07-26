@@ -694,7 +694,7 @@ export function SeoLeadForm({
         fullName: name.trim(),
         email: email.trim(),
         phone: phone.trim(),
-        callbackPreference: phone.trim() ? "rueckruf_moeglich" : "email",
+        callbackPreference: phone.trim() ? "rückruf_moeglich" : "email",
         notes: message.trim(),
       },
       service: {
@@ -1543,14 +1543,14 @@ export function SeoLeadForm({
               ))}
             </select>
           </Field>
-          <Field label="Zugang / Schluesselweg" htmlFor="seo-lead-property-access">
+          <Field label="Zugang / Schlüsselweg" htmlFor="seo-lead-property-access">
             <input
               id="seo-lead-property-access"
               name="propertyCleaningAccess"
               value={propertyCleaningAccess}
               onChange={(event) => setPropertyCleaningAccess(event.target.value)}
               className={fieldClass(false)}
-              placeholder="z. B. Schluessel bei Verwaltung, Code, Hausmeister"
+              placeholder="z. B. Schlüssel bei Verwaltung, Code, Hausmeister"
             />
           </Field>
           <Field label="Ansprechpartner" htmlFor="seo-lead-property-contact">

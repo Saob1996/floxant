@@ -181,8 +181,8 @@ export default async function EntruempelungPillarPage() {
       <EffortFactorsPanel group="entruempelung" />
       <ServiceFitGuide
         group="entruempelung"
-        title="Welche Raeumung passt zum Zielzustand?"
-        intro="Keller, Wohnung, Nachlass, Buero oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
+        title="Welche Räumung passt zum Zielzustand?"
+        intro="Keller, Wohnung, Nachlass, Büro oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
       />
       <GscOpportunitySection
         eyebrow="Entrümpelung verständlich anfragen"
@@ -268,8 +268,8 @@ export default async function EntruempelungPillarPage() {
         secondaryLabel="Angebot prüfen"
       />
       <PsychologicalCleaningInternalLinks
-        title="Wenn Raeumung und Reinigung zusammen Druck machen"
-        intro="Nach Entruempelung, Auszug oder Kellerstress helfen diese Startpunkte, Restschmutz, Geruch, Uebergabe und Diskretion sauber zu klaeren."
+        title="Wenn Räumung und Reinigung zusammen Druck machen"
+        intro="Nach Entrümpelung, Auszug oder Kellerstress helfen diese Startpunkte, Restschmutz, Geruch, Übergabe und Diskretion sauber zu klären."
         focusSlugs={[
           "reset-reinigung",
           "anti-scham-reinigung",

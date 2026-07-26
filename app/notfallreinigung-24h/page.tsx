@@ -38,19 +38,19 @@ const faqItems = [
   },
   {
     q: "Welche Faelle passen zu einer Notfallreinigung?",
-    a: "Typische Faelle sind stark verschmutzte Wohnungen, kurzfristige Uebergaben, Reinigung nach Party oder Veranstaltung, Gewerbeflaechen vor Oeffnung, Treppenhaus- oder Kellerprobleme, Restverschmutzung nach Raeumung und Situationen, in denen ein Termin sonst kippen wuerde.",
+    a: "Typische Faelle sind stark verschmutzte Wohnungen, kurzfristige Übergaben, Reinigung nach Party oder Veranstaltung, Gewerbeflächen vor Öffnung, Treppenhaus- oder Kellerprobleme, Restverschmutzung nach Räumung und Situationen, in denen ein Termin sonst kippen würde.",
   },
   {
-    q: "Was soll ich fuer eine schnelle Einschaetzung senden?",
-    a: "Hilfreich sind Ort, Objektart, ungefaehre Flaeche, Fotos oder Video, gewuenschter Termin, Zugang, Etage, Park- oder Ladezone, Ansprechpartner und eine klare Beschreibung, was unbedingt erledigt werden muss.",
+    q: "Was soll ich für eine schnelle Einschätzung senden?",
+    a: "Hilfreich sind Ort, Objektart, ungefaehre Fläche, Fotos oder Video, gewuenschter Termin, Zugang, Etage, Park- oder Ladezone, Ansprechpartner und eine klare Beschreibung, was unbedingt erledigt werden muss.",
   },
   {
-    q: "Kann FLOXANT auch mit Entsorgung oder Raeumung helfen?",
-    a: "Wenn neben Reinigung noch Restgegenstaende, Sperrmuell, Kartons oder Nebenflaechen betroffen sind, kann FLOXANT den Fall gemeinsam einordnen. Gefaehrliche Stoffe, Sondermuell oder medizinische Spezialreinigung werden nur nach ausdruecklicher Pruefung behandelt.",
+    q: "Kann FLOXANT auch mit Entsorgung oder Räumung helfen?",
+    a: "Wenn neben Reinigung noch Restgegenstaende, Sperrmuell, Kartons oder Nebenflächen betroffen sind, kann FLOXANT den Fall gemeinsam einordnen. Gefaehrliche Stoffe, Sondermuell oder medizinische Spezialreinigung werden nur nach ausdruecklicher Prüfung behandelt.",
   },
   {
-    q: "Ist die Seite auch fuer Firmen und Hausverwaltungen geeignet?",
-    a: "Ja. Bueros, Praxen, Kanzleien, Hausverwaltungen, Vermieter, Ferienwohnungen und kleine Gewerbeflaechen koennen eine dringende Reinigung mit konkreten Eckdaten anfragen. Entscheidend sind klare Angaben zu Flaeche, Zeitfenster, Zugang und Verantwortlichem vor Ort.",
+    q: "Ist die Seite auch für Firmen und Hausverwaltungen geeignet?",
+    a: "Ja. Büros, Praxen, Kanzleien, Hausverwaltungen, Vermieter, Ferienwohnungen und kleine Gewerbeflächen können eine dringende Reinigung mit konkreten Eckdaten anfragen. Entscheidend sind klare Angaben zu Fläche, Zeitfenster, Zugang und Verantwortlichem vor Ort.",
   },
 ];
 
@@ -65,7 +65,7 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "Kurzfristige Reinigung anfragen",
       description:
-        "Dringende Reinigung fuer Wohnung, Buero, Gewerbe, Veranstaltung, Uebergabe und Objektfaelle nach Fotos, Ort, Termin und Verfuegbarkeit pruefen lassen.",
+        "Dringende Reinigung für Wohnung, Büro, Gewerbe, Veranstaltung, Übergabe und Objektfaelle nach Fotos, Ort, Termin und Verfügbarkeit prüfen lassen.",
       path,
       serviceType: "Notfallreinigung",
       areaServed: buildRegensburgCleaningAreaServedJsonLd(),
@@ -73,14 +73,14 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Kurzfristige Reinigung anfragen | FLOXANT",
       description:
-        "Schnelle Reinigungsanfrage fuer akute Faelle mit Fotos, Ort, Termin, Zugang und klarer Priorisierung.",
+        "Schnelle Reinigungsanfrage für akute Faelle mit Fotos, Ort, Termin, Zugang und klarer Priorisierung.",
       path,
       about: [
         "Notfallreinigung",
         "kurzfristige Reinigungsanfrage",
         "Reinigung nach Party",
-        "Reinigung vor Uebergabe",
-        "Bueroreinigung kurzfristig",
+        "Reinigung vor Übergabe",
+        "Büroreinigung kurzfristig",
       ],
       potentialActions: [
         { name: "Notfallreinigung anfragen", target: "/buchung?service=reinigung&urgency=notfall", type: "ContactAction" },
@@ -123,30 +123,30 @@ export default function Notfallreinigung24hPage() {
     {
       icon: Home,
       title: "Wohnung oder Haus kurzfristig reinigen",
-      text: "Wenn Auszug, Rueckgabe, Besichtigung oder Familienbesuch naeher rueckt und die Raeume deutlich mehr Aufmerksamkeit brauchen als geplant.",
+      text: "Wenn Auszug, Rückgabe, Besichtigung oder Familienbesuch naeher rückt und die Räume deutlich mehr Aufmerksamkeit brauchen als geplant.",
     },
     {
       icon: Building2,
-      title: "Buero, Praxis, Kanzlei oder Gewerbe",
-      text: "Wenn Empfang, Arbeitsbereiche, Sanitaer, Kueche, Besprechungsraum oder Kundenflaeche schnell wieder praesentabel werden muessen.",
+      title: "Büro, Praxis, Kanzlei oder Gewerbe",
+      text: "Wenn Empfang, Arbeitsbereiche, Sanitär, Küche, Besprechungsraum oder Kundenflaeche schnell wieder praesentabel werden müssen.",
     },
     {
       icon: Sparkles,
       title: "Nach Party, Anlass oder Veranstaltung",
-      text: "Wenn Boeden, Geruch, Glaeser, Verpackung, Kueche, Sanitaer oder Nebenflaechen nach einem Anlass geordnet gereinigt werden sollen.",
+      text: "Wenn Böden, Geruch, Glaeser, Verpackung, Küche, Sanitär oder Nebenflächen nach einem Anlass geordnet gereinigt werden sollen.",
     },
     {
       icon: Trash2,
       title: "Reinigung mit Restmengen",
-      text: "Wenn Kartons, Kleinmuell, Keller, Abstellraum oder einzelne Gegenstaende die Reinigung blockieren und vorher sauber eingeordnet werden muessen.",
+      text: "Wenn Kartons, Kleinmuell, Keller, Abstellraum oder einzelne Gegenstände die Reinigung blockieren und vorher sauber eingeordnet werden müssen.",
     },
   ];
 
   const processSteps = [
     "Ort, Objektart, Deadline und Telefonnummer senden",
     "Fotos oder kurzes Video der betroffenen Bereiche beilegen",
-    "Zugang, Etage, Parkmoeglichkeit und Schluesselthema klaeren",
-    "FLOXANT prueft Aufwand, Reihenfolge, Grenzen und naechsten Schritt",
+    "Zugang, Etage, Parkmoeglichkeit und Schlüsselthema klären",
+    "FLOXANT prüft Aufwand, Reihenfolge, Grenzen und nächsten Schritt",
   ];
 
   return (
@@ -165,10 +165,10 @@ export default function Notfallreinigung24hPage() {
                   Kurzfristige Reinigung anfragen
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-9 text-slate-100">
-                  Wenn ein Objekt kurzfristig sauber, begehbar oder uebergabebereit werden muss, zaehlt nicht ein langer Text,
-                  sondern eine klare Einschaetzung: Was ist passiert, wo ist das Objekt, wie gross ist die Flaeche, bis wann
-                  muss es erledigt sein und welche Fotos zeigen den Zustand? FLOXANT prueft dringende Reinigungsfaelle
-                  priorisiert und sagt ehrlich, welcher naechste Schritt nach Verfuegbarkeit sinnvoll ist.
+                  Wenn ein Objekt kurzfristig sauber, begehbar oder übergabebereit werden muss, zählt nicht ein langer Text,
+                  sondern eine klare Einschätzung: Was ist passiert, wo ist das Objekt, wie gross ist die Fläche, bis wann
+                  muss es erledigt sein und welche Fotos zeigen den Zustand? FLOXANT prüft dringende Reinigungsfaelle
+                  priorisiert und sagt ehrlich, welcher nächste Schritt nach Verfügbarkeit sinnvoll ist.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link
@@ -195,13 +195,13 @@ export default function Notfallreinigung24hPage() {
                 </div>
               </div>
               <div className="rounded-[1.5rem] border border-white/10 bg-white/8 p-6">
-                <p className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">Schnelle Pruefung braucht Klarheit</p>
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">Schnelle Prüfung braucht Klarheit</p>
                 <div className="mt-6 grid gap-3">
                   {[
                     ["Fotos", "Zustand, Verschmutzung, Zugang und betroffene Bereiche sichtbar machen."],
                     ["Termin", "Deadline, gewuenschtes Zeitfenster und Dringlichkeit klar nennen."],
-                    ["Ort", "Adresse oder Stadtteil, Etage, Aufzug, Parkmoeglichkeit und Schluesselzugang."],
-                    ["Ziel", "Nur Grundsauberkeit, Uebergabe, Kundenflaeche, Geruch, Sanitaer oder komplette Flaeche."],
+                    ["Ort", "Adresse oder Stadtteil, Etage, Aufzug, Parkmoeglichkeit und Schlüsselzugang."],
+                    ["Ziel", "Nur Grundsauberkeit, Übergabe, Kundenflaeche, Geruch, Sanitär oder komplette Fläche."],
                   ].map(([title, text]) => (
                     <div key={title} className="rounded-2xl border border-white/10 bg-white/10 p-4">
                       <p className="font-black text-white">{title}</p>
@@ -218,7 +218,7 @@ export default function Notfallreinigung24hPage() {
           <SectionTitle
             label="Wann diese Seite passt"
             title="Notfall heisst: zuerst sauber sortieren, dann schnell entscheiden"
-            text="Eine dringende Reinigung ist selten nur eine Frage von mehr Personal. Entscheidend ist, ob die Flaeche erreichbar ist, welche Verschmutzung vorliegt, ob Entsorgung noetig ist, wie hart die Deadline ist und welches Ergebnis wirklich gebraucht wird. Genau dafuer ist diese Seite aufgebaut."
+            text="Eine dringende Reinigung ist selten nur eine Frage von mehr Personal. Entscheidend ist, ob die Fläche erreichbar ist, welche Verschmutzung vorliegt, ob Entsorgung nötig ist, wie hart die Deadline ist und welches Ergebnis wirklich gebraucht wird. Genau dafuer ist diese Seite aufgebaut."
           />
           <div className="mt-9 grid gap-5 md:grid-cols-2">
             {urgentCases.map((item) => {
@@ -238,14 +238,14 @@ export default function Notfallreinigung24hPage() {
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <SectionTitle
               label="Anfahrts- und Preislogik"
-              title="Schnelle Reinigung wird nach Aufwand, Zugang und Zeitfenster geprueft"
-              text="Der Preis entsteht nicht aus einem starren Notfallwort, sondern aus der Kombination von Flaeche, Zustand, Uhrzeit, Entfernung, Material, Personalbedarf, Parkmoeglichkeit und Ziel. Eine kleine Flaeche mit gutem Zugang kann schneller pruefbar sein als eine grosse Flaeche mit unklarem Schluessel, fehlenden Fotos oder blockierten Wegen."
+              title="Schnelle Reinigung wird nach Aufwand, Zugang und Zeitfenster geprüft"
+              text="Der Preis entsteht nicht aus einem starren Notfallwort, sondern aus der Kombination von Fläche, Zustand, Uhrzeit, Entfernung, Material, Personalbedarf, Parkmoeglichkeit und Ziel. Eine kleine Fläche mit gutem Zugang kann schneller prüfbar sein als eine grosse Fläche mit unklarem Schlüssel, fehlenden Fotos oder blockierten Wegen."
             />
             <div className="grid gap-4">
               {[
                 "Regensburg und Umgebung werden als Kerngebiet besonders direkt eingeordnet.",
-                "Reinigungsanfragen ausserhalb des 50-km-Umkreises werden nicht als Reinigungsauftrag beworben.",
-                "Regensburg wird passend zum Anliegen behandelt: Reinigung ist auf den 50-km-Umkreis begrenzt, weitere Leistungen werden getrennt geprueft.",
+                "Reinigungsanfragen außerhalb des 50-km-Umkreises werden nicht als Reinigungsauftrag beworben.",
+                "Regensburg wird passend zum Anliegen behandelt: Reinigung ist auf den 50-km-Umkreis begrenzt, weitere Leistungen werden getrennt geprüft.",
                 "Bei starkem Zeitdruck helfen klare Fotos, kurze Sprachnachricht und erreichbare Kontaktperson am meisten.",
               ].map((text) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
@@ -261,7 +261,7 @@ export default function Notfallreinigung24hPage() {
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="rounded-[1.5rem] border border-cyan-200 bg-cyan-50 p-7">
               <Camera className="h-8 w-8 text-cyan-800" />
-              <h2 className="mt-5 text-2xl font-black text-slate-950">Was wir fuer eine schnelle Rueckmeldung brauchen</h2>
+              <h2 className="mt-5 text-2xl font-black text-slate-950">Was wir für eine schnelle Rückmeldung brauchen</h2>
               <div className="mt-6 grid gap-3">
                 {processSteps.map((step, index) => (
                   <div key={step} className="flex gap-4 rounded-2xl bg-white p-4">
@@ -277,7 +277,7 @@ export default function Notfallreinigung24hPage() {
               <ShieldCheck className="h-8 w-8 text-amber-700" />
               <h2 className="mt-5 text-2xl font-black text-slate-950">Klare Grenze statt falsches Versprechen</h2>
               <p className="mt-4 leading-8 text-slate-800">
-                FLOXANT nimmt dringende Situationen ernst, verspricht aber keinen blinden Soforteinsatz ohne Pruefung. Das ist im
+                FLOXANT nimmt dringende Situationen ernst, verspricht aber keinen blinden Soforteinsatz ohne Prüfung. Das ist im
                 Interesse des Kunden: Erst wenn Zustand, Zugang, Zeitfenster und Ergebnisziel klar sind, kann ein Reinigungsfall
                 serioes eingeordnet werden. Bei Sondermuell, gefaehrlichen Stoffen, biologischen Risiken, Schimmel, Brand- oder
                 Wasserschaden kann eine besondere Fachpruefung oder ein Spezialbetrieb erforderlich sein.
@@ -298,7 +298,7 @@ export default function Notfallreinigung24hPage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <SectionTitle label="Haeufige Fragen" title="Klare Antworten vor der Anfrage" />
+          <SectionTitle label="Häufige Fragen" title="Klare Antworten vor der Anfrage" />
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {faqItems.map((item) => (
               <article key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -314,11 +314,11 @@ export default function Notfallreinigung24hPage() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-cyan-200">Jetzt sauber starten</p>
-                <h2 className="mt-3 text-3xl font-black">Senden Sie Ort, Fotos und Deadline. FLOXANT prueft den schnellsten sinnvollen Weg.</h2>
+                <h2 className="mt-3 text-3xl font-black">Senden Sie Ort, Fotos und Deadline. FLOXANT prüft den schnellsten sinnvollen Weg.</h2>
                 <p className="mt-4 max-w-3xl leading-8 text-slate-200">
-                  Passende Wege zur Anfrage: <Link className="font-black text-white underline" href="/reinigung">Reinigung</Link>,{" "}
-                  <Link className="font-black text-white underline" href="/regensburg/endreinigung">Endreinigung Regensburg</Link>,{" "}
-                  <Link className="font-black text-white underline" href="/regensburg/gewerbereinigung">Gewerbereinigung Regensburg</Link> und{" "}
+                  Passende Wege zur Anfrage: <Link className="font-black text-white underline" href="/reinigung">Reinigung</Link>,{""}
+                  <Link className="font-black text-white underline" href="/regensburg/endreinigung">Endreinigung Regensburg</Link>,{""}
+                  <Link className="font-black text-white underline" href="/regensburg/gewerbereinigung">Gewerbereinigung Regensburg</Link> und{""}
                   <Link className="font-black text-white underline" href="/regensburg/reinigung">Reinigung Regensburg</Link>.
                 </p>
               </div>

@@ -7,8 +7,8 @@ const helpfulLinks = [
   { href: "/", label: "Startseite", Icon: Home },
   { href: "/kontakt", label: "Kontakt", Icon: MessageCircle },
   { href: "/leistungen", label: "Leistungen", Icon: ClipboardCheck },
-  { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen", Icon: ClipboardCheck },
-  { href: "/duesseldorf", label: "Duesseldorf", Icon: MapPin },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen", Icon: ClipboardCheck },
+  { href: "/duesseldorf", label: "Düsseldorf", Icon: MapPin },
   { href: "/regensburg", label: "Regensburg", Icon: MapPin },
 ];
 
@@ -22,8 +22,8 @@ export default function NotFound() {
           Diese Seite ist nicht mehr an der erwarteten Stelle.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-          Der Link kann veraltet sein oder die Leistung wurde neu eingeordnet. Sie koennen direkt
-          zur passenden Anfrage, zum Standort oder zur Leistungsuebersicht wechseln.
+          Der Link kann veraltet sein oder die Leistung wurde neu eingeordnet. Sie können direkt
+          zur passenden Anfrage, zum Standort oder zur Leistungsübersicht wechseln.
         </p>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

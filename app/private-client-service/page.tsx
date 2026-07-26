@@ -17,7 +17,7 @@ import {
 const faqItems = germanizeDeep([
   {
     q: "Was ist der FLOXANT Private Client Service?",
-    a: "Der Private Client Service ist die persoenliche Koordination individueller privater Serviceanfragen, wenn Umzug, Reinigung, Raeumung, Uebergabe oder Angebotspruefung nicht in einen Standardablauf passen.",
+    a: "Der Private Client Service ist die persönliche Koordination individueller privater Serviceanfragen, wenn Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung nicht in einen Standardablauf passen.",
   },
   {
     q: "Was bedeutet diskreter Service bei FLOXANT?",
@@ -53,7 +53,7 @@ const faqItems = germanizeDeep([
   },
   {
     q: "Warum ist diese Seite bewusst getrennt von Rechner, Express und Preisvorschlag?",
-    a: "Weil individuelle private Servicekoordination erst eine ruhige Vorpruefung braucht. Allgemeine sensible Faelle laufen ueber den Diskret-Service; diese Seite bleibt fuer persoenlich gefuehrte Private-Client-Anfragen.",
+    a: "Weil individuelle private Servicekoordination erst eine ruhige Vorprüfung braucht. Allgemeine sensible Faelle laufen über den Diskret-Service; diese Seite bleibt für persönlich gefuehrte Private-Client-Anfragen.",
   },
   {
     q: "Warum ist dieser Bereich bewusst getrennt von den normalen Kontaktwegen?",
@@ -91,13 +91,13 @@ export default function PrivateClientServicePage() {
       buildWebPageJsonLd({
         name: "FLOXANT Private Client Service",
         description:
-          "Private Client Service fuer individuell koordinierte private Anfragen zu Umzug, Reinigung, Raeumung, Uebergabe und Angebotspruefung.",
+          "Private Client Service für individuell koordinierte private Anfragen zu Umzug, Reinigung, Räumung, Übergabe und Angebotsprüfung.",
         path: "/private-client-service",
         about: [
           "Private Client",
           "Private Servicekoordination",
           "Sensible Objektabstimmung",
-          "Persoenlicher Kontaktweg",
+          "Persönlicher Kontaktweg",
           "Bayern",
           "Deutschland",
         ],
@@ -105,10 +105,10 @@ export default function PrivateClientServicePage() {
       buildServiceJsonLd({
         name: "FLOXANT Private Client Service",
         description:
-          "Persoenlich koordinierter Service fuer private Anfragen, die eine ruhige Vorpruefung und einen klaren Kontaktweg brauchen.",
+          "Persönlich koordinierter Service für private Anfragen, die eine ruhige Vorprüfung und einen klaren Kontaktweg brauchen.",
         path: "/private-client-service",
         serviceType: "Private Client Service",
-        areaServed: ["Bayern", "Deutschland", "Regensburg", "Duesseldorf"],
+        areaServed: ["Bayern", "Deutschland", "Regensburg", "Düsseldorf"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -118,12 +118,12 @@ export default function PrivateClientServicePage() {
     {
       icon: Crown,
       title: "Private Servicekoordination",
-      text: "Koordinierte Abstimmung, wenn Umzug, Reinigung, Raeumung oder Uebergabe mehrere Beteiligte und einen klaren Kontaktweg brauchen.",
+      text: "Koordinierte Abstimmung, wenn Umzug, Reinigung, Räumung oder Übergabe mehrere Beteiligte und einen klaren Kontaktweg brauchen.",
     },
     {
       icon: Sparkles,
-      title: "Reinigung und Uebergabe",
-      text: "Reinigung mit Blick auf Zustand, Termin, Zugang, Rueckmeldung und die praktische Vorbereitung des naechsten Schritts.",
+      title: "Reinigung und Übergabe",
+      text: "Reinigung mit Blick auf Zustand, Termin, Zugang, Rückmeldung und die praktische Vorbereitung des nächsten Schritts.",
     },
     {
       icon: Leaf,
@@ -163,19 +163,7 @@ export default function PrivateClientServicePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <style
         dangerouslySetInnerHTML={{
-          __html: `
-            .private-client {
-              --gold: #D8B76E;
-              --champagne: #F6EBDD;
-              --muted-champagne: rgba(246, 235, 221, 0.62);
-              --oxblood: #2A0907;
-              --mahogany: #120907;
-              font-family: "Cormorant Garamond", "Bodoni 72", "Didot", Georgia, serif;
-            }
-            .private-client .private-copy {
-              font-family: "Avenir Next", "Optima", "Segoe UI", sans-serif;
-            }
-          `,
+          __html: `.private-client { --gold: #D8B76E; --champagne: #F6EBDD; --muted-champagne: rgba(246, 235, 221, 0.62); --oxblood: #2A0907; --mahogany: #120907; font-family: "Cormorant Garamond", "Bodoni 72", "Didot", Georgia, serif; } .private-client .private-copy { font-family: "Avenir Next", "Optima", "Segoe UI", sans-serif; }`,
         }}
       />
 
@@ -264,17 +252,17 @@ export default function PrivateClientServicePage() {
             <div className="aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#D8B76E]/16 bg-[linear-gradient(145deg,rgba(216,183,110,0.22),rgba(42,9,7,0.35)),radial-gradient(circle_at_50%_24%,rgba(246,235,221,0.16),transparent_28%)] p-8">
               <div className="flex h-full flex-col justify-between">
                 <div>
-                  <div className="private-copy text-[10px] uppercase tracking-[0.28em] text-[#D8B76E]">Persoenliche Planung</div>
+                  <div className="private-copy text-[10px] uppercase tracking-[0.28em] text-[#D8B76E]">Persönliche Planung</div>
                   <p className="mt-6 text-4xl font-medium leading-tight text-[#F6EBDD] md:text-5xl">
-                    Anfrage fuehren. Kontaktweg klaeren. Naechste Schritte strukturieren.
+                    Anfrage führen. Kontaktweg klären. Naechste Schritte strukturieren.
                   </p>
                 </div>
                 <div className="grid gap-3 private-copy">
                   {[
                     "Bevorzugter Kontaktweg",
                     "Zustaendigkeiten und Zugang",
-                    "Reinigung und Uebergabe",
-                    "Persoenliche Abstimmung",
+                    "Reinigung und Übergabe",
+                    "Persönliche Abstimmung",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3 rounded-full border border-[#D8B76E]/14 bg-black/20 px-4 py-3 text-sm text-[#E6D8C3]/72">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#D8B76E]" />
@@ -300,7 +288,7 @@ export default function PrivateClientServicePage() {
             {[
               {
                 title: "Was ist das?",
-                text: "Ein persoenlicher Bereich fuer private Anfragen, die Koordination, Rueckruf und ruhige Vorpruefung brauchen.",
+                text: "Ein persönlicher Bereich für private Anfragen, die Koordination, Rückruf und ruhige Vorprüfung brauchen.",
               },
               {
                 title: "Für wen?",
@@ -308,11 +296,11 @@ export default function PrivateClientServicePage() {
               },
               {
                 title: "Wann sinnvoll?",
-                text: "Wenn Kontaktweg, Zustaendigkeit, Umfang und naechste Schritte wichtiger sind als ein schneller Standardprozess.",
+                text: "Wenn Kontaktweg, Zustaendigkeit, Umfang und nächste Schritte wichtiger sind als ein schneller Standardprozess.",
               },
               {
                 title: "Wie läuft es ab?",
-                text: "Zuerst persoenliche Vorpruefung, dann ruhige Abstimmung zu Zugang, Serviceumfang, Team und Zeitfenster.",
+                text: "Zuerst persönliche Vorprüfung, dann ruhige Abstimmung zu Zugang, Serviceumfang, Team und Zeitfenster.",
               },
             ].map((item) => (
               <article key={item.title} className="rounded-[1.6rem] border border-[#D8B76E]/12 bg-black/20 p-5">
@@ -359,7 +347,7 @@ export default function PrivateClientServicePage() {
             </h2>
             <p className="private-copy mt-5 text-sm leading-relaxed text-[#E6D8C3]/58">
               FLOXANT verspricht keine pauschalen Sonderstatus-Siegel. Entscheidend ist, dass sensible
-              Aufgaben wie Uebergabe, Reinigung, Zugang, Schluessel und Rueckrufwunsch ruhig zusammen
+              Aufgaben wie Übergabe, Reinigung, Zugang, Schlüssel und Rückrufwunsch ruhig zusammen
               geplant werden.
             </p>
           </div>
@@ -396,17 +384,17 @@ export default function PrivateClientServicePage() {
               Keine öffentliche Standardabwicklung. Keine Massenlogik.
             </h2>
             <p className="private-copy mt-6 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Bei privaten Sonderanfragen zaehlt nicht nur Volumen. Entscheidend sind Zugang,
+              Bei privaten Sonderanfragen zählt nicht nur Volumen. Entscheidend sind Zugang,
               Wegefuehrung, Kontaktweg, Terminfenster, Ansprechpartner, Hausverwaltung,
-              Materialschutz und die gewuenschte Rueckmeldung.
+              Materialschutz und die gewuenschte Rückmeldung.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {[
               { icon: KeyRound, title: "Kontaktweg", text: "Abstimmung mit Eigentuemer, Assistenz, Verwaltung oder beauftragter Kontaktperson." },
-              { icon: Home, title: "Objektverstaendnis", text: "Zugang, Wege, Etagen, Schluessel, Zeitfenster und praktische Grenzen vorab klaeren." },
-              { icon: Gem, title: "Koordination", text: "Umzug, Reinigung, Raeumung, Uebergabe oder Angebotspruefung in einen Ablauf bringen." },
-              { icon: ShieldCheck, title: "Grenzen", text: "Keine Gefahrstoffe oder Sonderabfaelle. Keine falschen Zusagen fuer regulierte Materialien." },
+              { icon: Home, title: "Objektverstaendnis", text: "Zugang, Wege, Etagen, Schlüssel, Zeitfenster und praktische Grenzen vorab klären." },
+              { icon: Gem, title: "Koordination", text: "Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung in einen Ablauf bringen." },
+              { icon: ShieldCheck, title: "Grenzen", text: "Keine Gefahrstoffe oder Sonderabfaelle. Keine falschen Zusagen für regulierte Materialien." },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -452,7 +440,7 @@ export default function PrivateClientServicePage() {
               </h2>
               <p className="private-copy mt-6 text-sm leading-relaxed text-[#E6D8C3]/58">
                 FLOXANT betreut individuelle private Serviceanfragen in
-                Deutschland. Besonders relevant: Regensburg, Bayern, Duesseldorf, Nordrhein-Westfalen
+                Deutschland. Besonders relevant: Regensburg, Bayern, Düsseldorf, Nordrhein-Westfalen
                 sowie abgestimmte ueberregionale Anfragen in umliegenden
                 Regionen.
               </p>
@@ -496,23 +484,23 @@ export default function PrivateClientServicePage() {
           </Link>
           <Link href="/nachlass-raeumung-regensburg" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
             <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Diskret</div>
-            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Nachlass-Raeumung ruhig klaeren</h2>
+            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Nachlass-Räumung ruhig klären</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Fuer Angehoerige, Erben und Eigentuemer, wenn Freigabe, Zugang, Fotos, Raeumung und Reinigung sensibel abgestimmt werden sollen.
+              Für Angehörige, Erben und Eigentuemer, wenn Freigabe, Zugang, Fotos, Räumung und Reinigung sensibel abgestimmt werden sollen.
             </p>
           </Link>
           <Link href="/diskreter-umzug-trennung-scheidung" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
-            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Rueckruf-First</div>
+            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Rückruf-First</div>
             <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Diskreter Auszug bei Trennung</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Fuer sensible private Auszugssituationen, wenn Rueckruf, sichere Kontaktmethode, Transport, Reinigung und Uebergabe ruhig abgestimmt werden sollen.
+              Für sensible private Auszugssituationen, wenn Rückruf, sichere Kontaktmethode, Transport, Reinigung und Übergabe ruhig abgestimmt werden sollen.
             </p>
           </Link>
           <Link href="/diskret-service" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
             <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Kontaktweg</div>
-            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Diskret-Service fuer sensible Faelle</h2>
+            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Diskret-Service für sensible Faelle</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Wenn die Anfrage sensibel ist, aber keine persoenlich gefuehrte Private-Client-Koordination braucht, beginnt sie hier.
+              Wenn die Anfrage sensibel ist, aber keine persönlich gefuehrte Private-Client-Koordination braucht, beginnt sie hier.
             </p>
           </Link>
           <Link

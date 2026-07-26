@@ -37,7 +37,7 @@ const faqItems = [
     a: "Möglich sind private Feiern, Firmenfeiern, Empfänge, Seminare, Praxistermine, Kanzlei-Events, Hausgemeinschaften, Apartments, Boardinghouses und kleinere Veranstaltungsflächen. Der konkrete Umfang wird nach Fotos, Fläche, Zugang und Zeitfenster geprüft.",
   },
   {
-    q: "Was gehoert typischerweise zur Reinigung nach Party oder Event?",
+    q: "Was gehört typischerweise zur Reinigung nach Party oder Event?",
     a: "Typisch sind Böden, Sanitärbereiche, Küche oder Teeküche, Tische, Nebenflächen, Eingangsbereich, Treppenhausanteile, Abfalltrennung, Geruchsreduzierung und die Vorbereitung für die nächste Nutzung oder Übergabe.",
   },
   {
@@ -256,7 +256,7 @@ export default function ReinigungNachVeranstaltungPage() {
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-7 lg:col-span-2">
               <ClipboardCheck className="h-8 w-8 text-emerald-800" />
-              <h2 className="mt-5 text-2xl font-black text-slate-950">So wird Ihre Anfrage schnell pruefbar</h2>
+              <h2 className="mt-5 text-2xl font-black text-slate-950">So wird Ihre Anfrage schnell prüfbar</h2>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
                 {[
                   ["Ort und Zugang", "Adresse, Stadtteil, Etage, Aufzug, Schlüssel, Ansprechpartner und Parkmöglichkeit."],
@@ -273,7 +273,7 @@ export default function ReinigungNachVeranstaltungPage() {
             </div>
             <div className="rounded-[1.5rem] border border-slate-200 bg-white p-7 shadow-sm">
               <Camera className="h-8 w-8 text-slate-900" />
-              <h2 className="mt-5 text-2xl font-black text-slate-950">Fotos schlagen lange Erklaerungen</h2>
+              <h2 className="mt-5 text-2xl font-black text-slate-950">Fotos schlagen lange Erklärungen</h2>
               <p className="mt-4 leading-8 text-slate-700">
                 Drei bis acht klare Fotos helfen mehr als eine ungenaue Beschreibung. Zeigen Sie den schlechtesten Bereich, den
                 Eingangsbereich, Sanitär, Küche, Böden und Restmengen. Dann kann FLOXANT schneller erkennen, ob Reinigung,
@@ -302,7 +302,7 @@ export default function ReinigungNachVeranstaltungPage() {
                   { href: "/reinigung", label: "Reinigung Hauptseite" },
                   { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
                   { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
-                  { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
+                  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
                   { href: "/regensburg/reinigung", label: "Regensburg Stadtteile und 50-km-Umkreis" },
                 ].map((link) => (
                   <Link
@@ -320,7 +320,7 @@ export default function ReinigungNachVeranstaltungPage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <SectionTitle label="Haeufige Fragen" title="Was Kunden vor der Anfrage wissen sollten" />
+          <SectionTitle label="Häufige Fragen" title="Was Kunden vor der Anfrage wissen sollten" />
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {faqItems.map((item) => (
               <article key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -338,7 +338,7 @@ export default function ReinigungNachVeranstaltungPage() {
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-200">Anlass sauber abschliessen</p>
                 <h2 className="mt-3 text-3xl font-black">Senden Sie Anlass, Ort, Fotos und nächste Nutzung. FLOXANT prüft die passende Reinigung.</h2>
                 <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-8 text-slate-200">
-                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Regensburg und Reinigung Regensburg nach Pruefung</span>
+                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Regensburg und Reinigung Regensburg nach Prüfung</span>
                   <span className="inline-flex items-center gap-2"><Trash2 className="h-4 w-4" /> Reinigung mit Restmengen möglich</span>
                 </p>
               </div>

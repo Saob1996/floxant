@@ -14,11 +14,11 @@ export function DiscreetTrustPanel({ className = "" }: { className?: string }) {
             Sensible Faelle duerfen mit wenigen Angaben starten.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8">
-            Ort, grobe Lage, Frist und bevorzugter Kontaktweg reichen fuer die erste Einordnung. Bitte keine Zugangscodes, Ausweisdaten, Zahlungsdaten oder intimen Details im ersten Schritt senden.
+            Ort, grobe Lage, Frist und bevorzugter Kontaktweg reichen für die erste Einordnung. Bitte keine Zugangscodes, Ausweisdaten, Zahlungsdaten oder intimen Details im ersten Schritt senden.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
-          {["Zurueckhaltende Kommunikation moeglich.", "Bevorzugter Kontaktweg kann genannt werden.", "Details koennen spaeter geklaert werden.", "Keine Rechtsberatung oder Sicherheitsgarantie."].map((item) => (
+          {["Zurückhaltende Kommunikation möglich.", "Bevorzugter Kontaktweg kann genannt werden.", "Details können später geklaert werden.", "Keine Rechtsberatung oder Sicherheitsgarantie."].map((item) => (
             <div key={item} className="rounded-lg border border-amber-200 bg-white p-4 text-sm font-bold leading-7 shadow-sm">
               {item}
             </div>

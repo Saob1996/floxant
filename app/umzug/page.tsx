@@ -160,8 +160,8 @@ export default async function UmzugPillarPage() {
           { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/urlaubsretter", label: "Urlaubsretter vor Reise oder Übergabe" },
-          { href: "/business-errand-service", label: "Erledigungsservice fuer Schluessel und Dokumente" },
-          { href: "/property-operations", label: "Immobilienbetreuung mit Uebergaben und Objektstatus" },
+          { href: "/business-errand-service", label: "Erledigungsservice für Schlüssel und Dokumente" },
+          { href: "/property-operations", label: "Immobilienbetreuung mit Übergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
           { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
@@ -184,8 +184,8 @@ export default async function UmzugPillarPage() {
         intro="Volumen, Etagen, Zeitfenster und Sonderstuecke entscheiden, ob Mini-Umzug, Privatumzug, Beiladung oder Plan B der bessere Start ist."
       />
       <PsychologicalCleaningInternalLinks
-        title="Reinigung und Uebergabe nach dem Umzug"
-        intro="Wenn Transport, Schluessel, alte Wohnung und Restpunkte zusammenkommen, fuehren diese Spezialseiten zu weniger Stress vor der Uebergabe."
+        title="Reinigung und Übergabe nach dem Umzug"
+        intro="Wenn Transport, Schlüssel, alte Wohnung und Restpunkte zusammenkommen, führen diese Spezialseiten zu weniger Stress vor der Übergabe."
         focusSlugs={[
           "schluesselruhe-service",
           "vermieter-schockschutz-reinigung",

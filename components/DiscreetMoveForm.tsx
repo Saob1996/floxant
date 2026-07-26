@@ -27,43 +27,43 @@ const requestTypeOptions = [
     value: "diskreter_auszug",
     title: "Diskreter Auszug",
     text: "Auszug aus einer privaten oder gemeinsamen Wohnung ruhig abstimmen.",
-    services: ["Transport / Umzug", "Rueckruf"],
+    services: ["Transport / Umzug", "Rückruf"],
   },
   {
     value: "moebel_gegenstaende",
-    title: "Moebel / Gegenstaende abholen",
-    text: "Einzelne Moebel oder persoenliche Gegenstaende nach Umfang und Zugang pruefen.",
-    services: ["Moebel oder persoenliche Gegenstaende abholen", "Rueckruf"],
+    title: "Möbel / Gegenstände abholen",
+    text: "Einzelne Möbel oder persönliche Gegenstände nach Umfang und Zugang prüfen.",
+    services: ["Möbel oder persönliche Gegenstände abholen", "Rückruf"],
   },
   {
     value: "auszug_reinigung",
     title: "Auszug + Reinigung",
-    text: "Transport und Reinigung nach Auszug in einem ruhig abgestimmten Ablauf pruefen.",
+    text: "Transport und Reinigung nach Auszug in einem ruhig abgestimmten Ablauf prüfen.",
     services: ["Transport / Umzug", "Reinigung nach Auszug"],
   },
   {
     value: "schluesseluebergabe",
-    title: "Schluesseluebergabe",
-    text: "Schluesselstatus, Zugang und Uebergabe nach Absprache organisatorisch klaeren.",
-    services: ["Schluesseluebergabe nach Absprache"],
+    title: "Schlüsselübergabe",
+    text: "Schlüsselstatus, Zugang und Übergabe nach Absprache organisatorisch klären.",
+    services: ["Schlüsselübergabe nach Absprache"],
   },
   {
     value: "uebergabeakte",
-    title: "Uebergabeakte",
-    text: "Fotos, Leistungen, Schluesselstatus und Hinweise nach Absprache buendeln.",
-    services: ["Uebergabeakte / Foto-Dokumentation"],
+    title: "Übergabeakte",
+    text: "Fotos, Leistungen, Schlüsselstatus und Hinweise nach Absprache buendeln.",
+    services: ["Übergabeakte / Foto-Dokumentation"],
   },
   {
     value: "premium_diskret",
     title: "Sensible Abstimmung",
-    text: "Sensible oder komplexere Abstimmung mit Rueckruf priorisieren.",
-    services: ["Diskrete Abstimmung", "Rueckruf"],
+    text: "Sensible oder komplexere Abstimmung mit Rückruf priorisieren.",
+    services: ["Diskrete Abstimmung", "Rückruf"],
   },
   {
     value: "telefonisch_klaeren",
-    title: "Telefonisch klaeren",
-    text: "Wenn die Situation nicht schriftlich erklaert werden soll.",
-    services: ["Rueckruf"],
+    title: "Telefonisch klären",
+    text: "Wenn die Situation nicht schriftlich erklärt werden soll.",
+    services: ["Rückruf"],
   },
 ] as const;
 
@@ -72,46 +72,46 @@ const safeContactMethods = ["Telefon", "WhatsApp", "E-Mail", "Bitte nur zu besti
 const contactRestrictionOptions = [
   "bitte nur zu bestimmter Uhrzeit",
   "keine Details per E-Mail",
-  "Rueckruf bevorzugt",
+  "Rückruf bevorzugt",
   "WhatsApp nur kurz",
 ];
 
 const serviceOptions = [
   "Transport / Umzug",
-  "Moebel oder persoenliche Gegenstaende abholen",
+  "Möbel oder persönliche Gegenstände abholen",
   "Reinigung nach Auszug",
-  "Entruempelung / Entsorgung nach Absprache",
-  "Schluesseluebergabe nach Absprache",
-  "Uebergabeakte / Foto-Dokumentation",
+  "Entrümpelung / Entsorgung nach Absprache",
+  "Schlüsselübergabe nach Absprache",
+  "Übergabeakte / Foto-Dokumentation",
   "Diskrete Abstimmung",
-  "Rueckruf",
+  "Rückruf",
 ];
 
 const packageOptions = [
   {
     title: "Diskreter Auszug",
-    text: "Transport, Zeitfenster, Umfang, Fotos und Rueckruf nach Absprache.",
-    cta: "Diskreten Auszug pruefen",
+    text: "Transport, Zeitfenster, Umfang, Fotos und Rückruf nach Absprache.",
+    cta: "Diskreten Auszug prüfen",
   },
   {
-    title: "Moebel & persoenliche Gegenstaende",
-    text: "Gegenstandsliste, Zugang, Etage und Zeitfenster fuer einzelne Abholungen.",
-    cta: "Abholung pruefen",
+    title: "Möbel & persönliche Gegenstände",
+    text: "Gegenstandsliste, Zugang, Etage und Zeitfenster für einzelne Abholungen.",
+    cta: "Abholung prüfen",
   },
   {
     title: "Auszug + Reinigung",
-    text: "Transport, Endreinigung und Uebergabevorbereitung als kombinierter Ablauf.",
+    text: "Transport, Endreinigung und Übergabevorbereitung als kombinierter Ablauf.",
     cta: "Auszug + Reinigung anfragen",
   },
   {
-    title: "Schluessel & Uebergabe",
-    text: "Schluesseluebergabe, Uebergabeakte und Foto-Dokumentation nach Absprache.",
-    cta: "Uebergabe abstimmen",
+    title: "Schlüssel & Übergabe",
+    text: "Schlüsselübergabe, Übergabeakte und Foto-Dokumentation nach Absprache.",
+    cta: "Übergabe abstimmen",
   },
   {
     title: "Sensible Abstimmung",
-    text: "Rueckruf, Planung, Zusatzleistungen und diskrete Abstimmung fuer komplexe Faelle.",
-    cta: "Diskreten Rueckruf anfragen",
+    text: "Rückruf, Planung, Zusatzleistungen und diskrete Abstimmung für komplexe Faelle.",
+    cta: "Diskreten Rückruf anfragen",
   },
 ];
 
@@ -132,7 +132,7 @@ function validatePhotos(files: File[]) {
 
 function servicesForRequestType(requestType: string) {
   const selected = requestTypeOptions.find((item) => item.value === requestType);
-  return selected ? [...selected.services] : ["Rueckruf"];
+  return selected ? [...selected.services] : ["Rückruf"];
 }
 
 export function DiscreetMoveForm() {
@@ -302,13 +302,13 @@ export function DiscreetMoveForm() {
       className="rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10 sm:p-7"
     >
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Rueckruf-First</div>
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Rückruf-First</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">
-          Sie muessen nicht alles schriftlich erklaeren
+          Sie müssen nicht alles schriftlich erklären
         </h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Fuer die erste Anfrage reichen Ort, Zeitraum, Anfrageart und sicherer Kontaktweg. Private Details koennen
-          spaeter ruhig telefonisch geklaert werden.
+          Für die erste Anfrage reichen Ort, Zeitraum, Anfrageart und sicherer Kontaktweg. Private Details können
+          später ruhig telefonisch geklaert werden.
         </p>
       </div>
 
@@ -367,7 +367,7 @@ export function DiscreetMoveForm() {
               name="phone"
               type="tel"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="fuer Rueckruf"
+              placeholder="für Rückruf"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -384,7 +384,7 @@ export function DiscreetMoveForm() {
             <input
               name="cityOrZip"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="Regensburg, Landkreis, Bayern nach Verfuegbarkeit"
+              placeholder="Regensburg, Landkreis, Bayern nach Verfügbarkeit"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -396,7 +396,7 @@ export function DiscreetMoveForm() {
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Rueckrufzeitfenster
+            Rückrufzeitfenster
             <input
               name="callbackTimeWindow"
               data-event="hero_cta_click"
@@ -438,7 +438,7 @@ export function DiscreetMoveForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
-          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprueft werden?</div>
+          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -466,7 +466,7 @@ export function DiscreetMoveForm() {
             <input
               name="startLocation"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="nur grob, keine Details noetig"
+              placeholder="nur grob, keine Details nötig"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -478,7 +478,7 @@ export function DiscreetMoveForm() {
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Uebergabetermin optional
+            Übergabetermin optional
             <input
               name="handoverDate"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
@@ -506,7 +506,7 @@ export function DiscreetMoveForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Schluesselstatus
+            Schlüsselstatus
             <input
               name="keyStatus"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
@@ -517,12 +517,12 @@ export function DiscreetMoveForm() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Umfang / Gegenstaende optional
+            Umfang / Gegenstände optional
             <textarea
               name="itemDescription"
               rows={4}
               className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600"
-              placeholder="z. B. Kartons, Kleidung, Bett, Sofa, wenige Moebel. Keine sensiblen privaten Details noetig."
+              placeholder="z. B. Kartons, Kleidung, Bett, Sofa, wenige Möbel. Keine sensiblen privaten Details nötig."
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -531,7 +531,7 @@ export function DiscreetMoveForm() {
               name="message"
               rows={4}
               className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600"
-              placeholder="Was soll praktisch geklaert werden? Details koennen telefonisch folgen."
+              placeholder="Was soll praktisch geklaert werden? Details können telefonisch folgen."
             />
           </label>
         </div>
@@ -551,22 +551,22 @@ export function DiscreetMoveForm() {
         <div className="grid gap-3 md:grid-cols-3">
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="cleaningRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Reinigung nach Auszug gewuenscht.
+            Reinigung nach Auszug gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="disposalRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Entruempelung / Entsorgung nach Absprache.
+            Entrümpelung / Entsorgung nach Absprache.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="handoverFileRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Uebergabeakte gewuenscht.
+            Übergabeakte gewünscht.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700">
           <input name="authorizationConfirmed" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
-            Ich bestaetige, dass ich berechtigt bin, die angefragten Gegenstaende / Leistungen zu beauftragen.
+            Ich bestätige, dass ich berechtigt bin, die angefragten Gegenstände / Leistungen zu beauftragen.
           </span>
         </label>
 
@@ -586,8 +586,8 @@ export function DiscreetMoveForm() {
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre diskrete Anfrage ist eingegangen. FLOXANT prueft Ort, Zeitraum, Umfang und gewuenschte
-            Kontaktmethode. Falls Angaben fehlen, melden wir uns ueber den von Ihnen gewuenschten sicheren Kontaktweg.
+            Danke. Ihre diskrete Anfrage ist eingegangen. FLOXANT prüft Ort, Zeitraum, Umfang und gewuenschte
+            Kontaktmethode. Falls Angaben fehlen, melden wir uns über den von Ihnen gewuenschten sicheren Kontaktweg.
           </div>
         ) : null}
 
@@ -615,7 +615,7 @@ export function DiscreetMoveForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />
-            Rueckruf
+            Rückruf
           </a>
           <a
             href={`mailto:${EMAIL}`}

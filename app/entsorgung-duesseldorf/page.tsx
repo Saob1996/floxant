@@ -120,10 +120,10 @@ const disposalIntentItems = [
   },
   {
     query: "Entsorgung nach Auszug Düsseldorf",
-    title: "Erst raus, dann Zielzustand klaeren",
+    title: "Erst raus, dann Zielzustand klären",
     text: "Wenn nach Auszug oder Renovierung noch weitere Schritte offen sind, bleiben Umfang, Fotos und Termin getrennt dokumentiert.",
     href: bookingHref,
-    cta: "Zielzustand klaeren",
+    cta: "Zielzustand klären",
     external: false,
   },
 ] as const;
@@ -139,7 +139,7 @@ const disposalRequestChecklist = [
   },
   {
     title: "Termin und Zielzustand",
-    text: "Wichtig ist, ob nur abgeholt wird oder ob nach Auszug, Renovierung oder Raeumung noch Dokumentation, Fotos oder ein weiterer Termin noetig sind.",
+    text: "Wichtig ist, ob nur abgeholt wird oder ob nach Auszug, Renovierung oder Räumung noch Dokumentation, Fotos oder ein weiterer Termin nötig sind.",
   },
   {
     title: "Ausschlüsse offen nennen",
@@ -405,7 +405,7 @@ export default function EntsorgungDuesseldorfPage() {
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
               Je klarer Fotos, Zugang und Zielzustand sind, desto eher kann FLOXANT sagen,
-              ob Entsorgung in Duesseldorf machbar ist und welcher Zielzustand danach dokumentiert werden soll.
+              ob Entsorgung in Düsseldorf machbar ist und welcher Zielzustand danach dokumentiert werden soll.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -458,7 +458,7 @@ export default function EntsorgungDuesseldorfPage() {
         serviceIds={["duesseldorf_disposal", "photo_check", "budget_check"]}
         badge="Düsseldorf Entsorgung"
         title="Entsorgung mit Fotoeinschätzung statt unklarem Pauschalversprechen"
-        subtitle="Diese Seite bleibt bewusst getrennt vom Umzug: Umfang, Zugang, Etage, Materialart, Fotos und Budget werden zuerst geprüft. Weitere Schritte werden getrennt geprueft."
+        subtitle="Diese Seite bleibt bewusst getrennt vom Umzug: Umfang, Zugang, Etage, Materialart, Fotos und Budget werden zuerst geprüft. Weitere Schritte werden getrennt geprüft."
         compact
         source="duesseldorf_disposal_signature_services"
       />
@@ -474,9 +474,9 @@ export default function EntsorgungDuesseldorfPage() {
           "photo_check",
           "budget_check",
         ]}
-        badge="Duesseldorf Entsorgung"
-        title="Entsorgung in Duesseldorf braucht klare Fotos, Zugang und Grenzen"
-        subtitle="Die Seite staerkt Entsorgung ohne Umzugsdominanz: privat und B2B bleiben getrennt, riskante Stoffe werden ausgeschlossen und weitere Schritte werden nur nach Fotos, Umfang und Termin geprueft."
+        badge="Düsseldorf Entsorgung"
+        title="Entsorgung in Düsseldorf braucht klare Fotos, Zugang und Grenzen"
+        subtitle="Die Seite staerkt Entsorgung ohne Umzugsdominanz: privat und B2B bleiben getrennt, riskante Stoffe werden ausgeschlossen und weitere Schritte werden nur nach Fotos, Umfang und Termin geprüft."
         source="duesseldorf_disposal_authority_modules"
       />
 

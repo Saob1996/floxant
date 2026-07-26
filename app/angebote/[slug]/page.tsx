@@ -4,6 +4,7 @@ import { MapPin } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
+import { germanizeText } from "@/lib/german-text";
 
 const STATIC_OFFER_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
 const STATIC_OFFER_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
  const parts = slug.split('-');
  const service = parts[0]; 
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '';
+ const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '');
  return generatePageSEO({
   pageLocale: "de" as Locale,
   path: `angebote/${slug}`,
@@ -34,7 +35,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
   const content = (dict as any)?.pages?.service_umzug || {};
  const parts = slug.split('-');
  const serviceRaw = parts[0]?.toLowerCase(); 
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';
+ const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt');
  let serviceType: 'umzug' | 'reinigung' | 'entsorgung' = 'umzug';
  if (serviceRaw === 'reinigung' || serviceRaw === 'entsorgung') {
   serviceType = serviceRaw;

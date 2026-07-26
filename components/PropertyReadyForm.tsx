@@ -46,56 +46,56 @@ const goalOptions = [
   "Besichtigung vorbereiten",
   "Expose-Fotos vorbereiten",
   "Objekt nach Auszug vorbereiten",
-  "Nachlass / Erbfall raeumen",
+  "Nachlass / Erbfall räumen",
   "wieder nutzbar machen",
   "anderes",
 ];
 
 const serviceOptions = [
-  "Raeumung / Entruempelung",
+  "Räumung / Entrümpelung",
   "Entsorgung",
   "Reinigung vor Besichtigung",
   "Endreinigung",
   "Grundreinigung",
   "Keller / Garage / Dachboden",
   "Foto-Dokumentation",
-  "Uebergabeakte",
-  "Schluesselkoordination",
+  "Übergabeakte",
+  "Schlüsselkoordination",
   "Makler-/Vermieter-Link",
   "Diskrete Abstimmung",
-  "Rueckruf",
+  "Rückruf",
 ];
 
 const statusCards = [
   {
     value: "moebliert",
     title: "Noch moebliert",
-    text: "Moebel, Hausrat oder Restgegenstaende blockieren den ersten Eindruck.",
-    services: "Raeumung + Entsorgung + Reinigung",
+    text: "Möbel, Hausrat oder Restgegenstaende blockieren den ersten Eindruck.",
+    services: "Räumung + Entsorgung + Reinigung",
   },
   {
     value: "nebenflaechen_voll",
     title: "Keller/Garage voll",
-    text: "Nebenflaechen stoeren Verkauf, Besichtigung oder Fototermin.",
-    services: "Nebenflaechen pruefen",
+    text: "Nebenflächen stoeren Verkauf, Besichtigung oder Fototermin.",
+    services: "Nebenflächen prüfen",
   },
   {
     value: "reinigung_fehlt",
     title: "Reinigung fehlt",
-    text: "Bad, Kueche, Boeden oder sichtbare Flaechen brauchen Vorbereitung.",
+    text: "Bad, Küche, Böden oder sichtbare Flächen brauchen Vorbereitung.",
     services: "Reinigung vor Besichtigung",
   },
   {
     value: "fototermin_bald",
     title: "Foto-/Besichtigungstermin",
-    text: "Der Termin steht bald an und offene Punkte muessen priorisiert werden.",
+    text: "Der Termin steht bald an und offene Punkte müssen priorisiert werden.",
     services: "Besichtigungs-Ready",
   },
   {
     value: "nachlass",
     title: "Erbfall / Nachlass",
     text: "Objekt soll diskret geraeumt, gereinigt oder nutzbarer gemacht werden.",
-    services: "Diskret + Raeumung",
+    services: "Diskret + Räumung",
   },
   {
     value: "mehrere_bereiche",
@@ -105,7 +105,7 @@ const statusCards = [
   },
 ];
 
-const urgencyOptions = ["diese Woche", "naechste Woche", "vor Besichtigung", "vor Fototermin", "flexibel"];
+const urgencyOptions = ["diese Woche", "nächste Woche", "vor Besichtigung", "vor Fototermin", "flexibel"];
 const clearanceOptions = ["ja", "nein", "unklar"];
 const hazardOptions = ["nein", "ja", "unklar"];
 
@@ -261,7 +261,7 @@ export function PropertyReadyForm() {
         <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-600">Objektstatus-Terminal</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">Was muss vor Besichtigung oder Verkauf noch passieren?</h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Waehlen Sie die naechstliegende Lage. FLOXANT nutzt diese Angabe zur praktischen Vorpruefung, nicht als Verkaufs- oder Preisversprechen.
+          Wählen Sie die nächstliegende Lage. FLOXANT nutzt diese Angabe zur praktischen Vorprüfung, nicht als Verkaufs- oder Preisversprechen.
         </p>
       </div>
 
@@ -325,7 +325,7 @@ export function PropertyReadyForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             E-Mail
@@ -351,7 +351,7 @@ export function PropertyReadyForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Gewuenschter Zeitraum / Termin*
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="z. B. vor Besichtigung, naechste Woche" />
+            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="z. B. vor Besichtigung, nächste Woche" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Dringlichkeit
@@ -380,7 +380,7 @@ export function PropertyReadyForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
-          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprueft werden?</div>
+          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -405,11 +405,11 @@ export function PropertyReadyForm() {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaM2" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="z. B. 120 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Raeume
+            Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="z. B. 4" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -449,15 +449,15 @@ export function PropertyReadyForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Zugang / Schluesselstatus
-            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="Schluessel bei Eigentuemer, Makler, Verwaltung..." />
+            Zugang / Schlüsselstatus
+            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600" placeholder="Schlüssel bei Eigentuemer, Makler, Verwaltung..." />
           </label>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Zugang / Hinweise
-            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-amber-600" placeholder="Parken, Trageweg, Kellerzugang, Schluessel, Ansprechpartner vor Ort" />
+            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-amber-600" placeholder="Parken, Trageweg, Kellerzugang, Schlüssel, Ansprechpartner vor Ort" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Kurze Beschreibung*
@@ -480,18 +480,18 @@ export function PropertyReadyForm() {
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-amber-700" />
-            Rueckruf zur Objektvorbereitung gewuenscht.
+            Rückruf zur Objektvorbereitung gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-amber-700" />
-            WhatsApp fuer Rueckfragen bevorzugt.
+            WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-amber-700" />
           <span>
-            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. FLOXANT bietet praktische und organisatorische Unterstuetzung, keine Maklerleistung, keine Immobilienbewertung, keine Verkaufsgarantie und keine Rechtsberatung.
+            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. FLOXANT bietet praktische und organisatorische Unterstützung, keine Maklerleistung, keine Immobilienbewertung, keine Verkaufsgarantie und keine Rechtsberatung.
           </span>
         </label>
 
@@ -501,7 +501,7 @@ export function PropertyReadyForm() {
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage zur Objektvorbereitung ist eingegangen. FLOXANT prueft Objektart, Zustand, Ort, Termin, Fotos und gewuenschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage zur Objektvorbereitung ist eingegangen. FLOXANT prüft Objektart, Zustand, Ort, Termin, Fotos und gewuenschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -539,7 +539,7 @@ export function PropertyReadyForm() {
 
         <div className="flex flex-wrap gap-2 text-xs font-bold text-stone-600">
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Sparkles className="h-3 w-3" /> Keine Verkaufsgarantie</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschaetzung</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschätzung</span>
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Phone className="h-3 w-3" /> {PHONE_DISPLAY}</span>
         </div>
       </form>

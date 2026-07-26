@@ -136,7 +136,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "gewerbereinigung-regensburg",
     title: "Gewerbereinigung Regensburg mit Raumliste und Turnus",
     description:
-      "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei oder Objekt: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren.",
+      "Gewerbereinigung Regensburg für Büro, Praxis, Kanzlei oder Objekt: Fläche, Raumliste, Turnus, Zeitfenster und Angebot klären.",
   });
 }
 
@@ -292,8 +292,8 @@ export default function GewerbereinigungRegensburgPage() {
               </h1>
 
               <p className="mt-5 max-w-[56ch] text-base leading-8 text-slate-700">
-                Beschreiben Sie Objektart, Flaeche, Raumliste, Nutzung, Turnus, Zugang,
-                Zeitfenster und Ansprechpartner. FLOXANT ordnet ein, ob Buero, Praxis,
+                Beschreiben Sie Objektart, Fläche, Raumliste, Nutzung, Turnus, Zugang,
+                Zeitfenster und Ansprechpartner. FLOXANT ordnet ein, ob Büro, Praxis,
                 Kanzlei, Hotel oder Hausverwaltung als Gewerbereinigung realistisch passt.
               </p>
 

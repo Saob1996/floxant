@@ -23,16 +23,16 @@ const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const uncertainOptions = [
   "Transport / Umzug / Moving help",
   "Reinigung / Cleaning service",
-  "Entruempelung / Decluttering",
+  "Entrümpelung / Decluttering",
   "Entsorgung / Disposal",
-  "Schluesseluebergabe",
-  "Uebergabe",
+  "Schlüsselübergabe",
+  "Übergabe",
   "Angebot / Preis / Quote check",
   "Fairpreis-Check",
   "Objektbrief",
   "Solar / PV / Solar panel cleaning",
   "Reinigung Regensburg / Cleaning service",
-  "Duesseldorf Entsorgung",
+  "Düsseldorf Entsorgung",
   "mehrere Punkte",
 ];
 
@@ -40,34 +40,34 @@ const riskLevels = [
   {
     id: "beobachten",
     title: "Beobachten",
-    text: "Termin ist noch nicht akut, Angebot wirkt unklar oder Sie wollen eine zweite Einschaetzung.",
-    cta: "Zweite Einschaetzung starten",
+    text: "Termin ist noch nicht akut, Angebot wirkt unklar oder Sie wollen eine zweite Einschätzung.",
+    cta: "Zweite Einschätzung starten",
   },
   {
     id: "absichern",
     title: "Absichern",
-    text: "Termin rueckt naeher, Anbieter wirkt unsicher oder Reinigung/Raeumung ist noch offen.",
+    text: "Termin rückt naeher, Anbieter wirkt unsicher oder Reinigung/Räumung ist noch offen.",
     cta: "Ablauf absichern",
   },
   {
     id: "plan_b_noetig",
-    title: "Plan B noetig",
-    text: "Deadline ist nah, Anbieter/Helfer faellt aus oder mehrere Punkte blockieren die Uebergabe.",
-    cta: "Plan B dringend pruefen",
+    title: "Plan B nötig",
+    text: "Deadline ist nah, Anbieter/Helfer faellt aus oder mehrere Punkte blockieren die Übergabe.",
+    cta: "Plan B dringend prüfen",
   },
 ];
 
 const packageOptions = [
   "Ersatztransport",
   "Reinigungs-Backup / Cleaning backup",
-  "Raeumungs-Backup / Clearance backup",
-  "Uebergabe-Backup",
+  "Räumungs-Backup / Clearance backup",
+  "Übergabe-Backup",
   "Komplett-Plan-B",
   "Fairpreis- oder Angebots-Backup",
   "Objektbrief zur Sortierung",
   "Solar/PV-Sichtklar",
   "Reinigung Regensburg/Entsorgung",
-  "Diskreter Rueckruf",
+  "Diskreter Rückruf",
 ];
 
 const openItemOptions = [
@@ -77,12 +77,12 @@ const openItemOptions = [
   "Termin knapp",
   "Reinigung vergessen",
   "Keller / Sperrmuell offen",
-  "Schluessel / Uebergabe unklar",
+  "Schlüssel / Übergabe unklar",
   "Preisrahmen unrealistisch",
   "PV- oder Dachzugang unklar",
   "Objektbrief sinnvoll",
   "Fairpreis-Check sinnvoll",
-  "zweite Absicherung gewuenscht",
+  "zweite Absicherung gewünscht",
   "Fotos vorhanden",
   "Budget vorhanden",
   "Düsseldorf passend zum Anliegen",
@@ -136,8 +136,8 @@ export function PlanBServiceForm() {
   const whatsappHref = useMemo(() => {
     const text =
       uncertainArea.includes("Duesseldorf") || uncertainArea.includes("Düsseldorf")
-        ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
-        : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entruempelung/Uebergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
+        ? "Hallo FLOXANT, ich brauche einen Plan B für Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
+        : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entrümpelung/Übergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
     return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(text)}`;
   }, [uncertainArea]);
 
@@ -257,12 +257,12 @@ export function PlanBServiceForm() {
         <ShieldCheck className="h-4 w-4" />
         Backup-Control
       </div>
-      <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B pruefen lassen</h2>
+      <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B prüfen lassen</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">
-        Kurze Angaben reichen fuer den Start. FLOXANT prueft nach Verfuegbarkeit, ob ein Ersatz- oder Ergaenzungsplan realistisch ist.
+        Kurze Angaben reichen für den Start. FLOXANT prüft nach Verfügbarkeit, ob ein Ersatz- oder Ergaenzungsplan realistisch ist.
       </p>
       <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
-        Anfrage auf Deutsch oder Englisch moeglich: moving help, cleaning service, quote check
+        Anfrage auf Deutsch oder Englisch möglich: moving help, cleaning service, quote check
         oder house clearance reichen als Stichwort.
       </p>
 
@@ -296,7 +296,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
@@ -304,7 +304,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Duesseldorf..." />
+            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Düsseldorf..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Was ist unsicher?*
@@ -322,7 +322,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Deadline / Termin*
-            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. diese Woche, Uebergabe am..." />
+            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. diese Woche, Übergabe am..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Gewuenschtes Plan-B-Paket
@@ -361,7 +361,7 @@ export function PlanBServiceForm() {
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Aufzug
             <select name="elevator" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              <option value="">Bitte waehlen</option>
+              <option value="">Bitte wählen</option>
               <option value="ja">Ja</option>
               <option value="nein">Nein</option>
               <option value="unklar">Unklar</option>
@@ -400,7 +400,7 @@ export function PlanBServiceForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Zugang / Trageweg / Besonderheiten
-            <textarea name="accessNotes" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Parken, Hausflur, Etage, Schluessel, Zugang..." />
+            <textarea name="accessNotes" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Parken, Hausflur, Etage, Schlüssel, Zugang..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Kurze Beschreibung*
@@ -410,9 +410,9 @@ export function PlanBServiceForm() {
 
         <div className="rounded-[1.75rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
-            <p className="text-sm font-black text-slate-950">Dateien fuer den Plan-B-Check</p>
+            <p className="text-sm font-black text-slate-950">Dateien für den Plan-B-Check</p>
             <p className="mt-1 text-xs leading-5 text-slate-600">
-              Fotos und vorhandene Angebote bleiben getrennt. So sieht FLOXANT schnell, ob Umfang, Zustand oder Angebot geprueft werden soll.
+              Fotos und vorhandene Angebote bleiben getrennt. So sieht FLOXANT schnell, ob Umfang, Zustand oder Angebot geprüft werden soll.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -445,7 +445,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
-            <span>Rueckruf gewuenscht</span>
+            <span>Rückruf gewünscht</span>
           </label>
         </div>
 
@@ -457,14 +457,14 @@ export function PlanBServiceForm() {
         {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">
-            Danke. Ihre Plan-B-Anfrage ist eingegangen. FLOXANT prueft Ort, Termin, offene Punkte, Fotos und Verfuegbarkeit. Wenn ein Ersatz- oder Ergaenzungsplan moeglich ist oder Rueckfragen noetig sind, melden wir uns.
+            Danke. Ihre Plan-B-Anfrage ist eingegangen. FLOXANT prüft Ort, Termin, offene Punkte, Fotos und Verfügbarkeit. Wenn ein Ersatz- oder Ergaenzungsplan möglich ist oder Rückfragen nötig sind, melden wir uns.
           </div>
         ) : null}
 
         <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto] sm:items-center">
           <button type="submit" disabled={isSubmitting} data-event="form_submit" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:opacity-60">
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Plan B pruefen lassen
+            Plan B prüfen lassen
           </button>
           <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
             <MessageCircle className="h-4 w-4" />
@@ -477,9 +477,9 @@ export function PlanBServiceForm() {
         </div>
 
         <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
-          Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit haengt von Ort, Termin, Umfang und Kapazitaet ab. Direktkontakt:{" "}
+          Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit haengt von Ort, Termin, Umfang und Kapazität ab. Direktkontakt:{""}
           <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a>
-          {" "}- {EMAIL}
+          {""}- {EMAIL}
         </div>
       </form>
     </div>

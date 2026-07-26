@@ -41,9 +41,9 @@ const path = "/diskreter-umzug-trennung-scheidung";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Diskreter Service fuer Umzug, Auszug und Reinigung",
+  title: "Diskreter Service für Umzug, Auszug und Reinigung",
   description:
-    "Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details.",
+    "Sensible Anfrage ruhig klären: diskreter Auszug, Umzug, Reinigung, Schlüsselübergabe und sichere Kontaktmethode ohne öffentliche Details.",
 });
 
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(
@@ -226,7 +226,7 @@ const relatedLinks = [
   { href: "/plan-b-service", label: "Plan B prüfen lassen" },
   { href: "/immobilie-verkaufsbereit-machen", label: "Objekt nach Auszug vorbereiten" },
   { href: "/buchung", label: "Anfrage starten" },
-  { href: "/rechner", label: "Preisrahmen einschaetzen" },
+  { href: "/rechner", label: "Preisrahmen einschätzen" },
   { href: "/regensburg", label: "Regensburg-Bereich" },
 ];
 
@@ -340,12 +340,12 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreter Auszug, ruhig abgestimmt
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Diskreter Service fuer Auszug, Reinigung und Uebergabe
+                Diskreter Service für Auszug, Reinigung und Übergabe
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn ein Fall ruhig und zurueckhaltend geklaert werden soll, reichen zuerst Ort,
-                Zeitfenster, grober Umfang und bevorzugter Kontaktweg. FLOXANT prueft Transport,
-                Reinigung, Entruempelung, Schluesseluebergabe und Uebergabeakte nach Absprache.
+                Wenn ein Fall ruhig und zurückhaltend geklaert werden soll, reichen zuerst Ort,
+                Zeitfenster, grober Umfang und bevorzugter Kontaktweg. FLOXANT prüft Transport,
+                Reinigung, Entrümpelung, Schlüsselübergabe und Übergabeakte nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <LeadCta
@@ -440,8 +440,8 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         <ServiceProofChecklist serviceKey="diskret" />
         <ProjectStoryGrid serviceKey="diskret" />
         <ProcessProofSteps
-          title="Diskrete Anfrage Schritt fuer Schritt."
-          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details koennen spaeter im passenden Kanal geklaert werden."
+          title="Diskrete Anfrage Schritt für Schritt."
+          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details können später im passenden Kanal geklaert werden."
         />
         <section className="px-4 py-8 sm:px-6">
           <div className="mx-auto max-w-7xl">

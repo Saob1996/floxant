@@ -3,8 +3,8 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 
 const discreetSituations = [
   "diskreter Umzug",
-  "diskrete Entruempelung",
-  "Haushaltsaufloesung nach Todesfall",
+  "diskrete Entrümpelung",
+  "Haushaltsauflösung nach Todesfall",
   "Trennung/Scheidung",
   "Seniorenumzug",
   "sensible Wohnungssituation",
@@ -25,7 +25,7 @@ export function DiscreetRequestPanel() {
             Ruhige Anfrage ohne private Details im ersten Schritt.
           </h2>
           <p className="mt-4 text-base leading-8 text-stone-700">
-            Ort, Zeitraum, grober Umfang und bevorzugter Kontaktweg reichen. FLOXANT prueft praktische Machbarkeit ohne Rechtsberatung, Konfliktloesung oder Sicherheitsversprechen.
+            Ort, Zeitraum, grober Umfang und bevorzugter Kontaktweg reichen. FLOXANT prüft praktische Machbarkeit ohne Rechtsberatung, Konfliktloesung oder Sicherheitsversprechen.
           </p>
           <Link
             href={href}

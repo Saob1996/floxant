@@ -19,23 +19,23 @@ const pagePath = "/umzug-mit-reinigung";
 const faqItems = [
   {
     q: "Welche Vorteile bietet ein Umzug mit Endreinigung?",
-    a: "Transport und Reinigung werden nicht als zwei getrennte Baustellen behandelt. FLOXANT prueft, ob Volumen, Flaeche, Zustand, Fotos, Schluessel und Uebergabetermin in einem Ablauf sinnvoll zusammenpassen.",
+    a: "Transport und Reinigung werden nicht als zwei getrennte Baustellen behandelt. FLOXANT prüft, ob Volumen, Fläche, Zustand, Fotos, Schlüssel und Übergabetermin in einem Ablauf sinnvoll zusammenpassen.",
   },
   {
-    q: "Ist eine Endreinigung fuer die Uebergabe moeglich?",
-    a: "Ja, nach Absprache. Wichtig sind Flaeche, Zustand, Fotos, Termin und das Ziel der Uebergabe. Eine Vermieterentscheidung wird nicht garantiert.",
+    q: "Ist eine Endreinigung für die Übergabe möglich?",
+    a: "Ja, nach Absprache. Wichtig sind Fläche, Zustand, Fotos, Termin und das Ziel der Übergabe. Eine Vermieterentscheidung wird nicht garantiert.",
   },
   {
     q: "Wann unterscheidet sich der Kombi-Service vom Standard-Umzug?",
-    a: "Der Standard-Umzug endet meist mit dem Transport. Der Kombi-Service denkt Reinigung, Restpunkte, Fotos und Uebergabevorbereitung direkt mit.",
+    a: "Der Standard-Umzug endet meist mit dem Transport. Der Kombi-Service denkt Reinigung, Restpunkte, Fotos und Übergabevorbereitung direkt mit.",
   },
   {
-    q: "Fuer wen ist dieser Service in Regensburg und Bayern geeignet?",
-    a: "Fuer Mieter mit engem Uebergabetermin, Eigentuemer, Familien und Kunden, die nicht mehrere Anbieter fuer Transport, Reinigung und Abschluss koordinieren wollen.",
+    q: "Für wen ist dieser Service in Regensburg und Bayern geeignet?",
+    a: "Für Mieter mit engem Übergabetermin, Eigentuemer, Familien und Kunden, die nicht mehrere Anbieter für Transport, Reinigung und Abschluss koordinieren wollen.",
   },
   {
     q: "Wie funktioniert die Abstimmung der Termine?",
-    a: "FLOXANT erfasst Umzugsvolumen, Flaeche, Zustand, Zugang, Termin und Fotos. Danach wird geprueft, ob Reihenfolge, Team und Zeitfenster realistisch zusammenpassen.",
+    a: "FLOXANT erfasst Umzugsvolumen, Fläche, Zustand, Zugang, Termin und Fotos. Danach wird geprüft, ob Reihenfolge, Team und Zeitfenster realistisch zusammenpassen.",
   },
 ];
 
@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "umzug-mit-reinigung",
     title: "Umzug mit Endreinigung Regensburg & Regensburg | FLOXANT",
     description:
-      "Umzug mit Endreinigung in Regensburg und Umgebung nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
+      "Umzug mit Endreinigung in Regensburg und Umgebung nach Verfügbarkeit: Transport, Reinigung, Fotos, Schlüssel und Übergabe gemeinsam anfragen.",
   });
 }
 
@@ -62,7 +62,7 @@ export default async function UmzugMitReinigungPage() {
       buildServiceJsonLd({
         name: "Umzug mit Endreinigung in Regensburg und Umgebung",
         description:
-          "Abgestimmte Kombination aus Umzug, Endreinigung, Fotos, Schluesselthemen und Uebergabevorbereitung.",
+          "Abgestimmte Kombination aus Umzug, Endreinigung, Fotos, Schlüsselthemen und Übergabevorbereitung.",
         path: pagePath,
         serviceType: "Umzug mit Endreinigung",
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
@@ -70,7 +70,7 @@ export default async function UmzugMitReinigungPage() {
       buildWebPageJsonLd({
         name: "Umzug mit Reinigung | FLOXANT",
         description:
-          "Definition, Ablauf und Anfrage fuer die Kombination aus Umzug und Reinigung in Regensburg und Umgebung.",
+          "Definition, Ablauf und Anfrage für die Kombination aus Umzug und Reinigung in Regensburg und Umgebung.",
         path: pagePath,
         about: ["Umzug", "Endreinigung", "Wohnungsuebergabe", "Regensburg", "Regensburg", "Fotos", "Budget"],
       }),
@@ -88,16 +88,16 @@ export default async function UmzugMitReinigungPage() {
         <div className="mx-auto max-w-6xl text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-mono uppercase tracking-widest text-emerald-300">
             <Sparkles size={14} className="text-emerald-400" />
-            Kombi-Service fuer Auszug und Uebergabe
+            Kombi-Service für Auszug und Übergabe
           </div>
           <h1 className="mb-8 text-4xl font-bold tracking-tight text-white md:text-6xl">
             Umzug mit Endreinigung in Regensburg und Umgebung
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/62">
-            FLOXANT verbindet Umzug, Endreinigung und Uebergabevorbereitung, wenn Auszug und
-            Rueckgabe eng zusammenliegen. Entscheidend sind Strecke, Volumen, Flaeche, Zustand,
-            Fotos, Schluessel und Termin. Regensburg bleibt der Kern; Bayern wird nach Route,
-            Kapazitaet und Leistungsumfang geprueft.
+            FLOXANT verbindet Umzug, Endreinigung und Übergabevorbereitung, wenn Auszug und
+            Rückgabe eng zusammenliegen. Entscheidend sind Strecke, Volumen, Fläche, Zustand,
+            Fotos, Schlüssel und Termin. Regensburg bleibt der Kern; Bayern wird nach Route,
+            Kapazität und Leistungsumfang geprüft.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <a
@@ -125,22 +125,22 @@ export default async function UmzugMitReinigungPage() {
             {
               icon: Truck,
               title: "Was ist das?",
-              text: "Ein koordinierter Ablauf aus Beladung, Transport, Endreinigung und Uebergabevorbereitung.",
+              text: "Ein koordinierter Ablauf aus Beladung, Transport, Endreinigung und Übergabevorbereitung.",
             },
             {
               icon: Sparkles,
-              title: "Fuer wen?",
-              text: "Fuer Auszuege mit direkter Uebergabe oder wenn Vermietung und Transport eng getaktet sind.",
+              title: "Für wen?",
+              text: "Für Auszuege mit direkter Übergabe oder wenn Vermietung und Transport eng getaktet sind.",
             },
             {
               icon: ShieldCheck,
               title: "Wann sinnvoll?",
-              text: "Wenn zwei Gewerke nicht getrennt organisiert werden sollen und Zeitverluste vermieden werden muessen.",
+              text: "Wenn zwei Gewerke nicht getrennt organisiert werden sollen und Zeitverluste vermieden werden müssen.",
             },
             {
               icon: KeyRound,
               title: "Wie laeuft es ab?",
-              text: "Erst Umzug und Flaeche klaeren, dann Reinigung, Fotos, Schluessel und Terminlogik zusammen planen.",
+              text: "Erst Umzug und Fläche klären, dann Reinigung, Fotos, Schlüssel und Terminlogik zusammen planen.",
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -168,14 +168,14 @@ export default async function UmzugMitReinigungPage() {
           ]}
           badge="Umzug und Reinigung zusammen"
           title="Warum Umzug und Endreinigung gemeinsam planbarer werden"
-          subtitle="Diese Seite zielt auf Kunden mit Auszug, Uebergabetermin und Koordinationsdruck. FLOXANT klaert Transport, Reinigungsumfang, Fotos, Budget und Schluesselthemen, ohne eine Abnahme zu garantieren."
+          subtitle="Diese Seite zielt auf Kunden mit Auszug, Übergabetermin und Koordinationsdruck. FLOXANT klärt Transport, Reinigungsumfang, Fotos, Budget und Schlüsselthemen, ohne eine Abnahme zu garantieren."
           source="move_cleaning_authority_modules"
         />
       </div>
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl font-bold">Haeufige Fragen zu Umzug mit Reinigung</h2>
+          <h2 className="mb-8 text-3xl font-bold">Häufige Fragen zu Umzug mit Reinigung</h2>
           <div className="space-y-6">
             {faqItems.map((item) => (
               <article key={item.q} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
@@ -213,8 +213,8 @@ export default async function UmzugMitReinigungPage() {
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
             { href: "/regensburg/umzug", label: "Umzug in Regensburg anfragen" },
-            { href: "/regensburg/reinigung", label: "Endreinigung in Regensburg pruefen" },
-            { href: "/schluesseluebergabe", label: "Schluesseluebergabe mitdenken" },
+            { href: "/regensburg/reinigung", label: "Endreinigung in Regensburg prüfen" },
+            { href: "/schluesseluebergabe", label: "Schlüsselübergabe mitdenken" },
             { href: "/regensburg", label: "Regensburg-Bereich" },
           ].map((item) => (
             <Link

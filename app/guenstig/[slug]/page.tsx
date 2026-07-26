@@ -4,6 +4,7 @@ import { Euro, TrendingDown, Target } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
+import { germanizeText } from "@/lib/german-text";
 
 const STATIC_PRICE_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
 const STATIC_PRICE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
  const parts = slug.split('-');
  const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
+ const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region');
  return generatePageSEO({
   pageLocale: "de" as Locale,
   path: `guenstig/${slug}`,
@@ -34,7 +35,7 @@ export default async function PriceTrapPage({ params }: { params: Promise<{ slug
  const parts = slug.split('-');
  const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
  const serviceKey = parts[0]?.toLowerCase() as 'umzug' | 'reinigung' | 'entsorgung' || 'umzug';
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';
+ const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt');
  return (
   <main className="min-h-screen bg-[#05050A] text-white pt-32 pb-24">
    <div className="max-w-7xl mx-auto px-4 md:px-8">

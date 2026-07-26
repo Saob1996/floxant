@@ -134,12 +134,12 @@ export default function AnbieterVergleichenPage() {
     eyebrow="Vergleich mit klaren Kriterien"
     title="Anbieter vergleichen, ohne nur auf den Preis zu schauen."
     intro="Ein sinnvoller Vergleich beginnt mit gleichem Umfang: Ort, Leistung, Zugang, Fotos, Termin und Zusatzpunkte. FLOXANT hilft, Angebote und offene Fragen sachlich zu vergleichen."
-    primaryCta={{ href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" }}
+    primaryCta={{ href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" }}
     secondaryCta={{ href: "/leistungen-vergleichen", label: "Leistungen vergleichbar machen" }}
     trustItems={[
      "keine pauschale Rangliste und keine Abwertung",
      "Umfang, Zugang und Termin vor Preis vergleichen",
-     "Regensburg, Duesseldorf und Bayern sauber trennen",
+     "Regensburg, Düsseldorf und Bayern sauber trennen",
     ]}
    />
 
@@ -154,7 +154,7 @@ export default function AnbieterVergleichenPage() {
     <ProjectStoryGrid serviceKey="angebot-pruefen" />
     <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
     <ProcessProofSteps
-     title="Vergleich heisst Rueckfragen klaeren."
+     title="Vergleich heisst Rückfragen klären."
      intro="FLOXANT erstellt keine pauschale Rangliste. Vergleichbar sind Umfang, Annahmen, Termin, Zugang, Fotos und offene Zusatzpunkte."
     />
 
@@ -222,13 +222,13 @@ export default function AnbieterVergleichenPage() {
 
    <ServiceClusterLinks
     eyebrow="Anbieter-Vergleich"
-    title="Nicht nur Anbieter vergleichen, sondern Risiko und Umfang klaeren."
-    intro="FLOXANT vermeidet Fake-Vergleichsportal-Sprache. Entscheidend sind Leistung, Termin, Kommunikation, Zusatzpositionen, Fotos, Zugang und die Frage, ob ein Plan B noetig ist."
+    title="Nicht nur Anbieter vergleichen, sondern Risiko und Umfang klären."
+    intro="FLOXANT vermeidet Fake-Vergleichsportal-Sprache. Entscheidend sind Leistung, Termin, Kommunikation, Zusatzpositionen, Fotos, Zugang und die Frage, ob ein Plan B nötig ist."
     links={offerCheckLinks}
    />
 
    <SignatureServicesGrid
-    title="Signature Services fuer sichere Anbieterentscheidungen."
+    title="Signature Services für sichere Anbieterentscheidungen."
     intro="Fairpreis-Check, Angebotscheck, Objektbrief und Plan B helfen, wenn ein Anbietervergleich sonst nur beim niedrigsten Preis stehen bleibt."
     services={signatureServiceLinks.filter((item) =>
      ["FLOXANT Fairpreis-Check", "FLOXANT Angebotscheck", "FLOXANT Objektbrief", "FLOXANT Plan-B-Service"].includes(item.title),

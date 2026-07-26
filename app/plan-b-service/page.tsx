@@ -37,18 +37,18 @@ export const metadata: Metadata = generatePageSEO({
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20brauche%20einen%20Plan%20B.%20Mein%20aktueller%20Ablauf%20ist%20unsicher.%20Es%20geht%20um%20%5BUmzug%2FReinigung%2FEntr%C3%BCmpelung%2F%C3%9Cbergabe%5D%20in%20%5BOrt%5D.%20Deadline%3A%20%5BDatum%5D.%20Fotos%2FAngebot%2Foffene%20Punkte%20kann%20ich%20senden.";
 
-const statusSteps = ["Ablauf", "Risiko", "Luecken", "Fotos", "Plan B"];
+const statusSteps = ["Ablauf", "Risiko", "Lücken", "Fotos", "Plan B"];
 
 const triageOptions = [
   {
     title: "Anbieter meldet sich nicht zuverlaessig",
-    text: "FLOXANT prueft, ob ein Ersatz- oder Ergaenzungsplan mit Ort, Termin und Umfang realistisch ist.",
-    solution: "Kapazitaet, Strecke, Rueckruf",
+    text: "FLOXANT prüft, ob ein Ersatz- oder Ergaenzungsplan mit Ort, Termin und Umfang realistisch ist.",
+    solution: "Kapazität, Strecke, Rückruf",
   },
   {
     title: "Helfer oder Transporter sind unsicher",
-    text: "Wenn Fahrzeug, Team oder Ladevolumen wackeln, zaehlen Fotos, Etage, Start/Ziel und Deadline.",
-    solution: "Ersatztransport, Rueckfahrt, Fahrzeugbedarf",
+    text: "Wenn Fahrzeug, Team oder Ladevolumen wackeln, zählen Fotos, Etage, Start/Ziel und Deadline.",
+    solution: "Ersatztransport, Rückfahrt, Fahrzeugbedarf",
   },
   {
     title: "Angebot wirkt unvollstaendig",
@@ -57,78 +57,78 @@ const triageOptions = [
   },
   {
     title: "Reinigung wurde vergessen",
-    text: "Endreinigung, Auszugsreinigung oder Reinigung vor Uebergabe koennen als Backup geprueft werden.",
+    text: "Endreinigung, Auszugsreinigung oder Reinigung vor Übergabe können als Backup geprüft werden.",
     solution: "Reinigungs-Backup, Fotos, Budget",
   },
   {
     title: "Keller, Sperrmuell oder Entsorgung offen",
-    text: "Raeumung, Entsorgung und Reinigung koennen als Luecke im Ablauf eingeordnet werden.",
-    solution: "Raeumungs-Backup, Entsorgung",
+    text: "Räumung, Entsorgung und Reinigung können als Lücke im Ablauf eingeordnet werden.",
+    solution: "Räumungs-Backup, Entsorgung",
   },
   {
-    title: "Schluessel oder Uebergabe unklar",
-    text: "Wenn Uebergabe, Schluesselstatus oder Dokumentation fehlen, kann FLOXANT passende Bausteine pruefen.",
-    solution: "Uebergabeakte, Schluessel, Reinigung",
+    title: "Schlüssel oder Übergabe unklar",
+    text: "Wenn Übergabe, Schlüsselstatus oder Dokumentation fehlen, kann FLOXANT passende Bausteine prüfen.",
+    solution: "Übergabeakte, Schlüssel, Reinigung",
   },
   {
     title: "Aktueller Preisrahmen wirkt unrealistisch",
     text: "Ein Plan B kann helfen, Umfang, Budget und Grenzen ehrlich zu sortieren.",
-    solution: "Budgetpruefung, zweite Einschaetzung",
+    solution: "Budgetpruefung, zweite Einschätzung",
   },
   {
-    title: "Duesseldorf braucht Backup",
-    text: "In Regensburg klar getrennt ueber klare lokale Kontaktmöglichkeiten, inklusive Umzug, Reinigung, Entruempelung und Entsorgung.",
+    title: "Düsseldorf braucht Backup",
+    text: "In Regensburg klar getrennt über klare lokale Kontaktmöglichkeiten, inklusive Umzug, Reinigung, Entrümpelung und Entsorgung.",
     solution: "Reinigung Regensburg/Entsorgung",
   },
 ];
 
 const riskLevels = [
-  ["Beobachten", "Termin ist noch nicht akut, aber Angebot oder Ablauf wirken unklar.", "Zweite Einschaetzung starten"],
-  ["Absichern", "Termin rueckt naeher, Anbieter ist unsicher oder eine Leistung fehlt.", "Ablauf absichern"],
-  ["Plan B noetig", "Deadline ist nah, mehrere offene Punkte blockieren Uebergabe oder Auszug.", "Plan B dringend pruefen"],
+  ["Beobachten", "Termin ist noch nicht akut, aber Angebot oder Ablauf wirken unklar.", "Zweite Einschätzung starten"],
+  ["Absichern", "Termin rückt naeher, Anbieter ist unsicher oder eine Leistung fehlt.", "Ablauf absichern"],
+  ["Plan B nötig", "Deadline ist nah, mehrere offene Punkte blockieren Übergabe oder Auszug.", "Plan B dringend prüfen"],
 ];
 
 const packages = [
   {
-    title: "Ersatztransport pruefen",
+    title: "Ersatztransport prüfen",
     forText: "Umzug oder Transport wirkt unsicher.",
     includes: ["Strecke", "Umfang", "Fotos", "Fahrzeugbedarf", "Terminpruefung"],
-    cta: "Ersatztransport pruefen",
+    cta: "Ersatztransport prüfen",
     Icon: Truck,
   },
   {
     title: "Reinigungs-Backup",
-    forText: "Endreinigung, Auszugsreinigung oder Uebergabe ist offen.",
+    forText: "Endreinigung, Auszugsreinigung oder Übergabe ist offen.",
     includes: ["Reinigungsart", "Termin", "Fotos", "Budgetpruefung"],
     cta: "Reinigungs-Backup anfragen",
     Icon: Sparkles,
   },
   {
-    title: "Raeumungs-Backup",
-    forText: "Keller, Garage, Sperrmuell oder Moebel sind noch offen.",
-    includes: ["Entruempelung", "Entsorgung", "Fotos", "Zugang"],
-    cta: "Raeumung pruefen lassen",
+    title: "Räumungs-Backup",
+    forText: "Keller, Garage, Sperrmuell oder Möbel sind noch offen.",
+    includes: ["Entrümpelung", "Entsorgung", "Fotos", "Zugang"],
+    cta: "Räumung prüfen lassen",
     Icon: Trash2,
   },
   {
-    title: "Uebergabe-Backup",
-    forText: "Schluessel, Uebergabetermin, Reinigung oder Dokumentation sind unklar.",
-    includes: ["Schluessel nach Absprache", "Uebergabeakte", "Reinigung", "offene Hinweise"],
-    cta: "Uebergabe absichern",
+    title: "Übergabe-Backup",
+    forText: "Schlüssel, Übergabetermin, Reinigung oder Dokumentation sind unklar.",
+    includes: ["Schlüssel nach Absprache", "Übergabeakte", "Reinigung", "offene Hinweise"],
+    cta: "Übergabe absichern",
     Icon: KeyRound,
   },
   {
     title: "Komplett-Plan-B",
     forText: "Mehrere Dinge sind gleichzeitig unsicher.",
-    includes: ["Transport", "Reinigung", "Entruempelung/Entsorgung", "Uebergabeakte", "Rueckruf"],
-    cta: "Kompletten Plan B pruefen",
+    includes: ["Transport", "Reinigung", "Entrümpelung/Entsorgung", "Übergabeakte", "Rückruf"],
+    cta: "Kompletten Plan B prüfen",
     Icon: LifeBuoy,
   },
   {
-    title: "Duesseldorf Plan B",
+    title: "Düsseldorf Plan B",
     forText: "Nur Reinigung, Entsorgung, moeblierte Wohnung oder B2B-Reinigung.",
     includes: ["Reinigung", "Entsorgung", "Apartment-Reinigung", "B2B nach Absprache"],
-    cta: "Reinigung Regensburg/Entsorgung pruefen",
+    cta: "Reinigung Regensburg/Entsorgung prüfen",
     Icon: Route,
   },
 ];
@@ -145,27 +145,27 @@ const boundaries = [
 const faqItems = [
   {
     q: "Was ist der FLOXANT Plan-B-Service?",
-    a: "Der Plan-B-Service ist eine Backup- und Absicherungspruefung. FLOXANT klaert nach Verfuegbarkeit, ob fuer Umzug, Reinigung, Entruempelung, Entsorgung oder Uebergabe ein Ersatz- oder Ergaenzungsplan moeglich ist.",
+    a: "Der Plan-B-Service ist eine Backup- und Absicherungspruefung. FLOXANT klärt nach Verfügbarkeit, ob für Umzug, Reinigung, Entrümpelung, Entsorgung oder Übergabe ein Ersatz- oder Ergaenzungsplan möglich ist.",
   },
   {
     q: "Ist FLOXANT ein Notdienst?",
-    a: "Nein. FLOXANT tritt nicht als garantierter Notdienst auf. Machbarkeit haengt von Ort, Termin, Umfang, Fotos und Kapazitaet ab.",
+    a: "Nein. FLOXANT tritt nicht als garantierter Notdienst auf. Machbarkeit haengt von Ort, Termin, Umfang, Fotos und Kapazität ab.",
   },
   {
     q: "Was ist der Unterschied zu Schadensbegrenzung?",
-    a: "Schadensbegrenzung greift, wenn der Plan bereits gekippt ist. Der Plan-B-Service ist fuer Kunden gedacht, die den Ablauf bewusst absichern wollen, bevor alles kippt.",
+    a: "Schadensbegrenzung greift, wenn der Plan bereits gekippt ist. Der Plan-B-Service ist für Kunden gedacht, die den Ablauf bewusst absichern wollen, bevor alles kippt.",
   },
   {
     q: "Kann FLOXANT einspringen, wenn mein Anbieter ausfaellt?",
-    a: "FLOXANT kann nach Verfuegbarkeit pruefen, ob ein Ersatz- oder Ergaenzungsplan moeglich ist. Eine Uebernahme wird nicht garantiert.",
+    a: "FLOXANT kann nach Verfügbarkeit prüfen, ob ein Ersatz- oder Ergaenzungsplan möglich ist. Eine Uebernahme wird nicht garantiert.",
   },
   {
     q: "Kann ich ein vorhandenes Angebot senden?",
-    a: "Ja. Ein Angebot oder Screenshot kann helfen, Umfang, Luecken, Preisrahmen und offene Punkte organisatorisch einzuordnen.",
+    a: "Ja. Ein Angebot oder Screenshot kann helfen, Umfang, Lücken, Preisrahmen und offene Punkte organisatorisch einzuordnen.",
   },
   {
-    q: "Funktioniert Plan B auch in Duesseldorf?",
-    a: "Ja, ueber klare lokale Kontaktmöglichkeiten: Umzug, Reinigung, Entruempelung, moeblierte Wohnung, B2B-Reinigung oder Entsorgung.",
+    q: "Funktioniert Plan B auch in Düsseldorf?",
+    a: "Ja, über klare lokale Kontaktmöglichkeiten: Umzug, Reinigung, Entrümpelung, moeblierte Wohnung, B2B-Reinigung oder Entsorgung.",
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
@@ -173,7 +173,7 @@ const faqItems = [
   },
   {
     q: "Gibt es eine Garantie?",
-    a: "Nein. Der Plan-B-Service ist eine Machbarkeitspruefung nach Verfuegbarkeit und ersetzt keine Rechtsberatung, keine Anbieterbewertung und keine Abnahmegarantie.",
+    a: "Nein. Der Plan-B-Service ist eine Machbarkeitspruefung nach Verfügbarkeit und ersetzt keine Rechtsberatung, keine Anbieterbewertung und keine Abnahmegarantie.",
   },
 ];
 
@@ -183,9 +183,9 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT Plan-B-Service",
       description:
-        "Backup- und Absicherungsservice fuer unsichere Ablaeufe bei Umzug, Reinigung, Entruempelung, Entsorgung und Uebergabe nach Verfuegbarkeit.",
+        "Backup- und Absicherungsservice für unsichere Ablaeufe bei Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe nach Verfügbarkeit.",
       path,
-      about: ["Plan B", "Backup-Service", "Umzug Regensburg", "Reinigung", "Uebergabe", "Schadensbegrenzung"],
+      about: ["Plan B", "Backup-Service", "Umzug Regensburg", "Reinigung", "Übergabe", "Schadensbegrenzung"],
       potentialActions: [
         { name: "Plan B pruefen lassen", target: `${path}#plan-b-form` },
         { name: "Plan B per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
@@ -194,10 +194,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Plan-B-Service",
       description:
-        "Machbarkeitspruefung fuer Ersatz- oder Ergaenzungsplan bei unsicherem Umzug, Reinigung, Entruempelung, Entsorgung oder Uebergabe. Keine Notdienstgarantie.",
+        "Machbarkeitspruefung für Ersatz- oder Ergaenzungsplan bei unsicherem Umzug, Reinigung, Entrümpelung, Entsorgung oder Übergabe. Keine Notdienstgarantie.",
       path,
-      serviceType: "Plan-B-Service fuer Umzug, Reinigung, Entruempelung, Entsorgung und Uebergabe",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
+      serviceType: "Plan-B-Service für Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe",
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -220,14 +220,14 @@ export default function PlanBServicePage() {
                 FLOXANT Backup-Control
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                FLOXANT Plan-B-Service fuer Umzug, Reinigung und Uebergabe
+                FLOXANT Plan-B-Service für Umzug, Reinigung und Übergabe
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Wenn Ihr aktueller Ablauf unsicher ist, prueft FLOXANT, ob ein Ersatz-, Ergaenzungs- oder Absicherungsplan moeglich ist - mit Ort, Termin, Fotos und offenen Punkten.
+                Wenn Ihr aktueller Ablauf unsicher ist, prüft FLOXANT, ob ein Ersatz-, Ergaenzungs- oder Absicherungsplan möglich ist - mit Ort, Termin, Fotos und offenen Punkten.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
-                  Plan B pruefen lassen
+                  Plan B prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="whatsapp_click">
@@ -239,7 +239,7 @@ export default function PlanBServicePage() {
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Backup vor dem Kippen</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
-                <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700">Pruefung nach Verfuegbarkeit</span>
+                <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700">Prüfung nach Verfügbarkeit</span>
               </div>
             </div>
 
@@ -256,13 +256,13 @@ export default function PlanBServicePage() {
                 </div>
                 <div className="mt-5 rounded-[1.5rem] bg-slate-950 p-5 text-white">
                   <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Wenn Plan A wackelt</div>
-                  <h2 className="mt-2 text-2xl font-black tracking-tight">Kein Alarmismus. Ein zweiter pruefbarer Ablauf.</h2>
+                  <h2 className="mt-2 text-2xl font-black tracking-tight">Kein Alarmismus. Ein zweiter prüfbarer Ablauf.</h2>
                   <p className="mt-3 text-sm leading-7 text-slate-300">
-                    Der Plan-B-Service sortiert Risiko, Luecken, Fotos, Termin und Kapazitaet, bevor aus Unsicherheit ein akuter Schaden wird.
+                    Der Plan-B-Service sortiert Risiko, Lücken, Fotos, Termin und Kapazität, bevor aus Unsicherheit ein akuter Schaden wird.
                   </p>
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {["Angebot und Fotos senden", "Luecken im Ablauf markieren", "Risiko-Level einschaetzen", "Backup nach Verfuegbarkeit pruefen"].map((item) => (
+                  {["Angebot und Fotos senden", "Lücken im Ablauf markieren", "Risiko-Level einschätzen", "Backup nach Verfügbarkeit prüfen"].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-blue-100 bg-blue-50 p-4 text-sm font-bold leading-6 text-blue-950">
                       <CheckCircle2 className="mb-2 h-5 w-5 text-blue-700" />
                       {item}
@@ -302,10 +302,10 @@ export default function PlanBServicePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Risiko-Level</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight">Wie kritisch ist die Lage?</h2>
               <p className="mt-4 text-base leading-8 text-slate-300">
-                Das Risiko-Level ist eine organisatorische Einschaetzung, keine Garantie. Es hilft, Rueckfragen und Prioritaeten schneller zu sortieren.
+                Das Risiko-Level ist eine organisatorische Einschätzung, keine Garantie. Es hilft, Rückfragen und Prioritäten schneller zu sortieren.
               </p>
               <Link href="#plan-b-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="service_card_click">
-                Risiko einschaetzen
+                Risiko einschätzen
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -326,7 +326,7 @@ export default function PlanBServicePage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Plan-B-Pakete</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Welche Luecke soll der Backup-Plan schliessen?</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Welche Lücke soll der Backup-Plan schliessen?</h2>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {packages.map((item) => {
@@ -358,7 +358,7 @@ export default function PlanBServicePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Plan-B-Anfrage</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Ort, Termin, Angebot, Fotos und offene Punkte senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT prueft zuerst, ob ein Backup realistisch ist. Wenn nicht genug Angaben vorliegen, melden wir uns mit Rueckfragen. In Regensburg geht es nur um Reinigung und Entsorgung.
+                FLOXANT prüft zuerst, ob ein Backup realistisch ist. Wenn nicht genug Angaben vorliegen, melden wir uns mit Rückfragen. In Regensburg geht es nur um Reinigung und Entsorgung.
               </p>
               <div className="mt-5 grid gap-3">
                 <Link href="/schadensbegrenzung" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
@@ -368,10 +368,10 @@ export default function PlanBServicePage() {
                   Angebot unklar? Red-Flag-Scanner nutzen.
                 </Link>
                 <Link href="/plattform-auftrag-pruefen" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
-                  Plattform-Auftrag oder vorhandenes Angebot neutral pruefen.
+                  Plattform-Auftrag oder vorhandenes Angebot neutral prüfen.
                 </Link>
                 <Link href="/uebergabeakte" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
-                  Uebergabe offen? Uebergabeakte ergaenzen.
+                  Übergabe offen? Übergabeakte ergaenzen.
                 </Link>
               </div>
             </div>
@@ -385,7 +385,7 @@ export default function PlanBServicePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Abgrenzung</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Plan B ist nicht Schadensbegrenzung</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Schadensbegrenzung ist fuer den Moment, in dem etwas bereits gekippt ist. Der Plan-B-Service ist der kontrollierte zweite Pfad, wenn Plan A wackelt und Sie vorab absichern wollen.
+                Schadensbegrenzung ist für den Moment, in dem etwas bereits gekippt ist. Der Plan-B-Service ist der kontrollierte zweite Pfad, wenn Plan A wackelt und Sie vorab absichern wollen.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
@@ -415,7 +415,7 @@ export default function PlanBServicePage() {
         <section id="faq" className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-5xl">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">FAQ</div>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Haeufige Fragen zum FLOXANT Plan-B-Service</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zum FLOXANT Plan-B-Service</h2>
             <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white">
               {faqItems.map((item) => (
                 <details key={item.q} className="group p-5">
@@ -426,7 +426,7 @@ export default function PlanBServicePage() {
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
-                Plan B pruefen lassen
+                Plan B prüfen lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -439,15 +439,15 @@ export default function PlanBServicePage() {
         <section className="px-4 pb-24 pt-6 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-3 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["/regensburg/umzug", "Backup fuer Umzug oder Transport"],
+              ["/regensburg/umzug", "Backup für Umzug oder Transport"],
               ["/regensburg/reinigung", "Reinigungs-Backup Regensburg"],
-              ["/regensburg/entruempelung", "Raeumung/Entsorgung pruefen"],
-              ["/rueckfahrt-boerse", "Rueckfahrt als Alternative"],
-              ["/uebergabeakte", "Plan B vor Uebergabe"],
+              ["/regensburg/entruempelung", "Räumung/Entsorgung prüfen"],
+              ["/rueckfahrt-boerse", "Rückfahrt als Alternative"],
+              ["/uebergabeakte", "Plan B vor Übergabe"],
               ["/diskreter-umzug-trennung-scheidung", "Diskreten Auszug absichern"],
               ["/wohnung-wieder-vermietbar", "Objekt wieder nutzbar machen"],
               ["/regensburg/reinigung", "Reinigung Regensburg"],
-              ["/entsorgung-duesseldorf", "Entsorgung Duesseldorf"],
+              ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50">
                 {label}
@@ -460,7 +460,7 @@ export default function PlanBServicePage() {
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
           <Link href="#plan-b-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
-            Plan B pruefen
+            Plan B prüfen
           </Link>
           <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp

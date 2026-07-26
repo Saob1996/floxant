@@ -18,49 +18,49 @@ const pagePath = "/schluesseluebergabe";
 
 const faqItems = [
   {
-    q: "Ist die Schluesseluebergabe eine rechtliche Abnahmegarantie?",
-    a: "Nein. FLOXANT kann Schluessel, Fotos und organisatorische Uebergabepunkte nach Absprache unterstuetzen, ersetzt aber keine rechtliche Entscheidung von Vermieter, Verwaltung oder Kaeufer.",
+    q: "Ist die Schlüsselübergabe eine rechtliche Abnahmegarantie?",
+    a: "Nein. FLOXANT kann Schlüssel, Fotos und organisatorische Übergabepunkte nach Absprache unterstuetzen, ersetzt aber keine rechtliche Entscheidung von Vermieter, Verwaltung oder Kaeufer.",
   },
   {
     q: "Wann ist der Service sinnvoll?",
-    a: "Er ist sinnvoll, wenn Umzug, Reinigung, Auszug oder Uebergabe zeitlich eng liegen und Kunden nicht alles selbst vor Ort koordinieren koennen.",
+    a: "Er ist sinnvoll, wenn Umzug, Reinigung, Auszug oder Übergabe zeitlich eng liegen und Kunden nicht alles selbst vor Ort koordinieren können.",
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
-    a: "Wichtig sind Adresse, Termin, Kontaktperson, Schluesselumfang, Uebergabeziel, Fotos und ob Reinigung oder Restmengen ebenfalls mitgedacht werden sollen.",
+    a: "Wichtig sind Adresse, Termin, Kontaktperson, Schlüsselumfang, Übergabeziel, Fotos und ob Reinigung oder Restmengen ebenfalls mitgedacht werden sollen.",
   },
 ];
 
 const relatedServices = [
   {
     href: "/regensburg/umzug",
-    title: "Umzug Regensburg mit Schluesseluebergabe",
-    text: "Wenn Transport, Reinigung, Fotos und Uebergabetermin in einem Ablauf gedacht werden sollen.",
+    title: "Umzug Regensburg mit Schlüsselübergabe",
+    text: "Wenn Transport, Reinigung, Fotos und Übergabetermin in einem Ablauf gedacht werden sollen.",
   },
   {
     href: "/regensburg/reinigung",
     title: "Reinigung vor Wohnungsuebergabe",
-    text: "Wenn Endreinigung, Zustand, Schluessel und sichtbare Uebergabepunkte zusammenpassen muessen.",
+    text: "Wenn Endreinigung, Zustand, Schlüssel und sichtbare Übergabepunkte zusammenpassen müssen.",
   },
   {
     href: "/private-client-service",
     title: "Diskreter Schlüssel-Service",
-    text: "Wenn Rueckruf, Abstimmung und sensible Objektuebergabe ruhiger gefuehrt werden sollen.",
+    text: "Wenn Rückruf, Abstimmung und sensible Objektuebergabe ruhiger gefuehrt werden sollen.",
   },
   {
     href: "/diskreter-umzug-trennung-scheidung",
-    title: "Diskreter Auszug mit Schluesseluebergabe",
-    text: "Wenn ein sensibler Auszug, sichere Kontaktmethode, Schluesselstatus und Uebergabe ruhig abgestimmt werden sollen.",
+    title: "Diskreter Auszug mit Schlüsselübergabe",
+    text: "Wenn ein sensibler Auszug, sichere Kontaktmethode, Schlüsselstatus und Übergabe ruhig abgestimmt werden sollen.",
   },
   {
     href: "/uebergabeakte",
-    title: "FLOXANT Uebergabeakte",
-    text: "Wenn Schluesselstatus, Fotos, erledigte Leistungen und Hinweise als Dossier nach Absprache sichtbar werden sollen.",
+    title: "FLOXANT Übergabeakte",
+    text: "Wenn Schlüsselstatus, Fotos, erledigte Leistungen und Hinweise als Dossier nach Absprache sichtbar werden sollen.",
   },
   {
     href: "/buchung",
     title: "Anfrage mit Fotos starten",
-    text: "Wenn Termin, Ort, Zugang und Uebergabeziel direkt an FLOXANT gesendet werden sollen.",
+    text: "Wenn Termin, Ort, Zugang und Übergabeziel direkt an FLOXANT gesendet werden sollen.",
   },
 ] as const;
 
@@ -68,9 +68,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "schluesseluebergabe",
-    title: "Schluesseluebergabe Service mit Uebergabeprotokoll | FLOXANT",
+    title: "Schlüsselübergabe Service mit Übergabeprotokoll | FLOXANT",
     description:
-      "Schluesseluebergabe nach Umzug, Reinigung oder Auszug: FLOXANT klaert Termin, Fotos, Uebergabepunkte und Protokoll als organisatorische Unterstuetzung.",
+      "Schlüsselübergabe nach Umzug, Reinigung oder Auszug: FLOXANT klärt Termin, Fotos, Übergabepunkte und Protokoll als organisatorische Unterstützung.",
   });
 }
 
@@ -90,16 +90,16 @@ export default async function SchluesseluebergabePage() {
       buildWebPageJsonLd({
         name: "Schluesseluebergabe Service",
         description:
-          "Oeffentliche Signature-Angebot fuer Schluesseluebergabe, Uebergabeprotokoll, Fotos und organisatorische Uebergabeunterstuetzung.",
+          "Öffentliche Signature-Angebot für Schlüsselübergabe, Übergabeprotokoll, Fotos und organisatorische Übergabeunterstuetzung.",
         path: pagePath,
-        about: ["Schluesseluebergabe", "Uebergabeprotokoll", "Wohnungsuebergabe", "Umzug", "Reinigung"],
+        about: ["Schlüsselübergabe", "Übergabeprotokoll", "Wohnungsuebergabe", "Umzug", "Reinigung"],
       }),
       buildServiceJsonLd({
         name: "Schluesseluebergabe mit Uebergabeprotokoll",
         description:
-          "Organisatorische Unterstuetzung fuer Schluessel, Fotos und Uebergabepunkte nach Umzug, Reinigung oder Auszug.",
+          "Organisatorische Unterstützung für Schlüssel, Fotos und Übergabepunkte nach Umzug, Reinigung oder Auszug.",
         path: pagePath,
-        serviceType: "Schluesseluebergabe Service",
+        serviceType: "Schlüsselübergabe Service",
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
       }),
       buildFaqJsonLd(faqItems),
@@ -109,7 +109,7 @@ export default async function SchluesseluebergabePage() {
   return (
     <main className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Breadcrumbs lang="de" items={[{ label: "Services", href: "/#services" }, { label: "Schluesseluebergabe" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Services", href: "/#services" }, { label: "Schlüsselübergabe" }]} />
 
       <section className="relative overflow-hidden px-6 pb-20 pt-32 section-glow">
         <div className="absolute inset-0 -z-10">
@@ -118,14 +118,14 @@ export default async function SchluesseluebergabePage() {
         </div>
         <div className="mx-auto max-w-4xl text-center">
           <span className="label-premium mb-6 block text-blue-700">
-            Signature Service fuer Auszug und Uebergabe
+            Signature Service für Auszug und Übergabe
           </span>
           <h1 className="mb-6 text-4xl font-semibold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
-            Schluesseluebergabe mit Uebergabeprotokoll
+            Schlüsselübergabe mit Übergabeprotokoll
           </h1>
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
-            Wenn Auszug, Reinigung und Rueckgabe eng zusammenliegen, hilft ein klarer Ablauf fuer
-            Schluessel, Fotos, Uebergabepunkte und Termin. FLOXANT unterstuetzt organisatorisch
+            Wenn Auszug, Reinigung und Rückgabe eng zusammenliegen, hilft ein klarer Ablauf für
+            Schlüssel, Fotos, Übergabepunkte und Termin. FLOXANT unterstützt organisatorisch
             nach Absprache, ohne falsche Abnahmeversprechen.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -135,7 +135,7 @@ export default async function SchluesseluebergabePage() {
               data-event="hero_cta_click"
               data-source="key_handover_hero"
             >
-              Uebergabe anfragen
+              Übergabe anfragen
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
@@ -159,17 +159,17 @@ export default async function SchluesseluebergabePage() {
             {
               icon: KeyRound,
               title: "Was ist das?",
-              text: "Ein Zusatzservice fuer Schluessel, Termin, Fotos und Uebergabepunkte nach Umzug, Reinigung oder Auszug.",
+              text: "Ein Zusatzservice für Schlüssel, Termin, Fotos und Übergabepunkte nach Umzug, Reinigung oder Auszug.",
             },
             {
               icon: Camera,
               title: "Warum Fotos helfen",
-              text: "Fotos koennen Zustand, Restpunkte und sichtbare Uebergabethemen dokumentieren und Rueckfragen reduzieren.",
+              text: "Fotos können Zustand, Restpunkte und sichtbare Übergabethemen dokumentieren und Rückfragen reduzieren.",
             },
             {
               icon: ClipboardCheck,
               title: "Klare Grenze",
-              text: "FLOXANT unterstuetzt organisatorisch. Eine rechtliche Abnahme oder Vermieterentscheidung wird nicht garantiert.",
+              text: "FLOXANT unterstützt organisatorisch. Eine rechtliche Abnahme oder Vermieterentscheidung wird nicht garantiert.",
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -188,7 +188,7 @@ export default async function SchluesseluebergabePage() {
       <section className="px-6 py-16 section-glow">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-center text-xl font-semibold text-slate-500">
-            Passende oeffentliche Kontaktwege
+            Passende öffentliche Kontaktwege
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {relatedServices.map((service) => (
@@ -207,7 +207,7 @@ export default async function SchluesseluebergabePage() {
       <section className="px-6 pb-10 pt-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-3xl font-semibold tracking-tight text-slate-950">
-            Haeufige Fragen zur Schluesseluebergabe
+            Häufige Fragen zur Schlüsselübergabe
           </h2>
           <div className="grid gap-4 md:grid-cols-3">
             {faqItems.map((item) => (
@@ -228,11 +228,11 @@ export default async function SchluesseluebergabePage() {
               Anfrage
             </div>
             <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950">
-              Uebergabe, Fotos und Termin kurz schildern
+              Übergabe, Fotos und Termin kurz schildern
             </h2>
             <p className="mx-auto max-w-xl text-lg text-slate-600">
-              Je klarer Ort, Termin, Kontaktperson und Uebergabeziel sind, desto schneller kann
-              FLOXANT den passenden Ablauf pruefen.
+              Je klarer Ort, Termin, Kontaktperson und Übergabeziel sind, desto schneller kann
+              FLOXANT den passenden Ablauf prüfen.
             </p>
           </div>
           <div className="glass-elevated relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2rem] p-1 shadow-[0_30px_90px_rgba(15,23,42,0.12)]">

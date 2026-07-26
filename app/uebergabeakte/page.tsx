@@ -155,9 +155,9 @@ const combinations = [
   { href: "/uebergabe-sprint", title: "Mit Übergabe-Sprint", text: "Wenn kurz vor Übergabe noch Frist, Zustand, Angebot, Restmengen und Dokumentationsbedarf geklärt werden müssen." },
   { href: "/mieterwechsel-service-regensburg", title: "Im Mieterwechsel-Service", text: "Für Hausverwaltungen, Vermieter und Makler, wenn ein Objekt nach Auszug vorbereitet wird." },
   { href: "/wohnung-wieder-vermietbar", title: "Mit Objekt-Ready-Service", text: "Wenn eine Wohnung nach Auszug, Leerstand oder Mieterwechsel wieder nutzbarer und präsentierbarer vorbereitet werden soll." },
-  { href: "/immobilie-verkaufsbereit-machen", title: "Mit Property-Ready-Service", text: "Wenn Wohnung, Haus oder Nebenflaechen vor Verkauf, Besichtigung oder Expose dokumentiert vorbereitet werden sollen." },
-  { href: "/nachlass-raeumung-regensburg", title: "Mit Nachlass-Raeumung", text: "Wenn Wohnung, Haus, Keller oder Garage nach einem Erbfall diskret geraeumt, gereinigt und optional dokumentiert werden sollen." },
-  { href: "/diskreter-umzug-trennung-scheidung", title: "Mit diskretem Auszug", text: "Wenn eine sensible private Auszugssituation mit Rueckruf, Schluesselstatus, Reinigung und Uebergabeakte ruhig abgestimmt werden soll." },
+  { href: "/immobilie-verkaufsbereit-machen", title: "Mit Property-Ready-Service", text: "Wenn Wohnung, Haus oder Nebenflächen vor Verkauf, Besichtigung oder Expose dokumentiert vorbereitet werden sollen." },
+  { href: "/nachlass-raeumung-regensburg", title: "Mit Nachlass-Räumung", text: "Wenn Wohnung, Haus, Keller oder Garage nach einem Erbfall diskret geraeumt, gereinigt und optional dokumentiert werden sollen." },
+  { href: "/diskreter-umzug-trennung-scheidung", title: "Mit diskretem Auszug", text: "Wenn eine sensible private Auszugssituation mit Rückruf, Schlüsselstatus, Reinigung und Übergabeakte ruhig abgestimmt werden soll." },
   { href: "/makler-vermieter-link", title: "Mit Makler-/Vermieter-Link", text: "Wenn ein Objektfall direkt mit Fotos, Termin und Empfänger der Akte übermittelt werden soll." },
   { href: "/keller-muellraum-rettung-regensburg", title: "Mit Keller-/Müllraum-Rettung", text: "Wenn Nebenflächen, Keller oder Müllraum nach Freigabe geräumt und dokumentiert werden sollen." },
   { href: "/schadensbegrenzung", title: "Mit Schadensbegrenzung", text: "Wenn kurz vor Übergabe noch Reinigung, Räumung, Schlüssel oder Fotos offen sind." },
@@ -387,7 +387,7 @@ export default function UebergabeaktePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Datenstruktur</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Klare Bausteine, damit die Übergabe nachvollziehbar bleibt</h2>
               <p className="mt-3 text-base leading-8 text-slate-700">
-                Die Uebergabeakte buendelt Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise so, dass alle Beteiligten den Stand leichter nachvollziehen koennen.
+                Die Übergabeakte buendelt Objekt, Leistungen, Fotos, Schlüsselstatus und Hinweise so, dass alle Beteiligten den Stand leichter nachvollziehen können.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

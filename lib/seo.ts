@@ -110,7 +110,7 @@ const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/umzug-regensburg": "/regensburg/umzug",
   "/reinigung-regensburg": "/regensburg/reinigung",
   "/entruempelung-regensburg": "/regensburg/entruempelung",
-  "/entrümpelung-regensburg": "/regensburg/entruempelung",
+  "/entruempelung-regensburg": "/regensburg/entruempelung",
   "/gewerbereinigung-regensburg": "/regensburg/gewerbereinigung",
   "/bueroreinigung-regensburg": "/regensburg/bueroreinigung",
   "/wohnungsaufloesung-regensburg": "/regensburg/wohnungsaufloesung",
