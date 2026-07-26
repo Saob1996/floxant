@@ -1,0 +1,436 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-07-26T11:16:08.726Z",
+  "summary": {
+    "findings": 67,
+    "warnings": 3,
+    "failures": 0,
+    "p0Routes": 16,
+    "requiredDocs": 0
+  },
+  "findings": [
+    {
+      "status": "PASS",
+      "id": "topic-clusters",
+      "detail": "Topic-Cluster-Architektur ist als Datenstruktur vorhanden.",
+      "file": "lib/topic-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/angebot-guenstiger-pruefen ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/angebot-guenstiger-pruefen/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/angebot-guenstiger-pruefen hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/angebot-guenstiger-pruefen/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/angebot-guenstiger-pruefen hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/angebot-guenstiger-pruefen/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/angebot-guenstiger-pruefen hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/angebot-guenstiger-pruefen/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/umzug-regensburg ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/regensburg/umzug/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/umzug-regensburg hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/regensburg/umzug/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/umzug-regensburg hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/regensburg/umzug/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/umzug-regensburg hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/regensburg/umzug/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/duesseldorf/reinigung ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/duesseldorf/reinigung hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/duesseldorf/reinigung hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/duesseldorf/reinigung hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/duesseldorf/bueroreinigung ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/duesseldorf/bueroreinigung hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/duesseldorf/bueroreinigung hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/duesseldorf/bueroreinigung hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/duesseldorf/gewerbereinigung ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/duesseldorf/gewerbereinigung hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/duesseldorf/gewerbereinigung hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/duesseldorf/gewerbereinigung hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/entruempelung-regensburg ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/entruempelung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/entruempelung-regensburg hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/entruempelung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/entruempelung-regensburg hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/entruempelung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/entruempelung-regensburg hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/entruempelung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/klaviertransport-regensburg ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/klaviertransport-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/klaviertransport-regensburg hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/klaviertransport-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/klaviertransport-regensburg hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/klaviertransport-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/klaviertransport-regensburg hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/klaviertransport-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/reinigung-regensburg ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/reinigung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/reinigung-regensburg hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/reinigung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/reinigung-regensburg hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/reinigung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/reinigung-regensburg hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/reinigung-regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/diskret-service ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/diskret-service/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/diskret-service hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/diskret-service/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/diskret-service hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/diskret-service/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/diskret-service hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/diskret-service/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/seniorenumzug-bayern ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/seniorenumzug-bayern/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/seniorenumzug-bayern hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/seniorenumzug-bayern/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/seniorenumzug-bayern hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/seniorenumzug-bayern/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/solarreinigung ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/solarreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/solarreinigung hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/solarreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/solarreinigung hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/solarreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/solarreinigung hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/solarreinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/pv-anlagen-reinigung ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/pv-anlagen-reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/pv-anlagen-reinigung hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/pv-anlagen-reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/pv-anlagen-reinigung hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/pv-anlagen-reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/pv-anlagen-reinigung hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/pv-anlagen-reinigung/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/objektbrief ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/objektbrief/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/objektbrief hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/objektbrief/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/objektbrief hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/objektbrief/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/objektbrief hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/objektbrief/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/uebergabe-sprint ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/[serviceSlug]/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/uebergabe-sprint hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/[serviceSlug]/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/uebergabe-sprint hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/[serviceSlug]/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/uebergabe-sprint hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/[serviceSlug]/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/duesseldorf ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/duesseldorf/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/duesseldorf hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/duesseldorf/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/duesseldorf hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/duesseldorf/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/duesseldorf hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/duesseldorf/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-route",
+      "detail": "/regensburg ist durch Page, Redirect oder dynamischen Service abgedeckt.",
+      "file": "app/regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-faq",
+      "detail": "/regensburg hat sichtbare oder zentral verwaltete FAQ-Abdeckung.",
+      "file": "app/regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-ai-answer",
+      "detail": "/regensburg hat AI-/Quick-Answer-Abdeckung.",
+      "file": "app/regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "p0-cta",
+      "detail": "/regensburg hat Kontakt-, Buchungs- oder Angebotscheck-CTA.",
+      "file": "app/regensburg/page.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "blog-support-blocks",
+      "detail": "Blogrenderer hat Quick Answer, Offer-CTA, Related Services und Related Articles.",
+      "file": "components/blog/BlogArticlePage.tsx"
+    },
+    {
+      "status": "PASS",
+      "id": "faq-schema-visible",
+      "detail": "FAQ-Schema-Helfer filtert auf sichtbare und eligible FAQ.",
+      "file": "lib/faq-schema.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "vercel-safety",
+      "detail": "Keine revalidate/nodejs/force-dynamic/API-Post/sendBeacon/Supabase/Resend/sharp-Rueckkehr auf Public Pages erkannt.",
+      "file": ""
+    }
+  ],
+  "warnings": [
+    {
+      "status": "WARN",
+      "id": "p0-ai-answer",
+      "detail": "/seniorenumzug-bayern hat keinen eindeutigen sichtbaren AI-/Quick-Answer-Block im Page-Source; zentrale AI-Daten pruefen.",
+      "file": "app/seniorenumzug-bayern/page.tsx"
+    },
+    {
+      "status": "WARN",
+      "id": "content-safety",
+      "detail": "Moegliche positive Risiko-Claims zur manuellen Pruefung: app/leerfahrt-rueckfahrt/page.tsx:45, app/rueckfahrt-boerse/page.tsx:50, lib/growth-service-pages.ts:255",
+      "file": ""
+    },
+    {
+      "status": "WARN",
+      "id": "english-intent",
+      "detail": "English Intent ist nicht vollstaendig dokumentiert.",
+      "file": ""
+    }
+  ],
+  "failures": []
+}

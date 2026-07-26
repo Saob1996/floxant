@@ -1,0 +1,168 @@
+{
+  "status": "RED",
+  "generatedAt": "2026-07-26T11:16:07.591Z",
+  "summary": {
+    "pass": 12,
+    "warn": 0,
+    "fail": 3
+  },
+  "checks": [
+    {
+      "id": "files:required",
+      "status": "FAIL",
+      "label": "Lead response files exist",
+      "detail": "Missing: docs/LEAD_RESPONSE_ARCHITECTURE.md, docs/LEAD_REPLY_TEMPLATES.md, docs/INTERNAL_LEAD_NOTIFICATION_REPORT.md, docs/CUSTOMER_ACKNOWLEDGEMENT_TEMPLATES.md, docs/LEAD_OPERATIONS_PLAYBOOK.md, docs/LEAD_PII_SAFETY_REPORT.md, docs/LEAD_RESPONSE_IMPLEMENTATION_REPORT.md",
+      "files": [
+        "docs/LEAD_RESPONSE_ARCHITECTURE.md",
+        "docs/LEAD_REPLY_TEMPLATES.md",
+        "docs/INTERNAL_LEAD_NOTIFICATION_REPORT.md",
+        "docs/CUSTOMER_ACKNOWLEDGEMENT_TEMPLATES.md",
+        "docs/LEAD_OPERATIONS_PLAYBOOK.md",
+        "docs/LEAD_PII_SAFETY_REPORT.md",
+        "docs/LEAD_RESPONSE_IMPLEMENTATION_REPORT.md",
+        "lib/lead-reply-templates.ts",
+        "lib/missing-info-questions.ts",
+        "lib/lead-response-recommendations.ts",
+        "lib/lead-summary.ts"
+      ]
+    },
+    {
+      "id": "script:package",
+      "status": "PASS",
+      "label": "npm script lead-response:health exists",
+      "detail": "package.json exposes the lead-response health script.",
+      "files": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "templates:p0-services",
+      "status": "PASS",
+      "label": "P0 services have reply templates",
+      "detail": "All required service reply templates are present.",
+      "files": [
+        "lib/lead-reply-templates.ts"
+      ]
+    },
+    {
+      "id": "templates:structure",
+      "status": "PASS",
+      "label": "Reply template structure is complete",
+      "detail": "Templates contain required structural fields.",
+      "files": [
+        "lib/lead-reply-templates.ts"
+      ]
+    },
+    {
+      "id": "missing-info:questions",
+      "status": "PASS",
+      "label": "Missing-info questions exist per service",
+      "detail": "Service-specific missing-info question sets are present.",
+      "files": [
+        "lib/missing-info-questions.ts"
+      ]
+    },
+    {
+      "id": "priority:p0-signals",
+      "status": "PASS",
+      "label": "Lead priority includes response-quality P0 signals",
+      "detail": "P0 operational signals are represented.",
+      "files": [
+        "lib/lead-priority.ts"
+      ]
+    },
+    {
+      "id": "routing:response-fields",
+      "status": "PASS",
+      "label": "Lead routing exposes response recommendation fields",
+      "detail": "Routing exposes template, missing-info and handling flags.",
+      "files": [
+        "lib/lead-routing.ts"
+      ]
+    },
+    {
+      "id": "operations:snapshot",
+      "status": "PASS",
+      "label": "Operations snapshot carries lead-response data",
+      "detail": "Lead operations include recommendations, summary and acknowledgement copy.",
+      "files": [
+        "lib/lead-operations.ts"
+      ]
+    },
+    {
+      "id": "notification:internal",
+      "status": "PASS",
+      "label": "Internal notification structure exists",
+      "detail": "Internal notification uses priority, template, follow-up and PII-safe summary.",
+      "files": [
+        "lib/mail/notifications.ts"
+      ]
+    },
+    {
+      "id": "success-state:customer",
+      "status": "PASS",
+      "label": "Customer success state is service-specific and honest",
+      "detail": "Success state includes next-step and no-booking/no-guarantee copy.",
+      "files": [
+        "components/SeoLeadForm.tsx"
+      ]
+    },
+    {
+      "id": "api:submit-only-fields",
+      "status": "FAIL",
+      "label": "Booking API accepts lead-response fields",
+      "detail": "Missing: responseTemplateKey, recommendedNextStep, missingInfoQuestions, sendInternalIntakeNotification",
+      "files": [
+        "app/api/bookings/route.ts"
+      ]
+    },
+    {
+      "id": "copy:no-false-claims",
+      "status": "PASS",
+      "label": "No false booking, price, instant-date or advice claims",
+      "detail": "No forbidden promise patterns found in lead-response scope.",
+      "files": [
+        "lib/lead-reply-templates.ts",
+        "components/SeoLeadForm.tsx",
+        "docs/LEAD_RESPONSE_ARCHITECTURE.md",
+        "docs/LEAD_REPLY_TEMPLATES.md",
+        "docs/CUSTOMER_ACKNOWLEDGEMENT_TEMPLATES.md",
+        "docs/LEAD_OPERATIONS_PLAYBOOK.md"
+      ]
+    },
+    {
+      "id": "pii:reports",
+      "status": "PASS",
+      "label": "Reports stay free of obvious PII patterns",
+      "detail": "No obvious email or phone patterns found in new lead-response reports.",
+      "files": [
+        "docs/LEAD_RESPONSE_ARCHITECTURE.md",
+        "docs/LEAD_REPLY_TEMPLATES.md",
+        "docs/INTERNAL_LEAD_NOTIFICATION_REPORT.md",
+        "docs/CUSTOMER_ACKNOWLEDGEMENT_TEMPLATES.md",
+        "docs/LEAD_OPERATIONS_PLAYBOOK.md",
+        "docs/LEAD_PII_SAFETY_REPORT.md",
+        "docs/LEAD_RESPONSE_IMPLEMENTATION_REPORT.md"
+      ]
+    },
+    {
+      "id": "vercel:public-safety",
+      "status": "PASS",
+      "label": "No Vercel usage regression in public lead-response scope",
+      "detail": "No public runtime, polling, automatic API, Supabase, Resend or sharp patterns found.",
+      "files": [
+        "components/SeoLeadForm.tsx",
+        "app/kontakt/page.tsx"
+      ]
+    },
+    {
+      "id": "api:submit-only",
+      "status": "FAIL",
+      "label": "Lead API is submit-only",
+      "detail": "Review SeoLeadForm for automatic API calls.",
+      "files": [
+        "components/SeoLeadForm.tsx"
+      ]
+    }
+  ]
+}

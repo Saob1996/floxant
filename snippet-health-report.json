@@ -1,16 +1,16 @@
 {
-  "status": "PASS",
-  "generatedAt": "2026-06-20T03:42:03.837Z",
+  "status": "WARN",
+  "generatedAt": "2026-07-26T11:16:39.045Z",
   "hardFailureCount": 0,
-  "warningCount": 0,
+  "warningCount": 5,
   "results": [
     {
       "route": "/",
-      "source": "page-source",
-      "title": "FLOXANT | Reinigung, Umzug & Angebot klar anfragen",
-      "description": "FLOXANT ordnet Reinigung, Umzug, Entrümpelung und vorhandene Angebote nach Ort, Umfang, Fotos und Termin klar ein.",
-      "h1": "Reinigung, Umzug und Angebote klar anfragen",
-      "status": "PASS",
+      "source": "static-export",
+      "title": "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen",
+      "description": "Umzug, Reinigung, Entrümpelung oder Angebotsprüfung in Regensburg, Düsseldorf und Umgebung anfragen. Auftrag kurz beschreiben und Rückmeldung erhalten.",
+      "h1": "Umzug, Reinigung und Entrümpelung einfach anfragen",
+      "status": "WARN",
       "checks": [
         {
           "ok": true,
@@ -22,37 +22,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "FLOXANT | Reinigung, Umzug & Angebot klar anfragen"
+          "detail": "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "FLOXANT ordnet Reinigung, Umzug, Entrümpelung und vorhandene Angebote nach Ort, Umfang, Fotos und Termin klar ein."
+          "detail": "Umzug, Reinigung, Entrümpelung oder Angebotsprüfung in Regensburg, Düsseldorf und Umgebung anfragen. Auftrag kurz beschreiben und Rückmeldung erhalten."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "50 chars"
+          "detail": "59 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "114 chars"
+          "detail": "151 chars"
         },
         {
-          "ok": true,
+          "ok": false,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "FLOXANT | Reinigung, Umzug & Angebot klar anfragen"
+          "detail": "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "FLOXANT | Reinigung, Umzug & Angebot klar anfragen FLOXANT ordnet Reinigung, Umzug, Entrümpelung und vorhandene Angebote nach Ort, Umfang, Fotos und Termin klar ein."
+          "detail": "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen Umzug, Reinigung, Entrümpelung oder Angebotsprüfung in Regensburg, Düsseldorf und Umgebung anfragen. Auftrag kurz beschreiben und Rückmeldung erhalten."
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
     {
       "route": "/angebot-guenstiger-pruefen",
       "source": "page-source",
-      "title": "Angebot pruefen lassen, wenn Umfang oder Preis unklar sind",
-      "description": "Vorhandenes Angebot fuer Umzug, Reinigung oder Raeumung einordnen: Umfang, Fotos, Termin, Preislogik und offene Punkte vor der Zusage klaeren.",
+      "title": "Angebot prüfen lassen - Preis, Umfang und offene Punkte klären",
+      "description": "Angebot für Reinigung, Umzug, Entrümpelung oder Spezialservice prüfen: Umfang, Zusatzkosten, Termin und offene Punkte klären. Ohne Rechtsberatung.",
       "h1": "Angebot prüfen lassen, bevor Sie vorschnell zusagen",
       "status": "PASS",
       "checks": [
@@ -80,37 +80,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Angebot pruefen lassen, wenn Umfang oder Preis unklar sind"
+          "detail": "Angebot prüfen lassen - Preis, Umfang und offene Punkte klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Vorhandenes Angebot fuer Umzug, Reinigung oder Raeumung einordnen: Umfang, Fotos, Termin, Preislogik und offene Punkte vor der Zusage klaeren."
+          "detail": "Angebot für Reinigung, Umzug, Entrümpelung oder Spezialservice prüfen: Umfang, Zusatzkosten, Termin und offene Punkte klären. Ohne Rechtsberatung."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "58 chars"
+          "detail": "62 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "142 chars"
+          "detail": "146 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Angebot pruefen lassen, wenn Umfang oder Preis unklar sind"
+          "detail": "Angebot prüfen lassen - Preis, Umfang und offene Punkte klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Angebot pruefen lassen, wenn Umfang oder Preis unklar sind Vorhandenes Angebot fuer Umzug, Reinigung oder Raeumung einordnen: Umfang, Fotos, Termin, Preislogik und offene Punkte vor der Zusage klaeren."
+          "detail": "Angebot prüfen lassen - Preis, Umfang und offene Punkte klären Angebot für Reinigung, Umzug, Entrümpelung oder Spezialservice prüfen: Umfang, Zusatzkosten, Termin und offene Punkte klären. Ohne Rechtsberatung."
         },
         {
           "ok": true,
@@ -135,8 +135,8 @@
     {
       "route": "/angebotscheck",
       "source": "page-source",
-      "title": "Angebotscheck fuer Angebot, Umfang und Zusatzpunkte",
-      "description": "Red Flags im Angebot erkennen: Umfang, Zugang, Fotos, Termin und Zusatzpositionen pruefen, bevor aus Unsicherheit eine feste Zusage wird.",
+      "title": "Angebotscheck für Reinigung, Umzug und Entrümpelung",
+      "description": "Kurzer Angebotscheck für vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klären. Auch für Reinigungsangebote in Düsseldorf.",
       "h1": "Angebotscheck: offene Punkte vor der Zusage erkennen",
       "status": "PASS",
       "checks": [
@@ -150,13 +150,13 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Angebotscheck fuer Angebot, Umfang und Zusatzpunkte"
+          "detail": "Angebotscheck für Reinigung, Umzug und Entrümpelung"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Red Flags im Angebot erkennen: Umfang, Zugang, Fotos, Termin und Zusatzpositionen pruefen, bevor aus Unsicherheit eine feste Zusage wird."
+          "detail": "Kurzer Angebotscheck für vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klären. Auch für Reinigungsangebote in Düsseldorf."
         },
         {
           "ok": true,
@@ -168,19 +168,19 @@
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "137 chars"
+          "detail": "143 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Angebotscheck fuer Angebot, Umfang und Zusatzpunkte"
+          "detail": "Angebotscheck für Reinigung, Umzug und Entrümpelung"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Angebotscheck fuer Angebot, Umfang und Zusatzpunkte Red Flags im Angebot erkennen: Umfang, Zugang, Fotos, Termin und Zusatzpositionen pruefen, bevor aus Unsicherheit eine feste Zusage wird."
+          "detail": "Angebotscheck für Reinigung, Umzug und Entrümpelung Kurzer Angebotscheck für vorhandene Angebote: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klären. Auch für Reinigungsangebote in Düsseldorf."
         },
         {
           "ok": true,
@@ -205,8 +205,8 @@
     {
       "route": "/anbieter-vergleichen",
       "source": "page-source",
-      "title": "Anbieter vergleichen: Umfang, Termin und Angebot klaeren",
-      "description": "Dienstleisterangebote sachlich vergleichen: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren, bevor der Preis allein entscheidet.",
+      "title": "Anbieter vergleichen - Leistung, Umfang und Risiko einordnen",
+      "description": "Dienstleister sachlich vergleichen: Leistung, Umfang, Kommunikation, Termin und Risiko einordnen. Kein Vergleichsportal und kein Sparversprechen.",
       "h1": "",
       "status": "PASS",
       "checks": [
@@ -220,37 +220,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Anbieter vergleichen: Umfang, Termin und Angebot klaeren"
+          "detail": "Anbieter vergleichen - Leistung, Umfang und Risiko einordnen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Dienstleisterangebote sachlich vergleichen: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren, bevor der Preis allein entscheidet."
+          "detail": "Dienstleister sachlich vergleichen: Leistung, Umfang, Kommunikation, Termin und Risiko einordnen. Kein Vergleichsportal und kein Sparversprechen."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "56 chars"
+          "detail": "60 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "135 chars"
+          "detail": "145 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Anbieter vergleichen: Umfang, Termin und Angebot klaeren"
+          "detail": "Anbieter vergleichen - Leistung, Umfang und Risiko einordnen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Anbieter vergleichen: Umfang, Termin und Angebot klaeren Dienstleisterangebote sachlich vergleichen: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren, bevor der Preis allein entscheidet."
+          "detail": "Anbieter vergleichen - Leistung, Umfang und Risiko einordnen Dienstleister sachlich vergleichen: Leistung, Umfang, Kommunikation, Termin und Risiko einordnen. Kein Vergleichsportal und kein Sparversprechen."
         },
         {
           "ok": true,
@@ -275,8 +275,8 @@
     {
       "route": "/reinigungsfirma-angebot",
       "source": "gsc-priority",
-      "title": "Reinigungsfirma Angebot mit Objekt und Turnus klaeren",
-      "description": "Reinigungsfirma Angebot vorbereiten: Objekt, Flaeche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind.",
+      "title": "Reinigungsfirma Angebot mit Objekt und Turnus klären",
+      "description": "Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind.",
       "h1": "Reinigungsfirma Angebot anfragen: Objekt, Fläche und Termin klar senden",
       "status": "PASS",
       "checks": [
@@ -290,37 +290,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klaeren"
+          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Reinigungsfirma Angebot vorbereiten: Objekt, Flaeche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind."
+          "detail": "Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "53 chars"
+          "detail": "52 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "137 chars"
+          "detail": "136 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klaeren"
+          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klaeren Reinigungsfirma Angebot vorbereiten: Objekt, Flaeche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind."
+          "detail": "Reinigungsfirma Angebot mit Objekt und Turnus klären Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind."
         },
         {
           "ok": true,
@@ -343,30 +343,30 @@
       ]
     },
     {
-      "route": "/duesseldorf",
+      "route": "/regensburg",
       "source": "gsc-priority",
-      "title": "FLOXANT Düsseldorf | Reinigung & Angebot prüfen",
-      "description": "FLOXANT Düsseldorf: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen.",
-      "h1": "FLOXANT Düsseldorf für Reinigung und Angebotsprüfung",
+      "title": "FLOXANT Regensburg | Reinigung & Angebot prüfen",
+      "description": "FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen.",
+      "h1": "FLOXANT Regensburg für Reinigung und Angebotsprüfung",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\page.tsx"
+          "detail": "app\\regensburg\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "FLOXANT Düsseldorf | Reinigung & Angebot prüfen"
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "FLOXANT Düsseldorf: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
+          "detail": "FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
         },
         {
           "ok": true,
@@ -384,19 +384,19 @@
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "FLOXANT Düsseldorf | Reinigung & Angebot prüfen"
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "FLOXANT Düsseldorf | Reinigung & Angebot prüfen FLOXANT Düsseldorf: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
           "ok": true,
@@ -408,65 +408,65 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/duesseldorf/reinigung, /kontakt"
+          "detail": "/regensburg/reinigung, /kontakt"
         }
       ]
     },
     {
-      "route": "/duesseldorf/reinigung",
+      "route": "/regensburg/reinigung",
       "source": "gsc-priority",
-      "title": "Reinigung Duesseldorf mit Objekt und Angebot klaeren",
-      "description": "Reinigung Duesseldorf fuer Wohnung, Buero, Praxis, Treppenhaus oder Grundreinigung: Fotos, Flaeche, Termin und Angebot klar senden.",
-      "h1": "Reinigung Düsseldorf für Wohnung, Büro, Praxis und Objekt",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\reinigung\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Reinigung Duesseldorf mit Objekt und Angebot klaeren"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Reinigung Duesseldorf fuer Wohnung, Buero, Praxis, Treppenhaus oder Grundreinigung: Fotos, Flaeche, Termin und Angebot klar senden."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "52 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "131 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Reinigung Duesseldorf mit Objekt und Angebot klaeren"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Reinigung Duesseldorf mit Objekt und Angebot klaeren Reinigung Duesseldorf fuer Wohnung, Buero, Praxis, Treppenhaus oder Grundreinigung: Fotos, Flaeche, Termin und Angebot klar senden."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
           "ok": true,
@@ -489,60 +489,60 @@
       ]
     },
     {
-      "route": "/duesseldorf/bueroreinigung",
+      "route": "/regensburg/reinigung",
       "source": "gsc-priority",
-      "title": "Bueroreinigung Duesseldorf mit Raumliste und Angebot",
-      "description": "Bueroreinigung Duesseldorf fuer Buero, Kanzlei, Praxis und Gewerbe: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren.",
-      "h1": "Büroreinigung Düsseldorf mit klarer Angebotsanfrage",
-      "status": "PASS",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
+      "status": "WARN",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\bueroreinigung\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Bueroreinigung Duesseldorf mit Raumliste und Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Bueroreinigung Duesseldorf fuer Buero, Kanzlei, Praxis und Gewerbe: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "52 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "128 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Bueroreinigung Duesseldorf mit Raumliste und Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Bueroreinigung Duesseldorf mit Raumliste und Angebot Bueroreinigung Duesseldorf fuer Buero, Kanzlei, Praxis und Gewerbe: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
           "ok": true,
@@ -557,7 +557,7 @@
           "detail": "offer intent expected"
         },
         {
-          "ok": true,
+          "ok": false,
           "level": "warn",
           "check": "cta_target_present",
           "detail": "/reinigungsfirma-angebot, /angebot-guenstiger-pruefen"
@@ -565,63 +565,63 @@
       ]
     },
     {
-      "route": "/duesseldorf/gewerbereinigung",
+      "route": "/regensburg/reinigung",
       "source": "gsc-priority",
-      "title": "Gewerbereinigung Duesseldorf fuer Buero und Objekt",
-      "description": "Gewerbereinigung Duesseldorf fuer Buero, Praxis, Kanzlei, Hotel und Objekt: Flaeche, Turnus, Zeitfenster, Zugang und Fotos senden.",
-      "h1": "Gewerbereinigung Düsseldorf für Büro, Praxis und Objekt",
-      "status": "PASS",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
+      "status": "WARN",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\gewerbereinigung\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Gewerbereinigung Duesseldorf fuer Buero und Objekt"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Gewerbereinigung Duesseldorf fuer Buero, Praxis, Kanzlei, Hotel und Objekt: Flaeche, Turnus, Zeitfenster, Zugang und Fotos senden."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "50 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "130 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Gewerbereinigung Duesseldorf fuer Buero und Objekt"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Gewerbereinigung Duesseldorf fuer Buero und Objekt Gewerbereinigung Duesseldorf fuer Buero, Praxis, Kanzlei, Hotel und Objekt: Flaeche, Turnus, Zeitfenster, Zugang und Fotos senden."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
-          "ok": true,
+          "ok": false,
           "level": "warn",
           "check": "service_in_snippet",
           "detail": "gewerbereinigung"
@@ -641,63 +641,63 @@
       ]
     },
     {
-      "route": "/duesseldorf/praxisreinigung",
+      "route": "/regensburg/reinigung",
       "source": "gsc-priority",
-      "title": "Praxisreinigung Düsseldorf | Praxis & Angebot",
-      "description": "Praxisreinigung Düsseldorf: Empfang, Wartebereich, Sanitär, Büroflächen, Turnus, Zeitfenster und Fotos für ein Angebot senden.",
-      "h1": "Praxisreinigung Düsseldorf für Praxisräume und Empfang",
-      "status": "PASS",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
+      "status": "WARN",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\praxisreinigung\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Praxisreinigung Düsseldorf | Praxis & Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Praxisreinigung Düsseldorf: Empfang, Wartebereich, Sanitär, Büroflächen, Turnus, Zeitfenster und Fotos für ein Angebot senden."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "45 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "126 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Praxisreinigung Düsseldorf | Praxis & Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Praxisreinigung Düsseldorf | Praxis & Angebot Praxisreinigung Düsseldorf: Empfang, Wartebereich, Sanitär, Büroflächen, Turnus, Zeitfenster und Fotos für ein Angebot senden."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
-          "ok": true,
+          "ok": false,
           "level": "warn",
           "check": "service_in_snippet",
           "detail": "praxisreinigung"
@@ -717,63 +717,63 @@
       ]
     },
     {
-      "route": "/duesseldorf/fensterreinigung",
+      "route": "/regensburg/reinigung",
       "source": "gsc-priority",
-      "title": "Fensterreinigung Duesseldorf mit Glas und Zugang",
-      "description": "Fensterreinigung Duesseldorf anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos, Zeitfenster und Angebot klaeren.",
-      "h1": "Fensterreinigung Duesseldorf mit Glas, Rahmen und Zugang",
-      "status": "PASS",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
+      "status": "WARN",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\duesseldorf\\fensterreinigung\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Fensterreinigung Duesseldorf mit Glas und Zugang"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Fensterreinigung Duesseldorf anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos, Zeitfenster und Angebot klaeren."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "48 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "134 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Fensterreinigung Duesseldorf mit Glas und Zugang"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Fensterreinigung Duesseldorf mit Glas und Zugang Fensterreinigung Duesseldorf anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos, Zeitfenster und Angebot klaeren."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "city_in_snippet",
-          "detail": "duesseldorf"
+          "detail": "regensburg"
         },
         {
-          "ok": true,
+          "ok": false,
           "level": "warn",
           "check": "service_in_snippet",
           "detail": "fensterreinigung"
@@ -793,163 +793,11 @@
       ]
     },
     {
-      "route": "/duesseldorf/umzug",
-      "source": "gsc-priority",
-      "title": "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren",
-      "description": "Umzug Duesseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klaeren.",
-      "h1": "Umzug Duesseldorf mit Start, Ziel und Terminwunsch",
-      "status": "PASS",
-      "checks": [
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "page_exists",
-          "detail": "app\\duesseldorf\\umzug\\page.tsx"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "title_present",
-          "detail": "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "description_present",
-          "detail": "Umzug Duesseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klaeren."
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "title_length",
-          "detail": "53 chars"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "description_length",
-          "detail": "124 chars"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "no_keyword_chain",
-          "detail": "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "no_banned_claim",
-          "detail": "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren Umzug Duesseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klaeren."
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "city_in_snippet",
-          "detail": "duesseldorf"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "service_in_snippet",
-          "detail": "umzug"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "offer_intent_visible",
-          "detail": "offer intent expected"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
-        }
-      ]
-    },
-    {
-      "route": "/duesseldorf/entruempelung",
-      "source": "gsc-priority",
-      "title": "Entruempelung Duesseldorf mit Raeumen und Zugang",
-      "description": "Entruempelung Duesseldorf anfragen: Raeume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klaeren.",
-      "h1": "Entruempelung Duesseldorf mit Raeumen, Menge und Zugang",
-      "status": "PASS",
-      "checks": [
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "page_exists",
-          "detail": "app\\duesseldorf\\entruempelung\\page.tsx"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "title_present",
-          "detail": "Entruempelung Duesseldorf mit Raeumen und Zugang"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "description_present",
-          "detail": "Entruempelung Duesseldorf anfragen: Raeume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klaeren."
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "title_length",
-          "detail": "48 chars"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "description_length",
-          "detail": "135 chars"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "no_keyword_chain",
-          "detail": "Entruempelung Duesseldorf mit Raeumen und Zugang"
-        },
-        {
-          "ok": true,
-          "level": "hard",
-          "check": "no_banned_claim",
-          "detail": "Entruempelung Duesseldorf mit Raeumen und Zugang Entruempelung Duesseldorf anfragen: Raeume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klaeren."
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "city_in_snippet",
-          "detail": "duesseldorf"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "service_in_snippet",
-          "detail": "entruempelung"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "offer_intent_visible",
-          "detail": "offer intent expected"
-        },
-        {
-          "ok": true,
-          "level": "warn",
-          "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
-        }
-      ]
-    },
-    {
       "route": "/regensburg",
-      "source": "page-source",
-      "title": "Regensburg Service: Umzug, Reinigung und Raeumung klaeren",
-      "description": "Regensburg-Anfrage fuer Umzug, Reinigung, Entruempelung oder Uebergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
-      "h1": "Regensburg: Umzug, Reinigung, Raeumung und Uebergabe sauber einordnen",
+      "source": "gsc-priority",
+      "title": "FLOXANT Regensburg | Reinigung & Angebot prüfen",
+      "description": "FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen.",
+      "h1": "FLOXANT Regensburg für Reinigung und Angebotsprüfung",
       "status": "PASS",
       "checks": [
         {
@@ -962,37 +810,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Regensburg Service: Umzug, Reinigung und Raeumung klaeren"
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Regensburg-Anfrage fuer Umzug, Reinigung, Entruempelung oder Uebergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden."
+          "detail": "FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "57 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "131 chars"
+          "detail": "146 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Regensburg Service: Umzug, Reinigung und Raeumung klaeren"
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Regensburg Service: Umzug, Reinigung und Raeumung klaeren Regensburg-Anfrage fuer Umzug, Reinigung, Entruempelung oder Uebergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden."
+          "detail": "FLOXANT Regensburg | Reinigung & Angebot prüfen FLOXANT Regensburg: Reinigungsfirma, Büroreinigung, Gewerbereinigung, Grundreinigung und Reinigungsangebot mit Stadtteil, Fotos und Termin prüfen."
         },
         {
           "ok": true,
@@ -1004,59 +852,59 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/umzug-regensburg, /kontakt"
+          "detail": "/regensburg/umzug, /kontakt"
         }
       ]
     },
     {
-      "route": "/umzug-regensburg",
+      "route": "/regensburg/umzug",
       "source": "gsc-priority",
-      "title": "Umzug Regensburg mit Start, Ziel und Angebot klaeren",
-      "description": "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Moebelmenge, Fotos, Termin und vorhandenes Angebot vorab klaeren.",
-      "h1": "Umzug Regensburg mit Start, Ziel und Angebot klaeren anfragen",
+      "title": "Umzug Regensburg mit Start, Ziel und Angebot klären",
+      "description": "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klären.",
+      "h1": "Umzug Regensburg mit Start, Ziel und Terminwunsch",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\umzug-regensburg\\page.tsx"
+          "detail": "app\\regensburg\\umzug\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klaeren"
+          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Moebelmenge, Fotos, Termin und vorhandenes Angebot vorab klaeren."
+          "detail": "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "52 chars"
+          "detail": "51 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "121 chars"
+          "detail": "122 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klaeren"
+          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klaeren Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Moebelmenge, Fotos, Termin und vorhandenes Angebot vorab klaeren."
+          "detail": "Umzug Regensburg mit Start, Ziel und Angebot klären Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klären."
         },
         {
           "ok": true,
@@ -1080,59 +928,59 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /kontakt"
         }
       ]
     },
     {
-      "route": "/reinigung-regensburg",
-      "source": "page-source",
-      "title": "Reinigung Regensburg mit Objekt, Termin und Angebot",
-      "description": "Reinigung Regensburg anfragen: Objekt, Flaeche, Zustand, Fotos, Termin, Zielzustand und vorhandenes Angebot strukturiert klaeren.",
-      "h1": "",
+      "route": "/regensburg/reinigung",
+      "source": "gsc-priority",
+      "title": "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+      "description": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf.",
+      "h1": "Reinigung Regensburg mit Fotos, Fläche und Übergabeziel klären",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\reinigung-regensburg\\page.tsx"
+          "detail": "app\\regensburg\\reinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Reinigung Regensburg mit Objekt, Termin und Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Reinigung Regensburg anfragen: Objekt, Flaeche, Zustand, Fotos, Termin, Zielzustand und vorhandenes Angebot strukturiert klaeren."
+          "detail": "Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "51 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "129 chars"
+          "detail": "144 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Reinigung Regensburg mit Objekt, Termin und Angebot"
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Reinigung Regensburg mit Objekt, Termin und Angebot Reinigung Regensburg anfragen: Objekt, Flaeche, Zustand, Fotos, Termin, Zielzustand und vorhandenes Angebot strukturiert klaeren."
+          "detail": "Reinigung Regensburg | Wohnung, Büro & Übergabe Reinigung Regensburg für Wohnung, Büro oder Übergabe: Fläche, Zustand, Fotos, Termin und Zielzustand senden. FLOXANT prüft den passenden Ablauf."
         },
         {
           "ok": true,
@@ -1156,59 +1004,59 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /kontakt"
         }
       ]
     },
     {
-      "route": "/entruempelung-regensburg",
+      "route": "/regensburg/entruempelung",
       "source": "gsc-priority",
-      "title": "Entruempelung Regensburg mit Menge und Angebot klaeren",
-      "description": "Entruempelung Regensburg fuer Wohnung, Keller, Garage oder Hausaufloesung: Fotos, Menge, Zugang, Termin und Angebot klaeren.",
-      "h1": "Entrümpelung Regensburg für Wohnung, Keller und Restmengen",
+      "title": "Entrümpelung Regensburg mit Räumen und Zugang",
+      "description": "Entrümpelung Regensburg anfragen: Räume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klären.",
+      "h1": "Entrümpelung Regensburg mit Räumen, Menge und Zugang",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\entruempelung-regensburg\\page.tsx"
+          "detail": "app\\regensburg\\entruempelung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Entruempelung Regensburg mit Menge und Angebot klaeren"
+          "detail": "Entrümpelung Regensburg mit Räumen und Zugang"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Entruempelung Regensburg fuer Wohnung, Keller, Garage oder Hausaufloesung: Fotos, Menge, Zugang, Termin und Angebot klaeren."
+          "detail": "Entrümpelung Regensburg anfragen: Räume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "54 chars"
+          "detail": "45 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "124 chars"
+          "detail": "131 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Entruempelung Regensburg mit Menge und Angebot klaeren"
+          "detail": "Entrümpelung Regensburg mit Räumen und Zugang"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Entruempelung Regensburg mit Menge und Angebot klaeren Entruempelung Regensburg fuer Wohnung, Keller, Garage oder Hausaufloesung: Fotos, Menge, Zugang, Termin und Angebot klaeren."
+          "detail": "Entrümpelung Regensburg mit Räumen und Zugang Entrümpelung Regensburg anfragen: Räume, Menge, Zugang, Fotos, Frist, Entsorgung, Reinigung danach und Angebot strukturiert klären."
         },
         {
           "ok": true,
@@ -1232,59 +1080,59 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /kontakt"
         }
       ]
     },
     {
-      "route": "/gewerbereinigung-regensburg",
-      "source": "page-source",
-      "title": "Büros & Kanzleien",
-      "description": "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei oder Objekt: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren.",
-      "h1": "Gewerbereinigung Regensburg mit Objekt, Raumliste und Turnus",
+      "route": "/regensburg/gewerbereinigung",
+      "source": "gsc-priority",
+      "title": "Gewerbereinigung Regensburg für Büro und Objekt",
+      "description": "Gewerbereinigung Regensburg für Büro, Praxis, Kanzlei, Hotel und Objekt: Fläche, Turnus, Zeitfenster, Zugang und Fotos senden.",
+      "h1": "Gewerbereinigung Regensburg für Büro, Praxis und Objekt",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\gewerbereinigung-regensburg\\page.tsx"
+          "detail": "app\\regensburg\\gewerbereinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Büros & Kanzleien"
+          "detail": "Gewerbereinigung Regensburg für Büro und Objekt"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei oder Objekt: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren."
+          "detail": "Gewerbereinigung Regensburg für Büro, Praxis, Kanzlei, Hotel und Objekt: Fläche, Turnus, Zeitfenster, Zugang und Fotos senden."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "17 chars"
+          "detail": "47 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "129 chars"
+          "detail": "126 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Büros & Kanzleien"
+          "detail": "Gewerbereinigung Regensburg für Büro und Objekt"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Büros & Kanzleien Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei oder Objekt: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren."
+          "detail": "Gewerbereinigung Regensburg für Büro und Objekt Gewerbereinigung Regensburg für Büro, Praxis, Kanzlei, Hotel und Objekt: Fläche, Turnus, Zeitfenster, Zugang und Fotos senden."
         },
         {
           "ok": true,
@@ -1308,59 +1156,59 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /bueroreinigung-regensburg"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /regensburg/bueroreinigung"
         }
       ]
     },
     {
-      "route": "/bueroreinigung-regensburg",
-      "source": "page-source",
-      "title": "Sauberes Büro ohne lange Abstimmung",
-      "description": "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden.",
-      "h1": "Bueroreinigung Regensburg mit Raumliste, Turnus und Randzeit klaeren.",
+      "route": "/regensburg/bueroreinigung",
+      "source": "gsc-priority",
+      "title": "B2B Büroreinigung mit Raumliste und Angebot",
+      "description": "B2B Büroreinigung für Firmen: Fläche, Raumliste, Turnus, Zeitfenster, Zugang und vorhandenes Angebot sachlich klären.",
+      "h1": "B2B Büroreinigung für Firmen mit klarer Angebotsanfrage",
       "status": "PASS",
       "checks": [
         {
           "ok": true,
           "level": "hard",
           "check": "page_exists",
-          "detail": "app\\bueroreinigung-regensburg\\page.tsx"
+          "detail": "app\\regensburg\\bueroreinigung\\page.tsx"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Sauberes Büro ohne lange Abstimmung"
+          "detail": "B2B Büroreinigung mit Raumliste und Angebot"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden."
+          "detail": "B2B Büroreinigung für Firmen: Fläche, Raumliste, Turnus, Zeitfenster, Zugang und vorhandenes Angebot sachlich klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "35 chars"
+          "detail": "43 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "134 chars"
+          "detail": "117 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Sauberes Büro ohne lange Abstimmung"
+          "detail": "B2B Büroreinigung mit Raumliste und Angebot"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Sauberes Büro ohne lange Abstimmung Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden."
+          "detail": "B2B Büroreinigung mit Raumliste und Angebot B2B Büroreinigung für Firmen: Fläche, Raumliste, Turnus, Zeitfenster, Zugang und vorhandenes Angebot sachlich klären."
         },
         {
           "ok": true,
@@ -1384,15 +1232,15 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /kontakt"
         }
       ]
     },
     {
       "route": "/klaviertransport-regensburg",
       "source": "gsc-priority",
-      "title": "Klaviertransport Regensburg mit Etage und Zugang klaeren",
-      "description": "Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klaeren.",
+      "title": "Klaviertransport Regensburg mit Etage und Zugang klären",
+      "description": "Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klären.",
       "h1": "Klaviertransport Regensburg mit Instrument, Zugang und Termin",
       "status": "PASS",
       "checks": [
@@ -1406,37 +1254,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Klaviertransport Regensburg mit Etage und Zugang klaeren"
+          "detail": "Klaviertransport Regensburg mit Etage und Zugang klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klaeren."
+          "detail": "Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "56 chars"
+          "detail": "55 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "134 chars"
+          "detail": "133 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Klaviertransport Regensburg mit Etage und Zugang klaeren"
+          "detail": "Klaviertransport Regensburg mit Etage und Zugang klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Klaviertransport Regensburg mit Etage und Zugang klaeren Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klaeren."
+          "detail": "Klaviertransport Regensburg mit Etage und Zugang klären Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klären."
         },
         {
           "ok": true,
@@ -1460,16 +1308,16 @@
           "ok": true,
           "level": "warn",
           "check": "cta_target_present",
-          "detail": "/angebot-guenstiger-pruefen, /kontakt"
+          "detail": "/angebot-guenstiger-pruefen, /angebot-vergleichen-regensburg, /kontakt"
         }
       ]
     },
     {
       "route": "/solarreinigung",
       "source": "gsc-priority",
-      "title": "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren",
-      "description": "Solarreinigung fuer PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klaeren.",
-      "h1": "Solarreinigung fuer PV-Anlagen mit sauberer Vorpruefung",
+      "title": "Solarreinigung mit PV-Fotos, Zugang und Termin klären",
+      "description": "Solarreinigung für PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klären.",
+      "h1": "Solarreinigung für PV-Anlagen mit sauberer Vorprüfung",
       "status": "PASS",
       "checks": [
         {
@@ -1482,37 +1330,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren"
+          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Solarreinigung fuer PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klaeren."
+          "detail": "Solarreinigung für PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "54 chars"
+          "detail": "53 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "138 chars"
+          "detail": "136 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren"
+          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren Solarreinigung fuer PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klaeren."
+          "detail": "Solarreinigung mit PV-Fotos, Zugang und Termin klären Solarreinigung für PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss, Termin und Angebot klären."
         },
         {
           "ok": true,
@@ -1537,8 +1385,8 @@
     {
       "route": "/pv-anlagen-reinigung",
       "source": "gsc-priority",
-      "title": "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren",
-      "description": "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klaeren.",
+      "title": "PV-Anlagen-Reinigung mit Modulen und Zugang klären",
+      "description": "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klären.",
       "h1": "PV-Anlagen-Reinigung mit Modulen, Zugang und Fotos",
       "status": "PASS",
       "checks": [
@@ -1552,37 +1400,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren"
+          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klaeren."
+          "detail": "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klären."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "51 chars"
+          "detail": "50 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "135 chars"
+          "detail": "134 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren"
+          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klaeren."
+          "detail": "PV-Anlagen-Reinigung mit Modulen und Zugang klären PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos, Sicherheitsgrenzen und Angebot klären."
         },
         {
           "ok": true,
@@ -1607,9 +1455,9 @@
     {
       "route": "/seniorenumzug-bayern",
       "source": "gsc-priority",
-      "title": "Umzug im Alter Bayern | Senioren-Umzug ruhig planen",
-      "description": "Umzug im Alter in Bayern: Möbel, Kartons, Rückruf, Angehörige, Reinigung und Übergabe ruhig abstimmen und Anfrage mit Fotos senden.",
-      "h1": "Umzug im Alter in Bayern ruhig und planbar anfragen",
+      "title": "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären",
+      "description": "Seniorenumzug geplant? Start, Ziel, Umfang, Termin und Zusatzleistungen wie Entrümpelung oder Reinigung beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten.",
+      "h1": "Seniorenumzug mit konkreten Eckdaten anfragen - mit Angehörigen, Umfang und Terminwunsch",
       "status": "PASS",
       "checks": [
         {
@@ -1622,37 +1470,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Umzug im Alter Bayern | Senioren-Umzug ruhig planen"
+          "detail": "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Umzug im Alter in Bayern: Möbel, Kartons, Rückruf, Angehörige, Reinigung und Übergabe ruhig abstimmen und Anfrage mit Fotos senden."
+          "detail": "Seniorenumzug geplant? Start, Ziel, Umfang, Termin und Zusatzleistungen wie Entrümpelung oder Reinigung beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "51 chars"
+          "detail": "58 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "131 chars"
+          "detail": "173 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Umzug im Alter Bayern | Senioren-Umzug ruhig planen"
+          "detail": "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Umzug im Alter Bayern | Senioren-Umzug ruhig planen Umzug im Alter in Bayern: Möbel, Kartons, Rückruf, Angehörige, Reinigung und Übergabe ruhig abstimmen und Anfrage mit Fotos senden."
+          "detail": "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären Seniorenumzug geplant? Start, Ziel, Umfang, Termin und Zusatzleistungen wie Entrümpelung oder Reinigung beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten."
         },
         {
           "ok": true,
@@ -1683,9 +1531,9 @@
     {
       "route": "/diskreter-umzug-trennung-scheidung",
       "source": "page-source",
-      "title": "Diskreter Service fuer Umzug, Auszug und Reinigung",
-      "description": "Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details.",
-      "h1": "Diskreter Service fuer Auszug, Reinigung und Uebergabe",
+      "title": "Diskreter Service für Umzug, Auszug und Reinigung",
+      "description": "Sensible Anfrage ruhig klären: diskreter Auszug, Umzug, Reinigung, Schlüsselübergabe und sichere Kontaktmethode ohne öffentliche Details.",
+      "h1": "Diskreter Service für Auszug, Reinigung und Übergabe",
       "status": "PASS",
       "checks": [
         {
@@ -1698,37 +1546,37 @@
           "ok": true,
           "level": "hard",
           "check": "title_present",
-          "detail": "Diskreter Service fuer Umzug, Auszug und Reinigung"
+          "detail": "Diskreter Service für Umzug, Auszug und Reinigung"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "description_present",
-          "detail": "Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details."
+          "detail": "Sensible Anfrage ruhig klären: diskreter Auszug, Umzug, Reinigung, Schlüsselübergabe und sichere Kontaktmethode ohne öffentliche Details."
         },
         {
           "ok": true,
           "level": "warn",
           "check": "title_length",
-          "detail": "50 chars"
+          "detail": "49 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "description_length",
-          "detail": "141 chars"
+          "detail": "137 chars"
         },
         {
           "ok": true,
           "level": "warn",
           "check": "no_keyword_chain",
-          "detail": "Diskreter Service fuer Umzug, Auszug und Reinigung"
+          "detail": "Diskreter Service für Umzug, Auszug und Reinigung"
         },
         {
           "ok": true,
           "level": "hard",
           "check": "no_banned_claim",
-          "detail": "Diskreter Service fuer Umzug, Auszug und Reinigung Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details."
+          "detail": "Diskreter Service für Umzug, Auszug und Reinigung Sensible Anfrage ruhig klären: diskreter Auszug, Umzug, Reinigung, Schlüsselübergabe und sichere Kontaktmethode ohne öffentliche Details."
         },
         {
           "ok": true,

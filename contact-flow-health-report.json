@@ -1,0 +1,136 @@
+{
+  "status": "RED",
+  "generatedAt": "2026-07-26T11:16:04.542Z",
+  "summary": {
+    "checks": 25,
+    "passed": 16,
+    "failed": 9
+  },
+  "checks": [
+    {
+      "name": "contact page uses route-derived heading",
+      "pass": false,
+      "detail": "H1 should react to service/city/intent."
+    },
+    {
+      "name": "contact page uses route-derived intro",
+      "pass": false,
+      "detail": "Intro should use routing context."
+    },
+    {
+      "name": "contact page embeds ServiceFinder above/beside form",
+      "pass": false,
+      "detail": "Finder should appear before the direct form in source order."
+    },
+    {
+      "name": "SeoLeadForm remains direct form",
+      "pass": false,
+      "detail": "Central lead form must stay present."
+    },
+    {
+      "name": "SeoLeadForm only submits to bookings API",
+      "pass": false,
+      "detail": "Lead API should be called by form submit."
+    },
+    {
+      "name": "Finder does not submit or fetch",
+      "pass": true,
+      "detail": "Finder must remain link-only."
+    },
+    {
+      "name": "Finder exposes accessibility focus state",
+      "pass": true,
+      "detail": "Keyboard users need visible focus."
+    },
+    {
+      "name": "core fields present",
+      "pass": true,
+      "detail": "Core form fields must remain available."
+    },
+    {
+      "name": "offer-check fields present",
+      "pass": true,
+      "detail": "Offer-check fields must remain available."
+    },
+    {
+      "name": "property cleaning fields present",
+      "pass": true,
+      "detail": "Property cleaning fields must remain available."
+    },
+    {
+      "name": "handover fields present",
+      "pass": true,
+      "detail": "Handover fields must remain available."
+    },
+    {
+      "name": "special transport fields present",
+      "pass": true,
+      "detail": "Piano/special transport fields must remain available."
+    },
+    {
+      "name": "senior move fields present",
+      "pass": true,
+      "detail": "Senior move fields must remain available."
+    },
+    {
+      "name": "solar pv fields present",
+      "pass": true,
+      "detail": "Solar/PV fields must remain available."
+    },
+    {
+      "name": "field group config exported",
+      "pass": true,
+      "detail": "Field groups are auditable."
+    },
+    {
+      "name": "all field groups represented",
+      "pass": true,
+      "detail": "Every service group needs a field config."
+    },
+    {
+      "name": "success states exported",
+      "pass": true,
+      "detail": "Success states are auditable."
+    },
+    {
+      "name": "service-specific success copy remains",
+      "pass": true,
+      "detail": "SeoLeadForm keeps service-specific success behavior."
+    },
+    {
+      "name": "routing references field groups",
+      "pass": true,
+      "detail": "Routing matrix connects service to field and success state."
+    },
+    {
+      "name": "no forced fake guarantee language",
+      "pass": true,
+      "detail": "Contact flow should avoid guarantee promises."
+    },
+    {
+      "name": "npm script contact-flow:health exists",
+      "pass": true,
+      "detail": "package.json exposes the health command."
+    },
+    {
+      "name": "doc exists docs/CONTACT_FLOW_2_REPORT.md",
+      "pass": false,
+      "detail": "Required contact-flow documentation should be present."
+    },
+    {
+      "name": "doc exists docs/CONTACT_FIELD_GROUPS_REPORT.md",
+      "pass": false,
+      "detail": "Required contact-flow documentation should be present."
+    },
+    {
+      "name": "doc exists docs/CONTACT_SUCCESS_STATES_REPORT.md",
+      "pass": false,
+      "detail": "Required contact-flow documentation should be present."
+    },
+    {
+      "name": "doc exists docs/CONTACT_FLOW_ACCESSIBILITY_MOBILE_REPORT.md",
+      "pass": false,
+      "detail": "Required contact-flow documentation should be present."
+    }
+  ]
+}

@@ -70,6 +70,16 @@ function assetPath(pathname) {
     ? [relative, `${relative}.html`, path.join(relative, "index.html")]
     : ["index.html"];
 
+  const relativeParts = relative.split("/");
+  const requestFile = relativeParts.at(-1) || "";
+  if (requestFile.startsWith("__next.") && requestFile.endsWith(".txt")) {
+    const routeParts = requestFile.slice("__next.".length, -".txt".length).split(".");
+    if (routeParts.length > 1) {
+      const parent = relativeParts.slice(0, -1);
+      candidates.push(path.join(...parent, `__next.${routeParts[0]}`, ...routeParts.slice(1)) + ".txt");
+    }
+  }
+
   for (const candidate of candidates) {
     const absolute = path.resolve(root, candidate);
     if (!absolute.startsWith(`${root}${path.sep}`) && absolute !== root) continue;

@@ -1,17 +1,29 @@
 {
-  "status": "PASS",
-  "generatedAt": "2026-06-20T03:42:01.744Z",
+  "status": "FAIL",
+  "generatedAt": "2026-07-26T11:16:32.831Z",
   "checks": [
     {
-      "status": "PASS",
+      "status": "FAIL",
       "name": "required trust files",
-      "detail": "19 required files present.",
-      "files": []
+      "detail": "Missing files: docs/REVIEW_TRUST_CLAIM_AUDIT.md, docs/PROJECT_STORY_AND_CASE_STUDY_GUIDELINES.md, docs/DUAL_LOCATION_GBP_LOCAL_PROOF_PLAN.md, docs/SIGNATURE_SERVICE_TRUST_MAP.md, docs/SERVICE_SPECIFIC_TRUST_MAP.md",
+      "files": [
+        "docs/REVIEW_TRUST_CLAIM_AUDIT.md",
+        "docs/PROJECT_STORY_AND_CASE_STUDY_GUIDELINES.md",
+        "docs/DUAL_LOCATION_GBP_LOCAL_PROOF_PLAN.md",
+        "docs/SIGNATURE_SERVICE_TRUST_MAP.md",
+        "docs/SERVICE_SPECIFIC_TRUST_MAP.md"
+      ]
     },
     {
       "status": "PASS",
+      "name": "trust signal data gates",
+      "detail": "10 trust signals include visibility and risk gates.",
+      "files": []
+    },
+    {
+      "status": "FAIL",
       "name": "prioritized route coverage",
-      "detail": "20 route/template trust checks passed.",
+      "detail": "[\n  {\n    \"route\": \"/\",\n    \"missingFiles\": [],\n    \"missingTokens\": [\n      \"LocationClarityPanel\",\n      \"FloxantObjectBrief\"\n    ]\n  },\n  {\n    \"route\": \"/diskret-service\",\n    \"missingFiles\": [],\n    \"missingTokens\": [\n      \"/diskret-service\"\n    ]\n  }\n]",
       "files": []
     },
     {
@@ -41,7 +53,7 @@
     {
       "status": "PASS",
       "name": "local proof signals",
-      "detail": "Duesseldorf/Regensburg local proof and manual GBP boundaries are visible.",
+      "detail": "Düsseldorf and Regensburg show customer-facing location guidance without internal proof labels.",
       "files": []
     }
   ]

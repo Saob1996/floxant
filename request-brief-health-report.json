@@ -1,0 +1,135 @@
+{
+  "status": "RED",
+  "generatedAt": "2026-07-26T11:16:06.421Z",
+  "summary": {
+    "pass": 5,
+    "warn": 1,
+    "fail": 3
+  },
+  "checks": [
+    {
+      "id": "files:required",
+      "status": "FAIL",
+      "label": "Required request-brief files exist",
+      "detail": "Missing: docs/OBJEKTBRIEF_ANFRAGEBRIEF_ARCHITECTURE.md, docs/LEAD_REQUEST_SUMMARY_PAYLOAD_REPORT.md, docs/REQUEST_MICROCOPY_GUIDE.md, docs/REQUEST_CHECKLIST_AI_FAQ_REPORT.md, docs/REQUEST_BRIEF_MOBILE_ACCESSIBILITY_REPORT.md, docs/OBJEKTBRIEF_PAGE_REWRITE_REPORT.md, docs/REQUEST_CHECKLIST_COMPONENTS_REPORT.md",
+      "files": [
+        "lib/request-checklists.ts",
+        "lib/object-brief-checklists.ts",
+        "lib/photo-guidance.ts",
+        "lib/missing-info.ts",
+        "components/RequestChecklistBlock.tsx",
+        "components/PhotoGuidanceBlock.tsx",
+        "components/MissingInfoHelper.tsx",
+        "components/ObjectBriefPreview.tsx",
+        "components/CopyRequestSummaryButton.tsx",
+        "components/RelatedSignatureSuggestion.tsx",
+        "components/BetterRequestNotice.tsx",
+        "docs/OBJEKTBRIEF_ANFRAGEBRIEF_ARCHITECTURE.md",
+        "docs/LEAD_REQUEST_SUMMARY_PAYLOAD_REPORT.md",
+        "docs/REQUEST_MICROCOPY_GUIDE.md",
+        "docs/REQUEST_CHECKLIST_AI_FAQ_REPORT.md",
+        "docs/REQUEST_BRIEF_MOBILE_ACCESSIBILITY_REPORT.md",
+        "docs/OBJEKTBRIEF_PAGE_REWRITE_REPORT.md",
+        "docs/REQUEST_CHECKLIST_COMPONENTS_REPORT.md"
+      ]
+    },
+    {
+      "id": "script:package",
+      "status": "PASS",
+      "label": "npm script request-brief:health exists",
+      "detail": "package.json contains the request-brief health script.",
+      "files": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "data:coverage",
+      "status": "PASS",
+      "label": "Checklist data covers required service groups",
+      "detail": "All required service groups are represented.",
+      "files": [
+        "lib/request-checklists.ts"
+      ]
+    },
+    {
+      "id": "p0:integration",
+      "status": "PASS",
+      "label": "P0 pages/templates include request checklist integration",
+      "detail": "P0 pages and shared templates include request checklist blocks.",
+      "files": [
+        "app/kontakt/page.tsx",
+        "app/objektbrief/page.tsx",
+        "app/angebot-guenstiger-pruefen/page.tsx",
+        "components/duesseldorf/DuesseldorfCleaningServicePage.tsx",
+        "app/regensburg/umzug/page.tsx",
+        "app/klaviertransport-regensburg/page.tsx",
+        "app/entruempelung-regensburg/page.tsx",
+        "app/wohnungsaufloesung-regensburg/page.tsx",
+        "app/reinigung-regensburg/page.tsx",
+        "app/bueroreinigung-regensburg/page.tsx",
+        "app/gewerbereinigung-regensburg/page.tsx",
+        "app/diskret-service/page.tsx",
+        "app/seniorenumzug-bayern/page.tsx",
+        "components/GrowthServiceLandingPage.tsx"
+      ]
+    },
+    {
+      "id": "p0:optional-routes",
+      "status": "WARN",
+      "label": "Optional target routes checked",
+      "detail": "Routes do not exist in this worktree and were not recreated: app/duesseldorf/hausverwaltung-reinigung/page.tsx, app/uebergabe-sprint/page.tsx, app/vermieter-ready-service/page.tsx",
+      "files": [
+        "app/duesseldorf/hausverwaltung-reinigung/page.tsx",
+        "app/uebergabe-sprint/page.tsx",
+        "app/vermieter-ready-service/page.tsx"
+      ]
+    },
+    {
+      "id": "payload:form",
+      "status": "FAIL",
+      "label": "SeoLeadForm submits request-summary signals only on submit",
+      "detail": "Missing: fetch(\"/api/bookings\"",
+      "files": [
+        "components/SeoLeadForm.tsx"
+      ]
+    },
+    {
+      "id": "payload:api",
+      "status": "FAIL",
+      "label": "Booking API accepts request-summary fields",
+      "detail": "Missing: requestSummary, missingInfoFlags, hasPhotos, hasOffer, signatureServiceHint, leadPriority",
+      "files": [
+        "app/api/bookings/route.ts"
+      ]
+    },
+    {
+      "id": "vercel:static-safety",
+      "status": "PASS",
+      "label": "Public request-brief surfaces stay static/lightweight",
+      "detail": "No runtime, revalidate, sendBeacon, Supabase, Resend, sharp or PDF patterns found in checked public files.",
+      "files": [
+        "app/objektbrief/page.tsx",
+        "app/kontakt/page.tsx",
+        "components/RequestChecklistBlock.tsx",
+        "components/PhotoGuidanceBlock.tsx",
+        "components/MissingInfoHelper.tsx",
+        "components/ObjectBriefPreview.tsx",
+        "components/RelatedSignatureSuggestion.tsx",
+        "components/BetterRequestNotice.tsx",
+        "components/duesseldorf/DuesseldorfCleaningServicePage.tsx",
+        "components/GrowthServiceLandingPage.tsx",
+        "components/LocalServiceSeoPage.tsx",
+        "components/regensburg/RegensburgServicePage.tsx"
+      ]
+    },
+    {
+      "id": "client:copy-only",
+      "status": "PASS",
+      "label": "Client component is copy-only",
+      "detail": "CopyRequestSummaryButton uses clipboard only and does not call APIs.",
+      "files": [
+        "components/CopyRequestSummaryButton.tsx"
+      ]
+    }
+  ]
+}

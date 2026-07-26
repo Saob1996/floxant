@@ -1,0 +1,14 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-07-26T11:16:23.131Z",
+  "summary": {
+    "englishIntents": 6,
+    "existingEnglishPages": 13,
+    "warnings": 1,
+    "failures": 0
+  },
+  "warnings": [
+    "Mehr als 6 bestehende englische Page-Dateien gefunden (13); keine zusätzliche englische Seitenmasse in dieser Runde erzeugt."
+  ],
+  "failures": []
+}

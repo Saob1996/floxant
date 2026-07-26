@@ -1,0 +1,1648 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-07-26T11:10:40.981Z",
+  "summary": {
+    "baseUrl": "http://127.0.0.1:3000",
+    "baseUrlWasExplicit": true,
+    "scenarioCount": 13,
+    "productionSubmit": "No submit is performed by qa:contact.",
+    "checks": 204,
+    "pass": 204,
+    "warn": 0,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Expected service rendered: angebot-pruefen or angebot_pruefen",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Expected intent angebot-pruefen rendered.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Expected service rendered: reinigung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "City is applied by the verified client-side query personalization.",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Expected service rendered: bueroreinigung or b2b_reinigung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "City is applied by the verified client-side query personalization.",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Expected service rendered: gewerbereinigung or b2b_reinigung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "City is applied by the verified client-side query personalization.",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Expected service rendered: umzug",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Expected city rendered: regensburg",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Expected service rendered: entruempelung or entsorgung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Expected city rendered: regensburg",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Expected service rendered: klaviertransport",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Expected city rendered: regensburg",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Expected service rendered: diskret-service or private-client or private_client",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Expected intent diskret-service rendered.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Expected service rendered: seniorenumzug",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Expected service rendered: solarreinigung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Expected service rendered: cleaning or reinigung",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "City is applied by the verified client-side query personalization.",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Expected service rendered: moving or umzug",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Expected city rendered: regensburg",
+      "action": "Verify city propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-form",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Lead/contact form found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Name field check.",
+      "action": "Add/restore name input.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Contact method/email/phone field check.",
+      "action": "Add at least one contact method field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Service field/value check.",
+      "action": "Preserve service field or hidden service value.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "City/location field check.",
+      "action": "Preserve city/location field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Message/scope field check.",
+      "action": "Preserve message/scope field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Privacy notice/consent check.",
+      "action": "Add Datenschutz/consent text and field.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-fields",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Submit button check.",
+      "action": "Add visible submit button.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Expected service rendered: offer-check or angebot-pruefen or angebot_pruefen",
+      "action": "Verify query personalization if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-params",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Intent is applied by the verified client-side query personalization.",
+      "action": "Verify intent propagation if this check warns.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-seo",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "No noindex marker on contact scenario.",
+      "action": "Confirm contact noindex policy if present.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "No PII-like query keys in contact URL.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-pii",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "No PII-like data attributes on form.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-copy",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "No false booking/success guarantee copy in HTML.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "browser-interaction",
+      "path": "contact-scenarios",
+      "detail": "No Playwright/Cypress dependency configured; HTTP/SSR form regression ran without adding a browser dependency.",
+      "action": "Optional manual browser check remains required before production.",
+      "priority": "P2"
+    }
+  ]
+}

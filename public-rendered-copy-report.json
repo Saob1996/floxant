@@ -1,0 +1,2467 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-07-26T11:03:52.496Z",
+  "baseUrl": "http://localhost:3000",
+  "summary": {
+    "scannedPages": 409,
+    "findings": 0,
+    "fetchWarnings": 0
+  },
+  "pages": [
+    {
+      "url": "http://localhost:3000/",
+      "status": "PASS",
+      "textLength": 7378,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/24h-umzug-bayern",
+      "status": "PASS",
+      "textLength": 19644,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/24h-umzugsservice",
+      "status": "PASS",
+      "textLength": 4127,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/airbnb-turnover-express",
+      "status": "PASS",
+      "textLength": 7185,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/akteneinlagerung-regensburg",
+      "status": "PASS",
+      "textLength": 21756,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/alternativen",
+      "status": "PASS",
+      "textLength": 1684,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/anbieter-vergleichen",
+      "status": "PASS",
+      "textLength": 24817,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/anfrage-mit-preisrahmen",
+      "status": "PASS",
+      "textLength": 4969,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/angebot-guenstiger-pruefen",
+      "status": "PASS",
+      "textLength": 65230,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/angebot-pruefen",
+      "status": "PASS",
+      "textLength": 5348,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/angebot-vergleichen-duesseldorf",
+      "status": "PASS",
+      "textLength": 21490,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/angebot-vergleichen-regensburg",
+      "status": "PASS",
+      "textLength": 18513,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/angebotscheck",
+      "status": "PASS",
+      "textLength": 38288,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/baureinigung-regensburg",
+      "status": "PASS",
+      "textLength": 16363,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/beiladung",
+      "status": "PASS",
+      "textLength": 3112,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/beiladung-regensburg",
+      "status": "PASS",
+      "textLength": 20694,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog",
+      "status": "PASS",
+      "textLength": 75348,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/anbieter-hat-abgesagt-was-tun",
+      "status": "PASS",
+      "textLength": 7235,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/anfrage-regensburg-richtig-stellen",
+      "status": "PASS",
+      "textLength": 7695,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/angebot-anderer-firma-pruefen-regensburg",
+      "status": "PASS",
+      "textLength": 8515,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/angebot-ohne-besichtigung-riskant",
+      "status": "PASS",
+      "textLength": 7328,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/angebot-pruefen-lassen-wann-floxant-sinnvoll-ist",
+      "status": "PASS",
+      "textLength": 7371,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/angebot-wirkt-zu-teuer-welche-fragen-stellen",
+      "status": "PASS",
+      "textLength": 7109,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/auszug-checkliste-regensburg",
+      "status": "PASS",
+      "textLength": 8025,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/baustaub-nach-renovierung-reihenfolge",
+      "status": "PASS",
+      "textLength": 7691,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/beiladung-bayern-wann-lohnt-es-sich",
+      "status": "PASS",
+      "textLength": 7210,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/berufsumzug-wenig-zeit",
+      "status": "PASS",
+      "textLength": 10552,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/besseres-guenstigeres-angebot-floxant-pruefen",
+      "status": "PASS",
+      "textLength": 7800,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/billige-umzugsangebote-risiko",
+      "status": "PASS",
+      "textLength": 11010,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/budget-planung-umzug-kosten",
+      "status": "PASS",
+      "textLength": 7323,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/buero-praxisreinigung-regensburg-angebot",
+      "status": "PASS",
+      "textLength": 7763,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/buero-reinigen-regensburg-bueroreinigung-angebot",
+      "status": "PASS",
+      "textLength": 9119,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/bueroreinigung-regensburg-angebot-einholen",
+      "status": "PASS",
+      "textLength": 8003,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/bueroumzug-bayern-ohne-betriebsstillstand",
+      "status": "PASS",
+      "textLength": 7598,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/bueroumzug-regensburg-kostenfaktoren-checkliste",
+      "status": "PASS",
+      "textLength": 7185,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/direkt-anfragen-statt-vergleichsportal-regensburg",
+      "status": "PASS",
+      "textLength": 7522,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/diskreter-umzug-sensible-situationen",
+      "status": "PASS",
+      "textLength": 10634,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/einlagerung-beim-umzug-wann-sinnvoll",
+      "status": "PASS",
+      "textLength": 6729,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/empfang-kueche-sanitaer-montag",
+      "status": "PASS",
+      "textLength": 7488,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/endreinigung-regensburg-checkliste",
+      "status": "PASS",
+      "textLength": 7222,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelung-bayern-leitfaden",
+      "status": "PASS",
+      "textLength": 2322,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelung-endreinigung-regensburg",
+      "status": "PASS",
+      "textLength": 10882,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelung-endreinigung-uebergabe-regensburg-kombinieren",
+      "status": "PASS",
+      "textLength": 7668,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelung-regensburg-angebot-haushaltsaufloesung-pruefen",
+      "status": "PASS",
+      "textLength": 6915,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelung-vor-wohnungsuebergabe",
+      "status": "PASS",
+      "textLength": 11289,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelungsangebot-pruefen-serioes",
+      "status": "PASS",
+      "textLength": 7192,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entruempelungsfirma-regensburg-finden",
+      "status": "PASS",
+      "textLength": 7384,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entrumpelung-kosten-bayern",
+      "status": "PASS",
+      "textLength": 1573,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/entsorgungsangebot-pruefen-regensburg-regensburg",
+      "status": "PASS",
+      "textLength": 7598,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/etage-aufzug-umzugsanfrage",
+      "status": "PASS",
+      "textLength": 7241,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/express-umzug-regensburg",
+      "status": "PASS",
+      "textLength": 6782,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/familienbesuch-ohne-putzpanik",
+      "status": "PASS",
+      "textLength": 7623,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/family-office-umzug-bayern-diskret-abstimmen",
+      "status": "PASS",
+      "textLength": 7944,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/fensterreinigung-regensburg-angebot-aufwand",
+      "status": "PASS",
+      "textLength": 6635,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/fernumzug-bayern-nrw-tipps",
+      "status": "PASS",
+      "textLength": 3556,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/firmenentsorgung-buero-inventar-regensburg",
+      "status": "PASS",
+      "textLength": 7301,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/floxant-regensburg-regensburg-wo-taetig",
+      "status": "PASS",
+      "textLength": 7975,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/floxant-services-nach-situation-finden",
+      "status": "PASS",
+      "textLength": 10072,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/geruchsproblem-dokumentieren-statt-ueberdecken",
+      "status": "PASS",
+      "textLength": 8022,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/gerueche-in-wohnung-vor-uebergabe",
+      "status": "PASS",
+      "textLength": 8169,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/gewerbe-auszug-rueckgabevorbereitung",
+      "status": "PASS",
+      "textLength": 11002,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/gewerbeflaechen-vor-wochenstart-vorbereiten",
+      "status": "PASS",
+      "textLength": 7632,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/gewerbereinigung-regensburg-objekte-b2b",
+      "status": "PASS",
+      "textLength": 7571,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/google-maps-buchungslink-regensburg",
+      "status": "PASS",
+      "textLength": 7496,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/google-maps-regensburg-direkt-anfragen",
+      "status": "PASS",
+      "textLength": 7278,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/google-unternehmensprofil-buchungslink-regensburg",
+      "status": "PASS",
+      "textLength": 7486,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis",
+      "status": "PASS",
+      "textLength": 7700,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/grundreinigung-bodenreinigung-hauseingang-regensburg",
+      "status": "PASS",
+      "textLength": 13743,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/grundreinigung-regensburg-angebot-kosten-pruefen",
+      "status": "PASS",
+      "textLength": 8325,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/guenstiger-umzug-angebot-preiswert-pruefen",
+      "status": "PASS",
+      "textLength": 8034,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/haeufige-gruende-fuer-kautionsabzuege",
+      "status": "PASS",
+      "textLength": 8240,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/haushaltsaufloesung-regensburg-container-mieten-alternative",
+      "status": "PASS",
+      "textLength": 6940,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/hausverwaltung-treppenhausreinigung-regensburg",
+      "status": "PASS",
+      "textLength": 7766,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/hausverwaltung-weg-mieterwechsel-objektbetreuung-floxant",
+      "status": "PASS",
+      "textLength": 7401,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/hidden-dirt-check-vermietertermin-regensburg",
+      "status": "PASS",
+      "textLength": 7632,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/kautionsschutz-vorbereitung",
+      "status": "PASS",
+      "textLength": 11309,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/ki-empfehlung-dienstleister-regensburg-regensburg",
+      "status": "PASS",
+      "textLength": 8301,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/klaviertransport-regensburg-vor-anfrage",
+      "status": "PASS",
+      "textLength": 6567,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/klaviertransport-regensburg-vorbereiten",
+      "status": "PASS",
+      "textLength": 7372,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/kleine-restaufgaben-mental-gross",
+      "status": "PASS",
+      "textLength": 7634,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/kueche-bad-gruendlich-pruefen-ohne-ueberforderung",
+      "status": "PASS",
+      "textLength": 7620,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/kueche-bad-textilien-geruch",
+      "status": "PASS",
+      "textLength": 7969,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/kurzfristige-reinigung-regensburg-24h-realistisch",
+      "status": "PASS",
+      "textLength": 7920,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/leer-rueckfahrt-regensburg-firmen-moebeltransport",
+      "status": "PASS",
+      "textLength": 7582,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/lokaler-dienstleister-regensburg-vorteile",
+      "status": "PASS",
+      "textLength": 7726,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/morgen-besuch-wohnung-vorzeigbar",
+      "status": "PASS",
+      "textLength": 7620,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/nachlassraeumung-mit-respekt",
+      "status": "PASS",
+      "textLength": 10691,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/nicht-vor-ort-paket",
+      "status": "PASS",
+      "textLength": 11749,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/nicht-vor-ort-schluessel-fotos-uebergabe-floxant",
+      "status": "PASS",
+      "textLength": 7977,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/objektservice-hausverwaltung-mieterwechsel-leerstand-floxant",
+      "status": "PASS",
+      "textLength": 7609,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/pauschalpreis-oder-aufwand-angebot-pruefen",
+      "status": "PASS",
+      "textLength": 7028,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/praxisentruempelung-nuernberg-richtig-anfragen",
+      "status": "PASS",
+      "textLength": 7069,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/praxisreinigung-regensburg-angebot-pruefen",
+      "status": "PASS",
+      "textLength": 6920,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/preisrahmen-vorpruefung-statt-festpreis",
+      "status": "PASS",
+      "textLength": 7828,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/preisvorstellung-umzug-anfrage",
+      "status": "PASS",
+      "textLength": 7198,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/private-client-umzug-bayern-diskret-planen",
+      "status": "PASS",
+      "textLength": 7659,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-bayern-servicegebiet-richtig-planen",
+      "status": "PASS",
+      "textLength": 7404,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-buero-praxis-hausverwaltung-reinigung-anfrage",
+      "status": "PASS",
+      "textLength": 7553,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-direkt-buchen-statt-vergleichsportal",
+      "status": "PASS",
+      "textLength": 7390,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-reinigung-floxant-klare-trennung",
+      "status": "PASS",
+      "textLength": 7338,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-reinigung-services-gewerbe-praxis-hausverwaltung",
+      "status": "PASS",
+      "textLength": 8353,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/regensburg-services-umzug-reinigung-entruempelung-uebergabe",
+      "status": "PASS",
+      "textLength": 7925,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigung-nach-umzug-regensburg-angebot-pruefen",
+      "status": "PASS",
+      "textLength": 7763,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsangebot-pruefen-regensburg",
+      "status": "PASS",
+      "textLength": 7628,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsangebot-regensburg-pruefen",
+      "status": "PASS",
+      "textLength": 7241,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten",
+      "status": "PASS",
+      "textLength": 7817,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsergebnis-dokumentieren-regensburg",
+      "status": "PASS",
+      "textLength": 8216,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
+      "status": "PASS",
+      "textLength": 7534,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsfirma-regensburg-in-der-naehe-stadtteile",
+      "status": "PASS",
+      "textLength": 6732,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsfirma-regensburg-kundennah-anfragen",
+      "status": "PASS",
+      "textLength": 7479,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsfirma-regensburg-preise-kosten-angebot-pruefen",
+      "status": "PASS",
+      "textLength": 8736,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reinigungsunternehmen-regensburg-anbieter-vergleichen",
+      "status": "PASS",
+      "textLength": 8684,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/remote-move-out-service",
+      "status": "PASS",
+      "textLength": 11132,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/reset-nach-party-krankheit-belastung",
+      "status": "PASS",
+      "textLength": 7864,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/saubere-fotos-vor-wohnungsuebergabe",
+      "status": "PASS",
+      "textLength": 8364,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/schlafzimmer-buero-kinderzimmer-ruhiger-sauber",
+      "status": "PASS",
+      "textLength": 7841,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/schluesseluebergabe-ohne-stress",
+      "status": "PASS",
+      "textLength": 6938,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/schluesseluebergabe-service",
+      "status": "PASS",
+      "textLength": 11867,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/schluesseluebergabe-vorbereiten-nicht-vor-ort",
+      "status": "PASS",
+      "textLength": 8047,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/seniorenumzug-fuer-angehoerige",
+      "status": "PASS",
+      "textLength": 10873,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/seniorenumzug-regensburg-angehoerige-vorbereiten",
+      "status": "PASS",
+      "textLength": 6831,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/service-fuer-hausverwaltungen",
+      "status": "PASS",
+      "textLength": 10871,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/service-fuer-makler",
+      "status": "PASS",
+      "textLength": 10384,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/sichtbare-sauberkeit-vermietertermin",
+      "status": "PASS",
+      "textLength": 8207,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/signatur-services-floxant-bayern",
+      "status": "PASS",
+      "textLength": 10178,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/signature-services-extra-spezialfaelle-floxant",
+      "status": "PASS",
+      "textLength": 8279,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/treppenhausreinigung-regensburg-hauseingang-hausverwaltung",
+      "status": "PASS",
+      "textLength": 8880,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/treppenhausreinigung-regensburg-hausverwaltung-angebot",
+      "status": "PASS",
+      "textLength": 8009,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/uebergabe-check-vor-vermietertermin",
+      "status": "PASS",
+      "textLength": 11060,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-checkliste",
+      "status": "PASS",
+      "textLength": 2068,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-im-alter-erlangen-bamberg-fuerth",
+      "status": "PASS",
+      "textLength": 7715,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-ist-kein-transportproblem",
+      "status": "PASS",
+      "textLength": 11096,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-kosten-regensburg",
+      "status": "PASS",
+      "textLength": 7398,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-mit-kindern-stressfrei",
+      "status": "PASS",
+      "textLength": 3771,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-mit-reinigung-regensburg",
+      "status": "PASS",
+      "textLength": 7373,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-muenchen-festpreis-fernumzug-organisieren",
+      "status": "PASS",
+      "textLength": 7375,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-planen-schritt-fuer-schritt",
+      "status": "PASS",
+      "textLength": 1685,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-regensburg-laengere-strecke",
+      "status": "PASS",
+      "textLength": 7392,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-regensburg-tipps",
+      "status": "PASS",
+      "textLength": 2216,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-reinigung-entruempelung-regensburg-koordinieren",
+      "status": "PASS",
+      "textLength": 10953,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-reinigung-entruempelung-wer-hilft-regensburg",
+      "status": "PASS",
+      "textLength": 8898,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzug-tipps-bayern",
+      "status": "PASS",
+      "textLength": 2020,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzugsangebot-muenchen-pruefen-festpreis-guenstiger",
+      "status": "PASS",
+      "textLength": 6909,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzugsangebot-pruefen-regensburg-bayern",
+      "status": "PASS",
+      "textLength": 7606,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzugsfirma-regensburg-google-maps-vertrauen",
+      "status": "PASS",
+      "textLength": 7709,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzugskosten-senken-7-tipps",
+      "status": "PASS",
+      "textLength": 3834,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/umzugsunternehmen-regensburg-auswahl",
+      "status": "PASS",
+      "textLength": 7620,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/unterhaltsreinigung-regensburg-buero-praxis-hotel",
+      "status": "PASS",
+      "textLength": 7863,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/versteckter-schmutz-vor-uebergabe",
+      "status": "PASS",
+      "textLength": 7842,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/vertrauliche-hilfe-belastete-raeume",
+      "status": "PASS",
+      "textLength": 7812,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/volumen-risiko-check-umzug",
+      "status": "PASS",
+      "textLength": 11657,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/vor-schluesselabgabe-fertig-sein",
+      "status": "PASS",
+      "textLength": 7827,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/warum-baustaub-wiederkommt",
+      "status": "PASS",
+      "textLength": 7745,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/warum-floxant-die-beste-wahl-ist",
+      "status": "PASS",
+      "textLength": 7512,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/welche-raeume-zaehlen-wenn-zeit-knapp",
+      "status": "PASS",
+      "textLength": 7600,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/welcher-floxant-service-passt",
+      "status": "PASS",
+      "textLength": 10051,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wenn-besuch-oder-uebergabe-morgen-ist",
+      "status": "PASS",
+      "textLength": 7999,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnung-uebergabebereit-machen",
+      "status": "PASS",
+      "textLength": 10426,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnung-wieder-bewohnbar-bekommen",
+      "status": "PASS",
+      "textLength": 7987,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnungsaufloesung-was-tun",
+      "status": "PASS",
+      "textLength": 6311,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnungsuebergabe-komplettpaket",
+      "status": "PASS",
+      "textLength": 12686,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnungsuebergabe-ohne-streit",
+      "status": "PASS",
+      "textLength": 8168,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnungsuebergabe-protokoll-guide",
+      "status": "PASS",
+      "textLength": 3534,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/wohnungsuebergabe-regensburg-vorbereiten",
+      "status": "PASS",
+      "textLength": 11077,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/blog/zehn-angaben-klare-umzugsanfrage-regensburg",
+      "status": "PASS",
+      "textLength": 7440,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/buchung",
+      "status": "PASS",
+      "textLength": 12922,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/buchung-ablauf",
+      "status": "PASS",
+      "textLength": 4503,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/buerokratie-schutz",
+      "status": "PASS",
+      "textLength": 2969,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/bueroumzug",
+      "status": "PASS",
+      "textLength": 20822,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/bueroumzug-bayern",
+      "status": "PASS",
+      "textLength": 20607,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/bueroumzug-regensburg",
+      "status": "PASS",
+      "textLength": 20844,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/business-errand-service",
+      "status": "PASS",
+      "textLength": 6293,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/clean-start",
+      "status": "PASS",
+      "textLength": 2844,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/damen-team",
+      "status": "PASS",
+      "textLength": 2879,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/diskret-service",
+      "status": "PASS",
+      "textLength": 11109,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/diskreter-umzug-trennung-scheidung",
+      "status": "PASS",
+      "textLength": 17548,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf",
+      "status": "PASS",
+      "textLength": 18154,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/baureinigung",
+      "status": "PASS",
+      "textLength": 16526,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/bueroreinigung",
+      "status": "PASS",
+      "textLength": 16666,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/entsorgung",
+      "status": "PASS",
+      "textLength": 9244,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/fensterreinigung",
+      "status": "PASS",
+      "textLength": 16172,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/gewerbereinigung",
+      "status": "PASS",
+      "textLength": 16336,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/grundreinigung",
+      "status": "PASS",
+      "textLength": 16593,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/luxusreinigung",
+      "status": "PASS",
+      "textLength": 3958,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/praxisreinigung",
+      "status": "PASS",
+      "textLength": 16296,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/reinigung",
+      "status": "PASS",
+      "textLength": 19224,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/duesseldorf/unterhaltsreinigung",
+      "status": "PASS",
+      "textLength": 16548,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/einlagerung",
+      "status": "PASS",
+      "textLength": 20468,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/einsatzradar-regensburg",
+      "status": "PASS",
+      "textLength": 10449,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/empfehlen",
+      "status": "PASS",
+      "textLength": 9224,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en",
+      "status": "PASS",
+      "textLength": 7158,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/blog",
+      "status": "PASS",
+      "textLength": 3157,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/blog/request-moving-quote-regensburg",
+      "status": "PASS",
+      "textLength": 2947,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/blog/ten-details-clear-moving-request",
+      "status": "PASS",
+      "textLength": 2922,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/contact",
+      "status": "PASS",
+      "textLength": 1484,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/corrections",
+      "status": "PASS",
+      "textLength": 1969,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/cleaning",
+      "status": "PASS",
+      "textLength": 6956,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/cleaning-quote-review",
+      "status": "PASS",
+      "textLength": 4936,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/commercial-cleaning",
+      "status": "PASS",
+      "textLength": 5048,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/office-cleaning",
+      "status": "PASS",
+      "textLength": 5875,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/practice-cleaning",
+      "status": "PASS",
+      "textLength": 5089,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/duesseldorf/window-cleaning",
+      "status": "PASS",
+      "textLength": 5005,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/editorial-policy",
+      "status": "PASS",
+      "textLength": 2377,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/methodology",
+      "status": "PASS",
+      "textLength": 2093,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/questions",
+      "status": "PASS",
+      "textLength": 20509,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/apartment-cleaning",
+      "status": "PASS",
+      "textLength": 4729,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/apartment-clearance",
+      "status": "PASS",
+      "textLength": 4866,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/cleaning",
+      "status": "PASS",
+      "textLength": 5053,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/cleaning-after-moving",
+      "status": "PASS",
+      "textLength": 4771,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/cleaning-quote-review",
+      "status": "PASS",
+      "textLength": 4656,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/deep-cleaning",
+      "status": "PASS",
+      "textLength": 4749,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/house-clearance",
+      "status": "PASS",
+      "textLength": 6423,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/move-out-cleaning",
+      "status": "PASS",
+      "textLength": 5827,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/moving",
+      "status": "PASS",
+      "textLength": 6948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/moving-company",
+      "status": "PASS",
+      "textLength": 4741,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/moving-costs",
+      "status": "PASS",
+      "textLength": 4758,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/moving-quote-review",
+      "status": "PASS",
+      "textLength": 4684,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/office-cleaning",
+      "status": "PASS",
+      "textLength": 6249,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/regensburg/stairwell-cleaning",
+      "status": "PASS",
+      "textLength": 4753,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/search",
+      "status": "PASS",
+      "textLength": 1622,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/service-finder",
+      "status": "PASS",
+      "textLength": 1484,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/services",
+      "status": "PASS",
+      "textLength": 5338,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/en/signature-services",
+      "status": "PASS",
+      "textLength": 4195,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/entruempelung",
+      "status": "PASS",
+      "textLength": 23299,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/entruempelung-bayern",
+      "status": "PASS",
+      "textLength": 20481,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/entruempelung-kosten-regensburg",
+      "status": "PASS",
+      "textLength": 3650,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/entsorgung-duesseldorf",
+      "status": "PASS",
+      "textLength": 9642,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/entsorgung-kosten-rechner",
+      "status": "PASS",
+      "textLength": 2572,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/erinnerungskapsel",
+      "status": "PASS",
+      "textLength": 2868,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/express-anfrage",
+      "status": "PASS",
+      "textLength": 2885,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/express-umzug",
+      "status": "PASS",
+      "textLength": 9967,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/fairpreis-check",
+      "status": "PASS",
+      "textLength": 10766,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/familienumzug-bayern",
+      "status": "PASS",
+      "textLength": 20024,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/fernumzug-muenchen",
+      "status": "PASS",
+      "textLength": 4373,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/firmenentsorgung",
+      "status": "PASS",
+      "textLength": 4803,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/first-48h",
+      "status": "PASS",
+      "textLength": 2887,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/floxant-fakten",
+      "status": "PASS",
+      "textLength": 4526,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/fragen",
+      "status": "PASS",
+      "textLength": 22354,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/gewerbereinigung",
+      "status": "PASS",
+      "textLength": 9026,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/grundreinigung-regensburg",
+      "status": "PASS",
+      "textLength": 14626,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/human-api",
+      "status": "PASS",
+      "textLength": 6141,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/immobilie-verkaufsbereit-machen",
+      "status": "PASS",
+      "textLength": 13403,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/keller-muellraum-rettung-regensburg",
+      "status": "PASS",
+      "textLength": 10036,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kellerentruempelung",
+      "status": "PASS",
+      "textLength": 10229,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kinder-umzugsbox",
+      "status": "PASS",
+      "textLength": 2896,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/klaviertransport",
+      "status": "PASS",
+      "textLength": 21131,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/klaviertransport-regensburg",
+      "status": "PASS",
+      "textLength": 13792,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kleinmengen-entsorgung",
+      "status": "PASS",
+      "textLength": 3263,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kleintransport-regensburg",
+      "status": "PASS",
+      "textLength": 24549,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kleintransporte",
+      "status": "PASS",
+      "textLength": 19655,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kontakt",
+      "status": "PASS",
+      "textLength": 31154,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/korrekturen",
+      "status": "PASS",
+      "textLength": 2566,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kostenfaktoren",
+      "status": "PASS",
+      "textLength": 4793,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/kurzfristiger-umzug-bayern",
+      "status": "PASS",
+      "textLength": 2450,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/lager-rotation",
+      "status": "PASS",
+      "textLength": 2836,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/lageraufloesung",
+      "status": "PASS",
+      "textLength": 10109,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/leerfahrt-rueckfahrt",
+      "status": "PASS",
+      "textLength": 10503,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/leerstandsmanagement",
+      "status": "PASS",
+      "textLength": 6508,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/leistungen",
+      "status": "PASS",
+      "textLength": 49018,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/leistungen-vergleichen",
+      "status": "PASS",
+      "textLength": 7026,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/makler-vermieter-link",
+      "status": "PASS",
+      "textLength": 9815,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/malerarbeiten",
+      "status": "PASS",
+      "textLength": 20544,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/methodik",
+      "status": "PASS",
+      "textLength": 2780,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/mieterwechsel-service-regensburg",
+      "status": "PASS",
+      "textLength": 8629,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/mini-umzug",
+      "status": "PASS",
+      "textLength": 9853,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/moebel-optimierung",
+      "status": "PASS",
+      "textLength": 2886,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/moebeltransport",
+      "status": "PASS",
+      "textLength": 9990,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/nachlass-raeumung-regensburg",
+      "status": "PASS",
+      "textLength": 12579,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/nachlassaufloesung",
+      "status": "PASS",
+      "textLength": 10333,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/new-neighbour-kit",
+      "status": "PASS",
+      "textLength": 2882,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/notfall-umzug-bayern",
+      "status": "PASS",
+      "textLength": 2714,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/notfallreinigung-24h",
+      "status": "PASS",
+      "textLength": 6440,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/objekt-springer",
+      "status": "PASS",
+      "textLength": 6877,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/objektbrief",
+      "status": "PASS",
+      "textLength": 11129,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/plan-b-service",
+      "status": "PASS",
+      "textLength": 10542,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/plattform-auftrag-pruefen",
+      "status": "PASS",
+      "textLength": 11146,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/praxisfaelle",
+      "status": "PASS",
+      "textLength": 4386,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/private-client-service",
+      "status": "PASS",
+      "textLength": 8511,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/property-operations",
+      "status": "PASS",
+      "textLength": 6765,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/pv-anlagen-reinigung",
+      "status": "PASS",
+      "textLength": 13417,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/qualitaet-ablauf",
+      "status": "PASS",
+      "textLength": 5052,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber",
+      "status": "PASS",
+      "textLength": 3738,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/checkliste-umzug",
+      "status": "PASS",
+      "textLength": 2285,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/entruempelung-kosten-pro-m3",
+      "status": "PASS",
+      "textLength": 2396,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/gute-umzugsfirma-finden",
+      "status": "PASS",
+      "textLength": 2293,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/moebeltransport-sicher",
+      "status": "PASS",
+      "textLength": 2318,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-anmelden-ummelden",
+      "status": "PASS",
+      "textLength": 2205,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-erste-wohnung",
+      "status": "PASS",
+      "textLength": 2380,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-im-winter",
+      "status": "PASS",
+      "textLength": 2242,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-kosten-rechner",
+      "status": "PASS",
+      "textLength": 2429,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-kosten-regensburg",
+      "status": "PASS",
+      "textLength": 2542,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-tipps-familien",
+      "status": "PASS",
+      "textLength": 2260,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-versicherung",
+      "status": "PASS",
+      "textLength": 2285,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/umzug-vorbereiten-7-schritte",
+      "status": "PASS",
+      "textLength": 2185,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/wann-lohnt-sich-umzugsfirma",
+      "status": "PASS",
+      "textLength": 2256,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ratgeber/wohnungsaufloesung-tipps",
+      "status": "PASS",
+      "textLength": 2295,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/rechner",
+      "status": "PASS",
+      "textLength": 26908,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/redaktion",
+      "status": "PASS",
+      "textLength": 3188,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg",
+      "status": "PASS",
+      "textLength": 43593,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/angebot-vergleichen",
+      "status": "PASS",
+      "textLength": 5363,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/besenreine-uebergabe",
+      "status": "PASS",
+      "textLength": 20586,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/bueroreinigung",
+      "status": "PASS",
+      "textLength": 21905,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/endreinigung",
+      "status": "PASS",
+      "textLength": 25184,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/entruempelung",
+      "status": "PASS",
+      "textLength": 19978,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/gewerbereinigung",
+      "status": "PASS",
+      "textLength": 22086,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/haushaltsaufloesung",
+      "status": "PASS",
+      "textLength": 16129,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/reinigung",
+      "status": "PASS",
+      "textLength": 21172,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/reinigung-nach-umzug",
+      "status": "PASS",
+      "textLength": 6459,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/reinigungsfirma",
+      "status": "PASS",
+      "textLength": 21277,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/seniorenumzug",
+      "status": "PASS",
+      "textLength": 6077,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/solarreinigung",
+      "status": "PASS",
+      "textLength": 12797,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/uebergabereinigung",
+      "status": "PASS",
+      "textLength": 21091,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/umzug",
+      "status": "PASS",
+      "textLength": 14656,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/umzug-kosten",
+      "status": "PASS",
+      "textLength": 5877,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/umzugsservice",
+      "status": "PASS",
+      "textLength": 6084,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/umzugsunternehmen",
+      "status": "PASS",
+      "textLength": 16345,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/regensburg/wohnungsaufloesung",
+      "status": "PASS",
+      "textLength": 20157,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/region-regensburg",
+      "status": "PASS",
+      "textLength": 6713,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung",
+      "status": "PASS",
+      "textLength": 3654,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-abensberg",
+      "status": "PASS",
+      "textLength": 21875,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-alteglofsheim",
+      "status": "PASS",
+      "textLength": 22175,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-altenthann",
+      "status": "PASS",
+      "textLength": 21948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-aufhausen",
+      "status": "PASS",
+      "textLength": 21874,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-bad-abbach",
+      "status": "PASS",
+      "textLength": 21951,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-barbing",
+      "status": "PASS",
+      "textLength": 21720,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-beratzhausen",
+      "status": "PASS",
+      "textLength": 22099,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-bernhardswald",
+      "status": "PASS",
+      "textLength": 22176,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-brennberg",
+      "status": "PASS",
+      "textLength": 21875,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-brunn",
+      "status": "PASS",
+      "textLength": 21571,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-burglengenfeld",
+      "status": "PASS",
+      "textLength": 22254,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-deuerling",
+      "status": "PASS",
+      "textLength": 21872,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-donaustauf",
+      "status": "PASS",
+      "textLength": 21950,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-duggendorf",
+      "status": "PASS",
+      "textLength": 21951,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-geiselhoering",
+      "status": "PASS",
+      "textLength": 22176,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-hagelstadt",
+      "status": "PASS",
+      "textLength": 21948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-hausen",
+      "status": "PASS",
+      "textLength": 21643,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-hemau",
+      "status": "PASS",
+      "textLength": 21567,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-holzheim-am-forst",
+      "status": "PASS",
+      "textLength": 22479,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-kallmuenz",
+      "status": "PASS",
+      "textLength": 21872,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-kelheim",
+      "status": "PASS",
+      "textLength": 20466,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-koefering",
+      "status": "PASS",
+      "textLength": 21871,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-laaber",
+      "status": "PASS",
+      "textLength": 21644,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-langquaid",
+      "status": "PASS",
+      "textLength": 21874,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-lappersdorf",
+      "status": "PASS",
+      "textLength": 20753,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-mainburg",
+      "status": "PASS",
+      "textLength": 21799,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-mallersdorf-pfaffenberg",
+      "status": "PASS",
+      "textLength": 22935,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-maxhuette-haidhof",
+      "status": "PASS",
+      "textLength": 22480,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-mintraching",
+      "status": "PASS",
+      "textLength": 22023,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-moeblierte-wohnung-duesseldorf",
+      "status": "PASS",
+      "textLength": 8971,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-moeblierte-wohnung-regensburg",
+      "status": "PASS",
+      "textLength": 13478,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-moetzing",
+      "status": "PASS",
+      "textLength": 21799,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-neutraubling",
+      "status": "PASS",
+      "textLength": 20825,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-nittenau",
+      "status": "PASS",
+      "textLength": 21795,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-nittendorf",
+      "status": "PASS",
+      "textLength": 21948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-obertraubling",
+      "status": "PASS",
+      "textLength": 20900,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-painten",
+      "status": "PASS",
+      "textLength": 21720,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-pentling",
+      "status": "PASS",
+      "textLength": 20541,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-pettendorf",
+      "status": "PASS",
+      "textLength": 21951,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-pfatter",
+      "status": "PASS",
+      "textLength": 21719,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-pielenhofen",
+      "status": "PASS",
+      "textLength": 22024,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-regenstauf",
+      "status": "PASS",
+      "textLength": 20681,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-riedenburg",
+      "status": "PASS",
+      "textLength": 21948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-riekofen",
+      "status": "PASS",
+      "textLength": 21799,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-roding",
+      "status": "PASS",
+      "textLength": 21644,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-saal-an-der-donau",
+      "status": "PASS",
+      "textLength": 22480,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-schierling",
+      "status": "PASS",
+      "textLength": 21947,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-schwandorf",
+      "status": "PASS",
+      "textLength": 21457,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-sinzing",
+      "status": "PASS",
+      "textLength": 21719,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-straubing",
+      "status": "PASS",
+      "textLength": 20947,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-suenching",
+      "status": "PASS",
+      "textLength": 21874,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-tegernheim",
+      "status": "PASS",
+      "textLength": 21947,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-teublitz",
+      "status": "PASS",
+      "textLength": 21799,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-thalmassing",
+      "status": "PASS",
+      "textLength": 22024,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-wenzenbach",
+      "status": "PASS",
+      "textLength": 21948,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-wiesent",
+      "status": "PASS",
+      "textLength": 21720,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-woerth-an-der-donau",
+      "status": "PASS",
+      "textLength": 22632,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-wolfsegg",
+      "status": "PASS",
+      "textLength": 21795,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigung-zeitlarn",
+      "status": "PASS",
+      "textLength": 21796,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigungsfirma-angebot",
+      "status": "PASS",
+      "textLength": 6008,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/reinigungsgarantie",
+      "status": "PASS",
+      "textLength": 2842,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/ritual-exit-box",
+      "status": "PASS",
+      "textLength": 3062,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/rueckfahrt-boerse",
+      "status": "PASS",
+      "textLength": 8092,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/rueckfahrt-radar",
+      "status": "PASS",
+      "textLength": 10675,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/schadensbegrenzung",
+      "status": "PASS",
+      "textLength": 10858,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/schluesseluebergabe",
+      "status": "PASS",
+      "textLength": 3508,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/seniorenumzug",
+      "status": "PASS",
+      "textLength": 20493,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/seniorenumzug-bayern",
+      "status": "PASS",
+      "textLength": 11503,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/seniorenumzug-landshut",
+      "status": "PASS",
+      "textLength": 22025,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/service-finder",
+      "status": "PASS",
+      "textLength": 1870,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/signature-services",
+      "status": "PASS",
+      "textLength": 10728,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/solarreinigung",
+      "status": "PASS",
+      "textLength": 13642,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/spezial-entruempelung",
+      "status": "PASS",
+      "textLength": 8620,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/spezialreinigung",
+      "status": "PASS",
+      "textLength": 10958,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/spezialumzug",
+      "status": "PASS",
+      "textLength": 8007,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/standorte",
+      "status": "PASS",
+      "textLength": 13163,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/suche",
+      "status": "PASS",
+      "textLength": 2008,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/uebergabe-sprint",
+      "status": "PASS",
+      "textLength": 10710,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/uebergabeakte",
+      "status": "PASS",
+      "textLength": 13111,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/umzug",
+      "status": "PASS",
+      "textLength": 20784,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/umzug-bayern",
+      "status": "PASS",
+      "textLength": 20358,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/umzug-landkreis-regensburg",
+      "status": "PASS",
+      "textLength": 22163,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/umzugskosten-bayern",
+      "status": "PASS",
+      "textLength": 3221,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/unterhaltsreinigung-regensburg",
+      "status": "PASS",
+      "textLength": 15592,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/urlaubsretter",
+      "status": "PASS",
+      "textLength": 6531,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/vermieter-ready-service",
+      "status": "PASS",
+      "textLength": 10622,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/vielleicht-box",
+      "status": "PASS",
+      "textLength": 2854,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/wissen",
+      "status": "PASS",
+      "textLength": 1570,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/wohnung-wieder-vermietbar",
+      "status": "PASS",
+      "textLength": 10900,
+      "findingCount": 0
+    },
+    {
+      "url": "http://localhost:3000/wohnungsaufloesung-bayern",
+      "status": "PASS",
+      "textLength": 23948,
+      "findingCount": 0
+    }
+  ],
+  "findings": []
+}

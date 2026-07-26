@@ -1,19 +1,21 @@
 # Copy Quality Report
 
-Stand: 2026-06-20T03:42:02.442Z
+Stand: 2026-07-26T11:16:34.403Z
 
-Status: PASS
+Status: WARN
 
 ## Summary
 
-- Scanned files: 42
-- Missing optional files: 0
+- Scanned files: 52
+- Missing optional files: 3
 - FAIL: 0
-- WARN: 0
+- WARN: 2
 - INFO: 26
 
 ## Issues
 
+- WARN: `app/page.tsx:327` - Very long source line (369 chars).
+- WARN: `components/SpecialtyPageLayout.tsx:1402` - Very long source line (373 chars).
 - INFO: `docs/FLOXANT_COPY_STYLE_GUIDE.md:36` - Forbidden phrase documented for governance: Nummer-1 Claim
 - INFO: `docs/FLOXANT_COPY_STYLE_GUIDE.md:41` - Forbidden phrase documented for governance: 100 Prozent Zufriedenheit
 - INFO: `docs/FLOXANT_COPY_STYLE_GUIDE.md:44` - Forbidden phrase documented for governance: Soforttermin garantiert
@@ -43,7 +45,9 @@ Status: PASS
 
 ## Missing Optional Files
 
-- Keine
+- `app/duesseldorf/umzug/page.tsx`
+- `app/duesseldorf/entruempelung/page.tsx`
+- `app/duesseldorf/haushaltsaufloesung/page.tsx`
 
 ## Guardrails
 

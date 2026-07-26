@@ -1,0 +1,93 @@
+{
+  "release": "FLOXANT Dominance Release 2026",
+  "testedAt": "2026-07-26",
+  "baseUrl": "http://127.0.0.1:3000",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "routeCount": 30,
+  "routeViewportCombinations": 120,
+  "passedCombinations": 120,
+  "failedCombinations": 0,
+  "checks": {
+    "http200": true,
+    "exactlyOneH1": true,
+    "meaningfulBody": true,
+    "horizontalOverflow": 0,
+    "brokenImages": 0,
+    "visibleInternalTerms": 0,
+    "pianoInsuranceClaims": 0,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "failedResponses": 0
+  },
+  "interactiveChecks": {
+    "movingAdsForm": {
+      "status": "pass",
+      "details": "Step 1 values persisted after moving to contact details and returning. Focus moved to the name field. No request was submitted."
+    },
+    "publicSearch": {
+      "status": "pass",
+      "details": "The query Düsseldorf Büroreinigung returned relevant Düsseldorf services, FAQ and articles. Arrow-key selection and an assistive-technology active-result relationship are implemented."
+    },
+    "serviceFinder": {
+      "status": "pass",
+      "details": "The Regensburg moving path accepted Regensburg to Nürnberg and produced a contact CTA with preferredContact=email, start and destination."
+    },
+    "mobileNavigation": {
+      "status": "pass",
+      "details": "The 390 px navigation opened with aria-expanded, retained visible focus, exposed all service and location links and caused no horizontal overflow."
+    },
+    "productionSubmission": {
+      "status": "not-run",
+      "details": "Reserved for exactly one synthetic production request after preview, deployment and smoke checks pass."
+    }
+  },
+  "routes": [
+    "/",
+    "/leistungen",
+    "/regensburg",
+    "/umzug-regensburg",
+    "/umzug-regensburg/anfrage",
+    "/regensburg/entruempelung",
+    "/regensburg/wohnungsaufloesung",
+    "/regensburg/reinigung",
+    "/klaviertransport-regensburg",
+    "/duesseldorf",
+    "/duesseldorf/reinigung",
+    "/duesseldorf/bueroreinigung",
+    "/duesseldorf/praxisreinigung",
+    "/duesseldorf/fensterreinigung",
+    "/duesseldorf/grundreinigung",
+    "/duesseldorf/unterhaltsreinigung",
+    "/duesseldorf/baureinigung",
+    "/angebot-guenstiger-pruefen",
+    "/fragen",
+    "/blog",
+    "/suche",
+    "/service-finder",
+    "/en",
+    "/en/regensburg/moving",
+    "/en/regensburg/house-clearance",
+    "/en/duesseldorf/cleaning",
+    "/en/blog",
+    "/en/search",
+    "/en/service-finder",
+    "/dashboard/login"
+  ]
+}

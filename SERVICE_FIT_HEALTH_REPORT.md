@@ -1,0 +1,67 @@
+# Service Fit Health Report
+
+Stand: 2026-07-26T11:16:21.016Z
+
+Status: FAIL
+
+## Summary
+
+- Checks: 39
+- Kombi-Services: 8
+- Warnungen: 1
+- Fehler: 6
+
+## Checks
+
+- components/packages/ServicePackageDecisionExperience.tsx: vorhanden
+- lib/service-packages.ts: vorhanden
+- lib/combined-services.ts: vorhanden
+- lib/lead-intents.ts: vorhanden
+- lib/service-fit.ts: vorhanden
+- components/ServiceFitAdvisor.tsx: vorhanden
+- app/kontakt/page.tsx: vorhanden
+- app/leistungen/page.tsx: vorhanden
+- app/angebot-guenstiger-pruefen/page.tsx: vorhanden
+- app/duesseldorf/page.tsx: vorhanden
+- app/regensburg/page.tsx: vorhanden
+- app/page.tsx: vorhanden
+- ServicePackageDecisionExperience: in Komponente vorhanden
+- PackageComparisonGrid: in Komponente vorhanden
+- CombinationServicePanel: in Komponente vorhanden
+- EffortFactorsPanel: in Komponente vorhanden
+- ServiceDecisionGuide: in Komponente vorhanden
+- BetterServiceSuggestion: in Komponente vorhanden
+- SignatureServiceSuggestion: in Komponente vorhanden
+- OfferCheckInlineBox: in Komponente vorhanden
+- WhatWeNeedChecklist: in Komponente vorhanden
+- app/leistungen/page.tsx: ServicePackageDecisionExperience integriert
+- app/kontakt/page.tsx: ServicePackageDecisionExperience integriert
+- app/angebot-guenstiger-pruefen/page.tsx: ServicePackageDecisionExperience integriert
+- app/duesseldorf/page.tsx: ServicePackageDecisionExperience integriert
+- app/regensburg/page.tsx: ServicePackageDecisionExperience integriert
+- Komponente ist statisch/serverseitig
+- Kombi-Services abgedeckt: 8
+- ServicePackage-Feld aiAnswerText: vorhanden
+- ServicePackage-Feld englishLabels: vorhanden
+- ServicePackage-Feld standortLogik: vorhanden
+- ServicePackage-Feld typischeKundensituation: vorhanden
+- English intent offer-check: normalisiert
+- English intent quote-check: normalisiert
+- English intent second-opinion: normalisiert
+- English intent cleaning: normalisiert
+- English intent office-cleaning: normalisiert
+- English intent moving: normalisiert
+- English intent house-clearance: normalisiert
+
+## Warnungen
+
+- D/R- oder 50-km-Hinweis in Komponente nicht eindeutig gefunden
+
+## Fehler
+
+- app/page.tsx: ServicePackageDecisionExperience fehlt
+- docs/SERVICE_PACKAGE_MATRIX.md: Dokumentation fehlt
+- docs/EFFORT_FACTORS_AND_PRICE_TRANSPARENCY.md: Dokumentation fehlt
+- docs/COMBINED_SERVICES_STRATEGY.md: Dokumentation fehlt
+- docs/DUAL_LOCATION_SERVICE_CLARITY_REPORT.md: Dokumentation fehlt
+- SeoLeadForm auf /kontakt nicht gefunden

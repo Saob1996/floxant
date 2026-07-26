@@ -1,0 +1,329 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-07-26T11:10:34.648Z",
+  "summary": {
+    "mode": "predeploy",
+    "baseUrl": "http://127.0.0.1:3000",
+    "generatedAt": "2026-07-26T11:10:34.648Z",
+    "serverMode": "external BASE_URL",
+    "previewAllowed": "yes_with_conscious_yellow_review",
+    "productionAllowed": "manual_browsercheck_required",
+    "checks": 27,
+    "pass": 17,
+    "warn": 10,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "server",
+      "path": "http://127.0.0.1:3000",
+      "detail": "BASE_URL provided by caller.",
+      "action": "No local server started.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:routes",
+      "detail": "Exit 0; duration 2789ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:routes",
+      "stdoutTail": "> floxantende@1.0.0 qa:routes\n> node scripts/qa-routes.cjs\n\nQA routes status: PASS\nReports written: QA_ROUTES_REPORT.md, qa-routes-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:cta",
+      "detail": "Exit 0; duration 2194ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:cta",
+      "stdoutTail": "> floxantende@1.0.0 qa:cta\n> node scripts/qa-cta.cjs\n\nQA CTA status: PASS\nReports written: QA_CTA_REPORT.md, qa-cta-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:contact",
+      "detail": "Exit 0; duration 1400ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:contact",
+      "stdoutTail": "> floxantende@1.0.0 qa:contact\n> node scripts/qa-contact.cjs\n\nQA contact status: PASS\nReports written: QA_CONTACT_REPORT.md, qa-contact-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:seo",
+      "detail": "Exit 0; duration 7540ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:seo",
+      "stdoutTail": "> floxantende@1.0.0 qa:seo\n> node scripts/qa-seo.cjs\n\nQA SEO status: PASS\nReports written: QA_SEO_REPORT.md, qa-seo-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:content-safety",
+      "detail": "Exit 0; duration 1419ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:content-safety",
+      "stdoutTail": "> floxantende@1.0.0 qa:content-safety\n> node scripts/qa-content-safety.cjs\n\nQA content safety status: PASS\nReports written: QA_CONTENT_SAFETY_REPORT.md, qa-content-safety-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "qa:vercel-safety",
+      "detail": "Exit 0; duration 2364ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run qa:vercel-safety",
+      "stdoutTail": "> floxantende@1.0.0 qa:vercel-safety\n> node scripts/qa-vercel-safety.cjs\n\nQA Vercel safety status: WARN\nReports written: QA_VERCEL_SAFETY_REPORT.md, qa-vercel-safety-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "qa:vercel-safety",
+      "detail": "qa-vercel-safety-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "qa-vercel-safety-report.json",
+      "childSummary": {
+        "scanRoots": "app, components, lib, proxy.ts, next.config.js",
+        "leadApiPolicy": "Lead API may run only after explicit form submit.",
+        "imagePolicy": "Vercel Image Optimization must remain disabled.",
+        "checks": 4,
+        "pass": 2,
+        "warn": 2,
+        "fail": 0
+      }
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "lint",
+      "detail": "Exit 0; duration 56695ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run lint",
+      "stdoutTail": "> floxantende@1.0.0 lint\n> node scripts/run-eslint.cjs",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "typecheck",
+      "detail": "Exit 0; duration 10023ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run typecheck",
+      "stdoutTail": "> floxantende@1.0.0 typecheck\n> tsc --noEmit",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "build",
+      "detail": "Exit 0; duration 242792ms.",
+      "action": "No action.",
+      "priority": "P0",
+      "command": "npm run build",
+      "stdoutTail": "├ ○ /spezialreinigung\n├ ○ /spezialumzug\n├ ○ /standorte\n├ ○ /suche\n├ ○ /teppichreinigung-regensburg\n├ ○ /treppenhausreinigung-regensburg\n├ ○ /twitter-image\n├ ○ /uebergabeakte\n├ ○ /umzug\n├ ○ /umzug-amberg\n├ ○ /umzug-augsburg\n├ ○ /umzug-bad-abbach\n├ ○ /umzug-barbing\n├ ○ /umzug-bayern\n├ ○ /umzug-beratzhausen\n├ ○ /umzug-burglengenfeld\n├ ○ /umzug-deuerling\n├ ○ /umzug-donaustauf\n├ ○ /umzug-hemau\n├ ○ /umzug-ingolstadt\n├ ○ /umzug-kelheim\n├ ○ /umzug-kosten-rechner\n├ ○ /umzug-laaber\n├ ○ /umzug-landkreis-regensburg\n├ ○ /umzug-landshut\n├ ○ /umzug-lappersdorf\n├ ○ /umzug-maxhuette-haidhof\n├ ○ /umzug-mit-reinigung\n├ ○ /umzug-muenchen\n├ ○ /umzug-neumarkt\n├ ○ /umzug-neutraubling\n├ ○ /umzug-nittenau\n├ ○ /umzug-nittendorf\n├ ○ /umzug-nuernberg\n├ ○ /umzug-oberpfalz\n├ ○ /umzug-obertraubling\n├ ○ /umzug-passau\n├ ○ /umzug-pentling\n├ ○ /umzug-regensburg/anfrage\n├ ○ /umzug-regenstauf\n├ ○ /umzug-reinigung-regensburg\n├ ○ /umzug-schierling\n├ ○ /umzug-schwandorf\n├ ○ /umzug-sinzing\n├ ○ /umzug-straubing\n├ ○ /umzug-tegernheim\n├ ○ /umzug-teublitz\n├ ○ /umzug-wenzenbach\n├ ○ /umzug-woerth-an-der-donau\n├ ○ /umzug-zeitlarn\n├ ○ /umzugskosten-bayern\n├ ○ /umzugsunternehmen-regensburg\n├ ○ /unterhaltsreinigung-regensburg\n├ ○ /urlaubsretter\n├ ○ /vermieter-schockschutz-reinigung\n├ ○ /vielleicht-box\n├ ○ /widerruf\n├ ○ /wissen\n├ ● /wissen/[slug]\n│ ├ /wissen/umzug-regensburg\n│ ├ /wissen/umzug-muenchen\n│ ├ /wissen/umzug-nuernberg\n│ └ [+9 more paths]\n├ ○ /wohnung-wieder-vermietbar\n├ ○ /wohnungsaufloesung-augsburg\n├ ○ /wohnungsaufloesung-bayern\n├ ○ /wohnungsaufloesung-muenchen\n├ ○ /wohnungsaufloesung-nuernberg\n└ ○ /wohnungsaufloesung-regensburg\n\n\n○  (Static)  prerendered as static content\n●  (SSG)     prerendered as static HTML (uses generateStaticParams)\n\n\n> floxantende@1.0.0 postbuild\n> node scripts/fix-static-document-language.mjs\n\nVerified 34 English static HTML documents; corrected 34.",
+      "stderrTail": "⚠ Warning: Next.js inferred your workspace root, but it may not be correct.\n We detected multiple lockfiles and selected the directory of C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\package-lock.json as the root directory.\n To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.\n   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.\n Detected additional lockfiles: \n   * C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\out\\.floxant-editorial-authority\\package-lock.json\n\n`z-index` is currently not supported.\n`z-index` is currently not supported."
+    },
+    {
+      "status": "WARN",
+      "scope": "command",
+      "path": "service-router:health",
+      "detail": "Exit 1; duration 1234ms.",
+      "action": "Inspect child report before production.",
+      "priority": "P1",
+      "command": "npm run service-router:health",
+      "stdoutTail": "> floxantende@1.0.0 service-router:health\n> node scripts/service-router-health.cjs",
+      "stderrTail": "service-router:health failed (5/40)\n- doc exists docs/SERVICE_ROUTING_MATRIX.md: Required sprint documentation should be present.\n- doc exists docs/SERVICE_FINDER_IMPLEMENTATION_REPORT.md: Required sprint documentation should be present.\n- doc exists docs/CTA_ROUTING_SITEWIDE_REPORT.md: Required sprint documentation should be present.\n- doc exists docs/ENGLISH_CONTACT_ROUTING_REPORT.md: Required sprint documentation should be present.\n- doc exists docs/LEAD_ROUTING_PRIORITY_REPORT.md: Required sprint documentation should be present."
+    },
+    {
+      "status": "WARN",
+      "scope": "command",
+      "path": "contact-flow:health",
+      "detail": "Exit 1; duration 1479ms.",
+      "action": "Inspect child report before production.",
+      "priority": "P1",
+      "command": "npm run contact-flow:health",
+      "stdoutTail": "> floxantende@1.0.0 contact-flow:health\n> node scripts/contact-flow-health.cjs",
+      "stderrTail": "contact-flow:health failed (9/25)\n- contact page uses route-derived heading: H1 should react to service/city/intent.\n- contact page uses route-derived intro: Intro should use routing context.\n- contact page embeds ServiceFinder above/beside form: Finder should appear before the direct form in source order.\n- SeoLeadForm remains direct form: Central lead form must stay present.\n- SeoLeadForm only submits to bookings API: Lead API should be called by form submit.\n- doc exists docs/CONTACT_FLOW_2_REPORT.md: Required contact-flow documentation should be present.\n- doc exists docs/CONTACT_FIELD_GROUPS_REPORT.md: Required contact-flow documentation should be present.\n- doc exists docs/CONTACT_SUCCESS_STATES_REPORT.md: Required contact-flow documentation should be present.\n- doc exists docs/CONTACT_FLOW_ACCESSIBILITY_MOBILE_REPORT.md: Required contact-flow documentation should be present."
+    },
+    {
+      "status": "WARN",
+      "scope": "command",
+      "path": "request-brief:health",
+      "detail": "Exit 1; duration 1875ms.",
+      "action": "Inspect child report before production.",
+      "priority": "P1",
+      "command": "npm run request-brief:health",
+      "stdoutTail": "> floxantende@1.0.0 request-brief:health\n> node scripts/request-brief-health.cjs\n\nrequest-brief:health RED (5 PASS, 1 WARN, 3 FAIL)\nWrote request-brief-health-report.json and REQUEST_BRIEF_HEALTH_REPORT.md",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "command",
+      "path": "lead-response:health",
+      "detail": "Exit 1; duration 1187ms.",
+      "action": "Inspect child report before production.",
+      "priority": "P1",
+      "command": "npm run lead-response:health",
+      "stdoutTail": "> floxantende@1.0.0 lead-response:health\n> node scripts/lead-response-health.cjs\n\nlead-response:health RED (12 PASS, 0 WARN, 3 FAIL)\nWrote lead-response-health-report.json and LEAD_RESPONSE_HEALTH_REPORT.md",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "content-authority:health",
+      "detail": "Exit 0; duration 2109ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run content-authority:health",
+      "stdoutTail": "> floxantende@1.0.0 content-authority:health\n> node scripts/content-authority-health.cjs\n\nContent authority health status: WARN\nReports written: CONTENT_AUTHORITY_HEALTH_REPORT.md, content-authority-health-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "content-authority:health",
+      "detail": "content-authority-health-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "content-authority-health-report.json",
+      "childSummary": {
+        "findings": 67,
+        "warnings": 3,
+        "failures": 0,
+        "p0Routes": 16,
+        "requiredDocs": 0
+      }
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "faq:health",
+      "detail": "Exit 0; duration 923ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run faq:health",
+      "stdoutTail": "> floxantende@1.0.0 faq:health\n> node scripts/faq-health.cjs\n\nFAQ health status: WARN\nReports written: FAQ_HEALTH_REPORT.md, faq-health-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "faq:health",
+      "detail": "faq-health-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "faq-health-report.json",
+      "childSummary": {
+        "questions": 11,
+        "answers": 11,
+        "findings": 13,
+        "warnings": 1,
+        "failures": 0
+      }
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "architecture:health",
+      "detail": "Exit 0; duration 1142ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run architecture:health",
+      "stdoutTail": "> floxantende@1.0.0 architecture:health\n> node scripts/architecture-health.cjs\n\nArchitecture health status: WARN\nReport written: ARCHITECTURE_HEALTH_REPORT.md\nJSON written: architecture-health-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "architecture:health",
+      "detail": "architecture-health-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "architecture-health-report.json",
+      "childSummary": {}
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "seo:conversion",
+      "detail": "Exit 0; duration 1666ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run seo:conversion",
+      "stdoutTail": "> floxantende@1.0.0 seo:conversion\n> node scripts/seo-conversion-check.ts\n\nSEO conversion status: PASS\nWrote SEO_CONVERSION_REPORT.md and seo-conversion-report.json",
+      "stderrTail": "(node:68272) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Admin/.gemini/antigravity/scratch/FLOXANTENDE/out/.floxant-editorial-authority/lib/lead-intents.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\out\\.floxant-editorial-authority\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)"
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "lead:health",
+      "detail": "Exit 0; duration 1134ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run lead:health",
+      "stdoutTail": "> floxantende@1.0.0 lead:health\n> node scripts/lead-health-check.ts\n\n[PASS] lead-model: P0-P3 normalization, validation and priority helpers exist.\n[PASS] lead-intents: Offer-check is available as a first-class lead intent.\n[PASS] lead-forms: Key forms send standardized lead-quality and offer-check fields.\n[PASS] booking-api: Cloudflare booking function normalizes, validates and stores leads with generic request IDs.\n[PASS] docs: Lead response and offer-check operations docs exist.\n[PASS] lead-operations: Lead operations snapshot covers signature services, lead kind, location and do-not-promise guardrails.\n[PASS] b2b-lead-fields: B2B leads capture optional company, area, frequency, timing, role and scope fields.\n[PASS] location-lead-mapping: Duesseldorf/Regensburg are mapped with unknown fallback and manual-location guardrails.\n[PASS] service-packages: Service packages define fit, boundaries, needed inputs, effort drivers and CTA parameters.\n[PASS] effort-factors: Effort factors explain scope drivers without prices, guarantees or automatic booking promises.\n[PASS] lead-to-booking-components: Service packaging, trust, routing, offer-check, B2B and discreet-flow components exist with CTA signals.\n[PASS] lead-success-states: Contact form has intent-specific success copy, preferred contact method and offer-check prefill fields.\n[PASS] trust-claim-guard: New trust content avoids positive price, certification, legal or acceptance guarantees.\n[PASS] vercel-guards: Public pages avoid forbidden dynamic/runtime/API/tracking patterns and images remain unoptimized.\n[PASS] lead-health-script: package.json exposes npm run lead:health.\nReports written: LEAD_HEALTH_REPORT.md, lead-health-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "site:qa",
+      "detail": "Exit 0; duration 2204ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run site:qa",
+      "stdoutTail": "> floxantende@1.0.0 site:qa\n> node scripts/site-qa-check.ts\n\n[WARN] CTA: /reinigung - CTA vorhanden, aber Tracking-/Intent-Attribute statisch nicht klar nachweisbar.\n[WARN] CTA: /duesseldorf/reinigung - Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.\n[WARN] CTA: /duesseldorf/bueroreinigung - Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.\n[WARN] CTA: /duesseldorf/grundreinigung - Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.\nSite QA status: WARN\nReports written: SITE_QA_REPORT.md, site-qa-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "site:qa",
+      "detail": "site-qa-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "site-qa-report.json",
+      "childSummary": {
+        "PASS": 132,
+        "WARN": 4
+      }
+    },
+    {
+      "status": "PASS",
+      "scope": "command",
+      "path": "risk:closure",
+      "detail": "Exit 0; duration 98699ms.",
+      "action": "No action.",
+      "priority": "P1",
+      "command": "npm run risk:closure",
+      "stdoutTail": "> floxantende@1.0.0 risk:closure\n> node scripts/risk-closure.cjs\n\nRisk closure status: WARN\nReports written: docs\\RISK_CLOSURE_REPORT.md, risk-closure-report.json",
+      "stderrTail": ""
+    },
+    {
+      "status": "WARN",
+      "scope": "child-report",
+      "path": "risk:closure",
+      "detail": "risk-closure-report.json reported WARN.",
+      "action": "Review child report YELLOW risks before deploy.",
+      "priority": "P1",
+      "reportFile": "risk-closure-report.json",
+      "childSummary": {}
+    }
+  ]
+}

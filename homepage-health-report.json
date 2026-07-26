@@ -1,0 +1,131 @@
+{
+  "generatedAt": "2026-07-26T11:03:47.684Z",
+  "baseUrl": "http://localhost:3000",
+  "overall": "PASS",
+  "totals": {
+    "pass": 22,
+    "warn": 0,
+    "fail": 0
+  },
+  "metrics": {
+    "statusCode": 200,
+    "h1": 1,
+    "sections": 7,
+    "cards": 12,
+    "mainServiceCards": 6,
+    "specialSolutionCards": 4,
+    "visibleWords": 932
+  },
+  "checks": [
+    {
+      "name": "Startseite Status 200",
+      "status": "PASS",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "Genau eine H1",
+      "status": "PASS",
+      "detail": "1 H1"
+    },
+    {
+      "name": "Hero-CTA vorhanden",
+      "status": "PASS",
+      "detail": "Anfrage senden im Hero"
+    },
+    {
+      "name": "Angebot-prüfen-CTA vorhanden",
+      "status": "PASS",
+      "detail": "Angebotsprüfung im Hero und eigener Sektion"
+    },
+    {
+      "name": "Navigation initial geschlossen",
+      "status": "PASS",
+      "detail": "Kein Desktopmenü im initialen HTML"
+    },
+    {
+      "name": "Kein automatisch geöffnetes Standortmenü",
+      "status": "PASS",
+      "detail": "Standortmenü wird nur nach Klick gerendert"
+    },
+    {
+      "name": "Keine interne Desktop-Menü-Scrollfläche",
+      "status": "PASS",
+      "detail": "Kompaktes Menü ohne max-height/overflow-y-auto"
+    },
+    {
+      "name": "Maximal 12 Startseitenkarten",
+      "status": "PASS",
+      "detail": "12 Karten"
+    },
+    {
+      "name": "Maximal 6 Hauptservicekarten",
+      "status": "PASS",
+      "detail": "6 Hauptservicekarten"
+    },
+    {
+      "name": "Maximal 4 besondere Lösungen",
+      "status": "PASS",
+      "detail": "4 besondere Lösungen"
+    },
+    {
+      "name": "Keine doppelten Hauptservicekarten",
+      "status": "PASS",
+      "detail": "Umzug & Transport, Reinigung, Entrümpelung & Auflösung, Büro & Gewerbe, Angebot prüfen, Besondere Situationen"
+    },
+    {
+      "name": "Kein wiederholtes Rubriklabel",
+      "status": "PASS",
+      "detail": "0 Vorkommen"
+    },
+    {
+      "name": "Kein sichtbares Verfügbarkeitslabel",
+      "status": "PASS",
+      "detail": "Kein Statuslabel ‚verfügbar‘"
+    },
+    {
+      "name": "Kein sichtbares ‚2 Wege‘",
+      "status": "PASS",
+      "detail": "Kein Paket-/Variantenlabel"
+    },
+    {
+      "name": "Keine sichtbaren internen Begriffe",
+      "status": "PASS",
+      "detail": "Keine Treffer"
+    },
+    {
+      "name": "Kein sichtbarer Debug-Text",
+      "status": "PASS",
+      "detail": "Keine Debug-Platzhalter"
+    },
+    {
+      "name": "Keine sichtbaren Rohschlüssel",
+      "status": "PASS",
+      "detail": "Keine serviceKey-/intentKey-Ausgabe"
+    },
+    {
+      "name": "Kein Menü über dem Hero beim Laden",
+      "status": "PASS",
+      "detail": "Hero startet frei"
+    },
+    {
+      "name": "Horizontaler Overflow geschützt",
+      "status": "PASS",
+      "detail": "Homepage begrenzt horizontalen Überlauf"
+    },
+    {
+      "name": "Keine Vercel-Usage-Rückkehr",
+      "status": "PASS",
+      "detail": "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette"
+    },
+    {
+      "name": "Genau sieben Homepage-Abschnitte",
+      "status": "PASS",
+      "detail": "7 Abschnitte"
+    },
+    {
+      "name": "Mobile Navigation maximal zwei Ebenen",
+      "status": "PASS",
+      "detail": "Drei unabhängige, initial geschlossene Accordions"
+    }
+  ]
+}

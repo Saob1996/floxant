@@ -1,0 +1,269 @@
+# QA SEO Report
+
+Generated: 2026-07-26T11:10:48.528Z
+Status: PASS
+
+## Summary
+
+- baseUrl: http://127.0.0.1:3000
+- baseUrlWasExplicit: true
+- sitemapUrlCount: 409
+- p0RoutesChecked: 36
+- checks: 244
+- pass: 244
+- warn: 0
+- fail: 0
+
+## Policy
+
+- Missing P0 sitemap entries are YELLOW unless the route is an intentional redirect.
+- Broken sitemap/robots, invalid JSON-LD, noindex on money pages, and fake review/rating schema are RED.
+
+## Results
+
+| Status | Priority | Scope | Path | Detail | Action |
+| --- | --- | --- | --- | --- | --- |
+| PASS | P0 | sitemap | /sitemap.xml | 409 sitemap URLs found. | No action. |
+| PASS | P0 | sitemap | forbidden-routes | No API/admin/dashboard/login routes in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | / | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /leistungen | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /angebot-guenstiger-pruefen | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /angebotscheck | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /anbieter-vergleichen | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/reinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/bueroreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/gewerbereinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/praxisreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/fensterreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/grundreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/unterhaltsreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /duesseldorf/baureinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /umzug-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /reinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /entruempelung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /gewerbereinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /bueroreinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /klaviertransport-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /grundreinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /unterhaltsreinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /baureinigung-regensburg | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /diskret-service | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /seniorenumzug-bayern | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /solarreinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | sitemap-p0 | /pv-anlagen-reinigung | P0 route/canonical target present in sitemap. | No action. |
+| PASS | P0 | robots | / | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /leistungen | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /angebot-guenstiger-pruefen | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /angebotscheck | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /anbieter-vergleichen | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/reinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/bueroreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/gewerbereinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/praxisreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/fensterreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/grundreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/unterhaltsreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /duesseldorf/baureinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /umzug-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /reinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /entruempelung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /gewerbereinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /bueroreinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /klaviertransport-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /grundreinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /unterhaltsreinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /baureinigung-regensburg | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /diskret-service | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /seniorenumzug-bayern | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /solarreinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | robots | /pv-anlagen-reinigung | robots.txt does not block P0 route. | No action. |
+| PASS | P0 | canonical | / | Canonical /; expected /. | No action. |
+| PASS | P0 | noindex | / | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | / | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | / | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | / | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | / | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /leistungen | Canonical /leistungen; expected /leistungen. | No action. |
+| PASS | P0 | noindex | /leistungen | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /leistungen | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /leistungen | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /leistungen | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /kontakt | Canonical /kontakt; expected /kontakt. | No action. |
+| PASS | P0 | noindex | /kontakt | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /kontakt | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /kontakt | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /kontakt | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /kontakt | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /angebot-guenstiger-pruefen | Canonical /angebot-guenstiger-pruefen; expected /angebot-guenstiger-pruefen. | No action. |
+| PASS | P0 | noindex | /angebot-guenstiger-pruefen | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /angebot-guenstiger-pruefen | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /angebot-guenstiger-pruefen | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /angebot-guenstiger-pruefen | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /angebot-guenstiger-pruefen | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /angebotscheck | Canonical /angebotscheck; expected /angebotscheck. | No action. |
+| PASS | P0 | noindex | /angebotscheck | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /angebotscheck | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /angebotscheck | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /angebotscheck | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /angebotscheck | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /anbieter-vergleichen | Canonical /anbieter-vergleichen; expected /anbieter-vergleichen. | No action. |
+| PASS | P0 | noindex | /anbieter-vergleichen | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /anbieter-vergleichen | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /anbieter-vergleichen | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /anbieter-vergleichen | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /duesseldorf | Canonical /duesseldorf; expected /duesseldorf. | No action. |
+| PASS | P0 | noindex | /duesseldorf | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/reinigung | Canonical /duesseldorf/reinigung; expected /duesseldorf/reinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/reinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/reinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/reinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/reinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/reinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/bueroreinigung | Canonical /duesseldorf/bueroreinigung; expected /duesseldorf/bueroreinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/bueroreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/bueroreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/bueroreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/bueroreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/bueroreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/gewerbereinigung | Canonical /duesseldorf/gewerbereinigung; expected /duesseldorf/gewerbereinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/gewerbereinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/gewerbereinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/gewerbereinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/gewerbereinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/gewerbereinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/praxisreinigung | Canonical /duesseldorf/praxisreinigung; expected /duesseldorf/praxisreinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/praxisreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/praxisreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/praxisreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/praxisreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/praxisreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/fensterreinigung | Canonical /duesseldorf/fensterreinigung; expected /duesseldorf/fensterreinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/fensterreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/fensterreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/fensterreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/fensterreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/fensterreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/grundreinigung | Canonical /duesseldorf/grundreinigung; expected /duesseldorf/grundreinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/grundreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/grundreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/grundreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/grundreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/grundreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/unterhaltsreinigung | Canonical /duesseldorf/unterhaltsreinigung; expected /duesseldorf/unterhaltsreinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/unterhaltsreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/unterhaltsreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/unterhaltsreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/unterhaltsreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/unterhaltsreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /duesseldorf/baureinigung | Canonical /duesseldorf/baureinigung; expected /duesseldorf/baureinigung. | No action. |
+| PASS | P0 | noindex | /duesseldorf/baureinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /duesseldorf/baureinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /duesseldorf/baureinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /duesseldorf/baureinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /duesseldorf/baureinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /regensburg | Canonical /regensburg; expected /regensburg. | No action. |
+| PASS | P0 | noindex | /regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /umzug-regensburg | Canonical /regensburg/umzug; expected /regensburg/umzug. | No action. |
+| PASS | P0 | noindex | /umzug-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /umzug-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /umzug-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /umzug-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /umzug-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /reinigung-regensburg | Canonical /regensburg/reinigung; expected /regensburg/reinigung. | No action. |
+| PASS | P0 | noindex | /reinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /reinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /reinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /reinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /entruempelung-regensburg | Canonical /regensburg/entruempelung; expected /regensburg/entruempelung. | No action. |
+| PASS | P0 | noindex | /entruempelung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /entruempelung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /entruempelung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /entruempelung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /entruempelung-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /gewerbereinigung-regensburg | Canonical /regensburg/gewerbereinigung; expected /regensburg/gewerbereinigung. | No action. |
+| PASS | P0 | noindex | /gewerbereinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /gewerbereinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /gewerbereinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /gewerbereinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /bueroreinigung-regensburg | Canonical /regensburg/bueroreinigung; expected /regensburg/bueroreinigung. | No action. |
+| PASS | P0 | noindex | /bueroreinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /bueroreinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /bueroreinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /bueroreinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /bueroreinigung-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /klaviertransport-regensburg | Canonical /klaviertransport-regensburg; expected /klaviertransport-regensburg. | No action. |
+| PASS | P0 | noindex | /klaviertransport-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /klaviertransport-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /klaviertransport-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /klaviertransport-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /klaviertransport-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /grundreinigung-regensburg | Canonical /grundreinigung-regensburg; expected /grundreinigung-regensburg. | No action. |
+| PASS | P0 | noindex | /grundreinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /grundreinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /grundreinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /grundreinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /grundreinigung-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /unterhaltsreinigung-regensburg | Canonical /unterhaltsreinigung-regensburg; expected /unterhaltsreinigung-regensburg. | No action. |
+| PASS | P0 | noindex | /unterhaltsreinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /unterhaltsreinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /unterhaltsreinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /unterhaltsreinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /unterhaltsreinigung-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /baureinigung-regensburg | Canonical /baureinigung-regensburg; expected /baureinigung-regensburg. | No action. |
+| PASS | P0 | noindex | /baureinigung-regensburg | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /baureinigung-regensburg | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /baureinigung-regensburg | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /baureinigung-regensburg | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /baureinigung-regensburg | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /diskret-service | Canonical /diskreter-umzug-trennung-scheidung; expected /diskreter-umzug-trennung-scheidung. | No action. |
+| PASS | P0 | noindex | /diskret-service | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /diskret-service | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /diskret-service | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /diskret-service | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /diskret-service | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /seniorenumzug-bayern | Canonical /seniorenumzug-bayern; expected /seniorenumzug-bayern. | No action. |
+| PASS | P0 | noindex | /seniorenumzug-bayern | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /seniorenumzug-bayern | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /seniorenumzug-bayern | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /seniorenumzug-bayern | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /seniorenumzug-bayern | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /solarreinigung | Canonical /solarreinigung; expected /solarreinigung. | No action. |
+| PASS | P0 | noindex | /solarreinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /solarreinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /solarreinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /solarreinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /solarreinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /pv-anlagen-reinigung | Canonical /pv-anlagen-reinigung; expected /pv-anlagen-reinigung. | No action. |
+| PASS | P0 | noindex | /pv-anlagen-reinigung | No noindex on P0 page. | No action. |
+| PASS | P0 | schema-json | /pv-anlagen-reinigung | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /pv-anlagen-reinigung | FAQ schema visible-text consistency checked. | No action. |
+| PASS | P0 | review-schema | /pv-anlagen-reinigung | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | localbusiness-schema | /pv-anlagen-reinigung | LocalBusiness schema has business-data markers. | No action. |
+| PASS | P0 | canonical | /impressum | Canonical /impressum; expected /impressum. | No action. |
+| PASS | P0 | schema-json | /impressum | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /impressum | No FAQ schema on page. | No action. |
+| PASS | P0 | review-schema | /impressum | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /datenschutz | Canonical /datenschutz; expected /datenschutz. | No action. |
+| PASS | P0 | schema-json | /datenschutz | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /datenschutz | No FAQ schema on page. | No action. |
+| PASS | P0 | review-schema | /datenschutz | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | canonical | /agb | Canonical /agb; expected /agb. | No action. |
+| PASS | P0 | schema-json | /agb | JSON-LD parses or none present. | No action. |
+| PASS | P0 | faq-schema | /agb | No FAQ schema on page. | No action. |
+| PASS | P0 | review-schema | /agb | No Review/AggregateRating schema found. | No action. |
+| PASS | P0 | seo-script | seo:sitemap | Exit 0; duration 1261ms. | No action. |
+| PASS | P2 | seo-script | seo:dedupe-risk | Exit 0; duration 1178ms. | No action. |
+| PASS | P2 | seo-script | snippet:health | Exit 0; duration 993ms. | No action. |
+| PASS | P2 | seo-script | content-authority:health | Exit 0; duration 1621ms. | No action. |
+| PASS | P2 | seo-script | faq:health | Exit 0; duration 899ms. | No action. |

@@ -1,0 +1,3718 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-07-26T11:10:39.572Z",
+  "summary": {
+    "baseUrl": "http://127.0.0.1:3000",
+    "baseUrlWasExplicit": true,
+    "routeCount": 36,
+    "checks": 407,
+    "pass": 407,
+    "warn": 0,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/",
+      "detail": "24 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/leistungen",
+      "detail": "170 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/leistungen",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/leistungen",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/leistungen",
+      "detail": "intent=service-overview found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leistungen",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leistungen",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leistungen",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leistungen",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/leistungen",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/leistungen",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/kontakt",
+      "detail": "131 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/kontakt",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/kontakt",
+      "detail": "Contact href: /kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/kontakt",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/kontakt",
+      "detail": "intent=kontakt found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/kontakt",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/kontakt",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/kontakt",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/kontakt",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/kontakt",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/kontakt",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung Wohnung, Endreinigung, Fenster oder PV.",
+      "ctaHref": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-anfrage&priority=p1&source=contact-page-inline-service#direktanfrage"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/kontakt",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "115 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "service=angebot-pruefen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "intent=angebot-pruefen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/angebotscheck",
+      "detail": "55 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/angebotscheck",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/angebotscheck",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/angebotscheck",
+      "detail": "service=angebot-pruefen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/angebotscheck",
+      "detail": "intent=angebot-pruefen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebotscheck",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebotscheck",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebotscheck",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/angebotscheck",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/angebotscheck",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/angebotscheck",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/anbieter-vergleichen",
+      "detail": "25 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/anbieter-vergleichen",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/anbieter-vergleichen",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/anbieter-vergleichen",
+      "detail": "service=angebot-pruefen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/anbieter-vergleichen",
+      "detail": "intent=anbieter-vergleichen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/anbieter-vergleichen",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/anbieter-vergleichen",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/anbieter-vergleichen",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/anbieter-vergleichen",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/anbieter-vergleichen",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/anbieter-vergleichen",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf",
+      "detail": "72 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf",
+      "detail": "Contact href: /kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf",
+      "detail": "intent=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/reinigung",
+      "detail": "39 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/reinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/reinigung",
+      "detail": "Contact href: /kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/reinigung",
+      "detail": "service=reinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/reinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/reinigung",
+      "detail": "intent=reinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/reinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/reinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/reinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/reinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/reinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Reinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "32 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "Contact href: /kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "service=bueroreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "intent=bueroreinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Büroreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "34 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "Contact href: /kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "service=gewerbereinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "intent=gewerbereinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Gewerbereinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "31 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "Contact href: /kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "service=praxisreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "intent=praxisreinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Praxisreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "31 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "Contact href: /kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "service=fensterreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "intent=fensterreinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Fensterreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "34 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "Contact href: /kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "service=grundreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "intent=grundreinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Grundreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "34 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "Contact href: /kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "service=unterhaltsreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "intent=unterhaltsreinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Unterhaltsreinigung anfragen",
+      "ctaHref": "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "32 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "Contact href: /kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "service=baureinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "intent=baureinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Bauendreinigung in Düsseldorf anfragen",
+      "ctaHref": "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "72 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Contact href: /kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "service=hausverwaltung-reinigung found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "city=duesseldorf found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "intent=hausverwaltung-reinigung-duesseldorf found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Angebot prüfen",
+      "ctaHref": "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-vergleichen-duesseldorf&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/regensburg",
+      "detail": "195 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/regensburg",
+      "detail": "intent=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/umzug-regensburg",
+      "detail": "29 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/umzug-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/umzug-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/umzug-regensburg",
+      "detail": "service=umzug found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/umzug-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/umzug-regensburg",
+      "detail": "intent=umzug-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/umzug-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/umzug-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/umzug-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/umzug-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/umzug-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/umzug-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/umzug-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/reinigung-regensburg",
+      "detail": "54 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/reinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/reinigung-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/reinigung-regensburg",
+      "detail": "service=reinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/reinigung-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/reinigung-regensburg",
+      "detail": "intent=reinigung-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/reinigung-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/reinigung-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/reinigung-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/reinigung-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/reinigung-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/reinigung-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/reinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/entruempelung-regensburg",
+      "detail": "63 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/entruempelung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/entruempelung-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/entruempelung-regensburg",
+      "detail": "service=entruempelung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/entruempelung-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/entruempelung-regensburg",
+      "detail": "intent=entruempelung-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/entruempelung-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/entruempelung-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/entruempelung-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/entruempelung-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/entruempelung-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/entruempelung-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/entruempelung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "57 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "service=gewerbereinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "intent=gewerbereinigung-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "67 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "service=bueroreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "intent=bueroreinigung-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/klaviertransport-regensburg",
+      "detail": "26 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/klaviertransport-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/klaviertransport-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/klaviertransport-regensburg",
+      "detail": "service=klaviertransport found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/klaviertransport-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/klaviertransport-regensburg",
+      "detail": "intent=klaviertransport-regensburg found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/klaviertransport-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/klaviertransport-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/klaviertransport-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/klaviertransport-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/klaviertransport-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/grundreinigung-regensburg",
+      "detail": "32 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/grundreinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/grundreinigung-regensburg",
+      "detail": "Page-local contact target: #kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/grundreinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "33 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "Page-local contact target: #kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/baureinigung-regensburg",
+      "detail": "33 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/baureinigung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/baureinigung-regensburg",
+      "detail": "Page-local contact target: #kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/baureinigung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "60 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Contact href: /kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "service=wohnungsaufloesung found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "city=regensburg found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "intent=wohnungsaufloesung-regensburg found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "data-city/city param present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Kontakt öffnen",
+      "ctaHref": "/kontakt?service=umzug&city=regensburg&intent=regensburg-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/diskret-service",
+      "detail": "36 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/diskret-service",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/diskret-service",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/diskret-service",
+      "detail": "service=diskret-service found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/diskret-service",
+      "detail": "intent=diskret-service found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/diskret-service",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/diskret-service",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/diskret-service",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/diskret-service",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/diskret-service",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/diskret-service",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/private-client-service",
+      "detail": "5 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/private-client-service",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/private-client-service",
+      "detail": "Contact href: /kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/private-client-service",
+      "detail": "service=private-client-service found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/private-client-service",
+      "detail": "intent=private-client-service found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/private-client-service",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Vertraulich anfragen",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/private-client-service",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Vertraulich anfragen",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/private-client-service",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Vertraulich anfragen",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/private-client-service",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Vertraulich anfragen",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/private-client-service",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Vertraulich anfragen",
+      "ctaHref": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/private-client-service",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/seniorenumzug-bayern",
+      "detail": "23 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/seniorenumzug-bayern",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/seniorenumzug-bayern",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/seniorenumzug-bayern",
+      "detail": "service=seniorenumzug found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/seniorenumzug-bayern",
+      "detail": "intent=seniorenumzug-anfragen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/seniorenumzug-bayern",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/seniorenumzug-bayern",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/seniorenumzug-bayern",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/seniorenumzug-bayern",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/solarreinigung",
+      "detail": "33 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/solarreinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/solarreinigung",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/solarreinigung",
+      "detail": "service=solarreinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/solarreinigung",
+      "detail": "intent=solarreinigung-anfragen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/solarreinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/solarreinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/solarreinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/solarreinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/solarreinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/solarreinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "33 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "service=pv-anlagen-reinigung found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "intent=pv-anlagen-reinigung-anfragen found.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P0",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/objektbrief",
+      "detail": "29 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/objektbrief",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/objektbrief",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/objektbrief",
+      "detail": "service=objektbrief found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/objektbrief",
+      "detail": "intent=objektbrief found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/objektbrief",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/objektbrief",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/objektbrief",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/objektbrief",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/objektbrief",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/objektbrief",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/uebergabe-sprint",
+      "detail": "27 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/uebergabe-sprint",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/uebergabe-sprint",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/uebergabe-sprint",
+      "detail": "service=uebergabe-sprint found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/uebergabe-sprint",
+      "detail": "intent=uebergabe-sprint found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/uebergabe-sprint",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/uebergabe-sprint",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/uebergabe-sprint",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/uebergabe-sprint",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/uebergabe-sprint",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/uebergabe-sprint",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/vermieter-ready-service",
+      "detail": "26 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/vermieter-ready-service",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/vermieter-ready-service",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/vermieter-ready-service",
+      "detail": "service=vermieter-ready-service found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/vermieter-ready-service",
+      "detail": "intent=vermieter-ready-service found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/vermieter-ready-service",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/vermieter-ready-service",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/vermieter-ready-service",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/vermieter-ready-service",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/vermieter-ready-service",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/vermieter-ready-service",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "30 CTA-like anchor(s) found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "CTA has real href.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-routing",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "Contact href: /kontakt?intent=allgemeine-anfrage&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "service=leerfahrt found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-params",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "intent=leerfahrt-rueckfahrt found.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "data-event present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "data-service present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "data-page-intent present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-data",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "data-cta-label present.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-pii",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "No PII-like query keys in CTA href.",
+      "action": "No action.",
+      "priority": "P1",
+      "ctaText": "Anfrage senden",
+      "ctaHref": "/kontakt?intent=allgemeine-anfrage&source=seo"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-content",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "No fake phone/email marker in CTA text/href.",
+      "action": "No action.",
+      "priority": "P1"
+    }
+  ]
+}

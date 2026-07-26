@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-07-26T00:00:00+02:00",
+  "source": {
+    "branch": "fix/public-copy-navigation-qa-2026",
+    "commit": "3b4ec682b181c22f7bb830ba6eff9cba6e83d3e3",
+    "releaseBranch": "feat/floxant-dominance-release-2026",
+    "productionBranch": "chore/vercel-hobby-static-optimization",
+    "productionCommitBefore": "eae46cf444b2cde5bb39a4e060e8427d538a43b5",
+    "lastKnownCloudflareDeploymentId": "ee0b9dc1-055e-4939-a58d-b79313b133c4"
+  },
+  "routes": {
+    "generatedNextPages": 1597,
+    "staticHtmlFiles": 1564,
+    "sitemapUrls": 403,
+    "germanSitemapUrls": 372,
+    "englishSitemapUrls": 31,
+    "duesseldorfSitemapUrls": 20,
+    "regensburgSitemapUrls": 114,
+    "blogSitemapUrls": 144,
+    "guideSitemapUrls": 14,
+    "isrSourceFiles": 0,
+    "middlewareFiles": 0
+  },
+  "services": {
+    "registryServices": 39,
+    "publicServices": 28,
+    "publicWithoutPage": 0,
+    "publicWithoutHubLink": 0,
+    "publicWithoutInternalLink": 0,
+    "publicWithoutCta": 0,
+    "publicWithoutRegion": 0,
+    "orphanedServicePages": 0,
+    "withoutReviewedEnglishMapping": 15,
+    "inconsistentNameManualReview": 3,
+    "unreviewedReferences": 11
+  },
+  "content": {
+    "faqTotal": 74,
+    "faqGerman": 37,
+    "faqEnglish": 37,
+    "faqActiveAssignments": 19,
+    "faqPlannedAssignments": 4,
+    "faqErrors": 0,
+    "faqWarnings": 16,
+    "faqInfo": 4,
+    "orphanRoutes": 18,
+    "unreachableRoutes": 81,
+    "clickDepthOverThree": 17,
+    "duplicateTitles": 83,
+    "duplicateMetaDescriptions": 56,
+    "duplicateH1": 440,
+    "duplicateIntros": 587,
+    "nearTemplateMatches": 4,
+    "repeatedContentBlocks": 55384
+  },
+  "publicCopy": {
+    "customerLanguageFiles": 816,
+    "customerLanguageRoutes": 373,
+    "confirmedInternalLanguageFindings": 0,
+    "manualLanguageReview": 119,
+    "germanUmlautFindings": 3345,
+    "pianoInsuranceFindings": 174,
+    "unsupportedClaimManualReview": 39
+  },
+  "structuredData": {
+    "htmlFiles": 1564,
+    "jsonLdBlocks": 5951,
+    "invalidJsonLd": 0,
+    "invisibleFaqBlocks": 0,
+    "findings": 0
+  },
+  "runtime": {
+    "cloudflarePagesFunctionFiles": 10,
+    "formComponents": 33,
+    "nextServerlessFunctions": 0
+  },
+  "staticOutput": {
+    "files": 13328,
+    "bytes": 4374489704,
+    "largestHtml": [
+      { "path": "out/reinigung-regensburg.html", "bytes": 1649279 },
+      { "path": "out/angebot-guenstiger-pruefen.html", "bytes": 1470852 },
+      { "path": "out/leistungen.html", "bytes": 1443875 },
+      { "path": "out/blog.html", "bytes": 1398311 },
+      { "path": "out/regensburg.html", "bytes": 1305158 }
+    ],
+    "largestJavaScript": [
+      { "path": "out/_next/static/chunks/88ddeaed-8aad20be42a015a9.js", "bytes": 198492 },
+      { "path": "out/_next/static/chunks/5201-a4699fc6249a5b40.js", "bytes": 192512 },
+      { "path": "out/_next/static/chunks/framework-c69d3afd3efca551.js", "bytes": 189706 },
+      { "path": "out/_next/static/chunks/6418-5f59efe9f158df2b.js", "bytes": 189051 },
+      { "path": "out/_next/static/chunks/app/layout-8ebdfe322f91b14a.js", "bytes": 129881 }
+    ],
+    "largestImages": [
+      { "path": "out/icon.png", "bytes": 324068 },
+      { "path": "out/assets/floxant-hero-neu-gedacht.png", "bytes": 298001 },
+      { "path": "out/assets/service-clearance.png", "bytes": 295172 },
+      { "path": "out/assets/diskret-service-hero.png", "bytes": 270250 },
+      { "path": "out/assets/service-cleaning.png", "bytes": 230200 }
+    ]
+  }
+}

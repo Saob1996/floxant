@@ -1,0 +1,1249 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-07-26T11:10:49.958Z",
+  "summary": {
+    "baseUrl": "http://127.0.0.1:3000",
+    "baseUrlWasExplicit": true,
+    "p0RoutesScanned": 32,
+    "centralFilesScanned": 14,
+    "piiPolicy": "No submitted lead data is read or written by this script.",
+    "checks": 150,
+    "pass": 150,
+    "warn": 0,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/",
+      "detail": "City mentions: 28; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/leistungen",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/leistungen",
+      "detail": "City mentions: 160; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/leistungen",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/kontakt",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/kontakt",
+      "detail": "City mentions: 73; unique city tokens: 4.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/kontakt",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "City mentions: 107; unique city tokens: 6.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/angebotscheck",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/angebotscheck",
+      "detail": "City mentions: 54; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/angebotscheck",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/anbieter-vergleichen",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/anbieter-vergleichen",
+      "detail": "City mentions: 32; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/anbieter-vergleichen",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf",
+      "detail": "City mentions: 53; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/reinigung",
+      "detail": "City mentions: 46; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "City mentions: 39; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "City mentions: 39; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "City mentions: 39; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "City mentions: 40; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "City mentions: 41; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/grundreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "City mentions: 35; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/unterhaltsreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "City mentions: 38; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/duesseldorf/baureinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/regensburg",
+      "detail": "City mentions: 175; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/umzug-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/umzug-regensburg",
+      "detail": "City mentions: 40; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/umzug-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/reinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/reinigung-regensburg",
+      "detail": "City mentions: 71; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/reinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/entruempelung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/entruempelung-regensburg",
+      "detail": "City mentions: 65; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/entruempelung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "City mentions: 68; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "City mentions: 84; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/klaviertransport-regensburg",
+      "detail": "City mentions: 35; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/grundreinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/grundreinigung-regensburg",
+      "detail": "City mentions: 54; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/grundreinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "City mentions: 51; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/unterhaltsreinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/baureinigung-regensburg",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/baureinigung-regensburg",
+      "detail": "City mentions: 50; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/baureinigung-regensburg",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/diskret-service",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/diskret-service",
+      "detail": "City mentions: 26; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/diskret-service",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/seniorenumzug-bayern",
+      "detail": "City mentions: 19; unique city tokens: 3.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/solarreinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/solarreinigung",
+      "detail": "City mentions: 29; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/solarreinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "City mentions: 26; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/impressum",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/impressum",
+      "detail": "City mentions: 16; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/impressum",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/datenschutz",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/datenschutz",
+      "detail": "City mentions: 15; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/datenschutz",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-claims",
+      "path": "/agb",
+      "detail": "No risky guarantee/fake-claim pattern found.",
+      "action": "No action.",
+      "priority": "P0",
+      "findings": []
+    },
+    {
+      "status": "PASS",
+      "scope": "keyword-cloud",
+      "path": "/agb",
+      "detail": "City mentions: 16; unique city tokens: 2.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "fake-location",
+      "path": "/agb",
+      "detail": "No fake address/branch marker found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/company.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/company.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/lead-intents.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/lead-intents.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/lead-routing.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/lead-routing.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/service-routing.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/service-routing.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/source-of-truth.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/source-of-truth.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/cta-config.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/cta-config.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/structured-data.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/structured-data.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/schema-datasets.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/schema-datasets.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/service-products.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/service-products.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/service-faqs.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/service-faqs.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "components/Footer.tsx",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "components/Footer.tsx",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "components/SeoLeadForm.tsx",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "components/SeoLeadForm.tsx",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "components/MobileFloatingContact.tsx",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "components/MobileFloatingContact.tsx",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "components/LeadCta.tsx",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "components/LeadCta.tsx",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/cities.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/cities.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/districts.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/districts.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/englishLocalSeoPages.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/englishLocalSeoPages.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/hreflangMap.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/hreflangMap.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/internalLinks.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/internalLinks.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/keywordStrategy.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/keywordStrategy.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/localFaqs.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/localFaqs.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/localSeoPages.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/localSeoPages.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/regions.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/regions.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/seoMetadata.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/seoMetadata.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/serviceAreas.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/serviceAreas.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/services.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/services.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-claims",
+      "path": "lib/local-seo/types.ts",
+      "detail": "Rendered P0 pages own claim validation; source-only boundary lists are not treated as customer claims.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "central-data-location",
+      "path": "lib/local-seo/types.ts",
+      "detail": "No fake address marker in central data.",
+      "action": "No action.",
+      "priority": "P0"
+    }
+  ]
+}

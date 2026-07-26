@@ -1,0 +1,45 @@
+{
+  "status": "WARN",
+  "summary": {
+    "generatedAt": "2026-07-26T11:10:51.972Z",
+    "scannedFiles": 838,
+    "checks": 4,
+    "pass": 2,
+    "warn": 2,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "WARN",
+      "priority": "P2",
+      "file": "components\\calculator\\LeadCaptureForm.tsx",
+      "rule": "client polling",
+      "detail": "Pattern found outside API route.",
+      "action": "Confirm interval is user-scoped and not public polling."
+    },
+    {
+      "status": "WARN",
+      "priority": "P2",
+      "file": "components\\operations\\BudgetOperatingCta.tsx",
+      "rule": "client polling",
+      "detail": "Pattern found outside API route.",
+      "action": "Confirm interval is user-scoped and not public polling."
+    },
+    {
+      "status": "PASS",
+      "priority": "P0",
+      "file": "next.config.js",
+      "rule": "image optimization disabled",
+      "detail": "images.unoptimized remains true.",
+      "action": "No action."
+    },
+    {
+      "status": "PASS",
+      "priority": "P0",
+      "file": "proxy.ts",
+      "rule": "proxy lightweight",
+      "detail": "No fetch/Supabase/Resend/sharp/pdf pattern detected.",
+      "action": "No action."
+    }
+  ]
+}

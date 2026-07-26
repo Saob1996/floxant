@@ -1,0 +1,294 @@
+{
+  "status": "WARN",
+  "mode": "heuristic_without_lighthouse_dependency",
+  "generatedAt": "2026-07-26T11:16:37.912Z",
+  "summary": {
+    "routes": 12,
+    "pass": 8,
+    "warn": 4,
+    "fail": 0
+  },
+  "results": [
+    {
+      "route": "/",
+      "sourceFile": "app/page.tsx",
+      "htmlKb": 574.5,
+      "scriptCount": 59,
+      "cssCount": 1,
+      "imageCount": 1,
+      "ctaCount": 1,
+      "sectionCount": 7,
+      "scores": {
+        "performance": 93,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 99
+      },
+      "notes": [
+        "Mehr als ein priorisiertes Bild kann LCP/Preload unruhig machen.",
+        "Gerendertes HTML ist gross (574.5 KB).",
+        "Viele Script-Tags im Render (59).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "WARN"
+    },
+    {
+      "route": "/kontakt",
+      "sourceFile": "app/kontakt/page.tsx",
+      "htmlKb": 1032.3,
+      "scriptCount": 156,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 4,
+      "sectionCount": 10,
+      "scores": {
+        "performance": 93,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 95
+      },
+      "notes": [
+        "Mehr als ein priorisiertes Bild kann LCP/Preload unruhig machen.",
+        "Gerendertes HTML ist gross (1032.3 KB).",
+        "Viele Script-Tags im Render (156).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "WARN"
+    },
+    {
+      "route": "/angebot-guenstiger-pruefen",
+      "sourceFile": "app/angebot-guenstiger-pruefen/page.tsx",
+      "htmlKb": 1436.6,
+      "scriptCount": 231,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 1,
+      "sectionCount": 17,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 97
+      },
+      "notes": [
+        "Viele Sektionen; Pruning oder Zusammenfuehrung pruefen.",
+        "Gerendertes HTML ist gross (1436.6 KB).",
+        "Viele Script-Tags im Render (231).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/duesseldorf",
+      "sourceFile": "app/duesseldorf/page.tsx",
+      "htmlKb": 682.6,
+      "scriptCount": 97,
+      "cssCount": 1,
+      "imageCount": 1,
+      "ctaCount": 4,
+      "sectionCount": 6,
+      "scores": {
+        "performance": 93,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 99
+      },
+      "notes": [
+        "Mehr als ein priorisiertes Bild kann LCP/Preload unruhig machen.",
+        "Gerendertes HTML ist gross (682.6 KB).",
+        "Viele Script-Tags im Render (97).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "WARN"
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "sourceFile": "app/duesseldorf/reinigung/page.tsx",
+      "htmlKb": 617.7,
+      "scriptCount": 86,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 0,
+      "sectionCount": 0,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 95
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (617.7 KB).",
+        "Viele Script-Tags im Render (86).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "sourceFile": "app/duesseldorf/bueroreinigung/page.tsx",
+      "htmlKb": 575.5,
+      "scriptCount": 78,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 0,
+      "sectionCount": 0,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 95
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (575.5 KB).",
+        "Viele Script-Tags im Render (78).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/duesseldorf/gewerbereinigung",
+      "sourceFile": "app/duesseldorf/gewerbereinigung/page.tsx",
+      "htmlKb": 574.2,
+      "scriptCount": 76,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 0,
+      "sectionCount": 0,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 95
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (574.2 KB).",
+        "Viele Script-Tags im Render (76).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/regensburg",
+      "sourceFile": "app/regensburg/page.tsx",
+      "htmlKb": 1347.6,
+      "scriptCount": 224,
+      "cssCount": 1,
+      "imageCount": 1,
+      "ctaCount": 0,
+      "sectionCount": 4,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 99
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (1347.6 KB).",
+        "Viele Script-Tags im Render (224).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/regensburg/umzug",
+      "sourceFile": "app/regensburg/umzug/page.tsx",
+      "htmlKb": 571.3,
+      "scriptCount": 74,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 1,
+      "sectionCount": 13,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 99
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (571.3 KB).",
+        "Viele Script-Tags im Render (74).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "sourceFile": "app/regensburg/reinigung/page.tsx",
+      "htmlKb": 739.4,
+      "scriptCount": 99,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 0,
+      "sectionCount": 0,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 97
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (739.4 KB).",
+        "Viele Script-Tags im Render (99).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "sourceFile": "app/regensburg/entruempelung/page.tsx",
+      "htmlKb": 682.4,
+      "scriptCount": 101,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 0,
+      "sectionCount": 0,
+      "scores": {
+        "performance": 95,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 97
+      },
+      "notes": [
+        "Gerendertes HTML ist gross (682.4 KB).",
+        "Viele Script-Tags im Render (101).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "PASS"
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "sourceFile": "app/klaviertransport-regensburg/page.tsx",
+      "htmlKb": 562.4,
+      "scriptCount": 72,
+      "cssCount": 1,
+      "imageCount": 0,
+      "ctaCount": 4,
+      "sectionCount": 8,
+      "scores": {
+        "performance": 93,
+        "accessibility": 99,
+        "bestPractices": 100,
+        "seo": 97
+      },
+      "notes": [
+        "Mehr als ein priorisiertes Bild kann LCP/Preload unruhig machen.",
+        "Gerendertes HTML ist gross (562.4 KB).",
+        "Viele Script-Tags im Render (72).",
+        "Echter Lighthouse-CLI-Lauf nicht installiert; dieser Report ist ein lokaler Heuristik-/Checklistenlauf."
+      ],
+      "blockers": [],
+      "status": "WARN"
+    }
+  ]
+}
