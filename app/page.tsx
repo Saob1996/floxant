@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
+import { HomepageRequestPlanner } from "@/components/dominance/HomepageRequestPlanner";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
@@ -260,6 +261,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomepageRequestPlanner />
 
       <section data-home-section="main-services" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
