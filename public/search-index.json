@@ -3,6 +3,61 @@
   "source": "FLOXANT public registries and reviewed public routes",
   "entries": [
     {
+      "id": "article:de:zehn-angaben-klare-umzugsanfrage-regensburg",
+      "title": "10 Angaben für eine klare Umzugsanfrage in Regensburg",
+      "description": "Start, Ziel, Zugang, Umfang und Zeitraum: Diese zehn Angaben machen eine Umzugsanfrage in Regensburg nachvollziehbar.",
+      "url": "/blog/zehn-angaben-klare-umzugsanfrage-regensburg",
+      "locale": "de",
+      "type": "article",
+      "regions": [
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug Regensburg",
+        "umzug",
+        "FLOXANT"
+      ]
+    },
+    {
+      "id": "article:de:reinigungsangebot-duesseldorf-klar-vergleichen",
+      "title": "12 Punkte für ein nachvollziehbares Reinigungsangebot",
+      "description": "Leistungsumfang, Turnus, Material, Zugänge und Zusatzkosten in Reinigungsangeboten nachvollziehbar vergleichen.",
+      "url": "/blog/reinigungsangebot-duesseldorf-klar-vergleichen",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "angebot-prüfen"
+      ],
+      "keywords": [
+        "Angebot prüfen",
+        "angebot-prüfen",
+        "FLOXANT"
+      ]
+    },
+    {
+      "id": "article:de:bueroreinigung-duesseldorf-anfrage",
+      "title": "7 Angaben für eine Büroreinigungs-Anfrage in Düsseldorf",
+      "description": "Objekt, Fläche, Räume, Turnus, Zugangszeiten, Leistungsumfang und Ansprechpartner für eine Büroreinigung in Düsseldorf klären.",
+      "url": "/blog/bueroreinigung-duesseldorf-anfrage",
+      "locale": "de",
+      "type": "article",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "büroreinigung"
+      ],
+      "keywords": [
+        "Büroreinigung Düsseldorf",
+        "büroreinigung",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "article:de:anfrage-regensburg-richtig-stellen",
       "title": "Anfrage in Regensburg richtig stellen: welche Angaben FLOXANT schneller helfen",
       "description": "Welche Angaben zu Ort, Umfang, Zugang, Termin und Budget aus einer Anfrage schneller einen klaren nächsten Schritt machen.",
@@ -74,7 +129,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "beiladung-rueckfahrt"
+        "beiladung-rückfahrt"
       ],
       "keywords": [
         "Beiladung und Rückfahrt",
@@ -92,7 +147,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "beiladung-rueckfahrt"
+        "beiladung-rückfahrt"
       ],
       "keywords": [
         "Beiladung und Rückfahrt",
@@ -110,7 +165,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "beiladung-rueckfahrt"
+        "beiladung-rückfahrt"
       ],
       "keywords": [
         "Beiladung und Rückfahrt",
@@ -128,7 +183,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "beiladung-rueckfahrt"
+        "beiladung-rückfahrt"
       ],
       "keywords": [
         "Beiladung und Rückfahrt",
@@ -157,7 +212,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung"
+        "büroreinigung"
       ],
       "keywords": [
         "Unternehmen",
@@ -183,7 +238,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung"
+        "büroreinigung"
       ],
       "keywords": [
         "Unternehmen",
@@ -208,7 +263,7 @@
         "Düsseldorf"
       ],
       "serviceIds": [
-        "bueroreinigung"
+        "büroreinigung"
       ],
       "keywords": [
         "Unternehmen",
@@ -370,7 +425,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Privathaushalte",
@@ -396,7 +451,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Privathaushalte",
@@ -451,6 +506,23 @@
         "Grenzen der Praxisreinigung verstehen",
         "Praxen",
         "Therapieeinrichtungen"
+      ]
+    },
+    {
+      "id": "article:de:etage-aufzug-umzugsanfrage",
+      "title": "Etage und Aufzug bei einer Umzugsanfrage richtig angeben",
+      "description": "Startetage, Zieletage, Aufzuggröße und Laufwege richtig beschreiben, damit der Zugang vor dem Umzug geprüft werden kann.",
+      "url": "/blog/etage-aufzug-umzugsanfrage",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Umzugsplanung",
+        "umzug",
+        "FLOXANT"
       ]
     },
     {
@@ -835,8 +907,8 @@
       ],
       "serviceIds": [
         "diskret-service",
-        "nachlassaufloesung",
-        "haushaltsaufloesung"
+        "nachlassauflösung",
+        "haushaltsauflösung"
       ],
       "keywords": [
         "Privatpersonen",
@@ -857,7 +929,6 @@
       ],
       "serviceIds": [],
       "keywords": [
-        "duesseldorf",
         "düsseldorf"
       ]
     },
@@ -910,7 +981,7 @@
         "objektbrief",
         "reinigung",
         "umzug",
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Privatpersonen",
@@ -953,7 +1024,7 @@
       "serviceIds": [
         "plan-b-service",
         "angebotscheck",
-        "uebergabe-sprint"
+        "übergabe-sprint"
       ],
       "keywords": [
         "Privatpersonen",
@@ -989,18 +1060,18 @@
     {
       "id": "guide:de:signature-services",
       "title": "FLOXANT Signature Services und Spezialloesungen",
-      "description": "Angebot, Objektbrief, Uebergabe, Plan B, Diskretion, Spezialreinigung, Spezialumzug und Spezialentruempelung passend einordnen.",
+      "description": "Angebot, Objektbrief, Übergabe, Plan B, Diskretion, Spezialreinigung, Spezialumzug und Spezialentruempelung passend einordnen.",
       "url": "/signature-services",
       "locale": "de",
       "type": "guide",
       "regions": [
         "Regensburg",
-        "Duesseldorf"
+        "Düsseldorf"
       ],
       "serviceIds": [
         "angebotscheck",
         "objektbrief",
-        "uebergabeakte",
+        "übergabeakte",
         "plan-b-service",
         "diskret-service"
       ],
@@ -1008,7 +1079,7 @@
         "signature services",
         "spezialservice",
         "sonderfall",
-        "angebot pruefen"
+        "angebot prüfen"
       ]
     },
     {
@@ -1023,7 +1094,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "uebergabeakte"
+        "übergabeakte"
       ],
       "keywords": [
         "FLOXANT Übergabeakte",
@@ -1042,9 +1113,9 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "uebergabeakte",
+        "übergabeakte",
         "endreinigung",
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Mieter",
@@ -1078,7 +1149,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "angebot-pruefen"
+        "angebot-prüfen"
       ],
       "keywords": [
         "Angebot",
@@ -1266,6 +1337,25 @@
       ]
     },
     {
+      "id": "article:de:grundreinigung-oder-unterhaltsreinigung-duesseldorf",
+      "title": "Grundreinigung oder Unterhaltsreinigung in Düsseldorf?",
+      "description": "Grundreinigung und Unterhaltsreinigung nach Ziel, Zustand, Flächen und Turnus unterscheiden.",
+      "url": "/blog/grundreinigung-oder-unterhaltsreinigung-duesseldorf",
+      "locale": "de",
+      "type": "article",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "reinigung"
+      ],
+      "keywords": [
+        "Reinigung Düsseldorf",
+        "reinigung",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "service:haushaltsaufloesung:de:-regensburg-haushaltsaufloesung",
       "title": "Haushaltsauflösung",
       "description": "Auflösung eines Haushalts nach Auszug, Veränderung oder Erbfall mit Freigabe und Zielzustand.",
@@ -1276,7 +1366,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "haushaltsaufloesung"
+        "haushaltsauflösung"
       ],
       "keywords": [
         "Haushaltsauflösung",
@@ -1322,7 +1412,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "angebot-pruefen"
+        "angebot-prüfen"
       ],
       "keywords": [
         "Leistungen",
@@ -1365,7 +1455,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "wohnungsaufloesung"
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Besichtigung",
@@ -1389,7 +1479,7 @@
       "serviceIds": [
         "umzug",
         "reinigung",
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Übergabe",
@@ -1410,7 +1500,7 @@
       ],
       "serviceIds": [
         "reinigung",
-        "angebot-pruefen"
+        "angebot-prüfen"
       ],
       "keywords": [
         "Angebot",
@@ -1433,11 +1523,32 @@
         "Bayern"
       ],
       "serviceIds": [
-        "angebot-pruefen"
+        "angebot-prüfen"
       ],
       "keywords": [
         "Angebot",
         "Anfrage ohne schriftliches Angebot vorbereiten",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-from-to-regensburg-de",
+      "title": "Kann ich einen Umzug innerhalb, aus oder nach Regensburg anfragen?",
+      "description": "Ja, wenn Start oder Ziel im bedienten Regensburger Gebiet liegt und die Strecke mit den übrigen Eckdaten geprüft werden kann.",
+      "url": "/regensburg/umzug",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Servicegebiet",
+        "Umzug innerhalb, aus oder nach Regensburg einordnen",
         "Privatkunden",
         "Unternehmen"
       ]
@@ -1455,7 +1566,7 @@
       ],
       "serviceIds": [
         "umzug",
-        "moebeltransport"
+        "möbeltransport"
       ],
       "keywords": [
         "Leistungen",
@@ -1475,8 +1586,8 @@
         "Bayern"
       ],
       "serviceIds": [
-        "entruempelung",
-        "wohnungsaufloesung",
+        "entrümpelung",
+        "wohnungsauflösung",
         "reinigung"
       ],
       "keywords": [
@@ -1553,6 +1664,22 @@
       ]
     },
     {
+      "id": "article:de:klaviertransport-regensburg-vorbereiten",
+      "title": "Klaviertransport vorbereiten: Maße, Zugänge und Treppen",
+      "description": "Instrumentart, Maße, Gewicht, Etagen, Treppen und Zugangsfotos für eine Klaviertransport-Anfrage in Regensburg zusammenstellen.",
+      "url": "/blog/klaviertransport-regensburg-vorbereiten",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "klaviertransport"
+      ],
+      "keywords": [
+        "Klaviertransport",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "signature:umzug-mit-reinigung:de",
       "title": "Kombi-Anfrage Umzug und Reinigung",
       "description": "Führt Umzug, Restmengen, Endreinigung und Übergabetermin in einer gemeinsamen Anfrage zusammen.",
@@ -1566,7 +1693,7 @@
         "umzug-mit-reinigung",
         "umzug",
         "endreinigung",
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Privatpersonen",
@@ -1612,7 +1739,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "moebeltransport"
+        "möbeltransport"
       ],
       "keywords": [
         "Möbeltransport",
@@ -1630,7 +1757,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "moebeltransport"
+        "möbeltransport"
       ],
       "keywords": [
         "Möbeltransport",
@@ -1648,7 +1775,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "moebeltransport"
+        "möbeltransport"
       ],
       "keywords": [
         "Möbeltransport",
@@ -1666,7 +1793,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "nachlassaufloesung"
+        "nachlassauflösung"
       ],
       "keywords": [
         "Nachlassauflösung",
@@ -1767,6 +1894,29 @@
       ],
       "serviceIds": [],
       "keywords": []
+    },
+    {
+      "id": "faq:faq-cleaning-photos-visit-duesseldorf-de",
+      "title": "Reichen Fotos für eine Reinigungsanfrage oder ist eine Besichtigung nötig?",
+      "description": "Fotos und klare Eckdaten reichen oft für den Start; ob eine Besichtigung sinnvoll ist, hängt von Objekt und Umfang ab.",
+      "url": "/duesseldorf/reinigung",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "reinigung",
+        "büroreinigung",
+        "gewerbereinigung"
+      ],
+      "keywords": [
+        "Besichtigung",
+        "Fotos und mögliche Besichtigung sinnvoll nutzen",
+        "Unternehmen",
+        "Hausverwaltungen",
+        "Privatkunden"
+      ]
     },
     {
       "id": "service:reinigung:de:-reinigung",
@@ -1954,6 +2104,28 @@
       ]
     },
     {
+      "id": "faq:faq-moving-assembly-regensburg-de",
+      "title": "Sind Demontage und Montage bei einem Umzug automatisch enthalten?",
+      "description": "Nein, betroffene Möbel und der gewünschte Arbeitsumfang müssen ausdrücklich genannt werden.",
+      "url": "/regensburg/umzug",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug",
+        "möbeltransport"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Demontage und Montage abgrenzen",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
       "id": "faq:faq-window-scope-duesseldorf-de",
       "title": "Sind Rahmen und Falze automatisch Teil der Fensterreinigung?",
       "description": "Nicht automatisch; Glas, Rahmen, Falze sowie Innen- und Außenseiten sollten ausdrücklich vereinbart werden.",
@@ -1975,27 +2147,71 @@
       ]
     },
     {
+      "id": "faq:faq-cleaning-material-duesseldorf-de",
+      "title": "Sind Reinigungsmittel und Verbrauchsmaterial automatisch enthalten?",
+      "description": "Nicht immer; Mittel, Geräte und Verbrauchsmaterial sollten im gewünschten Leistungsumfang ausdrücklich zugeordnet werden.",
+      "url": "/duesseldorf/reinigung",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "reinigung",
+        "büroreinigung",
+        "gewerbereinigung"
+      ],
+      "keywords": [
+        "Material",
+        "Reinigungsmaterial und Verbrauchsmittel klären",
+        "Unternehmen",
+        "Hausverwaltungen",
+        "Privatkunden"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-long-distance-regensburg-de",
+      "title": "Sind von Regensburg aus auch längere Umzugsstrecken möglich?",
+      "description": "Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können über längere Strecken von bis zu ungefähr 500 km angefragt werden.",
+      "url": "/regensburg/umzug",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Servicegebiet",
+        "Längere Umzugsstrecke realistisch anfragen",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
       "id": "guide:de:spezial-entruempelung",
       "title": "Spezialentruempelung, Nachlass und Keller",
-      "description": "Keller, Nachlass, Lager, Restmengen und Uebergabevorbereitung diskret, fotobasiert und realistisch anfragen.",
+      "description": "Keller, Nachlass, Lager, Restmengen und Übergabevorbereitung diskret, fotobasiert und realistisch anfragen.",
       "url": "/spezial-entruempelung",
       "locale": "de",
       "type": "guide",
       "regions": [
         "Regensburg",
-        "Duesseldorf"
+        "Düsseldorf"
       ],
       "serviceIds": [
         "kellerentruempelung",
-        "nachlassaufloesung",
-        "wohnungsaufloesung",
+        "nachlassauflösung",
+        "wohnungsauflösung",
         "diskret-service"
       ],
       "keywords": [
         "spezialentruempelung",
         "nachlass",
         "kellerentruempelung",
-        "aufloesung"
+        "auflösung"
       ]
     },
     {
@@ -2007,7 +2223,7 @@
       "type": "guide",
       "regions": [
         "Regensburg",
-        "Duesseldorf"
+        "Düsseldorf"
       ],
       "serviceIds": [
         "solarreinigung",
@@ -2032,19 +2248,19 @@
       "type": "guide",
       "regions": [
         "Regensburg",
-        "Duesseldorf"
+        "Düsseldorf"
       ],
       "serviceIds": [
         "mini-umzug",
         "express-umzug",
-        "moebeltransport",
-        "rueckfahrt-radar"
+        "möbeltransport",
+        "rückfahrt-radar"
       ],
       "keywords": [
         "spezialumzug",
         "mini umzug",
         "express umzug",
-        "moebeltransport",
+        "möbeltransport",
         "beiladung"
       ]
     },
@@ -2104,8 +2320,8 @@
         "Bayern"
       ],
       "serviceIds": [
-        "entruempelung",
-        "wohnungsaufloesung"
+        "entrümpelung",
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Entsorgung",
@@ -2127,7 +2343,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "wohnungsaufloesung"
+        "wohnungsauflösung"
       ],
       "keywords": [
         "besondere Situationen",
@@ -2183,6 +2399,25 @@
         "Büro",
         "Umzug",
         "Umzug klar anfragen"
+      ]
+    },
+    {
+      "id": "article:de:umzug-regensburg-laengere-strecke",
+      "title": "Umzug aus oder nach Regensburg über längere Strecken",
+      "description": "So beschreiben Sie Route, Zeitraum, Umfang und Zugang für einen Umzug aus oder nach Regensburg über eine längere Strecke.",
+      "url": "/blog/umzug-regensburg-laengere-strecke",
+      "locale": "de",
+      "type": "article",
+      "regions": [
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug Regensburg",
+        "umzug",
+        "FLOXANT"
       ]
     },
     {
@@ -2460,8 +2695,8 @@
         "Bayern"
       ],
       "serviceIds": [
-        "entruempelung",
-        "wohnungsaufloesung"
+        "entrümpelung",
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Preisfaktoren",
@@ -2550,8 +2785,8 @@
       "serviceIds": [
         "reinigung",
         "umzug",
-        "entruempelung",
-        "angebot-pruefen"
+        "entrümpelung",
+        "angebot-prüfen"
       ],
       "keywords": [
         "Ablauf",
@@ -2572,7 +2807,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung",
+        "büroreinigung",
         "praxisreinigung",
         "unterhaltsreinigung"
       ],
@@ -2596,8 +2831,8 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung",
-        "angebot-pruefen"
+        "büroreinigung",
+        "angebot-prüfen"
       ],
       "keywords": [
         "Angebot",
@@ -2680,7 +2915,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "wohnungsaufloesung"
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Räumung",
@@ -2744,7 +2979,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung",
+        "büroreinigung",
         "unterhaltsreinigung"
       ],
       "keywords": [
@@ -2752,6 +2987,28 @@
         "Passenden Reinigungsturnus vorbereiten",
         "Unternehmen",
         "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-piano-details-regensburg-de",
+      "title": "Welche Angaben helfen bei einer Klaviertransport-Anfrage?",
+      "description": "Instrumentart, Maße, Gewicht, Start, Ziel, Etagen, Aufzug, Treppen und Fotos der Zugänge sind wichtig.",
+      "url": "/regensburg/umzug",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "klaviertransport",
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug",
+        "Klaviertransport mit geeigneten Angaben vorbereiten",
+        "Privatkunden",
+        "Unternehmen"
       ]
     },
     {
@@ -2788,7 +3045,7 @@
         "Bayern"
       ],
       "serviceIds": [
-        "angebot-pruefen"
+        "angebot-prüfen"
       ],
       "keywords": [
         "Angebot",
@@ -2809,7 +3066,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "bueroreinigung"
+        "büroreinigung"
       ],
       "keywords": [
         "Büro und Gewerbe",
@@ -2817,6 +3074,27 @@
         "Unternehmen",
         "Kanzleien",
         "Bürobetreiber"
+      ]
+    },
+    {
+      "id": "faq:faq-practice-areas-duesseldorf-de",
+      "title": "Welche Bereiche sollte eine Praxis in der Reinigungsanfrage nennen?",
+      "description": "Empfang, Wartebereich, Behandlungsräume, Sanitär, Personalräume und Nebenflächen sollten getrennt beschrieben werden.",
+      "url": "/duesseldorf/praxisreinigung",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "praxisreinigung",
+        "reinigung"
+      ],
+      "keywords": [
+        "Praxis",
+        "Praxisbereiche für eine Reinigungsanfrage abgrenzen",
+        "Praxen",
+        "Praxismanagement"
       ]
     },
     {
@@ -2832,7 +3110,7 @@
       "serviceIds": [
         "reinigung",
         "umzug",
-        "entruempelung"
+        "entrümpelung"
       ],
       "keywords": [
         "Fotos",
@@ -2853,8 +3131,8 @@
         "Bayern"
       ],
       "serviceIds": [
-        "entruempelung",
-        "wohnungsaufloesung"
+        "entrümpelung",
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Fotos",
@@ -2868,6 +3146,50 @@
       "id": "faq:faq-moving-quote-regensburg-de",
       "title": "Welche Punkte gehören in den Vergleich von Umzugsangeboten?",
       "description": "Volumen, Etagen, Laufwege, Haltezone, Strecke, Termin und enthaltene Zusatzleistungen müssen vergleichbar sein.",
+      "url": "/angebot-guenstiger-pruefen",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug",
+        "angebot-prüfen"
+      ],
+      "keywords": [
+        "Angebot",
+        "Umzugsangebot sachlich vergleichen",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-window-frame-scope-duesseldorf-de",
+      "title": "Wie beschreibe ich Glas, Rahmen und Zugänglichkeit für eine Fensterreinigung?",
+      "description": "Fensterzahl, Glasflächen, Rahmen und Falze sowie Etage, Öffnungsart und sichere Zugänge sollten getrennt angegeben werden.",
+      "url": "/duesseldorf/fensterreinigung",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "fensterreinigung",
+        "reinigung"
+      ],
+      "keywords": [
+        "Fenster",
+        "Glas, Rahmen und Zugang unterscheiden",
+        "Privatkunden",
+        "Unternehmen",
+        "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-floors-lift-regensburg-de",
+      "title": "Wie gebe ich Etagen und Aufzug für einen Umzug richtig an?",
+      "description": "Nennen Sie Start- und Zieletage getrennt und beschreiben Sie, ob ein nutzbarer Aufzug vorhanden ist.",
       "url": "/regensburg/umzug",
       "locale": "de",
       "type": "faq",
@@ -2877,11 +3199,11 @@
       ],
       "serviceIds": [
         "umzug",
-        "angebot-pruefen"
+        "möbeltransport"
       ],
       "keywords": [
-        "Angebot",
-        "Umzugsangebot sachlich vergleichen",
+        "Zugang",
+        "Etagen und Aufzug eindeutig angeben",
         "Privatkunden",
         "Unternehmen"
       ]
@@ -2898,8 +3220,8 @@
         "Bayern"
       ],
       "serviceIds": [
-        "entruempelung",
-        "wohnungsaufloesung",
+        "entrümpelung",
+        "wohnungsauflösung",
         "diskret-service"
       ],
       "keywords": [
@@ -2908,6 +3230,28 @@
         "Privatkunden",
         "Angehörige",
         "Bevollmächtigte"
+      ]
+    },
+    {
+      "id": "faq:faq-construction-cleaning-duesseldorf-de",
+      "title": "Wie unterscheiden sich Bauendreinigung und Baufeinreinigung in der Anfrage?",
+      "description": "Entscheidend sind Bauphase, vorhandene Restarbeiten, Verschmutzung, Oberflächen und der gewünschte Übergabezustand.",
+      "url": "/duesseldorf/baureinigung",
+      "locale": "de",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "baureinigung",
+        "grundreinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Bauendreinigung und Baufeinreinigung unterscheiden",
+        "Unternehmen",
+        "Bauverantwortliche",
+        "Hausverwaltungen"
       ]
     },
     {
@@ -2988,7 +3332,7 @@
         "Regensburg"
       ],
       "serviceIds": [
-        "wohnungsaufloesung"
+        "wohnungsauflösung"
       ],
       "keywords": [
         "Wohnungsauflösung",
@@ -3029,6 +3373,23 @@
       "keywords": []
     },
     {
+      "id": "article:en:ten-details-clear-moving-request",
+      "title": "10 details for a clear moving request",
+      "description": "A practical checklist covering route, access, volume, timing, special items and contact details.",
+      "url": "/en/blog/ten-details-clear-moving-request",
+      "locale": "en",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Moving request guide",
+        "umzug",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "service:wohnungsaufloesung:en:-en-regensburg-apartment-clearance",
       "title": "Apartment clearance",
       "description": "Public service information and enquiry details for Apartment clearance.",
@@ -3044,6 +3405,51 @@
       "keywords": [
         "Apartment clearance",
         "Wohnungsauflösung klar anfragen"
+      ]
+    },
+    {
+      "id": "faq:faq-cleaning-material-duesseldorf-en",
+      "title": "Are cleaning products and consumables automatically included?",
+      "description": "Not always; products, equipment and consumables should be assigned explicitly in the requested scope.",
+      "url": "/en/duesseldorf/cleaning",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "reinigung",
+        "bueroreinigung",
+        "gewerbereinigung"
+      ],
+      "keywords": [
+        "Material",
+        "Reinigungsmaterial und Verbrauchsmittel klären",
+        "Unternehmen",
+        "Hausverwaltungen",
+        "Privatkunden"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-assembly-regensburg-en",
+      "title": "Are dismantling and assembly automatically included in a move?",
+      "description": "No, the relevant furniture and requested work must be stated explicitly.",
+      "url": "/en/regensburg/moving",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug",
+        "moebeltransport"
+      ],
+      "keywords": [
+        "Leistungen",
+        "Demontage und Montage abgrenzen",
+        "Privatkunden",
+        "Unternehmen"
       ]
     },
     {
@@ -3065,6 +3471,29 @@
         "Privatkunden",
         "Unternehmen",
         "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-cleaning-photos-visit-duesseldorf-en",
+      "title": "Are photos enough for a cleaning request, or is a site visit needed?",
+      "description": "Photos and clear details are often enough to start; whether a visit is useful depends on the property and scope.",
+      "url": "/en/duesseldorf/cleaning",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "reinigung",
+        "bueroreinigung",
+        "gewerbereinigung"
+      ],
+      "keywords": [
+        "Besichtigung",
+        "Fotos und mögliche Besichtigung sinnvoll nutzen",
+        "Unternehmen",
+        "Hausverwaltungen",
+        "Privatkunden"
       ]
     },
     {
@@ -3131,6 +3560,48 @@
       "keywords": [
         "Angebot",
         "Anfrage ohne schriftliches Angebot vorbereiten",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-long-distance-regensburg-en",
+      "title": "Can I request a longer-distance move from Regensburg?",
+      "description": "Moves with an origin or destination in the served Regensburg area can be requested for longer routes of up to approximately 500 km.",
+      "url": "/en/regensburg/moving",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Servicegebiet",
+        "Längere Umzugsstrecke realistisch anfragen",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-from-to-regensburg-en",
+      "title": "Can I request a move within, from or to Regensburg?",
+      "description": "Yes, if the origin or destination is in the served Regensburg area and the route can be reviewed with the other details.",
+      "url": "/en/regensburg/moving",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Servicegebiet",
+        "Umzug innerhalb, aus oder nach Regensburg einordnen",
         "Privatkunden",
         "Unternehmen"
       ]
@@ -3568,6 +4039,110 @@
         "Reinigungsarten voneinander abgrenzen",
         "Privatkunden",
         "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-construction-cleaning-duesseldorf-en",
+      "title": "How should final construction cleaning and fine cleaning be distinguished?",
+      "description": "The construction phase, remaining work, soiling, surfaces and intended handover condition must be described.",
+      "url": "/en/duesseldorf/construction-cleaning",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "baureinigung",
+        "grundreinigung"
+      ],
+      "keywords": [
+        "Reinigung",
+        "Bauendreinigung und Baufeinreinigung unterscheiden",
+        "Unternehmen",
+        "Bauverantwortliche",
+        "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-moving-floors-lift-regensburg-en",
+      "title": "How should I describe floors and lifts for a move?",
+      "description": "State the origin and destination floors separately and say whether a usable lift is available.",
+      "url": "/en/regensburg/moving",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "umzug",
+        "moebeltransport"
+      ],
+      "keywords": [
+        "Zugang",
+        "Etagen und Aufzug eindeutig angeben",
+        "Privatkunden",
+        "Unternehmen"
+      ]
+    },
+    {
+      "id": "faq:faq-window-frame-scope-duesseldorf-en",
+      "title": "How should I describe glass, frames and access for window cleaning?",
+      "description": "State the number of windows, glass areas, frames and rebates plus floor, opening method and safe access separately.",
+      "url": "/en/duesseldorf/window-cleaning",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "fensterreinigung",
+        "reinigung"
+      ],
+      "keywords": [
+        "Fenster",
+        "Glas, Rahmen und Zugang unterscheiden",
+        "Privatkunden",
+        "Unternehmen",
+        "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "article:en:request-moving-quote-regensburg",
+      "title": "How to request a moving quote in Regensburg",
+      "description": "Prepare origin, destination, access, volume and timing for a clear moving request in Regensburg.",
+      "url": "/en/blog/request-moving-quote-regensburg",
+      "locale": "en",
+      "type": "article",
+      "regions": [
+        "Regensburg"
+      ],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Moving in Regensburg",
+        "umzug",
+        "FLOXANT"
+      ]
+    },
+    {
+      "id": "article:en:request-office-cleaning-duesseldorf",
+      "title": "How to request office cleaning in Düsseldorf",
+      "description": "Prepare property type, area, room groups, frequency, access and scope for an office cleaning request in Düsseldorf.",
+      "url": "/en/blog/request-office-cleaning-duesseldorf",
+      "locale": "en",
+      "type": "article",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "bueroreinigung"
+      ],
+      "keywords": [
+        "Office cleaning Düsseldorf",
+        "bueroreinigung",
+        "FLOXANT"
       ]
     },
     {
@@ -4033,6 +4608,27 @@
       ]
     },
     {
+      "id": "faq:faq-practice-areas-duesseldorf-en",
+      "title": "Which areas should a medical practice include in a cleaning request?",
+      "description": "Reception, waiting areas, treatment rooms, washrooms, staff rooms and ancillary spaces should be described separately.",
+      "url": "/en/duesseldorf/practice-cleaning",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "praxisreinigung",
+        "reinigung"
+      ],
+      "keywords": [
+        "Praxis",
+        "Praxisbereiche für eine Reinigungsanfrage abgrenzen",
+        "Praxen",
+        "Praxismanagement"
+      ]
+    },
+    {
       "id": "faq:faq-office-scope-en",
       "title": "Which areas should be listed in an office cleaning request?",
       "description": "Work areas, reception, kitchens, washrooms, floors and shared areas should be listed separately.",
@@ -4116,6 +4712,28 @@
         "Passenden Reinigungsturnus vorbereiten",
         "Unternehmen",
         "Hausverwaltungen"
+      ]
+    },
+    {
+      "id": "faq:faq-piano-details-regensburg-en",
+      "title": "Which details help with a piano transport request?",
+      "description": "Instrument type, dimensions, weight, origin, destination, floors, lift, stairs and access photos are important.",
+      "url": "/en/regensburg/moving",
+      "locale": "en",
+      "type": "faq",
+      "regions": [
+        "Regensburg",
+        "Bayern"
+      ],
+      "serviceIds": [
+        "klaviertransport",
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug",
+        "Klaviertransport mit geeigneten Angaben vorbereiten",
+        "Privatkunden",
+        "Unternehmen"
       ]
     },
     {
@@ -4210,7 +4828,7 @@
       "id": "faq:faq-moving-quote-regensburg-en",
       "title": "Which points belong in a comparison of moving quotes?",
       "description": "Volume, floors, carrying routes, loading access, distance, timing and included extras must be comparable.",
-      "url": "/en/regensburg/moving",
+      "url": "/en/regensburg/moving-quote-review",
       "locale": "en",
       "type": "faq",
       "regions": [

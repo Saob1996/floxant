@@ -92,6 +92,15 @@ function hasLocalPage(pathname) {
   if (
     segments.length === 3 &&
     segments[0] === "en" &&
+    segments[1] === "blog" &&
+    hasPageFile(path.join(appDirectory, "en", "blog", "[slug]"))
+  ) {
+    return true;
+  }
+
+  if (
+    segments.length === 3 &&
+    segments[0] === "en" &&
     hasPageFile(
       path.join(appDirectory, "en", "[regionSlug]", "[englishServiceSlug]"),
     )

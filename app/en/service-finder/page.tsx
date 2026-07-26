@@ -10,6 +10,7 @@ import {
 import { company } from "@/lib/company";
 import { publicServices } from "@/lib/services/service-registry";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
+import { getFaqsForService } from "@/lib/content/faq-registry";
 
 const path = "/en/service-finder";
 
@@ -69,6 +70,12 @@ const finderServices: readonly FinderService[] = publicServices
   .filter((service) => service.locale.includes("en") && Boolean(service.englishAlternativeRoute))
   .map((service) => {
     const copy = categoryCopy[service.category];
+    const faqs = getFaqsForService(service.id, "en");
+    const articles = [...new Map(
+      faqs
+        .filter((faq) => faq.relatedArticle)
+        .map((faq) => [faq.relatedArticle!, { href: faq.relatedArticle!, label: "Open related guide" }]),
+    ).values()];
     return {
       id: service.id,
       title: service.englishName,
@@ -82,8 +89,8 @@ const finderServices: readonly FinderService[] = publicServices
       canonicalRoute:
         service.id === "umzug" ? "/en/regensburg/moving" : service.englishAlternativeRoute!,
       ctaHref: `/en/contact?service=${encodeURIComponent(service.id)}`,
-      faqLinks: service.faqIds.map((faqId) => ({ href: `/en/questions#${faqId}`, label: "Open answer" })),
-      articleLinks: [],
+      faqLinks: faqs.slice(0, 2).map((faq) => ({ href: `/en/questions#${faq.id}`, label: faq.question })),
+      articleLinks: articles.slice(0, 2),
     };
   });
 
@@ -111,7 +118,7 @@ export default function EnglishServiceFinderPage() {
             Which publicly reviewed service fits your situation?
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            Ten short steps provide a rule-based match. The result is not a booking, price quote
+            A few short steps provide a rule-based match. The result is not a booking, price quote
             or availability confirmation.
           </p>
         </div>

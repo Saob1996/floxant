@@ -10,12 +10,13 @@ import {
 import { company } from "@/lib/company";
 import { publicServices } from "@/lib/services/service-registry";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
+import { getFaqsForService } from "@/lib/content/faq-registry";
 
 const path = "/service-finder";
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Service Finder",
+  title: "FLOXANT Leistungsfinder",
   description:
     "Lokale, unverbindliche Orientierung für FLOXANT Leistungen in Düsseldorf und Regensburg – ohne Speicherung oder Übertragung der Antworten.",
   alternates: {
@@ -26,27 +27,35 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: path,
-    title: "FLOXANT Service Finder",
+    title: "FLOXANT Leistungsfinder",
     description: "Passende Leistungen anhand weniger Angaben lokal einordnen.",
   },
   robots: { index: true, follow: true },
 };
 
-const finderServices: readonly FinderService[] = publicServices.map((service) => ({
-  id: service.id,
-  title: service.germanName,
-  description: service.shortDescription,
-  category: service.category,
-  regions: [...service.regions],
-  audiences: [...service.audienceTypes],
-  cadence: service.cadence,
-  objectTypes: [...service.objectTypes],
-  requiredDetails: [...service.requiredDetails],
-  canonicalRoute: service.canonicalRoute,
-  ctaHref: service.cta.href,
-  faqLinks: service.faqIds.map((faqId) => ({ href: `/fragen#${faqId}`, label: "Antwort öffnen" })),
-  articleLinks: [],
-}));
+const finderServices: readonly FinderService[] = publicServices.map((service) => {
+  const faqs = getFaqsForService(service.id, "de");
+  const articles = [...new Map(
+    faqs
+      .filter((faq) => faq.relatedArticle)
+      .map((faq) => [faq.relatedArticle!, { href: faq.relatedArticle!, label: "Passenden Ratgeber öffnen" }]),
+  ).values()];
+  return {
+    id: service.id,
+    title: service.germanName,
+    description: service.shortDescription,
+    category: service.category,
+    regions: [...service.regions],
+    audiences: [...service.audienceTypes],
+    cadence: service.cadence,
+    objectTypes: [...service.objectTypes],
+    requiredDetails: [...service.requiredDetails],
+    canonicalRoute: service.canonicalRoute,
+    ctaHref: service.cta.href,
+    faqLinks: faqs.slice(0, 2).map((faq) => ({ href: `/fragen#${faq.id}`, label: faq.question })),
+    articleLinks: articles.slice(0, 2),
+  };
+});
 
 const finderSignatures: readonly FinderSignature[] = publicSignatureSolutions.map((solution) => ({
   id: solution.id,
@@ -70,7 +79,7 @@ export default function ServiceFinderPage() {
             Welcher Service passt zu Ihrer Situation?
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            Zehn kurze Schritte ordnen Ihre Angaben regelbasiert ein. Das Ergebnis ist keine
+            Wenige kurze Schritte ordnen Ihre Angaben nachvollziehbar ein. Das Ergebnis ist keine
             Buchung, Preisangabe oder Verfügbarkeitszusage.
           </p>
         </div>
@@ -90,7 +99,7 @@ export default function ServiceFinderPage() {
               <ShieldCheck className="h-6 w-6 text-cyan-800" aria-hidden="true" />
               <h2 className="mt-3 text-xl font-black">Nur freigegebene Leistungen</h2>
               <p className="mt-2 text-sm font-medium leading-6 text-slate-700">
-                Die Auswahl basiert ausschließlich auf der öffentlichen Service- und Signature-Registry.
+                Die Auswahl basiert ausschließlich auf den freigegebenen Leistungen und besonderen Lösungen.
               </p>
             </div>
           </div>

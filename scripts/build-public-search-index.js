@@ -48,6 +48,10 @@ function loadTypeScriptModule(file) {
   return loadedModule.exports;
 }
 
+const { germanizeDeep } = loadTypeScriptModule(
+  path.join(root, "lib", "german-text.ts"),
+);
+
 function stringProperty(node, name) {
   if (!ts.isObjectLiteralExpression(node)) return "";
   const property = node.properties.find(
@@ -98,6 +102,16 @@ function cleanArray(value) {
       seen.add(normalized);
       return true;
     });
+}
+
+function normalizeGermanEntry(entry) {
+  const normalized = germanizeDeep(entry);
+  return {
+    ...normalized,
+    regions: cleanArray(normalized.regions),
+    serviceIds: cleanArray(normalized.serviceIds),
+    keywords: cleanArray(normalized.keywords),
+  };
 }
 
 function cleanLocales(value) {
@@ -158,6 +172,9 @@ const signaturesModule = loadTypeScriptModule(
 );
 const faqModule = loadTypeScriptModule(
   path.join(root, "lib", "content", "faq-registry.ts"),
+);
+const dominanceArticleModule = loadTypeScriptModule(
+  path.join(root, "lib", "content", "dominance-articles.ts"),
 );
 const entries = [];
 const publicServices = servicesModule.publicServices || [];
@@ -284,6 +301,24 @@ for (const article of extractBlogEntries(path.join(root, "lib", "blog-posts.ts")
   });
 }
 
+for (const article of dominanceArticleModule.dominanceArticles || []) {
+  entries.push({
+    id: `article:${article.locale}:${article.slug}`,
+    title: article.title,
+    description: article.description,
+    url: article.locale === "en" ? `/en/blog/${article.slug}` : `/blog/${article.slug}`,
+    locale: article.locale,
+    type: "article",
+    regions: article.title.includes("Düsseldorf")
+      ? ["Düsseldorf"]
+      : article.title.includes("Regensburg")
+        ? ["Regensburg"]
+        : [],
+    serviceIds: cleanArray([article.serviceId]),
+    keywords: cleanArray([article.category, ...cleanArray(article.about)]),
+  });
+}
+
 entries.push(
   {
     id: "location:de:duesseldorf",
@@ -400,7 +435,9 @@ entries.push(
 const searchIndex = {
   version: 1,
   source: "FLOXANT public registries and reviewed public routes",
-  entries: unique(entries).sort(
+  entries: unique(entries).map((entry) =>
+    entry.locale === "de" ? normalizeGermanEntry(entry) : entry,
+  ).sort(
     (left, right) =>
       left.locale.localeCompare(right.locale) ||
       left.title.localeCompare(right.title, left.locale),

@@ -189,6 +189,11 @@ export function PublicSearch({
             id={`public-search-${locale}`}
             type="search"
             value={query}
+            role="combobox"
+            aria-autocomplete="list"
+            aria-controls={`public-search-results-${locale}`}
+            aria-expanded={Boolean(query && results.length)}
+            aria-activedescendant={activeIndex >= 0 ? `search-result-${locale}-${activeIndex}` : undefined}
             onFocus={() => void ensureIndex()}
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={onKeyDown}
@@ -221,9 +226,9 @@ export function PublicSearch({
         {state === "error" ? <p className="rounded-2xl border border-amber-300 bg-amber-50 p-5 font-bold text-amber-950">{copy.error}</p> : null}
         {query && state === "ready" && !results.length ? <p className="rounded-2xl border border-slate-300 bg-white p-5 font-bold text-slate-800">{copy.empty}</p> : null}
         {query && results.length ? (
-          <ul className="grid list-none gap-3">
+          <ul role="listbox" className="grid list-none gap-3">
             {results.map(({ entry }, index) => (
-              <li key={entry.id}>
+              <li key={entry.id} role="option" aria-selected={activeIndex === index}>
                 <Link id={`search-result-${locale}-${index}`} href={entry.url} prefetch={false} className={`group block rounded-2xl border bg-white p-5 outline-none ${activeIndex === index ? "border-cyan-700 ring-2 ring-cyan-600/30" : "border-slate-200 hover:border-cyan-600 focus-visible:ring-2 focus-visible:ring-cyan-600"}`}>
                   <span className="text-xs font-black uppercase tracking-[0.1em] text-cyan-900">{entry.type.replace("_", " ")}</span><span className="mt-1 block text-xl font-black text-slate-950">{entry.title}</span><span className="mt-2 block text-sm font-medium leading-6 text-slate-700">{entry.description}</span><ArrowRight className="mt-3 h-4 w-4 text-blue-800 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
                 </Link>
