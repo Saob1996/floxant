@@ -34,7 +34,7 @@ seniorExistingOffer seniorExtraNeeds seniorRequesterRole seniorScope seniorSensi
 service serviceCategory serviceScope signatureServiceHint solarAccess solarExistingOffer solarModuleScope solarObjectType solarRoofType
 solarTimeframe solarVisibleDirt source sourceComponent sourceContext sourceFlow sourcePage specialAreas specialNotes startElevator
 startFloor startLocation tenantPhoto timestamp timeWindow type uncertainArea unitsCount upgrades urgency url utmCampaign utmContent
-utmMedium utmSource valuation viewingDate website whatsappPreferred zip
+utmMedium utmSource utmTerm valuation viewingDate website whatsappPreferred zip
 `.trim().split(/\s+/);
 
 const NESTED_SCHEMA_FIELD_NAMES = `

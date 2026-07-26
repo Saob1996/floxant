@@ -31,6 +31,7 @@ const nonSeoPublicRoutes = new Set([
   "/widerruf",
   "/buchungsbedingungen",
   "/angebot-vergleichen-duesseldorf/danke",
+  "/umzug-regensburg/anfrage",
   "/regensburg/reinigung/datenschutz",
   "/regensburg/reinigung/agb",
 ]);
