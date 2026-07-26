@@ -32,8 +32,8 @@ const faqItems = [
 
 const decisionSteps = [
   "Angebot unklar: Angebotscheck oder Anbieter-Vergleich nutzen.",
-  "Objekt schwer beschreibbar: Objektbrief oder Uebergabeakte starten.",
-  "Termin wackelt: Plan B, Uebergabe oder Kombi-Anfrage priorisieren.",
+  "Objekt schwer beschreibbar: Objektbrief oder Übergabeakte starten.",
+  "Termin wackelt: Plan B, Übergabe oder Kombi-Anfrage priorisieren.",
   "Sensible Lage: Diskret-Service oder Private Client ruhig beginnen.",
 ] as const;
 
@@ -101,11 +101,11 @@ export function GermanSignatureServicesHub() {
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-wide text-blue-800">Schnell zur passenden Lage</p>
             <h2 id="problem-links-heading" className="mt-3 text-3xl font-black sm:text-4xl">
-              Besondere Services nach echtem Kundenproblem auswaehlen.
+              Besondere Services nach echtem Kundenproblem auswählen.
             </h2>
             <p className="mt-4 font-medium leading-7 text-slate-700">
               Nicht der interne Servicename ist entscheidend, sondern die Situation: Angebot unklar,
-              Uebergabe naht, Anbieter wackelt, Objekt ist schwer beschreibbar oder der Fall braucht Diskretion.
+              Übergabe naht, Anbieter wackelt, Objekt ist schwer beschreibbar oder der Fall braucht Diskretion.
             </p>
           </div>
           <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -163,7 +163,7 @@ export function GermanSignatureServicesHub() {
                 <p className="mt-3 font-medium leading-7 text-slate-700">{solution.actualFunction}</p>
                 <dl className="mt-5 grid gap-4 text-sm">
                   <div>
-                    <dt className="font-black">Passt fuer</dt>
+                    <dt className="font-black">Passt für</dt>
                     <dd className="mt-1 font-medium leading-6 text-slate-700">
                       {solution.targetGroups.slice(0, 3).join(" - ")}
                     </dd>
@@ -254,8 +254,8 @@ export function GermanSignatureServicesHub() {
               Signature, Spezialreinigung, Spezialumzug und Spezialentruempelung verbinden.
             </h2>
             <p className="mt-4 font-medium leading-7 text-slate-700">
-              Fuer komplexe Anfragen fuehrt FLOXANT nicht nur zu einer einzelnen Leistung, sondern zu
-              dem passenden Einstieg: pruefen, einordnen, vorbereiten und dann gezielt anfragen.
+              Für komplexe Anfragen führt FLOXANT nicht nur zu einer einzelnen Leistung, sondern zu
+              dem passenden Einstieg: prüfen, einordnen, vorbereiten und dann gezielt anfragen.
             </p>
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

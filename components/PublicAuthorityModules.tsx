@@ -89,7 +89,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
   },
   bavaria_availability: {
     badge: "Bayern",
-    title: "Bayern nach Verfuegbarkeit",
+    title: "Bayern nach Verfügbarkeit",
     text:
       "Bayern wird nicht als pauschales Versprechen behandelt. FLOXANT prueft Strecke, Kapazitaet, Termin und Leistungsumfang, bevor ein Auftrag zugesagt wird.",
     href: "/standorte",

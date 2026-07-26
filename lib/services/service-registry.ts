@@ -675,6 +675,10 @@ export function getServicesByCategory(category: ServiceCategory): readonly Servi
   return publicServices.filter((service) => service.category === category);
 }
 
+export function getPublicServicesByRegion(region: ServiceRegion): readonly ServiceRegistryEntry[] {
+  return publicServices.filter((service) => service.regions.includes(region));
+}
+
 export function isPublicServiceStatus(status: ServiceStatus): boolean {
   return publicStatusSet.has(status);
 }

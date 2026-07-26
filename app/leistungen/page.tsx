@@ -361,7 +361,7 @@ export default function LeistungenPage() {
       <RelatedSpecialServices
         kind="offer"
         title="Angebotsprüfung als eigene Leistung."
-        intro="Wenn Preis, Umfang oder Anbieterwahl schon im Raum stehen, fuehren diese Einstiege zur sachlichen Pruefung statt zu einem weiteren Vergleichsportal."
+        intro="Wenn Preis, Umfang oder Anbieterwahl schon im Raum stehen, führen diese Einstiege zur sachlichen Prüfung statt zu einem weiteren Vergleichsportal."
         services={offerCheckLinks}
         limit={3}
       />

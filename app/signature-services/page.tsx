@@ -94,22 +94,22 @@ const faqItems = [
 
 const signatureAnswerPoints = [
   "Angebotscheck und Fairpreis-Check passen, wenn bereits ein Preis, PDF, Screenshot oder Vergleichsangebot vorliegt.",
-  "Objektbrief und Uebergabeakte passen, wenn Fotos, Zugang, Zielzustand oder Schluesselweg erst sortiert werden muessen.",
-  "Plan-B-Service, Rueckfahrt-Radar und Diskret-Service passen, wenn Frist, Route oder sensible Kommunikation wichtiger sind als ein Standardformular.",
+  "Objektbrief und Übergabeakte passen, wenn Fotos, Zugang, Zielzustand oder Schlüsselweg erst sortiert werden müssen.",
+  "Plan-B-Service, Rückfahrt-Radar und Diskret-Service passen, wenn Frist, Route oder sensible Kommunikation wichtiger sind als ein Standardformular.",
 ] as const;
 
 const signatureDecisionFaq = [
   {
     q: "Welcher Signature Service ist der richtige Start?",
-    a: "Wenn ein Angebot vorliegt, starten Sie mit Angebotscheck oder Fairpreis-Check. Wenn das Objekt unklar ist, passt der Objektbrief. Bei Fristdruck passt Plan B oder Uebergabe-Sprint.",
+    a: "Wenn ein Angebot vorliegt, starten Sie mit Angebotscheck oder Fairpreis-Check. Wenn das Objekt unklar ist, passt der Objektbrief. Bei Fristdruck passt Plan B oder Übergabe-Sprint.",
   },
   {
-    q: "Kann ein Signature Service auch fuer Duesseldorf genutzt werden?",
-    a: "Ja, wenn die Leistung im Code fuer Duesseldorf gefuehrt oder als manuelle Pruefung markiert ist. Unsichere Daten werden nicht als bestaetigte Verfuegbarkeit behauptet.",
+    q: "Kann ein Signature Service auch für Düsseldorf genutzt werden?",
+    a: "Ja, wenn die Leistung im Code für Düsseldorf gefuehrt oder als manuelle Prüfung markiert ist. Unsichere Daten werden nicht als bestätigte Verfügbarkeit behauptet.",
   },
   {
-    q: "Was braucht FLOXANT fuer die Einordnung?",
-    a: "Ort, Leistung, Kontaktweg, kurze Lage und falls vorhanden Fotos, Angebot, Preis, Deadline oder Zielzustand reichen fuer den Start.",
+    q: "Was braucht FLOXANT für die Einordnung?",
+    a: "Ort, Leistung, Kontaktweg, kurze Lage und falls vorhanden Fotos, Angebot, Preis, Deadline oder Zielzustand reichen für den Start.",
   },
 ] as const;
 
@@ -239,7 +239,7 @@ export default function SignatureServicesPage() {
 
       <AiAnswerCard
         title="Signature Services sind Entscheidungswege, keine leeren Markenbegriffe."
-        answer="FLOXANT nutzt Signature Services, wenn vor einer Anfrage zuerst Angebot, Objekt, Uebergabe, Frist, Route oder Diskretion geordnet werden muessen. Der Service fuehrt zu einem konkreten Kontaktweg mit passenden Angaben."
+        answer="FLOXANT nutzt Signature Services, wenn vor einer Anfrage zuerst Angebot, Objekt, Übergabe, Frist, Route oder Diskretion geordnet werden müssen. Der Service führt zu einem konkreten Kontaktweg mit passenden Angaben."
         points={signatureAnswerPoints}
         nextStep="Naechster Schritt: den Service waehlen, der zur Lage passt, und Ort, Ziel, Kontaktweg sowie vorhandene Unterlagen mitsenden."
       />
@@ -248,18 +248,18 @@ export default function SignatureServicesPage() {
         title="Passt ein Signature Service zu Ihrem Fall?"
         fits={[
           "Ein Angebot, Foto, Objekt oder Termin ist vorhanden, aber die Einordnung fehlt.",
-          "Der Fall verbindet Reinigung, Raeumung, Umzug, Uebergabe oder Anbieterwechsel.",
+          "Der Fall verbindet Reinigung, Räumung, Umzug, Übergabe oder Anbieterwechsel.",
           "Sie brauchen einen ruhigen Startpunkt statt einer pauschalen Sofortzusage.",
         ]}
         notFits={[
           "Sie erwarten eine Preisgarantie ohne Daten.",
           "Sie benötigen Rechtsberatung, eine Bewertung anderer Anbieter oder eine feste Verfügbarkeitszusage.",
-          "Adresse, Telefonnummer oder Oeffnungszeiten sollen geraten werden.",
+          "Adresse, Telefonnummer oder Öffnungszeiten sollen geraten werden.",
         ]}
         nextSteps={[
           "Angebot vorhanden: Angebotscheck oder Fairpreis-Check.",
-          "Objekt unklar: Objektbrief oder Uebergabeakte.",
-          "Frist oder Ausfall: Plan-B-Service oder Uebergabe-Sprint.",
+          "Objekt unklar: Objektbrief oder Übergabeakte.",
+          "Frist oder Ausfall: Plan-B-Service oder Übergabe-Sprint.",
         ]}
         ctaHref="/kontakt?service=angebot-pruefen&intent=entscheidungs-kompass&source=signature-services#direktanfrage"
         ctaLabel="Entscheidung klaeren"
@@ -276,7 +276,7 @@ export default function SignatureServicesPage() {
 
       <SignatureServicesGrid
         title="Alle Signature Services als echte FLOXANT-Produkte."
-        intro="Die Services sind keine losen Zusatzideen. Jeder Startpunkt klaert eine konkrete Situation: Angebot, Vergleich, Objekt, Uebergabe, Plan B, Rueckfahrt, PV, Diskretion, Vermieter oder Buero."
+        intro="Die Services sind keine losen Zusatzideen. Jeder Startpunkt klärt eine konkrete Situation: Angebot, Vergleich, Objekt, Übergabe, Plan B, Rückfahrt, PV, Diskretion, Vermieter oder Büro."
         services={signatureServiceLinks}
       />
 
@@ -290,7 +290,7 @@ export default function SignatureServicesPage() {
 
       <RelatedSpecialServices
         kind="offer"
-        title="Wenn Signature Service und Angebotsprüfung zusammenhaengen."
+        title="Wenn Signature Service und Angebotsprüfung zusammenhängen."
         intro="Viele besondere Faelle beginnen mit einem vorhandenen Angebot, einer unsicheren Anbieterwahl oder einer Deadline. Diese Wege halten die Entscheidung sachlich."
         limit={3}
       />

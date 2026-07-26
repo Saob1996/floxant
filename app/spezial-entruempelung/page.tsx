@@ -29,51 +29,51 @@ const canonical = `${company.url}${path}`;
 
 const situations = [
   "Keller, Garage, Dachboden oder Lager muss raus, aber Menge, Zugang und Entsorgung sind unklar.",
-  "Wohnungsaufloesung, Haushaltsaufloesung oder Nachlass braucht ruhige Abstimmung mit Freigabe und Ansprechpartner.",
-  "Vor Uebergabe, Verkauf oder Neuvermietung haengen Raeumung, Reinigung, Fotos und Restpunkte zusammen.",
-  "Sensible Situationen brauchen wuerdevolle Sprache, klare Grenzen und keine abwertenden Etiketten.",
+  "Wohnungsauflösung, Haushaltsauflösung oder Nachlass braucht ruhige Abstimmung mit Freigabe und Ansprechpartner.",
+  "Vor Übergabe, Verkauf oder Neuvermietung haengen Räumung, Reinigung, Fotos und Restpunkte zusammen.",
+  "Sensible Situationen brauchen würdevolle Sprache, klare Grenzen und keine abwertenden Etiketten.",
 ] as const;
 
 const process = [
   "Ort, Objektart, Zugang, Etage, Aufzug und Ansprechpartner nennen.",
-  "Fotos von Raeumen, Mengen, sperrigen Teilen, Schadstoffen und Restpunkten senden.",
-  "Freigabe, Frist, Zielzustand, Schluesselweg und Reinigung danach ergaenzen.",
-  "FLOXANT trennt Raeumung, Entsorgung, Uebergabe, Reinigung und offene Rueckfragen.",
+  "Fotos von Räumen, Mengen, sperrigen Teilen, Schadstoffen und Restpunkten senden.",
+  "Freigabe, Frist, Zielzustand, Schlüsselweg und Reinigung danach ergaenzen.",
+  "FLOXANT trennt Räumung, Entsorgung, Übergabe, Reinigung und offene Rückfragen.",
 ] as const;
 
 const boundaries = [
   "Keine Entsorgungszusage ohne Material, Menge, Zugang und Fotos.",
   "Keine Bewertung sensibler Wohn- oder Nachlasssituationen.",
   "Keine Festpreise ohne Freigabe, Umfang, Etage, Laufweg und Zielzustand.",
-  "Keine Vermieter-, Rechts- oder Schadensberatung als Raeumungsversprechen.",
+  "Keine Vermieter-, Rechts- oder Schadensberatung als Räumungsversprechen.",
 ] as const;
 
 const clearanceAnswerPoints = [
   "Keller, Garage, Dachboden und Lager brauchen Fotos, Menge, Material und Zugang.",
-  "Wohnungs- und Haushaltsaufloesung brauchen Freigabe, Ansprechpartner, Zielzustand und oft Reinigung danach.",
+  "Wohnungs- und Haushaltsauflösung brauchen Freigabe, Ansprechpartner, Zielzustand und oft Reinigung danach.",
   "Sensible Faelle werden sachlich beschrieben; FLOXANT verspricht keine Rechtsberatung und nutzt keine abwertende Sprache.",
 ] as const;
 
 const clearanceChecklist = [
-  "Ort, Objektart, Raeume und grobe Menge nennen.",
+  "Ort, Objektart, Räume und grobe Menge nennen.",
   "Fotos von Mengen, sperrigen Teilen, Zugang und Restpunkten senden.",
-  "Freigabe, Ansprechpartner und Zielzustand klaeren.",
-  "Reinigung danach oder Uebergabetermin markieren.",
-  "Sensible Lage nur so weit beschreiben, wie fuer die Einordnung noetig.",
+  "Freigabe, Ansprechpartner und Zielzustand klären.",
+  "Reinigung danach oder Übergabetermin markieren.",
+  "Sensible Lage nur so weit beschreiben, wie für die Einordnung nötig.",
 ] as const;
 
 const faqItems = [
   {
-    q: "Was zaehlt bei FLOXANT als Spezialentruempelung?",
-    a: "Spezialentruempelung umfasst Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsaufloesung, Haushaltsaufloesung, diskrete Faelle und Raeumung vor Uebergabe.",
+    q: "Was zählt bei FLOXANT als Spezialentruempelung?",
+    a: "Spezialentruempelung umfasst Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung, diskrete Faelle und Räumung vor Übergabe.",
   },
   {
-    q: "Welche Angaben helfen fuer eine realistische Einschaetzung?",
-    a: "Ort, Objektart, Fotos, Menge, Material, Etage, Zugang, Freigabe, Frist, Zielzustand und Ansprechpartner reichen fuer den Start.",
+    q: "Welche Angaben helfen für eine realistische Einschätzung?",
+    a: "Ort, Objektart, Fotos, Menge, Material, Etage, Zugang, Freigabe, Frist, Zielzustand und Ansprechpartner reichen für den Start.",
   },
   {
-    q: "Kann Reinigung nach der Entruempelung mitgedacht werden?",
-    a: "Ja. Wenn der Zielzustand Uebergabe, Besichtigung, Neuvermietung oder Verkauf ist, koennen Raeumung, Restpunkte, Reinigung und Fotos zusammen eingeordnet werden.",
+    q: "Kann Reinigung nach der Entrümpelung mitgedacht werden?",
+    a: "Ja. Wenn der Zielzustand Übergabe, Besichtigung, Neuvermietung oder Verkauf ist, können Räumung, Restpunkte, Reinigung und Fotos zusammen eingeordnet werden.",
   },
   {
     q: "Wie geht FLOXANT mit sensiblen Faellen um?",
@@ -95,24 +95,24 @@ const clearanceSignatureServices = signatureServiceLinks.filter((item) =>
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Spezialentruempelung | Keller, Nachlass, Uebergabe | FLOXANT",
+  title: "Spezialentruempelung | Keller, Nachlass, Übergabe | FLOXANT",
   description:
-    "Spezialentruempelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsaufloesung und Uebergabe mit Fotos und Freigabe klaeren.",
+    "Spezialentruempelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung und Übergabe mit Fotos und Freigabe klären.",
   alternates: { canonical },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "Spezialentruempelung mit wuerdevoller Machbarkeitspruefung",
+    title: "Spezialentruempelung mit würdevoller Machbarkeitspruefung",
     description:
-      "Keller, Lager, Nachlass, Wohnungsaufloesung und Raeumung vor Uebergabe anhand von Fotos, Freigabe und Zielzustand einordnen.",
+      "Keller, Lager, Nachlass, Wohnungsauflösung und Räumung vor Übergabe anhand von Fotos, Freigabe und Zielzustand einordnen.",
     images: [
       {
         url: "/assets/service-clearance.png",
         width: 1200,
         height: 630,
-        alt: "FLOXANT Spezialentruempelung und Raeumung",
+        alt: "FLOXANT Spezialentruempelung und Räumung",
       },
     ],
   },
@@ -125,7 +125,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "Spezialentruempelung",
         description:
-          "FLOXANT Spezialentruempelung fuer Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsaufloesung, Haushaltsaufloesung und Raeumung vor Uebergabe.",
+          "FLOXANT Spezialentruempelung für Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung und Räumung vor Übergabe.",
         path,
         about: specialClearanceLinks.map((item) => item.title),
         potentialActions: [
@@ -136,10 +136,10 @@ function JsonLd() {
       buildServiceJsonLd({
         name: "Spezialentruempelung",
         description:
-          "Machbarkeitspruefung fuer besondere Raeumungs- und Aufloesungsfaelle mit Fotos, Freigabe, Zugang, Entsorgung und Zielzustand.",
+          "Machbarkeitspruefung für besondere Räumungs- und Aufloesungsfaelle mit Fotos, Freigabe, Zugang, Entsorgung und Zielzustand.",
         path,
-        serviceType: "Spezialentruempelung und Aufloesung",
-        areaServed: ["Regensburg", "Duesseldorf", "Bayern nach Pruefung"],
+        serviceType: "Spezialentruempelung und Auflösung",
+        areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Prüfung"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -167,7 +167,7 @@ export default function SpezialentruempelungPage() {
       <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <Image
           src="/assets/service-clearance.webp"
-          alt="FLOXANT Spezialentruempelung mit sortierter Raeumung"
+          alt="FLOXANT Spezialentruempelung mit sortierter Räumung"
           fill
           priority
           sizes="100vw"
@@ -181,12 +181,12 @@ export default function SpezialentruempelungPage() {
               FLOXANT Spezialentruempelung
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Keller, Nachlass, Lager, Wohnungsaufloesung und Uebergabe respektvoll klaeren.
+              Keller, Nachlass, Lager, Wohnungsauflösung und Übergabe respektvoll klären.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
               Spezialentruempelung braucht Fotos, Freigabe, Zielzustand und ruhige
-              Kommunikation. FLOXANT sortiert Raeumung, Entsorgung, Reinigung,
-              Uebergabe und sensible Grenzen, bevor etwas zugesagt wird.
+              Kommunikation. FLOXANT sortiert Räumung, Entsorgung, Reinigung,
+              Übergabe und sensible Grenzen, bevor etwas zugesagt wird.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -200,7 +200,7 @@ export default function SpezialentruempelungPage() {
                 href="/uebergabeakte"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white"
               >
-                Uebergabe vorbereiten
+                Übergabe vorbereiten
               </Link>
             </div>
           </div>
@@ -217,42 +217,42 @@ export default function SpezialentruempelungPage() {
 
       <RelatedSpecialServices
         kind="clearance"
-        title="Welche Raeumungs-Spezialleistung passt zum Fall?"
-        intro="Diese Wege helfen, wenn Keller, Nachlass, Lager oder Uebergabe mehr Struktur brauchen als eine einfache Entruempelungsanfrage."
+        title="Welche Räumungs-Spezialleistung passt zum Fall?"
+        intro="Diese Wege helfen, wenn Keller, Nachlass, Lager oder Übergabe mehr Struktur brauchen als eine einfache Entrümpelungsanfrage."
         services={specialClearanceLinks}
         limit={8}
       />
 
       <AiAnswerCard
         title="Spezialentruempelung braucht Freigabe, Fotos und Zielzustand."
-        answer="FLOXANT trennt Raeumung, Entsorgung, Reinigung, Uebergabe und sensible Kommunikation, damit Nachlass, Keller, Lager oder belastete Raeume nicht pauschal behandelt werden."
+        answer="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und sensible Kommunikation, damit Nachlass, Keller, Lager oder belastete Räume nicht pauschal behandelt werden."
         points={clearanceAnswerPoints}
         nextStep="Naechster Schritt: Fotos, Ort, Freigabe, Menge, Zugang und Zielzustand mitsenden."
       />
 
       <QuickDecisionBox
-        title="Raeumung, Aufloesung oder Uebergabe-Sprint?"
+        title="Räumung, Auflösung oder Übergabe-Sprint?"
         fits={[
           "Fotos, Menge, Zugang und Freigabe sind grob beschreibbar.",
-          "Raeumung und Reinigung haengen mit Uebergabe, Verkauf oder Neuvermietung zusammen.",
+          "Räumung und Reinigung haengen mit Übergabe, Verkauf oder Neuvermietung zusammen.",
           "Ein sensibler Fall braucht ruhige Kommunikation und klare Grenzen.",
         ]}
         notFits={[
           "Eigentum, Freigabe oder Berechtigung sind unklar.",
           "Es wird Rechtsberatung, Wertgutachten oder eine verbindliche Abnahmezusage erwartet.",
-          "Gefahrstoffe oder Spezialentsorgung sollen ohne Pruefung zugesagt werden.",
+          "Gefahrstoffe oder Spezialentsorgung sollen ohne Prüfung zugesagt werden.",
         ]}
         nextSteps={[
           "Keller/Garage: Fotos und Menge senden.",
           "Nachlass/Wohnung: Freigabe und Ansprechpartner nennen.",
-          "Uebergabe naht: Uebergabeakte oder Uebergabe-Sprint nutzen.",
+          "Übergabe naht: Übergabeakte oder Übergabe-Sprint nutzen.",
         ]}
         ctaHref="/kontakt?service=entruempelung&intent=spezial-entruempelung-einordnen&source=spezial-entruempelung#direktanfrage"
         ctaLabel="Raeumung einordnen"
       />
 
       <ChecklistBlock
-        title="Checkliste fuer Spezialentruempelung"
+        title="Checkliste für Spezialentruempelung"
         intro="Diese Angaben helfen, ohne sensible Details unnoetig breit zu machen."
         items={clearanceChecklist}
         columns={3}
@@ -266,7 +266,7 @@ export default function SpezialentruempelungPage() {
               Anfragefuehrung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-              Was FLOXANT fuer eine serioese Einschaetzung braucht.
+              Was FLOXANT für eine serioese Einschätzung braucht.
             </h2>
           </article>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -283,20 +283,20 @@ export default function SpezialentruempelungPage() {
       </section>
 
       <ServiceClusterLinks
-        eyebrow="Grenzen und Wuerde"
+        eyebrow="Grenzen und Würde"
         title="Was bei Spezialentruempelung nicht pauschal versprochen wird."
-        intro="FLOXANT trennt Raeumung, Entsorgung, Reinigung, Uebergabe und rechtliche Fragen. Sensible Situationen werden sachlich und respektvoll beschrieben."
+        intro="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und rechtliche Fragen. Sensible Situationen werden sachlich und respektvoll beschrieben."
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Umfang, Zielzustand und Verantwortung nicht geraten werden.",
           href: "/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage",
-          cta: "Fall klaeren",
+          cta: "Fall klären",
         }))}
       />
 
       <SignatureServicesGrid
         title="Welche Signature Services zu Spezialentruempelung passen."
-        intro="Objektbrief, Uebergabeakte, Uebergabe-Sprint, Plan B, Diskret-Service und Vermieter-Ready helfen, wenn Raeumung Teil einer groesseren Frist ist."
+        intro="Objektbrief, Übergabeakte, Übergabe-Sprint, Plan B, Diskret-Service und Vermieter-Ready helfen, wenn Räumung Teil einer größeren Frist ist."
         services={clearanceSignatureServices}
       />
 
@@ -307,7 +307,7 @@ export default function SpezialentruempelungPage() {
       />
 
       <OfferCheckCTA
-        title="Liegt schon ein Raeumungs- oder Aufloesungsangebot vor?"
+        title="Liegt schon ein Räumungs- oder Aufloesungsangebot vor?"
         text="FLOXANT kann Umfang, Zusatzpositionen, Entsorgung, Zugang, Fotos, Zielzustand und Preisrahmen sachlich einordnen. Keine Preisgarantie, keine Abwertung anderer Anbieter."
       />
 
@@ -315,7 +315,7 @@ export default function SpezialentruempelungPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">FAQ</p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal">Haeufige Fragen zur Spezialentruempelung.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal">Häufige Fragen zur Spezialentruempelung.</h2>
           </article>
           <div className="grid gap-3">
             {faqItems.map((item, index) => (

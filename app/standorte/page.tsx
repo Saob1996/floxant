@@ -33,22 +33,22 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/standorte",
     title: "Standorte & Einsatzgebiet | FLOXANT Regensburg, Bayern und direkter Buchungsweg",
     description:
-      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Regensburg.",
+      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entrümpelung, Büroumzug und direkter Buchungsweg für ganz Regensburg.",
   });
 }
 
 const faqItems = [
   {
     q: "Wo ist FLOXANT vor Ort am staerksten?",
-    a: "Die staerkste Basis liegt in Regensburg. Von dort aus prueft FLOXANT Anfragen in Bayern und passende Einsaetze im erweiterten Gebiet nach Strecke, Termin und Kapazitaet.",
+    a: "Die staerkste Basis liegt in Regensburg. Von dort aus prüft FLOXANT Anfragen in Bayern und passende Einsaetze im erweiterten Gebiet nach Strecke, Termin und Kapazität.",
   },
   {
     q: "Heisst jede Stadt auf dieser Seite, dass jeder Einsatz automatisch zugesagt ist?",
-    a: "Nein. Die Staedte zeigen, wo FLOXANT grundsaetzlich sichtbar und planbar ist. Ob ein Einsatz passt, haengt weiterhin von Leistung, Umfang, Termin, Strecke und Verfuegbarkeit ab.",
+    a: "Nein. Die Staedte zeigen, wo FLOXANT grundsaetzlich sichtbar und planbar ist. Ob ein Einsatz passt, haengt weiterhin von Leistung, Umfang, Termin, Strecke und Verfügbarkeit ab.",
   },
   {
-    q: "Welche Seite ist fuer Google Maps oder direkte Anfragen am besten?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der klarste Startpunkt. Dort sind Buchung, Express-Check, Preisvorstellung und weitere Wege sauber gebuendelt.",
+    q: "Welche Seite ist für Google Maps oder direkte Anfragen am besten?",
+    a: "Für direkte Anfragen ist die Buchungsseite der klarste Startpunkt. Dort sind Buchung, Express-Check, Preisvorstellung und weitere Wege sauber gebuendelt.",
   },
 ];
 
@@ -63,11 +63,11 @@ const regionalSignalCards = [
     title: "Bayern als Einsatzgebiet",
     text: "Die Standortseite zeigt Staedte und Regionen so, dass Kunden schnell sehen, ob ihr Ort sinnvoll angefragt werden kann.",
     href: "/regensburg",
-    cta: "Regensburg oeffnen",
+    cta: "Regensburg öffnen",
   },
   {
     title: "Direkter Buchungsweg",
-    text: "Wer schon weiss, worum es geht, soll ohne Umwege Anfrage, Fotos, Termin und Rueckrufwunsch senden koennen.",
+    text: "Wer schon weiss, worum es geht, soll ohne Umwege Anfrage, Fotos, Termin und Rückrufwunsch senden können.",
     href: company.bookingUrl,
     cta: "Buchung starten",
   },
@@ -75,16 +75,16 @@ const regionalSignalCards = [
 
 const businessModelCards = [
   {
-    title: "Direkt an FLOXANT statt ueber Umwege",
-    text: "Kunden landen nicht in einer anonymen Weiterleitung. Die Anfrage kommt bei FLOXANT an und kann sauber geprueft werden.",
+    title: "Direkt an FLOXANT statt über Umwege",
+    text: "Kunden landen nicht in einer anonymen Weiterleitung. Die Anfrage kommt bei FLOXANT an und kann sauber geprüft werden.",
   },
   {
     title: "Regensburg bleibt die Basis",
-    text: "Von Regensburg aus pruefen wir, welche Einsaetze in Bayern nach Strecke, Umfang und Termin sinnvoll machbar sind.",
+    text: "Von Regensburg aus prüfen wir, welche Einsaetze in Bayern nach Strecke, Umfang und Termin sinnvoll machbar sind.",
   },
   {
-    title: "Jede Seite fuehrt zum naechsten Schritt",
-    text: "Wer den passenden Ort gefunden hat, kommt direkt zu Buchung, Kontakt, WhatsApp oder einer kurzen Vorpruefung.",
+    title: "Jede Seite führt zum nächsten Schritt",
+    text: "Wer den passenden Ort gefunden hat, kommt direkt zu Buchung, Kontakt, WhatsApp oder einer kurzen Vorprüfung.",
   },
 ];
 
@@ -127,7 +127,7 @@ export default function StandortePage() {
           "Bayern",
           "Umzug",
           "Reinigung",
-          "Entruempelung",
+          "Entrümpelung",
         ],
         potentialActions: [
           { name: "Direkte Anfrage starten", target: "/buchung" },
@@ -141,9 +141,9 @@ export default function StandortePage() {
       buildFaqJsonLd(faqItems),
       {
         "@type": "ItemList",
-        name: "FLOXANT Servicewege fuer regionale Anfragen",
+        name: "FLOXANT Servicewege für regionale Anfragen",
         description:
-          "Direkte Kontaktwege fuer Maps-Suchen wie Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung und Bueroumzug.",
+          "Direkte Kontaktwege für Maps-Suchen wie Umzug, Reinigung, Entrümpelung, Entsorgung, Lagerung und Büroumzug.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -208,7 +208,7 @@ export default function StandortePage() {
                   href="/regensburg"
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
                 >
-                  Regensburg oeffnen
+                  Regensburg öffnen
                   <Radar className="h-4 w-4" />
                 </Link>
               </div>
@@ -252,7 +252,7 @@ export default function StandortePage() {
                 {
                   icon: ShieldCheck,
                   title: "Lokale Naehe",
-                  text: "Kurze Wege, klare Abstimmung und mehr Verstaendnis fuer regionale Einsaetze rund um Regensburg.",
+                  text: "Kurze Wege, klare Abstimmung und mehr Verstaendnis für regionale Einsaetze rund um Regensburg.",
                 },
                 {
                   icon: Sparkles,
@@ -261,13 +261,13 @@ export default function StandortePage() {
                 },
                 {
                   icon: Building2,
-                  title: "Fuer Privat & Unternehmen",
-                  text: "Von Wohnungsumzug bis Bueroumzug, von Reinigung bis Entruempelung mit regionaler Einordnung.",
+                  title: "Für Privat & Unternehmen",
+                  text: "Von Wohnungsumzug bis Büroumzug, von Reinigung bis Entrümpelung mit regionaler Einordnung.",
                 },
                 {
                   icon: MapPin,
                   title: "Sauberer Maps-Pfad",
-                  text: "Von Standortseite zu Buchung, Kontakt und Kontaktweg ohne Leerlauf fuer den Kunden.",
+                  text: "Von Standortseite zu Buchung, Kontakt und Kontaktweg ohne Leerlauf für den Kunden.",
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -374,7 +374,7 @@ export default function StandortePage() {
             </h2>
             <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-600">
               Diese Uebersicht trennt die wichtigsten Anfragen sauber: Umzug, Reinigung,
-              Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung bekommen
+              Entrümpelung, Entsorgung, Lagerung, Büroumzug und Gewerbereinigung bekommen
               eindeutige Startpunkte statt langer Suche.
             </p>
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -408,17 +408,17 @@ export default function StandortePage() {
             {
               href: "/buchung",
               title: "Buchung",
-              text: "Der direkteste Weg fuer Google Maps, direkte Empfehlungen und klare Anfragen.",
+              text: "Der direkteste Weg für Google Maps, direkte Empfehlungen und klare Anfragen.",
             },
             {
               href: "/regensburg/gewerbereinigung",
               title: "Gewerbereinigung Regensburg",
-              text: "Gezielter B2B-Startpunkt fuer Buero, Praxis, Hotel, Kanzlei und Objektbetrieb.",
+              text: "Gezielter B2B-Startpunkt für Büro, Praxis, Hotel, Kanzlei und Objektbetrieb.",
             },
             {
               href: "/kontakt",
               title: "Kontakt Regensburg",
-              text: "Telefon, WhatsApp, Standort und weitere Wege fuer eine schnelle Rueckfrage.",
+              text: "Telefon, WhatsApp, Standort und weitere Wege für eine schnelle Rückfrage.",
             },
           ].map((item) => (
             <Link
@@ -510,11 +510,11 @@ export default function StandortePage() {
               Metropolpfade
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Stadtteile und groessere Orte mit eigenem Bedarf
+              Stadtteile und größere Orte mit eigenem Bedarf
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Diese Bezirksseiten helfen, Anfragen in dichten Stadtlagen genauer einzuordnen,
-              statt jede Anfrage ueber eine allgemeine Bayern-Seite laufen zu lassen.
+              statt jede Anfrage über eine allgemeine Bayern-Seite laufen zu lassen.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -542,12 +542,12 @@ export default function StandortePage() {
               Servicebereiche Bayern
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Direkte Seiten fuer Ort, Leistung und Anfrage
+              Direkte Seiten für Ort, Leistung und Anfrage
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Diese Seiten helfen, schnell den passenden Ort und die passende Leistung zu
-              finden: lokal verankert in Regensburg, mit klaren Servicebereichen fuer
-              Muenchen, Nuernberg, Augsburg und Niederbayern.
+              finden: lokal verankert in Regensburg, mit klaren Servicebereichen für
+              München, Nürnberg, Augsburg und Niederbayern.
             </p>
           </div>
 
@@ -576,7 +576,7 @@ export default function StandortePage() {
               FAQ
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Haeufige Fragen zu Standorten und Einsatzgebiet
+              Häufige Fragen zu Standorten und Einsatzgebiet
             </h2>
           </div>
           <div className="space-y-4">

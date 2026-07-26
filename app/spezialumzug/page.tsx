@@ -30,28 +30,28 @@ const canonical = `${company.url}${path}`;
 const situations = [
   "Mini-Umzug, Einzeltransport oder kleine Wohnung passt nicht sauber in ein grosses Umzugsformular.",
   "Express-Umzug, kurzfristiger Termin oder Plan B braucht zuerst eine realistische Machbarkeitspruefung.",
-  "Moebeltransport, Klaviertransport oder sensible Stuecke haengen an Gewicht, Abbau, Schutz und Laufweg.",
-  "Rueckfahrt, Beiladung oder flexible Strecke wird nur sinnvoll, wenn Route, Zeitfenster und Transportgut passen.",
+  "Möbeltransport, Klaviertransport oder sensible Stücke haengen an Gewicht, Abbau, Schutz und Laufweg.",
+  "Rückfahrt, Beiladung oder flexible Strecke wird nur sinnvoll, wenn Route, Zeitfenster und Transportgut passen.",
 ] as const;
 
 const process = [
   "Start, Ziel, Etage, Aufzug, Laufweg und moegliche Haltezone nennen.",
   "Volumen, Fotos, Einzelstuecke, Demontage und Schutzbedarf beschreiben.",
   "Terminfenster, Dringlichkeit, Flexibilitaet und vorhandenes Angebot ergaenzen.",
-  "FLOXANT trennt direkte Umzugsanfrage, Beiladung, Rueckfahrt und Plan-B-Fall.",
+  "FLOXANT trennt direkte Umzugsanfrage, Beiladung, Rückfahrt und Plan-B-Fall.",
 ] as const;
 
 const boundaries = [
   "Keine Sofortzusage ohne Route, Volumen, Zugang und Terminlage.",
   "Keine Festpreise ohne Fotos, Etagen, Laufweg, Haltezone und Zusatzleistungen.",
-  "Keine riskanten Zusagen fuer Klavier, Tresor oder Spezialgut ohne genaue Daten.",
-  "Keine erfundene Verfuegbarkeit fuer Rueckfahrt oder Beiladung.",
+  "Keine riskanten Zusagen für Klavier, Tresor oder Spezialgut ohne genaue Daten.",
+  "Keine erfundene Verfügbarkeit für Rückfahrt oder Beiladung.",
 ] as const;
 
 const movingAnswerPoints = [
-  "Mini-Umzug und Moebeltransport brauchen genaue Stuecke, Etage, Laufweg und Termin.",
+  "Mini-Umzug und Möbeltransport brauchen genaue Stücke, Etage, Laufweg und Termin.",
   "Express-Umzug und Plan B brauchen zuerst Frist, Umfang und Machbarkeitspruefung.",
-  "Rueckfahrt oder Beiladung passt nur, wenn Route, Volumen und Zeitfenster flexibel genug sind.",
+  "Rückfahrt oder Beiladung passt nur, wenn Route, Volumen und Zeitfenster flexibel genug sind.",
 ] as const;
 
 const movingChecklist = [
@@ -64,19 +64,19 @@ const movingChecklist = [
 
 const faqItems = [
   {
-    q: "Was zaehlt bei FLOXANT als Spezialumzug?",
-    a: "Spezialumzug umfasst Mini-Umzug, Express-Umzug, Moebeltransport, Klaviertransport, Beiladung, Rueckfahrt, Seniorenumzug und Plan-B-Faelle, bei denen Strecke, Volumen, Zugang oder Zeitfenster zuerst geordnet werden muessen.",
+    q: "Was zählt bei FLOXANT als Spezialumzug?",
+    a: "Spezialumzug umfasst Mini-Umzug, Express-Umzug, Möbeltransport, Klaviertransport, Beiladung, Rückfahrt, Seniorenumzug und Plan-B-Faelle, bei denen Strecke, Volumen, Zugang oder Zeitfenster zuerst geordnet werden müssen.",
   },
   {
-    q: "Kann FLOXANT kurzfristige Umzuege uebernehmen?",
-    a: "Kurzfristige Faelle werden nach Machbarkeit geprueft. Entscheidend sind Start, Ziel, Volumen, Etage, Laufweg, Fotos, Zeitfenster und vorhandene Helfer oder Anbieter.",
+    q: "Kann FLOXANT kurzfristige Umzüge uebernehmen?",
+    a: "Kurzfristige Faelle werden nach Machbarkeit geprüft. Entscheidend sind Start, Ziel, Volumen, Etage, Laufweg, Fotos, Zeitfenster und vorhandene Helfer oder Anbieter.",
   },
   {
-    q: "Ist ein kleiner Umzug automatisch guenstig?",
-    a: "Nicht zwingend. Auch kleine Umzuege koennen durch Laufweg, Haltezone, Abbau, Gewicht, Termin oder Strecke aufwendig werden. FLOXANT prueft den Aufwand transparent.",
+    q: "Ist ein kleiner Umzug automatisch günstig?",
+    a: "Nicht zwingend. Auch kleine Umzüge können durch Laufweg, Haltezone, Abbau, Gewicht, Termin oder Strecke aufwendig werden. FLOXANT prüft den Aufwand transparent.",
   },
   {
-    q: "Welche Angaben helfen fuer Rueckfahrt oder Beiladung?",
+    q: "Welche Angaben helfen für Rückfahrt oder Beiladung?",
     a: "Route, Zeitraum, Transportgut, Masse, Gewicht, Fotos, Abhol- und Lieferadresse, Zugang und Flexibilitaet sind wichtig. Eine Beiladung wird nicht pauschal versprochen.",
   },
 ] as const;
@@ -94,7 +94,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "Spezialumzug | Mini-Umzug, Express, Transport & Plan B | FLOXANT",
   description:
-    "Spezialumzug mit FLOXANT: Mini-Umzug, Express-Umzug, Moebeltransport, Klaviertransport, Beiladung, Rueckfahrt und Plan B realistisch pruefen.",
+    "Spezialumzug mit FLOXANT: Mini-Umzug, Express-Umzug, Möbeltransport, Klaviertransport, Beiladung, Rückfahrt und Plan B realistisch prüfen.",
   alternates: { canonical },
   openGraph: {
     type: "website",
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "Spezialumzug mit klarer Machbarkeitspruefung",
     description:
-      "Mini-Umzug, Express, Transport, Klaviertransport, Beiladung und Rueckfahrt anhand von Route, Volumen, Zugang und Zeitfenster einordnen.",
+      "Mini-Umzug, Express, Transport, Klaviertransport, Beiladung und Rückfahrt anhand von Route, Volumen, Zugang und Zeitfenster einordnen.",
     images: [
       {
         url: "/assets/service-moving.png",
@@ -122,7 +122,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "Spezialumzug",
         description:
-          "FLOXANT Spezialumzug fuer Mini-Umzug, Express-Umzug, Moebeltransport, Klaviertransport, Beiladung, Rueckfahrt, Seniorenumzug und Plan-B-Faelle.",
+          "FLOXANT Spezialumzug für Mini-Umzug, Express-Umzug, Möbeltransport, Klaviertransport, Beiladung, Rückfahrt, Seniorenumzug und Plan-B-Faelle.",
         path,
         about: specialMovingLinks.map((item) => item.title),
         potentialActions: [
@@ -133,10 +133,10 @@ function JsonLd() {
       buildServiceJsonLd({
         name: "Spezialumzug",
         description:
-          "Machbarkeitspruefung fuer besondere Umzugs- und Transportfaelle mit Route, Volumen, Zugang, Fotos und Termin.",
+          "Machbarkeitspruefung für besondere Umzugs- und Transportfaelle mit Route, Volumen, Zugang, Fotos und Termin.",
         path,
         serviceType: "Spezialumzug und Transport",
-        areaServed: ["Regensburg", "Duesseldorf", "Bayern nach Pruefung"],
+        areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Prüfung"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -178,10 +178,10 @@ export default function SpezialumzugPage() {
               FLOXANT Spezialumzug
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Mini-Umzug, Express, Moebeltransport, Rueckfahrt und Plan B sauber pruefen.
+              Mini-Umzug, Express, Möbeltransport, Rückfahrt und Plan B sauber prüfen.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-              Ein Spezialumzug ist selten nur klein oder dringend. FLOXANT prueft Route,
+              Ein Spezialumzug ist selten nur klein oder dringend. FLOXANT prüft Route,
               Volumen, Zugang, Zeitfenster, Fotos und Grenzen, bevor aus der Anfrage ein
               realistischer Umzugs- oder Transportweg wird.
             </p>
@@ -197,7 +197,7 @@ export default function SpezialumzugPage() {
                 href="/rueckfahrt-boerse"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white"
               >
-                Rueckfahrt pruefen
+                Rückfahrt prüfen
               </Link>
             </div>
           </div>
@@ -215,24 +215,24 @@ export default function SpezialumzugPage() {
       <RelatedSpecialServices
         kind="moving"
         title="Welche Umzugs-Spezialleistung passt zum Fall?"
-        intro="Diese Wege helfen, wenn ein Standardumzug nicht exakt passt: kleines Volumen, Zeitdruck, Einzelstuecke, Rueckfahrt, Beiladung oder sensibler Ablauf."
+        intro="Diese Wege helfen, wenn ein Standardumzug nicht exakt passt: kleines Volumen, Zeitdruck, Einzelstuecke, Rückfahrt, Beiladung oder sensibler Ablauf."
         services={specialMovingLinks}
         limit={8}
       />
 
       <AiAnswerCard
-        title="Spezialumzug heisst: Route, Volumen und Risiko zuerst klaeren."
-        answer="FLOXANT unterscheidet kleinen Umzug, Moebeltransport, Klaviertransport, Rueckfahrt, Beiladung und Plan B, damit aus Zeitdruck keine falsche Sofortzusage entsteht."
+        title="Spezialumzug heisst: Route, Volumen und Risiko zuerst klären."
+        answer="FLOXANT unterscheidet kleinen Umzug, Möbeltransport, Klaviertransport, Rückfahrt, Beiladung und Plan B, damit aus Zeitdruck keine falsche Sofortzusage entsteht."
         points={movingAnswerPoints}
         nextStep="Naechster Schritt: Start, Ziel, Umfang, Fotos, Zugang und Terminfenster mitsenden."
       />
 
       <QuickDecisionBox
-        title="Direkter Umzug oder Plan-B-Pruefung?"
+        title="Direkter Umzug oder Plan-B-Prüfung?"
         fits={[
           "Start, Ziel, Volumen und Termin sind bekannt.",
-          "Einzelstuecke, Klavier oder Moebeltransport brauchen genaue Daten.",
-          "Ein bestehendes Angebot soll nach Route, Zusatzleistung oder Preis geprueft werden.",
+          "Einzelstuecke, Klavier oder Möbeltransport brauchen genaue Daten.",
+          "Ein bestehendes Angebot soll nach Route, Zusatzleistung oder Preis geprüft werden.",
         ]}
         notFits={[
           "Es wird eine garantierte Sofortverfuegbarkeit erwartet.",
@@ -242,15 +242,15 @@ export default function SpezialumzugPage() {
         nextSteps={[
           "Daten klar: direkte Umzugsanfrage.",
           "Anbieter wackelt: Plan-B-Service.",
-          "Route flexibel: Rueckfahrt-Radar oder Beiladung pruefen.",
+          "Route flexibel: Rückfahrt-Radar oder Beiladung prüfen.",
         ]}
         ctaHref="/kontakt?service=umzug&intent=spezialumzug-einordnen&source=spezialumzug#direktanfrage"
         ctaLabel="Umzug einordnen"
       />
 
       <ChecklistBlock
-        title="Checkliste fuer Spezialumzug"
-        intro="Diese Angaben helfen, ohne dass FLOXANT Verfuegbarkeit oder Preis raten muss."
+        title="Checkliste für Spezialumzug"
+        intro="Diese Angaben helfen, ohne dass FLOXANT Verfügbarkeit oder Preis raten muss."
         items={movingChecklist}
         columns={3}
       />
@@ -263,7 +263,7 @@ export default function SpezialumzugPage() {
               Anfragefuehrung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-              Was FLOXANT fuer eine serioese Einschaetzung braucht.
+              Was FLOXANT für eine serioese Einschätzung braucht.
             </h2>
           </article>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -282,18 +282,18 @@ export default function SpezialumzugPage() {
       <ServiceClusterLinks
         eyebrow="Grenzen und Machbarkeit"
         title="Was bei Spezialumzug nicht pauschal versprochen wird."
-        intro="Klare Grenzen schuetzen Erwartung und Ablauf. FLOXANT trennt Anfrage, Machbarkeit, Rueckfragen und verbindliche Zusage."
+        intro="Klare Grenzen schuetzen Erwartung und Ablauf. FLOXANT trennt Anfrage, Machbarkeit, Rückfragen und verbindliche Zusage."
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Route, Aufwand und Termin nicht geraten werden.",
           href: "/kontakt?service=umzug&source=spezialumzug#direktanfrage",
-          cta: "Fall klaeren",
+          cta: "Fall klären",
         }))}
       />
 
       <SignatureServicesGrid
         title="Welche Signature Services zu Spezialumzug passen."
-        intro="Fairpreis, Objektbrief, Plan B und Rueckfahrt-Radar helfen, wenn Umzug oder Transport erst sortiert werden muessen."
+        intro="Fairpreis, Objektbrief, Plan B und Rückfahrt-Radar helfen, wenn Umzug oder Transport erst sortiert werden müssen."
         services={planBServices}
       />
 
@@ -312,7 +312,7 @@ export default function SpezialumzugPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">FAQ</p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal">Haeufige Fragen zum Spezialumzug.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal">Häufige Fragen zum Spezialumzug.</h2>
           </article>
           <div className="grid gap-3">
             {faqItems.map((item, index) => (

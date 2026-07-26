@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type ServicePriority = "A" | "B" | "C";
 export type SignatureSpecialServiceType =
   | "Signature Service"
@@ -21,7 +23,7 @@ export type SignatureSpecialCluster = {
   links: readonly SignatureSpecialLink[];
 };
 
-export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
+export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "FLOXANT Fairpreis-Check",
     text: "Prueft vorhandene Angebote fuer Reinigung, Umzug, Entruempelung, Solarreinigung oder Spezialreinigung nach Umfang, Luecken, Zusatzkosten und realistischem Aufwand.",
@@ -130,9 +132,9 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
     priority: "B",
     tags: ["Buero", "Praxis", "Gewerbe"],
   },
-] as const;
+] as const);
 
-export const specialCleaningLinks: readonly SignatureSpecialLink[] = [
+export const specialCleaningLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Solarreinigung",
     text: "PV-Anlage, Dachzugang, Verschmutzung, Wasseranschluss und Sicherheitsgrenzen vor einer Zusage klaeren.",
@@ -205,9 +207,9 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = [
     priority: "B",
     tags: ["Hausverwaltung", "Turnus", "Schluessel"],
   },
-] as const;
+] as const);
 
-export const specialMovingLinks: readonly SignatureSpecialLink[] = [
+export const specialMovingLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Mini-Umzug",
     text: "Kleine Umzuege mit wenig Volumen, aber oft vielen Detailfragen zu Etage, Laufweg, Haltezone und Termin.",
@@ -244,9 +246,9 @@ export const specialMovingLinks: readonly SignatureSpecialLink[] = [
     priority: "A",
     tags: ["Rueckfahrt", "Beiladung", "Flexibilitaet"],
   },
-] as const;
+] as const);
 
-export const specialClearanceLinks: readonly SignatureSpecialLink[] = [
+export const specialClearanceLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Kellerentruempelung",
     text: "Keller, Nebenraum oder Muellraum mit Fotos, Zugang, Menge, Material und Entsorgungsweg realistisch einschaetzen.",
@@ -283,9 +285,9 @@ export const specialClearanceLinks: readonly SignatureSpecialLink[] = [
     priority: "B",
     tags: ["Uebergabe", "Restmengen", "Reinigung"],
   },
-] as const;
+] as const);
 
-export const offerCheckLinks: readonly SignatureSpecialLink[] = [
+export const offerCheckLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Angebot guenstiger pruefen",
     text: "Wenn ein Angebot teuer, unklar oder unvollstaendig wirkt und eine zweite sachliche Einschaetzung gebraucht wird.",
@@ -313,9 +315,9 @@ export const offerCheckLinks: readonly SignatureSpecialLink[] = [
     priority: "A",
     tags: ["Ausfall", "Termin", "Backup"],
   },
-] as const;
+] as const);
 
-export const signatureSpecialClusters: readonly SignatureSpecialCluster[] = [
+export const signatureSpecialClusters: readonly SignatureSpecialCluster[] = germanizeDeep([
   {
     title: "Signature Services",
     intro: "FLOXANT-Produkte fuer Angebote, Objektbrief, Uebergabe, Plan B, Rueckfahrt, PV und sensible Sonderlagen.",
@@ -341,9 +343,9 @@ export const signatureSpecialClusters: readonly SignatureSpecialCluster[] = [
     intro: "Wenn Preis, Umfang, Anbieter oder Plan B vor einer Zusage sachlich eingeordnet werden sollen.",
     links: offerCheckLinks,
   },
-] as const;
+] as const);
 
-export const problemBasedServiceLinks: readonly SignatureSpecialLink[] = [
+export const problemBasedServiceLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Angebot wirkt zu teuer oder unklar",
     text: "Preis, Umfang, Zusatzkosten und fehlende Positionen neutral einordnen lassen.",
@@ -393,7 +395,7 @@ export const problemBasedServiceLinks: readonly SignatureSpecialLink[] = [
     cta: "Buero startklar machen",
     type: "Signature Service",
   },
-] as const;
+] as const);
 
 export function getSignatureLinks(limit = signatureServiceLinks.length) {
   return signatureServiceLinks.slice(0, limit);
