@@ -1,0 +1,14 @@
+# Signature Services Problem Solution Map
+
+Stand: 2026-07-26T11:16:19.162Z
+
+| Signature Service | Problem | Lösung | Grenzen | benötigte Angaben | CTA | English Intent | Maps |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| FLOXANT Angebotscheck | Ein Angebot liegt vor, aber Preis, Umfang oder Zusatzkosten wirken unklar. | Leistungsumfang, offene Punkte, Fotos, Termin und nächste Schritte praktisch einordnen. | Keine Rechtsberatung, keine Ersparnisgarantie. | Angebot oder Screenshot, Ort, Service, Termin, Fotos optional | /kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo | offer check, quote review, second opinion | mittel |
+| FLOXANT Fairpreis-Check | Der Kunde will wissen, ob ein Angebot plausibel wirkt. | Leistungsumfang, Zugang, Termin und Zusatzkosten verständlich prüfen. | Keine Preisgarantie. | Preis, Umfang, Objekt, Zugang, Termin | /kontakt?service=angebot-pruefen&intent=fairpreis-check&source=seo | fair price check, moving quote review | niedrig |
+| FLOXANT Objektbrief | Der Kunde weiß nicht, wie er Objekt und Leistung strukturiert beschreiben soll. | Objektart, Umfang, Fotos, Frist und Besonderheiten sauber sammeln. | Keine automatische Zusage. | Objektart, Ort, Fotos, Frist, Besonderheiten | /objektbrief | property brief, service brief | niedrig |
+| FLOXANT Übergabeakte | Wohnung oder Objekt muss vor Übergabe dokumentiert oder vorbereitet werden. | Reinigung, Entrümpelung, Fotos und offene Punkte in eine klare Reihenfolge bringen. | Keine rechtliche Beratung. | Übergabetermin, Fotos, Restpunkte, Schlüsselweg | /uebergabeakte | handover cleaning, move out preparation | mittel |
+| FLOXANT Plan-B-Service | Anbieter sagt ab, reagiert nicht oder Angebot passt nicht. | Situation, Frist, Alternative und verfügbare nächste Schritte strukturieren. | Keine garantierte Verfügbarkeit. | Frist, Ort, Service, vorheriger Anbieterstatus, Fotos optional | /plan-b-service | provider cancelled, backup service | mittel |
+| FLOXANT Rückfahrt-Radar | Transport soll eventuell über Rückfahrt oder Beiladung laufen. | Strecke, Zeitfenster und Transportgut prüfen. | Nicht immer möglich, Flexibilität wichtig. | Start, Ziel, Zeitfenster, Transportgut, Fotos | /beiladung-regensburg | shared load, return trip transport | niedrig |
+| FLOXANT Diskret-Service | Sensible Situation wie Trennung, Nachlass, Todesfall oder diskrete Räumung. | Bevorzugten Kontaktweg, ruhige Kommunikation und klare Einordnung ermöglichen. | Keine unnötigen Details erzwingen. | Kontaktweg, Ort, grober Umfang, Schutzbedarf | /private-client-service | discreet moving, private client clearance | niedrig |
+| FLOXANT PV-Sichtklar-Service | PV-Anlage ist sichtbar verschmutzt oder Reinigungsbedarf ist unklar. | Fotos, Zugang, Dachart und Verschmutzung einordnen. | Keine Ertragsversprechen. | Fotos, Dachart, Zugang, Verschmutzung, Ort | /regensburg/solarreinigung | solar panel cleaning, pv cleaning | mittel |

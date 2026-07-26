@@ -1,6 +1,6 @@
 # Risk Closure Report
 
-Stand: 2026-06-20T03:44:32.465Z
+Stand: 2026-07-26T11:17:55.519Z
 
 Status: WARN
 
@@ -13,10 +13,12 @@ Status: WARN
 | GSC CSV | WARN | CSV-Workflow vorbereitet. |
 | Encoding | PASS | Scan dokumentiert, keine globalen Ersetzungen. |
 | Doorway/Kannibalisierung | PASS | Scan dokumentiert, keine radikalen Loeschungen. |
-| Performance | WARN | Client-JS, Assets und Vercel-sensitive Muster geprueft. |
+| Performance | PASS | Client-JS, Assets und Vercel-sensitive Muster geprueft. |
 | Accessibility | WARN | Skip-Link, Formularsignale, Bild-Alttexte und mobile CTA-Fokus geprueft. |
-| Snippet/CTR | PASS | Priorisierte Title, Descriptions, lokale Signale und CTA-Ziele geprueft. |
+| Snippet/CTR | WARN | Priorisierte Title, Descriptions, lokale Signale und CTA-Ziele geprueft. |
 | Editorial Quality | WARN | Inventar, Priorisierung, P0/P1-Briefs und Scoreboard geprueft. |
+| Service Packages | WARN | Paketmatrix, Signature-Gruppe, Kombi-Services und Seitenintegration geprueft. |
+| Service Fit | WARN | Entscheidungskomponente, Kombi-Strategie, English Intent und statische Umsetzung geprueft. |
 | GBP/NAP | WARN | Manuelle Checkliste vorhanden, echte GBP-Daten nicht erfunden. |
 | Preview | WARN | Preview bleibt zwingend vor Production. |
 
@@ -24,22 +26,29 @@ Status: WARN
 
 | Check | Status | Exit | Dauer ms |
 | --- | --- | ---: | ---: |
-| npm run seo:health | PASS | 0 | 6126 |
-| npm run seo:conversion | PASS | 0 | 5058 |
-| npm run lead:health | PASS | 0 | 697 |
-| npm run site:qa | PASS | 0 | 980 |
-| npm run trust:health | PASS | 0 | 766 |
-| npm run copy:quality | PASS | 0 | 714 |
-| npm run editorial:quality | PASS | 0 | 847 |
-| npm run snippet:health | PASS | 0 | 534 |
-| npm run performance:health | PASS | 0 | 834 |
-| npm run accessibility:health | PASS | 0 | 610 |
-| npm run gsc:import | PASS | 0 | 715 |
-| npm run text:encoding-check | PASS | 0 | 651 |
-| npm run seo:dedupe-risk | PASS | 0 | 619 |
-| npm run lint | PASS | 0 | 31534 |
-| npm run typecheck | PASS | 0 | 4180 |
-| npm run build | PASS | 0 | 109451 |
+| npm run build | PASS | 0 | 0 |
+| npm run services:coverage | PASS | 0 | 1083 |
+| npm run packages:health | WARN | 1 | 973 |
+| npm run service-fit:health | WARN | 1 | 861 |
+| npm run ai:answer-health | PASS | 0 | 948 |
+| npm run english:intent-health | PASS | 0 | 1177 |
+| npm run seo:health | PASS | 0 | 2756 |
+| npm run seo:conversion | PASS | 0 | 2026 |
+| npm run lead:health | PASS | 0 | 1186 |
+| npm run site:qa | PASS | 0 | 2261 |
+| npm run trust:health | WARN | 1 | 1463 |
+| npm run copy:quality | PASS | 0 | 1562 |
+| npm run editorial:quality | PASS | 0 | 1138 |
+| npm run content:prune-health | PASS | 0 | 1262 |
+| npm run lighthouse:local | PASS | 0 | 1097 |
+| npm run snippet:health | PASS | 0 | 1135 |
+| npm run performance:health | PASS | 0 | 1624 |
+| npm run accessibility:health | WARN | 1 | 1184 |
+| npm run gsc:import | PASS | 0 | 1071 |
+| npm run text:encoding-check | PASS | 0 | 1176 |
+| npm run seo:dedupe-risk | PASS | 0 | 929 |
+| npm run lint | PASS | 0 | 61778 |
+| npm run typecheck | PASS | 0 | 8662 |
 
 ## Automatisch behoben
 
