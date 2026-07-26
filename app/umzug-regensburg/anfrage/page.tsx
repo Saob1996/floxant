@@ -19,7 +19,7 @@ import { company } from "@/lib/company";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/umzug-regensburg/anfrage";
-const canonical = `${company.url}/umzug-regensburg`;
+const canonical = `${company.url}/regensburg/umzug`;
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -175,7 +175,7 @@ export default function RegensburgMovingAdsPage() {
             <h2 className="text-2xl font-black">Lieber erst die organische Leistungsseite ansehen?</h2>
             <p className="mt-2 font-medium leading-7">Dort finden Sie mehr Informationen zu Ablauf, Aufwandstreibern und kombinierten Leistungen.</p>
           </div>
-          <Link href="/umzug-regensburg" className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white">
+          <Link href="/regensburg/umzug" className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white">
             Umzug Regensburg ansehen
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>

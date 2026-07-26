@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { handleLeadOptions, handleLeadSubmission } from "../functions/_lib/lead-handler.js";
 import * as bookingsFunction from "../functions/api/bookings.js";
 import * as intakeFunction from "../functions/api/intake.js";
+import * as movingCanonicalRedirectFunction from "../functions/umzug-regensburg.js";
 import { bookingFetch } from "../lib/booking-submission-client.ts";
 import {
   ALLOWED_FILE_FIELDS,
@@ -360,6 +361,17 @@ try {
     assert(bookingsFunction.onRequestOptions === handleLeadOptions, "bookings OPTIONS entrypoint must exist");
     assert(intakeFunction.onRequestPost === handleLeadSubmission, "intake POST entrypoint must use shared handler");
     assert(intakeFunction.onRequestOptions === handleLeadOptions, "intake OPTIONS entrypoint must exist");
+  });
+
+  await test("Regensburg-moving-canonical-redirect", async () => {
+    const response = movingCanonicalRedirectFunction.onRequest({
+      request: new Request("https://www.floxant.de/umzug-regensburg"),
+    });
+    assert(response.status === 308, "legacy Regensburg moving route must redirect permanently");
+    assert(
+      response.headers.get("Location") === "https://www.floxant.de/regensburg/umzug",
+      "legacy Regensburg moving route must target the canonical organic page",
+    );
   });
 
   await test("largest-active-contact-payload-201", async () => {

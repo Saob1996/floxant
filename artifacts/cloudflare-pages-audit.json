@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-26T11:01:14.504Z",
+  "generatedAt": "2026-07-26T11:43:52.860Z",
   "limits": {
     "fileCount": 13406,
     "fileCountLimit": 20000,
     "largestFileBytes": 1649459,
     "fileSizeLimitBytes": 26214400,
-    "totalBytes": 4389341606
+    "totalBytes": 4389341628
   },
   "counts": {
     "htmlFiles": 1572,
