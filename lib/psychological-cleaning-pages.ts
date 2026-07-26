@@ -1,4 +1,5 @@
 import type { StrategicBlogArticle } from "@/lib/strategic-blog-articles";
+import { germanizeDeep } from "@/lib/german-text";
 
 export type PsychologicalCleaningFaq = {
   q: string;
@@ -847,7 +848,7 @@ const constructionDustArticles: PsychologicalCleaningArticleSeed[] = [
   },
 ];
 
-export const psychologicalCleaningLandingPages = [
+const psychologicalCleaningLandingPageSeeds = [
   {
     slug: "sichtbar-sauber-protokoll",
     serviceName: "Sichtbar-Sauber-Protokoll",
@@ -1893,6 +1894,10 @@ export const psychologicalCleaningLandingPages = [
     supportingArticles: constructionDustArticles,
   },
 ] as const satisfies readonly PsychologicalCleaningLandingPage[];
+
+export const psychologicalCleaningLandingPages = germanizeDeep(
+  psychologicalCleaningLandingPageSeeds,
+);
 
 export type PsychologicalCleaningLandingSlug =
   (typeof psychologicalCleaningLandingPages)[number]["slug"];

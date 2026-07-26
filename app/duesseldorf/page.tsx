@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2, FileSearch, MapPin, ShieldCheck } from "lucide-react";
 
 import { ServiceFinder } from "@/components/ContactPathChooser";
+import { DuesseldorfCleaningPlanner } from "@/components/dominance/DuesseldorfCleaningPlanner";
+import { ServiceAnswerSummary } from "@/components/editorial/ServiceAnswerSummary";
 import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
@@ -267,6 +269,9 @@ export default function DuesseldorfHubPage() {
           </div>
         </div>
       </section>
+
+      <DuesseldorfCleaningPlanner />
+      <ServiceAnswerSummary serviceId="reinigung" region="Düsseldorf" className="border-b border-slate-200" />
 
       <ServicePackageDecisionExperience
         variant="duesseldorf"
