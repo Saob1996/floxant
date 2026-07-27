@@ -58,6 +58,8 @@ Nicht belastbare Aussagen zu pauschalem Versicherungsschutz wurden aus öffentli
 
 Das bestehende System wurde um professionelle Seiten-, Formular- und Statusbausteine ergänzt. Neue Tokens und die Komponente `ProfessionalPage` unterstützen klare Hierarchie, ruhige Flächen, konsistente Abstände, erkennbare Handlungsoptionen und robuste Zustände ohne einen parallelen Markenstil einzuführen.
 
+Die kompakte Kontaktleiste bietet sechs klar benannte Wege: Anfrage, WhatsApp, Anrufen, E-Mail, Angebot und Kosten. Die E-Mail-Aktion öffnet `info@floxant.de` über `mailto:info@floxant.de` und bleibt auf Desktop und Mobil sichtbar.
+
 ## 13. Homepage
 
 Die Homepage bleibt das überregionale Einstiegsziel. Navigation und Standortauswahl führen Nutzer getrennt zu Düsseldorf und Regensburg, ohne eine Leistung automatisch dem falschen Standort zuzuordnen.
@@ -151,7 +153,7 @@ Formularfelder besitzen Labels, erforderliche Zustände und verständliche Fehle
 
 ## 30. Technische Tests
 
-Vor der Freigabe laufen mindestens:
+Vor der Freigabe wurden die vollständigen Prüfketten erfolgreich abgeschlossen:
 
 - `npm ci`
 - `npm run lint`
@@ -163,21 +165,53 @@ Vor der Freigabe laufen mindestens:
 - sämtliche Health-, Route-, CTA-, Kontakt-, SEO-, Content-Safety-, Vercel-Safety-, Critical- und Predeploy-Prüfungen
 - sämtliche Copy-, Claims-, Intent-, Ads-, Umlaut-, Service-, FAQ-, Struktur-, Duplikat- und Design-Audits
 
+Der statische Export umfasste 1.582 HTML-Dateien und 6.012 gültige JSON-LD-Blöcke. Die Release-Prüfung meldete keine funktionalen Blocker.
+
 ## 31. Browserprüfungen
 
-Die Cloudflare-Preview wird mit 1.440, 1.024, 768 und 390 Pixel Breite geprüft. Abgedeckt werden Homepage, Leistungsauswahl, beide Standort-Hubs, priorisierte organische Leistungsseiten, beide Ads-Seiten, FAQ, Blog, Suche, Service-Finder, Kontakt und Dashboard-Login. Kontrolliert werden Navigation, Standortzuordnung, Formulare, Konsole, horizontales Überlaufen, öffentliche Sprache und Claims.
+Die Cloudflare-Preview und anschließend die Produktion wurden bei 1.440, 1.024, 768 und 390 Pixel Breite geprüft. Abgedeckt waren Homepage, Leistungsauswahl, beide Standort-Hubs, priorisierte organische Leistungsseiten, beide Ads-Seiten, FAQ, Blog, Suche, Service-Finder, Kontakt und Dashboard-Login.
+
+Die geprüften Seiten besaßen jeweils genau eine H1, korrekte Canonicals und die vorgesehene Robots-Direktive. Navigation und Standortzuordnung führten getrennt nach Düsseldorf und Regensburg. Es gab kein horizontales Überlaufen und keine Browser-Konsolenfehler. Die Kontaktleiste zeigte auf Desktop und Mobil sechs Aktionen; die E-Mail-Aktion verwies korrekt auf `mailto:info@floxant.de`. Beide Ads-Formulare waren vorhanden und `noindex,follow`, der Dashboard-Login war `noindex,nofollow`.
 
 ## 32. Preview-Deployment
 
-Das Preview-Deployment wird erst nach vollständigem lokalem Grünstatus aus dem Feature-Branch erzeugt. Deployment-ID, URL, Zeitstempel, Quellcommit und Browser-QA-Ergebnis werden im revisionssicheren Abschlussnachweis dokumentiert.
+Das freigegebene Preview-Deployment wurde erfolgreich aus dem Feature-Branch erzeugt:
+
+- Deployment-ID: `1bb60070-a5bf-4101-b01f-479e9f23d534`
+- URL: `https://1bb60070.floxant.pages.dev`
+- Branch: `feat/professional-site-google-ads-release-2026`
+- Quellcommit: `672dd40e4aa690d39bfad5e0b27d895907fc8ef4`
+- erstellt: `2026-07-27T10:17:04.321656Z` (`27.07.2026, 12:17:04 CEST`)
+- erfolgreich beendet: `2026-07-27T10:17:06.881699Z` (`27.07.2026, 12:17:06 CEST`)
+- Status: `success`
+
+Der automatische Git-Preview-Lauf `dc4948bd-a66e-442a-82b8-05b5f0ec7d36` wurde wegen einer fehlerhaften 404-Auslieferung nicht als Freigabenachweis verwendet. Maßgeblich ist das oben genannte erfolgreiche, per Browser geprüfte Preview-Deployment.
 
 ## 33. Production-Deployment
 
-Die Veröffentlichung erfolgt ausschließlich nach erfolgreicher Preview als Fast-Forward auf `chore/vercel-hobby-static-optimization`. Kein Merge nach `main`, kein Force-Push, keine DNS-Änderung, keine Supabase-Migration und kein Vercel-Deploy sind Teil dieses Releases. Cloudflare-ID, URL, Zeitstempel und Commit werden im Abschlussnachweis festgehalten.
+Die Veröffentlichung erfolgte nach erfolgreicher Preview als Fast-Forward auf `chore/vercel-hobby-static-optimization`:
+
+- Deployment-ID: `eda5fa86-399f-4ddb-8b05-f3c1e796e126`
+- Deployment-URL: `https://eda5fa86.floxant.pages.dev`
+- Produktionsdomain: `https://www.floxant.de`
+- Branch: `chore/vercel-hobby-static-optimization`
+- Quellcommit: `672dd40e4aa690d39bfad5e0b27d895907fc8ef4`
+- erstellt: `2026-07-27T10:33:53.821254Z` (`27.07.2026, 12:33:53 CEST`)
+- erfolgreich beendet: `2026-07-27T10:33:55.848797Z` (`27.07.2026, 12:33:55 CEST`)
+- Status: `success`
+
+Der automatische Git-Produktionslauf `61fb32df-dcc0-4100-8229-8ef11b53e7b9` wurde nicht als Freigabenachweis verwendet; maßgeblich ist das erfolgreiche Deployment `eda5fa86-399f-4ddb-8b05-f3c1e796e126`. Es gab keinen Merge nach `main`, keinen Force-Push, keine DNS-Änderung, keine Supabase-Migration und keinen Vercel-Deploy. Die Weiterleitung von `floxant.de` auf `www.floxant.de` antwortete weiterhin mit `302`; für eine dauerhaft beabsichtigte kanonische Weiterleitung ist `308` in einer getrennten Infrastrukturänderung zu prüfen.
 
 ## 34. Produktionstests
 
-Nach erfolgreichem Cloudflare-Deployment werden kritische Seiten, `robots.txt`, `sitemap.xml` und die API-Verträge geprüft. Erst danach werden exakt zwei klar identifizierte Produktionsanfragen gesendet: eine für Düsseldorf-Reinigung und eine für Regensburg-Umzug. Beide Antworten, IDs, Quellen und die persistente Verarbeitung werden dokumentiert. Es erfolgt kein automatischer Retry und keine Löschung.
+Nach dem Cloudflare-Deployment wurden kritische Seiten, `robots.txt`, `sitemap.xml` und die API-Verträge erneut geprüft. Der API-Smoke-Test ergab `204` für `OPTIONS`, `400 VALIDATION_ERROR` für einen leeren POST und `403 ORIGIN_NOT_ALLOWED` für eine fremde Origin. Es trat kein `CONFIGURATION_ERROR` auf.
+
+Exakt zwei klar identifizierte Produktionsanfragen wurden ohne automatischen Retry gesendet:
+
+- Düsseldorf-Reinigung: HTTP `201`, Request-ID `9788ccae-d111-407d-94a9-e52f5a3f3195`, Booking-ID `cfa4a73d-a931-4f2c-943b-b6435b079641`, Quelle exakt `Google Ads – Reinigung Düsseldorf`
+- Regensburg-Umzug: HTTP `201`, Request-ID `f3eeda5a-a903-41f9-b8a3-9afe968a67ab`, Booking-ID `71706ad4-1484-4e66-be55-c466b8c70d20`, Quelle exakt `Google Ads – Umzug Regensburg`
+
+Die Serverfunktion schreibt per Supabase-Insert mit `Prefer: return=representation` und liefert `201` erst nach einer zurückgegebenen Datensatz-ID. Die beiden Booking-IDs belegen damit die persistente Speicherung. In diesem Lauf entstanden keine Duplikate. Die synthetischen Datensätze sind durch die genannten IDs eindeutig identifiziert; eine Löschung war nicht Teil der Freigabe.
 
 ## 35. Rollback-Anleitung
 
