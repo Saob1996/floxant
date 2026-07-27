@@ -343,7 +343,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreten Umzug, Auszug und Übergabe ruhig abstimmen
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn ein Fall ruhig und zurückhaltend geklaert werden soll, reichen zuerst Ort,
+                Wenn ein Fall ruhig und zurückhaltend geklärt werden soll, reichen zuerst Ort,
                 Zeitfenster, grober Umfang und bevorzugter Kontaktweg. FLOXANT prüft Transport,
                 Reinigung, Entrümpelung, Schlüsselübergabe und Übergabeakte nach Absprache.
               </p>
@@ -441,7 +441,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         <ProjectStoryGrid serviceKey="diskret" />
         <ProcessProofSteps
           title="Diskrete Anfrage Schritt für Schritt."
-          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details können später im passenden Kanal geklaert werden."
+          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details können später im passenden Kanal geklärt werden."
         />
         <section className="px-4 py-8 sm:px-6">
           <div className="mx-auto max-w-7xl">

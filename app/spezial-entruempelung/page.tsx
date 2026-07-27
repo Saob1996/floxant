@@ -64,8 +64,8 @@ const clearanceChecklist = [
 
 const faqItems = [
   {
-    q: "Was zählt bei FLOXANT als Spezialentruempelung?",
-    a: "Spezialentruempelung umfasst Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung, diskrete Faelle und Räumung vor Übergabe.",
+    q: "Was zählt bei FLOXANT als Spezial-Entrümpelung?",
+    a: "Spezial-Entrümpelung umfasst Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung, diskrete Fälle und Räumung vor Übergabe.",
   },
   {
     q: "Welche Angaben helfen für eine realistische Einschätzung?",
@@ -95,16 +95,16 @@ const clearanceSignatureServices = signatureServiceLinks.filter((item) =>
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Spezialentruempelung | Keller, Nachlass, Übergabe | FLOXANT",
+  title: "Spezial-Entrümpelung | Keller, Nachlass, Übergabe | FLOXANT",
   description:
-    "Spezialentruempelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung und Übergabe mit Fotos und Freigabe klären.",
+    "Spezial-Entrümpelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung und Übergabe mit Fotos und Freigabe klären.",
   alternates: { canonical },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "Spezialentruempelung mit würdevoller Machbarkeitspruefung",
+    title: "Spezial-Entrümpelung mit sorgfältiger Machbarkeitsprüfung",
     description:
       "Keller, Lager, Nachlass, Wohnungsauflösung und Räumung vor Übergabe anhand von Fotos, Freigabe und Zielzustand einordnen.",
     images: [
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
         url: "/assets/service-clearance.png",
         width: 1200,
         height: 630,
-        alt: "FLOXANT Spezialentruempelung und Räumung",
+        alt: "FLOXANT Spezial-Entrümpelung und Räumung",
       },
     ],
   },
@@ -123,29 +123,29 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "Spezialentruempelung",
+        name: "Spezial-Entrümpelung",
         description:
-          "FLOXANT Spezialentruempelung für Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung und Räumung vor Übergabe.",
+          "FLOXANT Spezial-Entrümpelung für Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung, Haushaltsauflösung und Räumung vor Übergabe.",
         path,
         about: specialClearanceLinks.map((item) => item.title),
         potentialActions: [
-          { name: "Spezialentruempelung anfragen", target: "/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage", type: "ContactAction" },
+          { name: "Spezial-Entrümpelung anfragen", target: "/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage", type: "ContactAction" },
           { name: "Uebergabe vorbereiten", target: "/uebergabeakte" },
         ],
       }),
       buildServiceJsonLd({
-        name: "Spezialentruempelung",
+        name: "Spezial-Entrümpelung",
         description:
           "Machbarkeitspruefung für besondere Räumungs- und Aufloesungsfaelle mit Fotos, Freigabe, Zugang, Entsorgung und Zielzustand.",
         path,
-        serviceType: "Spezialentruempelung und Auflösung",
+        serviceType: "Spezial-Entrümpelung und Auflösung",
         areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Prüfung"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
         { name: "Startseite", item: "/" },
         { name: "Leistungen", item: "/leistungen" },
-        { name: "Spezialentruempelung", item: path },
+        { name: "Spezial-Entrümpelung", item: path },
       ]),
       buildFaqJsonLd(faqItems),
     ],
@@ -167,7 +167,7 @@ export default function SpezialentruempelungPage() {
       <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <Image
           src="/assets/service-clearance.webp"
-          alt="FLOXANT Spezialentruempelung mit sortierter Räumung"
+          alt="FLOXANT Spezial-Entrümpelung mit sortierter Räumung"
           fill
           priority
           sizes="100vw"
@@ -178,13 +178,13 @@ export default function SpezialentruempelungPage() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm font-black text-cyan-100 backdrop-blur">
               <Home className="h-4 w-4" aria-hidden="true" />
-              FLOXANT Spezialentruempelung
+              FLOXANT Spezial-Entrümpelung
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
               Spezial-Entrümpelung für Keller, Nachlass und Lager respektvoll klären.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-              Spezialentruempelung braucht Fotos, Freigabe, Zielzustand und ruhige
+              Spezial-Entrümpelung braucht Fotos, Freigabe, Zielzustand und ruhige
               Kommunikation. FLOXANT sortiert Räumung, Entsorgung, Reinigung,
               Übergabe und sensible Grenzen, bevor etwas zugesagt wird.
             </p>
@@ -193,7 +193,7 @@ export default function SpezialentruempelungPage() {
                 href="/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
               >
-                Spezialentruempelung anfragen
+                Spezial-Entrümpelung anfragen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
@@ -224,7 +224,7 @@ export default function SpezialentruempelungPage() {
       />
 
       <AiAnswerCard
-        title="Spezialentruempelung braucht Freigabe, Fotos und Zielzustand."
+        title="Spezial-Entrümpelung braucht Freigabe, Fotos und Zielzustand."
         answer="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und sensible Kommunikation, damit Nachlass, Keller, Lager oder belastete Räume nicht pauschal behandelt werden."
         points={clearanceAnswerPoints}
         nextStep="Naechster Schritt: Fotos, Ort, Freigabe, Menge, Zugang und Zielzustand mitsenden."
@@ -252,7 +252,7 @@ export default function SpezialentruempelungPage() {
       />
 
       <ChecklistBlock
-        title="Checkliste für Spezialentruempelung"
+        title="Checkliste für Spezial-Entrümpelung"
         intro="Diese Angaben helfen, ohne sensible Details unnoetig breit zu machen."
         items={clearanceChecklist}
         columns={3}
@@ -284,7 +284,7 @@ export default function SpezialentruempelungPage() {
 
       <ServiceClusterLinks
         eyebrow="Grenzen und Würde"
-        title="Was bei Spezialentruempelung nicht pauschal versprochen wird."
+        title="Was bei Spezial-Entrümpelung nicht pauschal versprochen wird."
         intro="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und rechtliche Fragen. Sensible Situationen werden sachlich und respektvoll beschrieben."
         links={boundaries.map((text) => ({
           title: text,
@@ -295,13 +295,13 @@ export default function SpezialentruempelungPage() {
       />
 
       <SignatureServicesGrid
-        title="Welche Signature Services zu Spezialentruempelung passen."
+        title="Welche besonderen Leistungen zur Spezial-Entrümpelung passen."
         intro="Objektbrief, Übergabeakte, Übergabe-Sprint, Plan B, Diskret-Service und Vermieter-Ready helfen, wenn Räumung Teil einer größeren Frist ist."
         services={clearanceSignatureServices}
       />
 
       <LocalServiceBridge
-        serviceLabel="Spezialentruempelung"
+        serviceLabel="Spezial-Entrümpelung"
         duesseldorfHref="/duesseldorf/entsorgung"
         regensburgHref="/regensburg/entruempelung"
       />
@@ -315,7 +315,7 @@ export default function SpezialentruempelungPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">FAQ</p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal">Häufige Fragen zur Spezialentruempelung.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal">Häufige Fragen zur Spezial-Entrümpelung.</h2>
           </article>
           <div className="grid gap-3">
             {faqItems.map((item, index) => (

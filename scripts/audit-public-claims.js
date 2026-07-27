@@ -143,7 +143,11 @@ function main() {
     }
   }
 
-  for (const relative of ["public/search-index.json", "public/service-graph.json"]) {
+  for (const relative of [
+    "public/search-index.json",
+    "public/service-graph.json",
+    "out/service-graph.json",
+  ]) {
     const absolute = path.join(ROOT, relative);
     if (!fs.existsSync(absolute)) continue;
     const values = [];
@@ -162,6 +166,31 @@ function main() {
         status: "OPEN",
       });
     }
+  }
+
+  for (const relative of [
+    "out/llms.txt",
+    "lib/lead-reply-templates.ts",
+    "lib/content/faq-registry.ts",
+    "lib/services/service-registry.ts",
+  ]) {
+    const absolute = path.join(ROOT, relative);
+    if (!fs.existsSync(absolute)) continue;
+    const text = fs.readFileSync(absolute, "utf8");
+    const sections = text.split(/\r?\n|(?<=[.!?])\s+/);
+    const relevant = sections.find((section) => pianoTerms.test(section) && insuranceTerms.test(section));
+    if (!relevant) continue;
+    const match = relevant.match(insuranceTerms);
+    findings.push({
+      code: "PIANO_INSURANCE_CLAIM",
+      severity: "ERROR",
+      source: relative,
+      route: "",
+      context: relative.startsWith("out/") ? "public-output" : "source-data",
+      term: match?.[0] || "",
+      snippet: snippet(relevant, match?.index || 0, match?.[0]?.length || 0),
+      status: "OPEN",
+    });
   }
 
   const unique = Array.from(
