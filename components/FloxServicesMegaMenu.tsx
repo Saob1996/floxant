@@ -11,6 +11,7 @@ type FloxServicesMegaMenuProps = {
 const serviceGroups = [
   {
     title: "Umzug & Transport",
+    region: "Regensburg",
     links: [
       { label: "Umzug", href: "/regensburg/umzug" },
       { label: "Seniorenumzug", href: "/seniorenumzug-bayern" },
@@ -20,6 +21,7 @@ const serviceGroups = [
   },
   {
     title: "Reinigung",
+    region: "Standort auswählen",
     links: [
       { label: "Reinigung", href: "/reinigung" },
       { label: "Büroreinigung", href: "/reinigung#bueroreinigung" },
@@ -29,6 +31,7 @@ const serviceGroups = [
   },
   {
     title: "Entrümpelung & Auflösung",
+    region: "Regensburg",
     links: [
       { label: "Entrümpelung", href: "/regensburg/entruempelung" },
       { label: "Wohnungsauflösung", href: "/regensburg/wohnungsaufloesung" },
@@ -53,6 +56,7 @@ export function FloxServicesMegaMenu({
           {serviceGroups.map((group) => (
             <div key={group.title} className="py-2">
               <p className="text-xs font-black uppercase tracking-wide text-slate-500">{group.title}</p>
+              <p className="mt-1 text-xs font-bold text-blue-700">{group.region}</p>
               <div className="mt-1 grid sm:grid-cols-2">
                 {group.links.map((item) => (
                   <Link
@@ -96,6 +100,7 @@ export function FloxServicesMegaMenu({
           >
             {group.title}
           </h2>
+          <p className="mt-1 text-xs font-bold text-blue-700">{group.region}</p>
           <div className="mt-3 grid gap-1">
             {group.links.map((item) => (
               <Link

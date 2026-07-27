@@ -17,9 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "",
-    title: "FLOXANT | Umzug, Reinigung & Entrümpelung lokal prüfen",
+    title: "FLOXANT | Reinigung Düsseldorf & Umzug Regensburg",
     description:
-      "FLOXANT prüft Umzug, Entrümpelung, Haushaltsauflösung sowie Reinigung und Gewerbereinigung in Regensburg und im 50-km-Umkreis.",
+      "Reinigung in Düsseldorf sowie Umzug, Entrümpelung, Auflösung, Transport und Reinigung in Regensburg verständlich auswählen und direkt anfragen.",
   });
 }
 
