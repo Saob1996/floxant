@@ -64,6 +64,7 @@ const activeClientFiles = [
   "components/BackhaulOffersBoard.tsx", "components/BudgetContactForm.tsx", "components/BusinessDisposalForm.tsx",
   "components/CellarTrashroomRescueForm.tsx", "components/CheaperAlternativeForm.tsx", "components/CommercialCleaningLeadForm.tsx",
   "components/DamageControlForm.tsx", "components/DiscreetMoveForm.tsx", "components/DuesseldorfB2BCleaningForm.tsx",
+  "components/forms/DuesseldorfCleaningAdsForm.tsx", "components/forms/RegensburgMovingAdsForm.tsx",
   "components/EstateClearanceForm.tsx", "components/HandoverFileForm.tsx", "components/OfferCheckForm.tsx",
   "components/OfferComparisonAdsForm.tsx", "components/PlanBServiceForm.tsx", "components/PlatformOrderCheckForm.tsx",
   "components/PrivateClientInquiryForm.tsx", "components/PropertyReadyForm.tsx", "components/QuickBudgetModal.tsx",

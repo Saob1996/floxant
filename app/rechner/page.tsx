@@ -980,7 +980,7 @@ export default async function RechnerPage() {
               Ein ruhiger Startpunkt statt Preischaos
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
-              Der Rechner ist ein sauberer Startpunkt für Kunden, die Aufwand, Service-Fit und
+              Der Rechner ist ein sauberer Startpunkt für Kunden, die Aufwand, passende Leistung und
               nächste Entscheidung ruhig einordnen wollen. Ein zu früher Billigpreis hilft wenig,
               wenn am Einsatztag Fahrzeug, Zeitfenster oder Übergabe nicht zur Aufgabe passen.
             </p>

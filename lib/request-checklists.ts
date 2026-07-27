@@ -134,7 +134,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
     missingInfoFlags: ["fläche", "raumliste", "turnus", "reinigungszeiten", "zugang"],
     microcopy: {
       headline: "Büroreinigung mit belastbaren Eckdaten",
-      intro: "B2B-Leads werden besser, wenn Fläche, Raumliste, Turnus, Zeiten und Ansprechpartner direkt klar sind.",
+      intro: "B2B-Anfragen werden klarer, wenn Fläche, Raumliste, Turnus, Zeiten und Ansprechpartner direkt genannt sind.",
       submitReminder: "Eine Anfrage ist noch keine Beauftragung.",
       photoReminder: "Fotos helfen, sind aber bei Büroflächen freiwillig und bitte ohne Personen.",
       noPromise: "Keine Fake-Referenzen, keine Zertifikatsbehauptung und keine Preisgarantie.",

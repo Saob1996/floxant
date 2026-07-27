@@ -22,15 +22,15 @@ export const correctionSectionsDe: readonly TrustPolicySection[] = [
 
 export const editorialSectionsEn: readonly TrustPolicySection[] = [
   { id: "responsibility", title: "Editorial responsibility", paragraphs: ["Public FLOXANT content is owned by the organisational role FLOXANT editorial team. Named authors or reviewers are shown only when their identity, role and approval are documented."], points: ["Content contact: info@floxant.de", "Review status and owner belong in editorial metadata", "Unapproved drafts must not be indexable"] },
-  { id: "review", title: "How content is checked", paragraphs: ["Service details are checked against the public service and facts registries. Regions, contact routes, boundaries and internal links are validated. Prices, dates, reviews, projects or qualifications are not added without reliable evidence."] },
+  { id: "review", title: "How content is checked", paragraphs: ["Service details are checked against published information and supporting records. Regions, contact routes, boundaries and links are reviewed. Prices, dates, reviews, projects or qualifications are not added without reliable evidence."] },
   { id: "ai", title: "Use of AI assistance", paragraphs: ["AI may support outlines, question extraction, repetition checks, translation drafts and quality review. It may not approve or publish content automatically and may not invent company facts, prices, reviews, projects, locations or sources."], points: ["AI assistance is recorded in editorial metadata", "Approval remains a human task", "No public AI concierge is active"] },
   { id: "limits", title: "Content boundaries", paragraphs: ["Guides and FAQs explain useful enquiry details and effort factors. They are not legal, tax, medical, safety or pricing advice. An enquiry is not a confirmed date, price or availability promise."] },
 ];
 
 export const methodologySectionsEn: readonly TrustPolicySection[] = [
-  { id: "facts", title: "Facts before wording", paragraphs: ["Organisation, domain, regions, contact routes and publicly allowed services come from central facts and service registries. Machine-readable files and visible pages should use the same approved facts."] },
+  { id: "facts", title: "Facts before wording", paragraphs: ["Organisation, domain, regions, contact routes and publicly offered services come from approved company records. Machine-readable files and visible pages should use the same verified facts."] },
   { id: "value", title: "Distinct user value", paragraphs: ["A page or question is not created solely for a search phrase. It needs a distinct decision problem, audience, service context, boundaries, useful internal links and a clear next step."] },
-  { id: "local", title: "Local context", paragraphs: ["Düsseldorf and Regensburg are linked only to services that are already publicly offered or verified in the service registry. Automatically generated district pages and invented coverage are excluded."] },
+  { id: "local", title: "Local context", paragraphs: ["Düsseldorf and Regensburg are linked only to services that are publicly offered and verified. Automatically generated district pages and invented coverage are excluded."] },
   { id: "review", title: "Review and improvement", paragraphs: ["After publication, we monitor technical quality, findability and whether enquiry paths are easy to understand. We do not promise a particular position in search results. Page changes and redirects are reviewed individually."] },
 ];
 
