@@ -28,6 +28,7 @@ import {
 
 import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { ProfessionalCard, ProfessionalSectionHeading } from "@/components/professional/ProfessionalPage";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import {
@@ -44,9 +45,9 @@ const offerCheckHref =
 const pianoContactHref =
   "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo";
 
-const pageTitle = "Umzug Regensburg anfragen - Start, Ziel und Termin klären";
+const pageTitle = "Umzug Regensburg: Umzugsservice anfragen | FLOXANT";
 const pageDescription =
-  "Umzug in Regensburg geplant? Start, Ziel, Etage, Umfang und Termin beschreiben. FLOXANT prüft Anfrage oder Umzugsangebot anhand der genannten Eckdaten.";
+  "Umzug in Regensburg persönlich anfragen: Start, Ziel, Etage, Aufzug, Umfang und Termin senden. Für Privat-, Klein-, Senioren- oder Büroumzug.";
 
 type LinkCard = {
   title: string;
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: canonicalPath,
-    title: "Umzug in Regensburg vorbereiten - Anfrage mit den wichtigsten Eckdaten stellen",
+    title: "Umzug in Regensburg persönlich und passend zum Umfang anfragen",
     description: pageDescription,
   },
   twitter: {
@@ -300,6 +301,11 @@ function JsonLd() {
           "Seniorenumzug",
           "Klaviertransport",
           "Beiladung",
+          "Umzugsunternehmen Regensburg",
+          "Privatumzug Regensburg",
+          "Büroumzug Regensburg",
+          "Umzug Regensburg Altstadt",
+          "Umzug Regensburg Stadtamhof",
         ],
         potentialActions: [
           { name: "Umzug in Regensburg anfragen", target: moveContactHref, type: "ContactAction" },
@@ -383,7 +389,7 @@ function PrimaryCta({
       data-service="umzug"
       data-city="regensburg"
       data-page-intent={href.includes("umzugsangebot-pruefen") ? "umzugsangebot-pruefen" : "umzug-regensburg"}
-      data-priority="p2"
+      data-priority="p0"
       data-destination={href}
       data-source="seo"
       data-cta-label={label}
@@ -415,12 +421,12 @@ function RegensburgMoveHero() {
           </div>
 
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-            Umzug in Regensburg klar anfragen - mit Start, Ziel und Terminwunsch
+            Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang
           </h1>
           <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg">
-            Sie planen einen Umzug in Regensburg oder Umgebung und möchten Aufwand, Termin und nächste Schritte besser
-            einschätzen? Beschreiben Sie Start, Ziel, Etage, Menge und gewünschten Zeitraum. FLOXANT prüft diese Angaben
-            für Privatumzug, Möbeltransport, Klaviertransport, Seniorenumzug oder einen Plan-B-Fall.
+            Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in Regensburg? Senden Sie Start,
+            Ziel, Etagen, Aufzüge, Möbelmenge und Wunschtermin. FLOXANT prüft Ihre Angaben und klärt verständlich, welche
+            Rückfragen oder nächsten Schritte für Ihren Umzug wichtig sind.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -493,8 +499,8 @@ function MovingAuthorityPanel() {
     <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Authority und Entscheidung"
-          title="Warum FLOXANT die Umzugsanfrage zuerst sortiert."
+          eyebrow="Sicher entscheiden"
+          title="Warum FLOXANT Ihre Umzugsdaten zuerst gemeinsam mit Ihnen klärt."
           intro="Gute Umzugsplanung beginnt nicht mit einem Bauchpreis, sondern mit den Eckdaten, die den Aufwand wirklich verändern."
         />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -504,6 +510,59 @@ function MovingAuthorityPanel() {
               <h3 className="mt-4 text-lg font-black tracking-normal text-slate-950">{title}</h3>
               <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{text}</p>
             </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MovingChoicePanel() {
+  const choices = [
+    {
+      title: "Privatumzug und Wohnungswechsel",
+      text: "Für Wohnung oder Haus in Regensburg: beide Etagen, Aufzüge, Haltemöglichkeiten, Möbelmenge und Wunschtermin nennen.",
+      href: moveContactHref,
+      label: "Privatumzug anfragen",
+    },
+    {
+      title: "Klein-, Möbel- oder Einzeltransport",
+      text: "Für wenige Möbel oder einzelne Stücke: Maße, Fotos, Start, Ziel, Treppen und ein flexibles Zeitfenster helfen.",
+      href: "/kleintransport-regensburg",
+      label: "Kleintransport auswählen",
+    },
+    {
+      title: "Senioren- oder Familienumzug",
+      text: "Für Angehörige und sensible Situationen: Ansprechpartner, gewünschte Hilfe, Freigaben und mögliche Zusatzleistungen früh klären.",
+      href: "/regensburg/seniorenumzug",
+      label: "Seniorenumzug einordnen",
+    },
+    {
+      title: "Büro- und Praxisumzug",
+      text: "Für Unternehmen: Inventar, Arbeitsbereiche, Zeitfenster, Ansprechpartner und betriebliche Einschränkungen zusammenfassen.",
+      href: "/bueroumzug-regensburg",
+      label: "Büroumzug vorbereiten",
+    },
+  ] as const;
+
+  return (
+    <section className="border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10" aria-labelledby="moving-choice-heading">
+      <div className="mx-auto max-w-7xl">
+        <ProfessionalSectionHeading
+          eyebrow="Umzugsart wählen"
+          title="Welcher Umzug passt zu Ihrer Situation?"
+          description="Wählen Sie den passenden Einstieg. Falls Sie noch unsicher sind, genügt eine kurze Beschreibung – FLOXANT hilft bei der Einordnung."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {choices.map((choice) => (
+            <ProfessionalCard key={choice.title} className="p-5">
+              <h3 className="text-xl font-black text-slate-950">{choice.title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{choice.text}</p>
+              <Link href={choice.href} className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
+                {choice.label}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </ProfessionalCard>
           ))}
         </div>
       </div>
@@ -738,9 +797,9 @@ function RelatedMovingServices() {
     <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Interne Links"
+          eyebrow="Passende Zusatzleistungen"
           title="Wenn der Umzug mit Angebot, Reinigung oder Plan B zusammenhängt."
-          intro="Die Links führen zu bestehenden Seiten und halten den Regensburger Umzugskontext zusammen."
+          intro="Wählen Sie eine ergänzende Leistung, wenn Reinigung, Entrümpelung oder Angebotsprüfung zu Ihrem Umzug gehört."
         />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {relatedServices.map(({ icon: Icon, title, text, href, label }) => (
@@ -833,7 +892,7 @@ function ClosingTrust() {
             { icon: Camera, text: "Fotos optional für Treppe, Zugang, Möbel und Engstellen" },
             { icon: FileSearch, text: "Vorhandenes Umzugsangebot kann auf Umfang und offene Punkte geprüft werden" },
             { icon: BadgeEuro, text: "Preisrahmen nur mit Kontext statt Schnellpreis ohne Angaben" },
-            { icon: ShieldCheck, text: "Keine Fake-Ratings, keine Preis- oder Sofortgarantie" },
+            { icon: ShieldCheck, text: "Keine unbelegten Bewertungen, keine Preis- oder Sofortgarantie" },
           ].map(({ icon: Icon, text }) => (
             <div key={text} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-7 text-slate-700">
               <Icon className="mt-1 h-4 w-4 shrink-0 text-cyan-800" aria-hidden="true" />
@@ -852,6 +911,7 @@ export default function RegensburgUmzugPage() {
       <JsonLd />
       <RegensburgMoveHero />
       <MovingQuickAnswer />
+      <MovingChoicePanel />
       <RequestChecklistBlock
         serviceKey="umzug"
         ctaHref={moveContactHref}
