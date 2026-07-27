@@ -437,6 +437,11 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Putzfirma Düsseldorf",
       "Gebäudereinigung Düsseldorf",
       "Reinigungsangebot prüfen",
+      "Wohnungsreinigung Düsseldorf",
+      "Apartmentreinigung Düsseldorf",
+      "Reinigung Düsseldorf Innenstadt",
+      "Reinigung Düsseldorf Pempelfort",
+      "Reinigung Düsseldorf Flingern",
     ],
   },
   bueroreinigung: {
@@ -1279,6 +1284,88 @@ function DuesseldorfCleaningAuthorityBlock({ config }: { config: PageConfig }) {
   );
 }
 
+function DuesseldorfCleaningNavigator({ config }: { config: PageConfig }) {
+  const districts = [
+    "Altstadt und Carlstadt",
+    "Stadtmitte und Pempelfort",
+    "Derendorf und Golzheim",
+    "Flingern und Düsseltal",
+    "Oberkassel und Niederkassel",
+    "Bilk, Unterbilk und Friedrichstadt",
+    "Wersten, Holthausen und Benrath",
+    "Weitere Stadtteile nach Objektprüfung",
+  ] as const;
+
+  const customerPaths = [
+    {
+      title: "Privathaushalt und Wohnung",
+      text: "Für Wohnungsreinigung, Grundreinigung, Auszug oder Übergabe: Fläche, Räume, Zustand, Etage und Termin nennen.",
+      href: config.primaryCta.href,
+      label: "Wohnungsreinigung beschreiben",
+    },
+    {
+      title: "Büro, Praxis oder Gewerbe",
+      text: "Für wiederkehrende Reinigung: Nutzungszeiten, Bereiche, Turnus, Zugang und Ansprechpartner zusammenfassen.",
+      href: "/duesseldorf/bueroreinigung",
+      label: "Büroreinigung auswählen",
+    },
+    {
+      title: "Apartment und Gästewechsel",
+      text: "Für möblierte Wohnungen und Ferienapartments: Checkout, nächster Check-in, Schlüsselweg und gewünschte Zusatzleistungen angeben.",
+      href: "/reinigung-moeblierte-wohnung-duesseldorf",
+      label: "Apartment-Reinigung ansehen",
+    },
+    {
+      title: "Fenster, Bau oder Sonderreinigung",
+      text: "Für Glas, Bauabschluss oder besondere Flächen helfen Fotos, Erreichbarkeit, Restarbeiten und ein klarer Zielzustand.",
+      href: "/duesseldorf/fensterreinigung",
+      label: "Fensterreinigung einordnen",
+    },
+  ] as const;
+
+  return (
+    <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10" aria-labelledby="duesseldorf-navigator-heading">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div>
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+              <MapPin className="h-4 w-4" aria-hidden="true" />
+              Düsseldorf vor Ort
+            </p>
+            <h2 id="duesseldorf-navigator-heading" className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
+              Stadtteil, Objekt und Reinigungsziel in einem Schritt klären.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
+              Ob Wohnung in Bilk, Büro in der Stadtmitte oder Apartment in Pempelfort: Entscheidend ist nicht nur der
+              Stadtteil, sondern was gereinigt werden soll, wann Zugang möglich ist und welcher Zustand erreicht werden
+              soll. FLOXANT prüft den Einsatz für Ihr konkretes Objekt.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2" aria-label="Düsseldorfer Stadtteile und Bereiche">
+              {districts.map((district) => (
+                <span key={district} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-700">
+                  {district}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {customerPaths.map((item) => (
+              <article key={item.title} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+                <Link href={item.href} className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
+                  {item.label}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BueroreinigungGewerbereinigungComparison() {
   const items = [
     {
@@ -1907,6 +1994,7 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <DuesseldorfCleaningHero config={config} />
       <CleaningQuickAnswer config={config} />
       <DuesseldorfCleaningAuthorityBlock config={config} />
+      <DuesseldorfCleaningNavigator config={config} />
       <RequestBriefChecklistBlock
         serviceKey={config.key}
         ctaHref={config.primaryCta.href}
