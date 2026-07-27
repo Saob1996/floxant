@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
@@ -75,6 +75,22 @@ export default function MobileFloatingContact() {
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anrufen</span>
               <span className="flox-mobile-action-note">Kurz klären</span>
+            </span>
+          </a>
+
+          <a
+            href={`mailto:${company.email}`}
+            className="flox-mobile-action flox-mobile-action-email"
+            aria-label={`FLOXANT per E-Mail an ${company.email} schreiben`}
+            data-event="email_click"
+            data-source="floating_contact"
+            data-contact-channel="email"
+            data-destination={`mailto:${company.email}`}
+          >
+            <Mail aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">E-Mail</span>
+              <span className="flox-mobile-action-note">{company.email}</span>
             </span>
           </a>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
@@ -69,6 +69,19 @@ export function DuesseldorfStickyActions() {
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anrufen</span>
               <span className="flox-mobile-action-note">Kurz klären</span>
+            </span>
+          </a>
+          <a
+            href={`mailto:${duesseldorfCompany.email}`}
+            className="flox-mobile-action flox-mobile-action-email"
+            aria-label={`FLOXANT Düsseldorf per E-Mail an ${duesseldorfCompany.email} schreiben`}
+            data-event="email_click"
+            data-contact-channel="email"
+          >
+            <Mail />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">E-Mail</span>
+              <span className="flox-mobile-action-note">{duesseldorfCompany.email}</span>
             </span>
           </a>
           <Link

@@ -3652,7 +3652,7 @@ input[type="file"]:hover {
 .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
 .flox-regensburg-action-wrap .flox-mobile-action-grid,
 .flox-universal-action-wrap .flox-mobile-action-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .flox-mobile-action {
@@ -3768,6 +3768,15 @@ input[type="file"]:hover {
   color: var(--flox-ink) !important;
 }
 
+.flox-mobile-action-email {
+  border: 1px solid rgba(14, 116, 144, 0.24);
+  background: linear-gradient(135deg, rgb(236, 254, 255), rgb(239, 246, 255));
+  color: rgb(8, 47, 73) !important;
+  box-shadow:
+    0 10px 22px rgba(14, 116, 144, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
 .flox-mobile-action:active {
   transform: translateY(1px) scale(0.99);
 }
@@ -3871,7 +3880,7 @@ input[type="file"]:hover {
   .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
   .flox-regensburg-action-wrap .flox-mobile-action-grid,
   .flox-universal-action-wrap .flox-mobile-action-grid {
-    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.95fr 0.88fr;
+    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.82fr 0.95fr 0.88fr;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action,
