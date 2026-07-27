@@ -29,7 +29,16 @@ export function RegensburgMovingAdsForm() {
   function continueToContact() {
     const form = formRef.current;
     if (!form) return;
-    const requiredIds = ["moving-start", "moving-destination", "moving-date", "moving-rooms"];
+    const requiredIds = [
+      "moving-start",
+      "moving-destination",
+      "moving-date",
+      "moving-rooms",
+      "moving-start-floor",
+      "moving-start-elevator",
+      "moving-destination-floor",
+      "moving-destination-elevator",
+    ];
     const invalid = requiredIds
       .map((id) => document.getElementById(id))
       .find((element): element is HTMLInputElement => element instanceof HTMLInputElement && !element.reportValidity());
@@ -65,12 +74,28 @@ export function RegensburgMovingAdsForm() {
     payload.set("source", "Google Ads – Umzug Regensburg");
     payload.set("sourcePage", "/umzug-regensburg/anfrage");
     payload.set("landingPage", "/umzug-regensburg/anfrage");
+    payload.set("pageType", "ads_landing");
+    payload.set("intent", "umzug-regensburg");
+    const scopeSummary = [
+      `Start: ${String(payload.get("startLocation") || "").trim()}`,
+      `Ziel: ${String(payload.get("destinationLocation") || "").trim()}`,
+      `Umfang: ${String(payload.get("roomsCount") || "").trim()}`,
+      `Startetage/Aufzug: ${String(payload.get("startFloor") || "").trim()} / ${String(payload.get("startElevator") || "").trim()}`,
+      `Zieletage/Aufzug: ${String(payload.get("destinationFloor") || "").trim()} / ${String(payload.get("destinationElevator") || "").trim()}`,
+      `Zeitraum: ${String(payload.get("desiredDate") || "").trim()}`,
+    ].join(" · ");
+    const customerMessage = String(payload.get("message") || "").trim();
+    const optionalScope = String(payload.get("scope") || "").trim();
+    payload.set("scope", [String(payload.get("roomsCount") || "").trim(), optionalScope].filter(Boolean).join(" · "));
+    payload.set("message", customerMessage ? `${customerMessage}\n\n${scopeSummary}` : scopeSummary);
     payload.set("utmSource", queryValue("utm_source") || "google");
     payload.set("utmMedium", queryValue("utm_medium") || "cpc");
     payload.set("utmCampaign", queryValue("utm_campaign"));
     payload.set("utmTerm", queryValue("utm_term"));
     payload.set("utmContent", queryValue("utm_content"));
     payload.set("gclid", queryValue("gclid"));
+    payload.set("gbraid", queryValue("gbraid"));
+    payload.set("wbraid", queryValue("wbraid"));
     payload.set("timestamp", new Date().toISOString());
     payload.set("formStartedAt", String(startedAtRef.current));
     payload.set("companyWebsite", "");
@@ -165,16 +190,36 @@ export function RegensburgMovingAdsForm() {
           Wohnungsgröße oder Zimmer
           <input id="moving-rooms" name="roomsCount" required placeholder="z. B. 2 Zimmer, etwa 65 m²" className={inputClass} />
         </label>
+        <label className={labelClass} htmlFor="moving-start-floor">
+          Startetage
+          <input id="moving-start-floor" name="startFloor" required placeholder="z. B. EG oder 3. Etage" className={inputClass} />
+        </label>
+        <label className={labelClass} htmlFor="moving-start-elevator">
+          Aufzug am Start
+          <select id="moving-start-elevator" name="startElevator" required className={inputClass} defaultValue="">
+            <option value="" disabled>Bitte wählen</option>
+            <option value="ja">Ja</option>
+            <option value="nein">Nein</option>
+          </select>
+        </label>
+        <label className={labelClass} htmlFor="moving-destination-floor">
+          Zieletage
+          <input id="moving-destination-floor" name="destinationFloor" required placeholder="z. B. 2. Etage" className={inputClass} />
+        </label>
+        <label className={labelClass} htmlFor="moving-destination-elevator">
+          Aufzug am Ziel
+          <select id="moving-destination-elevator" name="destinationElevator" required className={inputClass} defaultValue="">
+            <option value="" disabled>Bitte wählen</option>
+            <option value="ja">Ja</option>
+            <option value="nein">Nein</option>
+          </select>
+        </label>
 
         <details className="sm:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <summary className="cursor-pointer font-black text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">
-            Optionale Angaben zu Zugang und Umfang
+            Optionale Angaben zu Möbeln und Zusatzleistungen
           </summary>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <label className={labelClass}>Startetage<input name="startFloor" inputMode="numeric" className={inputClass} /></label>
-            <label className={labelClass}>Aufzug am Start<select name="startElevator" className={inputClass} defaultValue=""><option value="">Bitte wählen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option></select></label>
-            <label className={labelClass}>Zieletage<input name="destinationFloor" inputMode="numeric" className={inputClass} /></label>
-            <label className={labelClass}>Aufzug am Ziel<select name="destinationElevator" className={inputClass} defaultValue=""><option value="">Bitte wählen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option></select></label>
             <label className={`${labelClass} sm:col-span-2`}>Umfang und größere Möbel<textarea name="scope" rows={4} className={`${inputClass} py-3`} /></label>
             <fieldset className="sm:col-span-2">
               <legend className="text-sm font-black text-slate-900">Gewünschte Zusatzleistungen</legend>

@@ -7,13 +7,13 @@ import {
   MapPin,
   MessageCircle,
   PackageCheck,
+  Phone,
   Route,
   Sofa,
   Sparkles,
   Wrench,
 } from "lucide-react";
 
-import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { RegensburgMovingAdsForm } from "@/components/forms/RegensburgMovingAdsForm";
 import { company } from "@/lib/company";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
@@ -67,6 +67,41 @@ const facts = [
   "Keine Preisberechnung ohne Eckdaten",
 ] as const;
 
+const faq = [
+  {
+    q: "Welche Angaben braucht FLOXANT für eine Umzugsanfrage?",
+    a: "Benötigt werden Start, Ziel, Zeitraum, Zimmer oder Wohnfläche, beide Etagen und Angaben zu den Aufzügen. Möbel, Zusatzleistungen, Fotos und eine Nachricht können ergänzt werden.",
+  },
+  {
+    q: "Sind Umzüge innerhalb Regensburgs möglich?",
+    a: "Ja. Beschreiben Sie beide Adressen oder PLZ, Etagen, Aufzüge, Umfang und Zeitraum. FLOXANT prüft anschließend den konkreten Umzug.",
+  },
+  {
+    q: "Sind Umzüge aus oder nach Regensburg möglich?",
+    a: "Ja. Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können angefragt werden. Die konkrete Strecke und Umsetzbarkeit werden persönlich geprüft.",
+  },
+  {
+    q: "Können längere Strecken angefragt werden?",
+    a: "Ja. Nennen Sie Start, Ziel, Umfang und Zeitraum. FLOXANT prüft die konkrete Route zusammen mit Zugängen, Möbelmenge und gewünschten Zusatzleistungen.",
+  },
+  {
+    q: "Können Fotos gesendet werden?",
+    a: "Ja. Fotos können im Formular ergänzt werden. Hilfreich sind Bilder von größeren Möbeln, Treppen, Engstellen, Aufzügen und Zugängen.",
+  },
+  {
+    q: "Können Demontage und Montage ergänzt werden?",
+    a: "Ja. Markieren Sie die gewünschte Leistung und beschreiben Sie die betroffenen Möbel. Anschlüsse oder Arbeiten außerhalb der Möbelmontage sind nicht automatisch enthalten.",
+  },
+  {
+    q: "Können Entrümpelung und Reinigung kombiniert werden?",
+    a: "Ja. Beide Leistungen können als Zusatz ausgewählt werden. Umfang, Reihenfolge und Termin werden getrennt geprüft und abgestimmt.",
+  },
+  {
+    q: "Kann ein kurzfristiger Termin angefragt werden?",
+    a: "Senden Sie den gewünschten Zeitraum. FLOXANT prüft anschließend, ob Termin und Umfang umsetzbar sind.",
+  },
+] as const;
+
 export default function RegensburgMovingAdsPage() {
   return (
     <main className="overflow-x-clip bg-slate-50 text-slate-950">
@@ -86,10 +121,15 @@ export default function RegensburgMovingAdsPage() {
               Umfang. Auch Umzüge aus oder nach Regensburg über längere Strecken können
               angefragt werden.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-5 text-base font-black text-cyan-100">In 2 Schritten Umzug anfragen</p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a href="#umzug-anfragen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-300 px-6 text-sm font-black text-slate-950 outline-none hover:bg-cyan-200 focus-visible:ring-2 focus-visible:ring-white">
                 Umzug anfragen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 text-sm font-black text-white outline-none hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white">
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                Anrufen
               </a>
               <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-black text-white outline-none hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white">
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -134,11 +174,11 @@ export default function RegensburgMovingAdsPage() {
       <section className="bg-slate-950 px-5 py-16 text-white sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.12em] text-cyan-200">FLOXANT Routeboard</p>
+            <p className="text-sm font-black uppercase tracking-[0.12em] text-cyan-200">Strecke vorbereiten</p>
             <h2 className="mt-3 text-3xl font-black sm:text-4xl">Die fünf Angaben, die eine Strecke verständlich machen.</h2>
             <p className="mt-4 font-medium leading-7 text-slate-300">
               Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können auch über
-              längere Strecken von bis zu ungefähr 500 km angefragt werden.
+              längere Strecken angefragt werden. FLOXANT prüft die konkrete Route zusammen mit Umfang, Zugängen und Zeitraum.
             </p>
           </div>
           <ol className="grid gap-3 sm:grid-cols-5">
@@ -160,14 +200,22 @@ export default function RegensburgMovingAdsPage() {
         </div>
       </section>
 
-      <PriorityFaqSection
-        route={path}
-        limit={7}
-        includeJsonLd={false}
-        title="Häufige Fragen vor einer Umzugsanfrage"
-        intro="Kurze Antworten zu Angaben, Aufwand, kleinen Umzügen, Zusatzleistungen und Angebotsvergleich."
-        className="bg-slate-50"
-      />
+      <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.12em] text-cyan-900">Häufige Fragen</p>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Vor der Umzugsanfrage kurz geklärt.</h2>
+          </div>
+          <div className="grid gap-3">
+            {faq.map((item, index) => (
+              <details key={item.q} open={index === 0} className="rounded-2xl border border-slate-200 bg-white p-5">
+                <summary className="cursor-pointer font-black text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">{item.q}</summary>
+                <p className="mt-3 text-sm font-medium leading-7 text-slate-700">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-5 rounded-3xl bg-cyan-300 p-6 sm:flex-row sm:items-center sm:p-8">
