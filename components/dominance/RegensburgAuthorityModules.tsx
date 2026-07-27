@@ -40,8 +40,7 @@ export function RegensburgAuthorityModules() {
             <p className="mt-4 font-medium leading-8 text-slate-700">
               Sie können einen Umzug innerhalb Regensburgs, aus Regensburg oder nach
               Regensburg anfragen. Umzüge mit Start oder Ziel im bedienten Regensburger
-              Gebiet können auch über längere Strecken von bis zu ungefähr 500 km
-              angefragt werden.
+              Gebiet können auch über längere Strecken angefragt werden.
             </p>
           </div>
           <ol className="grid gap-3 sm:grid-cols-5">

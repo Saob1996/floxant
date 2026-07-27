@@ -182,6 +182,7 @@ export function isCleaningRouteAllowed(path: string): boolean {
   if (normalizedPath.startsWith("blog/")) {
     return (
       normalizedPath.includes("regensburg") ||
+      normalizedPath.includes("duesseldorf") ||
       normalizedPath.includes("50-km") ||
       normalizedPath.includes("50km")
     );

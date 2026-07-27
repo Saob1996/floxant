@@ -108,6 +108,23 @@
       ]
     },
     {
+      "id": "article:de:bauendreinigung-baufeinreinigung-unterschied-duesseldorf",
+      "title": "Bauendreinigung und Baufeinreinigung unterscheiden",
+      "description": "Bauendreinigung und Baufeinreinigung nach Bauphase, Verschmutzung, Zielzustand und Übergabetermin in Düsseldorf unterscheiden.",
+      "url": "/blog/bauendreinigung-baufeinreinigung-unterschied-duesseldorf",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "baureinigung"
+      ],
+      "keywords": [
+        "Baureinigung Düsseldorf",
+        "baureinigung",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "article:de:beiladung-bayern-wann-lohnt-es-sich",
       "title": "Beiladung in Bayern: Wann sie sich lohnt und wann ein voller Umzug besser ist",
       "description": "Für Kleintransporte, einzelne Möbel und flexible Strecken: so bewerten Sie Beiladung realistisch.",
@@ -313,6 +330,23 @@
       ],
       "serviceIds": [],
       "keywords": []
+    },
+    {
+      "id": "article:de:demontage-montage-umzug-anfragen",
+      "title": "Demontage und Montage eindeutig anfragen",
+      "description": "Möbel, Maße, Bauart und gewünschten Arbeitsumfang für Demontage und Montage bei einem Umzug in Regensburg klar angeben.",
+      "url": "/blog/demontage-montage-umzug-anfragen",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug Regensburg",
+        "umzug",
+        "FLOXANT"
+      ]
     },
     {
       "id": "article:de:direkt-anfragen-statt-vergleichsportal-regensburg",
@@ -600,6 +634,23 @@
         "Rahmen",
         "Fensterreinigung",
         "Fensterreinigung klar anfragen"
+      ]
+    },
+    {
+      "id": "article:de:fensterreinigung-hoehe-rahmen-zugang-duesseldorf",
+      "title": "Fensterreinigung: Höhe, Rahmen und Zugang richtig angeben",
+      "description": "Fensterzahl, Höhe, Rahmen, Falze, Innen- und Außenseite sowie Zugang für eine Fensterreinigung in Düsseldorf beschreiben.",
+      "url": "/blog/fensterreinigung-hoehe-rahmen-zugang-duesseldorf",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "fensterreinigung"
+      ],
+      "keywords": [
+        "Fensterreinigung Düsseldorf",
+        "fensterreinigung",
+        "FLOXANT"
       ]
     },
     {
@@ -2172,7 +2223,7 @@
     {
       "id": "faq:faq-moving-long-distance-regensburg-de",
       "title": "Sind von Regensburg aus auch längere Umzugsstrecken möglich?",
-      "description": "Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können über längere Strecken von bis zu ungefähr 500 km angefragt werden.",
+      "description": "Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können auch über längere Strecken angefragt werden.",
       "url": "/regensburg/umzug",
       "locale": "de",
       "type": "faq",
@@ -2534,6 +2585,23 @@
       "keywords": []
     },
     {
+      "id": "article:de:umzug-reinigung-kombinieren-regensburg",
+      "title": "Umzug und Reinigung sinnvoll kombinieren",
+      "description": "Umzug, Restmengen, Schlüsselweg, Reinigung und Übergabetermin in Regensburg in der richtigen Reihenfolge anfragen.",
+      "url": "/blog/umzug-reinigung-kombinieren-regensburg",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "umzug-reinigung"
+      ],
+      "keywords": [
+        "Umzug und Reinigung Regensburg",
+        "umzug-reinigung",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "article:de:umzug-checkliste",
       "title": "Umzug-Checkliste: die wichtigsten Schritte vor dem Termin",
       "description": "Eine kompakte Reihenfolge für Vorbereitung, Kartons, Zugang, Übergabe und letzte Abstimmung.",
@@ -2842,6 +2910,23 @@
       ]
     },
     {
+      "id": "article:de:angaben-reinigungsangebot-duesseldorf",
+      "title": "Welche Angaben braucht ein Reinigungsangebot?",
+      "description": "Objekt, Flächen, Aufgaben, Rhythmus, Zugang und Zusatzleistungen für ein klares Reinigungsangebot in Düsseldorf beschreiben.",
+      "url": "/blog/angaben-reinigungsangebot-duesseldorf",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "reinigung"
+      ],
+      "keywords": [
+        "Reinigungsangebot Düsseldorf",
+        "reinigung",
+        "FLOXANT"
+      ]
+    },
+    {
       "id": "faq:faq-apartment-cleaning-details-duesseldorf-de",
       "title": "Welche Angaben braucht eine Ferienwohnungsreinigung in Düsseldorf?",
       "description": "Objektart, Fläche, Zustand, Checkout, nächster Check-in, Zugang und gewünschte Zusatzleistungen sind die wichtigsten Angaben.",
@@ -3095,6 +3180,23 @@
         "Praxisbereiche für eine Reinigungsanfrage abgrenzen",
         "Praxen",
         "Praxismanagement"
+      ]
+    },
+    {
+      "id": "article:de:fotos-umzugsangebot-regensburg",
+      "title": "Welche Fotos helfen bei einem Umzugsangebot?",
+      "description": "Möbel, Treppen, Aufzüge, Türen und Ladewege sinnvoll fotografieren, damit eine Umzugsanfrage in Regensburg verständlicher wird.",
+      "url": "/blog/fotos-umzugsangebot-regensburg",
+      "locale": "de",
+      "type": "article",
+      "regions": [],
+      "serviceIds": [
+        "umzug"
+      ],
+      "keywords": [
+        "Umzug Regensburg",
+        "umzug",
+        "FLOXANT"
       ]
     },
     {
@@ -3567,7 +3669,7 @@
     {
       "id": "faq:faq-moving-long-distance-regensburg-en",
       "title": "Can I request a longer-distance move from Regensburg?",
-      "description": "Moves with an origin or destination in the served Regensburg area can be requested for longer routes of up to approximately 500 km.",
+      "description": "Moves with an origin or destination in the served Regensburg area can also be requested for longer routes.",
       "url": "/en/regensburg/moving",
       "locale": "en",
       "type": "faq",

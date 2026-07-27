@@ -1198,7 +1198,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
     reviewedAt: "2026-07-26",
     de: {
       question: "Sind von Regensburg aus auch längere Umzugsstrecken möglich?",
-      shortAnswer: "Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können über längere Strecken von bis zu ungefähr 500 km angefragt werden.",
+      shortAnswer: "Umzüge mit Start oder Ziel im bedienten Regensburger Gebiet können auch über längere Strecken angefragt werden.",
       detailedAnswer:
         "Die Angabe beschreibt eine mögliche Anfrage, keinen garantierten Radius. Entscheidend sind die konkrete Route, Volumen, Zugänge, Zeitraum, Fahrzeugbedarf und verfügbare Kapazität.",
       relatedArticle: "/blog/umzug-regensburg-laengere-strecke",
@@ -1207,7 +1207,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
     },
     en: {
       question: "Can I request a longer-distance move from Regensburg?",
-      shortAnswer: "Moves with an origin or destination in the served Regensburg area can be requested for longer routes of up to approximately 500 km.",
+      shortAnswer: "Moves with an origin or destination in the served Regensburg area can also be requested for longer routes.",
       detailedAnswer:
         "This describes a possible enquiry, not a guaranteed radius. The specific route, volume, access, timing, vehicle requirements and available capacity must be reviewed.",
       relatedArticle: "/en/blog/request-moving-quote-regensburg",

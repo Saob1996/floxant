@@ -10,6 +10,7 @@ const dynamicBlogSourceFiles = [
   path.join(workspaceRoot, "lib", "offer-check-blog-articles.ts"),
   path.join(workspaceRoot, "lib", "strategic-blog-articles.ts"),
 ];
+const dominanceArticlesFile = path.join(workspaceRoot, "lib", "content", "dominance-articles.ts");
 const psychologicalCleaningPagesFile = path.join(
   workspaceRoot,
   "lib",
@@ -31,6 +32,7 @@ const nonSeoPublicRoutes = new Set([
   "/widerruf",
   "/buchungsbedingungen",
   "/angebot-vergleichen-duesseldorf/danke",
+  "/duesseldorf/reinigung/anfrage",
   "/umzug-regensburg/anfrage",
   "/regensburg/reinigung/datenschutz",
   "/regensburg/reinigung/agb",
@@ -270,6 +272,7 @@ function isCleaningRouteAllowed(route) {
   if (normalizedRoute.startsWith("blog/")) {
     return (
       normalizedRoute.includes("regensburg") ||
+      normalizedRoute.includes("duesseldorf") ||
       normalizedRoute.includes("50-km") ||
       normalizedRoute.includes("50km")
     );
@@ -381,6 +384,14 @@ function collectDynamicBlogRoutes() {
     ...collectSlugRoutesFromFile(
       psychologicalCleaningPagesFile,
       /articleSlug:\s*"([^"]+)"/g,
+      "/blog",
+    ),
+  );
+
+  routes.push(
+    ...collectSlugRoutesFromFile(
+      dominanceArticlesFile,
+      /locale:\s*"de",[\s\S]*?slug:\s*"([^"]+)"/g,
       "/blog",
     ),
   );
