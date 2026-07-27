@@ -13,7 +13,7 @@ conversionLastPriority conversionLastSource ctaLabel damageOfferFile damagePhoto
 deadline desiredDate desiredPlanBPackage destinationElevator destinationFloor destinationLocation details discreetMovePhoto
 disposalRequested documentationScope elevator email entry entryPoint estateClearancePhoto estateStatus estimatedVolume
 existingCleaningOffer existingOffer exportStatus exposePhotoDate file fileStatus floor formDurationMs formStartedAt funnelStage
-furnishedStatus fullName gclid goalType handoverCondition handoverDate handoverDeadline handoverExtraNeeds handoverFileRequested
+furnishedStatus fullName gbraid gclid goalType handoverCondition handoverDate handoverDeadline handoverExtraNeeds handoverFileRequested
 handoverKeyAccess handoverPhoto handoverSituation hasOffer hasPhotos hazardousMaterialsStatus intent involvedParties
 isSensitiveCase itemDescription itemTypes keyHandoverDate keyHandoverRecipient keyNotes keyStatus kitchenPresent landingPage
 lead_type leadPriority leadSource leadSubtype legalClearanceStatus message metadata missingInfoFlags missingInfoQuestions name
@@ -34,7 +34,7 @@ seniorExistingOffer seniorExtraNeeds seniorRequesterRole seniorScope seniorSensi
 service serviceCategory serviceScope signatureServiceHint solarAccess solarExistingOffer solarModuleScope solarObjectType solarRoofType
 solarTimeframe solarVisibleDirt source sourceComponent sourceContext sourceFlow sourcePage specialAreas specialNotes startElevator
 startFloor startLocation tenantPhoto timestamp timeWindow type uncertainArea unitsCount upgrades urgency url utmCampaign utmContent
-utmMedium utmSource utmTerm valuation viewingDate website whatsappPreferred zip
+utmMedium utmSource utmTerm valuation viewingDate wbraid website whatsappPreferred zip
 `.trim().split(/\s+/);
 
 const NESTED_SCHEMA_FIELD_NAMES = `

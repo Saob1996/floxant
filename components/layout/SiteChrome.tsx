@@ -13,6 +13,7 @@ import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
 import { EnglishFooter } from "@/components/english/EnglishFooter";
 import { EnglishHeader } from "@/components/english/EnglishHeader";
+import { AdsLandingFooter, AdsLandingHeader } from "@/components/ads/AdsLandingChrome";
 
 export function SiteChrome({
   children,
@@ -22,6 +23,13 @@ export function SiteChrome({
   const pathname = usePathname();
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
   const isEnglishSection = pathname === "/en" || pathname.startsWith("/en/");
+  const adsLandingKind =
+    pathname === "/duesseldorf/reinigung/anfrage"
+      ? "cleaning-duesseldorf"
+      : pathname === "/umzug-regensburg/anfrage"
+        ? "moving-regensburg"
+        : null;
+  const isAdsLanding = adsLandingKind !== null;
 
   useEffect(() => {
     document.documentElement.lang = isEnglishSection ? "en" : "de";
@@ -41,7 +49,9 @@ export function SiteChrome({
       </a>
       {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
       {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
-      {isEnglishSection ? (
+      {isAdsLanding ? (
+        <AdsLandingHeader kind={adsLandingKind} />
+      ) : isEnglishSection ? (
         <EnglishHeader />
       ) : (
         <PublicHeader
@@ -49,7 +59,7 @@ export function SiteChrome({
           variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
         />
       )}
-      {!isEnglishSection ? <RegionalRouteNotice pathname={pathname} /> : null}
+      {!isEnglishSection && !isAdsLanding ? <RegionalRouteNotice pathname={pathname} /> : null}
       <div
         id="main-content"
         lang={isEnglishSection ? "en" : "de"}
@@ -58,9 +68,9 @@ export function SiteChrome({
       >
         {children}
       </div>
-      {isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
-      {!isEnglishSection ? <GlobalRequestCenter /> : null}
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection} />
+      {isAdsLanding ? <AdsLandingFooter /> : isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
+      {!isEnglishSection && !isAdsLanding ? <GlobalRequestCenter /> : null}
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection && !isAdsLanding} />
     </>
   );
 }
