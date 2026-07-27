@@ -8,10 +8,46 @@ import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-clien
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 type SuccessReceipt = { requestId: string; bookingId: string };
+type ValidatedControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 const inputClass =
   "min-h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-950 outline-none placeholder:text-slate-500 focus-visible:border-cyan-700 focus-visible:ring-2 focus-visible:ring-cyan-600/25";
 const labelClass = "grid gap-2 text-sm font-black text-slate-900";
+const stepOneRequiredIds = [
+  "moving-start",
+  "moving-destination",
+  "moving-date",
+  "moving-rooms",
+  "moving-start-floor",
+  "moving-start-elevator",
+  "moving-destination-floor",
+  "moving-destination-elevator",
+];
+
+function isValidatedControl(element: Element): element is ValidatedControl {
+  return element instanceof HTMLInputElement
+    || element instanceof HTMLSelectElement
+    || element instanceof HTMLTextAreaElement;
+}
+
+function firstInvalidControl(elements: Iterable<Element>) {
+  return Array.from(elements).find(
+    (element): element is ValidatedControl => isValidatedControl(element) && !element.checkValidity(),
+  );
+}
+
+function focusInvalidControl(control: ValidatedControl) {
+  requestAnimationFrame(() => {
+    control.focus();
+    control.reportValidity();
+  });
+}
+
+function stepOneControls() {
+  return stepOneRequiredIds
+    .map((id) => document.getElementById(id))
+    .filter((element): element is HTMLElement => element instanceof HTMLElement);
+}
 
 function queryValue(name: string) {
   if (typeof window === "undefined") return "";
@@ -29,23 +65,14 @@ export function RegensburgMovingAdsForm() {
   function continueToContact() {
     const form = formRef.current;
     if (!form) return;
-    const requiredIds = [
-      "moving-start",
-      "moving-destination",
-      "moving-date",
-      "moving-rooms",
-      "moving-start-floor",
-      "moving-start-elevator",
-      "moving-destination-floor",
-      "moving-destination-elevator",
-    ];
-    const invalid = requiredIds
-      .map((id) => document.getElementById(id))
-      .find((element): element is HTMLInputElement => element instanceof HTMLInputElement && !element.reportValidity());
+    const invalid = firstInvalidControl(stepOneControls());
     if (invalid) {
-      invalid.focus();
+      setState("error");
+      setMessage("Bitte füllen Sie alle Pflichtfelder im ersten Schritt aus.");
+      focusInvalidControl(invalid);
       return;
     }
+    setState("idle");
     setMessage("");
     setStep(2);
     requestAnimationFrame(() => document.getElementById("moving-name")?.focus());
@@ -55,11 +82,31 @@ export function RegensburgMovingAdsForm() {
     event.preventDefault();
     if (state === "submitting") return;
 
+    const form = event.currentTarget;
+    const invalidStepOneControl = firstInvalidControl(stepOneControls());
+    if (invalidStepOneControl) {
+      setStep(1);
+      setState("error");
+      setMessage("Bitte ergänzen Sie die fehlenden Pflichtangaben zum Umzug.");
+      setReceipt(null);
+      focusInvalidControl(invalidStepOneControl);
+      return;
+    }
+
+    const invalidContactControl = firstInvalidControl(Array.from(form.elements));
+    if (invalidContactControl) {
+      setState("error");
+      setMessage("Bitte prüfen Sie die markierten Kontaktangaben.");
+      setReceipt(null);
+      focusInvalidControl(invalidContactControl);
+      return;
+    }
+
     setState("submitting");
     setMessage("");
     setReceipt(null);
 
-    const payload = new FormData(event.currentTarget);
+    const payload = new FormData(form);
     if (!String(payload.get("email") || "").trim() && !String(payload.get("phone") || "").trim()) {
       setMessage("Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse an.");
       setState("error");
@@ -159,7 +206,7 @@ export function RegensburgMovingAdsForm() {
       id="umzug-anfragen"
       onSubmit={submit}
       className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-950/10 sm:p-8"
-      noValidate={false}
+      noValidate
     >
       <div className="flex items-center justify-between gap-4">
         <div>
