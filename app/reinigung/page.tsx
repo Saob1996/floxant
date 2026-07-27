@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building2, CheckCircle2, Home, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Home, MapPin, Sparkles } from "lucide-react";
 
+import { ProfessionalCard, ProfessionalFactList, ProfessionalSectionHeading } from "@/components/professional/ProfessionalPage";
 import { company } from "@/lib/company";
 import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
@@ -153,18 +154,15 @@ export default function ReinigungLocationChooserPage() {
 
       <section id="standort-auswahl" className="border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Standort-Auswahl</p>
-            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Wo brauchen Sie die Reinigung?</h2>
-            <p className="mt-4 font-medium leading-7 text-slate-700">
-              Damit Ihre Anfrage direkt zur passenden Leistung gelangt, müssen Stadt, Objekt und Reinigungsart
-              zusammenpassen. Wählen Sie deshalb zuerst Düsseldorf oder Regensburg.
-            </p>
-          </div>
+          <ProfessionalSectionHeading
+            eyebrow="Standort-Auswahl"
+            title="Wo brauchen Sie die Reinigung?"
+            description="Damit Ihre Anfrage direkt zur passenden Leistung gelangt, müssen Stadt, Objekt und Reinigungsart zusammenpassen. Wählen Sie deshalb zuerst Düsseldorf oder Regensburg."
+          />
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {locationCards.map((card) => (
-              <article key={card.city} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <ProfessionalCard key={card.city} className="p-6">
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-950 text-white">
                     <MapPin className="h-5 w-5" aria-hidden="true" />
@@ -173,14 +171,7 @@ export default function ReinigungLocationChooserPage() {
                 </div>
                 <h3 className="mt-5 text-3xl font-black leading-tight">{card.title}</h3>
                 <p className="mt-4 font-medium leading-7 text-slate-700">{card.text}</p>
-                <ul className="mt-5 grid gap-3">
-                  {card.points.map((point) => (
-                    <li key={point} className="flex gap-3 text-sm font-bold leading-6 text-slate-700">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-700" aria-hidden="true" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                <ProfessionalFactList items={card.points} className="mt-5" />
                 <Link
                   href={card.href}
                   className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -188,7 +179,7 @@ export default function ReinigungLocationChooserPage() {
                   {card.cta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-              </article>
+              </ProfessionalCard>
             ))}
           </div>
         </div>
@@ -196,18 +187,15 @@ export default function ReinigungLocationChooserPage() {
 
       <section className="px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wide text-blue-800">Reinigungsart wählen</p>
-            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Direkt zur richtigen Reinigungsleistung.</h2>
-            <p className="mt-4 font-medium leading-7 text-slate-700">
-              Wählen Sie zuerst die Reinigungsart und danach Düsseldorf oder Regensburg. So landen Büro, Gewerbe,
-              Fenster, Apartment, Grund-, Unterhalts- und Baureinigung direkt im richtigen lokalen Anfrageweg.
-            </p>
-          </div>
+          <ProfessionalSectionHeading
+            eyebrow="Reinigungsart wählen"
+            title="Direkt zur richtigen Reinigungsleistung."
+            description="Wählen Sie zuerst die Reinigungsart und danach Düsseldorf oder Regensburg. So landen Büro, Gewerbe, Fenster, Apartment, Grund-, Unterhalts- und Baureinigung direkt im richtigen lokalen Anfrageweg."
+          />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {cleaningTypes.map((item) => (
-              <article id={item.id} key={item.id} className="scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <ProfessionalCard id={item.id} key={item.id} className="scroll-mt-28 p-6">
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-100 text-cyan-950">
                     {item.id === "apartment-reinigung" || item.id === "grundreinigung" ? <Home className="h-5 w-5" aria-hidden="true" /> : <Building2 className="h-5 w-5" aria-hidden="true" />}
@@ -225,7 +213,7 @@ export default function ReinigungLocationChooserPage() {
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
-              </article>
+              </ProfessionalCard>
             ))}
           </div>
         </div>
