@@ -196,7 +196,7 @@ export default function FurnishedApartmentCleaningDuesseldorfPage() {
               Düsseldorf · Ferienwohnung & Apartment
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Ferienwohnung und möbliertes Apartment in Düsseldorf reinigen lassen.
+              Reinigung für Ferienwohnung und möbliertes Apartment in Düsseldorf.
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200">
               FLOXANT prüft Reinigung und Gästewechsel nach Objekt, Zustand, Checkout, nächstem Check-in,

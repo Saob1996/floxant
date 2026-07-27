@@ -241,8 +241,9 @@ for (const route of routes) {
   const introFolded = fold(firstVisibleSection);
   const mainText = stripHtml(main);
   const locationMismatch =
-    (location === "Düsseldorf" && /\bregensburg\b/i.test(`${currentH1} ${firstVisibleSection}`)) ||
-    (location === "Regensburg" && /\bdüsseldorf|duesseldorf\b/i.test(`${currentH1} ${firstVisibleSection}`));
+    pageType !== "guide" &&
+    ((location === "Düsseldorf" && /\bregensburg\b/i.test(`${currentH1} ${firstVisibleSection}`)) ||
+      (location === "Regensburg" && /\bdüsseldorf|duesseldorf\b/i.test(`${currentH1} ${firstVisibleSection}`)));
   const serviceMismatch =
     pageType === "service" && tokens.length > 0 && !tokens.some((token) => h1Folded.includes(fold(token)));
 

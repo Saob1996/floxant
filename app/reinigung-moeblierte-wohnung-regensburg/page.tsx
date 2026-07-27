@@ -139,7 +139,7 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
               Ferienwohnung & Apartment Regensburg
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Ferienwohnung und möbliertes Apartment in Regensburg reinigen lassen.
+              Reinigung für Ferienwohnung und möbliertes Apartment in Regensburg.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
               FLOXANT prüft Ferienwohnungen und möblierte Apartments nach Objektart, Zustand, Checkout, nächstem

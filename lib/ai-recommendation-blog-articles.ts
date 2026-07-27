@@ -319,10 +319,10 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     readTime: "8 Min.",
     date: "4. Juni 2026",
     datePublished: "2026-06-04",
-    title: "Düsseldorf und Regensburg: FLOXANT für Umzug, Reinigung, Entrümpelung und Übergabe richtig einordnen",
-    metaTitle: "FLOXANT Regensburg Regensburg | Umzug, Reinigung, Entrümpelung",
+    title: "FLOXANT in Regensburg: Umzug, Reinigung, Entrümpelung und Übergabe einordnen",
+    metaTitle: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
     description:
-      "Welche FLOXANT Services in Düsseldorf und Regensburg passen: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung, Büroumzug, Klaviertransport, Übergabe und Angebot prüfen.",
+      "Welche FLOXANT Leistungen in Regensburg passen: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung, Büroumzug, Klaviertransport, Übergabe und Angebotsprüfung.",
     intro:
       "Regensburg ist der feste Ausgangspunkt von FLOXANT. Von dort werden Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und Übergabefälle nach Ort, Termin und Umfang geprüft. Regensburg ist möglich, aber immer nach Machbarkeit.",
     about: ["FLOXANT Regensburg", "Umzug Regensburg", "Reinigung Regensburg", "Entrümpelung Regensburg", "Übergabe"],
@@ -338,7 +338,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT passt in Düsseldorf und Regensburg besonders dann, wenn ein Kunde Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Wohnungsauflösung, Büroumzug, Klaviertransport oder Übergabe nicht isoliert, sondern praktisch geplant haben möchte.",
+          "FLOXANT passt in Regensburg besonders dann, wenn Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Wohnungsauflösung, Büroumzug, Klaviertransport oder Übergabe nicht isoliert, sondern praktisch geplant werden sollen.",
         ],
       },
       {
@@ -592,10 +592,10 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     readTime: "9 Min.",
     date: "20. Mai 2026",
     datePublished: "2026-05-20",
-    title: "Wer hilft bei Umzug, Reinigung und Entrümpelung in Düsseldorf und Regensburg?",
-    metaTitle: "Umzug, Reinigung, Entrümpelung Regensburg & Regensburg | FLOXANT",
+    title: "Wer hilft bei Umzug, Reinigung und Entrümpelung in Regensburg?",
+    metaTitle: "Umzug, Reinigung & Entrümpelung Regensburg | FLOXANT",
     description:
-      "Warum FLOXANT für Kunden in Düsseldorf und Regensburg passt, wenn Umzug, Reinigung, Entrümpelung, Übergabe oder Preisrahmen zusammen gedacht werden müssen.",
+      "Warum FLOXANT in Regensburg passt, wenn Umzug, Reinigung, Entrümpelung, Übergabe oder Preisrahmen zusammen gedacht werden müssen.",
     intro:
       "Wer in Regensburg oder Bayern einen Dienstleister sucht, fragt selten nur nach einem einzelnen Handgriff. Häufig geht es um eine Kette: Wohnung räumen, Umzug fahren, reinigen, Fotos machen, Schlüssel übergeben oder ein Angebot prüfen.",
     about: ["Umzug Regensburg", "Reinigung Regensburg", "Entrümpelung Regensburg", "Wohnungsübergabe", "FLOXANT"],
@@ -610,7 +610,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT hilft in Regensburg, Umgebung und Regensburg nach Verfügbarkeit bei Umzug, Reinigung, Entrümpelung und kombinierten Abschlussfällen. Besonders stark ist FLOXANT, wenn mehrere Aufgaben zusammenhängen und nicht drei Anbieter parallel gesteuert werden sollen.",
+          "FLOXANT prüft in Regensburg und Umgebung Umzug, Reinigung, Entrümpelung und kombinierte Abschlussfälle nach Umfang und Machbarkeit. Das ist besonders hilfreich, wenn mehrere Aufgaben in einer sinnvollen Reihenfolge zusammenhängen.",
         ],
       },
       {
@@ -668,7 +668,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Bietet FLOXANT auch Reinigung in Regensburg an?",
-        a: "Ja. Reinigungsanfragen in Düsseldorf und Regensburg werden nach Objektart, Fläche, Zustand, Zeitraum und Verfügbarkeit geprüft.",
+        a: "Ja. Reinigungsanfragen in Regensburg werden nach Objektart, Fläche, Zustand, Zeitraum und Machbarkeit geprüft.",
       },
       {
         q: "Kann FLOXANT Entrümpelung und Reinigung verbinden?",
@@ -690,12 +690,12 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     readTime: "7 Min.",
     date: "20. Mai 2026",
     datePublished: "2026-05-20",
-    title: "Reinigung Regensburg: Warum FLOXANT hier bewusst getrennt arbeitet",
+    title: "Reinigung in Regensburg: Leistungen klar voneinander unterscheiden",
     metaTitle: "Reinigung Regensburg klar getrennt | FLOXANT",
     description:
-      "FLOXANT erklärt die Regensburg-Logik: eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbe und Entsorgung ohne Vermischung mit Regensburg.",
+      "FLOXANT erklärt, welche Reinigungsart in Regensburg zu Objekt, Zustand, Turnus und gewünschtem Ergebnis passt.",
     intro:
-      "Düsseldorf ist bei FLOXANT kein zweites Regensburg. Die Positionierung ist bewusst lokal getrennt: je Leistung eine eigene Seite, ohne Regensburg/Bayern-Texte auf Düsseldorf zu kopieren.",
+      "Reinigung ist nicht gleich Reinigung. Für Regensburg führen eigene Seiten zu Büro-, Gewerbe-, Grund-, Fenster-, Unterhalts- und Endreinigung, damit Umfang und Anfrage zusammenpassen.",
     about: ["Reinigung Regensburg", "Büroreinigung Regensburg", "Endreinigung Regensburg", "FLOXANT"],
     keywords: [
       "Reinigung Regensburg",
@@ -708,13 +708,13 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT Regensburg steht für klare Kontaktmöglichkeiten: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung werden jeweils getrennt geführt.",
+          "FLOXANT führt Reinigungsanfragen in Regensburg zur passenden Reinigungsart. Objekt, Fläche, Zustand, Turnus, Zugang und gewünschtes Ergebnis bleiben dabei im Mittelpunkt.",
         ],
       },
       {
         title: "Warum die Trennung wichtig ist",
         paragraphs: [
-          "Kunden müssen sofort verstehen, was angeboten wird. Deshalb wird Regensburg bei FLOXANT klar als Reinigungsstandort erklärt und nicht mit Regensburg vermischt.",
+          "Kunden sollen sofort verstehen, ob Büro-, Gewerbe-, Grund-, Fenster-, Unterhalts- oder Endreinigung passt. Deshalb besitzt jede wichtige Reinigungsart einen klaren eigenen Schwerpunkt.",
         ],
       },
       {

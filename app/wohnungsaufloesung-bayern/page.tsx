@@ -44,8 +44,8 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
       dict={localeDict}
       city={city}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-      heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
+      heroTitle="Wohnungsauflösung in Bayern ruhig und klar vorbereiten"
+      heroText="Beschreiben Sie Ort, Räume, Freigaben, Zugang, Fotos und den gewünschten Endzustand. FLOXANT prüft von Regensburg aus, ob Strecke, Umfang und Zeitraum umsetzbar sind."
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
       breadcrumbs={[
         { label: "Home", href: "/" },

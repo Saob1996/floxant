@@ -273,7 +273,7 @@ export default function GrundreinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[17ch] text-[clamp(2.1rem,4.3vw,4rem)] font-black leading-[0.98] text-slate-950">
-                Wenn normal putzen nicht mehr reicht.
+                Grundreinigung in Regensburg, wenn normales Putzen nicht mehr reicht.
               </h1>
 
               <p className="mt-5 max-w-[60ch] text-base leading-8 text-slate-700">

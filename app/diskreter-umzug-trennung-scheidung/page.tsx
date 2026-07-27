@@ -340,7 +340,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreter Auszug, ruhig abgestimmt
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Diskreter Service für Auszug, Reinigung und Übergabe
+                Diskreten Umzug, Auszug und Übergabe ruhig abstimmen
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
                 Wenn ein Fall ruhig und zurückhaltend geklaert werden soll, reichen zuerst Ort,

@@ -291,7 +291,7 @@ export default function GewerbereinigungLandingPage() {
                 Gewerbliche Reinigung in Regensburg
               </p>
               <h1 className="text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-                Gewerbliche Reinigung in Regensburg für Hotel, Praxis, Kanzlei und Büro
+                Gewerbereinigung in Regensburg für Hotel, Praxis, Kanzlei und Büro
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
                 FLOXANT übernimmt zuverlässige Reinigung für Betriebe, bei denen Sauberkeit direkt mit Vertrauen, Gästen, Patienten, Mandanten oder Mitarbeitenden verbunden ist.
@@ -301,7 +301,7 @@ export default function GewerbereinigungLandingPage() {
                   href={bookingHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-black text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                 >
-                  Kostenlos anfragen
+                  Gewerbereinigung anfragen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link

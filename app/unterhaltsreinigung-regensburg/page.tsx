@@ -263,7 +263,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[16ch] text-[clamp(2.15rem,4.5vw,4.2rem)] font-black leading-[0.96] tracking-tight text-slate-950">
-                Büro, Praxis und Objekt regelmäßig sauber halten.
+                Unterhaltsreinigung in Regensburg für Büro, Praxis und Objekt.
               </h1>
 
               <p className="mt-5 max-w-[58ch] text-base leading-8 text-slate-700">

@@ -181,7 +181,7 @@ export default function SpezialentruempelungPage() {
               FLOXANT Spezialentruempelung
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Keller, Nachlass, Lager, Wohnungsauflösung und Übergabe respektvoll klären.
+              Spezial-Entrümpelung für Keller, Nachlass und Lager respektvoll klären.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
               Spezialentruempelung braucht Fotos, Freigabe, Zielzustand und ruhige
