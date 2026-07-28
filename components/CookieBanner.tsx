@@ -64,8 +64,8 @@ export function CookieBanner({ dic }: { dic?: any }) {
   // Default preferences
   const [preferences, setPreferences] = useState<ConsentState>({
     necessary: true, // Always true
-    analytics: true,
-    marketing: true,
+    analytics: false,
+    marketing: false,
   });
 
   useEffect(() => {

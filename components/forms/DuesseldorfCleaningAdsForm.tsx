@@ -4,6 +4,7 @@ import { type FormEvent, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Paperclip } from "lucide-react";
 
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+import { trackGenerateLead } from "@/lib/analytics/google-tag";
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -26,6 +27,7 @@ function textValue(payload: FormData, name: string) {
 export function DuesseldorfCleaningAdsForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const startedAtRef = useRef(Date.now());
+  const leadEventKeyRef = useRef("");
   const [step, setStep] = useState<1 | 2>(1);
   const [state, setState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
@@ -120,6 +122,7 @@ export function DuesseldorfCleaningAdsForm() {
 
       if (
         response.status !== 201 ||
+        response.ok !== true ||
         responsePayload.ok !== true ||
         !responsePayload.requestId ||
         !responsePayload.bookingId
@@ -132,6 +135,18 @@ export function DuesseldorfCleaningAdsForm() {
         return;
       }
 
+      if (!leadEventKeyRef.current) {
+        leadEventKeyRef.current = `duesseldorf_cleaning_ads:${Date.now()}:${Math.random()}`;
+      }
+      trackGenerateLead(
+        {
+          form_name: "duesseldorf_cleaning_ads",
+          service_type: "cleaning",
+          location: "duesseldorf",
+          lead_source: "google_ads",
+        },
+        leadEventKeyRef.current,
+      );
       setReceipt({ requestId: responsePayload.requestId, bookingId: responsePayload.bookingId });
       setState("success");
     } catch {

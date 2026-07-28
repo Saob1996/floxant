@@ -103,25 +103,6 @@ export function reportOfferComparisonAdsEvent(event: string, data: OfferComparis
     // Lokale Attribution ist hilfreich, aber nicht erforderlich.
   }
 
-  try {
-    window.dataLayer?.push({
-      event,
-      event_category: "google_ads_landingpage",
-      event_label: data.label || "Angebot vergleichen lassen",
-      page_path: window.location.pathname,
-      ...data,
-    });
-    window.gtag?.("event", event, {
-      event_category: "google_ads_landingpage",
-      event_label: data.label || "Angebot vergleichen lassen",
-      page_path: window.location.pathname,
-      transport_type: "beacon",
-      ...data,
-    });
-  } catch {
-    // Google Ads / GA Events dürfen die Bedienung nicht beeinflussen.
-  }
-
 }
 
 export function OfferComparisonSuccessTracker() {

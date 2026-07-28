@@ -8,7 +8,7 @@ import { MotionProvider } from "@/components/MotionProvider";
 import UtmCapture from "@/components/UtmCapture";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ConversionEventReporter } from "@/components/ConversionEventReporter";
-import { GoogleAdsTag } from "@/components/GoogleAdsTag";
+import { GoogleTag } from "@/components/GoogleTag";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 
 export { viewport };
@@ -36,7 +36,7 @@ export default function RootLayout({
         )}
       >
         <MotionProvider>
-          <GoogleAdsTag />
+          <GoogleTag />
           <ConversionEventReporter />
           <UtmCapture />
           <SiteChrome>{children}</SiteChrome>

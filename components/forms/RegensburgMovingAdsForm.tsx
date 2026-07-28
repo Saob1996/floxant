@@ -4,6 +4,7 @@ import { type FormEvent, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Paperclip } from "lucide-react";
 
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+import { trackGenerateLead } from "@/lib/analytics/google-tag";
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -57,6 +58,7 @@ function queryValue(name: string) {
 export function RegensburgMovingAdsForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const startedAtRef = useRef(Date.now());
+  const leadEventKeyRef = useRef("");
   const [step, setStep] = useState<1 | 2>(1);
   const [state, setState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
@@ -159,6 +161,7 @@ export function RegensburgMovingAdsForm() {
 
       if (
         response.status !== 201 ||
+        response.ok !== true ||
         responsePayload.ok !== true ||
         !responsePayload.requestId ||
         !responsePayload.bookingId
@@ -171,6 +174,18 @@ export function RegensburgMovingAdsForm() {
         return;
       }
 
+      if (!leadEventKeyRef.current) {
+        leadEventKeyRef.current = `regensburg_moving_ads:${Date.now()}:${Math.random()}`;
+      }
+      trackGenerateLead(
+        {
+          form_name: "regensburg_moving_ads",
+          service_type: "moving",
+          location: "regensburg",
+          lead_source: "google_ads",
+        },
+        leadEventKeyRef.current,
+      );
       setReceipt({
         requestId: responsePayload.requestId,
         bookingId: responsePayload.bookingId,

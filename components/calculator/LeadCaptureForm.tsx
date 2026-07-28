@@ -93,17 +93,6 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
   setIsSubmitting(true);
 
   try {
-   if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", "conversion", {
-     send_to:
-      "AW-CONVERSION_ID_HIER_EINTRAGEN/CONVERSION_LABEL_HIER_EINTRAGEN",
-    });
-   }
-  } catch (err) {
-   console.warn("GTAG error", err);
-  }
-
-  try {
    const formData = new FormData();
 
    // Get additional service data from store directly to ensure latest state

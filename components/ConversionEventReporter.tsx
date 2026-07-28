@@ -8,10 +8,6 @@ import {
  JOURNEY_ID_STORAGE_KEY,
  LAST_CONVERSION_STORAGE_KEY,
 } from "@/lib/conversion-journey";
-import {
- getGoogleAdsConversionTarget,
- type GoogleAdsConversionName,
-} from "@/lib/google-ads-conversions";
 
 const CONVERSION_HISTORY_KEY = "floxant:conversion_history";
 const HIGH_INTENT_DWELL_MS = 14000;
@@ -120,65 +116,8 @@ function sendConversionEvent(payload: Record<string, unknown>) {
  rememberConversionEvent(snapshot);
 }
 
-function normalizeForTracking(value: unknown) {
- return String(value ?? "")
-  .toLowerCase()
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g, "")
-  .replace(/[^a-z0-9]+/g, " ")
-  .trim();
-}
-
-function hasMarketingConsent() {
- try {
-  const raw = localStorage.getItem("cookie_consent");
-  if (!raw) return false;
-  if (raw === "all") return true;
-  if (!raw.startsWith("{")) return false;
-  return JSON.parse(raw)?.marketing === true;
- } catch {
-  return false;
- }
-}
-
-function inferGoogleAdsConversion(payload: Record<string, unknown>): GoogleAdsConversionName | null {
- const event = normalizeForTracking(payload.event);
- const href = normalizeForTracking(payload.href);
- const label = normalizeForTracking(payload.label);
- const channel = normalizeForTracking(payload.channel);
- const combined = `${event} ${href} ${label} ${channel}`;
-
- if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success") || event.includes("lead submit success")) return "form_success";
- if (href.startsWith("tel") || channel === "phone" || event.includes("phone") || event.includes("call")) return "phone";
- if (href.includes("wa me") || href.includes("whatsapp") || channel === "whatsapp" || event.includes("whatsapp")) return "whatsapp";
- if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("offer comparison") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
- if (combined.includes("ruckruf") || combined.includes("callback")) return "callback";
- if (event.includes("start booking") || event.includes("booking") || event.includes("anfrage")) return "booking_start";
- return null;
-}
-
-function sendGoogleAdsConversion(payload: Record<string, unknown>) {
- if (!hasMarketingConsent()) return;
- if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-
- const conversionName = inferGoogleAdsConversion(payload);
- if (!conversionName) return;
-
- const sendTo = getGoogleAdsConversionTarget(conversionName);
- if (!sendTo) return;
-
- window.gtag("event", "conversion", {
-  send_to: sendTo,
-  transport_type: "beacon",
-  event_category: "google_ads",
-  event_label: conversionName,
-  page_path: window.location.pathname,
- });
-}
-
 function trackConversion(payload: Record<string, unknown>) {
  sendConversionEvent(payload);
- sendGoogleAdsConversion(payload);
 }
 
 function eventNameFor(element: HTMLElement, href: string) {

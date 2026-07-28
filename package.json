@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node scripts/cloudflare-functions-test.mjs",
+    "test": "node scripts/cloudflare-functions-test.mjs && node scripts/google-tag-consent-test.mjs",
     "dev": "next dev --webpack",
     "prebuild": "node scripts/build-public-search-index.js && node scripts/validate-public-search-index.js",
     "build": "next build --webpack",
