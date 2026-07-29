@@ -1,9 +1,9 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Loader2, MessageCircle, Send, ShieldCheck } from "lucide-react";
 
@@ -138,6 +138,8 @@ export function CommercialCleaningLeadForm() {
  const [form, setForm] = useState(initialForm);
  const [submitting, setSubmitting] = useState(false);
  const [state, setState] = useState<"idle" | "success" | "error">("idle");
+ const [errorMessage, setErrorMessage] = useState("");
+ const startedAtRef = useRef(Date.now());
 
  const whatsappUrl = useMemo(() => {
   const text = `Hallo FLOXANT, ich möchte ${serviceContext.label} anfragen.`;
@@ -146,9 +148,12 @@ export function CommercialCleaningLeadForm() {
 
  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
+  if (submitting) return;
   setSubmitting(true);
   setState("idle");
+  setErrorMessage("");
 
+  const submittedForm = new FormData(event.currentTarget);
   const budgetValue = parseBudget(form.budget);
   const topDrivers = [serviceContext.label, form.propertyType, form.spaceRange, form.cadence, form.location].filter(Boolean);
 
@@ -158,6 +163,16 @@ export function CommercialCleaningLeadForm() {
    email: form.email,
    phone: form.phone,
    service: serviceContext.serviceType,
+   type: "commercial_cleaning_request",
+   lead_type: "commercial_cleaning_request",
+   serviceCategory: "reinigung",
+   leadSource: serviceContext.source,
+   source: serviceContext.source,
+   sourcePage: serviceContext.entryPoint,
+   landingPage: serviceContext.entryPoint,
+   timestamp: new Date().toISOString(),
+   formStartedAt: startedAtRef.current,
+   companyWebsite: String(submittedForm.get("companyWebsite") || ""),
    upgrades: [],
    details: {
     contact: {
@@ -248,11 +263,24 @@ export function CommercialCleaningLeadForm() {
     body: JSON.stringify(payload),
    });
 
-   if (!response.ok) throw new Error("submit_failed");
+   const result = await response.json().catch(() => ({})) as {
+    ok?: boolean;
+    requestId?: string;
+    error?: string;
+    fields?: Record<string, string>;
+   };
+   if (response.status !== 201 || result.ok !== true) {
+    const fields = bookingFieldErrors(result);
+    const firstFieldError = Object.values(fields).find(Boolean);
+    const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+    throw new Error(`${firstFieldError || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
+   }
 
    setState("success");
    setForm(initialForm);
-  } catch {
+   startedAtRef.current = Date.now();
+  } catch (error) {
+   setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
    setState("error");
   } finally {
    setSubmitting(false);
@@ -272,6 +300,10 @@ export function CommercialCleaningLeadForm() {
     data-source={serviceContext.source}
     className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
    >
+    <label className="sr-only" aria-hidden="true">
+     Website
+     <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
+    </label>
     <div className="mb-6 flex items-start justify-between gap-4">
      <div>
       <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
@@ -442,7 +474,7 @@ export function CommercialCleaningLeadForm() {
 
     {state === "error" ? (
      <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
-      Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.
+      {errorMessage || "Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp."}
      </div>
     ) : null}
    </form>

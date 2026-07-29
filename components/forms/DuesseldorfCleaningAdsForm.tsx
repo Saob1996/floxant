@@ -108,8 +108,6 @@ export function DuesseldorfCleaningAdsForm() {
     payload.set("wbraid", queryValue("wbraid"));
     payload.set("timestamp", new Date().toISOString());
     payload.set("formStartedAt", String(startedAtRef.current));
-    payload.set("companyWebsite", "");
-
     try {
       const response = await bookingFetch("/api/bookings", { method: "POST", body: payload });
       const responsePayload = await response.json().catch(() => ({})) as {
@@ -181,6 +179,10 @@ export function DuesseldorfCleaningAdsForm() {
       className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-950/10 sm:p-8"
       data-event="form_submit"
     >
+      <label className="sr-only" aria-hidden="true">
+        Website
+        <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
+      </label>
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-sm font-black text-cyan-900">Schritt {step} von 2</p>

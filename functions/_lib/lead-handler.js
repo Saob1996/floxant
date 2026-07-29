@@ -3,6 +3,7 @@ import {
   assertAllowedFileFields,
   normalizeLeadPayload,
 } from "./lead-payload.js";
+import { normalizeCleaningRequest } from "./cleaning-request.js";
 
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
@@ -349,7 +350,7 @@ function validateSubmission(payload) {
   return contact;
 }
 
-function buildDetails(payload, contact, service, uploadedFiles) {
+function buildDetails(payload, contact, service, uploadedFiles, request) {
   const existing = payload.details && typeof payload.details === "object"
     ? payload.details
     : {
@@ -360,6 +361,10 @@ function buildDetails(payload, contact, service, uploadedFiles) {
         metadata: payload.metadata && typeof payload.metadata === "object" ? payload.metadata : undefined,
       };
   const now = new Date().toISOString();
+  const legacyDetailsText = typeof payload.details === "string" ? text(payload.details) : "";
+  const requestedLocale = firstText(existing.metadata?.locale, payload.locale);
+  const acceptLanguage = firstText(request?.headers?.get?.("Accept-Language"));
+  const locale = requestedLocale || (/^en(?:-|,|;|$)/i.test(acceptLanguage) ? "en" : "de");
   const excludedRawFields = new Set([
     "details",
     "upgrades",
@@ -373,6 +378,7 @@ function buildDetails(payload, contact, service, uploadedFiles) {
     "url",
   ]);
   const rawFields = Object.fromEntries(Object.entries(payload).filter(([key]) => !excludedRawFields.has(key)));
+  const normalizedCleaningRequest = normalizeCleaningRequest(payload, service, locale);
   return {
     ...existing,
     contact: {
@@ -394,11 +400,14 @@ function buildDetails(payload, contact, service, uploadedFiles) {
       privacyConsent: true,
       rawFields,
       uploadMetadata: uploadedFiles,
+      ...(legacyDetailsText ? { legacyDetailsText } : {}),
+      ...(normalizedCleaningRequest ? { cleaningRequest: normalizedCleaningRequest } : {}),
     },
     metadata: {
       ...(existing.metadata || {}),
       createdAt: firstText(existing.metadata?.createdAt, payload.timestamp, now),
       intakeVersion: firstText(existing.metadata?.intakeVersion, "cloudflare-pages-v2"),
+      locale,
     },
   };
 }
@@ -548,7 +557,7 @@ export async function handleLeadSubmission(context) {
     await validateFiles(files);
     const uploadedFiles = await uploadFiles(files, configuration, requestId);
     const service = normalizeService(firstText(payload.details?.service?.type, payload.service?.type, payload.service, payload.type, payload.lead_type));
-    const details = buildDetails(payload, contact, service, uploadedFiles);
+    const details = buildDetails(payload, contact, service, uploadedFiles, context.request);
     const fileUrls = uploadedFiles.map((item) => item.publicUrl);
     const booking = {
       name: contact.name,

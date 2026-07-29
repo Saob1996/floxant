@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
@@ -63,6 +63,7 @@ export function EnglishRequestForm() {
   const [region, setRegion] = useState<Region>("");
   const [service, setService] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const startedAtRef = useRef(Date.now());
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -85,6 +86,7 @@ export function EnglishRequestForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (state === "sending") return;
     setState("sending");
     setErrorMessage("");
 
@@ -92,8 +94,21 @@ export function EnglishRequestForm() {
     const data = new FormData(form);
     data.set("type", "booking_request");
     data.set("lead_type", "english-service-request");
-    data.set("source", "/en/contact");
+    data.set("leadSource", "english-service-request");
+    data.set("source", "english-service-request");
+    data.set("sourcePage", "/en/contact");
+    data.set("landingPage", `${window.location.pathname}${window.location.search}`);
     data.set("intent", "english-contact");
+    data.set("locale", "en");
+    data.set("timestamp", new Date().toISOString());
+    data.set("formStartedAt", String(startedAtRef.current));
+    const query = new URLSearchParams(window.location.search);
+    data.set("utmSource", query.get("utm_source") || "");
+    data.set("utmMedium", query.get("utm_medium") || "");
+    data.set("utmCampaign", query.get("utm_campaign") || "");
+    data.set("utmTerm", query.get("utm_term") || "");
+    data.set("utmContent", query.get("utm_content") || "");
+    data.set("gclid", query.get("gclid") || "");
 
     try {
       const response = await bookingFetch("/api/bookings", { method: "POST", body: data });
@@ -109,6 +124,7 @@ export function EnglishRequestForm() {
       form.reset();
       setRegion("");
       setService("");
+      startedAtRef.current = Date.now();
       setState("success");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Request could not be submitted.");
@@ -130,6 +146,10 @@ export function EnglishRequestForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
+      <label className="sr-only" aria-hidden="true">
+        Website
+        <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
+      </label>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name

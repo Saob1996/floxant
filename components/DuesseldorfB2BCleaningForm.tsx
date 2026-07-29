@@ -1,9 +1,9 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, MessageCircle, Phone, UploadCloud } from "lucide-react";
 
 import { duesseldorfCompany } from "@/lib/company";
@@ -52,6 +52,7 @@ export function DuesseldorfB2BCleaningForm({
   const [errorMessage, setErrorMessage] = useState("");
   const [fileSummary, setFileSummary] = useState("Noch keine Datei ausgewählt");
   const [uploadStarted, setUploadStarted] = useState(false);
+  const startedAtRef = useRef(Date.now());
 
   const selectedDefaultService = defaultService(context);
   const isSubmitting = submitState === "submitting";
@@ -86,6 +87,7 @@ export function DuesseldorfB2BCleaningForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting) return;
     setErrorMessage("");
 
     const form = event.currentTarget;
@@ -135,7 +137,10 @@ export function DuesseldorfB2BCleaningForm({
     formData.set("funnelStage", "b2b_lead");
     formData.set("ctaLabel", `${selectedDefaultService} Düsseldorf anfragen`);
     formData.set("sourceComponent", "duesseldorf_b2b_cleaning_form");
+    formData.set("leadSource", `duesseldorf_${context}_cleaning`);
+    formData.set("sourcePage", window.location.pathname);
     formData.set("timestamp", new Date().toISOString());
+    formData.set("formStartedAt", String(startedAtRef.current));
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", document.referrer);
     formData.set("utmSource", getQueryValue("utm_source"));
@@ -152,12 +157,16 @@ export function DuesseldorfB2BCleaningForm({
       });
       const result = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || result.ok !== true) {
+        const fields = bookingFieldErrors(result);
+        const firstFieldError = Object.values(fields).find(Boolean);
+        const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+        throw new Error(`${firstFieldError || result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
       form.reset();
       setFileSummary("Noch keine Datei ausgewählt");
+      startedAtRef.current = Date.now();
       setSubmitState("success");
     } catch (error) {
       setSubmitState("error");
