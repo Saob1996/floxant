@@ -1,0 +1,152 @@
+const FIELD_LABELS: Record<string, string> = {
+  access: "Zugang",
+  accessNotes: "Hinweise zum Zugang",
+  accessTimes: "Zugangszeiten",
+  additionalServices: "Zusatzleistungen",
+  address: "Adresse",
+  area: "Fläche",
+  areaM2: "Fläche in m²",
+  areaRange: "Größenordnung",
+  areaSize: "Fläche oder Umfang",
+  attribution: "Kampagnenzuordnung",
+  bathroomsCount: "Sanitärbereiche",
+  boxesCount: "Kartons",
+  callbackPreference: "Bevorzugter Kontaktweg",
+  cadence: "Turnus",
+  city: "Ort",
+  cityOrZip: "Ort oder PLZ",
+  cleaningFrequency: "Reinigungsturnus",
+  cleaningType: "Reinigungsart",
+  company: "Firma",
+  companyName: "Firma",
+  contactMethod: "Bevorzugter Kontaktweg",
+  contactPersonRole: "Funktion des Ansprechpartners",
+  customerBudgetText: "Budgetangabe",
+  customerMessage: "Nachricht",
+  date: "Datum",
+  dateFlexibility: "Terminflexibilität",
+  deadline: "Frist",
+  desiredDate: "Gewünschter Termin",
+  destination: "Zielort",
+  destinationElevator: "Aufzug am Zielort",
+  destinationFloor: "Zieletage",
+  destinationLocation: "Zielort",
+  destinationPostalCode: "Ziel-PLZ",
+  email: "E-Mail",
+  endAddress: "Zielort",
+  entry: "Einstieg",
+  entryPage: "Einstiegsseite",
+  entryPoint: "Einstiegsseite",
+  file_url: "Datei",
+  file_urls: "Dateien",
+  flexibility: "Flexibilität",
+  formType: "Formulartyp",
+  frequency: "Turnus",
+  fromAddress: "Startort",
+  fullName: "Name",
+  gbraid: "GBRAID",
+  gclid: "GCLID",
+  hasElevatorDestination: "Aufzug am Zielort",
+  hasElevatorFrom: "Aufzug am Startort",
+  hasElevatorStart: "Aufzug am Startort",
+  hasElevatorTo: "Aufzug am Zielort",
+  intakeVersion: "Formularversion",
+  landing_page: "Einstiegsseite",
+  landingPage: "Einstiegsseite",
+  lead_type: "Formulartyp",
+  leadSource: "Quelle",
+  locale: "Sprache",
+  location: "Ort",
+  material: "Material",
+  message: "Nachricht",
+  moveDate: "Umzugstermin",
+  name: "Name",
+  note: "Hinweis",
+  notes: "Hinweise",
+  objectLocation: "Objektstandort",
+  objectType: "Objektart",
+  packingService: "Verpackung",
+  phone: "Telefon",
+  postalCode: "PLZ",
+  preferredContact: "Bevorzugter Kontaktweg",
+  preferredContactMethod: "Bevorzugter Kontaktweg",
+  preferredDate: "Gewünschter Termin",
+  preferredWindow: "Gewünschtes Zeitfenster",
+  propertyType: "Objektart",
+  rawFields: "Übermittelte Formularfelder",
+  recurringFrequency: "Turnus",
+  region: "Region",
+  regionPreset: "Standort",
+  rooms: "Räume",
+  roomsCount: "Räume",
+  scope: "Umfang",
+  scopeSummary: "Leistungsumfang",
+  selectedAddons: "Zusatzleistungen",
+  selectedServices: "Ausgewählte Leistungen",
+  selectedUpgrades: "Ausgewählte Extras",
+  service: "Leistung",
+  serviceCategory: "Leistungskategorie",
+  serviceLabel: "Leistung",
+  serviceScope: "Leistungsumfang",
+  serviceSlug: "Leistungsschlüssel",
+  source: "Quelle",
+  sourceComponent: "Formularkomponente",
+  sourcePage: "Einstiegsseite",
+  specialAreas: "Besondere Bereiche",
+  specialConditions: "Besondere Bedingungen",
+  specialNotes: "Besondere Hinweise",
+  startAddress: "Startort",
+  startElevator: "Aufzug am Startort",
+  startFloor: "Startetage",
+  startLocation: "Startort",
+  startPostalCode: "Start-PLZ",
+  timeWindow: "Zeitraum",
+  toAddress: "Zielort",
+  turnus: "Turnus",
+  type: "Anfrageart",
+  upgrades: "Zusatzleistungen",
+  uploadMetadata: "Dateiinformationen",
+  urgency: "Dringlichkeit",
+  utmCampaign: "UTM Campaign",
+  utmContent: "UTM Content",
+  utmMedium: "UTM Medium",
+  utmSource: "UTM Source",
+  utmTerm: "UTM Term",
+  utm_campaign: "UTM Campaign",
+  utm_content: "UTM Content",
+  utm_medium: "UTM Medium",
+  utm_source: "UTM Source",
+  utm_term: "UTM Term",
+  wbraid: "WBRAID",
+  windowsCount: "Fenster",
+  zip: "PLZ",
+};
+
+function humanizeKey(value: string): string {
+  const readable = value
+    .replace(/\[(\d+)\]/g, " $1")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!readable) return "Weitere Angabe";
+  return readable.charAt(0).toLocaleUpperCase("de-DE") + readable.slice(1);
+}
+
+export function getAdminFieldLabel(path: string): string {
+  const segments = path.split(".").filter(Boolean);
+  const key = segments.at(-1) || path;
+  return FIELD_LABELS[path] || FIELD_LABELS[key] || humanizeKey(key);
+}
+
+export function isSensitiveAdminField(path: string): boolean {
+  return path
+    .split(".")
+    .some((segment) =>
+      /^(authorization|cookie|password|secret|service[_-]?role|session|token|api[_-]?key|refresh[_-]?token|access[_-]?token)$/i.test(
+        segment,
+      ),
+    );
+}
+

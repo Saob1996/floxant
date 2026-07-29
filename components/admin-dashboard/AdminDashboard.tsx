@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -8,20 +9,32 @@ import {
   ChevronRight,
   CircleDot,
   Clock3,
+  ExternalLink,
+  FileImage,
   Inbox,
   Loader2,
   LogOut,
   Mail,
   MapPin,
+  Megaphone,
   MessageSquareText,
+  Paperclip,
   Phone,
   RefreshCw,
+  Route,
   Search,
   ShieldCheck,
   UserRound,
+  Wrench,
   X,
 } from "lucide-react";
 
+import {
+  buildAdminBookingDetailView,
+  formatAdminDisplayScalar,
+  type AdminDetailSection,
+  type AdminDisplayValue,
+} from "@/lib/admin-dashboard/booking-details";
 import {
   BOOKING_SELECT,
   EDITABLE_STATUSES,
@@ -480,14 +493,25 @@ function MetricCard({ label, value, icon, tone }: { label: string; value: number
   );
 }
 
+function sectionIcon(section: AdminDetailSection) {
+  if (section.id === "overview") return <Inbox className="h-4 w-4" />;
+  if (section.id === "contact") return <UserRound className="h-4 w-4" />;
+  if (section.id === "location") return <Route className="h-4 w-4" />;
+  if (section.id === "schedule") return <Clock3 className="h-4 w-4" />;
+  if (section.id === "service") return <Wrench className="h-4 w-4" />;
+  if (section.id === "campaign") return <Megaphone className="h-4 w-4" />;
+  return <MessageSquareText className="h-4 w-4" />;
+}
+
 function BookingDetail({ booking, updating, onClose, onStatusChange }: { booking: BookingRecord; updating: boolean; onClose: () => void; onStatusChange: (status: EditableBookingStatus) => void }) {
   const summary = getBookingSummary(booking);
   const currentEditableStatus = EDITABLE_STATUSES.some((item) => item.value === summary.status) ? summary.status : "";
+  const detailView = buildAdminBookingDetailView(booking);
 
   return (
     <div className="fixed inset-0 z-[10000] flex justify-end bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="booking-detail-title">
       <button type="button" className="absolute inset-0 cursor-default" onClick={onClose} aria-label="Detailansicht schließen" />
-      <section className="relative h-full w-full max-w-2xl overflow-y-auto border-l border-white/10 bg-[#091525] p-5 shadow-2xl sm:p-8">
+      <section className="relative h-full w-full max-w-4xl overflow-x-hidden overflow-y-auto border-l border-white/10 bg-[#091525] p-5 shadow-2xl sm:p-8">
         <div className="flex items-start justify-between gap-5">
           <div className="min-w-0">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">Anfragedetail</p>
@@ -500,46 +524,110 @@ function BookingDetail({ booking, updating, onClose, onStatusChange }: { booking
         </div>
 
         <div className="mt-7 grid gap-3 sm:grid-cols-2">
-          <DetailField icon={<Clock3 />} label="Eingang" value={formatBookingDate(summary.date)} />
-          <DetailField icon={<Inbox />} label="Anfrageart" value={summary.service} />
-          <DetailField icon={<Building2 />} label="Firma" value={summary.company || "Nicht angegeben"} />
-          <DetailField icon={<MapPin />} label="Ort / Route" value={summary.location || "Nicht angegeben"} />
+          {summary.email ? (
+            <a href={`mailto:${summary.email}`} className="flex min-h-12 min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm font-bold text-cyan-100 transition hover:bg-white/[0.08]">
+              <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className="break-all">{summary.email}</span>
+            </a>
+          ) : null}
+          {summary.phone ? (
+            <a href={phoneHref(summary.phone)} className="flex min-h-12 min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm font-bold text-cyan-100 transition hover:bg-white/[0.08]">
+              <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className="break-all">{summary.phone}</span>
+            </a>
+          ) : null}
         </div>
 
-        <section className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-          <div className="flex items-center gap-2 text-sm font-black text-slate-200">
-            <UserRound className="h-4 w-4 text-cyan-200" aria-hidden="true" />
-            Kontakt
-          </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {summary.email ? (
-              <a href={`mailto:${summary.email}`} className="flex min-h-11 min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-black/15 px-4 text-sm font-bold text-cyan-100 transition hover:bg-white/[0.06]">
-                <Mail className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{summary.email}</span>
-              </a>
-            ) : <p className="rounded-xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-semibold text-slate-500">E-Mail nicht angegeben</p>}
-            {summary.phone ? (
-              <a href={phoneHref(summary.phone)} className="flex min-h-11 min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-black/15 px-4 text-sm font-bold text-cyan-100 transition hover:bg-white/[0.06]">
-                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{summary.phone}</span>
-              </a>
-            ) : <p className="rounded-xl border border-white/10 bg-black/15 px-4 py-3 text-sm font-semibold text-slate-500">Telefon nicht angegeben</p>}
-          </div>
-        </section>
+        {detailView.sections.map((section) => (
+          <section key={section.id} className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6">
+            <h3 className="flex items-center gap-2 text-sm font-black text-slate-100">
+              <span className="text-cyan-200" aria-hidden="true">{sectionIcon(section)}</span>
+              {section.title}
+            </h3>
+            <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+              {section.items.map((detailItem) => (
+                <div
+                  key={`${section.id}-${detailItem.path}-${detailItem.label}`}
+                  className={`min-w-0 rounded-xl border border-white/[0.08] bg-black/15 p-4 ${
+                    typeof detailItem.value === "object" ? "sm:col-span-2" : ""
+                  }`}
+                >
+                  <dt className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">
+                    {detailItem.label}
+                  </dt>
+                  <dd className="mt-2 min-w-0 text-sm font-semibold leading-6 text-slate-200">
+                    <AdminValue value={detailItem.value} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ))}
 
-        <section className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-          <div className="flex items-center gap-2 text-sm font-black text-slate-200">
-            <MessageSquareText className="h-4 w-4 text-cyan-200" aria-hidden="true" />
-            Nachricht / Auftragsbeschreibung
-          </div>
-          <p className="mt-4 whitespace-pre-wrap break-words text-sm font-semibold leading-7 text-slate-300">{summary.message || "Keine Nachricht gespeichert."}</p>
-        </section>
+        {detailView.files.length ? (
+          <section className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6">
+            <h3 className="flex items-center gap-2 text-sm font-black text-slate-100">
+              <Paperclip className="h-4 w-4 text-cyan-200" aria-hidden="true" />
+              Dateien und Fotos
+            </h3>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {detailView.files.map((file) => (
+                <article key={file.url} className="min-w-0 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+                  {file.isImage ? (
+                    <Image
+                      src={file.url}
+                      alt={`Vorschau: ${file.name}`}
+                      width={800}
+                      height={500}
+                      sizes="(max-width: 640px) 100vw, 420px"
+                      className="aspect-[8/5] w-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <div className="grid aspect-[8/5] place-items-center bg-white/[0.03]">
+                      <FileImage className="h-10 w-10 text-slate-600" aria-hidden="true" />
+                    </div>
+                  )}
+                  <div className="p-4">
+                    <p className="break-all text-sm font-black text-slate-100">{file.name}</p>
+                    <p className="mt-1 break-all text-xs font-semibold text-slate-500">{file.contentType}</p>
+                    <a
+                      href={file.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      referrerPolicy="no-referrer"
+                      className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg border border-white/10 px-3 text-xs font-black text-cyan-100 hover:bg-white/[0.06]"
+                    >
+                      Sicher öffnen
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
-        <section className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-          <h3 className="text-sm font-black text-slate-200">Herkunft</h3>
-          <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
-            <div><dt className="text-xs font-black uppercase tracking-[0.12em] text-slate-600">Quelle / Formulartyp</dt><dd className="mt-2 break-words font-bold text-slate-300">{summary.source || "Nicht erfasst"}</dd></div>
-            <div><dt className="text-xs font-black uppercase tracking-[0.12em] text-slate-600">Einstiegsseite</dt><dd className="mt-2 break-words font-bold text-slate-300">{summary.entryPoint || "Nicht erfasst"}</dd></div>
-          </dl>
-        </section>
+        {detailView.additionalItems.length ? (
+          <details className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6">
+            <summary className="cursor-pointer text-sm font-black text-slate-100 outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+              Weitere gespeicherte Angaben ({detailView.additionalItems.length})
+            </summary>
+            <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+              {detailView.additionalItems.map((detailItem) => (
+                <div key={detailItem.path} className="min-w-0 rounded-xl border border-white/[0.08] bg-black/15 p-4">
+                  <dt className="break-words text-[11px] font-black uppercase tracking-[0.1em] text-slate-500">
+                    {detailItem.label}
+                  </dt>
+                  <dd className="mt-1 break-all font-mono text-[10px] text-slate-600">{detailItem.path}</dd>
+                  <dd className="mt-3 min-w-0 text-sm font-semibold leading-6 text-slate-200">
+                    <AdminValue value={detailItem.value} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+        ) : null}
 
         <section className="mt-6 rounded-2xl border border-cyan-200/15 bg-cyan-200/[0.06] p-5">
           <label className="block text-sm font-black text-cyan-50" htmlFor={`detail-status-${booking.id}`}>Status ändern</label>
@@ -562,13 +650,33 @@ function BookingDetail({ booking, updating, onClose, onStatusChange }: { booking
   );
 }
 
-function DetailField({ icon, label, value }: { icon: React.ReactElement<{ className?: string }>; label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
-        <span className="text-cyan-200">{icon}</span>{label}
-      </div>
-      <p className="mt-3 break-words text-sm font-bold leading-6 text-slate-200">{value}</p>
-    </div>
-  );
+function AdminValue({ value }: { value: AdminDisplayValue }) {
+  if (Array.isArray(value)) {
+    return (
+      <ul className="grid gap-2">
+        {value.map((item, index) => (
+          <li key={index} className="min-w-0 rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-2">
+            <AdminValue value={item} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (value && typeof value === "object") {
+    return (
+      <dl className="grid gap-3">
+        {Object.entries(value).map(([label, nestedValue]) => (
+          <div key={label} className="min-w-0 rounded-lg border border-white/[0.07] bg-white/[0.035] p-3">
+            <dt className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-500">{label}</dt>
+            <dd className="mt-2 min-w-0 break-words">
+              <AdminValue value={nestedValue} />
+            </dd>
+          </div>
+        ))}
+      </dl>
+    );
+  }
+
+  return <span className="whitespace-pre-wrap break-words">{formatAdminDisplayScalar(value)}</span>;
 }

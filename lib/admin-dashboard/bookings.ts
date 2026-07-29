@@ -4,7 +4,7 @@ export interface BookingRecord {
   id: string;
   service: string | null;
   upgrades: unknown;
-  details: BookingDetails | null;
+  details: unknown;
   name: string | null;
   email: string | null;
   phone: string | null;
@@ -46,6 +46,16 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 function asRecord(value: unknown): Record<string, unknown> {
+  if (typeof value === "string" && value.trim()) {
+    try {
+      const parsed = JSON.parse(value);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? (parsed as Record<string, unknown>)
+        : {};
+    } catch {
+      return {};
+    }
+  }
   return value && typeof value === "object" && !Array.isArray(value)
     ? (value as Record<string, unknown>)
     : {};
@@ -95,6 +105,10 @@ export function getServiceLabel(service: string | null | undefined): string {
 
 export function getBookingSummary(booking: BookingRecord) {
   const details = asRecord(booking.details);
+  const legacyDetails =
+    typeof booking.details === "string" && booking.details.trim() && !Object.keys(details).length
+      ? booking.details.trim()
+      : "";
   const fromLocation = firstText(details, [
     "configuration.fromAddress",
     "configuration.details.startLocation",
@@ -147,11 +161,12 @@ export function getBookingSummary(booking: BookingRecord) {
     message: firstText(details, [
       "contact.notes",
       "configuration.message",
+      "configuration.legacyDetailsText",
       "configuration.rawFields.message",
       "configuration.rawFields.note",
       "configuration.rawFields.notes",
       "valuation.pricingSignals.customerMessage",
-    ]),
+    ]) || legacyDetails,
     source: firstText(details, [
       "service.source",
       "metadata.source",
