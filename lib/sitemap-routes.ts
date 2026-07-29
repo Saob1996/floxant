@@ -194,6 +194,7 @@ export const sitemapRoutes = [
   "/duesseldorf/luxusreinigung",
   "/duesseldorf/praxisreinigung",
   "/duesseldorf/reinigung",
+  "/duesseldorf/treppenhausreinigung",
   "/duesseldorf/unterhaltsreinigung",
   "/einlagerung",
   "/einsatzradar-regensburg",

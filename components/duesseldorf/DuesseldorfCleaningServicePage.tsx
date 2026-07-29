@@ -42,7 +42,8 @@ export type DuesseldorfCleaningPageKey =
   | "fensterreinigung"
   | "grundreinigung"
   | "unterhaltsreinigung"
-  | "baureinigung";
+  | "baureinigung"
+  | "treppenhausreinigung";
 
 type CtaConfig = {
   href: string;
@@ -251,6 +252,13 @@ const hubServiceCards: Card[] = [
     href: "/duesseldorf/baureinigung",
     label: "Baureinigung ansehen",
   },
+  {
+    icon: Building2,
+    title: "Treppenhausreinigung Düsseldorf",
+    text: "Für Eingang, Etagen, Geländer, Aufzug und Gemeinschaftsflächen mit Turnus, Zugang und Ansprechpartner.",
+    href: "/duesseldorf/treppenhausreinigung",
+    label: "Treppenhausreinigung ansehen",
+  },
 ];
 
 const baseFaqItems: FaqItem[] = [
@@ -322,7 +330,7 @@ const propertyCleaningSituations = [
   "Hausverwaltung oder WEG braucht eine Anfrage mit den wichtigsten Eckdaten",
   "Vorhandenes Reinigungsangebot ist schwer vergleichbar",
   "Keller, Garage oder Müllraum sollen optional eingeordnet werden",
-  "Düsseldorf oder Regensburg ist als Servicegebiet relevant",
+  "Düsseldorf ist der Hauptort; umliegende Einsatzorte werden nach Objekt und Termin geprüft",
 ] as const;
 
 const propertyCleaningTypes = [
@@ -1014,6 +1022,119 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     ],
     about: ["Bauendreinigung Düsseldorf", "Baureinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf"],
   },
+  treppenhausreinigung: {
+    key: "treppenhausreinigung",
+    path: "/duesseldorf/treppenhausreinigung",
+    title: "Treppenhausreinigung Düsseldorf für Hausverwaltung & WEG | FLOXANT",
+    description:
+      "Treppenhausreinigung in Düsseldorf anfragen: Etagen, Eingang, Geländer, Aufzug, Gemeinschaftsflächen, Turnus, Zugang und Ansprechpartner klar beschreiben.",
+    ogTitle: "Treppenhausreinigung Düsseldorf – Turnus und Bereiche klar vereinbaren",
+    eyebrow: "Treppenhausreinigung Düsseldorf",
+    h1: "Treppenhausreinigung in Düsseldorf für gepflegte Gemeinschaftsflächen",
+    intro:
+      "Für ein Mehrfamilienhaus, eine Eigentümergemeinschaft oder ein Gewerbeobjekt zählen klare Bereiche und ein verlässlicher Abstimmungsweg. Nennen Sie Etagen, Eingang, Geländer, Aufzug, Zusatzflächen, gewünschten Turnus und Zugang. FLOXANT prüft den passenden Umfang vor einer Zusage.",
+    quickAnswer:
+      "Für eine Treppenhausreinigung in Düsseldorf helfen Objektart, Anzahl der Etagen und Eingänge, Aufzug, Bodenarten, gewünschte Bereiche, Turnus, Zugang, Ansprechpartner, Fotos und ein vorhandenes Leistungsverzeichnis.",
+    serviceType: "Treppenhausreinigung für Wohn- und Gewerbeobjekte in Düsseldorf",
+    primaryCta: {
+      href: staircaseCleaningContact,
+      label: "Treppenhausreinigung in Düsseldorf anfragen",
+      service: "treppenhausreinigung",
+      intent: "treppenhausreinigung-duesseldorf",
+      priority: "p0",
+    },
+    offerCta: {
+      href: propertyCleaningOfferContact,
+      label: "Treppenhaus-Angebot prüfen",
+      service: "treppenhausreinigung",
+      intent: "treppenhausreinigung-angebot-pruefen",
+      priority: "p1",
+    },
+    situations: [
+      {
+        icon: Building2,
+        title: "Hausverwaltung oder WEG",
+        text: "Eingänge, Etagen, Geländer, Aufzug und Gemeinschaftswege mit Turnus und Ansprechpartner einordnen.",
+      },
+      {
+        icon: Home,
+        title: "Mehrfamilienhaus",
+        text: "Wiederkehrende Reinigung für ein bewohntes Objekt mit Zugang, Bodenarten und Zusatzflächen abstimmen.",
+      },
+      {
+        icon: Store,
+        title: "Gewerbeobjekt",
+        text: "Treppen, Eingangszone und gemeinsam genutzte Wege passend zu Nutzungszeiten und Zugangsregeln beschreiben.",
+      },
+    ],
+    needs: [
+      "Objektart, Adresse oder Stadtteil",
+      "Anzahl der Eingänge, Etagen und Treppenläufe",
+      "Bodenarten, Geländer und vorhandener Aufzug",
+      "gewünschte Bereiche und Turnus",
+      "Zugang, Schlüsselweg und mögliche Reinigungszeiten",
+      "Ansprechpartner, Fotos oder Leistungsverzeichnis optional",
+    ],
+    effortFactors: [
+      "Anzahl der Eingänge, Etagen und Treppenläufe",
+      "Bodenarten, Stufen, Podeste und Geländer",
+      "Aufzug und weitere Gemeinschaftsflächen",
+      "Nutzungsintensität und Verschmutzungsgrad",
+      "Turnus, Reinigungszeit und Zugang",
+      "Keller, Glas, Außenstufen oder Sonderbereiche nach Vereinbarung",
+    ],
+    serviceCards: [hubServiceCards[11], hubServiceCards[9], hubServiceCards[0], hubServiceCards[1]],
+    b2bTrust: [
+      "Bereiche, Turnus und Zugangsweg werden vor einer Zusage konkret abgefragt.",
+      "Hausverwaltung, WEG oder Vermieter erhalten einen klaren Kontaktweg für Rückfragen.",
+      "Keller, Glas, Außenflächen oder Verbrauchsmaterial gelten nicht automatisch als enthalten.",
+    ],
+    faqItems: [
+      {
+        q: "Welche Bereiche können bei einer Treppenhausreinigung berücksichtigt werden?",
+        a: "Je nach Vereinbarung können Eingang, Treppen, Podeste, Geländer, Aufzug und ausgewählte Gemeinschaftsflächen berücksichtigt werden. Zusatzbereiche sollten ausdrücklich genannt werden.",
+      },
+      {
+        q: "Kann eine Hausverwaltung einen festen Turnus anfragen?",
+        a: "Ja. Nennen Sie Objekt, Bereiche, gewünschte Wochentage oder Intervalle, Zugang und Ansprechpartner. FLOXANT prüft anschließend Umfang und Machbarkeit.",
+      },
+      {
+        q: "Sind Keller, Fenster oder Außenstufen automatisch enthalten?",
+        a: "Nein. Solche Bereiche sind nur enthalten, wenn sie ausdrücklich beschrieben, geprüft und vereinbart wurden.",
+      },
+      ...baseFaqItems.slice(1, 3),
+    ],
+    about: [
+      "Treppenhausreinigung Düsseldorf",
+      "Treppenreinigung Düsseldorf",
+      "Hausverwaltung-Reinigung Düsseldorf",
+      "WEG-Reinigung Düsseldorf",
+    ],
+  },
+};
+
+const serviceScopeByPage: Record<DuesseldorfCleaningPageKey, readonly string[]> = {
+  reinigung: ["vereinbarte Räume und erreichbare Oberflächen", "Böden und sichtbare Kontaktflächen", "Küche oder Sanitär nach beschriebenem Umfang"],
+  bueroreinigung: ["Arbeits- und Besprechungsbereiche", "Empfang, Küche und Sanitär nach Raumliste", "Böden und erreichbare Oberflächen im vereinbarten Turnus"],
+  gewerbereinigung: ["vereinbarte Nutz- und Nebenflächen", "Böden, erreichbare Oberflächen und Sanitär", "objektspezifische Bereiche nach vorheriger Prüfung"],
+  praxisreinigung: ["Empfang, Warte- und Behandlungsräume nach Raumliste", "Sanitär und erreichbare Oberflächen", "Reinigungszeiten passend zum Praxisbetrieb"],
+  fensterreinigung: ["vereinbarte Glasflächen innen oder außen", "Rahmen und Falze nur nach ausdrücklicher Vereinbarung", "zugängliche Fenster anhand der beschriebenen Höhe"],
+  grundreinigung: ["vereinbarte Räume und Reinigungsschwerpunkte", "intensivere Bearbeitung erreichbarer Flächen", "klar beschriebener Zielzustand nach Objektprüfung"],
+  unterhaltsreinigung: ["wiederkehrende Reinigung nach Raumliste", "vereinbarte Böden, Oberflächen, Küche und Sanitär", "festgelegter Turnus und Zugangszeit"],
+  baureinigung: ["vereinbarte Flächen nach Bau- oder Renovierungsphase", "Baustaub und typische lose Rückstände nach Prüfung", "Vorbereitung auf Abnahme, Einzug oder Übergabe im abgestimmten Umfang"],
+  treppenhausreinigung: ["Eingang, Treppen und Podeste nach Vereinbarung", "Geländer und Aufzug im beschriebenen Umfang", "ausgewählte Gemeinschaftsflächen im vereinbarten Turnus"],
+};
+
+const notIncludedByPage: Record<DuesseldorfCleaningPageKey, readonly string[]> = {
+  reinigung: ["Entsorgung größerer Mengen", "Gefahrstoff- oder Schädlingsbeseitigung", "nicht beschriebene Sonderflächen"],
+  bueroreinigung: ["IT-Innenreinigung", "Akten- oder Arbeitsplatzorganisation", "Verbrauchsmaterial ohne Vereinbarung"],
+  gewerbereinigung: ["Maschinen-Innenreinigung", "produktionsbedingte Gefahrstoffe", "Höhenarbeiten ohne Zugangsprüfung"],
+  praxisreinigung: ["medizinische Spezialdesinfektion ohne gesonderte Prüfung", "Instrumentenaufbereitung", "Entsorgung medizinischer Abfälle"],
+  fensterreinigung: ["Höhenzugang oder Hebebühne ohne Prüfung", "beschädigte oder nicht sicher erreichbare Elemente", "Rahmen und Falze ohne Vereinbarung"],
+  grundreinigung: ["Sanierung beschädigter Oberflächen", "Schimmel- oder Gefahrstoffbeseitigung", "Entrümpelung und Entsorgung ohne Vereinbarung"],
+  unterhaltsreinigung: ["Grund- oder Bauendreinigung", "Fenster und Sonderflächen ohne Leistungsplan", "Verbrauchsmaterial ohne Vereinbarung"],
+  baureinigung: ["Bauschutt- und Gefahrstoffentsorgung", "Handwerker-Nacharbeiten", "Entfernung unbekannter fest haftender Rückstände ohne Prüfung"],
+  treppenhausreinigung: ["Keller, Müllraum oder Außenanlage ohne Vereinbarung", "Fenster- und Glasreinigung ohne Leistungsplan", "Winterdienst und technische Hausmeisterarbeiten"],
 };
 
 export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPageKey): Metadata {
@@ -1688,6 +1809,44 @@ function CleaningSituationGrid({ config }: { config: PageConfig }) {
   );
 }
 
+function CleaningScopeAndBoundaries({ config }: { config: PageConfig }) {
+  return (
+    <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading
+          eyebrow="Leistungsumfang"
+          title="Was vereinbart werden kann – und was nicht automatisch dazugehört."
+          intro="Der konkrete Umfang entsteht erst aus Objekt, Bereichen, Zustand, Zugang und Termin. Die Übersicht verhindert, dass wichtige Zusatzarbeiten stillschweigend vorausgesetzt werden."
+        />
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          <article className="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
+            <h3 className="text-xl font-black text-emerald-950">Möglicher Umfang nach Vereinbarung</h3>
+            <ul className="mt-5 grid gap-3">
+              {serviceScopeByPage[config.key].map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-bold leading-7 text-emerald-950/85">
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-700" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+          <article className="rounded-xl border border-amber-200 bg-amber-50 p-6">
+            <h3 className="text-xl font-black text-amber-950">Nicht automatisch enthalten</h3>
+            <ul className="mt-5 grid gap-3">
+              {notIncludedByPage[config.key].map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-bold leading-7 text-amber-950/85">
+                  <XCircle className="mt-1 h-5 w-5 shrink-0 text-amber-700" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CleaningEffortFactorsPanel({ config }: { config: PageConfig }) {
   return (
     <section className="border-y border-slate-200 bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
@@ -2005,6 +2164,7 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <BueroreinigungGewerbereinigungComparison />
       <PropertyManagementCleaningSection />
       <CleaningSituationGrid config={config} />
+      <CleaningScopeAndBoundaries config={config} />
       <CleaningNeedsPanel config={config} />
       <CleaningEffortFactorsPanel config={config} />
       <CleaningServiceClusterCards config={config} />
