@@ -44,6 +44,13 @@ const cleaningTypes = [
     regensburg: "/regensburg/gewerbereinigung",
   },
   {
+    id: "praxisreinigung",
+    title: "Praxisreinigung",
+    text: "Praxisart, sensible Bereiche, Raumliste, Turnus, Reinigungszeiten und Zugang klar einordnen.",
+    duesseldorf: "/duesseldorf/praxisreinigung",
+    regensburg: "/praxisreinigung-regensburg",
+  },
+  {
     id: "fensterreinigung",
     title: "Fensterreinigung",
     text: "Fensterzahl, Glasflächen, Rahmen, Etage, Erreichbarkeit, Innen/Außen und Terminwunsch nennen.",
@@ -70,6 +77,13 @@ const cleaningTypes = [
     text: "Wiederkehrende Reinigung für Büro, Gewerbe, Treppenhaus oder Objekt mit Turnus, Bereichen, Zeiten und Zugang.",
     duesseldorf: "/duesseldorf/unterhaltsreinigung",
     regensburg: "/unterhaltsreinigung-regensburg",
+  },
+  {
+    id: "treppenhausreinigung",
+    title: "Treppenhausreinigung",
+    text: "Eingang, Etagen, Geländer, Aufzug, Gemeinschaftsflächen, Turnus und Zugangsweg zusammenfassen.",
+    duesseldorf: "/duesseldorf/treppenhausreinigung",
+    regensburg: "/treppenhausreinigung-regensburg",
   },
   {
     id: "baureinigung",
