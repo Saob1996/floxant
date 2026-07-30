@@ -395,7 +395,7 @@ export const prioritySeoMetaRegistry = {
       benefit: {
         title: "Wohnungsauflösung Regensburg ruhig vorbereiten",
         description:
-          "Persönliche Dinge, Restmengen, Entsorgung und gewünschten Endzustand strukturiert klären; Reinigung bleibt eine optionale Zusatzleistung.",
+          "Persönliche Dinge, Restmengen, Entsorgung und gewünschten Endzustand angeben; Reinigung bleibt eine optionale Zusatzleistung.",
       },
       conversion: {
         title: "Wohnungsauflösung in Regensburg anfragen",
