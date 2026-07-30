@@ -271,7 +271,7 @@ function checkCtaIntegrity() {
     const source = read(file);
     if (!source) continue;
 
-    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|DuesseldorfCleaningServicePage/.test(source);
+    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|<ContactLeadForm\b|<ProfessionalRequestForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|DuesseldorfCleaningServicePage/.test(source);
     const hasCta = /data-event=["']seo_cta_click["']|buildLeadHref\(|\bcta(Text)?\s*=|\bcta\s*:|\bprimaryCta\b|\bsecondaryHref\b|\bofferHref\b|\bbookingHref\b|\bleadHref\b|href\s*[:=]\s*["']\/(?:kontakt|buchung|angebot-guenstiger-pruefen|angebotscheck)/.test(source) || centralCtaComponent;
     const hasRealHref = /href=|\bhref\s*:|<Link\b|<a\b|\bbookingHref\b|\bleadHref\b/.test(source) || centralCtaComponent;
     const hrefValues = collectHrefValues(source);
@@ -385,7 +385,7 @@ function checkLeadToBookingEnhancements() {
 
   const missingIntegrations = pageFiles.filter((file) => {
     const source = read(file);
-    return !/(ServicePackageSelector|EffortFactorsPanel|ContactPathChooser|OfferConcernSelector|B2BRequestPanel|DiscreetRequestPanel|RegensburgServicePage|LocalServiceSeoPage|GscOpportunitySection)/.test(source);
+    return !/(ServicePackageSelector|EffortFactorsPanel|ContactPathChooser|ContactLeadForm|ProfessionalRequestForm|OfferConcernSelector|B2BRequestPanel|DiscreetRequestPanel|RegensburgServicePage|LocalServiceSeoPage|GscOpportunitySection)/.test(source);
   });
   results.push(missingIntegrations.length
     ? item("FAIL", "Lead-to-Booking", null, "", `Page-Integrationen fehlen/unklar: ${missingIntegrations.map(rel).join(", ")}.`, "P0", "Kritische Seiten mit passenden Lead-to-Booking-Komponenten verbinden.")

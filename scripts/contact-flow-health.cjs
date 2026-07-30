@@ -14,6 +14,7 @@ const contactPage = read("app/kontakt/page.tsx");
 const contactPersonalization = read("components/ContactQueryPersonalization.tsx");
 const requestContext = read("lib/lead-intents/resolve-request-context.ts");
 const leadForm = read("components/SeoLeadForm.tsx");
+const professionalForm = read("components/ProfessionalRequestForm.tsx");
 const finder = read("components/ContactPathChooser.tsx");
 const fieldGroups = read("lib/contact-field-groups.ts");
 const successStates = read("lib/contact-success-states.ts");
@@ -22,12 +23,12 @@ const packageJson = JSON.parse(read("package.json"));
 
 check("contact page uses route-derived heading", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.headline") && requestContext.includes("headline:"), "H1 should react to the centrally resolved service/city/intent.");
 check("contact page uses route-derived intro", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.description") && requestContext.includes("description:"), "Intro should use the central request context.");
-check("contact page embeds location/service choice above form", contactPersonalization.includes("<RequestContextSelector") && contactPersonalization.indexOf("<RequestContextSelector") < contactPersonalization.indexOf("<SeoLeadForm"), "Neutral location and service choice should appear before the direct form.");
-check("SeoLeadForm remains direct form", contactPage.includes("<ContactLeadForm") && contactPersonalization.includes("<SeoLeadForm"), "Central lead form must stay present.");
-check("SeoLeadForm only submits to bookings API", leadForm.includes('bookingFetch("/api/bookings"') && leadForm.includes("onSubmit={handleSubmit}"), "Lead API should be called by form submit.");
+check("contact page embeds location/service choice above form", contactPersonalization.includes("selection={") && contactPersonalization.includes("<RequestContextSelector") && professionalForm.includes("<div className=\"mt-5\">{selection}</div>"), "Neutral location and service choice should appear in step one before the detail and contact steps.");
+check("ProfessionalRequestForm is the direct form", contactPage.includes("<ContactLeadForm") && contactPersonalization.includes("<ProfessionalRequestForm"), "Central three-step lead form must stay present.");
+check("ProfessionalRequestForm only submits to bookings API", professionalForm.includes('bookingFetch("/api/bookings"') && professionalForm.includes("onSubmit={handleSubmit}"), "Lead API should be called by form submit.");
 check("Finder does not submit or fetch", !/fetch\s*\(/.test(finder) && !finder.includes("onSubmit"), "Finder must remain link-only.");
 check("Finder exposes accessibility focus state", finder.includes("focus-visible:ring"), "Keyboard users need visible focus.");
-check("core fields present", ["name", "email", "phone", "servicePreset", "city", "message"].every((token) => leadForm.includes(token)), "Core form fields must remain available.");
+check("core fields present", ["name", "email", "phone", "bookingService", "cityOrZip", "message"].every((token) => professionalForm.includes(token)), "Core form fields must remain available.");
 check("offer-check fields present", ["offerStatus", "offerAmount", "offerConcern"].every((token) => leadForm.includes(token)), "Offer-check fields must remain available.");
 check("property cleaning fields present", ["propertyCleaningRole", "propertyCleaningObjectType", "propertyCleaningFrequency", "propertyCleaningAccess"].every((token) => leadForm.includes(token)), "Property cleaning fields must remain available.");
 check("handover fields present", ["handoverSituation", "handoverCondition", "handoverDeadline", "handoverKeyAccess"].every((token) => leadForm.includes(token)), "Handover fields must remain available.");
@@ -83,8 +84,8 @@ const lines = [
   "",
   "## Safety",
   "- ServiceFinder is link-only.",
-  "- SeoLeadForm remains the explicit submit point.",
-  "- Success copy stays service-specific without guarantees.",
+  "- ProfessionalRequestForm remains the explicit central submit point.",
+  "- Existing specialized SeoLeadForm success copy stays available without guarantees.",
   "",
   "## Documentation warnings",
   ...(documentationWarnings.length

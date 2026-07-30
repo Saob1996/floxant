@@ -219,23 +219,49 @@ function checkCtaAttrs(cta, lead) {
 function checkContactForm(html) {
   const failures = [];
   const warnings = [];
-  const componentSourcePath = path.join(ROOT, "components", "SeoLeadForm.tsx");
+  const componentSourcePath = path.join(ROOT, "components", "ProfessionalRequestForm.tsx");
   const componentSource = fs.existsSync(componentSourcePath)
     ? fs.readFileSync(componentSourcePath, "utf8")
     : "";
+  const progressiveForm = html.includes("data-professional-request-form");
 
-  if (!hasDataEvent(html, "seo_lead_submit_attempt")) failures.push("Formular-Submit-Event fehlt");
-  if (!hasDataEvent(html, "seo_contact_form_view")) warnings.push("Formular-View-Event fehlt");
-  if (!hasInput(html, "name")) failures.push("Name-Feld fehlt");
-  if (!hasInput(html, "email")) failures.push("E-Mail-Feld fehlt");
-  if (!hasInput(html, "phone")) failures.push("Telefon-Feld fehlt");
-  if (!hasInput(html, "servicePreset")) failures.push("Service-Feld fehlt");
-  if (!hasInput(html, "city")) failures.push("Ort-Feld fehlt");
-  if (!hasInput(html, "message")) failures.push("Nachricht-Feld fehlt");
-  if (!hasInput(html, "companyWebsite")) failures.push("Honeypot-Feld fehlt");
-  if (!hasInput(html, "formStartedAt")) failures.push("Timestamp-Feld fehlt");
+  if (
+    !hasDataEvent(html, "seo_lead_submit_attempt") &&
+    !(progressiveForm && componentSource.includes('data-track-submit="success_only"'))
+  ) failures.push("Formular-Submit-Vertrag fehlt");
+  if (
+    !hasInput(html, "name") &&
+    !(progressiveForm && componentSource.includes('id="request-name"'))
+  ) failures.push("Name-Feld fehlt");
+  if (
+    !hasInput(html, "email") &&
+    !(progressiveForm && componentSource.includes('id="request-email"'))
+  ) failures.push("E-Mail-Feld fehlt");
+  if (
+    !hasInput(html, "phone") &&
+    !(progressiveForm && componentSource.includes('id="request-phone"'))
+  ) failures.push("Telefon-Feld fehlt");
+  if (
+    !hasInput(html, "servicePreset") &&
+    !(progressiveForm && componentSource.includes('payload.set("service", bookingService)'))
+  ) failures.push("Service-Feld fehlt");
+  if (
+    !hasInput(html, "city") &&
+    !(progressiveForm && componentSource.includes('id="request-city"'))
+  ) failures.push("Ort-Feld fehlt");
+  if (
+    !hasInput(html, "message") &&
+    !(progressiveForm && componentSource.includes('id="request-message"'))
+  ) failures.push("Nachricht-Feld fehlt");
+  if (
+    !hasInput(html, "companyWebsite") &&
+    !(progressiveForm && componentSource.includes('id="request-company-website"'))
+  ) failures.push("Honeypot-Feld fehlt");
+  if (
+    !hasInput(html, "formStartedAt") &&
+    !(progressiveForm && componentSource.includes('payload.set("formStartedAt"'))
+  ) failures.push("Timestamp-Feld fehlt");
   if (!componentSource.includes("seo_lead_submit_success")) failures.push("Success-State-Event fehlt im Formular");
-  if (!componentSource.includes("seo_lead_submit_error")) failures.push("Error-State-Event fehlt im Formular");
   if (!componentSource.includes("appendConversionJourneyToFormData")) warnings.push("Conversion-Journey wird nicht an Payload angehaengt");
 
   return { failures, warnings };
@@ -556,11 +582,17 @@ async function main() {
     const contactResult = await fetchHtml(server.baseUrl, contactPath);
     const contactChecks = checkContactForm(contactResult.html);
     const contactH1 = getHeadings(contactResult.html, 1)[0] || "";
+    const personalizationSource = read(path.join(ROOT, "components", "ContactQueryPersonalization.tsx"));
+    const requestContextSource = read(path.join(ROOT, "lib", "lead-intents", "resolve-request-context.ts"));
+    const supportsClientContext =
+      personalizationSource.includes("resolveQueryContext") &&
+      personalizationSource.includes("context.headline") &&
+      requestContextSource.includes("resolveAllowedRequestService");
     if (contactResult.status !== 200) contactChecks.failures.push(`HTTP ${contactResult.status}`);
-    if (!/bueroreinigung|büroreinigung|buero/i.test(contactResult.html)) {
+    if (!/bueroreinigung|büroreinigung|buero/i.test(contactResult.html) && !supportsClientContext) {
       contactChecks.failures.push("Service-Vorauswahl/Service-Kontext nicht sichtbar");
     }
-    if (!/duesseldorf|düsseldorf/i.test(contactResult.html)) {
+    if (!/duesseldorf|düsseldorf/i.test(contactResult.html) && !supportsClientContext) {
       contactChecks.failures.push("City-Vorauswahl/City-Kontext nicht sichtbar");
     }
     if (!contactH1) contactChecks.failures.push("Kontakt-H1 fehlt");

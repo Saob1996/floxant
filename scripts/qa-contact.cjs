@@ -34,10 +34,25 @@ const personalizationSource = fs.readFileSync(
   path.join(process.cwd(), "components/ContactQueryPersonalization.tsx"),
   "utf8",
 );
+const professionalFormSource = fs.readFileSync(
+  path.join(process.cwd(), "components/ProfessionalRequestForm.tsx"),
+  "utf8",
+);
 const supportsClientQueryPersonalization =
   personalizationSource.includes("window.location.search") &&
-  personalizationSource.includes("resolveQueryIntent") &&
-  personalizationSource.includes("initialIntent");
+  personalizationSource.includes("resolveQueryContext") &&
+  personalizationSource.includes("context.availableServices");
+const progressiveFieldChecks = {
+  name: professionalFormSource.includes('id="request-name"'),
+  contact:
+    professionalFormSource.includes('id="request-email"') &&
+    professionalFormSource.includes('id="request-phone"'),
+  service: professionalFormSource.includes('payload.set("service", bookingService)'),
+  location: professionalFormSource.includes('id="request-city"'),
+  message: professionalFormSource.includes('id="request-message"'),
+  privacy: professionalFormSource.includes('id="request-privacy"'),
+  submit: professionalFormSource.includes('type="submit"'),
+};
 
 function checkNoFalseSuccess(html, scenario, results) {
   const text = stripTags(html).toLowerCase();
@@ -77,13 +92,14 @@ async function main() {
     if (!form) continue;
 
     const formHtml = form.html;
-    addResult(results, formContains(formHtml, [/name=["']name["']/i, /id=["']seo-lead-name["']/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Name field check.", "Add/restore name input.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']email["']/i, /name=["']phone["']/i, /kontaktweg|contactMethod/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Contact method/email/phone field check.", "Add at least one contact method field.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']servicePreset["']/i, /name=["']service["']/i, /data-service=/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Service field/value check.", "Preserve service field or hidden service value.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']city["']/i, /name=["']cityOrZip["']/i, /ort|stadt/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "City/location field check.", "Preserve city/location field.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']message["']/i, /name=["']scope["']/i, /nachricht|umfang/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Message/scope field check.", "Preserve message/scope field.", { priority: "P0" });
-    addResult(results, /datenschutz|privacy|privacyConsent/i.test(formHtml) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Privacy notice/consent check.", "Add Datenschutz/consent text and field.", { priority: "P0" });
-    addResult(results, /type=["']submit["']|<button\b[^>]*>[\s\S]*?(senden|anfrage|submit)/i.test(formHtml) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Submit button check.", "Add visible submit button.", { priority: "P0" });
+    const progressiveForm = html.includes("data-professional-request-form");
+    addResult(results, formContains(formHtml, [/name=["']name["']/i, /id=["']seo-lead-name["']/i]) || (progressiveForm && progressiveFieldChecks.name) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Name field check.", "Add/restore name input.", { priority: "P0" });
+    addResult(results, formContains(formHtml, [/name=["']email["']/i, /name=["']phone["']/i, /kontaktweg|contactMethod/i]) || (progressiveForm && progressiveFieldChecks.contact) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Contact method/email/phone field check.", "Add at least one contact method field.", { priority: "P0" });
+    addResult(results, formContains(formHtml, [/name=["']servicePreset["']/i, /name=["']service["']/i, /data-service=/i]) || (progressiveForm && progressiveFieldChecks.service) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Service field/value check.", "Preserve service field or hidden service value.", { priority: "P0" });
+    addResult(results, formContains(formHtml, [/name=["']city["']/i, /name=["']cityOrZip["']/i, /ort|stadt/i]) || (progressiveForm && progressiveFieldChecks.location) ? "PASS" : "FAIL", "contact-fields", scenario.path, "City/location field check.", "Preserve city/location field.", { priority: "P0" });
+    addResult(results, formContains(formHtml, [/name=["']message["']/i, /name=["']scope["']/i, /nachricht|umfang/i]) || (progressiveForm && progressiveFieldChecks.message) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Message/scope field check.", "Preserve message/scope field.", { priority: "P0" });
+    addResult(results, /datenschutz|privacy|privacyConsent/i.test(formHtml) || (progressiveForm && progressiveFieldChecks.privacy) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Privacy notice/consent check.", "Add Datenschutz/consent text and field.", { priority: "P0" });
+    addResult(results, /type=["']submit["']|<button\b[^>]*>[\s\S]*?(senden|anfrage|submit)/i.test(formHtml) || (progressiveForm && progressiveFieldChecks.submit) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Submit button check.", "Add visible submit button.", { priority: "P0" });
 
     const attrsText = JSON.stringify(form.attrs);
     const htmlAndAttrs = `${formHtml} ${attrsText}`;

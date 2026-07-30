@@ -51,6 +51,27 @@ const movingExtras = [
   "Reinigung",
 ] as const;
 
+const objectTypeLabels: Record<string, string> = {
+  wohnung: "Wohnung",
+  haus: "Haus",
+  buero: "Büro",
+  praxis: "Praxis",
+  gewerbe: "Gewerbeobjekt",
+  treppenhaus: "Treppenhaus",
+  sonstiges: "Andere Objektart",
+};
+
+const frequencyLabels: Record<string, string> = {
+  einmalig: "Einmalig",
+  woechentlich: "Wöchentlich",
+  "14-taegig": "14-tägig",
+  monatlich: "Monatlich",
+};
+
+function customerValue(value: string, labels: Record<string, string>) {
+  return labels[value] || value;
+}
+
 function requestGroup(context: RequestContext): RequestGroup {
   if (context.formVariant === "moving" || context.formVariant === "special-transport") {
     return "moving";
@@ -268,7 +289,7 @@ export function ProfessionalRequestForm({
     if (group === "clearance") {
       return [
         ["Ort", cityOrZip],
-        ["Objektart", objectType],
+        ["Objektart", customerValue(objectType, objectTypeLabels)],
         ["Größe oder Umfang", areaSize],
         ["Etage", floor],
         ["Aufzug", elevator],
@@ -279,9 +300,9 @@ export function ProfessionalRequestForm({
     }
     return [
       ["Ort", cityOrZip],
-      ["Objektart", objectType],
+      ["Objektart", customerValue(objectType, objectTypeLabels)],
       ["Fläche oder Umfang", areaSize],
-      ["Turnus", frequency],
+      ["Turnus", customerValue(frequency, frequencyLabels)],
       ["Zeitraum", desiredDate],
     ];
   }, [
@@ -772,10 +793,18 @@ export function ProfessionalRequestForm({
             </section>
 
             <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-semibold leading-6 text-slate-800">
-              <input type="checkbox" checked={privacyConsent} onChange={(event) => setPrivacyConsent(event.target.checked)} className="mt-1 h-4 w-4 shrink-0" />
+              <input
+                id="request-privacy"
+                name="privacyConsent"
+                type="checkbox"
+                checked={privacyConsent}
+                onChange={(event) => setPrivacyConsent(event.target.checked)}
+                className="mt-1 h-4 w-4 shrink-0"
+                aria-describedby={errors.privacy ? "request-privacy-error" : undefined}
+              />
               <span>Ich habe den <a href="/datenschutz" className="font-black text-blue-700 underline">Datenschutz-Hinweis</a> gelesen und stimme der Bearbeitung meiner Anfrage zu.</span>
             </label>
-            {errors.privacy ? <p className="text-sm font-semibold text-red-700">{errors.privacy}</p> : null}
+            {errors.privacy ? <p id="request-privacy-error" className="text-sm font-semibold text-red-700">{errors.privacy}</p> : null}
 
             <div className="hidden" aria-hidden="true">
               <label htmlFor="request-company-website">Website</label>

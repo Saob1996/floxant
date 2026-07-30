@@ -33,7 +33,6 @@ import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import {
   ContactTrustPanel,
   contactEntryPoints,
-  googleMapsUrl,
   whatsappUrl,
 } from "@/components/seo/ContactTrustPanel";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
@@ -336,7 +335,7 @@ export default async function KontaktPage() {
               className="inline-flex items-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-100"
               data-event="service_card_click"
               data-service="kontakt"
-              data-city="regensburg"
+              data-city=""
               data-page-intent="preisrahmen-pruefen"
               data-priority="p0"
               data-cta-label="Aufwand erst einordnen"
@@ -351,7 +350,7 @@ export default async function KontaktPage() {
               className="inline-flex items-center gap-2 rounded-2xl border border-emerald-300/20 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-500/15"
               data-event="seo_cta_click"
               data-service="kontakt"
-              data-city="regensburg"
+              data-city=""
               data-page-intent="whatsapp-anfrage"
               data-priority="p0"
               data-cta-label="WhatsApp öffnen"
@@ -360,14 +359,12 @@ export default async function KontaktPage() {
               WhatsApp öffnen
               <MessageCircle className="h-4 w-4" />
             </a>
-            <a
-              href={googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/standorte"
               className="inline-flex items-center gap-2 rounded-2xl border border-foreground/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-foreground/82 transition hover:bg-white/[0.08]"
             >
-              Standort ansehen
-            </a>
+              Standorte ansehen
+            </Link>
           </div>
           <div className="mt-8 grid gap-3 md:grid-cols-3">
             {mapsClosingSignals.map((item) => (
