@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { SeoLeadForm } from "@/components/SeoLeadForm";
+import { ProfessionalRequestForm } from "@/components/ProfessionalRequestForm";
 import type { LeadIntent } from "@/lib/lead-intents";
 import {
-  requestServiceOptionsByLocation,
   resolveRequestContext,
   type RequestLocation,
+  type RequestServiceOption,
 } from "@/lib/lead-intents/resolve-request-context";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +35,8 @@ function resolveQueryContext(query: string) {
     priority: params.get("priority"),
     source: params.get("source"),
     entryPage: params.get("entryPage"),
+    campaign: params.get("campaign") || params.get("utm_campaign"),
+    locale: params.get("locale"),
   });
 }
 
@@ -79,17 +81,17 @@ export function ContactHeroCopy({
 function RequestContextSelector({
   location,
   serviceKey,
+  services,
 }: {
   location: RequestLocation | "";
   serviceKey: string;
+  services: readonly RequestServiceOption[];
 }) {
   const locationOptions: Array<{ value: RequestLocation; label: string }> = [
     { value: "duesseldorf", label: "Düsseldorf" },
     { value: "regensburg", label: "Regensburg" },
     { value: "unsicher", label: "Noch unsicher" },
   ];
-  const services = location ? requestServiceOptionsByLocation[location] : [];
-
   function selectLocation(nextLocation: RequestLocation) {
     replaceRequestQuery((params) => {
       params.delete("mode");
@@ -104,9 +106,7 @@ function RequestContextSelector({
 
   function selectService(nextServiceKey: string) {
     if (!location || !nextServiceKey) return;
-    const service = requestServiceOptionsByLocation[location].find(
-      (option) => option.key === nextServiceKey,
-    );
+    const service = services.find((option) => option.key === nextServiceKey);
     if (!service) return;
 
     if (service.key === "angebot-pruefen") {
@@ -188,7 +188,6 @@ export function ContactLeadForm({
   const query = useCurrentQuery();
   const [entryReset, setEntryReset] = useState(0);
   const context = useMemo(() => resolveQueryContext(query), [query]);
-  const params = useMemo(() => new URLSearchParams(query), [query]);
 
   useEffect(() => {
     const reset = () => setEntryReset((current) => current + 1);
@@ -198,17 +197,16 @@ export function ContactLeadForm({
 
   return (
     <div className="order-first lg:order-none">
-      <RequestContextSelector location={context.location} serviceKey={context.serviceKey} />
-      <SeoLeadForm
+      <ProfessionalRequestForm
         key={`${query || "static-contact-default"}:${entryReset}`}
-        initialIntent={context.leadIntent}
-        initiallyNeutral={context.neutral}
-        displayHeading={context.headline}
-        displayIntro={context.description}
-        trackingSource={context.sourceLabel}
-        sourcePage="/kontakt"
-        initialOfferConcern={params.get("offerConcern") || ""}
-        initialOfferStatus={params.get("offerStatus") || ""}
+        context={context}
+        selection={
+          <RequestContextSelector
+            location={context.location}
+            serviceKey={context.serviceKey}
+            services={context.availableServices}
+          />
+        }
       />
     </div>
   );

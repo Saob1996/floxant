@@ -13,7 +13,8 @@ export type RequestLocation = "duesseldorf" | "regensburg" | "unsicher";
 export type GlobalRequestSource =
   | "global_header"
   | "global_mobile_header"
-  | "global_footer";
+  | "global_footer"
+  | "global_404";
 
 export type RequestServiceOption = {
   key: string;
@@ -31,6 +32,8 @@ export type RequestContextInput = {
   priority?: string | null;
   source?: string | null;
   entryPage?: string | null;
+  campaign?: string | null;
+  locale?: string | null;
 };
 
 export type RequestContext = {
@@ -46,11 +49,14 @@ export type RequestContext = {
   formVariant: string;
   sourceLabel: string;
   entryPage: string;
+  campaign: string;
+  locale: "de" | "en";
+  availableServices: readonly RequestServiceOption[];
   leadIntent: LeadIntent;
 };
 
 const neutralDescription =
-  "Wählen Sie zuerst den passenden Standort und die gewünschte Leistung. Anschließend können Sie die wichtigsten Eckdaten senden.";
+  "Wählen Sie den passenden Standort und die gewünschte Leistung. Anschließend können Sie die wichtigsten Eckdaten direkt senden.";
 
 const duesseldorfServices: readonly RequestServiceOption[] = [
   { key: "reinigung", label: "Reinigung", service: "reinigung", intent: "reinigung-anfrage" },
@@ -109,6 +115,10 @@ function getFormVariant(service: LeadService) {
   return entry?.fieldGroup || "core";
 }
 
+function normalizeLocale(value: string | null | undefined): "de" | "en" {
+  return String(value || "").trim().toLowerCase().startsWith("en") ? "en" : "de";
+}
+
 function neutralContext(input: RequestContextInput, location: RequestLocation | "" = ""): RequestContext {
   const leadIntent = resolveLeadIntent({
     path: "/kontakt",
@@ -131,6 +141,9 @@ function neutralContext(input: RequestContextInput, location: RequestLocation | 
     formVariant: "core",
     sourceLabel: String(input.source || "kontakt").trim(),
     entryPage: String(input.entryPage || ""),
+    campaign: String(input.campaign || "").trim(),
+    locale: normalizeLocale(input.locale),
+    availableServices: location ? requestServiceOptionsByLocation[location] : [],
     leadIntent,
   };
 }
@@ -189,6 +202,9 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
     formVariant: getFormVariant(option.service),
     sourceLabel: String(input.source || "kontakt").trim(),
     entryPage: String(input.entryPage || ""),
+    campaign: String(input.campaign || "").trim(),
+    locale: normalizeLocale(input.locale),
+    availableServices: options,
     leadIntent,
   };
 }

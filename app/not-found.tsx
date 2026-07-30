@@ -2,10 +2,11 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { ArrowLeft, ClipboardCheck, Home, MapPin, MessageCircle } from "lucide-react";
 import de from "@/dictionaries/de.json";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 
 const helpfulLinks = [
   { href: "/", label: "Startseite", Icon: Home },
-  { href: "/kontakt", label: "Kontakt", Icon: MessageCircle },
+  { href: buildGlobalRequestHref("global_404"), label: "Anfrage stellen", Icon: MessageCircle },
   { href: "/leistungen", label: "Leistungen", Icon: ClipboardCheck },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen", Icon: ClipboardCheck },
   { href: "/duesseldorf", label: "Düsseldorf", Icon: MapPin },
