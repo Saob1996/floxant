@@ -50,4 +50,4 @@ Die Homepage bleibt mit 745,77 ms mobilem TBT die wichtigste spätere Performanc
 
 ## Browser-QA
 
-Die vollständige Browser-Prüfung auf 1.440×1.000, 1.024×900, 768×1.024 und 390×844 umfasst 100 Kombinationen. Ergebnis: 100 bestanden, 0 fehlgeschlagen, 0 horizontale Überläufe, 0 defekte Bilder, 0 Console-Fehler und 0 Framework-Overlays. Enthalten sind ausdrücklich `/suche`, `/service-finder`, `/duesseldorf/reinigung/anfrage` und `/umzug-regensburg/anfrage`. Das maschinenlesbare Ergebnis steht in `artifacts/browser-qa-2026-07-30.json`.
+Die vollständige Browser-Prüfung auf 1.440×1.000, 1.024×900, 768×1.024 und 390×844 umfasst 100 Kombinationen. Ergebnis: 100 bestanden, 0 fehlgeschlagen, 0 horizontale Überläufe, 0 defekte Bilder, 0 Console-Fehler, 0 Framework-Overlays, 0 falsche Schnellkontakt-Standorte und 0 fehlende erwartete Schnellkontakte. Enthalten sind ausdrücklich `/suche`, `/service-finder`, `/duesseldorf/reinigung/anfrage` und `/umzug-regensburg/anfrage`. Neutrale Seiten enthalten keine Stadt-Vorbelegung; Regensburg-Seiten behalten Regensburg. Das maschinenlesbare Ergebnis steht in `artifacts/browser-qa-2026-07-30.json`.

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-26T11:03:47.684Z",
-  "baseUrl": "http://localhost:3000",
+  "generatedAt": "2026-07-30T10:11:25.682Z",
+  "baseUrl": "http://127.0.0.1:4173",
   "overall": "PASS",
   "totals": {
-    "pass": 22,
+    "pass": 23,
     "warn": 0,
     "fail": 0
   },
@@ -14,7 +14,7 @@
     "cards": 12,
     "mainServiceCards": 6,
     "specialSolutionCards": 4,
-    "visibleWords": 932
+    "visibleWords": 933
   },
   "checks": [
     {
@@ -101,6 +101,11 @@
       "name": "Keine sichtbaren Rohschlüssel",
       "status": "PASS",
       "detail": "Keine serviceKey-/intentKey-Ausgabe"
+    },
+    {
+      "name": "Neutraler Schnellkontakt ohne Standort-Vorbelegung",
+      "status": "PASS",
+      "detail": "Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus"
     },
     {
       "name": "Kein Menü über dem Hero beim Laden",

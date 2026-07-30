@@ -219,13 +219,31 @@ async function main() {
         loaderId = navigation.loaderId || "";
         await loaded;
         await networkIdle;
+        await client.send("Runtime.evaluate", {
+          expression: `window.dispatchEvent(new Event("pointerdown"))`,
+        });
 
         const evaluation = await client.send("Runtime.evaluate", {
           expression: `new Promise((resolve) => {
           const started = Date.now();
           const inspect = () => {
             const h1 = document.querySelector("h1");
-            if (h1?.getClientRects().length || Date.now() - started > 8000) {
+            const routePath = location.pathname.toLowerCase();
+            const floatingExpected =
+              !routePath.startsWith("/duesseldorf") &&
+              !routePath.startsWith("/dashboard") &&
+              !routePath.startsWith("/admin") &&
+              routePath !== "/login" &&
+              routePath !== "/umzug-regensburg/anfrage" &&
+              routePath !== "/en" &&
+              !routePath.startsWith("/en/");
+            const floatingReady =
+              !floatingExpected ||
+              Boolean(document.querySelector('[aria-label="FLOXANT Schnellkontakt"]'));
+            if (
+              (h1?.getClientRects().length && floatingReady) ||
+              Date.now() - started > 8000
+            ) {
               Promise.all(Array.from(document.images).map((image) => {
                 if (image.complete) return Promise.resolve();
                 return new Promise((done) => {
@@ -245,6 +263,27 @@ async function main() {
                   .map((image) => image.getAttribute("src") || "")
                   .slice(0, 10);
                 const mainText = (main?.innerText || "").trim();
+                const floatingContact = document.querySelector(
+                  '[aria-label="FLOXANT Schnellkontakt"]'
+                );
+                const floatingContactLinks = Array.from(
+                  floatingContact?.querySelectorAll("a[href]") || []
+                ).filter((link) => new URL(link.href).pathname === "/kontakt");
+                const floatingCities = floatingContactLinks
+                  .map((link) => new URL(link.href).searchParams.get("city"))
+                  .filter(Boolean);
+                const expectedFloatingCity = routePath.includes("duesseldorf")
+                  ? "duesseldorf"
+                  : routePath.includes("regensburg")
+                    ? "regensburg"
+                    : "";
+                const floatingLocationMismatch = floatingContact
+                  ? expectedFloatingCity
+                    ? floatingContactLinks.length === 0 ||
+                      floatingCities.length !== floatingContactLinks.length ||
+                      floatingCities.some((city) => city !== expectedFloatingCity)
+                    : floatingCities.length > 0
+                  : false;
                 resolve({
                   finalPath: location.pathname,
                   title: document.title,
@@ -266,6 +305,10 @@ async function main() {
                     ) > window.innerWidth + 2,
                   brokenImages,
                   frameworkOverlay: Boolean(overlay),
+                  floatingExpected,
+                  floatingContactPresent: Boolean(floatingContact),
+                  floatingCities,
+                  floatingLocationMismatch,
                 });
               });
               return;
@@ -289,6 +332,8 @@ async function main() {
           !observed.overflow &&
           observed.brokenImages.length === 0 &&
           !observed.frameworkOverlay &&
+          (!observed.floatingExpected || observed.floatingContactPresent) &&
+          !observed.floatingLocationMismatch &&
           routeConsoleErrors.length === 0 &&
           !/(404|not found|nicht gefunden)/i.test(observed.title);
 
@@ -347,6 +392,15 @@ async function main() {
       brokenImages: results.reduce((sum, result) => sum + result.brokenImages.length, 0),
       consoleErrors: results.reduce((sum, result) => sum + result.consoleErrors.length, 0),
       frameworkOverlays: results.filter((result) => result.frameworkOverlay).length,
+      floatingLocationMismatches: results.filter(
+        (result) => result.floatingLocationMismatch,
+      ).length,
+      missingRequiredFloatingContacts: results.filter(
+        (result) =>
+          result.viewport.name === "mobile" &&
+          result.floatingExpected &&
+          !result.floatingContactPresent,
+      ).length,
       routes: results,
     };
     fs.writeFileSync(
@@ -368,6 +422,8 @@ async function main() {
           brokenImages: report.brokenImages,
           consoleErrors: report.consoleErrors,
           frameworkOverlays: report.frameworkOverlays,
+          floatingLocationMismatches: report.floatingLocationMismatches,
+          missingRequiredFloatingContacts: report.missingRequiredFloatingContacts,
           failures,
           report: "artifacts/browser-qa-2026-07-30.json",
         },

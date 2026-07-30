@@ -10,12 +10,13 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), "u
 const pageSource = read("app/page.tsx");
 const menuSource = read("components/FloxServicesMegaMenu.tsx");
 const headerSource = read("components/FloxNavigation.tsx");
+const mobileFloatingContactSource = read("components/MobileFloatingContact.tsx");
 const safetySource = [
   pageSource,
   headerSource,
   menuSource,
   read("components/DeferredSiteWidgets.tsx"),
-  read("components/MobileFloatingContact.tsx"),
+  mobileFloatingContactSource,
   read("components/layout/SiteChrome.tsx"),
   read("app/layout.tsx"),
 ].join("\n");
@@ -108,6 +109,12 @@ addCheck("Kein sichtbares ‚2 Wege‘", !/\b2 Wege\b/i.test(visibleText), "Kein
 addCheck("Keine sichtbaren internen Begriffe", visibleForbidden.length === 0, visibleForbidden.length ? visibleForbidden.join(", ") : "Keine Treffer");
 addCheck("Kein sichtbarer Debug-Text", !/\b(?:TODO|DEBUG|undefined|NaN)\b/i.test(visibleText), "Keine Debug-Platzhalter");
 addCheck("Keine sichtbaren Rohschlüssel", !/\b(?:serviceKey|intentKey)\b/.test(visibleText), "Keine serviceKey-/intentKey-Ausgabe");
+addCheck(
+  "Neutraler Schnellkontakt ohne Standort-Vorbelegung",
+  mobileFloatingContactSource.includes(': "deutschland"') &&
+    mobileFloatingContactSource.includes("ich möchte eine Anfrage stellen."),
+  "Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus",
+);
 addCheck("Kein Menü über dem Hero beim Laden", !renderedMarkup.includes("data-desktop-mega-menu"), "Hero startet frei");
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");
 addCheck("Keine Vercel-Usage-Rückkehr", runtimeHits.length === 0, runtimeHits.length ? runtimeHits.join(", ") : "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette");

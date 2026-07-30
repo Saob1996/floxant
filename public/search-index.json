@@ -2337,6 +2337,26 @@
       ]
     },
     {
+      "id": "service:treppenhausreinigung:de:-duesseldorf-treppenhausreinigung",
+      "title": "Treppenhausreinigung",
+      "description": "Regelmäßige Reinigung von Eingängen, Treppen, Podesten und vereinbarten Gemeinschaftsflächen.",
+      "url": "/duesseldorf/treppenhausreinigung",
+      "locale": "de",
+      "type": "service",
+      "regions": [
+        "Düsseldorf"
+      ],
+      "serviceIds": [
+        "treppenhausreinigung"
+      ],
+      "keywords": [
+        "Hausverwaltungen",
+        "Eigentümergemeinschaften",
+        "Treppenhausreinigung",
+        "Treppenhausreinigung klar anfragen"
+      ]
+    },
+    {
       "id": "article:de:hausverwaltung-treppenhausreinigung-regensburg",
       "title": "Treppenhausreinigung in Regensburg: worauf Hausverwaltungen wirklich achten",
       "description": "Welche Angaben zu Turnus, Zugang, Schlüssel, Objektstruktur und Ansprechpartnern helfen, damit aus einer Anfrage ein sauberer B2B-Ablauf wird.",

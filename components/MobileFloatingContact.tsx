@@ -18,7 +18,11 @@ export default function MobileFloatingContact() {
 
   if (isPrivatePath) return null;
 
-  const city = pathname.includes("duesseldorf") ? "duesseldorf" : "regensburg";
+  const city = pathname.includes("duesseldorf")
+    ? "duesseldorf"
+    : pathname.includes("regensburg")
+      ? "regensburg"
+      : "deutschland";
   const requestCta = resolveCtaConfig({
     ctaKey: "mobile-sticky",
     label: "Anfrage",
@@ -38,7 +42,12 @@ export default function MobileFloatingContact() {
     source: "floating",
   });
   const budgetHref = "/anfrage-mit-preisrahmen";
-  const whatsappText = `Hallo FLOXANT, ich möchte eine Anfrage in ${city === "duesseldorf" ? "Düsseldorf" : "Regensburg"} stellen.`;
+  const whatsappText =
+    city === "duesseldorf"
+      ? "Hallo FLOXANT, ich möchte eine Anfrage in Düsseldorf stellen."
+      : city === "regensburg"
+        ? "Hallo FLOXANT, ich möchte eine Anfrage in Regensburg stellen."
+        : "Hallo FLOXANT, ich möchte eine Anfrage stellen.";
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappText);
 
   return (

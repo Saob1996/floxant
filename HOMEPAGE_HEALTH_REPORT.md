@@ -1,9 +1,9 @@
 # Homepage Health Report
 
-Stand: 2026-07-26T11:03:47.684Z
+Stand: 2026-07-30T10:11:25.682Z
 
 Gesamtergebnis: **PASS**
-Prüfziel: `http://localhost:3000/`
+Prüfziel: `http://127.0.0.1:4173/`
 
 ## Kennzahlen
 
@@ -12,7 +12,7 @@ Prüfziel: `http://localhost:3000/`
 - gezählte Karten: 12
 - Hauptservicekarten: 6
 - besondere Lösungen: 4
-- sichtbare Wörter im Server-HTML: 932
+- sichtbare Wörter im Server-HTML: 933
 
 ## Prüfungen
 
@@ -35,6 +35,7 @@ Prüfziel: `http://localhost:3000/`
 | PASS | Keine sichtbaren internen Begriffe | Keine Treffer |
 | PASS | Kein sichtbarer Debug-Text | Keine Debug-Platzhalter |
 | PASS | Keine sichtbaren Rohschlüssel | Keine serviceKey-/intentKey-Ausgabe |
+| PASS | Neutraler Schnellkontakt ohne Standort-Vorbelegung | Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus |
 | PASS | Kein Menü über dem Hero beim Laden | Hero startet frei |
 | PASS | Horizontaler Overflow geschützt | Homepage begrenzt horizontalen Überlauf |
 | PASS | Keine Vercel-Usage-Rückkehr | Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette |
