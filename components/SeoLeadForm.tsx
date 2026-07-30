@@ -26,6 +26,10 @@ type SeoLeadFormProps = {
   sourcePage?: string;
   initialOfferConcern?: string;
   initialOfferStatus?: string;
+  initiallyNeutral?: boolean;
+  displayHeading?: string;
+  displayIntro?: string;
+  trackingSource?: string;
 };
 
 type FormErrors = Partial<Record<"name" | "contact" | "email" | "service" | "city" | "message" | "privacy" | "spam" | "form", string>>;
@@ -450,10 +454,15 @@ export function SeoLeadForm({
   sourcePage = "/kontakt",
   initialOfferConcern = "",
   initialOfferStatus = "",
+  initiallyNeutral = false,
+  displayHeading,
+  displayIntro,
+  trackingSource = "seo_contact_form",
 }: SeoLeadFormProps) {
-  const initialService = initialIntent.service === "kontakt" ? "reinigung" : initialIntent.service;
+  const initialService = initialIntent.service === "kontakt" ? "sonstiges" : initialIntent.service;
   const initialCityInput = initialIntent.cityLabel || "";
   const [service, setService] = useState<LeadService>(initialService);
+  const [serviceSelected, setServiceSelected] = useState(!initiallyNeutral);
   const [city, setCity] = useState(initialCityInput);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -610,7 +619,7 @@ export function SeoLeadForm({
     if (!trimmedEmail && !trimmedPhone) nextErrors.contact = "Bitte E-Mail oder Telefon angeben.";
     if (trimmedEmail && !isEmailValid(trimmedEmail)) nextErrors.email = "Bitte eine gültige E-Mail-Adresse eintragen.";
     if (trimmedPhone && trimmedPhone.length < 6) nextErrors.contact = "Die Telefonnummer ist zu kurz.";
-    if (!service) nextErrors.service = "Bitte eine Leistung auswählen.";
+    if (!serviceSelected) nextErrors.service = "Bitte eine Leistung auswählen.";
     if (!trimmedCity) nextErrors.city = "Bitte Ort oder Einsatzgebiet eintragen.";
     if (trimmedMessage.length < 10) nextErrors.message = "Bitte beschreiben Sie den Bedarf in einem kurzen Satz.";
     if (!privacyConsent) nextErrors.privacy = "Bitte bestätigen Sie den Datenschutz-Hinweis.";
@@ -1019,7 +1028,7 @@ export function SeoLeadForm({
     payload.set("type", "booking_wizard");
     payload.set("lead_type", "seo_quick_lead");
     payload.set("leadSource", "seo_quick_lead_form");
-    payload.set("source", "seo");
+    payload.set("source", trackingSource);
     payload.set("sourceComponent", "SeoLeadForm");
     payload.set("sourceContext", lead.trackingIntent);
     payload.set("sourcePage", sourcePage);
@@ -1217,7 +1226,7 @@ export function SeoLeadForm({
   return (
     <div
       data-event="seo_contact_form_view"
-      data-source="seo_contact_form"
+      data-source={trackingSource}
       data-service={lead.trackingService}
       data-city={lead.trackingCity}
       data-page-intent={lead.trackingIntent}
@@ -1228,7 +1237,7 @@ export function SeoLeadForm({
         onSubmit={handleSubmit}
         className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 text-slate-950 shadow-sm shadow-slate-950/5 sm:p-6"
         data-event="seo_lead_submit_attempt"
-        data-source="seo_contact_form"
+        data-source={trackingSource}
         data-contact-channel="form"
         data-service={lead.trackingService}
         data-city={lead.trackingCity}
@@ -1243,10 +1252,10 @@ export function SeoLeadForm({
           Schnelle Anfrage
         </div>
         <h2 className="mt-2 text-2xl font-black tracking-tight">
-          {germanText(lead.suggestedFormTitle, lead.suggestedFormTitle)}
+          {germanText(displayHeading || lead.suggestedFormTitle, displayHeading || lead.suggestedFormTitle)}
         </h2>
         <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">
-          {germanText(lead.suggestedFormIntro, lead.suggestedFormIntro)}
+          {germanText(displayIntro || lead.suggestedFormIntro, displayIntro || lead.suggestedFormIntro)}
         </p>
       </div>
 
@@ -1281,11 +1290,15 @@ export function SeoLeadForm({
           <select
             id="seo-lead-service"
             name="servicePreset"
-            value={service}
-            onChange={(event) => setService(event.target.value as LeadService)}
+            value={serviceSelected ? service : ""}
+            onChange={(event) => {
+              setService(event.target.value as LeadService);
+              setServiceSelected(Boolean(event.target.value));
+            }}
             className={fieldClass(Boolean(errors.service))}
             aria-describedby={errors.service ? "seo-lead-service-error" : undefined}
           >
+            <option value="">Bitte Leistung auswählen</option>
             {leadServiceOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {germanText(option.label, option.label)}

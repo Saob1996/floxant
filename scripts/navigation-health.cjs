@@ -146,7 +146,8 @@ function checkHubs(results) {
     { file: "app/leistungen/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel"] },
     { file: "app/duesseldorf/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"duesseldorf\""] },
     { file: "app/regensburg/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"regensburg\""] },
-    { file: "app/kontakt/page.tsx", tokens: ["ContactPathChooser", "DecisionCompassPanel", "InternationalCustomerHint"] },
+    { file: "app/kontakt/page.tsx", tokens: ["ContactLeadForm", "DecisionCompassPanel", "InternationalCustomerHint"] },
+    { file: "components/ContactQueryPersonalization.tsx", tokens: ["RequestContextSelector", "requestServiceOptionsByLocation", "ContactLeadForm"] },
     { file: "components/ContactPathChooser.tsx", tokens: ["ServiceGroupSelector", "LocationSelector", "RequestReasonSelector", "ContactFormIntro", "WhatHappensNext"] },
   ];
   const failed = [];

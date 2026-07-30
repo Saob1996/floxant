@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPinned, MessageCircle } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ContactPathChooser, ServiceFinder } from "@/components/ContactPathChooser";
 import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
 import { BetterRequestNotice } from "@/components/BetterRequestNotice";
 import {
@@ -13,7 +12,11 @@ import {
 } from "@/components/conversion";
 import { CustomerNextStepPanel } from "@/components/CustomerNextStepPanel";
 import { CustomerConcernPanel } from "@/components/CustomerConcernPanel";
-import { ContactHeroCopy, ContactLeadForm } from "@/components/ContactQueryPersonalization";
+import {
+  ContactHeroBadge,
+  ContactHeroCopy,
+  ContactLeadForm,
+} from "@/components/ContactQueryPersonalization";
 import { LeadTrustBlock } from "@/components/LeadTrustBlock";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalContactPanel } from "@/components/LocalContactPanel";
@@ -26,7 +29,6 @@ import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
-import { ServiceIntentSelector } from "@/components/ServiceIntentSelector";
 import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import {
   ContactTrustPanel,
@@ -50,7 +52,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { resolveLeadIntent } from "@/lib/lead-intents";
-import { resolveServiceRoute } from "@/lib/service-routing";
 import { resolveRequestChecklistKey } from "@/lib/request-checklists";
 
 const faqItems = [
@@ -193,13 +194,21 @@ const contactTrustProofs = [
 export const dynamic = "force-static";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return generatePageSEO({
+  const metadata = generatePageSEO({
     lang: "de",
     path: "kontakt",
-    title: "FLOXANT Kontakt: Leistung, Ort und Anliegen klären",
-    description:
-      "Senden Sie Leistung, Ort, Umfang, Fotos, Terminwunsch und bevorzugten Kontaktweg. FLOXANT prüft Ihre Angaben und meldet sich bei Rückfragen.",
+    title: "Angebot und Leistung anfragen | FLOXANT",
+    description: "Wählen Sie Standort und Leistung und senden Sie die wichtigsten Eckdaten direkt an FLOXANT.",
   });
+  return {
+    ...metadata,
+    title: "Angebot und Leistung anfragen | FLOXANT",
+    description: "Wählen Sie Standort und Leistung und senden Sie die wichtigsten Eckdaten direkt an FLOXANT.",
+    alternates: {
+      ...metadata.alternates,
+      canonical: `${company.url}/kontakt`,
+    },
+  };
 }
 
 export default async function KontaktPage() {
@@ -207,13 +216,6 @@ export default async function KontaktPage() {
   const leadIntent = resolveLeadIntent({
     path: "/kontakt",
     priority: "p0",
-  });
-  const contactRoute = resolveServiceRoute({
-    service: leadIntent.service,
-    city: leadIntent.city,
-    intent: leadIntent.intent,
-    priority: leadIntent.priority,
-    source: "contact-page",
   });
   const requestChecklistKey = resolveRequestChecklistKey({
     service: leadIntent.service,
@@ -225,15 +227,14 @@ export default async function KontaktPage() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "FLOXANT Kontakt Regensburg",
+        name: "FLOXANT Anfrage",
         description:
-          "Kontaktseite für FLOXANT mit Buchung, Rechner, Anfrage, Telefon, WhatsApp, E-Mail und dem Standort Regensburg.",
+          "Neutrale Kontaktseite für FLOXANT mit Standort- und Leistungsauswahl.",
         path: "/kontakt",
         about: [
           "FLOXANT Kontakt",
-          "Umzug Regensburg",
-          "Reinigung Regensburg",
-          "Entrümpelung Regensburg",
+          "Leistung anfragen",
+          "Standort auswählen",
           "Büroumzug",
           "WhatsApp Kontakt",
           "Regensburg",
@@ -310,7 +311,7 @@ export default async function KontaktPage() {
         <div className="relative mx-auto max-w-6xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600">
             <MapPinned className="h-4 w-4" />
-            FLOXANT Kontakt Regensburg
+            <ContactHeroBadge />
           </div>
           <ContactHeroCopy fallbackIntent={leadIntent} />
           <div className="mt-8 grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
@@ -386,15 +387,6 @@ export default async function KontaktPage() {
           </div>
               <div className="mt-4">
                 <LeadTrustBlock />
-              </div>
-              <div className="mt-6 overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/88 shadow-sm shadow-slate-950/5">
-                <ServiceFinder
-                  compact
-                  currentCity={contactRoute.city && contactRoute.city !== "deutschland" ? contactRoute.city : undefined}
-                  title="Leistung vor dem Absenden auswählen"
-                  intro="Wählen Sie die passende Leistung und ergänzen Sie anschließend Ort, Umfang und Termin."
-                  source="contact-page-inline"
-                />
               </div>
               <div className="mt-6">
                 <RequestChecklistBlock
@@ -478,8 +470,6 @@ export default async function KontaktPage() {
         steps={customerNextSteps}
       />
 
-      <ContactPathChooser />
-
       <DecisionCompassPanel
         title="Noch unsicher, welcher Service passt?"
         intro="Diese Wege helfen, wenn nur das Problem klar ist. Es wird nichts gesendet, bevor das Formular bewusst abgeschickt wird."
@@ -508,12 +498,6 @@ export default async function KontaktPage() {
         title="Kontakt für beide FLOXANT Standorte."
         intro="Adresse, Telefon und E-Mail bleiben sichtbar. Weitere Angaben veröffentlichen wir nur, wenn sie bestätigt sind."
       />
-
-      <section className="px-4 pb-12 sm:px-6">
-        <div className="mx-auto max-w-7xl">
-          <ServiceIntentSelector />
-        </div>
-      </section>
 
       <WhatWeNeedChecklist
         group={leadIntent.service === "angebot-pruefen" ? "angebot-pruefen" : leadIntent.service === "umzug" ? "umzug" : leadIntent.service === "entruempelung" || leadIntent.service === "wohnungsaufloesung" ? "entruempelung" : leadIntent.service === "bueroreinigung" || leadIntent.service === "gewerbereinigung" ? "b2b" : "reinigung"}

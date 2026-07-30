@@ -3,72 +3,213 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { SeoLeadForm } from "@/components/SeoLeadForm";
-import { resolveLeadIntent, type LeadIntent } from "@/lib/lead-intents";
+import type { LeadIntent } from "@/lib/lead-intents";
+import {
+  requestServiceOptionsByLocation,
+  resolveRequestContext,
+  type RequestLocation,
+} from "@/lib/lead-intents/resolve-request-context";
+import { cn } from "@/lib/utils";
 
 function useCurrentQuery() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    setQuery(window.location.search);
+    const syncQuery = () => setQuery(window.location.search);
+    syncQuery();
+    window.addEventListener("popstate", syncQuery);
+    return () => window.removeEventListener("popstate", syncQuery);
   }, []);
 
   return query;
 }
 
-function resolveQueryIntent(query: string, fallback: LeadIntent) {
-  if (!query) return fallback;
-
+function resolveQueryContext(query: string) {
   const params = new URLSearchParams(query);
-  return resolveLeadIntent({
-    path: "/kontakt",
-    service: params.get("service"),
+  return resolveRequestContext({
+    mode: params.get("mode"),
+    location: params.get("location"),
     city: params.get("city"),
+    service: params.get("service"),
     intent: params.get("intent"),
-    priority: params.get("priority") || "p0",
+    priority: params.get("priority"),
+    source: params.get("source"),
+    entryPage: params.get("entryPage"),
   });
 }
 
+function replaceRequestQuery(update: (params: URLSearchParams) => void) {
+  const params = new URLSearchParams(window.location.search);
+  update(params);
+  const nextQuery = params.toString();
+  window.history.replaceState(null, "", `${window.location.pathname}${nextQuery ? `?${nextQuery}` : ""}#direktanfrage`);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+}
+
+export function ContactHeroBadge() {
+  const query = useCurrentQuery();
+  const context = useMemo(() => resolveQueryContext(query), [query]);
+
+  return <span data-request-badge>{context.badge}</span>;
+}
+
 export function ContactHeroCopy({
-  fallbackIntent,
+  fallbackIntent: _fallbackIntent,
 }: {
   fallbackIntent: LeadIntent;
 }) {
   const query = useCurrentQuery();
-  const intent = useMemo(() => resolveQueryIntent(query, fallbackIntent), [fallbackIntent, query]);
-  const heading = query ? intent.suggestedFormTitle : "Beschreiben Sie kurz, wobei Sie Hilfe brauchen";
-  const intro = query
-    ? intent.suggestedFormIntro
-    : "Ort, gewünschte Leistung, Umfang, Termin und Kontaktweg reichen für den Start. Weitere Angaben können Sie später ergänzen.";
+  const context = useMemo(() => resolveQueryContext(query), [query]);
 
   return (
     <>
-      <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-        {heading}
+      <h1
+        className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl"
+        data-request-headline
+      >
+        {context.headline}
       </h1>
       <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
-        {intro} Hilfreich sind Leistung, Ort, Umfang, Fotos,
-        Terminwunsch und der Kontaktweg, über den FLOXANT gezielt nachfragen darf.
+        {context.description}
       </p>
     </>
   );
 }
 
+function RequestContextSelector({
+  location,
+  serviceKey,
+}: {
+  location: RequestLocation | "";
+  serviceKey: string;
+}) {
+  const locationOptions: Array<{ value: RequestLocation; label: string }> = [
+    { value: "duesseldorf", label: "Düsseldorf" },
+    { value: "regensburg", label: "Regensburg" },
+    { value: "unsicher", label: "Noch unsicher" },
+  ];
+  const services = location ? requestServiceOptionsByLocation[location] : [];
+
+  function selectLocation(nextLocation: RequestLocation) {
+    replaceRequestQuery((params) => {
+      params.delete("mode");
+      params.delete("city");
+      params.delete("service");
+      params.delete("intent");
+      params.delete("priority");
+      params.set("location", nextLocation);
+      if (!params.get("source")) params.set("source", "contact_selector");
+    });
+  }
+
+  function selectService(nextServiceKey: string) {
+    if (!location || !nextServiceKey) return;
+    const service = requestServiceOptionsByLocation[location].find(
+      (option) => option.key === nextServiceKey,
+    );
+    if (!service) return;
+
+    if (service.key === "angebot-pruefen") {
+      window.location.assign("/angebot-guenstiger-pruefen?source=contact_selector");
+      return;
+    }
+
+    replaceRequestQuery((params) => {
+      params.delete("mode");
+      params.delete("city");
+      params.set("location", location);
+      params.set("service", service.key);
+      params.set("intent", service.intent);
+      params.set("priority", "p1");
+      if (!params.get("source")) params.set("source", "contact_selector");
+    });
+  }
+
+  return (
+    <section
+      className="mb-4 grid gap-5 rounded-lg border border-blue-200 bg-blue-50/70 p-5"
+      aria-label="Standort und Leistung auswählen"
+      data-request-context-selector
+    >
+      <fieldset>
+        <legend className="text-base font-black text-slate-950">
+          1. Wo wird die Leistung benötigt?
+        </legend>
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          {locationOptions.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => selectLocation(option.value)}
+              aria-pressed={location === option.value}
+              className={cn(
+                "min-h-11 rounded-lg border px-3 text-sm font-black transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
+                location === option.value
+                  ? "border-blue-700 bg-blue-700 text-white"
+                  : "border-slate-200 bg-white text-slate-800 hover:border-blue-300",
+              )}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label htmlFor="request-service-choice" className="text-base font-black text-slate-950">
+          2. Welche Leistung benötigen Sie?
+        </label>
+        <select
+          id="request-service-choice"
+          value={serviceKey}
+          onChange={(event) => selectService(event.target.value)}
+          disabled={!location}
+          className="mt-3 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+        >
+          <option value="">
+            {location ? "Bitte Leistung auswählen" : "Bitte zuerst Standort auswählen"}
+          </option>
+          {services.map((option) => (
+            <option key={option.key} value={option.key}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    </section>
+  );
+}
+
 export function ContactLeadForm({
-  fallbackIntent,
+  fallbackIntent: _fallbackIntent,
 }: {
   fallbackIntent: LeadIntent;
 }) {
   const query = useCurrentQuery();
-  const intent = useMemo(() => resolveQueryIntent(query, fallbackIntent), [fallbackIntent, query]);
+  const [entryReset, setEntryReset] = useState(0);
+  const context = useMemo(() => resolveQueryContext(query), [query]);
   const params = useMemo(() => new URLSearchParams(query), [query]);
 
+  useEffect(() => {
+    const reset = () => setEntryReset((current) => current + 1);
+    window.addEventListener("floxant:neutral-request-entry", reset);
+    return () => window.removeEventListener("floxant:neutral-request-entry", reset);
+  }, []);
+
   return (
-    <SeoLeadForm
-      key={query || "static-contact-default"}
-      initialIntent={intent}
-      sourcePage="/kontakt"
-      initialOfferConcern={params.get("offerConcern") || ""}
-      initialOfferStatus={params.get("offerStatus") || ""}
-    />
+    <div className="order-first lg:order-none">
+      <RequestContextSelector location={context.location} serviceKey={context.serviceKey} />
+      <SeoLeadForm
+        key={`${query || "static-contact-default"}:${entryReset}`}
+        initialIntent={context.leadIntent}
+        initiallyNeutral={context.neutral}
+        displayHeading={context.headline}
+        displayIntro={context.description}
+        trackingSource={context.sourceLabel}
+        sourcePage="/kontakt"
+        initialOfferConcern={params.get("offerConcern") || ""}
+        initialOfferStatus={params.get("offerStatus") || ""}
+      />
+    </div>
   );
 }

@@ -151,8 +151,8 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
   },
   "/kontakt": {
     service: "kontakt",
-    city: "regensburg",
-    intent: "kontakt-anfrage",
+    city: "deutschland",
+    intent: "neutrale-anfrage",
     priority: "p0",
     ctaLabel: "Anfrage stellen",
   },

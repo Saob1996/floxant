@@ -12,6 +12,7 @@ function check(name, pass, detail) {
 
 const contactPage = read("app/kontakt/page.tsx");
 const contactPersonalization = read("components/ContactQueryPersonalization.tsx");
+const requestContext = read("lib/lead-intents/resolve-request-context.ts");
 const leadForm = read("components/SeoLeadForm.tsx");
 const finder = read("components/ContactPathChooser.tsx");
 const fieldGroups = read("lib/contact-field-groups.ts");
@@ -19,9 +20,9 @@ const successStates = read("lib/contact-success-states.ts");
 const routing = read("lib/service-routing.ts");
 const packageJson = JSON.parse(read("package.json"));
 
-check("contact page uses route-derived heading", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("suggestedFormTitle"), "H1 should react to service/city/intent.");
-check("contact page uses route-derived intro", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("suggestedFormIntro"), "Intro should use routing context.");
-check("contact page embeds ServiceFinder above/beside form", contactPage.includes("<ServiceFinder") && contactPage.indexOf("<ServiceFinder") < contactPage.indexOf("<ContactLeadForm"), "Finder should appear before the direct form in source order.");
+check("contact page uses route-derived heading", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.headline") && requestContext.includes("headline:"), "H1 should react to the centrally resolved service/city/intent.");
+check("contact page uses route-derived intro", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.description") && requestContext.includes("description:"), "Intro should use the central request context.");
+check("contact page embeds location/service choice above form", contactPersonalization.includes("<RequestContextSelector") && contactPersonalization.indexOf("<RequestContextSelector") < contactPersonalization.indexOf("<SeoLeadForm"), "Neutral location and service choice should appear before the direct form.");
 check("SeoLeadForm remains direct form", contactPage.includes("<ContactLeadForm") && contactPersonalization.includes("<SeoLeadForm"), "Central lead form must stay present.");
 check("SeoLeadForm only submits to bookings API", leadForm.includes('bookingFetch("/api/bookings"') && leadForm.includes("onSubmit={handleSubmit}"), "Lead API should be called by form submit.");
 check("Finder does not submit or fetch", !/fetch\s*\(/.test(finder) && !finder.includes("onSubmit"), "Finder must remain link-only.");
