@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { RegensburgClearanceDecisionGuide } from "@/components/regensburg/RegensburgClearanceDecisionGuide";
 import { RegensburgServicePage } from "@/components/regensburg/RegensburgServicePage";
 import { company } from "@/lib/company";
 import { getRegensburgServicePage } from "@/lib/regensburg-service-pages";
@@ -45,6 +46,7 @@ export default function RegensburgWohnungsaufloesungPage() {
   return (
     <>
       <RegensburgServicePage config={config} />
+      <RegensburgClearanceDecisionGuide />
       <GscOpportunitySection
         eyebrow="Wohnungsauflösung Regensburg"
         title="Wohnungsauflösung ruhig nach Freigabe, Räumen und Zielzustand klären."
@@ -75,10 +77,10 @@ export default function RegensburgWohnungsaufloesungPage() {
             cta: "Reinigung prüfen",
           },
           {
-            title: "Bestehende Auflösungsseite",
-            text: "Für Nutzer, die direkt nach Wohnungsauflösung Regensburg suchen, bleibt die vertraute Einstiegsseite erreichbar.",
-            href: "/regensburg/wohnungsaufloesung",
-            cta: "Auflösungsseite öffnen",
+            title: "Nicht vor Ort organisieren",
+            text: "Wenn Angehörige oder Ansprechpartner nicht in Regensburg sind, helfen Freigabe, Schlüsselweg, Fotos und ein klarer Kontaktweg.",
+            href: "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=nicht-vor-ort&source=seo",
+            cta: "Situation beschreiben",
           },
         ]}
         checklistTitle="Diese Angaben helfen bei Wohnungsauflösung in Regensburg"
@@ -118,7 +120,7 @@ export default function RegensburgWohnungsaufloesungPage() {
         trackingService="wohnungsaufloesung"
         trackingCity="regensburg"
         trackingPageIntent="wohnungsaufloesung-regensburg"
-        trackingPriority="p3"
+        trackingPriority="p1"
       />
     </>
   );

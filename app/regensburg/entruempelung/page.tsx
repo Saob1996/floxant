@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { RegensburgClearanceDecisionGuide } from "@/components/regensburg/RegensburgClearanceDecisionGuide";
 import { RegensburgServicePage } from "@/components/regensburg/RegensburgServicePage";
 import { company } from "@/lib/company";
 import { getRegensburgServicePage } from "@/lib/regensburg-service-pages";
@@ -52,6 +53,7 @@ export default function RegensburgEntruempelungPage() {
   return (
     <>
       <RegensburgServicePage config={config} />
+      <RegensburgClearanceDecisionGuide />
       <GscOpportunitySection
         eyebrow="Entrümpelung Regensburg"
         title="Räume, Menge und Zielzustand vor dem Angebot sichtbar machen."
@@ -125,7 +127,7 @@ export default function RegensburgEntruempelungPage() {
         trackingService="entruempelung"
         trackingCity="regensburg"
         trackingPageIntent="entruempelung-regensburg"
-        trackingPriority="p3"
+        trackingPriority="p1"
       />
     </>
   );

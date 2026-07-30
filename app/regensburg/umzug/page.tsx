@@ -638,6 +638,55 @@ function MovingProcessAndNeeds() {
   );
 }
 
+function MovingScopeBoundaries() {
+  const included = [
+    "Transport der vorher beschriebenen Möbel und Kartons im vereinbarten Umfang",
+    "Tragewege an Start und Ziel nach den genannten Etagen, Aufzügen und Zugängen",
+    "Abstimmung von Strecke, Terminfenster und Ansprechpartnern",
+  ] as const;
+  const optional = [
+    "Packhilfe, Kartons oder Verpackungsmaterial",
+    "Demontage und Montage von Möbeln",
+    "Halteverbotszone oder besondere Parkorganisation",
+    "Klaviertransport, Entrümpelung, Entsorgung oder Reinigung",
+  ] as const;
+
+  return (
+    <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
+        <article className="rounded-xl border border-emerald-200 bg-white p-6">
+          <p className="text-sm font-black uppercase tracking-normal text-emerald-700">Im vereinbarten Umzugsumfang</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Was nach der Abstimmung dazugehören kann
+          </h2>
+          <ul className="mt-6 grid gap-3">
+            {included.map((item) => (
+              <li key={item} className="flex gap-3 text-sm font-bold leading-7 text-slate-700">
+                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article className="rounded-xl border border-amber-200 bg-white p-6">
+          <p className="text-sm font-black uppercase tracking-normal text-amber-800">Nur nach ausdrücklicher Vereinbarung</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Was nicht automatisch enthalten ist
+          </h2>
+          <ul className="mt-6 grid gap-3">
+            {optional.map((item) => (
+              <li key={item} className="flex gap-3 text-sm font-bold leading-7 text-slate-700">
+                <XCircle className="mt-1 h-5 w-5 shrink-0 text-amber-700" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 function MovingEffortFactorsPanel() {
   return (
     <section className="border-y border-slate-200 bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
@@ -923,6 +972,7 @@ export default function RegensburgUmzugPage() {
       <MovingAuthorityPanel />
       <MovingSituationGrid />
       <MovingProcessAndNeeds />
+      <MovingScopeBoundaries />
       <MovingEffortFactorsPanel />
       <MovingServicePackageCards />
       <MovingOfferCheckCTA />
