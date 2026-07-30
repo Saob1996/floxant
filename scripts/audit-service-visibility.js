@@ -8,6 +8,10 @@ const outputPath = path.join(root, "artifacts", "service-visibility.csv");
 const pageNames = ["page.tsx", "page.ts", "page.jsx", "page.js"];
 const sourceExtensions = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
 const ignoredSegments = new Set(["blog", "ratgeber", "wissen", "dashboard", "api", "impressum", "datenschutz", "agb"]);
+const adsLandingRoutes = new Set([
+  "/duesseldorf/reinigung/anfrage",
+  "/umzug-regensburg/anfrage",
+]);
 const serviceRoutePattern = /(reinigung|cleaning|umzug|moving|transport|entruempelung|clearance|aufloesung|angebot|quote|uebergabe|handover|beiladung|rueckfahrt)/i;
 
 function walkFiles(directory, predicate, files = []) {
@@ -93,7 +97,12 @@ async function main() {
   const routesByService = new Map(
     serviceRegistry.map((service) => [
       service.id,
-      [service.canonicalRoute, service.englishAlternativeRoute, ...service.additionalRoutes]
+      [
+        service.canonicalRoute,
+        service.englishAlternativeRoute,
+        ...Object.values(service.regionalPrimaryRoutes || {}),
+        ...service.additionalRoutes,
+      ]
         .filter(Boolean)
         .map(normalizeRoute),
     ]),
@@ -218,7 +227,9 @@ async function main() {
   const candidateRoutes = staticAppRoutes().filter((route) => {
     const segments = route.slice(1).split("/");
     if (segments.some((segment) => ignoredSegments.has(segment) || segment.startsWith("["))) return false;
-    return serviceRoutePattern.test(route) && !["/leistungen", "/signature-services", "/standorte"].includes(route);
+    return serviceRoutePattern.test(route)
+      && !adsLandingRoutes.has(route)
+      && !["/leistungen", "/signature-services", "/standorte"].includes(route);
   });
 
   for (const route of candidateRoutes) {

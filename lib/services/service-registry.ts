@@ -358,8 +358,14 @@ const seeds: readonly ServiceSeed[] = [
     regions: ["Düsseldorf", "Regensburg"], targetAudiences: ["Hausverwaltungen", "Eigentümergemeinschaften"],
     requiredDetails: ["Ort", "Etagen", "Bereiche", "Turnus", "Zugang", "Ansprechpartner"], canonicalRoute: "/treppenhausreinigung-regensburg",
     regionalPrimaryRoutes: { Düsseldorf: "/duesseldorf/treppenhausreinigung", Regensburg: "/treppenhausreinigung-regensburg" },
-    englishAlternativeRoute: "/en/regensburg/stairwell-cleaning", hubRoutes: ["/leistungen", "/regensburg"],
-    relatedServiceIds: ["unterhaltsreinigung", "gewerbereinigung"], evidence: [publicPage("app/treppenhausreinigung-regensburg/page.tsx")],
+    englishAlternativeRoute: "/en/regensburg/stairwell-cleaning",
+    additionalRoutes: ["/duesseldorf/treppenhausreinigung"],
+    hubRoutes: ["/leistungen", "/duesseldorf", "/regensburg"],
+    relatedServiceIds: ["unterhaltsreinigung", "gewerbereinigung"],
+    evidence: [
+      publicPage("app/treppenhausreinigung-regensburg/page.tsx"),
+      publicPage("app/duesseldorf/treppenhausreinigung/page.tsx"),
+    ],
   },
   {
     id: "baureinigung", slug: "baureinigung", status: "ACTIVE_PUBLIC", category: "cleaning", cadence: "one_off",
