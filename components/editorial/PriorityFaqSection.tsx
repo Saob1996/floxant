@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 
 import { FaqAccordion } from "@/components/editorial/FaqAccordion";
 import type { DisplayFaq } from "@/components/editorial/types";

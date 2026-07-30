@@ -61,6 +61,8 @@
     "editorial:quality": "node scripts/editorial-quality.cjs",
     "content:prune-health": "node scripts/content-prune-health.cjs",
     "lighthouse:local": "node scripts/lighthouse-local.cjs",
+    "lighthouse:growth": "node scripts/lighthouse-growth.cjs",
+    "optimize:icons": "node scripts/optimize-public-icons.cjs",
     "risk:closure": "node scripts/risk-closure.cjs",
     "release:health": "node scripts/release-health.cjs",
     "postdeploy:health": "node scripts/postdeploy-health.cjs",

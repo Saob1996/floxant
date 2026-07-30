@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -38,6 +38,7 @@ const authorityLinks = [
   { href: "/suche", label: "Suche" },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/reinigungsfirma-angebot", label: "Reinigungsangebot" },
 ] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import type { ReactNode } from "react";
 
 import { resolveCtaConfig } from "@/lib/cta-config";

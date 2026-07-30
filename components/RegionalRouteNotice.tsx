@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { ArrowRight, MapPin, ShieldCheck } from "lucide-react";
 
 import { getRegionalRoutePolicy } from "@/lib/regional-route-policy";

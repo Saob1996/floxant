@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { ArrowRight, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { FloxServiceCard } from "@/components/FloxServiceCard";

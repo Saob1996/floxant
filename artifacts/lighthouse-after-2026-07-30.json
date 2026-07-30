@@ -1,0 +1,960 @@
+{
+  "schemaVersion": 1,
+  "label": "after",
+  "generatedAt": "2026-07-30T03:47:59.197Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "lighthouseVersion": "12.8.2",
+  "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "methodology": {
+    "routes": [
+      "/",
+      "/duesseldorf/reinigung",
+      "/duesseldorf/bueroreinigung",
+      "/duesseldorf/praxisreinigung",
+      "/duesseldorf/fensterreinigung",
+      "/regensburg/umzug",
+      "/regensburg/entruempelung",
+      "/regensburg/wohnungsaufloesung",
+      "/klaviertransport-regensburg",
+      "/reinigungsfirma-angebot"
+    ],
+    "modes": [
+      "mobile",
+      "desktop"
+    ],
+    "network": "Lighthouse default simulated throttling",
+    "note": "Local lab measurements; INP requires field or interactive user data and may be null."
+  },
+  "summary": {
+    "mobile": {
+      "routes": 10,
+      "averageScores": {
+        "performance": 50,
+        "accessibility": 97.6,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "p75Metrics": {
+        "largestContentfulPaintMs": 11866.84,
+        "totalBlockingTimeMs": 530.5,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    "desktop": {
+      "routes": 10,
+      "averageScores": {
+        "performance": 86.9,
+        "accessibility": 97.6,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "p75Metrics": {
+        "largestContentfulPaintMs": 2100.52,
+        "totalBlockingTimeMs": 84,
+        "cumulativeLayoutShift": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "route": "/",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T03:36:35.987Z",
+      "scores": {
+        "performance": 50,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 5866.836499999999,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        },
+        "largestContentfulPaint": {
+          "value": 11866.8365,
+          "unit": "millisecond",
+          "displayValue": "11.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 415,
+          "unit": "millisecond",
+          "displayValue": "420 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5866.836499999999,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        }
+      },
+      "transferSize": {
+        "value": 1992358,
+        "unit": "byte",
+        "displayValue": "Total size was 1,946 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T03:37:05.550Z",
+      "scores": {
+        "performance": 54,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 6460.6831,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 11560.683100000002,
+          "unit": "millisecond",
+          "displayValue": "11.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 264,
+          "unit": "millisecond",
+          "displayValue": "260 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 6460.6831,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        }
+      },
+      "transferSize": {
+        "value": 1982037,
+        "unit": "byte",
+        "displayValue": "Total size was 1,936 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T03:37:44.786Z",
+      "scores": {
+        "performance": 48,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 6059.226000000001,
+          "unit": "millisecond",
+          "displayValue": "6.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 11159.225999999999,
+          "unit": "millisecond",
+          "displayValue": "11.2 s"
+        },
+        "totalBlockingTime": {
+          "value": 474,
+          "unit": "millisecond",
+          "displayValue": "470 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 6059.226000000001,
+          "unit": "millisecond",
+          "displayValue": "6.1 s"
+        }
+      },
+      "transferSize": {
+        "value": 1869562,
+        "unit": "byte",
+        "displayValue": "Total size was 1,826 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T03:38:23.074Z",
+      "scores": {
+        "performance": 51,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 5857.9201,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        },
+        "largestContentfulPaint": {
+          "value": 10957.9201,
+          "unit": "millisecond",
+          "displayValue": "11.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 393,
+          "unit": "millisecond",
+          "displayValue": "390 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5857.9201,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        }
+      },
+      "transferSize": {
+        "value": 1858255,
+        "unit": "byte",
+        "displayValue": "Total size was 1,815 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T03:39:04.824Z",
+      "scores": {
+        "performance": 47,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 5860.2631,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        },
+        "largestContentfulPaint": {
+          "value": 10960.2631,
+          "unit": "millisecond",
+          "displayValue": "11.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 530.5,
+          "unit": "millisecond",
+          "displayValue": "530 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5860.2631,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        }
+      },
+      "transferSize": {
+        "value": 1857571,
+        "unit": "byte",
+        "displayValue": "Total size was 1,814 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T03:39:43.092Z",
+      "scores": {
+        "performance": 48,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 6010.943,
+          "unit": "millisecond",
+          "displayValue": "6.0 s"
+        },
+        "largestContentfulPaint": {
+          "value": 10960.943000000001,
+          "unit": "millisecond",
+          "displayValue": "11.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 483.9999999999991,
+          "unit": "millisecond",
+          "displayValue": "480 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 6010.943,
+          "unit": "millisecond",
+          "displayValue": "6.0 s"
+        }
+      },
+      "transferSize": {
+        "value": 1868418,
+        "unit": "byte",
+        "displayValue": "Total size was 1,825 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T03:40:13.970Z",
+      "scores": {
+        "performance": 44,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 6467.6885,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 12692.6885,
+          "unit": "millisecond",
+          "displayValue": "12.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 594,
+          "unit": "millisecond",
+          "displayValue": "590 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 6467.6885,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        }
+      },
+      "transferSize": {
+        "value": 2231373,
+        "unit": "byte",
+        "displayValue": "Total size was 2,179 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T03:40:42.510Z",
+      "scores": {
+        "performance": 58,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 6464.050299999999,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 12464.050299999999,
+          "unit": "millisecond",
+          "displayValue": "12.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 133,
+          "unit": "millisecond",
+          "displayValue": "130 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 6464.050299999999,
+          "unit": "millisecond",
+          "displayValue": "6.5 s"
+        }
+      },
+      "transferSize": {
+        "value": 2161159,
+        "unit": "byte",
+        "displayValue": "Total size was 2,111 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T03:41:14.947Z",
+      "scores": {
+        "performance": 44,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 5859.5729,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        },
+        "largestContentfulPaint": {
+          "value": 10809.5729,
+          "unit": "millisecond",
+          "displayValue": "10.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 630,
+          "unit": "millisecond",
+          "displayValue": "630 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5859.5729,
+          "unit": "millisecond",
+          "displayValue": "5.9 s"
+        }
+      },
+      "transferSize": {
+        "value": 1835111,
+        "unit": "byte",
+        "displayValue": "Total size was 1,792 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T03:41:43.855Z",
+      "scores": {
+        "performance": 56,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 5255.9453,
+          "unit": "millisecond",
+          "displayValue": "5.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 10955.945300000003,
+          "unit": "millisecond",
+          "displayValue": "11.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 269.5,
+          "unit": "millisecond",
+          "displayValue": "270 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5255.9453,
+          "unit": "millisecond",
+          "displayValue": "5.3 s"
+        }
+      },
+      "transferSize": {
+        "value": 1829612,
+        "unit": "byte",
+        "displayValue": "Total size was 1,787 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T03:42:13.054Z",
+      "scores": {
+        "performance": 87,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1060.5151,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 2100.5151,
+          "unit": "millisecond",
+          "displayValue": "2.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 44,
+          "unit": "millisecond",
+          "displayValue": "40 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1166.718803170549,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        }
+      },
+      "transferSize": {
+        "value": 1992358,
+        "unit": "byte",
+        "displayValue": "Total size was 1,946 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T03:42:39.988Z",
+      "scores": {
+        "performance": 87,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1174.5332,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        },
+        "largestContentfulPaint": {
+          "value": 2054.5332,
+          "unit": "millisecond",
+          "displayValue": "2.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 21,
+          "unit": "millisecond",
+          "displayValue": "20 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1174.5332,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        }
+      },
+      "transferSize": {
+        "value": 1982037,
+        "unit": "byte",
+        "displayValue": "Total size was 1,936 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T03:43:14.573Z",
+      "scores": {
+        "performance": 88,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1060.8458,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1980.8458000000003,
+          "unit": "millisecond",
+          "displayValue": "2.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 45,
+          "unit": "millisecond",
+          "displayValue": "50 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1164.8760100765253,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        }
+      },
+      "transferSize": {
+        "value": 1869562,
+        "unit": "byte",
+        "displayValue": "Total size was 1,826 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T03:43:56.603Z",
+      "scores": {
+        "performance": 88,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1045.4057,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1965.4057000000007,
+          "unit": "millisecond",
+          "displayValue": "2.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 74,
+          "unit": "millisecond",
+          "displayValue": "70 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1438.8943447713148,
+          "unit": "millisecond",
+          "displayValue": "1.4 s"
+        }
+      },
+      "transferSize": {
+        "value": 1858255,
+        "unit": "byte",
+        "displayValue": "Total size was 1,815 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T03:44:33.906Z",
+      "scores": {
+        "performance": 86,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1050.9798,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1970.9798,
+          "unit": "millisecond",
+          "displayValue": "2.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 113.99999999999977,
+          "unit": "millisecond",
+          "displayValue": "110 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1482.5632566035579,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        }
+      },
+      "transferSize": {
+        "value": 1857571,
+        "unit": "byte",
+        "displayValue": "Total size was 1,814 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T03:45:12.576Z",
+      "scores": {
+        "performance": 88,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1088.0606,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1968.0605999999993,
+          "unit": "millisecond",
+          "displayValue": "2.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 83.99999999999977,
+          "unit": "millisecond",
+          "displayValue": "80 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1088.0606,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "transferSize": {
+        "value": 1868418,
+        "unit": "byte",
+        "displayValue": "Total size was 1,825 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T03:45:47.854Z",
+      "scores": {
+        "performance": 80,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1201.0968,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        },
+        "largestContentfulPaint": {
+          "value": 2281.0968000000003,
+          "unit": "millisecond",
+          "displayValue": "2.3 s"
+        },
+        "totalBlockingTime": {
+          "value": 154.5,
+          "unit": "millisecond",
+          "displayValue": "150 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1667.9232909362836,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "transferSize": {
+        "value": 2231373,
+        "unit": "byte",
+        "displayValue": "Total size was 2,179 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T03:46:30.330Z",
+      "scores": {
+        "performance": 86,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1182.4085,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        },
+        "largestContentfulPaint": {
+          "value": 2222.4085,
+          "unit": "millisecond",
+          "displayValue": "2.2 s"
+        },
+        "totalBlockingTime": {
+          "value": 29,
+          "unit": "millisecond",
+          "displayValue": "30 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1189.783645822743,
+          "unit": "millisecond",
+          "displayValue": "1.2 s"
+        }
+      },
+      "transferSize": {
+        "value": 2161159,
+        "unit": "byte",
+        "displayValue": "Total size was 2,111 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T03:47:08.892Z",
+      "scores": {
+        "performance": 89,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1062.8932,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1942.8932,
+          "unit": "millisecond",
+          "displayValue": "1.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 14,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1096.7922814147105,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "transferSize": {
+        "value": 1835111,
+        "unit": "byte",
+        "displayValue": "Total size was 1,792 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T03:47:35.923Z",
+      "scores": {
+        "performance": 90,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 974.9823999999999,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        },
+        "largestContentfulPaint": {
+          "value": 1934.9823999999996,
+          "unit": "millisecond",
+          "displayValue": "1.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 0,
+          "unit": "millisecond",
+          "displayValue": "0 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1012.4846347955795,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        }
+      },
+      "transferSize": {
+        "value": 1829612,
+        "unit": "byte",
+        "displayValue": "Total size was 1,787 KiB"
+      }
+    }
+  ]
+}

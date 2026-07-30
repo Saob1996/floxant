@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { BadgeEuro, ChevronDown, FileSearch, FileText, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -193,7 +193,7 @@ export function PublicHeader({
           <Link
             href="/"
             onClick={() => closeDesktopMenu()}
-            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:max-w-[12rem] xl:max-w-[14rem]"
+            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:max-w-[14rem]"
             aria-label="FLOXANT Startseite"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950 text-white">
@@ -205,7 +205,7 @@ export function PublicHeader({
             </span>
           </Link>
 
-          <nav aria-label="Hauptnavigation" className="hidden items-center lg:flex">
+          <nav aria-label="Hauptnavigation" className="hidden items-center xl:flex">
             <div className="relative">
               <button
                 type="button"
@@ -324,7 +324,7 @@ export function PublicHeader({
             data-priority="p1"
             data-cta-label="Anfrage senden"
             data-destination={requestHref}
-            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:inline-flex xl:hidden"
+            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             Anfrage senden
@@ -374,7 +374,7 @@ export function PublicHeader({
             ref={mobileTriggerRef}
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden"
             aria-label="Menü öffnen"
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
@@ -385,7 +385,7 @@ export function PublicHeader({
       </div>
 
       {mobileOpen ? (
-        <div id="mobile-navigation" className="fixed inset-0 z-[9001] bg-white lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div id="mobile-navigation" className="fixed inset-0 z-[9001] bg-white xl:hidden" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
           <div ref={mobilePanelRef} className="h-full overflow-y-auto px-5 pb-8 pt-4 text-slate-950">
             <div className="mx-auto max-w-2xl">
               <div className="flex min-h-14 items-center justify-between border-b border-slate-200 pb-3">

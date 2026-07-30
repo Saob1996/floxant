@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
