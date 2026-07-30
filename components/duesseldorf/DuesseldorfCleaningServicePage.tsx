@@ -25,7 +25,7 @@ import {
 import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
@@ -129,15 +129,15 @@ const windowContact =
 const windowOfferContact =
   "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo";
 const deepCleaningContact =
-  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
 const deepCleaningOfferContact =
-  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
 const maintenanceCleaningOfferContact =
   "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo";
 const constructionCleaningContact =
-  "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo";
 const constructionCleaningOfferContact =
-  "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-angebot-pruefen&source=seo";
 const solarContact =
   "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-duesseldorf&source=seo";
 const solarOfferContact =
@@ -799,14 +799,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     primaryCta: {
       href: deepCleaningContact,
       label: "Grundreinigung in Düsseldorf anfragen",
-      service: "grundreinigung",
+      service: "reinigung",
       intent: "grundreinigung-duesseldorf",
       priority: "p0",
     },
     offerCta: {
       href: deepCleaningOfferContact,
       label: "Angebot für Grundreinigung prüfen",
-      service: "grundreinigung",
+      service: "reinigung",
       intent: "grundreinigung-angebot-pruefen",
       priority: "p1",
     },
@@ -959,14 +959,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     primaryCta: {
       href: constructionCleaningContact,
       label: "Bauendreinigung in Düsseldorf anfragen",
-      service: "baureinigung",
+      service: "reinigung",
       intent: "bauendreinigung-duesseldorf",
       priority: "p0",
     },
     offerCta: {
       href: constructionCleaningOfferContact,
       label: "Baureinigungsangebot prüfen",
-      service: "baureinigung",
+      service: "reinigung",
       intent: "bauendreinigung-angebot-pruefen",
       priority: "p1",
     },
@@ -1187,6 +1187,7 @@ function JsonLd({ config }: { config: PageConfig }) {
         serviceType: config.serviceType,
         areaServed: [...duesseldorfArea],
         availableLanguage: ["de", "en"],
+        provider: duesseldorfCompany,
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },

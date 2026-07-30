@@ -106,8 +106,8 @@ export function AdminLogin() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:48px_48px]" />
       </div>
 
-      <div className="relative mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-        <section className="max-w-xl">
+      <div className="relative mx-auto grid min-h-[calc(100svh-4rem)] min-w-0 max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <section className="w-full min-w-0 max-w-xl">
           <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 shadow-2xl backdrop-blur">
             <span className="grid h-10 w-10 place-items-center rounded-lg bg-cyan-300 text-slate-950">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" />
@@ -137,7 +137,7 @@ export function AdminLogin() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-white/10 bg-white/[0.07] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-8">
+        <section className="w-full min-w-0 rounded-2xl border border-white/10 bg-white/[0.07] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-8">
           <div className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-xl border border-cyan-200/20 bg-cyan-200/10 text-cyan-100">
               <KeyRound className="h-5 w-5" aria-hidden="true" />
@@ -151,9 +151,9 @@ export function AdminLogin() {
           {!dashboardSupabaseConfig.isConfigured ? (
             <div className="mt-7 rounded-xl border border-amber-300/30 bg-amber-300/10 p-4 text-sm font-semibold leading-6 text-amber-100" role="alert">
               Das Dashboard ist noch nicht konfiguriert. Für den Build müssen die öffentlichen Variablen
-              <code className="mx-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_URL</code>
+              <code className="mx-1 break-all rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_URL</code>
               und
-              <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
+              <code className="ml-1 break-all rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
               gesetzt werden.
             </div>
           ) : null}

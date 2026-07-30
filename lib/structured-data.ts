@@ -20,6 +20,15 @@ type ServiceJsonLdInput = {
   serviceType?: string;
   areaServed?: Array<string | Record<string, unknown>>;
   availableLanguage?: string[];
+  provider?: {
+    name: string;
+    url: string;
+    phoneRaw: string;
+    streetAddress: string;
+    postalCode: string;
+    city: string;
+    countryCode: string;
+  };
 };
 
 type WebPageJsonLdInput = {
@@ -135,8 +144,18 @@ export function buildServiceJsonLd({
   serviceType,
   areaServed = ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
   availableLanguage = ["de"],
+  provider,
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
+  const serviceProvider = provider || {
+    name: company.name,
+    url: company.url,
+    phoneRaw: company.phoneRaw,
+    streetAddress: company.streetAddress,
+    postalCode: company.postalCode,
+    city: company.city,
+    countryCode: company.countryCode,
+  };
 
   return {
     "@context": "https://schema.org",
@@ -159,22 +178,22 @@ export function buildServiceJsonLd({
       serviceUrl: url,
       servicePhone: {
         "@type": "ContactPoint",
-        telephone: company.phoneRaw,
+        telephone: serviceProvider.phoneRaw,
       },
       availableLanguage,
     },
     provider: {
       "@type": "LocalBusiness",
-      "@id": `${company.url}/#localbusiness`,
-      name: company.name,
-      url: company.url,
-      telephone: company.phoneRaw,
+      "@id": `${serviceProvider.url}#localbusiness`,
+      name: serviceProvider.name,
+      url: serviceProvider.url,
+      telephone: serviceProvider.phoneRaw,
       address: {
         "@type": "PostalAddress",
-        streetAddress: company.streetAddress,
-        addressLocality: company.city,
-        postalCode: company.postalCode,
-        addressCountry: company.countryCode,
+        streetAddress: serviceProvider.streetAddress,
+        addressLocality: serviceProvider.city,
+        postalCode: serviceProvider.postalCode,
+        addressCountry: serviceProvider.countryCode,
       },
     },
   };

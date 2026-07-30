@@ -3407,8 +3407,7 @@
       "locale": "de",
       "type": "faq",
       "regions": [
-        "Düsseldorf",
-        "Regensburg"
+        "Deutschland"
       ],
       "serviceIds": [
         "reinigung",
@@ -4127,8 +4126,7 @@
       "locale": "en",
       "type": "faq",
       "regions": [
-        "Düsseldorf",
-        "Regensburg"
+        "Deutschland"
       ],
       "serviceIds": [
         "reinigung",

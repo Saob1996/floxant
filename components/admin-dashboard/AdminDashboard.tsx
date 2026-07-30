@@ -220,15 +220,15 @@ export function AdminDashboard() {
 
   if (!dashboardSupabaseConfig.isConfigured) {
     return (
-      <main className="grid min-h-[100svh] place-items-center bg-[#07111f] px-5 py-12 text-white">
-        <section className="w-full max-w-xl rounded-2xl border border-amber-300/25 bg-amber-300/10 p-6 shadow-2xl sm:p-8">
+      <main className="grid min-h-[100svh] min-w-0 place-items-center overflow-x-hidden bg-[#07111f] px-5 py-12 text-white">
+        <section className="w-full min-w-0 max-w-xl rounded-2xl border border-amber-300/25 bg-amber-300/10 p-6 shadow-2xl sm:p-8">
           <ShieldCheck className="h-8 w-8 text-amber-100" aria-hidden="true" />
           <h1 className="mt-5 text-3xl font-black">Dashboard noch nicht konfiguriert</h1>
           <p className="mt-4 font-semibold leading-7 text-amber-50/90">
             Die Website bleibt funktionsfähig. Für das Dashboard müssen beim nächsten Cloudflare-Build
-            <code className="mx-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_URL</code>
+            <code className="mx-1 break-all rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_URL</code>
             und
-            <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
+            <code className="ml-1 break-all rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
             gesetzt sein.
           </p>
         </section>

@@ -89,8 +89,8 @@ export const company = {
 };
 
 export const duesseldorfCompany = {
-  name: "FLOXANT Reinigung Regensburg",
-  email: process.env.NEXT_PUBLIC_regensburg_cleaning_EMAIL || company.email,
+  name: "FLOXANT Düsseldorf",
+  email: company.email,
   phone: company.phone,
   phoneRaw: company.phoneRaw,
   streetAddress: "Breite Str. 22",
@@ -98,5 +98,5 @@ export const duesseldorfCompany = {
   city: "Düsseldorf",
   country: "Deutschland",
   countryCode: "DE",
-  url: "https://www.floxant.de/regensburg",
+  url: "https://www.floxant.de/duesseldorf",
 };

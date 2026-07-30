@@ -1807,7 +1807,11 @@ function getCitationSafeAnswer(path: string, geoPlacename: string) {
 
 function getServiceRegionPolicy(path: string) {
   if (isDuesseldorfRoute(path)) {
-    return "Regensburg: passende lokale Angebote für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung und Entsorgung; klare Trennung nach Standort.";
+    return "Düsseldorf: passende lokale Angebote für Reinigung; weitere Leistungen werden getrennt nach Standort und Verfügbarkeit eingeordnet.";
+  }
+
+  if (path.includes("regensburg")) {
+    return "Regensburg: passende lokale Angebote für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung und Entsorgung.";
   }
 
   return "Düsseldorf und Regensburg: klare lokale Trennung mit passenden Angeboten; Regensburg zusätzlich mit Umgebung nach Verfügbarkeit.";

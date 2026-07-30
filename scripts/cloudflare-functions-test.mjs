@@ -461,6 +461,53 @@ try {
     assert(Object.keys(result.body).sort().join(",") === "bookingId,ok,requestId", "success response must contain only public fields");
   });
 
+  for (const fixture of [
+    {
+      name: "valid-cleaning-request-201",
+      service: "reinigung",
+      expectedService: "reinigung",
+      extra: { objectType: "Wohnung", areaSize: "85 m²", cleaningFrequency: "einmalig" },
+    },
+    {
+      name: "valid-office-cleaning-request-201",
+      service: "bueroreinigung",
+      expectedService: "bueroreinigung",
+      extra: { objectType: "Büro", areaSize: "320 m²", cleaningFrequency: "wöchentlich", company: "Synthetic Office" },
+    },
+    {
+      name: "valid-practice-cleaning-request-201",
+      service: "praxisreinigung",
+      expectedService: "praxisreinigung",
+      extra: { objectType: "Praxis", preferredCleaningTime: "nach 18 Uhr", company: "Synthetic Practice" },
+    },
+    {
+      name: "valid-window-cleaning-request-201",
+      service: "fensterreinigung",
+      expectedService: "fensterreinigung",
+      extra: { objectType: "Gewerbe", serviceScope: "Fenster innen und außen", areaSize: "24 Fenster" },
+    },
+  ]) {
+    await test(fixture.name, async () => {
+      const result = await submit(validPayload({
+        service: fixture.service,
+        serviceCategory: "reinigung",
+        cityOrZip: "40210 Düsseldorf",
+        leadSource: "synthetic_cleaning_test",
+        sourcePage: `/duesseldorf/${fixture.expectedService}`,
+        message: "Synthetische Testanfrage ohne echte Übermittlung.",
+        ...fixture.extra,
+      }));
+      assert(result.response.status === 201 && result.body.ok === true, `${fixture.name} must return 201`);
+      const lastInsert = [...calls].reverse().find((call) => call.url.includes("/rest/v1/bookings"));
+      const insertedBooking = JSON.parse(lastInsert.body)[0];
+      const normalized = insertedBooking.details?.configuration?.cleaningRequest;
+      assert(normalized?.service === fixture.expectedService, `${fixture.name} must normalize its cleaning service`);
+      assert(normalized?.location === "40210 Düsseldorf", `${fixture.name} must retain the Düsseldorf location`);
+      assert(normalized?.source === "synthetic_cleaning_test", `${fixture.name} must retain its source`);
+      assert(normalized?.entryPage === `/duesseldorf/${fixture.expectedService}`, `${fixture.name} must retain its entry page`);
+    });
+  }
+
   await test("valid-formdata-201", async () => {
     const formData = new FormData();
     formData.set("name", "Synthetic FormData");

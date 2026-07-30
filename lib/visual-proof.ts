@@ -64,6 +64,36 @@ export const visualProofItems: VisualProofItem[] = [
     fallbackShape: "local",
   },
   {
+    visualKey: "local-proof-duesseldorf",
+    serviceKey: "local",
+    locationKey: "duesseldorf",
+    type: "local",
+    title: "Düsseldorf: Standort, Kontakt und Service",
+    description: "Neutrale Übersicht für Düsseldorfer Anfragen ohne persönliche Standortdaten.",
+    alt: "Neutrale Übersicht für FLOXANT Düsseldorf",
+    isRealPhoto: false,
+    isBeforeAfter: false,
+    privacyChecked: true,
+    consentStatus: "not-needed",
+    allowedForPublic: true,
+    fallbackShape: "local",
+  },
+  {
+    visualKey: "local-proof-regensburg",
+    serviceKey: "local",
+    locationKey: "regensburg",
+    type: "local",
+    title: "Regensburg: Standort, Kontakt und Service",
+    description: "Neutrale Übersicht für Regensburger Anfragen ohne persönliche Standortdaten.",
+    alt: "Neutrale Übersicht für FLOXANT Regensburg",
+    isRealPhoto: false,
+    isBeforeAfter: false,
+    privacyChecked: true,
+    consentStatus: "not-needed",
+    allowedForPublic: true,
+    fallbackShape: "local",
+  },
+  {
     visualKey: "real-photo-placeholder",
     serviceKey: "manual",
     locationKey: "multi",
@@ -87,6 +117,10 @@ export function getPublicVisualProofItems(input?: { serviceKey?: string; locatio
   return visualProofItems
     .filter((item) => item.allowedForPublic)
     .filter((item) => !serviceKey || item.serviceKey === serviceKey || item.serviceKey === "local")
-    .filter((item) => !locationKey || item.locationKey === locationKey || item.locationKey === "multi")
+    .filter((item) =>
+      !locationKey ||
+      item.locationKey === locationKey ||
+      (item.locationKey === "multi" && item.type !== "local"),
+    )
     .slice(0, input?.limit ?? 3);
 }

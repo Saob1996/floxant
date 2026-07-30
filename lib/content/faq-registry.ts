@@ -221,7 +221,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       shortAnswer: "Ja, FLOXANT kann Umfang, Turnus, Termin, Zugang und mögliche Zusatzpositionen sachlich einordnen.",
       detailedAnswer:
         "Senden Sie das Angebot zusammen mit Objektart, Fläche, Zustand, Turnus, Fotos und offenen Fragen. FLOXANT betrachtet Leistungsumfang und Annahmen, gibt aber keine Preisunterbietungs-, Ersparnis- oder Rechtsberatungsgarantie.",
-      relatedArticle: "/blog/bueroreinigung-regensburg-angebot-einholen",
+      relatedArticle: "/blog/reinigungsangebot-duesseldorf-klar-vergleichen",
       relatedService: "/angebot-vergleichen-duesseldorf",
       CTA: { label: "Reinigungsangebot prüfen", href: "/kontakt?service=angebot-pruefen&city=duesseldorf" },
     },
@@ -238,7 +238,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
   {
     key: "cleaning-scope-boundary",
     category: "Leistungen",
-    region: ["Düsseldorf", "Regensburg"],
+    region: ["Deutschland"],
     serviceIds: ["reinigung", "grundreinigung", "unterhaltsreinigung", "bauendreinigung"],
     audience: ["Privatkunden", "Unternehmen"],
     intent: "Reinigungsarten voneinander abgrenzen",
@@ -249,7 +249,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       detailedAnswer:
         "Unterhaltsreinigung beschreibt einen wiederkehrenden Umfang. Eine Grundreinigung betrifft stärkere oder länger aufgebaute Verschmutzungen, während End- oder Bauendreinigung an einen konkreten Abschlusszustand gebunden ist. FLOXANT prüft die Einordnung anhand der tatsächlichen Angaben statt nur anhand eines Begriffs.",
       relatedArticle: "/ratgeber/reinigung-nach-umzug",
-      relatedService: "/duesseldorf/reinigung",
+      relatedService: "/reinigung",
       CTA: { label: "Reinigungsart klären", href: "/kontakt?service=reinigung" },
     },
     en: {
@@ -258,7 +258,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       detailedAnswer:
         "Maintenance cleaning covers a recurring scope. Deep cleaning addresses heavier or accumulated dirt, while final or post-construction cleaning is linked to a specific completion state. FLOXANT checks the actual details rather than relying on a label alone.",
       relatedArticle: null,
-      relatedService: "/en/regensburg/cleaning",
+      relatedService: "/en/services",
       CTA: { label: "Clarify the cleaning type", href: "/kontakt?service=cleaning&intent=english-cleaning" },
     },
   },
