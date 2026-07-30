@@ -8,20 +8,24 @@ import {
   normalizeRouteToken,
   serviceRoutingByKey,
 } from "@/lib/service-routing";
+import {
+  isRequestServiceAllowedAtLocation,
+  requestServiceOptionsByLocation,
+  resolveAllowedRequestService,
+  type RequestLocation,
+  type RequestServiceOption,
+} from "@/lib/lead-intents/request-location-policy";
 
-export type RequestLocation = "duesseldorf" | "regensburg" | "unsicher";
+export {
+  requestServiceOptionsByLocation,
+  type RequestLocation,
+  type RequestServiceOption,
+} from "@/lib/lead-intents/request-location-policy";
 export type GlobalRequestSource =
   | "global_header"
   | "global_mobile_header"
   | "global_footer"
   | "global_404";
-
-export type RequestServiceOption = {
-  key: string;
-  label: string;
-  service: LeadService;
-  intent: string;
-};
 
 export type RequestContextInput = {
   mode?: string | null;
@@ -57,46 +61,6 @@ export type RequestContext = {
 
 const neutralDescription =
   "Wählen Sie den passenden Standort und die gewünschte Leistung. Anschließend können Sie die wichtigsten Eckdaten direkt senden.";
-
-const duesseldorfServices: readonly RequestServiceOption[] = [
-  { key: "reinigung", label: "Reinigung", service: "reinigung", intent: "reinigung-anfrage" },
-  { key: "bueroreinigung", label: "Büroreinigung", service: "bueroreinigung", intent: "bueroreinigung-anfrage" },
-  { key: "praxisreinigung", label: "Praxisreinigung", service: "praxisreinigung", intent: "praxisreinigung-anfrage" },
-  { key: "fensterreinigung", label: "Fensterreinigung", service: "fensterreinigung", intent: "fensterreinigung-anfrage" },
-  { key: "grundreinigung", label: "Grundreinigung", service: "reinigung", intent: "grundreinigung-anfrage" },
-  { key: "unterhaltsreinigung", label: "Unterhaltsreinigung", service: "unterhaltsreinigung", intent: "unterhaltsreinigung-anfrage" },
-  { key: "baureinigung", label: "Bau- und Bauendreinigung", service: "reinigung", intent: "bauendreinigung-anfrage" },
-  { key: "gewerbereinigung", label: "Gewerbereinigung", service: "gewerbereinigung", intent: "gewerbereinigung-anfrage" },
-  { key: "hausverwaltung-reinigung", label: "Hausverwaltung-Reinigung", service: "hausverwaltung-reinigung", intent: "hausverwaltung-reinigung-anfrage" },
-  { key: "treppenhausreinigung", label: "Treppenhausreinigung", service: "treppenhausreinigung", intent: "treppenhausreinigung-anfrage" },
-] as const;
-
-const regensburgServices: readonly RequestServiceOption[] = [
-  { key: "umzug", label: "Umzug", service: "umzug", intent: "umzug-anfrage" },
-  { key: "entruempelung", label: "Entrümpelung", service: "entruempelung", intent: "entruempelung-anfrage" },
-  { key: "wohnungsaufloesung", label: "Wohnungsauflösung", service: "wohnungsaufloesung", intent: "wohnungsaufloesung-anfrage" },
-  { key: "raeumung", label: "Räumung", service: "entruempelung", intent: "raeumung-anfrage" },
-  { key: "reinigung", label: "Reinigung", service: "reinigung", intent: "reinigung-anfrage" },
-  { key: "moebeltransport", label: "Möbeltransport", service: "moebeltransport", intent: "moebeltransport-anfrage" },
-  { key: "klaviertransport", label: "Klaviertransport", service: "klaviertransport", intent: "klaviertransport-anfrage" },
-  { key: "seniorenumzug", label: "Seniorenumzug", service: "seniorenumzug", intent: "seniorenumzug-anfrage" },
-] as const;
-
-const unsureServices: readonly RequestServiceOption[] = [
-  { key: "reinigung", label: "Reinigung", service: "reinigung", intent: "reinigung-anfrage" },
-  { key: "umzug", label: "Umzug", service: "umzug", intent: "umzug-anfrage" },
-  { key: "raeumung-aufloesung", label: "Räumung oder Auflösung", service: "entruempelung", intent: "raeumung-oder-aufloesung" },
-  { key: "angebot-pruefen", label: "Angebot prüfen", service: "angebot-pruefen", intent: "angebot-pruefen" },
-  { key: "sonstiges", label: "Andere Anfrage", service: "sonstiges", intent: "allgemeine-anfrage" },
-] as const;
-
-export const requestServiceOptionsByLocation: Readonly<
-  Record<RequestLocation, readonly RequestServiceOption[]>
-> = {
-  duesseldorf: duesseldorfServices,
-  regensburg: regensburgServices,
-  unsicher: unsureServices,
-};
 
 export function buildGlobalRequestHref(source: GlobalRequestSource) {
   return `/kontakt?mode=neutral&source=${source}`;
@@ -159,17 +123,10 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
   if (!rawServiceKey) return neutralContext(input, location);
 
   const options = requestServiceOptionsByLocation[location];
-  const option =
-    options.find((candidate) => candidate.key === rawServiceKey) ||
-    options.find((candidate) => candidate.service === rawServiceKey);
+  const option = resolveAllowedRequestService(location, rawServiceKey);
 
-  if (!option) return neutralContext(input);
-  const registryEntry = serviceRoutingByKey[option.service];
-  if (
-    !registryEntry ||
-    (location !== "unsicher" && !registryEntry.supportedCities.includes(location))
-  ) {
-    return neutralContext(input);
+  if (!option || !isRequestServiceAllowedAtLocation(location, option)) {
+    return neutralContext(input, location);
   }
 
   const city = location === "unsicher" ? "deutschland" : normalizeContactCity(location);
