@@ -8,5 +8,6 @@ out
 .env
 .env.local
 .env.production
+data/private/search-console/
 public/uploads
 *.log

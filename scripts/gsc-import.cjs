@@ -1,5 +1,7 @@
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const root = process.cwd();
 const dataDir = path.join(root, "data", "gsc");
@@ -9,6 +11,9 @@ const docPrefix = "GSC_2026_07_05";
 const jsonPath = path.join(root, "gsc-2026-07-05-import-report.json");
 const legacyJsonPath = path.join(root, "gsc-import-report.json");
 const liveJsonPath = path.join(root, "live-gsc-import-report.json");
+const privateSearchConsoleDir = path.join(root, "data", "private", "search-console");
+const growthArtifactsDir = path.join(root, "artifacts");
+const growthExportDate = "2026-07-30";
 
 const outputs = {
   importReport: path.join(docsDir, `${docPrefix}_IMPORT_REPORT.md`),
@@ -1085,6 +1090,616 @@ ${warnings.map((warning) => `- ${warning}`).join("\n") || "- keine Importwarnung
   fs.writeFileSync(outputs.liveImport, liveImport);
 }
 
+const growthPeriodOrder = ["24h", "7d", "28d", "3m"];
+
+const growthRouteRules = [
+  {
+    id: "duesseldorf-office-cleaning",
+    matches: (value) => value.includes("bueroreinigung") && value.includes("duesseldorf"),
+    service: "bueroreinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/bueroreinigung",
+  },
+  {
+    id: "duesseldorf-practice-cleaning",
+    matches: (value) => value.includes("praxisreinigung") && value.includes("duesseldorf"),
+    service: "praxisreinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/praxisreinigung",
+  },
+  {
+    id: "duesseldorf-window-cleaning",
+    matches: (value) =>
+      (value.includes("fensterreinigung") || value.includes("fensterreiniger") || value.includes("glasreinigung")) &&
+      value.includes("duesseldorf"),
+    service: "fensterreinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/fensterreinigung",
+  },
+  {
+    id: "duesseldorf-deep-cleaning",
+    matches: (value) => value.includes("grundreinigung") && value.includes("duesseldorf"),
+    service: "grundreinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/grundreinigung",
+  },
+  {
+    id: "duesseldorf-maintenance-cleaning",
+    matches: (value) => value.includes("unterhaltsreinigung") && value.includes("duesseldorf"),
+    service: "unterhaltsreinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/unterhaltsreinigung",
+  },
+  {
+    id: "duesseldorf-construction-cleaning",
+    matches: (value) =>
+      ["bauendreinigung", "baufeinreinigung", "baustellenreinigung", "baureinigung"].some((term) =>
+        value.includes(term),
+      ) && value.includes("duesseldorf"),
+    service: "baureinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/baureinigung",
+  },
+  {
+    id: "duesseldorf-commercial-cleaning",
+    matches: (value) => value.includes("gewerbereinigung") && value.includes("duesseldorf"),
+    service: "gewerbereinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    id: "duesseldorf-cleaning-hub",
+    matches: (value) =>
+      ["reinigung", "reinigungsfirma", "reinigungsdienst", "reinigungsunternehmen", "putzfirma"].some((term) =>
+        value.includes(term),
+      ) && value.includes("duesseldorf"),
+    service: "reinigung",
+    city: "duesseldorf",
+    primaryRoute: "/duesseldorf/reinigung",
+  },
+  {
+    id: "regensburg-piano-transport",
+    matches: (value) => (value.includes("klaviertransport") || value.includes("pianotransport")) && value.includes("regensburg"),
+    service: "klaviertransport",
+    city: "regensburg",
+    primaryRoute: "/klaviertransport-regensburg",
+  },
+  {
+    id: "regensburg-household-clearance",
+    matches: (value) =>
+      (value.includes("wohnungsaufloesung") || value.includes("haushaltsaufloesung")) && value.includes("regensburg"),
+    service: "wohnungsaufloesung",
+    city: "regensburg",
+    primaryRoute: "/regensburg/wohnungsaufloesung",
+  },
+  {
+    id: "regensburg-clearance",
+    matches: (value) => value.includes("entruempelung") && value.includes("regensburg"),
+    service: "entruempelung",
+    city: "regensburg",
+    primaryRoute: "/regensburg/entruempelung",
+  },
+  {
+    id: "regensburg-move",
+    matches: (value) =>
+      ["umzug", "umzugsfirma", "umzugsunternehmen", "umzugsservice"].some((term) => value.includes(term)) &&
+      value.includes("regensburg"),
+    service: "umzug",
+    city: "regensburg",
+    primaryRoute: "/regensburg/umzug",
+  },
+  {
+    id: "cleaning-offer",
+    matches: (value) =>
+      value.includes("reinig") && (value.includes("angebot") || value.includes("kostenvoranschlag")),
+    service: "reinigungsangebot",
+    city: "",
+    primaryRoute: "/reinigungsfirma-angebot",
+  },
+];
+
+const growthProtectedRoutes = new Set([
+  "/",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/grundreinigung",
+  "/duesseldorf/baureinigung",
+  "/klaviertransport-regensburg",
+]);
+
+const growthLegacyRiskRoutes = new Map([
+  ["/umzug-regensburg", "/regensburg/umzug"],
+  ["/entruempelung-regensburg", "/regensburg/entruempelung"],
+  ["/wohnungsaufloesung-regensburg", "/regensburg/wohnungsaufloesung"],
+  ["/bueroreinigung-duesseldorf", "/duesseldorf/bueroreinigung"],
+  ["/praxisreinigung-duesseldorf", "/duesseldorf/praxisreinigung"],
+  ["/fensterreinigung-duesseldorf", "/duesseldorf/fensterreinigung"],
+  ["/gewerbereinigung-duesseldorf", "/duesseldorf/gewerbereinigung"],
+]);
+
+function growthArgument(name, fallback = "") {
+  const direct = process.argv.find((value) => value.startsWith(`${name}=`));
+  if (direct) return direct.slice(name.length + 1);
+  const index = process.argv.indexOf(name);
+  return index >= 0 && process.argv[index + 1] ? process.argv[index + 1] : fallback;
+}
+
+function csvCell(value) {
+  const text = String(value ?? "");
+  if (!/[",\r\n]/.test(text)) return text;
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function writeCsvFile(filePath, headers, rows) {
+  ensureDir(path.dirname(filePath));
+  const content = [
+    headers.map(csvCell).join(","),
+    ...rows.map((row) => headers.map((header) => csvCell(row[header])).join(",")),
+  ].join("\n");
+  fs.writeFileSync(filePath, `${content}\n`, "utf8");
+}
+
+function periodFromFilter(directory) {
+  const files = fs.readdirSync(directory, { withFileTypes: true }).filter((entry) => entry.isFile());
+  const filter = files.find((entry) => normalizeFileName(entry.name) === "filter.csv");
+  if (!filter) return "";
+  const value = normalizeText(fs.readFileSync(path.join(directory, filter.name), "utf8"));
+  if (value.includes("24 stunden")) return "24h";
+  if (value.includes("7 tage")) return "7d";
+  if (value.includes("28 tage")) return "28d";
+  if (value.includes("3 monate")) return "3m";
+  return "";
+}
+
+function extractGrowthZip(zipPath, extractionRoot) {
+  const destination = path.join(extractionRoot, path.basename(zipPath, path.extname(zipPath)));
+  ensureDir(destination);
+  const tool = process.platform === "win32" ? "tar.exe" : "unzip";
+  const args = process.platform === "win32" ? ["-xf", zipPath, "-C", destination] : ["-qq", zipPath, "-d", destination];
+  execFileSync(tool, args, { stdio: "pipe" });
+  return destination;
+}
+
+function discoverGrowthPeriodDirectories(inputPath) {
+  const resolved = path.resolve(inputPath);
+  if (!fs.existsSync(resolved)) {
+    throw new Error(`GSC input not found: ${resolved}`);
+  }
+
+  const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "floxant-gsc-"));
+  const candidates = [];
+  const addDirectory = (directory) => {
+    if (!fs.existsSync(directory) || !fs.statSync(directory).isDirectory()) return;
+    if (periodFromFilter(directory)) candidates.push(directory);
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        const child = path.join(directory, entry.name);
+        if (periodFromFilter(child)) candidates.push(child);
+      }
+    }
+  };
+
+  if (fs.statSync(resolved).isFile()) {
+    if (path.extname(resolved).toLowerCase() !== ".zip") {
+      throw new Error("Growth mode expects a Search Console ZIP or a directory containing period exports.");
+    }
+    addDirectory(extractGrowthZip(resolved, temporaryRoot));
+  } else {
+    addDirectory(resolved);
+    if (!candidates.length) {
+      for (const entry of fs.readdirSync(resolved, { withFileTypes: true })) {
+        if (entry.isFile() && path.extname(entry.name).toLowerCase() === ".zip") {
+          addDirectory(extractGrowthZip(path.join(resolved, entry.name), temporaryRoot));
+        }
+      }
+    }
+  }
+
+  const byPeriod = new Map();
+  for (const directory of candidates) {
+    const period = periodFromFilter(directory);
+    if (period && !byPeriod.has(period)) byPeriod.set(period, directory);
+  }
+  return { byPeriod, temporaryRoot };
+}
+
+function growthCsvPath(directory, expectedNames) {
+  const wanted = expectedNames.map(normalizeFileName);
+  const entry = fs
+    .readdirSync(directory, { withFileTypes: true })
+    .find((candidate) => candidate.isFile() && wanted.includes(normalizeFileName(candidate.name)));
+  return entry ? path.join(directory, entry.name) : "";
+}
+
+function readGrowthRows(directory, expectedNames) {
+  const file = growthCsvPath(directory, expectedNames);
+  if (!file) return { file: "", rows: [] };
+  return { file, rows: parseCsv(fs.readFileSync(file, "utf8")) };
+}
+
+function normalizeGrowthMetricRecord(raw, type, period) {
+  const query = redactPii(
+    pick(raw, [
+      "Haeufigste Suchanfragen",
+      "Häufigste Suchanfragen",
+      "HÃ¤ufigste Suchanfragen",
+      "Suchanfrage",
+      "Query",
+      "Top queries",
+    ]),
+  ).trim();
+  const rawPage = redactPii(
+    pick(raw, [
+      "Die haeufigsten Seiten",
+      "Die häufigsten Seiten",
+      "Die hÃ¤ufigsten Seiten",
+      "Seite",
+      "Page",
+      "Pages",
+      "URL",
+    ]),
+  );
+  const page = canonicalPath(rawPage);
+  const label = type === "query" ? query : page;
+  return {
+    type,
+    period,
+    label,
+    query,
+    page,
+    clicks: parseNumber(pick(raw, ["Klicks", "Clicks"])),
+    impressions: parseNumber(pick(raw, ["Impressionen", "Impressions"])),
+    ctr: Math.round(parseNumber(pick(raw, ["CTR", "Klickrate"]), { isCtr: true }) * 100) / 100,
+    position:
+      Math.round(parseNumber(pick(raw, ["Position", "Average position", "Durchschnittliche Position"])) * 100) / 100,
+  };
+}
+
+function growthRouteRule(record) {
+  const normalized = normalizeText(record.label);
+  const rule = growthRouteRules.find((candidate) => candidate.matches(normalized));
+  if (rule) {
+    return {
+      cluster: rule.id,
+      service: rule.service,
+      city: rule.city,
+      primaryRoute: rule.primaryRoute,
+      relationStatus: record.type === "query" ? "probable" : record.page === rule.primaryRoute ? "not_applicable" : "manual_review",
+    };
+  }
+
+  if (record.type === "page") {
+    const legacyTarget = growthLegacyRiskRoutes.get(record.page);
+    if (legacyTarget) {
+      return {
+        cluster: "legacy-route-variant",
+        service: "",
+        city: record.page.includes("duesseldorf") ? "duesseldorf" : "regensburg",
+        primaryRoute: legacyTarget,
+        relationStatus: "not_applicable",
+      };
+    }
+  }
+
+  return {
+    cluster: "unclassified",
+    service: "",
+    city: "",
+    primaryRoute: "",
+    relationStatus: record.type === "query" ? "unclear" : "not_applicable",
+  };
+}
+
+function growthClasses(record, context) {
+  const classes = new Set();
+  const rule = growthRouteRule(record);
+  const normalized = normalizeText(record.label);
+  const targetPage = rule.primaryRoute ? context.pageByPath.get(rule.primaryRoute) : null;
+
+  if (
+    (record.type === "page" && growthProtectedRoutes.has(record.page)) ||
+    (normalized.includes("grundreinigung") && normalized.includes("duesseldorf") && record.position <= 5) ||
+    (normalized.includes("bauendreinigung") && normalized.includes("duesseldorf") && record.position <= 6) ||
+    (normalized.includes("klaviertransport") && normalized.includes("regensburg") && record.position <= 5)
+  ) {
+    classes.add("PROTECT_WINNER");
+  }
+  if (record.impressions >= 20 && record.position > 0 && record.position <= 10 && record.ctr < 1) {
+    classes.add("CTR_OPPORTUNITY");
+  }
+  if (record.position >= 4 && record.position <= 10 && record.impressions >= 10) {
+    classes.add("POSITION_4_TO_10");
+  }
+  if (record.position > 10 && record.position <= 20 && record.impressions >= 10) {
+    classes.add("POSITION_11_TO_20");
+    classes.add("PAGE_TWO_OPPORTUNITY");
+  }
+  if (record.type === "page" && rule.primaryRoute && record.position > 20 && record.impressions >= 20) {
+    classes.add("WEAK_SERVICE_PAGE");
+  }
+  if (
+    record.type === "query" &&
+    rule.primaryRoute &&
+    record.impressions >= 50 &&
+    targetPage &&
+    targetPage.position > 20
+  ) {
+    classes.add("STRONG_QUERY_WEAK_PAGE");
+  }
+  if (
+    (record.type === "page" && growthLegacyRiskRoutes.has(record.page)) ||
+    (record.type === "query" &&
+      rule.primaryRoute &&
+      ["/regensburg/umzug", "/regensburg/entruempelung", "/duesseldorf/bueroreinigung"].includes(rule.primaryRoute))
+  ) {
+    classes.add("CANNIBALIZATION_RISK");
+  }
+  if (record.period === "24h" && record.impressions >= 5 && !context.records28d.has(`${record.type}:${record.label}`)) {
+    classes.add("NEW_PAGE_TOO_YOUNG");
+  }
+  if (
+    record.type === "query" &&
+    record.impressions >= 20 &&
+    !rule.primaryRoute &&
+    /(berlin|hamburg|koeln|muenchen|landshut|nuernberg|augsburg)/.test(normalized)
+  ) {
+    classes.add("OFF_TOPIC_VISIBILITY");
+  }
+  if (!classes.size) classes.add("MANUAL_REVIEW");
+  return [...classes];
+}
+
+function growthAction(record, rule, classes) {
+  if (classes.includes("PROTECT_WINNER")) return "Protect URL and primary signals; use one measured snippet or internal-link improvement.";
+  if (classes.includes("STRONG_QUERY_WEAK_PAGE")) return "Audit indexability, canonical, sitemap, internal links and competing pages before changing the target.";
+  if (classes.includes("CANNIBALIZATION_RISK")) return "Review historical alias, redirect, canonical, sitemap and internal links; do not infer query-to-URL proof.";
+  if (classes.includes("CTR_OPPORTUNITY")) return "Test one concise title or description variant and measure for at least 28 days.";
+  if (classes.includes("POSITION_11_TO_20")) return "Strengthen intent-specific copy, FAQs and precise internal links without creating a synonym page.";
+  if (classes.includes("WEAK_SERVICE_PAGE")) return "Align H1, visible answer, scope, required details and related links with the page task.";
+  if (rule.primaryRoute) return `Review ${rule.primaryRoute} manually against the separate query and page aggregates.`;
+  return "Manual review; no automatic route or content decision.";
+}
+
+function aggregateChart(rows) {
+  const values = rows.map((row) => ({
+    clicks: parseNumber(pick(row, ["Klicks", "Clicks"])),
+    impressions: parseNumber(pick(row, ["Impressionen", "Impressions"])),
+    position: parseNumber(pick(row, ["Position", "Average position", "Durchschnittliche Position"])),
+  }));
+  const clicks = values.reduce((sum, row) => sum + row.clicks, 0);
+  const impressions = values.reduce((sum, row) => sum + row.impressions, 0);
+  const weightedPosition =
+    impressions > 0 ? values.reduce((sum, row) => sum + row.position * row.impressions, 0) / impressions : 0;
+  return {
+    clicks,
+    impressions,
+    ctr: impressions > 0 ? Math.round((clicks / impressions) * 10000) / 100 : 0,
+    weightedPosition: Math.round(weightedPosition * 100) / 100,
+  };
+}
+
+function normalizeGrowthDevice(raw) {
+  const rawName = pick(raw, ["Geraet", "Gerät", "GerÃ¤t", "Device"]);
+  const normalized = normalizeText(rawName);
+  const device = normalized.includes("mobil")
+    ? "mobile"
+    : normalized.includes("computer") || normalized.includes("desktop")
+      ? "desktop"
+      : normalized.includes("tablet")
+        ? "tablet"
+        : normalized || "unknown";
+  return {
+    device,
+    clicks: parseNumber(pick(raw, ["Klicks", "Clicks"])),
+    impressions: parseNumber(pick(raw, ["Impressionen", "Impressions"])),
+    ctr: Math.round(parseNumber(pick(raw, ["CTR", "Klickrate"]), { isCtr: true }) * 100) / 100,
+    position:
+      Math.round(parseNumber(pick(raw, ["Position", "Average position", "Durchschnittliche Position"])) * 100) / 100,
+  };
+}
+
+function mainGrowth() {
+  const input = growthArgument("--input", privateSearchConsoleDir);
+  const exportDateValue = growthArgument("--export-date", growthExportDate);
+  ensureDir(growthArtifactsDir);
+
+  const { byPeriod, temporaryRoot } = discoverGrowthPeriodDirectories(input);
+  try {
+    const missing = growthPeriodOrder.filter((period) => !byPeriod.has(period));
+    if (missing.length) {
+      throw new Error(`Missing Search Console periods: ${missing.join(", ")}`);
+    }
+
+    const periodData = {};
+    for (const period of growthPeriodOrder) {
+      const directory = byPeriod.get(period);
+      const chart = readGrowthRows(directory, ["Diagramm.csv", "Chart.csv"]);
+      const queries = readGrowthRows(directory, ["Suchanfragen.csv", "Queries.csv"]);
+      const pages = readGrowthRows(directory, ["Seiten.csv", "Pages.csv"]);
+      const devices = readGrowthRows(directory, ["Geräte.csv", "Geraete.csv", "Devices.csv"]);
+      periodData[period] = {
+        directory,
+        sourceFiles: [chart.file, queries.file, pages.file, devices.file].filter(Boolean).map((file) => path.basename(file)),
+        metrics: aggregateChart(chart.rows),
+        queries: queries.rows
+          .map((row) => normalizeGrowthMetricRecord(row, "query", period))
+          .filter((record) => record.label),
+        pages: pages.rows.map((row) => normalizeGrowthMetricRecord(row, "page", period)).filter((record) => record.label),
+        devices: devices.rows.map(normalizeGrowthDevice),
+      };
+    }
+
+    const primary = periodData["28d"];
+    const records28d = new Set(
+      [...primary.queries, ...primary.pages].map((record) => `${record.type}:${record.label}`),
+    );
+    const pageByPath = new Map(primary.pages.map((record) => [record.page, record]));
+    const context = { records28d, pageByPath };
+
+    const enrich = (record) => {
+      const rule = growthRouteRule(record);
+      const classes = growthClasses(record, context);
+      return {
+        period: record.period,
+        type: record.type,
+        label: record.label,
+        clicks: record.clicks,
+        impressions: record.impressions,
+        ctr: record.ctr,
+        position: record.position,
+        classes: classes.join("|"),
+        cluster: rule.cluster,
+        service: rule.service,
+        city: rule.city,
+        suggestedPrimaryRoute: rule.primaryRoute,
+        relationStatus: rule.relationStatus,
+        action: growthAction(record, rule, classes),
+      };
+    };
+
+    const queryOpportunities = primary.queries
+      .map(enrich)
+      .filter((row) => row.impressions >= 10 || row.classes !== "MANUAL_REVIEW")
+      .sort((a, b) => b.impressions - a.impressions || a.position - b.position);
+    const pageOpportunities = primary.pages
+      .map(enrich)
+      .filter((row) => row.impressions >= 10 || row.classes !== "MANUAL_REVIEW")
+      .sort((a, b) => b.impressions - a.impressions || a.position - b.position);
+
+    const riskPages = pageOpportunities
+      .filter(
+        (row) =>
+          row.classes.includes("CANNIBALIZATION_RISK") ||
+          row.classes.includes("WEAK_SERVICE_PAGE") ||
+          row.classes.includes("OFF_TOPIC_VISIBILITY") ||
+          row.position > 50,
+      )
+      .map((row) => ({
+        page: row.label,
+        impressions: row.impressions,
+        clicks: row.clicks,
+        ctr: row.ctr,
+        position: row.position,
+        riskClass: row.classes,
+        primaryRoute: row.suggestedPrimaryRoute,
+        evidence: growthLegacyRiskRoutes.has(row.label)
+          ? "Historical route variant is present in the page aggregate and a local 308 rule points to the primary route."
+          : "Page aggregate indicates weak visibility; query assignment remains unproven.",
+        decision: growthProtectedRoutes.has(row.label) ? "PROTECT_WINNER" : "MANUAL_REVIEW",
+      }));
+
+    const deviceRows = growthPeriodOrder.flatMap((period) => {
+      const devices = periodData[period].devices;
+      const mobile = devices.find((row) => row.device === "mobile");
+      const desktop = devices.find((row) => row.device === "desktop");
+      const ctrGap = mobile && desktop ? Math.round((mobile.ctr - desktop.ctr) * 100) / 100 : "";
+      return devices.map((row) => ({
+        period,
+        ...row,
+        mobileMinusDesktopCtrPoints: ctrGap,
+      }));
+    });
+
+    const desktop28d = primary.devices.find((row) => row.device === "desktop");
+    const mobile28d = primary.devices.find((row) => row.device === "mobile");
+    const summary = {
+      generatedAt: new Date().toISOString(),
+      exportDate: exportDateValue,
+      property: "https://www.floxant.de/",
+      sourceStorage: "data/private/search-console/",
+      rawFilesCommitted: false,
+      methodology: {
+        queryAndPageExportsAreSeparateAggregates: true,
+        queryToUrlRelationsAreNotTreatedAsProof: true,
+        allowedRelationLabels: ["confirmed", "probable", "unclear", "manual_review"],
+        confirmedQueryToUrlMappings: 0,
+      },
+      periods: Object.fromEntries(
+        growthPeriodOrder.map((period) => [
+          period,
+          {
+            ...periodData[period].metrics,
+            queryRows: periodData[period].queries.length,
+            pageRows: periodData[period].pages.length,
+            sourceFiles: periodData[period].sourceFiles,
+          },
+        ]),
+      ),
+      deviceGap28d: {
+        mobile: mobile28d || null,
+        desktop: desktop28d || null,
+        mobileMinusDesktopCtrPoints:
+          mobile28d && desktop28d ? Math.round((mobile28d.ctr - desktop28d.ctr) * 100) / 100 : null,
+      },
+      opportunityCounts28d: {
+        queryRows: queryOpportunities.length,
+        pageRows: pageOpportunities.length,
+        riskPages: riskPages.length,
+        protectedWinners: [...queryOpportunities, ...pageOpportunities].filter((row) =>
+          row.classes.includes("PROTECT_WINNER"),
+        ).length,
+        ctrOpportunities: [...queryOpportunities, ...pageOpportunities].filter((row) =>
+          row.classes.includes("CTR_OPPORTUNITY"),
+        ).length,
+        probableCannibalizationRisks: [...queryOpportunities, ...pageOpportunities].filter((row) =>
+          row.classes.includes("CANNIBALIZATION_RISK"),
+        ).length,
+      },
+    };
+
+    fs.writeFileSync(
+      path.join(growthArtifactsDir, `gsc-summary-${exportDateValue}.json`),
+      `${JSON.stringify(summary, null, 2)}\n`,
+      "utf8",
+    );
+    const opportunityHeaders = [
+      "period",
+      "type",
+      "label",
+      "clicks",
+      "impressions",
+      "ctr",
+      "position",
+      "classes",
+      "cluster",
+      "service",
+      "city",
+      "suggestedPrimaryRoute",
+      "relationStatus",
+      "action",
+    ];
+    writeCsvFile(
+      path.join(growthArtifactsDir, `gsc-query-opportunities-${exportDateValue}.csv`),
+      opportunityHeaders,
+      queryOpportunities,
+    );
+    writeCsvFile(
+      path.join(growthArtifactsDir, `gsc-page-opportunities-${exportDateValue}.csv`),
+      opportunityHeaders,
+      pageOpportunities,
+    );
+    writeCsvFile(
+      path.join(growthArtifactsDir, `gsc-device-gap-${exportDateValue}.csv`),
+      ["period", "device", "clicks", "impressions", "ctr", "position", "mobileMinusDesktopCtrPoints"],
+      deviceRows,
+    );
+    writeCsvFile(
+      path.join(growthArtifactsDir, `gsc-risk-pages-${exportDateValue}.csv`),
+      ["page", "impressions", "clicks", "ctr", "position", "riskClass", "primaryRoute", "evidence", "decision"],
+      riskPages,
+    );
+
+    console.log(
+      `GSC_GROWTH_IMPORT_OK periods=${growthPeriodOrder.join(",")} query_opportunities=${queryOpportunities.length} page_opportunities=${pageOpportunities.length} risk_pages=${riskPages.length}`,
+    );
+  } finally {
+    const resolvedTemporaryRoot = path.resolve(temporaryRoot);
+    const resolvedSystemTemp = path.resolve(os.tmpdir());
+    if (resolvedTemporaryRoot.startsWith(`${resolvedSystemTemp}${path.sep}`)) {
+      fs.rmSync(resolvedTemporaryRoot, { recursive: true, force: true });
+    }
+  }
+}
+
 function main() {
   ensureDir(dataDir);
   ensureDir(docsDir);
@@ -1140,4 +1755,5 @@ function main() {
   console.log(`Reports written: ${Object.values(outputs).map((file) => path.relative(root, file)).join(", ")}, ${path.relative(root, jsonPath)}, ${path.relative(root, liveJsonPath)}`);
 }
 
-main();
+if (process.argv.includes("--growth")) mainGrowth();
+else main();

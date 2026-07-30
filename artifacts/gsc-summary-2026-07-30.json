@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-07-30T02:38:49.674Z",
+  "exportDate": "2026-07-30",
+  "property": "https://www.floxant.de/",
+  "sourceStorage": "data/private/search-console/",
+  "rawFilesCommitted": false,
+  "methodology": {
+    "queryAndPageExportsAreSeparateAggregates": true,
+    "queryToUrlRelationsAreNotTreatedAsProof": true,
+    "allowedRelationLabels": [
+      "confirmed",
+      "probable",
+      "unclear",
+      "manual_review"
+    ],
+    "confirmedQueryToUrlMappings": 0
+  },
+  "periods": {
+    "24h": {
+      "clicks": 5,
+      "impressions": 483,
+      "ctr": 1.04,
+      "weightedPosition": 17.26,
+      "queryRows": 155,
+      "pageRows": 109,
+      "sourceFiles": [
+        "Diagramm.csv",
+        "Suchanfragen.csv",
+        "Seiten.csv",
+        "Geräte.csv"
+      ]
+    },
+    "7d": {
+      "clicks": 10,
+      "impressions": 2639,
+      "ctr": 0.38,
+      "weightedPosition": 14.9,
+      "queryRows": 331,
+      "pageRows": 285,
+      "sourceFiles": [
+        "Diagramm.csv",
+        "Suchanfragen.csv",
+        "Seiten.csv",
+        "Geräte.csv"
+      ]
+    },
+    "28d": {
+      "clicks": 54,
+      "impressions": 13225,
+      "ctr": 0.41,
+      "weightedPosition": 20.54,
+      "queryRows": 811,
+      "pageRows": 634,
+      "sourceFiles": [
+        "Diagramm.csv",
+        "Suchanfragen.csv",
+        "Seiten.csv",
+        "Geräte.csv"
+      ]
+    },
+    "3m": {
+      "clicks": 178,
+      "impressions": 31928,
+      "ctr": 0.56,
+      "weightedPosition": 25.05,
+      "queryRows": 1000,
+      "pageRows": 1000,
+      "sourceFiles": [
+        "Diagramm.csv",
+        "Suchanfragen.csv",
+        "Seiten.csv",
+        "Geräte.csv"
+      ]
+    }
+  },
+  "deviceGap28d": {
+    "mobile": {
+      "device": "mobile",
+      "clicks": 34,
+      "impressions": 3695,
+      "ctr": 0.92,
+      "position": 16.45
+    },
+    "desktop": {
+      "device": "desktop",
+      "clicks": 19,
+      "impressions": 9416,
+      "ctr": 0.2,
+      "position": 22.13
+    },
+    "mobileMinusDesktopCtrPoints": 0.72
+  },
+  "opportunityCounts28d": {
+    "queryRows": 231,
+    "pageRows": 101,
+    "riskPages": 34,
+    "protectedWinners": 10,
+    "ctrOpportunities": 55,
+    "probableCannibalizationRisks": 35
+  }
+}

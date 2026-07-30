@@ -1,0 +1,35 @@
+page,impressions,clicks,ctr,position,riskClass,primaryRoute,evidence,decision
+/reinigungsfirma-angebot,536,0,0,51.19,WEAK_SERVICE_PAGE,/reinigungsfirma-angebot,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/bueroreinigung,506,0,0,46.51,WEAK_SERVICE_PAGE,/duesseldorf/bueroreinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/gewerbereinigung,340,0,0,41.54,WEAK_SERVICE_PAGE,/duesseldorf/gewerbereinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/regensburg/entruempelung,282,1,0.35,77.51,WEAK_SERVICE_PAGE,/regensburg/entruempelung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/reinigung-muenchen,266,0,0,52.84,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/regensburg/umzug,249,0,0,66.77,WEAK_SERVICE_PAGE,/regensburg/umzug,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/praxisreinigung,199,0,0,51.26,WEAK_SERVICE_PAGE,/duesseldorf/praxisreinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/reinigungsfirma,137,0,0,70.45,WEAK_SERVICE_PAGE,/duesseldorf/reinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/umzug-regensburg,97,0,0,64.57,WEAK_SERVICE_PAGE|CANNIBALIZATION_RISK,/regensburg/umzug,Historical route variant is present in the page aggregate and a local 308 rule points to the primary route.,MANUAL_REVIEW
+/blog/praxisreinigung-duesseldorf-angebot-pruefen,91,0,0,30.23,WEAK_SERVICE_PAGE,/duesseldorf/praxisreinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/leistungen,88,0,0,53.26,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/blog/gewerbereinigung-angebot-vergleichen,87,0,0,36.98,WEAK_SERVICE_PAGE,/reinigungsfirma-angebot,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/entruempelung-landshut,77,0,0,52.47,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/reinigung-landshut,73,0,0,52.64,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/ru/blog/wohnungsaufloesung-was-tun,64,0,0,87.3,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/blog/grundreinigung-duesseldorf-angebot-kosten-pruefen,58,1,1.72,20.02,WEAK_SERVICE_PAGE,/duesseldorf/grundreinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/regensburg/wohnungsaufloesung,54,0,0,36.33,WEAK_SERVICE_PAGE,/regensburg/wohnungsaufloesung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/hausverwaltung-reinigung,50,0,0,20.82,WEAK_SERVICE_PAGE,/duesseldorf/reinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/entruempelung-nuernberg,42,0,0,54.29,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/objektbrief,33,0,0,56.12,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/duesseldorf/fensterreinigung,26,0,0,69.15,WEAK_SERVICE_PAGE,/duesseldorf/fensterreinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/pl/umzug-ingolstadt,25,0,0,64.32,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/blog/treppenhausreinigungen-duesseldorf-hauseingang-hausverwaltung,23,0,0,20.09,WEAK_SERVICE_PAGE,/duesseldorf/reinigung,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/bg/entruempelung-amberg,22,0,0,86.18,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/koeln/reinigung,21,0,0,53.48,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/rechner,19,0,0,61.11,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/moenchengladbach/reinigung,17,0,0,53.47,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/angebot-pruefen,17,0,0,67.29,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/pv-anlagen-reinigung,14,0,0,59.93,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/makler-vermieter-link,14,0,0,64.29,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/neuss/reinigung,12,0,0,56.92,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/ja/umzug-bayern,11,0,0,57,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/umzug-nuernberg,11,0,0,66.64,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW
+/reinigung-fuerstenfeldbruck,10,0,0,61.2,MANUAL_REVIEW,,Page aggregate indicates weak visibility; query assignment remains unproven.,MANUAL_REVIEW

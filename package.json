@@ -31,6 +31,7 @@
     "site:qa": "node scripts/site-qa-check.ts",
     "seo:gsc": "node scripts/analyze-gsc-export.ts",
     "gsc:import": "node scripts/gsc-import.cjs",
+    "gsc:growth": "node scripts/gsc-import.cjs --growth --export-date 2026-07-30",
     "optimize:score": "node scripts/optimize-score.cjs",
     "optimize:health": "node scripts/optimize-health.cjs",
     "offer-check:health": "node scripts/offer-check-health.cjs",
