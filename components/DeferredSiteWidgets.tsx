@@ -1,11 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const MobileFloatingContact = dynamic(() => import("@/components/MobileFloatingContact"), {
-  ssr: false,
-});
+import MobileFloatingContact from "@/components/MobileFloatingContact";
 
 export function DeferredSiteWidgets({ showFloatingContact }: { showFloatingContact: boolean }) {
   const [ready, setReady] = useState(false);
