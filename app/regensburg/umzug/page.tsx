@@ -31,6 +31,7 @@ import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { ProfessionalCard, ProfessionalSectionHeading } from "@/components/professional/ProfessionalPage";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
+import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import {
   buildBreadcrumbJsonLd,
   buildServiceJsonLd,
@@ -45,9 +46,9 @@ const offerCheckHref =
 const pianoContactHref =
   "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo";
 
-const pageTitle = "Umzug Regensburg: Umzugsservice anfragen | FLOXANT";
-const pageDescription =
-  "Umzug in Regensburg persönlich anfragen: Start, Ziel, Etage, Aufzug, Umfang und Termin senden. Für Privat-, Klein-, Senioren- oder Büroumzug.";
+const pageMeta = getPrioritySeoMeta("/regensburg/umzug");
+const pageTitle = pageMeta.seoTitle;
+const pageDescription = pageMeta.description;
 
 type LinkCard = {
   title: string;
@@ -78,8 +79,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: canonicalPath,
-    title: "Umzug in Regensburg persönlich und passend zum Umfang anfragen",
-    description: pageDescription,
+    title: pageMeta.ogTitle,
+    description: pageMeta.ogDescription,
   },
   twitter: {
     card: "summary",
@@ -421,7 +422,7 @@ function RegensburgMoveHero() {
           </div>
 
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-            Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang
+            {pageMeta.headline}
           </h1>
           <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg">
             Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in Regensburg? Senden Sie Start,

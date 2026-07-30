@@ -27,6 +27,7 @@ import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
+import { getPrioritySeoMeta, type SeoMetaModel } from "@/lib/content/seo-meta-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -69,6 +70,7 @@ type FaqItem = {
 type PageConfig = {
   key: DuesseldorfCleaningPageKey;
   path: string;
+  meta?: SeoMetaModel;
   title: string;
   description: string;
   ogTitle: string;
@@ -369,6 +371,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   reinigung: {
     key: "reinigung",
     path: "/duesseldorf/reinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/reinigung"),
     title: "Reinigungsfirma Düsseldorf: Reinigung anfragen | FLOXANT",
     description:
       "Reinigung in Düsseldorf persönlich anfragen: Wohnung, Büro, Praxis, Fenster, Grund- oder Unterhaltsreinigung. Objekt, Umfang und Termin einfach senden.",
@@ -455,6 +458,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   bueroreinigung: {
     key: "bueroreinigung",
     path: "/duesseldorf/bueroreinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/bueroreinigung"),
     title: "Büroreinigung Düsseldorf für Firmen klar anfragen",
     description:
       "Büroreinigung in Düsseldorf für Firmen: Fläche, Turnus, Reinigungszeiten und Leistungsumfang beschreiben. Angebot Punkt für Punkt prüfen lassen.",
@@ -540,6 +544,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   gewerbereinigung: {
     key: "gewerbereinigung",
     path: "/duesseldorf/gewerbereinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/gewerbereinigung"),
     title: "Gewerbereinigung Düsseldorf - Fläche, Turnus und Umfang klären",
     description:
       "Gewerbereinigung in Düsseldorf mit konkreten Eckdaten anfragen: Objektart, Fläche, Nutzungszeiten, Turnus und Leistungsumfang beschreiben.",
@@ -625,6 +630,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   praxisreinigung: {
     key: "praxisreinigung",
     path: "/duesseldorf/praxisreinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/praxisreinigung"),
     title: "Praxisreinigung Düsseldorf mit konkreten Eckdaten anfragen",
     description:
       "Praxisreinigung in Düsseldorf sachlich vorbereiten: Räume, sensible Bereiche, Reinigungszeiten, Ansprechpartner und Angebot klären.",
@@ -705,6 +711,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   fensterreinigung: {
     key: "fensterreinigung",
     path: "/duesseldorf/fensterreinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/fensterreinigung"),
     title: "Fensterreinigung Düsseldorf - Glasflächen und Termin klären",
     description:
       "Fensterreinigung in Düsseldorf anfragen: Glasflächen, Fensterzahl, Rahmen/Falze optional, Erreichbarkeit, Turnus und Termin beschreiben.",
@@ -785,6 +792,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   grundreinigung: {
     key: "grundreinigung",
     path: "/duesseldorf/grundreinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/grundreinigung"),
     title: "Grundreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
     description:
       "Grundreinigung in Düsseldorf anfragen: Räume, Fläche, Verschmutzung, Schwerpunkte und Zielzustand nennen. Für Wohnung, Haus, Büro oder Gewerbe.",
@@ -865,6 +873,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   unterhaltsreinigung: {
     key: "unterhaltsreinigung",
     path: "/duesseldorf/unterhaltsreinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/unterhaltsreinigung"),
     title: "Unterhaltsreinigung Düsseldorf für Büro & Objekt | FLOXANT",
     description:
       "Unterhaltsreinigung in Düsseldorf anfragen: Flächen, Bereiche, Turnus, Reinigungszeiten, Zugang und Ansprechpartner für Büro, Gewerbe oder Objekt klären.",
@@ -945,6 +954,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   baureinigung: {
     key: "baureinigung",
     path: "/duesseldorf/baureinigung",
+    meta: getPrioritySeoMeta("/duesseldorf/baureinigung"),
     title: "Bauendreinigung Düsseldorf nach Bau & Renovierung | FLOXANT",
     description:
       "Bau- oder Bauendreinigung in Düsseldorf anfragen: Bauphase, Fläche, Staub, Schutzfolien, Restarbeiten, Zugang und Übergabetermin verständlich beschreiben.",
@@ -1139,11 +1149,15 @@ const notIncludedByPage: Record<DuesseldorfCleaningPageKey, readonly string[]> =
 
 export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPageKey): Metadata {
   const config = duesseldorfCleaningPages[pageKey];
+  const title = config.meta?.seoTitle ?? config.title;
+  const description = config.meta?.description ?? config.description;
+  const ogTitle = config.meta?.ogTitle ?? config.ogTitle;
+  const ogDescription = config.meta?.ogDescription ?? description;
 
   return {
     metadataBase: new URL(company.url),
-    title: config.title,
-    description: config.description,
+    title,
+    description,
     alternates: {
       canonical: config.path,
       languages: {
@@ -1155,24 +1169,27 @@ export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPag
       type: "website",
       locale: "de_DE",
       url: config.path,
-      title: config.ogTitle,
-      description: config.description,
+      title: ogTitle,
+      description: ogDescription,
     },
     twitter: {
       card: "summary",
-      title: config.title,
-      description: config.description,
+      title,
+      description,
     },
   };
 }
 
 function JsonLd({ config }: { config: PageConfig }) {
+  const title = config.meta?.seoTitle ?? config.title;
+  const description = config.meta?.description ?? config.description;
+  const headline = config.meta?.headline ?? config.h1;
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: config.title,
-        description: config.description,
+        name: title,
+        description,
         path: config.path,
         about: config.about,
         potentialActions: [
@@ -1181,8 +1198,8 @@ function JsonLd({ config }: { config: PageConfig }) {
         ],
       }),
       buildServiceJsonLd({
-        name: config.h1,
-        description: config.description,
+        name: headline,
+        description,
         path: config.path,
         serviceType: config.serviceType,
         areaServed: [...duesseldorfArea],
@@ -1265,7 +1282,7 @@ function DuesseldorfCleaningHero({ config }: { config: PageConfig }) {
             {config.eyebrow}
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-            {config.h1}
+            {config.meta?.headline ?? config.h1}
           </h1>
           <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg">
             {config.intro}

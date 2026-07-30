@@ -29,6 +29,7 @@ import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
+import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -40,9 +41,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/klaviertransport-regensburg";
-const title = "Klaviertransport Regensburg - Etage, Zugang und Termin klären";
-const description =
-  "Klaviertransport in Regensburg geplant? Instrumentart, Etage, Treppenhaus, Zugang und Termin beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten.";
+const pageMeta = getPrioritySeoMeta(path);
+const title = pageMeta.seoTitle;
+const description = pageMeta.description;
 
 const leadHref = buildLeadHref({
   service: "klaviertransport",
@@ -386,7 +387,7 @@ export default function KlaviertransportRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking-normal text-slate-950 sm:max-w-4xl sm:text-5xl xl:text-6xl">
-                Klaviertransport in Regensburg anfragen - Etage, Zugang und Termin klären.
+                {pageMeta.headline}
               </h1>
 
               <p className="mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slate-700 sm:max-w-3xl sm:text-lg">

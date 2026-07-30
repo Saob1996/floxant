@@ -1,3 +1,4 @@
+import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import { germanizeDeep } from "@/lib/german-text";
 
 export type RegensburgServicePageConfig = {
@@ -41,14 +42,17 @@ const commonRelated = [
   { href: "/region-regensburg", label: "Region Regensburg" },
 ] as const;
 
+const regensburgMoveMeta = getPrioritySeoMeta("/regensburg/umzug");
+const regensburgClearanceMeta = getPrioritySeoMeta("/regensburg/entruempelung");
+const regensburgHouseholdDissolutionMeta = getPrioritySeoMeta("/regensburg/wohnungsaufloesung");
+
 export const regensburgServicePages = {
   umzug: {
     slug: "umzug",
     path: "/regensburg/umzug",
-    title: "Umzug Regensburg mit Start, Ziel, Etage und Volumen klären",
-    metaTitle: "Umzug Regensburg | Angebot nach Etage und Umfang",
-    metaDescription:
-      "FLOXANT prüft Start, Ziel, Etagen, Volumen, Zugang und Termin. Umzug in Regensburg beschreiben und Angebot vorbereiten.",
+    title: regensburgMoveMeta.headline,
+    metaTitle: regensburgMoveMeta.seoTitle,
+    metaDescription: regensburgMoveMeta.description,
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT prüft Ihren Umzug in Regensburg nach Start- und Zieladresse, Etage, Aufzug, Trageweg, Volumen, Möbelmontage, Kartons, Termin und Fotos. Reinigung oder Entrümpelung werden nur ergänzt, wenn sie wirklich dazugehören.",
@@ -100,10 +104,9 @@ export const regensburgServicePages = {
   entruempelung: {
     slug: "entruempelung",
     path: "/regensburg/entruempelung",
-    title: "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass",
-    metaTitle: "Entrümpelung Regensburg | Wohnung, Keller, Nachlass",
-    metaDescription:
-      "Entrümpelung in Regensburg mit klarer Abstimmung zu Räumen, Menge, Zugang und Termin. Anfrage mit Fotos oder Objektangaben senden.",
+    title: regensburgClearanceMeta.headline,
+    metaTitle: regensburgClearanceMeta.seoTitle,
+    metaDescription: regensburgClearanceMeta.description,
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garage, Nachlass, Menge, Zugang, Fotos und gewünschtem Endzustand. Was bleibt, was raus soll und ob danach gereinigt wird, wird vorab getrennt geklärt.",
@@ -513,10 +516,9 @@ export const regensburgServicePages = {
   wohnungsaufloesung: {
     slug: "wohnungsaufloesung",
     path: "/regensburg/wohnungsaufloesung",
-    title: "Wohnungsauflösung Regensburg bei Nachlass, Auszug und Übergabe",
-    metaTitle: "Wohnungsauflösung Regensburg | Nachlass ruhig klären",
-    metaDescription:
-      "Wohnungsauflösung Regensburg bei Nachlass, Auszug oder Pflegeheimwechsel: Fotos, Freigabe, Räume, Zielzustand und Übergabe ruhig klären.",
+    title: regensburgHouseholdDissolutionMeta.headline,
+    metaTitle: regensburgHouseholdDissolutionMeta.seoTitle,
+    metaDescription: regensburgHouseholdDissolutionMeta.description,
     eyebrow: "FLOXANT Wohnungsauflösung Regensburg",
     description:
       "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachlass, Auszug, Pflegeheimwechsel, Familienorganisation, Vermieterübergabe oder Nachnutzung zusammenkommen.",

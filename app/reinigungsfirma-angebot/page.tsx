@@ -13,6 +13,7 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoLeadForm } from "@/components/SeoLeadForm";
 import { company } from "@/lib/company";
+import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -24,9 +25,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/reinigungsfirma-angebot";
-const title = "Reinigungsfirma Angebot | Reinigung kostenlos anfragen";
-const description =
-  "Reinigungsfirma Angebot anfragen: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden. FLOXANT prüft Reinigung ohne Preisversprechen.";
+const pageMeta = getPrioritySeoMeta(path);
+const title = pageMeta.seoTitle;
+const description = pageMeta.description;
 const leadIntent = resolveLeadIntent({
   path,
   service: "reinigung",
@@ -162,7 +163,7 @@ export default function ReinigungsfirmaAngebotPage() {
                 Angebot Reinigung
               </div>
               <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl xl:text-6xl">
-                Reinigungsfirma Angebot anfragen: Objekt, Fläche und Termin klar senden
+                {pageMeta.headline}
               </h1>
               <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100">
                 Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare
