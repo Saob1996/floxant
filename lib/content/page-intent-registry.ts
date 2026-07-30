@@ -114,6 +114,19 @@ const priorityContracts: Record<string, Partial<PageIntentContract>> = {
       "Büroreinigung in Düsseldorf mit Fläche, Räumen, Turnus und Zugangszeiten beschreiben. Anforderungen klären und Anfrage senden.",
     primaryCta: "Büroreinigung anfragen",
   },
+  "/duesseldorf/gewerbereinigung": {
+    location: "Düsseldorf",
+    pageType: "service",
+    service: "Gewerbereinigung",
+    primaryIntent: "Gewerbereinigung in Düsseldorf nach Objektart und Nutzung erklären",
+    secondaryIntent: "Fläche, Nutzungszeiten, Turnus, Sonderflächen und Zugang klären",
+    recommendedH1: "Gewerbereinigung in Düsseldorf mit konkreten Eckdaten anfragen",
+    recommendedSeoTitle: "Gewerbereinigung Düsseldorf | Objekt & Turnus",
+    shortTitle: "Gewerbereinigung Düsseldorf",
+    metaDescription:
+      "Gewerbereinigung in Düsseldorf mit Objektart, Fläche, Nutzungszeiten, Turnus, Sonderflächen und Zugang konkret anfragen.",
+    primaryCta: "Gewerbereinigung anfragen",
+  },
   "/duesseldorf/praxisreinigung": {
     location: "Düsseldorf",
     pageType: "service",

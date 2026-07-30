@@ -55,6 +55,15 @@ const OUT_OF_RADIUS_CITY_SLUGS = new Set([
 ]);
 const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/partnercode": "/empfehlen",
+  "/reinigung-duesseldorf": "/duesseldorf/reinigung",
+  "/bueroreinigung-duesseldorf": "/duesseldorf/bueroreinigung",
+  "/gewerbereinigung-duesseldorf": "/duesseldorf/gewerbereinigung",
+  "/praxisreinigung-duesseldorf": "/duesseldorf/praxisreinigung",
+  "/fensterreinigung-duesseldorf": "/duesseldorf/fensterreinigung",
+  "/grundreinigung-duesseldorf": "/duesseldorf/grundreinigung",
+  "/unterhaltsreinigung-duesseldorf": "/duesseldorf/unterhaltsreinigung",
+  "/baureinigung-duesseldorf": "/duesseldorf/baureinigung",
+  "/bauendreinigung-duesseldorf": "/duesseldorf/baureinigung",
   "/airbnb-reinigung-duesseldorf": "/reinigung-moeblierte-wohnung-duesseldorf",
   "/airbnb-reinigung-regensburg": "/reinigung-moeblierte-wohnung-regensburg",
   "/regensburg/bueroreinigung": "/regensburg/bueroreinigung",
