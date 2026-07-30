@@ -4,6 +4,7 @@ import {
   normalizeLeadPayload,
 } from "./lead-payload.js";
 import { normalizeCleaningRequest } from "./cleaning-request.js";
+import { normalizeServiceRequest } from "./service-request.js";
 
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
@@ -379,6 +380,7 @@ function buildDetails(payload, contact, service, uploadedFiles, request) {
   ]);
   const rawFields = Object.fromEntries(Object.entries(payload).filter(([key]) => !excludedRawFields.has(key)));
   const normalizedCleaningRequest = normalizeCleaningRequest(payload, service, locale);
+  const normalizedServiceRequest = normalizeServiceRequest(payload, service, locale);
   return {
     ...existing,
     contact: {
@@ -402,6 +404,7 @@ function buildDetails(payload, contact, service, uploadedFiles, request) {
       uploadMetadata: uploadedFiles,
       ...(legacyDetailsText ? { legacyDetailsText } : {}),
       ...(normalizedCleaningRequest ? { cleaningRequest: normalizedCleaningRequest } : {}),
+      serviceRequest: normalizedServiceRequest,
     },
     metadata: {
       ...(existing.metadata || {}),
