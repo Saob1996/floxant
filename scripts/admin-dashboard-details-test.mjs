@@ -28,6 +28,16 @@ function loadTypeScriptModule(filePath) {
   moduleCache.set(absolutePath, compiledModule);
 
   const localRequire = (request) => {
+    if (request.startsWith("@/")) {
+      const resolved = path.join(root, request.slice(2));
+      for (const candidate of [resolved, `${resolved}.ts`, `${resolved}.js`]) {
+        if (fs.existsSync(candidate)) {
+          return candidate.endsWith(".ts")
+            ? loadTypeScriptModule(candidate)
+            : nativeRequire(candidate);
+        }
+      }
+    }
     if (!request.startsWith(".")) return nativeRequire(request);
     const resolved = path.resolve(path.dirname(absolutePath), request);
     for (const candidate of [resolved, `${resolved}.ts`, `${resolved}.js`]) {
@@ -54,6 +64,16 @@ function loadTypeScriptModule(filePath) {
 const {
   buildAdminBookingDetailView,
 } = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "booking-details.ts"));
+const {
+  evaluateLeadCompleteness,
+  getLeadCompletenessLabel,
+} = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "lead-completeness.ts"));
+const {
+  adminReplyTemplates,
+  getReplyLocale,
+  getReplyTemplates,
+  renderReplyTemplate,
+} = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "reply-templates.ts"));
 
 function booking(overrides = {}) {
   return {
@@ -164,11 +184,27 @@ const cases = [
     label: "Google-Ads-Umzugsanfrage",
     record: booking({
       details: {
-        configuration: { rawFields: { gclid: "synthetic-gclid", sourcePage: "/umzug-regensburg/anfrage" } },
+        configuration: {
+          rawFields: {
+            gclid: "synthetic-gclid",
+            gbraid: "synthetic-gbraid",
+            wbraid: "synthetic-wbraid",
+            sourcePage: "/umzug-regensburg/anfrage",
+            form_type: "moving_ads",
+            entry_page: "/umzug-regensburg/anfrage",
+          },
+        },
         metadata: { source: "google_ads" },
       },
     }),
-    expected: ["synthetic-gclid", "google_ads", "/umzug-regensburg/anfrage"],
+    expected: [
+      "synthetic-gclid",
+      "synthetic-gbraid",
+      "synthetic-wbraid",
+      "google_ads",
+      "/umzug-regensburg/anfrage",
+      "moving_ads",
+    ],
   },
   {
     label: "Google-Ads-Reinigungsanfrage",
@@ -263,8 +299,84 @@ const securityOutput = serialized(securityView);
 assert.ok(!securityOutput.includes("SECRET-"), "sensitive values or signed file URLs must not be displayed");
 assert.ok(securityOutput.includes("sichtbar"), "non-sensitive unknown fields must remain visible");
 
+const completeMoving = booking({
+  service: "umzug",
+  details: {
+    configuration: {
+      startLocation: "Regensburg",
+      destinationLocation: "München",
+      desiredDate: "August 2026",
+      scope: "3 Zimmer, ungefähr 80 m²",
+      startFloor: "2",
+      destinationFloor: "1",
+      startElevator: "nein",
+      destinationElevator: "ja",
+    },
+    metadata: { locale: "de" },
+  },
+});
+const movingCompleteness = evaluateLeadCompleteness(completeMoving);
+assert.equal(movingCompleteness.status, "sufficient");
+assert.equal(getLeadCompletenessLabel(movingCompleteness.status), "Ausreichend beschrieben");
+assert.deepEqual(Array.from(movingCompleteness.missing), []);
+assert.equal(movingCompleteness.recommendedNextStep, "Angebot vorbereiten");
+
+const incompleteMoving = booking({
+  service: "umzug",
+  details: { configuration: { desiredDate: "flexibel" } },
+});
+const incompleteMovingResult = evaluateLeadCompleteness(incompleteMoving);
+assert.equal(incompleteMovingResult.status, "follow_up_required");
+assert.ok(incompleteMovingResult.missing.includes("Startort"));
+assert.ok(incompleteMovingResult.missing.includes("Zielort"));
+assert.equal(
+  incompleteMovingResult.recommendedNextStep,
+  "Start- und Zieladresse klären",
+);
+
+const incompleteCleaning = booking({
+  service: "reinigung",
+  details: {
+    configuration: {
+      location: "Düsseldorf",
+      objectType: "Büro",
+      rawFields: { locale: "en-GB" },
+    },
+  },
+});
+const incompleteCleaningResult = evaluateLeadCompleteness(incompleteCleaning);
+assert.equal(incompleteCleaningResult.status, "multiple_missing");
+assert.ok(incompleteCleaningResult.missing.includes("Fläche oder Umfang"));
+assert.equal(
+  incompleteCleaningResult.recommendedNextStep,
+  "Fläche oder Umfang klären",
+);
+
+const generalRequest = booking({ service: "sonstiges", details: {} });
+assert.equal(evaluateLeadCompleteness(generalRequest).status, "not_assessable");
+
+assert.equal(adminReplyTemplates.length, 20, "exactly 20 reply drafts are required");
+assert.equal(getReplyTemplates("de").length, 10, "ten German drafts are required");
+assert.equal(getReplyTemplates("en").length, 10, "ten English drafts are required");
+assert.equal(getReplyLocale(incompleteCleaning), "en");
+const englishDraft = renderReplyTemplate(
+  incompleteCleaning,
+  incompleteCleaningResult,
+  "clarify_scope",
+);
+assert.equal(englishDraft.template.locale, "en");
+assert.match(englishDraft.body, /approximate area/i);
+assert.doesNotMatch(englishDraft.body, /€|EUR|price confirmation/i);
+
 console.log(JSON.stringify({
   passed: true,
   cases: cases.map((testCase) => testCase.label),
   security: "sensitive fields and tokenized file links filtered",
+  completeness: [
+    "sufficient",
+    "multiple_missing",
+    "follow_up_required",
+    "not_assessable",
+  ],
+  replyTemplates: { de: 10, en: 10, automaticSend: false },
 }, null, 2));

@@ -505,8 +505,60 @@ try {
       assert(normalized?.location === "40210 Düsseldorf", `${fixture.name} must retain the Düsseldorf location`);
       assert(normalized?.source === "synthetic_cleaning_test", `${fixture.name} must retain its source`);
       assert(normalized?.entryPage === `/duesseldorf/${fixture.expectedService}`, `${fixture.name} must retain its entry page`);
+      assert(insertedBooking.details?.configuration?.serviceRequest?.group === "cleaning", `${fixture.name} must receive the common cleaning request shape`);
     });
   }
+
+  await test("valid-professional-moving-request-201", async () => {
+    const result = await submit(validPayload({
+      service: "umzug",
+      serviceCategory: "umzug",
+      leadSource: "synthetic_professional_test",
+      sourcePage: "/kontakt",
+      startLocation: "Regensburg",
+      destinationLocation: "München",
+      desiredDate: "August 2099",
+      scope: "Synthetic three-room move",
+      startFloor: "2",
+      destinationFloor: "1",
+      startElevator: "nein",
+      destinationElevator: "ja",
+      selectedAddons: "Verpackung, Montage",
+    }));
+    assert(result.response.status === 201 && result.body.ok === true, "valid professional moving request must return 201");
+    const lastInsert = [...calls].reverse().find((call) => call.url.includes("/rest/v1/bookings"));
+    const insertedBooking = JSON.parse(lastInsert.body)[0];
+    const normalized = insertedBooking.details?.configuration?.serviceRequest;
+    assert(normalized?.group === "moving", "moving request group must be normalized");
+    assert(normalized?.route?.startLocation === "Regensburg", "moving start location must be retained");
+    assert(normalized?.route?.destinationLocation === "München", "moving destination must be retained");
+    assert(normalized?.route?.startElevator === "nein", "moving access details must be retained");
+  });
+
+  await test("valid-professional-clearance-request-201", async () => {
+    const result = await submit(validPayload({
+      service: "entruempelung",
+      serviceCategory: "entruempelung",
+      leadSource: "synthetic_professional_test",
+      sourcePage: "/kontakt",
+      cityOrZip: "93047 Regensburg",
+      objectType: "Wohnung",
+      areaSize: "ungefähr 70 m²",
+      floor: "3",
+      elevator: "nein",
+      scope: "Synthetic furniture and household items",
+      desiredDate: "September 2099",
+    }));
+    assert(result.response.status === 201 && result.body.ok === true, "valid professional clearance request must return 201");
+    const lastInsert = [...calls].reverse().find((call) => call.url.includes("/rest/v1/bookings"));
+    const insertedBooking = JSON.parse(lastInsert.body)[0];
+    const normalized = insertedBooking.details?.configuration?.serviceRequest;
+    assert(normalized?.group === "clearance", "clearance request group must be normalized");
+    assert(normalized?.location === "93047 Regensburg", "clearance location must be retained");
+    assert(normalized?.object?.type === "Wohnung", "clearance object type must be retained");
+    assert(normalized?.object?.floor === "3", "clearance floor must be retained");
+    assert(normalized?.remainingItems.includes("Synthetic furniture"), "clearance scope must be retained");
+  });
 
   await test("valid-formdata-201", async () => {
     const formData = new FormData();
