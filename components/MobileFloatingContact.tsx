@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
+import { resolveCtaConfig } from "@/lib/cta-config";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 export default function MobileFloatingContact() {
   const pathname = usePathname() || "/";
@@ -17,28 +19,44 @@ export default function MobileFloatingContact() {
   if (isPrivatePath) return null;
 
   const city = pathname.includes("duesseldorf") ? "duesseldorf" : "regensburg";
-  const requestHref = `/kontakt?service=sonstiges&city=${city}&intent=allgemeine-anfrage&source=floating`;
-  const offerHref = `/kontakt?service=angebot-pruefen&city=${city}&intent=angebot-pruefen&source=floating`;
+  const requestCta = resolveCtaConfig({
+    ctaKey: "mobile-sticky",
+    label: "Anfrage",
+    service: "sonstiges",
+    city,
+    intent: "allgemeine-anfrage",
+    priority: "p1",
+    source: "floating",
+  });
+  const offerCta = resolveCtaConfig({
+    ctaKey: "offer-check",
+    label: "Angebot",
+    service: "angebot-pruefen",
+    city,
+    intent: "angebot-pruefen",
+    priority: "p0",
+    source: "floating",
+  });
   const budgetHref = "/anfrage-mit-preisrahmen";
   const whatsappText = `Hallo FLOXANT, ich möchte eine Anfrage in ${city === "duesseldorf" ? "Düsseldorf" : "Regensburg"} stellen.`;
-  const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText)}`;
+  const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappText);
 
   return (
     <div className="flox-mobile-action-wrap flox-universal-action-wrap" aria-label="FLOXANT Schnellkontakt">
       <div className="flox-mobile-action-shell safe-area-bottom">
         <div className="flox-mobile-action-grid">
           <Link
-            href={requestHref}
+            href={requestCta.href}
             className="flox-mobile-action flox-mobile-action-primary"
             aria-label="Anfrage an FLOXANT senden"
             data-event="seo_cta_click"
             data-source="floating_contact"
-            data-service="sonstiges"
-            data-city={city}
-            data-page-intent="allgemeine-anfrage"
-            data-priority="p1"
-            data-cta-label="Anfrage"
-            data-destination={requestHref}
+            data-service={requestCta.dataAttributes.service}
+            data-city={requestCta.dataAttributes.city}
+            data-page-intent={requestCta.dataAttributes.pageIntent}
+            data-priority={requestCta.dataAttributes.priority}
+            data-cta-label={requestCta.dataAttributes.ctaLabel}
+            data-destination={requestCta.dataAttributes.destination}
           >
             <ClipboardCheck aria-hidden="true" />
             <span className="flox-mobile-action-copy">
@@ -95,15 +113,16 @@ export default function MobileFloatingContact() {
           </a>
 
           <Link
-            href={offerHref}
+            href={offerCta.href}
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Vorhandenes Angebot prüfen lassen"
             data-event="service_card_click"
             data-source="floating_contact"
-            data-service="angebot-pruefen"
-            data-city={city}
-            data-page-intent="angebot-pruefen"
-            data-destination={offerHref}
+            data-service={offerCta.dataAttributes.service}
+            data-city={offerCta.dataAttributes.city}
+            data-page-intent={offerCta.dataAttributes.pageIntent}
+            data-priority={offerCta.dataAttributes.priority}
+            data-destination={offerCta.dataAttributes.destination}
           >
             <FileSearch aria-hidden="true" />
             <span className="flox-mobile-action-copy">

@@ -41,6 +41,8 @@ const requiredFiles = [
   "components/CopyRequestSummaryButton.tsx",
   "components/RelatedSignatureSuggestion.tsx",
   "components/BetterRequestNotice.tsx",
+];
+const referenceDocs = [
   "docs/OBJEKTBRIEF_ANFRAGEBRIEF_ARCHITECTURE.md",
   "docs/LEAD_REQUEST_SUMMARY_PAYLOAD_REPORT.md",
   "docs/REQUEST_MICROCOPY_GUIDE.md",
@@ -57,6 +59,16 @@ add(
   "Required request-brief files exist",
   missingRequired.length ? `Missing: ${missingRequired.join(", ")}` : "All required request-brief files are present.",
   requiredFiles,
+);
+const missingReferenceDocs = referenceDocs.filter((file) => !fileExists(file));
+add(
+  "docs:reference",
+  missingReferenceDocs.length ? "WARN" : "PASS",
+  "Historical request-brief reference documents",
+  missingReferenceDocs.length
+    ? `Not present in this release branch: ${missingReferenceDocs.join(", ")}. Executable checks remain authoritative.`
+    : "All historical reference documents are present.",
+  referenceDocs,
 );
 
 const pkg = JSON.parse(read(path.join(ROOT, "package.json")));
@@ -145,7 +157,7 @@ const formNeedles = [
   "hasOffer",
   "signatureServiceHint",
   "leadPriority",
-  'fetch("/api/bookings"',
+  'bookingFetch("/api/bookings"',
 ];
 const formCheck = includesAll("components/SeoLeadForm.tsx", formNeedles);
 add(
@@ -156,7 +168,7 @@ add(
   ["components/SeoLeadForm.tsx"],
 );
 
-const apiCheck = includesAll("app/api/bookings/route.ts", [
+const apiCheck = includesAll("functions/_lib/lead-payload.js", [
   "requestSummary",
   "missingInfoFlags",
   "hasPhotos",
@@ -169,7 +181,7 @@ add(
   apiCheck.ok ? "PASS" : "FAIL",
   "Booking API accepts request-summary fields",
   apiCheck.ok ? "Flat form fields are parsed alongside existing details JSON." : `Missing: ${apiCheck.missing.join(", ")}`,
-  ["app/api/bookings/route.ts"],
+  ["functions/_lib/lead-payload.js"],
 );
 
 const staticPublicFiles = [

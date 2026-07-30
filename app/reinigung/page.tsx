@@ -189,6 +189,12 @@ export default function ReinigungLocationChooserPage() {
                 <Link
                   href={card.href}
                   className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                  data-event="service_card_click"
+                  data-service="reinigung"
+                  data-city={card.city === "Düsseldorf" ? "duesseldorf" : "regensburg"}
+                  data-page-intent="reinigung-standort-waehlen"
+                  data-priority="p0"
+                  data-destination={card.href}
                 >
                   {card.cta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -218,11 +224,29 @@ export default function ReinigungLocationChooserPage() {
                 </div>
                 <p className="mt-4 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Link href={item.duesseldorf} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-black text-slate-900 hover:border-cyan-500 hover:bg-cyan-50">
+                  <Link
+                    href={item.duesseldorf}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-black text-slate-900 hover:border-cyan-500 hover:bg-cyan-50"
+                    data-event="service_card_click"
+                    data-service={item.id}
+                    data-city="duesseldorf"
+                    data-page-intent={`${item.id}-duesseldorf`}
+                    data-priority="p1"
+                    data-destination={item.duesseldorf}
+                  >
                     Düsseldorf
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
-                  <Link href={item.regensburg} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-black text-slate-900 hover:border-cyan-500 hover:bg-cyan-50">
+                  <Link
+                    href={item.regensburg}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-black text-slate-900 hover:border-cyan-500 hover:bg-cyan-50"
+                    data-event="service_card_click"
+                    data-service={item.id}
+                    data-city="regensburg"
+                    data-page-intent={`${item.id}-regensburg`}
+                    data-priority="p1"
+                    data-destination={item.regensburg}
+                  >
                     Regensburg
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>

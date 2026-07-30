@@ -68,7 +68,7 @@ const faqItems = [
   },
   {
     q: "Für welche Region ist FLOXANT erreichbar?",
-    a: "FLOXANT führt Regensburg als Basis für Umzug, Reinigung, Entrümpelung und Übergabe. Reinigung wird nur für Regensburg und den Umkreis bis 50 km angenommen.",
+    a: "FLOXANT führt Regensburg als Basis für Umzug, Entrümpelung und Übergabe. Reinigungsanfragen werden getrennt für Düsseldorf sowie für Regensburg und den geprüften Umkreis eingeordnet.",
   },
   {
     q: "Kann ich auch nur eine Preisvorstellung senden?",
@@ -80,7 +80,7 @@ const faqItems = [
   },
   {
     q: "Gibt es auch einen gezielten Kontaktweg für Firmen oder sensible Anfragen?",
-    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Sensible Fälle starten über den Diskret-Service; Private Client bleibt für persönlich koordinierte private Serviceanfragen.",
+    a: "Ja. Für gewerbliche Reinigung gibt es eigene B2B-Seiten für Düsseldorf und Regensburg. Sensible Fälle starten über den Diskret-Service; Private Client bleibt für persönlich koordinierte private Serviceanfragen.",
   },
 ];
 
@@ -135,7 +135,7 @@ const mapsClosingSignals = [
   },
   {
     title: "Spezialbereiche sauber getrennt",
-    text: "Für Reinigung gibt es einen lokalen Regensburg-Bereich mit 50-km-Umkreis, Kontaktweg und klarer Adresse.",
+    text: "Für Reinigung gibt es getrennte lokale Bereiche für Düsseldorf sowie Regensburg und den geprüften Umkreis.",
   },
 ];
 
@@ -733,15 +733,24 @@ export default async function KontaktPage() {
                 Lokaler Reinigungsbereich
               </div>
               <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
-                Für lokale Reinigungsanfragen in Regensburg und im 50-km-Umkreis gibt es einen eigenen Bereich mit Adresse, Rechner, Kontakt und klarer Reinigungspositionierung.
+                Für lokale Reinigungsanfragen gibt es getrennte Einstiege für Düsseldorf sowie Regensburg und den geprüften Umkreis.
               </p>
-              <Link
-                href="/regensburg/reinigung"
-                className="mt-3 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800"
-              >
-                Reinigung Regensburg ansehen
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                <Link
+                  href="/duesseldorf/reinigung"
+                  className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800"
+                >
+                  Reinigung Düsseldorf
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
+                  href="/regensburg/reinigung"
+                  className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800"
+                >
+                  Reinigung Regensburg
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

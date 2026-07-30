@@ -271,7 +271,7 @@ function checkCtaIntegrity() {
     const source = read(file);
     if (!source) continue;
 
-    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|RegensburgServicePage/.test(source);
+    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|DuesseldorfCleaningServicePage/.test(source);
     const hasCta = /data-event=["']seo_cta_click["']|buildLeadHref\(|\bcta(Text)?\s*=|\bcta\s*:|\bprimaryCta\b|\bsecondaryHref\b|\bofferHref\b|\bbookingHref\b|\bleadHref\b|href\s*[:=]\s*["']\/(?:kontakt|buchung|angebot-guenstiger-pruefen|angebotscheck)/.test(source) || centralCtaComponent;
     const hasRealHref = /href=|\bhref\s*:|<Link\b|<a\b|\bbookingHref\b|\bleadHref\b/.test(source) || centralCtaComponent;
     const hrefValues = collectHrefValues(source);

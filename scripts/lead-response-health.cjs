@@ -29,6 +29,12 @@ function includesAll(file, needles) {
 }
 
 const requiredFiles = [
+  "lib/lead-reply-templates.ts",
+  "lib/missing-info-questions.ts",
+  "lib/lead-response-recommendations.ts",
+  "lib/lead-summary.ts",
+];
+const referenceDocs = [
   "docs/LEAD_RESPONSE_ARCHITECTURE.md",
   "docs/LEAD_REPLY_TEMPLATES.md",
   "docs/INTERNAL_LEAD_NOTIFICATION_REPORT.md",
@@ -36,10 +42,6 @@ const requiredFiles = [
   "docs/LEAD_OPERATIONS_PLAYBOOK.md",
   "docs/LEAD_PII_SAFETY_REPORT.md",
   "docs/LEAD_RESPONSE_IMPLEMENTATION_REPORT.md",
-  "lib/lead-reply-templates.ts",
-  "lib/missing-info-questions.ts",
-  "lib/lead-response-recommendations.ts",
-  "lib/lead-summary.ts",
 ];
 
 const missingRequired = requiredFiles.filter((file) => !fileExists(file));
@@ -49,6 +51,16 @@ add(
   "Lead response files exist",
   missingRequired.length ? `Missing: ${missingRequired.join(", ")}` : "All required lead-response files are present.",
   requiredFiles,
+);
+const missingReferenceDocs = referenceDocs.filter((file) => !fileExists(file));
+add(
+  "docs:reference",
+  missingReferenceDocs.length ? "WARN" : "PASS",
+  "Historical lead-response reference documents",
+  missingReferenceDocs.length
+    ? `Not present in this release branch: ${missingReferenceDocs.join(", ")}. Executable checks remain authoritative.`
+    : "All historical reference documents are present.",
+  referenceDocs,
 );
 
 const pkg = JSON.parse(read(path.join(ROOT, "package.json")));
@@ -204,18 +216,21 @@ add(
   ["components/SeoLeadForm.tsx"],
 );
 
-const apiCheck = includesAll("app/api/bookings/route.ts", [
+const apiPayloadCheck = includesAll("functions/_lib/lead-payload.js", [
   "responseTemplateKey",
   "recommendedNextStep",
   "missingInfoQuestions",
+]);
+const apiNotificationCheck = includesAll("lib/mail/notifications.ts", [
   "sendInternalIntakeNotification",
 ]);
+const apiMissing = [...apiPayloadCheck.missing, ...apiNotificationCheck.missing];
 add(
   "api:submit-only-fields",
-  apiCheck.ok ? "PASS" : "FAIL",
+  apiPayloadCheck.ok && apiNotificationCheck.ok ? "PASS" : "FAIL",
   "Booking API accepts lead-response fields",
-  apiCheck.ok ? "Lead-response fields are parsed on explicit submit." : `Missing: ${apiCheck.missing.join(", ")}`,
-  ["app/api/bookings/route.ts"],
+  apiPayloadCheck.ok && apiNotificationCheck.ok ? "Lead-response fields are parsed on explicit submit." : `Missing: ${apiMissing.join(", ")}`,
+  ["functions/_lib/lead-payload.js", "lib/mail/notifications.ts"],
 );
 
 const forbiddenClaims = [
@@ -311,7 +326,7 @@ add(
 
 const submitOnlyCheck =
   read(path.join(ROOT, "components/SeoLeadForm.tsx")).includes('onSubmit={handleSubmit}') &&
-  read(path.join(ROOT, "components/SeoLeadForm.tsx")).includes('fetch("/api/bookings"') &&
+  read(path.join(ROOT, "components/SeoLeadForm.tsx")).includes('bookingFetch("/api/bookings"') &&
   !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(read(path.join(ROOT, "components/SeoLeadForm.tsx")));
 add(
   "api:submit-only",

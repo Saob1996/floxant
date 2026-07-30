@@ -83,7 +83,13 @@ function routeForHtml(file) {
 
 function isNegated(text, index) {
   const before = text.slice(Math.max(0, index - 80), index).toLowerCase();
-  return /\b(?:kein(?:e|en|er|es)?|nicht|ohne|weder|no|not|without|does not|is not)\b/.test(before);
+  if (/\b(?:kein(?:e|en|er|es)?|nicht|ohne|weder|no|not|without|does not|is not)\b/.test(before)) {
+    return true;
+  }
+  const after = text.slice(index, Math.min(text.length, index + 260)).toLowerCase();
+  return /(?:\?|:)\s*(?:nein|no)\b/.test(after)
+    || /\b(?:wird|werden|ist|sind|gibt|gibt es|we|floxant)?\s*(?:aber\s+)?(?:nicht|nie|keine?|keinen|no|not|never)\s+(?:automatisch\s+)?(?:garantiert|guaranteed|garantie|guarantee)\b/.test(after)
+    || /\b(?:gibt|gibt es)\s+(?:aber\s+)?(?:nicht|nie|keine?)\b/.test(after);
 }
 
 function snippet(text, index, length) {

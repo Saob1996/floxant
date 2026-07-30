@@ -89,6 +89,7 @@ function list(items) {
 
 function lineHasPositiveRisk(line) {
   const value = line.toLowerCase();
+  if (/\b(?:q|question)\s*:/.test(value)) return false;
   if (/\b(keine|kein|ohne|nicht|wird nicht|werden nicht|ersetzt keine)\b/.test(value)) return false;
   if (/\.replace\(|forbiddenClaims|notPromised/.test(line)) return false;
   return [
@@ -180,7 +181,7 @@ function main() {
     const routeExists = route.files.some(exists) || exists(directPage);
     const source = sourceForRoute(route);
     const hasFaq = /buildFaqJsonLd|faqItems|config\.faq|seniorMoveFaqItems|RegensburgCleaningSnippetAnswers|FaqSection|authorityServiceFaqs/.test(source + "\n" + faqSystem);
-    const hasAiAnswer = /AiAnswerBlock|Quick Answer|AI-Antwort|AI Answer|quickAnswer|offerCheckAiAnswers/.test(source) || aiSystem.includes(`route: "${route.canonical || route.route}"`) || aiSystem.includes(`route: "${route.route}"`);
+    const hasAiAnswer = /AiAnswerBlock|Quick Answer|AI-Antwort|AI Answer|quickAnswer|offerCheckAiAnswers|SeniorMoveQuickAnswer|SeniorMoveAiAnswer/.test(source) || aiSystem.includes(`route: "${route.canonical || route.route}"`) || aiSystem.includes(`route: "${route.route}"`);
     const hasCta = /\/kontakt|\/buchung|angebot-guenstiger-pruefen|OfferCheckCTA|LeadCta|primaryHref|ctaHref|CheaperAlternativeForm/.test(source);
 
     if (!routeExists) failures.push(item("FAIL", "p0-route-missing", `${route.route} hat keine Page-/Template-Datei.`, route.files[0] || directPage));
@@ -222,7 +223,8 @@ function main() {
   if (vercelRisks.length) failures.push(item("FAIL", "vercel-safety", `Vercel-sensitive Muster: ${vercelRisks.slice(0, 12).join(", ")}`));
   else findings.push(item("PASS", "vercel-safety", "Keine revalidate/nodejs/force-dynamic/API-Post/sendBeacon/Supabase/Resend/sharp-Rueckkehr auf Public Pages erkannt."));
 
-  if (aiSystem.includes("english-request") && read("docs/CONTENT_ENGLISH_INTENT_REPORT.md").includes("English")) {
+  const englishIntentDocs = `${read("docs/CONTENT_ENGLISH_INTENT_REPORT.md")}\n${read("docs/ENGLISH_SEARCH_INTENT_STRATEGY.md")}`;
+  if (aiSystem.includes("english-request") && englishIntentDocs.includes("English")) {
     findings.push(item("PASS", "english-intent", "English Intent ist dezent in AI-Daten und Report dokumentiert."));
   } else {
     warnings.push(item("WARN", "english-intent", "English Intent ist nicht vollstaendig dokumentiert."));

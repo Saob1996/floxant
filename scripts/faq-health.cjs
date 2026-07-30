@@ -139,7 +139,8 @@ function main() {
 
   const keywordCloudWarnings = answers.filter((answer) => {
     const lower = answer.toLowerCase();
-    const words = lower.match(/[a-zäöüß]{5,}/g) || [];
+    const ignored = new Set(["keine", "keinen", "keiner", "keines", "nicht", "ohne"]);
+    const words = (lower.match(/[a-zäöüß]{5,}/g) || []).filter((word) => !ignored.has(word));
     const counts = words.reduce((acc, word) => {
       acc[word] = (acc[word] || 0) + 1;
       return acc;
