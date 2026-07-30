@@ -1,0 +1,3609 @@
+{
+  "schemaVersion": 1,
+  "label": "release-candidate",
+  "generatedAt": "2026-07-30T09:14:53.590Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "lighthouseVersion": "12.8.2",
+  "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "runsPerRoute": 3,
+  "methodology": {
+    "routes": [
+      "/",
+      "/duesseldorf/reinigung",
+      "/duesseldorf/bueroreinigung",
+      "/duesseldorf/praxisreinigung",
+      "/duesseldorf/fensterreinigung",
+      "/regensburg/umzug",
+      "/regensburg/entruempelung",
+      "/regensburg/wohnungsaufloesung",
+      "/klaviertransport-regensburg",
+      "/reinigungsfirma-angebot"
+    ],
+    "modes": [
+      "mobile",
+      "desktop"
+    ],
+    "network": "Lighthouse default simulated throttling",
+    "note": "Local lab measurements; INP requires field or interactive user data and may be null."
+  },
+  "summary": {
+    "mobile": {
+      "routes": 10,
+      "runs": 30,
+      "medianScores": {
+        "performance": 80.5,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "averageScores": {
+        "performance": 77.8,
+        "accessibility": 97.6,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "p75Metrics": {
+        "largestContentfulPaintMs": 3947.03,
+        "totalBlockingTimeMs": 510.4,
+        "cumulativeLayoutShift": 0
+      },
+      "maximumMetrics": {
+        "largestContentfulPaintMs": 4114.41,
+        "totalBlockingTimeMs": 745.77,
+        "cumulativeLayoutShift": 0
+      },
+      "routeMedians": [
+        {
+          "route": "/",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 67,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 4060.45,
+            "totalBlockingTimeMs": 745.77,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+              "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+              "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/reinigung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 81,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3697.89,
+            "totalBlockingTimeMs": 354,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+              "nodeLabel": "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst vers…"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/bueroreinigung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 85,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3442.71,
+            "totalBlockingTimeMs": 306,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+              "nodeLabel": "Für eine Büroreinigung in Düsseldorf helfen Fläche, Turnus, Reinigungszeiten un…"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/praxisreinigung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 85,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3424,
+            "totalBlockingTimeMs": 277,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+              "nodeLabel": "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen,…"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/fensterreinigung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 82,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3555.03,
+            "totalBlockingTimeMs": 346,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/umzug",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 75,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3506.42,
+            "totalBlockingTimeMs": 525.97,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+              "nodeLabel": "Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in R…"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/entruempelung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 74,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 4114.41,
+            "totalBlockingTimeMs": 456.42,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+              "nodeLabel": "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garag…"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/wohnungsaufloesung",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 81,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3947.03,
+            "totalBlockingTimeMs": 283.59,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+              "nodeLabel": "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachla…"
+            }
+          ]
+        },
+        {
+          "route": "/klaviertransport-regensburg",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 80,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3511.81,
+            "totalBlockingTimeMs": 402,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "div.mx-auto > div.grid > div.min-w-0 > p.mt-6",
+              "snippet": "<p class=\"mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slat…\">",
+              "nodeLabel": "Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler M…"
+            }
+          ]
+        },
+        {
+          "route": "/reinigungsfirma-angebot",
+          "mode": "mobile",
+          "runs": 3,
+          "medianScores": {
+            "performance": 75,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 3831.21,
+            "totalBlockingTimeMs": 510.4,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > p.mt-5",
+              "snippet": "<p class=\"mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100\">",
+              "nodeLabel": "Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare …"
+            }
+          ]
+        }
+      ]
+    },
+    "desktop": {
+      "routes": 10,
+      "runs": 30,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "averageScores": {
+        "performance": 98.57,
+        "accessibility": 97.6,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "p75Metrics": {
+        "largestContentfulPaintMs": 846.54,
+        "totalBlockingTimeMs": 84.5,
+        "cumulativeLayoutShift": 0
+      },
+      "maximumMetrics": {
+        "largestContentfulPaintMs": 877.96,
+        "totalBlockingTimeMs": 109.67,
+        "cumulativeLayoutShift": 0
+      },
+      "routeMedians": [
+        {
+          "route": "/",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 99,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 846.54,
+            "totalBlockingTimeMs": 11,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+              "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+              "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/reinigung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 98,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 877.96,
+            "totalBlockingTimeMs": 84.5,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/bueroreinigung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 99,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 789.18,
+            "totalBlockingTimeMs": 61.5,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Büroreinigung in Düsseldorf für Firmen klar anfragen"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/praxisreinigung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 100,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 733.24,
+            "totalBlockingTimeMs": 49,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen"
+            }
+          ]
+        },
+        {
+          "route": "/duesseldorf/fensterreinigung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 99,
+            "accessibility": 100,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 738.72,
+            "totalBlockingTimeMs": 54,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/umzug",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 99,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 781.3,
+            "totalBlockingTimeMs": 43.5,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+              "nodeLabel": "Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/entruempelung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 98,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 864.78,
+            "totalBlockingTimeMs": 96.5,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+              "nodeLabel": "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass"
+            }
+          ]
+        },
+        {
+          "route": "/regensburg/wohnungsaufloesung",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 98,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 820.23,
+            "totalBlockingTimeMs": 109.67,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+              "nodeLabel": "Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären"
+            }
+          ]
+        },
+        {
+          "route": "/klaviertransport-regensburg",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 99,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 742.88,
+            "totalBlockingTimeMs": 15.5,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "div.mx-auto > div.grid > div.min-w-0 > h1.mt-6",
+              "snippet": "<h1 class=\"mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking…\">",
+              "nodeLabel": "Klaviertransport in Regensburg anfragen – Etage, Zugang und Termin klären"
+            }
+          ]
+        },
+        {
+          "route": "/reinigungsfirma-angebot",
+          "mode": "desktop",
+          "runs": 3,
+          "medianScores": {
+            "performance": 100,
+            "accessibility": 96,
+            "bestPractices": 100,
+            "seo": 100
+          },
+          "medianMetrics": {
+            "largestContentfulPaintMs": 734,
+            "totalBlockingTimeMs": 24,
+            "cumulativeLayoutShift": 0
+          },
+          "lcpElements": [
+            {
+              "selector": "section.relative > div.mx-auto > div > h1.mt-5",
+              "snippet": "<h1 class=\"mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+              "nodeLabel": "Reinigungsangebot anfragen oder vorhandenes Angebot prüfen"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "route": "/",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T08:46:28.263Z",
+      "scores": {
+        "performance": 76,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1509.451,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4059.451,
+          "unit": "millisecond",
+          "displayValue": "4.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 406.63724999999977,
+          "unit": "millisecond",
+          "displayValue": "410 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 3539.8465295995784,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T08:46:58.709Z",
+      "scores": {
+        "performance": 67,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1510.4507,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4060.4506999999994,
+          "unit": "millisecond",
+          "displayValue": "4.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 745.7746499999998,
+          "unit": "millisecond",
+          "displayValue": "750 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 3490.3507743179484,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T08:47:29.110Z",
+      "scores": {
+        "performance": 61,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 2226.81595,
+          "unit": "millisecond",
+          "displayValue": "2.2 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4258.44785,
+          "unit": "millisecond",
+          "displayValue": "4.3 s"
+        },
+        "totalBlockingTime": {
+          "value": 781.9079749999996,
+          "unit": "millisecond",
+          "displayValue": "780 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 4932.158362618688,
+          "unit": "millisecond",
+          "displayValue": "4.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T08:47:58.411Z",
+      "scores": {
+        "performance": 73,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1659.378,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3854.8780000000015,
+          "unit": "millisecond",
+          "displayValue": "3.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 566.9999999999995,
+          "unit": "millisecond",
+          "displayValue": "570 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2350.0310988466467,
+          "unit": "millisecond",
+          "displayValue": "2.4 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst vers…"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T08:48:29.689Z",
+      "scores": {
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1655.886,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3697.8860000000004,
+          "unit": "millisecond",
+          "displayValue": "3.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 336,
+          "unit": "millisecond",
+          "displayValue": "340 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1789.774431186454,
+          "unit": "millisecond",
+          "displayValue": "1.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst vers…"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T08:49:01.061Z",
+      "scores": {
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1656.4880000000003,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3592.4880000000003,
+          "unit": "millisecond",
+          "displayValue": "3.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 354,
+          "unit": "millisecond",
+          "displayValue": "350 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2126.8328734156257,
+          "unit": "millisecond",
+          "displayValue": "2.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst vers…"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T08:49:31.691Z",
+      "scores": {
+        "performance": 85,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1505.726,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3383.7259999999997,
+          "unit": "millisecond",
+          "displayValue": "3.4 s"
+        },
+        "totalBlockingTime": {
+          "value": 306,
+          "unit": "millisecond",
+          "displayValue": "310 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1629.9898402236686,
+          "unit": "millisecond",
+          "displayValue": "1.6 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Für eine Büroreinigung in Düsseldorf helfen Fläche, Turnus, Reinigungszeiten un…"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T08:49:59.805Z",
+      "scores": {
+        "performance": 84,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1507.7105999999999,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3442.710599999999,
+          "unit": "millisecond",
+          "displayValue": "3.4 s"
+        },
+        "totalBlockingTime": {
+          "value": 312,
+          "unit": "millisecond",
+          "displayValue": "310 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1675.4611664431654,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Für eine Büroreinigung in Düsseldorf helfen Fläche, Turnus, Reinigungszeiten un…"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T08:50:30.784Z",
+      "scores": {
+        "performance": 85,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.942,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3503.442,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 277,
+          "unit": "millisecond",
+          "displayValue": "280 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1635.207317182642,
+          "unit": "millisecond",
+          "displayValue": "1.6 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Für eine Büroreinigung in Düsseldorf helfen Fläche, Turnus, Reinigungszeiten un…"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T08:51:01.293Z",
+      "scores": {
+        "performance": 92,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1507.002,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3208.0020000000004,
+          "unit": "millisecond",
+          "displayValue": "3.2 s"
+        },
+        "totalBlockingTime": {
+          "value": 88.5,
+          "unit": "millisecond",
+          "displayValue": "90 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1507.002,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen,…"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T08:51:31.197Z",
+      "scores": {
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.5064000000002,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3566.5064000000016,
+          "unit": "millisecond",
+          "displayValue": "3.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 373.0000000000002,
+          "unit": "millisecond",
+          "displayValue": "370 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2053.9630258828092,
+          "unit": "millisecond",
+          "displayValue": "2.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen,…"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T08:51:59.135Z",
+      "scores": {
+        "performance": 85,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1507.0043,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3424.0042999999996,
+          "unit": "millisecond",
+          "displayValue": "3.4 s"
+        },
+        "totalBlockingTime": {
+          "value": 277,
+          "unit": "millisecond",
+          "displayValue": "280 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1647.4279637291047,
+          "unit": "millisecond",
+          "displayValue": "1.6 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen,…"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T08:52:30.223Z",
+      "scores": {
+        "performance": 82,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1506.4658,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3598.4658,
+          "unit": "millisecond",
+          "displayValue": "3.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 346,
+          "unit": "millisecond",
+          "displayValue": "350 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1706.9149387562525,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T08:53:05.513Z",
+      "scores": {
+        "performance": 82,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.0316000000003,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3555.0316000000016,
+          "unit": "millisecond",
+          "displayValue": "3.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 354.0000000000002,
+          "unit": "millisecond",
+          "displayValue": "350 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1746.1622081102892,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T08:53:35.107Z",
+      "scores": {
+        "performance": 83,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1507.9812000000002,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3546.9812000000015,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 318.5000000000002,
+          "unit": "millisecond",
+          "displayValue": "320 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2107.8927026582787,
+          "unit": "millisecond",
+          "displayValue": "2.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T08:54:08.995Z",
+      "scores": {
+        "performance": 67,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1510.9673000000003,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3463.9509500000004,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 1101.01635,
+          "unit": "millisecond",
+          "displayValue": "1,100 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 3243.237934303762,
+          "unit": "millisecond",
+          "displayValue": "3.2 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in R…"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T08:54:35.603Z",
+      "scores": {
+        "performance": 81,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.4160000000002,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3506.4159999999997,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 403,
+          "unit": "millisecond",
+          "displayValue": "400 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1670.1339651225953,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in R…"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T08:55:00.452Z",
+      "scores": {
+        "performance": 75,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1507.0532,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3698.0532000000003,
+          "unit": "millisecond",
+          "displayValue": "3.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 525.9734000000001,
+          "unit": "millisecond",
+          "displayValue": "530 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2977.4899875183064,
+          "unit": "millisecond",
+          "displayValue": "3.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg\">",
+        "nodeLabel": "Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in R…"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T08:55:25.422Z",
+      "scores": {
+        "performance": 74,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1656.33,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4114.412499999999,
+          "unit": "millisecond",
+          "displayValue": "4.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 456.4175000000005,
+          "unit": "millisecond",
+          "displayValue": "460 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2398.0892836070598,
+          "unit": "millisecond",
+          "displayValue": "2.4 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garag…"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T08:55:53.197Z",
+      "scores": {
+        "performance": 82,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1654.6,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3888.25,
+          "unit": "millisecond",
+          "displayValue": "3.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 259.85000000000036,
+          "unit": "millisecond",
+          "displayValue": "260 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1888.9645013568834,
+          "unit": "millisecond",
+          "displayValue": "1.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garag…"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T08:56:18.287Z",
+      "scores": {
+        "performance": 73,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1658.324,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4183.405,
+          "unit": "millisecond",
+          "displayValue": "4.2 s"
+        },
+        "totalBlockingTime": {
+          "value": 474.9190000000003,
+          "unit": "millisecond",
+          "displayValue": "470 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2881.516624781747,
+          "unit": "millisecond",
+          "displayValue": "2.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garag…"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T08:56:43.036Z",
+      "scores": {
+        "performance": 83,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1655.872,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3811.872,
+          "unit": "millisecond",
+          "displayValue": "3.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 259.0000000000009,
+          "unit": "millisecond",
+          "displayValue": "260 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1804.9712299067833,
+          "unit": "millisecond",
+          "displayValue": "1.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachla…"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T08:57:07.642Z",
+      "scores": {
+        "performance": 80,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1655.0280000000002,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3984.2850000000017,
+          "unit": "millisecond",
+          "displayValue": "4.0 s"
+        },
+        "totalBlockingTime": {
+          "value": 313,
+          "unit": "millisecond",
+          "displayValue": "310 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1819.85082472055,
+          "unit": "millisecond",
+          "displayValue": "1.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachla…"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T08:57:31.947Z",
+      "scores": {
+        "performance": 81,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1655.6260000000002,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3947.032500000001,
+          "unit": "millisecond",
+          "displayValue": "3.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 283.5934999999997,
+          "unit": "millisecond",
+          "displayValue": "280 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1830.1126220065198,
+          "unit": "millisecond",
+          "displayValue": "1.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-slate-100\">",
+        "nodeLabel": "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachla…"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T08:57:55.172Z",
+      "scores": {
+        "performance": 84,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1506.879,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3437.379,
+          "unit": "millisecond",
+          "displayValue": "3.4 s"
+        },
+        "totalBlockingTime": {
+          "value": 314,
+          "unit": "millisecond",
+          "displayValue": "310 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1686.7579599179153,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slat…\">",
+        "nodeLabel": "Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler M…"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T08:58:20.341Z",
+      "scores": {
+        "performance": 65,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.808,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3511.808,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 1350,
+          "unit": "millisecond",
+          "displayValue": "1,350 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 3069.0100317213655,
+          "unit": "millisecond",
+          "displayValue": "3.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slat…\">",
+        "nodeLabel": "Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler M…"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T08:58:47.302Z",
+      "scores": {
+        "performance": 80,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1504.73,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3512.2299999999996,
+          "unit": "millisecond",
+          "displayValue": "3.5 s"
+        },
+        "totalBlockingTime": {
+          "value": 402,
+          "unit": "millisecond",
+          "displayValue": "400 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1736.422135562012,
+          "unit": "millisecond",
+          "displayValue": "1.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > p.mt-6",
+        "snippet": "<p class=\"mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slat…\">",
+        "nodeLabel": "Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler M…"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "mobile",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T08:59:11.373Z",
+      "scores": {
+        "performance": 75,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1509.2096000000001,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3831.2096000000006,
+          "unit": "millisecond",
+          "displayValue": "3.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 510.3951999999997,
+          "unit": "millisecond",
+          "displayValue": "510 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1863.3826718334153,
+          "unit": "millisecond",
+          "displayValue": "1.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-5",
+        "snippet": "<p class=\"mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100\">",
+        "nodeLabel": "Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare …"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "mobile",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T08:59:36.616Z",
+      "scores": {
+        "performance": 76,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1508.3258,
+          "unit": "millisecond",
+          "displayValue": "1.5 s"
+        },
+        "largestContentfulPaint": {
+          "value": 3798.3258,
+          "unit": "millisecond",
+          "displayValue": "3.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 497.83709999999996,
+          "unit": "millisecond",
+          "displayValue": "500 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 2002.6754323498458,
+          "unit": "millisecond",
+          "displayValue": "2.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-5",
+        "snippet": "<p class=\"mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100\">",
+        "nodeLabel": "Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare …"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "mobile",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T09:00:04.006Z",
+      "scores": {
+        "performance": 60,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 2157.074,
+          "unit": "millisecond",
+          "displayValue": "2.2 s"
+        },
+        "largestContentfulPaint": {
+          "value": 4080.611,
+          "unit": "millisecond",
+          "displayValue": "4.1 s"
+        },
+        "totalBlockingTime": {
+          "value": 867.5,
+          "unit": "millisecond",
+          "displayValue": "870 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 5480.240515988262,
+          "unit": "millisecond",
+          "displayValue": "5.5 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > p.mt-5",
+        "snippet": "<p class=\"mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100\">",
+        "nodeLabel": "Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare …"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T09:00:30.174Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 364.297,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 844.2970000000001,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 11.000000000000114,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 614.6399234245407,
+          "unit": "millisecond",
+          "displayValue": "0.6 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T09:00:49.433Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 366.523,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 847.15375,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 32.499999999999886,
+          "unit": "millisecond",
+          "displayValue": "30 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 807.5702180881685,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/",
+      "fetchTime": "2026-07-30T09:01:09.873Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 366.5360489237605,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 846.5360489237606,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 10,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 770.216355353238,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div#main-content > main.overflow-x-clip > section.relative > img.absolute",
+        "snippet": "<img alt=\"FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz\" fetchpriority=\"high\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/assets/floxant-hero-neu-gedacht.webp\">",
+        "nodeLabel": "FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
+      },
+      "transferSize": {
+        "value": 531071,
+        "unit": "byte",
+        "displayValue": "Total size was 519 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T09:01:30.917Z",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.61799999999994,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 901.6179999999998,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 173.4999999999999,
+          "unit": "millisecond",
+          "displayValue": "170 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1075.9050016096385,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T09:02:21.839Z",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 364.956,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 877.956,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 84.5,
+          "unit": "millisecond",
+          "displayValue": "80 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 973.6290591719895,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/reinigung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
+      "fetchTime": "2026-07-30T09:02:57.320Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 363.832,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 824.8319999999999,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 71,
+          "unit": "millisecond",
+          "displayValue": "70 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 909.388384823967,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt"
+      },
+      "transferSize": {
+        "value": 414005,
+        "unit": "byte",
+        "displayValue": "Total size was 404 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T09:03:38.091Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 393.278,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 780.917,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 21.36099999999999,
+          "unit": "millisecond",
+          "displayValue": "20 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 800.9041830130878,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Büroreinigung in Düsseldorf für Firmen klar anfragen"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T09:04:15.283Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.178,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 789.1779999999999,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 67,
+          "unit": "millisecond",
+          "displayValue": "70 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 933.0398541922773,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Büroreinigung in Düsseldorf für Firmen klar anfragen"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/bueroreinigung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "fetchTime": "2026-07-30T09:04:47.504Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 365.97,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 822.9700000000003,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 61.5,
+          "unit": "millisecond",
+          "displayValue": "60 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 891.0970927611663,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Büroreinigung in Düsseldorf für Firmen klar anfragen"
+      },
+      "transferSize": {
+        "value": 403408,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T09:05:23.449Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 329.20000000000005,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 781.7000000000002,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 59.5,
+          "unit": "millisecond",
+          "displayValue": "60 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 940.4100215019239,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T09:05:55.807Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 327.23800000000006,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 733.2380000000003,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 13,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 652.8793306616453,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/praxisreinigung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/praxisreinigung",
+      "fetchTime": "2026-07-30T09:06:28.083Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 327.006,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 647.006,
+          "unit": "millisecond",
+          "displayValue": "0.6 s"
+        },
+        "totalBlockingTime": {
+          "value": 48.99999999999994,
+          "unit": "millisecond",
+          "displayValue": "50 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 852.3764349955889,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen"
+      },
+      "transferSize": {
+        "value": 402179,
+        "unit": "byte",
+        "displayValue": "Total size was 393 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T09:07:00.691Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 326.95000000000005,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 789.4500000000002,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 54.00000000000006,
+          "unit": "millisecond",
+          "displayValue": "50 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 873.8082559821153,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T09:07:33.834Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 327.968,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 699.9680000000002,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 52.00000000000006,
+          "unit": "millisecond",
+          "displayValue": "50 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1068.8660092234225,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/duesseldorf/fensterreinigung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/fensterreinigung",
+      "fetchTime": "2026-07-30T09:08:05.747Z",
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 329.112,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 738.7240000000002,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 131.99999999999994,
+          "unit": "millisecond",
+          "displayValue": "130 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1007.6636427714622,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären"
+      },
+      "transferSize": {
+        "value": 401913,
+        "unit": "byte",
+        "displayValue": "Total size was 392 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T09:08:39.255Z",
+      "scores": {
+        "performance": 93,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 368.86799999999994,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 781.3019999999999,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 197.28299999999996,
+          "unit": "millisecond",
+          "displayValue": "200 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1074.337900786428,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T09:09:06.603Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 371.72929999999997,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 832.09395,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 43.5,
+          "unit": "millisecond",
+          "displayValue": "40 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 781.2985070755551,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/umzug",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
+      "fetchTime": "2026-07-30T09:09:30.181Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.49800000000005,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 709.4980000000002,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 13.5,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 856.8806269102206,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5…\">",
+        "nodeLabel": "Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang"
+      },
+      "transferSize": {
+        "value": 403020,
+        "unit": "byte",
+        "displayValue": "Total size was 394 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T09:09:52.999Z",
+      "scores": {
+        "performance": 98,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 366.87,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 911.5874999999999,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 96.5,
+          "unit": "millisecond",
+          "displayValue": "100 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 887.6904035255352,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T09:10:20.828Z",
+      "scores": {
+        "performance": 98,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 378.53600000000006,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 810.9740000000002,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 104.50000000000006,
+          "unit": "millisecond",
+          "displayValue": "100 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1146.306901139719,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/entruempelung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
+      "fetchTime": "2026-07-30T09:10:51.129Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.026,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 864.7825,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 78.24350000000021,
+          "unit": "millisecond",
+          "displayValue": "80 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1063.6757810335773,
+          "unit": "millisecond",
+          "displayValue": "1.1 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass"
+      },
+      "transferSize": {
+        "value": 572316,
+        "unit": "byte",
+        "displayValue": "Total size was 559 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T09:11:20.960Z",
+      "scores": {
+        "performance": 97,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 365.38,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 820.2250000000001,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 127,
+          "unit": "millisecond",
+          "displayValue": "130 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1002.0762469218024,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T09:11:47.864Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 365.828,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 777.4839999999999,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 32,
+          "unit": "millisecond",
+          "displayValue": "30 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 755.6146130929337,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/regensburg/wohnungsaufloesung",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
+      "fetchTime": "2026-07-30T09:12:15.969Z",
+      "scores": {
+        "performance": 98,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.314,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 882.1424999999999,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        },
+        "totalBlockingTime": {
+          "value": 109.67150000000004,
+          "unit": "millisecond",
+          "displayValue": "110 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 1018.252477823064,
+          "unit": "millisecond",
+          "displayValue": "1.0 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären"
+      },
+      "transferSize": {
+        "value": 505045,
+        "unit": "byte",
+        "displayValue": "Total size was 493 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T09:12:46.416Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 367.849,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 753.8489999999997,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 12,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 835.2455406892891,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking…\">",
+        "nodeLabel": "Klaviertransport in Regensburg anfragen – Etage, Zugang und Termin klären"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T09:13:08.291Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 368.45000000000005,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 732.9500000000002,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 32.00000000000006,
+          "unit": "millisecond",
+          "displayValue": "30 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 840.6272491662007,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking…\">",
+        "nodeLabel": "Klaviertransport in Regensburg anfragen – Etage, Zugang und Termin klären"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/klaviertransport-regensburg",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
+      "fetchTime": "2026-07-30T09:13:32.136Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 364.37699999999995,
+          "unit": "millisecond",
+          "displayValue": "0.4 s"
+        },
+        "largestContentfulPaint": {
+          "value": 742.8769999999998,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 15.5,
+          "unit": "millisecond",
+          "displayValue": "20 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 942.0163987506733,
+          "unit": "millisecond",
+          "displayValue": "0.9 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "div.mx-auto > div.grid > div.min-w-0 > h1.mt-6",
+        "snippet": "<h1 class=\"mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking…\">",
+        "nodeLabel": "Klaviertransport in Regensburg anfragen – Etage, Zugang und Termin klären"
+      },
+      "transferSize": {
+        "value": 398674,
+        "unit": "byte",
+        "displayValue": "Total size was 389 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "desktop",
+      "run": 1,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T09:13:55.326Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 327.996,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 733.9960000000001,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 24,
+          "unit": "millisecond",
+          "displayValue": "20 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 775.0004150667608,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-5",
+        "snippet": "<h1 class=\"mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Reinigungsangebot anfragen oder vorhandenes Angebot prüfen"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "desktop",
+      "run": 2,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T09:14:16.221Z",
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 325.70399999999995,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 786.704,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        },
+        "totalBlockingTime": {
+          "value": 74,
+          "unit": "millisecond",
+          "displayValue": "70 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 810.8214704253753,
+          "unit": "millisecond",
+          "displayValue": "0.8 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-5",
+        "snippet": "<h1 class=\"mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Reinigungsangebot anfragen oder vorhandenes Angebot prüfen"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    },
+    {
+      "route": "/reinigungsfirma-angebot",
+      "mode": "desktop",
+      "run": 3,
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
+      "fetchTime": "2026-07-30T09:14:38.126Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 327.75800000000004,
+          "unit": "millisecond",
+          "displayValue": "0.3 s"
+        },
+        "largestContentfulPaint": {
+          "value": 716.2740000000001,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        },
+        "totalBlockingTime": {
+          "value": 6,
+          "unit": "millisecond",
+          "displayValue": "10 ms"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0,
+          "unit": "unitless",
+          "displayValue": "0"
+        },
+        "interactionToNextPaint": null,
+        "speedIndex": {
+          "value": 658.6548202481807,
+          "unit": "millisecond",
+          "displayValue": "0.7 s"
+        }
+      },
+      "lcpElement": {
+        "selector": "section.relative > div.mx-auto > div > h1.mt-5",
+        "snippet": "<h1 class=\"mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-…\">",
+        "nodeLabel": "Reinigungsangebot anfragen oder vorhandenes Angebot prüfen"
+      },
+      "transferSize": {
+        "value": 412498,
+        "unit": "byte",
+        "displayValue": "Total size was 403 KiB"
+      }
+    }
+  ]
+}

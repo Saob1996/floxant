@@ -4,8 +4,8 @@
 
 - Production-Basis: `8ee4d6a5eb85d083c9c0afd7d69b1f052057042a`
 - Feature-Basis der Entwicklungsrunde: `91fcefc21cfc5dd4c56edeb54210c397d0446c00`
-- Geprüfter Feature-HEAD vor Hardening: `9248fb56ff764d6b801873d25f84a5bcc8079017`
-- Alle 16 Commits zwischen Production und Feature-HEAD sind beabsichtigt. Es gibt keine unbekannten Zusatzcommits.
+- Geprüfter Feature-HEAD nach Hardening: `da764687c586e6bffe4950e090e0dac256118913`
+- Alle 19 Commits zwischen Production und Feature-HEAD sind beabsichtigt. Es gibt keine unbekannten Zusatzcommits.
 - Private GSC-Rohdaten, `.env`-Dateien, Secrets, Kundendaten und Build-Verzeichnisse sind nicht enthalten.
 
 ## Commit-Inventar
@@ -28,6 +28,9 @@
 | `d73d7ca35363989e714df23d830c89b94a6810be` | perf: improve Lighthouse and public page performance | 27 Dateien: Icons/Manifest, P0-Seiten, Navigation/Footer/CTAs, lokale Templates, SEO, Lighthouse-Script und Messartefakte | Reduziert Prefetch-/Icon-/Navigation-Last und priorisiert öffentliche P0-Seiten | SEO technisch positiv / Formulare unverändert / Dashboard nicht geladen / Tracking unverändert / Performance wesentlich | INCLUDE |
 | `539f28fb90f17030efb2bbbaa74a63e4364ff825` | test: add GSC SEO and architecture audits | 32 Audit-, Browser-, Artefakt- und Script-Dateien | Reproduzierbare GSC-, Intent-, Cannibalization-, Claims-, Copy-, Link- und Lighthouse-Gates | Keine neue öffentliche Funktion; ausschließlich QA und aggregierte Artefakte | INCLUDE |
 | `9248fb56ff764d6b801873d25f84a5bcc8079017` | docs: add July growth and dominance report | `data/seo-experiments-2026-07-30.json`; `docs/gsc-growth-dominance-report-2026-07-30.md` | Dokumentiert 13 vorbereitete, nicht gestartete Experimente mit Rollback und Mindestlaufzeit | Keine Runtime-Auswirkung; keine Experimente gestartet | INCLUDE |
+| `44d744f7f491935a7c30bb49deca920169d51152` | fix: close GSC release gate warnings | zentrale CTA-/Kontaktlogik, Standortwahl, Audit-Scripts, Claims-Release-Gate und Sicherheitsbericht | Schließt veraltete Prüfannahmen, bindet mobile Schnellkontakte an die zentrale CTA-Konfiguration und klassifiziert alle 40 öffentlichen Negativabgrenzungen | SEO-/Claims-Gate / Kontakt- und Tracking-Konsistenz / keine neue Infrastruktur | INCLUDE |
+| `f3542e557dfe4d81e802d6c310bb7d7c80a3a483` | test: harden final release performance validation | Lighthouse-Release-Runner und statischer Prüfserver | Fügt drei Messläufe je Route/Gerät, Routen-Mediane und realistische Gzip-Auslieferung hinzu | Reproduzierbares Performance-Gate / keine öffentliche Runtime-Änderung | INCLUDE |
+| `da764687c586e6bffe4950e090e0dac256118913` | fix: close remaining public release audit findings | Service-Registry, Sichtbarkeits-/Claims-/Kannibalisierungsprüfer und Release-Dokumentation | Schließt die letzten technischen Audit-False-Positives und trennt manuelle GSC-Fälle von technischen Blockern | SEO-Architektur- und Release-Gates / keine Formular- oder Supabase-Änderung | INCLUDE |
 
 ## Bereichsprüfung
 
@@ -36,7 +39,7 @@
 | Admin-Dashboard | Enthalten und durch Detail-/RLS-/Browser-Gates zu prüfen |
 | Reinigungsformulare | Enthalten; Normalisierung und 201-Persistenz sind Release-Gates |
 | Düsseldorf-Servicearchitektur | Enthalten; `/reinigung` bleibt Standortwahl, `/duesseldorf/reinigung` Primärseite |
-| Google-Tag / Consent Mode | Keine neue Tracking-Infrastruktur in diesen 16 Commits; bestehende Implementierung wird regressionsgeprüft |
+| Google-Tag / Consent Mode | Keine neue Tracking-Infrastruktur in diesen 19 Commits; bestehende Implementierung wird regressionsgeprüft |
 | Google-Ads-Seiten | Formular-/noindex-/Canonical-Gates, keine organische Hauptseite ersetzt |
 | Suchindex / Service Finder | Aggregierter Suchindex und bestehender Finder werden regressionsgeprüft |
 | Öffentliche Claims | 40 bekannte Negativabgrenzungen werden einzeln im Release-Gate klassifiziert |
