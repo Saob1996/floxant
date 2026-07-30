@@ -3,6 +3,7 @@
 import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import path from "node:path";
+import { createGzip } from "node:zlib";
 
 const root = path.resolve(process.cwd(), "out");
 const host = process.env.HOST || "127.0.0.1";
@@ -44,6 +45,15 @@ const contentTypes = new Map([
   [".avif", "image/avif"],
   [".ico", "image/x-icon"],
   [".woff2", "font/woff2"],
+]);
+const compressibleExtensions = new Set([
+  ".css",
+  ".html",
+  ".js",
+  ".json",
+  ".svg",
+  ".txt",
+  ".xml",
 ]);
 
 function redirectFor(pathname, search) {
@@ -126,12 +136,20 @@ const server = createServer((request, response) => {
   }
 
   const type = contentTypes.get(path.extname(file).toLowerCase()) || "application/octet-stream";
-  response.writeHead(200, {
+  const extension = path.extname(file).toLowerCase();
+  const useGzip =
+    compressibleExtensions.has(extension)
+    && /\bgzip\b/i.test(request.headers["accept-encoding"] || "");
+  const headers = {
     "Content-Type": type,
-    "Content-Length": statSync(file).size,
     "Cache-Control": "no-store",
-  });
+    Vary: "Accept-Encoding",
+  };
+  if (useGzip) headers["Content-Encoding"] = "gzip";
+  else headers["Content-Length"] = statSync(file).size;
+  response.writeHead(200, headers);
   if (request.method === "HEAD") response.end();
+  else if (useGzip) createReadStream(file).pipe(createGzip({ level: 6 })).pipe(response);
   else createReadStream(file).pipe(response);
 });
 
