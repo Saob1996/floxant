@@ -1147,6 +1147,84 @@ const notIncludedByPage: Record<DuesseldorfCleaningPageKey, readonly string[]> =
   treppenhausreinigung: ["Keller, Müllraum oder Außenanlage ohne Vereinbarung", "Fenster- und Glasreinigung ohne Leistungsplan", "Winterdienst und technische Hausmeisterarbeiten"],
 };
 
+const intentFocusByPage: Record<
+  DuesseldorfCleaningPageKey,
+  { suitableFor: string; chooseWhen: string; nextStep: string }
+> = {
+  reinigung: {
+    suitableFor:
+      "Für private Wohnungen, Büros, Praxen, Gewerbeflächen und Objektverantwortliche, die zuerst die passende Reinigungsart auswählen möchten.",
+    chooseWhen:
+      "Wählen Sie diese Übersicht, wenn noch offen ist, ob Büro-, Praxis-, Fenster-, Grund-, Unterhalts- oder Bauendreinigung am besten passt.",
+    nextStep:
+      "Nennen Sie Objektart, Fläche, Zustand, Turnus oder Anlass und Terminwunsch. Danach lässt sich die passende Spezialleistung auswählen.",
+  },
+  bueroreinigung: {
+    suitableFor:
+      "Für Unternehmen, Kanzleien, Agenturen und andere Büroflächen mit Arbeitsplätzen, Besprechungsräumen, Küche, Empfang oder Sanitärbereichen.",
+    chooseWhen:
+      "Wählen Sie Büroreinigung, wenn ein planbarer Büroalltag, feste Räume und ein einmaliger oder wiederkehrender Turnus im Mittelpunkt stehen.",
+    nextStep:
+      "Senden Sie Fläche, Raumliste, gewünschte Wochentage, Reinigungszeiten, Zugang und Ansprechpartner.",
+  },
+  gewerbereinigung: {
+    suitableFor:
+      "Für Läden, gemischt genutzte Gewerbeflächen, Objektbereiche und Betriebe, deren Nutzung über eine klassische Bürofläche hinausgeht.",
+    chooseWhen:
+      "Wählen Sie Gewerbereinigung, wenn Objektart, Nutzungszeiten, Sonderflächen oder betriebliche Abläufe den Reinigungsumfang bestimmen.",
+    nextStep:
+      "Beschreiben Sie Objektart, Fläche, Nutzung, Zeitfenster, Turnus, Zugang und besondere Bereiche.",
+  },
+  praxisreinigung: {
+    suitableFor:
+      "Für Praxen sowie Therapie- und Beratungsräume mit Empfang, Wartebereich, Behandlungsräumen, Büro- und Sanitärflächen.",
+    chooseWhen:
+      "Wählen Sie Praxisreinigung für die allgemeine Reinigung von Praxisräumen. Medizinische Spezialdesinfektion, Instrumentenaufbereitung und medizinische Abfälle sind nicht automatisch enthalten.",
+    nextStep:
+      "Nennen Sie Raumarten, Fläche, sensible Bereiche, gewünschte Zeiten, Zugang und Ansprechpartner.",
+  },
+  fensterreinigung: {
+    suitableFor:
+      "Für private und gewerbliche Fenster, Schaufenster und erreichbare Glasflächen, wenn Anzahl, Größe und Zugang beschrieben werden können.",
+    chooseWhen:
+      "Wählen Sie Fensterreinigung, wenn Glasflächen die Hauptleistung sind. Rahmen, Falze, Höhenzugang und Innen- oder Außenseite werden getrennt vereinbart.",
+    nextStep:
+      "Senden Sie Fensterzahl oder Fotos, ungefähre Größe, Etage, Erreichbarkeit, gewünschte Seiten und Terminwunsch.",
+  },
+  grundreinigung: {
+    suitableFor:
+      "Für Wohnungen, Häuser, Büros und Gewerbeflächen, die einmalig intensiver als bei einer laufenden Reinigung bearbeitet werden sollen.",
+    chooseWhen:
+      "Wählen Sie Grundreinigung bei stärkerer Verschmutzung oder einem klaren einmaligen Zielzustand. Für einen festen Turnus ist Unterhaltsreinigung passender.",
+    nextStep:
+      "Beschreiben Sie Fläche, Zustand, Böden, Küche, Sanitär, Schwerpunkte, schwer erreichbare Bereiche und mögliche Fotos.",
+  },
+  unterhaltsreinigung: {
+    suitableFor:
+      "Für Büros, Praxen, Gewerbe- und Objektflächen mit wiederkehrender Reinigung nach Raumliste und abgestimmtem Turnus.",
+    chooseWhen:
+      "Wählen Sie Unterhaltsreinigung, wenn dieselben Bereiche regelmäßig zu vereinbarten Zeiten gereinigt werden sollen.",
+    nextStep:
+      "Nennen Sie Objektart, Fläche, Räume, gewünschten Turnus, Zeitfenster, Zugang und festen Ansprechpartner.",
+  },
+  baureinigung: {
+    suitableFor:
+      "Für Wohnungen, Häuser, Büros oder Gewerbeflächen nach Neubau, Umbau, Renovierung oder Handwerkerarbeiten.",
+    chooseWhen:
+      "Wählen Sie Bauendreinigung, wenn Flächen für Abnahme, Einzug oder Übergabe vorbereitet werden sollen. Bauzwischenreinigung betrifft frühere Bauphasen.",
+    nextStep:
+      "Senden Sie Bauphase, Fläche, Art der Rückstände, Fotos, Restarbeiten, Zugang und geplanten Abnahme- oder Übergabetermin.",
+  },
+  treppenhausreinigung: {
+    suitableFor:
+      "Für Hausverwaltungen, Eigentümergemeinschaften und Objektverantwortliche mit Eingängen, Treppen, Podesten und vereinbarten Gemeinschaftsflächen.",
+    chooseWhen:
+      "Wählen Sie Treppenhausreinigung für einen wiederkehrenden Leistungsplan. Keller, Müllraum, Fenster oder Außenflächen werden nur bei Vereinbarung ergänzt.",
+    nextStep:
+      "Nennen Sie Etagen, Eingänge, Aufzug, weitere Bereiche, Turnus, Zugang und Ansprechpartner.",
+  },
+};
+
 export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPageKey): Metadata {
   const config = duesseldorfCleaningPages[pageKey];
   const title = config.meta?.seoTitle ?? config.title;
@@ -1346,6 +1424,34 @@ function CleaningQuickAnswer({ config }: { config: PageConfig }) {
   );
 }
 
+function ServiceIntentFocus({ config }: { config: PageConfig }) {
+  const focus = intentFocusByPage[config.key];
+  return (
+    <section className="border-b border-slate-200 bg-slate-50 px-5 py-12 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-3xl">
+          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Passt diese Leistung?</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
+            {config.eyebrow} passend zur Aufgabe auswählen
+          </h2>
+        </div>
+        <div className="mt-7 grid gap-4 lg:grid-cols-3">
+          {[
+            { title: "Für wen geeignet", text: focus.suitableFor },
+            { title: "Wann diese Seite passt", text: focus.chooseWhen },
+            { title: "Was Sie zuerst senden", text: focus.nextStep },
+          ].map((item) => (
+            <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-lg font-black tracking-normal text-slate-950">{item.title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function DuesseldorfCleaningAuthorityBlock({ config }: { config: PageConfig }) {
   const searchIntents = [
     {
@@ -1375,7 +1481,7 @@ function DuesseldorfCleaningAuthorityBlock({ config }: { config: PageConfig }) {
         <div>
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
             <MapPin className="h-4 w-4" aria-hidden="true" />
-            Düsseldorf stark und verständlich
+            Reinigung in Düsseldorf
           </p>
           <h2 id="duesseldorf-authority-heading" className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
             Reinigung in Düsseldorf klar auswählen und passend anfragen.
@@ -2164,13 +2270,20 @@ function CleaningFAQ({ config }: { config: PageConfig }) {
 
 export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: DuesseldorfCleaningPageKey }) {
   const config = duesseldorfCleaningPages[pageKey];
+  const showsOfficeComparison = ["reinigung", "bueroreinigung", "gewerbereinigung"].includes(config.key);
+  const showsPropertyManagement = [
+    "reinigung",
+    "gewerbereinigung",
+    "unterhaltsreinigung",
+    "treppenhausreinigung",
+  ].includes(config.key);
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd config={config} />
       <DuesseldorfCleaningHero config={config} />
       <CleaningQuickAnswer config={config} />
-      <DuesseldorfCleaningAuthorityBlock config={config} />
+      {config.key === "reinigung" ? <DuesseldorfCleaningAuthorityBlock config={config} /> : <ServiceIntentFocus config={config} />}
       <DuesseldorfCleaningNavigator config={config} />
       <RequestBriefChecklistBlock
         serviceKey={config.key}
@@ -2179,8 +2292,8 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
         compact
       />
       <PhotoGuidanceBlock serviceKey={config.key} compact />
-      <BueroreinigungGewerbereinigungComparison />
-      <PropertyManagementCleaningSection />
+      {showsOfficeComparison ? <BueroreinigungGewerbereinigungComparison /> : null}
+      {showsPropertyManagement ? <PropertyManagementCleaningSection /> : null}
       <CleaningSituationGrid config={config} />
       <CleaningScopeAndBoundaries config={config} />
       <CleaningNeedsPanel config={config} />
