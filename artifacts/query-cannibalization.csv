@@ -1,0 +1,31 @@
+cluster,location,primaryRoute,legacyRoute,confidence,check,expected,actual,status
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,,probable,PRIMARY_STATIC,present,out\duesseldorf\reinigung.html,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,,probable,PRIMARY_CANONICAL,https://www.floxant.de/duesseldorf/reinigung,https://www.floxant.de/duesseldorf/reinigung,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,,probable,PRIMARY_SITEMAP,included,included,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigung-duesseldorf,probable,LEGACY_REDIRECT_TARGET,/duesseldorf/reinigung,/duesseldorf/reinigung,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigung-duesseldorf,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigung-duesseldorf,probable,LEGACY_SITEMAP,absent,absent,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigungsfirma-duesseldorf,probable,LEGACY_REDIRECT_TARGET,/duesseldorf/reinigung,/duesseldorf/reinigung,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigungsfirma-duesseldorf,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+duesseldorf-cleaning-hub,Düsseldorf,/duesseldorf/reinigung,/reinigungsfirma-duesseldorf,probable,LEGACY_SITEMAP,absent,absent,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,,probable,PRIMARY_STATIC,present,out\regensburg\umzug.html,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,,probable,PRIMARY_CANONICAL,https://www.floxant.de/regensburg/umzug,https://www.floxant.de/regensburg/umzug,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,,probable,PRIMARY_SITEMAP,included,included,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,/umzug-regensburg,probable,LEGACY_REDIRECT_TARGET,/regensburg/umzug,/regensburg/umzug,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,/umzug-regensburg,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+regensburg-moving,Regensburg,/regensburg/umzug,/umzug-regensburg,probable,LEGACY_SITEMAP,absent,absent,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,,probable,PRIMARY_STATIC,present,out\regensburg\entruempelung.html,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,,probable,PRIMARY_CANONICAL,https://www.floxant.de/regensburg/entruempelung,https://www.floxant.de/regensburg/entruempelung,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,,probable,PRIMARY_SITEMAP,included,included,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entruempelung-regensburg,probable,LEGACY_REDIRECT_TARGET,/regensburg/entruempelung,/regensburg/entruempelung,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entruempelung-regensburg,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entruempelung-regensburg,probable,LEGACY_SITEMAP,absent,absent,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entrümpelung-regensburg,probable,LEGACY_REDIRECT_TARGET,/regensburg/entruempelung,/regensburg/entruempelung,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entrümpelung-regensburg,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+regensburg-clearance,Regensburg,/regensburg/entruempelung,/entrümpelung-regensburg,probable,LEGACY_SITEMAP,absent,absent,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,,probable,PRIMARY_STATIC,present,out\regensburg\wohnungsaufloesung.html,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,,probable,PRIMARY_CANONICAL,https://www.floxant.de/regensburg/wohnungsaufloesung,https://www.floxant.de/regensburg/wohnungsaufloesung,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,,probable,PRIMARY_SITEMAP,included,included,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,/wohnungsaufloesung-regensburg,probable,LEGACY_REDIRECT_TARGET,/regensburg/wohnungsaufloesung,/regensburg/wohnungsaufloesung,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,/wohnungsaufloesung-regensburg,probable,LEGACY_REDIRECT_STATUS,301 or 308,308,PASS
+regensburg-apartment-clearance,Regensburg,/regensburg/wohnungsaufloesung,/wohnungsaufloesung-regensburg,probable,LEGACY_SITEMAP,absent,absent,PASS

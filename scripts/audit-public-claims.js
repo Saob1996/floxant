@@ -3,7 +3,7 @@ const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "out");
-const OUTPUT = path.join(ROOT, "artifacts", "public-claims-audit.csv");
+const OUTPUT = path.join(ROOT, "artifacts", "public-claims.csv");
 
 const pianoTerms = /\b(?:klavier|piano|flügel|fluegel|flugel|grand piano)\w*/i;
 const insuranceTerms = /\b(?:versicherung\w*|versichert\w*|haftpflicht\w*|abgesichert\w*|insurance|insured|liability insurance|protected by insurance)\b/i;

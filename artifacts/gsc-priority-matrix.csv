@@ -1,0 +1,91 @@
+priority,route,pageClicks,pageImpressions,pageCtr,pagePosition,queryImpressions,classes,relationStatus,decision,staticStatus,evidence
+P0,/duesseldorf/reinigung,16,5801,0.28,7.51,1461,CTR_OPPORTUNITY|MANUAL_REVIEW|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|POSITION_4_TO_10|PROTECT_WINNER|WEAK_SERVICE_PAGE,manual_review|not_applicable|probable,PROTECT,PRESENT,28-day page aggregate; separate page aggregate; target relation not proven; query aggregate kept separate from page aggregate
+P0,/,4,377,1.06,7.38,0,POSITION_4_TO_10|PROTECT_WINNER,not_applicable,PROTECT,PRESENT,28-day page aggregate
+P0,/klaviertransport-regensburg,1,60,1.67,8.05,29,POSITION_4_TO_10|PROTECT_WINNER,manual_review|not_applicable|probable,PROTECT,PRESENT,28-day page aggregate; separate page aggregate; target relation not proven; query aggregate kept separate from page aggregate
+P0,/duesseldorf/grundreinigung,0,3,0,10.67,323,CTR_OPPORTUNITY|POSITION_4_TO_10|PROTECT_WINNER|WEAK_SERVICE_PAGE,manual_review|not_applicable|probable,PROTECT,PRESENT,separate page aggregate; target relation not proven; 28-day page aggregate; query aggregate kept separate from page aggregate
+P0,/duesseldorf/baureinigung,0,0,,,356,CTR_OPPORTUNITY|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|POSITION_4_TO_10|PROTECT_WINNER,probable,PROTECT,PRESENT,query aggregate kept separate from page aggregate
+P1,/duesseldorf,1,1659,0.06,24.08,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/reinigungsfirma-angebot,0,536,0,51.19,858,MANUAL_REVIEW|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,manual_review|not_applicable|probable,STRENGTHEN,PRESENT,28-day page aggregate; separate page aggregate; target relation not proven; query aggregate kept separate from page aggregate
+P1,/duesseldorf/bueroreinigung,0,506,0,46.51,904,CANNIBALIZATION_RISK|CTR_OPPORTUNITY|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|POSITION_4_TO_10|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,not_applicable|probable,MANUAL_REVIEW,PRESENT,28-day page aggregate; query aggregate kept separate from page aggregate
+P1,/duesseldorf/gewerbereinigung,0,340,0,41.54,0,WEAK_SERVICE_PAGE,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/regensburg/entruempelung,1,282,0.35,77.51,165,CANNIBALIZATION_RISK|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,not_applicable|probable,MANUAL_REVIEW,PRESENT,28-day page aggregate; query aggregate kept separate from page aggregate
+P1,/regensburg/umzug,0,249,0,66.77,287,CANNIBALIZATION_RISK|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,manual_review|not_applicable|probable,MANUAL_REVIEW,PRESENT,28-day page aggregate; separate page aggregate; target relation not proven; query aggregate kept separate from page aggregate
+P1,/regensburg/reinigung,3,246,1.22,43.35,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/regensburg/reinigungsfirma,0,238,0,45.5,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/duesseldorf/praxisreinigung,0,199,0,51.26,450,CTR_OPPORTUNITY|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,manual_review|not_applicable|probable,STRENGTHEN,PRESENT,28-day page aggregate; separate page aggregate; target relation not proven; query aggregate kept separate from page aggregate
+P1,/angebot-vergleichen-duesseldorf,0,151,0,48.28,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/entruempelung,0,140,0,31.37,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-bayern,0,120,0,15.9,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-nuernberg,0,74,0,19.15,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/regensburg/wohnungsaufloesung,0,54,0,36.33,97,MANUAL_REVIEW|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,not_applicable|probable,STRENGTHEN,PRESENT,28-day page aggregate; query aggregate kept separate from page aggregate
+P1,/anbieter-vergleichen,0,52,0,9.48,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/umzug-im-alter-erlangen-bamberg-fuerth,0,51,0,4.43,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-fuerth,0,49,0,7.88,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/fernumzug-muenchen,0,47,0,10.3,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/umzug-vohenstrauss,0,45,0,15.09,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/pauschalpreis-oder-aufwand-angebot-pruefen,2,40,5,7.5,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/private-client-service,1,37,2.7,6.62,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/regensburg,0,37,0,9.41,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/umzug-neustadt-an-der-waldnaab,0,37,0,9.14,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-erlangen,0,35,0,9.97,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/duesseldorf/fensterreinigung,0,26,0,69.15,477,CTR_OPPORTUNITY|MANUAL_REVIEW|PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20|POSITION_4_TO_10|STRONG_QUERY_WEAK_PAGE|WEAK_SERVICE_PAGE,not_applicable|probable,STRENGTHEN,PRESENT,28-day page aggregate; query aggregate kept separate from page aggregate
+P1,/klaviertransport-nuernberg,0,25,0,13,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/buchung,0,22,0,9.05,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-bamberg,0,21,0,11.05,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/angebot-wirkt-zu-teuer-welche-fragen-stellen,0,18,0,7.11,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/plan-b-service,0,18,0,7.28,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/diskret-service,0,17,0,7.76,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/angebotscheck,0,15,0,4.8,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/angebot-pruefen-lassen-wann-floxant-sinnvoll-ist,0,15,0,13.4,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/anbieter-hat-abgesagt-was-tun,0,11,0,6.82,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/blog/uebergabe-check-vor-vermietertermin,0,11,0,6.27,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/seniorenumzug-erding,0,11,0,4,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/wohnungsaufloesung-eschenbach-in-der-oberpfalz,1,11,9.09,8.27,0,POSITION_4_TO_10,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P1,/duesseldorf/unterhaltsreinigung,0,0,,,171,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,probable,STRENGTHEN,PRESENT,query aggregate kept separate from page aggregate
+P2,/reinigung-muenchen,0,266,0,52.84,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/duesseldorf/angebot-vergleichen,0,229,0,25.46,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/region-duesseldorf,0,138,0,47.72,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/leistungen,0,88,0,53.26,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/entruempelung-landshut,0,77,0,52.47,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/reinigung-landshut,0,73,0,52.64,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/ru/blog/wohnungsaufloesung-was-tun,0,64,0,87.3,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/studentenumzug-erding,0,63,0,15.22,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/umzugskosten-bayern,0,61,0,46.31,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/en,0,60,0,21.87,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/blog/praxisentruempelung-nuernberg-richtig-anfragen,0,59,0,20.85,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/reinigung,0,59,0,40.61,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/duesseldorf/geruchsneutralisation,0,58,0,3.5,0,CTR_OPPORTUNITY,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/kontakt,0,53,0,25.89,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/regensburg/bueroreinigung,0,51,0,24.22,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/entruempelung-nuernberg,0,42,0,54.29,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/leerfahrt-rueckfahrt,0,40,0,31.02,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/objektbrief,0,33,0,56.12,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/angebot-guenstiger-pruefen,0,32,0,27.31,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/ratgeber/reinigung-nach-umzug,0,29,0,33.1,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/blog,0,25,0,45.6,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/pl/umzug-ingolstadt,0,25,0,64.32,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/duesseldorf/entruempelung,0,23,0,13.04,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/bg/entruempelung-amberg,0,22,0,86.18,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/koeln/reinigung,0,21,0,53.48,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/regensburg/gewerbereinigung,0,21,0,47.52,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/studentenumzug-traunstein,0,21,0,8.48,0,CTR_OPPORTUNITY|POSITION_4_TO_10,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/landshut/umzug,0,19,0,15.53,0,PAGE_TWO_OPPORTUNITY|POSITION_11_TO_20,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/rechner,0,19,0,61.11,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/duisburg/reinigung,0,18,0,44.72,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/angebot-pruefen,0,17,0,67.29,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/moenchengladbach/reinigung,0,17,0,53.47,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/de/umzug-bayern,0,16,0,42.12,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/en/duesseldorf/apartment-cleaning,0,16,0,40.62,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/business-errand-service,0,15,0,25.67,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/makler-vermieter-link,0,14,0,64.29,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/pv-anlagen-reinigung,0,14,0,59.93,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/neuss/reinigung,0,12,0,56.92,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/reinigung-nuernberg,0,12,0,29,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/service-area-bayern,0,12,0,40.5,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/blog/reinigung-checkliste-uebergabe,0,11,0,9.09,0,POSITION_4_TO_10,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/ja/umzug-bayern,0,11,0,57,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/umzug-nuernberg,0,11,0,66.64,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/reinigung-fuerstenfeldbruck,0,10,0,61.2,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/reinigung-koenigsbrunn,0,10,0,24.3,0,MANUAL_REVIEW,not_applicable,NO_NEW_PAGE_MANUAL_REVIEW,MISSING,28-day page aggregate; historical aggregate alone does not justify restoring or creating a route
+P2,/solarreinigung,0,10,0,49.2,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate
+P2,/umzug-muenchen-bogenhausen,0,10,0,37.7,0,MANUAL_REVIEW,not_applicable,STRENGTHEN,PRESENT,28-day page aggregate

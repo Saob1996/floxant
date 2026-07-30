@@ -1,0 +1,17 @@
+mode,metric,baseline,actual,budget,status,note
+mobile,average-performance-score,48.1,50,not below baseline,PASS,Lab score must not regress across the ten-route average.
+mobile,p75-lcp-ms,20117.45,11866.84,<=12000 and improved,PASS,Project remediation budget on the uncompressed local static server.
+mobile,p75-tbt-ms,536,530.5,<=600,PASS,"TBT is a lab proxy, not INP field data."
+mobile,p75-cls,0,0,<=0.1,PASS,Layout stability budget.
+mobile,average-transfer-bytes,4781508.2,1948545.6,<=2252800 and improved,PASS,"Includes uncompressed local HTML, CSS, JavaScript and images."
+mobile,average-accessibility,97.6,97.6,>=95,PASS,Quality category average across ten routes.
+mobile,average-bestPractices,100,100,>=100,PASS,Quality category average across ten routes.
+mobile,average-seo,100,100,>=100,PASS,Quality category average across ten routes.
+desktop,average-performance-score,78.8,86.9,not below baseline,PASS,Lab score must not regress across the ten-route average.
+desktop,p75-lcp-ms,3473.58,2100.52,<=2500 and improved,PASS,Project remediation budget on the uncompressed local static server.
+desktop,p75-tbt-ms,41,84,<=150,PASS,"TBT is a lab proxy, not INP field data."
+desktop,p75-cls,0,0,<=0.1,PASS,Layout stability budget.
+desktop,average-transfer-bytes,5221545.3,1948545.6,<=2252800 and improved,PASS,"Includes uncompressed local HTML, CSS, JavaScript and images."
+desktop,average-accessibility,97.6,97.6,>=95,PASS,Quality category average across ten routes.
+desktop,average-bestPractices,100,100,>=100,PASS,Quality category average across ten routes.
+desktop,average-seo,100,100,>=100,PASS,Quality category average across ten routes.

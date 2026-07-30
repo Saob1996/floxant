@@ -6,7 +6,7 @@ const path = require("node:path");
 const root = process.cwd();
 const outRoot = path.join(root, "out");
 const sitemapFile = path.join(outRoot, "sitemap.xml");
-const outputFile = path.join(root, "artifacts", "page-intent-audit.csv");
+const outputFile = path.join(root, "artifacts", "page-intent-alignment.csv");
 
 if (!fs.existsSync(sitemapFile)) {
   console.error("Page-intent audit requires out/sitemap.xml. Run npm run build first.");
@@ -342,4 +342,4 @@ console.log(JSON.stringify({
   canonicalBase: siteUrl,
 }, null, 2));
 
-if (missingHtml.length) process.exitCode = 1;
+if (mismatches.length) process.exitCode = 1;

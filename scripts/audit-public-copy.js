@@ -7,7 +7,7 @@ const { routeCandidates, stripHtml, writeCsv } = require("./editorial-audit-util
 const root = process.cwd();
 const outRoot = path.join(root, "out");
 const sitemapFile = path.join(outRoot, "sitemap.xml");
-const outputFile = path.join(root, "artifacts", "public-copy-audit.csv");
+const outputFile = path.join(root, "artifacts", "public-copy.csv");
 
 if (!fs.existsSync(sitemapFile)) {
   console.error("Public-copy audit requires out/sitemap.xml. Run npm run build first.");

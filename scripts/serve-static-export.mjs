@@ -126,7 +126,11 @@ const server = createServer((request, response) => {
   }
 
   const type = contentTypes.get(path.extname(file).toLowerCase()) || "application/octet-stream";
-  response.writeHead(200, { "Content-Type": type, "Cache-Control": "no-store" });
+  response.writeHead(200, {
+    "Content-Type": type,
+    "Content-Length": statSync(file).size,
+    "Cache-Control": "no-store",
+  });
   if (request.method === "HEAD") response.end();
   else createReadStream(file).pipe(response);
 });

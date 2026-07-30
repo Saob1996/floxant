@@ -4,7 +4,7 @@ const { pathToFileURL } = require("node:url");
 
 const root = process.cwd();
 const appRoot = path.join(root, "app");
-const outputPath = path.join(root, "artifacts", "service-visibility-audit.csv");
+const outputPath = path.join(root, "artifacts", "service-visibility.csv");
 const pageNames = ["page.tsx", "page.ts", "page.jsx", "page.js"];
 const sourceExtensions = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
 const ignoredSegments = new Set(["blog", "ratgeber", "wissen", "dashboard", "api", "impressum", "datenschutz", "agb"]);
@@ -254,7 +254,11 @@ async function main() {
     result[finding.issueCode] = (result[finding.issueCode] || 0) + 1;
     return result;
   }, {});
-  console.log(JSON.stringify({ services: serviceRegistry.length, publicServices: publicServices.length, findings: findings.length, summary, output: path.relative(root, outputPath) }, null, 2));
+  const violations = findings.filter(
+    (finding) => finding.severity === "HIGH" && finding.status === "OPEN",
+  );
+  console.log(JSON.stringify({ status: violations.length ? "FAIL" : "PASS", services: serviceRegistry.length, publicServices: publicServices.length, findings: findings.length, violations: violations.length, summary, output: path.relative(root, outputPath) }, null, 2));
+  if (violations.length) process.exitCode = 1;
 }
 
 main().catch((error) => {

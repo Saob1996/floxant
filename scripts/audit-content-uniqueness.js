@@ -7,7 +7,14 @@ const { ensureDirectory, htmlFileToRoute, normalizeText, stripHtml, walk } = req
 
 const root = process.cwd();
 const outRoot = path.join(root, "out");
-const reportFile = path.join(root, "artifacts", "content-uniqueness-audit.csv");
+const reportFile = path.join(root, "artifacts", "content-uniqueness.csv");
+const priorityMetaSource = fs.readFileSync(
+  path.join(root, "lib", "content", "seo-meta-registry.ts"),
+  "utf8",
+);
+const priorityRoutes = new Set(
+  Array.from(priorityMetaSource.matchAll(/^\s*"([^"]+)": defineMeta\(/gm), (match) => match[1]),
+);
 
 if (!fs.existsSync(outRoot)) {
   console.error("Content uniqueness audit requires an existing out/ build.");
@@ -111,6 +118,7 @@ let findings = 0;
 let duplicateTitles = 0;
 let duplicateH1 = 0;
 let repeatedBlocks = 0;
+let hardViolations = 0;
 
 function writeFinding(routeId, issue, routeIds, sample, action) {
   const matchingRoutes = routeIds
@@ -118,8 +126,25 @@ function writeFinding(routeId, issue, routeIds, sample, action) {
     .map((candidateId) => routes[candidateId]);
   // Keep the CSV reviewable and Git-friendly while preserving the full count.
   const matches = matchingRoutes.slice(0, 8).join("|");
-  fs.writeSync(report, `${[routes[routeId], issue, matches, matchingRoutes.length, sample, action].map(csv).join(",")}\n`);
+  const affectsPriorityRoute = routeIds.some((candidateId) =>
+    priorityRoutes.has(routes[candidateId]),
+  );
+  const isPriorityMetaDuplicate =
+    affectsPriorityRoute &&
+    ["DUPLICATE_TITLE", "DUPLICATE_H1", "DUPLICATE_META_DESCRIPTION"].includes(issue);
+  fs.writeSync(
+    report,
+    `${[
+      routes[routeId],
+      issue,
+      matches,
+      matchingRoutes.length,
+      sample,
+      isPriorityMetaDuplicate ? "FIX_PRIORITY_DUPLICATE" : action,
+    ].map(csv).join(",")}\n`,
+  );
   findings += 1;
+  if (isPriorityMetaDuplicate) hardViolations += 1;
   if (issue === "DUPLICATE_TITLE") duplicateTitles += 1;
   if (issue === "DUPLICATE_H1") duplicateH1 += 1;
   if (issue === "REPEATED_CONTENT_BLOCK") repeatedBlocks += 1;
@@ -129,17 +154,19 @@ try {
   for (const { field, issue } of fieldAudits) {
     for (const group of fieldGroups.get(field).values()) {
       if (group.routeIds.length < 2) continue;
-      for (const routeId of group.routeIds) {
-        writeFinding(routeId, issue, group.routeIds, group.sample, "MANUAL_REVIEW");
-      }
+      writeFinding(group.routeIds[0], issue, group.routeIds, group.sample, "MANUAL_REVIEW");
     }
   }
 
   for (const group of blockGroups.values()) {
     if (group.routeIds.length < 3) continue;
-    for (const routeId of group.routeIds) {
-      writeFinding(routeId, "REPEATED_CONTENT_BLOCK", group.routeIds, group.sample, "STRENGTHEN_OR_MERGE_REVIEW");
-    }
+    writeFinding(
+      group.routeIds[0],
+      "REPEATED_CONTENT_BLOCK",
+      group.routeIds,
+      group.sample,
+      "STRENGTHEN_OR_MERGE_REVIEW",
+    );
   }
 } finally {
   fs.closeSync(report);
@@ -154,6 +181,8 @@ console.log(JSON.stringify({
   duplicateTitles,
   duplicateH1,
   repeatedBlocks,
+  hardViolations,
   peakHeapUsedMb: Math.round(peakHeapUsed / 1024 / 1024),
   report: path.relative(root, reportFile),
 }, null, 2));
+if (hardViolations) process.exit(1);

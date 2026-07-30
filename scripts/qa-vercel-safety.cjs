@@ -28,7 +28,13 @@ const globalPatterns = [
   { rule: "automatic vitals post", pattern: /\/api\/vitals/, status: "FAIL", action: "Do not auto-post vitals from public surfaces." },
   { rule: "automatic conversion post", pattern: /\/api\/conversion-events/, status: "WARN", action: "Confirm conversion endpoint is submit/user-action bound only." },
   { rule: "sendBeacon", pattern: /navigator\.sendBeacon|sendBeacon\(/, status: "WARN", action: "Confirm beacon is not automatic page-load tracking." },
-  { rule: "client polling", pattern: /setInterval\(/, status: "WARN", action: "Confirm polling is private/user-scoped and not public page polling." },
+  {
+    rule: "network polling",
+    pattern:
+      /setInterval\s*\([\s\S]{0,600}(?:fetch\s*\(|[A-Za-z]\w*Fetch\s*\(|axios\.|XMLHttpRequest|router\.refresh\s*\()/,
+    status: "WARN",
+    action: "Confirm polling is private/user-scoped and not public page polling.",
+  },
 ];
 
 function isPublicPage(file) {

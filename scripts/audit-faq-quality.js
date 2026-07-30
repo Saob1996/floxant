@@ -4,7 +4,7 @@ const { pathToFileURL } = require("node:url");
 
 const root = path.resolve(__dirname, "..");
 const registryFile = path.join(root, "lib", "content", "faq-registry.ts");
-const outputFile = path.join(root, "artifacts", "faq-quality-audit.csv");
+const outputFile = path.join(root, "artifacts", "faq-quality.csv");
 
 const findings = [];
 

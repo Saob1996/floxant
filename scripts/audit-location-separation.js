@@ -11,7 +11,7 @@ const {
 
 const root = process.cwd();
 const outRoot = path.join(root, "out");
-const outputFile = path.join(root, "artifacts", "location-separation-audit.csv");
+const outputFile = path.join(root, "artifacts", "location-separation.csv");
 const sitemapFile = path.join(outRoot, "sitemap.xml");
 
 const routeGroups = [

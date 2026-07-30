@@ -22,7 +22,13 @@ const globalRules = [
   { name: "automatic vitals post", pattern: /\/api\/vitals/, severity: "FAIL", action: "Do not auto-post vitals from public pages." },
   { name: "automatic conversion post", pattern: /\/api\/conversion-events/, severity: "FAIL", action: "Do not auto-post conversion events from public pages." },
   { name: "sendBeacon", pattern: /navigator\.sendBeacon|sendBeacon\(/, severity: "WARN", action: "Check that beacon is not automatic on page load." },
-  { name: "client polling", pattern: /setInterval\(/, severity: "WARN", action: "Confirm interval is user-scoped and not public polling." },
+  {
+    name: "network polling",
+    pattern:
+      /setInterval\s*\([\s\S]{0,600}(?:fetch\s*\(|[A-Za-z]\w*Fetch\s*\(|axios\.|XMLHttpRequest|router\.refresh\s*\()/,
+    severity: "WARN",
+    action: "Confirm interval is user-scoped and not public polling.",
+  },
 ];
 
 function walk(entry, files = []) {

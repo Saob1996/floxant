@@ -1,0 +1,92 @@
+route,field,value,length,duplicateOf,status,note
+/duesseldorf/reinigung,title,"Reinigung Düsseldorf | Wohnung, Büro & Praxis",45,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,description,"Reinigung in Düsseldorf für Wohnung, Büro, Praxis und Gewerbe. Objekt, Fläche, Turnus und Termin nennen und passende Leistung anfragen.",135,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,h1,"Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt",78,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,ogTitle,Reinigung in Düsseldorf passend zu Objekt und Umfang anfragen,61,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,ogDescription,"Reinigung für Wohnung, Büro, Praxis und Gewerbe in Düsseldorf mit Objektart, Fläche, Turnus und Termin anfragen.",112,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,canonical,https://www.floxant.de/duesseldorf/reinigung,44,,PASS,Expected https://www.floxant.de/duesseldorf/reinigung
+/duesseldorf/reinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/bueroreinigung,title,"Büroreinigung Düsseldorf | Fläche, Turnus & Zeiten",50,,PASS,Unique and within the review range.
+/duesseldorf/bueroreinigung,description,"Büroreinigung in Düsseldorf anfragen: Fläche, Räume, Sanitär, Küche, Turnus, Zugang und Reinigungszeiten verständlich beschreiben.",130,,PASS,Unique and within the review range.
+/duesseldorf/bueroreinigung,h1,Büroreinigung in Düsseldorf für Firmen klar anfragen,52,,PASS,Unique and within the review range.
+/duesseldorf/bueroreinigung,ogTitle,"Büroreinigung Düsseldorf mit Fläche, Turnus und Zeiten anfragen",63,,PASS,Unique and within the review range.
+/duesseldorf/bueroreinigung,ogDescription,"Bürofläche, Räume, Sanitär, Küche, Turnus, Zugang und Reinigungszeiten für eine klare Anfrage beschreiben.",106,,PASS,Unique and within the review range.
+/duesseldorf/bueroreinigung,canonical,https://www.floxant.de/duesseldorf/bueroreinigung,49,,PASS,Expected https://www.floxant.de/duesseldorf/bueroreinigung
+/duesseldorf/bueroreinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/gewerbereinigung,title,Gewerbereinigung Düsseldorf | Objekt & Turnus,45,,PASS,Unique and within the review range.
+/duesseldorf/gewerbereinigung,description,"Gewerbereinigung in Düsseldorf mit Objektart, Fläche, Nutzungszeiten, Turnus, Sonderflächen und Zugang konkret anfragen.",120,,PASS,Unique and within the review range.
+/duesseldorf/gewerbereinigung,h1,Gewerbereinigung in Düsseldorf mit konkreten Eckdaten anfragen,62,,PASS,Unique and within the review range.
+/duesseldorf/gewerbereinigung,ogTitle,Gewerbereinigung Düsseldorf nach Objekt und Nutzung anfragen,60,,PASS,Unique and within the review range.
+/duesseldorf/gewerbereinigung,ogDescription,"Objektart, Fläche, Nutzungszeiten, Turnus, Sonderflächen und Zugang für Gewerbereinigung in Düsseldorf beschreiben.",115,,PASS,Unique and within the review range.
+/duesseldorf/gewerbereinigung,canonical,https://www.floxant.de/duesseldorf/gewerbereinigung,51,,PASS,Expected https://www.floxant.de/duesseldorf/gewerbereinigung
+/duesseldorf/gewerbereinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/praxisreinigung,title,Praxisreinigung Düsseldorf | Räume & Zeiten klären,50,,PASS,Unique and within the review range.
+/duesseldorf/praxisreinigung,description,"Praxisreinigung in Düsseldorf anfragen: Empfang, Wartebereich, Behandlungsräume, Sanitär, sensible Bereiche und Zeitfenster beschreiben.",136,,PASS,Unique and within the review range.
+/duesseldorf/praxisreinigung,h1,Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen,70,,PASS,Unique and within the review range.
+/duesseldorf/praxisreinigung,ogTitle,Praxisreinigung Düsseldorf nach Räumen und Zeitfenstern anfragen,64,,PASS,Unique and within the review range.
+/duesseldorf/praxisreinigung,ogDescription,"Empfang, Wartebereich, Behandlungsräume, Sanitär, sensible Bereiche und Reinigungszeiten sachlich beschreiben.",110,,PASS,Unique and within the review range.
+/duesseldorf/praxisreinigung,canonical,https://www.floxant.de/duesseldorf/praxisreinigung,50,,PASS,Expected https://www.floxant.de/duesseldorf/praxisreinigung
+/duesseldorf/praxisreinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/fensterreinigung,title,"Fensterreinigung Düsseldorf | Glas, Rahmen & Zugang",51,,PASS,Unique and within the review range.
+/duesseldorf/fensterreinigung,description,"Fensterreinigung in Düsseldorf anfragen: Fensterzahl, Größe, innen oder außen, Rahmen, Höhe, Erreichbarkeit und Termin nennen.",126,,PASS,Unique and within the review range.
+/duesseldorf/fensterreinigung,h1,"Fensterreinigung in Düsseldorf anfragen – Glasflächen, Umfang und Termin klären",79,,PASS,Unique and within the review range.
+/duesseldorf/fensterreinigung,ogTitle,Fensterreinigung Düsseldorf mit Glasflächen und Zugang anfragen,63,,PASS,Unique and within the review range.
+/duesseldorf/fensterreinigung,ogDescription,"Fensterzahl, Größe, innen oder außen, Rahmen, Höhe und Erreichbarkeit für die Anfrage beschreiben.",98,,PASS,Unique and within the review range.
+/duesseldorf/fensterreinigung,canonical,https://www.floxant.de/duesseldorf/fensterreinigung,51,,PASS,Expected https://www.floxant.de/duesseldorf/fensterreinigung
+/duesseldorf/fensterreinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/grundreinigung,title,Grundreinigung Düsseldorf | Fläche & Zustand klären,51,,PASS,Unique and within the review range.
+/duesseldorf/grundreinigung,description,"Grundreinigung in Düsseldorf für Wohnung, Haus oder Gewerbe. Fläche, Zustand, Böden, Küche, Sanitär und Schwerpunkte beschreiben.",129,,PASS,Unique and within the review range.
+/duesseldorf/grundreinigung,h1,"Grundreinigung in Düsseldorf: gründlich geplant für Wohnung, Haus und Gewerbe",77,,PASS,Unique and within the review range.
+/duesseldorf/grundreinigung,ogTitle,Grundreinigung Düsseldorf nach Fläche und Zustand anfragen,58,,PASS,Unique and within the review range.
+/duesseldorf/grundreinigung,ogDescription,"Einmalige intensive Reinigung mit Fläche, Zustand, Böden, Küche, Sanitär, Schwerpunkten und Fotos beschreiben.",110,,PASS,Unique and within the review range.
+/duesseldorf/grundreinigung,canonical,https://www.floxant.de/duesseldorf/grundreinigung,49,,PASS,Expected https://www.floxant.de/duesseldorf/grundreinigung
+/duesseldorf/grundreinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/unterhaltsreinigung,title,Unterhaltsreinigung Düsseldorf | Turnus & Umfang,48,,PASS,Unique and within the review range.
+/duesseldorf/unterhaltsreinigung,description,"Unterhaltsreinigung in Düsseldorf anfragen: Objektart, Fläche, Turnus, Reinigungszeiten, Raumliste und Ansprechpartner nennen.",126,,PASS,Unique and within the review range.
+/duesseldorf/unterhaltsreinigung,h1,"Unterhaltsreinigung in Düsseldorf: klare Abläufe für Büro, Gewerbe und Objekt",77,,PASS,Unique and within the review range.
+/duesseldorf/unterhaltsreinigung,ogTitle,Unterhaltsreinigung Düsseldorf mit Turnus und Leistungsplan,59,,PASS,Unique and within the review range.
+/duesseldorf/unterhaltsreinigung,ogDescription,"Objektart, Fläche, Turnus, Reinigungszeiten, Raumliste und Ansprechpartner für eine regelmäßige Reinigung nennen.",113,,PASS,Unique and within the review range.
+/duesseldorf/unterhaltsreinigung,canonical,https://www.floxant.de/duesseldorf/unterhaltsreinigung,54,,PASS,Expected https://www.floxant.de/duesseldorf/unterhaltsreinigung
+/duesseldorf/unterhaltsreinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/duesseldorf/baureinigung,title,Bauendreinigung Düsseldorf | Bauphase & Abnahme,47,,PASS,Unique and within the review range.
+/duesseldorf/baureinigung,description,"Bauendreinigung in Düsseldorf mit Bauphase, Fläche, Rückständen, Restarbeiten, Fotos und Abnahmetermin konkret anfragen.",120,,PASS,Unique and within the review range.
+/duesseldorf/baureinigung,h1,"Bau- und Bauendreinigung in Düsseldorf: vorbereitet für Abnahme, Einzug oder Übergabe",85,,PASS,Unique and within the review range.
+/duesseldorf/baureinigung,ogTitle,Bauendreinigung Düsseldorf nach Bauphase und Zielzustand,56,,PASS,Unique and within the review range.
+/duesseldorf/baureinigung,ogDescription,"Bauphase, Fläche, Baustaub, Rückstände, empfindliche Oberflächen, Restarbeiten und Abnahmetermin beschreiben.",109,,PASS,Unique and within the review range.
+/duesseldorf/baureinigung,canonical,https://www.floxant.de/duesseldorf/baureinigung,47,,PASS,Expected https://www.floxant.de/duesseldorf/baureinigung
+/duesseldorf/baureinigung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/regensburg/umzug,title,"Umzug Regensburg | Start, Ziel & Umfang anfragen",48,,PASS,Unique and within the review range.
+/regensburg/umzug,description,"Umzug in Regensburg anfragen: Start, Ziel, Etagen, Aufzug, Möbelmenge, Zugang und Termin verständlich beschreiben.",114,,PASS,Unique and within the review range.
+/regensburg/umzug,h1,Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang,68,,PASS,Unique and within the review range.
+/regensburg/umzug,ogTitle,"Umzug Regensburg mit Start, Ziel und Umfang anfragen",52,,PASS,Unique and within the review range.
+/regensburg/umzug,ogDescription,"Start, Ziel, Etagen, Aufzug, Möbelmenge, Zugang und Termin für einen Umzug in Regensburg beschreiben.",101,,PASS,Unique and within the review range.
+/regensburg/umzug,canonical,https://www.floxant.de/regensburg/umzug,39,,PASS,Expected https://www.floxant.de/regensburg/umzug
+/regensburg/umzug,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/regensburg/entruempelung,title,"Entrümpelung Regensburg | Räume, Menge & Zugang",47,,PASS,Unique and within the review range.
+/regensburg/entruempelung,description,"Entrümpelung in Regensburg anfragen: Räume, Restmengen, Fotos, Etagen, Zugang, Freigabe und gewünschten Endzustand beschreiben.",127,,PASS,Unique and within the review range.
+/regensburg/entruempelung,h1,"Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass",64,,PASS,Unique and within the review range.
+/regensburg/entruempelung,ogTitle,"Entrümpelung Regensburg | Räume, Menge & Zugang",47,,PASS,Unique and within the review range.
+/regensburg/entruempelung,ogDescription,"Entrümpelung in Regensburg anfragen: Räume, Restmengen, Fotos, Etagen, Zugang, Freigabe und gewünschten Endzustand beschreiben.",127,,PASS,Unique and within the review range.
+/regensburg/entruempelung,canonical,https://www.floxant.de/regensburg/entruempelung,47,,PASS,Expected https://www.floxant.de/regensburg/entruempelung
+/regensburg/entruempelung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/regensburg/wohnungsaufloesung,title,Wohnungsauflösung Regensburg | Räume & Freigabe,47,,PASS,Unique and within the review range.
+/regensburg/wohnungsaufloesung,description,"Wohnungsauflösung in Regensburg mit Räumen, Restgegenständen, Freigaben, Fotos, Etagen, Zugang und Zeitraum anfragen.",117,,PASS,Unique and within the review range.
+/regensburg/wohnungsaufloesung,h1,Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären,66,,PASS,Unique and within the review range.
+/regensburg/wohnungsaufloesung,ogTitle,Wohnungsauflösung Regensburg | Räume & Freigabe,47,,PASS,Unique and within the review range.
+/regensburg/wohnungsaufloesung,ogDescription,"Wohnungsauflösung in Regensburg mit Räumen, Restgegenständen, Freigaben, Fotos, Etagen, Zugang und Zeitraum anfragen.",117,,PASS,Unique and within the review range.
+/regensburg/wohnungsaufloesung,canonical,https://www.floxant.de/regensburg/wohnungsaufloesung,52,,PASS,Expected https://www.floxant.de/regensburg/wohnungsaufloesung
+/regensburg/wohnungsaufloesung,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/klaviertransport-regensburg,title,Klaviertransport Regensburg mit Etage und Zugang klären,55,,PASS,Unique and within the review range.
+/klaviertransport-regensburg,description,"Klaviertransport Regensburg vorbereiten: Instrument, Etage, Aufzug, Treppenhaus, Strecke, Haltemoeglichkeit, Fotos und Termin klären. Klaviertransport, Fotos, Termin, Zugang, vorhandenes Angebot und Preisrahmen für...",217,,PASS,Unique and within the review range.
+/klaviertransport-regensburg,h1,"Klaviertransport in Regensburg anfragen – Etage, Zugang und Termin klären",73,,PASS,Unique and within the review range.
+/klaviertransport-regensburg,ogTitle,Klaviertransport Regensburg vorbereiten,39,,PASS,Unique and within the review range.
+/klaviertransport-regensburg,ogDescription,"Instrumententransport in Regensburg mit Fotos, Zugang, Etage, Strecke und Termin vorab einordnen.",97,,PASS,Unique and within the review range.
+/klaviertransport-regensburg,canonical,https://www.floxant.de/klaviertransport-regensburg,50,,PASS,Expected https://www.floxant.de/klaviertransport-regensburg
+/klaviertransport-regensburg,robots,"index, follow",13,,PASS,Priority public route must be indexable.
+/reinigungsfirma-angebot,title,Reinigungsfirma Angebot mit Objekt und Turnus klären,52,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,description,"Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind.",136,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,h1,Reinigungsangebot anfragen oder vorhandenes Angebot prüfen,58,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,ogTitle,Reinigungsfirma Angebot anfragen,32,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,ogDescription,"Reinigungsangebot für Büro, Praxis, Wohnung, Grundreinigung oder Treppenhaus mit klaren Eckdaten vorbereiten.",109,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,canonical,https://www.floxant.de/reinigungsfirma-angebot,46,,PASS,Expected https://www.floxant.de/reinigungsfirma-angebot
+/reinigungsfirma-angebot,robots,"index, follow",13,,PASS,Priority public route must be indexable.
