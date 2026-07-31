@@ -197,7 +197,11 @@ export function ContactLeadForm({
   }, []);
 
   return (
-    <div className="order-first lg:order-none">
+    <div
+      id="direktanfrage"
+      className="order-first scroll-mt-28 lg:order-none lg:scroll-mt-32"
+      tabIndex={-1}
+    >
       <ProfessionalRequestForm
         key={`${query || "static-contact-default"}:${entryReset}`}
         context={context}
