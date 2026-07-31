@@ -15,6 +15,8 @@ const policy = read("lib/lead-intents/request-location-policy.ts");
 const dashboardTest = read("scripts/admin-dashboard-details-test.mjs");
 const functionTest = read("scripts/cloudflare-functions-test.mjs");
 const analyticsTest = read("scripts/google-tag-consent-test.mjs");
+const requestContent = read("lib/lead-intents/request-page-content.ts");
+const requestSchema = read("lib/booking/request-schema.js");
 
 const passed = [];
 function test(name, check) {
@@ -118,6 +120,26 @@ test("42 keine personenbezogenen Analytics-Daten", () => {
   );
 });
 
-assert.equal(passed.length, 42);
+test("43 Regensburg-Umzug nur Umzugshilfen", () => {
+  assert.match(requestContent, /key: "regensburg_moving"[\s\S]*Start und Ziel klar angeben[\s\S]*Umfang verständlich beschreiben/);
+  assert.doesNotMatch(requestContent.match(/const moving:[\s\S]*?\n};/)?.[0] || "", /Reinigung besser anfragen|Objekt und Ort angeben/);
+});
+test("44 Düsseldorf-Reinigung mit Reinigungshilfen", () => {
+  assert.match(requestContent, /key: "duesseldorf_cleaning"[\s\S]*Objekt und Ort angeben[\s\S]*Fläche und Turnus beschreiben/);
+});
+test("45 neutraler Einstieg bleibt neutral", () => {
+  assert.match(requestContent, /key: "neutral"[\s\S]*Ort und Leistung wählen/);
+});
+test("46 Anfrageanker mit Headerabstand", () => {
+  assert.match(contact, /id="direktanfrage"[\s\S]{0,180}scroll-mt-28[\s\S]{0,80}lg:scroll-mt-32/);
+});
+test("47 gemeinsamer Anfragevertrag", () => {
+  assert.match(functionTest, /regensburg-moving-context-formdata-201/);
+  assert.match(requestSchema, /CANONICAL_REQUEST_TOP_LEVEL_FIELDS/);
+  assert.match(requestSchema, /REQUEST_UI_ONLY_FIELDS[\s\S]*"priority"/);
+  assert.match(requestSchema, /"rawFields", "entryPage", "campaign"/);
+});
+
+assert.equal(passed.length, 47);
 console.log(`Professional conversion release tests: PASS (${passed.length} checks)`);
 for (const name of passed) console.log(`PASS ${name}`);

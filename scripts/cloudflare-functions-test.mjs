@@ -445,13 +445,50 @@ try {
   await test("unknown-top-level-field-400", async () => {
     const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
     const result = await submit(validPayload({ unexpectedInternalState: "synthetic" }));
-    assert(result.response.status === 400 && result.body.code === "VALIDATION_ERROR", "unknown top-level field must return 400");
+    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "unknown top-level field must return 400");
+    assert(result.body.unsupportedFields?.[0] === "unexpectedInternalState", "response must expose only the safe unsupported field path");
     assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "unknown field must not reach Supabase");
   });
 
   await test("unknown-nested-field-400", async () => {
     const result = await submit(validPayload({ details: { configuration: { unexpectedNestedState: true } } }));
-    assert(result.response.status === 400 && result.body.code === "VALIDATION_ERROR", "unknown nested field must return 400");
+    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "unknown nested field must return 400");
+    assert(result.body.unsupportedFields?.[0] === "details.configuration.unexpectedNestedState", "nested unknown path must be safe and precise");
+  });
+
+  await test("regensburg-moving-context-formdata-201", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const formData = new FormData();
+    const details = {
+      contact: { fullName: "Synthetic Moving Test", email: "synthetic@example.com", phone: "0000000", callbackPreference: "email", notes: "Synthetischer Umzugstest ohne Kundendaten." },
+      service: { type: "Umzug", source: "seo", entryPoint: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1", regionPreset: "regensburg" },
+      configuration: {
+        requestContext: "professional_request", leadType: "professional_request", sourcePage: "/kontakt",
+        landingPage: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1",
+        location: "Regensburg", city: "Regensburg", startLocation: "Regensburg", destinationLocation: "Nürnberg",
+        scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"],
+        message: "Synthetischer Umzugstest ohne Kundendaten.", preferredContactMethod: "email", privacyConsent: true,
+        rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"], entryPage: "/kontakt", locale: "de" },
+      },
+      metadata: { createdAt: "2026-07-31T12:00:00.000Z", intakeVersion: "professional-request-1.0.0", locale: "de", source: "seo", clientContext: { source: "seo", entryPoint: "/kontakt", landingPage: "/kontakt", campaign: "", locale: "de" } },
+    };
+    for (const [key, value] of Object.entries({
+      type: "professional_request", lead_type: "professional_request", leadSource: "seo", source: "seo",
+      sourceComponent: "ProfessionalRequestForm", sourcePage: "/kontakt", landingPage: "/kontakt", service: "Umzug",
+      serviceCategory: "umzug", intent: "umzug-anfrage", name: "Synthetic Moving Test", email: "synthetic@example.com",
+      phone: "0000000", preferredContactMethod: "email", startLocation: "Regensburg", destinationLocation: "Nürnberg",
+      scope: "2 Zimmer, synthetischer Test", selectedAddons: "Reinigung, Entrümpelung, Möbelmontage",
+      message: "Synthetischer Umzugstest ohne Kundendaten.", privacyConsent: "true", timestamp: "2026-07-31T12:00:00.000Z",
+    })) formData.set(key, value);
+    formData.set("upgrades", JSON.stringify(["Reinigung", "Entrümpelung", "Möbelmontage"]));
+    formData.set("details", JSON.stringify(details));
+    const result = await submitFormData(formData);
+    const insertCallsAfter = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    assert(result.response.status === 201 && result.body.ok === true, "exact Regensburg moving context must return 201");
+    assert(insertCallsAfter === insertCallsBefore + 1, "exact Regensburg moving context must insert exactly once");
+    const inserted = JSON.parse(calls.filter((call) => call.url.includes("/rest/v1/bookings")).at(-1).body)[0];
+    assert(inserted.details.configuration.rawFields.destinationLocation === "Nürnberg", "legitimate nested moving fields must be retained");
+    assert(inserted.upgrades.length === 3, "all selected moving add-ons must be retained");
   });
 
   await test("valid-json-201", async () => {
