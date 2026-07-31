@@ -1,3 +1,9 @@
+import {
+  CANONICAL_REQUEST_NESTED_FIELDS,
+  CANONICAL_REQUEST_TOP_LEVEL_FIELDS,
+  normalizeRequestAliases,
+} from "../../lib/booking/request-schema.js";
+
 export const MAX_PAYLOAD_FIELDS = 240;
 export const MAX_RAW_PAYLOAD_FIELDS = 480;
 export const MAX_TOP_LEVEL_FIELDS = 140;
@@ -84,16 +90,22 @@ attachments cellarTrashroomPhoto damageOfferFile damagePhoto discreetMovePhoto e
 objectCasePhoto offerFile photo planBOfferFile planBPhoto propertyReadyPhoto rentalReadyPhoto routePhoto tenantPhoto
 `.trim().split(/\s+/);
 
-export const ALLOWED_TOP_LEVEL_FIELDS = new Set(TOP_LEVEL_FIELD_NAMES);
-export const ALLOWED_NESTED_FIELDS = new Set([...TOP_LEVEL_FIELD_NAMES, ...NESTED_SCHEMA_FIELD_NAMES]);
+export const ALLOWED_TOP_LEVEL_FIELDS = new Set([...TOP_LEVEL_FIELD_NAMES, ...CANONICAL_REQUEST_TOP_LEVEL_FIELDS]);
+export const ALLOWED_NESTED_FIELDS = new Set([
+  ...TOP_LEVEL_FIELD_NAMES,
+  ...NESTED_SCHEMA_FIELD_NAMES,
+  ...CANONICAL_REQUEST_NESTED_FIELDS,
+]);
 export const ALLOWED_FILE_FIELDS = new Set(FILE_FIELD_NAMES);
 
 const OMIT = Symbol("omit-empty-payload-value");
 
 export class PayloadValidationError extends Error {
-  constructor(fields) {
+  constructor(fields, code = "VALIDATION_ERROR", unsupportedFields = []) {
     super("VALIDATION_ERROR");
     this.fields = fields;
+    this.code = code;
+    this.unsupportedFields = unsupportedFields;
   }
 }
 
@@ -139,7 +151,7 @@ function assertRawShape(value, request, depth = 0, counter = { fields: 0 }) {
   }
 }
 
-function normalizeValue(value, request, depth = 0, root = false) {
+function normalizeValue(value, request, depth = 0, root = false, path = "") {
   if (depth > MAX_PAYLOAD_DEPTH) {
     throw new PayloadValidationError({ form: "Die Anfrage enthält zu viele verschachtelte Angaben." });
   }
@@ -156,7 +168,7 @@ function normalizeValue(value, request, depth = 0, root = false) {
       throw new PayloadValidationError({ form: tooManyFields(request) });
     }
     const normalizedItems = value
-      .map((item) => normalizeValue(item, request, depth + 1, false))
+      .map((item) => normalizeValue(item, request, depth + 1, false, path))
       .filter((item) => item !== OMIT);
     return normalizedItems.length ? normalizedItems : OMIT;
   }
@@ -169,9 +181,14 @@ function normalizeValue(value, request, depth = 0, root = false) {
   const normalized = {};
   for (const [key, childValue] of entries) {
     if (!allowedFields.has(key) || (root && ALLOWED_FILE_FIELDS.has(key))) {
-      throw new PayloadValidationError({ form: unsupportedFields(request) });
+      const safePath = path ? `${path}.${key}` : key;
+      throw new PayloadValidationError(
+        { form: unsupportedFields(request) },
+        "UNSUPPORTED_FIELDS",
+        [safePath],
+      );
     }
-    const child = normalizeValue(childValue, request, depth + 1, false);
+    const child = normalizeValue(childValue, request, depth + 1, false, path ? `${path}.${key}` : key);
     if (child !== OMIT) normalized[key] = child;
   }
   return Object.keys(normalized).length || root ? normalized : OMIT;
@@ -210,11 +227,12 @@ export function normalizeLeadPayload(payload, request) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     throw new PayloadValidationError({ form: "Das Anfrageformat ist ungültig." });
   }
-  if (Object.keys(payload).length > MAX_TOP_LEVEL_FIELDS) {
+  const aliasedPayload = normalizeRequestAliases(payload);
+  if (Object.keys(aliasedPayload).length > MAX_TOP_LEVEL_FIELDS) {
     throw new PayloadValidationError({ form: tooManyFields(request) });
   }
-  assertRawShape(payload, request);
-  const normalized = normalizeValue(payload, request, 0, true);
+  assertRawShape(aliasedPayload, request);
+  const normalized = normalizeValue(aliasedPayload, request, 0, true);
   assertNormalizedShape(normalized, request);
   return normalized;
 }

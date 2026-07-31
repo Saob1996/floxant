@@ -583,7 +583,13 @@ export async function handleLeadSubmission(context) {
     return json({ ok: true, requestId, bookingId }, 201, context.request, env);
   } catch (error) {
     if (error instanceof ValidationFailure || error instanceof PayloadValidationError) {
-      return json({ ok: false, code: "VALIDATION_ERROR", requestId, fields: error.fields }, 400, context.request, env);
+      return json({
+        ok: false,
+        code: error.code || "VALIDATION_ERROR",
+        requestId,
+        fields: error.fields,
+        ...(error.unsupportedFields?.length ? { unsupportedFields: error.unsupportedFields } : {}),
+      }, 400, context.request, env);
     }
     console.error("Cloudflare lead submission failed", {
       requestId,
