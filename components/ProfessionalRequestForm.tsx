@@ -427,12 +427,20 @@ export function ProfessionalRequestForm({
         leadType: "professional_request",
         sourcePage: "/kontakt",
         landingPage,
-        location: cityOrZip.trim(),
+        entryPage: context.entryPage || landingPage,
+        campaign: context.campaign,
+        service: context.serviceKey,
+        serviceType: bookingService,
+        location: cityOrZip.trim() || locationLabel(context),
         city: cityOrZip.trim(),
         objectType,
         areaSize: areaSize.trim(),
+        area: areaSize.trim(),
+        rooms: group === "moving" ? scope.trim() : "",
         cleaningFrequency: frequency,
         desiredDate,
+        preferredDate: desiredDate,
+        timeframe: desiredDate,
         startLocation: startLocation.trim(),
         destinationLocation: destinationLocation.trim(),
         startFloor: startFloor.trim(),
@@ -443,6 +451,7 @@ export function ProfessionalRequestForm({
         elevator,
         scope: scope.trim(),
         selectedAddons: extras,
+        selectedServices: extras,
         cleaningRequested,
         message: message.trim(),
         preferredContactMethod: contactMethod,
@@ -463,6 +472,7 @@ export function ProfessionalRequestForm({
           elevator,
           scope: scope.trim(),
           selectedAddons: extras,
+          selectedServices: extras,
           cleaningRequested,
           message: message.trim(),
           contactMethod,
@@ -507,8 +517,12 @@ export function ProfessionalRequestForm({
     payload.set("cityOrZip", cityOrZip.trim());
     payload.set("objectType", objectType);
     payload.set("areaSize", areaSize.trim());
+    payload.set("area", areaSize.trim());
+    payload.set("rooms", group === "moving" ? scope.trim() : "");
     payload.set("cleaningFrequency", frequency);
     payload.set("desiredDate", desiredDate);
+    payload.set("preferredDate", desiredDate);
+    payload.set("timeframe", desiredDate);
     payload.set("startLocation", startLocation.trim());
     payload.set("destinationLocation", destinationLocation.trim());
     payload.set("startFloor", startFloor.trim());
@@ -519,6 +533,7 @@ export function ProfessionalRequestForm({
     payload.set("elevator", elevator);
     payload.set("scope", scope.trim());
     payload.set("selectedAddons", extras.join(", "));
+    payload.set("selectedServices", extras.join(", "));
     payload.set("cleaningRequested", cleaningRequested ? "true" : "false");
     payload.set("message", message.trim());
     payload.set("privacyConsent", "true");
