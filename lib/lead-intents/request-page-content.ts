@@ -53,8 +53,8 @@ const clearance: RequestPageContent = {
 
 export function resolveRequestPageContent(context: RequestContext): RequestPageContent {
   if (!context.valid || context.neutral) return neutral;
-  if (context.service === "umzug") return moving;
-  if (context.service === "entruempelung" || context.service === "wohnungsaufloesung") return clearance;
-  if (["reinigung", "bueroreinigung", "gewerbereinigung", "fensterreinigung"].includes(context.service)) return cleaning;
+  if (["moving", "special-transport"].includes(context.formVariant)) return moving;
+  if (context.formVariant === "clearance") return clearance;
+  if (["cleaning", "b2b-cleaning", "property-cleaning", "solar-pv", "handover"].includes(context.formVariant)) return cleaning;
   return neutral;
 }
