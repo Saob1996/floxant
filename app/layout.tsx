@@ -39,8 +39,8 @@ export default function RootLayout({
           <GoogleTag />
           <ConversionEventReporter />
           <UtmCapture />
-          <SiteChrome>{children}</SiteChrome>
           <CookieBanner />
+          <SiteChrome>{children}</SiteChrome>
         </MotionProvider>
       </body>
     </html>
