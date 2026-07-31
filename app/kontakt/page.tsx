@@ -4,7 +4,6 @@ import { ArrowRight, CheckCircle2, MapPinned, MessageCircle } from "lucide-react
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
-import { BetterRequestNotice } from "@/components/BetterRequestNotice";
 import {
   InternationalCustomerHint,
   ServiceDecisionGuide,
@@ -16,6 +15,7 @@ import {
   ContactHeroBadge,
   ContactHeroCopy,
   ContactLeadForm,
+  ContactRequestGuidance,
 } from "@/components/ContactQueryPersonalization";
 import { LeadTrustBlock } from "@/components/LeadTrustBlock";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
@@ -24,8 +24,6 @@ import { LocationServiceSwitcher } from "@/components/LocationServiceSwitcher";
 import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
 import { ObjectionAnswerGrid } from "@/components/ObjectionAnswerGrid";
 import { ProcessProofSteps } from "@/components/ProcessProofSteps";
-import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
-import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
@@ -51,7 +49,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { resolveLeadIntent } from "@/lib/lead-intents";
-import { resolveRequestChecklistKey } from "@/lib/request-checklists";
 
 const faqItems = [
   {
@@ -122,21 +119,6 @@ const mapsReadyPoints = [
   "Buchung, WhatsApp und Telefon sind ohne Umwege erreichbar.",
   "Adresse, Telefonnummer und E-Mail sind konsistent sichtbar.",
   "Ort, Leistung und Kontaktweg bleiben für Kunden klar nachvollziehbar.",
-];
-
-const mapsClosingSignals = [
-  {
-    title: "Direkter Kontakt statt Leerlauf",
-    text: "Kunden sehen sofort, wie sie Buchung, WhatsApp oder Preisprüfung ohne Suchschleife starten.",
-  },
-  {
-    title: "Vertrauen durch klare Angaben",
-    text: "Adresse, Telefonnummer, E-Mail und die nächsten Kontaktwege sind sichtbar, statt in langen Texten versteckt zu sein.",
-  },
-  {
-    title: "Spezialbereiche sauber getrennt",
-    text: "Für Reinigung gibt es getrennte lokale Bereiche für Düsseldorf sowie Regensburg und den geprüften Umkreis.",
-  },
 ];
 
 const supportingKnowledgeLinks = [
@@ -215,11 +197,6 @@ export default async function KontaktPage() {
   const leadIntent = resolveLeadIntent({
     path: "/kontakt",
     priority: "p0",
-  });
-  const requestChecklistKey = resolveRequestChecklistKey({
-    service: leadIntent.service,
-    intent: leadIntent.intent,
-    path: "/kontakt",
   });
 
   const jsonLd = {
@@ -366,45 +343,14 @@ export default async function KontaktPage() {
               Standorte ansehen
             </Link>
           </div>
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
-            {mapsClosingSignals.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[1.35rem] border border-white/65 bg-white/82 px-4 py-4 shadow-sm shadow-slate-950/5 backdrop-blur"
-              >
-                <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
-                  Schneller Kontakt
-                </div>
-                <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
-              </div>
-            ))}
-          </div>
+          <ContactRequestGuidance />
               <div className="mt-4">
                 <LeadTrustBlock />
               </div>
-              <div className="mt-6">
-                <RequestChecklistBlock
-                  serviceKey={requestChecklistKey}
-                  ctaHref="#direktanfrage"
-                  ctaLabel="Checkliste im Formular nutzen"
-                  compact
-                  embedded
-                />
-              </div>
-              <BetterRequestNotice serviceKey={requestChecklistKey} className="mt-4" />
             </div>
 
             <ContactLeadForm fallbackIntent={leadIntent} />
           </div>
-
-          <PhotoGuidanceBlock
-            serviceKey={requestChecklistKey}
-            compact
-            className="mt-8 rounded-[1.35rem] border border-slate-200 bg-white/88 shadow-sm shadow-slate-950/5"
-          />
 
           <div className="mt-4 grid gap-3 md:grid-cols-4">
             {[

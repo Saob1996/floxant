@@ -22,6 +22,7 @@ import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-clien
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import { getBookingServiceForLead } from "@/lib/lead-intents";
 import type { RequestContext } from "@/lib/lead-intents/resolve-request-context";
+import { resolveRequestPageContent } from "@/lib/lead-intents/request-page-content";
 
 type RequestStep = 1 | 2 | 3;
 type RequestGroup = "cleaning" | "moving" | "clearance" | "general";
@@ -172,6 +173,7 @@ export function ProfessionalRequestForm({
   selection,
 }: ProfessionalRequestFormProps) {
   const group = useMemo(() => requestGroup(context), [context]);
+  const pageContent = useMemo(() => resolveRequestPageContent(context), [context]);
   const [step, setStep] = useState<RequestStep>(() => (context.valid ? 2 : 1));
   const [objectType, setObjectType] = useState("");
   const [cityOrZip, setCityOrZip] = useState(() =>
@@ -789,7 +791,7 @@ export function ProfessionalRequestForm({
                 {extras.length ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Zusatzleistungen</dt><dd className="mt-1 font-semibold text-slate-900">{extras.join(", ")}</dd></div> : null}
                 <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Nachricht</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{message}</dd></div>
               </dl>
-              {missingOptional.length ? <p className="mt-4 text-sm font-semibold text-slate-600">Noch nicht ergänzt, aber optional: {missingOptional.join(", ")}.</p> : null}
+              {missingOptional.length ? <p className="mt-4 text-sm font-semibold text-slate-600">{pageContent.optionalSummary}</p> : null}
             </section>
 
             <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-semibold leading-6 text-slate-800">
