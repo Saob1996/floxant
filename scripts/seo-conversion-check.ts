@@ -439,11 +439,19 @@ function evaluatePage({ route, html, status, lead }) {
   });
   const matchingCtas = contactLikeCtas.filter((cta) => ctaMatchesLead(cta, lead, route));
   const primaryCta = matchingCtas[0] || contactLikeCtas[0] || ctas[0];
+  const isNeutralContactForm =
+    normalizeRoute(route) === "/kontakt" &&
+    html.includes("data-professional-request-form") &&
+    html.includes("data-request-context-selector");
 
   if (status !== 200) failures.push(`HTTP ${status}`);
   if (h1.length < 1) failures.push("H1 fehlt");
-  if (ctas.length < 1) failures.push("Kein seo_cta_click gefunden");
-  if (!primaryCta) {
+  if (!isNeutralContactForm && ctas.length < 1) failures.push("Kein seo_cta_click gefunden");
+  if (isNeutralContactForm) {
+    if (!html.includes("mode=neutral")) {
+      warnings.push("Globaler neutraler Einstieg ist im gerenderten Header nicht sichtbar");
+    }
+  } else if (!primaryCta) {
     failures.push("Kein pruefbarer CTA gefunden");
   } else {
     const destination = primaryCta.attrs["data-destination"] || primaryCta.href;
