@@ -146,7 +146,7 @@ function checkHubs(results) {
     { file: "app/leistungen/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel"] },
     { file: "app/duesseldorf/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"duesseldorf\""] },
     { file: "app/regensburg/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"regensburg\""] },
-    { file: "app/kontakt/page.tsx", tokens: ["ContactLeadForm", "DecisionCompassPanel", "InternationalCustomerHint"] },
+    { file: "app/kontakt/page.tsx", tokens: ["ContactLeadForm", "ContactHeroCopy", "contact-alternatives"] },
     { file: "components/ContactQueryPersonalization.tsx", tokens: ["RequestContextSelector", "context.availableServices", "ContactLeadForm"] },
     { file: "components/ContactPathChooser.tsx", tokens: ["ServiceGroupSelector", "LocationSelector", "RequestReasonSelector", "ContactFormIntro", "WhatHappensNext"] },
   ];
@@ -160,7 +160,7 @@ function checkHubs(results) {
     results,
     failed.length ? "FAIL" : "PASS",
     "hub and contact guidance",
-    failed.length ? failed.join("\n") : "Core hubs and contact page expose service overview, decision journey and contact navigator.",
+    failed.length ? failed.join("\n") : "Core hubs expose service guidance while the contact page stays focused on the enquiry flow.",
     checks.map((check) => check.file),
   );
 }

@@ -30,6 +30,7 @@ export function SiteChrome({
         ? "moving-regensburg"
         : null;
   const isAdsLanding = adsLandingKind !== null;
+  const hasFocusedEnquiryFlow = pathname === "/kontakt" || isAdsLanding;
 
   useEffect(() => {
     document.documentElement.lang = isEnglishSection ? "en" : "de";
@@ -70,7 +71,7 @@ export function SiteChrome({
       </div>
       {isAdsLanding ? <AdsLandingFooter /> : isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
       {!isEnglishSection && !isAdsLanding ? <GlobalRequestCenter /> : null}
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection && !isAdsLanding} />
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection && !hasFocusedEnquiryFlow} />
     </>
   );
 }

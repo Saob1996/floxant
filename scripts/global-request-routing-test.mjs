@@ -143,7 +143,7 @@ test("Kontaktformular hat genau drei klar benannte Schritte", () => {
 });
 
 test("Kontakt-Metadaten und Canonical sind neutral", () => {
-  assert.match(contactPage, /Angebot und Leistung anfragen \| FLOXANT/);
+  assert.match(contactPage, /Leistung unverbindlich anfragen \| FLOXANT/);
   assert.match(contactPage, /Wählen Sie Standort und Leistung und senden Sie die wichtigsten Eckdaten direkt an FLOXANT\./);
   assert.match(contactPage, /canonical: `\$\{company\.url\}\/kontakt`/);
 });

@@ -9,7 +9,6 @@ import {
   type RequestLocation,
   type RequestServiceOption,
 } from "@/lib/lead-intents/resolve-request-context";
-import { resolveRequestPageContent } from "@/lib/lead-intents/request-page-content";
 import { cn } from "@/lib/utils";
 
 function useCurrentQuery() {
@@ -217,28 +216,3 @@ export function ContactLeadForm({
   );
 }
 
-export function ContactRequestGuidance() {
-  const query = useCurrentQuery();
-  const context = useMemo(() => resolveQueryContext(query), [query]);
-  const content = useMemo(() => resolveRequestPageContent(context), [context]);
-
-  return (
-    <div data-request-guidance={content.key}>
-      <div className="mt-8 grid gap-3 md:grid-cols-3">
-        {content.cards.map((item) => (
-          <article key={item.title} className="rounded-[1.35rem] border border-white/65 bg-white/82 px-4 py-4 shadow-sm shadow-slate-950/5 backdrop-blur">
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">Gut vorbereitet</div>
-            <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">{item.title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
-          </article>
-        ))}
-      </div>
-      <section className="mt-6 rounded-[1.35rem] border border-slate-200 bg-white/88 p-5 shadow-sm shadow-slate-950/5" aria-label="Hilfreiche Angaben">
-        <h2 className="text-lg font-black text-slate-950">Diese Angaben helfen bei der Prüfung</h2>
-        <ul className="mt-3 grid gap-2 text-sm font-semibold text-slate-700 sm:grid-cols-2">
-          {content.checklist.map((item) => <li key={item}>✓ {item}</li>)}
-        </ul>
-      </section>
-    </div>
-  );
-}

@@ -1,0 +1,23 @@
+Einstieg,Zielroute,Standort vorausgewählt,Leistung vorausgewählt,Schritte,sichtbare Felder,primäre CTA,Ergebnis,Klassifikation,Begründung
+Globaler Header Desktop,/kontakt?mode=neutral&source=global_header,Nein,Nein,3,2 im ersten Schritt,Angebot anfragen,Neutraler Start,KEEP_STRONG,Zentrale Routinglogik vorhanden
+Globaler Header Mobil,/kontakt?mode=neutral&source=global_mobile_header,Nein,Nein,3,2 im ersten Schritt,Angebot anfragen,Neutraler Start,KEEP_STRONG,Zentrale Routinglogik vorhanden
+Footer,/kontakt?mode=neutral&source=global_footer,Nein,Nein,3,2 im ersten Schritt,Angebot anfragen,Neutraler Start,KEEP_STRONG,Zentrale Routinglogik vorhanden
+404-Seite,/kontakt?mode=neutral&source=global_404,Nein,Nein,3,2 im ersten Schritt,Anfrage starten,Neutraler Start,KEEP_STRONG,Zentrale Routinglogik vorhanden
+Startseite,/kontakt?mode=neutral&source=global_header,Nein,Nein,3,2 im ersten Schritt,Angebot anfragen,Neutraler Start,P2_CONFUSION,Sekundäre globale Aktionen konkurrieren teilweise
+Düsseldorf-Hub,/kontakt?location=duesseldorf&service=reinigung,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Reinigung anfragen,Passender Kontext,P1_HIGH_FRICTION,Optionale Felder dauerhaft sichtbar
+Regensburg-Hub,/kontakt?location=regensburg&service=umzug,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Umzug anfragen,Passender Kontext,P1_HIGH_FRICTION,Optionale Felder dauerhaft sichtbar
+Büroreinigung Düsseldorf,/kontakt?location=duesseldorf&service=bueroreinigung,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Büroreinigung anfragen,Passender Kontext,P1_HIGH_FRICTION,Kontaktseite hinter CTA zu informationsreich
+Praxisreinigung Düsseldorf,/kontakt?location=duesseldorf&service=praxisreinigung,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Praxisreinigung anfragen,Passender Kontext,P1_HIGH_FRICTION,Kontaktseite hinter CTA zu informationsreich
+Umzug Regensburg,/kontakt?location=regensburg&service=umzug,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Umzug anfragen,Passender Kontext,P1_HIGH_FRICTION,Etagen Aufzüge Extras Upload und Nachricht gleichzeitig
+Entrümpelung Regensburg,/kontakt?location=regensburg&service=entruempelung,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Entrümpelung anfragen,Passender Kontext,P1_HIGH_FRICTION,Optionale Felder dauerhaft sichtbar
+Wohnungsauflösung Regensburg,/kontakt?location=regensburg&service=wohnungsaufloesung,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Wohnungsauflösung anfragen,Passender Kontext,P1_HIGH_FRICTION,Optionale Felder dauerhaft sichtbar
+Klaviertransport Regensburg,/kontakt?location=regensburg&service=klaviertransport,Ja,Ja,3,Mehr als 7 im zweiten Schritt,Transport anfragen,Passender Kontext,P2_CONFUSION,Generische Umzugsfelder benötigen klare optionale Details
+Service Finder,/kontakt mit gewähltem Kontext,Abhängig von Auswahl,Abhängig von Auswahl,3,2 im ersten Schritt,Anfrage vorbereiten,Kontext wird übergeben,KEEP_STRONG,Eingaben bleiben lokal bis zur bewussten Anfrage
+Interne Suche,Organische Leistungsseite,Nein,Nein,0,0,Leistungsseite öffnen,Information vor Anfrage,KEEP_STRONG,Rankende Seite bleibt vom Formular getrennt
+FAQ und Ratgeber,Organische Leistungsseite,Nein,Nein,0,0,Passende Leistung ansehen,Information vor Anfrage,KEEP_STRONG,Kein Formularzwang
+Sticky Actions,/kontakt oder Kontaktalternative,Abhängig von Seite,Abhängig von Seite,3,0,Anfrage,Erreichbar,P2_CONFUSION,Auf Kontaktseite mit Formular konkurrierend
+Düsseldorf Google Ads,/duesseldorf/reinigung/anfrage,Ja,Ja,2,Reduziert,Reinigung anfragen,Kampagnenkontext korrekt,KEEP_STRONG,Noindex und eigenständiges Ads-Formular
+Regensburg Google Ads,/umzug-regensburg/anfrage,Ja,Ja,2,Reduziert,Umzug anfragen,Kampagnenkontext korrekt,KEEP_STRONG,Noindex und eigenständiges Ads-Formular
+WhatsApp,Externer WhatsApp-Link,Abhängig von Seite,Abhängig von Seite,0,0,WhatsApp öffnen,Direkter Kontakt,KEEP_STRONG,Sekundäre Alternative
+Telefon,tel:+4915771105087,Nein,Nein,0,0,Anrufen,Direkter Kontakt,KEEP_STRONG,Sekundäre Alternative
+Kontaktseite,/kontakt,Nein,Nein,3,2 im ersten Schritt,Anfrage senden,Formular funktioniert,P0_BLOCKER,Seite enthält zu viele konkurrierende Inhalts- und Aktionsblöcke

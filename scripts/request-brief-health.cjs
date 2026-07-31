@@ -107,7 +107,7 @@ add(
 );
 
 const p0Pages = [
-  ["app/kontakt/page.tsx", "ContactRequestGuidance"],
+  ["app/kontakt/page.tsx", "ContactLeadForm"],
   ["app/objektbrief/page.tsx", "ObjectBriefPreview"],
   ["app/angebot-guenstiger-pruefen/page.tsx", "serviceKey=\"angebot-pruefen\""],
   ["components/duesseldorf/DuesseldorfCleaningServicePage.tsx", "RequestBriefChecklistBlock"],

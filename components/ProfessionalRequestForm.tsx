@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   FileUp,
   Loader2,
   Send,
@@ -34,7 +35,15 @@ type ProfessionalRequestFormProps = {
 };
 
 const inputClass =
-  "min-h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-950 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100";
+  "min-h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-base font-semibold text-slate-950 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100";
+
+const acceptedFileTypes = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "application/pdf",
+]);
+const maxFileSize = 8 * 1024 * 1024;
 
 const cleaningExtras = [
   "Fenster und Glasflächen",
@@ -67,6 +76,12 @@ const frequencyLabels: Record<string, string> = {
   woechentlich: "Wöchentlich",
   "14-taegig": "14-tägig",
   monatlich: "Monatlich",
+};
+
+const answerLabels: Record<string, string> = {
+  ja: "Ja",
+  nein: "Nein",
+  unklar: "Noch unklar",
 };
 
 function customerValue(value: string, labels: Record<string, string>) {
@@ -201,6 +216,7 @@ export function ProfessionalRequestForm({
   const [cleaningRequested, setCleaningRequested] = useState(false);
   const [message, setMessage] = useState("");
   const [files, setFiles] = useState<File[]>([]);
+  const [optionalOpen, setOptionalOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -212,13 +228,19 @@ export function ProfessionalRequestForm({
     "idle",
   );
   const [requestId, setRequestId] = useState("");
-  const [bookingId, setBookingId] = useState("");
   const [startedAt] = useState(() => Date.now());
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     stepHeadingRef.current?.focus();
   }, [step]);
+
+  useEffect(() => {
+    if (status === "error" && Object.keys(errors).length) {
+      errorSummaryRef.current?.focus();
+    }
+  }, [errors, status]);
 
   function validateDetails() {
     const next: FormErrors = {};
@@ -241,9 +263,6 @@ export function ProfessionalRequestForm({
       }
     }
 
-    if (message.trim().length < 10) {
-      next.message = "Bitte beschreiben Sie den Bedarf in mindestens einem kurzen Satz.";
-    }
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -260,11 +279,43 @@ export function ProfessionalRequestForm({
     if (phone.trim() && phone.trim().length < 6) {
       next.phone = "Bitte eine vollständige Telefonnummer eintragen.";
     }
+    if (contactMethod === "email" && !email.trim()) {
+      next.email = "Bitte tragen Sie für den gewählten Kontaktweg eine E-Mail-Adresse ein.";
+    }
+    if (["telefon", "whatsapp"].includes(contactMethod) && !phone.trim()) {
+      next.phone = "Bitte tragen Sie für den gewählten Kontaktweg eine Telefonnummer ein.";
+    }
     if (!privacyConsent) {
       next.privacy = "Bitte bestätigen Sie den Datenschutz-Hinweis.";
     }
     setErrors(next);
     return Object.keys(next).length === 0;
+  }
+
+  function selectFiles(nextFiles: File[]) {
+    const limited = nextFiles.slice(0, 5);
+    const invalidType = limited.find((file) => !acceptedFileTypes.has(file.type));
+    const oversized = limited.find((file) => file.size > maxFileSize);
+    if (invalidType) {
+      setErrors((current) => ({
+        ...current,
+        files: "Bitte verwenden Sie nur JPG-, PNG-, WebP- oder PDF-Dateien.",
+      }));
+      return;
+    }
+    if (oversized) {
+      setErrors((current) => ({
+        ...current,
+        files: "Eine Datei ist größer als 8 MB. Bitte wählen Sie eine kleinere Datei.",
+      }));
+      return;
+    }
+    setErrors((current) => {
+      const next = { ...current };
+      delete next.files;
+      return next;
+    });
+    setFiles(limited);
   }
 
   function continueToContact() {
@@ -284,8 +335,8 @@ export function ProfessionalRequestForm({
         ["Ziel", destinationLocation],
         ["Umfang", scope],
         ["Zeitraum", desiredDate],
-        ["Etagen", [startFloor, destinationFloor].filter(Boolean).join(" / ")],
-        ["Aufzüge", [startElevator, destinationElevator].filter(Boolean).join(" / ")],
+        ["Etagen", startFloor || destinationFloor ? `${startFloor || "offen"} → ${destinationFloor || "offen"}` : ""],
+        ["Aufzug", startElevator || destinationElevator ? `Start ${customerValue(startElevator, answerLabels) || "offen"}, Ziel ${customerValue(destinationElevator, answerLabels) || "offen"}` : ""],
       ];
     }
     if (group === "clearance") {
@@ -294,7 +345,7 @@ export function ProfessionalRequestForm({
         ["Objektart", customerValue(objectType, objectTypeLabels)],
         ["Größe oder Umfang", areaSize],
         ["Etage", floor],
-        ["Aufzug", elevator],
+        ["Aufzug", customerValue(elevator, answerLabels)],
         ["Restgegenstände", scope],
         ["Zeitraum", desiredDate],
         ["Reinigung gewünscht", cleaningRequested ? "Ja" : ""],
@@ -376,12 +427,20 @@ export function ProfessionalRequestForm({
         leadType: "professional_request",
         sourcePage: "/kontakt",
         landingPage,
-        location: cityOrZip.trim(),
+        entryPage: context.entryPage || landingPage,
+        campaign: context.campaign,
+        service: context.serviceKey,
+        serviceType: bookingService,
+        location: cityOrZip.trim() || locationLabel(context),
         city: cityOrZip.trim(),
         objectType,
         areaSize: areaSize.trim(),
+        area: areaSize.trim(),
+        rooms: group === "moving" ? scope.trim() : "",
         cleaningFrequency: frequency,
         desiredDate,
+        preferredDate: desiredDate,
+        timeframe: desiredDate,
         startLocation: startLocation.trim(),
         destinationLocation: destinationLocation.trim(),
         startFloor: startFloor.trim(),
@@ -392,6 +451,7 @@ export function ProfessionalRequestForm({
         elevator,
         scope: scope.trim(),
         selectedAddons: extras,
+        selectedServices: extras,
         cleaningRequested,
         message: message.trim(),
         preferredContactMethod: contactMethod,
@@ -412,6 +472,7 @@ export function ProfessionalRequestForm({
           elevator,
           scope: scope.trim(),
           selectedAddons: extras,
+          selectedServices: extras,
           cleaningRequested,
           message: message.trim(),
           contactMethod,
@@ -456,8 +517,12 @@ export function ProfessionalRequestForm({
     payload.set("cityOrZip", cityOrZip.trim());
     payload.set("objectType", objectType);
     payload.set("areaSize", areaSize.trim());
+    payload.set("area", areaSize.trim());
+    payload.set("rooms", group === "moving" ? scope.trim() : "");
     payload.set("cleaningFrequency", frequency);
     payload.set("desiredDate", desiredDate);
+    payload.set("preferredDate", desiredDate);
+    payload.set("timeframe", desiredDate);
     payload.set("startLocation", startLocation.trim());
     payload.set("destinationLocation", destinationLocation.trim());
     payload.set("startFloor", startFloor.trim());
@@ -468,6 +533,7 @@ export function ProfessionalRequestForm({
     payload.set("elevator", elevator);
     payload.set("scope", scope.trim());
     payload.set("selectedAddons", extras.join(", "));
+    payload.set("selectedServices", extras.join(", "));
     payload.set("cleaningRequested", cleaningRequested ? "true" : "false");
     payload.set("message", message.trim());
     payload.set("privacyConsent", "true");
@@ -518,7 +584,6 @@ export function ProfessionalRequestForm({
       }
 
       setRequestId(result.requestId);
-      setBookingId(result.bookingId);
       setStatus("success");
       window.dispatchEvent(
         new CustomEvent("floxant:conversion-event", {
@@ -556,14 +621,20 @@ export function ProfessionalRequestForm({
         data-request-success
       >
         <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
-        <h2 className="mt-4 text-2xl font-black">Ihre Anfrage wurde übermittelt.</h2>
+        <h2 className="mt-4 text-2xl font-black">Ihre Anfrage ist angekommen.</h2>
         <p className="mt-3 leading-7">
-          FLOXANT prüft die Angaben und meldet sich über den gewählten Kontaktweg.
-          Eine Anfrage ist noch keine Preis- oder Terminbestätigung.
+          FLOXANT prüft Ihre Angaben und meldet sich über den gewählten Kontaktweg.
+          Eine Buchung oder Terminbestätigung entsteht erst nach der persönlichen Abstimmung.
         </p>
-        <p className="mt-4 break-all text-xs font-semibold text-emerald-800">
-          Referenz: {requestId} · Vorgang: {bookingId}
-        </p>
+        <dl className="mt-5 grid gap-3 rounded-lg border border-emerald-200 bg-white/70 p-4 sm:grid-cols-2">
+          <div><dt className="text-xs font-black uppercase tracking-wide text-emerald-800">Referenznummer</dt><dd className="mt-1 break-all font-semibold">{requestId}</dd></div>
+          <div><dt className="text-xs font-black uppercase tracking-wide text-emerald-800">Kontaktweg</dt><dd className="mt-1 font-semibold">{contactMethod === "email" ? "E-Mail" : contactMethod === "whatsapp" ? "WhatsApp" : "Telefon"}</dd></div>
+          <div><dt className="text-xs font-black uppercase tracking-wide text-emerald-800">Standort</dt><dd className="mt-1 font-semibold">{locationLabel(context)}</dd></div>
+          <div><dt className="text-xs font-black uppercase tracking-wide text-emerald-800">Leistung</dt><dd className="mt-1 font-semibold">{context.leadIntent.serviceLabel}</dd></div>
+        </dl>
+        <a href="/" className="mt-5 inline-flex min-h-12 items-center justify-center rounded-lg bg-emerald-800 px-5 text-sm font-black text-white hover:bg-emerald-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+          Zur Startseite
+        </a>
       </section>
     );
   }
@@ -575,6 +646,13 @@ export function ProfessionalRequestForm({
       data-request-group={group}
     >
       <Progress step={step} />
+
+      {status === "error" && Object.keys(errors).length ? (
+        <div ref={errorSummaryRef} tabIndex={-1} role="alert" className="mt-5 rounded-lg border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-800 outline-none focus:ring-2 focus:ring-red-600">
+          Einige Angaben brauchen noch Ihre Aufmerksamkeit. Prüfen Sie bitte die markierten Felder.
+          {requestId ? <span className="mt-2 block break-all text-xs">Referenz: {requestId}</span> : null}
+        </div>
+      ) : null}
 
       {step === 1 ? (
         <div className="mt-6">
@@ -640,22 +718,6 @@ export function ProfessionalRequestForm({
                 <Field id="request-moving-scope" label="Zimmer, Wohnfläche oder Möbelumfang" required error={errors.scope}>
                   <input id="request-moving-scope" value={scope} onChange={(event) => setScope(event.target.value)} className={inputClass} aria-describedby={errors.scope ? "request-moving-scope-error" : undefined} />
                 </Field>
-                <Field id="request-start-floor" label="Startetage">
-                  <input id="request-start-floor" value={startFloor} onChange={(event) => setStartFloor(event.target.value)} className={inputClass} />
-                </Field>
-                <Field id="request-destination-floor" label="Zieletage">
-                  <input id="request-destination-floor" value={destinationFloor} onChange={(event) => setDestinationFloor(event.target.value)} className={inputClass} />
-                </Field>
-                <Field id="request-start-elevator" label="Aufzug am Startort">
-                  <select id="request-start-elevator" value={startElevator} onChange={(event) => setStartElevator(event.target.value)} className={inputClass}>
-                    <option value="">Noch offen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option>
-                  </select>
-                </Field>
-                <Field id="request-destination-elevator" label="Aufzug am Zielort">
-                  <select id="request-destination-elevator" value={destinationElevator} onChange={(event) => setDestinationElevator(event.target.value)} className={inputClass}>
-                    <option value="">Noch offen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option>
-                  </select>
-                </Field>
               </div>
             ) : (
               <div className="grid gap-5 sm:grid-cols-2">
@@ -687,9 +749,6 @@ export function ProfessionalRequestForm({
                         <option value="">Noch offen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option>
                       </select>
                     </Field>
-                    <Field id="request-clearance-scope" label="Restgegenstände und Räumungsumfang">
-                      <input id="request-clearance-scope" value={scope} onChange={(event) => setScope(event.target.value)} className={inputClass} />
-                    </Field>
                   </>
                 ) : (
                   <Field id="request-frequency" label="Einmalig oder regelmäßig">
@@ -704,46 +763,54 @@ export function ProfessionalRequestForm({
               </div>
             )}
 
-            {group === "clearance" ? (
-              <label className="flex min-h-12 items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-slate-800">
-                <input type="checkbox" checked={cleaningRequested} onChange={(event) => setCleaningRequested(event.target.checked)} className="mt-1 h-4 w-4" />
-                Reinigung nach der Räumung als mögliche Zusatzleistung prüfen
-              </label>
-            ) : (
-              <fieldset>
-                <legend className="text-sm font-black text-slate-950">Zusatzleistungen</legend>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {(group === "moving" ? movingExtras : cleaningExtras).map((extra) => (
-                    <label key={extra} className="flex min-h-11 items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-800">
-                      <input type="checkbox" checked={extras.includes(extra)} onChange={() => setExtras((current) => toggleValue(current, extra))} className="h-4 w-4" />
-                      {extra}
-                    </label>
-                  ))}
+            <section className="rounded-lg border border-slate-200 bg-slate-50">
+              <button
+                type="button"
+                aria-expanded={optionalOpen}
+                aria-controls="request-optional-details"
+                onClick={() => setOptionalOpen((current) => !current)}
+                className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-4 text-left text-sm font-black text-slate-900 outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              >
+                Weitere Angaben hinzufügen <span className="text-xs font-semibold text-slate-500">optional</span>
+                <ChevronDown className={`h-4 w-4 transition-transform ${optionalOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+              </button>
+              {optionalOpen ? (
+                <div id="request-optional-details" className="space-y-5 border-t border-slate-200 p-4">
+                  {group === "moving" ? (
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <Field id="request-start-floor" label="Startetage"><input id="request-start-floor" value={startFloor} onChange={(event) => setStartFloor(event.target.value)} className={inputClass} /></Field>
+                      <Field id="request-destination-floor" label="Zieletage"><input id="request-destination-floor" value={destinationFloor} onChange={(event) => setDestinationFloor(event.target.value)} className={inputClass} /></Field>
+                      <Field id="request-start-elevator" label="Aufzug am Startort"><select id="request-start-elevator" value={startElevator} onChange={(event) => setStartElevator(event.target.value)} className={inputClass}><option value="">Noch offen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option></select></Field>
+                      <Field id="request-destination-elevator" label="Aufzug am Zielort"><select id="request-destination-elevator" value={destinationElevator} onChange={(event) => setDestinationElevator(event.target.value)} className={inputClass}><option value="">Noch offen</option><option value="ja">Ja</option><option value="nein">Nein</option><option value="unklar">Unklar</option></select></Field>
+                    </div>
+                  ) : null}
+                  {group === "clearance" ? (
+                    <>
+                      <Field id="request-clearance-scope" label="Art und Umfang der Gegenstände"><input id="request-clearance-scope" value={scope} onChange={(event) => setScope(event.target.value)} className={inputClass} /></Field>
+                      <label className="flex min-h-12 items-start gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800"><input type="checkbox" checked={cleaningRequested} onChange={(event) => setCleaningRequested(event.target.checked)} className="mt-1 h-4 w-4" />Reinigung nach der Räumung als mögliche Zusatzleistung prüfen</label>
+                    </>
+                  ) : (
+                    <fieldset>
+                      <legend className="text-sm font-black text-slate-950">Zusatzleistungen</legend>
+                      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                        {(group === "moving" ? movingExtras : cleaningExtras).map((extra) => (
+                          <label key={extra} className="flex min-h-11 items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-800"><input type="checkbox" checked={extras.includes(extra)} onChange={() => setExtras((current) => toggleValue(current, extra))} className="h-4 w-4" />{extra}</label>
+                        ))}
+                      </div>
+                    </fieldset>
+                  )}
+                  <Field id="request-message" label="Besonderheiten oder Nachricht (optional)"><textarea id="request-message" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} className={`${inputClass} py-3`} /></Field>
+                  <Field id="request-files" label="Fotos oder Dokumente (optional)" error={errors.files}>
+                    <div className="rounded-lg border border-dashed border-slate-300 bg-white p-4">
+                      <div className="flex items-center gap-2 text-sm font-black text-slate-900"><FileUp className="h-4 w-4" aria-hidden="true" />Bis zu fünf Dateien auswählen</div>
+                      <input id="request-files" type="file" multiple accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(event) => selectFiles(Array.from(event.target.files || []))} className="mt-3 block w-full text-sm font-semibold text-slate-700 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-700 file:px-4 file:py-2 file:font-black file:text-white" aria-describedby={errors.files ? "request-files-error" : undefined} />
+                      {files.length ? <ul className="mt-3 grid gap-2">{files.map((file, index) => <li key={`${file.name}-${file.size}`} className="flex items-center justify-between gap-3 rounded-md bg-slate-100 px-3 py-2 text-sm font-semibold"><span className="min-w-0 truncate">{file.name} · {(file.size / 1024 / 1024).toFixed(1)} MB</span><button type="button" onClick={() => setFiles((current) => current.filter((_, itemIndex) => itemIndex !== index))} className="shrink-0 font-black text-blue-700 underline">Entfernen</button></li>)}</ul> : null}
+                      <p className="mt-2 text-xs leading-5 text-slate-600">JPG, PNG, WebP oder PDF bis 8 MB. Bitte keine Ausweise, Zugangscodes oder unnötigen persönlichen Unterlagen hochladen.</p>
+                    </div>
+                  </Field>
                 </div>
-              </fieldset>
-            )}
-
-            <Field id="request-message" label="Nachricht" required error={errors.message}>
-              <textarea id="request-message" rows={5} value={message} onChange={(event) => setMessage(event.target.value)} className={`${inputClass} py-3`} aria-describedby={errors.message ? "request-message-error" : undefined} />
-            </Field>
-
-            <Field id="request-files" label="Fotos oder Dokumente (optional)">
-              <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4">
-                <div className="flex items-center gap-2 text-sm font-black text-slate-900">
-                  <FileUp className="h-4 w-4" aria-hidden="true" />
-                  Bis zu fünf Dateien auswählen
-                </div>
-                <input
-                  id="request-files"
-                  type="file"
-                  multiple
-                  accept="image/jpeg,image/png,image/webp,application/pdf"
-                  onChange={(event) => setFiles(Array.from(event.target.files || []).slice(0, 5))}
-                  className="mt-3 block w-full text-sm font-semibold text-slate-700 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-700 file:px-4 file:py-2 file:font-black file:text-white"
-                />
-                <p className="mt-2 text-xs leading-5 text-slate-600">Bitte keine Ausweise, Zugangscodes oder nicht benötigten persönlichen Unterlagen hochladen.</p>
-              </div>
-            </Field>
+              ) : null}
+            </section>
 
             <div className="flex flex-wrap gap-3">
               <button type="button" onClick={() => setStep(1)} className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-slate-300 px-5 text-sm font-black text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
@@ -779,9 +846,10 @@ export function ProfessionalRequestForm({
                 <input id="request-phone" type="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className={inputClass} aria-describedby={errors.phone ? "request-phone-error" : undefined} />
               </Field>
             </div>
+            <p className="text-sm font-semibold text-slate-600">Mindestens E-Mail-Adresse oder Telefonnummer ist erforderlich. Der gewählte Kontaktweg muss ausgefüllt sein.</p>
 
             <section className="rounded-lg border border-blue-200 bg-blue-50 p-5" aria-labelledby="request-summary-title">
-              <h3 id="request-summary-title" className="text-lg font-black text-slate-950">Ihre Angaben vor dem Absenden</h3>
+              <div className="flex flex-wrap items-center justify-between gap-3"><h3 id="request-summary-title" className="text-lg font-black text-slate-950">Ihre Angaben vor dem Absenden</h3><button type="button" onClick={() => setStep(2)} className="min-h-11 rounded-lg px-3 text-sm font-black text-blue-800 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Angaben ändern</button></div>
               <dl className="mt-4 grid gap-3 sm:grid-cols-2">
                 <div><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Standort</dt><dd className="mt-1 font-semibold text-slate-900">{locationLabel(context)}</dd></div>
                 <div><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Leistung</dt><dd className="mt-1 font-semibold text-slate-900">{context.leadIntent.serviceLabel}</dd></div>
@@ -789,7 +857,8 @@ export function ProfessionalRequestForm({
                   <div key={label}><dt className="text-xs font-black uppercase tracking-wide text-slate-500">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{value}</dd></div>
                 ))}
                 {extras.length ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Zusatzleistungen</dt><dd className="mt-1 font-semibold text-slate-900">{extras.join(", ")}</dd></div> : null}
-                <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Nachricht</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{message}</dd></div>
+                {message ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Nachricht</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{message}</dd></div> : null}
+                {files.length ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Dateien</dt><dd className="mt-1 font-semibold text-slate-900">{files.map((file) => file.name).join(", ")}</dd></div> : null}
               </dl>
               {missingOptional.length ? <p className="mt-4 text-sm font-semibold text-slate-600">{pageContent.optionalSummary}</p> : null}
             </section>
