@@ -121,14 +121,14 @@ test("42 keine personenbezogenen Analytics-Daten", () => {
 });
 
 test("43 Regensburg-Umzug nur Umzugshilfen", () => {
-  assert.match(requestContent, /key: "regensburg_moving"[\s\S]*Start und Ziel klar angeben[\s\S]*Umfang verständlich beschreiben/);
-  assert.doesNotMatch(requestContent.match(/const moving:[\s\S]*?\n};/)?.[0] || "", /Reinigung besser anfragen|Objekt und Ort angeben/);
+  assert.match(requestContent, /key: "regensburg_moving"[\s\S]*Etagen, Aufzüge, Fotos/);
+  assert.doesNotMatch(requestContent.match(/const moving:[\s\S]*?\n};/)?.[0] || "", /besondere Bereiche/);
 });
 test("44 Düsseldorf-Reinigung mit Reinigungshilfen", () => {
-  assert.match(requestContent, /key: "duesseldorf_cleaning"[\s\S]*Objekt und Ort angeben[\s\S]*Fläche und Turnus beschreiben/);
+  assert.match(requestContent, /key: "duesseldorf_cleaning"[\s\S]*Fotos, besondere Bereiche/);
 });
 test("45 neutraler Einstieg bleibt neutral", () => {
-  assert.match(requestContent, /key: "neutral"[\s\S]*Ort und Leistung wählen/);
+  assert.match(requestContent, /key: "neutral"[\s\S]*Zeitraum, Fotos/);
 });
 test("46 Anfrageanker mit Headerabstand", () => {
   assert.match(contact, /id="direktanfrage"[\s\S]{0,180}scroll-mt-28[\s\S]{0,80}lg:scroll-mt-32/);
