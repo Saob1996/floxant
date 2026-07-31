@@ -78,6 +78,12 @@ const frequencyLabels: Record<string, string> = {
   monatlich: "Monatlich",
 };
 
+const answerLabels: Record<string, string> = {
+  ja: "Ja",
+  nein: "Nein",
+  unklar: "Noch unklar",
+};
+
 function customerValue(value: string, labels: Record<string, string>) {
   return labels[value] || value;
 }
@@ -329,8 +335,8 @@ export function ProfessionalRequestForm({
         ["Ziel", destinationLocation],
         ["Umfang", scope],
         ["Zeitraum", desiredDate],
-        ["Etagen", [startFloor, destinationFloor].filter(Boolean).join(" / ")],
-        ["Aufzüge", [startElevator, destinationElevator].filter(Boolean).join(" / ")],
+        ["Etagen", startFloor || destinationFloor ? `${startFloor || "offen"} → ${destinationFloor || "offen"}` : ""],
+        ["Aufzug", startElevator || destinationElevator ? `Start ${customerValue(startElevator, answerLabels) || "offen"}, Ziel ${customerValue(destinationElevator, answerLabels) || "offen"}` : ""],
       ];
     }
     if (group === "clearance") {
@@ -339,7 +345,7 @@ export function ProfessionalRequestForm({
         ["Objektart", customerValue(objectType, objectTypeLabels)],
         ["Größe oder Umfang", areaSize],
         ["Etage", floor],
-        ["Aufzug", elevator],
+        ["Aufzug", customerValue(elevator, answerLabels)],
         ["Restgegenstände", scope],
         ["Zeitraum", desiredDate],
         ["Reinigung gewünscht", cleaningRequested ? "Ja" : ""],
@@ -837,6 +843,7 @@ export function ProfessionalRequestForm({
                 ))}
                 {extras.length ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Zusatzleistungen</dt><dd className="mt-1 font-semibold text-slate-900">{extras.join(", ")}</dd></div> : null}
                 {message ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Nachricht</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{message}</dd></div> : null}
+                {files.length ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Dateien</dt><dd className="mt-1 font-semibold text-slate-900">{files.map((file) => file.name).join(", ")}</dd></div> : null}
               </dl>
               {missingOptional.length ? <p className="mt-4 text-sm font-semibold text-slate-600">{pageContent.optionalSummary}</p> : null}
             </section>
