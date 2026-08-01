@@ -20,6 +20,8 @@ const allLocalSeoHreflangPairs = [
   { de: "/regensburg/umzug", en: "/en/regensburg/moving" },
   { de: "/regensburg/umzugsunternehmen", en: "/en/regensburg/moving-company" },
   { de: "/regensburg/umzug-kosten", en: "/en/regensburg/moving-costs" },
+  { de: "/kleintransport-regensburg", en: "/en/regensburg/transport-service" },
+  { de: "/moebeltransport", en: "/en/regensburg/furniture-transport" },
   { de: "/regensburg/wohnungsaufloesung", en: "/en/regensburg/house-clearance" },
   { de: "/regensburg/entruempelung", en: "/en/regensburg/apartment-clearance" },
   { de: "/regensburg/reinigung-nach-umzug", en: "/en/regensburg/cleaning-after-moving" },

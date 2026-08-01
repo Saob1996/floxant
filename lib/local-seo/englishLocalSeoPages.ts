@@ -211,6 +211,8 @@ const regensburgMovingLinks: readonly LocalSeoLink[] = [
   { href: "/en/regensburg/moving", label: "Moving service Regensburg" },
   { href: "/en/regensburg/moving-company", label: "Moving company Regensburg" },
   { href: "/en/regensburg/moving-costs", label: "Moving costs Regensburg" },
+  { href: "/en/regensburg/transport-service", label: "Transport service Regensburg" },
+  { href: "/en/regensburg/furniture-transport", label: "Furniture transport Regensburg" },
   { href: "/en/regensburg/house-clearance", label: "House clearance Regensburg" },
   { href: "/en/regensburg/apartment-clearance", label: "Apartment clearance Regensburg" },
   { href: "/en/regensburg/cleaning-after-moving", label: "Cleaning after moving" },
@@ -782,6 +784,76 @@ const allEnglishLocalSeoPages = [
     secondaryCtaHref: "/en/regensburg/moving-quote-review",
     whatsappMessage:
       "Hello FLOXANT, I need apartment clearance in Regensburg. I can send rooms, photos, access, item volume, permission and timing.",
+  }),
+  createEnglishPage({
+    key: "en-regensburg-transport-service",
+    path: "/en/regensburg/transport-service",
+    region: "regensburg",
+    serviceKey: "umzug",
+    serviceName: "Transport service",
+    metaTitle: "Transport Service Regensburg | Furniture & Small Moves",
+    metaDescription:
+      "Transport service in Regensburg for furniture, boxes, single items and small moves. Send photos, dimensions, access details and timing in English.",
+    h1: "Transport service in Regensburg for furniture and small moves",
+    heroText:
+      "For English-speaking customers who need practical transport in Regensburg without booking a full household move.",
+    scope: ["furniture transport", "single-item transport", "boxes", "small moves", "pickup and delivery"],
+    customerTypes: ["international residents", "students", "families", "businesses", "property managers"],
+    typicalCases: ["one sofa or wardrobe", "marketplace pickup", "student move", "office furniture delivery"],
+    sections: [
+      section(
+        "Transport matched to the real job",
+        "A small transport request should state the pickup and delivery addresses, item dimensions, floors, elevator, carrying distance and preferred date.",
+      ),
+      section(
+        "Furniture, boxes and single items",
+        "Photos and measurements help determine whether dismantling, carrying assistance, protective materials or more than one person is needed.",
+      ),
+      section(
+        "Regensburg access and timing",
+        "Old-town access, parking, narrow staircases and fixed collection windows can affect the plan. FLOXANT checks these details before confirming availability or price.",
+      ),
+    ],
+    internalLinks: regensburgMovingLinks,
+    primaryCtaHref: "/en/contact?city=regensburg&service=umzug",
+    secondaryCtaHref: "/en/regensburg/moving-quote-review",
+    whatsappMessage:
+      "Hello FLOXANT, I need a transport service in Regensburg. I can send pickup, destination, item photos, dimensions, access and timing.",
+  }),
+  createEnglishPage({
+    key: "en-regensburg-furniture-transport",
+    path: "/en/regensburg/furniture-transport",
+    region: "regensburg",
+    serviceKey: "umzug",
+    serviceName: "Furniture transport",
+    metaTitle: "Furniture Transport Regensburg | Pickup & Delivery",
+    metaDescription:
+      "Furniture transport in Regensburg for sofas, wardrobes, tables and bulky items. English requests with photos, measurements, floors and access details.",
+    h1: "Furniture transport in Regensburg with clear pickup details",
+    heroText:
+      "For single pieces or several items that need careful collection, carrying and delivery in Regensburg and nearby areas.",
+    scope: ["sofas", "wardrobes", "tables", "bulky items", "pickup and delivery"],
+    customerTypes: ["private customers", "international residents", "students", "offices", "landlords"],
+    typicalCases: ["furniture-store pickup", "marketplace purchase", "one bulky item", "furniture between apartments"],
+    sections: [
+      section(
+        "What to send for a furniture transport quote",
+        "Include photos, approximate measurements, quantity, pickup and delivery postcodes, floors, elevator and carrying distance.",
+      ),
+      section(
+        "Protection and dismantling",
+        "Mention whether items can be dismantled, whether fragile surfaces need protection and whether help is available at either address.",
+      ),
+      section(
+        "A realistic answer before collection",
+        "FLOXANT checks vehicle space, staffing, access and timing before confirming feasibility. This prevents vague prices and surprises at pickup.",
+      ),
+    ],
+    internalLinks: regensburgMovingLinks,
+    primaryCtaHref: "/en/contact?city=regensburg&service=umzug",
+    secondaryCtaHref: "/en/regensburg/moving-quote-review",
+    whatsappMessage:
+      "Hello FLOXANT, I need furniture transport in Regensburg. I can send photos, dimensions, pickup, destination, floors and timing.",
   }),
   createEnglishPage({
     key: "en-regensburg-moving-quote-review",

@@ -217,6 +217,8 @@ export const sitemapRoutes = [
   "/en/regensburg/moving",
   "/en/regensburg/moving-company",
   "/en/regensburg/moving-costs",
+  "/en/regensburg/transport-service",
+  "/en/regensburg/furniture-transport",
   "/en/regensburg/moving-quote-review",
   "/en/regensburg/office-cleaning",
   "/en/regensburg/stairwell-cleaning",
