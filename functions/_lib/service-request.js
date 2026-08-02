@@ -78,24 +78,50 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
   const movingCalculator = asRecord(calculatorInputs.umzug);
   const pricingSignals = asRecord(asRecord(details.valuation).pricingSignals);
 
+  const serviceId = firstText(
+    payload?.serviceId,
+    configuration.serviceId,
+    configuration.service,
+    rawFields.serviceId,
+    rawFields.service,
+    detailService.id,
+    payload?.serviceCategory,
+  );
   const normalizedService = firstText(
     detailService.type,
     typeof payload?.service === "string" ? payload.service : "",
+    serviceId,
     service,
     configuration.service,
     rawFields.service,
     payload?.serviceCategory,
   );
-  const group = serviceGroup(normalizedService);
+  const group = serviceGroup(firstText(serviceId, normalizedService));
   const location = firstText(
+    payload?.location,
     configuration.location,
     configuration.city,
     rawFields.cityOrZip,
     rawFields.location,
     payload?.cityOrZip,
-    payload?.location,
     payload?.city,
     detailService.regionPreset,
+  );
+  const serviceLabel = firstText(
+    payload?.serviceLabel,
+    configuration.serviceLabel,
+    rawFields.serviceLabel,
+    detailService.label,
+    detailService.name,
+    normalizedService,
+  );
+  const locationLabel = firstText(
+    payload?.locationLabel,
+    configuration.locationLabel,
+    rawFields.locationLabel,
+    detailService.regionLabel,
+    detailService.regionPreset,
+    location,
   );
   const postalCode = firstText(
     configuration.postalCode,
@@ -133,8 +159,11 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
   const common = {
     schemaVersion: "service-request-1.0.0",
     group,
+    serviceId,
     service: normalizedService,
+    serviceLabel,
     location,
+    locationLabel,
     postalCode,
     desiredPeriod,
     scope,
@@ -162,6 +191,8 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
       clientContext.landingPage,
       rawFields.entryPage,
       rawFields.landingPage,
+      payload?.entryPoint,
+      payload?.entryPage,
       payload?.landingPage,
       payload?.sourcePage,
     ),
@@ -175,6 +206,65 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
       gclid: firstText(clientContext.gclid, rawFields.gclid, payload?.gclid),
       gbraid: firstText(clientContext.gbraid, rawFields.gbraid, payload?.gbraid),
       wbraid: firstText(clientContext.wbraid, rawFields.wbraid, payload?.wbraid),
+    },
+  };
+
+  const specialized = {
+    item: {
+      description: firstText(
+        configuration.itemDescription,
+        configuration.items,
+        configuration.furnitureList,
+        rawFields.itemDescription,
+        payload?.itemDescription,
+      ),
+      dimensions: firstText(
+        configuration.dimensions,
+        configuration.itemDimensions,
+        rawFields.dimensions,
+        rawFields.itemDimensions,
+        payload?.dimensions,
+      ),
+      weight: firstText(
+        configuration.weight,
+        configuration.itemWeight,
+        rawFields.weight,
+        rawFields.itemWeight,
+        payload?.weight,
+      ),
+      instrumentType: firstText(
+        configuration.instrumentType,
+        configuration.pianoInstrumentType,
+        rawFields.instrumentType,
+        rawFields.pianoInstrumentType,
+        payload?.instrumentType,
+        payload?.pianoInstrumentType,
+      ),
+    },
+    access: {
+      stairs: firstText(
+        configuration.stairs,
+        configuration.pianoNarrowStairs,
+        rawFields.stairs,
+        rawFields.pianoNarrowStairs,
+        payload?.stairs,
+        payload?.pianoNarrowStairs,
+      ),
+      width: firstText(
+        configuration.accessWidth,
+        rawFields.accessWidth,
+        payload?.accessWidth,
+      ),
+      vehicleDistance: firstText(
+        configuration.vehicleDistance,
+        rawFields.vehicleDistance,
+        payload?.vehicleDistance,
+      ),
+      path: firstText(
+        configuration.accessPath,
+        rawFields.accessPath,
+        payload?.accessPath,
+      ),
     },
   };
 
@@ -263,6 +353,19 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
                 payload?.area,
                 pricingSignals.areaM2,
               ),
+              condition: firstText(
+                configuration.condition,
+                rawFields.condition,
+                payload?.condition,
+              ),
+              windowCount: firstText(
+                configuration.windowCount,
+                configuration.windowsCount,
+                rawFields.windowCount,
+                rawFields.windowsCount,
+                payload?.windowCount,
+                payload?.windowsCount,
+              ),
             },
             frequency: firstText(
               configuration.cleaningFrequency,
@@ -303,6 +406,16 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
                   rawFields.elevator,
                   payload?.elevator,
                 ),
+                condition: firstText(
+                  configuration.condition,
+                  rawFields.condition,
+                  payload?.condition,
+                ),
+                fillLevel: firstText(
+                  configuration.fillLevel,
+                  rawFields.fillLevel,
+                  payload?.fillLevel,
+                ),
               },
               remainingItems: firstText(
                 configuration.remainingItems,
@@ -315,5 +428,5 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
             }
           : {};
 
-  return compact({ ...common, ...serviceSpecific }) || {};
+  return compact({ ...common, ...serviceSpecific, ...specialized }) || {};
 }

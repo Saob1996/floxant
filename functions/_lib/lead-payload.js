@@ -86,7 +86,7 @@ recommendedTeam selectedAddons selectedOpenItems selectedServices timeToConvertS
 `.trim().split(/\s+/);
 
 const FILE_FIELD_NAMES = `
-attachments cellarTrashroomPhoto damageOfferFile damagePhoto discreetMovePhoto estateClearancePhoto file handoverPhoto
+attachments cellarTrashroomPhoto damageOfferFile damagePhoto discreetMovePhoto estateClearancePhoto file files handoverPhoto
 objectCasePhoto offerFile photo planBOfferFile planBPhoto propertyReadyPhoto rentalReadyPhoto routePhoto tenantPhoto
 `.trim().split(/\s+/);
 

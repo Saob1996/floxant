@@ -409,6 +409,8 @@ export function buildAdminBookingDetailView(
           "Ort",
           details,
           [
+            "configuration.serviceRequest.locationLabel",
+            "configuration.serviceRequest.location",
             "configuration.cleaningRequest.location",
             "configuration.location",
             "configuration.city",
@@ -446,6 +448,7 @@ export function buildAdminBookingDetailView(
           "Startort",
           details,
           [
+            "configuration.serviceRequest.route.startLocation",
             "configuration.fromAddress",
             "configuration.startLocation",
             "configuration.details.startLocation",
@@ -470,6 +473,7 @@ export function buildAdminBookingDetailView(
           "Zielort",
           details,
           [
+            "configuration.serviceRequest.route.destinationLocation",
             "configuration.toAddress",
             "configuration.destinationLocation",
             "configuration.details.destinationLocation",
@@ -495,6 +499,7 @@ export function buildAdminBookingDetailView(
           "Startetage",
           details,
           [
+            "configuration.serviceRequest.route.startFloor",
             "configuration.startFloor",
             "configuration.fromFloor",
             "configuration.rawFields.startFloor",
@@ -505,6 +510,7 @@ export function buildAdminBookingDetailView(
           "Zieletage",
           details,
           [
+            "configuration.serviceRequest.route.destinationFloor",
             "configuration.destinationFloor",
             "configuration.toFloor",
             "configuration.rawFields.destinationFloor",
@@ -515,6 +521,7 @@ export function buildAdminBookingDetailView(
           "Aufzug am Startort",
           details,
           [
+            "configuration.serviceRequest.route.startElevator",
             "configuration.hasElevatorFrom",
             "configuration.startElevator",
             "configuration.rawFields.hasElevatorStart",
@@ -526,6 +533,7 @@ export function buildAdminBookingDetailView(
           "Aufzug am Zielort",
           details,
           [
+            "configuration.serviceRequest.route.destinationElevator",
             "configuration.hasElevatorTo",
             "configuration.destinationElevator",
             "configuration.rawFields.hasElevatorDestination",
@@ -534,9 +542,51 @@ export function buildAdminBookingDetailView(
           consumed,
         ),
         item(
+          "Treppen",
+          details,
+          [
+            "configuration.serviceRequest.access.stairs",
+            "configuration.stairs",
+            "configuration.rawFields.stairs",
+            "configuration.rawFields.pianoNarrowStairs",
+          ],
+          consumed,
+        ),
+        item(
+          "Verfügbare Durchgangsbreite",
+          details,
+          [
+            "configuration.serviceRequest.access.width",
+            "configuration.accessWidth",
+            "configuration.rawFields.accessWidth",
+          ],
+          consumed,
+        ),
+        item(
+          "Entfernung zum Fahrzeug",
+          details,
+          [
+            "configuration.serviceRequest.access.vehicleDistance",
+            "configuration.vehicleDistance",
+            "configuration.rawFields.vehicleDistance",
+          ],
+          consumed,
+        ),
+        item(
+          "Zugangsweg",
+          details,
+          [
+            "configuration.serviceRequest.access.path",
+            "configuration.accessPath",
+            "configuration.rawFields.accessPath",
+          ],
+          consumed,
+        ),
+        item(
           "Objektart",
           details,
           [
+            "configuration.serviceRequest.object.type",
             "configuration.cleaningRequest.propertyType",
             "configuration.propertyType",
             "configuration.objectType",
@@ -550,6 +600,8 @@ export function buildAdminBookingDetailView(
           "Fläche",
           details,
           [
+            "configuration.serviceRequest.object.area",
+            "configuration.serviceRequest.object.size",
             "configuration.cleaningRequest.area",
             "configuration.areaM2",
             "configuration.areaSize",
@@ -584,6 +636,7 @@ export function buildAdminBookingDetailView(
           "Gewünschtes Datum",
           details,
           [
+            "configuration.serviceRequest.desiredPeriod",
             "configuration.cleaningRequest.preferredDate",
             "configuration.preferredDate",
             "configuration.desiredDate",
@@ -643,6 +696,7 @@ export function buildAdminBookingDetailView(
           "Hauptleistung",
           details,
           [
+            "configuration.serviceRequest.serviceLabel",
             "configuration.cleaningRequest.service",
             "service.type",
             "configuration.serviceLabel",
@@ -665,6 +719,7 @@ export function buildAdminBookingDetailView(
           "Umfang",
           details,
           [
+            "configuration.serviceRequest.scope",
             "configuration.scopeSummary",
             "configuration.scope",
             "valuation.pricingSignals.scopeSummary",
@@ -677,6 +732,7 @@ export function buildAdminBookingDetailView(
           "Weitere Zusatzleistungen",
           details,
           [
+            "configuration.serviceRequest.selectedAddons",
             "configuration.cleaningRequest.selectedServices",
             "configuration.selectedAddons",
             "configuration.selectedServices",
@@ -700,6 +756,7 @@ export function buildAdminBookingDetailView(
           "Möbel und Gegenstände",
           details,
           [
+            "configuration.serviceRequest.item.description",
             "configuration.items",
             "configuration.itemDescription",
             "configuration.furnitureList",
@@ -711,11 +768,64 @@ export function buildAdminBookingDetailView(
           "Maße",
           details,
           [
+            "configuration.serviceRequest.item.dimensions",
             "configuration.dimensions",
             "configuration.itemDimensions",
             "configuration.rawFields.dimensions",
             "configuration.rawFields.itemDimensions",
             "configuration.rawFields.measurements",
+          ],
+          consumed,
+        ),
+        item(
+          "Instrumentart",
+          details,
+          [
+            "configuration.serviceRequest.item.instrumentType",
+            "configuration.instrumentType",
+            "configuration.pianoInstrumentType",
+            "configuration.rawFields.instrumentType",
+            "configuration.rawFields.pianoInstrumentType",
+          ],
+          consumed,
+        ),
+        item(
+          "Gewicht",
+          details,
+          [
+            "configuration.serviceRequest.item.weight",
+            "configuration.weight",
+            "configuration.rawFields.weight",
+          ],
+          consumed,
+        ),
+        item(
+          "Zustand",
+          details,
+          [
+            "configuration.serviceRequest.object.condition",
+            "configuration.condition",
+            "configuration.rawFields.condition",
+          ],
+          consumed,
+        ),
+        item(
+          "Anzahl Fenster",
+          details,
+          [
+            "configuration.serviceRequest.object.windowCount",
+            "configuration.windowCount",
+            "configuration.rawFields.windowCount",
+          ],
+          consumed,
+        ),
+        item(
+          "Füllgrad",
+          details,
+          [
+            "configuration.serviceRequest.object.fillLevel",
+            "configuration.fillLevel",
+            "configuration.rawFields.fillLevel",
           ],
           consumed,
         ),
