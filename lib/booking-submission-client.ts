@@ -108,7 +108,7 @@ async function executeRequest(input: RequestInfo | URL, init?: RequestInit): Pro
     return {
       status: 500,
       headers: new Headers({ "Content-Type": "application/json; charset=utf-8" }),
-      payload: { ok: false, code: "SUBMISSION_FAILED" },
+      payload: { ok: false, code: "NETWORK_ERROR" },
     };
   }
 
@@ -134,10 +134,14 @@ async function executeRequest(input: RequestInfo | URL, init?: RequestInit): Pro
   };
 }
 
-function requestKey(input: RequestInfo | URL) {
-  if (typeof input === "string") return input;
-  if (input instanceof URL) return input.toString();
-  return input.url;
+function requestKey(input: RequestInfo | URL, init?: RequestInit) {
+  const url = typeof input === "string"
+    ? input
+    : input instanceof URL
+      ? input.toString()
+      : input.url;
+  const idempotencyKey = new Headers(init?.headers).get("Idempotency-Key") || "shared";
+  return `${url}::${idempotencyKey}`;
 }
 
 function responseFromSnapshot(snapshot: ResponseSnapshot) {
@@ -151,7 +155,7 @@ function responseFromSnapshot(snapshot: ResponseSnapshot) {
 }
 
 export async function bookingFetch(input: RequestInfo | URL, init?: RequestInit) {
-  const key = requestKey(input);
+  const key = requestKey(input, init);
   let request = inFlightRequests.get(key);
   if (!request) {
     request = executeRequest(input, init);

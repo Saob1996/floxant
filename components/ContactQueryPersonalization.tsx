@@ -1,40 +1,45 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { ProfessionalRequestForm } from "@/components/ProfessionalRequestForm";
 import type { LeadIntent } from "@/lib/lead-intents";
 import {
+  requestLocationOptions,
   resolveRequestContext,
+  type RequestContextInput,
   type RequestLocation,
   type RequestServiceOption,
 } from "@/lib/lead-intents/resolve-request-context";
 import { cn } from "@/lib/utils";
 
 function useCurrentQuery() {
+  const searchParams = useSearchParams();
+  const routerQuery = searchParams.toString();
   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    const syncQuery = () => setQuery(window.location.search);
-    syncQuery();
-    window.addEventListener("popstate", syncQuery);
-    return () => window.removeEventListener("popstate", syncQuery);
-  }, []);
+  useLayoutEffect(() => {
+    const syncFromLocation = () => setQuery(window.location.search.replace(/^\?/, ""));
+    syncFromLocation();
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
+  }, [routerQuery]);
 
   return query;
 }
 
-function resolveQueryContext(query: string) {
+function resolveQueryContext(query: string, fallback: RequestContextInput = {}) {
   const params = new URLSearchParams(query);
   return resolveRequestContext({
     mode: params.get("mode"),
-    location: params.get("location"),
-    city: params.get("city"),
-    service: params.get("service"),
+    location: params.get("location") || params.get("region") || fallback.location,
+    city: params.get("city") || fallback.city,
+    service: params.get("service") || fallback.service,
     intent: params.get("intent"),
     priority: params.get("priority"),
-    source: params.get("source"),
-    entryPage: params.get("entryPage"),
+    source: params.get("source") || fallback.source,
+    entryPage: params.get("entryPage") || fallback.entryPage,
     campaign: params.get("campaign") || params.get("utm_campaign"),
     locale: params.get("locale"),
   });
@@ -82,14 +87,15 @@ function RequestContextSelector({
   location,
   serviceKey,
   services,
+  error,
 }: {
   location: RequestLocation | "";
   serviceKey: string;
   services: readonly RequestServiceOption[];
+  error?: string;
 }) {
   const locationOptions: Array<{ value: RequestLocation; label: string }> = [
-    { value: "duesseldorf", label: "Düsseldorf" },
-    { value: "regensburg", label: "Regensburg" },
+    ...requestLocationOptions.map((option) => ({ value: option.id, label: option.label })),
     { value: "unsicher", label: "Noch unsicher" },
   ];
   function selectLocation(nextLocation: RequestLocation) {
@@ -108,11 +114,6 @@ function RequestContextSelector({
     if (!location || !nextServiceKey) return;
     const service = services.find((option) => option.key === nextServiceKey);
     if (!service) return;
-
-    if (service.key === "angebot-pruefen") {
-      window.location.assign("/angebot-guenstiger-pruefen?source=contact_selector");
-      return;
-    }
 
     replaceRequestQuery((params) => {
       params.delete("mode");
@@ -164,6 +165,8 @@ function RequestContextSelector({
           value={serviceKey}
           onChange={(event) => selectService(event.target.value)}
           disabled={!location}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? "request-context-error" : undefined}
           className="mt-3 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
         >
           <option value="">
@@ -175,6 +178,11 @@ function RequestContextSelector({
             </option>
           ))}
         </select>
+        {error ? (
+          <p id="request-context-error" role="alert" className="mt-3 text-sm font-semibold text-red-700">
+            {error}
+          </p>
+        ) : null}
       </div>
     </section>
   );
@@ -182,12 +190,27 @@ function RequestContextSelector({
 
 export function ContactLeadForm({
   fallbackIntent: _fallbackIntent,
+  defaultLocation,
+  defaultService,
+  sourcePage = "/kontakt",
 }: {
   fallbackIntent: LeadIntent;
+  defaultLocation?: RequestLocation;
+  defaultService?: string;
+  sourcePage?: string;
 }) {
   const query = useCurrentQuery();
   const [entryReset, setEntryReset] = useState(0);
-  const context = useMemo(() => resolveQueryContext(query), [query]);
+  const fallback = useMemo<RequestContextInput>(
+    () => ({
+      location: defaultLocation,
+      service: defaultService,
+      source: sourcePage === "/buchung" ? "buchung" : "kontakt",
+      entryPage: sourcePage,
+    }),
+    [defaultLocation, defaultService, sourcePage],
+  );
+  const context = useMemo(() => resolveQueryContext(query, fallback), [fallback, query]);
 
   useEffect(() => {
     const reset = () => setEntryReset((current) => current + 1);
@@ -202,17 +225,48 @@ export function ContactLeadForm({
       tabIndex={-1}
     >
       <ProfessionalRequestForm
-        key={`${query || "static-contact-default"}:${entryReset}`}
+        key={`central-request:${entryReset}`}
         context={context}
-        selection={
+        sourcePage={sourcePage}
+        selection={(selectionError) => (
           <RequestContextSelector
             location={context.location}
             serviceKey={context.serviceKey}
             services={context.availableServices}
+            error={selectionError}
           />
-        }
+        )}
       />
     </div>
   );
+}
+
+export function LegacyBookingContextRedirect() {
+  const query = useCurrentQuery();
+  const searchParams = useMemo(() => new URLSearchParams(query), [query]);
+  const location = searchParams.get("location") || searchParams.get("region");
+  const redirectsToContact = ["duesseldorf", "dusseldorf"].includes(
+    String(location || "").trim().toLowerCase(),
+  );
+
+  useEffect(() => {
+    if (!redirectsToContact) return;
+    const next = new URLSearchParams(query);
+    next.delete("region");
+    next.set("location", "duesseldorf");
+    if (!next.get("source")) next.set("source", "buchung");
+    window.location.replace(`/kontakt?${next.toString()}#direktanfrage`);
+  }, [query, redirectsToContact]);
+
+  return redirectsToContact ? (
+    <div className="fixed inset-0 z-[100] grid place-items-center bg-white/95 px-6 text-center" role="status">
+      <div className="max-w-lg rounded-xl border border-blue-100 bg-blue-50 p-6 text-slate-950 shadow-lg">
+        <p className="text-lg font-black">Düsseldorf-Anfrage wird geöffnet</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          Wir öffnen den passenden zentralen Anfrageweg für Düsseldorf.
+        </p>
+      </div>
+    </div>
+  ) : null;
 }
 

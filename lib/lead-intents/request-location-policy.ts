@@ -1,134 +1,98 @@
 import type { LeadService } from "@/lib/lead-intents";
-import { serviceRoutingByKey } from "@/lib/service-routing";
+import {
+  REQUEST_LOCATION_OPTIONS,
+  getRequestFormProfile,
+  getRequestService,
+  getRequestServicesForLocation,
+  isAllowedRequestCombination,
+} from "@/lib/booking/request-service-policy.js";
 
 export type RequestLocation = "duesseldorf" | "regensburg" | "unsicher";
+export type RequestFormProfile =
+  | "cleaning"
+  | "moving"
+  | "furniture"
+  | "piano"
+  | "clearance"
+  | "offer_check"
+  | "general";
 
 export type RequestServiceOption = {
   key: string;
+  registryServiceId: string;
   label: string;
   service: LeadService;
   intent: string;
+  category: string;
+  formProfile: RequestFormProfile;
+  analyticsServiceType: string;
+  allowedUpgrades: readonly string[];
+  dashboardLabel: string;
+  successMessage: string;
+  confirmationEmailVariant: string;
 };
 
-type ServicePolicyEntry = {
-  key: string;
-  service: LeadService;
-  label?: string;
-  intent?: string;
+type ProjectedService = {
+  id: string;
+  name: string;
+  category: string;
+  leadService: string;
+  intent: string;
+  formProfile: string;
+  allowedUpgrades: readonly string[];
+  dashboardLabel: string;
+  successMessage: string;
 };
 
-const confirmedServicePolicy: Readonly<
-  Record<Exclude<RequestLocation, "unsicher">, readonly ServicePolicyEntry[]>
-> = {
-  duesseldorf: [
-    { key: "reinigung", service: "reinigung" },
-    { key: "bueroreinigung", service: "bueroreinigung", label: "Büroreinigung" },
-    { key: "praxisreinigung", service: "praxisreinigung" },
-    { key: "fensterreinigung", service: "fensterreinigung" },
-    {
-      key: "grundreinigung",
-      service: "reinigung",
-      label: "Grundreinigung",
-      intent: "grundreinigung-anfrage",
-    },
-    { key: "unterhaltsreinigung", service: "unterhaltsreinigung" },
-    {
-      key: "baureinigung",
-      service: "reinigung",
-      label: "Bau- und Bauendreinigung",
-      intent: "bauendreinigung-anfrage",
-    },
-    { key: "gewerbereinigung", service: "gewerbereinigung" },
-    { key: "hausverwaltung-reinigung", service: "hausverwaltung-reinigung" },
-    { key: "treppenhausreinigung", service: "treppenhausreinigung" },
-  ],
-  regensburg: [
-    { key: "umzug", service: "umzug", intent: "umzug-anfrage" },
-    { key: "entruempelung", service: "entruempelung", intent: "entruempelung-anfrage" },
-    { key: "wohnungsaufloesung", service: "wohnungsaufloesung" },
-    {
-      key: "raeumung",
-      service: "entruempelung",
-      label: "Räumung",
-      intent: "raeumung-anfrage",
-    },
-    { key: "reinigung", service: "reinigung" },
-    { key: "moebeltransport", service: "moebeltransport" },
-    { key: "klaviertransport", service: "klaviertransport" },
-    { key: "seniorenumzug", service: "seniorenumzug" },
-  ],
-};
-
-const unsureServices: readonly RequestServiceOption[] = [
-  {
-    key: "reinigung",
-    label: "Reinigung",
-    service: "reinigung",
-    intent: "reinigung-anfrage",
-  },
-  { key: "umzug", label: "Umzug", service: "umzug", intent: "umzug-anfrage" },
-  {
-    key: "raeumung-aufloesung",
-    label: "Räumung oder Auflösung",
-    service: "entruempelung",
-    intent: "raeumung-oder-aufloesung",
-  },
-  {
-    key: "angebot-pruefen",
-    label: "Angebot prüfen",
-    service: "angebot-pruefen",
-    intent: "angebot-pruefen",
-  },
-  {
-    key: "sonstiges",
-    label: "Andere Anfrage",
-    service: "sonstiges",
-    intent: "allgemeine-anfrage",
-  },
-] as const;
-
-function buildConfirmedOptions(
-  location: Exclude<RequestLocation, "unsicher">,
-): readonly RequestServiceOption[] {
-  return confirmedServicePolicy[location].flatMap((policy) => {
-    const registry = serviceRoutingByKey[policy.service];
-    if (!registry || !registry.supportedCities.includes(location)) return [];
-    return [
-      {
-        key: policy.key,
-        label: policy.label || registry.label,
-        service: policy.service,
-        intent: policy.intent || registry.defaultIntent,
-      },
-    ];
-  });
+function toRequestServiceOption(projected: ProjectedService): RequestServiceOption {
+  const profile = getRequestFormProfile(projected.formProfile);
+  return {
+    key: projected.id,
+    registryServiceId: projected.id,
+    label: projected.name,
+    service: projected.leadService as LeadService,
+    intent: projected.intent,
+    category: projected.category,
+    formProfile: projected.formProfile as RequestFormProfile,
+    analyticsServiceType: profile.analyticsServiceType,
+    allowedUpgrades: projected.allowedUpgrades,
+    dashboardLabel: projected.dashboardLabel,
+    successMessage: projected.successMessage,
+    confirmationEmailVariant: profile.confirmationEmailVariant,
+  };
 }
+
+function optionsFor(location: RequestLocation): readonly RequestServiceOption[] {
+  return (getRequestServicesForLocation(location) as readonly ProjectedService[]).map(
+    toRequestServiceOption,
+  );
+}
+
+export const requestLocationOptions = REQUEST_LOCATION_OPTIONS as readonly {
+  id: Exclude<RequestLocation, "unsicher">;
+  label: string;
+  registryRegion: string;
+}[];
 
 export const requestServiceOptionsByLocation: Readonly<
   Record<RequestLocation, readonly RequestServiceOption[]>
 > = {
-  duesseldorf: buildConfirmedOptions("duesseldorf"),
-  regensburg: buildConfirmedOptions("regensburg"),
-  unsicher: unsureServices,
+  duesseldorf: optionsFor("duesseldorf"),
+  regensburg: optionsFor("regensburg"),
+  unsicher: optionsFor("unsicher"),
 };
 
 export function resolveAllowedRequestService(
   location: RequestLocation,
   serviceKey: string,
 ): RequestServiceOption | null {
-  const options = requestServiceOptionsByLocation[location];
-  return (
-    options.find((candidate) => candidate.key === serviceKey) ||
-    options.find((candidate) => candidate.service === serviceKey) ||
-    null
-  );
+  const projected = getRequestService(location, serviceKey) as ProjectedService | null;
+  return projected ? toRequestServiceOption(projected) : null;
 }
 
 export function isRequestServiceAllowedAtLocation(
   location: RequestLocation,
   option: RequestServiceOption,
 ): boolean {
-  if (location === "unsicher") return true;
-  const registry = serviceRoutingByKey[option.service];
-  return Boolean(registry?.supportedCities.includes(location));
+  return isAllowedRequestCombination(location, option.registryServiceId);
 }

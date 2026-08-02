@@ -5,19 +5,12 @@ export type GoogleConsentPreferences = {
   marketing?: boolean;
 };
 
-export type GenerateLeadParameters =
-  | {
-      form_name: "regensburg_moving_ads";
-      service_type: "moving";
-      location: "regensburg";
-      lead_source: "google_ads";
-    }
-  | {
-      form_name: "duesseldorf_cleaning_ads";
-      service_type: "cleaning";
-      location: "duesseldorf";
-      lead_source: "google_ads";
-    };
+export type GenerateLeadParameters = {
+  form_name: string;
+  service_type: string;
+  location: string;
+  lead_source: string;
+};
 
 type GoogleConsentValue = "granted" | "denied";
 type GoogleConsentCommand = {
@@ -137,7 +130,7 @@ export function trackGenerateLead(parameters: GenerateLeadParameters, eventKey?:
     service_type: parameters.service_type,
     location: parameters.location,
     lead_source: parameters.lead_source,
-  } as GenerateLeadParameters;
+  };
 
   try {
     configureGoogleTag();

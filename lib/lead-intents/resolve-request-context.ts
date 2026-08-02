@@ -6,10 +6,10 @@ import {
 import {
   normalizeContactCity,
   normalizeRouteToken,
-  serviceRoutingByKey,
 } from "@/lib/service-routing";
 import {
   isRequestServiceAllowedAtLocation,
+  requestLocationOptions,
   requestServiceOptionsByLocation,
   resolveAllowedRequestService,
   type RequestLocation,
@@ -17,6 +17,7 @@ import {
 } from "@/lib/lead-intents/request-location-policy";
 
 export {
+  requestLocationOptions,
   requestServiceOptionsByLocation,
   type RequestLocation,
   type RequestServiceOption,
@@ -43,6 +44,7 @@ export type RequestContextInput = {
 export type RequestContext = {
   valid: boolean;
   neutral: boolean;
+  notice: string;
   location: RequestLocation | "";
   service: LeadService | "";
   serviceKey: string;
@@ -51,6 +53,9 @@ export type RequestContext = {
   badge: string;
   description: string;
   formVariant: string;
+  analyticsServiceType: string;
+  allowedUpgrades: readonly string[];
+  confirmationEmailVariant: string;
   sourceLabel: string;
   entryPage: string;
   campaign: string;
@@ -62,6 +67,11 @@ export type RequestContext = {
 const neutralDescription =
   "Wählen Sie den passenden Standort und die gewünschte Leistung. Anschließend können Sie die wichtigsten Eckdaten direkt senden.";
 
+function isSafeRequestToken(value: string | null | undefined) {
+  const raw = String(value || "").trim();
+  return !raw || /^[\p{L}\p{N} _-]{1,80}$/u.test(raw);
+}
+
 export function buildGlobalRequestHref(source: GlobalRequestSource) {
   return `/kontakt?mode=neutral&source=${source}`;
 }
@@ -69,21 +79,47 @@ export function buildGlobalRequestHref(source: GlobalRequestSource) {
 function normalizeLocation(value: string | null | undefined): RequestLocation | "" {
   const normalized = normalizeRouteToken(value);
   if (["duesseldorf", "dusseldorf"].includes(normalized)) return "duesseldorf";
-  if (normalized === "regensburg") return "regensburg";
+  if (["regensburg", "regensburg-bayern"].includes(normalized)) return "regensburg";
   if (["unsicher", "noch-unsicher", "unbekannt"].includes(normalized)) return "unsicher";
   return "";
-}
-
-function getFormVariant(service: LeadService) {
-  const entry = serviceRoutingByKey[service];
-  return entry?.fieldGroup || "core";
 }
 
 function normalizeLocale(value: string | null | undefined): "de" | "en" {
   return String(value || "").trim().toLowerCase().startsWith("en") ? "en" : "de";
 }
 
-function neutralContext(input: RequestContextInput, location: RequestLocation | "" = ""): RequestContext {
+function normalizeSource(value: string | null | undefined) {
+  const source = normalizeRouteToken(value);
+  if (!source) return "kontakt";
+  if (
+    /^(?:global-(?:header|mobile-header|footer|404)|seo|service-finder|contact-selector|kontakt|booking|buchung|homepage|google-ads|google-maps|navigation|footer|direct)$/.test(
+      source,
+    )
+  ) {
+    return source.replace(/-/g, "_");
+  }
+  return "direkt";
+}
+
+function normalizeEntryPage(value: string | null | undefined) {
+  const raw = String(value || "").trim();
+  if (!raw.startsWith("/") || raw.startsWith("//")) return "";
+  try {
+    return new URL(raw, "https://www.floxant.de").pathname.slice(0, 240);
+  } catch {
+    return "";
+  }
+}
+
+function normalizeCampaign(value: string | null | undefined) {
+  return String(value || "").trim().slice(0, 120);
+}
+
+function neutralContext(
+  input: RequestContextInput,
+  location: RequestLocation | "" = "",
+  notice = "",
+): RequestContext {
   const leadIntent = resolveLeadIntent({
     path: "/kontakt",
     service: "kontakt",
@@ -95,6 +131,7 @@ function neutralContext(input: RequestContextInput, location: RequestLocation | 
   return {
     valid: false,
     neutral: true,
+    notice,
     location,
     service: "",
     serviceKey: "",
@@ -103,9 +140,12 @@ function neutralContext(input: RequestContextInput, location: RequestLocation | 
     badge: "FLOXANT Anfrage",
     description: neutralDescription,
     formVariant: "core",
-    sourceLabel: String(input.source || "kontakt").trim(),
-    entryPage: String(input.entryPage || ""),
-    campaign: String(input.campaign || "").trim(),
+    analyticsServiceType: "general",
+    allowedUpgrades: [],
+    confirmationEmailVariant: "general",
+    sourceLabel: normalizeSource(input.source),
+    entryPage: normalizeEntryPage(input.entryPage),
+    campaign: normalizeCampaign(input.campaign),
     locale: normalizeLocale(input.locale),
     availableServices: location ? requestServiceOptionsByLocation[location] : [],
     leadIntent,
@@ -116,8 +156,27 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
   const explicitNeutral = normalizeRouteToken(input.mode) === "neutral";
   if (explicitNeutral) return neutralContext(input);
 
-  const location = normalizeLocation(input.location || input.city);
-  if (!location) return neutralContext(input);
+  const rawLocation = input.location || input.city;
+  const hasLocationInput = Boolean(String(rawLocation || "").trim());
+  const hasServiceInput = Boolean(String(input.service || "").trim());
+  if (!isSafeRequestToken(rawLocation) || !isSafeRequestToken(input.service)) {
+    return neutralContext(
+      input,
+      "",
+      "Die aufgerufene Vorauswahl ist nicht verfügbar. Bitte wählen Sie Standort und Leistung neu aus.",
+    );
+  }
+
+  const location = normalizeLocation(rawLocation);
+  if (!location) {
+    return neutralContext(
+      input,
+      "",
+      hasLocationInput || hasServiceInput
+        ? "Die aufgerufene Vorauswahl ist nicht verfügbar. Bitte wählen Sie Standort und Leistung neu aus."
+        : "",
+    );
+  }
 
   const rawServiceKey = normalizeRouteToken(input.service);
   if (!rawServiceKey) return neutralContext(input, location);
@@ -126,23 +185,33 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
   const option = resolveAllowedRequestService(location, rawServiceKey);
 
   if (!option || !isRequestServiceAllowedAtLocation(location, option)) {
-    return neutralContext(input, location);
+    return neutralContext(
+      input,
+      location,
+      "Diese Leistung ist am gewählten Standort nicht verfügbar. Bitte wählen Sie eine passende Leistung aus.",
+    );
   }
 
   const city = location === "unsicher" ? "deutschland" : normalizeContactCity(location);
-  const intent = normalizeRouteToken(input.intent) || option.intent;
-  const leadIntent = resolveLeadIntent({
+  const intent = option.intent;
+  const resolvedLeadIntent = resolveLeadIntent({
     path: "/kontakt",
     service: option.service,
     city,
     intent,
     priority: input.priority || "p1",
   });
+  const leadIntent = {
+    ...resolvedLeadIntent,
+    serviceLabel: option.label,
+    trackingIntent: intent,
+  };
   const citySuffix = location === "unsicher" ? "" : ` in ${leadIntent.cityLabel}`;
 
   return {
     valid: true,
     neutral: false,
+    notice: "",
     location,
     service: option.service,
     serviceKey: option.key,
@@ -156,10 +225,13 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
       location === "unsicher"
         ? "Beschreiben Sie kurz den Einsatzort und die gewünschte Leistung. FLOXANT ordnet Ihre Anfrage passend ein."
         : `Senden Sie die wichtigsten Eckdaten für ${option.label}${citySuffix}. FLOXANT prüft Ihre Angaben und meldet sich gezielt zurück.`,
-    formVariant: getFormVariant(option.service),
-    sourceLabel: String(input.source || "kontakt").trim(),
-    entryPage: String(input.entryPage || ""),
-    campaign: String(input.campaign || "").trim(),
+    formVariant: option.formProfile,
+    analyticsServiceType: option.analyticsServiceType,
+    allowedUpgrades: option.allowedUpgrades,
+    confirmationEmailVariant: option.confirmationEmailVariant,
+    sourceLabel: normalizeSource(input.source),
+    entryPage: normalizeEntryPage(input.entryPage),
+    campaign: normalizeCampaign(input.campaign),
     locale: normalizeLocale(input.locale),
     availableServices: options,
     leadIntent,

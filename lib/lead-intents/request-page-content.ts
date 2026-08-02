@@ -29,9 +29,29 @@ const clearance: RequestPageContent = {
     "Optional können Sie noch Fotos oder weitere Angaben zu Gegenständen und Zugängen ergänzen.",
 };
 
+const furniture: RequestPageContent = {
+  key: "regensburg_furniture_transport",
+  optionalSummary:
+    "Optional können Sie noch Etagen, Aufzüge, Zugangswege, Fahrzeugabstand oder Fotos ergänzen.",
+};
+
+const piano: RequestPageContent = {
+  key: "regensburg_piano_transport",
+  optionalSummary:
+    "Optional können Sie noch Gewicht, Treppen, Aufzüge, Zugangsbreite, Fahrzeugabstand oder Fotos ergänzen.",
+};
+
+const general: RequestPageContent = {
+  key: "general_request",
+  optionalSummary:
+    "Optional können Sie noch Fotos, Dokumente oder eine ergänzende Nachricht hinzufügen.",
+};
+
 export function resolveRequestPageContent(context: RequestContext): RequestPageContent {
   if (!context.valid || context.neutral) return neutral;
-  if (["moving", "special-transport"].includes(context.formVariant)) return moving;
+  if (context.formVariant === "moving") return moving;
+  if (context.formVariant === "furniture") return furniture;
+  if (context.formVariant === "piano") return piano;
   if (context.formVariant === "clearance") return clearance;
   if (
     ["cleaning", "b2b-cleaning", "property-cleaning", "solar-pv", "handover"].includes(
@@ -40,5 +60,5 @@ export function resolveRequestPageContent(context: RequestContext): RequestPageC
   ) {
     return cleaning;
   }
-  return neutral;
+  return general;
 }

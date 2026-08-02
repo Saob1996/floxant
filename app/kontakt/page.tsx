@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Suspense } from "react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
@@ -13,6 +14,25 @@ import { generatePageSEO } from "@/lib/seo";
 import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 export const dynamic = "force-static";
+
+const requestProcess = [
+  {
+    title: "Eckdaten senden",
+    text: "Wählen Sie die passende Leistung und senden Sie die wichtigsten Angaben.",
+  },
+  {
+    title: "Umfang klären",
+    text: "Wir prüfen Ihre Anfrage und melden uns bei Rückfragen oder wenn eine Besichtigung sinnvoll ist.",
+  },
+  {
+    title: "Angebot erhalten",
+    text: "Auf Grundlage der abgestimmten Angaben erhalten Sie ein persönliches Angebot.",
+  },
+  {
+    title: "Termin abstimmen",
+    text: "Erst danach werden Durchführung und Termin gemeinsam abgestimmt.",
+  },
+] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = generatePageSEO({
@@ -73,17 +93,59 @@ export default async function KontaktPage() {
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-black tracking-wide text-blue-800">
-              <ContactHeroBadge />
+              <Suspense fallback={<span>FLOXANT Anfrage</span>}>
+                <ContactHeroBadge />
+              </Suspense>
             </div>
-            <ContactHeroCopy fallbackIntent={leadIntent} />
+            <Suspense
+              fallback={(
+                <>
+                  <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+                    Leistung unverbindlich anfragen
+                  </h1>
+                  <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+                    Wählen Sie den passenden Standort und die gewünschte Leistung.
+                  </p>
+                </>
+              )}
+            >
+              <ContactHeroCopy fallbackIntent={leadIntent} />
+            </Suspense>
             <p className="mx-auto mt-4 max-w-2xl text-sm font-semibold leading-6 text-slate-600">
-              Die Anfrage ist unverbindlich. FLOXANT prüft die Eckdaten und meldet sich über
-              Ihren gewählten Kontaktweg. Erst die persönliche Abstimmung klärt Leistung und Termin.
+              Senden Sie uns die wichtigsten Eckdaten zu Ihrem Auftrag. Die Anfrage ist unverbindlich.
+              Nach persönlicher Prüfung melden wir uns zum weiteren Vorgehen.
             </p>
           </div>
 
+          <section className="mt-8 rounded-xl border border-blue-100 bg-white p-4 sm:p-5" aria-labelledby="request-process-title">
+            <h2 id="request-process-title" className="text-lg font-black text-slate-950">
+              So läuft Ihre Anfrage ab
+            </h2>
+            <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {requestProcess.map((item, index) => (
+                <li key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-700 text-sm font-black text-white" aria-hidden="true">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-black text-slate-950">{item.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
           <div className="mt-8">
-            <ContactLeadForm fallbackIntent={leadIntent} />
+            <Suspense
+              fallback={(
+                <div className="min-h-72 rounded-xl border border-slate-200 bg-white p-6" aria-busy="true">
+                  <p className="font-black text-slate-950">Anfrage wird vorbereitet …</p>
+                </div>
+              )}
+            >
+              <ContactLeadForm fallbackIntent={leadIntent} sourcePage="/kontakt" />
+            </Suspense>
           </div>
 
           <aside className="mt-8 rounded-xl border border-slate-200 bg-white p-5" aria-labelledby="contact-alternatives">
