@@ -28,6 +28,7 @@ const UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}
 const PLAIN_IDEMPOTENCY_KEY = new RegExp(`^${UUID_PATTERN}$`, "i");
 const NAMESPACED_IDEMPOTENCY_KEY = new RegExp(`^[a-z][a-z0-9_-]{0,31}:[0-9]{10,16}:${UUID_PATTERN}$`, "i");
 const idempotencyEntries = new Map();
+const CLOUDFLARE_PROJECT_PREVIEW_SUFFIX = ".floxant.pages.dev";
 const PUBLIC_ORIGINS = new Set([
   "https://www.floxant.de",
   "https://floxant.de",
@@ -158,6 +159,13 @@ function isAllowedOrigin(origin, env) {
   try {
     const parsed = new URL(origin);
     if (PUBLIC_ORIGINS.has(parsed.origin)) return true;
+    if (
+      parsed.protocol === "https:"
+      && !parsed.port
+      && parsed.hostname.endsWith(CLOUDFLARE_PROJECT_PREVIEW_SUFFIX)
+    ) {
+      return true;
+    }
     if (
       (parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1" || parsed.hostname === "[::1]")
       && (parsed.protocol === "http:" || parsed.protocol === "https:")

@@ -378,6 +378,43 @@ try {
     assert(result.response.status === 201 && result.response.headers.get("Access-Control-Allow-Origin") === "https://preview.example.pages.dev", "configured preview origin must work exactly");
   });
 
+  await test("cloudflare-project-preview-origins", async () => {
+    const previewEnv = { ...env, ALLOWED_FORM_ORIGINS: "" };
+    const immutableOrigin = "https://210bb1c5.floxant.pages.dev";
+    const immutableResult = await submit(validPayload(), {
+      origin: immutableOrigin,
+      requestEnv: previewEnv,
+    });
+    assert(
+      immutableResult.response.status === 201
+      && immutableResult.response.headers.get("Access-Control-Allow-Origin") === immutableOrigin,
+      "the immutable FLOXANT Pages preview must accept its own origin",
+    );
+
+    const branchOrigin = "https://codex-central-enquiry-flow-2.floxant.pages.dev";
+    const branchOptions = handleLeadOptions({
+      request: new Request("https://www.floxant.de/api/bookings", {
+        method: "OPTIONS",
+        headers: { Origin: branchOrigin },
+      }),
+      env: previewEnv,
+    });
+    assert(
+      branchOptions.status === 204
+      && branchOptions.headers.get("Access-Control-Allow-Origin") === branchOrigin,
+      "the FLOXANT branch preview must accept its own origin",
+    );
+
+    const siblingResult = await submit(validPayload(), {
+      origin: "https://attacker.pages.dev",
+      requestEnv: previewEnv,
+    });
+    assert(
+      siblingResult.response.status === 403 && siblingResult.body.code === "ORIGIN_NOT_ALLOWED",
+      "an unrelated Pages project must remain blocked",
+    );
+  });
+
   await test("options-204", async () => {
     const response = handleLeadOptions({
       request: new Request("https://www.floxant.de/api/bookings", { method: "OPTIONS", headers: { Origin: "https://www.floxant.de" } }),
