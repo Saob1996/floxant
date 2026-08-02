@@ -18,7 +18,7 @@ const originalFetch = globalThis.fetch;
 const originalConsoleError = console.error;
 const serverLogs = [];
 const calls = [];
-const mode = { insertFailure: false, resendFailure: false };
+const mode = { insertFailure: false, resendFailure: false, resendHang: false };
 const metrics = {};
 
 console.error = (...args) => serverLogs.push(args);
@@ -32,6 +32,13 @@ const serverFetch = async (url, init = {}) => {
       : new Response(JSON.stringify([{ id: "mock-booking-id" }]), { status: 201, headers: { "Content-Type": "application/json" } });
   }
   if (target.includes("api.resend.com")) {
+    if (mode.resendHang) {
+      return new Promise((_resolve, reject) => {
+        const abort = () => reject(new DOMException("Synthetic Resend timeout", "AbortError"));
+        if (init.signal?.aborted) abort();
+        else init.signal?.addEventListener("abort", abort, { once: true });
+      });
+    }
     return mode.resendFailure
       ? new Response(JSON.stringify({ message: "synthetic resend failure" }), { status: 500 })
       : new Response(JSON.stringify({ id: "mock-mail-id" }), { status: 200, headers: { "Content-Type": "application/json" } });
@@ -274,6 +281,21 @@ async function submitFormData(formData, { endpoint = "/api/bookings", acceptLang
   return { response, body: await response.json() };
 }
 
+function uploadFormData() {
+  const formData = new FormData();
+  formData.set("name", "Synthetic Upload Request");
+  formData.set("email", "synthetic-upload@example.com");
+  formData.set("service", "reinigung");
+  formData.set("privacyConsent", "true");
+  return formData;
+}
+
+function syntheticPdf(size, name) {
+  const bytes = new Uint8Array(size);
+  bytes.set([0x25, 0x50, 0x44, 0x46, 0x2d]);
+  return new File([bytes], name, { type: "application/pdf" });
+}
+
 function request(payload, {
   origin = "https://www.floxant.de",
   endpoint = "/api/bookings",
@@ -465,10 +487,10 @@ try {
       configuration: {
         requestContext: "professional_request", leadType: "professional_request", sourcePage: "/kontakt",
         landingPage: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1",
-        location: "Regensburg", city: "Regensburg", startLocation: "Regensburg", destinationLocation: "Nürnberg",
-        scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"],
+        location: "Regensburg", city: "Regensburg", startLocation: "Regensburg", destinationLocation: "Nürnberg", desiredDate: "August 2099",
+        scope: "2 Zimmer, synthetischer Test", selectedAddons: ["reinigung", "entrümpelung", "möbelmontage"],
         message: "Synthetischer Umzugstest ohne Kundendaten.", preferredContactMethod: "email", privacyConsent: true,
-        rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"], entryPage: "/kontakt", locale: "de" },
+        rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", desiredDate: "August 2099", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["reinigung", "entrümpelung", "möbelmontage"], entryPage: "/kontakt", locale: "de" },
       },
       metadata: { createdAt: "2026-07-31T12:00:00.000Z", intakeVersion: "professional-request-1.0.0", locale: "de", source: "seo", clientContext: { source: "seo", entryPoint: "/kontakt", landingPage: "/kontakt", campaign: "", locale: "de" } },
     };
@@ -477,10 +499,11 @@ try {
       sourceComponent: "ProfessionalRequestForm", sourcePage: "/kontakt", landingPage: "/kontakt", service: "Umzug",
       serviceCategory: "umzug", intent: "umzug-anfrage", name: "Synthetic Moving Test", email: "synthetic@example.com",
       phone: "0000000", preferredContactMethod: "email", startLocation: "Regensburg", destinationLocation: "Nürnberg",
-      scope: "2 Zimmer, synthetischer Test", selectedAddons: "Reinigung, Entrümpelung, Möbelmontage",
+      desiredDate: "August 2099",
+      scope: "2 Zimmer, synthetischer Test", selectedAddons: "reinigung, entrümpelung, möbelmontage",
       message: "Synthetischer Umzugstest ohne Kundendaten.", privacyConsent: "true", timestamp: "2026-07-31T12:00:00.000Z",
     })) formData.set(key, value);
-    formData.set("upgrades", JSON.stringify(["Reinigung", "Entrümpelung", "Möbelmontage"]));
+    formData.set("upgrades", JSON.stringify(["reinigung", "entrümpelung", "möbelmontage"]));
     formData.set("details", JSON.stringify(details));
     const result = await submitFormData(formData);
     const insertCallsAfter = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
@@ -489,6 +512,214 @@ try {
     const inserted = JSON.parse(calls.filter((call) => call.url.includes("/rest/v1/bookings")).at(-1).body)[0];
     assert(inserted.details.configuration.rawFields.destinationLocation === "Nürnberg", "legitimate nested moving fields must be retained");
     assert(inserted.upgrades.length === 3, "all selected moving add-ons must be retained");
+    assert(inserted.details.configuration.selectedAddons.includes("Möbelmontage"), "known add-ons must be stored with their canonical policy label");
+  });
+
+  await test("canonical-central-fields-and-aliases", async () => {
+    const normalized = normalizeLeadPayload({
+      formType: "professional_request",
+      entryPage: "/kontakt?location=regensburg&service=klaviertransport",
+      serviceId: "klaviertransport",
+      serviceLabel: "Klaviertransport",
+      location: "regensburg",
+      locationLabel: "Regensburg",
+      itemDescription: "Synthetic upright piano",
+      dimensions: "145 × 60 × 120 cm",
+      weight: "240 kg",
+      instrumentType: "Klavier",
+      stairs: "12 Stufen",
+      accessWidth: "92 cm",
+      vehicleDistance: "18 m",
+      accessPath: "Innenhof",
+      condition: "gebraucht",
+      windowCount: "8",
+      fillLevel: "halbvoll",
+    }, new Request("https://www.floxant.de/kontakt"));
+    assert(normalized.type === "professional_request", "formType alias must normalize to type");
+    assert(normalized.entryPoint.startsWith("/kontakt"), "entryPage alias must normalize to entryPoint");
+    assert(normalized.instrumentType === "Klavier" && normalized.accessWidth === "92 cm", "new central fields must survive contract normalization");
+  });
+
+  await test("central-professional-piano-request-201-and-confirmation", async () => {
+    const callsBefore = calls.length;
+    const result = await submit(validPayload({
+      type: "professional_request",
+      lead_type: "professional_request",
+      service: "klaviertransport",
+      serviceId: "klaviertransport",
+      serviceLabel: "Manipulierte Leistungsbezeichnung",
+      location: "regensburg",
+      locationLabel: "Manipulierter Standort",
+      startLocation: "Regensburg Altstadt",
+      destinationLocation: "München Schwabing",
+      desiredDate: "August 2099",
+      itemDescription: "Synthetic upright piano",
+      dimensions: "145 × 60 × 120 cm",
+      weight: "240 kg",
+      instrumentType: "Klavier",
+      stairs: "12 Stufen",
+      accessWidth: "92 cm",
+      vehicleDistance: "18 m",
+      accessPath: "Innenhof",
+      details: {
+        service: {
+          id: "umzug",
+          serviceId: "umzug",
+          name: "Manipulierter Nested-Service",
+          type: "reinigung",
+          serviceLabel: "Manipulierter Nested-Service",
+          regionPreset: "duesseldorf",
+        },
+        configuration: {
+          requestContext: "professional_request",
+          leadType: "professional_request",
+          serviceId: "umzug",
+          serviceLabel: "Manipulierte Leistungsbezeichnung",
+          dashboardLabel: "Manipulierte Leistungsbezeichnung",
+          service: "umzug",
+          serviceType: "umzug",
+          serviceCategory: "cleaning",
+          serviceSlug: "umzug",
+          requestedService: "umzug",
+          formProfile: "moving",
+          confirmationEmailVariant: "moving",
+          timeframe: "flexibel",
+          location: "duesseldorf",
+          locationLabel: "Manipulierter Standort",
+          region: "duesseldorf",
+          regionPreset: "duesseldorf",
+          rawFields: {
+            instrumentType: "Klavier",
+            accessWidth: "92 cm",
+            vehicleDistance: "18 m",
+            accessPath: "Innenhof",
+          },
+        },
+      },
+    }));
+    assert(result.response.status === 201 && result.body.ok === true, `allowed central piano request must return 201: ${JSON.stringify(result.body)}`);
+    const submissionCalls = calls.slice(callsBefore);
+    const insertCall = submissionCalls.find((call) => call.url.includes("/rest/v1/bookings"));
+    const inserted = JSON.parse(insertCall.body)[0];
+    const normalized = inserted.details.configuration.serviceRequest;
+    assert(normalized.serviceId === "klaviertransport" && normalized.serviceLabel === "Klaviertransport", "service identity and label must come from the policy");
+    assert(normalized.location === "regensburg" && normalized.locationLabel === "Regensburg", "location identity and label must come from the policy");
+    assert(normalized.item.instrumentType === "Klavier" && normalized.item.weight === "240 kg", "piano item data must be structured");
+    assert(normalized.access.stairs === "12 Stufen" && normalized.access.width === "92 cm", "access data must be structured");
+    assert(inserted.details.service.id === "klaviertransport" && inserted.details.service.serviceId === "klaviertransport", "nested service IDs must be fully canonical");
+    assert(inserted.details.service.name === "Klaviertransport" && inserted.details.service.serviceLabel === "Klaviertransport", "nested service names must be fully canonical");
+    assert(inserted.details.service.type === "transport" && inserted.details.service.label === "Klaviertransport" && inserted.details.service.regionPreset === "regensburg", "nested service identity must be fully canonical");
+    assert(inserted.details.configuration.serviceId === "klaviertransport" && inserted.details.configuration.service === "klaviertransport", "nested configuration service values must be canonical");
+    assert(inserted.details.configuration.serviceCategory === "moving" && inserted.details.configuration.serviceSlug === "klaviertransport" && inserted.details.configuration.requestedService === "klaviertransport", "nested service category and slugs must be canonical");
+    assert(inserted.details.configuration.formProfile === "piano" && inserted.details.configuration.confirmationEmailVariant === "piano_transport", "profile and confirmation variant must come from the policy");
+    assert(inserted.details.configuration.location === "regensburg" && inserted.details.configuration.region === "regensburg" && inserted.details.configuration.regionPreset === "regensburg", "nested configuration location values must be canonical");
+    const resendCalls = submissionCalls.filter((call) => call.url.includes("api.resend.com"));
+    assert(resendCalls.length === 2, "internal notification and customer confirmation must both be sent after insert");
+    const customerMessage = resendCalls.map((call) => JSON.parse(call.body)).find((message) => message.to?.[0] === "synthetic@example.com");
+    assert(customerMessage?.subject === "Ihre unverbindliche Anfrage ist eingegangen", "customer confirmation subject must describe an enquiry receipt");
+    assert(customerMessage.html.includes("Klaviertransport") && customerMessage.html.includes("Regensburg"), "customer confirmation must use canonical service and location labels");
+    assert(customerMessage.html.includes("August 2099") && customerMessage.html.includes("Regensburg Altstadt"), `customer confirmation must include a few important structured facts: ${customerMessage.html}`);
+    assert(/Rückfragen/.test(customerMessage.html) && /Besichtigung/.test(customerMessage.html), "customer confirmation must explain that questions or an inspection may be needed");
+    assert(!customerMessage.html.includes("mock-booking-id") && !/track|versicher/i.test(customerMessage.html), "customer confirmation must contain no request ID, tracking, or insurance wording");
+  });
+
+  await test("professional-type-marker-conflicts-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    for (const conflictingMarkers of [
+      { type: "general_request", lead_type: "professional_request" },
+      { type: "general_request", lead_type: "general_request" },
+      { type: "general_request", lead_type: "general_request", sourceComponent: "ProfessionalRequestForm" },
+      {
+        type: "professional_request",
+        lead_type: "professional_request",
+        details: { configuration: { requestContext: "quick_contact" } },
+      },
+    ]) {
+      const result = await submit(validPayload({
+        type: "professional_request",
+        lead_type: "professional_request",
+        service: "umzug",
+        serviceId: "umzug",
+        location: "regensburg",
+        startLocation: "Regensburg",
+        destinationLocation: "Nürnberg",
+        scope: "Synthetic moving scope",
+        desiredDate: "August 2099",
+        ...conflictingMarkers,
+      }));
+      assert(result.response.status === 400 && result.body.fields?.type, "conflicting central type markers must return 400");
+    }
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "type downgrades and marker conflicts must never reach Supabase");
+  });
+
+  await test("missing-professional-piano-core-field-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const result = await submit(validPayload({
+      type: "professional_request",
+      lead_type: "professional_request",
+      service: "klaviertransport",
+      serviceId: "klaviertransport",
+      location: "regensburg",
+      startLocation: "Regensburg",
+      destinationLocation: "München",
+      dimensions: "145 × 60 × 120 cm",
+      desiredDate: "September 2099",
+      instrumentType: "",
+    }));
+    assert(result.response.status === 400 && result.body.fields?.instrumentType, "missing piano instrument type must be rejected from the shared profile");
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "missing professional core fields must not reach Supabase");
+  });
+
+  await test("foreign-professional-upgrade-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const result = await submit(validPayload({
+      type: "professional_request",
+      lead_type: "professional_request",
+      service: "umzug",
+      serviceId: "umzug",
+      location: "regensburg",
+      startLocation: "Regensburg",
+      destinationLocation: "Nürnberg",
+      scope: "Synthetic moving scope",
+      desiredDate: "October 2099",
+      selectedAddons: ["Verpackung", "VIP-Sonderleistung"],
+      upgrades: ["Verpackung", "VIP-Sonderleistung"],
+    }));
+    assert(result.response.status === 400 && result.body.fields?.selectedAddons, "an add-on outside the service policy must be rejected");
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "foreign professional add-ons must not reach Supabase");
+  });
+
+  await test("invalid-professional-location-service-combination-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const result = await submit(validPayload({
+      type: "professional_request",
+      lead_type: "professional_request",
+      service: "umzug",
+      serviceId: "umzug",
+      serviceLabel: "Umzug",
+      location: "duesseldorf",
+      locationLabel: "Düsseldorf",
+    }));
+    assert(result.response.status === 400 && result.body.fields?.serviceId, "disallowed location-service combination must return a field-level 400");
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "disallowed combination must not reach Supabase");
+  });
+
+  await test("manipulated-professional-policy-tokens-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    for (const manipulated of [
+      { location: "../regensburg", serviceId: "umzug", expectedField: "location" },
+      { location: "regensburg", serviceId: "../../umzug", expectedField: "serviceId" },
+    ]) {
+      const result = await submit(validPayload({
+        type: "professional_request",
+        lead_type: "professional_request",
+        service: "umzug",
+        serviceId: manipulated.serviceId,
+        location: manipulated.location,
+      }));
+      assert(result.response.status === 400 && result.body.fields?.[manipulated.expectedField], "path-like policy tokens must receive a field-level 400 before normalization");
+    }
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "path-like policy tokens must never reach Supabase");
   });
 
   await test("valid-json-201", async () => {
@@ -742,6 +973,22 @@ try {
     assert(insertIndex >= 0 && resendIndex > insertIndex, "mocked Supabase insert must finish before the failing Resend notification");
   });
 
+  await test("resend-timeout-still-201", async () => {
+    const callsBefore = calls.length;
+    const startedAt = Date.now();
+    mode.resendHang = true;
+    const result = await submit(validPayload());
+    mode.resendHang = false;
+    const elapsedMs = Date.now() - startedAt;
+    assert(result.response.status === 201 && result.body.ok === true, "a timed-out Resend request must not undo the stored lead");
+    assert(elapsedMs >= 3_500 && elapsedMs < 6_000, "parallel Resend deliveries must abort within the short server timeout");
+    const submissionCalls = calls.slice(callsBefore);
+    const insertIndex = submissionCalls.findIndex((call) => call.url.includes("/rest/v1/bookings"));
+    const resendCalls = submissionCalls.filter((call) => call.url.includes("api.resend.com"));
+    assert(insertIndex >= 0 && resendCalls.length === 2, "both post-insert email attempts must use the timeout-safe path");
+    assert(resendCalls.every((call) => call.body && call.method === "POST"), "timed-out email attempts must preserve the Resend request contract");
+  });
+
   await test("no-pii-in-logs", async () => {
     const sentinelName = "PII-SENTINEL-NAME";
     const sentinelEmail = "pii-sentinel@example.com";
@@ -864,6 +1111,20 @@ try {
     globalThis.fetch = serverFetch;
   });
 
+  await test("network-error-keeps-safe-client-contract", async () => {
+    globalThis.fetch = async () => {
+      throw new TypeError("synthetic network failure");
+    };
+    const response = await bookingFetch("/api/bookings?network-error", {
+      method: "POST",
+      body: new FormData(),
+    });
+    const body = await response.json();
+    assert(response.status === 500 && body.code === "NETWORK_ERROR", "network failures must keep a distinguishable safe client code");
+    assert(!body.requestId && !/synthetic|TypeError/.test(body.error), "network errors must expose no fake reference or internal exception");
+    globalThis.fetch = serverFetch;
+  });
+
   await test("upload-not-counted-as-payload-field", async () => {
     globalThis.fetch = async (url, init = {}) => {
       const target = String(url);
@@ -885,6 +1146,33 @@ try {
     const result = await submitFormData(formData);
     assert(result.response.status === 201, "valid PDF upload alongside an exact-limit payload must remain compatible");
     assert(calls.some((call) => call.url.includes("/storage/v1/object/uploads/")), "upload endpoint must be called");
+  });
+
+  await test("central-file-count-limit-400", async () => {
+    const formData = uploadFormData();
+    for (let index = 0; index < 6; index += 1) {
+      formData.append("photo", syntheticPdf(8, `synthetic-${index}.pdf`));
+    }
+    const uploadCallsBefore = calls.filter((call) => call.url.includes("/storage/v1/object/")).length;
+    const result = await submitFormData(formData);
+    assert(result.response.status === 400 && result.body.fields?.files.includes("5"), "more than five files must be rejected");
+    assert(calls.filter((call) => call.url.includes("/storage/v1/object/")).length === uploadCallsBefore, "file-count rejection must happen before upload");
+  });
+
+  await test("central-per-file-size-limit-400", async () => {
+    const formData = uploadFormData();
+    formData.append("photo", syntheticPdf((8 * 1024 * 1024) + 1, "synthetic-too-large.pdf"));
+    const result = await submitFormData(formData);
+    assert(result.response.status === 400 && result.body.fields?.files.includes("8 MiB"), "a file larger than eight MiB must be rejected");
+  });
+
+  await test("central-total-file-size-limit-400", async () => {
+    const formData = uploadFormData();
+    for (let index = 0; index < 4; index += 1) {
+      formData.append("files", syntheticPdf((6 * 1024 * 1024) + 1, `synthetic-total-${index}.pdf`));
+    }
+    const result = await submitFormData(formData);
+    assert(result.response.status === 400 && result.body.fields?.files.includes("24 MiB"), "files larger than 24 MiB in total must be rejected");
   });
 
   await test("active-clients-use-contract-adapter", async () => {

@@ -137,6 +137,61 @@ const cases = [
     expected: ["Düsseldorf 40210", "Neuss 41460", "35"],
   },
   {
+    label: "zentrale Klavier- und Zugangsanfrage",
+    record: booking({
+      service: "klaviertransport",
+      details: {
+        configuration: {
+          serviceRequest: {
+            serviceId: "klaviertransport",
+            serviceLabel: "Klaviertransport",
+            location: "regensburg",
+            locationLabel: "Regensburg",
+            route: {
+              startLocation: "Regensburg Altstadt",
+              destinationLocation: "München Schwabing",
+            },
+            item: {
+              description: "Klavier mit Holzgehäuse",
+              dimensions: "145 × 60 × 120 cm",
+              instrumentType: "Klavier",
+              weight: "240 kg",
+            },
+            access: {
+              stairs: "12 Stufen",
+              width: "92 cm",
+              vehicleDistance: "18 m",
+              path: "Innenhof",
+            },
+            object: {
+              condition: "gebraucht",
+              windowCount: "8",
+              fillLevel: "halbvoll",
+            },
+            futureOperationalHint: "bleibt als weitere Angabe sichtbar",
+          },
+        },
+      },
+    }),
+    expected: [
+      "Klaviertransport",
+      "Regensburg",
+      "Klavier mit Holzgehäuse",
+      "145 × 60 × 120 cm",
+      "Instrumentart",
+      "240 kg",
+      "Treppen",
+      "92 cm",
+      "Entfernung zum Fahrzeug",
+      "Innenhof",
+      "Zustand",
+      "Anzahl Fenster",
+      "Füllgrad",
+      "Future Operational Hint",
+      "bleibt als weitere Angabe sichtbar",
+    ],
+  },
+  {
     label: "Reinigungsanfrage",
     record: booking({
       service: "reinigung",

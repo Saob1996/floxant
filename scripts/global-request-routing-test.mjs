@@ -14,9 +14,11 @@ const notFound = read("app/not-found.tsx");
 const leadIntents = read("lib/lead-intents.ts");
 const resolver = read("lib/lead-intents/resolve-request-context.ts");
 const locationPolicy = read("lib/lead-intents/request-location-policy.ts");
+const requestPolicy = read("lib/booking/request-service-policy.js");
 const siteChrome = read("components/layout/SiteChrome.tsx");
 const adsCleaning = read("components/forms/DuesseldorfCleaningAdsForm.tsx");
 const adsMoving = read("components/forms/RegensburgMovingAdsForm.tsx");
+const bookingPage = read("app/buchung/page.tsx");
 
 const cases = [];
 function test(name, check) {
@@ -56,32 +58,35 @@ test("6. Das neutrale Badge ist verbindlich", () => {
 });
 
 test("7. Büroreinigung ist Düsseldorf korrekt zugeordnet", () => {
-  assert.match(locationPolicy, /key: "bueroreinigung", service: "bueroreinigung", label: "Büroreinigung"/);
-  assert.match(locationPolicy, /duesseldorf: buildConfirmedOptions\("duesseldorf"\)/);
+  assert.match(requestPolicy, /id: "bueroreinigung", name: "Büroreinigung"[\s\S]*?locations: both[\s\S]*?leadService: "bueroreinigung"/);
+  assert.match(locationPolicy, /duesseldorf: optionsFor\("duesseldorf"\)/);
 });
 
 test("8. Praxisreinigung ist Düsseldorf korrekt zugeordnet", () => {
-  assert.match(locationPolicy, /key: "praxisreinigung", service: "praxisreinigung"/);
+  assert.match(requestPolicy, /id: "praxisreinigung", name: "Praxisreinigung"[\s\S]*?locations: both[\s\S]*?leadService: "praxisreinigung"/);
 });
 
 test("9. Umzug ist Regensburg korrekt zugeordnet", () => {
-  assert.match(locationPolicy, /key: "umzug", service: "umzug"/);
-  assert.match(locationPolicy, /regensburg: buildConfirmedOptions\("regensburg"\)/);
+  assert.match(requestPolicy, /id: "umzug", name: "Umzug"[\s\S]*?locations: regensburg[\s\S]*?leadService: "umzug"/);
+  assert.match(locationPolicy, /regensburg: optionsFor\("regensburg"\)/);
 });
 
 test("10. Entrümpelung ist Regensburg korrekt zugeordnet", () => {
-  assert.match(locationPolicy, /key: "entruempelung", service: "entruempelung"/);
+  assert.match(requestPolicy, /id: "entruempelung", name: "Entrümpelung"[\s\S]*?locations: regensburg[\s\S]*?leadService: "entruempelung"/);
 });
 
 test("11. Ungültige Kombinationen fallen neutral zurück", () => {
   assert.match(resolver, /!option \|\| !isRequestServiceAllowedAtLocation\(location, option\)/);
-  assert.match(resolver, /return neutralContext\(input, location\)/);
-  assert.match(locationPolicy, /registry\?\.supportedCities\.includes\(location\)/);
+  assert.match(resolver, /Diese Leistung ist am gewählten Standort nicht verfügbar/);
+  assert.match(locationPolicy, /isAllowedRequestCombination\(location, option\.registryServiceId\)/);
 });
 
 test("12. Ein neuer globaler Einstieg verwirft alten Formularzustand", () => {
   assert.match(contact, /floxant:neutral-request-entry/);
-  assert.match(contact, /static-contact-default.*entryReset/);
+  assert.match(contact, /key=\{`central-request:\$\{entryReset\}`\}/);
+  assert.match(contact, /const routerQuery = searchParams\.toString\(\)/);
+  assert.match(contact, /window\.addEventListener\("popstate", syncFromLocation\)/);
+  assert.doesNotMatch(contact, /key=\{`[^`]*query/);
   assert.match(navigation, /resetNeutralRequestState/);
   assert.doesNotMatch(`${contact}\n${form}`, /localStorage|sessionStorage/);
 });
@@ -99,9 +104,9 @@ test("14. Google-Ads-Formulare behalten ihren Kampagnenkontext", () => {
   assert.match(adsMoving, /Google Ads – Umzug Regensburg/);
 });
 
-test("15. Angebot prüfen bleibt eine getrennte Route", () => {
-  assert.match(navigation, /href="\/angebot-guenstiger-pruefen"/);
-  assert.match(contact, /window\.location\.assign\("\/angebot-guenstiger-pruefen\?source=contact_selector"\)/);
+test("15. Angebotscheck ist im zentralen Anfrageprozess verfügbar", () => {
+  assert.match(requestPolicy, /id: "angebotscheck"/);
+  assert.doesNotMatch(contact, /window\.location\.assign/);
 });
 
 test("16. Budget nennen bleibt eine getrennte Route", () => {
@@ -122,7 +127,9 @@ test("18. generate_lead wird nicht beim Öffnen ausgelöst", () => {
 test("19. Düsseldorf und Regensburg werden nicht vermischt", () => {
   assert.match(resolver, /const options = requestServiceOptionsByLocation\[location\]/);
   assert.match(resolver, /resolveAllowedRequestService\(location, rawServiceKey\)/);
-  assert.match(locationPolicy, /confirmedServicePolicy/);
+  assert.match(locationPolicy, /getRequestServicesForLocation\(location\)/);
+  assert.match(requestPolicy, /locations: both/);
+  assert.match(requestPolicy, /locations: regensburg/);
 });
 
 test("20. Desktop, Mobile und Footer nutzen dieselbe zentrale Routinglogik", () => {
@@ -151,6 +158,22 @@ test("Kontakt-Metadaten und Canonical sind neutral", () => {
 test("Der alte Regensburg-Kontaktfallback ist entfernt", () => {
   assert.match(leadIntents, /"\/kontakt": \{[\s\S]*?city: "deutschland"/);
   assert.doesNotMatch(navigation, /headerOfferHref = buildLeadHref/);
+});
+
+test("Signatur-CTAs verwenden explizite Policy-Services", () => {
+  assert.doesNotMatch(bookingPage, /getSignatureActionHref/);
+  assert.match(bookingPage, /service=uebergabeakte&entry=uebergabeakte/);
+  assert.match(bookingPage, /service=diskret-service&entry=diskret/);
+  assert.match(bookingPage, /service=umzug-mit-reinigung&entry=kombination/);
+  assert.match(bookingPage, /service=entruempelung&entry=raeumung-reinigung/);
+  assert.match(bookingPage, /service=beiladung-rueckfahrt&entry=rueckfahrt/);
+});
+
+test("Alte Düsseldorf-Buchungsparameter öffnen den neutralen zentralen Kontext", () => {
+  assert.match(contact, /LegacyBookingContextRedirect/);
+  assert.match(contact, /next\.set\("location", "duesseldorf"\)/);
+  assert.match(contact, /window\.location\.replace\(`\/kontakt\?/);
+  assert.match(bookingPage, /<LegacyBookingContextRedirect \/>/);
 });
 
 console.log(`Global request routing tests: PASS (${cases.length} checks)`);

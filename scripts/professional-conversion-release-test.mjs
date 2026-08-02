@@ -12,11 +12,13 @@ const contact = read("components/ContactQueryPersonalization.tsx");
 const form = read("components/ProfessionalRequestForm.tsx");
 const resolver = read("lib/lead-intents/resolve-request-context.ts");
 const policy = read("lib/lead-intents/request-location-policy.ts");
+const requestPolicy = read("lib/booking/request-service-policy.js");
 const dashboardTest = read("scripts/admin-dashboard-details-test.mjs");
 const functionTest = read("scripts/cloudflare-functions-test.mjs");
 const analyticsTest = read("scripts/google-tag-consent-test.mjs");
 const requestContent = read("lib/lead-intents/request-page-content.ts");
 const requestSchema = read("lib/booking/request-schema.js");
+const submissionClient = read("lib/booking-submission-client.ts");
 
 const passed = [];
 function test(name, check) {
@@ -55,19 +57,20 @@ test("9 Validierungsfehler behält Eingaben", () => {
 });
 
 test("10 Büroreinigung Düsseldorf", () => {
-  assert.match(policy, /duesseldorf:[\s\S]*key: "bueroreinigung", service: "bueroreinigung"/);
+  assert.match(requestPolicy, /id: "bueroreinigung", name: "Büroreinigung"[\s\S]*?locations: both[\s\S]*?leadService: "bueroreinigung"/);
+  assert.match(policy, /duesseldorf: optionsFor\("duesseldorf"\)/);
 });
 test("11 Praxisreinigung Düsseldorf", () => {
-  assert.match(policy, /duesseldorf:[\s\S]*key: "praxisreinigung", service: "praxisreinigung"/);
+  assert.match(requestPolicy, /id: "praxisreinigung", name: "Praxisreinigung"[\s\S]*?locations: both[\s\S]*?leadService: "praxisreinigung"/);
 });
 test("12 Umzug Regensburg", () => {
-  assert.match(policy, /regensburg:[\s\S]*key: "umzug", service: "umzug"/);
+  assert.match(requestPolicy, /id: "umzug", name: "Umzug"[\s\S]*?locations: regensburg[\s\S]*?leadService: "umzug"/);
 });
 test("13 Entrümpelung Regensburg", () => {
-  assert.match(policy, /regensburg:[\s\S]*key: "entruempelung", service: "entruempelung"/);
+  assert.match(requestPolicy, /id: "entruempelung", name: "Entrümpelung"[\s\S]*?locations: regensburg[\s\S]*?leadService: "entruempelung"/);
 });
 test("14 ungültige Kombination neutral", () => {
-  assert.match(resolver, /return neutralContext\(input, location\)/);
+  assert.match(resolver, /Diese Leistung ist am gewählten Standort nicht verfügbar/);
 });
 
 for (const [number, label, fixture] of [
@@ -137,9 +140,23 @@ test("47 gemeinsamer Anfragevertrag", () => {
   assert.match(functionTest, /regensburg-moving-context-formdata-201/);
   assert.match(requestSchema, /CANONICAL_REQUEST_TOP_LEVEL_FIELDS/);
   assert.match(requestSchema, /REQUEST_UI_ONLY_FIELDS[\s\S]*"priority"/);
-  assert.match(requestSchema, /"rawFields", "entryPage", "campaign"/);
+  assert.match(requestSchema, /"rawFields", "entryPage", "entryPoint", "campaign"/);
+});
+test("48 statischer Query-Einstieg hydratisiert ohne Abweichung", () => {
+  assert.match(contact, /const \[query, setQuery\] = useState\(""\)/);
+  assert.match(contact, /window\.location\.search/);
+  assert.match(contact, /syncFromLocation\(\)/);
+});
+test("49 temporÃ¤rer Kontextwechsel behÃ¤lt das letzte Fachprofil", () => {
+  assert.match(form, /if \(!context\.valid\)[\s\S]*?group: previous\.group/);
+});
+test("50 veraltete Submit-Antworten Ã¤ndern keinen neuen Kontext", () => {
+  assert.match(form, /const attemptKey = `professional_request:/);
+  assert.match(form, /submissionAttemptKeyRef\.current !== attemptKey/);
+  assert.match(submissionClient, /Idempotency-Key/);
+  assert.match(submissionClient, /`\$\{url\}::\$\{idempotencyKey\}`/);
 });
 
-assert.equal(passed.length, 47);
+assert.equal(passed.length, 50);
 console.log(`Professional conversion release tests: PASS (${passed.length} checks)`);
 for (const name of passed) console.log(`PASS ${name}`);

@@ -47,7 +47,9 @@ const progressiveFieldChecks = {
   contact:
     professionalFormSource.includes('id="request-email"') &&
     professionalFormSource.includes('id="request-phone"'),
-  service: professionalFormSource.includes('payload.set("service", bookingService)'),
+  service:
+    professionalFormSource.includes("service: bookingService") &&
+    professionalFormSource.includes("serviceId: context.serviceKey"),
   location: professionalFormSource.includes('id="request-city"'),
   message: professionalFormSource.includes('id="request-message"'),
   privacy: professionalFormSource.includes('id="request-privacy"'),

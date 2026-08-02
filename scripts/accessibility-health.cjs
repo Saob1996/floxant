@@ -115,8 +115,9 @@ function main() {
     formsWithStatusSignals: 0,
   };
 
-  if (!/href="#main-content"/.test(layout) || !/skip-to-content/.test(layout)) {
-    findings.push(item("FAIL", "Skip link", "Root layout braucht Skip-Link zu #main-content.", "app/layout.tsx"));
+  const appChrome = `${layout}\n${siteChrome}`;
+  if (!/href="#main-content"/.test(appChrome) || !/skip-to-content/.test(appChrome)) {
+    findings.push(item("FAIL", "Skip link", "App-Chrome braucht einen Skip-Link zu #main-content.", "components/layout/SiteChrome.tsx"));
   }
   if (!/id="main-content"[\s\S]*tabIndex=\{-1\}|id="main-content"[\s\S]*tabIndex="-1"/.test(siteChrome)) {
     findings.push(item("FAIL", "Focusable main target", "#main-content muss fuer Skip-Link fokussierbar sein.", "components/layout/SiteChrome.tsx"));
@@ -191,7 +192,7 @@ function main() {
 
   const status = findings.length ? "FAIL" : warnings.length ? "WARN" : "PASS";
   const checks = [
-    item("PASS", "Skip link present", "Skip-Link ist im Root Layout vorhanden.", "app/layout.tsx"),
+    item("PASS", "Skip link present", "Skip-Link ist im App-Chrome vorhanden.", "components/layout/SiteChrome.tsx"),
     item("PASS", "Main target focus", "#main-content ist fokussierbar.", "components/layout/SiteChrome.tsx"),
     ...warnings,
     ...findings,

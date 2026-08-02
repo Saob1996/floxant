@@ -221,6 +221,30 @@ for (const relativePath of [
   assert.match(source, /const leadEventKeyRef = useRef\(""\)/);
 }
 
+{
+  const relativePath = "components/ProfessionalRequestForm.tsx";
+  const source = fs.readFileSync(path.join(root, relativePath), "utf8");
+  const successGuard = source.indexOf("response.status !== 201");
+  const responseOkGuard = source.indexOf("response.ok !== true");
+  const payloadGuard = source.indexOf("result.ok !== true");
+  const requestIdGuard = source.indexOf("!result.requestId");
+  const bookingIdGuard = source.indexOf("!result.bookingId");
+  const trackingCall = source.indexOf("trackGenerateLead(", payloadGuard);
+
+  assert.ok(successGuard >= 0, `${relativePath}: HTTP-201-Prüfung fehlt`);
+  assert.ok(responseOkGuard > successGuard, `${relativePath}: Response-ok-Prüfung fehlt`);
+  assert.ok(payloadGuard > responseOkGuard, `${relativePath}: payload.ok-Prüfung fehlt`);
+  assert.ok(requestIdGuard > payloadGuard, `${relativePath}: requestId-Prüfung fehlt`);
+  assert.ok(bookingIdGuard > requestIdGuard, `${relativePath}: bookingId-Prüfung fehlt`);
+  assert.ok(trackingCall > bookingIdGuard, `${relativePath}: Event liegt nicht hinter Erfolgskontrolle`);
+  assert.match(source, /form_name: "central_professional_request"/);
+  assert.match(source, /service_type: context\.analyticsServiceType/);
+  assert.match(source, /location: context\.location \|\| "unsicher"/);
+  assert.match(source, /lead_source: context\.sourceLabel/);
+  const trackingBlock = source.slice(trackingCall, source.indexOf(");", trackingCall) + 2);
+  assert.doesNotMatch(trackingBlock, /\b(?:name|email|phone|message|requestId|bookingId|startLocation|destinationLocation|files)\b/);
+}
+
 const regensburgSource = fs.readFileSync(
   path.join(root, "components", "forms", "RegensburgMovingAdsForm.tsx"),
   "utf8",
@@ -247,4 +271,4 @@ assert.equal((googleTagComponent.match(/gtag\/js/g) || []).length, 1);
 assert.match(googleTagComponent, /strategy="afterInteractive"/);
 assert.match(googleTagComponent, /pathname\.startsWith\("\/dashboard"\)/);
 
-console.log("Google Tag Consent Mode und Lead-Tracking: 12 Prüfgruppen bestanden.");
+console.log("Google Tag Consent Mode und Lead-Tracking: 13 Prüfgruppen bestanden.");

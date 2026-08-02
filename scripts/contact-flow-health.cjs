@@ -23,7 +23,13 @@ const packageJson = JSON.parse(read("package.json"));
 
 check("contact page uses route-derived heading", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.headline") && requestContext.includes("headline:"), "H1 should react to the centrally resolved service/city/intent.");
 check("contact page uses route-derived intro", contactPage.includes("<ContactHeroCopy") && contactPersonalization.includes("context.description") && requestContext.includes("description:"), "Intro should use the central request context.");
-check("contact page embeds location/service choice above form", contactPersonalization.includes("selection={") && contactPersonalization.includes("<RequestContextSelector") && professionalForm.includes("<div className=\"mt-5\">{selection}</div>"), "Neutral location and service choice should appear in step one before the detail and contact steps.");
+check(
+  "contact page embeds location/service choice above form",
+  contactPersonalization.includes("selection={(selectionError)") &&
+    contactPersonalization.includes("<RequestContextSelector") &&
+    professionalForm.includes("{selection(errors.context"),
+  "Neutral location and service choice should appear in step one before the detail and contact steps.",
+);
 check("ProfessionalRequestForm is the direct form", contactPage.includes("<ContactLeadForm") && contactPersonalization.includes("<ProfessionalRequestForm"), "Central three-step lead form must stay present.");
 check("ProfessionalRequestForm only submits to bookings API", professionalForm.includes('bookingFetch("/api/bookings"') && professionalForm.includes("onSubmit={handleSubmit}"), "Lead API should be called by form submit.");
 check("Finder does not submit or fetch", !/fetch\s*\(/.test(finder) && !finder.includes("onSubmit"), "Finder must remain link-only.");

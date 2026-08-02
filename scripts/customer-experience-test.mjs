@@ -11,6 +11,7 @@ const resolver = read("lib/lead-intents/resolve-request-context.ts");
 const dashboard = read("lib/admin-dashboard/booking-details.ts");
 const dashboardUi = read("components/admin-dashboard/AdminDashboard.tsx");
 const analytics = read("lib/analytics/google-tag.ts");
+const requestPolicy = read("lib/booking/request-service-policy.js");
 
 const checks = [];
 function test(name, run) {
@@ -59,7 +60,10 @@ test("Doppelklickschutz und strikte Erfolgskontrolle", () => {
 });
 
 test("Dateien werden geprüft und können entfernt werden", () => {
-  assert.match(form, /maxFileSize = 8 \* 1024 \* 1024/);
+  assert.match(requestPolicy, /maxFiles: 5/);
+  assert.match(requestPolicy, /maxFileBytes: 8 \* 1024 \* 1024/);
+  assert.match(requestPolicy, /maxTotalBytes: 24 \* 1024 \* 1024/);
+  assert.match(form, /REQUEST_ATTACHMENT_RULES\.maxFileBytes/);
   assert.match(form, /acceptedFileTypes/);
   assert.match(form, />Entfernen<\/button>/);
 });
@@ -67,12 +71,15 @@ test("Dateien werden geprüft und können entfernt werden", () => {
 test("Zusammenfassung enthält nur vorhandene Werte", () => {
   assert.match(form, /importantDetails\.filter\(\(\[, value\]\) => value\)/);
   assert.match(form, /\{message \?/);
-  assert.match(form, /Angaben ändern/);
+  assert.match(form, /Auswahl ändern/);
+  assert.match(form, /Eckdaten ändern/);
+  assert.match(form, /Zusatzangaben ändern/);
+  assert.match(form, /Kontakt ändern/);
 });
 
 test("kundengerechter Erfolg ohne falsche Buchungszusage", () => {
-  assert.match(form, /Ihre Anfrage ist angekommen\./);
-  assert.match(form, /persönlichen Abstimmung/);
+  assert.match(form, /Ihre Anfrage ist eingegangen/);
+  assert.match(form, /kein Auftrag und kein automatisch bestätigter Termin/);
   assert.doesNotMatch(form, /Buchung abgeschlossen|Termin garantiert|verbindlich reserviert/);
 });
 
