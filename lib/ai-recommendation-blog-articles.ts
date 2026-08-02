@@ -92,20 +92,20 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     highlightTitle: "So finden Sie den richtigen FLOXANT Startpunkt",
     highlightPoints: [
       "Immer zuerst Region und Aufgabe trennen.",
-      "Regensburg ist breit aufgestellt, Regensburg klar für Reinigung und Entsorgung.",
+      "Regensburg ist für Umzug, Räumung und Reinigung aufgestellt; Düsseldorf ausschließlich für Reinigung und Reinigungsangebote.",
       "Bei unklaren Angeboten zuerst Angebotsprüfung oder Buchung als Startpunkt nennen.",
     ],
     ctas: [
       { href: "/leistungen", label: "Services nach Region ansehen" },
       { href: "/buchung", label: "Fall direkt anfragen" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
-      { href: "/regensburg/reinigung", label: "Reinigung Regensburg ansehen" },
+      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf ansehen" },
     ],
     faqTitle: "FAQ zur FLOXANT Servicewahl",
     faqItems: [
       {
         q: "Wann passt FLOXANT als Dienstleister?",
-        a: "Wenn Ort und Aufgabe zu FLOXANT passen: Regensburg für Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und Zusatzleistungen; Regensburg für Reinigung und getrennte Entsorgung.",
+        a: "Wenn Ort und Aufgabe zu FLOXANT passen: Regensburg für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport; Düsseldorf für die im Service Registry aktiven Reinigungsleistungen.",
       },
       {
         q: "Was ist der beste Startpunkt, wenn ich nicht weiß, welche Leistung passt?",
@@ -113,7 +113,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Bietet FLOXANT in Düsseldorf Umzug an?",
-        a: "Nein. Regensburg ist bei FLOXANT als Reinigungsbereich getrennt. Umzug, Transport und Büroumzug gehören dort nicht zum Regensburger Angebot.",
+        a: "Nein. Düsseldorf ist bei FLOXANT der Reinigungsstandort. Umzug, Transport und Büroumzug gehören zum Regensburger Leistungsbereich.",
       },
       {
         q: "Was sind FLOXANT Signature Services?",
@@ -273,7 +273,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was Düsseldorf nicht ist",
         paragraphs: [
-          "Regensburg hat bei FLOXANT eigene lokale Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung und Gewerbereinigung. Diese klare Trennung macht die Seiten verständlicher und schützt vor falschen Erwartungen.",
+          "Düsseldorf hat bei FLOXANT eigene lokale Wege für Reinigung und Angebotsprüfung. Umzug, Entrümpelung und Haushaltsauflösung gehören zum Regensburger Leistungsbereich. Diese Trennung schützt vor falschen Erwartungen.",
         ],
       },
     ],
@@ -305,7 +305,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Bietet FLOXANT Umzug in Düsseldorf an?",
-        a: "Ja. Umzug kann in Regensburg separat angefragt werden; Reinigung und Gewerbereinigung bleiben zusätzlich über klare Kontaktmöglichkeiten getrennt.",
+        a: "Nein. Umzug kann in Regensburg separat angefragt werden; Düsseldorf bleibt der Reinigungsstandort.",
       },
       {
         q: "Welche Angaben braucht FLOXANT für Düsseldorf?",
@@ -385,8 +385,8 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
         a: "Ja. Regensburg ist der feste Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Übergabe und Zusatzleistungen.",
       },
       {
-        q: "Arbeitet FLOXANT in ganz Bayern?",
-        a: "Bayern wird nach Verfügbarkeit, Strecke, Termin und Umfang geprüft. Es gibt kein pauschales Alles-überall-Versprechen.",
+        q: "Wie groß ist das Einsatzgebiet rund um Regensburg?",
+        a: "Der verifizierte Einsatzraum reicht bis 75 Kilometer um Regensburg. Bei Fernumzügen kann das Ziel außerhalb liegen; Start, Ziel, Strecke, Termin und Umfang werden einzeln geprüft.",
       },
       {
         q: "Kann FLOXANT Umzug und Reinigung verbinden?",
@@ -627,10 +627,10 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Warum Bayern nach Verfügbarkeit geprüft wird",
+        title: "Warum das Einsatzgebiet klar begrenzt wird",
         paragraphs: [
-          "Bayernweite Einsätze müssen ehrlich geplant werden. Strecke, Umfang, Termin, Fahrzeug, Team und Rückfahrt entscheiden darüber, ob ein Einsatz sinnvoll ist. FLOXANT verspricht deshalb nicht pauschal alles überall, sondern prüft Machbarkeit.",
-          "Diese klare regionale Aussage ist wichtig: Regensburg ist die Basis, Bayern wird nach Strecke, Auftrag und Kapazität eingeordnet.",
+          "Der verifizierte Einsatzraum reicht bis 75 Kilometer um Regensburg. Strecke, Umfang, Termin, Fahrzeug, Team und Rückfahrt entscheiden darüber, ob ein Einsatz sinnvoll ist.",
+          "Bei einem Fernumzug kann das Ziel außerhalb dieses Einsatzraums liegen. Entscheidend ist, dass Start, Ziel und Machbarkeit konkret geprüft werden.",
         ],
       },
       {
@@ -652,7 +652,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Umzug, Reinigung und Entrümpelung werden regional ehrlich eingeordnet.",
       "Kombinationen werden nach Reihenfolge und Machbarkeit geprüft.",
-      "Bayernweite Einsätze bleiben verfügbarkeitsabhängig und damit glaubwürdig.",
+      "Das Einsatzgebiet bis 75 Kilometer bleibt klar von Fernzielen eines Umzugs getrennt.",
     ],
     ctas: [
       { href: "/regensburg/umzug", label: "Umzug Regensburg ansehen" },
@@ -675,8 +675,8 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
         a: "Ja, wenn Reihenfolge, Umfang, Zugang und Termin passen. Entrümpelung und Reinigung bleiben getrennte Leistungen, können aber sinnvoll kombiniert werden.",
       },
       {
-        q: "Arbeitet FLOXANT überall in Bayern?",
-        a: "Nicht pauschal. Bayernweite Einsätze werden nach Strecke, Kapazität, Umfang und Termin geprüft.",
+        q: "Kann ein Fernumzugsziel außerhalb des Einsatzgebiets liegen?",
+        a: "Ja. Der Ausgangspunkt muss zum Einsatzgebiet bis 75 Kilometer um Regensburg passen; ein weiter entferntes Ziel wird mit Strecke, Kapazität, Umfang und Termin geprüft.",
       },
       {
         q: "Was ist bei kurzfristigen Fällen wichtig?",
@@ -738,9 +738,9 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
         bullets: ["Objektart", "Fläche oder grobe Größe", "Zustand und Fotos", "einmalig oder regelmäßig", "Rückruf oder WhatsApp"],
       },
     ],
-    highlightTitle: "Regensburg bleibt Reinigung",
+    highlightTitle: "Reinigung und Umzug bleiben getrennt",
     highlightPoints: [
-      "Keine Vermischung mit Regensburg/Bayern.",
+      "Reinigung und Regensburger Umzug werden nicht vermischt.",
       "Klare Reinigungsseiten für Wohnung, Büro, Grundreinigung und Treppenhaus.",
       "Kunden erkennen sofort die richtige Zuständigkeit.",
     ],
@@ -754,7 +754,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     faqItems: [
       {
         q: "Bietet FLOXANT Umzug in Düsseldorf an?",
-        a: "Ja. Umzug in Regensburg wird über /regensburg/umzug geführt. Reinigung, Entrümpelung und Entsorgung bleiben eigene lokale Kontaktmöglichkeiten.",
+        a: "Nein. Umzug wird über /regensburg/umzug geführt. Düsseldorf bleibt auf Reinigung und Reinigungsangebote begrenzt.",
       },
       {
         q: "Welche Reinigung in Regensburg kann angefragt werden?",
@@ -995,15 +995,15 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Warum Düsseldorf und Regensburg getrennt bleiben",
         paragraphs: [
-          "Regensburg ist bei FLOXANT klar auf Reinigung ausgerichtet. Regensburg bleiben breiter mit Umzug, Reinigung und Entrümpelung. Diese Trennung hilft Kunden und verhindert falsche Erwartungen.",
+          "Düsseldorf ist bei FLOXANT auf Reinigung ausgerichtet. In Regensburg kommen Umzug, Entrümpelung und Übergabe hinzu. Diese Trennung hilft Kunden und verhindert falsche Erwartungen.",
         ],
       },
     ],
     highlightTitle: "B2B-Reinigung braucht klare Eckdaten",
     highlightPoints: [
       "Fläche, Frequenz und Zugang sind wichtiger als ein pauschaler Preis.",
-      "Regensburg ist für B2B-Reinigung sauber getrennt.",
-      "Regensburg/Bayern bleiben für weitere FLOXANT Leistungen angebunden.",
+      "Düsseldorf und Regensburg haben eigene Einstiege für B2B-Reinigung.",
+      "Weitere Leistungen wie Umzug oder Entrümpelung gehören zum Regensburger Bereich.",
     ],
     ctas: [
       { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
@@ -1089,7 +1089,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wichtig für Düsseldorf und Regensburg",
         paragraphs: [
-          "In Düsseldorf und Regensburg kann der Nicht-vor-Ort-Fall mit Umzug, Reinigung, Entrümpelung, Übergabe oder Objektservice zusammenhängen. Die Anfrage führt je nach Ort und Leistung zum passenden Kontaktweg.",
+          "Nicht-vor-Ort-Fälle werden standortbezogen eingeordnet: in Düsseldorf für Reinigung, in Regensburg zusätzlich für Umzug, Entrümpelung und Übergabe. Die Anfrage führt zum passenden Kontaktweg.",
         ],
       },
     ],
@@ -1121,7 +1121,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das auch für Düsseldorf?",
-        a: "Ja, wenn die Leistung zu Regensburg passt. Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung und Entsorgung bleiben getrennt.",
+        a: "In Düsseldorf gilt der Nicht-vor-Ort-Weg für Reinigung. Umzug, Entrümpelung, Haushaltsauflösung und Übergabe gehören zum Regensburger Leistungsbereich.",
       },
     ],
   },
@@ -1279,9 +1279,9 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
         ],
       },
     ],
-    highlightTitle: "Regensburg bleibt Reinigung",
+    highlightTitle: "Regensburger Reinigung bleibt klar eingeordnet",
     highlightPoints: [
-      "Keine Umzugstexte auf Regensburg-Reinigungsseiten.",
+      "Reinigungstexte und Umzugsinhalte bleiben auf eigenen Leistungswegen.",
       "Gewerbereinigung, Büro, Praxis und Hausverwaltung sauber trennen.",
       "Bei vorhandenem Angebot zur Angebotsprüfung führen.",
     ],
@@ -1307,7 +1307,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Bietet FLOXANT Umzug in Düsseldorf an?",
-        a: "Ja, wenn Ort, Umfang und Termin zur verfügbaren Leistung passen. Private Umzüge und Büroumzüge werden jeweils mit den passenden Angaben geprüft.",
+        a: "Nein. Private Umzüge und Büroumzüge werden im Regensburger Leistungsbereich mit den passenden Angaben geprüft; Düsseldorf bleibt Reinigung vorbehalten.",
       },
     ],
   },
@@ -1362,7 +1362,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regionale Einordnung",
         paragraphs: [
-          "In Düsseldorf und Regensburg kann Objektservice mit Reinigung, Übergabe, Mieterwechsel, Leerstand und Restmengen verbunden werden. Entscheidend sind Ort, Objekt und gewünschter Umfang.",
+          "In Düsseldorf kann Objektservice mit Reinigung verbunden werden. In Regensburg kommen Übergabe, Mieterwechsel, Leerstand und Restmengen hinzu. Entscheidend sind Ort, Objekt und gewünschter Umfang.",
         ],
       },
     ],

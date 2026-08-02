@@ -5,7 +5,6 @@ import { ArrowRight, Crown, Gem, Home, KeyRound, Leaf, ShieldCheck, Sparkles } f
 import { PrivateClientInquiryForm } from "@/components/PrivateClientInquiryForm";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
-import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -17,7 +16,7 @@ import {
 const faqItems = germanizeDeep([
   {
     q: "Was ist der FLOXANT Private Client Service?",
-    a: "Der Private Client Service ist die persönliche Koordination individueller privater Serviceanfragen, wenn Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung nicht in einen Standardablauf passen.",
+    a: "Der Private Client Service koordiniert sensible Anfragen im geprüften Einsatzgebiet. In Düsseldorf betrifft das Reinigung und Reinigungsangebote; in Regensburg zusätzlich Umzug, Räumung und Übergabe.",
   },
   {
     q: "Was bedeutet diskreter Service bei FLOXANT?",
@@ -33,7 +32,7 @@ const faqItems = germanizeDeep([
   },
   {
     q: "Welche Leistungen sind kombinierbar?",
-    a: "Möglich sind Umzug, Verpackung, Materialschutz, Endreinigung, Grundreinigung, diskrete Räumung, koordinierte Entsorgung regulärer Gegenstände und eine sauber vorbereitete Übergabe.",
+    a: "Im Regensburger Leistungsbereich können Umzug, Verpackung, Endreinigung, diskrete Räumung und Übergabe kombiniert werden. Im Düsseldorfer Leistungsbereich bleibt die Koordination auf Reinigung und die Prüfung von Reinigungsangeboten begrenzt.",
   },
   {
     q: "Welche Grenzen gelten bei Räumung und Entsorgung?",
@@ -61,13 +60,7 @@ const faqItems = germanizeDeep([
   },
 ]);
 
-const privateClientLeadHref = buildLeadHref({
-  path: "/private-client-service",
-  service: "private-client",
-  city: "bayern",
-  intent: "private-client-service",
-  priority: "p0",
-});
+const privateClientLeadHref = "#private-anfrage";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -76,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title:
       "Private Client Service – sensible private Anfragen abstimmen",
     description:
-      "Private Client Service für individuelle private Anfragen: Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung mit persönlicher Abstimmung.",
+      "Sensible Serviceanfragen regional abgestimmt: Reinigung in Düsseldorf; in Regensburg zusätzlich Umzug, Räumung und Übergabe.",
   });
 }
 
@@ -91,24 +84,24 @@ export default function PrivateClientServicePage() {
       buildWebPageJsonLd({
         name: "FLOXANT Private Client Service",
         description:
-          "Private Client Service für individuell koordinierte private Anfragen zu Umzug, Reinigung, Räumung, Übergabe und Angebotsprüfung.",
+          "Private Servicekoordination für Reinigung in Düsseldorf sowie zusätzlich Umzug, Räumung und Übergabe in Regensburg.",
         path: "/private-client-service",
         about: [
           "Private Client",
           "Private Servicekoordination",
           "Sensible Objektabstimmung",
           "Persönlicher Kontaktweg",
-          "Bayern",
-          "Deutschland",
+          "Düsseldorf 75-km-Einsatzgebiet",
+          "Regensburg 75-km-Einsatzgebiet",
         ],
       }),
       buildServiceJsonLd({
         name: "FLOXANT Private Client Service",
         description:
-          "Persönlich koordinierter Service für private Anfragen, die eine ruhige Vorprüfung und einen klaren Kontaktweg brauchen.",
+          "Persönlich koordinierter Service: Reinigung in Düsseldorf; in Regensburg zusätzlich Umzug, Räumung und Übergabe.",
         path: "/private-client-service",
         serviceType: "Private Client Service",
-        areaServed: ["Bayern", "Deutschland", "Regensburg", "Düsseldorf"],
+        areaServed: ["Düsseldorf und geprüftes 75-km-Einsatzgebiet", "Regensburg und geprüftes 75-km-Einsatzgebiet"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -118,7 +111,7 @@ export default function PrivateClientServicePage() {
     {
       icon: Crown,
       title: "Private Servicekoordination",
-      text: "Koordinierte Abstimmung, wenn Umzug, Reinigung, Räumung oder Übergabe mehrere Beteiligte und einen klaren Kontaktweg brauchen.",
+      text: "In Regensburg koordinieren wir Umzug, Reinigung, Räumung oder Übergabe. In Düsseldorf gilt die persönliche Abstimmung für Reinigung.",
     },
     {
       icon: Sparkles,
@@ -202,9 +195,9 @@ export default function PrivateClientServicePage() {
               Private Client Service für sensible private Anfragen
             </h1>
             <p className="private-copy mt-8 max-w-2xl text-lg leading-relaxed text-[#E6D8C3]/68">
-              Für Eigentümer, Family Offices, Assistenzen und Privathaushalte, bei denen Umzug,
-              Reinigung, Räumung, Übergabe oder Angebotsprüfung persönlich abgestimmt werden
-              sollen. FLOXANT klärt zuerst Kontaktweg, Zuständigkeit, Umfang und nächste Schritte.
+              Für Eigentümer, Family Offices, Assistenzen und Privathaushalte: in Düsseldorf für
+              Reinigung und Reinigungsangebote, in Regensburg zusätzlich für Umzug, Räumung und
+              Übergabe. FLOXANT klärt zuerst Kontaktweg, Zuständigkeit, Umfang und nächste Schritte.
               Für allgemeine sensible Fälle gibt es den separaten Diskret-Service.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -213,7 +206,6 @@ export default function PrivateClientServicePage() {
                 className="private-copy inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#D8B76E] px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#120D08] transition hover:bg-[#F0D58B]"
                 data-event="seo_cta_click"
                 data-service="private-client"
-                data-city="bayern"
                 data-page-intent="private-client-service"
                 data-priority="p0"
                 data-cta-label="Vertraulich anfragen"
@@ -227,7 +219,6 @@ export default function PrivateClientServicePage() {
                 className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
                 data-event="seo_phone_click"
                 data-service="private-client"
-                data-city="bayern"
                 data-page-intent="private-client-service"
               >
                 Persönlich sprechen
@@ -238,7 +229,6 @@ export default function PrivateClientServicePage() {
                 data-event="service_card_click"
                 data-source="private_client_hero"
                 data-service="private-client"
-                data-city="bayern"
                 data-page-intent="private-client-service"
                 data-priority="p0"
                 data-cta-label="Diskret-Service ansehen"
@@ -317,7 +307,7 @@ export default function PrivateClientServicePage() {
           <div className="mb-12 max-w-3xl">
             <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.28em] text-[#D8B76E]">Drei Ebenen</div>
             <h2 className="mt-4 text-4xl font-medium tracking-tight text-[#F6EBDD] md:text-6xl">
-              Ein Service, der Umzug, Reinigung und diskrete Räumung zusammen denkt
+              Reinigung in Düsseldorf. Verbundene Services in Regensburg.
             </h2>
           </div>
 
@@ -393,7 +383,7 @@ export default function PrivateClientServicePage() {
             {[
               { icon: KeyRound, title: "Kontaktweg", text: "Abstimmung mit Eigentuemer, Assistenz, Verwaltung oder beauftragter Kontaktperson." },
               { icon: Home, title: "Objektverstaendnis", text: "Zugang, Wege, Etagen, Schlüssel, Zeitfenster und praktische Grenzen vorab klären." },
-              { icon: Gem, title: "Koordination", text: "Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung in einen Ablauf bringen." },
+              { icon: Gem, title: "Koordination", text: "In Regensburg Umzug, Reinigung, Räumung und Übergabe koordinieren; in Düsseldorf Reinigung klar vorbereiten." },
               { icon: ShieldCheck, title: "Grenzen", text: "Keine Gefahrstoffe oder Sonderabfaelle. Keine falschen Zusagen für regulierte Materialien." },
             ].map((item) => {
               const Icon = item.icon;
@@ -436,19 +426,20 @@ export default function PrivateClientServicePage() {
             <div>
               <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.28em] text-[#D8B76E]">Region</div>
               <h2 className="mt-4 text-4xl font-medium tracking-tight text-[#F6EBDD] md:text-6xl">
-                Bayern und Baden-Württemberg
+                Zwei geprüfte Einsatzgebiete
               </h2>
               <p className="private-copy mt-6 text-sm leading-relaxed text-[#E6D8C3]/58">
-                FLOXANT betreut individuelle private Serviceanfragen in
-                Deutschland. Besonders relevant: Regensburg, Bayern, Düsseldorf, Nordrhein-Westfalen
-                sowie abgestimmte ueberregionale Anfragen in umliegenden
-                Regionen.
+                Der konkrete Ort wird gegen das veröffentlichte 75-km-Einsatzgebiet geprüft. Eine
+                Anfrage ist noch keine Verfügbarkeits- oder Leistungszusage.
               </p>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
-              {["München", "Starnberg", "Tegernsee", "Regensburg", "Nürnberg", "Stuttgart", "Baden-Baden", "Heidelberg", "Freiburg", "Ulm"].map((city) => (
-                <div key={city} className="rounded-full border border-[#D8B76E]/16 bg-black/20 px-5 py-3 private-copy text-sm font-medium text-[#E6D8C3]/72">
-                  {city}
+              {[
+                "Düsseldorf · Reinigung und Reinigungsangebote",
+                "Regensburg · Umzug, Räumung, Reinigung und Übergabe",
+              ].map((region) => (
+                <div key={region} className="rounded-3xl border border-[#D8B76E]/16 bg-black/20 px-5 py-4 private-copy text-sm font-medium leading-6 text-[#E6D8C3]/72">
+                  {region}
                 </div>
               ))}
             </div>

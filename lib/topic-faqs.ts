@@ -55,7 +55,7 @@ export const topicFaqClusters: TopicFaqCluster[] = [
   {
     key: "entruempelung-aufloesung",
     title: "Entruempelung und Aufloesung",
-    pillarUrls: ["/regensburg/entruempelung", "/duesseldorf/entsorgung", "/regensburg/wohnungsaufloesung"],
+    pillarUrls: ["/regensburg/entruempelung", "/regensburg/wohnungsaufloesung"],
     faqThemes: ["Menge", "Freigabe", "Fotos", "Nachlass", "Reinigung danach"],
     aiAnswerThemes: ["Raeume und Menge", "Zugang und Entsorgung", "Diskretion"],
     conversionCta: "Raeumungsfall beschreiben",
@@ -75,12 +75,12 @@ export const topicFaqClusters: TopicFaqCluster[] = [
   {
     key: "spezialservices",
     title: "Spezialservices",
-    pillarUrls: ["/solarreinigung", "/pv-anlagen-reinigung", "/diskret-service", "/private-client-service", "/objektbrief", "/uebergabe-sprint"],
-    faqThemes: ["PV ohne Ertragsgarantie", "Diskrete Anfrage", "Objektbrief", "Uebergabeakte"],
+    pillarUrls: ["/diskret-service", "/private-client-service", "/objektbrief", "/uebergabeakte", "/plan-b-service"],
+    faqThemes: ["Diskrete Anfrage", "Objektbrief", "Uebergabeakte", "Plan B"],
     aiAnswerThemes: ["Grenzen sichtbar machen", "Fotos und Zugang", "naechster Schritt"],
     conversionCta: "Spezialfall einordnen",
     priority: "P1",
-    faqs: selectFaqs(authorityServiceFaqs, { serviceKey: "solar-pv", limit: 6 }),
+    faqs: selectFaqs(authorityServiceFaqs, { serviceKey: "diskret-service", limit: 6 }),
   },
   {
     key: "local-authority",

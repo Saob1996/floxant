@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 
-import { LocalSeoPage } from "@/components/local-seo/LocalSeoPage";
-import { getLocalSeoPageByPath } from "@/lib/local-seo/localSeoPages";
-import { buildLocalSeoMetadata } from "@/lib/local-seo/seoMetadata";
+import { ServiceAreaPage } from "@/components/service-areas/ServiceAreaPage";
+import { generatePageSEO } from "@/lib/seo";
+import { serviceAreaPageConfigs } from "@/lib/service-areas";
 
-const page = getLocalSeoPageByPath("/region-regensburg")!;
+const config = serviceAreaPageConfigs.regensburg;
 
-export const metadata: Metadata = buildLocalSeoMetadata(page);
+export const metadata: Metadata = generatePageSEO({
+  lang: "de",
+  path: config.path,
+  title: "Einsatzgebiet Regensburg | Umzug & Transport",
+  description:
+    "Umzug, Transport und Räumung rund um Regensburg: Ort im verifizierten 75-km-Einsatzgebiet prüfen und Eckdaten direkt an FLOXANT senden.",
+});
 
 export default function RegionRegensburgPage() {
-  return <LocalSeoPage page={page} />;
+  return <ServiceAreaPage regionId="regensburg" />;
 }

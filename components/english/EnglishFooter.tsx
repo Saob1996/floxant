@@ -36,8 +36,8 @@ export function EnglishFooter() {
               FLOXANT
             </Link>
             <p className="mt-4 max-w-lg text-sm font-semibold leading-7 text-slate-300">
-              Public English information for reviewed cleaning, moving, clearance and quote-check
-              routes. Scope, region, access and timing are assessed before a next step is confirmed.
+              Public English information for cleaning in Düsseldorf and for cleaning, moving and
+              clearance in Regensburg. Scope, region, access and timing are assessed first.
             </p>
             <div className="mt-5 grid gap-3 text-sm font-bold text-slate-200">
               <a href={`tel:${company.phoneRaw}`} className="inline-flex items-center gap-2 hover:text-white">
@@ -50,7 +50,7 @@ export function EnglishFooter() {
               </a>
               <span className="inline-flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" aria-hidden="true" />
-                Reviewed services for Düsseldorf and Regensburg, Germany
+                Düsseldorf: cleaning · Regensburg: cleaning, moving and clearance
               </span>
             </div>
             <Link

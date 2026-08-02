@@ -29,6 +29,7 @@ import {
   BAVARIA_METRO_DISTRICT_LINKS,
   BAVARIA_REGENSBURG_PROXIMITY_LINKS,
 } from "@/lib/bavaria-coverage";
+import { resolvePublishedLocalServiceHref } from "@/lib/dynamic-local-route-policy";
 import { germanText } from "@/lib/german-text";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -42,9 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "rechner",
-    title: "FLOXANT Kostenrechner Regensburg & Regensburg | Umzug, Reinigung, Entrümpelung",
+    title: "FLOXANT Kostenrechner | Reinigung Düsseldorf · Umzug Regensburg",
     description:
-      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Düsseldorf und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
+      "Reinigungskosten in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg einschätzen: Standort, Leistung, Zugang, Fotos und Budget senden.",
   });
 }
 
@@ -52,18 +53,18 @@ type RechnerService = "umzug" | "reinigung" | "entsorgung" | "bueroumzug";
 
 function buildServiceMarketHref(service: RechnerService, baseHref: string) {
   if (service === "umzug") {
-    return baseHref;
+    return resolvePublishedLocalServiceHref(baseHref);
   }
 
   if (service === "entsorgung") {
-    return baseHref.replace("/umzug-", "/entruempelung-");
+    return resolvePublishedLocalServiceHref(baseHref.replace("/umzug-", "/entruempelung-"));
   }
 
   if (service === "reinigung") {
-    return baseHref.replace("/umzug-", "/reinigung-");
+    return resolvePublishedLocalServiceHref(baseHref.replace("/umzug-", "/reinigung-"));
   }
 
-  return baseHref.replace("/umzug-", "/bueroumzug-");
+  return resolvePublishedLocalServiceHref(baseHref.replace("/umzug-", "/bueroumzug-"));
 }
 
 function RechnerHeroVisual() {
@@ -500,7 +501,7 @@ export default async function RechnerPage() {
           "Büroumzug",
           "Regensburg",
           "Bayern",
-          "200-km-Einsatzgebiet",
+          "75-km-Einsatzgebiet",
         ],
       }),
       buildServiceJsonLd({

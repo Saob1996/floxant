@@ -99,7 +99,11 @@ async function main() {
     addResult(results, linkCtas.length ? "PASS" : "FAIL", "cta", route.path, linkCtas.length ? "CTA has real href." : "CTA appears onClick/hash-only.", linkCtas.length ? "No action." : "Use a real href for the primary CTA.", { priority: route.priority });
 
     const expected = expectedQuery(route);
-    const localContactCta = ctas.find((cta) => String(cta.href || "") === "#kontakt" || String(cta.href || "") === `${route.path}#kontakt`);
+    const localContactCta = ctas.find((cta) =>
+      String(cta.href || "") === "#kontakt" ||
+      String(cta.href || "") === `${route.path}#kontakt` ||
+      (route.localContactTarget && String(cta.href || "") === route.localContactTarget),
+    );
     const contactCta = ctas
       .filter((cta) => normalizePath(cta.href) === "/kontakt")
       .sort((a, b) => scoreContactCta(b, expected) - scoreContactCta(a, expected))[0];

@@ -61,12 +61,14 @@ const graph = {
       })),
     },
     {
-      "@type": "FAQPage",
+      "@type": "ItemList",
       "@id": `${company.url}${path}#faq`,
-      mainEntity: faqItems.map((item) => ({
-        "@type": "Question",
+      name: "Häufige Fragen",
+      itemListElement: faqItems.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
         name: item.question,
-        acceptedAnswer: { "@type": "Answer", text: item.answer },
+        description: item.answer,
       })),
     },
   ],

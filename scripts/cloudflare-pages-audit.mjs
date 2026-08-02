@@ -68,6 +68,19 @@ const redirectChains = redirects.filter((rule) => {
 });
 const redirectLoops = redirects.filter((rule) => rule.source === rule.destination.split(/[?#]/, 1)[0]);
 const invalidRedirectStatuses = redirects.filter((rule) => ![301, 302, 303, 307, 308].includes(rule.status));
+const retiredRouteExpectations = [
+  { source: "/entsorgung-duesseldorf", destination: "/duesseldorf/reinigung" },
+  { source: "/duesseldorf/entsorgung", destination: "/duesseldorf/reinigung" },
+];
+const retiredExportPages = retiredRouteExpectations
+  .filter(({ source }) => existsInExport(source, fileSet))
+  .map(({ source }) => source);
+const retiredRedirectIssues = retiredRouteExpectations.flatMap(({ source, destination }) => {
+  const rule = exactRedirects.get(source);
+  return rule?.destination === destination && rule.status === 308
+    ? []
+    : [{ source, expectedDestination: destination, actual: rule || null }];
+});
 
 const sitemapXml = await readFile(path.join(root, "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemapXml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)].map((match) => decodeEntities(match[1].trim()));
@@ -156,6 +169,8 @@ const report = {
     missingImages: missingImages.length,
     noindexSitemapPages: noindexSitemapPages.length,
     redirectChains: redirectChains.length,
+    retiredExportPages: retiredExportPages.length,
+    retiredRedirectIssues: retiredRedirectIssues.length,
   },
   failures: {
     fileCountExceeded: fileStats.length >= maxFiles,
@@ -168,13 +183,16 @@ const report = {
     redirectChains,
     redirectLoops,
     invalidRedirectStatuses,
+    retiredExportPages,
+    retiredRedirectIssues,
   },
 };
 
 const failureCount = Number(report.failures.fileCountExceeded)
   + tooLarge.length + missingRequired.length + sitemapIssues.length + brokenLinks.length
   + missingImages.length + noindexSitemapPages.length + redirectChains.length
-  + redirectLoops.length + invalidRedirectStatuses.length;
+  + redirectLoops.length + invalidRedirectStatuses.length + retiredExportPages.length
+  + retiredRedirectIssues.length;
 
 await mkdir(path.dirname(reportPath), { recursive: true });
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");

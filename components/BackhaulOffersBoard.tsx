@@ -30,7 +30,7 @@ const emptyInquiry: InquiryState = {
   email: "",
   phone: "",
   pickupLocation: "",
-  deliveryLocation: "Regensburg / ca. 150 km Umkreis",
+  deliveryLocation: "Regensburg / Einsatzgebiet bis 75 km",
   dateFlexibility: "",
   items: "",
   budget: "",
@@ -146,7 +146,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         customerBudget: budget,
         priceSuggestion: budget,
         priceExplanation:
-          "Die Anfrage bezieht sich auf eine mögliche Leer-Rückfahrt Richtung Regensburg und ca. 150 km Umkreis. FLOXANT prüft, ob Route, Datum, Volumen, Ladepunkte und ein möglicher Umweg zur freien Fahrzeugkapazität passen.",
+          "Die Anfrage bezieht sich auf eine mögliche Leer-Rückfahrt Richtung Regensburg und das Einsatzgebiet bis 75 km. FLOXANT prüft, ob Route, Datum, Volumen, Ladepunkte und ein möglicher Umweg zur freien Fahrzeugkapazität passen.",
         pricingSignals: {
           inquiryMode: "backhaul_inquiry",
           companyName: form.company.trim(),
@@ -378,7 +378,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 <Input label="E-Mail" value={form.email} onChange={(value) => updateField("email", value)} type="email" />
               </div>
               <Input label="Abholort" value={form.pickupLocation} onChange={(value) => updateField("pickupLocation", value)} required placeholder="z. B. München, Nürnberg, Berlin" />
-              <Input label="Zielort" value={form.deliveryLocation} onChange={(value) => updateField("deliveryLocation", value)} placeholder="Regensburg / ca. 150 km Umkreis" />
+              <Input label="Zielort" value={form.deliveryLocation} onChange={(value) => updateField("deliveryLocation", value)} placeholder="Regensburg / Einsatzgebiet bis 75 km" />
               <Input label="Terminflexibilität" value={form.dateFlexibility} onChange={(value) => updateField("dateFlexibility", value)} placeholder="z. B. flexibel in KW 18" />
               <Textarea label="Was soll mit?" value={form.items} onChange={(value) => updateField("items", value)} required placeholder="Büroinventar, Möbel, Kartons, Paletten, Maschine, Einzelstück..." />
               <Input label="Preisvorstellung optional" value={form.budget} onChange={(value) => updateField("budget", value)} placeholder="z. B. 250 EUR" />

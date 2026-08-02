@@ -17,9 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "kleinmengen-entsorgung",
-    title: "Kleinmengen-Entsorgung Bayern | Bauschutt & Sperrmüll",
+    title: "Kleinmengen-Entsorgung Regensburg + 75 km | FLOXANT",
     description:
-      "Entsorgung von Kleinmengen wie Renovierungsabfällen oder Sperrmüll in Bayern. Sinnvoll, wenn Hausmüll zu wenig und Container zu groß ist.",
+      "Kleinmengen wie Renovierungsabfälle oder Sperrmüll im Einsatzgebiet bis 75 km um Regensburg anfragen. Keine flächendeckende Verfügbarkeitszusage.",
   });
 }
 
@@ -34,7 +34,7 @@ export default async function EntsorgungPage() {
   const faqItems = [
     {
       q: "Wann gilt eine Menge als 'Kleinmenge'?",
-      a: "Typischerweise sprechen wir von Mengen zwischen 1 und 5 Kubikmetern – etwa der Rest einer Bad-Renovierung oder ein überschaubarer Keller-Auszug in Bayern.",
+      a: "Typischerweise sprechen wir von Mengen zwischen 1 und 5 Kubikmetern – etwa der Rest einer Bad-Renovierung oder ein überschaubarer Keller-Auszug im Einsatzgebiet bis 75 km um Regensburg.",
     },
     {
       q: "Welche Materialien können entsorgt werden?",
@@ -45,8 +45,8 @@ export default async function EntsorgungPage() {
       a: "Für kleine Mengen ist ein Container oft zu groß, zu teuer oder wegen Platzmangel unpraktisch. FLOXANT prüft Menge, Material und Abholort und kann die Abholung passend einplanen.",
     },
     {
-      q: "Bieten Sie den Service in ganz Bayern an?",
-      a: "Ja, nach Prüfung. Entscheidend sind Abholort, Menge, Material, Termin und passende Tour. Regensburg bleibt die Basis.",
+      q: "Wie weit reicht das Einsatzgebiet?",
+      a: "Das verifizierte Einsatzgebiet reicht bis 75 km um Regensburg. Weiter entfernte Orte sind keine lokale Abholregion; sie können nur als Ziel einer konkreten Transportanfrage geprüft werden.",
     },
     {
       q: "Wie läuft die Anfrage für die Entsorgung ab?",
@@ -62,18 +62,18 @@ export default async function EntsorgungPage() {
         { name: "Kleinmengen-Entsorgung", item: "/kleinmengen-entsorgung" },
       ]),
       buildServiceJsonLd({
-        name: "Kleinmengen-Entsorgung in Regensburg und Bayern",
+        name: "Kleinmengen-Entsorgung im Einsatzgebiet um Regensburg",
         description:
-          "Abholung und fachgerechte Entsorgung überschaubarer Mengen mit FLOXANT.",
+          "Abholung und fachgerechte Entsorgung überschaubarer Mengen im verifizierten Einsatzgebiet bis 75 km um Regensburg.",
         path: "/kleinmengen-entsorgung",
-        areaServed: ["Regensburg", "Bayern"],
+        areaServed: ["Regensburg", "Einsatzgebiet bis 75 km um Regensburg"],
       }),
       buildWebPageJsonLd({
         name: "Kleinmengen-Entsorgung | FLOXANT",
         description:
-          "Definition, Grenzen und direkte Anfrage für Kleinmengen-Entsorgung in Regensburg und Bayern.",
+          "Definition, Grenzen und direkte Anfrage für Kleinmengen-Entsorgung im Einsatzgebiet bis 75 km um Regensburg.",
         path: "/kleinmengen-entsorgung",
-        about: ["Kleinmengen-Entsorgung", "Bauabfall", "Regensburg", "Bayern"],
+        about: ["Kleinmengen-Entsorgung", "Bauabfall", "Regensburg", "Einsatzgebiet bis 75 km"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -93,13 +93,13 @@ export default async function EntsorgungPage() {
         <div className="mx-auto max-w-6xl text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-mono uppercase tracking-widest text-red-400">
             <Construction size={14} className="text-red-500/60" />
-            Kleinmengen Bayern
+            Regensburg + 75 km
           </div>
           <h1 className="mb-8 text-4xl font-bold tracking-tight md:text-6xl text-white">
-            Kleinmengen-Entsorgung in Regensburg & Bayern
+            Kleinmengen-Entsorgung im Einsatzgebiet um Regensburg
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/50">
-            FLOXANT hilft, wenn es für den Hausmüll zu viel und für einen Großcontainer zu klein ist. Wir entsorgen Renovierungsreste, Bauschutt-Teilmengen und Sperrmüll fachgerecht, schnell und transparent in ganz Bayern, mit Regensburg als Ausgangspunkt.
+            FLOXANT hilft, wenn es für den Hausmüll zu viel und für einen Großcontainer zu klein ist. Renovierungsreste, Bauschutt-Teilmengen und Sperrmüll werden im verifizierten Einsatzgebiet bis 75 km um Regensburg nach Material, Menge und Termin geprüft.
           </p>
         </div>
       </section>

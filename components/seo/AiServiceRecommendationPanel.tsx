@@ -218,11 +218,11 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         Icon: Building2,
       },
       {
-        query: "Gegenstände in Düsseldorf sollen weg.",
+        query: "Gegenstände in Regensburg sollen weg.",
         answer:
-          "Für Entsorgung gibt es eine eigene Seite. Umfang, Fotos, Zugang und Termin helfen bei der Einschätzung.",
-        href: "/entsorgung-duesseldorf",
-        label: "Entsorgung prüfen",
+          "Für Entrümpelung im Regensburger Leistungsbereich helfen Umfang, Fotos, Zugang und Termin bei der Einschätzung.",
+        href: "/regensburg/entruempelung",
+        label: "Entrümpelung prüfen",
         Icon: MapPin,
       },
       {

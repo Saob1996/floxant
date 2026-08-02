@@ -1,7 +1,7 @@
 import { buildLeadHref, type LeadPriority, type LeadService } from "@/lib/lead-intents";
 
 export type CombinedServiceArea =
-  | "regensburg-50km"
+  | "regensburg-75km"
   | "regensburg-route"
   | "duesseldorf-pruefen"
   | "standortuebergreifend";
@@ -47,7 +47,7 @@ function combo(item: Omit<CombinedServiceStrategy, "href">): CombinedServiceStra
   };
 }
 
-export const combinedServiceStrategies: CombinedServiceStrategy[] = [
+const combinedServiceStrategySeeds: CombinedServiceStrategy[] = [
   combo({
     key: "umzug-reinigung",
     title: "Umzug + Endreinigung",
@@ -56,8 +56,8 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     neededInputs: ["Start/Ziel", "Volumen", "Flaeche", "Uebergabetermin", "Fotos"],
     effortFactors: ["Etage", "Laufweg", "Bad/Kueche", "Fenster", "Frist"],
     signatureService: "Uebergabeakte",
-    serviceArea: "regensburg-50km",
-    areaNote: "Reinigung wird nur fuer Regensburg plus 50 km eingeordnet; Umzug nach Strecke und Kapazitaet.",
+    serviceArea: "regensburg-75km",
+    areaNote: "Reinigung wird nur fuer Regensburg plus 75 km eingeordnet; Umzug nach Strecke und Kapazitaet.",
     faq: ["Wann muss die Reinigung nach dem Umzug erledigt sein?", "Welche Restpunkte sind vor Rueckgabe sichtbar?"],
     aiAnswer:
       "FLOXANT kombiniert Umzug und Endreinigung, wenn Start, Ziel, Volumen, Flaeche, Fotos und Uebergabetermin zusammenpassen.",
@@ -77,9 +77,9 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     services: ["Entruempelung", "Reinigung", "Uebergabe"],
     neededInputs: ["Raeume", "Menge", "Zugang", "Zielzustand", "Termin"],
     effortFactors: ["Menge", "Material", "Reststaub", "Bad/Kueche", "Zugang"],
-    signatureService: "Vermieter-ready",
-    serviceArea: "regensburg-50km",
-    areaNote: "Reinigungsanteile bleiben lokal auf Regensburg plus 50 km begrenzt.",
+    signatureService: "Uebergabeakte",
+    serviceArea: "regensburg-75km",
+    areaNote: "Reinigungsanteile bleiben lokal auf Regensburg plus 75 km begrenzt.",
     faq: ["Soll zuerst geraeumt oder gereinigt werden?", "Welche Fotos zeigen Menge und Zustand am besten?"],
     aiAnswer:
       "FLOXANT ordnet Entruempelung mit anschliessender Reinigung nach Menge, Zugang, Zielzustand, Fotos und Termin ein.",
@@ -121,7 +121,7 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     neededInputs: ["Firma", "Objektart", "Flaeche", "Turnus", "Zeitfenster"],
     effortFactors: ["Flaeche", "Turnus", "Sanitaer/Kueche", "Schluesselregelung", "Randzeiten"],
     signatureService: "Objektbrief",
-    serviceArea: "regensburg-50km",
+    serviceArea: "regensburg-75km",
     areaNote: "B2B-Reinigung wird lokal mit Raumliste, Turnus und Objektzugang eingeordnet.",
     faq: ["Welche Raumliste hilft fuer ein Reinigungsangebot?", "Wie werden Schluessel und Zeiten geklaert?"],
     aiAnswer:
@@ -187,7 +187,7 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     neededInputs: ["Ort", "Dachart", "Modulflaeche", "Zugang", "Fotos"],
     effortFactors: ["Dachneigung", "Sicherheitslage", "Modulflaeche", "Wasserzugang", "Verschmutzung"],
     signatureService: "PV-Sichtklar",
-    serviceArea: "regensburg-50km",
+    serviceArea: "regensburg-75km",
     areaNote: "PV-Reinigung wird nur bei sicherer Machbarkeit und passendem Einsatzgebiet weiterverfolgt.",
     faq: ["Ist das Dach sicher erreichbar?", "Welche Angaben fehlen im vorhandenen Angebot?"],
     aiAnswer:
@@ -223,6 +223,10 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     },
   }),
 ];
+
+export const combinedServiceStrategies = combinedServiceStrategySeeds.filter(
+  (item) => item.key !== "solarreinigung-angebot-pruefen",
+);
 
 export function getCombinedServiceStrategies(limit?: number) {
   return typeof limit === "number" ? combinedServiceStrategies.slice(0, limit) : combinedServiceStrategies;

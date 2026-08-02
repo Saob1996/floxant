@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog",
     title: "Blog für Umzug, Reinigung, Preisrahmen und Servicewissen | FLOXANT",
     description:
-      "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung.",
+      "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung im 75-km-Umkreis Regensburg, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung.",
   });
 }
 
@@ -47,12 +47,12 @@ export default function BlogHubPage() {
     {
       href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
       title: "Regensburg Reinigung",
-      text: "Klare Auswahlhilfe für Büro, Praxis und gewerbliche Reinigung im 50-km-Umkreis.",
+      text: "Klare Auswahlhilfe für Büro, Praxis und gewerbliche Reinigung im 75-km-Umkreis.",
     },
     {
       href: "#lokale-antworten",
       title: "Regionale Antworten",
-      text: "Beiträge für Regensburg, den 50-km-Reinigungsradius und die Frage, welcher Service vor Ort wirklich passt.",
+      text: "Beiträge für Regensburg, den 75-km-Reinigungsradius und die Frage, welcher Service vor Ort wirklich passt.",
     },
     {
       href: "#alle-beitraege",
@@ -107,7 +107,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Hilft der Blog auch bei der Auswahl eines lokalen Dienstleisters?",
-      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg und dem lokalen Umfeld. Für Reinigung gilt der 50-km-Umkreis um Regensburg.",
+      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg und dem lokalen Umfeld. Für Reinigung gilt der 75-km-Umkreis um Regensburg.",
     },
     {
       q: "Welche Artikel helfen kurz vor einer Entscheidung am meisten?",
@@ -119,7 +119,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Welche FLOXANT Leistungen werden hier erklärt?",
-      a: "FLOXANT steht in Regensburg für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Reinigungsanfragen werden lokal auf Regensburg plus 50 km begrenzt.",
+      a: "FLOXANT steht in Regensburg für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Reinigungsanfragen werden lokal auf Regensburg plus 75 km begrenzt.",
     },
     {
       q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
@@ -157,7 +157,7 @@ export default function BlogHubPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Blog",
         description:
-          "Blogbeiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Beiladung, Preisvorstellung, Buchung, Gewerbereinigung und Private Client.",
+          "Blogbeiträge zu Umzug, Reinigung im 75-km-Umkreis Regensburg, Entrümpelung, Beiladung, Preisvorstellung, Buchung, Gewerbereinigung und Private Client.",
         path: "/blog",
         about: [
           "Umzug",
@@ -443,7 +443,7 @@ export default function BlogHubPage() {
             {[
               {
                 title: "Was ist FLOXANT?",
-                text: "Ein lokaler Dienstleister aus Regensburg für Umzug, Reinigung im 50-km-Umkreis, Entrümpelung, Büroumzug und Direktanfragen mit klaren Eckdaten.",
+                text: "Ein lokaler Dienstleister aus Regensburg für Umzug, Reinigung im 75-km-Umkreis, Entrümpelung, Büroumzug und Direktanfragen mit klaren Eckdaten.",
               },
               {
                 title: "Für wen ist der Blog?",

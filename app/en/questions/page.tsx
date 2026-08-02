@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Questions and Answers",
   description:
-    "Reviewed answers about cleaning, moving, clearance, quote checks, the enquiry process and required details in Düsseldorf and Regensburg.",
+    "Reviewed answers about cleaning in Düsseldorf and about cleaning, moving and clearance in Regensburg, plus quote checks and the enquiry process.",
   alternates: {
     canonical: path,
     languages: {
@@ -81,17 +81,15 @@ const faqItems: readonly DisplayFaq[] = publicFaqs
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@type": "ItemList",
   "@id": `${company.url}${path}#faq`,
   url: `${company.url}${path}`,
   inLanguage: "en",
-  mainEntity: faqItems.map((faq) => ({
-    "@type": "Question",
+  itemListElement: faqItems.map((faq, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
     name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.detailedAnswer || faq.shortAnswer,
-    },
+    description: faq.detailedAnswer || faq.shortAnswer,
   })),
 };
 

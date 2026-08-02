@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   title: dict.ratgeber?.meta_title || "Ratgeber für Umzug, Reinigung und Entrümpelung | FLOXANT",
   description:
    dict.ratgeber?.meta_desc ||
-   "Praxisnahe Ratgeber, Checklisten und Kostenhilfen für Umzug, Reinigung und Entrümpelung in Düsseldorf und Regensburg.",
+   "Praxisnahe Ratgeber zur Reinigung in Düsseldorf sowie zu Umzug, Räumung und Reinigung in Regensburg.",
  });
 }
 

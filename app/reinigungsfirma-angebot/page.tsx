@@ -111,7 +111,7 @@ function JsonLd() {
           "Wohnungsreinigung",
           "Treppenhausreinigung",
           "Regensburg",
-          "Reinigung Regensburg 50 km",
+          "Reinigung Regensburg 75 km",
         ],
         potentialActions: [
           { name: "Reinigungsangebot anfragen", target: leadHref, type: "ContactAction" },
@@ -123,7 +123,7 @@ function JsonLd() {
         description,
         path,
         serviceType: "Reinigung und Reinigungsangebot",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 75 km"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([

@@ -15,7 +15,6 @@ import {
   MapPin,
   PanelsTopLeft,
   ShieldCheck,
-  Sun,
   Sparkles,
   Stethoscope,
   Store,
@@ -140,10 +139,6 @@ const constructionCleaningContact =
   "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo";
 const constructionCleaningOfferContact =
   "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-angebot-pruefen&source=seo";
-const solarContact =
-  "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-duesseldorf&source=seo";
-const solarOfferContact =
-  "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-angebot-pruefen&source=seo";
 const propertyManagementCleaningContact =
   "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo";
 const staircaseCleaningContact =
@@ -206,13 +201,6 @@ const hubServiceCards: Card[] = [
     label: "Fensterreinigung anfragen",
   },
   {
-    icon: Sun,
-    title: "Solarreinigung / PV-Anlagen-Reinigung",
-    text: "Für PV-Module, Dachart, Zugang, Modulfläche, Verschmutzung und Fotos. Keine Ertragsgarantie, keine Dachzusage ohne Prüfung.",
-    href: solarContact,
-    label: "Solarreinigung anfragen",
-  },
-  {
     icon: ClipboardCheck,
     title: "Hausverwaltung und Übergabe",
     text: "Für Treppenhaus, Allgemeinflächen, Übergabe, Fristen oder Reinigung nach Entrümpelung mit klarer Objektbeschreibung.",
@@ -271,14 +259,6 @@ const baseFaqItems: FaqItem[] = [
   {
     q: "Kann ich ein Reinigungsangebot prüfen lassen?",
     a: "Ja. FLOXANT kann Fläche, Objektart, Turnus, Leistungsumfang, Termin und mögliche Zusatzkosten prüfen. Es gibt keine Ersparnisgarantie und keine Rechtsberatung.",
-  },
-  {
-    q: "Kann ich Solar- oder PV-Reinigung in Düsseldorf anfragen?",
-    a: "Ja. Beschreiben Sie Dachart, Zugang, Modulfläche, sichtbare Verschmutzung, Fotos und gewünschtes Zeitfenster. FLOXANT prüft Machbarkeit und offene Punkte ohne Ertrags- oder Sicherheitsgarantie.",
-  },
-  {
-    q: "Kann ich ein Solarreinigungsangebot prüfen lassen?",
-    a: "Ja. Ein vorhandenes Angebot kann nach Dachzugang, Modulfläche, Sicherheitslage, sichtbarer Verschmutzung und möglichen Zusatzkosten eingeordnet werden. Es gibt keine Preis- oder Ertragsgarantie.",
   },
   {
     q: "Was beeinflusst den Aufwand bei einer Reinigung?",
@@ -432,8 +412,6 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     needs: [...commonNeeds],
     effortFactors: [
       ...commonEffortFactors,
-      "Dachart, PV-Zugang und Modulfläche bei Solar-/PV-Reinigung",
-      "sichtbare Verschmutzung und Fotos bei Solar panel cleaning",
     ],
     serviceCards: hubServiceCards,
     b2bTrust: [
@@ -521,7 +499,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       hubServiceCards[1],
       hubServiceCards[2],
       hubServiceCards[3],
-      hubServiceCards[5],
+      hubServiceCards[4],
     ],
     b2bTrust: [
       "B2B-Anfragen werden mit Fläche, Turnus, Zeiten und Ansprechpartner vorbereitet.",
@@ -607,7 +585,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       hubServiceCards[0],
       hubServiceCards[2],
       hubServiceCards[3],
-      hubServiceCards[5],
+      hubServiceCards[4],
     ],
     b2bTrust: [
       "Gewerbeflächen werden nach Objektart, Nutzung, Zeitfenster und Leistungsumfang betrachtet.",
@@ -692,7 +670,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     serviceCards: [
       hubServiceCards[0],
       hubServiceCards[1],
-      hubServiceCards[5],
+      hubServiceCards[4],
     ],
     b2bTrust: [
       "Praxisreinigung wird sachlich beschrieben, ohne rechtliche Hygieneberatung.",
@@ -773,7 +751,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     serviceCards: [
       hubServiceCards[0],
       hubServiceCards[1],
-      hubServiceCards[5],
+      hubServiceCards[4],
     ],
     b2bTrust: [
       "Fensterreinigung wird nach Fläche, Erreichbarkeit, Turnus und Leistungsumfang eingeordnet.",
@@ -851,7 +829,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "gewünschter Zielzustand und Termin",
       "Zusatzleistungen wie Fenster oder Geräte innen",
     ],
-    serviceCards: [hubServiceCards[0], hubServiceCards[3], hubServiceCards[8], hubServiceCards[9]],
+    serviceCards: [hubServiceCards[0], hubServiceCards[3], hubServiceCards[7], hubServiceCards[8]],
     b2bTrust: [
       "Der gewünschte Umfang wird vorab als Liste geklärt, damit Grundreinigung nicht mit Unterhaltsreinigung verwechselt wird.",
       "Materialien, empfindliche Oberflächen und schwer erreichbare Bereiche werden vor einer Zusage geprüft.",
@@ -932,7 +910,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Zugang und Schlüsselorganisation",
       "Verbrauchsmaterial oder Zusatzleistungen nach Abstimmung",
     ],
-    serviceCards: [hubServiceCards[0], hubServiceCards[1], hubServiceCards[5], hubServiceCards[8]],
+    serviceCards: [hubServiceCards[0], hubServiceCards[1], hubServiceCards[4], hubServiceCards[7]],
     b2bTrust: [
       "Turnus, Bereiche und Verantwortlichkeiten werden vorab verständlich festgehalten.",
       "Keine erfundenen Referenzen oder pauschalen Qualitätsgarantien ohne konkreten Leistungsumfang.",
@@ -1013,7 +991,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Zugang, Wasser, Strom und Laufwege",
       "Abnahmefrist und gewünschter Zielzustand",
     ],
-    serviceCards: [hubServiceCards[7], hubServiceCards[8], hubServiceCards[3], hubServiceCards[6]],
+    serviceCards: [hubServiceCards[6], hubServiceCards[7], hubServiceCards[3], hubServiceCards[5]],
     b2bTrust: [
       "Bauzwischenreinigung und Bauendreinigung werden nach Bauphase und Zielzustand getrennt.",
       "Fest anhaftende Rückstände, Gefahrstoffe oder Entsorgung werden nicht pauschal zugesagt.",
@@ -1093,7 +1071,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Turnus, Reinigungszeit und Zugang",
       "Keller, Glas, Außenstufen oder Sonderbereiche nach Vereinbarung",
     ],
-    serviceCards: [hubServiceCards[11], hubServiceCards[9], hubServiceCards[0], hubServiceCards[1]],
+    serviceCards: [hubServiceCards[10], hubServiceCards[8], hubServiceCards[0], hubServiceCards[1]],
     b2bTrust: [
       "Bereiche, Turnus und Zugangsweg werden vor einer Zusage konkret abgefragt.",
       "Hausverwaltung, WEG oder Vermieter erhalten einen klaren Kontaktweg für Rückfragen.",

@@ -10,15 +10,15 @@ import {
 
 const faqItems = [
  {
-  q: "Was ist bei einem Express-Umzug am wichtigsten?",
+  q: "Was ist bei einem kurzfristigen Umzug am wichtigsten?",
   a: "Schnelligkeit ist nur ein Teil. Entscheidend sind klare Angaben zu Umfang, Zugang, Strecke und Terminlage, damit eine Vorprüfung überhaupt belastbar wird.",
  },
  {
-  q: "Sind Express-Anfragen immer teurer?",
+  q: "Sind kurzfristige Anfragen immer teurer?",
   a: "Oft ja, weil die Planung enger ist und freie Kapazität gebraucht wird. Wie stark sich das auswirkt, hängt aber vom tatsächlichen Umfang ab.",
  },
  {
-  q: "Wie kann ich eine Express-Anfrage sinnvoll vorbereiten?",
+  q: "Wie kann ich eine kurzfristige Anfrage sinnvoll vorbereiten?",
   a: "Mit möglichst klaren Daten zu Volumen, Adressen, Stockwerken, Tragewegen und gewünschten Zusatzleistungen.",
  },
 ];
@@ -27,9 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
  return generatePageSEO({
   lang: "de",
   path: "blog/express-umzug-regensburg",
-  title: "Express-Umzug in Regensburg realistisch vorbereiten | FLOXANT",
+  title: "Kurzfristigen Umzug in Regensburg realistisch vorbereiten | FLOXANT",
   description:
-   "Was ist bei einem Express-Umzug in Regensburg wirklich machbar? FLOXANT erklärt, welche Angaben für eine schnelle und saubere Vorprüfung nötig sind.",
+   "Was ist bei einem kurzfristigen Umzug in Regensburg wirklich machbar? FLOXANT erklärt, welche Angaben für eine schnelle und saubere Vorprüfung nötig sind.",
  });
 }
 
@@ -38,18 +38,18 @@ export default function BlogExpressUmzugPage() {
   "@context": "https://schema.org",
   "@graph": [
    buildWebPageJsonLd({
-    name: "Express-Umzug in Regensburg realistisch vorbereiten",
+    name: "Kurzfristigen Umzug in Regensburg realistisch vorbereiten",
     description: "Praxisartikel über Eilanfragen, Vorprüfung und kurzfristige Umzüge.",
     path: "/blog/express-umzug-regensburg",
-    about: ["Express-Umzug", "Regensburg", "Eilanfrage", "Vorprüfung"],
+    about: ["Kurzfristiger Umzug", "Regensburg", "Eilanfrage", "Vorprüfung"],
    }),
    buildBreadcrumbJsonLd([
     { name: "FLOXANT", item: "/" },
     { name: "Blog", item: "/blog" },
-    { name: "Express-Umzug", item: "/blog/express-umzug-regensburg" },
+    { name: "Kurzfristiger Umzug", item: "/blog/express-umzug-regensburg" },
    ]),
    buildArticleJsonLd({
-    headline: "Express-Umzug in Regensburg: was kurzfristig wirklich machbar ist",
+    headline: "Kurzfristiger Umzug in Regensburg: was wirklich machbar ist",
     description: "Ein FLOXANT Artikel über Eilanfragen und schnelle Vorprüfung.",
     path: "/blog/express-umzug-regensburg",
     datePublished: "2026-04-20",
@@ -64,12 +64,12 @@ export default function BlogExpressUmzugPage() {
    <BlogArticlePage
     breadcrumbs={[
      { label: "Blog", href: "/blog" },
-     { label: "Express-Umzug" },
+     { label: "Kurzfristiger Umzug" },
     ]}
     date="20. April 2026"
     readTime="5 Min."
-    title="Express-Umzug in Regensburg: was kurzfristig wirklich machbar ist"
-    intro="Kurzfristige Umzüge sind nicht automatisch chaotisch. Sie werden es nur dann, wenn wichtige Angaben fehlen. Wer bei einer Express-Anfrage die richtigen Informationen mitgibt, verbessert die Chancen auf eine saubere schnelle Einordnung deutlich."
+    title="Kurzfristiger Umzug in Regensburg: was wirklich machbar ist"
+    intro="Kurzfristige Umzüge sind nicht automatisch chaotisch. Sie werden es nur dann, wenn wichtige Angaben fehlen. Wer bei einer kurzfristigen Anfrage die richtigen Informationen mitgibt, verbessert die Chancen auf eine saubere schnelle Einordnung deutlich."
     sections={[
      {
       title: "Was FLOXANT bei einer Eilanfrage zuerst braucht",
@@ -90,23 +90,23 @@ export default function BlogExpressUmzugPage() {
       ],
      },
      {
-      title: "Wie FLOXANT Express sinnvoll einordnet",
+      title: "Wie FLOXANT kurzfristige Umzüge sinnvoll einordnet",
       paragraphs: [
-       "Express heißt bei FLOXANT nicht blind zusagen, sondern schnell vorprüfen. So bleibt die Erwartung vor der Anfrage realistisch.",
+       "Kurzfristig heißt bei FLOXANT nicht blind zusagen, sondern schnell vorprüfen. So bleibt die Erwartung vor der Anfrage realistisch.",
       ],
      },
     ]}
     highlightPoints={[
-     "Express braucht mehr Klarheit, nicht nur mehr Tempo.",
+     "Ein kurzfristiger Umzug braucht mehr Klarheit, nicht nur mehr Tempo.",
      "Je besser die Angaben, desto belastbarer die schnelle Rückmeldung.",
      "Die stärksten Kostentreiber sind Zugang, Zeitfenster und Zusatzleistungen.",
     ]}
     ctas={[
-     { href: "/express-anfrage", label: "Express-Anfrage öffnen" },
+     { href: "/express-anfrage", label: "Kurzfristige Anfrage öffnen" },
      { href: "/rechner", label: "Umzug vorprüfen" },
      { href: "/umzug", label: "Umzugsservice ansehen" },
     ]}
-    faqTitle="FAQ zum Express-Umzug"
+    faqTitle="FAQ zum kurzfristigen Umzug"
     faqItems={faqItems}
    />
   </>

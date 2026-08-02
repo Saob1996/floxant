@@ -4,7 +4,6 @@ const path = require("node:path");
 const workspaceRoot = process.cwd();
 const appDirectory = path.join(workspaceRoot, "app");
 const regensburgCleaningArea = require(path.join(workspaceRoot, "data", "serviceAreas", "regensburgCleaning.json"));
-const dynamicLocalRoutesFile = path.join(workspaceRoot, "lib", "local-seo-routes.ts");
 const dynamicBlogSourceFiles = [
   path.join(workspaceRoot, "lib", "ai-recommendation-blog-articles.ts"),
   path.join(workspaceRoot, "lib", "offer-check-blog-articles.ts"),
@@ -58,6 +57,8 @@ const legacyRedirectRoutes = new Set([
   "/guenstigeres-angebot-pruefen",
   "/einsatzgebiet-regensburg-200km",
   "/service-area-bayern",
+  "/entsorgung-duesseldorf",
+  "/duesseldorf/entsorgung",
   "/villenservice",
   "/umzug-duesseldorf",
   "/duesseldorf/angebot-vergleichen",
@@ -102,11 +103,6 @@ const broadRootCityServicePrefixes = [
   "umzug",
   "wohnungsaufloesung",
 ];
-const gscValidatedRootCityServiceRoutes = new Set([
-  "/entruempelung-landshut",
-  "/umzug-neustadt-an-der-waldnaab",
-  "/umzug-vohenstrauss",
-]);
 const deprioritizedCitySlugs = new Set([
   "forchheim",
   "friedberg",
@@ -290,10 +286,6 @@ function isCleaningRouteAllowed(route) {
 function isBroadRootCityServiceRoute(route) {
   const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
 
-  if (gscValidatedRootCityServiceRoutes.has(`/${normalizedRoute}`)) {
-    return false;
-  }
-
   if (normalizedRoute === "seniorenumzug-landshut") {
     return false;
   }
@@ -338,22 +330,6 @@ function collectRoutes(directory) {
 
     const route = getRouteFromDirectory(directory);
     if (route && isIndexableRoute(route)) routes.push(route);
-  }
-
-  return routes;
-}
-
-function collectDynamicLocalSeoRoutes() {
-  if (!fs.existsSync(dynamicLocalRoutesFile)) return [];
-
-  const source = fs.readFileSync(dynamicLocalRoutesFile, "utf8");
-  const routes = [];
-  const routeRegex = /"route":\s*"([^"]+)"/g;
-  let match;
-
-  while ((match = routeRegex.exec(source))) {
-    const route = match[1];
-    if (isIndexableRoute(route)) routes.push(route);
   }
 
   return routes;
@@ -405,12 +381,24 @@ function collectGrowthServiceRoutes() {
 
   const source = fs.readFileSync(growthServicePagesFile, "utf8");
   const routes = [];
+  const nonPublishedGrowthRoutes = new Set([
+    "/uebergabe-sprint",
+    "/glasreinigung",
+    "/solarreinigung",
+    "/pv-anlagen-reinigung",
+    "/regensburg/solarreinigung",
+    "/mini-umzug",
+    "/express-umzug",
+    "/fairpreis-check",
+    "/rueckfahrt-radar",
+    "/vermieter-ready-service",
+  ]);
   const pathRegex = /path:\s*"([^"]+)"/g;
   let match;
 
   while ((match = pathRegex.exec(source))) {
     const route = match[1];
-    if (isIndexableRoute(route)) routes.push(route);
+    if (isIndexableRoute(route) && !nonPublishedGrowthRoutes.has(route)) routes.push(route);
   }
 
   return routes;
@@ -478,7 +466,6 @@ function collectConstStringArray(source, constName) {
 const routes = Array.from(
   new Set([
     ...collectRoutes(appDirectory),
-    ...collectDynamicLocalSeoRoutes(),
     ...collectDynamicBlogRoutes(),
     ...collectGrowthServiceRoutes(),
     ...collectStructuredLocalSeoRoutes(),

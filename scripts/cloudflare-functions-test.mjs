@@ -465,10 +465,11 @@ try {
       configuration: {
         requestContext: "professional_request", leadType: "professional_request", sourcePage: "/kontakt",
         landingPage: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1",
+        leadPriority: "p1",
         location: "Regensburg", city: "Regensburg", startLocation: "Regensburg", destinationLocation: "Nürnberg",
         scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"],
         message: "Synthetischer Umzugstest ohne Kundendaten.", preferredContactMethod: "email", privacyConsent: true,
-        rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"], entryPage: "/kontakt", locale: "de" },
+        rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", leadPriority: "p1", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["Reinigung", "Entrümpelung", "Möbelmontage"], entryPage: "/kontakt", locale: "de" },
       },
       metadata: { createdAt: "2026-07-31T12:00:00.000Z", intakeVersion: "professional-request-1.0.0", locale: "de", source: "seo", clientContext: { source: "seo", entryPoint: "/kontakt", landingPage: "/kontakt", campaign: "", locale: "de" } },
     };
@@ -476,6 +477,7 @@ try {
       type: "professional_request", lead_type: "professional_request", leadSource: "seo", source: "seo",
       sourceComponent: "ProfessionalRequestForm", sourcePage: "/kontakt", landingPage: "/kontakt", service: "Umzug",
       serviceCategory: "umzug", intent: "umzug-anfrage", name: "Synthetic Moving Test", email: "synthetic@example.com",
+      leadPriority: "p1",
       phone: "0000000", preferredContactMethod: "email", startLocation: "Regensburg", destinationLocation: "Nürnberg",
       scope: "2 Zimmer, synthetischer Test", selectedAddons: "Reinigung, Entrümpelung, Möbelmontage",
       message: "Synthetischer Umzugstest ohne Kundendaten.", privacyConsent: "true", timestamp: "2026-07-31T12:00:00.000Z",
@@ -488,6 +490,8 @@ try {
     assert(insertCallsAfter === insertCallsBefore + 1, "exact Regensburg moving context must insert exactly once");
     const inserted = JSON.parse(calls.filter((call) => call.url.includes("/rest/v1/bookings")).at(-1).body)[0];
     assert(inserted.details.configuration.rawFields.destinationLocation === "Nürnberg", "legitimate nested moving fields must be retained");
+    assert(inserted.details.configuration.leadPriority === "p1", "lead priority must be retained in the existing details JSON");
+    assert(inserted.details.configuration.rawFields.leadPriority === "p1", "lead priority must be retained in normalized raw fields");
     assert(inserted.upgrades.length === 3, "all selected moving add-ons must be retained");
   });
 

@@ -40,7 +40,7 @@ export default async function BlogEntruempelungKosten() {
             <p>Eine Entrümpelung ist oft eine emotionale und logistische Herausforderung. Wir zeigen Ihnen, wie Sie diese effizient meistern.</p>
             <div className="bg-emerald-50 p-8 rounded-3xl border border-emerald-100 my-10">
               <h3 className="mt-0 text-emerald-900 flex items-center gap-2"><CheckCircle className="text-emerald-600" /> FLOXANT Transparenz</h3>
-              <p className="text-emerald-800">Wir bieten Ihnen volle Kostenkontrolle durch Besichtigungen per Video oder vor Ort – und das in ganz Bayern.</p>
+              <p className="text-emerald-800">FLOXANT bietet Kostenkontrolle durch Besichtigungen per Video oder vor Ort im verifizierten Einsatzgebiet bis 75 km um Regensburg. Orte außerhalb dieses Gebiets können nur als Fernziel einer Anfrage geprüft werden.</p>
             </div>
           </div>
         </article>

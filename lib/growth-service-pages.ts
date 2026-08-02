@@ -738,26 +738,26 @@ const growthServicePageSeeds = [
         text: "Staub, Spritzer und Rückstände werden nach Material und Risiko eingeordnet.",
       },
       {
-        title: "Kombi mit Glas oder PV",
-        text: "Wenn Außenflächen, Glas und PV-Zugang zusammen geplant werden sollen.",
+        title: "Mehrere Außenflächen betroffen",
+        text: "Wenn mehrere zugängliche Außenflächen am selben Objekt eingeordnet werden sollen.",
       },
       {
         title: "Unklarer Untergrund",
-        text: "Putz, Klinker, Metall, Glas oder beschichtete Flächen brauchen unterschiedliche Grenzen.",
+        text: "Putz, Klinker, Metall oder beschichtete Flächen brauchen unterschiedliche Grenzen.",
       },
     ],
     included: [
       "Sichtung von Fassadenmaterial, Höhe, Zugang und Verschmutzung.",
       "Prüfung, ob normale Reinigung oder Spezialanbieter sinnvoller ist.",
       "Abgrenzung zu Sanierung, Malerarbeiten und Fassadenschutz.",
-      "Mögliche Verbindung mit Glas-, Hof- oder Eingangsreinigung.",
+      "Einordnung zugänglicher Hof- oder Eingangsflächen am selben Objekt.",
     ],
     process: baseProcess,
     costFactors: [
       "Material, Fläche, Höhe und Zugänglichkeit.",
       "Verschmutzungsart, Wasseranschluss und Umgebung.",
       "Sicherheitsbedarf, Leiter- oder Arbeitsmittelgrenzen.",
-      "Kombi mit Glas, Terrassen oder Außenflächen.",
+      "Zusätzliche Terrassen- oder Außenflächen am selben Objekt.",
     ],
     boundaries: [
       "Keine Sanierung, Malerleistung oder Schadstoffbehandlung.",
@@ -769,19 +769,7 @@ const growthServicePageSeeds = [
       "Regensburg: Wohn- und Gewerbeflächen, Eingänge und Umland nach Zugang.",
       "Bei beiden Regionen zählt Material mehr als ein Quadratmeterpreis.",
     ],
-    relatedLinks: [
-      {
-        href: "/glasreinigung",
-        label: "Glasreinigung",
-        text: "Wenn Fenster, Glasfronten oder Wintergarten dazugehören.",
-      },
-      {
-        href: "/solarreinigung",
-        label: "Solarreinigung",
-        text: "Wenn Außenflächen und PV-Anlage zusammen geprüft werden sollen.",
-      },
-      ...cleaningRelated,
-    ],
+    relatedLinks: cleaningRelated,
     faq: [
       {
         q: "Was kostet Fassadenreinigung?",
@@ -796,8 +784,8 @@ const growthServicePageSeeds = [
         a: "Nein. Hochdruck kann Material beschädigen. Die Methode wird nur nach Material- und Zustandsprüfung eingeordnet.",
       },
       {
-        q: "Kann Glasreinigung kombiniert werden?",
-        a: "Ja, wenn Zugang, Fläche und Zeitfenster zusammenpassen.",
+        q: "Welche Angaben helfen bei weiteren Außenflächen?",
+        a: "Hilfreich sind Fotos, Material, Fläche, Zugang und gewünschtes Zeitfenster.",
       },
     ],
   },
@@ -995,7 +983,7 @@ const growthServicePageSeeds = [
     kind: "clearance",
     visualRegion: "regensburg",
     region: "bayern",
-    cityLabel: "Regensburg, Bayern und Düsseldorf nach Prüfung",
+    cityLabel: "Regensburg und Bayern nach Prüfung",
     serviceName: "Kellerentrümpelung",
     serviceType: "Kellerentrümpelung",
     metaTitle: "Kellerentrümpelung | Fotos, Zugang & Menge prüfen",
@@ -1242,7 +1230,7 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: Lager, Werkstatt, Nebenfläche und Gewerbefläche nach Zugang.",
       "Bayern: nur nach Strecke, Umfang und Machbarkeit.",
-      "Düsseldorf: Gewerbe- und Entsorgungsbezug nach lokaler Prüfung.",
+      "Regensburg: Gewerbe- und Entsorgungsbezug nach lokaler Prüfung.",
     ],
     relatedLinks: clearanceRelated,
     faq: [
@@ -1329,7 +1317,6 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: Innenstadt, Prüfening, Kumpfmühl und Umland nach Parken und Etage.",
       "Bayern: Mini-Umzug lohnt besonders bei flexibler Strecke oder Rückfahrt.",
-      "Düsseldorf: lokaler Umzug läuft über den eigenen Düsseldorf-Bereich.",
     ],
     relatedLinks: movingRelated,
     faq: [
@@ -1421,7 +1408,6 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: kurzfristige Umzüge hängen stark an Altstadtzugang und Parken.",
       "Bayern: Strecke und Flexibilität entscheiden über Machbarkeit.",
-      "Düsseldorf: Express-Anfragen bitte über den lokalen Umzugsbereich einordnen.",
     ],
     relatedLinks: [
       {
@@ -1465,7 +1451,7 @@ const growthServicePageSeeds = [
     eyebrow: "FLOXANT Möbeltransport",
     title: "Möbeltransport für einzelne Stücke, wenn Maße, Gewicht und Laufweg klar sein müssen",
     intro:
-      "Ein Möbeltransport wirkt klein, kann aber schwer werden: Treppenhaus, Maße, Gewicht, Demontage, Schutz, Strecke und Parken entscheiden. FLOXANT prüft, ob Einzeltransport, Mini-Umzug oder Beiladung sinnvoller ist.",
+      "Ein Möbeltransport wirkt klein, kann aber schwer werden: Treppenhaus, Maße, Gewicht, Demontage, Schutz, Strecke und Parken entscheiden. FLOXANT prüft, ob Einzeltransport, Beiladung oder eine andere Transportplanung sinnvoller ist.",
     primaryCta: "Möbeltransport prüfen",
     secondaryCta: "Möbel-Fotos senden",
     bookingHref: "/buchung?service=umzug&addon=moebeltransport#buchungssystem",
@@ -1497,7 +1483,7 @@ const growthServicePageSeeds = [
     included: [
       "Prüfung von Möbelmaßen, Gewicht, Etage und Laufweg.",
       "Einordnung von Schutz, Demontage und Fahrzeugbedarf.",
-      "Abgleich mit Mini-Umzug, Beiladung oder Rückfahrt.",
+      "Abgleich mit Einzeltransport, Beiladung oder Rückfahrt.",
       "Klare Grenzen bei Schwerlast oder Spezialtransport.",
     ],
     process: baseProcess,
@@ -1515,7 +1501,6 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: Möbeltransport in Innenstadt und Umland hängt oft an Parken und Treppenhaus.",
       "Bayern: Rückfahrt oder Beiladung kann bei flexibler Strecke sinnvoll sein.",
-      "Düsseldorf: Möbeltransport wird als lokale Umzugsanfrage geprüft.",
     ],
     relatedLinks: movingRelated,
     faq: [
@@ -1874,7 +1859,7 @@ const growthServicePageSeeds = [
       },
       {
         title: "Angebot ist unklar",
-        text: "Plan B kann mit Fairpreis-Check verbunden werden.",
+        text: "Dann werden Umfang, Prioritäten und offene Positionen erneut eingeordnet.",
       },
     ],
     included: [
@@ -1997,7 +1982,6 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: stark bei Umland, Bayern-Strecken und flexiblen Transporten.",
       "Bayern: besonders sinnvoll bei Richtung München, Nürnberg, Landshut, Passau oder Augsburg nach Verfügbarkeit.",
-      "Düsseldorf: lokale Transportanfragen werden separat geprüft.",
     ],
     relatedLinks: [
       {
@@ -2030,28 +2014,47 @@ const growthServicePageSeeds = [
 
 export type GrowthServiceSlug = (typeof growthServicePageSeeds)[number]["slug"];
 
+export const nonPublishedGrowthServiceSlugs: ReadonlySet<string> = new Set([
+  "uebergabe-sprint",
+  "glasreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "regensburg-solarreinigung",
+  "mini-umzug",
+  "express-umzug",
+  "fairpreis-check",
+  "rueckfahrt-radar",
+  "vermieter-ready-service",
+]);
+
+const publishedGrowthServicePageSeeds = growthServicePageSeeds.filter(
+  (page) => !nonPublishedGrowthServiceSlugs.has(page.slug),
+);
+
 export const growthServicePages = Object.fromEntries(
   growthServicePageSeeds.map((page) => [page.slug, page]),
 ) as unknown as Record<GrowthServiceSlug, GrowthServicePageConfig>;
 
-export const growthServicePageSlugs = growthServicePageSeeds.map((page) => page.slug);
-export const growthServiceRootPageSlugs = growthServicePageSeeds
+export const growthServicePageSlugs = publishedGrowthServicePageSeeds.map((page) => page.slug);
+export const growthServiceRootPageSlugs = publishedGrowthServicePageSeeds
   .filter((page) => !page.path.replace(/^\//, "").includes("/"))
   .map((page) => page.slug);
-export const growthServicePaths = growthServicePageSeeds.map((page) => page.path);
+export const growthServicePaths = publishedGrowthServicePageSeeds.map((page) => page.path);
 export const growthServicePathSet: ReadonlySet<string> = new Set(growthServicePaths);
 
-export function getGrowthServicePage(slug: GrowthServiceSlug) {
-  return growthServicePages[slug];
+export function getGrowthServicePage(slug: GrowthServiceSlug): GrowthServicePageConfig | undefined {
+  return nonPublishedGrowthServiceSlugs.has(slug) ? undefined : growthServicePages[slug];
 }
 
 export function getGrowthServicePageBySlug(slug: string): GrowthServicePageConfig | undefined {
-  return growthServicePages[slug as GrowthServiceSlug];
+  return nonPublishedGrowthServiceSlugs.has(slug)
+    ? undefined
+    : growthServicePages[slug as GrowthServiceSlug];
 }
 
 export function getGrowthServicePageByPath(path: string): GrowthServicePageConfig | undefined {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return growthServicePageSeeds.find((page) => page.path === normalizedPath);
+  return publishedGrowthServicePageSeeds.find((page) => page.path === normalizedPath);
 }
 
 export function buildGrowthServiceMetadata(config: GrowthServicePageConfig): Metadata {

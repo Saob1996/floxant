@@ -3,7 +3,7 @@ export const PAGES_WITH_OWN_MOBILE_CTA = new Set([
   "/anfrage-mit-preisrahmen",
   "/buchung",
   "/diskreter-umzug-trennung-scheidung",
-  "/einsatzradar-regensburg",
+  "/region-regensburg",
   "/empfehlen",
   "/express-anfrage",
   "/immobilie-verkaufsbereit-machen",

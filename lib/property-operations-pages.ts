@@ -425,7 +425,7 @@ export const propertyOperationsPages = {
       {
         href: "/reinigung-moeblierte-wohnung-regensburg",
         label: "Ferienwohnung-Reinigung Regensburg",
-        text: "Lokale Anfrage für Ferienwohnung und möbliertes Apartment in Regensburg plus 50 km.",
+        text: "Lokale Anfrage für Ferienwohnung und möbliertes Apartment in Regensburg plus 75 km.",
       },
     ],
     blogIdeas: [

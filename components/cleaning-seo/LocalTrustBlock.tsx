@@ -15,7 +15,7 @@ const trustSignals = [
     text: "Adresse, Telefon, E-Mail und Servicegebiet kommen aus den zentralen FLOXANT-Unternehmensdaten.",
   },
   {
-    title: "Reinigung im 50-km-Radius",
+    title: "Reinigung im 75-km-Radius",
     text: "Reinigungsanfragen werden nach Objekt, Route, Zugang und Termin im Regensburger Umfeld eingeordnet.",
   },
   {

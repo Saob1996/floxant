@@ -51,9 +51,9 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     href: "/duesseldorf",
     headline: "Düsseldorf-Anfragen klar getrennt.",
     description:
-      "FLOXANT Düsseldorf führt Angebotsprüfung, Reinigung, Umzug, Räumung und Haushaltsauflösung. Ort, Umfang und Termin werden vor einer Zusage geprüft.",
+      "FLOXANT Düsseldorf führt Reinigungsleistungen und die Prüfung vorhandener Reinigungsangebote. Objekt, Ort, Umfang und Termin werden vor einer Zusage geprüft.",
     shortDescription:
-      "Angebot prüfen, Umzug, Räumung und Servicegebiet.",
+      "Reinigung, Reinigungsangebot und Einsatzgebiet prüfen.",
     primaryCta: "Düsseldorf-Anfrage prüfen",
   },
   regensburg: {
@@ -1326,8 +1326,37 @@ function isDeprecatedRegensburgCleaningService(service: FloxantServiceSeed) {
   return isCleaningSignal && !isCleaningRouteAllowed(service.href);
 }
 
+const nonPublishedServiceIds = new Set([
+  "regensburg-solarreinigung",
+  "regensburg-glasreinigung",
+  "regensburg-fairpreis-check",
+  "regensburg-mini-umzug",
+  "regensburg-express-umzug",
+  "regensburg-uebergabe-sprint",
+  "regensburg-vermieter-ready",
+  "regensburg-rueckfahrt-radar",
+]);
+
+const nonPublishedServiceHrefs = new Set([
+  "/fairpreis-check",
+  "/uebergabe-sprint",
+  "/rueckfahrt-radar",
+  "/solarreinigung",
+  "/pv-anlagen-reinigung",
+  "/regensburg/solarreinigung",
+  "/glasreinigung",
+  "/mini-umzug",
+  "/express-umzug",
+  "/vermieter-ready-service",
+]);
+
 export const floxantServices: FloxantService[] = floxantServiceSeeds
   .filter((service) => !isDeprecatedRegensburgCleaningService(service))
+  .filter(
+    (service) =>
+      !nonPublishedServiceIds.has(service.id) &&
+      !nonPublishedServiceHrefs.has(service.href),
+  )
   .map((service) => ({
     ...service,
     shortTitle: service.shortTitle || service.title,

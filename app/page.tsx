@@ -33,9 +33,9 @@ const requestHref = buildLeadHref({
 });
 const offerHref = "/angebot-guenstiger-pruefen";
 
-const homepageTitle = "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen";
+const homepageTitle = "FLOXANT | Reinigung Düsseldorf · Umzug & Räumung Regensburg";
 const homepageDescription =
-  "Umzug, Reinigung, Entrümpelung oder Angebotsprüfung in Regensburg, Düsseldorf und Umgebung anfragen. Auftrag kurz beschreiben und Rückmeldung erhalten.";
+  "Reinigung und Angebotsprüfung in Düsseldorf; Umzug, Transport, Räumung und Reinigung in Regensburg und dem jeweiligen regionalen Umfeld anfragen.";
 
 const mainServices = [
   {
@@ -168,11 +168,19 @@ function JsonLd() {
         ],
       }),
       buildServiceJsonLd({
-        name: "FLOXANT Dienstleistungen",
-        description: homepageDescription,
-        path,
-        serviceType: "Umzug, Reinigung und Entrümpelung",
-        areaServed: ["Düsseldorf", "Regensburg"],
+        name: "FLOXANT Reinigung Düsseldorf",
+        description: "Reinigungsleistungen und Angebotsprüfung am Standort Düsseldorf und im geprüften regionalen Einsatzgebiet.",
+        path: "/duesseldorf",
+        serviceType: "Reinigung",
+        areaServed: ["Düsseldorf"],
+        availableLanguage: ["de", "en"],
+      }),
+      buildServiceJsonLd({
+        name: "FLOXANT Umzug, Transport, Räumung und Reinigung Regensburg",
+        description: "Umzug, Transport, Räumung und ergänzende Reinigung am Standort Regensburg und im geprüften regionalen Einsatzgebiet.",
+        path: "/regensburg",
+        serviceType: "Umzug, Transport, Räumung und Reinigung",
+        areaServed: ["Regensburg"],
         availableLanguage: ["de", "en"],
       }),
       {
@@ -221,10 +229,10 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <p className="inline-flex items-center gap-2 text-sm font-black text-cyan-200">
               <MapPin className="h-4 w-4" aria-hidden="true" />
-              Düsseldorf und Regensburg
+              Zwei Standorte, klar getrennte Leistungen
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              Umzug, Reinigung und Entrümpelung einfach anfragen
+              Reinigung in Düsseldorf. Umzug, Räumung und Reinigung in Regensburg.
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
               FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben Sie kurz Ihren Auftrag oder senden Sie ein vorhandenes Angebot zur Prüfung.

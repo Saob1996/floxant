@@ -90,9 +90,17 @@ const englishAliasSignals = new Set([
   "decluttering",
   "piano-transport",
   "offer-check",
-  "solar-panel-cleaning",
   "property-cleaning",
 ]);
+
+const nonPublishedSourceServiceKeys = new Set([
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+]);
+
+const publishedServiceRoutingMatrix = serviceRoutingMatrix.filter(
+  (entry) => !nonPublishedSourceServiceKeys.has(entry.serviceKey),
+);
 
 function uniqueList<T>(items: readonly T[]) {
   return Array.from(new Set(items.filter(Boolean)));
@@ -116,7 +124,7 @@ function getSourceServiceCategoryLabel(category: ServiceRoutingCategory) {
   return category;
 }
 
-export const sourceServices: readonly SourceServiceDefinition[] = serviceRoutingMatrix.map((entry) => {
+export const sourceServices: readonly SourceServiceDefinition[] = publishedServiceRoutingMatrix.map((entry) => {
   const product = serviceProductsByKey[entry.serviceKey];
   const canonicalRoute = entry.internalRoute || product?.canonicalRoute || product?.recommendedRoute || "/kontakt";
   const faqKey = resolveServiceFaqKey(`${entry.serviceKey} ${canonicalRoute}`);
@@ -151,7 +159,7 @@ export const sourceServices: readonly SourceServiceDefinition[] = serviceRouting
 
 export const sourceLocations: readonly SourceLocationDefinition[] = canonicalLocationList;
 
-export const sourceIntents: readonly SourceIntentDefinition[] = serviceRoutingMatrix.map((entry) => {
+export const sourceIntents: readonly SourceIntentDefinition[] = publishedServiceRoutingMatrix.map((entry) => {
   const checklist = getRequestChecklist(normalizeRequestChecklistKey(entry.serviceKey));
   return {
     intentKey: normalizeIntentKey(entry.defaultIntent),

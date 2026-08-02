@@ -7,6 +7,70 @@ const ts = require("typescript");
 
 const root = path.resolve(__dirname, "..");
 const moduleCache = new Map();
+const nonPublishedServiceIds = new Set([
+  "uebergabe-sprint",
+  "glasreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "mini-umzug",
+  "express-umzug",
+  "fairpreis-check",
+  "rueckfahrt-radar",
+  "vermieter-ready-service",
+  "buero-startklar-service",
+  "pv-sichtklar-service",
+]);
+const nonPublishedRoutes = new Set([
+  "/uebergabe-sprint",
+  "/glasreinigung",
+  "/solarreinigung",
+  "/pv-anlagen-reinigung",
+  "/regensburg/solarreinigung",
+  "/duesseldorf/solarreinigung",
+  "/mini-umzug",
+  "/express-umzug",
+  "/fairpreis-check",
+  "/rueckfahrt-radar",
+  "/vermieter-ready-service",
+  "/blog/solarreinigung-pv-angebot-pruefen",
+]);
+const nonPublishedTextSignals = [
+  "uebergabe-sprint",
+  "übergabe-sprint",
+  "glasreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "solar panel cleaning",
+  "mini-umzug",
+  "express-umzug",
+  "fairpreis-check",
+  "rueckfahrt-radar",
+  "rückfahrt-radar",
+  "vermieter-ready",
+  "buero-startklar-service",
+  "büro-startklar-service",
+  "pv-sichtklar-service",
+];
+
+function hasNonPublishedTextSignal(value) {
+  const normalized = typeof value === "string" ? value.toLocaleLowerCase("de") : "";
+  return nonPublishedTextSignals.some((signal) => normalized.includes(signal));
+}
+
+function cleanPublishedServiceIds(value) {
+  return cleanArray(value).filter(
+    (serviceId) => !nonPublishedServiceIds.has(serviceId.toLocaleLowerCase("de")),
+  );
+}
+
+function cleanPublishedKeywords(value) {
+  return cleanArray(value).filter((keyword) => !hasNonPublishedTextSignal(keyword));
+}
+
+function isPublishedSearchEntry(entry) {
+  if (nonPublishedRoutes.has(entry.url)) return false;
+  return ![entry.id, entry.title, entry.description].some(hasNonPublishedTextSignal);
+}
 
 function resolveModule(fromFile, request) {
   const candidate = request.startsWith("@/")
@@ -109,8 +173,8 @@ function normalizeGermanEntry(entry) {
   return {
     ...normalized,
     regions: cleanArray(normalized.regions),
-    serviceIds: cleanArray(normalized.serviceIds),
-    keywords: cleanArray(normalized.keywords),
+    serviceIds: cleanPublishedServiceIds(normalized.serviceIds),
+    keywords: cleanPublishedKeywords(normalized.keywords),
   };
 }
 
@@ -255,7 +319,7 @@ for (const solution of signaturesModule.publicSignatureSolutions || []) {
     locale,
     type: solution.kind === "SPECIAL_SOLUTION" ? "special_solution" : "signature",
     regions: cleanArray(solution.regions),
-    serviceIds: cleanArray(solution.serviceIds),
+    serviceIds: cleanPublishedServiceIds(solution.serviceIds),
     keywords: cleanArray([
       ...cleanArray(solution.targetGroups),
       solution.problem,
@@ -378,24 +442,24 @@ entries.push(
   {
     id: "guide:de:spezialreinigung",
     title: "Spezialreinigung mit klarer Anfrage",
-    description: "Solarreinigung, PV-Anlagen-Reinigung, Glasreinigung, Bauendreinigung, Praxisreinigung und Hausverwaltungsreinigung sauber vorbereiten.",
+    description: "Fenster-, Bauende-, Praxis-, Grund- und Hausverwaltungsreinigung mit konkreten Objektangaben sauber vorbereiten.",
     url: "/spezialreinigung",
     locale: "de",
     type: "guide",
     regions: ["Regensburg", "Duesseldorf"],
-    serviceIds: ["solarreinigung", "pv-anlagen-reinigung", "fensterreinigung", "baureinigung", "praxisreinigung"],
-    keywords: ["spezialreinigung", "pv reinigung", "glasreinigung", "baureinigung"],
+    serviceIds: ["fensterreinigung", "baureinigung", "praxisreinigung", "grundreinigung"],
+    keywords: ["spezialreinigung", "fensterreinigung", "baureinigung", "praxisreinigung"],
   },
   {
     id: "guide:de:spezialumzug",
-    title: "Spezialumzug, Mini-Umzug und Transport",
-    description: "Kleine, dringende oder flexible Transporte mit Route, Volumen, Zugang, Haltezone und Zeitfenster vorab sortieren.",
+    title: "Spezialumzug und Transport",
+    description: "Individuelle Transporte mit Route, Volumen, Zugang, Haltezone und Zeitfenster vorab sortieren.",
     url: "/spezialumzug",
     locale: "de",
     type: "guide",
-    regions: ["Regensburg", "Duesseldorf"],
-    serviceIds: ["mini-umzug", "express-umzug", "moebeltransport", "rueckfahrt-radar"],
-    keywords: ["spezialumzug", "mini umzug", "express umzug", "moebeltransport", "beiladung"],
+    regions: ["Regensburg"],
+    serviceIds: ["umzug", "moebeltransport", "klaviertransport", "plan-b-service"],
+    keywords: ["spezialumzug", "moebeltransport", "klaviertransport", "beiladung"],
   },
   {
     id: "guide:de:spezial-entruempelung",
@@ -435,9 +499,18 @@ entries.push(
 const searchIndex = {
   version: 1,
   source: "FLOXANT public registries and reviewed public routes",
-  entries: unique(entries).map((entry) =>
-    entry.locale === "de" ? normalizeGermanEntry(entry) : entry,
-  ).sort(
+  entries: unique(entries)
+    .map((entry) =>
+      entry.locale === "de"
+        ? normalizeGermanEntry(entry)
+        : {
+            ...entry,
+            serviceIds: cleanPublishedServiceIds(entry.serviceIds),
+            keywords: cleanPublishedKeywords(entry.keywords),
+          },
+    )
+    .filter(isPublishedSearchEntry)
+    .sort(
     (left, right) =>
       left.locale.localeCompare(right.locale) ||
       left.title.localeCompare(right.title, left.locale),

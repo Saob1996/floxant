@@ -71,7 +71,7 @@ const localSearchSignals = [
   },
   {
     title: "Klare Düsseldorf-Grenze",
-    text: "Regensburg bleibt der Startpunkt für Reinigung im 50-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
+    text: "Regensburg bleibt der Startpunkt für Reinigung im 75-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
   },
 ];
 
@@ -277,7 +277,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 50 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
+    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 75 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
   },
 ];
 
@@ -311,7 +311,7 @@ const jsonLd = {
         "Praktische und organisatorische Unterstützung für diskreten Auszug, Transport, Reinigung, Schlüsselübergabe und Übergabeakte nach Absprache. Keine Rechtsberatung, keine Sicherheitsdienstleistung und keine Konfliktlösung.",
       path,
       serviceType: "Diskreter Auszug, Umzug, Transport, Reinigung und Übergabe nach Absprache",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

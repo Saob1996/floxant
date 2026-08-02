@@ -37,7 +37,7 @@ const whatsappHref = buildWhatsAppHref(
   [
     "Hallo FLOXANT,",
     "ich suche den passenden Signature Service.",
-    "Es geht um Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt oder PV.",
+    "Es geht um Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt oder Reinigung.",
     "Ort, Termin, Fotos oder Angebot kann ich senden.",
   ].join("\n"),
 );
@@ -80,7 +80,7 @@ const trustProofs = [
 const faqItems = [
   {
     q: "Was sind FLOXANT Signature Services?",
-    a: "Signature Services sind verständliche Einstiege für Fälle mit Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt, PV oder besonderem Abstimmungsbedarf.",
+    a: "Signature Services sind verständliche Einstiege für Fälle mit Angebot, Objektbrief, Übergabe, Plan B oder besonderem Abstimmungsbedarf.",
   },
   {
     q: "Muss ich vorher genau wissen, welcher Service passt?",
@@ -93,19 +93,19 @@ const faqItems = [
 ] as const;
 
 const signatureAnswerPoints = [
-  "Angebotscheck und Fairpreis-Check passen, wenn bereits ein Preis, PDF, Screenshot oder Vergleichsangebot vorliegt.",
+  "Der Angebotscheck passt, wenn bereits ein Preis, PDF, Screenshot oder Vergleichsangebot vorliegt.",
   "Objektbrief und Übergabeakte passen, wenn Fotos, Zugang, Zielzustand oder Schlüsselweg erst sortiert werden müssen.",
-  "Plan-B-Service, Rückfahrt-Radar und Diskret-Service passen, wenn Frist, Route oder sensible Kommunikation wichtiger sind als ein Standardformular.",
+  "Plan-B-Service und Diskret-Service passen, wenn Frist oder sensible Kommunikation wichtiger sind als ein Standardformular.",
 ] as const;
 
 const signatureDecisionFaq = [
   {
     q: "Welcher Signature Service ist der richtige Start?",
-    a: "Wenn ein Angebot vorliegt, starten Sie mit Angebotscheck oder Fairpreis-Check. Wenn das Objekt unklar ist, passt der Objektbrief. Bei Fristdruck passt Plan B oder Übergabe-Sprint.",
+    a: "Wenn ein Angebot vorliegt, starten Sie mit dem Angebotscheck. Wenn das Objekt unklar ist, passt der Objektbrief. Bei Fristdruck passt der Plan-B-Service.",
   },
   {
     q: "Kann ein Signature Service auch für Düsseldorf genutzt werden?",
-    a: "Ja, wenn die Leistung im Code für Düsseldorf gefuehrt oder als manuelle Prüfung markiert ist. Unsichere Daten werden nicht als bestätigte Verfügbarkeit behauptet.",
+    a: "In Düsseldorf gilt dieser Weg für Reinigung und Reinigungsangebote. Umzug, Räumung und Übergabe gehören zum Regensburger Leistungsbereich.",
   },
   {
     q: "Was braucht FLOXANT für die Einordnung?",
@@ -147,7 +147,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Signature Services",
         description:
-          "Hub für FLOXANT Fairpreis-Check, Angebotscheck, Anbieter-Vergleich, Objektbrief, Übergabeakte, Übergabe-Sprint, Plan-B-Service, Rückfahrt-Radar, PV-Sichtklar, Diskret-Service, Vermieter-Ready und Büro-Startklar.",
+          "Hub für öffentlich freigegebene FLOXANT-Angebotsprüfung, Anbieter-Vergleich, Objektbrief, Übergabeakte, Plan-B-Service und Diskret-Service.",
         path,
         about: signatureServiceLinks.map((item) => item.title),
         potentialActions: [
@@ -257,9 +257,9 @@ export default function SignatureServicesPage() {
           "Adresse, Telefonnummer oder Öffnungszeiten sollen geraten werden.",
         ]}
         nextSteps={[
-          "Angebot vorhanden: Angebotscheck oder Fairpreis-Check.",
+          "Angebot vorhanden: Angebotscheck.",
           "Objekt unklar: Objektbrief oder Übergabeakte.",
-          "Frist oder Ausfall: Plan-B-Service oder Übergabe-Sprint.",
+          "Frist oder Ausfall: Plan-B-Service.",
         ]}
         ctaHref="/kontakt?service=angebot-pruefen&intent=entscheidungs-kompass&source=signature-services#direktanfrage"
         ctaLabel="Entscheidung klaeren"
@@ -276,7 +276,7 @@ export default function SignatureServicesPage() {
 
       <SignatureServicesGrid
         title="Alle Signature Services als echte FLOXANT-Produkte."
-        intro="Die Services sind keine losen Zusatzideen. Jeder Startpunkt klärt eine konkrete Situation: Angebot, Vergleich, Objekt, Übergabe, Plan B, Rückfahrt, PV, Diskretion, Vermieter oder Büro."
+        intro="Die Services sind keine losen Zusatzideen. Jeder freigegebene Startpunkt klärt eine konkrete Situation: Angebot, Vergleich, Objekt, Übergabe, Plan B oder Diskretion."
         services={signatureServiceLinks}
       />
 
@@ -330,7 +330,7 @@ export default function SignatureServicesPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
               Senden Sie Ort, Ziel, Termin, Angebot oder Fotos. FLOXANT ordnet ein,
-              ob Fairpreis, Objektbrief, Plan B, Rückfahrt oder PV-Sichtklar passt.
+              ob Angebotscheck, Objektbrief, Übergabeakte, Plan B oder Diskret-Service passt.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

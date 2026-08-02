@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Services in English",
   description:
-    "Browse publicly reviewed FLOXANT services with English pages for cleaning, moving, clearance and quote checks in Düsseldorf and Regensburg.",
+    "Browse reviewed services: cleaning and cleaning-quote checks in Düsseldorf; cleaning, moving and clearance in Regensburg.",
   alternates: {
     canonical: path,
     languages: {

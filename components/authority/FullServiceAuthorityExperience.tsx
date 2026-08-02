@@ -36,7 +36,7 @@ const variantCopy = {
       "Düsseldorf bleibt ein echter Standort. Servicegebiete im Umkreis werden nur als Einsatzgebiet erklärt, nicht als weitere Niederlassung.",
   },
   regensburg: {
-    heading: "Regensburg: Servicezentrum plus 50 km",
+    heading: "Regensburg: Servicezentrum plus 75 km",
     intro:
       "Regensburg ist der stärkste Hub für Reinigung, Umzug, Entrümpelung, Klaviertransport, B2B-Reinigung und Angebotsprüfung.",
   },
@@ -48,7 +48,7 @@ const variantCopy = {
   offer: {
     heading: "Angebotsprüfung als Entscheidungsknoten",
     intro:
-      "Wenn ein Preis oder Angebot schon vorliegt, helfen Angebotscheck, Fairpreis-Check, Objektbrief und Plan B bei der nächsten Entscheidung.",
+      "Wenn ein Preis oder Angebot schon vorliegt, helfen Angebotscheck, Objektbrief und Plan B bei der nächsten Entscheidung.",
   },
 } as const;
 

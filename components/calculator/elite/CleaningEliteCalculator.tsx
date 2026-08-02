@@ -171,7 +171,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
        <CheckCircle2 size={24} />
        <Sparkles size={24} />
       </div>
-      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Einschätzung in ganz Bayern</p>
+      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Einschätzung für Regensburg + Einsatzgebiet bis 75 km</p>
      </div>
     </div>
    </div>

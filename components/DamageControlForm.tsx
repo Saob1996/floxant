@@ -31,7 +31,6 @@ const problemOptions = [
   "Schlüssel",
   "Kombination",
   "Reinigung Regensburg",
-  "Düsseldorf Entsorgung",
   "Sonstiges",
 ];
 
@@ -143,15 +142,6 @@ const damageDefaults = {
     addons: ["Endreinigung", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Regensburg. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
-  },
-  duesseldorf_entsorgung: {
-    problemType: "Düsseldorf Entsorgung",
-    urgency: "Morgen",
-    situation: "clearance_open",
-    openItems: ["Sperrmüll / Entsorgung", "Möbel / Kartons", "Fotos vorhanden", "Budget vorhanden"],
-    addons: ["Entsorgung", "Diskreter Rückruf"],
-    whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Entsorgung in Düsseldorf. Umfang, Zugang, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
   regensburg_cleaning: {
     problemType: "Reinigung Regensburg",

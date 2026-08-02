@@ -17,7 +17,26 @@ export type GenerateLeadParameters =
       service_type: "cleaning";
       location: "duesseldorf";
       lead_source: "google_ads";
+    }
+  | {
+      form_name: "professional_request";
+      service_type: "moving" | "cleaning" | "clearance" | "general";
+      location: "duesseldorf" | "regensburg" | "unsicher";
+      lead_source: "seo" | "website";
     };
+
+export type ConfirmedProfessionalRequestLead = {
+  responseStatus: number;
+  responseOk: boolean;
+  payload: {
+    ok?: boolean;
+    requestId?: string;
+    bookingId?: string;
+  };
+  serviceType: "moving" | "cleaning" | "clearance" | "general";
+  location: "duesseldorf" | "regensburg" | "unsicher";
+  leadSource: "seo" | "website";
+};
 
 type GoogleConsentValue = "granted" | "denied";
 type GoogleConsentCommand = {
@@ -147,4 +166,31 @@ export function trackGenerateLead(parameters: GenerateLeadParameters, eventKey?:
   } catch {
     return false;
   }
+}
+
+export function trackConfirmedProfessionalRequestLead(
+  submission: ConfirmedProfessionalRequestLead,
+) {
+  const { payload } = submission;
+  if (
+    submission.responseStatus !== 201 ||
+    submission.responseOk !== true ||
+    payload.ok !== true ||
+    typeof payload.requestId !== "string" ||
+    !payload.requestId ||
+    typeof payload.bookingId !== "string" ||
+    !payload.bookingId
+  ) {
+    return false;
+  }
+
+  return trackGenerateLead(
+    {
+      form_name: "professional_request",
+      service_type: submission.serviceType,
+      location: submission.location,
+      lead_source: submission.leadSource,
+    },
+    `professional_request:${payload.requestId}:${payload.bookingId}`,
+  );
 }

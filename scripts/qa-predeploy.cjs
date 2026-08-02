@@ -170,7 +170,7 @@ async function ensureBaseUrl(results) {
   }
 
   if (!scriptExists("build")) {
-    addResult(results, "FAIL", "server", "build", "Cannot start next start because build script is missing.", "Restore build script.", { priority: "P0" });
+    addResult(results, "FAIL", "server", "build", "Cannot start the static export server because build script is missing.", "Restore build script.", { priority: "P0" });
     return { baseUrl: configured.baseUrl, server: null, serverMode: "missing build script" };
   }
 
@@ -186,12 +186,12 @@ async function ensureBaseUrl(results) {
   const ready = await waitForServer(baseUrl, Number(process.env.QA_SERVER_START_TIMEOUT_MS || 90000));
   if (!ready.ok) {
     const output = server.getOutput ? server.getOutput() : { stdout: "", stderr: "" };
-    addResult(results, "FAIL", "server", baseUrl, `Local next start did not become ready: ${ready.error}`, "Inspect build/server output.", { priority: "P0", stdoutTail: output.stdout.slice(-4000), stderrTail: output.stderr.slice(-4000) });
+    addResult(results, "FAIL", "server", baseUrl, `Local static export did not become ready: ${ready.error}`, "Inspect build/server output.", { priority: "P0", stdoutTail: output.stdout.slice(-4000), stderrTail: output.stderr.slice(-4000) });
   } else {
-    addResult(results, "PASS", "server", baseUrl, "Local next start ready for HTTP QA.", "No action.", { priority: "P0" });
+    addResult(results, "PASS", "server", baseUrl, "Local static export ready for HTTP QA.", "No action.", { priority: "P0" });
   }
 
-  return { baseUrl, server, serverMode: "auto next start after build" };
+  return { baseUrl, server, serverMode: "auto static export after build" };
 }
 
 function runScriptList(results, scripts, env, required) {

@@ -31,6 +31,19 @@ const allowedTypes = new Set([
   "guide",
 ]);
 const forbiddenRouteSegments = new Set(["api", "dashboard", "admin"]);
+const forbiddenPublicServiceIds = new Set([
+  "uebergabe-sprint",
+  "glasreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "mini-umzug",
+  "express-umzug",
+  "fairpreis-check",
+  "rueckfahrt-radar",
+  "vermieter-ready-service",
+  "buero-startklar-service",
+  "pv-sichtklar-service",
+]);
 
 function addError(location, message) {
   errors.push(`${location}: ${message}`);
@@ -220,6 +233,19 @@ function validateEntry(entry, index, seenIds) {
 
   validateStringArray(entry.regions, `${location}.regions`);
   validateStringArray(entry.serviceIds, `${location}.serviceIds`);
+  if (Array.isArray(entry.serviceIds)) {
+    entry.serviceIds.forEach((serviceId, serviceIdIndex) => {
+      if (
+        typeof serviceId === "string" &&
+        forbiddenPublicServiceIds.has(serviceId.toLocaleLowerCase("de"))
+      ) {
+        addError(
+          `${location}.serviceIds[${serviceIdIndex}]`,
+          "must not expose a MANUAL_REVIEW service",
+        );
+      }
+    });
+  }
   validateStringArray(entry.keywords, `${location}.keywords`);
 }
 

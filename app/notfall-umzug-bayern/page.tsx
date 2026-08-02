@@ -9,13 +9,11 @@ import Link from "next/link";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 export async function generateMetadata(): Promise<Metadata> {
   const pageLocale: Locale = "de";
-  const dict = await getDictionary("de");
-  const content = dict.pages?.notfall_umzug_bayern || {};
   return generatePageSEO({
     pageLocale,
     path: "notfall-umzug-bayern",
-    title: content.meta_title || "Notfall-Umzug Bayern | Sofort-Hilfe | FLOXANT",
-    description: content.meta_desc || "Notfall-Umzug in Bayern bei Wasserschaden, Brand oder Räumungsklage.",
+    title: "Notfall-Umzug Regensburg + 75 km | FLOXANT",
+    description: "Notfall-Umzug im Einsatzgebiet bis 75 km um Regensburg anfragen. Fernziele sind nur Ziel einer konkreten Anfrage, keine flächendeckende Zusage.",
   });
 }
 export default async function NotfallUmzugBayern() {
@@ -23,7 +21,7 @@ export default async function NotfallUmzugBayern() {
   const dict = await getDictionary("de");
   const isDe = pageLocale === "de";
   const breadcrumbs = [
-    { label: "Umzug Bayern", href: `/umzug-bayern` },
+    { label: "Umzug ab Regensburg", href: `/umzug-bayern` },
     { label: "Notfall-Umzug" }
   ];
   return (
@@ -36,12 +34,12 @@ export default async function NotfallUmzugBayern() {
             <span>Notfall-Service</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight">
-            Notfall-Umzug in <span className="text-primary">Bayern</span>
+            Notfall-Umzug ab <span className="text-primary">Regensburg</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Wasserschaden, Brand, Räumungsklage oder familiäre Krise – wenn ein sofortiger
-            Umzug nötig ist, steht FLOXANT bereit. Schnell erreichbar, diskret und
-            mit einem klaren nächsten Schritt.
+            Umzug nötig ist, prüft FLOXANT die Machbarkeit im Einsatzgebiet bis 75 km um Regensburg.
+            Fernziele können Teil einer Anfrage sein, sind aber keine flächendeckende Zusage.
           </p>
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
             <Phone className="w-5 h-5" /> +49 1577 1105087
@@ -55,8 +53,8 @@ export default async function NotfallUmzugBayern() {
             <p>
               Notfälle lassen sich nicht planen. Ein Rohrbruch, ein Brand, eine Räumungsklage
               oder ein plötzlicher familiärer Notfall – in diesen Situationen brauchen Sie
-              einen Umzugspartner, der sofort handelt. FLOXANT bietet einen
-              Notfall-Umzugsservice für ganz Bayern mit Bereitschaftsteams in Regensburg.
+              einen klaren, schnellen nächsten Schritt. FLOXANT prüft Notfall-Umzüge im
+              verifizierten Einsatzgebiet bis 75 km um Regensburg nach Team, Fahrzeug, Zugang und Termin.
             </p>
             <p>
               Wir verstehen, dass Notfallsituationen extrem belastend sind. Deshalb
@@ -116,13 +114,13 @@ export default async function NotfallUmzugBayern() {
                   href={`/umzug-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all font-sans"
                 >
-                  Umzug Bayern
+                  Umzug ab Regensburg
                 </Link>
                 <Link
                   href={`/entruempelung-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all font-sans"
                 >
-                  Entrümpelung Bayern
+                  Entrümpelung im Regensburger Einsatzgebiet
                 </Link>
               </div>
             </div>

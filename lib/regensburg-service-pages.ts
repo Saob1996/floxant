@@ -283,7 +283,7 @@ export const regensburgServicePages = {
       "Wohnung nach Auszug",
       "Objekt vor Wohnungsübergabe",
       "Reinigung nach Entrümpelung",
-      "Vermieter-Ready-Service",
+      "Objektvorbereitung für Vermieter",
       "Übergabeakte oder Objektbrief",
       "Besichtigung oder Nachnutzung",
     ],
@@ -297,7 +297,7 @@ export const regensburgServicePages = {
     process: [
       "Sie senden Fläche, Zustand, Fotos, Frist und vorhandene Vereinbarungen zur Übergabe.",
       "FLOXANT trennt Reinigung, Restmengen, Entrümpelung und mögliche Dokumentationspunkte.",
-      "Bei Vermieter-Ready-Fällen werden Objektbrief, Übergabeakte oder Übergabe-Sprint als Zusatzweg eingeordnet.",
+      "Bei Übergabefällen werden Objektbrief, Übergabeakte oder Plan-B-Service als Zusatzweg eingeordnet.",
       "Vorhandene Angebote können über die Angebotsprüfung organisatorisch verglichen werden.",
       "Sie erhalten eine klare Rückmeldung zum sinnvollen nächsten Schritt ohne Abnahme- oder Preisgarantie.",
     ],
@@ -345,8 +345,7 @@ export const regensburgServicePages = {
       { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/objektbrief", label: "Objektbrief" },
       { href: "/uebergabeakte", label: "Übergabeakte" },
-      { href: "/uebergabe-sprint", label: "Übergabe-Sprint" },
-      { href: "/vermieter-ready-service", label: "Vermieter-Ready-Service" },
+      { href: "/plan-b-service", label: "Plan-B-Service" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
       { href: "/angebot-vergleichen-regensburg", label: "Angebot vergleichen Regensburg" },
       { href: "/kontakt", label: "Kontakt" },
@@ -481,7 +480,7 @@ export const regensburgServicePages = {
       },
       {
         q: "Ist Büroreinigung auch im Umland möglich?",
-        a: "Ja, wenn das Objekt im Regensburger Umkreis bis 50 km liegt. FLOXANT prüft dabei Anfahrt, Randzeit, Schlüsselweg und laufende Betreuung realistisch.",
+        a: "Ja, wenn das Objekt im verifizierten Regensburger Einsatzgebiet bis 75 km liegt. FLOXANT prüft dabei Anfahrt, Randzeit, Schlüsselweg und laufende Betreuung realistisch.",
       },
       {
         q: "Welche Angaben beschleunigen die Anfrage?",

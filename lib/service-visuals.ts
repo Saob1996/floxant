@@ -155,20 +155,6 @@ export const serviceVisuals = {
     prompt:
       "Realistische Fotografie eines diskret gepflegten hochwertigen Innenraums, Villa oder privates Office, elegante neutrale Reinigungssituation, keine Personen, keine Logos, kein Luxus-Klischee.",
   },
-  "duesseldorf-disposal": {
-    id: "duesseldorf-disposal",
-    region: "duesseldorf",
-    category: "clearance",
-    src: clearanceImage,
-    alt: "Sortierte Gegenstände für Entsorgung in Düsseldorf",
-    title: "Entsorgung sauber von Reinigung trennen",
-    caption:
-      "Möbel, Kellerinhalte oder kleines Firmeninventar werden nach Menge, Material, Zugang und Fotos geprüft. Eine anschließende Reinigung bleibt ein eigener Schritt.",
-    width: 1200,
-    height: 900,
-    prompt:
-      "Realistische Fotografie sortierter Gegenstaende fuer Entsorgung in Duesseldorf, Keller oder Nebenraum, ordentlich vorbereitet, keine Personen, keine Logos.",
-  },
   "duesseldorf-moving": {
     id: "duesseldorf-moving",
     region: "duesseldorf",
@@ -299,7 +285,7 @@ export function getServiceVisual(input: VisualLookupInput): ServiceVisual {
     return serviceVisuals["regensburg-final-cleaning"];
   }
   if (matchesAny(key, ["entsorgung", "keller"])) {
-    return serviceVisuals["duesseldorf-disposal"];
+    return serviceVisuals["regensburg-clearance"];
   }
   if (matchesAny(key, ["umzug", "moving", "transport"])) {
     return serviceVisuals["duesseldorf-moving"];

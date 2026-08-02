@@ -12,14 +12,34 @@ import {
 } from "lucide-react";
 
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
-import { SERVICE_AREA_SERVICES, SERVICE_AREA_ZONES } from "@/lib/service-area-200km";
+import { resolvePublishedLocalServiceHref } from "@/lib/dynamic-local-route-policy";
+import {
+  SERVICE_AREA_SERVICES,
+  SERVICE_AREA_ZONES,
+  type ServiceAreaCity,
+} from "@/lib/service-area-200km";
 import { germanText } from "@/lib/german-text";
 
 const serviceIcons = [Truck, Trash2, Building2, Sparkles];
 
+function getRegionalMoveLinks(cities: readonly ServiceAreaCity[]) {
+  const links = cities.map((city) => {
+    const candidateHref = `/umzug-${city.slug}`;
+    const href = resolvePublishedLocalServiceHref(candidateHref, "/regensburg/umzug");
+
+    return href === candidateHref
+      ? { href, label: city.name, distance: city.distance }
+      : { href, label: "Umzug im Raum Regensburg", distance: "Einsatzgebiet prüfen" };
+  });
+
+  return Array.from(new Map(links.map((link) => [link.href, link])).values());
+}
+
 export function RegionalDominanceGrid({ dic }: { dic?: any }) {
   const t = dic?.regional_grid || {};
-  const featuredCities = SERVICE_AREA_ZONES.flatMap((zone) => zone.cities).slice(0, 18);
+  const featuredCities = getRegionalMoveLinks(
+    SERVICE_AREA_ZONES.flatMap((zone) => zone.cities).slice(0, 18),
+  );
 
   return (
     <section className="section-glow relative overflow-hidden px-6 py-24">
@@ -111,13 +131,13 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
               </p>
 
               <div className="grid gap-2">
-                {zone.cities.slice(0, 6).map((city) => (
+                {getRegionalMoveLinks(zone.cities.slice(0, 6)).map((city) => (
                   <Link
-                    key={city.slug}
-                    href={`/umzug-${city.slug}`}
+                    key={city.href}
+                    href={city.href}
                     className="flex items-center justify-between rounded-[1.1rem] border border-slate-200 bg-white px-4 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50"
                   >
-                    <span className="text-sm font-medium">{germanText(city.name, city.name)}</span>
+                    <span className="text-sm font-medium">{germanText(city.label, city.label)}</span>
                     <span className="text-[11px] text-slate-400">{germanText(city.distance, city.distance)}</span>
                   </Link>
                 ))}
@@ -148,11 +168,11 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
           <div className="flex flex-wrap gap-2.5">
             {featuredCities.map((city) => (
               <Link
-                key={city.slug}
-                href={`/umzug-${city.slug}`}
+                key={city.href}
+                href={city.href}
                 className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
-                {germanText(city.name, city.name)}
+                {germanText(city.label, city.label)}
               </Link>
             ))}
           </div>

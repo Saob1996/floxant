@@ -45,20 +45,20 @@ const whatsappHref = buildWhatsAppHref(
   [
     "Hallo FLOXANT,",
     "ich möchte eine Anfrage in Regensburg stellen.",
-    "Es geht um Umzug, Reinigung, Gewerbereinigung, Entrümpelung, Haushaltsauflösung oder Übergabe.",
+    "Es geht um Umzug, Möbeltransport, Entrümpelung, Haushaltsauflösung oder Übergabe. Ergänzende Reinigung bitte ich getrennt zu prüfen.",
   ].join("\n"),
 );
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Regensburg: Umzug, Reinigung und Räumung anfragen",
+  title: "Umzug Regensburg | Transport & Räumung | FLOXANT",
   description:
-    "Regensburg-Anfrage für Umzug, Reinigung, Entrümpelung oder Übergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
+    "Umzug, Möbeltransport, Entrümpelung und Auflösung in Regensburg: Start, Ziel, Umfang, Zugang, Fotos und Terminwunsch an FLOXANT senden.",
   alternates: { canonical: "/regensburg" },
 };
 
 const regensburgLocalSignals = [
-  "Regensburg, Landkreis und Umgebung nach Strecke, Termin, Umfang und verfügbarer Kapazität prüfen.",
+  "Regensburg und das verifizierte 75-km-Einsatzgebiet nach Strecke, Termin, Umfang und verfügbarer Kapazität prüfen.",
   "Bei Umzug und Transport zählen Start/Ziel, Etage, Laufweg, Volumen, Haltezone und mögliche Rückfahrt.",
   "Bei Entrümpelung, Haushaltsauflösung und Nachlass helfen Fotos, Freigabe, Menge, Material und Endzustand.",
   "Bei Übergabe und Endreinigung sind Termin, Schlüsselweg, Restpunkte, Fotos und gewünschter Zustand entscheidend.",
@@ -66,14 +66,14 @@ const regensburgLocalSignals = [
 
 const regensburgDecisionGuide = [
   {
-    title: "Umzug, Mini-Umzug und Transport",
-    text: "Für Wohnungswechsel, Möbeltransport, Express-Umzug oder flexible Rückfahrt mit Route, Volumen und Zugang.",
+    title: "Umzug und Transport",
+    text: "Für Wohnungswechsel, Möbeltransport, kurzfristige Plan-B-Fälle oder flexible Rückfahrt mit Route, Volumen und Zugang.",
     href: "/regensburg/umzugsunternehmen",
     cta: "Umzug öffnen",
   },
   {
     title: "Region Regensburg und Umgebung",
-    text: "Kuratierter Hub für Umzug, Räumung, Reinigung nach Umzug und Angebotsprüfung im Regensburger Einsatzgebiet.",
+    text: "Ort im verifizierten 75-km-Einsatzgebiet für Umzug, Transport und Räumung prüfen; ergänzende Reinigung bleibt separat.",
     href: "/region-regensburg",
     cta: "Region öffnen",
   },
@@ -84,13 +84,13 @@ const regensburgDecisionGuide = [
     cta: "Kosten prüfen",
   },
   {
-    title: "Büroreinigung und Reinigungsfirma",
+    title: "Ergänzende Büro- und Objektreinigung",
     text: "Für Büro, Kanzlei, Gewerbefläche oder Endreinigung mit Raumliste, Turnus, Fotos und Angebot.",
     href: "/regensburg/bueroreinigung",
     cta: "Büroreinigung prüfen",
   },
   {
-    title: "Grund-, Unterhalts- und Baureinigung",
+    title: "Ergänzende Reinigungsarten",
     text: "Für intensive Grundreinigung, wiederkehrende Objektpflege oder Reinigung nach Bau und Renovierung mit klarer Leistungsabgrenzung.",
     href: "/reinigung#grundreinigung",
     cta: "Reinigungsart wählen",
@@ -116,7 +116,7 @@ const regensburgDecisionGuide = [
 ] as const;
 
 const regensburgTrustProofs = [
-  "Regensburg-Anfragen werden nach Umzug, Reinigung, Entrümpelung, Transport und Übergabe getrennt.",
+  "Regensburg-Anfragen werden nach Umzug, Transport, Räumung und ergänzender Reinigung getrennt.",
   "Ort, Leistung, kurze Beschreibung und Kontaktweg reichen für den Start.",
   "Budget, Fotos, vorhandenes Angebot, Termin oder Dringlichkeit können freiwillig ergänzt werden.",
 ] as const;
@@ -131,12 +131,12 @@ export default function RegensburgHubPage() {
               {region.label}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Umzug, Reinigung, Räumung und Übergabe in Regensburg anfragen
+              Umzug, Transport und Räumung in Regensburg anfragen
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Beschreiben Sie Start, Ziel, Objekt, Räume, Umfang, Fotos und Terminwunsch.
-              FLOXANT trennt Umzug, Reinigung, Entrümpelung, Wohnungsauflösung und Angebotscheck,
-              damit aus einer groben Anfrage ein sinnvoller nächster Schritt wird.
+              Beschreiben Sie Start, Ziel, Etagen, Zugang, Umfang, Fotos und Terminwunsch.
+              FLOXANT trennt Umzug, Transport, Entrümpelung und Wohnungsauflösung. Eine aktive
+               Reinigungsleistung kann ergänzend über den eigenen Reinigungsbereich angefragt werden.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -144,8 +144,14 @@ export default function RegensburgHubPage() {
                 data-event="hero_cta_click"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
               >
-                Services ansehen
+                Umzug ansehen
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/region-regensburg"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white"
+              >
+                Einsatzgebiet prüfen
               </Link>
               <a
                 href={whatsappHref}
@@ -196,12 +202,12 @@ export default function RegensburgHubPage() {
       <ServiceNavigationOverview
         location="regensburg"
         title="Regensburg-Services nach Anfrageziel."
-        intro="Reinigung im Umkreis, Umzug, Räumung, Angebotsprüfung und besondere Leistungen sind getrennt aufgeführt, damit Sie schneller die passende Anfrage finden."
+        intro="Umzug, Transport, Räumung und Angebotsprüfung stehen im Vordergrund. Aktive Reinigungsleistungen sind getrennt aufgeführt, damit die Anfrage regional eindeutig bleibt."
       />
 
       <DecisionCompassPanel
         title="Unsicher in Regensburg?"
-        intro="Der Kompass führt von Übergabe, Angebot, Plan B, B2B, Sonderstück oder PV/Glas direkt zum passenden nächsten Schritt."
+        intro="Der Kompass führt von Übergabe, Angebot, Plan B, B2B, Sonderstück oder Reinigung direkt zum passenden nächsten Schritt."
       />
 
       <LocationClarityPanel
@@ -226,9 +232,9 @@ export default function RegensburgHubPage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              "Region: Regensburg und Umgebung",
-              "Leistungen: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung",
-              "Gewerbe: Büroreinigung, Objekt und Turnus nach Prüfung",
+              "Region: verifiziertes 75-km-Einsatzgebiet um Regensburg",
+              "Primär: Umzug, Möbeltransport, Entrümpelung, Haushaltsauflösung",
+              "Ergänzend und getrennt: Reinigung nach Objekt und Umfang",
               "Anfrage: Fotos, Ort, Termin und Umfang senden",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">

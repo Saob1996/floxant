@@ -207,7 +207,7 @@ export default function GewerbereinigungLandingPage() {
     path: pagePath,
     serviceType:
       "Gewerbliche Reinigung, Hotelreinigung, Praxisreinigung, Kanzleireinigung, Büroreinigung und Treppenhausreinigung",
-    areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+    areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 75 km"],
   });
 
   const webPageJsonLd = buildWebPageJsonLd({
@@ -253,7 +253,7 @@ export default function GewerbereinigungLandingPage() {
     areaServed: [
       { "@type": "City", name: "Regensburg" },
       { "@type": "AdministrativeArea", name: "Landkreis Regensburg" },
-      { "@type": "Place", name: "Regensburg plus 50 km" },
+      { "@type": "Place", name: "Regensburg plus 75 km" },
     ],
   };
 

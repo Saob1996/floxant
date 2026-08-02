@@ -256,7 +256,7 @@ const handoverSituationOptions = [
   { value: "", label: "noch offen" },
   { value: "auszug", label: "Auszug / Wohnungswechsel" },
   { value: "nach-entruempelung", label: "nach Entrümpelung" },
-  { value: "vermieter-ready", label: "Vermieter-Ready" },
+  { value: "objekt-vor-uebergabe", label: "Objekt vor Übergabe" },
   { value: "verwaltung-uebergabe", label: "Übergabe an Verwaltung" },
   { value: "besichtigung-nachnutzung", label: "Besichtigung / Nachnutzung" },
 ] as const;
@@ -273,8 +273,6 @@ const handoverConditionOptions = [
 const handoverExtraNeedOptions = [
   { value: "objektbrief", label: "Objektbrief" },
   { value: "uebergabeakte", label: "Übergabeakte" },
-  { value: "uebergabe-sprint", label: "Übergabe-Sprint" },
-  { value: "vermieter-ready-service", label: "Vermieter-Ready-Service" },
   { value: "angebot-pruefen", label: "Angebot prüfen" },
   { value: "entruempelung", label: "Restmengen / Entrümpelung" },
 ] as const;
@@ -320,7 +318,7 @@ function getSuccessCopy({
         "Ihre Anfrage zur Endreinigung oder Übergabevorbereitung wurde gesendet. Wir prüfen Fläche, Zustand, Frist, Restmengen, Fotos und mögliche Ergänzungen wie Objektbrief oder Übergabeakte. Eine Abnahme, Kautionsrückzahlung, Preis- oder Sofortterminzusage wird nicht garantiert.",
       bullets: [
         "Fotos von Küche, Bad, Böden, Restmengen und Zugang helfen besonders.",
-        "Objektbrief, Übergabeakte, Übergabe-Sprint oder Angebotsprüfung können optional ergänzt werden.",
+        "Objektbrief, Übergabeakte oder Angebotsprüfung können optional ergänzt werden.",
         "Eine Anfrage ist noch keine Buchung und keine rechtliche Übergabebewertung.",
       ],
     };
@@ -1687,7 +1685,7 @@ export function SeoLeadForm({
             </div>
           </div>
           <p className="text-xs font-semibold leading-5 text-slate-600 sm:col-span-2">
-            Diese Felder sind optional und helfen bei Endreinigung vor Übergabe, Reinigung nach Entrümpelung, Vermieter-Ready-Service,
+             Diese Felder sind optional und helfen bei Endreinigung vor Übergabe, Reinigung nach Entrümpelung,
             Objektbrief oder Übergabeakte. Bitte keine Zugangscodes im Formular senden.
           </p>
         </div>

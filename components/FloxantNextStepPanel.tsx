@@ -155,8 +155,8 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       "Düsseldorf und Regensburg bleiben klar getrennt. So landen Sie direkt bei den Leistungen und Kontaktmöglichkeiten für Ihren Ort.",
     primaryHref: "/duesseldorf/reinigung",
     primaryLabel: "Reinigung anfragen",
-    secondaryHref: "/entsorgung-duesseldorf",
-    secondaryLabel: "Entsorgung prüfen",
+    secondaryHref: "/duesseldorf/einsatzgebiet",
+    secondaryLabel: "Einsatzgebiet prüfen",
     cards: [
       {
         title: "Wohnung reinigen",

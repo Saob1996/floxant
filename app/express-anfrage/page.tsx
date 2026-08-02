@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "express-anfrage",
     title: "Express-Anfrage Regensburg | Kurzfristig Umzug & Reinigung",
     description:
-      "Kurzfristiger Umzug, Express-Reinigung oder Räumung in Düsseldorf und Regensburg. FLOXANT prüft Ihre Anfrage schnell auf realistische Machbarkeit.",
+      "Kurzfristigen Umzug, Reinigung oder Räumung in Regensburg und Bayern anfragen. FLOXANT prüft Ort, Umfang, Termin und Kapazität ohne Sofortzusage.",
   });
 }
 
@@ -100,7 +100,7 @@ export default async function ExpressPage() {
             Express-Anfrage & Notfall-Service in Regensburg & Bayern
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600">
-            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit klarer Rückmeldung zu Kapazität, Ort und Umfang. Sie bekommen eine erreichbare Anlaufstelle für eilige Fälle in Düsseldorf und Regensburg.
+            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit klarer Rückmeldung zu Kapazität, Ort und Umfang. Dieser Express-Weg gilt für Regensburg und Bayern nach konkreter Machbarkeitsprüfung.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
@@ -162,6 +162,8 @@ export default async function ExpressPage() {
                 common: dict.common,
                 calculator: dict.calculator,
               }}
+              initialRegion="regensburg-bayern"
+              initialEntry="express"
             />
           </div>
         </div>
@@ -170,9 +172,9 @@ export default async function ExpressPage() {
       <section className="section-glow px-6 py-16">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: "/umzug", label: "Umzug als Hauptservice" },
-            { href: "/reinigung", label: "Reinigung als Hauptservice" },
-            { href: "/entruempelung", label: "Entrümpelung als Hauptservice" },
+            { href: "/regensburg/umzug", label: "Umzug in Regensburg" },
+            { href: "/regensburg/reinigung", label: "Reinigung in Regensburg" },
+            { href: "/regensburg/entruempelung", label: "Entrümpelung in Regensburg" },
             { href: "/regensburg", label: "Regensburg-Bereich" },
           ].map((item) => (
             <Link

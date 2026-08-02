@@ -5,6 +5,9 @@ type LocalServiceBridgeProps = {
   serviceLabel: string;
   duesseldorfHref?: string;
   regensburgHref?: string;
+  showDuesseldorf?: boolean;
+  duesseldorfText?: string;
+  regensburgText?: string;
   className?: string;
 };
 
@@ -12,18 +15,19 @@ export function LocalServiceBridge({
   serviceLabel,
   duesseldorfHref = "/duesseldorf",
   regensburgHref = "/regensburg",
+  showDuesseldorf = true,
+  duesseldorfText = "Reinigung, Reinigungsangebot und Einsatzgebiet mit Objekt, Fläche, Zustand und Termin einordnen.",
+  regensburgText = "Umzug, Transport, Entrümpelung und ergänzende Reinigung mit Ort, Umfang, Termin und Zugang klären.",
   className = "",
 }: LocalServiceBridgeProps) {
   const links = [
-    {
-      city: "Düsseldorf",
-      href: duesseldorfHref,
-      text: "Umzug, Räumung, Entsorgung oder Objektanfrage mit Stadtteil, Umfang und Fotos einordnen.",
-    },
+    ...(showDuesseldorf
+      ? [{ city: "Düsseldorf", href: duesseldorfHref, text: duesseldorfText }]
+      : []),
     {
       city: "Regensburg",
       href: regensburgHref,
-      text: "Umzug, Transport, Entrümpelung, Haushaltsauflösung, Übergabe oder Solar/PV mit Termin und Zugang klären.",
+      text: regensburgText,
     },
   ];
 
@@ -39,7 +43,7 @@ export function LocalServiceBridge({
             {serviceLabel} lokal richtig einordnen.
           </h2>
         </article>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className={`grid gap-3${links.length > 1 ? " sm:grid-cols-2" : ""}`}>
           {links.map((link) => (
             <Link
               key={link.city}

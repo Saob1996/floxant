@@ -175,9 +175,9 @@ const localLinks = [
     href: "/kontakt?service=diskret-service&city=regensburg&intent=diskrete-entruempelung-regensburg&source=seo",
   },
   {
-    title: "Düsseldorf diskret starten",
-    text: "Für lokale Entrümpelung oder Haushaltsauflösung in Düsseldorf ohne Fake-Niederlassung.",
-    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung-duesseldorf&source=seo",
+    title: "Düsseldorf Reinigung diskret starten",
+    text: "Für eine sensible Reinigungs- oder Angebotsanfrage am Düsseldorfer Standort.",
+    href: "/kontakt?service=reinigung&city=duesseldorf&intent=diskrete-reinigung-duesseldorf&source=seo",
   },
   {
     title: "Angebot sensibel prüfen",
@@ -242,12 +242,20 @@ const jsonLd = {
       ],
     }),
     buildServiceJsonLd({
-      name: "FLOXANT Diskret-Service",
+      name: "FLOXANT Diskret-Service Regensburg",
       description:
-        "Rückhaltender Anfrageweg für sensible Faelle rund um Umzug, Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlass, Reinigung, Übergabe und Angebotsprüfung.",
+        "Rückhaltender Regensburger Anfrageweg für sensible Fälle rund um Umzug, Entrümpelung, Auflösung, Reinigung, Übergabe und Angebotsprüfung.",
       path,
       serviceType: "Diskrete Serviceanfrage und praktische Einordnung",
-      areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Machbarkeit", "Deutschland nach Anfrage"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg"],
+    }),
+    buildServiceJsonLd({
+      name: "FLOXANT Diskrete Reinigungsanfrage Düsseldorf",
+      description:
+        "Rückhaltender Düsseldorfer Anfrageweg für sensible Reinigung und die Prüfung eines Reinigungsangebots.",
+      path,
+      serviceType: "Diskrete Reinigungs- und Angebotsanfrage",
+      areaServed: ["Düsseldorf", "Verifiziertes 75-km-Einsatzgebiet um Düsseldorf"],
     }),
     buildFaqJsonLd(faqItems),
   ],

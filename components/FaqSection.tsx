@@ -2,7 +2,6 @@ import { HelpCircle } from "lucide-react";
 
 import type { FloxantFaqItem } from "@/lib/faqs";
 import { germanText, germanizeDeep } from "@/lib/german-text";
-import { buildFaqJsonLd } from "@/lib/structured-data";
 
 type FaqSectionProps = {
   title?: string;
@@ -17,7 +16,6 @@ export function FaqSection({
   title = "Haeufige Fragen",
   intro = "Kurze Antworten, die vor einer Anfrage helfen.",
   items,
-  includeJsonLd = false,
   maxItems = 6,
   className = "",
 }: FaqSectionProps) {
@@ -25,12 +23,6 @@ export function FaqSection({
 
   return (
     <section className={`bg-white px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`}>
-      {includeJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(visibleItems)) }}
-        />
-      ) : null}
       <div className="mx-auto max-w-5xl">
         <div className="mb-7">
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">

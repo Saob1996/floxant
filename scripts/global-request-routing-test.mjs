@@ -1,9 +1,68 @@
 import assert from "node:assert/strict";
+import { createRequire } from "node:module";
 import fs from "node:fs";
 import path from "node:path";
+import vm from "node:vm";
+import ts from "typescript";
 
 const root = process.cwd();
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
+const nativeRequire = createRequire(import.meta.url);
+const moduleCache = new Map();
+
+function loadTypeScriptModule(filePath) {
+  const absolutePath = path.resolve(filePath);
+  if (moduleCache.has(absolutePath)) return moduleCache.get(absolutePath).exports;
+
+  const source = fs.readFileSync(absolutePath, "utf8");
+  const compiled = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2022,
+      esModuleInterop: true,
+    },
+    fileName: absolutePath,
+  }).outputText;
+  const compiledModule = { exports: {} };
+  moduleCache.set(absolutePath, compiledModule);
+
+  const localRequire = (request) => {
+    if (request.startsWith("@/")) {
+      const resolved = path.join(root, request.slice(2));
+      for (const candidate of [`${resolved}.ts`, `${resolved}.js`, resolved]) {
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          return candidate.endsWith(".ts")
+            ? loadTypeScriptModule(candidate)
+            : nativeRequire(candidate);
+        }
+      }
+    }
+    if (!request.startsWith(".")) return nativeRequire(request);
+    const resolved = path.resolve(path.dirname(absolutePath), request);
+    for (const candidate of [`${resolved}.ts`, `${resolved}.js`, resolved]) {
+      if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+        return candidate.endsWith(".ts")
+          ? loadTypeScriptModule(candidate)
+          : nativeRequire(candidate);
+      }
+    }
+    throw new Error(`Cannot resolve ${request} from ${absolutePath}`);
+  };
+
+  const context = vm.createContext({
+    URL,
+    console,
+    exports: compiledModule.exports,
+    module: compiledModule,
+    require: localRequire,
+  });
+  vm.runInContext(compiled, context, { filename: absolutePath });
+  return compiledModule.exports;
+}
+
+const { resolveRequestContext } = loadTypeScriptModule(
+  path.join(root, "lib", "lead-intents", "resolve-request-context.ts"),
+);
 
 const navigation = read("components/FloxNavigation.tsx");
 const footer = read("components/Footer.tsx");
@@ -67,6 +126,21 @@ test("8. Praxisreinigung ist Düsseldorf korrekt zugeordnet", () => {
 test("9. Umzug ist Regensburg korrekt zugeordnet", () => {
   assert.match(locationPolicy, /key: "umzug", service: "umzug"/);
   assert.match(locationPolicy, /regensburg: buildConfirmedOptions\("regensburg"\)/);
+});
+
+test("9a. Priorität p1 wird im Regensburg-Kontext erhalten", () => {
+  const context = resolveRequestContext({
+    source: "seo",
+    location: "regensburg",
+    service: "umzug",
+    intent: "umzug-anfrage",
+    priority: "p1",
+  });
+  assert.equal(context.valid, true);
+  assert.equal(context.location, "regensburg");
+  assert.equal(context.serviceKey, "umzug");
+  assert.equal(context.priority, "p1");
+  assert.equal(context.leadIntent.priority, "p1");
 });
 
 test("10. Entrümpelung ist Regensburg korrekt zugeordnet", () => {

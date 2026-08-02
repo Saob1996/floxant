@@ -156,7 +156,7 @@ const jsonLd = {
         "Empfehlungsbonus für FLOXANT Services. Bei erfolgreicher Vermittlung eines neuen Kunden kann ein 50 Euro Bonus ausgezahlt werden.",
       path,
       serviceType: "Empfehlungsbonus",
-      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 50 km"],
+      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 75 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

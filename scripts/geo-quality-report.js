@@ -8,7 +8,6 @@ const APP_DIR = path.join(ROOT, "app");
 const PREFIXES = ["umzug-", "reinigung-", "entruempelung-", "bueroumzug-", "wohnungsaufloesung-"];
 const DUESSELDORF_SPECIAL_ROUTES = new Set([
   "reinigung-moeblierte-wohnung-regensburg",
-  "entsorgung-duesseldorf",
 ]);
 const NON_GEO_ROUTES = new Set([
   "umzug-kosten-rechner",

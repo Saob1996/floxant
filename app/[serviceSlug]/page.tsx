@@ -27,10 +27,12 @@ import { germanizeText } from "@/lib/german-text";
 import { getGscClickPriority } from "@/lib/gsc-click-priorities";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import {
-  dynamicLocalSeoRoutes,
-  getDynamicLocalSeoRoute,
-  type DynamicLocalSeoRoute,
-} from "@/lib/local-seo-routes";
+  getPublishedDynamicLocalSeoRoute,
+  isPublishedLocalServiceRoute,
+  publishedDynamicLocalSeoRoutes,
+  resolvePublishedLocalServiceHref,
+} from "@/lib/dynamic-local-route-policy";
+import type { DynamicLocalSeoRoute } from "@/lib/local-seo-routes";
 
 const DYNAMIC_CORE_SERVICE_PARAMS = ["fernumzug", "montage"] as const;
 const DEPRIORITIZED_DYNAMIC_CITY_SLUGS = new Set([
@@ -49,26 +51,12 @@ const DEPRIORITIZED_DYNAMIC_CITY_SLUGS = new Set([
   "leipzig",
   "stuttgart",
 ]);
-const LEGACY_REDIRECT_SERVICE_SLUGS = new Set([
-  "umzug-regensburg",
-  "reinigung-regensburg",
-  "entruempelung-regensburg",
-  "gewerbereinigung-regensburg",
-  "bueroreinigung-regensburg",
-  "wohnungsaufloesung-regensburg",
-  "umzugsunternehmen-regensburg",
-  "seniorenumzug-regensburg",
-  "umzug-reinigung-regensburg",
-  "endreinigung-regensburg",
-]);
-
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return [
-    ...dynamicLocalSeoRoutes
+    ...publishedDynamicLocalSeoRoutes
       .map((entry) => entry.route.replace(/^\//, ""))
-      .filter((serviceSlug) => !LEGACY_REDIRECT_SERVICE_SLUGS.has(serviceSlug))
       .map((serviceSlug) => ({ serviceSlug })),
     ...growthServiceRootPageSlugs.map((serviceSlug) => ({ serviceSlug })),
     ...DYNAMIC_CORE_SERVICE_PARAMS.map((serviceSlug) => ({ serviceSlug })),
@@ -262,6 +250,52 @@ function sanitizeString(val: any, fallback: string = ""): string {
 
 function getLocalizedCityLabel(cities: any, key: string, fallback: string): string {
   return cities?.[key] || fallback;
+}
+
+function getCoreServiceLocationLinks(serviceSlug: ServiceSlug, cities: any) {
+  const locations = [
+    { slug: "regensburg", label: getLocalizedCityLabel(cities, "regensburg", "Regensburg") },
+    { slug: "bayern", label: getLocalizedCityLabel(cities, "bavaria", "Bayern") },
+    { slug: "muenchen", label: getLocalizedCityLabel(cities, "munich", "München") },
+    { slug: "nuernberg", label: getLocalizedCityLabel(cities, "nuremberg", "Nürnberg") },
+    { slug: "augsburg", label: getLocalizedCityLabel(cities, "augsburg", "Augsburg") },
+    { slug: "landshut", label: "Landshut" },
+    { slug: "passau", label: "Passau" },
+    { slug: "straubing", label: "Straubing" },
+    { slug: "schwandorf", label: "Schwandorf" },
+    { slug: "ingolstadt", label: "Ingolstadt" },
+  ];
+  const servicePrefix =
+    serviceSlug === "reinigung" || serviceSlug === "entruempelung" || serviceSlug === "bueroumzug"
+      ? serviceSlug
+      : "umzug";
+  const fallbackHref =
+    serviceSlug === "reinigung"
+      ? "/regensburg/reinigung"
+      : serviceSlug === "entruempelung"
+        ? "/regensburg/entruempelung"
+        : serviceSlug === "bueroumzug"
+          ? "/bueroumzug-regensburg"
+          : "/regensburg/umzug";
+  const fallbackLabel =
+    serviceSlug === "reinigung"
+      ? "Reinigung im Raum Regensburg"
+      : serviceSlug === "entruempelung"
+        ? "Entrümpelung im Raum Regensburg"
+        : serviceSlug === "bueroumzug"
+          ? "Büroumzug im Raum Regensburg"
+          : "Umzug im Raum Regensburg";
+  const links = locations.map((location) => {
+    const candidateHref = `/${servicePrefix}-${location.slug}`;
+    const isDedicatedPage = isPublishedLocalServiceRoute(candidateHref);
+
+    return {
+      href: resolvePublishedLocalServiceHref(candidateHref, fallbackHref),
+      label: isDedicatedPage ? location.label : fallbackLabel,
+    };
+  });
+
+  return Array.from(new Map(links.map((link) => [link.href, link])).values());
 }
 
 function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
@@ -606,7 +640,7 @@ export async function generateMetadata({
   params: Promise<{ serviceSlug: string }>;
 }): Promise<Metadata> {
   const { serviceSlug } = await params;
-  const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
+  const localSeoRoute = getPublishedDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return generateLocalSeoMetadata(localSeoRoute);
   }
@@ -630,7 +664,7 @@ export async function generateMetadata({
 }
 export default async function CoreServicePage({ params }: PageProps) {
   const { serviceSlug } = await params;
-  const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
+  const localSeoRoute = getPublishedDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return renderLocalSeoPage(localSeoRoute);
   }
@@ -662,21 +696,19 @@ export default async function CoreServicePage({ params }: PageProps) {
   const canonicalUrl = `${company.url}/${serviceSlug}`;
   const regensburgServiceArea = [
     { "@type": "City", name: "Regensburg" },
-    { "@type": "AdministrativeArea", name: "Umgebung Regensburg ca. 200 km" },
-    { "@type": "State", name: "Bayern" },
+    { "@type": "AdministrativeArea", name: "Verifiziertes Einsatzgebiet bis 75 km um Regensburg" },
   ];
   const faqJsonLd =
     faqs.length > 0
       ? {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((faq: any) => ({
-          "@type": "Question",
+        "@type": "ItemList",
+        name: "Häufige Fragen",
+        itemListElement: faqs.map((faq: any, index: number) => ({
+          "@type": "ListItem",
+          position: index + 1,
           name: faq.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.a,
-          },
+          description: faq.a,
         })),
       }
       : null;
@@ -1069,36 +1101,15 @@ export default async function CoreServicePage({ params }: PageProps) {
               {alsoAvailableIn}
             </h3>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {[
-                { slug: "regensburg", label: getLocalizedCityLabel(cities, "regensburg", "Regensburg") },
-                { slug: "bayern", label: getLocalizedCityLabel(cities, "bavaria", "Bayern") },
-                { slug: "muenchen", label: getLocalizedCityLabel(cities, "munich", "München") },
-                { slug: "nuernberg", label: getLocalizedCityLabel(cities, "nuremberg", "Nürnberg") },
-                { slug: "augsburg", label: getLocalizedCityLabel(cities, "augsburg", "Augsburg") },
-                { slug: "landshut", label: "Landshut" },
-                { slug: "passau", label: "Passau" },
-                { slug: "straubing", label: "Straubing" },
-                { slug: "schwandorf", label: "Schwandorf" },
-                { slug: "ingolstadt", label: "Ingolstadt" },
-              ].map((city: any) => {
-                let href = `/umzug-${city.slug}`;
-                if (serviceSlug === "reinigung" || serviceSlug === "entruempelung") {
-                  href = `/${serviceSlug}-${city.slug}`;
-                } else if (serviceSlug === "bueroumzug" && city.slug === "regensburg") {
-                  href = `/bueroumzug-regensburg`;
-                } else if ((serviceSlug as string) === "seniorenumzug" && (city.slug === "regensburg" || city.slug === "muenchen" || city.slug === "nuernberg")) {
-                  href = `/seniorenumzug-${city.slug}`;
-                }
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="rounded-full border border-border/50 px-4 py-2 text-sm text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
-                  >
-                    {city.label}
-                  </Link>
-                );
-              })}
+              {getCoreServiceLocationLinks(serviceSlug, cities).map((location) => (
+                <Link
+                  key={location.href}
+                  href={location.href}
+                  className="rounded-full border border-border/50 px-4 py-2 text-sm text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
+                >
+                  {location.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>

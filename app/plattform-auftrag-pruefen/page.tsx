@@ -189,7 +189,7 @@ const jsonLd = {
       serviceType: "Plattform-Auftrag prüfen lassen",
       areaServed: [
         "Regensburg",
-        "Umgebung Regensburg ca. 200 km",
+        "Verifiziertes 75-km-Einsatzgebiet um Regensburg",
         "Bayern nach Verfügbarkeit",
         "Reinigung Regensburg und Entsorgung",
       ],
@@ -421,7 +421,6 @@ export default function PlattformAuftragPruefenPage() {
                 ["/rueckfahrt-boerse", "Rückfahrt-Börse"],
                 ["/uebergabeakte", "Übergabeakte"],
                 ["/regensburg/reinigung", "Reinigung Regensburg"],
-                ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
                 ["/buchung", "Direkt anfragen"],
                 ["/rechner", "Preisrahmen prüfen"],
               ].map(([href, label]) => (

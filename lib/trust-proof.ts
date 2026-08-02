@@ -282,11 +282,11 @@ export const localProofs: Record<TrustLocationKey, LocalProof> = {
     locationKey: "duesseldorf",
     title: "FLOXANT-Leistungen in Düsseldorf",
     shortText:
-      "In Düsseldorf können Sie vorhandene Angebote prüfen lassen sowie Umzug, Räumung und Haushaltsauflösung anfragen. Wir prüfen Ort, Umfang und Termin vor einer Zusage.",
+      "In Düsseldorf können Sie Reinigungsleistungen und vorhandene Reinigungsangebote prüfen lassen. Wir prüfen Objekt, Ort, Umfang und Termin vor einer Zusage.",
     visibleProofs: [
-      "Angebote nach Umfang, Preis und offenen Punkten prüfen lassen",
-      "Umzug, Entrümpelung und Haushaltsauflösung anfragen",
-      "Ort, Fotos, Zugang und Termin direkt im Formular angeben",
+      "Reinigungsangebote nach Umfang, Preis und offenen Punkten prüfen lassen",
+      "Reinigung für Wohnung, Büro, Gewerbe, Praxis und Fenster anfragen",
+      "Objekt, Fläche, Fotos, Zugang und Termin direkt im Formular angeben",
       "Rückmeldung erst nach Prüfung der konkreten Angaben",
     ],
     manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],

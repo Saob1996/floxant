@@ -1,4 +1,4 @@
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { germanizeText } from "@/lib/german-text";
 
 type BreadcrumbEntry = {
@@ -27,7 +27,9 @@ type ServiceJsonLdInput = {
     streetAddress: string;
     postalCode: string;
     city: string;
+    state?: string;
     countryCode: string;
+    geo?: { lat: number; lng: number };
   };
 };
 
@@ -87,6 +89,7 @@ function schemaPlaceType(area: string) {
     normalized.includes("200 km") ||
     normalized.includes("nahbereich") ||
     normalized.includes("servicegebiet") ||
+    normalized.includes("einsatzgebiet") ||
     normalized.includes("nach verfügbarkeit") ||
     normalized.includes("nach verfuegbarkeit")
   ) {
@@ -111,7 +114,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
 
 export function buildFaqJsonLd(items: readonly FaqEntry[]) {
   const faqItems = items
-    .map((item) => {
+    .map((item, index) => {
       const question = exactFaqText(item.q || item.question || "");
       const answer = exactFaqText(item.a || item.answer || "");
 
@@ -120,20 +123,19 @@ export function buildFaqJsonLd(items: readonly FaqEntry[]) {
       }
 
       return {
-        "@type": "Question",
+        "@type": "ListItem",
+        position: index + 1,
         name: question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: answer,
-        },
+        description: answer,
       };
     })
     .filter(Boolean);
 
   return {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems,
+    "@type": "ItemList",
+    name: "Häufige Fragen",
+    itemListElement: faqItems,
   };
 }
 
@@ -142,20 +144,19 @@ export function buildServiceJsonLd({
   description,
   path,
   serviceType,
-  areaServed = ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+  areaServed,
   availableLanguage = ["de"],
   provider,
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
-  const serviceProvider = provider || {
-    name: company.name,
-    url: company.url,
-    phoneRaw: company.phoneRaw,
-    streetAddress: company.streetAddress,
-    postalCode: company.postalCode,
-    city: company.city,
-    countryCode: company.countryCode,
-  };
+  const isDuesseldorf = path.toLowerCase().includes("duesseldorf");
+  const defaultProvider = isDuesseldorf ? duesseldorfCompany : company;
+  const serviceProvider = provider || defaultProvider;
+  const resolvedAreas =
+    areaServed ||
+    (isDuesseldorf
+      ? ["Düsseldorf", "Verifiziertes 75-km-Einsatzgebiet um Düsseldorf"]
+      : ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg"]);
 
   return {
     "@context": "https://schema.org",
@@ -165,7 +166,7 @@ export function buildServiceJsonLd({
     description: clean(description),
     serviceType: clean(serviceType || name),
     url,
-    areaServed: areaServed.map((area) =>
+    areaServed: resolvedAreas.map((area) =>
       typeof area === "string"
         ? {
             "@type": schemaPlaceType(area),
@@ -192,9 +193,19 @@ export function buildServiceJsonLd({
         "@type": "PostalAddress",
         streetAddress: serviceProvider.streetAddress,
         addressLocality: serviceProvider.city,
+        ...(serviceProvider.state ? { addressRegion: serviceProvider.state } : {}),
         postalCode: serviceProvider.postalCode,
         addressCountry: serviceProvider.countryCode,
       },
+      ...(serviceProvider.geo
+        ? {
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: serviceProvider.geo.lat,
+              longitude: serviceProvider.geo.lng,
+            },
+          }
+        : {}),
     },
   };
 }

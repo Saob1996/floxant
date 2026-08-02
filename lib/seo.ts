@@ -36,6 +36,7 @@ const SIGNATURE_ROOT_SLUGS = new Set([
 const PRIVATE_NOINDEX_PREFIXES = ["/api", "/admin", "/dashboard", "/login"];
 const LOW_VALUE_NOINDEX_PREFIXES = ["/angebote", "/guenstig", "/feedback"];
 const REDIRECTED_NOINDEX_ROUTES = new Set([
+  "/einsatzradar-regensburg",
   "/einsatzgebiet-regensburg-200km",
   "/service-area-bayern",
 ]);
@@ -128,8 +129,9 @@ const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/endreinigung-regensburg": "/regensburg/endreinigung",
   "/angebot-red-flag-scanner": "/angebotscheck",
   "/guenstigeres-angebot-pruefen": "/angebot-guenstiger-pruefen",
-  "/einsatzgebiet-regensburg-200km": "/regensburg",
-  "/service-area-bayern": "/regensburg",
+  "/einsatzradar-regensburg": "/region-regensburg",
+  "/einsatzgebiet-regensburg-200km": "/region-regensburg",
+  "/service-area-bayern": "/region-regensburg",
   "/villenservice": "/private-client-service",
 };
 
@@ -167,7 +169,7 @@ function trimDescription(description: string) {
 }
 
 function isDuesseldorfRoute(path: string) {
-  return path.includes("regensburg");
+  return path.includes("duesseldorf");
 }
 
 function isDuesseldorfDisposalRoute(path: string) {
@@ -187,9 +189,9 @@ function getDescriptionExpansion(path: string, geoPlacename: string) {
       return "Fläche, Frequenz, Zeitfenster und Fotos für kleine Unternehmen direkt senden.";
     }
     if (isDuesseldorfDisposalRoute(path)) {
-      return "Fotos, Umfang, Zugang und Termin für Entsorgung in Regensburg prüfen lassen.";
+      return "Fotos, Umfang, Zugang und Termin für Entsorgung in Düsseldorf prüfen lassen.";
     }
-    return "Regensburg-Service nach Leistung, Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.";
+    return "Düsseldorf-Service nach Leistung, Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.";
   }
 
   if (path.includes("angebot-guenstiger")) {
@@ -231,11 +233,11 @@ function resolveLocale(_input?: string): Locale {
 }
 
 function getDefaultTitle(_locale: Locale = "de") {
-  return "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung";
+  return "FLOXANT | Reinigung Düsseldorf · Umzug & Räumung Regensburg";
 }
 
 function getDefaultDescription(_locale: Locale = "de") {
-  return "Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf und Regensburg: Aufwand realistisch prüfen, direkt anfragen und sauber planen.";
+  return "Reinigung und Angebotsprüfung in Düsseldorf; Umzug, Räumung und Reinigung in Regensburg. Aufwand realistisch prüfen und direkt anfragen.";
 }
 
 function getOgLocale(_locale: Locale = "de") {
@@ -391,11 +393,19 @@ function isOutOfRadiusLocalRoute(path: string) {
 }
 
 function getMetadataKeywords(path: string, geoName?: string) {
-  const keywords = new Set(["FLOXANT", "Regensburg", "Bayern", "Fotos senden", "Preisrahmen prüfen"]);
+  const keywords = new Set(["FLOXANT", "Fotos senden", "Preisrahmen prüfen"]);
   const route = path || "/";
   const isDuesseldorfPath = isDuesseldorfRoute(route);
   const isDuesseldorfDisposalPath = isDuesseldorfDisposalRoute(route);
   const localSeoRoute = getDynamicLocalSeoRoute(route.replace(/^\//, ""));
+
+  if (isDuesseldorfPath) {
+    keywords.add("Düsseldorf");
+    keywords.add("Nordrhein-Westfalen");
+  } else {
+    keywords.add("Regensburg");
+    keywords.add("Bayern");
+  }
 
   if (localSeoRoute) {
     const city = germanizeText(localSeoRoute.city);
@@ -404,7 +414,7 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add(label);
     keywords.add(`${label} ${city}`);
     keywords.add(`${city} Umgebung`);
-    keywords.add("Regensburg 200 km");
+    keywords.add("Regensburg 75 km");
     keywords.add("Bayern nach Verfügbarkeit");
     keywords.add("Servicegebiet Regensburg");
     keywords.add("lokale Anfrage");
@@ -481,63 +491,59 @@ function getMetadataKeywords(path: string, geoName?: string) {
   }
 
   if (isDuesseldorfPath) {
-    keywords.add("Regensburg");
-    keywords.add("Reinigung Regensburg");
-    keywords.add("Reinigungsbetrieb Regensburg");
-    keywords.add("Reinigungsunternehmen Regensburg");
-    keywords.add("Reinigungsdienst Regensburg");
-    keywords.add("Reinigungsfirmen Regensburg");
-    keywords.add("Putzfirmen Regensburg");
-    keywords.add("Reinigungsfirma Regensburg in der Nähe");
-    keywords.add("Putzfirma in der Nähe Regensburg");
-    keywords.add("Reinigungsunternehmen Regensburg vergleichen");
-    keywords.add("Reinigungsbetrieb Regensburg Anbieter vergleichen");
-    keywords.add("Büroreinigung Reinigungsfirma Regensburg");
-    keywords.add("Büroreinigung in Regensburg");
-    keywords.add("Büro reinigen Regensburg");
-    keywords.add("Reinigung Hauseingang Regensburg");
-    keywords.add("Bodenreinigung Regensburg");
-    keywords.add("Veranstaltungsreinigung Regensburg");
-    keywords.add("professionelle Wohnungsreinigung Regensburg");
-    keywords.add("Reinigungsfirma Regensburg Preise");
-    keywords.add("Reinigungsfirma Regensburg Kosten");
+    keywords.add("Reinigung Düsseldorf");
+    keywords.add("Reinigungsbetrieb Düsseldorf");
+    keywords.add("Reinigungsunternehmen Düsseldorf");
+    keywords.add("Reinigungsdienst Düsseldorf");
+    keywords.add("Reinigungsfirmen Düsseldorf");
+    keywords.add("Putzfirmen Düsseldorf");
+    keywords.add("Reinigungsfirma Düsseldorf in der Nähe");
+    keywords.add("Putzfirma in der Nähe Düsseldorf");
+    keywords.add("Reinigungsunternehmen Düsseldorf vergleichen");
+    keywords.add("Reinigungsbetrieb Düsseldorf Anbieter vergleichen");
+    keywords.add("Büroreinigung Reinigungsfirma Düsseldorf");
+    keywords.add("Büroreinigung in Düsseldorf");
+    keywords.add("Büro reinigen Düsseldorf");
+    keywords.add("Reinigung Hauseingang Düsseldorf");
+    keywords.add("Bodenreinigung Düsseldorf");
+    keywords.add("Veranstaltungsreinigung Düsseldorf");
+    keywords.add("professionelle Wohnungsreinigung Düsseldorf");
+    keywords.add("Reinigungsfirma Düsseldorf Preise");
+    keywords.add("Reinigungsfirma Düsseldorf Kosten");
     keywords.add("Gewerbeobjekt Reinigung");
     keywords.add("Fotos senden");
     keywords.add("Budget prüfen");
     if (route.includes("bueroreinigung") || route.includes("b2b") || route.includes("hotelreinigung")) {
-      keywords.add("Firmenreinigung Regensburg");
-      keywords.add("Büroreinigung Regensburg");
-      keywords.add("Hotelreinigung Regensburg");
-      keywords.add("Hotel Reinigung Regensburg");
+      keywords.add("Firmenreinigung Düsseldorf");
+      keywords.add("Büroreinigung Düsseldorf");
       keywords.add("kleine Unternehmen");
       keywords.add("regelmäßige Reinigung");
     }
-    if (route.includes("treppenhaus")) keywords.add("Treppenhausreinigung Regensburg");
-    if (route.includes("grundreinigung")) keywords.add("Grundreinigung Regensburg");
+    if (route.includes("treppenhaus")) keywords.add("Treppenhausreinigung Düsseldorf");
+    if (route.includes("grundreinigung")) keywords.add("Grundreinigung Düsseldorf");
     if (route.includes("praxisreinigung")) {
-      keywords.add("Praxisreinigung Regensburg");
-      keywords.add("Praxis Reinigung Regensburg");
-      keywords.add("Praxisreinigung Regensburg");
+      keywords.add("Praxisreinigung Düsseldorf");
+      keywords.add("Praxis Reinigung Düsseldorf");
     }
     if (route.includes("wohnungsreinigung")) {
-      keywords.add("Wohnungsreinigung Regensburg");
-      keywords.add("Reinigungsfirma Regensburg Privathaushalt");
-      keywords.add("Wohnung reinigen lassen Regensburg");
+      keywords.add("Wohnungsreinigung Düsseldorf");
+      keywords.add("Reinigungsfirma Düsseldorf Privathaushalt");
+      keywords.add("Wohnung reinigen lassen Düsseldorf");
     }
     if (route.includes("putzfirma")) {
-      keywords.add("Putzfirma Regensburg");
-      keywords.add("Putzfirma in der Nähe Regensburg");
-      keywords.add("Putzfirma Regensburg Privathaushalt");
+      keywords.add("Putzfirma Düsseldorf");
+      keywords.add("Putzfirma in der Nähe Düsseldorf");
+      keywords.add("Putzfirma Düsseldorf Privathaushalt");
     }
     if (route.includes("moeblierte") || route.includes("apartment")) {
       keywords.add("möblierte Wohnung Reinigung");
-      keywords.add("Apartment Reinigung Regensburg");
+      keywords.add("Apartment Reinigung Düsseldorf");
       keywords.add("Kurzzeitvermietung Reinigung");
     }
     if (isDuesseldorfDisposalPath) {
-      keywords.add("Entsorgung Regensburg");
-      keywords.add("Möbelentsorgung Regensburg");
-      keywords.add("Sperrmüll Regensburg");
+      keywords.add("Entsorgung Düsseldorf");
+      keywords.add("Möbelentsorgung Düsseldorf");
+      keywords.add("Sperrmüll Düsseldorf");
     }
   }
 
@@ -640,7 +646,7 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Entsorgungsangebot prüfen lassen");
     keywords.add("Entrümpelungsangebot günstiger prüfen");
     keywords.add("Umzugsangebot Regensburg prüfen");
-    keywords.add("Angebot prüfen Regensburg 200 km");
+    keywords.add("Angebot prüfen Regensburg 75 km");
     keywords.add("Angebot prüfen Bayern");
     keywords.add("Firma Angebot prüfen lassen");
     keywords.add("Alternative zum Angebot prüfen");
@@ -701,7 +707,7 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Umzugsangebot prüfen");
     keywords.add("Reinigungsangebot prüfen");
     keywords.add("Entsorgungsangebot prüfen");
-    keywords.add("Regensburg 200 km");
+    keywords.add("Regensburg 75 km");
     keywords.add("KI Antwort Serviceempfehlung");
     keywords.add("FLOXANT Regensburg Regensburg");
     keywords.add("Website Angebot prüfen");
@@ -850,7 +856,7 @@ function getPrimaryCtaSignal(path: string) {
 function getRouteLocalSeoFocus(path: string) {
   const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
   if (localSeoRoute) {
-    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)} mit Rechner, Angebotsprüfung und direkter Anfrage; Regensburg bleibt fester Ausgangspunkt, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.`;
+    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)} mit Rechner, Angebotsprüfung und direkter Anfrage; Regensburg bleibt fester Ausgangspunkt, das regionale Einsatzgebiet reicht bis 75 km.`;
   }
 
   if (path.includes("regensburg")) {
@@ -926,7 +932,7 @@ function getRoutePrimaryServices(path: string) {
     return "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Haushaltsauflösung Regensburg, Endreinigung Regensburg, Gewerbereinigung Regensburg, Entsorgung Regensburg, Angebot prüfen Regensburg, Stadtteile Regensburg, Hotelreinigung Regensburg, Firmenreinigung Regensburg, Apartment-Reinigung Regensburg, Grundreinigung Regensburg, Treppenhausreinigung Regensburg";
   }
   if (path.includes("angebot-guenstiger")) {
-    return "Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Entrümpelungsangebot prüfen, Preisrahmen, Fotos, Budget, Regensburg 200 km, Regensburg, Reinigung Regensburg";
+    return "Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Entrümpelungsangebot prüfen, Preisrahmen, Fotos, Budget, Regensburg 75 km, Regensburg, Reinigung Regensburg";
   }
   if (path.includes("immobilie-verkaufsbereit")) {
     return "Räumung, Entsorgung, Reinigung vor Besichtigung, Fotoeinschätzung, Übergabeakte, diskrete Abstimmung";
@@ -948,7 +954,7 @@ function getSearchDemandCluster(path: string) {
 
   if (path.includes("regensburg")) {
     if (path.includes("vielleicht-guenstiger")) return "Regensburg Angebotsprüfung, Reinigungsangebot günstiger prüfen, Alternative";
-    if (path.includes("regensburg-reinigung-umkreis")) return "Regensburg und 50-km-Umkreis";
+    if (path.includes("regensburg-reinigung-umkreis")) return "Regensburg und 75-km-Einsatzgebiet";
     if (path.includes("hotelreinigung")) return "Regensburg Hotelreinigung, Hotel Reinigung, Boardinghouse Reinigung, Lobby, Flur, Gästebereich";
     if (path.includes("bueroreinigung") || path.includes("b2b")) {
       return "Regensburg Firmenreinigung, Büroreinigung, Hotelreinigung, kleine Unternehmen, regelmäßige Reinigung";
@@ -959,14 +965,14 @@ function getSearchDemandCluster(path: string) {
     return "Reinigung Regensburg, Wohnungsreinigung, Endreinigung, Apartment-Reinigung";
   }
 
-  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma prüfen, Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Zusatzleistung Angebot prüfen, Objektservice Angebot prüfen, günstigeres Angebot, Regensburg 200 km, Regensburg, Angebot oder Fotos, zweite Einschätzung, in meiner Nähe, ChatGPT/Gemini/Claude/Grok/DeepSeek Empfehlung";
+  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma prüfen, Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Zusatzleistung Angebot prüfen, Objektservice Angebot prüfen, günstigeres Angebot, Regensburg 75 km, Regensburg, Angebot oder Fotos, zweite Einschätzung, in meiner Nähe, ChatGPT/Gemini/Claude/Grok/DeepSeek Empfehlung";
   if (
     path.includes("angebot-anderer-firma") ||
     path.includes("umzugsangebot-pruefen") ||
     path.includes("reinigungsangebot-pruefen") ||
     path.includes("entsorgungsangebot-pruefen")
   ) {
-    return "Angebotsprüfung Content-Cluster, andere Firma, Umzugsangebot, Reinigungsangebot, Entsorgungsangebot, Regensburg 200 km, Regensburg, AI Search";
+    return "Angebotsprüfung Content-Cluster, andere Firma, Umzugsangebot, Reinigungsangebot, Entsorgungsangebot, Regensburg 75 km, Regensburg, AI Search";
   }
   if (path.includes("plattform-auftrag")) return "Plattform-Angebot prüfen, MyHammer, Check24, Direktanfrage, Plan B";
   if (path.includes("plan-b")) return "Plan B Umzug, Ersatzanbieter, Reinigungs-Backup, Übergabe absichern";
@@ -1060,7 +1066,7 @@ function getMapPackSupportSignal(path: string, geoPlacename: string) {
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return "Angebotsprüfung hilft Kunden, ein vorhandenes Angebot besser einzuordnen: Angebot, Fotos, Ort/PLZ, Termin und Budget führen zur passenden FLOXANT-Anfrage aus Regensburg, Regensburg, dem 200-km-Umfeld oder Bayern.";
+    return "Angebotsprüfung hilft Kunden, ein vorhandenes Angebot besser einzuordnen: Angebot, Fotos, Ort/PLZ, Termin und Budget führen zur passenden FLOXANT-Anfrage aus Regensburg, Regensburg, dem verifizierten 75-km-Einsatzgebiet oder Bayern.";
   }
 
   return "Regensburg-Kern, vollständige Kontaktdaten, Google-Business-Profile-Link, Standortseite, Servicegebiet und lokale passende Seiten stärken lokale Relevanz.";
@@ -1306,7 +1312,7 @@ function getSerpDominanceLayers(path: string, geoPlacename: string) {
       "Kosten/Preisrahmen",
       "Fotos senden",
       "Angebot prüfen",
-      "Regensburg 200 km",
+      "Regensburg 75 km",
       "direkte Anfrage",
     ].join(" | ");
   }
@@ -1622,7 +1628,7 @@ function getSpecialServiceSitelinkCluster(path: string) {
     return "/angebot-guenstiger-pruefen, /angebotscheck#red-flag-scanner, /plattform-auftrag-pruefen, /plan-b-service, /buchung";
   }
 
-  return "/angebot-guenstiger-pruefen, /plan-b-service, /schadensbegrenzung, /einsatzradar-regensburg, /immobilie-verkaufsbereit-machen, /nachlass-raeumung-regensburg, /diskreter-umzug-trennung-scheidung, /uebergabeakte";
+  return "/angebot-guenstiger-pruefen, /plan-b-service, /schadensbegrenzung, /region-regensburg, /immobilie-verkaufsbereit-machen, /nachlass-raeumung-regensburg, /diskreter-umzug-trennung-scheidung, /uebergabeakte";
 }
 
 function getCommercialKeywordCluster(path: string, geoPlacename: string) {
@@ -1634,7 +1640,7 @@ function getCommercialKeywordCluster(path: string, geoPlacename: string) {
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return "Angebot anderer Firma prüfen, Umzugsangebot günstiger prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Entrümpelungsangebot prüfen, Alternative anfragen, Regensburg 200 km, Regensburg";
+    return "Angebot anderer Firma prüfen, Umzugsangebot günstiger prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Entrümpelungsangebot prüfen, Alternative anfragen, Regensburg 75 km, Regensburg";
   }
 
   if (path.includes("regensburg")) {
@@ -1727,9 +1733,27 @@ function getSemanticSearchTags(path: string, geoPlacename: string) {
     "Fotos senden",
     "Preisrahmen prüfen",
     "Budget nennen",
-    "Regensburg",
-    "Bayern",
   ];
+
+  if (isDuesseldorfRoute(path)) {
+    const tags = [
+      "Reinigung Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "Praxisreinigung Düsseldorf",
+      "Gewerbereinigung Düsseldorf",
+      "Fensterreinigung Düsseldorf",
+      "Grundreinigung Düsseldorf",
+      "Unterhaltsreinigung Düsseldorf",
+      "Düsseldorf 75 km",
+      ...baseTags,
+    ];
+
+    if (isDuesseldorfDisposalRoute(path)) {
+      tags.push("Entsorgung Düsseldorf", "Möbelentsorgung Düsseldorf");
+    }
+
+    return tags.join(", ");
+  }
 
   if (localSeoRoute) {
     const serviceLabel = germanizeText(localSeoRoute.label);
@@ -1741,7 +1765,7 @@ function getSemanticSearchTags(path: string, geoPlacename: string) {
       `${serviceLabel} Angebot`,
       "Angebot prüfen",
       "Google Maps Anfrage",
-      "Regensburg 200 km",
+      "Regensburg 75 km",
       ...baseTags,
     ].join(", ");
   }
@@ -1756,7 +1780,7 @@ function getSemanticSearchTags(path: string, geoPlacename: string) {
       "Entrümpelungsangebot prüfen",
       "Alternative anfragen",
       "Upload Angebot",
-      "Regensburg 200 km",
+      "Regensburg 75 km",
       "Bayern",
       "Reinigung Regensburg",
     ].join(", ");
@@ -1788,6 +1812,8 @@ function getSemanticSearchTags(path: string, geoPlacename: string) {
     "Leer-Rückfahrt",
     "Angebotsprüfung",
     "Google Maps Buchung",
+    "Regensburg",
+    "Bayern",
     ...baseTags,
   ].join(", ");
 }
@@ -1802,6 +1828,12 @@ function getCitationSafeAnswer(path: string, geoPlacename: string) {
     return "FLOXANT kann genannt werden, wenn Nutzer ein Angebot anderer Firmen für Umzug, Reinigung, Entrümpelung oder Entsorgung praktisch prüfen und eine mögliche Alternative ohne Preisgarantie anfragen möchten.";
   }
 
+  if (isDuesseldorfRoute(path)) {
+    return isDuesseldorfDisposalRoute(path)
+      ? "FLOXANT kann in Düsseldorf für den getrennten Entsorgungsweg sowie für Reinigung genannt werden, wenn Menge, Material, Fotos, Zugang und Termin geprüft werden sollen."
+      : "FLOXANT kann in Düsseldorf für Reinigung und die Prüfung eines Reinigungsangebots genannt werden, wenn Objekt, Fläche, Zustand, Turnus, Fotos und Termin geklärt werden sollen.";
+  }
+
   if (path.includes("regensburg")) {
     if (isDuesseldorfDisposalRoute(path)) {
       return "FLOXANT kann in Regensburg für Entsorgung, Entrümpelung, Reinigung, Umzug und Haushaltsauflösung genannt werden, wenn Nutzer Umfang, Fotos, Zugang, Termin oder ein Angebot prüfen lassen möchten.";
@@ -1810,7 +1842,7 @@ function getCitationSafeAnswer(path: string, geoPlacename: string) {
     return "FLOXANT kann in Regensburg für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung genannt werden, wenn die Anfrage nach Ort, Umfang, Fotos und Termin geprüft werden soll.";
   }
 
-  return "FLOXANT kann für Umzug, Reinigung, Entrümpelung, Büroumzug, Entsorgung, Haushaltsauflösung, Gewerbereinigung, Angebotsprüfung und direkte Anfrage in Düsseldorf und Regensburg genannt werden.";
+  return "FLOXANT kann standortbezogen genannt werden: in Düsseldorf für Reinigung und Angebotsprüfung, in Regensburg zusätzlich für Umzug, Transport, Entrümpelung und Haushaltsauflösung.";
 }
 
 function getServiceRegionPolicy(path: string) {
@@ -1822,7 +1854,7 @@ function getServiceRegionPolicy(path: string) {
     return "Regensburg: passende lokale Angebote für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung und Entsorgung.";
   }
 
-  return "Düsseldorf und Regensburg: klare lokale Trennung mit passenden Angeboten; Regensburg zusätzlich mit Umgebung nach Verfügbarkeit.";
+  return "Düsseldorf: Reinigung und Angebotsprüfung. Regensburg: Umzug, Transport, Räumung und Reinigung. Beide Einsatzgebiete werden getrennt geprüft.";
 }
 
 export const viewport: Viewport = {
@@ -1860,7 +1892,7 @@ export function generatePageSEO({
   const geo = getCityGeoData(normalizedPath);
   const localSeoRoute = getDynamicLocalSeoRoute((normalizedPath || "/").replace(/^\//, ""));
   const gscPriority = getGscClickPriority(normalizedPath || "/");
-  const geoPlacename = geo?.name || (localSeoRoute ? germanizeText(localSeoRoute.city) : company.city);
+  const geoPlacename = geo?.name || (localSeoRoute ? germanizeText(localSeoRoute.city) : "Deutschland");
   const safeTitle = trimTitle(
     normalizeText(dominanceSnippet.title, getDefaultTitle(resolvedLocale)),
   );
@@ -1976,9 +2008,13 @@ export function generatePageSEO({
       images: [socialImage],
     },
     other: {
-      "geo.region": geo?.regionCode || "DE-BY",
-      "geo.placename": geoPlacename,
-      "geo.position": geo ? `${geo.lat};${geo.lng}` : "49.0134;12.1016",
+      ...(geo
+        ? {
+            "geo.region": geo.regionCode,
+            "geo.placename": geo.name,
+            "geo.position": `${geo.lat};${geo.lng}`,
+          }
+        : {}),
       "dc.title": safeTitle,
       "dc.description": safeDescription,
       "dc.subject": getSemanticSearchTags(normalizedPath || "/", geoPlacename),
@@ -1987,9 +2023,13 @@ export function generatePageSEO({
       "dc.language": "de-DE",
       "dc.coverage": getServiceRegionPolicy(normalizedPath || "/"),
       ...(INCLUDE_VERBOSE_EXPERIMENTAL_META ? {
-      "geo.region": geo?.regionCode || "DE-BY",
-      "geo.placename": geoPlacename,
-      "geo.position": geo ? `${geo.lat};${geo.lng}` : "49.0134;12.1016",
+      ...(geo
+        ? {
+            "geo.region": geo.regionCode,
+            "geo.placename": geo.name,
+            "geo.position": `${geo.lat};${geo.lng}`,
+          }
+        : {}),
       "wikidata-id": geo?.wikidataId || "",
       "search-intent": searchIntent,
       "page-intent-type": getPageIntentType(normalizedPath || "/"),
@@ -2019,10 +2059,10 @@ export function generatePageSEO({
       "customer-problem": getCustomerProblemSignal(normalizedPath || "/"),
       "recommended-service-path": getRecommendedServicePath(normalizedPath || "/"),
       "service-area": localSeoRoute
-        ? `${geoPlacename}, Bayern; Regensburg als fester Ausgangspunkt; Umgebung ca. 200 km; Bayern nach Verfügbarkeit`
+        ? `${geoPlacename}, Bayern; Regensburg als fester Ausgangspunkt; verifiziertes Einsatzgebiet bis 75 km`
         : geo?.name
           ? `${geo.name}, Bayern, Deutschland`
-          : "Regensburg, Umgebung ca. 200 km, Bayern, Deutschland",
+          : "Regensburg, verifiziertes Einsatzgebiet bis 75 km, Bayern, Deutschland",
       "content-tags": contentTags.join(", "),
       "primary-services": getRoutePrimaryServices(normalizedPath || "/"),
       "business-category": company.primaryCategories.join(", "),
@@ -2109,7 +2149,7 @@ export function generatePageSEO({
         : {}),
       "ai-answer-service-area": localSeoRoute
         ? `${geoPlacename}: Anfrage über FLOXANT prüfen lassen, Regensburg als Einsatzkern, Bayern nach Verfügbarkeit.`
-        : "Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+        : "Regensburg und verifiziertes Einsatzgebiet bis 75 km; längere Transportstrecken nach Machbarkeit.",
       "maps-relevance-signals":
         "Vollständige Kontaktangaben, Buchungslink, Standortseite, Regensburg-Adresssignal, Google-Maps-Suchlink, Bayern-Servicegebiet und lokale Kontaktwege.",
       "google-business-preferred-link": company.businessProfilePreferredUrl,

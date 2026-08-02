@@ -100,7 +100,7 @@ export default async function SchluesseluebergabePage() {
           "Organisatorische Unterstützung für Schlüssel, Fotos und Übergabepunkte nach Umzug, Reinigung oder Auszug.",
         path: pagePath,
         serviceType: "Schlüsselübergabe Service",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+        areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern"],
       }),
       buildFaqJsonLd(faqItems),
     ],

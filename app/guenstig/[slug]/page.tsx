@@ -1,4 +1,5 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { Euro, TrendingDown, Target } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
@@ -6,19 +7,31 @@ import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
 import { germanizeText } from "@/lib/german-text";
 
-const STATIC_PRICE_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
-const STATIC_PRICE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
+const STATIC_PRICE_SERVICE_MATRIX = {
+  regensburg: ["umzug", "reinigung", "entsorgung"],
+  muenchen: ["umzug", "reinigung", "entsorgung"],
+  nuernberg: ["umzug", "reinigung", "entsorgung"],
+  duesseldorf: ["reinigung"],
+} as const;
+
+const STATIC_PRICE_PARAMS = Object.entries(STATIC_PRICE_SERVICE_MATRIX).flatMap(
+  ([city, services]) => services.map((service) => ({ slug: `${service}-${city}` })),
+);
+const STATIC_PRICE_SLUGS = new Set(STATIC_PRICE_PARAMS.map(({ slug }) => slug));
+
+function assertStaticPriceSlug(slug: string) {
+  if (!STATIC_PRICE_SLUGS.has(slug)) notFound();
+}
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return STATIC_PRICE_SERVICES.flatMap((service) =>
-    STATIC_PRICE_CITIES.map((city) => ({ slug: `${service}-${city}` })),
-  );
+  return STATIC_PRICE_PARAMS;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  assertStaticPriceSlug(slug);
  const parts = slug.split('-');
  const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
  const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region');
@@ -31,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 export default async function PriceTrapPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  assertStaticPriceSlug(slug);
   const dict = await getDictionary("de");
  const parts = slug.split('-');
  const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';

@@ -37,7 +37,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung im Raum Regensburg, im 200-km-Nahbereich und in Regensburg nach Verfügbarkeit.",
+          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung in Regensburg und im verifizierten 75-km-Einsatzgebiet.",
           "Wichtig: Das ist keine Rechtsberatung und keine Preisgarantie. FLOXANT bewertet nicht andere Firmen, sondern prüft Auftrag, Umfang, Termin und Machbarkeit.",
         ],
       },
@@ -216,9 +216,9 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Regensburg, Bayern und Regensburg richtig trennen",
+        title: "Düsseldorf und Regensburg richtig trennen",
         paragraphs: [
-          "In Düsseldorf und Regensburg kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
+          "In Düsseldorf prüft FLOXANT Reinigung und Reinigungsangebote. In Regensburg können Reinigung, Umzug, Entrümpelung und Übergabevorbereitung getrennt oder passend kombiniert eingeordnet werden.",
         ],
       },
       {
@@ -247,7 +247,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das auch außerhalb von Regensburg?",
-        a: "Für Reinigungsservices gilt Regensburg und der 50-km-Umkreis. Andere Leistungen werden separat über die passende lokale Seite geprüft.",
+        a: "Für Reinigungsservices gilt Regensburg und der 75-km-Umkreis. Andere Leistungen werden separat über die passende lokale Seite geprüft.",
       },
       {
         q: "Welche Fotos helfen?",
@@ -528,15 +528,15 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "entsorgungsangebot-pruefen-regensburg-regensburg",
+    slug: "entsorgungsangebot-pruefen-regensburg",
     category: "Entsorgungsangebot",
     readTime: "7 Min.",
     date: "13. Mai 2026",
     datePublished: "2026-05-13",
     title: "Entsorgungsangebot prüfen lassen: Menge, Material, Zugang und Reinigung danach",
-    metaTitle: "Entsorgungsangebot prüfen | FLOXANT Regensburg & Regensburg",
+    metaTitle: "Entsorgungsangebot prüfen | FLOXANT Regensburg",
     description:
-      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach in Düsseldorf und Regensburg.",
+      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach im Raum Regensburg.",
     intro:
       "Bei Entsorgung und Entrümpelung ist der Preis stark davon abhängig, was wirklich weg soll. Menge, Material, Zugang, Etage, Laufweg und Fotos entscheiden, ob ein Angebot realistisch ist. FLOXANT prüft diese Punkte und klärt, ob eine passendere Alternative möglich ist.",
     about: ["Entsorgungsangebot", "Entrümpelung", "Entsorgung Regensburg", "Entsorgung Regensburg", "Keller räumen", "Garage räumen"],
@@ -551,7 +551,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Düsseldorf und Regensburg werden passend zum Anliegen über getrennte lokale Kontaktmöglichkeiten eingeordnet.",
+          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote im Regensburger Leistungsbereich nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach.",
         ],
       },
       {
@@ -1710,8 +1710,12 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
   },
 ];
 
-export const offerCheckBlogArticles: StrategicBlogArticle[] = allOfferCheckBlogArticles.filter((article) =>
-  isCleaningRouteAllowed(`/blog/${article.slug}`),
+const nonPublishedOfferCheckBlogSlugs = new Set(["solarreinigung-pv-angebot-pruefen"]);
+
+export const offerCheckBlogArticles: StrategicBlogArticle[] = allOfferCheckBlogArticles.filter(
+  (article) =>
+    !nonPublishedOfferCheckBlogSlugs.has(article.slug) &&
+    isCleaningRouteAllowed(`/blog/${article.slug}`),
 );
 
 export function getOfferCheckBlogArticle(slug: string) {

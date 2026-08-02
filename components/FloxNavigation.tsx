@@ -25,7 +25,7 @@ const locationLinks = [
   {
     label: "Düsseldorf",
     href: "/duesseldorf",
-    text: "Reinigung, Büro und Gewerbe, Umzug und Entrümpelung",
+    text: "Reinigung für Privat, Büro, Praxis und Gewerbe sowie Angebotsprüfung",
   },
   {
     label: "Regensburg",

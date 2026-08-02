@@ -9,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "FLOXANT | Umzug, Reinigung und Entrümpelung",
     short_name: "FLOXANT",
     description:
-      "FLOXANT prueft Umzug, Entruempelung und Reinigung lokal ab Regensburg. Reinigung gilt fuer Regensburg und maximal 50 km Umkreis.",
+      "FLOXANT prueft Umzug, Entruempelung und Reinigung lokal ab Regensburg. Reinigung gilt fuer Regensburg und maximal 75 km Umkreis.",
     start_url: "/",
     display: "standalone",
     background_color: "#EEF5FF",
@@ -46,7 +46,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: "Reinigung Regensburg",
         short_name: "Reinigung",
-        description: "Reinigung, Bueroreinigung oder Endreinigung in Regensburg und im 50-km-Umkreis anfragen.",
+        description: "Reinigung, Bueroreinigung oder Endreinigung in Regensburg und im 75-km-Umkreis anfragen.",
         url: "/regensburg/reinigung",
         icons: [{ src: "/icon.png", sizes: "192x192", type: "image/png" }],
       },

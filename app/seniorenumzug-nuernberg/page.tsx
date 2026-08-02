@@ -3,7 +3,7 @@ import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { LocalSeniorMoveSupport, SeniorMoveOfferCheckCTA } from "@/components/seniorenumzug/SeniorMoveSections";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
-import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { getSpecialtyPageData } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
@@ -11,28 +11,17 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-        locale: "de",
-        baseKey: "seniorenumzug_spec",
-        city: "Nürnberg",
-    });
-
     return generatePageSEO({
         lang: "de",
         path: "seniorenumzug-nuernberg",
-        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+        title: "Seniorenumzug ab Regensburg mit Fernziel Nürnberg | FLOXANT",
+        description: "Seniorenumzug im Einsatzgebiet bis 75 km um Regensburg mit Nürnberg als möglichem Fernziel anfragen. Keine lokale Verfügbarkeitszusage in Nürnberg.",
     });
 }
 
 export default async function SeniorenumzugNuernbergPage({ params }: PageProps) {
     const locale = "de";
-    const { 
-        localeDict, 
-        content, 
-        fallback, 
-        city 
-    } = await getSpecialtyPageData({
+    const { localeDict } = await getSpecialtyPageData({
         locale,
         baseKey: "seniorenumzug_spec",
         city: "Nürnberg",
@@ -42,52 +31,52 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
         <SpecialtyPageLayout
                 lang="de"
                 dict={localeDict}
-                city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
-                ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-                breadcrumbs={[{"label":"Home","href":"/"},{"label":"Umzug","href":"/umzug"},{"label":"Seniorenumzug","href":"/seniorenumzug"},{"label":"Nürnberg"}]}
+                city="Regensburg"
+                heroBadge="Fernziel-Anfrage ab Regensburg"
+                heroTitle="Seniorenumzug ab Regensburg mit Fernziel Nürnberg"
+                heroText="FLOXANT prüft Seniorenumzüge im Einsatzgebiet bis 75 km um Regensburg. Nürnberg kann Ziel einer konkreten Umzugsanfrage sein, ist aber keine lokale FLOXANT Einsatzregion."
+                ctaText="Seniorenumzug mit Fernziel anfragen"
+                breadcrumbs={[{"label":"Home","href":"/"},{"label":"Umzug","href":"/umzug"},{"label":"Seniorenumzug","href":"/seniorenumzug"},{"label":"Fernziel Nürnberg"}]}
                 chips={[
-                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
-                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
-                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+                    { icon: Truck, text: "Start im Regensburger Einsatzgebiet" },
+                    { icon: Shield, text: "Nürnberg nur als Fernziel" },
+                    { icon: Clock, text: "Zusage nach Termin- und Routenprüfung" }
                 ]}
                 cards={[
                     {
                         icon: Star,
-                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                        title: "Ruhige Umzugsplanung",
                         lines: [
-                            resolveNestedField(content.service1, fallback.service1, "l1", city),
-                            resolveNestedField(content.service1, fallback.service1, "l2", city),
-                            resolveNestedField(content.service1, fallback.service1, "l3", city),
-                            resolveNestedField(content.service1, fallback.service1, "l4", city),
+                            "Möbelmenge und Packhilfe erfassen",
+                            "Etage, Aufzug und Laufwege klären",
+                            "Angehörige und Schlüsselweg abstimmen",
+                            "Termin und Fernziel separat prüfen",
                         ]
                     },
                     {
                         icon: Zap,
-                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                        title: "Fernziel Nürnberg",
                         lines: [
-                            resolveNestedField(content.service2, fallback.service2, "l1", city),
-                            resolveNestedField(content.service2, fallback.service2, "l2", city),
-                            resolveNestedField(content.service2, fallback.service2, "l3", city),
-                            resolveNestedField(content.service2, fallback.service2, "l4", city),
+                            "Zieladresse und Zugang konkret nennen",
+                            "Strecke und Zeitfenster prüfen",
+                            "Keine lokale Verfügbarkeit in Nürnberg behaupten",
+                            "Durchführung erst nach Machbarkeitszusage",
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, "de")}
+                sectionTitle="Seniorenumzug mit Fernziel realistisch einordnen"
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city, "de"),
-                    resolveField(content.section2_p2, fallback.section2_p2, city, "de"),
+                    "Das verifizierte FLOXANT Einsatzgebiet reicht bis 75 km um Regensburg. Dort werden Start, Umfang, Zugang und Zusatzleistungen eingeordnet.",
+                    "Nürnberg ist auf dieser Seite ausschließlich ein mögliches Fernziel der Anfrage und keine Behauptung eines lokalen Standorts oder Einsatzgebiets.",
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+                wizardBadge="Fernziel-Anfrage"
+                wizardTitle="Seniorenumzug ab Regensburg anfragen"
+                wizardText="Nennen Sie Start im Regensburger Einsatzgebiet, Ziel Nürnberg, Termin, Umfang und Zugang. Die Anfrage ist noch keine Zusage."
             >
-                <LocalSeniorMoveSupport city="Nuernberg" route="nuernberg" />
+                <LocalSeniorMoveSupport city="Fernziel Nürnberg ab Regensburg" route="nuernberg" />
                 <SeniorMoveOfferCheckCTA compact />
                 <GscOpportunitySection
-                    eyebrow="Seniorenumzug Nürnberg"
+                    eyebrow="Seniorenumzug mit Fernziel Nürnberg"
                     title="Wenn ein Umzug ruhig, verständlich und mit Rücksicht geplant werden muss."
                     intro="Ein Seniorenumzug in Regensburg betrifft oft mehrere Personen: die umziehende Person, Angehörige, Vermieter, Pflegeeinrichtung oder Hausverwaltung. FLOXANT prüft Möbelmenge, Zugang, Termin, Packhilfe, Reinigung und mögliche Wohnungsauflösung gemeinsam."
                     proofTitle="Gut zu wissen"
@@ -128,8 +117,8 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
                             cta: "Angebot prüfen",
                         },
                         {
-                            title: "Bayernweite Route prüfen",
-                            text: "Nürnberg wird nach Strecke, Termin, Umfang und verfügbaren Kombinationen eingeordnet.",
+                            title: "Fernziel Nürnberg prüfen",
+                            text: "Nürnberg wird nur als Ziel einer konkreten Anfrage nach Strecke, Termin und Umfang eingeordnet.",
                             href: "/regensburg",
                             cta: "Regensburg ansehen",
                         },
@@ -165,7 +154,7 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
                         },
                     ]}
                     primaryHref="/buchung?service=seniorenumzug#buchungssystem"
-                    primaryLabel="Seniorenumzug Nürnberg anfragen"
+                    primaryLabel="Seniorenumzug mit Fernziel Nürnberg anfragen"
                     secondaryHref="/angebot-guenstiger-pruefen"
                     secondaryLabel="Angebot prüfen"
                 />

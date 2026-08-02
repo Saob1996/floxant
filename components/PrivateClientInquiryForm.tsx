@@ -12,7 +12,7 @@ const initialState = {
  email: "",
  phone: "",
  location: "",
- region: "Bayern",
+ region: "Regensburg",
  propertyType: "",
  serviceScope: "",
  preferredWindow: "",
@@ -156,7 +156,7 @@ export function PrivateClientInquiryForm() {
        <Field icon={Phone} label="Telefon" value={form.phone} onChange={(value) => update("phone", value)} required type="tel" />
        <Field icon={Mail} label="E-Mail" value={form.email} onChange={(value) => update("email", value)} type="email" />
       </div>
-      <Field icon={MapPin} label="Ort / Anwesen" value={form.location} onChange={(value) => update("location", value)} required placeholder="z. B. Starnberg, München, Stuttgart, Baden-Baden" />
+       <Field icon={MapPin} label="Ort / Anwesen" value={form.location} onChange={(value) => update("location", value)} required placeholder="Ort oder PLZ im geprüften 75-km-Einsatzgebiet" />
 
       <div className="grid gap-3 md:grid-cols-2">
        <label className="block">
@@ -166,16 +166,25 @@ export function PrivateClientInquiryForm() {
          onChange={(event) => update("region", event.target.value)}
          className="h-12 w-full rounded-2xl border border-[#C9A45D]/18 bg-[#14100B] px-4 text-sm font-medium text-[#F6EBDD] outline-none transition focus:border-[#D8B76E]/55"
         >
-         <option>Bayern</option>
-         <option>Baden-Württemberg</option>
-         <option>Beide Regionen</option>
-         <option>Andere Region auf Anfrage</option>
-        </select>
-       </label>
+         <option value="Regensburg">Regensburg – Umzug, Räumung und Reinigung</option>
+         <option value="Düsseldorf">Düsseldorf – ausschließlich Reinigung</option>
+         </select>
+        </label>
        <Field label="Objektart" value={form.propertyType} onChange={(value) => update("propertyType", value)} placeholder="Villa, Anwesen, Penthouse, Landhaus..." />
       </div>
 
-      <Textarea label="Gewünschter Umfang" value={form.serviceScope} onChange={(value) => update("serviceScope", value)} required placeholder="Umzug, Reinigung, Räumung, Entsorgung, Kunst, Designmöbel, Safe-Zonen..." />
+       <Textarea
+        label="Gewünschter Umfang"
+        value={form.serviceScope}
+        onChange={(value) => update("serviceScope", value)}
+        required
+        placeholder={form.region === "Düsseldorf" ? "Reinigungsart, Objekt, Fläche, Zustand und Ziel..." : "Umzug, Reinigung, Räumung oder Übergabe mit Umfang und Besonderheiten..."}
+       />
+       <p className="text-xs font-medium leading-5 text-[#E6D8C3]/50">
+        {form.region === "Düsseldorf"
+         ? "Düsseldorf: Dieser Anfrageweg ist auf Reinigung und Reinigungsangebote begrenzt."
+         : "Regensburg: Umzug, Räumung, Reinigung und Übergabe werden nach Ort und Machbarkeit geprüft."}
+       </p>
       <Field label="Zeitfenster" value={form.preferredWindow} onChange={(value) => update("preferredWindow", value)} placeholder="z. B. nach Besichtigung, diskret am Wochenende, Etappenplan" />
       <Textarea label="Diskretion / Schutzbedarf" value={form.discretionNeeds} onChange={(value) => update("discretionNeeds", value)} placeholder="Zugang, Personal, Sichtschutz, Inventarliste, sensible Räume..." />
       <Textarea label="Hinweis optional" value={form.note} onChange={(value) => update("note", value)} placeholder="Was soll FLOXANT vor dem persönlichen Kontakt wissen?" />

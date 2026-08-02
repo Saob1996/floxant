@@ -38,17 +38,20 @@ export function SiteChrome({
 
   const isPrivateSection =
     pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/login");
+  const hasPageSpecificOrganizationSchema =
+    isDuesseldorfSection || pathname === "/angebot-vergleichen-duesseldorf";
   const usesDuesseldorfHeader =
     isDuesseldorfSection ||
-    pathname === "/regensburg/reinigung" ||
-    pathname === "/entsorgung-duesseldorf";
+    pathname === "/regensburg/reinigung";
 
   return (
     <>
-      <a href="#main-content" className="skip-to-content">
-        {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
-      </a>
-      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
+      <nav aria-label={isEnglishSection ? "Skip navigation" : "Sprungnavigation"}>
+        <a href="#main-content" className="skip-to-content">
+          {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
+        </a>
+      </nav>
+      {!hasPageSpecificOrganizationSchema && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
       {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
       {isAdsLanding ? (
         <AdsLandingHeader kind={adsLandingKind} />

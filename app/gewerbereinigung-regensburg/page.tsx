@@ -377,8 +377,8 @@ export default function GewerbereinigungRegensburgPage() {
 
       <RegensburgCleaningServiceHub />
       <ServiceAreaBlock
-        title="Gewerbereinigung im Regensburger 50-km-Servicegebiet"
-        intro="FLOXANT ordnet gewerbliche Reinigung für Regensburg und den Umkreis bis 50 km ein. Der Fokus liegt auf realistischen Randzeiten, Zugang, Raumliste, Turnus und Ansprechpartnern."
+        title="Gewerbereinigung im Regensburger 75-km-Servicegebiet"
+        intro="FLOXANT ordnet gewerbliche Reinigung für Regensburg und den Umkreis bis 75 km ein. Der Fokus liegt auf realistischen Randzeiten, Zugang, Raumliste, Turnus und Ansprechpartnern."
       />
       <LocalTrustBlock ctaHref="#kontaktformular" ctaLabel="Gewerbereinigung anfragen" />
       <RequestChecklistBlock ctaHref="#kontaktformular" ctaLabel="Objektdaten vorbereiten" />

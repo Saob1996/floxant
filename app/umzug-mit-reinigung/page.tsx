@@ -65,7 +65,7 @@ export default async function UmzugMitReinigungPage() {
           "Abgestimmte Kombination aus Umzug, Endreinigung, Fotos, Schlüsselthemen und Übergabevorbereitung.",
         path: pagePath,
         serviceType: "Umzug mit Endreinigung",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+        areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern"],
       }),
       buildWebPageJsonLd({
         name: "Umzug mit Reinigung | FLOXANT",

@@ -10,8 +10,7 @@ export type EinsatzradarServiceType =
   | "mieterwechsel"
   | "hausverwaltung"
   | "premium"
-  | "regensburg_reinigung"
-  | "duesseldorf_entsorgung";
+  | "regensburg_reinigung";
 
 export type EinsatzradarRegionZone =
   | "regensburg_core"
@@ -113,7 +112,6 @@ export const einsatzradarFilters: EinsatzradarFilter[] = ([
   { id: "mieterwechsel", label: "Mieterwechsel" },
   { id: "hausverwaltung", label: "Hausverwaltung" },
   { id: "regensburg_reinigung", label: "Reinigung Regensburg" },
-  { id: "duesseldorf_entsorgung", label: "Duesseldorf Entsorgung" },
 ] satisfies EinsatzradarFilter[]).map(normalizeFilter);
 
 export const einsatzradarRegionZones: EinsatzradarZone[] = ([
@@ -152,10 +150,10 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = ([
   {
     id: "duesseldorf_separat",
     title: "Duesseldorf separat",
-    label: "Reinigung & Entsorgung",
-    description: "Regensburg bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung.",
-    examples: ["Reinigung Regensburg", "Regensburg Entsorgung"],
-    services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung", "Entsorgung"],
+    label: "Reinigung",
+    description: "Duesseldorf bleibt bei FLOXANT ein eigener Reinigungsstandort. Umzug, Transport und Raeumung werden ueber den Regensburger Leistungsbereich gefuehrt.",
+    examples: ["Reinigung Duesseldorf", "Bueroreinigung Duesseldorf"],
+    services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung"],
   },
 ] satisfies EinsatzradarZone[]).map(normalizeZone);
 
@@ -308,40 +306,19 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     visibility_status: "published",
   },
   {
-    id: "regensburg-reinigung-objekt",
-    title: "Reinigung Regensburg fuer Wohnung oder Objekt",
-    service_type: "regensburg_reinigung",
+    id: "duesseldorf-reinigung-objekt",
+    title: "Reinigung Duesseldorf fuer Wohnung oder Objekt",
+    service_type: "reinigung",
     region_zone: "duesseldorf_separat",
-    approximate_location: "Reinigung Regensburg",
+    approximate_location: "Reinigung Duesseldorf",
     direction_or_area: "Duesseldorf separat",
     timeframe_label: "Typische Einsatzart, keine Live-Daten",
-    description: "Wohnungsreinigung, Endreinigung oder B2B-Reinigung wird in Regensburg getrennt vom Regensburger Umzugsmarkt geprueft.",
+    description: "Wohnungsreinigung, Endreinigung oder B2B-Reinigung wird in Duesseldorf als eigener Reinigungsbereich geprueft.",
     included_services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung"],
     signature_services: ["Apartment-Reset", "Fotoeinschaetzung"],
     customer_type: "Vermieter, Hosts, Unternehmen",
-    cta_label: "Reinigung Regensburg anfragen",
-    target_url: "/regensburg/reinigung",
-    is_real_case: false,
-    is_anonymized: true,
-    has_customer_permission_for_media: false,
-    created_at: timestamp,
-    updated_at: timestamp,
-    visibility_status: "published",
-  },
-  {
-    id: "duesseldorf-entsorgung-foto",
-    title: "Duesseldorf Entsorgung mit Fotos",
-    service_type: "duesseldorf_entsorgung",
-    region_zone: "duesseldorf_separat",
-    approximate_location: "Duesseldorf Entsorgung",
-    direction_or_area: "Duesseldorf separat",
-    timeframe_label: "Typische Einsatzart, keine Live-Daten",
-    description: "Moebel, Sperrmuell oder Gegenstaende sollen mit Fotos grob eingeschaetzt und als Entsorgungsanfrage geprueft werden.",
-    included_services: ["Moebelentsorgung", "Sperrmuell", "Fotoeinschaetzung"],
-    signature_services: ["Entsorgung Duesseldorf", "Budgetpruefung"],
-    customer_type: "Privatkunden, Vermieter, Gewerbe",
-    cta_label: "Entsorgung Duesseldorf anfragen",
-    target_url: "/entsorgung-duesseldorf",
+    cta_label: "Reinigung Duesseldorf anfragen",
+    target_url: "/duesseldorf/reinigung",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
@@ -354,7 +331,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
 export const einsatzradarFaq = [
   {
     q: "Was ist der FLOXANT Einsatzradar?",
-    a: "Der Einsatzradar zeigt typische Einsatzarten und grobe Servicezonen, die FLOXANT im Raum Regensburg und getrennt fuer Reinigung Regensburg/Entsorgung prueft.",
+    a: "Der Einsatzradar zeigt typische Einsatzarten und grobe Servicezonen, die FLOXANT im Raum Regensburg und getrennt fuer Reinigung in Duesseldorf prueft.",
   },
   {
     q: "Sind das echte Einsaetze?",
@@ -370,7 +347,7 @@ export const einsatzradarFaq = [
   },
   {
     q: "Was bedeutet Duesseldorf separat?",
-    a: "Regensburg bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung. Deshalb erscheinen dort passende lokale Beispiele je Leistung.",
+    a: "Duesseldorf bleibt bei FLOXANT ein eigener Reinigungsstandort. Umzug, Transport und Raeumung werden ueber den Regensburger Leistungsbereich gefuehrt.",
   },
   {
     q: "Kann ich meinen Fall mit Fotos senden?",

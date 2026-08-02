@@ -41,8 +41,8 @@ function asArray(value: unknown): string[] {
 }
 
 function normalizeDestinationRadius(value: unknown) {
- const text = asString(value, "ca. 150 km um Regensburg");
- return text.replace("100 km", "150 km");
+ const text = asString(value, "bis 75 km um Regensburg");
+ return text.replace(/(?:100|150|200) km/g, "75 km");
 }
 
 export function normalizeBackhaulOffer(record: any): BackhaulOffer {
@@ -98,7 +98,7 @@ export function buildBackhaulOfferDetails(offer: BackhaulOffer, updatedBy = "das
    accuracyState: "Admin-gepflegte Rückfahrt",
    topDrivers: ["Datum", "Route", "freie Fahrzeugkapazität", "Umwegprüfung"],
    priceExplanation:
-    "Dieses Angebot beschreibt eine geplante Rückfahrt nach Regensburg und ca. 150 km Umkreis. Kunden erhalten einen fairen Preis, wenn Route, Volumen und Terminfenster passen; sinnvolle Stopps unterwegs werden mit transparentem Umwegpreis geprüft.",
+    "Dieses Angebot beschreibt eine geplante Rückfahrt nach Regensburg und in das verifizierte Einsatzgebiet bis 75 km. Kunden erhalten eine Einordnung, wenn Route, Volumen und Terminfenster passen; sinnvolle Stopps unterwegs werden mit transparentem Umwegpreis geprüft.",
    pricingSignals: {
     routeAreas: offer.routeAreas,
     destinationRadius: offer.destinationRadius,

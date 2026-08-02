@@ -76,7 +76,7 @@ const processSteps = germanizeDeep([
 const scopeCan = germanizeDeep([
   "Preis und Leistungsumfang praktisch einordnen",
   "fehlende Angaben und Rueckfragen sichtbar machen",
-  "Reinigung, Umzug, Entsorgung, Solar/PV und Gewerbe unterscheiden",
+  "Reinigung, Umzug, Entsorgung, Fenster-/Fassadenreinigung und Gewerbe unterscheiden",
   "Düsseldorf und Regensburg nach passendem Kontaktweg trennen",
   "eine FLOXANT Alternative pruefen, wenn Region, Termin und Umfang passen",
 ] as const);
@@ -97,7 +97,6 @@ const matrixRows = germanizeDeep([
   ["Bueroumzug", "Arbeitsplaetze, IT, Archiv, Betriebsunterbrechung, Zeitfenster"],
   ["Entruempelung", "Menge, Material, Demontage, Zugang, Entsorgung, Reinigung danach"],
   ["Haushaltsaufloesung", "Nachlass, sensible Gegenstaende, Sortierung, Fristen, Diskretion"],
-  ["Solarreinigung / PV", "Zugang, Dachlage, Modulzustand, Wasser, Sicherheit, Fotos"],
   ["Glas / Fassade", "Hoehe, Flaeche, Zugang, Verschmutzung, Steighilfe, Termin"],
   ["Eventreinigung", "Flaeche, Besucher, Zeitfenster, Abfall, Nachreinigung"],
   ["Sonderreinigung", "Risiko, Material, Zustand, Grenzen, keine falschen Zusagen"],
@@ -122,10 +121,10 @@ const internalLinks = germanizeDeep([
   { href: "/reinigung", label: "Reinigung", text: "Reinigung und Uebergabe richtig beschreiben" },
   { href: "/umzug", label: "Umzug", text: "Volumen, Strecke und Zusatzleistungen einordnen" },
   { href: "/entruempelung", label: "Entruempelung", text: "Menge, Material und Zugang klaeren" },
-  { href: "/solarreinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
+  { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung", text: "Glas, Rahmen, Hoehe und Zugang pruefen" },
   { href: "/duesseldorf", label: "Düsseldorf", text: "lokale Reinigung und weitere Leistungen" },
   { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Umgebung nach Machbarkeit" },
-  { href: "/signature-services", label: "Signature Services", text: "Fairpreis, Objektbrief, Plan B und Rueckfahrt" },
+  { href: "/objektbrief", label: "Objektbrief", text: "Objekt, Umfang und offene Fragen konkret beschreiben" },
   { href: "/blog/reinigungsangebot-pruefen-regensburg", label: "Blog: Reinigungsangebot", text: "Fläche, Zustand und Uebergabe verstehen" },
 ] as const);
 
@@ -157,7 +156,7 @@ const relatedBlogs = germanizeDeep([
   {
     href: "/blog/umzugsangebot-pruefen-regensburg-bayern",
     title: "Umzugsangebot pruefen",
-    text: "Volumen, Etage, Laufweg, Strecke, Rueckfahrt und Reinigung sauber trennen.",
+    text: "Volumen, Etage, Laufweg, Strecke, Zusatzleistungen und Reinigung sauber trennen.",
   },
   {
     href: "/blog/entruempelungsangebot-pruefen-serioes",
@@ -165,9 +164,9 @@ const relatedBlogs = germanizeDeep([
     text: "Menge, Material, Zugang, Entsorgung und Reinigung danach sichtbar machen.",
   },
   {
-    href: "/blog/solarreinigung-pv-angebot-pruefen",
-    title: "PV-Angebot pruefen",
-    text: "Dachzugang, Wasser, Modulzustand, Sicherheit und Fotos vor einem Preis klaeren.",
+    href: "/blog/fensterreinigung-hoehe-rahmen-zugang-duesseldorf",
+    title: "Fensterreinigungsangebot pruefen",
+    text: "Flaeche, Rahmen, Hoehe, Zugang und Fotos vor einem Preis klaeren.",
   },
   {
     href: "/blog/angebot-ohne-besichtigung-riskant",
@@ -198,9 +197,9 @@ const localLinks = germanizeDeep([
     text: "FLOXANT Schwerpunkt für Umzug, Reinigung, Entrümpelung und Umgebung nach Machbarkeit.",
   },
   {
-    href: "/regensburg/solarreinigung",
-    title: "Solarreinigung Regensburg",
-    text: "PV-Anlage, Dachzugang, Wasser und Sicherheit ohne Ertragsversprechen pruefen.",
+    href: "/fensterreinigung-regensburg",
+    title: "Fensterreinigung Regensburg",
+    text: "Glasflaeche, Rahmen, Hoehe und Zugang vor einem Angebot pruefen.",
   },
 ] as const);
 
@@ -215,13 +214,13 @@ const comparisonRows: readonly ComparisonAnswerRow[] = germanizeDeep([
     topic: "Reinigung vs. Sonderreinigung",
     left: "Normale Reinigung meint regelmaessige oder uebliche Flaechen.",
     right: "Sonderreinigung braucht Fotos, Zustand, Material und Grenzen.",
-    decision: "Bei PV, Glas, Fassade oder starker Verschmutzung Spezialweg nutzen.",
+    decision: "Bei Glas, Fassade oder starker Verschmutzung den passenden Spezialweg nutzen.",
   },
   {
     topic: "Umzug vs. Moebeltransport",
     left: "Umzug umfasst meist Hausrat, Volumen und mehrere Positionen.",
     right: "Moebeltransport ist fokussierter, aber Strecke und Zugang bleiben wichtig.",
-    decision: "Bei wenigen Teilen kann Rueckfahrt oder Beiladung sinnvoll sein.",
+    decision: "Bei wenigen Teilen kann ein normaler Moebeltransport sinnvoll sein.",
   },
   {
     topic: "Angebot pruefen vs. direkt buchen",

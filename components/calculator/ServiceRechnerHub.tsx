@@ -377,9 +377,9 @@ const serviceLocalLinks: Partial<
       tone: "border-blue-200 bg-blue-50 text-blue-800",
     },
     {
-      label: "Reinigung 50 km",
+      label: "Reinigung 75 km",
       href: "/regensburg/reinigung",
-      text: "Für passende Reinigungsanfragen in Regensburg und im 50-km-Umkreis.",
+      text: "Für passende Reinigungsanfragen in Regensburg und im 75-km-Umkreis.",
       tone: "border-cyan-200 bg-cyan-50 text-cyan-800",
     },
   ],

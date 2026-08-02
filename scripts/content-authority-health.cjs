@@ -18,10 +18,7 @@ const p0Routes = [
   { route: "/reinigung-regensburg", canonical: "/regensburg/reinigung", files: ["app/reinigung-regensburg/page.tsx", "components/SpecialtyPageLayout.tsx"] },
   { route: "/diskret-service", files: ["app/diskret-service/page.tsx"] },
   { route: "/seniorenumzug-bayern", files: ["app/seniorenumzug-bayern/page.tsx", "components/seniorenumzug/SeniorMoveSections.tsx"] },
-  { route: "/solarreinigung", files: ["app/solarreinigung/page.tsx", "components/GrowthServiceLandingPage.tsx", "lib/growth-service-pages.ts"] },
-  { route: "/pv-anlagen-reinigung", files: ["app/pv-anlagen-reinigung/page.tsx", "components/GrowthServiceLandingPage.tsx", "lib/growth-service-pages.ts"] },
   { route: "/objektbrief", files: ["app/objektbrief/page.tsx"] },
-  { route: "/uebergabe-sprint", files: ["app/[serviceSlug]/page.tsx", "components/GrowthServiceLandingPage.tsx", "lib/growth-service-pages.ts"] },
   { route: "/duesseldorf", files: ["app/duesseldorf/page.tsx"] },
   { route: "/regensburg", files: ["app/regensburg/page.tsx"] },
 ];
@@ -38,10 +35,7 @@ const moneyTargets = [
   "/regensburg/reinigung",
   "/diskret-service",
   "/seniorenumzug-bayern",
-  "/solarreinigung",
-  "/pv-anlagen-reinigung",
   "/objektbrief",
-  "/uebergabe-sprint",
   "/duesseldorf",
   "/regensburg",
 ];

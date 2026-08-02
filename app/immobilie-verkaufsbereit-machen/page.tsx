@@ -208,7 +208,7 @@ const relatedLinks = [
   { href: "/buchung", label: "Buchung / Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschätzen" },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg separat" },
-  { href: "/entsorgung-duesseldorf", label: "Düsseldorf Entsorgung separat" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg separat" },
 ];
 
 const faqItems = [
@@ -288,7 +288,7 @@ const jsonLd = {
         "Praktische und organisatorische Vorbereitung von Wohnungen, Haeusern und Nebenflächen vor Verkauf, Besichtigung, Expose oder Eigentuemerwechsel durch Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache. Keine Maklerleistung, keine Bewertung und keine Verkaufsgarantie.",
       path,
       serviceType: "Objektvorbereitung vor Immobilienverkauf oder Besichtigung",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

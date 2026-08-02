@@ -12,9 +12,22 @@ const CLOUDFLARE_REDIRECTS_PATH = path.join(ROOT, "public", "_redirects");
 const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
 const DYNAMIC_BLOG_SOURCE_FILES = [
   path.join(ROOT, "lib", "ai-recommendation-blog-articles.ts"),
+  path.join(ROOT, "lib", "content", "dominance-articles.ts"),
   path.join(ROOT, "lib", "offer-check-blog-articles.ts"),
   path.join(ROOT, "lib", "strategic-blog-articles.ts"),
 ];
+const NON_PUBLISHED_GROWTH_ROUTES = new Set([
+  "/uebergabe-sprint",
+  "/glasreinigung",
+  "/solarreinigung",
+  "/pv-anlagen-reinigung",
+  "/regensburg/solarreinigung",
+  "/mini-umzug",
+  "/express-umzug",
+  "/fairpreis-check",
+  "/rueckfahrt-radar",
+  "/vermieter-ready-service",
+]);
 const PSYCHOLOGICAL_CLEANING_PAGES_PATH = path.join(
   ROOT,
   "lib",
@@ -174,8 +187,10 @@ const REDIRECT_EXPECTATIONS = [
   ["/seniorenumzug-regensburg", "/regensburg/seniorenumzug"],
   ["/umzug-reinigung-regensburg", "/regensburg/umzug-reinigung"],
   ["/endreinigung-regensburg", "/regensburg/endreinigung"],
-  ["/einsatzgebiet-regensburg-200km", "/regensburg"],
-  ["/service-area-bayern", "/regensburg"],
+  ["/einsatzgebiet-regensburg-200km", "/region-regensburg"],
+  ["/service-area-bayern", "/region-regensburg"],
+  ["/entsorgung-duesseldorf", "/duesseldorf/reinigung"],
+  ["/duesseldorf/entsorgung", "/duesseldorf/reinigung"],
   ["/umzug-n%C3%BCrnberg", "/umzug-nuernberg"],
   ["/reinigung-n%C3%BCrnberg", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung-n%C3%BCrnberg", "/entruempelung-nuernberg"],
@@ -272,7 +287,7 @@ function loadGrowthServiceRoutes() {
   let match;
 
   while ((match = pathRegex.exec(source))) {
-    routes.push(match[1]);
+    if (!NON_PUBLISHED_GROWTH_ROUTES.has(match[1])) routes.push(match[1]);
   }
 
   return routes;

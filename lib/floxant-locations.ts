@@ -19,6 +19,8 @@ export type FloxantLocation = {
   googleBusinessProfileUrl: string | null;
   mapsUrl: string | null;
   localLandingPage: string;
+  serviceAreaPage: string;
+  geo: { lat: number; lng: number };
   primaryServices: readonly string[];
   secondaryServices: readonly string[];
   signatureServices: readonly string[];
@@ -55,16 +57,13 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     openingHours: null,
     serviceArea: [
       "Düsseldorf",
-      "Neuss",
-      "Ratingen",
-      "Meerbusch",
-      "Mettmann",
-      "Duisburg",
-      "Umgebung nach Prüfung",
+      "Gemeinden im verifizierten 75-km-Einsatzgebiet um Düsseldorf",
     ],
     googleBusinessProfileUrl: null,
     mapsUrl: null,
     localLandingPage: "/duesseldorf",
+    serviceAreaPage: "/duesseldorf/einsatzgebiet",
+    geo: duesseldorfCompany.geo,
     primaryServices: [
       "Reinigung",
       "Büroreinigung",
@@ -75,25 +74,17 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       "Treppenhausreinigung",
       "Endreinigung",
     ],
-    secondaryServices: [
-      "Umzug",
-      "Entrümpelung",
-      "Haushaltsauflösung",
-      "Entsorgung",
-      "Solarreinigung nach manueller Prüfung",
-    ],
+    secondaryServices: ["Angebotsprüfung für Reinigungsleistungen"],
     signatureServices: [
       "FLOXANT Angebotscheck",
-      "FLOXANT Fairpreis-Check",
       "FLOXANT Objektbrief",
       "FLOXANT Plan-B-Service",
       "FLOXANT Diskret-Service",
-      "FLOXANT Büro-Startklar-Service",
     ],
     localFaq: [
       {
         q: "Welche FLOXANT Leistungen sind für Düsseldorf zentral?",
-        a: "Regensburg ist im Code vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
+        a: "Düsseldorf ist als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
       },
       {
         q: "Sind Öffnungszeiten für Düsseldorf hinterlegt?",
@@ -106,7 +97,7 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     ],
     localTrustNotes: [
       "Daten stammen aus bestehendem Code, nicht aus neu erfundenen Angaben.",
-      "Regensburger Reinigung bleibt getrennt von Regensburger Umzug/Entrümpelung.",
+      "Düsseldorfer Reinigung bleibt getrennt von den Regensburger Umzugs- und Räumungsleistungen.",
       "Keine Öffnungszeiten oder Maps-Links ohne manuelle Bestätigung.",
     ],
     dataStatus: {
@@ -121,7 +112,7 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       schemaId: `${company.url}/duesseldorf#localbusiness`,
       businessTypes: ["LocalBusiness", "HouseCleaningService", "ProfessionalService"],
       addressRegion: "DE-NW",
-      areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg"],
+      areaServed: ["Düsseldorf", "Verifiziertes 75-km-Einsatzgebiet um Düsseldorf"],
     },
   },
   regensburg: {
@@ -140,40 +131,36 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     googleBusinessProfileUrl: null,
     mapsUrl: company.mapsSearchUrl,
     localLandingPage: "/regensburg",
+    serviceAreaPage: "/region-regensburg",
+    geo: company.geo,
     primaryServices: [
       "Umzug",
-      "Reinigung",
+      "Möbeltransport",
+      "Klaviertransport",
       "Entrümpelung",
       "Haushaltsauflösung",
       "Wohnungsauflösung",
-      "Büroreinigung",
-      "Gewerbereinigung",
-      "Klaviertransport",
     ],
     secondaryServices: [
+      "Reinigung",
       "Endreinigung",
       "Übergabereinigung",
       "Büroumzug",
       "Kleintransport",
       "Rückfahrt",
-      "Solarreinigung nach manueller Prüfung",
     ],
     signatureServices: [
       "FLOXANT Angebotscheck",
-      "FLOXANT Fairpreis-Check",
       "FLOXANT Objektbrief",
       "FLOXANT Übergabeakte",
-      "FLOXANT Übergabe-Sprint",
       "FLOXANT Plan-B-Service",
-      "FLOXANT Rückfahrt-Radar",
       "FLOXANT Diskret-Service",
-      "FLOXANT Vermieter-Ready-Service",
       "FLOXANT Entscheidungs-Kompass",
     ],
     localFaq: [
       {
         q: "Welche FLOXANT Leistungen sind für Regensburg zentral?",
-        a: "Regensburg ist im Code als Hauptstandort für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Büroreinigung, Gewerbereinigung und Klaviertransport gepflegt.",
+        a: "Regensburg ist der Standort für Umzug, Möbel- und Klaviertransport, Entrümpelung, Haushaltsauflösung und Wohnungsauflösung. Reinigung wird als getrennte ergänzende Leistung geführt.",
       },
       {
         q: "Sind Öffnungszeiten für Regensburg hinterlegt?",

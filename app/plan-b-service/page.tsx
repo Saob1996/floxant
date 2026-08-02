@@ -29,9 +29,9 @@ const path = "/plan-b-service";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Plan-B-Service für Umzug, Reinigung & Übergabe | FLOXANT",
+  title: "Plan-B-Service: regional klar eingeordnet | FLOXANT",
   description:
-    "Ihr Umzug, Ihre Reinigung oder Übergabe wirkt unsicher? FLOXANT prüft nach Verfügbarkeit einen Plan B für Transport, Endreinigung, Entrümpelung, Entsorgung und Schlüsselübergabe.",
+    "Plan B nach Verfügbarkeit: in Düsseldorf für Reinigung und Reinigungsangebote; in Regensburg zusätzlich für Umzug, Räumung und Übergabe.",
 });
 
 const whatsappHref =
@@ -77,8 +77,8 @@ const triageOptions = [
   },
   {
     title: "Düsseldorf braucht Backup",
-    text: "In Regensburg klar getrennt über klare lokale Kontaktmöglichkeiten, inklusive Umzug, Reinigung, Entrümpelung und Entsorgung.",
-    solution: "Reinigung Regensburg/Entsorgung",
+    text: "In Düsseldorf gilt der Plan-B-Weg für Reinigung und die Prüfung eines vorhandenen Reinigungsangebots.",
+    solution: "Reinigung / Reinigungsangebot",
   },
 ];
 
@@ -126,9 +126,9 @@ const packages = [
   },
   {
     title: "Düsseldorf Plan B",
-    forText: "Nur Reinigung, Entsorgung, moeblierte Wohnung oder B2B-Reinigung.",
-    includes: ["Reinigung", "Entsorgung", "Apartment-Reinigung", "B2B nach Absprache"],
-    cta: "Reinigung Regensburg/Entsorgung prüfen",
+    forText: "Für Reinigung im Privathaushalt, in möblierten Wohnungen oder im B2B-Objekt.",
+    includes: ["Reinigung", "Reinigungsangebot", "Apartment-Reinigung", "B2B nach Absprache"],
+    cta: "Reinigungs-Backup prüfen",
     Icon: Route,
   },
 ];
@@ -165,7 +165,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert Plan B auch in Düsseldorf?",
-    a: "Ja, über klare lokale Kontaktmöglichkeiten: Umzug, Reinigung, Entrümpelung, moeblierte Wohnung, B2B-Reinigung oder Entsorgung.",
+    a: "Ja, für Reinigung und die Prüfung eines vorhandenen Reinigungsangebots. Umzug, Entrümpelung, Haushaltsauflösung und Räumung gehören zum Regensburger Leistungsbereich.",
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
@@ -183,7 +183,7 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT Plan-B-Service",
       description:
-        "Backup- und Absicherungsservice für unsichere Ablaeufe bei Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe nach Verfügbarkeit.",
+        "Backup-Prüfung nach Verfügbarkeit: in Düsseldorf für Reinigung und Reinigungsangebote, in Regensburg zusätzlich für Umzug, Entrümpelung und Übergabe.",
       path,
       about: ["Plan B", "Backup-Service", "Umzug Regensburg", "Reinigung", "Übergabe", "Schadensbegrenzung"],
       potentialActions: [
@@ -194,10 +194,10 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Plan-B-Service",
       description:
-        "Machbarkeitspruefung für Ersatz- oder Ergaenzungsplan bei unsicherem Umzug, Reinigung, Entrümpelung, Entsorgung oder Übergabe. Keine Notdienstgarantie.",
+        "Machbarkeitsprüfung für Reinigung in Düsseldorf sowie für Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg. Keine Notdienstgarantie.",
       path,
-      serviceType: "Plan-B-Service für Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
+      serviceType: "Regional getrennter Plan-B-Service",
+      areaServed: ["Düsseldorf und geprüftes 75-km-Einsatzgebiet", "Regensburg und geprüftes 75-km-Einsatzgebiet"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -220,10 +220,12 @@ export default function PlanBServicePage() {
                 FLOXANT Backup-Control
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                FLOXANT Plan-B-Service für Umzug, Reinigung und Übergabe
+                Plan B für Reinigung in Düsseldorf und weitere Services in Regensburg
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Wenn Ihr aktueller Ablauf unsicher ist, prüft FLOXANT, ob ein Ersatz-, Ergaenzungs- oder Absicherungsplan möglich ist - mit Ort, Termin, Fotos und offenen Punkten.
+                In Düsseldorf prüfen wir Reinigungs-Backups und Reinigungsangebote. In Regensburg
+                gilt der Weg zusätzlich für Umzug, Räumung und Übergabe. Entscheidend sind Ort,
+                Termin, Fotos und offene Punkte.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
@@ -238,7 +240,7 @@ export default function PlanBServicePage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Backup vor dem Kippen</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf: Reinigung und Angebotsprüfung</span>
                 <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700">Prüfung nach Verfügbarkeit</span>
               </div>
             </div>
@@ -327,6 +329,10 @@ export default function PlanBServicePage() {
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Plan-B-Pakete</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Welche Lücke soll der Backup-Plan schliessen?</h2>
+              <p className="mt-3 max-w-3xl text-base leading-8 text-slate-700">
+                Transport, Räumung und Übergabe beziehen sich auf Regensburg. Für Düsseldorf ist
+                der Plan-B-Service auf Reinigung und Reinigungsangebote begrenzt.
+              </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {packages.map((item) => {
@@ -447,7 +453,7 @@ export default function PlanBServicePage() {
               ["/diskreter-umzug-trennung-scheidung", "Diskreten Auszug absichern"],
               ["/wohnung-wieder-vermietbar", "Objekt wieder nutzbar machen"],
               ["/regensburg/reinigung", "Reinigung Regensburg"],
-              ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
+              ["/regensburg/entruempelung", "Entrümpelung Regensburg"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50">
                 {label}

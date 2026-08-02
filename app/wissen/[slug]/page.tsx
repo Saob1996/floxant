@@ -1,4 +1,5 @@
 import { ArrowRight, BookOpen } from "lucide-react";
+import { notFound } from "next/navigation";
 
 import { AuthorBox } from "@/components/AuthorBox";
 import { generateCityContent } from "@/lib/content-engine";
@@ -6,15 +7,26 @@ import { generateSemanticLinks } from "@/lib/internal-linking";
 import { generatePageSEO } from "@/lib/seo";
 import { germanizeText } from "@/lib/german-text";
 
-const STATIC_KNOWLEDGE_SERVICES = ["umzug", "reinigung", "entruempelung"] as const;
-const STATIC_KNOWLEDGE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
+const STATIC_KNOWLEDGE_SERVICE_MATRIX = {
+  regensburg: ["umzug", "reinigung", "entruempelung"],
+  muenchen: ["umzug", "reinigung", "entruempelung"],
+  nuernberg: ["umzug", "reinigung", "entruempelung"],
+  duesseldorf: ["reinigung"],
+} as const;
+
+const STATIC_KNOWLEDGE_PARAMS = Object.entries(STATIC_KNOWLEDGE_SERVICE_MATRIX).flatMap(
+  ([city, services]) => services.map((service) => ({ slug: `${service}-${city}` })),
+);
+const STATIC_KNOWLEDGE_SLUGS = new Set(STATIC_KNOWLEDGE_PARAMS.map(({ slug }) => slug));
+
+function assertStaticKnowledgeSlug(slug: string) {
+  if (!STATIC_KNOWLEDGE_SLUGS.has(slug)) notFound();
+}
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return STATIC_KNOWLEDGE_SERVICES.flatMap((service) =>
-    STATIC_KNOWLEDGE_CITIES.map((city) => ({ slug: `${service}-${city}` })),
-  );
+  return STATIC_KNOWLEDGE_PARAMS;
 }
 
 export async function generateMetadata({
@@ -23,6 +35,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  assertStaticKnowledgeSlug(slug);
   const parts = slug.split("-");
   const service = parts[0]
     ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1)
@@ -45,6 +58,7 @@ export default async function KnowledgeHubPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  assertStaticKnowledgeSlug(slug);
   const parts = slug.split("-");
   const service = parts[0] || "umzug";
   const city = germanizeText(parts[1]

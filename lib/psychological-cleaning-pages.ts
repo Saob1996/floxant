@@ -1934,7 +1934,7 @@ function buildBlogArticle(
     metaTitle: seed.metaTitle,
     description: seed.description,
     intro: seed.intro,
-    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "50 km Umkreis"],
+    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "75 km Umkreis"],
     keywords: [...seed.keywordFocus, ...page.searchIntents, "FLOXANT"].slice(0, 12),
     sections: [
       {

@@ -24,7 +24,7 @@ const locationCards = [
     text: "Für Reinigung in Regensburg und im geprüften Umkreis: Wohnung, Übergabe, Büro, Gewerbe, Fenster, Endreinigung oder Reinigung nach Umzug.",
     href: "/regensburg/reinigung",
     cta: "Regensburg wählen",
-    points: ["Reinigung Regensburg", "50-km-Umkreis nach Prüfung", "Übergabe, Objekt und Turnus"],
+    points: ["Reinigung Regensburg", "75-km-Umkreis nach Prüfung", "Übergabe, Objekt und Turnus"],
   },
 ] as const;
 

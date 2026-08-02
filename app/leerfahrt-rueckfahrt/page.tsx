@@ -27,7 +27,7 @@ const faqItems = [
   },
   {
     q: "Für welche Richtungen ist der Service gedacht?",
-    a: "Der Schwerpunkt liegt auf Rückfahrten Richtung Regensburg, Zielorten im Umkreis von etwa 200 km und Bayern nach Verfügbarkeit. Besonders interessant sind flexible Termine, wenn Route, Ladefläche und Zeitfenster ohnehin zusammenpassen.",
+    a: "Der Schwerpunkt liegt auf Rückfahrten Richtung Regensburg und dem verifizierten Einsatzgebiet bis 75 km. Weiter entfernte Orte können nur Start oder Ziel einer konkreten Streckenanfrage sein; sie begründen keine flächendeckende Verfügbarkeit.",
   },
   {
     q: "Ist der Service auch für Firmen und große Büros geeignet?",
@@ -97,7 +97,7 @@ export default async function LeerfahrtRueckfahrtPage() {
           "Faire Rückfahrt-Preise für Umzugsgut, Firmeninventar, Möbel, Kartons, Paletten und Teilmengen, wenn Route und freie Fahrzeugkapazität passen.",
         path: "/leerfahrt-rueckfahrt",
         serviceType: "Leer-Rückfahrt",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Nürnberg", "München"],
+        areaServed: ["Regensburg", "Einsatzgebiet bis 75 km um Regensburg"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -163,8 +163,8 @@ export default async function LeerfahrtRueckfahrtPage() {
           <div className="glass-elevated premium-scan rounded-[2.7rem] p-6 shadow-[0_30px_90px_rgba(15,23,42,0.12)]">
             <div className="grid gap-4">
               {[
-                { icon: Route, label: "Richtung", value: "Richtung Regensburg und Bayern" },
-                { icon: MapPin, label: "Zielgebiet", value: "Regensburg + ca. 200 km Umkreis" },
+                { icon: Route, label: "Richtung", value: "Richtung Regensburg; Fernziele nur auf Anfrage" },
+                { icon: MapPin, label: "Zielgebiet", value: "Regensburg + Einsatzgebiet bis 75 km" },
                 { icon: PackageOpen, label: "Geeignet für", value: "Büroinventar, Möbel, Kartons, Paletten" },
                 { icon: CalendarClock, label: "Preislogik", value: "fair, wenn Route und Termin passen" },
               ].map((item) => {

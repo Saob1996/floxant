@@ -83,13 +83,10 @@ const faqItems = [
 
 const clearanceSignatureServices = signatureServiceLinks.filter((item) =>
   [
-    "FLOXANT Fairpreis-Check",
     "FLOXANT Objektbrief",
     "FLOXANT Uebergabeakte",
-    "FLOXANT Uebergabe-Sprint",
     "FLOXANT Plan-B-Service",
     "FLOXANT Diskret-Service",
-    "FLOXANT Vermieter-Ready-Service",
   ].includes(item.title),
 );
 
@@ -139,7 +136,7 @@ function JsonLd() {
           "Machbarkeitspruefung für besondere Räumungs- und Aufloesungsfaelle mit Fotos, Freigabe, Zugang, Entsorgung und Zielzustand.",
         path,
         serviceType: "Spezial-Entrümpelung und Auflösung",
-        areaServed: ["Regensburg", "Düsseldorf", "Bayern nach Prüfung"],
+        areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Prüfung"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -231,7 +228,7 @@ export default function SpezialentruempelungPage() {
       />
 
       <QuickDecisionBox
-        title="Räumung, Auflösung oder Übergabe-Sprint?"
+        title="Räumung, Auflösung oder Übergabeakte?"
         fits={[
           "Fotos, Menge, Zugang und Freigabe sind grob beschreibbar.",
           "Räumung und Reinigung haengen mit Übergabe, Verkauf oder Neuvermietung zusammen.",
@@ -245,7 +242,7 @@ export default function SpezialentruempelungPage() {
         nextSteps={[
           "Keller/Garage: Fotos und Menge senden.",
           "Nachlass/Wohnung: Freigabe und Ansprechpartner nennen.",
-          "Übergabe naht: Übergabeakte oder Übergabe-Sprint nutzen.",
+          "Übergabe naht: Übergabeakte oder Plan-B-Service nutzen.",
         ]}
         ctaHref="/kontakt?service=entruempelung&intent=spezial-entruempelung-einordnen&source=spezial-entruempelung#direktanfrage"
         ctaLabel="Raeumung einordnen"
@@ -296,13 +293,13 @@ export default function SpezialentruempelungPage() {
 
       <SignatureServicesGrid
         title="Welche besonderen Leistungen zur Spezial-Entrümpelung passen."
-        intro="Objektbrief, Übergabeakte, Übergabe-Sprint, Plan B, Diskret-Service und Vermieter-Ready helfen, wenn Räumung Teil einer größeren Frist ist."
+        intro="Objektbrief, Übergabeakte, Plan B und Diskret-Service helfen, wenn Räumung Teil einer größeren Frist ist."
         services={clearanceSignatureServices}
       />
 
       <LocalServiceBridge
         serviceLabel="Spezial-Entrümpelung"
-        duesseldorfHref="/duesseldorf/entsorgung"
+        showDuesseldorf={false}
         regensburgHref="/regensburg/entruempelung"
       />
 

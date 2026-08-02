@@ -79,7 +79,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Wohnungsübergabe-Komplettpaket ist sinnvoll, wenn eine Wohnung nicht nur leer, sondern wirklich übergabebereit sein muss. FLOXANT kann in Düsseldorf und Regensburg je nach Auftrag Umzug, Endreinigung, kleine Rest-Entrümpelung, Fotodokumentation und Schlüsselübergabe in einem klaren Ablauf verbinden. Besonders hilfreich ist das für Mieter, Familien, Berufstätige und Kunden mit Zeitdruck, die nicht mehrere Dienstleister parallel steuern wollen.",
+          "Ein Wohnungsübergabe-Komplettpaket ist sinnvoll, wenn eine Wohnung nicht nur leer, sondern wirklich übergabebereit sein muss. In Düsseldorf prüft FLOXANT dafür Reinigung und Dokumentation; Umzug, Räumung, Endreinigung und Übergabe werden im Regensburger Leistungsbereich eingeordnet. Besonders hilfreich ist das für Kunden mit engem Zeitfenster.",
         ],
       },
       {
@@ -380,7 +380,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Das Nicht-vor-Ort-Paket ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Düsseldorf und Regensburg nach Absprache Zustand prüfen, Fotos senden, Restarbeiten organisieren, Reinigung oder Entrümpelung vorbereiten und die Schlüsselübergabe unterstützen. Besonders sinnvoll ist das für Berufsumzüge, internationale Kunden und Menschen mit wenig Zeit.",
+          "Das Nicht-vor-Ort-Paket ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. In Düsseldorf werden Reinigung und Dokumentation geprüft; in Regensburg können zusätzlich Räumung und Übergabevorbereitung eingeordnet werden. Besonders sinnvoll ist das für internationale Kunden und Menschen mit wenig Zeit.",
         ],
       },
       {
@@ -675,7 +675,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Übergabe-Check ist sinnvoll, wenn vor dem Vermietertermin unklar ist, ob die Wohnung wirklich bereit ist. FLOXANT kann in Düsseldorf und Regensburg nach Absprache Sichtprüfung, Fotos und eine praktische Einschätzung unterstützen, ob Reinigung, Entrümpelung oder Nacharbeit sinnvoll sind. Besonders hilfreich ist das kurz vor der Übergabe, wenn der Kunde müde, unter Zeitdruck oder nicht mehr sicher ist.",
+          "Ein Übergabe-Check ist sinnvoll, wenn vor dem Vermietertermin unklar ist, ob die Wohnung wirklich bereit ist. Reinigung und Fotos können an beiden Standorten geprüft werden; Entrümpelung gehört zum Regensburger Leistungsbereich. Besonders hilfreich ist das kurz vor der Übergabe.",
         ],
       },
       {
@@ -1160,7 +1160,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Umzug ist nicht nur Transport, sondern ein Kontrollproblem. Entscheidend ist, ob alle relevanten Aufgaben in einer sinnvollen Reihenfolge stehen. FLOXANT hilft Kunden in Düsseldorf und Regensburg, Umzug, Reinigung, Entrümpelung und Übergabe realistisch zusammenzudenken. Das reduziert nicht jede Überraschung, aber es macht den Auftrag planbarer und ehrlicher.",
+          "Ein Umzug ist nicht nur Transport, sondern ein Kontrollproblem. Im Regensburger Leistungsbereich hilft FLOXANT, Umzug, Reinigung, Entrümpelung und Übergabe realistisch zusammenzudenken. Düsseldorf bleibt davon als Reinigungsstandort getrennt.",
         ],
       },
     ],
@@ -1358,7 +1358,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Eine Wohnung ist übergabebereit, wenn sie nicht nur gereinigt, sondern frei von relevanten Resten, zugänglich, dokumentiert und terminlich klar abgeschlossen ist. FLOXANT kann in Düsseldorf und Regensburg helfen, indem Reinigung, Rest-Entrümpelung, Fotos, Schlüsselthemen und Übergabeanforderungen zusammen betrachtet werden. Besonders sinnvoll ist das, wenn der Vermietertermin nah ist oder mehrere kleine Aufgaben offen sind.",
+          "Eine Wohnung ist übergabebereit, wenn sie gereinigt, zugänglich, dokumentiert und terminlich klar vorbereitet ist. Reinigung und Fotos werden standortbezogen geprüft; Rest-Entrümpelung und kombinierte Übergabevorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -1487,7 +1487,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Umzug und Endreinigung zu kombinieren ist sinnvoll, wenn die alte Wohnung nach dem Auszug zeitnah übergabebereit werden muss. FLOXANT kann in Düsseldorf und Regensburg je nach Kapazität Transport, Reinigung, Restpunkte und Übergabeanforderungen in einem abgestimmten Ablauf betrachten. Besonders hilfreich ist das bei engem Zeitfenster, Vermietertermin oder fehlender eigener Koordination.",
+          "Umzug und Endreinigung zu kombinieren ist sinnvoll, wenn die alte Wohnung nach dem Auszug zeitnah übergabebereit werden muss. FLOXANT prüft diesen kombinierten Ablauf im Regensburger Leistungsbereich; Düsseldorf bleibt der getrennte Reinigungsstandort.",
         ],
       },
       {
@@ -1623,7 +1623,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Entrümpelung vor der Wohnungsübergabe ist sinnvoll, wenn Restgegenstände, Keller, Balkon, Garage oder alte Möbel den Abschluss blockieren. FLOXANT kann in Düsseldorf und Regensburg helfen, indem geeignete Restmengen geräumt, getragen, entsorgt und die Fläche für Reinigung oder Übergabe vorbereitet wird. Besonders hilfreich ist das, wenn ein Vermietertermin bevorsteht und die Wohnung nicht nur leer, sondern abschließbar sein muss.",
+          "Entrümpelung vor der Wohnungsübergabe ist sinnvoll, wenn Restgegenstände, Keller, Balkon, Garage oder alte Möbel den Abschluss blockieren. FLOXANT prüft Räumung, Entsorgung und anschließende Reinigung im Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -1697,7 +1697,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Entrümpelung vor der Wohnungsübergabe macht Räume wieder entscheidbar. Es geht nicht nur um Wegtragen, sondern um den nächsten sauberen Schritt: Reinigung, Übergabe oder weitere Nutzung. FLOXANT hilft in Düsseldorf und Regensburg, Restmengen realistisch zu prüfen und den Abschluss besser zu strukturieren. Das ist besonders wichtig, wenn Nebenflächen den Vermietertermin blockieren könnten.",
+          "Entrümpelung vor der Wohnungsübergabe macht Räume wieder entscheidbar. FLOXANT prüft Restmengen, Reinigung und Übergabe dafür im Regensburger Leistungsbereich. Düsseldorf bleibt bei Reinigungsanfragen getrennt.",
         ],
       },
     ],
@@ -1772,7 +1772,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Remote Move-Out Service ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Düsseldorf und Regensburg nach Vereinbarung Schlüsselzugang, Fotos, Restarbeiten, Reinigung, Entrümpelung und Übergabevorbereitung koordinieren. Besonders hilfreich ist das für Berufsumzüge, Fernumzüge und Kunden, die nicht noch einmal anreisen möchten.",
+          "Ein Remote Move-Out Service ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. Reinigung kann standortbezogen geprüft werden; Entrümpelung und kombinierte Übergabevorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -1915,7 +1915,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Seniorenumzug für Angehörige ist sinnvoll zu planen, wenn Transport, Entscheidungen, Entrümpelung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Düsseldorf und Regensburg helfen, indem einzelne Schritte ruhig vorbereitet und je nach Auftrag kombiniert werden. Besonders sinnvoll ist das für Familien, die Verantwortung tragen, aber nicht jede Aufgabe selbst koordinieren können.",
+          "Ein Seniorenumzug für Angehörige ist sinnvoll zu planen, wenn Transport, Entscheidungen, Entrümpelung, Reinigung und Übergabe zusammenkommen. FLOXANT prüft diesen Ablauf im Regensburger Leistungsbereich; Düsseldorf bleibt der getrennte Reinigungsstandort.",
         ],
       },
       {
@@ -2173,7 +2173,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Eine Nachlassräumung ist sinnvoll zu begleiten, wenn emotionale Entscheidungen, Räumung, Entsorgung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Düsseldorf und Regensburg helfen, indem praktische Schritte respektvoll, klar und nach Absprache umgesetzt werden. Besonders passend ist das für Angehörige, die eine Wohnung nicht allein räumen und vorbereiten können.",
+          "Eine Nachlassräumung ist sinnvoll zu begleiten, wenn emotionale Entscheidungen, Räumung, Entsorgung, Reinigung und Übergabe zusammenkommen. FLOXANT prüft diese Leistung respektvoll im Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -2240,7 +2240,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Eine Nachlassräumung ist mehr als Wegtragen. Sie verbindet praktische Arbeit mit Verantwortung, Erinnerung und Fristen. FLOXANT kann Angehörige in Düsseldorf und Regensburg unterstützen, indem Räumung, Entsorgung, Reinigung und Übergabevorbereitung ruhig gemeinsam geklärt werden. Entscheidend ist eine klare Absprache, damit Respekt und Durchführung zusammenpassen.",
+          "Eine Nachlassräumung ist mehr als Wegtragen. FLOXANT kann Angehörige im Regensburger Leistungsbereich unterstützen, indem Räumung, Entsorgung, Reinigung und Übergabevorbereitung ruhig gemeinsam geklärt werden.",
         ],
       },
     ],
@@ -2303,7 +2303,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Berufsumzug mit wenig Zeit braucht mehr als Transport, weil alte Wohnung, neue Arbeit, Reinigung, Schlüssel und Übergabe parallel laufen. FLOXANT kann in Düsseldorf und Regensburg helfen, indem Umzug, Restarbeiten, Endreinigung, Fotos und Schlüsselthemen je nach Auftrag gemeinsam geklärt werden. Besonders sinnvoll ist das, wenn der Jobstart früher kommt als der saubere Abschluss der alten Wohnung.",
+          "Ein Berufsumzug mit wenig Zeit braucht mehr als Transport. FLOXANT prüft Umzug, Restarbeiten, Endreinigung, Fotos und Schlüsselthemen dafür im Regensburger Leistungsbereich; Düsseldorf bleibt Reinigungsstandort.",
         ],
       },
       {
@@ -2370,7 +2370,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Berufsumzug mit wenig Zeit ist ein Koordinationsproblem. Transport allein löst nicht automatisch Reinigung, Schlüssel, Restmengen und Übergabe. FLOXANT hilft Kunden in Düsseldorf und Regensburg, die alte Wohnung kontrollierter abzuschließen, während der neue berufliche Abschnitt beginnt. Das schafft keine Wunder, aber deutlich mehr Klarheit.",
+          "Ein Berufsumzug mit wenig Zeit ist ein Koordinationsproblem. FLOXANT hilft Kunden im Regensburger Leistungsbereich, Transport, Reinigung, Schlüssel, Restmengen und Übergabe kontrollierter zu ordnen.",
         ],
       },
     ],
@@ -2447,7 +2447,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT ist für Hausverwaltungen sinnvoll, wenn Wohnungen nach Auszug, Mieterwechsel oder Räumung schnell wieder einschätzbar werden müssen. In Düsseldorf und Regensburg kann FLOXANT nach Absprache Rest-Entrümpelung, Reinigung, Fotodokumentation, Schlüsselthemen und Übergabevorbereitung unterstützen. Besonders hilfreich ist das, wenn Verwaltung, Eigentümer, Mieter und Dienstleister sonst parallel koordiniert werden müssten.",
+          "FLOXANT ist für Hausverwaltungen sinnvoll, wenn Wohnungen nach Auszug oder Mieterwechsel schnell wieder einschätzbar werden müssen. In Düsseldorf werden Reinigung und Fotodokumentation geprüft; Rest-Entrümpelung und kombinierte Übergabevorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -2514,7 +2514,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Hausverwaltungen brauchen nach Auszug keine zusätzlichen offenen Schleifen, sondern kontrollierbare Zustände. FLOXANT kann in Düsseldorf und Regensburg Rest-Entrümpelung, Reinigung, Fotos, Schlüsselthemen und Übergabevorbereitung praktisch unterstützen. Der Wert liegt in weniger Koordinationsaufwand und mehr Sichtbarkeit. Besonders sinnvoll ist das bei Mieterwechsel, Restmengen oder unklaren Nebenflächen.",
+          "Hausverwaltungen brauchen nach Auszug kontrollierbare Zustände. Reinigung und Fotos werden standortbezogen geprüft; Rest-Entrümpelung und kombinierte Übergabevorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
     ],
@@ -2570,13 +2570,13 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       "Wie FLOXANT Makler bei Räumung, Reinigung und Vorbereitung von Wohnungen oder Objekten für Besichtigung, Fototermin oder Übergabe unterstützen kann.",
     intro:
       "Makler verkaufen oder vermieten nicht nur Quadratmeter. Sie verkaufen den ersten Eindruck. Möbelreste, Schmutz, Kartons, Kellerchaos oder ungeklärte Nebenflächen können den Wert eines guten Objekts unnötig schwächen.",
-    about: ["Makler", "Objektvorbereitung", "Reinigung", "Entrümpelung", "Immobilie", "Regensburg", "Regensburg"],
+    about: ["Makler", "Objektvorbereitung", "Reinigung", "Entrümpelung", "Immobilie", "Düsseldorf", "Regensburg"],
     keywords: ["Service für Makler", "Objekt vorbereiten", "Immobilie reinigen", "FLOXANT"],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT ist für Makler sinnvoll, wenn Räume vor Besichtigung, Fototermin, Übergabe oder Neuvermietung schnell klarer wirken müssen. In Düsseldorf und Regensburg kann FLOXANT nach Absprache Rest-Entrümpelung, Reinigung, Tragen, Fotodokumentation und Vorbereitung unterstützen. Besonders passend ist das, wenn der erste Eindruck durch Reste, Schmutz oder Unordnung belastet wird.",
+          "FLOXANT ist für Makler sinnvoll, wenn Räume vor Besichtigung, Fototermin, Übergabe oder Neuvermietung klarer wirken müssen. In Düsseldorf werden Reinigung und Fotodokumentation geprüft; Rest-Entrümpelung, Tragen und kombinierte Objektvorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
       {
@@ -2643,7 +2643,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Makler brauchen Objekte, die schnell verständlich und präsentationsfähig sind. FLOXANT kann in Düsseldorf und Regensburg helfen, Räume durch Räumung, Reinigung und praktische Vorbereitung besser nutzbar zu machen. Das ersetzt keine Vermarktung, stärkt aber den ersten Eindruck. Besonders sinnvoll ist der Service vor Fotos, Besichtigungen, Neuvermietung oder Übergabe.",
+          "Makler brauchen Objekte, die schnell verständlich und präsentationsfähig sind. Reinigung kann standortbezogen geprüft werden; Räumung und kombinierte Objektvorbereitung gehören zum Regensburger Leistungsbereich.",
         ],
       },
     ],
@@ -2706,7 +2706,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Gewerbe-Auszug braucht Rückgabevorbereitung, wenn Betrieb, Inventar, Reinigung, Räumung und Vermietertermin zusammenpassen müssen. FLOXANT kann in Düsseldorf und Regensburg helfen, indem Transport, Räumung, Reinigung, Fotodokumentation und Übergabepunkte nach Absprache gemeinsam geklärt werden. Besonders sinnvoll ist das für Büros, Praxen, Kanzleien und Gewerbeflächen mit engem Zeitfenster.",
+          "Ein Gewerbe-Auszug braucht Rückgabevorbereitung, wenn Betrieb, Inventar, Reinigung, Räumung und Vermietertermin zusammenpassen müssen. FLOXANT prüft Transport, Räumung und Übergabe dafür im Regensburger Leistungsbereich; Düsseldorf bleibt bei Gewerbereinigung getrennt.",
         ],
       },
       {
@@ -2773,7 +2773,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Gewerbe-Auszug ist ein Übergang zwischen alter und neuer Nutzung. FLOXANT kann Unternehmen in Düsseldorf und Regensburg helfen, Transport, Räumung, Reinigung und Rückgabevorbereitung realistischer zu koordinieren. Der Wert liegt in weniger Improvisation und klareren Zuständigkeiten. Besonders sinnvoll ist das bei Büros, Praxen, Kanzleien und Gewerbeflächen mit engem Zeitfenster.",
+          "Ein Gewerbe-Auszug ist ein Übergang zwischen alter und neuer Nutzung. Transport, Räumung und kombinierte Rückgabevorbereitung prüft FLOXANT im Regensburger Leistungsbereich; Düsseldorf bleibt der Standort für Gewerbereinigung.",
         ],
       },
     ],
@@ -3118,9 +3118,9 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Bayernweit heißt: passend prüfen, nicht blind versprechen",
+        title: "Einsatzgebiet und Fernziel sauber unterscheiden",
         paragraphs: [
-          "FLOXANT ist zentral in Regensburg verankert und prüft passende Einsätze in Bayern nach Strecke, Umfang, Kapazität und Termin. Das ist seriöser als eine pauschale Behauptung, überall jederzeit gleich verfügbar zu sein.",
+          "FLOXANT ist in Regensburg verankert und bedient den verifizierten Einsatzraum bis 75 Kilometer. Bei einem Fernumzug kann das Ziel weiter entfernt liegen; Start, Strecke, Umfang, Kapazität und Termin werden konkret geprüft.",
           "Gerade bei längeren Strecken zählt realistische Planung. Ein niedriger Preis hilft wenig, wenn dadurch am Einsatztag Zeit, Fahrzeug, Personal oder Zuständigkeit fehlen.",
         ],
       },
@@ -3154,7 +3154,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was FLOXANT übernehmen kann",
         paragraphs: [
-          "Nicht jeder bayernweite Einsatz ist sinnvoll. Wenn Strecke, Umfang und Kapazität passen, kann FLOXANT den Abschluss praktisch unterstützen.",
+          "Nicht jede lange Strecke ist sinnvoll. Wenn Einsatzort, Strecke, Umfang und Kapazität passen, kann FLOXANT den Abschluss praktisch unterstützen.",
         ],
         bullets: [
           "Räumung geeigneter Restmengen",
@@ -3181,7 +3181,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     highlightTitle: "Leer ist nicht automatisch übergabebereit",
     highlightPoints: [
       "Räumung und Reinigung müssen in sinnvoller Reihenfolge passieren.",
-      "Bayernweite Einsätze werden nach Strecke, Umfang und Kapazität geprüft.",
+      "Einsätze bis 75 Kilometer und weiter entfernte Umzugsziele werden klar unterschieden.",
       "FLOXANT verbindet Abschlusslogik statt isolierte Einzelleistungen.",
     ],
     ctas: [
@@ -3193,16 +3193,16 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     faqTitle: "FAQ zu Entrümpelung und Endreinigung in Regensburg",
     faqItems: [
       {
-        q: "Arbeitet FLOXANT in ganz Bayern?",
-        a: "FLOXANT ist in Regensburg verankert und prüft passende Einsätze in Bayern nach Strecke, Umfang, Kapazität und Termin.",
+        q: "Wie groß ist das Einsatzgebiet um Regensburg?",
+        a: "FLOXANT ist in Regensburg verankert und bedient den verifizierten Einsatzraum bis 75 Kilometer. Bei Fernumzügen kann das Ziel weiter entfernt liegen.",
       },
       {
         q: "Sollte erst entrümpelt oder gereinigt werden?",
         a: "Meist muss erst geräumt werden, damit eine Endreinigung sinnvoll abgeschlossen werden kann.",
       },
       {
-        q: "Kann FLOXANT kurzfristige bayernweite Einsätze übernehmen?",
-        a: "Das hängt von Kapazität, Strecke und Umfang ab. Fotos und klare Angaben beschleunigen die Prüfung.",
+        q: "Kann FLOXANT kurzfristige Fernumzüge übernehmen?",
+        a: "Das hängt von Einsatzort, Kapazität, Strecke und Umfang ab. Fotos und klare Angaben beschleunigen die Prüfung.",
       },
       {
         q: "Ist Endreinigung automatisch Teil der Entrümpelung?",
@@ -3724,7 +3724,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Für welche Fälle das passt",
         paragraphs: [
-          "In Düsseldorf und Regensburg passt die Prüfung für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport nach Verfügbarkeit. Je nach Anliegen führt sie zum passenden lokalen Kontaktweg.",
+          "Die Prüfung bleibt standortbezogen: in Düsseldorf für Reinigung und Reinigungsangebote, in Regensburg zusätzlich für Umzug, Entrümpelung und Transport. Danach führt sie zum passenden lokalen Kontaktweg.",
         ],
       },
       {
@@ -4036,7 +4036,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     faqItems: [
       {
         q: "Kann FLOXANT mehrere Leistungen zusammen prüfen?",
-        a: "Ja, in Düsseldorf und Regensburg können Umzug, Reinigung, Entrümpelung, Entsorgung, Übergabe und Angebot zusammen eingeordnet werden.",
+        a: "Standortbezogen: In Düsseldorf werden Reinigung und Angebote eingeordnet; in Regensburg zusätzlich Umzug, Entrümpelung, Entsorgung und Übergabe.",
       },
       {
         q: "Ist ein günstiges Einzelangebot immer besser?",

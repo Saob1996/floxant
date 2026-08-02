@@ -71,21 +71,28 @@ function item(input: FinderItemInput): FinderItem {
 
 function serviceGroupItems(source: string, currentCity?: string): readonly FinderItem[] {
   const city = currentCity || "regensburg";
-  return [
-    item({ label: "Reinigung", description: "Wohnung, Endreinigung, Fenster oder PV.", serviceKey: "reinigung", city, intent: "reinigung-anfrage", priority: "p1", source, Icon: Sparkles }),
+  const items = [
+    item({ label: "Reinigung", description: "Wohnung, Endreinigung oder Fenster.", serviceKey: "reinigung", city, intent: "reinigung-anfrage", priority: "p1", source, Icon: Sparkles }),
     item({ label: "Büro/Gewerbe", description: "Fläche, Turnus, Zeitfenster und Zugang.", serviceKey: "bueroreinigung", city, intent: "b2b-bueroreinigung", priority: "p0", source, Icon: Building2 }),
     item({ label: "Hausverwaltung", description: "Treppenhaus, Unterhalt, Objekt und Angebot.", serviceKey: "hausverwaltung-reinigung", city, intent: "hausverwaltung-reinigung-anfrage", priority: "p0", source, Icon: Building2 }),
     item({ label: "Umzug/Transport", description: "Start, Ziel, Umfang, Etage und Termin.", serviceKey: "umzug", city, intent: "umzug-transport", priority: "p1", source, Icon: Truck }),
     item({ label: "Entrümpelung", description: "Räume, Menge, Freigabe und Zielzustand.", serviceKey: "entruempelung", city, intent: "entruempelung-aufloesung", priority: "p1", source, Icon: Route }),
     item({ label: "Angebot prüfen", description: "Angebot, Preis, Umfang und Prüfgrund.", serviceKey: "angebot-pruefen", city, intent: "angebot-pruefen", priority: "p0", source, Icon: FileSearch }),
   ] as const;
+
+  if (city === "duesseldorf") {
+    return items.filter((entry) =>
+      ["reinigung", "bueroreinigung", "hausverwaltung-reinigung", "angebot-pruefen"].includes(entry.serviceKey),
+    );
+  }
+
+  return items;
 }
 
 function locationItems(source: string): readonly FinderItem[] {
   return [
-    item({ label: "Regensburg", description: "Leistung in Regensburg oder der näheren Umgebung anfragen.", serviceKey: "reinigung", city: "regensburg", intent: "regensburg-anfrage", priority: "p1", source, Icon: MapPin }),
-    item({ label: "Düsseldorf", description: "Reinigung, Objektservice oder Angebotsprüfung in Düsseldorf anfragen.", serviceKey: "hausverwaltung-reinigung", city: "duesseldorf", intent: "duesseldorf-anfrage", priority: "p0", source, Icon: MapPin }),
-    item({ label: "Bayern und Umgebung", description: "Ort angeben und prüfen lassen, ob die Leistung dort möglich ist.", serviceKey: "sonstiges", city: "bayern", intent: "servicegebiet-pruefen", priority: "p2", source, Icon: MapPin }),
+    item({ label: "Regensburg", description: "Leistung im geprüften 75-km-Einsatzgebiet anfragen.", serviceKey: "reinigung", city: "regensburg", intent: "regensburg-anfrage", priority: "p1", source, Icon: MapPin }),
+    item({ label: "Düsseldorf", description: "Reinigung oder Reinigungsangebot im geprüften 75-km-Einsatzgebiet anfragen.", serviceKey: "hausverwaltung-reinigung", city: "duesseldorf", intent: "duesseldorf-anfrage", priority: "p0", source, Icon: MapPin }),
   ] as const;
 }
 

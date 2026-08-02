@@ -51,7 +51,11 @@ export default function MobileFloatingContact() {
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappText);
 
   return (
-    <div className="flox-mobile-action-wrap flox-universal-action-wrap" aria-label="FLOXANT Schnellkontakt">
+    <div
+      className="flox-mobile-action-wrap flox-universal-action-wrap"
+      role="navigation"
+      aria-label="FLOXANT Schnellkontakt"
+    >
       <div className="flox-mobile-action-shell safe-area-bottom">
         <div className="flox-mobile-action-grid">
           <Link

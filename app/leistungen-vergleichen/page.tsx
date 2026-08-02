@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "leistungen-vergleichen",
   title: "FLOXANT Leistungen vergleichen | Umzug, Reinigung & Entrümpelung",
   description:
-   "Welche FLOXANT Leistung passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Private Client für Düsseldorf und Regensburg vergleichen.",
+   "Welche FLOXANT Leistung passt? Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg standortbezogen vergleichen.",
  });
 }
 

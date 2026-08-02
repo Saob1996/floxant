@@ -94,7 +94,7 @@ export function RegensburgCleaningServiceHub() {
               Termin, Zugang und gewünschtes Ergebnis reichen oft für den ersten sinnvollen Schritt.
             </p>
             <p className="mt-3 text-sm font-bold leading-7 text-slate-600">
-              Für Reinigungsservices bleibt FLOXANT bei Regensburg und dem Umkreis bis 50 km. Der Hub ist kein Aufbau
+              Für Reinigungsservices bleibt FLOXANT bei Regensburg und dem Umkreis bis 75 km. Der Hub ist kein Aufbau
               für beliebige Standortseiten, sondern ein Wegweiser zu konkreten Regensburger Reinigungsanfragen.
             </p>
 

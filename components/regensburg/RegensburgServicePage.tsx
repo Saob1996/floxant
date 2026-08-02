@@ -289,11 +289,11 @@ const endCleaningSituationCards = [
     text: "Für Objekte nach Räumung, Haushaltsauflösung oder Restmengen, wenn erst Entsorgung und danach der sichtbare Zustand sortiert werden.",
   },
   {
-    title: "Vermieter-Ready-Service",
+    title: "Objektbrief für Vermieter und Verwaltung",
     text: "Für Vermieter, Verwaltung oder Eigentümer, die Reinigung, offene Punkte, Fotos, Schlüsselweg und nächsten Nutzungsschritt zusammen klären wollen.",
   },
   {
-    title: "Übergabe-Sprint",
+    title: "Plan B bei knapper Frist",
     text: "Für knappe Fristen, wenn Termin, Zustand, Angebot, Restmengen und Dokumentationsbedarf schnell gemeinsam geklärt werden sollen.",
   },
 ] as const;
@@ -319,8 +319,8 @@ const endCleaningAuthorityLinks = [
     text: "Bündelt Übergabeinformationen, Fotos, Aufgaben und Grenzen für Vermieter, Verwaltung oder Auftraggeber.",
   },
   {
-    href: "/vermieter-ready-service",
-    title: "Vermieter-Ready-Service",
+    href: "/plan-b-service",
+    title: "Plan-B-Service",
     text: "Sortiert Reinigung, Restmengen, Besichtigung, Schlüsselweg und Wiedervermietungslogik in einem Ablauf.",
   },
   {
@@ -350,7 +350,7 @@ function EndCleaningAuthoritySection({
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               FLOXANT behandelt Endreinigung vor Übergabe nicht als pauschale Putzliste. Entscheidend sind Zustand, Frist,
-              Restmengen, Fotos, Schlüsselweg und ob Vermieter-Ready-Service, Objektbrief oder Übergabeakte sinnvoll sind.
+              Restmengen, Fotos, Schlüsselweg und ob Plan-B-Service, Objektbrief oder Übergabeakte sinnvoll sind.
               Es gibt keine Abnahme-, Kautions-, Rechts-, Preis- oder Soforttermin-Garantie.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -522,7 +522,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const decisionCopy = buildRegensburgDecisionCopy(config);
   const decisionServiceName = config.serviceType.replace(/\s+Regensburg$/u, "");
   const heroBadges = isCleaningServicePage
-    ? ["Regensburg + 50 km", "Fotos oder Eckdaten reichen zum Start", "Reinigung ohne überregionale Gebietsausweitung"]
+    ? ["Verifiziertes Einsatzgebiet bis 75 km", "Fotos oder Eckdaten reichen zum Start", "Reinigung ohne überregionale Gebietsausweitung"]
     : ["Regensburg und Umgebung", "Fotos oder Eckdaten reichen zum Start", "Leistung sauber vom Reinigungsbereich getrennt"];
 
   return (
@@ -714,7 +714,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           <ServiceAreaBlock
             compact
             title={`${config.serviceType} im Regensburger Servicegebiet`}
-            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Die Seite bewirbt keine Reinigungsaufträge außerhalb dieses Radius."
+            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und das verifizierte Einsatzgebiet bis 75 km fokussiert. Die Seite bewirbt keine Reinigungsaufträge außerhalb dieses Radius."
           />
           <LocalTrustBlock ctaHref={bookingHref} ctaLabel={config.primaryCta} />
           <RequestChecklistBlock ctaHref={bookingHref} ctaLabel="Angaben für diese Reinigung senden" />
@@ -750,7 +750,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         answer="FLOXANT kann lokale Regensburg-Anfragen besser einordnen, wenn Ort, Termin, Umfang, Zugang und Fotos früh sichtbar sind."
         points={[
           isCleaningServicePage
-            ? "Reinigung wird auf Regensburg und den Umkreis bis 50 km eingegrenzt."
+            ? "Reinigung wird auf Regensburg und das verifizierte Einsatzgebiet bis 75 km eingegrenzt."
             : "Regensburg, Landkreis und Bayern werden nach Machbarkeit getrennt.",
           "Fotos reduzieren Rückfragen zu Zustand, Menge oder Fläche.",
           "Vorhandene Angebote können praktisch eingeordnet werden.",
@@ -770,7 +770,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
 
       <SignatureServicesGrid
         title="Signature Services für Regensburger Sonderfälle."
-        intro="Objektbrief, Übergabeakte, Plan B, Fairpreis-Check und Rückfahrt helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
+        intro="Objektbrief, Übergabeakte, Plan B und Angebotscheck helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
         limit={4}
       />
 
@@ -820,7 +820,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               {isCleaningServicePage
-                ? "Diese Seite bezieht sich auf Regensburg und den Umkreis bis 50 km. Ort, Umfang, Zugang, Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit Reinigungsanfragen realistisch bleiben."
+                ? "Diese Seite bezieht sich auf Regensburg und das verifizierte Einsatzgebiet bis 75 km. Ort, Umfang, Zugang, Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit Reinigungsanfragen realistisch bleiben."
                 : "Diese Seite bezieht sich auf Regensburg und Umgebung. Ort, Umfang, Zugang, Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit Umzug, Reinigung, Räumung oder Übergabe nicht unsauber vermischt werden. Regensburger Reinigung bleibt im eigenen Bereich."}
             </p>
           </div>

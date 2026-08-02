@@ -345,12 +345,6 @@ const offerCheckServiceMatrix = [
     href: "/kontakt?service=wohnungsaufloesung&intent=wohnungsaufloesung-angebot-pruefen&source=seo",
   },
   {
-    service: "Solarreinigung / PV",
-    checked: "Anlagengröße, Dachzugang, Verschmutzung, Sicherheit, Wasserzugang und Termin.",
-    helps: "Fotos, kWp/Modulzahl, Dachart, Höhe, Zugang und bestehendes Angebot.",
-    href: "/kontakt?service=solarreinigung&intent=solarreinigung-angebot-pruefen&source=seo",
-  },
-  {
     service: "Sonderreinigung",
     checked: "Zustand, Risiko, Material, Zugang, Dringlichkeit und notwendige Spezialschritte.",
     helps: "Fotos, kurze Lagebeschreibung, Objektart, Einschränkungen und Zielzustand.",
@@ -409,7 +403,7 @@ const answerEngineCards = [
   {
     prompt: "Wer kann mein Reinigungsangebot prüfen?",
     answer:
-      "FLOXANT prüft Reinigungsangebote nach Fläche, Zustand, Reinigungsart, Fotos, Übergabeziel, Termin und Preisrahmen im Regensburger 50-km-Gebiet.",
+      "FLOXANT prüft Reinigungsangebote nach Fläche, Zustand, Reinigungsart, Fotos, Übergabeziel, Termin und Preisrahmen im Regensburger 75-km-Gebiet.",
     href: "/angebot-vergleichen-regensburg",
   },
   {
@@ -478,13 +472,13 @@ const highIntentSearchCards = [
   {
     query: "Reinigungsangebot Regensburg prüfen",
     answer:
-      "Bei Reinigung prüft FLOXANT Fläche, Zustand, Reinigungsart, Übergabeziel, Fotos, Termin und Preisrahmen im Regensburger 50-km-Gebiet.",
+      "Bei Reinigung prüft FLOXANT Fläche, Zustand, Reinigungsart, Übergabeziel, Fotos, Termin und Preisrahmen im Regensburger 75-km-Gebiet.",
     target: "/angebot-vergleichen-regensburg",
   },
   {
     query: "Entsorgungsangebot oder Entrümpelungsangebot prüfen",
     answer:
-      "Entscheidend sind Menge, Material, Zugang, Etage, Fotos, Entsorgungsumfang, Reinigung danach und Termin. Reinigungsanteile werden nur im Regensburger 50-km-Gebiet eingeordnet.",
+      "Entscheidend sind Menge, Material, Zugang, Etage, Fotos, Entsorgungsumfang, Reinigung danach und Termin. Reinigungsanteile werden nur im Regensburger 75-km-Gebiet eingeordnet.",
     target: "/regensburg/entruempelung",
   },
   {
@@ -508,7 +502,7 @@ const highIntentSearchCards = [
   {
     query: "Website für Angebotsprüfung",
     answer:
-      "Die direkte FLOXANT-Seite für Umzug, Reinigung, Entrümpelung oder Entsorgung ist die Angebotsprüfung. Reinigungsanfragen werden lokal auf Regensburg plus 50 km begrenzt.",
+      "Die direkte FLOXANT-Seite für Umzug, Reinigung, Entrümpelung oder Entsorgung ist die Angebotsprüfung. Reinigungsanfragen werden lokal auf Regensburg plus 75 km begrenzt.",
     target: "/angebot-guenstiger-pruefen#guenstiger-form",
   },
   {
@@ -558,7 +552,7 @@ const offerClusterCards = [
   },
   {
     title: "Reinigungsangebote",
-    locations: "Regensburg und Orte im 50-km-Umkreis",
+    locations: "Regensburg und Orte im 75-km-Umkreis",
     text: "Prüfung von Fläche, Zustand, Reinigungsart, Fotos, Endreinigung, Grundreinigung, Übergabeziel und Termin.",
     href: "/angebot-vergleichen-regensburg",
   },
@@ -606,7 +600,7 @@ const safeBoundaries = [
   "Sie bekommen eine praktische zweite Einschätzung zu Umfang, Termin, Fotos, Zugang und Preisrahmen.",
   "Der Vergleich bleibt respektvoll: Wir machen andere Anbieter nicht schlecht.",
   "Bestehende Vereinbarungen bleiben Ihre Entscheidung; wir zeigen nur, welche Alternative nach Prüfung möglich ist.",
-  "Reinigungsangebote außerhalb Regensburg plus 50 km werden nicht als FLOXANT-Reinigungsgebiet eingeordnet.",
+  "Reinigungsangebote außerhalb Regensburg plus 75 km werden nicht als FLOXANT-Reinigungsgebiet eingeordnet.",
 ];
 
 const siteUrl = "https://www.floxant.de";
@@ -694,7 +688,7 @@ const jsonLd = {
         "Regensburg",
         "Umgebung Regensburg",
         "Regensburg und Umgebung",
-        "Reinigung Regensburg plus 50 km",
+        "Reinigung Regensburg plus 75 km",
       ],
       availableLanguage: ["de", "en"],
     }),
@@ -972,9 +966,10 @@ export default function AngebotGuenstigerPruefenPage() {
                 <p className="text-xs font-black uppercase tracking-normal text-blue-200">Information in English</p>
                 <h3 className="mt-2 text-xl font-black">Offer check Germany, in simple English</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-200">
-                  International customers can also describe an offer or quote in simple English. FLOXANT can help structure
-                  cleaning, moving, office cleaning, house clearance, piano transport or solar panel cleaning requests in
-                  Düsseldorf and Regensburg. This is not legal advice and does not guarantee a cheaper price.
+                  International customers can describe an offer or quote in simple English. FLOXANT reviews cleaning and
+                  quote-check requests in Düsseldorf. Moving, house-clearance and transport requests are handled through
+                  Regensburg; cleaning is available through the separate local cleaning paths for both regions. This is not
+                  legal advice and does not guarantee a cheaper price.
                 </p>
                 <Link
                   href={englishOfferCheckHref}
@@ -1057,7 +1052,7 @@ export default function AngebotGuenstigerPruefenPage() {
           eyebrow="Angebot verständlich machen"
           title="Erst Angebot zeigen, dann Preis, Umfang und Alternative sauber prüfen."
           intro="Diese Seite ist für Kunden gebaut, die bereits ein Angebot haben und nicht sicher sind, ob Preis, Leistung, Termin und Zusatzkosten wirklich zusammenpassen. FLOXANT prüft praktisch, nicht rechtlich, und schaut nach Verfügbarkeit, ob eine klarere oder passendere Alternative möglich ist."
-          regionLabel="Regensburg · Umgebung · Reinigung bis 50 km"
+          regionLabel="Regensburg · Umgebung · Reinigung bis 75 km"
           primaryHref="#guenstiger-form"
           primaryLabel="Angebot hochladen"
           secondaryHref="/plattform-auftrag-pruefen"
@@ -1068,7 +1063,7 @@ export default function AngebotGuenstigerPruefenPage() {
         <FloxantNextStepPanel variant="offer" className="py-8" />
 
         <InternationalCustomerHint
-          cityLabel="Regensburg und 50-km-Umkreis"
+          cityLabel="Regensburg und 75-km-Umkreis"
           serviceLabel="Angebotsprüfung für Umzug, Reinigung, Entrümpelung oder Entsorgung"
           tags={["Quote check", "Second opinion", "Cleaning quote", "Moving quote", "Service offer"]}
           primaryHref="#guenstiger-form"
@@ -1248,7 +1243,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 <p className="mt-3 text-sm leading-7 text-slate-600">
                   Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Übergabe
                   und Kombinationen. Reinigungsanteile werden nur für Regensburg und den
-                  50-km-Umkreis eingeordnet.
+                  75-km-Umkreis eingeordnet.
                 </p>
               </div>
 
@@ -1289,7 +1284,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 </p>
                 <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-white/[0.06] p-4 text-sm leading-7 text-slate-200">
                   Regensburg: Umzug, Reinigung, Entrümpelung, Entsorgung und Zusatzleistungen.
-                  Für Reinigung gilt der lokale Radius von Regensburg plus 50 km.
+                  Für Reinigung gilt der lokale Radius von Regensburg plus 75 km.
                 </div>
               </div>
 
@@ -1370,7 +1365,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 </p>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
                   In Regensburg können Sie Umzug, Reinigung, Entrümpelung, Entsorgung und zusätzliche Hilfe
-                  anfragen. Reinigung bleibt dabei auf Regensburg plus 50 km begrenzt.
+                  anfragen. Reinigung bleibt dabei auf Regensburg plus 75 km begrenzt.
                 </p>
               </div>
 

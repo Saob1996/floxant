@@ -95,7 +95,7 @@ export function BeforeAfterCard({
         </div>
       </div>
       <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-        Visualisierung ohne Personen, Kennzeichen oder private Gegenstände. Gedacht für Glas, PV, Boden, Keller oder Bürofläche.
+        Visualisierung ohne Personen, Kennzeichen oder private Gegenstände. Gedacht für Glas, Boden, Keller, Fassade oder Bürofläche.
       </p>
     </div>
   );

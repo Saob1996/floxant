@@ -18,7 +18,7 @@ export const metadata: Metadata = generatePageSEO({
   path,
   title: "Rückfahrt-Börse – Leerfahrt & Transportstrecke prüfen | FLOXANT",
   description:
-    "Start, Ziel, Datum und Umfang eintragen. FLOXANT prüft, ob Ihre Strecke zu einer Rückfahrt, Leerfahrt oder flexiblen Transportlösung ab Regensburg und Bayern passt.",
+    "Start, Ziel, Datum und Umfang eintragen. Basis ist Regensburg mit einem Einsatzgebiet bis 75 km; weiter entfernte Orte sind nur Anfrageziele einer konkreten Strecke.",
 });
 
 const whatsappHref =
@@ -67,8 +67,8 @@ const faqItems = [
     a: "Ja. Geeignet sind Möbeltransport, kleine Umzüge, Kartons, einzelne schwere Gegenstände oder flexible Transportstrecken nach Verfügbarkeit.",
   },
   {
-    q: "Funktioniert die Rückfahrt-Börse bayernweit?",
-    a: "Regensburg ist der Hub. Anfragen ab, nach oder über Regensburg und bayernweite Strecken werden nach Verfügbarkeit geprüft.",
+    q: "Wie werden weiter entfernte Ziele behandelt?",
+    a: "Regensburg ist der Hub mit einem verifizierten Einsatzgebiet bis 75 km. Weiter entfernte Orte können nur Start oder Ziel einer konkreten Streckenanfrage sein; die Rückfahrt-Börse ist keine flächendeckende Verfügbarkeitszusage.",
   },
   {
     q: "Was passiert, wenn aktuell keine passende Rückfahrt möglich ist?",
@@ -82,9 +82,9 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Rückfahrt-Börse",
       description:
-        "Öffentliches Nachfrage-System für Leerfahrt, Rückfahrt, flexible Transportstrecken, Möbeltransport und kleine Umzüge ab Regensburg und Bayern.",
+        "Nachfrage-System für Leerfahrt, Rückfahrt und flexible Transportstrecken mit Regensburg als Hub und Fernzielen als konkrete Anfrageziele.",
       path,
-      about: ["Rückfahrt", "Leerfahrt", "Möbeltransport", "Transport Regensburg", "Bayern", "Flexible Strecke"],
+      about: ["Rückfahrt", "Leerfahrt", "Möbeltransport", "Transport Regensburg", "Einsatzgebiet bis 75 km", "Fernziel-Anfrage"],
       potentialActions: [
         { name: "Strecke prüfen lassen", target: `${path}#rueckfahrt-form` },
         { name: "Rückfahrt per WhatsApp anfragen", target: whatsappHref, type: "ContactAction" },
@@ -96,7 +96,7 @@ const jsonLd = {
         "FLOXANT prüft Start, Ziel, Datum, Umfang und Flexibilität für Rückfahrt, Leerfahrt, Möbeltransport und flexible Transportstrecken nach Verfügbarkeit.",
       path,
       serviceType: "Leerfahrt und Rückfahrt prüfen",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+      areaServed: ["Regensburg", "Einsatzgebiet bis 75 km um Regensburg"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -137,7 +137,7 @@ export default function RueckfahrtBoersePage() {
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Hub</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bayern nach Verfügbarkeit</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Einsatzgebiet bis 75 km</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Fake-Touren</span>
               </div>
             </div>
@@ -195,10 +195,10 @@ export default function RueckfahrtBoersePage() {
             <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
               <div>
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-emerald-700">Korridore</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Beispiele für Strecken, die geprüft werden können</h2>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Beispiele für Ziele einer Streckenanfrage</h2>
               </div>
               <p className="text-sm leading-7 text-slate-600 lg:text-right">
-                Diese Karten sind keine aktiven Touren. Sie zeigen häufig angefragte Richtungen ab, nach oder über Regensburg.
+                Diese Karten sind keine aktiven Touren und keine lokale Verfügbarkeitszusage. Ziele außerhalb von 75 km werden ausschließlich als Fernziel einer konkreten Anfrage geprüft.
               </p>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

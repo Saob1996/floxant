@@ -315,9 +315,9 @@ const rawBlogPosts: BlogPostMeta[] = [
  },
  {
   slug: "express-umzug-regensburg",
-  category: "Express",
+  category: "Planung",
   readTime: "5 Min.",
-  title: "Express-Umzug in Regensburg: was kurzfristig wirklich machbar ist",
+  title: "Kurzfristiger Umzug in Regensburg: was wirklich machbar ist",
   description: "Wie Eilanfragen sinnvoll vorbereitet werden und welche Angaben für eine schnelle Vorprüfung wichtig sind.",
  },
  {

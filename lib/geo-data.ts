@@ -376,6 +376,24 @@ export const BAVARIAN_CITIES_GEO: Record<string, CityGeoData> = {
   }
 };
 
+export const CORE_LOCATIONS_GEO: Record<string, CityGeoData> = {
+  duesseldorf: {
+    name: "Düsseldorf",
+    lat: "51.2225767",
+    lng: "6.7772364",
+    zipCode: "40213",
+    neighborhoods: [],
+    regionCode: "DE-NW",
+    wikidataId: "Q1718",
+    region: "Nordrhein-Westfalen",
+  },
+};
+
+const CITY_GEO: Record<string, CityGeoData> = {
+  ...BAVARIAN_CITIES_GEO,
+  ...CORE_LOCATIONS_GEO,
+};
+
 /**
  * Normalizes city names from slugs to lookup keys.
  */
@@ -383,12 +401,12 @@ export function getCityGeoData(path: string): CityGeoData | undefined {
   const slug = path.toLowerCase();
   
   // Exact match
-  if (BAVARIAN_CITIES_GEO[slug]) return BAVARIAN_CITIES_GEO[slug];
+  if (CITY_GEO[slug]) return CITY_GEO[slug];
 
   // Priority to District Power Routes (Longer slugs first to avoid partial matches)
-  const sortedKeys = Object.keys(BAVARIAN_CITIES_GEO).sort((a, b) => b.length - a.length);
+  const sortedKeys = Object.keys(CITY_GEO).sort((a, b) => b.length - a.length);
   for (const key of sortedKeys) {
-    if (slug.includes(key)) return BAVARIAN_CITIES_GEO[key];
+    if (slug.includes(key)) return CITY_GEO[key];
   }
 
   return undefined;

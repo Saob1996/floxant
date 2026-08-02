@@ -32,7 +32,7 @@ export function CleaningServiceArea({
   className = "",
   compact = false,
   title = "Reinigungs-Servicegebiet Regensburg",
-  intro = "FLOXANT fokussiert Reinigungsservices auf Regensburg und den Umkreis bis 50 km. So bleiben Anfahrt, Besichtigung, Fotos und Angebot realistisch planbar.",
+  intro = "FLOXANT fokussiert Reinigungsservices auf Regensburg und den Umkreis bis 75 km. So bleiben Anfahrt, Besichtigung, Fotos und Angebot realistisch planbar.",
 }: CleaningServiceAreaProps) {
   const places = getVisibleCleaningAreaPlaces();
   const highlightedMunicipalities = priorityMunicipalities.filter((place) =>
@@ -94,7 +94,7 @@ export function CleaningServiceArea({
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
           <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-950">
             <CheckCircle2 className="h-5 w-5 text-emerald-700" aria-hidden="true" />
-            Umland bis 50 km
+            Umland bis 75 km
           </h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-700 sm:grid-cols-3">
             {highlightedMunicipalities.map((place) => (

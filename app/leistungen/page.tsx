@@ -76,14 +76,14 @@ const faqItems = [
 
 const serviceClusterGuide = [
   {
-    title: "Reinigung, Solar und Außenflächen",
-    text: "Für Büro, Praxis, Gewerbe, Glas, Fassade, Solar/PV und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
+    title: "Reinigung und Außenflächen",
+    text: "Für Büro, Praxis, Gewerbe, Fenster, Fassade und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
     href: "/reinigung",
     cta: "Reinigungswege öffnen",
   },
   {
     title: "Umzug und Transport",
-    text: "Für Wohnungswechsel, Mini-Umzug, Möbeltransport, Express-Umzug oder Rückfahrt. Entscheidend sind Route, Volumen, Etage und Termin.",
+    text: "Für Wohnungswechsel, Möbeltransport oder flexible Beiladung im Regensburger Leistungsbereich. Entscheidend sind Route, Volumen, Etage und Termin.",
     href: "/regensburg/umzug",
     cta: "Umzug/Transport wählen",
   },
@@ -94,14 +94,14 @@ const serviceClusterGuide = [
     cta: "Räumung einordnen",
   },
   {
-    title: "Angebot, Fairpreis und Vergleich",
+    title: "Angebot und Vergleich",
     text: "Wenn bereits ein Angebot, Preis oder Screenshot vorliegt: Umfang, Zusatzkosten, Termin und Alternative sachlich prüfen lassen.",
     href: "/angebot-guenstiger-pruefen",
     cta: "Angebot prüfen",
   },
   {
     title: "Besondere FLOXANT-Leistungen",
-    text: "Für Objektbrief, Fairpreis-Check, Übergabe-Sprint, Plan-B-Service, Rückfahrt-Radar und PV-Sichtklar.",
+    text: "Für Objektbrief, Übergabeakte, Plan-B-Service, Angebotscheck und sensible Situationen.",
     href: "/signature-services",
     cta: "Besondere Leistungen ansehen",
   },
@@ -118,7 +118,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Leistungen: Reinigung, Umzug und mehr anfragen",
   description:
-    "Wählen Sie Region und Aufgabe: Reinigung, Umzug, Räumung, Angebotsprüfung oder diskrete Hilfe direkt anfragen.",
+    "Wählen Sie Region und Aufgabe: Reinigung in Düsseldorf; Umzug, Reinigung und Räumung in Regensburg; dazu Angebotsprüfung oder diskrete Hilfe.",
   alternates: {
     canonical,
   },
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Leistungen nach Region und Aufgabe",
     description:
-      "Leistung wählen und mit Ort, Umfang, Fotos und Termin in Düsseldorf oder Regensburg anfragen.",
+      "Reinigung in Düsseldorf oder Umzug, Reinigung und Räumung in Regensburg mit Ort, Umfang, Fotos und Termin anfragen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -148,17 +148,18 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Leistungen",
         description:
-          "Zentrale Leistungsübersicht für FLOXANT Düsseldorf und Regensburg: Reinigung, Umzug, Transport, Entrümpelung, Haushaltsauflösung, Übergabe und Angebotsprüfung.",
+          "Zentrale Leistungsübersicht: Reinigung und Angebotsprüfung in Düsseldorf; Umzug, Transport, Reinigung, Entrümpelung, Haushaltsauflösung und Übergabe in Regensburg.",
         path,
         about: [
+          "Reinigung Düsseldorf",
+          "Büroreinigung Düsseldorf",
+          "Praxisreinigung Düsseldorf",
           "Gewerbereinigung Regensburg",
           "Büroreinigung Regensburg",
           "Praxisreinigung Regensburg",
-          "Reinigung Regensburg 50 km",
-          "Glasreinigung",
+          "Reinigung Regensburg 75 km",
           "Fassadenreinigung",
           "Umzug Regensburg",
-          "Mini-Umzug",
           "Möbeltransport",
           "Entrümpelung Regensburg",
           "Haushaltsauflösung Regensburg",
@@ -224,9 +225,9 @@ export default function LeistungenPage() {
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
-            Düsseldorf und Regensburg bündeln die jeweils verfügbaren Leistungen
-            für Reinigung, Umzug, Transport, Räumung und Übergabe. Wenn bereits ein Angebot
-            vorliegt, ist die Angebotsprüfung der kürzere Weg.
+            In Düsseldorf führen wir Reinigungsanfragen und die Prüfung von Reinigungsangeboten.
+            In Regensburg kommen Umzug, Transport, Räumung und Übergabe hinzu. Wenn bereits ein
+            Angebot vorliegt, ist die Angebotsprüfung der kürzere Weg.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {regionOrder.map((regionId) => {
@@ -304,7 +305,7 @@ export default function LeistungenPage() {
       <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            "Regensburg: Reinigung, Büro, Gewerbe, Praxis und Übergabe",
+            "Düsseldorf: Reinigung für Privat, Büro, Gewerbe und Praxis",
             "Regensburg: Umzug, Transport, Räumung, Haushaltsauflösung und Übergabe",
             "FLOXANT Signature für diskrete oder abstimmungsintensive Fälle",
             "Angebotsprüfung, wenn bereits ein Preis oder Angebot vorliegt",
@@ -341,7 +342,7 @@ export default function LeistungenPage() {
 
       <SignatureServicesGrid
         title="Zusätzliche Hilfe verbindet mehrere Aufgaben."
-        intro="Angebotsprüfung, Objektbrief, Übergabe, Plan B, Rückfahrt und PV-Reinigung helfen, wenn eine normale Einzelanfrage nicht ausreicht."
+        intro="Angebotsprüfung, Objektbrief, Übergabeakte und Plan B helfen, wenn eine normale Einzelanfrage nicht ausreicht."
         limit={6}
       />
 

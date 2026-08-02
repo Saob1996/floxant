@@ -119,8 +119,12 @@ function checkHtml(route, finalPath, html, results) {
   }
 
   if (route.mustHaveContactLink) {
-    const contactLink = anchors.find((anchor) => normalizePath(anchor.href) === "/kontakt" || String(anchor.href || "").startsWith("/kontakt?"));
-    addResult(results, contactLink ? "PASS" : "WARN", "contact-link", route.path, contactLink ? `Contact link found: ${contactLink.href}` : "No contact href found.", contactLink ? "No action." : "Add or verify CTA routes to /kontakt.", { priority: route.priority });
+    const contactLink = anchors.find((anchor) =>
+      normalizePath(anchor.href) === "/kontakt" ||
+      String(anchor.href || "").startsWith("/kontakt?") ||
+      (route.localContactTarget && String(anchor.href || "") === route.localContactTarget),
+    );
+    addResult(results, contactLink ? "PASS" : "WARN", "contact-link", route.path, contactLink ? `Contact target found: ${contactLink.href}` : "No contact target found.", contactLink ? "No action." : "Add or verify the canonical or page-local contact target.", { priority: route.priority });
   }
 }
 

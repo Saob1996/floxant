@@ -67,29 +67,40 @@ function getRelatedSpecialKind(config: GrowthServicePageConfig) {
   return "cleaning";
 }
 
-function getLocalBridgeTargets(config: GrowthServicePageConfig) {
+type LocalBridgeTargets = {
+  showDuesseldorf: boolean;
+  duesseldorfHref: string;
+  regensburgHref: string;
+  duesseldorfText?: string;
+};
+
+function getLocalBridgeTargets(config: GrowthServicePageConfig): LocalBridgeTargets {
   if (config.kind === "moving") {
     return {
-      duesseldorfHref: "/regensburg/umzug",
+      showDuesseldorf: false,
+      duesseldorfHref: "/duesseldorf",
       regensburgHref: "/regensburg/umzug",
     };
   }
 
   if (config.kind === "clearance") {
     return {
-      duesseldorfHref: "/duesseldorf/entsorgung",
+      showDuesseldorf: false,
+      duesseldorfHref: "/duesseldorf/reinigung",
       regensburgHref: "/regensburg/entruempelung",
     };
   }
 
   if (config.kind === "signature") {
     return {
+      showDuesseldorf: true,
       duesseldorfHref: "/duesseldorf",
       regensburgHref: "/regensburg",
     };
   }
 
   return {
+    showDuesseldorf: true,
     duesseldorfHref: "/duesseldorf",
     regensburgHref: "/regensburg/reinigung",
   };
@@ -284,8 +295,6 @@ function JsonLd({
   config: GrowthServicePageConfig;
   whatsappHref: string;
 }) {
-  const canonical = `${company.url}${config.path}`;
-  const contact = getContact(config);
   const areaServed = [
     config.cityLabel,
     config.region === "duesseldorf" ? "Düsseldorf" : "",
@@ -295,22 +304,6 @@ function JsonLd({
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": `${canonical}#localbusiness`,
-        name: contact.name,
-        url: canonical,
-        telephone: contact.phoneRaw,
-        email: contact.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: contact.streetAddress,
-          postalCode: contact.postalCode,
-          addressLocality: contact.city,
-          addressCountry: contact.countryCode,
-        },
-        sameAs: company.sameAs,
-      },
       buildServiceJsonLd({
         name: config.serviceName,
         description: config.metaDescription,
@@ -603,8 +596,10 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
 
       <LocalServiceBridge
         serviceLabel={config.serviceName}
+        showDuesseldorf={localBridgeTargets.showDuesseldorf}
         duesseldorfHref={localBridgeTargets.duesseldorfHref}
         regensburgHref={localBridgeTargets.regensburgHref}
+        duesseldorfText={localBridgeTargets.duesseldorfText}
       />
 
       <OfferCheckCTA

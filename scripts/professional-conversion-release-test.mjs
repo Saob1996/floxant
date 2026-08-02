@@ -110,10 +110,20 @@ for (const [number, label, fixture] of [
 }
 test("41 Analytics nur nach Erfolg", () => {
   assert.match(analyticsTest, /trackingCall > payloadGuard/);
+  assert.match(
+    analyticsTest,
+    /trackConfirmedProfessionalRequestLead\(confirmedSubmission\), true/,
+  );
+  assert.match(
+    analyticsTest,
+    /trackConfirmedProfessionalRequestLead\(confirmedSubmission\), false/,
+  );
   assert.match(form, /response\.status !== 201[\s\S]*result\.ok !== true/);
+  assert.match(form, /trackConfirmedProfessionalRequestLead\(/);
 });
 test("42 keine personenbezogenen Analytics-Daten", () => {
   assert.match(analyticsTest, /Object\.keys\(leadEvents\[0\]\[2\]\)\.sort/);
+  assert.match(analyticsTest, /doesNotMatch\(JSON\.stringify\(leadEvents\)/);
   assert.doesNotMatch(
     analyticsTest,
     /form_name[\s\S]{0,300}(?:customer_name|customer_email|customer_phone)/,

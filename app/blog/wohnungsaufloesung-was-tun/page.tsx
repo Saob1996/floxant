@@ -14,7 +14,6 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 export default async function BlogWohnungsaufloesungTodesfall() {
-  var dict = await getDictionary("de");
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -50,7 +49,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
             <p>
-              Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sinnvoll sein kann.
+              Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen im Einsatzgebiet bis 75 km um Regensburg</a> sinnvoll sein kann.
             </p>
             <div className="bg-amber-50 border border-amber-200 p-6 rounded-2xl my-8">
               <h3 className="flex items-center gap-2 mt-0 text-amber-900"><Scale className="w-6 h-6" /> Wichtiger Haftungsausschluss</h3>
@@ -88,7 +87,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             </p>
             <h2>Schritt 3: Die praktische Umsetzung der Wohnungsauflösung</h2>
             <p>
-              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/regensburg/entruempelung`}>Regensburg, München und ganz Bayern</a> am besten vor:
+              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie im <a href={`/regensburg/entruempelung`}>verifizierten Einsatzgebiet bis 75 km um Regensburg</a> am besten vor. Ein weiter entfernter Ort kann nur Ziel einer konkreten Transportanfrage sein.
             </p>
             <ol>
               <li>
@@ -125,14 +124,14 @@ export default async function BlogWohnungsaufloesungTodesfall() {
       {/* Contextual Hub Interlinking Layer */}
       <div className="bg-muted/10 p-8 rounded-2xl border border-primary/20 my-12">
         <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
-        <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
+        <p className="text-muted-foreground mb-6">FLOXANT arbeitet im verifizierten Einsatzgebiet bis 75 km um Regensburg. Weiter entfernte Orte sind nur als Fernziel einer konkreten Anfrage aufgeführt.</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <a href={"/regensburg/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
           <a href={"/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
           <a href={"/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
           <a href={"/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-          <a href={"/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
-          <a href={"/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+          <a href={"/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Fernziel München anfragen</a>
+          <a href={"/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Fernziel Nürnberg anfragen</a>
           <a href={"/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
           <a href={"/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
         </div>
@@ -144,8 +143,8 @@ export default async function BlogWohnungsaufloesungTodesfall() {
           <h3 className="text-2xl font-bold mb-8">Lesen Sie auch</h3>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={`/blog/entrumpelung-kosten-bayern`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Was kostet eine Auflösung?</a>
-            <a href={`/entruempelung-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung München</a>
-            <a href={`/entruempelung-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung Nürnberg</a>
+            <a href={`/entruempelung-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Fernziel München einordnen</a>
+            <a href={`/entruempelung-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Fernziel Nürnberg einordnen</a>
           </div>
         </div>
       </div>

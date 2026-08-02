@@ -89,10 +89,16 @@ test("Dashboard behält bekannte und unbekannte Angaben", () => {
 });
 
 test("Analytics-Parameter sind nicht personenbezogen", () => {
-  assert.match(analytics, /form_name/);
-  assert.match(analytics, /service_type/);
-  assert.match(analytics, /lead_source/);
-  assert.doesNotMatch(analytics, /\b(email|phone|message|requestId|bookingId)\b/i);
+  const safeStart = analytics.indexOf("const safeParameters");
+  const safeEnd = analytics.indexOf("  try {", safeStart);
+  const safeParameterBlock = analytics.slice(safeStart, safeEnd);
+
+  assert.match(safeParameterBlock, /form_name/);
+  assert.match(safeParameterBlock, /service_type/);
+  assert.match(safeParameterBlock, /location/);
+  assert.match(safeParameterBlock, /lead_source/);
+  assert.doesNotMatch(safeParameterBlock, /\b(email|phone|message|requestId|bookingId)\b/i);
+  assert.match(analytics, /gtag\?\.\("event", "generate_lead", safeParameters\)/);
 });
 
 console.log(`Customer experience tests: PASS (${checks.length} checks)`);

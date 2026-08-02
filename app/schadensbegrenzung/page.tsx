@@ -146,7 +146,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das auch in Düsseldorf?",
-    a: "Reinigung wird nur für Regensburg und den Umkreis bis 50 km geprüft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
+    a: "Reinigung wird nur für Regensburg und den Umkreis bis 75 km geprüft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",
@@ -184,7 +184,7 @@ const jsonLd = {
         "Kurzfristige Machbarkeitspruefung für Umzug, Reinigung, Entrümpelung, Entsorgung und Übergabe, wenn ein Plan kippt. Keine Notdienstgarantie.",
       path,
       serviceType: "Schadensbegrenzung nach Verfügbarkeit",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Regensburg nach Verfügbarkeit", "Reinigung Regensburg und Entsorgung"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -458,7 +458,7 @@ export default function SchadensbegrenzungPage() {
               ["/mieterwechsel-service-regensburg", "Mieterwechsel-Service"],
               ["/wohnung-wieder-vermietbar", "Wohnung wieder vermietbar"],
               ["/regensburg/reinigung", "Reinigung Regensburg"],
-              ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
+              ["/regensburg/entruempelung", "Entrümpelung Regensburg"],
             ].map(([href, label]) => (
               <Link key={href} href={href} className="rounded-[1.25rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-800 transition hover:border-red-200 hover:bg-red-50">
                 {label}

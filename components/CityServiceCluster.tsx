@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { resolvePublishedLocalServiceHref } from "@/lib/dynamic-local-route-policy";
 import { germanText } from "@/lib/german-text";
 
 interface CityServiceClusterProps {
@@ -25,31 +26,12 @@ interface CityServiceClusterProps {
 export function CityServiceCluster({ locale, city, citySlug }: CityServiceClusterProps) {
   if (locale !== "de") return null;
 
-  const incompleteServiceCitySlugs = new Set([
-    "garmisch-partenkirchen",
-    "kulmbach",
-    "lindau",
-    "muenchen-bogenhausen",
-    "muenchen-haidhausen",
-    "muenchen-maxvorstadt",
-    "muenchen-sendling",
-    "muenchen-schwabing",
-    "neustadt-an-der-waldnaab",
-    "nuernberg-gostenhof",
-    "nuernberg-moegeldorf",
-    "nuernberg-suedstadt",
-    "nuernberg-ziegelstein",
-    "vohenstrauss",
-  ]);
-
-  const useServiceFallbacks = incompleteServiceCitySlugs.has(citySlug);
-
   const services = [
     {
       title: "Umzug",
       hint: `Umzug in ${city}`,
       detail: "Privat, Familie, Gewerbe oder kombinierte Übergabe sauber starten.",
-      href: `/umzug-${citySlug}`,
+      href: resolvePublishedLocalServiceHref(`/umzug-${citySlug}`, "/regensburg/umzug"),
       icon: Truck,
       tone: "bg-blue-50 text-blue-700",
     },
@@ -57,7 +39,10 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
       title: "Entrümpelung",
       hint: `Entrümpelung in ${city}`,
       detail: "Räumung, Abtransport und Entsorgung mit realistischer Vorprüfung.",
-      href: useServiceFallbacks ? "/entruempelung" : `/entruempelung-${citySlug}`,
+      href: resolvePublishedLocalServiceHref(
+        `/entruempelung-${citySlug}`,
+        "/regensburg/entruempelung",
+      ),
       icon: Trash2,
       tone: "bg-emerald-50 text-emerald-700",
     },
@@ -65,7 +50,10 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
       title: "Klaviertransport",
       hint: `Klaviertransport in ${city}`,
       detail: "Sensible Stücke, enge Wege und Zusatzrisiken separat einordnen.",
-      href: useServiceFallbacks ? "/klaviertransport" : `/klaviertransport-${citySlug}`,
+      href: resolvePublishedLocalServiceHref(
+        `/klaviertransport-${citySlug}`,
+        "/klaviertransport-regensburg",
+      ),
       icon: Piano,
       tone: "bg-amber-50 text-amber-700",
     },
@@ -73,7 +61,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
       title: "Reinigung",
       hint: `Reinigung in ${city}`,
       detail: "Endreinigung, Objektpflege oder Übergabevorbereitung gezielt planen.",
-      href: useServiceFallbacks ? "/reinigung" : `/reinigung-${citySlug}`,
+      href: resolvePublishedLocalServiceHref(`/reinigung-${citySlug}`, "/regensburg/reinigung"),
       icon: Sparkles,
       tone: "bg-cyan-50 text-cyan-700",
     },
@@ -81,7 +69,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
       title: "Büroumzug",
       hint: `Büroumzug in ${city}`,
       detail: "Arbeitsplätze, Inventar, Zeitfenster und Betriebsablauf abstimmen.",
-      href: useServiceFallbacks ? "/bueroumzug" : `/bueroumzug-${citySlug}`,
+      href: resolvePublishedLocalServiceHref(`/bueroumzug-${citySlug}`, "/bueroumzug-regensburg"),
       icon: Building2,
       tone: "bg-indigo-50 text-indigo-700",
     },

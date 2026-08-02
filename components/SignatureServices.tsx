@@ -13,7 +13,6 @@ import {
   RotateCw,
   Shield,
   Sparkles,
-  Trash2,
   Truck,
   type LucideIcon,
 } from "lucide-react";
@@ -36,8 +35,7 @@ export type SignatureServiceId =
   | "short_notice"
   | "plan_b_service"
   | "premium_discreet"
-  | "regensburg_b2b_cleaning"
-  | "duesseldorf_disposal";
+  | "regensburg_b2b_cleaning";
 
 type ServiceContent = {
   title?: string;
@@ -198,18 +196,9 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     desc: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen, wenn Fläche, Turnus, Zeitfenster und Zugang klar geprüft werden sollen.",
     href: "/regensburg/bueroreinigung",
     label: "Firmenreinigung",
-    eyebrow: "Düsseldorf",
+    eyebrow: "Regensburg",
     icon: BriefcaseBusiness,
     accent: "from-teal-600 via-cyan-500 to-blue-500",
-  },
-  duesseldorf_disposal: {
-    title: "Entsorgung Düsseldorf mit Fotoeinschätzung",
-    desc: "Für Möbel, Sperrmüll, Inventar oder kleinere Räumungen, ohne Umzugssignal und ohne riskante Sonderstoff-Zusagen.",
-    href: "/entsorgung-duesseldorf",
-    label: "Entsorgung anfragen",
-    eyebrow: "Düsseldorf",
-    icon: Trash2,
-    accent: "from-orange-600 via-amber-500 to-slate-700",
   },
 });
 
@@ -244,7 +233,6 @@ const signatureIconBackgrounds = Object.freeze({
   plan_b_service: "linear-gradient(135deg, #020617 0%, #0e7490 54%, #f59e0b 100%)",
   premium_discreet: "linear-gradient(135deg, #020617 0%, #1e3a8a 55%, #f59e0b 100%)",
   regensburg_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
-  duesseldorf_disposal: "linear-gradient(135deg, #ea580c 0%, #f59e0b 55%, #334155 100%)",
 } satisfies Record<SignatureServiceId, string>);
 
 function normalizeSignatureText(value: string) {

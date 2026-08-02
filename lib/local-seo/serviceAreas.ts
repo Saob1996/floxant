@@ -14,9 +14,9 @@ export const localSeoServiceAreas = {
   regensburg: {
     region: "regensburg",
     center: "Regensburg",
-    radiusLabel: "50 km rund um Regensburg",
+    radiusLabel: "75 km rund um Regensburg",
     correctWording:
-      "FLOXANT betreut Reinigungsanfragen in Regensburg und Umgebung bis 50 km ohne lokale Filialbehauptung.",
+      "FLOXANT betreut Reinigungsanfragen in Regensburg und Umgebung bis 75 km ohne lokale Filialbehauptung.",
     forbiddenWording: ["FLOXANT Standort", "FLOXANT Filiale", "unser Team direkt in", "bayernweit", "bundesweit"],
     priorityCities: localSeoRegions.regensburg.strategicCities,
   },

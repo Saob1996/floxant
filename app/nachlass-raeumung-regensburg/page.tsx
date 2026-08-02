@@ -238,7 +238,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service möglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 50 km geprüft; weitere Leistungen werden nach Verfügbarkeit getrennt bewertet.",
+    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 75 km geprüft; weitere Leistungen werden nach Verfügbarkeit getrennt bewertet.",
   },
 ];
 
@@ -268,7 +268,7 @@ const jsonLd = {
         "Praktische und organisatorische Unterstützung bei Räumung, Entsorgung, Reinigung und Objektvorbereitung nach Erbfall oder Nachlass. Keine Rechtsberatung, keine Nachlassbewertung und keine Nachlassverwaltung.",
       path,
       serviceType: "Nachlass-Räumung, Wohnungsauflösung und Reinigung nach Absprache",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

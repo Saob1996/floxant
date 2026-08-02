@@ -16,7 +16,7 @@ const defaultTags = [
   "Moving help",
   "Office cleaning",
   "House clearance",
-  "Solar panel cleaning",
+  "Piano transport",
 ] as const;
 
 export function InternationalCustomerHint({

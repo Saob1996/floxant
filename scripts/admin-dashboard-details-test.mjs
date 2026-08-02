@@ -280,6 +280,20 @@ for (const testCase of cases) {
   for (const expected of testCase.expected) assertContains(view, expected, testCase.label);
 }
 
+const priorityView = buildAdminBookingDetailView(booking({
+  details: {
+    configuration: {
+      leadPriority: "p1",
+      rawFields: { leadPriority: "p1" },
+    },
+  },
+}));
+const priorityItem = priorityView.sections
+  .flatMap((section) => Array.from(section.items))
+  .find((detailItem) => detailItem.label === "Priorität");
+assert.equal(priorityItem?.path, "configuration.leadPriority");
+assert.equal(priorityItem?.value, "p1");
+
 const securityView = buildAdminBookingDetailView(booking({
   details: {
     configuration: {

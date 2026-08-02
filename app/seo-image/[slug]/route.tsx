@@ -16,7 +16,7 @@ const imageProfiles: Record<
  }
 > = {
  floxant: {
-  eyebrow: "Regensburg + Bayern",
+  eyebrow: "Regensburg + Einsatzgebiet bis 75 km",
   title: "Umzug, Reinigung und Entrümpelung klar geplant.",
   subtitle: "FLOXANT verbindet Vorprüfung, Preisrahmen und Umsetzung ohne Lockpreis-Versprechen.",
   chips: ["Rechner", "Preisrahmen", "Zusatzleistungen"],
@@ -37,21 +37,21 @@ const imageProfiles: Record<
   accent: "#60a5fa",
  },
  umzug: {
-  eyebrow: "Umzug Regensburg + Bayern",
+  eyebrow: "Umzug Regensburg + 75 km",
   title: "Umzug mit klarer Planung und starkem Ablauf.",
   subtitle: "Volumen, Strecke, Zugang, Montage und Zusatzleistungen sauber einordnen.",
   chips: ["Privatumzug", "Firmenumzug", "Beiladung"],
   accent: "#3b82f6",
  },
  reinigung: {
-  eyebrow: "Reinigung Regensburg + Regensburg",
+  eyebrow: "Reinigung Regensburg + 75 km",
   title: "Reinigung für Übergabe, Objekt und Neustart.",
   subtitle: "Fläche, Zustand, Fenster, Küche, Bad und Terminlage realistisch prüfen.",
   chips: ["Endreinigung", "Übergabe", "Objektservice"],
   accent: "#22d3ee",
  },
  entruempelung: {
-  eyebrow: "Entrümpelung Regensburg + Bayern",
+  eyebrow: "Entrümpelung Regensburg + 75 km",
   title: "Räumung, Entsorgung und Übergabe ohne Chaos.",
   subtitle: "Volumen, Materialarten, Laufwege und Demontage sauber vorprüfen.",
   chips: ["Räumung", "Entsorgung", "Wohnungsauflösung"],
@@ -81,7 +81,7 @@ const imageProfiles: Record<
  "private-client-service": {
   eyebrow: "Private Client",
   title: "Diskreter Service für Anwesen und sensible Haushalte.",
-  subtitle: "Umzug, Reinigung und Räumung mit ruhiger Abstimmung in Regensburg und Baden-Württemberg.",
+  subtitle: "Umzug, Reinigung und Räumung mit ruhiger Abstimmung im Einsatzgebiet bis 75 km um Regensburg.",
   chips: ["Diskretion", "Anwesen", "Hochwertig"],
   accent: "#d6b56d",
  },
@@ -116,7 +116,7 @@ const imageProfiles: Record<
  "anbieter-vergleichen": {
   eyebrow: "Anbieter vergleichen",
   title: "Preis, Ablauf und Serviceklarheit richtig prüfen.",
-  subtitle: "FLOXANT transparent gegen andere Dienstleister in Regensburg und Bayern einordnen.",
+  subtitle: "FLOXANT transparent gegen andere Dienstleister im Einsatzgebiet bis 75 km um Regensburg einordnen.",
   chips: ["Preiswahrheit", "Ablauf", "Kriterien"],
   accent: "#60a5fa",
  },
@@ -165,7 +165,7 @@ const imageProfiles: Record<
  "kleinmengen-entsorgung": {
   eyebrow: "Kleinmengen-Entsorgung",
   title: "Möbel, Kartons und Restmengen sauber abholen.",
-  subtitle: "Kleine Entsorgungen in Regensburg und Bayern ohne unnötigen Vollauftrag prüfen.",
+  subtitle: "Kleine Entsorgungen im Einsatzgebiet bis 75 km um Regensburg ohne unnötigen Vollauftrag prüfen.",
   chips: ["Kleinmengen", "Abholung", "Regensburg"],
   accent: "#22d3ee",
  },
@@ -180,7 +180,7 @@ imageProfiles["leerfahrt-rueckfahrt"] = {
 };
 
 imageProfiles["private-client-service"] = {
- eyebrow: "Private Client Bayern",
+ eyebrow: "Private Client Regensburg + 75 km",
  title: "Diskreter Luxusservice für Anwesen.",
   subtitle: "Umzug, Reinigung, Räumung und reguläre Entsorgung für sensible Privathaushalte.",
  chips: ["Diskret", "Villen", "Family Office"],
@@ -188,7 +188,7 @@ imageProfiles["private-client-service"] = {
 };
 
 imageProfiles.floxant = {
- eyebrow: "Regensburg + Bayern",
+ eyebrow: "Regensburg + Einsatzgebiet bis 75 km",
  title: "Direkt buchen oder erst fair rechnen.",
  subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt direkt bei FLOXANT anfragen.",
  chips: ["Buchung", "Rechner", "Direktkontakt"],
@@ -223,7 +223,7 @@ imageProfiles.umzug = {
  eyebrow: "Umzug Regensburg",
  title: "Direkt anfragen statt anonym vergleichen.",
  subtitle: "Volumen, Strecke, Zugang, Montage und Terminlage sauber vorprüfen lassen.",
- chips: ["Umzug", "Regensburg", "Bayern"],
+ chips: ["Umzug", "Regensburg", "Fernziel auf Anfrage"],
  accent: "#3b82f6",
 };
 
@@ -263,7 +263,7 @@ imageProfiles["leistungen-vergleichen"] = {
  eyebrow: "Service-Kompass",
  title: "Schnell den richtigen FLOXANT Service finden.",
  subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Private Client vergleichen.",
- chips: ["Servicewahl", "Regensburg", "Bayern"],
+ chips: ["Servicewahl", "Regensburg", "75-km-Gebiet"],
  accent: "#38bdf8",
 };
 

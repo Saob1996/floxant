@@ -487,7 +487,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           <ServiceAreaBlock
             compact={false}
             title={`${config.serviceName} in Regensburg und Umgebung`}
-            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
+            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 75 km fokussiert. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
           />
           <LocalTrustBlock ctaHref={bookingHref} ctaLabel={config.primaryCta} />
           <RequestChecklistBlock ctaHref={bookingHref} ctaLabel="Reinigungsanfrage vorbereiten" />
@@ -616,7 +616,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           "Fotos zeigen Zustand, Menge, Fläche oder Zugang.",
           "Ein vorhandenes Angebot kann vor der Zusage eingeordnet werden.",
           isRegensburgCleaningPage
-            ? "FLOXANT trennt Reinigungsanfragen klar auf Regensburg und den 50-km-Umkreis."
+            ? "FLOXANT trennt Reinigungsanfragen klar auf Regensburg und den 75-km-Umkreis."
             : "FLOXANT trennt Regionen und Leistungen nach passendem Serviceweg.",
         ]}
         usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rückmeldung gebraucht wird"]}

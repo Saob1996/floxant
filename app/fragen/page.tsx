@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "Häufige Fragen zu FLOXANT Leistungen",
   description:
-    "Geprüfte Antworten zu Reinigung, Umzug, Räumung, Angeboten, Ablauf und benötigten Angaben in Düsseldorf und Regensburg.",
+    "Geprüfte Antworten zur Reinigung in Düsseldorf sowie zu Umzug, Räumung, Reinigung, Angeboten und Ablauf in Regensburg.",
   alternates: {
     canonical: path,
     languages: {
@@ -49,17 +49,15 @@ const faqItems: readonly DisplayFaq[] = publicFaqs
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@type": "ItemList",
   "@id": `${company.url}${path}#faq`,
   url: `${company.url}${path}`,
   inLanguage: "de-DE",
-  mainEntity: faqItems.map((faq) => ({
-    "@type": "Question",
+  itemListElement: faqItems.map((faq, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
     name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.detailedAnswer || faq.shortAnswer,
-    },
+    description: faq.detailedAnswer || faq.shortAnswer,
   })),
 };
 

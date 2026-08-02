@@ -318,6 +318,18 @@ export function buildAdminBookingDetailView(
           consumed,
         ),
         item(
+          "Priorität",
+          details,
+          [
+            "configuration.leadPriority",
+            "configuration.priority",
+            "metadata.priority",
+            "configuration.rawFields.leadPriority",
+            "configuration.rawFields.priority",
+          ],
+          consumed,
+        ),
+        item(
           "Formular",
           details,
           [

@@ -135,6 +135,8 @@ export function CookieBanner({ dic }: { dic?: any }) {
 
       {isVisible && (
           <div
+            role="dialog"
+            aria-label={cookie.title}
             className={
               isRequestRoute
                 ? "pointer-events-none relative z-[120] mx-auto w-full max-w-[38rem] px-2 pt-2"

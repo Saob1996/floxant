@@ -5,7 +5,7 @@ import { germanText, germanizeDeep } from "@/lib/german-text";
 const included = germanizeDeep([
   "Preispositionen und Leistungsumfang organisatorisch einordnen",
   "offene Zusatzkosten oder fehlende Angaben sichtbar machen",
-  "Rueckfragen fuer Reinigung, Umzug, Entruempelung oder PV-Reinigung formulieren",
+  "Rueckfragen fuer Reinigung, Umzug, Entruempelung oder Moebeltransport formulieren",
   "naechsten sinnvollen Kontaktweg empfehlen",
 ]);
 

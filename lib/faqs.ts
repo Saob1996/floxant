@@ -26,7 +26,7 @@ export const offerCheckFaqItems: FloxantFaqItem[] = [
   },
   {
     q: "Welche Angebote koennen geprueft werden?",
-    a: "Vor allem Angebote fuer Reinigung, Buero- oder Gewerbereinigung, Umzug, Entruempelung, Haushaltsaufloesung, Transport, Glas, Fassade und Solar/PV.",
+    a: "Vor allem Angebote fuer Reinigung, Buero- oder Gewerbereinigung, Fensterreinigung, Umzug, Moebel- oder Klaviertransport, Entruempelung, Haushalts- oder Wohnungsaufloesung.",
   },
   {
     q: "Was passiert nach dem Absenden?",
@@ -71,7 +71,7 @@ export const movingFaqItems: FloxantFaqItem[] = [
     a: "Volumen, Strecke, Etagen, Laufwege, Haltemoeglichkeit, Termin, Demontage, Packhilfe, Klaviertransport und Reinigung danach beeinflussen den Aufwand.",
   },
   {
-    q: "Wann ist ein Mini-Umzug sinnvoll?",
+    q: "Wann ist ein kleiner Umzug sinnvoll?",
     a: "Wenn nur wenige Moebel, Kartons oder Einzelstuecke bewegt werden und Strecke, Zugang und Termin klar sind.",
   },
   {
@@ -118,18 +118,18 @@ export const clearanceFaqItems: FloxantFaqItem[] = [
 export const duesseldorfFaqItems: FloxantFaqItem[] = [
   {
     q: "Welche Services bietet FLOXANT in Duesseldorf?",
-    a: "Regensburg ist bei FLOXANT besonders stark fuer Reinigung, Buero-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen.",
+    a: "Duesseldorf ist bei FLOXANT der Hub fuer Reinigung, Buero-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen.",
   },
   {
-    q: "Wie frage ich Reinigung in Regensburg und Umgebung an?",
+    q: "Wie frage ich Reinigung in Duesseldorf und Umgebung an?",
     a: "Nennen Sie Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und gewuenschtes Ergebnis.",
   },
   {
-    q: "Wie frage ich Buero- oder Gewerbereinigung in Regensburg an?",
+    q: "Wie frage ich Buero- oder Gewerbereinigung in Duesseldorf an?",
     a: "Hilfreich sind Raumliste, Flaeche, Turnus, Zeitfenster, Ansprechpartner, Schluesselweg, Sanitaer, Kueche und Fotos.",
   },
   {
-    q: "Kann ich ein Reinigungsangebot in Regensburg pruefen lassen?",
+    q: "Kann ich ein Reinigungsangebot in Duesseldorf pruefen lassen?",
     a: "Ja. FLOXANT prueft Umfang, Turnus, Objektart, Fotos, Zusatzpunkte und Preisrahmen ohne Preisgarantie.",
   },
   {
@@ -163,7 +163,7 @@ export const regensburgFaqItems: FloxantFaqItem[] = [
 
 export const signatureServiceFaqItems: FloxantFaqItem[] = [
   {
-    q: "Was ist der FLOXANT Fairpreis-Check?",
+    q: "Was ist der FLOXANT Angebotscheck?",
     a: "Eine praktische Einordnung, ob Preis, Umfang, Fotos, Termin und offene Annahmen eines Angebots zusammenpassen.",
   },
   {
@@ -179,11 +179,11 @@ export const signatureServiceFaqItems: FloxantFaqItem[] = [
     a: "Diskret-Service ist fuer sensible Faelle gedacht, bei denen Kontaktweg, Berechtigung, Fotos, Zugang und ruhige Abstimmung wichtig sind.",
   },
   {
-    q: "Wann ist Rueckfahrt-Radar sinnvoll?",
-    a: "Wenn Transport, Beiladung oder Moebelbewegung zu einer Route, Rueckfahrt oder vorhandenen Kapazitaet passen koennten.",
+    q: "Wann hilft die Uebergabeakte?",
+    a: "Wenn Fotos, Restpunkte, Schluesselstatus, Termin und Ansprechpartner fuer eine Objektuebergabe gemeinsam dokumentiert werden sollen.",
   },
   {
-    q: "Was ist der PV-Sichtklar-Service?",
-    a: "Eine Anfrage mit den wichtigsten Eckdaten fuer Solar- oder PV-Reinigung mit Fotos, Zugang, Dachlage, Wasser, Sicherheit und Leistungsgrenzen.",
+    q: "Wann hilft der Anbietervergleich?",
+    a: "Wenn mehrere Angebote anhand desselben Leistungsumfangs, Termins, Zugangs und derselben Zusatzpositionen sachlich verglichen werden sollen.",
   },
 ];

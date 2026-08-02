@@ -683,7 +683,7 @@ const canonicalLocations: Readonly<Record<string, CanonicalLocation>> = {
     canonicalRoute: "/duesseldorf",
     isRealLocation: true,
     serviceAreaParent: "duesseldorf",
-    supportedServices: ["reinigung", "bueroreinigung", "gewerbereinigung", "entruempelung", "angebot-pruefen"],
+    supportedServices: ["reinigung", "bueroreinigung", "gewerbereinigung", "angebot-pruefen"],
     contactCityValue: "duesseldorf",
     areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Krefeld", "Mettmann"],
     schemaEligible: true,

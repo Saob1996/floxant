@@ -24,7 +24,6 @@ import {
   englishLocalSeoPaths,
   getEnglishLocalSeoPageByPath,
 } from "./local-seo/englishLocalSeoPages";
-import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { isCleaningRouteAllowed } from "./regensburg-cleaning-service-area";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -50,6 +49,7 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "airbnb-reinigung-duesseldorf",
   "airbnb-reinigung-regensburg",
   "angebot-red-flag-scanner",
+  "einsatzradar-regensburg",
   "einsatzgebiet-regensburg-200km",
   "service-area-bayern",
   "villenservice",
@@ -154,56 +154,6 @@ const BROAD_ROOT_CITY_SERVICE_PREFIXES = [
 
 const NON_HTML_SITEMAP_EXTENSION_PATTERN = /\.(?:txt|json|xml|png|jpe?g|webp|avif|svg|ico|gif|pdf|webmanifest)$/i;
 
-const dynamicLocalRouteByPath = new Map(
-  dynamicLocalSeoRoutes.map((entry) => [entry.route.replace(/^\/+|\/+$/g, ""), entry]),
-);
-
-const regensburgCoreSitemapCities = new Set([
-  "regensburg",
-  "neutraubling",
-  "lappersdorf",
-  "pentling",
-  "obertraubling",
-  "regenstauf",
-  "sinzing",
-  "bad-abbach",
-  "nittendorf",
-  "wenzenbach",
-  "tegernheim",
-  "barbing",
-  "donaustauf",
-  "zeitlarn",
-]);
-
-const bayernHubSitemapCities = new Set([
-  "muenchen",
-  "muenchen-schwabing",
-  "nuernberg",
-  "augsburg",
-  "ingolstadt",
-  "landshut",
-  "passau",
-  "wuerzburg",
-  "bamberg",
-  "bayreuth",
-  "erlangen",
-  "fuerth",
-  "coburg",
-  "rosenheim",
-  "straubing",
-  "schwandorf",
-  "kelheim",
-  "amberg",
-]);
-
-const highValueLocalSitemapServices = new Set([
-  "umzug",
-  "reinigung",
-  "entruempelung",
-  "bueroumzug",
-  "wohnungsaufloesung",
-]);
-
 const DEPRIORITIZED_CITY_SLUGS = new Set([
   "forchheim",
   "friedberg",
@@ -220,10 +170,6 @@ const DEPRIORITIZED_CITY_SLUGS = new Set([
   "leipzig",
   "stuttgart",
 ]);
-
-function getDynamicLocalSitemapRoute(route: string) {
-  return dynamicLocalRouteByPath.get(route.replace(/^\/+|\/+$/g, ""));
-}
 
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (char) => {
@@ -307,11 +253,6 @@ function isBroadRootCityServiceRoute(route: string): boolean {
 
 function isDeprioritizedCityRoute(route: string): boolean {
   const normalizedRoute = route.toLowerCase();
-  const dynamicLocalRoute = getDynamicLocalSitemapRoute(normalizedRoute);
-
-  if (dynamicLocalRoute && DEPRIORITIZED_CITY_SLUGS.has(dynamicLocalRoute.citySlug)) {
-    return true;
-  }
 
   return Array.from(DEPRIORITIZED_CITY_SLUGS).some(
     (citySlug) =>
@@ -379,7 +320,6 @@ function lastmodForRoute(route: string): string {
 function appRouteExists(route: string): boolean {
   if (localSeoIndexablePathSet.has(`/${route}`)) return true;
   if (englishLocalSeoIndexablePathSet.has(`/${route}`)) return true;
-  if (dynamicLocalSeoRouteSet.has(`/${route}`)) return true;
   if (growthServicePathSet.has(`/${route}`)) return true;
 
   const routeSegments = route ? route.split("/") : [];
@@ -409,13 +349,6 @@ function priorityForRoute(route: string): string {
   if (route === "fernumzug-muenchen") return "0.89";
   if (growthServicePathSet.has(`/${route}`)) return route.includes("solarreinigung") ? "0.9" : "0.88";
   if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "signature-services", "spezialreinigung", "spezialumzug", "spezial-entruempelung", "objektbrief", "plan-b-service", "diskret-service", "pv-anlagen-reinigung", "solarreinigung", "reinigung-moeblierte-wohnung-regensburg", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
-  const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
-  if (dynamicLocalRoute) {
-    if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
-    if (regensburgCoreSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.84";
-    if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.8";
-    return highValueLocalSitemapServices.has(dynamicLocalRoute.service) ? "0.77" : "0.74";
-  }
   if (route === "regensburg/reinigung") return "0.93";
   if (route === "regensburg/reinigung") return "0.92";
   if (route === "regensburg/reinigung") return "0.91";
@@ -436,7 +369,6 @@ function priorityForRoute(route: string): string {
   if (route === "regensburg/reinigung") return "0.9";
   if (route === "regensburg/reinigung") return "0.9";
   if (route === "regensburg/reinigung") return "0.9";
-  if (route === "duesseldorf/entsorgung") return "0.88";
   if (
     [
       "regensburg/reinigung",
@@ -460,7 +392,6 @@ function priorityForRoute(route: string): string {
       "regensburg/reinigung",
       "regensburg/reinigung",
       "regensburg/reinigung",
-      "duesseldorf/entsorgung",
       "regensburg/reinigung",
       "regensburg/reinigung",
       "regensburg/reinigung",
@@ -499,14 +430,6 @@ function changefreqForRoute(route: string): string {
   if (englishLocalSeoPage) {
     return "weekly";
   }
-  const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
-  if (dynamicLocalRoute) {
-    if (dynamicLocalRoute.citySlug === "regensburg" || regensburgCoreSitemapCities.has(dynamicLocalRoute.citySlug)) {
-      return "weekly";
-    }
-    if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "weekly";
-    return "monthly";
-  }
   if (["regensburg/reinigung/datenschutz", "regensburg/reinigung/agb"].includes(route)) return "yearly";
   if (
     route === "regensburg/reinigung" ||
@@ -514,8 +437,7 @@ function changefreqForRoute(route: string): string {
     route === "duesseldorf/vielleicht-guenstiger" ||
     route === "regensburg/reinigung" ||
     route === "regensburg/reinigung" ||
-    route === "regensburg/reinigung" ||
-    route === "duesseldorf/entsorgung"
+    route === "regensburg/reinigung"
   ) return "weekly";
   if (route.startsWith("duesseldorf/")) return "weekly";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
@@ -611,14 +533,6 @@ export function generateSitemapResponse(): Response {
 
   // Service + city pages
   addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
-
-  // Historic local SEO route set, now served dynamically through app/[serviceSlug].
-  addEntries(
-    urls,
-    dynamicLocalSeoRoutes.map((entry) => entry.route),
-    "0.76",
-    "monthly"
-  );
 
   // Bavaria authority pages
   addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");

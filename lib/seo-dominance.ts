@@ -32,7 +32,7 @@ export const SEO_MONEY_ROUTES = [
  "/uebergabeakte",
  "/schadensbegrenzung",
  "/keller-muellraum-rettung-regensburg",
- "/einsatzradar-regensburg",
+ "/region-regensburg",
  "/regensburg/reinigung",
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/reinigung-moeblierte-wohnung-regensburg",
@@ -123,7 +123,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/uebergabeakte",
  "/schadensbegrenzung",
  "/keller-muellraum-rettung-regensburg",
- "/einsatzradar-regensburg",
+ "/region-regensburg",
  "/regensburg/reinigung",
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/reinigung-moeblierte-wohnung-regensburg",
@@ -191,9 +191,9 @@ export const SEO_SUPPORT_ROUTES = [
 
 const moneySnippets: Record<string, Snippet> = {
  "/": {
-  title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
+  title: "FLOXANT | Reinigung Düsseldorf · Umzug & Räumung Regensburg",
   description:
-   "Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf und Regensburg: Fotos senden, Preisrahmen prüfen, Angebot vergleichen und direkt anfragen.",
+   "Reinigung und Angebotsprüfung in Düsseldorf; Umzug, Räumung und Reinigung in Regensburg. Eckdaten senden und Machbarkeit persönlich prüfen lassen.",
   cluster: "money",
  intent: "Verlässlichen Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
@@ -214,7 +214,7 @@ const moneySnippets: Record<string, Snippet> = {
 "/angebot-guenstiger-pruefen": {
  title: "Angebot prüfen lassen | FLOXANT Zweitmeinung",
  description:
-  "Angebot vor Zusage prüfen lassen: Preis, Umfang, Fotos, Termin und offene Punkte für Reinigung, Umzug, Entrümpelung, Entsorgung oder PV-Reinigung klären.",
+   "Angebot vor Zusage prüfen lassen: Preis, Umfang, Fotos, Termin und offene Punkte für Reinigung, Umzug, Entrümpelung, Entsorgung oder Möbeltransport klären.",
  cluster: "conversion",
  intent: "Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot einer anderen Firma prüfen und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
 },
@@ -298,7 +298,7 @@ const moneySnippets: Record<string, Snippet> = {
 "/reinigung-moeblierte-wohnung-regensburg": {
  title: "Ferienwohnung-Reinigung Regensburg | Gästewechsel",
  description:
-  "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche im 50-km-Umkreis klären.",
+  "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche im 75-km-Umkreis klären.",
  cluster: "money",
  intent: "Ferienwohnung, möbliertes Apartment oder Gästewechsel-Reinigung in Regensburg anfragen",
 },
@@ -417,7 +417,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/entruempelung": {
   title: "Entrümpelung Regensburg | Räumung & Entsorgung",
   description:
-   "Entrümpelung, Wohnungsauflösung und Entsorgung in Düsseldorf und Regensburg: Fotos, Volumen, Zugang, Material und Reinigung danach prüfen.",
+   "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und im regionalen Einsatzgebiet: Fotos, Volumen, Zugang, Material und Reinigung danach prüfen.",
   cluster: "money",
   intent: "Entrümpelung oder Wohnungsauflösung anfragen",
  },
@@ -515,7 +515,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/blog": {
   title: "FLOXANT Ratgeber | Umzug, Reinigung & Preise",
   description:
-   "Praxisnahe Hilfe zu Umzug, Reinigung, Entrümpelung, Beiladung, Preisvorstellung und Serviceplanung in Düsseldorf und Regensburg.",
+   "Praxisnahe Hilfe zur Reinigung in Düsseldorf sowie zu Umzug, Räumung und Reinigung in Regensburg – mit klar getrennten lokalen Kontaktwegen.",
   cluster: "blog",
   intent: "Vor einer Anfrage informieren und passende FLOXANT Seite finden",
  },
@@ -1022,10 +1022,10 @@ moneySnippets["/keller-muellraum-rettung-regensburg"] = {
  intent: "Objektflaeche fuer Hausverwaltung, WEG, Vermieter oder Gewerbe in Regensburg pruefen lassen",
 };
 
-moneySnippets["/einsatzradar-regensburg"] = {
- title: "FLOXANT Einsatzradar Regensburg | Einsatzarten & Servicegebiet",
+moneySnippets["/region-regensburg"] = {
+ title: "Einsatzgebiet Regensburg | Ort und Leistung prüfen",
  description:
-  "Typische und anonymisierte Einsatzarten im Raum Regensburg: Umzug, Reinigung, Entrümpelung, Rückfahrt, Übergabeakte und Objektservice.",
+  "Umzug, Transport und Räumung im verifizierten 75-km-Einsatzgebiet um Regensburg prüfen; Reinigung bleibt eine getrennte Ergänzungsleistung.",
  cluster: "geo",
  intent: "Lokale FLOXANT Einsatzarten und Servicezonen rund um Regensburg ansehen",
 };
@@ -1345,7 +1345,7 @@ moneySnippets["/reinigung"] = {
 moneySnippets["/entruempelung"] = {
  title: "Entrümpelung Regensburg | Wohnung, Keller & Entsorgung",
  description:
-  "Entrümpelung, Wohnungsauflösung und Entsorgung in Düsseldorf und Regensburg: Fotos, Volumen, Zugang, Material, Termin und Reinigung danach prüfen.",
+  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und im regionalen Einsatzgebiet: Fotos, Volumen, Zugang, Material, Termin und Reinigung danach prüfen.",
  cluster: "money",
  intent: "Entrümpelung oder Wohnungsauflösung in Regensburg anfragen",
 };

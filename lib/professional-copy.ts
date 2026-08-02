@@ -1,7 +1,7 @@
 export const locationClarityItems = [
   {
-    title: "Düsseldorf: Umzug, Reinigung, Räumung und Angebotsprüfung",
-    text: "Für Düsseldorf helfen Ort, Objektart, Fläche, Umfang, Zugang, Fotos und Termin. Wählen Sie die passende Leistung oder senden Sie ein vorhandenes Angebot zur Prüfung.",
+    title: "Düsseldorf: Reinigung und Angebotsprüfung",
+    text: "Für Düsseldorf helfen Ort, Objektart, Fläche, Zustand, Turnus, Zugang, Fotos und Termin. Wählen Sie die passende Reinigungsleistung oder senden Sie ein vorhandenes Reinigungsangebot zur Prüfung.",
     href: "/duesseldorf",
     cta: "Düsseldorf-Bereich ansehen",
   },
@@ -102,7 +102,7 @@ export const professionalTrustItems = [
 
 export const signatureServiceClarityItems = [
   {
-    title: "Fairpreis-Check",
+    title: "Angebotscheck",
     text: "Vorhandenes Angebot oder Preisrahmen einordnen, wenn Umfang, Zusatzpunkte oder Termin unklar wirken.",
     href: "/angebot-guenstiger-pruefen",
     cta: "Angebot prüfen",
@@ -130,12 +130,6 @@ export const signatureServiceClarityItems = [
     text: "Sensible Fälle ruhig beschreiben, ohne private Details öffentlich zu machen oder falsche Versprechen zu erzeugen.",
     href: "/diskreter-umzug-trennung-scheidung",
     cta: "Diskreten Fall beschreiben",
-  },
-  {
-    title: "PV-Sichtklar",
-    text: "PV- oder Solarreinigung nur mit Fotos, Zugang, Dachlage, Risiko und Terminfenster einordnen.",
-    href: "/solarreinigung",
-    cta: "PV-Fall prüfen",
   },
 ] as const;
 

@@ -14,8 +14,8 @@ const questionGroups = [
     items: ["Räume?", "Menge?", "Zugang?", "Entsorgung?", "Frist?"],
   },
   {
-    title: "Solarreinigung",
-    items: ["Dachart?", "Modulfläche?", "Zugang?", "Fotos?"],
+    title: "Glas- / Fassadenreinigung",
+    items: ["Fläche?", "Höhe?", "Zugang?", "Fotos?"],
   },
 ] as const;
 

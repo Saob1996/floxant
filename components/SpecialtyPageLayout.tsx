@@ -34,6 +34,7 @@ import {
 import { SignatureServices, type SignatureServiceId } from "@/components/SignatureServices";
 import { TrustBadge } from "@/components/trust/TrustBadge";
 import { getCityGeoData, BAVARIAN_CITIES_GEO } from "@/lib/geo-data";
+import { resolvePublishedLocalServiceHref } from "@/lib/dynamic-local-route-policy";
 import { germanText, germanizeDeep } from "@/lib/german-text";
 import { applyCity } from "@/lib/specialty-page";
 import {
@@ -353,7 +354,7 @@ function getRegensburgAuthorityContent(serviceName: string) {
 
 function getOfferCheckBlogHref(serviceName: string) {
   if (serviceName === "Reinigung") return "/blog/reinigungsangebot-pruefen-regensburg";
-  if (serviceName === "Entrümpelung") return "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf";
+  if (serviceName === "Entrümpelung") return "/blog/entsorgungsangebot-pruefen-regensburg";
   return "/blog/umzugsangebot-pruefen-regensburg-bayern";
 }
 
@@ -1478,7 +1479,9 @@ export function SpecialtyPageLayout({
                 {nearbyCities.map((nearby) => (
                   <Link
                     key={nearby.name}
-                    href={`${serviceContext.primaryPath}-${slugify(nearby.name)}`}
+                    href={resolvePublishedLocalServiceHref(
+                      `${serviceContext.primaryPath}-${slugify(nearby.name)}`,
+                    )}
                     className="flox-link-card flex items-center gap-4 px-4 py-4"
                   >
                     <div className="rounded-[1rem] bg-blue-50 p-3 text-blue-700">

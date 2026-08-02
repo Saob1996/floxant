@@ -158,9 +158,7 @@ function looksLikeDusseldorf(value: string) {
 }
 
 const DUSSELDORF_BOOKING_SERVICE_IDS = new Set<Exclude<ServiceType, null>>([
-  "umzug",
   "reinigung",
-  "entsorgung",
 ]);
 
 function normalizeTrackingValue(value: string | null) {
@@ -300,14 +298,19 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     .join(" ");
   const isDusseldorfQueryContext =
     initialRegion === "duesseldorf" || (!initialRegion && looksLikeDusseldorf(queryRegion));
-  const queryServicePreset = useMemo(
+  const requestedServicePreset = useMemo(
     () => normalizeBookingService(initialService || queryService),
     [initialService, queryService],
   );
-  const isDusseldorfDisposalQueryContext =
-    isDusseldorfQueryContext && queryServicePreset === "entsorgung";
-  const isDusseldorfMovingQueryContext =
-    isDusseldorfQueryContext && queryServicePreset === "umzug";
+  const isDusseldorfUnsupportedQueryContext =
+    isDusseldorfQueryContext &&
+    Boolean(requestedServicePreset) &&
+    !DUSSELDORF_BOOKING_SERVICE_IDS.has(
+      requestedServicePreset as Exclude<ServiceType, null>,
+    );
+  const queryServicePreset = isDusseldorfUnsupportedQueryContext
+    ? null
+    : requestedServicePreset;
   const storeService = useCalculatorStore((s) => s.serviceType);
   const storeBase = useCalculatorStore((s) => s.baseDetails);
   const storeLead = useCalculatorStore((s) => s.leadDetails);
@@ -456,14 +459,14 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
   useEffect(() => {
     setInitialized(true);
-    const presetService =
-      initialService ||
-      queryServicePreset ||
-      (isDusseldorfDisposalQueryContext
-        ? "entsorgung"
-        : isDusseldorfMovingQueryContext
-          ? "umzug"
-          : (storeService as ServiceType));
+    const storedService = normalizeBookingService(storeService as string | null);
+    const allowedStoredService =
+      isDusseldorfQueryContext &&
+      storedService &&
+      !DUSSELDORF_BOOKING_SERVICE_IDS.has(storedService as Exclude<ServiceType, null>)
+        ? null
+        : storedService;
+    const presetService = queryServicePreset || allowedStoredService;
 
     if (presetService) {
       setState((prev) => ({
@@ -490,9 +493,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       });
     }
   }, [
-    isDusseldorfDisposalQueryContext,
-    isDusseldorfMovingQueryContext,
-    initialService,
+    isDusseldorfQueryContext,
+    isDusseldorfUnsupportedQueryContext,
     queryServicePreset,
     storeBase,
     storeLead,
@@ -911,11 +913,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     const createdAt = new Date().toISOString();
     const serviceMeta = wizardServiceMeta[state.service];
     const servicePageBookingSource = getRegensburgCleaningBookingSource(normalizedSource, normalizedEntry);
-    const bookingSource = isDusseldorfMovingQueryContext
-      ? "duesseldorf_moving_booking"
-      : isDusseldorfDisposalQueryContext
-      ? "duesseldorf_disposal_booking"
-        : normalizedEntry.includes("budget")
+    const bookingSource = normalizedEntry.includes("budget")
           ? "booking_budget_request"
         : normalizedEntry.includes("express")
           ? "booking_express_check"
@@ -936,11 +934,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             : servicePageBookingSource
               ? servicePageBookingSource
               : "booking_page_wizard";
-    const entryPoint = isDusseldorfMovingQueryContext
-      ? "/buchung?service=umzug&region=duesseldorf"
-      : isDusseldorfDisposalQueryContext
-      ? "/buchung?service=entsorgung&region=duesseldorf"
-        : "/buchung";
+    const entryPoint = "/buchung";
     const regionPreset = isDusseldorfQueryContext ? "duesseldorf" : "";
     const landingPage =
       typeof window !== "undefined"
@@ -1217,24 +1211,13 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         actionLabel: "Strecke prüfen",
       },
       {
-        id: "solarreinigung",
-        label: "Solar / PV cleaning",
-        desc: "PV-Anlage mit Modulfläche, Fotos, Dachzugang und Sicherheit einordnen",
-        icon: Sparkles,
-        isLink: true,
-        href: "/buchung?service=reinigung&addon=solarreinigung&entry=solar#buchungssystem",
-        eyebrow: "Solar/PV",
-        accent: "from-emerald-500 to-cyan-500",
-        actionLabel: "Solar/PV anfragen",
-      },
-      {
         id: "angebot-pruefen",
         label: "Angebot prüfen / Quote check",
         desc: "Vorhandenes Angebot, Screenshot oder Preis mit Umfang und Termin prüfen lassen",
         icon: FileSearch,
         isLink: true,
         href: "/angebot-guenstiger-pruefen#guenstiger-form",
-        eyebrow: "Fairpreis",
+        eyebrow: "Angebotscheck",
         accent: "from-amber-500 to-orange-400",
         actionLabel: "Angebot prüfen",
       },
@@ -1261,15 +1244,15 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         actionLabel: "Plan B prüfen",
       },
       {
-        id: "uebergabe-sprint",
-        label: "Übergabe-Sprint",
+        id: "uebergabeakte",
+        label: "Übergabeakte",
         desc: "Wenn Reinigung, Restmengen, Fotos oder Schlüsselweg vor einem Termin priorisiert werden müssen",
         icon: Calendar,
         isLink: true,
-        href: "/uebergabe-sprint",
+        href: "/uebergabeakte",
         eyebrow: "Übergabe",
         accent: "from-violet-600 to-blue-500",
-        actionLabel: "Sprint starten",
+        actionLabel: "Übergabe vorbereiten",
       },
       {
         id: "diskret-service",
@@ -1284,24 +1267,16 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       },
     ];
 
-    const visibleOptions = isDusseldorfMovingQueryContext
-      ? options.filter((option) => option.id === "umzug")
-      : isDusseldorfDisposalQueryContext
-      ? options.filter((option) => option.id === "entsorgung")
-        : options;
+    const visibleOptions = isDusseldorfQueryContext
+      ? options.filter((option) => DUSSELDORF_BOOKING_SERVICE_IDS.has(option.id as Exclude<ServiceType, null>))
+      : options;
 
     return (
       <div className="space-y-5">
-        {isDusseldorfDisposalQueryContext ? (
-          <div className="rounded-[1.35rem] border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold leading-6 text-orange-950">
-            Dieser Düsseldorf-Startpunkt ist auf Entsorgung ausgerichtet: Umfang,
-            Zugang, Fotos und Budget helfen bei der Prüfung.
-          </div>
-        ) : null}
-        {isDusseldorfMovingQueryContext ? (
-          <div className="rounded-[1.35rem] border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-950">
-            Dieser Düsseldorf-Startpunkt ist auf Umzug ausgerichtet: Volumen,
-            Adressen, Zugang, Termin und Fotos helfen bei der Prüfung.
+        {isDusseldorfUnsupportedQueryContext ? (
+          <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
+            Düsseldorf ist auf Reinigung begrenzt. Für Umzug, Transport oder Räumung führt
+            der passende Weg über den Regensburger Leistungsbereich.
           </div>
         ) : null}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -1604,8 +1579,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
           {isDusseldorfServiceConflict ? (
             <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
-              Für Düsseldorf bitte Umzug oder Entsorgung
-              wählen oder den passenden lokalen Kontaktweg öffnen.
+              Für Düsseldorf bitte Reinigung wählen. Umzugs-, Transport- und
+              Räumungsanfragen führen über den Regensburger Leistungsbereich.
             </div>
           ) : null}
 

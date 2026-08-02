@@ -213,7 +213,7 @@ const jsonLd = {
         "Praktische und organisatorische Unterstützung für Objektfaelle: Räumung, Reinigung, Entsorgung, Schlüsselkoordination und Übergabevorbereitung nach Absprache. Keine Maklerleistung und keine Vermietungsgarantie.",
       path,
       serviceType: "Objektvorbereitung für Makler, Vermieter, Eigentuemer und Hausverwaltungen",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -440,7 +440,7 @@ export default function MaklerVermieterLinkPage() {
               {[
                 ["Reinigung Regensburg", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/regensburg/reinigung"],
                 ["Möblierte Wohnung Regensburg", "Apartment-Reset für Hosts, Vermieter und Kurzzeitvermietung in Regensburg.", "/reinigung-moeblierte-wohnung-regensburg"],
-                ["Entsorgung separat", "Nur Entsorgung; Umzug separat über /regensburg/umzug.", "/entsorgung-duesseldorf"],
+                ["Entrümpelung Regensburg", "Räumungsumfang und Entsorgung im Regensburger Leistungsbereich einordnen.", "/regensburg/entruempelung"],
                 ["Buchung/Rechner", "Falls ein Objektfall doch breiter eingeordnet werden muss.", "/buchung"],
                 ["Angebotscheck", "Wenn bereits ein Fremdangebot vorliegt und Umfang oder Zusatzleistungen unklar sind.", "/angebotscheck"],
               ].map(([title, text, href]) => (

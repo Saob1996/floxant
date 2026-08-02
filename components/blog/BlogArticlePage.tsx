@@ -17,6 +17,7 @@ import {
   BlogRelatedServices,
 } from "@/components/blog/BlogSupportBlocks";
 import { company } from "@/lib/company";
+import { resolvePublishedLocalServiceHref } from "@/lib/dynamic-local-route-policy";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 
 type FaqItem = {
@@ -111,7 +112,10 @@ export function BlogArticlePage({
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
   const normalizedBreadcrumbs = germanizeDeep(breadcrumbs);
   const normalizedSections = germanizeDeep(sections);
-  const normalizedCtas = germanizeDeep(ctas);
+  const normalizedCtas = germanizeDeep(ctas).map((cta) => ({
+    ...cta,
+    href: resolvePublishedLocalServiceHref(cta.href),
+  }));
   const normalizedFaqItems = germanizeDeep(faqItems);
   const normalizedHighlightPoints = germanizeDeep(highlightPoints);
   const sectionAnchors: SectionAnchor[] = normalizedSections.map((section, index) => ({

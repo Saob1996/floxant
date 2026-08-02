@@ -55,7 +55,7 @@ const faqItems = [
  },
  {
   q: "Welche Region ist für FLOXANT besonders relevant?",
-  a: "Die Kernregion ist Regensburg. Darüber hinaus ist FLOXANT auf Regensburg ausgerichtet, insbesondere bei Umzug, Reinigung, Entrümpelung und spezialisierten Zusatzleistungen.",
+  a: "FLOXANT führt zwei getrennte Kernregionen: Düsseldorf für Reinigung und Angebotsprüfung; Regensburg für Umzug, Transport, Räumung und Reinigung.",
  },
  {
   q: "Welche Seiten geben den besten Überblick über FLOXANT?",
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "floxant-fakten",
   title: "FLOXANT Fakten | Umzug, Reinigung & Entrümpelung Regensburg",
   description:
-   "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Düsseldorf und Regensburg.",
+   "Kurzprofil für Kunden und lokale Suche: Reinigung in Düsseldorf sowie Umzug, Transport, Räumung und Reinigung in Regensburg.",
  });
 }
 

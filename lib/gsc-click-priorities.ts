@@ -54,7 +54,7 @@ const endCleaningRegensburgAnchors = [
   { href: "/regensburg/entruempelung", label: "Entrümpelung vor Endreinigung" },
   { href: "/objektbrief", label: "Objektbrief für Übergabe" },
   { href: "/uebergabeakte", label: "Übergabeakte vorbereiten" },
-  { href: "/vermieter-ready-service", label: "Vermieter-Ready-Service" },
+  { href: "/uebergabeakte", label: "Übergabeakte für Vermieter" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
 ] as const;
 
@@ -137,7 +137,7 @@ export const gscClickPriorities = {
       "reinigung nach umzug regensburg",
       "reinigungsangebot regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: regensburgCleaningAnchors,
   },
   "/regensburg/endreinigung": {
@@ -151,7 +151,7 @@ export const gscClickPriorities = {
     openGraphDescription:
       "Wohnung nach Auszug, Räumung oder Entrümpelung für Übergabe, Besichtigung oder Nachnutzung einordnen.",
     h1: "Endreinigung vor Übergabe in Regensburg - Wohnung, Zustand und Frist klären",
-    pageIntent: "Endreinigung, Reinigung nach Entrümpelung und Vermieter-Ready-Service in Regensburg anfragen",
+    pageIntent: "Endreinigung, Reinigung nach Entrümpelung und Übergabevorbereitung in Regensburg anfragen",
     primaryKeyword: "endreinigung regensburg",
     secondaryKeywords: [
       "reinigung vor wohnungsuebergabe regensburg",
@@ -160,7 +160,7 @@ export const gscClickPriorities = {
       "wohnung übergabefertig machen",
       "end of tenancy cleaning regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: endCleaningRegensburgAnchors,
   },
   "/entruempelung-landshut": {
@@ -183,7 +183,7 @@ export const gscClickPriorities = {
       "haushaltsauflösung landshut",
       "entsorgung landshut",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: landshutClearanceAnchors,
   },
   "/umzug-vohenstrauss": {
@@ -205,7 +205,7 @@ export const gscClickPriorities = {
       "umzugsangebot vohenstrauß",
       "möbeltransport vohenstrauß",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: bavariaMoveAnchors,
   },
   "/umzug-neustadt-an-der-waldnaab": {
@@ -226,7 +226,7 @@ export const gscClickPriorities = {
       "umzugsangebot neustadt an der waldnaab",
       "umzugsservice neustadt waldnaab",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: bavariaMoveAnchors,
   },
   "/diskret-service": {
@@ -249,7 +249,7 @@ export const gscClickPriorities = {
       "diskrete haushaltsauflösung",
       "private client service",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: diskretServiceAnchors,
   },
   "/private-client-service": {
@@ -272,7 +272,7 @@ export const gscClickPriorities = {
       "persönliche servicekoordination",
       "private objektkoordination",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: privateClientAnchors,
   },
   "/kontakt": {
@@ -294,7 +294,7 @@ export const gscClickPriorities = {
       "reinigung kontakt",
       "angebot prüfen kontakt",
     ],
-    jsonLdTypes: ["WebPage", "ContactPage", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "ContactPage", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: contactAnchors,
   },
   "/fensterreinigung-regensburg": {
@@ -311,7 +311,7 @@ export const gscClickPriorities = {
     pageIntent: "Fensterreinigung in Regensburg mit Fotos, Zugang und Angebot anfragen",
     primaryKeyword: "fensterreinigung regensburg",
     secondaryKeywords: ["glasreinigung regensburg", "schaufensterreinigung regensburg", "fenster putzen lassen Regensburg"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
@@ -334,7 +334,7 @@ export const gscClickPriorities = {
     pageIntent: "Umzug in Regensburg mit Angebot, Fotos und Termin anfragen",
     primaryKeyword: "umzug regensburg",
     secondaryKeywords: ["umzugsfirma regensburg", "umzugsangebot regensburg", "umzug mit reinigung regensburg"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/reinigung", label: "Reinigung nach Umzug Regensburg" },
       { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
@@ -356,7 +356,7 @@ export const gscClickPriorities = {
     pageIntent: "Entrümpelung in Regensburg mit Menge, Fotos, Zugang und Angebot anfragen",
     primaryKeyword: "entrümpelung regensburg",
     secondaryKeywords: ["wohnungsauflösung regensburg", "haushaltsauflösung regensburg", "räumungsangebot regensburg"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/reinigung", label: "Reinigung nach Entrümpelung Regensburg" },
       { href: "/regensburg/haushaltsaufloesung", label: "Haushaltsauflösung Regensburg" },
@@ -378,7 +378,7 @@ export const gscClickPriorities = {
     pageIntent: "Klaviertransport in Regensburg mit Etage, Zugang, Strecke und Angebot anfragen",
     primaryKeyword: "klaviertransport regensburg",
     secondaryKeywords: ["pianotransport regensburg", "instrumententransport regensburg", "klavier umzug regensburg"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug", label: "Umzug in Regensburg" },
@@ -400,7 +400,7 @@ export const gscClickPriorities = {
     pageIntent: "Solarreinigung mit PV-Fotos, Zugang und Angebot anfragen",
     primaryKeyword: "solarreinigung",
     secondaryKeywords: ["pv reinigung", "pv anlage reinigen lassen", "solarreinigung angebot"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "Solarreinigungsangebot prüfen" },
@@ -422,7 +422,7 @@ export const gscClickPriorities = {
     pageIntent: "PV-Anlagen-Reinigung mit Fotos, Zugang und Angebot anfragen",
     primaryKeyword: "pv-anlagen-reinigung",
     secondaryKeywords: ["photovoltaik reinigung", "pv module reinigen", "pv reinigung angebot"],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/solarreinigung", label: "Solarreinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot prüfen" },
@@ -472,7 +472,7 @@ export const gscClickPriorities = {
       "reinigungsfirma büro Regensburg",
       "büroreinigung angebot",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/seniorenumzug-bayern": {
@@ -498,7 +498,7 @@ export const gscClickPriorities = {
       "umzug für senioren bayern",
       "senioren umzug bayern",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: seniorMoveAnchors,
   },
   "/seniorenumzug-erlangen": {
@@ -521,7 +521,7 @@ export const gscClickPriorities = {
       "umzug für senioren erlangen",
       "senioren umzug erlangen",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: seniorMoveAnchors,
   },
   "/seniorenumzug-bamberg": {
@@ -543,7 +543,7 @@ export const gscClickPriorities = {
       "umzugshelfer für senioren bamberg",
       "umzug für senioren bamberg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: seniorMoveAnchors,
   },
   "/fernumzug-muenchen": {
@@ -565,7 +565,7 @@ export const gscClickPriorities = {
       "umzug nach münchen",
       "umzugsangebot münchen prüfen",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/umzug-muenchen", label: "Umzug München" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
@@ -592,7 +592,7 @@ export const gscClickPriorities = {
       "entrümpelung praxis nürnberg",
       "praxisauflösung nürnberg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/entruempelung-nuernberg", label: "Entrümpelung Nürnberg" },
       { href: "/entruempelung", label: "Entrümpelung" },
@@ -620,7 +620,7 @@ export const gscClickPriorities = {
       "praxisreinigung",
       "objektreinigung",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
       { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
@@ -648,7 +648,7 @@ export const gscClickPriorities = {
       "reinigungsangebot",
       "reinigungsfirma kosten anfragen",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/regensburg/reinigung": {
@@ -670,7 +670,7 @@ export const gscClickPriorities = {
       "putzfirma Regensburg",
       "reinigungsangebot Regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/praxisreinigung-regensburg": {
@@ -691,7 +691,7 @@ export const gscClickPriorities = {
       "arztpraxis reinigung Regensburg",
       "praxisreinigung angebot",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/hotelreinigung-regensburg": {
@@ -712,7 +712,7 @@ export const gscClickPriorities = {
       "hotelreinigung angebot",
       "reinigung hotel Regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/grundreinigung-regensburg": {
@@ -733,7 +733,7 @@ export const gscClickPriorities = {
       "büro grundreinigung Regensburg",
       "grundreinigung angebot",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/regensburg/reinigung": {
@@ -754,7 +754,7 @@ export const gscClickPriorities = {
       "reinigungsfirma Regensburg privathaushalt",
       "putzfrau Regensburg anfragen",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/treppenhausreinigung-regensburg": {
@@ -775,7 +775,7 @@ export const gscClickPriorities = {
       "hausverwaltung reinigung Regensburg",
       "treppenhausreinigung angebot",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/regensburg/gewerbereinigung": {
@@ -797,7 +797,7 @@ export const gscClickPriorities = {
       "büroreinigung Regensburg",
       "praxisreinigung Regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/regensburg/umzug": {
@@ -819,7 +819,7 @@ export const gscClickPriorities = {
       "umzugsangebot regensburg",
       "umzug mit reinigung regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: regensburgMoveAnchors,
   },
   "/regensburg/entruempelung": {
@@ -841,7 +841,7 @@ export const gscClickPriorities = {
       "keller rär?umen Regensburg",
       "räumungsangebot regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: regensburgClearanceAnchors,
   },
   "/regensburg/wohnungsaufloesung": {
@@ -863,7 +863,7 @@ export const gscClickPriorities = {
       "wohnung auflösen Regensburg",
       "nachlass räumung regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: regensburgClearanceAnchors,
   },
   "/umzug-muenchen": {
@@ -885,7 +885,7 @@ export const gscClickPriorities = {
       "umzugsangebot münchen prüfen",
       "umzug münchen festpreis",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/fernumzug-muenchen", label: "Fernumzug München" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot München prüfen" },
@@ -912,7 +912,7 @@ export const gscClickPriorities = {
       "wohnungsreinigung Regensburg",
       "reinigung nach umzug Regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/umzug-muenchen", label: "Umzug München" },
       { href: "/fernumzug-muenchen", label: "Fernumzug München" },
@@ -938,7 +938,7 @@ export const gscClickPriorities = {
       "umzugsservice regensburg",
       "umzugsangebot regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "ItemList"],
     internalLinkAnchors: [
       { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug-kosten", label: "Umzugskosten Regensburg" },
@@ -995,7 +995,7 @@ const monitoredMoneyPageContext = {
   "/regensburg/endreinigung": {
     service: "reinigung",
     city: "regensburg",
-    intent: "Endreinigung vor Uebergabe, Reinigung nach Entruempelung und Vermieter-Ready-Service",
+    intent: "Endreinigung vor Uebergabe, Reinigung nach Entruempelung und Uebergabevorbereitung",
     expectedRelatedLinks: ["/regensburg/uebergabereinigung", "/objektbrief", "/uebergabeakte", "/angebot-guenstiger-pruefen"],
   },
   "/entruempelung-landshut": {

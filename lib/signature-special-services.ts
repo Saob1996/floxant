@@ -23,6 +23,22 @@ export type SignatureSpecialCluster = {
   links: readonly SignatureSpecialLink[];
 };
 
+const nonPublishedServiceHrefs = new Set([
+  "/fairpreis-check",
+  "/uebergabe-sprint",
+  "/rueckfahrt-radar",
+  "/solarreinigung",
+  "/pv-anlagen-reinigung",
+  "/glasreinigung",
+  "/mini-umzug",
+  "/express-umzug",
+  "/vermieter-ready-service",
+]);
+
+function isPublishedSpecialLink(link: SignatureSpecialLink) {
+  return !nonPublishedServiceHrefs.has(link.href) && !/startklar/i.test(link.title);
+}
+
 export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "FLOXANT Fairpreis-Check",
@@ -132,7 +148,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeD
     priority: "B",
     tags: ["Buero", "Praxis", "Gewerbe"],
   },
-] as const);
+] as const).filter(isPublishedSpecialLink);
 
 export const specialCleaningLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
@@ -207,7 +223,7 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = germanizeDe
     priority: "B",
     tags: ["Hausverwaltung", "Turnus", "Schluessel"],
   },
-] as const);
+] as const).filter(isPublishedSpecialLink);
 
 export const specialMovingLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
@@ -246,7 +262,7 @@ export const specialMovingLinks: readonly SignatureSpecialLink[] = germanizeDeep
     priority: "A",
     tags: ["Rueckfahrt", "Beiladung", "Flexibilitaet"],
   },
-] as const);
+] as const).filter(isPublishedSpecialLink);
 
 export const specialClearanceLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
@@ -320,7 +336,7 @@ export const offerCheckLinks: readonly SignatureSpecialLink[] = germanizeDeep([
 export const signatureSpecialClusters: readonly SignatureSpecialCluster[] = germanizeDeep([
   {
     title: "Signature Services",
-    intro: "FLOXANT-Produkte fuer Angebote, Objektbrief, Uebergabe, Plan B, Rueckfahrt, PV und sensible Sonderlagen.",
+    intro: "Freigegebene FLOXANT-Produkte fuer Angebotspruefung, Objektbrief, Uebergabe, Plan B und sensible Sonderlagen.",
     links: signatureServiceLinks,
   },
   {
@@ -395,7 +411,7 @@ export const problemBasedServiceLinks: readonly SignatureSpecialLink[] = germani
     cta: "Buero startklar machen",
     type: "Signature Service",
   },
-] as const);
+] as const).filter(isPublishedSpecialLink);
 
 export function getSignatureLinks(limit = signatureServiceLinks.length) {
   return signatureServiceLinks.slice(0, limit);

@@ -318,14 +318,14 @@
       "service": "Solarreinigung und PV-Anlagen-Reinigung",
       "category": "Reinigung",
       "subcategory": "Spezialreinigung",
-      "primaryUrl": "/regensburg/solarreinigung",
+      "primaryUrl": "/regensburg/reinigung",
       "duesseldorfUrl": "/duesseldorf",
-      "regensburgUrl": "/regensburg/solarreinigung",
+      "regensburgUrl": "/regensburg/reinigung",
       "components": ["GrowthServiceLandingPage", "SignatureServices"],
       "cityReferences": ["Düsseldorf nach Prüfung", "Regensburg"],
-      "duesseldorfAvailable": "manual-review",
+      "duesseldorfAvailable": "not-published",
       "duesseldorfArea50": "manual",
-      "regensburgAvailable": "yes",
+      "regensburgAvailable": "not-published",
       "regensburgArea50": "manual",
       "signatureLink": "PV-Sichtklar-Service",
       "specialServiceLink": "Spezialreinigung",
@@ -339,8 +339,8 @@
       "englishIntentPotential": "solar panel cleaning Germany",
       "faq": "yes",
       "aiAnswer": "partial",
-      "action": "Keine Ertragsversprechen; Fotos, Dachart, Zugang und Sicherheit betonen.",
-      "priority": "P0"
+      "action": "Keine eigenständige öffentliche Route; nur Einzelfallprüfung innerhalb der allgemeinen Reinigung.",
+      "priority": "P2"
     },
     {
       "id": "umzug",
@@ -950,7 +950,7 @@
       "solution": "Fotos, Zugang, Dachart und Verschmutzung einordnen.",
       "boundaries": "Keine Ertragsversprechen.",
       "neededInputs": ["Fotos", "Dachart", "Zugang", "Verschmutzung", "Ort"],
-      "cta": "/regensburg/solarreinigung",
+      "cta": "/regensburg/reinigung",
       "englishTerms": ["solar panel cleaning", "pv cleaning"],
       "mapsRelevance": "mittel"
     }

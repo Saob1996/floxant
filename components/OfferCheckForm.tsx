@@ -19,8 +19,6 @@ const allServiceOptions = [
   { value: "bueroreinigung", label: "Büroreinigung" },
   { value: "gewerbereinigung", label: "Gewerbereinigung" },
   { value: "haushaltsaufloesung", label: "Haushaltsauflösung" },
-  { value: "solarreinigung", label: "Solarreinigung" },
-  { value: "pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
   { value: "fensterreinigung", label: "Glas- / Fensterreinigung" },
   { value: "klaviertransport", label: "Klaviertransport" },
   { value: "entruempelung", label: "Entrümpelung" },
@@ -31,8 +29,7 @@ const allServiceOptions = [
 ];
 
 const duesseldorfServiceOptions = [
-  { value: "reinigung", label: "Reinigung Regensburg" },
-  { value: "entsorgung", label: "Entsorgung Düsseldorf" },
+  { value: "reinigung", label: "Reinigung Düsseldorf" },
 ];
 
 const addonOptions = [
@@ -307,9 +304,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
             Region*
             <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" data-event="region_select" data-region={region} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
+              <option value="regensburg_200km">Verifiziertes Einsatzgebiet bis 75 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">

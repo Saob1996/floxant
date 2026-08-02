@@ -41,7 +41,7 @@ const clusters = [
  },
  {
   title: "Reinigung Regensburg",
-  intro: "Reinigung für Büro, Praxis, Wohnung, Treppenhaus, Gewerbe und vorhandene Angebote im 50-km-Umkreis.",
+  intro: "Reinigung für Büro, Praxis, Wohnung, Treppenhaus, Gewerbe und vorhandene Angebote im 75-km-Umkreis.",
   links: [
    { href: "/regensburg/reinigung", label: "Reinigungsfirma Regensburg" },
    { href: "/regensburg/bueroreinigung", label: "BüB?ro reinigen in Regensburg" },

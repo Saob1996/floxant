@@ -71,7 +71,7 @@ export function ContactHeroCopy({
       >
         {context.headline}
       </h1>
-      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
         {context.description}
       </p>
     </>

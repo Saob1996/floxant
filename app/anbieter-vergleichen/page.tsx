@@ -229,9 +229,9 @@ export default function AnbieterVergleichenPage() {
 
    <SignatureServicesGrid
     title="Signature Services für sichere Anbieterentscheidungen."
-    intro="Fairpreis-Check, Angebotscheck, Objektbrief und Plan B helfen, wenn ein Anbietervergleich sonst nur beim niedrigsten Preis stehen bleibt."
+     intro="Angebotscheck, Objektbrief und Plan B helfen, wenn ein Anbietervergleich sonst nur beim niedrigsten Preis stehen bleibt."
     services={signatureServiceLinks.filter((item) =>
-     ["FLOXANT Fairpreis-Check", "FLOXANT Angebotscheck", "FLOXANT Objektbrief", "FLOXANT Plan-B-Service"].includes(item.title),
+      ["FLOXANT Angebotscheck", "FLOXANT Objektbrief", "FLOXANT Plan-B-Service"].includes(item.title),
     )}
    />
 

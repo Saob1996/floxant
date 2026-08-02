@@ -244,8 +244,8 @@ export default function Notfallreinigung24hPage() {
             <div className="grid gap-4">
               {[
                 "Regensburg und Umgebung werden als Kerngebiet besonders direkt eingeordnet.",
-                "Reinigungsanfragen außerhalb des 50-km-Umkreises werden nicht als Reinigungsauftrag beworben.",
-                "Regensburg wird passend zum Anliegen behandelt: Reinigung ist auf den 50-km-Umkreis begrenzt, weitere Leistungen werden getrennt geprüft.",
+                "Reinigungsanfragen außerhalb des 75-km-Umkreises werden nicht als Reinigungsauftrag beworben.",
+                "Regensburg wird passend zum Anliegen behandelt: Reinigung ist auf den 75-km-Umkreis begrenzt, weitere Leistungen werden getrennt geprüft.",
                 "Bei starkem Zeitdruck helfen klare Fotos, kurze Sprachnachricht und erreichbare Kontaktperson am meisten.",
               ].map((text) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">

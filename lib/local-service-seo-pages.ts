@@ -45,20 +45,6 @@ const commonProcess = [
   "Das Team führt den Auftrag nach abgestimmtem Umfang sauber und nachvollziehbar aus.",
 ] as const;
 
-const duesseldorfDistricts = [
-  "Zentrum",
-  "Galgenberg",
-  "Westenviertel",
-  "Stadtamhof",
-  "Flingern",
-  "Reinhausen",
-  "Burgweinting",
-  "Kasernenviertel",
-  "Reinhausen",
-  "Innenstadt",
-  "Osthafen",
-] as const;
-
 const regensburgDistricts = [
   "Innenstadt",
   "Stadtamhof",
@@ -71,7 +57,7 @@ const regensburgDistricts = [
   "Westenviertel",
 ] as const;
 
-const duesseldorfServiceLinks = [
+const regensburgComplementaryServiceLinks = [
   {
     href: "/regensburg/reinigung",
     label: "Reinigung Regensburg anfragen",
@@ -174,10 +160,10 @@ export const localServiceSeoPages = {
       "Entfernung zwischen Start und Ziel, Terminfenster und Zeitdruck.",
       "Zusatzleistungen wie Packhilfe, Entrümpelung, Entsorgung oder Endreinigung.",
     ],
-    localTitle: "Düsseldorfer Umzüge brauchen genaue Zugangsdaten",
+    localTitle: "Regensburger Umzüge brauchen genaue Zugangsdaten",
     localText:
-      "In Regensburg verändern zentrale Lagen, Hinterhöfe, Lieferzonen und enge Zeitfenster den Aufwand deutlich. In Galgenberg, Stadtamhof, Flingern oder Innenstadt zählen Etage und Haltemöglichkeit oft stärker; in Westenviertel, Burgweinting, Kasernenviertel oder Reinhausen sind Strecke, Parken und Zugang früh zu klären.",
-    districts: duesseldorfDistricts,
+      "In Regensburg verändern zentrale Lagen, Hinterhöfe, Lieferzonen und enge Zeitfenster den Aufwand deutlich. In Galgenberg, Stadtamhof, Kumpfmühl oder Innenstadt zählen Etage und Haltemöglichkeit oft stärker; in Westenviertel, Burgweinting, Kasernenviertel oder Reinhausen sind Strecke, Parken und Zugang früh zu klären.",
+    districts: regensburgDistricts,
     trustItems: [
       "Klare Kommunikation vor dem Termin statt pauschaler Zusage.",
       "Fotos, Videos oder Besichtigung machen Volumen und Zugang nachvollziehbar.",
@@ -185,7 +171,7 @@ export const localServiceSeoPages = {
       "Keine Garantie auf niedrigsten Preis und kein Festpreis ohne Prüfung.",
     ],
     relatedLinks: [
-      ...duesseldorfServiceLinks,
+      ...regensburgComplementaryServiceLinks,
       {
         href: "/angebot-vergleichen-regensburg",
         label: "Umzugsangebot prüfen lassen",
@@ -277,8 +263,8 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Entrümpelung in Regensburg ist oft eine Zugangsfrage",
     localText:
-      "In Innenstadt, Galgenberg, Flingern, Stadtamhof oder Reinhausen sind Treppenhäuser, Ladezonen und Hausordnungen oft entscheidend. In Burgweinting, Kasernenviertel, Reinhausen oder Westenviertel zählen zusätzlich Strecke, Parkmöglichkeit und der Zustand der Fläche nach der Räumung.",
-    districts: duesseldorfDistricts,
+      "In Innenstadt, Galgenberg, Kumpfmühl, Stadtamhof oder Reinhausen sind Treppenhäuser, Ladezonen und Hausordnungen oft entscheidend. In Burgweinting, Kasernenviertel, Prüfening oder Westenviertel zählen zusätzlich Strecke, Parkmöglichkeit und der Zustand der Fläche nach der Räumung.",
+    districts: regensburgDistricts,
     trustItems: [
       "Diskrete Anfrage bei sensiblen Fällen, Nachlass oder belasteten Räumen.",
       "Keine Zusage für Gefahrstoffe, Asbest, Chemikalien oder Sonderabfälle ohne Prüfung.",
@@ -286,7 +272,7 @@ export const localServiceSeoPages = {
       "Vor-Ort-Besichtigung in Regensburg möglich, wenn Fotos nicht reichen.",
     ],
     relatedLinks: [
-      ...duesseldorfServiceLinks,
+      ...regensburgComplementaryServiceLinks,
       {
         href: "/regensburg/umzug",
         label: "Umzug Regensburg abstimmen",
@@ -378,8 +364,8 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Haushaltsauflösung mit Blick auf Zugang und Übergabe",
     localText:
-      "In zentralen Stadtteilen wie Innenstadt, Innenstadt, Stadtamhof oder Osthafen sind Zugang und Haltezone oft kritisch. In Galgenberg, Westenviertel, Burgweinting, Kasernenviertel oder Reinhausen entscheidet häufig, ob Wohnung, Keller und Reinigung in einem Ablauf sinnvoll verbunden werden können.",
-    districts: duesseldorfDistricts,
+      "In Innenstadt, Stadtamhof, Reinhausen oder im Ostenviertel sind Zugang und Haltezone oft kritisch. In Galgenberg, Westenviertel, Burgweinting, Kasernenviertel oder Prüfening entscheidet häufig, ob Wohnung, Keller und Reinigung in einem Ablauf sinnvoll verbunden werden können.",
+    districts: regensburgDistricts,
     trustItems: [
       "Respektvolle Kommunikation bei Nachlass, Seniorenwechsel oder sensiblen Situationen.",
       "Vor-Ort-Besichtigung in Regensburg möglich, wenn Umfang oder Freigabe unklar sind.",
@@ -387,7 +373,7 @@ export const localServiceSeoPages = {
       "Räumung, Entsorgung, Reinigung und Übergabe werden offen benannt.",
     ],
     relatedLinks: [
-      ...duesseldorfServiceLinks,
+      ...regensburgComplementaryServiceLinks,
       {
         href: "/regensburg/umzug",
         label: "Senioren-Umzug Regensburg prüfen",
@@ -440,7 +426,7 @@ export const localServiceSeoPages = {
     ],
     metaTitle: "Gebäudereinigung Regensburg | Floxant",
     metaDescription:
-      "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
+      "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 75 km, Fotos senden, Umfang klären.",
     titleAlternatives: [
       "Reinigung Regensburg | Fotos senden, Aufwand klären",
       "Reinigungsfirma Regensburg | Schnell einschätzen lassen",
@@ -448,7 +434,7 @@ export const localServiceSeoPages = {
     ],
     headline: "Gebäudereinigung in Regensburg und Umgebung",
     intro:
-      "FLOXANT prüft Gebäudereinigung in Regensburg und im Umkreis bis 50 km nach Objektart, Fläche, Räumen, Zustand, Zugang, Termin und gewünschtem Ergebnis. Für laufende Büro- oder Gewerbereinigung führen die passenden B2B-Seiten weiter.",
+      "FLOXANT prüft Gebäudereinigung in Regensburg und im verifizierten Einsatzgebiet bis 75 km nach Objektart, Fläche, Räumen, Zustand, Zugang, Termin und gewünschtem Ergebnis. Für laufende Büro- oder Gewerbereinigung führen die passenden B2B-Seiten weiter.",
     primaryCta: "Gebäudereinigung in Regensburg anfragen",
     secondaryCta: "Fotos zum Zustand senden",
     bookingHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
@@ -480,7 +466,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Reinigung nach Stadtteil und Objekt einordnen",
     localText:
-      "In der Altstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen, Reinhausen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug. Für Reinigungsservices bleibt FLOXANT bei Regensburg plus 50 km.",
+      "In der Altstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen, Reinhausen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug. Für Reinigungsservices gilt das verifizierte Regensburger Einsatzgebiet bis 75 km.",
     districts: regensburgDistricts,
     trustItems: [
       "Klare Einschätzung statt pauschaler Reinigungsgarantie.",
@@ -528,8 +514,8 @@ export const localServiceSeoPages = {
         a: "Ja, wenn Umfang und Termin passen. Räumung, Entsorgung und Reinigung werden getrennt eingeordnet.",
       },
       {
-        q: "Bietet FLOXANT Reinigung außerhalb von 50 km an?",
-        a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
+        q: "Bietet FLOXANT Reinigung außerhalb von 75 km an?",
+        a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und das verifizierte Einsatzgebiet bis 75 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
       },
       {
         q: "Ist eine Vor-Ort-Besichtigung möglich?",
@@ -651,7 +637,7 @@ export const localServiceSeoPages = {
       },
       {
         q: "Welches Gebiet deckt die Gewerbereinigung ab?",
-        a: "Gewerbereinigung wird für Regensburg und den Umkreis bis 50 km eingeordnet. Der Radius hilft, Anfahrt, Randzeiten und laufende Betreuung realistisch zu planen.",
+        a: "Gewerbereinigung wird für Regensburg und das verifizierte Einsatzgebiet bis 75 km eingeordnet. Der Radius hilft, Anfahrt, Randzeiten und laufende Betreuung realistisch zu planen.",
       },
       {
         q: "Kann ein bestehendes Angebot geprüft werden?",

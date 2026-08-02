@@ -111,11 +111,13 @@ export default function UmzugsunternehmenRegensburgPage() {
     },
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqItems.map((item) => ({
-        "@type": "Question",
+      "@type": "ItemList",
+      name: "Häufige Fragen",
+      itemListElement: faqItems.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
         name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
+        description: item.a,
       })),
     },
   ];

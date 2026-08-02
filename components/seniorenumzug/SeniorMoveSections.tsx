@@ -166,9 +166,9 @@ const combinedServices: CardItem[] = [
     Icon: ClipboardCheck,
   },
   {
-    title: "Übergabe-Sprint",
+    title: "Übergabeakte",
     text: "Wenn Termin, Restpunkte, Reinigung und Schlüsselübergabe in kurzer Zeit sortiert werden müssen.",
-    href: "/uebergabe-sprint",
+    href: "/uebergabeakte",
     cta: "Übergabe vorbereiten",
     Icon: CalendarClock,
   },

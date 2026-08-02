@@ -28,7 +28,9 @@ const legalLinks = [
 
 const authorityLinks = [
   { href: "/duesseldorf", label: "Düsseldorf" },
+  { href: "/duesseldorf/einsatzgebiet", label: "Einsatzgebiet Düsseldorf" },
   { href: "/regensburg", label: "Regensburg" },
+  { href: "/region-regensburg", label: "Einsatzgebiet Regensburg" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
   { href: "/kontakt", label: "Kontakt" },
@@ -73,9 +75,9 @@ export function Footer({ dic }: { dic?: any } = {}) {
       : ["duesseldorf", "regensburg"];
   const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
   const footerIntro = isDuesseldorfContext
-    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
+    ? "Düsseldorf bündelt Reinigungsleistungen, Angebotsprüfung und das verifizierte 75-km-Einsatzgebiet ohne zusätzliche Scheinstandorte."
     : isRegensburgContext
-      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
+      ? "Regensburg steht für Umzug, Transport und Räumung im verifizierten 75-km-Einsatzgebiet; Reinigung bleibt eine getrennte Ergänzungsleistung."
       : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
   const footerContactHref = buildGlobalRequestHref("global_footer");
 
@@ -263,7 +265,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               </Link>
             ))}
           </div>
-          <p className="text-xs font-black uppercase tracking-normal text-slate-500">
+          <p className="text-xs font-black uppercase tracking-normal text-slate-400">
             © 2026 FLOXANT
           </p>
         </section>

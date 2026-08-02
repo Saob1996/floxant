@@ -44,7 +44,7 @@ function nearMe(city: string, service: string) {
 const regensburgCleaningProblems = [
   "Flaeche, Objektart, Zustand und Turnus sind vor dem Angebot unklar",
   "Fotos, Zugang, Termin und Uebergabeziel fehlen im bestehenden Angebot",
-  "Reinigung muss auf Regensburg und den 50-km-Umkreis begrenzt bleiben",
+  "Reinigung muss auf Regensburg und den 75-km-Umkreis begrenzt bleiben",
 ] as const;
 
 const regensburgServiceProblems = [
@@ -77,7 +77,7 @@ export const localSeoKeywordStrategies = [
     primaryKeyword: "reinigung regensburg",
     secondaryKeywords: ["reinigungsfirma regensburg", "bueroreinigung regensburg", "gewerbereinigung regensburg"],
     longTailKeywords: [
-      "reinigung regensburg 50 km umkreis",
+      "reinigung regensburg 75 km umkreis",
       "reinigung regensburg wohnung buero praxis",
       "reinigungsangebot regensburg pruefen",
     ],
@@ -152,7 +152,7 @@ export const localSeoKeywordStrategies = [
     serviceLabel: "Cleaning service",
     primaryKeyword: "cleaning service Regensburg",
     secondaryKeywords: ["office cleaning Regensburg", "apartment cleaning Regensburg", "move out cleaning Regensburg"],
-    longTailKeywords: ["cleaning service Regensburg within 50 km", "cleaning quote review Regensburg"],
+    longTailKeywords: ["cleaning service Regensburg within 75 km", "cleaning quote review Regensburg"],
     nearMeKeywords: ["cleaning service near me Regensburg", "cleaner near me Regensburg"],
     englishKeywords: ["cleaning service Regensburg", "cleaning company Regensburg"],
     mixedLanguageKeywords: ["Reinigung Regensburg English", "cleaning Regensburg Angebot"],

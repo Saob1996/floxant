@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { BookingQueryRegionGate } from "@/components/BookingQueryRegionGate";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
@@ -42,6 +43,9 @@ import {
 const bookingUrl = `${company.url}/buchung`;
 const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
   "Hallo FLOXANT, ich möchte eine Anfrage zu Umzug, Reinigung oder Entrümpelung stellen.",
+)}`;
+const duesseldorfWhatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
+  "Hallo FLOXANT, ich möchte eine Reinigungsanfrage für Düsseldorf stellen.",
 )}`;
 
 type BookingServicePreset = "umzug" | "reinigung" | "entsorgung" | "leerfahrt" | null;
@@ -86,14 +90,25 @@ function getBookingHeroCopy(
   const regionLabel = getBookingRegionLabel(region);
   const eyebrowPrefix = isGoogleMapsFlow ? "Google Maps Anfrage" : regionLabel;
 
+  if (region === "duesseldorf" && service !== "reinigung") {
+    return {
+      eyebrow: `${eyebrowPrefix} · Reinigung`,
+      title: "Reinigung in Düsseldorf anfragen.",
+      description:
+        "Düsseldorf ist auf Reinigung begrenzt. Beschreiben Sie Objekt, Fläche, Zustand, Turnus und Termin; Umzug, Transport und Räumung werden über Regensburg geführt.",
+      wizardEyebrow: "Düsseldorf · Reinigung",
+      wizardTitle: "Düsseldorfer Reinigungsanfrage starten.",
+      wizardDescription:
+        "Wählen Sie Reinigung und ergänzen Sie Objekt, Fläche, Zustand, Fotos, Turnus oder Übergabeziel.",
+    };
+  }
+
   if (service === "umzug") {
     return {
       eyebrow: `${eyebrowPrefix} · Umzug`,
-      title: region === "duesseldorf" ? "Umzug Düsseldorf anfragen." : "Umzug direkt anfragen.",
+      title: "Umzug direkt anfragen.",
       description:
-        region === "duesseldorf"
-          ? "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft, welche Hilfe für Ihren Umzug in Düsseldorf sinnvoll passt."
-          : "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft den Umzug mit passenden Zusatzleistungen wie Endreinigung, Räumung oder Rückfahrt.",
+        "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft den Umzug mit passenden Zusatzleistungen wie Endreinigung, Räumung oder Rückfahrt.",
       wizardEyebrow: "Umzugsanfrage",
       wizardTitle: "Umzugsdaten senden.",
       wizardDescription:
@@ -212,7 +227,7 @@ const primaryInquiryPaths = [
 const secondaryRequestCases = [
   {
     title: "Fotos ergänzen",
-    text: "Zugang, Menge, Zustand oder Angebot direkt im Formular mitschicken.",
+    text: "Objekt, Fläche, Zugang, Zustand, Fotos oder Angebot direkt im Formular mitschicken.",
     action: "/buchung?entry=fotos#buchungssystem",
     detail: "/angebot-guenstiger-pruefen",
     Icon: ClipboardCheck,
@@ -348,6 +363,12 @@ const proofPoints = [
   "Betreuung aus Regensburg",
 ] as const;
 
+const duesseldorfProofPoints = [
+  "Unverbindliche Anfrage",
+  "Reinigung klar abgegrenzt",
+  "75-km-Gebiet nach Prüfung",
+] as const;
+
 const detailCards = [
   {
     title: "Kernleistungen",
@@ -425,6 +446,7 @@ export default async function BuchungPage() {
   const isGoogleMapsBookingFlow = false;
   const initialBookingEntry = "direkt";
   const heroCopy = getBookingHeroCopy(initialBookingService, initialBookingRegion, isGoogleMapsBookingFlow);
+  const duesseldorfHeroCopy = getBookingHeroCopy(null, "duesseldorf", isGoogleMapsBookingFlow);
   const regionalDecisionPaths = getRegionalDecisionPaths(initialBookingRegion);
 
   const jsonLd = {
@@ -457,7 +479,7 @@ export default async function BuchungPage() {
           "Zentraler Startpunkt für unverbindliche Anfragen, Einschätzung, Express-Anfrage und Kostenorientierung bei FLOXANT.",
         path: "/buchung",
         serviceType: "Umzug, Reinigung, Entrümpelung, Anfrage und Beratung",
-        areaServed: ["Regensburg", "Bayern", "Düsseldorf"],
+        areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
       }),
       buildFaqJsonLd(faqItems),
       {
@@ -489,16 +511,10 @@ export default async function BuchungPage() {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-5 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch">
             <div className="rounded-[2rem] border border-white/80 bg-white/[0.82] p-6 shadow-[0_26px_80px_rgba(15,23,42,0.08)] backdrop-blur md:rounded-[2.6rem] md:p-9">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
-                <MapPin className="h-4 w-4" />
-                {heroCopy.eyebrow}
-              </div>
-              <h1 className="mt-6 max-w-[12ch] text-4xl font-bold leading-[0.98] tracking-[-0.025em] text-slate-950 md:text-6xl">
-                {heroCopy.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 md:text-lg md:leading-8">
-                {heroCopy.description}
-              </p>
+              <BookingQueryRegionGate
+                defaultContent={<BookingHeroCopy copy={heroCopy} />}
+                duesseldorfContent={<BookingHeroCopy copy={duesseldorfHeroCopy} />}
+              />
 
               {isGoogleMapsBookingFlow ? (
                 <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-900">
@@ -508,47 +524,74 @@ export default async function BuchungPage() {
               ) : null}
 
               <div className="mt-7 grid gap-2 sm:grid-cols-3">
-                {proofPoints.map((point) => (
-                  <div
-                    key={point}
-                    className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5"
-                  >
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-600" />
-                    {point}
-                  </div>
-                ))}
+                <BookingQueryRegionGate
+                  defaultContent={<BookingProofPoints points={proofPoints} />}
+                  duesseldorfContent={<BookingProofPoints points={duesseldorfProofPoints} />}
+                />
               </div>
             </div>
 
             <div className="hidden lg:block">
-              <QuickDecisionPanel region={initialBookingRegion} />
+              <BookingQueryRegionGate
+                defaultContent={<QuickDecisionPanel region={initialBookingRegion} />}
+                duesseldorfContent={<QuickDecisionPanel region="duesseldorf" />}
+              />
             </div>
           </div>
 
           <div id="anfragewege" className="relative -top-28 h-0" />
 
           <div className="mt-5 grid gap-3 lg:hidden">
-            {regionalDecisionPaths.map((item) => (
-              <DecisionPathCard key={item.title} item={item} compact />
-            ))}
+            <BookingQueryRegionGate
+              defaultContent={regionalDecisionPaths.map((item) => (
+                <DecisionPathCard key={item.title} item={item} compact />
+              ))}
+              duesseldorfContent={getRegionalDecisionPaths("duesseldorf").map((item) => (
+                <DecisionPathCard key={item.title} item={item} compact />
+              ))}
+            />
           </div>
 
-          <CoreServicesGrid region={initialBookingRegion} />
+          <BookingQueryRegionGate
+            defaultContent={<CoreServicesGrid region={initialBookingRegion} />}
+            duesseldorfContent={<CoreServicesGrid region="duesseldorf" />}
+          />
         </div>
       </section>
 
-      <BookingWizardSection
-        dict={dict}
-        initialService={initialBookingService}
-        initialRegion={initialBookingRegion}
-        initialEntry={initialBookingEntry}
-        eyebrow={heroCopy.wizardEyebrow}
-        title={heroCopy.wizardTitle}
-        description={heroCopy.wizardDescription}
+      <BookingQueryRegionGate
+        defaultContent={(
+          <BookingWizardSection
+            dict={dict}
+            initialService={initialBookingService}
+            initialRegion={initialBookingRegion}
+            initialEntry={initialBookingEntry}
+            eyebrow={heroCopy.wizardEyebrow}
+            title={heroCopy.wizardTitle}
+            description={heroCopy.wizardDescription}
+          />
+        )}
+        duesseldorfContent={(
+          <BookingWizardSection
+            dict={dict}
+            initialService={null}
+            initialRegion="duesseldorf"
+            initialEntry={initialBookingEntry}
+            eyebrow={duesseldorfHeroCopy.wizardEyebrow}
+            title={duesseldorfHeroCopy.wizardTitle}
+            description={duesseldorfHeroCopy.wizardDescription}
+          />
+        )}
       />
 
-      <SecondaryRequestCases region={initialBookingRegion} />
+      <BookingQueryRegionGate
+        defaultContent={<SecondaryRequestCases region={initialBookingRegion} />}
+        duesseldorfContent={<SecondaryRequestCases region="duesseldorf" />}
+      />
 
+      <BookingQueryRegionGate
+        defaultContent={(
+          <>
       <FloxantNextStepPanel variant="booking" className="pb-12 pt-0" />
 
       <AiServiceRecommendationPanel variant="default" className="pb-12 pt-0" />
@@ -744,9 +787,23 @@ export default async function BuchungPage() {
           </div>
         </div>
       </section>
-      <BookingStickyActions
-        whatsappHref={whatsappUrl}
-        budgetHref={withBookingRegion("/buchung?entry=budget#buchungssystem", initialBookingRegion)}
+          </>
+        )}
+        duesseldorfContent={<DuesseldorfBookingSupport />}
+      />
+      <BookingQueryRegionGate
+        defaultContent={(
+          <BookingStickyActions
+            whatsappHref={whatsappUrl}
+            budgetHref={withBookingRegion("/buchung?entry=budget#buchungssystem", initialBookingRegion)}
+          />
+        )}
+        duesseldorfContent={(
+          <BookingStickyActions
+            whatsappHref={duesseldorfWhatsappUrl}
+            budgetHref={withBookingRegion("/buchung?entry=budget#buchungssystem", "duesseldorf")}
+          />
+        )}
       />
     </main>
   );
@@ -775,7 +832,97 @@ function QuickDecisionPanel({ region }: { region: BookingRegionPreset }) {
   );
 }
 
+function BookingHeroCopy({ copy }: { copy: ReturnType<typeof getBookingHeroCopy> }) {
+  return (
+    <>
+      <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
+        <MapPin className="h-4 w-4" />
+        {copy.eyebrow}
+      </div>
+      <h1 className="mt-6 max-w-[12ch] text-4xl font-bold leading-[0.98] tracking-[-0.025em] text-slate-950 md:text-6xl">
+        {copy.title}
+      </h1>
+      <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 md:text-lg md:leading-8">
+        {copy.description}
+      </p>
+    </>
+  );
+}
+
+function BookingProofPoints({ points }: { points: readonly string[] }) {
+  return points.map((point) => (
+    <div
+      key={point}
+      className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5"
+    >
+      <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-600" />
+      {point}
+    </div>
+  ));
+}
+
+function DuesseldorfBookingSupport() {
+  const links = [
+    {
+      href: "/duesseldorf/reinigung",
+      title: "Reinigung in Düsseldorf",
+      text: "Leistungsarten, Ablauf und direkte Reinigungsanfrage ansehen.",
+    },
+    {
+      href: "/angebot-vergleichen-duesseldorf",
+      title: "Reinigungsangebot prüfen",
+      text: "Vorhandenes Angebot, Umfang und offene Positionen sachlich einordnen.",
+    },
+    {
+      href: "/duesseldorf/einsatzgebiet",
+      title: "Einsatzgebiet prüfen",
+      text: "Ort im verifizierten 75-km-Gebiet suchen und Machbarkeit anfragen.",
+    },
+  ] as const;
+
+  return (
+    <section className="px-4 pb-14 sm:px-6" aria-labelledby="duesseldorf-booking-support-title">
+      <div className="mx-auto max-w-7xl rounded-[2rem] border border-blue-100 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-8">
+        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+          Düsseldorf · Reinigung
+        </p>
+        <h2
+          id="duesseldorf-booking-support-title"
+          className="mt-3 text-3xl font-bold tracking-tight text-slate-950"
+        >
+          Der nächste Schritt bleibt im Düsseldorfer Reinigungsbereich.
+        </h2>
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
+          Reinigung, Reinigungsangebot und Einsatzort werden getrennt geprüft. Umzug,
+          Transport und Räumung gehören nicht zum Düsseldorfer Leistungsbereich.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {links.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group rounded-[1.45rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+            >
+              <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+                Öffnen
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CoreServicesGrid({ region }: { region: BookingRegionPreset }) {
+  const availableServices =
+    region === "duesseldorf"
+      ? coreServices.filter((service) => service.title === "Reinigung")
+      : coreServices;
+
   return (
     <section id="kernleistungen" className="mt-5">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -793,7 +940,7 @@ function CoreServicesGrid({ region }: { region: BookingRegionPreset }) {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        {coreServices.map((service) => {
+        {availableServices.map((service) => {
           const Icon = service.Icon;
           const href = withBookingRegion(service.href, region);
 
@@ -996,6 +1143,13 @@ function BookingWizardSection({
 }
 
 function SecondaryRequestCases({ region }: { region: BookingRegionPreset }) {
+  const availableCases =
+    region === "duesseldorf"
+      ? secondaryRequestCases.filter((item) =>
+          ["Fotos ergänzen", "Schadensbegrenzung"].includes(item.title),
+        )
+      : secondaryRequestCases;
+
   return (
     <section id="sonderfaelle" className="px-4 pb-12 sm:px-6">
       <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 md:p-7">
@@ -1014,7 +1168,7 @@ function SecondaryRequestCases({ region }: { region: BookingRegionPreset }) {
         </div>
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {secondaryRequestCases.map((item) => {
+          {availableCases.map((item) => {
             const Icon = item.Icon;
             const actionHref = withBookingRegion(item.action, region);
 

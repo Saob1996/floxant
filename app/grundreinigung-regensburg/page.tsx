@@ -367,7 +367,7 @@ export default function GrundreinigungRegensburgPage() {
           <CleaningServiceArea
             compact
             title="Reinigungsservicegebiet Regensburg"
-            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 75 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
           />
         </div>
       </section>

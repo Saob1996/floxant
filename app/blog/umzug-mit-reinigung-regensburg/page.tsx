@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "blog/umzug-mit-reinigung-regensburg",
   title: "Umzug mit Reinigung in Regensburg sinnvoll planen | FLOXANT",
   description:
-   "Wann lohnt sich der Kombiservice aus Umzug und Reinigung? FLOXANT erklärt Ablauf, Vorteile und Preislogik für Regensburg und 50 km Umkreis.",
+   "Wann lohnt sich der Kombiservice aus Umzug und Reinigung? FLOXANT erklärt Ablauf, Vorteile und Preislogik für Regensburg und 75 km Umkreis.",
  });
 }
 

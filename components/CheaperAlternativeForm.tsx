@@ -22,7 +22,6 @@ const standardServices = [
   { value: "entruempelung", label: "Entrümpelung" },
   { value: "haushaltsaufloesung", label: "Haushaltsauflösung" },
   { value: "wohnungsaufloesung", label: "Wohnungsauflösung" },
-  { value: "solarreinigung", label: "Solarreinigung / PV" },
   { value: "klaviertransport", label: "Klaviertransport" },
   { value: "sonderreinigung", label: "Sonderreinigung" },
   { value: "b2b", label: "B2B-Service" },
@@ -33,12 +32,12 @@ const duesseldorfServices = [
   { value: "reinigung", label: "Reinigung Düsseldorf" },
   { value: "bueroreinigung", label: "Büroreinigung Düsseldorf" },
   { value: "gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
-  { value: "umzug", label: "Umzug Düsseldorf" },
-  { value: "entruempelung", label: "Entrümpelung Düsseldorf" },
-  { value: "haushaltsaufloesung", label: "Haushaltsauflösung Düsseldorf" },
-  { value: "solarreinigung", label: "Solarreinigung Düsseldorf" },
-  { value: "klaviertransport", label: "Klaviertransport Düsseldorf" },
-  { value: "sonstiges", label: "Sonstiges Düsseldorf" },
+  { value: "praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+  { value: "fensterreinigung", label: "Fensterreinigung Düsseldorf" },
+  { value: "grundreinigung", label: "Grundreinigung Düsseldorf" },
+  { value: "unterhaltsreinigung", label: "Unterhaltsreinigung Düsseldorf" },
+  { value: "baureinigung", label: "Bauendreinigung Düsseldorf" },
+  { value: "sonderreinigung", label: "Weitere Reinigungsleistung Düsseldorf" },
 ];
 
 const offerStatusOptions = [
@@ -322,7 +321,7 @@ export function CheaperAlternativeForm({
             Region*
             <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Regensburg plus ca. 50 km</option>
+              <option value="regensburg_200km">Regensburg plus ca. 75 km</option>
               <option value="bayern">Weitere Strecke nach Machbarkeit</option>
               <option value="duesseldorf">Düsseldorf und Umgebung</option>
             </select>

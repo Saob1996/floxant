@@ -9,13 +9,11 @@ import Link from "next/link";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 export async function generateMetadata(): Promise<Metadata> {
   const pageLocale: Locale = "de";
-  const dict = await getDictionary("de");
-  const content = dict.pages?.kurzfristiger_umzug_bayern || {};
   return generatePageSEO({
     pageLocale,
     path: "kurzfristiger-umzug-bayern",
-    title: content.meta_title || "Kurzfristiger Umzug Bayern | Schnell & Flexibel | FLOXANT",
-    description: content.meta_desc || "Kurzfristiger Umzug in Bayern – auch innerhalb weniger Tage.",
+    title: "Kurzfristiger Umzug Regensburg + 75 km | FLOXANT",
+    description: "Kurzfristigen Umzug im Einsatzgebiet bis 75 km um Regensburg anfragen. Fernziele sind nur Ziel einer konkreten Anfrage, keine flächendeckende Zusage.",
   });
 }
 export default async function KurzfristigerUmzugBayern() {
@@ -23,7 +21,7 @@ export default async function KurzfristigerUmzugBayern() {
   const dict = await getDictionary("de");
   const isDe = pageLocale === "de";
   const breadcrumbs = [
-    { label: "Umzug Bayern", href: `/umzug-bayern` },
+    { label: "Umzug ab Regensburg", href: `/umzug-bayern` },
     { label: "Kurzfristiger Umzug" }
   ];
   return (
@@ -33,15 +31,15 @@ export default async function KurzfristigerUmzugBayern() {
         <div className="max-w-7xl mx-auto text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
             <Zap className="w-4 h-4" />
-            <span>Kurzfristig verfügbar</span>
+            <span>Kurzfristig anfragen</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.05]">
-            Kurzfristiger Umzug in <span className="text-primary">Bayern</span>
+            Kurzfristiger Umzug ab <span className="text-primary">Regensburg</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Manchmal bleibt keine Zeit für wochenlange Planung. FLOXANT organisiert Ihren
-            kurzfristigen Umzug in ganz Bayern – sauber abgesprochen, versichert und auch unter
-            Zeitdruck mit einem klaren Ablauf.
+            Manchmal bleibt keine Zeit für wochenlange Planung. FLOXANT prüft kurzfristige Umzüge
+            im verifizierten Einsatzgebiet bis 75 km um Regensburg. Ein weiter entferntes Ziel kann
+            Teil der Anfrage sein, ist aber keine flächendeckende Vor-Ort-Zusage.
           </p>
         </div>
       </section>
@@ -51,14 +49,13 @@ export default async function KurzfristigerUmzugBayern() {
             <h2 className="text-3xl font-bold text-foreground mb-6">Schnell umziehen – ohne Qualitätsverlust</h2>
             <p>
               Kurzfristige Kündigungen, berufliche Versetzungen oder plötzliche Lebenswechsel
-              erfordern oft schnelles Handeln. FLOXANT ist darauf vorbereitet. Unser
-              Bereitschaftsnetzwerk in Regensburg und ganz Bayern ermöglicht auch bei kurzen
-              Vorlaufzeiten einen vollwertigen Umzugsservice.
+              erfordern oft schnelles Handeln. Im Einsatzgebiet bis 75 km um Regensburg prüft FLOXANT
+              Team, Fahrzeug, Termin und Umfang, bevor eine kurzfristige Durchführung bestätigt wird.
             </p>
             <p>
-              Ob innerhalb von Nürnberg, von München nach Regensburg oder bayernweit – wir
-              mobilisieren Teams schnell, planen effizient und führen Ihren Umzug mit gleicher
-              Sorgfalt durch wie bei monatelanger Vorplanung.
+              München, Nürnberg oder andere weiter entfernte Orte können nur Ziel einer konkreten
+              Fernziel-Anfrage ab dem Regensburger Einsatzgebiet sein. FLOXANT bewirbt dort keine
+              lokale oder flächendeckende Verfügbarkeit.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -66,7 +63,7 @@ export default async function KurzfristigerUmzugBayern() {
               {
                 icon: Zap,
                 title: "Schnelle Reaktion",
-                desc: "Anfrage heute – Umzug in wenigen Tagen meistens möglich.",
+                desc: "Kurze Vorlaufzeit wird anhand von Team, Fahrzeug, Umfang und Termin geprüft.",
               },
               {
                 icon: Clock,
@@ -94,13 +91,13 @@ export default async function KurzfristigerUmzugBayern() {
                   href={`/umzug-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 >
-                  Umzug Bayern
+                  Umzug ab Regensburg
                 </Link>
                 <Link
                   href={`/24h-umzug-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 >
-                  Kurzfristiger Umzug in Bayern
+                  Kurzfristiger Umzug ab Regensburg
                 </Link>
                 <Link
                   href={`/notfall-umzug-bayern`}

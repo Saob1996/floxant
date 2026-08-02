@@ -182,6 +182,11 @@ export const metadata: Metadata = {
     description,
     images: [heroImage],
   },
+  other: {
+    "geo.region": "DE-NW",
+    "geo.placename": "Düsseldorf",
+    "geo.position": "51.2225767;6.7772364",
+  },
 };
 
 function JsonLd() {
@@ -224,7 +229,13 @@ function JsonLd() {
           streetAddress: duesseldorfCompany.streetAddress,
           postalCode: duesseldorfCompany.postalCode,
           addressLocality: duesseldorfCompany.city,
+          addressRegion: duesseldorfCompany.state,
           addressCountry: duesseldorfCompany.countryCode,
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: duesseldorfCompany.geo.lat,
+          longitude: duesseldorfCompany.geo.lng,
         },
         areaServed: ["Düsseldorf und Umgebung"],
       },

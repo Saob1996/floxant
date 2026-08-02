@@ -24,7 +24,7 @@ const faqItems = [
   },
   {
     q: "In welchen Regionen gelten die Signature Services?",
-    a: "Reinigung gilt für Regensburg und den 50-km-Umkreis. Andere Signature-Services werden je nach Ort, Zugang, Termin und Verfügbarkeit separat geprüft.",
+    a: "Reinigung gilt für Regensburg und den 75-km-Umkreis. Andere Signature-Services werden je nach Ort, Zugang, Termin und Verfügbarkeit separat geprüft.",
   },
 ];
 
@@ -123,7 +123,7 @@ export default function SignaturServicesBlogPage() {
           {
             title: "Regionen sauber trennen",
             paragraphs: [
-              "Regensburg ist der feste Ausgangspunkt. Reinigung wird von dort aus nur für Regensburg und den 50-km-Umkreis geprüft. Andere Leistungen wie Umzug, Entrümpelung, Entsorgung, Transport und zusätzliche Hilfe werden nach Ort, Strecke, Termin, Zugang und Kapazität separat eingeordnet.",
+              "Regensburg ist der feste Ausgangspunkt. Reinigung wird von dort aus nur für Regensburg und den 75-km-Umkreis geprüft. Andere Leistungen wie Umzug, Entrümpelung, Entsorgung, Transport und zusätzliche Hilfe werden nach Ort, Strecke, Termin, Zugang und Kapazität separat eingeordnet.",
               "So bleibt die Zuordnung klar: kein überregionaler Reinigungstext, sondern lokale Prüfung für Reinigungsfälle und getrennte Machbarkeit für andere Services.",
             ],
           },

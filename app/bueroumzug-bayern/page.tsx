@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
-import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { getSpecialtyPageData } from "@/lib/specialty-page";
 import { Building2, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
@@ -9,29 +9,17 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-    locale: "de",
-    baseKey: "service_bueroumzug",
-    seoKey: "bueroumzug_bayern_spec",
-    city: "Bayern",
-  });
-
   return generatePageSEO({
     lang: "de",
     path: `bueroumzug-bayern`,
-    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, "Bayern", "de"),
-    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, "Bayern", "de"),
+    title: "Büroumzug Regensburg + Einsatzgebiet bis 75 km | FLOXANT",
+    description: "Büroumzug im Einsatzgebiet bis 75 km um Regensburg anfragen. Weiter entfernte Orte sind nur Fernziele einer konkreten Anfrage.",
   });
 }
 
 export default async function BueroUmzugBayernPage({ params }: PageProps) {
   const locale = "de";
-  const { 
-    localeDict, 
-    content, 
-    fallback, 
-    city 
-  } = await getSpecialtyPageData({
+  const { localeDict } = await getSpecialtyPageData({
     locale,
     baseKey: "service_bueroumzug",
     seoKey: "bueroumzug_bayern_spec",
@@ -42,53 +30,53 @@ export default async function BueroUmzugBayernPage({ params }: PageProps) {
     <SpecialtyPageLayout
       lang="de"
       dict={localeDict}
-      city={city}
-      heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-      highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
-      heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
-      ctaText={resolveField(content.cta, fallback.cta, city, "de")}
+      city="Regensburg"
+      heroBadge="Regensburg + Einsatzgebiet bis 75 km"
+      heroTitle="Büroumzug ab Regensburg klar planen"
+      highlightWord="Regensburg"
+      heroText="FLOXANT plant Büroumzüge im verifizierten Einsatzgebiet bis 75 km um Regensburg. Weiter entfernte Orte können nur Ziel einer konkreten Fernziel-Anfrage sein; daraus folgt keine flächendeckende Verfügbarkeit."
+      ctaText="Büroumzug ab Regensburg anfragen"
       heroImage="/assets/service-moving.webp"
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Büroumzug", href: `/umzug-bayern` },
-        { label: "Bayernweit" }
+        { label: "Regensburg + 75 km" }
       ]}
       chips={[
-        { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
-        { icon: Building2, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
-        { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+        { icon: Shield, text: "Verifiziertes Einsatzgebiet bis 75 km" },
+        { icon: Building2, text: "Arbeitsplätze und Inventar klar erfassen" },
+        { icon: Clock, text: "Fernziel nur als konkrete Anfrage" }
       ]}
       cards={[
         {
           icon: Star,
-          title: resolveNestedField(content.service1, fallback.service1, "title", city),
+          title: "Büroumzug im Einsatzgebiet",
           lines: [
-            resolveNestedField(content.service1, fallback.service1, "l1", city),
-            resolveNestedField(content.service1, fallback.service1, "l2", city),
-            resolveNestedField(content.service1, fallback.service1, "l3", city),
-            resolveNestedField(content.service1, fallback.service1, "l4", city),
+            "Start und Einsatzort bis 75 km um Regensburg",
+            "Arbeitsplätze, IT und Archiv getrennt erfassen",
+            "Laufwege, Ladezonen und Zeitfenster prüfen",
+            "Betriebsunterbrechung realistisch planen",
           ]
         },
         {
           icon: Zap,
-          title: resolveNestedField(content.service2, fallback.service2, "title", city),
+          title: "Fernziel-Anfrage",
           lines: [
-            resolveNestedField(content.service2, fallback.service2, "l1", city),
-            resolveNestedField(content.service2, fallback.service2, "l2", city),
-            resolveNestedField(content.service2, fallback.service2, "l3", city),
-            resolveNestedField(content.service2, fallback.service2, "l4", city),
+            "Weiter entfernten Zielort konkret angeben",
+            "Strecke, Umfang und Termin prüfen lassen",
+            "Keine lokale Verfügbarkeit am Fernziel behaupten",
+            "Zusage erst nach Machbarkeitsprüfung",
           ]
         }
       ]}
-      sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, "de")}
+      sectionTitle="Was für die regionale Planung gilt"
       sectionParagraphs={[
-        resolveField(content.section2_p1, fallback.section2_p1, city, "de"),
-        resolveField(content.section2_p2, fallback.section2_p2, city, "de"),
+        "Regensburg ist der Ausgangspunkt. Das verifizierte Einsatzgebiet reicht bis 75 km und wird vor jeder Zusage nach Umfang, Zugang, Termin und Kapazität geprüft.",
+        "München, Nürnberg, Augsburg und andere weiter entfernte Orte können Ziel einer konkreten Anfrage sein. Sie gehören nicht zum lokalen Einsatzgebiet.",
       ]}
-      wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
-      wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
-      wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+      wizardBadge="Büroumzug anfragen"
+      wizardTitle="Start, Ziel und Umfang konkret eintragen"
+      wizardText="Nennen Sie Startort, Zielort, Arbeitsplätze, Zugang und Termin. Ein Fernziel ist Teil der Anfrage, keine flächendeckende Verfügbarkeitszusage."
     />
   );
 }

@@ -482,11 +482,11 @@ const globalOfferPage = createPage({
   path: "/angebot-pruefen",
   metaTitle: "Angebot prüfen lassen | Regensburg | FLOXANT",
   metaDescription:
-    "Angebot prüfen lassen in Regensburg: Reinigung im 50-km-Umkreis, Umzug, Entrümpelung oder Wohnungsauflösung sachlich einordnen.",
+    "Angebot prüfen lassen in Regensburg: Reinigung im 75-km-Umkreis, Umzug, Entrümpelung oder Wohnungsauflösung sachlich einordnen.",
   h1: "Angebot in Regensburg prüfen lassen, bevor Umfang oder Preis unklar bleibt",
   eyebrow: "FLOXANT Angebotsprüfung",
   heroText:
-    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Reinigung wird nur für Regensburg und den Umkreis bis 50 km eingeordnet.",
+    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Reinigung wird nur für Regensburg und den Umkreis bis 75 km eingeordnet.",
   maturity: indexableM2,
   sections: [
     section(
@@ -496,7 +496,7 @@ const globalOfferPage = createPage({
     ),
     section(
       "Reinigung lokal begrenzen",
-      "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km.",
+      "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 75 km.",
       "Umzug, Wohnungsauflösung und Entrümpelung werden weiterhin getrennt nach Ort, Umfang und Machbarkeit eingeordnet.",
     ),
   ],

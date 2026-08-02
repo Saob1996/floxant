@@ -212,7 +212,7 @@ const jsonLd = {
         "Organisatorische und praktische Vorbereitung von Wohnungen nach Auszug, Leerstand oder Mieterwechsel durch Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache.",
       path,
       serviceType: "Objekt-Ready-Service für Wohnung nach Auszug, Leerstand oder Mieterwechsel",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Verifiziertes 75-km-Einsatzgebiet um Regensburg", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

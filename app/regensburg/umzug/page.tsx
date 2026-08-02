@@ -108,7 +108,7 @@ const situations: PlainCard[] = [
   },
   {
     icon: Boxes,
-    title: "Mini-Umzug oder wenige Möbel",
+    title: "Kleiner Umzugsumfang oder wenige Möbel",
     text: "Kleine Umzüge werden nicht künstlich aufgeblasen. Wichtig sind Einzelstücke, Zugang, flexible Termine und Fotos.",
   },
   {
@@ -193,10 +193,10 @@ const noPromiseItems = [
 const packageCards: LinkCard[] = [
   {
     icon: Boxes,
-    title: "Mini-Umzug",
+    title: "Kleiner Umzugsumfang",
     text: "Wenige Möbel, kurze Strecke, flexible Anfrage. FLOXANT prüft, ob Transport, Beiladung oder ein normales Umzugsbriefing passt.",
     href: moveContactHref,
-    label: "Mini-Umzug anfragen",
+    label: "Umzug anfragen",
   },
   {
     icon: UsersRound,
@@ -298,7 +298,7 @@ function JsonLd() {
         about: [
           "Umzug Regensburg",
           "Umzugsangebot prüfen",
-          "Mini-Umzug",
+          "Kleiner Umzugsumfang",
           "Seniorenumzug",
           "Klaviertransport",
           "Beiladung",
@@ -647,7 +647,7 @@ function MovingScopeBoundaries() {
   const optional = [
     "Packhilfe, Kartons oder Verpackungsmaterial",
     "Demontage und Montage von Möbeln",
-    "Halteverbotszone oder besondere Parkorganisation",
+    "Angaben zu Parkmöglichkeit, Ladeweg und Zufahrt",
     "Klaviertransport, Entrümpelung, Entsorgung oder Reinigung",
   ] as const;
 

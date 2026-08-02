@@ -139,10 +139,10 @@ const useCases = [
     Icon: ClipboardCheck,
   },
   {
-    title: "Vermieter-Ready: Objekt sortieren",
-    text: "Wenn Reinigung, Restmengen, Schlüsselweg, Fotos und Übergabe-Sprint zusammenhängen, kann der Objektbrief die erste Sortierung übernehmen.",
-    href: "/vermieter-ready-service",
-    cta: "Vermieter-Ready ansehen",
+    title: "Übergabeakte: Objekt sortieren",
+    text: "Wenn Reinigung, Restmengen, Schlüsselweg, Fotos und Übergabe zusammenhängen, kann der Objektbrief die erste Sortierung übernehmen.",
+    href: "/uebergabeakte",
+    cta: "Übergabeakte ansehen",
     Icon: Camera,
   },
   {

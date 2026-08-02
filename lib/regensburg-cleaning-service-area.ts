@@ -16,7 +16,7 @@ export const regensburgCleaningServiceArea = regensburgCleaningAreaData;
 export const cleaningServiceAreaName = regensburgCleaningAreaData.serviceAreaName;
 export const cleaningServiceAreaRadiusKm = regensburgCleaningAreaData.radiusKm;
 export const regensburgCleaningCenter = regensburgCleaningAreaData.center;
-export const regensburgCleaningAreaLabel = "Regensburg und Umgebung bis 50 km";
+export const regensburgCleaningAreaLabel = "Regensburg und Umgebung bis 75 km";
 
 const umlautMap: Record<string, string> = {
   ä: "ae",
@@ -183,6 +183,7 @@ export function isCleaningRouteAllowed(path: string): boolean {
     return (
       normalizedPath.includes("regensburg") ||
       normalizedPath.includes("duesseldorf") ||
+      normalizedPath.includes("75-km") ||
       normalizedPath.includes("50-km") ||
       normalizedPath.includes("50km")
     );

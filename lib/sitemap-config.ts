@@ -262,8 +262,6 @@ export const HUB_PAGES = [
   "rueckfahrt-boerse",
   "uebergabeakte",
   "kontakt",
-  "entsorgung-duesseldorf",
-  "duesseldorf/entsorgung",
   "regensburg/bueroreinigung",
   "regensburg/wohnungsaufloesung",
   "regensburg/umzugsunternehmen",

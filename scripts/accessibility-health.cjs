@@ -101,6 +101,7 @@ function main() {
 
   const findings = [];
   const warnings = [];
+  const corePasses = [];
   const stats = {
     files: files.length,
     imageTags: 0,
@@ -115,11 +116,16 @@ function main() {
     formsWithStatusSignals: 0,
   };
 
-  if (!/href="#main-content"/.test(layout) || !/skip-to-content/.test(layout)) {
-    findings.push(item("FAIL", "Skip link", "Root layout braucht Skip-Link zu #main-content.", "app/layout.tsx"));
+  const skipLinkSource = `${layout}\n${siteChrome}`;
+  if (!/href="#main-content"/.test(skipLinkSource) || !/skip-to-content/.test(skipLinkSource)) {
+    findings.push(item("FAIL", "Skip link", "Die gemeinsame Seitenhülle braucht einen Skip-Link zu #main-content.", "components/layout/SiteChrome.tsx"));
+  } else {
+    corePasses.push(item("PASS", "Skip link present", "Skip-Link ist in der gemeinsamen Seitenhülle vorhanden.", "components/layout/SiteChrome.tsx"));
   }
   if (!/id="main-content"[\s\S]*tabIndex=\{-1\}|id="main-content"[\s\S]*tabIndex="-1"/.test(siteChrome)) {
     findings.push(item("FAIL", "Focusable main target", "#main-content muss fuer Skip-Link fokussierbar sein.", "components/layout/SiteChrome.tsx"));
+  } else {
+    corePasses.push(item("PASS", "Main target focus", "#main-content ist fokussierbar.", "components/layout/SiteChrome.tsx"));
   }
   if (!/\.flox-mobile-action:focus-visible/.test(css)) {
     warnings.push(item("WARN", "Mobile CTA focus", "Mobile CTA braucht sichtbaren focus-visible Stil.", "app/globals.css"));
@@ -191,8 +197,7 @@ function main() {
 
   const status = findings.length ? "FAIL" : warnings.length ? "WARN" : "PASS";
   const checks = [
-    item("PASS", "Skip link present", "Skip-Link ist im Root Layout vorhanden.", "app/layout.tsx"),
-    item("PASS", "Main target focus", "#main-content ist fokussierbar.", "components/layout/SiteChrome.tsx"),
+    ...corePasses,
     ...warnings,
     ...findings,
   ];

@@ -1,6 +1,7 @@
 import {
   resolveLeadIntent,
   type LeadIntent,
+  type LeadPriority,
   type LeadService,
 } from "@/lib/lead-intents";
 import {
@@ -47,6 +48,7 @@ export type RequestContext = {
   service: LeadService | "";
   serviceKey: string;
   intent: string;
+  priority: LeadPriority;
   headline: string;
   badge: string;
   description: string;
@@ -99,6 +101,7 @@ function neutralContext(input: RequestContextInput, location: RequestLocation | 
     service: "",
     serviceKey: "",
     intent: "",
+    priority: leadIntent.priority,
     headline: "Leistung unverbindlich anfragen",
     badge: "FLOXANT Anfrage",
     description: neutralDescription,
@@ -147,6 +150,7 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
     service: option.service,
     serviceKey: option.key,
     intent,
+    priority: leadIntent.priority,
     headline: `${option.label}${citySuffix} anfragen`,
     badge:
       location === "unsicher"

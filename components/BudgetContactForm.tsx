@@ -255,12 +255,11 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             >
               <option value="umzug">Umzug und Transport / Moving help</option>
               <option value="reinigung">Reinigung / Cleaning service</option>
-              <option value="solarreinigung">Solar- / PV-Reinigung / Solar panel cleaning</option>
               <option value="glas_fassade_event">Glas, Fassade oder Eventreinigung / Glass cleaning</option>
               <option value="entsorgung">Entrümpelung / Decluttering</option>
               <option value="nachlass_lager">Keller, Nachlass oder Lagerauflösung / House clearance</option>
-              <option value="mini_transport">Mini-Umzug, Express oder Möbeltransport / Small move</option>
-              <option value="signature">Fairpreis, Plan B oder Übergabe-Service / Second opinion</option>
+              <option value="moebeltransport">Möbeltransport / Furniture transport</option>
+              <option value="angebotscheck_plan_b">Angebotscheck, Objektbrief, Übergabeakte oder Plan B / Second opinion</option>
               <option value="mixed">Kombination</option>
             </select>
           </div>

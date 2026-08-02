@@ -39,6 +39,6 @@ export const localSeoRegions = {
       "Straubing",
     ],
     positioning:
-      "Regensburg bleibt der lokale Schwerpunkt fuer Reinigung. Umlandorte werden nur im 50-km-Umkreis und ohne Standortbehauptung eingeordnet.",
+      "Regensburg bleibt der lokale Schwerpunkt fuer Reinigung. Umlandorte werden nur im 75-km-Umkreis und ohne Standortbehauptung eingeordnet.",
   },
 } as const satisfies Partial<Record<LocalSeoRegionKey, LocalSeoRegionRecord>>;

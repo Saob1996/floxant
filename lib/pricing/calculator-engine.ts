@@ -102,9 +102,9 @@ function getDistanceBandMultiplier(distanceKm: number): number {
 
 function getDistanceBandDriver(distanceKm: number): string {
  if (distanceKm <= 35) return "Nahbereich Regensburg";
- if (distanceKm <= 100) return "Regionalachse Oberpfalz und Niederbayern";
- if (distanceKm <= 200) return "200-km-Einsatzkorridor";
- return "Fernstrecke außerhalb des Kernkorridors";
+ if (distanceKm <= 100) return "Mittlere Umzugsstrecke";
+ if (distanceKm <= 200) return "Fernstrecke mit Routenprüfung";
+ return "Lange Fernstrecke mit individueller Prüfung";
 }
 
 function getAreaToVolume(areaM2: number): number {
@@ -347,7 +347,7 @@ export function calculateUmzugAdvanced(
  price *= getDistanceBandMultiplier(distanceKm);
 
  if (distanceKm > 100) {
-  flags.push("Erweiterter Einsatzkorridor bis etwa 200 km eingeplant");
+  flags.push("Fernstrecke mit Routen- und Teamplanung eingeplant");
   uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.18);
  }
 
@@ -876,7 +876,7 @@ export function calculateBueroumzugAdvanced(
 
  if (distanceKm > 100) {
   uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.22);
-  flags.push("200-km-Einsatzkorridor mit Routen- und Teamplanung berücksichtigt");
+  flags.push("Fernstrecke mit Routen- und Teamplanung berücksichtigt");
  }
 
  if (workstations > 20) {

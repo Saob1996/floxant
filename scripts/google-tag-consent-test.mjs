@@ -159,6 +159,93 @@ function assertDenied(command) {
 }
 
 {
+  const { analytics, window } = createHarness("all");
+  analytics.initializeGoogleTag();
+  const confirmedSubmission = {
+    responseStatus: 201,
+    responseOk: true,
+    payload: {
+      ok: true,
+      requestId: "request-123",
+      bookingId: "booking-456",
+    },
+    serviceType: "moving",
+    location: "regensburg",
+    leadSource: "seo",
+  };
+
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      ...confirmedSubmission,
+      responseStatus: 500,
+    }),
+    false,
+  );
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      ...confirmedSubmission,
+      responseOk: false,
+    }),
+    false,
+  );
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      ...confirmedSubmission,
+      payload: { ...confirmedSubmission.payload, ok: false },
+    }),
+    false,
+  );
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      ...confirmedSubmission,
+      payload: { ok: true, requestId: "", bookingId: "booking-456" },
+    }),
+    false,
+  );
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      ...confirmedSubmission,
+      payload: { ok: true, requestId: "request-123", bookingId: "" },
+    }),
+    false,
+  );
+  assert.equal(analytics.trackConfirmedProfessionalRequestLead(confirmedSubmission), true);
+  assert.equal(analytics.trackConfirmedProfessionalRequestLead(confirmedSubmission), false);
+
+  const leadEvents = commands(window, "event").filter((entry) => entry[1] === "generate_lead");
+  assert.equal(leadEvents.length, 1);
+  assert.deepEqual(JSON.parse(JSON.stringify(leadEvents[0][2])), {
+    form_name: "professional_request",
+    service_type: "moving",
+    location: "regensburg",
+    lead_source: "seo",
+  });
+  assert.doesNotMatch(JSON.stringify(leadEvents), /request-123|booking-456/);
+}
+
+{
+  const deniedConsent = JSON.stringify({
+    necessary: true,
+    analytics: false,
+    marketing: false,
+  });
+  const { analytics, window } = createHarness(deniedConsent);
+  analytics.initializeGoogleTag();
+  assert.equal(
+    analytics.trackConfirmedProfessionalRequestLead({
+      responseStatus: 201,
+      responseOk: true,
+      payload: { ok: true, requestId: "request-denied", bookingId: "booking-denied" },
+      serviceType: "moving",
+      location: "regensburg",
+      leadSource: "seo",
+    }),
+    false,
+  );
+  assert.equal(commands(window, "event").length, 0);
+}
+
+{
   const { analytics, window } = createHarness(
     JSON.stringify({ necessary: true, analytics: false, marketing: false }),
   );
@@ -239,6 +326,13 @@ assert.match(duesseldorfSource, /service_type: "cleaning"/);
 assert.match(duesseldorfSource, /location: "duesseldorf"/);
 assert.match(duesseldorfSource, /lead_source: "google_ads"/);
 
+const professionalRequestSource = fs.readFileSync(
+  path.join(root, "components", "ProfessionalRequestForm.tsx"),
+  "utf8",
+);
+assert.match(professionalRequestSource, /trackConfirmedProfessionalRequestLead\(/);
+assert.match(professionalRequestSource, /completedSubmissionRef/);
+
 const googleTagComponent = fs.readFileSync(
   path.join(root, "components", "GoogleTag.tsx"),
   "utf8",
@@ -247,4 +341,4 @@ assert.equal((googleTagComponent.match(/gtag\/js/g) || []).length, 1);
 assert.match(googleTagComponent, /strategy="afterInteractive"/);
 assert.match(googleTagComponent, /pathname\.startsWith\("\/dashboard"\)/);
 
-console.log("Google Tag Consent Mode und Lead-Tracking: 12 Prüfgruppen bestanden.");
+console.log("Google Tag Consent Mode und Lead-Tracking: 14 Prüfgruppen bestanden.");

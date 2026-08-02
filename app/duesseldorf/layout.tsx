@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   other: {
     "geo.region": "DE-NW",
     "geo.placename": "Düsseldorf",
-    "geo.position": "51.2277;6.7735",
+    "geo.position": "51.2225767;6.7772364",
     "dc.title": "FLOXANT Düsseldorf | Reinigung verständlich anfragen",
     "dc.description":
       "Reinigung in Düsseldorf nach Objekt, Fläche, Turnus, Zugang und Termin verständlich auswählen und anfragen.",

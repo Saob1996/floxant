@@ -37,7 +37,6 @@ const serviceTone: Record<string, string> = {
   hausverwaltung: "border-stone-200 bg-stone-100 text-stone-800",
   premium: "border-zinc-300 bg-zinc-950 text-white",
   regensburg_reinigung: "border-teal-200 bg-teal-50 text-teal-800",
-  duesseldorf_entsorgung: "border-rose-200 bg-rose-50 text-rose-800",
 };
 
 const serviceLabels: Record<EinsatzradarServiceType, string> = {
@@ -51,7 +50,6 @@ const serviceLabels: Record<EinsatzradarServiceType, string> = {
   hausverwaltung: "Hausverwaltung",
   premium: "Diskrete Abstimmung",
   regensburg_reinigung: "Reinigung Regensburg",
-  duesseldorf_entsorgung: "Düsseldorf Entsorgung",
 };
 
 function formatService(value: EinsatzradarServiceType) {
@@ -69,8 +67,8 @@ export function Einsatzradar({
   showFilters = true,
   showZones = true,
   source = "einsatzradar",
-  ctaHref = "/einsatzradar-regensburg",
-  ctaLabel = "Einsatzradar ansehen",
+  ctaHref = "/region-regensburg",
+  ctaLabel = "Einsatzgebiet ansehen",
 }: EinsatzradarProps) {
   const [activeFilter, setActiveFilter] = useState<EinsatzradarFilter["id"]>("all");
   const isCompact = variant === "compact";

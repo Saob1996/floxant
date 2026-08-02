@@ -21,18 +21,14 @@ const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
 const uncertainOptions = [
-  "Transport / Umzug / Moving help",
-  "Reinigung / Cleaning service",
-  "Entrümpelung / Decluttering",
-  "Entsorgung / Disposal",
-  "Schlüsselübergabe",
-  "Übergabe",
-  "Angebot / Preis / Quote check",
-  "Fairpreis-Check",
-  "Objektbrief",
-  "Solar / PV / Solar panel cleaning",
+  "Reinigung Düsseldorf / Cleaning service",
   "Reinigung Regensburg / Cleaning service",
-  "Düsseldorf Entsorgung",
+  "Transport / Umzug Regensburg / Moving help",
+  "Entrümpelung Regensburg / Decluttering",
+  "Schlüsselübergabe Regensburg",
+  "Übergabe Regensburg",
+  "Angebot / Preis / Quote check",
+  "Objektbrief",
   "mehrere Punkte",
 ];
 
@@ -58,15 +54,13 @@ const riskLevels = [
 ];
 
 const packageOptions = [
-  "Ersatztransport",
+  "Ersatztransport Regensburg",
   "Reinigungs-Backup / Cleaning backup",
-  "Räumungs-Backup / Clearance backup",
-  "Übergabe-Backup",
-  "Komplett-Plan-B",
-  "Fairpreis- oder Angebots-Backup",
+  "Räumungs-Backup Regensburg / Clearance backup",
+  "Übergabe-Backup Regensburg",
+  "Komplett-Plan-B Regensburg",
+  "Angebots-Backup",
   "Objektbrief zur Sortierung",
-  "Solar/PV-Sichtklar",
-  "Reinigung Regensburg/Entsorgung",
   "Diskreter Rückruf",
 ];
 
@@ -79,9 +73,8 @@ const openItemOptions = [
   "Keller / Sperrmuell offen",
   "Schlüssel / Übergabe unklar",
   "Preisrahmen unrealistisch",
-  "PV- oder Dachzugang unklar",
   "Objektbrief sinnvoll",
-  "Fairpreis-Check sinnvoll",
+  "Angebotscheck sinnvoll",
   "zweite Absicherung gewünscht",
   "Fotos vorhanden",
   "Budget vorhanden",
@@ -136,7 +129,7 @@ export function PlanBServiceForm() {
   const whatsappHref = useMemo(() => {
     const text =
       uncertainArea.includes("Duesseldorf") || uncertainArea.includes("Düsseldorf")
-        ? "Hallo FLOXANT, ich brauche einen Plan B für Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
+        ? "Hallo FLOXANT, ich brauche einen Plan B für Reinigung in Düsseldorf. Ort, Termin und Fotos kann ich senden."
         : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entrümpelung/Übergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
     return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(text)}`;
   }, [uncertainArea]);
@@ -304,7 +297,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Düsseldorf..." />
+            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Ort oder PLZ im geprüften 75-km-Einsatzgebiet" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Was ist unsicher?*

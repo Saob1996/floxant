@@ -11,11 +11,11 @@ import {
 const faqItems = [
  {
   q: "Warum ist Regensburg für FLOXANT so wichtig?",
-  a: "Regensburg ist der Ausgangspunkt. Reinigung bleibt auf Regensburg und 50 km Umkreis begrenzt; Umzug und Entrümpelung werden separat nach Machbarkeit eingeordnet.",
+  a: "Regensburg ist der Ausgangspunkt des verifizierten Einsatzgebiets bis 75 km. Dort werden Umzug, Entrümpelung und Reinigung nach Umfang, Termin und Kapazität eingeordnet.",
  },
  {
-  q: "Bedient FLOXANT ganz Bayern?",
-  a: "FLOXANT baut den Service in Bayern aus. Entscheidend ist immer die realistische Verfügbarkeit von Team, Route, Termin und Leistungsumfang.",
+  q: "Wie werden Ziele außerhalb des Einsatzgebiets behandelt?",
+  a: "Das Einsatzgebiet reicht bis 75 km um Regensburg. München, Nürnberg, Augsburg und andere weiter entfernte Orte können nur Ziel einer konkreten Fernziel-Anfrage sein; daraus folgt keine flächendeckende Verfügbarkeit.",
  },
  {
   q: "Warum beeinflusst die Region den Preisrahmen?",
@@ -27,9 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
  return generatePageSEO({
   lang: "de",
   path: "blog/regensburg-bayern-servicegebiet-richtig-planen",
-  title: "Regensburg & Bayern | Servicegebiet richtig planen",
+  title: "Regensburg + 75 km | Servicegebiet richtig planen",
   description:
-   "Warum Region, Strecke und Verfügbarkeit wichtig sind: Reinigung lokal um Regensburg, andere Services separat nach Machbarkeit.",
+   "Verifiziertes FLOXANT Einsatzgebiet bis 75 km um Regensburg. Fernziele sind nur Ziel einer konkreten Anfrage und keine flächendeckende Verfügbarkeit.",
  });
 }
 
@@ -38,10 +38,10 @@ export default function RegensburgBayernServicegebietBlogPage() {
   "@context": "https://schema.org",
   "@graph": [
    buildWebPageJsonLd({
-    name: "Regensburg und Bayern als Servicegebiet planen",
-    description: "Ratgeber zur regionalen Einordnung von FLOXANT Services.",
+    name: "Regensburg und das Einsatzgebiet bis 75 km planen",
+    description: "Ratgeber zum verifizierten Einsatzgebiet um Regensburg und zur Einordnung von Fernzielen.",
     path: "/blog/regensburg-bayern-servicegebiet-richtig-planen",
-    about: ["Regensburg", "50 km Reinigung", "Umzug", "Entrümpelung", "Servicegebiet"],
+    about: ["Regensburg", "Einsatzgebiet bis 75 km", "Umzug", "Entrümpelung", "Reinigung", "Fernziel-Anfrage"],
    }),
    buildBreadcrumbJsonLd([
     { name: "FLOXANT", item: "/" },
@@ -49,8 +49,8 @@ export default function RegensburgBayernServicegebietBlogPage() {
     { name: "Servicegebiet", item: "/blog/regensburg-bayern-servicegebiet-richtig-planen" },
    ]),
    buildArticleJsonLd({
-    headline: "Regensburg und Bayern: Servicegebiet richtig planen",
-    description: "Ein FLOXANT Artikel über regionale Verfügbarkeit, Strecken und realistische Planung.",
+    headline: "Regensburg und 75 km Einsatzgebiet richtig planen",
+    description: "Ein FLOXANT Artikel über das verifizierte Einsatzgebiet und Fernziele als Ziel einer Anfrage.",
     path: "/blog/regensburg-bayern-servicegebiet-richtig-planen",
     datePublished: "2026-04-20",
    }),
@@ -64,24 +64,24 @@ export default function RegensburgBayernServicegebietBlogPage() {
    <BlogArticlePage
     breadcrumbs={[
      { label: "Blog", href: "/blog" },
-     { label: "Regensburg und Bayern" },
+     { label: "Regensburg und 75 km" },
     ]}
     date="20. April 2026"
     readTime="6 Min."
-    title="Regensburg und Bayern: Servicegebiet richtig planen"
-    intro="Bei lokalen Dienstleistungen zählt nicht nur die Leistung selbst, sondern auch die Region. Regensburg ist für FLOXANT der Ausgangspunkt, Bayern der Ausbau. Diese Einordnung macht Termine, Strecken und Preisrahmen realistischer."
+    title="Regensburg und 75 km: Servicegebiet richtig planen"
+    intro="Regensburg ist der Ausgangspunkt des verifizierten FLOXANT Einsatzgebiets bis 75 km. Weiter entfernte Orte werden nicht als Einsatzgebiet beworben; sie können nur als Fernziel einer konkreten Anfrage genannt werden."
     sections={[
      {
       title: "Warum die Region für Ihre Planung wichtig ist",
       paragraphs: [
-       "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Floskel, sondern die Frage: Ist der Einsatz realistisch planbar? Für Reinigung gilt dabei Regensburg plus 50 km.",
+       "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Floskel, sondern eine klare Grenze: Das verifizierte Einsatzgebiet reicht bis 75 km um Regensburg.",
        "Regionale Relevanz entsteht durch Verfügbarkeit, Fahrtwege, lokale Erfahrung, Zeitfenster und die Fähigkeit, Zusatzleistungen sinnvoll zu kombinieren.",
       ],
      },
      {
       title: "Regensburg als Ausgangspunkt",
       paragraphs: [
-       "Regensburg ist der natürliche Schwerpunkt für FLOXANT. Hier lassen sich viele Anfragen schneller prüfen, Wege besser einschätzen und Zusatzleistungen wie Reinigung im 50-km-Umkreis, Beiladung oder Entrümpelung enger koordinieren.",
+       "Regensburg ist der natürliche Schwerpunkt für FLOXANT. Im verifizierten Einsatzgebiet bis 75 km lassen sich Wege, Reinigung, Transport, Beiladung und Entrümpelung belastbar einordnen.",
       ],
       bullets: [
        "Kürzere Wege bei Einsätzen im Stadtgebiet und Landkreis",
@@ -91,15 +91,16 @@ export default function RegensburgBayernServicegebietBlogPage() {
       ],
      },
      {
-      title: "Bayern realistisch ausbauen",
+      title: "Fernziele in Bayern richtig einordnen",
       paragraphs: [
-       "Bayern-Seiten sind nur dann stark, wenn sie echte Orientierung bieten. Darum sollte jede Anfrage nach Ort, Strecke, Umfang und Terminlage bewertet werden. Ein Einsatz in München, Nürnberg oder Augsburg kann sinnvoll sein, braucht aber andere Planung als ein Einsatz in Regensburg.",
+       "München, Nürnberg, Augsburg und andere Orte außerhalb des 75-km-Einsatzgebiets können als Ziel einer konkreten Umzugs- oder Transportanfrage genannt werden. FLOXANT behauptet dort keine lokale oder flächendeckende Verfügbarkeit.",
        "Der FLOXANT Rechner hilft, diese Unterschiede früh sichtbar zu machen. Das verbessert Nutzererlebnis und macht die Anfrage für spätere Abstimmung belastbarer.",
       ],
      },
     ]}
     highlightPoints={[
-     "Regensburg ist der Kern, Bayern der Ausbau.",
+     "Regensburg ist der Kern; das verifizierte Einsatzgebiet reicht bis 75 km.",
+     "Fernziele sind Ziele einer Anfrage, keine flächendeckende Verfügbarkeitszusage.",
      "Regionale Einordnung beeinflusst Termin, Route und Preisrahmen.",
      "Starke Ortsseiten brauchen echte Erklärung statt bloßer Städtenamen.",
     ]}
@@ -108,7 +109,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
      { href: "/regensburg/umzug", label: "Umzug Regensburg" },
      { href: "/rechner", label: "Region im Rechner prüfen" },
     ]}
-    faqTitle="FAQ zu Regensburg und Bayern"
+    faqTitle="FAQ zum Einsatzgebiet um Regensburg"
     faqItems={faqItems}
    />
   </>

@@ -15,7 +15,6 @@ type PlanContext =
   | "transport"
   | "objektfall"
   | "regensburg_reinigung"
-  | "duesseldorf_entsorgung"
   | "regensburg_cleaning";
 
 type TriggerCopy = {
@@ -116,15 +115,6 @@ const CONTEXT_COPY: Record<PlanContext, TriggerCopy> = {
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Regensburg. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
-  duesseldorf_entsorgung: {
-    context: "duesseldorf_entsorgung",
-    eyebrow: "Düsseldorf Entsorgung",
-    title: "Entsorgung in Düsseldorf kurzfristig?",
-    teaser: "Umfang, Fotos, Zugang und Termin senden. FLOXANT prüft Entsorgung nach Verfügbarkeit.",
-    buttonLabel: "Entsorgung prüfen",
-    whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Entsorgung in Düsseldorf. Umfang, Zugang, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
-  },
   regensburg_cleaning: {
     context: "regensburg_cleaning",
     eyebrow: "Apartment-Reset",
@@ -145,10 +135,8 @@ function shouldHide(pathname: string) {
 function inferContext(pathname: string, serviceParam: string | null): PlanContext {
   const source = `${pathname} ${serviceParam || ""}`.toLowerCase();
 
-  if (pathname === "/entsorgung-duesseldorf") return "duesseldorf_entsorgung";
   if (pathname === "/regensburg/reinigung") return "regensburg_cleaning";
   if (pathname.startsWith("/regensburg") && source.includes("reinigung")) return "regensburg_reinigung";
-  if (source.includes("duesseldorf") && source.includes("entsorgung")) return "duesseldorf_entsorgung";
   if (source.includes("regensburg") && source.includes("reinigung")) return "regensburg_reinigung";
   if (source.includes("mieterwechsel") || source.includes("wohnung-wieder") || source.includes("immobilie-verkaufsbereit") || source.includes("makler-vermieter") || source.includes("uebergabeakte")) return "objektfall";
   if (source.includes("rueckfahrt") || source.includes("leerfahrt") || source.includes("transport") || source.includes("kleintransport")) return "transport";
@@ -242,7 +230,7 @@ export function PlanGekipptTrigger() {
     new Set<PlanContext>([
       routeContext,
       routeContext.startsWith("regensburg") ? "regensburg_reinigung" : "reinigung",
-      routeContext.startsWith("duesseldorf") ? "duesseldorf_entsorgung" : "entruempelung",
+      (pathname || "").includes("duesseldorf") ? "reinigung" : "entruempelung",
     ]),
   ).slice(0, 3);
 

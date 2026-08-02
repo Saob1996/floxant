@@ -153,7 +153,9 @@ function hasNoPiiParams(href) {
 
 function isLocalContactDestination(value, allowContactAnchor = false) {
   if (!value) return false;
-  if (allowContactAnchor && value.startsWith("#")) return value === "#direktanfrage";
+  if (allowContactAnchor && value.startsWith("#")) {
+    return value === "#direktanfrage" || value === "#private-anfrage";
+  }
   try {
     const url = new URL(value, PUBLIC_BASE_URL);
     return normalizeRoute(url.pathname) === "/kontakt";
@@ -193,6 +195,7 @@ function checkLeadQuery(href, lead) {
 function ctaMatchesLead(cta, lead, route) {
   const destination = cta.attrs["data-destination"] || cta.href;
   if (normalizeRoute(route) === "/kontakt" && destination === "#direktanfrage") return true;
+  if (normalizeRoute(route) === "/private-client-service" && destination === "#private-anfrage") return true;
   if (!isLocalContactDestination(destination, false)) return false;
   return checkLeadQuery(destination, lead).failures.length === 0;
 }
@@ -433,9 +436,10 @@ function evaluatePage({ route, html, status, lead }) {
   const warnings = [];
   const h1 = getHeadings(html, 1);
   const ctas = collectSeoCtas(html);
+  const allowsLocalContactAnchor = ["/kontakt", "/private-client-service"].includes(normalizeRoute(route));
   const contactLikeCtas = ctas.filter((cta) => {
     const destination = cta.attrs["data-destination"] || cta.href;
-    return isLocalContactDestination(destination, route === "/kontakt");
+    return isLocalContactDestination(destination, allowsLocalContactAnchor);
   });
   const matchingCtas = contactLikeCtas.filter((cta) => ctaMatchesLead(cta, lead, route));
   const primaryCta = matchingCtas[0] || contactLikeCtas[0] || ctas[0];
@@ -455,8 +459,7 @@ function evaluatePage({ route, html, status, lead }) {
     failures.push("Kein pruefbarer CTA gefunden");
   } else {
     const destination = primaryCta.attrs["data-destination"] || primaryCta.href;
-    const allowAnchor = normalizeRoute(route) === "/kontakt";
-    if (!isLocalContactDestination(destination, allowAnchor)) {
+    if (!isLocalContactDestination(destination, allowsLocalContactAnchor)) {
       failures.push(`CTA fuehrt nicht zur Kontaktstrecke: ${destination || "(leer)"}`);
     }
     const attrResult = checkCtaAttrs(primaryCta, lead);

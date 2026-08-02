@@ -41,14 +41,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
   if (signal.includes("entruempel") || signal.includes("entsorgung") || signal.includes("haushaltsaufloesung")) {
     links.push(
       { href: "/entruempelung", title: "Entruempelung", text: "Menge, Material, Zugang und Entsorgung sichtbar machen." },
-      { href: "/duesseldorf/entsorgung", title: "Entsorgung Duesseldorf", text: "Lokale Raeumung mit Fotos und Termin klaeren." },
-    );
-  }
-
-  if (signal.includes("solar") || signal.includes("pv") || signal.includes("photovoltaik")) {
-    links.push(
-      { href: "/solarreinigung", title: "Solarreinigung", text: "PV-Anlage, Dachzugang, Wasser und Sicherheit einordnen." },
-      { href: "/pv-anlagen-reinigung", title: "PV-Anlagen-Reinigung", text: "Module und Zugang ohne Pauschalversprechen pruefen." },
+      { href: "/regensburg/entruempelung", title: "Entruempelung Regensburg", text: "Raeumungsumfang, Fotos, Zugang und Termin klaeren." },
     );
   }
 
@@ -63,7 +56,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
     links.push(
       { href: "/diskret-service", title: "Diskret-Service", text: "Sensible Faelle mit Kontaktweg und wenigen Startdaten beschreiben." },
       { href: "/objektbrief", title: "Objektbrief", text: "Unklare Faelle mit Fotos, Zugang, Termin und Ziel sortieren." },
-      { href: "/uebergabe-sprint", title: "Uebergabe-Sprint", text: "Restpunkte, Reinigung, Schluessel und Termin praktisch vorbereiten." },
+      { href: "/uebergabeakte", title: "Uebergabeakte", text: "Restpunkte, Reinigung, Schluessel und Termin praktisch vorbereiten." },
     );
   }
 
@@ -92,7 +85,7 @@ function getLocalLinks(signal: string): RelatedLink[] {
 
   if (signal.includes("regensburg") || signal.includes("bayern")) {
     links.push(
-      { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung im 50-km-Umkreis und Entruempelung." },
+      { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung im 75-km-Umkreis und Entruempelung." },
       { href: "/kontakt", title: "Kontakt", text: "Ort, Termin, Fotos und kurze Beschreibung direkt senden." },
     );
   }

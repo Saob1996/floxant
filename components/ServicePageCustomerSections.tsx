@@ -21,9 +21,9 @@ type ServicePageCustomerSectionsProps = {
 const combinedByRegion = {
   duesseldorf: [
     {
-      title: "Reinigung + Entsorgung",
-      text: "Wenn vor der Reinigung noch Möbel, Kellerinhalt oder kleinere Restmengen geklärt werden müssen.",
-      href: "/duesseldorf/entsorgung",
+      title: "Grundreinigung + Fensterreinigung",
+      text: "Wenn intensive Innenreinigung und Glasflächen für denselben Düsseldorfer Objekttermin abgestimmt werden sollen.",
+      href: "/duesseldorf/grundreinigung",
     },
     {
       title: "Endreinigung vor Übergabe",

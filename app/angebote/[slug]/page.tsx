@@ -1,4 +1,5 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { MapPin } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
@@ -6,19 +7,31 @@ import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
 import { germanizeText } from "@/lib/german-text";
 
-const STATIC_OFFER_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
-const STATIC_OFFER_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
+const STATIC_OFFER_SERVICE_MATRIX = {
+  regensburg: ["umzug", "reinigung", "entsorgung"],
+  muenchen: ["umzug", "reinigung", "entsorgung"],
+  nuernberg: ["umzug", "reinigung", "entsorgung"],
+  duesseldorf: ["reinigung"],
+} as const;
+
+const STATIC_OFFER_PARAMS = Object.entries(STATIC_OFFER_SERVICE_MATRIX).flatMap(
+  ([city, services]) => services.map((service) => ({ slug: `${service}-${city}-kosten` })),
+);
+const STATIC_OFFER_SLUGS = new Set(STATIC_OFFER_PARAMS.map(({ slug }) => slug));
+
+function assertStaticOfferSlug(slug: string) {
+  if (!STATIC_OFFER_SLUGS.has(slug)) notFound();
+}
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return STATIC_OFFER_SERVICES.flatMap((service) =>
-    STATIC_OFFER_CITIES.map((city) => ({ slug: `${service}-${city}-kosten` })),
-  );
+  return STATIC_OFFER_PARAMS;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  assertStaticOfferSlug(slug);
  const parts = slug.split('-');
  const service = parts[0]; 
  const city = germanizeText(parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '');
@@ -31,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 export default async function ProgrammaticSeoCalculator({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  assertStaticOfferSlug(slug);
   const dict = await getDictionary("de");
   const content = (dict as any)?.pages?.service_umzug || {};
  const parts = slug.split('-');

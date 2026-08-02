@@ -50,9 +50,7 @@ export type PublicAuthorityModuleId =
   | "premium_discreet"
   | "regensburg_cleaning_private"
   | "regensburg_cleaning_b2b"
-  | "regensburg_cleaning"
-  | "duesseldorf_disposal_private"
-  | "duesseldorf_disposal_b2b";
+  | "regensburg_cleaning";
 
 type AuthorityModule = {
   badge: string;
@@ -71,27 +69,27 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     badge: "Lokaler Kern",
     title: "Regensburg ist der Ausgangspunkt",
     text:
-      "Viele Anfragen werden schneller klar, wenn Ort, Termin, Zugang und Ziel der Uebergabe von Regensburg aus eingeordnet werden. Bayern bleibt wichtig, aber Regensburg ist der erste Schwerpunkt.",
+      "Regensburg ist der Ausgangspunkt des verifizierten Einsatzgebiets bis 75 km. Weiter entfernte Orte koennen nur als Fernziel einer konkreten Anfrage genannt werden.",
     href: "/regensburg/umzug",
     cta: "Regensburg-Services ansehen",
     Icon: MapPin,
     region: "regensburg",
   },
   regensburg_200km: {
-    badge: "Servicegebiet",
-    title: "Regensburg, Umgebung und Bayern sauber einordnen",
+    badge: "75-km-Einsatzgebiet",
+    title: "Regensburg und das verifizierte Einsatzgebiet",
     text:
-      "FLOXANT arbeitet mit Regensburg als Kern. Orte wie Neutraubling, Lappersdorf, Pentling, Sinzing oder Regenstauf sind Nahbereich; Bayern wird nach Strecke, Termin und Umfang geprueft.",
+      "FLOXANT arbeitet mit Regensburg als Kern und einem verifizierten Einsatzgebiet bis 75 km. Orte ausserhalb dieses Gebiets sind keine lokale Einsatzregion.",
     href: "/regensburg",
     cta: "Regensburg ansehen",
     Icon: Route,
     region: "bayern",
   },
   bavaria_availability: {
-    badge: "Bayern",
-    title: "Bayern nach Verfügbarkeit",
+    badge: "Fernziel-Anfrage",
+    title: "Fernziele sind Ziele einer konkreten Anfrage",
     text:
-      "Bayern wird nicht als pauschales Versprechen behandelt. FLOXANT prueft Strecke, Kapazitaet, Termin und Leistungsumfang, bevor ein Auftrag zugesagt wird.",
+      "Ein weiter entfernter Ort kann als Ziel einer Umzugs- oder Transportanfrage geprueft werden. Das ist keine flaechendeckende Verfuegbarkeits- oder Vor-Ort-Zusage.",
     href: "/standorte",
     cta: "Standorte ansehen",
     Icon: ShieldCheck,
@@ -347,28 +345,6 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     event: "start_apartment_cleaning_lead",
     service: "regensburg_moeblierte_wohnung_reinigung",
     region: "regensburg",
-  },
-  duesseldorf_disposal_private: {
-    badge: "Privat",
-    title: "Entsorgung Düsseldorf mit Fotoeinschätzung",
-    text:
-      "Möbel, Sperrmüll, Haushaltsgegenstände oder kleine Räumungen werden nach Umfang, Zugang, Etage, Materialart und Fotos geprüft.",
-    href: "/entsorgung-duesseldorf#preislogik",
-    cta: "Entsorgung einordnen",
-    Icon: Trash2,
-    service: "entsorgung",
-    region: "duesseldorf",
-  },
-  duesseldorf_disposal_b2b: {
-    badge: "Firma",
-    title: "Inventar und Nebenräume für kleine Unternehmen",
-    text:
-      "Bei Büromöbeln, Lagerbereichen oder Inventar zählen Menge, Zugang, Termin, Materialart und ob eine Reinigung separat sinnvoll ist.",
-    href: "/entsorgung-duesseldorf",
-    cta: "Firmenentsorgung prüfen",
-    Icon: BriefcaseBusiness,
-    service: "entsorgung_b2b",
-    region: "duesseldorf",
   },
 };
 

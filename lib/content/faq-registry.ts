@@ -763,13 +763,13 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
     intent: "Kleinen Umzug einordnen",
     evidenceSource: ["app/regensburg/umzug/page.tsx", "lib/faqs.ts"],
     de: {
-      question: "Kann ich in Regensburg auch einen Mini-Umzug anfragen?",
+      question: "Kann ich in Regensburg auch einen kleinen Umzug anfragen?",
       shortAnswer: "Ja, wenige Möbel oder Kartons können anhand von Strecke, Zugang, Volumen und Terminfenster geprüft werden.",
       detailedAnswer:
         "Listen Sie die zu transportierenden Stücke auf und nennen Sie Start, Ziel, Etagen, Aufzug, Laufweg und mögliche Zeitfenster. FLOXANT ordnet dann ein, ob ein kleiner Umzug, Möbeltransport oder eine flexible Beiladung praktisch passt; eine Anfrage ist noch keine Zusage.",
       relatedArticle: null,
       relatedService: "/regensburg/umzug",
-      CTA: { label: "Mini-Umzug beschreiben", href: "/kontakt?service=umzug&city=regensburg&intent=mini-umzug" },
+      CTA: { label: "Kleinen Umzug beschreiben", href: "/kontakt?service=umzug&city=regensburg&intent=kleiner-umzug" },
     },
     en: {
       question: "Can I request a small move in Regensburg?",

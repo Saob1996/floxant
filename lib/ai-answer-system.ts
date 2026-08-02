@@ -36,7 +36,7 @@ export type AiAnswerEntry = {
 
 const reviewed = "2026-07-08";
 
-export const aiAnswerEntries: AiAnswerEntry[] = [
+const allAiAnswerEntries: AiAnswerEntry[] = [
   {
     key: "angebot-pruefen",
     route: "/angebot-guenstiger-pruefen",
@@ -252,7 +252,7 @@ export const aiAnswerEntries: AiAnswerEntry[] = [
     route: "/kontakt",
     title: "English requests are welcome when the case is concrete.",
     directAnswer:
-      "International customers can send simple English requests for cleaning service, office cleaning, moving help, house clearance, piano transport, offer check, solar panel cleaning, end of tenancy cleaning or discreet service. FLOXANT still needs location, service, timing and photos or an offer when available.",
+      "International customers can send simple English requests for cleaning service, office cleaning, moving help, house clearance, piano transport, offer check, end of tenancy cleaning or discreet service. FLOXANT still needs location, service, timing and photos or an offer when available.",
     usefulWhen: ["German wording is difficult", "service and location are clear", "photos or offer are available"],
     neededInfo: ["service", "location", "timing", "photos or offer"],
     notPromised: ["no English doorway pages", "no ranking promise", "no legal advice"],
@@ -263,6 +263,12 @@ export const aiAnswerEntries: AiAnswerEntry[] = [
     lastReviewed: reviewed,
   },
 ];
+
+const nonPublishedAiAnswerKeys = new Set<AiAnswerKey>(["solar-pv", "uebergabe-sprint"]);
+
+export const aiAnswerEntries: AiAnswerEntry[] = allAiAnswerEntries.filter(
+  (entry) => !nonPublishedAiAnswerKeys.has(entry.key),
+);
 
 export function getAiAnswerByKey(key: AiAnswerKey) {
   return aiAnswerEntries.find((entry) => entry.key === key);

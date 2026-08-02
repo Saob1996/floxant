@@ -39,10 +39,46 @@ type ServiceClusterGridProps = {
   className?: string;
 };
 
+const nonPublishedServiceKeys = new Set([
+  "glasreinigung",
+  "solarreinigung",
+  "mini-umzug",
+  "express-umzug",
+  "floxant-fairpreis-check",
+  "floxant-uebergabe-sprint",
+  "floxant-rueckfahrt-radar",
+  "floxant-vermieter-ready-service",
+  "floxant-buero-startklar-service",
+  "floxant-pv-sichtklar-service",
+]);
+
+const duesseldorfPublishedServiceKeys = new Set([
+  "reinigung",
+  "bueroreinigung",
+  "gewerbereinigung",
+  "praxisreinigung",
+  "fensterreinigung",
+  "grundreinigung",
+  "endreinigung",
+  "bauendreinigung",
+  "angebot-pruefen",
+  "anbieter-vergleichen",
+  "floxant-angebotscheck",
+  "floxant-objektbrief",
+  "floxant-uebergabeakte",
+  "floxant-plan-b-service",
+  "floxant-diskret-service",
+  "floxant-entscheidungs-kompass",
+]);
+
 function isAvailableForLocation(service: ServiceInventoryItem, locationKey?: FloxantLocationKey) {
+  if (nonPublishedServiceKeys.has(service.serviceKey)) return false;
+  if (locationKey === "duesseldorf" && !duesseldorfPublishedServiceKeys.has(service.serviceKey)) {
+    return false;
+  }
   if (!locationKey) return true;
   const key = locationKey === "duesseldorf" ? "dusseldorfAvailability" : "regensburgAvailability";
-  return service[key] !== "not_offered";
+  return service[key] === "available" || service[key] === "limited";
 }
 
 function availabilityLabel(service: ServiceInventoryItem, locationKey?: FloxantLocationKey) {

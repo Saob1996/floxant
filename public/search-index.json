@@ -560,19 +560,6 @@
       ]
     },
     {
-      "id": "article:de:express-umzug-regensburg",
-      "title": "Express-Umzug in Regensburg: was kurzfristig wirklich machbar ist",
-      "description": "Wie Eilanfragen sinnvoll vorbereitet werden und welche Angaben für eine schnelle Vorprüfung wichtig sind.",
-      "url": "/blog/express-umzug-regensburg",
-      "locale": "de",
-      "type": "article",
-      "regions": [
-        "Regensburg"
-      ],
-      "serviceIds": [],
-      "keywords": []
-    },
-    {
       "id": "article:de:family-office-umzug-bayern-diskret-abstimmen",
       "title": "Family Office und Private Client in Bayern: wie diskrete Umzüge sauber abgestimmt werden",
       "description": "Wie Eigentümer, Assistenz und Family Office sensible Umzüge, Übergaben und Schutzbedarf ohne unnötige Reibung koordinieren.",
@@ -1074,8 +1061,7 @@
       ],
       "serviceIds": [
         "plan-b-service",
-        "angebotscheck",
-        "übergabe-sprint"
+        "angebotscheck"
       ],
       "keywords": [
         "Privatpersonen",
@@ -1606,7 +1592,7 @@
     },
     {
       "id": "faq:faq-moving-mini-regensburg-de",
-      "title": "Kann ich in Regensburg auch einen Mini-Umzug anfragen?",
+      "title": "Kann ich in Regensburg auch einen kleinen Umzug anfragen?",
       "description": "Ja, wenige Möbel oder Kartons können anhand von Strecke, Zugang, Volumen und Terminfenster geprüft werden.",
       "url": "/regensburg/umzug",
       "locale": "de",
@@ -2268,7 +2254,7 @@
     {
       "id": "guide:de:spezialreinigung",
       "title": "Spezialreinigung mit klarer Anfrage",
-      "description": "Solarreinigung, PV-Anlagen-Reinigung, Glasreinigung, Bauendreinigung, Praxisreinigung und Hausverwaltungsreinigung sauber vorbereiten.",
+      "description": "Fenster-, Bauende-, Praxis-, Grund- und Hausverwaltungsreinigung mit konkreten Objektangaben sauber vorbereiten.",
       "url": "/spezialreinigung",
       "locale": "de",
       "type": "guide",
@@ -2277,41 +2263,38 @@
         "Düsseldorf"
       ],
       "serviceIds": [
-        "solarreinigung",
-        "pv-anlagen-reinigung",
         "fensterreinigung",
         "baureinigung",
-        "praxisreinigung"
+        "praxisreinigung",
+        "grundreinigung"
       ],
       "keywords": [
         "spezialreinigung",
-        "pv reinigung",
-        "glasreinigung",
-        "baureinigung"
+        "fensterreinigung",
+        "baureinigung",
+        "praxisreinigung"
       ]
     },
     {
       "id": "guide:de:spezialumzug",
-      "title": "Spezialumzug, Mini-Umzug und Transport",
-      "description": "Kleine, dringende oder flexible Transporte mit Route, Volumen, Zugang, Haltezone und Zeitfenster vorab sortieren.",
+      "title": "Spezialumzug und Transport",
+      "description": "Individuelle Transporte mit Route, Volumen, Zugang, Haltezone und Zeitfenster vorab sortieren.",
       "url": "/spezialumzug",
       "locale": "de",
       "type": "guide",
       "regions": [
-        "Regensburg",
-        "Düsseldorf"
+        "Regensburg"
       ],
       "serviceIds": [
-        "mini-umzug",
-        "express-umzug",
+        "umzug",
         "möbeltransport",
-        "rückfahrt-radar"
+        "klaviertransport",
+        "plan-b-service"
       ],
       "keywords": [
         "spezialumzug",
-        "mini umzug",
-        "express umzug",
         "möbeltransport",
+        "klaviertransport",
         "beiladung"
       ]
     },

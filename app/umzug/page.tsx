@@ -26,9 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "umzug",
-    title: "Umzug Regensburg | Umzugsfirma für Bayern",
+    title: "Umzug Regensburg + Einsatzgebiet bis 75 km | FLOXANT",
     description:
-      "Umzug in Regensburg und Bayern realistisch einordnen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
+      "Umzug in Regensburg und im Einsatzgebiet bis 75 km anfragen. Weiter entfernte Orte sind nur mögliche Fernziele einer konkreten Anfrage.",
   });
 }
 
@@ -47,7 +47,7 @@ export default async function UmzugPillarPage() {
     },
     {
       q: "Für wen ist der Service gedacht?",
-      a: "Der Umzugsservice eignet sich für Privatkunden, Familien und Unternehmen, die in Regensburg oder Bayern einen planbaren Ortswechsel brauchen.",
+      a: "Der Umzugsservice eignet sich für Privatkunden, Familien und Unternehmen in Regensburg und im verifizierten Einsatzgebiet bis 75 km. Ein weiter entfernter Ort kann Ziel einer konkreten Umzugsanfrage sein.",
     },
     {
       q: "Wann ist ein Umzugsunternehmen sinnvoll?",
@@ -71,18 +71,18 @@ export default async function UmzugPillarPage() {
         { name: "Umzug", item: "/umzug" },
       ]),
       buildServiceJsonLd({
-        name: "Umzug in Regensburg und Bayern",
+        name: "Umzug in Regensburg und im Einsatzgebiet bis 75 km",
         description:
-          "Planbare Privat- und Firmenumzüge mit FLOXANT in Regensburg, der Oberpfalz und ganz Bayern.",
+          "Planbare Privat- und Firmenumzüge mit FLOXANT im verifizierten Einsatzgebiet bis 75 km um Regensburg.",
         path: "/umzug",
-        areaServed: ["Regensburg", "Bayern"],
+        areaServed: ["Regensburg", "Einsatzgebiet bis 75 km um Regensburg"],
       }),
       buildWebPageJsonLd({
-        name: "Umzug in Regensburg und Bayern | FLOXANT",
+        name: "Umzug in Regensburg und im Einsatzgebiet bis 75 km | FLOXANT",
         description:
           "Service-Definition, Ablauf, Kostenfaktoren und direkte Anfrage für Umzüge mit FLOXANT.",
         path: "/umzug",
-        about: ["Umzug", "Regensburg", "Bayern", "Privatumzug", "Firmenumzug"],
+        about: ["Umzug", "Regensburg", "Einsatzgebiet bis 75 km", "Fernziel-Anfrage", "Privatumzug", "Firmenumzug"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -94,15 +94,15 @@ export default async function UmzugPillarPage() {
       <PillarServicePage
         dict={dict}
         breadcrumbs={breadcrumbs}
-        heroBadge="Umzug mit Fokus auf Regensburg und Bayern"
-        heroTitle="Umzugsunternehmen für Regensburg und Bayern"
-        heroIntro="FLOXANT organisiert Privat- und Firmenumzüge mit klaren Zuständigkeiten, planbaren Zeitfenstern und sauber abgestimmten Zusatzleistungen. Ein Umzug scheitert selten am Tragen allein, sondern an falschem Volumen, fehlenden Zeitfenstern, zu kleinen Fahrzeugen, langen Laufwegen oder ungeklärten Übergabeaufgaben."
+        heroBadge="Umzug ab Regensburg im Einsatzgebiet bis 75 km"
+        heroTitle="Umzugsunternehmen für Regensburg und das verifizierte Einsatzgebiet"
+        heroIntro="FLOXANT organisiert Privat- und Firmenumzüge in Regensburg und im verifizierten Einsatzgebiet bis 75 km. Weiter entfernte Orte können als Ziel einer konkreten Anfrage angegeben werden, sind aber keine lokale oder flächendeckende Verfügbarkeitszusage."
         heroImageSrc="/assets/service-moving.webp"
-        heroImageAlt="FLOXANT Umzug in Regensburg und Bayern"
+        heroImageAlt="FLOXANT Umzug im Einsatzgebiet bis 75 km um Regensburg"
         heroCards={[
           { label: "Planung", value: "Route, Volumen und Zugang sauber erfasst" },
           { label: "Ehrlich", value: "Orientierungsrahmen mit Kontext" },
-          { label: "Regional", value: "Lokaler Startpunkt, Reichweite realistisch geprüft" },
+          { label: "Regional", value: "Regensburg + verifiziertes Einsatzgebiet bis 75 km" },
         ]}
         visualVariant="moving"
         definitionCards={[
@@ -114,7 +114,7 @@ export default async function UmzugPillarPage() {
           {
             icon: ShieldCheck,
             title: "Für wen?",
-            text: "Für Privatkunden, Familien, Firmen und Hausverwaltungen in Regensburg und Bayern.",
+            text: "Für Privatkunden, Familien, Firmen und Hausverwaltungen in Regensburg und im Einsatzgebiet bis 75 km.",
           },
           {
             icon: Clock,
@@ -152,8 +152,8 @@ export default async function UmzugPillarPage() {
         calculatorText="Der FLOXANT Rechner liefert eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Volumen, Etagen, Laufwege, Parkmöglichkeit, Zusatzleistungen und Zeitfenster eingeordnet sind."
         faqTitle="Häufige Fragen zum Umzug"
         faqItems={faqItems}
-        bookingTitle="Umzug in Regensburg oder Bayern anfragen"
-        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Vorschnell niedrige Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster fehlen."
+        bookingTitle="Umzug im Regensburger Einsatzgebiet oder mit Fernziel anfragen"
+        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Fernziele außerhalb von 75 km werden nur als Ziel der konkreten Anfrage eingeordnet."
         serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um den Umzug"
         serviceLinks={[
           { href: "/rechner", label: "Umzug direkt kalkulieren" },
@@ -166,14 +166,14 @@ export default async function UmzugPillarPage() {
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
           { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
         ]}
-        cityLinksTitle="Umzug lokal in wichtigen Regionen"
+        cityLinksTitle="Lokaler Start und mögliche Ziele einer Anfrage"
         cityLinks={[
           { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-          { href: "/umzug-muenchen", label: "Umzug München" },
-          { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
-          { href: "/umzug-augsburg", label: "Umzug Augsburg" },
-          { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
-          { href: "/umzug-weiden", label: "Umzug Weiden" },
+          { href: "/umzug-muenchen", label: "Fernziel München anfragen" },
+          { href: "/umzug-nuernberg", label: "Fernziel Nürnberg anfragen" },
+          { href: "/umzug-augsburg", label: "Fernziel Augsburg anfragen" },
+          { href: "/umzug-ingolstadt", label: "Ziel Ingolstadt anfragen" },
+          { href: "/region-regensburg", label: "Startort im 75-km-Einsatzgebiet prüfen" },
         ]}
       />
       <ServicePackageSelector groups="umzug" limit={7} />
@@ -181,7 +181,7 @@ export default async function UmzugPillarPage() {
       <ServiceFitGuide
         group="umzug"
         title="Vom Mini-Transport bis Plan B: welcher Umzugspfad passt?"
-        intro="Volumen, Etagen, Zeitfenster und Sonderstuecke entscheiden, ob Mini-Umzug, Privatumzug, Beiladung oder Plan B der bessere Start ist."
+        intro="Volumen, Etagen, Zeitfenster und Sonderstuecke entscheiden, ob kleiner Umzug, Privatumzug, Beiladung oder Plan B der bessere Start ist."
       />
       <PsychologicalCleaningInternalLinks
         title="Reinigung und Übergabe nach dem Umzug"

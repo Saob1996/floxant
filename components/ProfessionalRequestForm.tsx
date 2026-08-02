@@ -19,6 +19,7 @@ import {
   Send,
 } from "lucide-react";
 
+import { trackConfirmedProfessionalRequestLead } from "@/lib/analytics/google-tag";
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import { getBookingServiceForLead } from "@/lib/lead-intents";
@@ -231,6 +232,7 @@ export function ProfessionalRequestForm({
   const [startedAt] = useState(() => Date.now());
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const completedSubmissionRef = useRef("");
 
   useEffect(() => {
     stepHeadingRef.current?.focus();
@@ -429,6 +431,7 @@ export function ProfessionalRequestForm({
         landingPage,
         entryPage: context.entryPage || landingPage,
         campaign: context.campaign,
+        leadPriority: context.priority,
         service: context.serviceKey,
         serviceType: bookingService,
         location: cityOrZip.trim() || locationLabel(context),
@@ -477,6 +480,7 @@ export function ProfessionalRequestForm({
           message: message.trim(),
           contactMethod,
           source: context.sourceLabel,
+          leadPriority: context.priority,
           entryPage: context.entryPage || landingPage,
           locale: context.locale,
           ...attribution,
@@ -509,6 +513,7 @@ export function ProfessionalRequestForm({
     payload.set("service", bookingService);
     payload.set("serviceCategory", context.serviceKey);
     payload.set("intent", context.intent);
+    payload.set("leadPriority", context.priority);
     payload.set("name", name.trim());
     payload.set("email", email.trim());
     payload.set("phone", phone.trim());
@@ -585,26 +590,38 @@ export function ProfessionalRequestForm({
 
       setRequestId(result.requestId);
       setStatus("success");
-      window.dispatchEvent(
-        new CustomEvent("floxant:conversion-event", {
-          detail: {
-            event: "seo_lead_submit_success",
-            source: context.sourceLabel,
-            channel: "form",
-            href: "/api/bookings",
-            label: "Anfrage erfolgreich gesendet",
-            dataset: {
+      const submissionKey = `${result.requestId}:${result.bookingId}`;
+      if (completedSubmissionRef.current !== submissionKey) {
+        completedSubmissionRef.current = submissionKey;
+        trackConfirmedProfessionalRequestLead({
+          responseStatus: response.status,
+          responseOk: response.ok,
+          payload: result,
+          serviceType: group,
+          location: context.location || "unsicher",
+          leadSource: context.sourceLabel === "seo" ? "seo" : "website",
+        });
+        window.dispatchEvent(
+          new CustomEvent("floxant:conversion-event", {
+            detail: {
+              event: "seo_lead_submit_success",
               source: context.sourceLabel,
-              service: context.serviceKey,
-              city: context.location,
-              intent: context.intent,
-              pageIntent: context.intent,
               channel: "form",
+              href: "/api/bookings",
               label: "Anfrage erfolgreich gesendet",
+              dataset: {
+                source: context.sourceLabel,
+                service: context.serviceKey,
+                city: context.location,
+                intent: context.intent,
+                pageIntent: context.intent,
+                channel: "form",
+                label: "Anfrage erfolgreich gesendet",
+              },
             },
-          },
-        }),
-      );
+          }),
+        );
+      }
     } catch {
       setErrors({
         form: "Die Anfrage konnte technisch nicht verarbeitet werden. Bitte versuchen Sie es erneut.",
