@@ -269,11 +269,17 @@ function largestActiveOfferFormData() {
   return formData;
 }
 
-async function submitFormData(formData, { endpoint = "/api/bookings", acceptLanguage = "de-DE" } = {}) {
+async function submitFormData(formData, {
+  endpoint = "/api/bookings",
+  acceptLanguage = "de-DE",
+  idempotencyKey,
+} = {}) {
+  const headers = { Origin: "https://www.floxant.de", "Accept-Language": acceptLanguage };
+  if (idempotencyKey !== undefined) headers["Idempotency-Key"] = idempotencyKey;
   const response = await handleLeadSubmission({
     request: new Request(`https://www.floxant.de${endpoint}`, {
       method: "POST",
-      headers: { Origin: "https://www.floxant.de", "Accept-Language": acceptLanguage },
+      headers,
       body: formData,
     }),
     env,
@@ -301,12 +307,15 @@ function request(payload, {
   endpoint = "/api/bookings",
   requestEnv = env,
   acceptLanguage = "de-DE",
+  idempotencyKey,
 } = {}) {
+  const headers = { "Content-Type": "application/json", Origin: origin, "Accept-Language": acceptLanguage };
+  if (idempotencyKey !== undefined) headers["Idempotency-Key"] = idempotencyKey;
   return {
     context: {
       request: new Request(`https://www.floxant.de${endpoint}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Origin: origin, "Accept-Language": acceptLanguage },
+        headers,
         body: JSON.stringify(payload),
       }),
       env: requestEnv,
@@ -377,6 +386,116 @@ try {
     assert(response.status === 204, "OPTIONS must return 204");
     assert(response.headers.get("Access-Control-Allow-Origin") === "https://www.floxant.de", "OPTIONS must echo allowed origin");
     assert(response.headers.get("Access-Control-Allow-Methods") === "POST, OPTIONS", "OPTIONS methods header");
+  });
+
+  await test("server-idempotency-key-validation-400", async () => {
+    const insertsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    for (const idempotencyKey of ["not-a-uuid", "x".repeat(97)]) {
+      const result = await submit(validPayload(), { idempotencyKey });
+      assert(
+        result.response.status === 400 && result.body.code === "INVALID_IDEMPOTENCY_KEY" && result.body.requestId,
+        "malformed and overlong idempotency keys must return a safe 400 response",
+      );
+    }
+    assert(
+      calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertsBefore,
+      "invalid idempotency keys must be rejected before insertion",
+    );
+  });
+
+  await test("server-idempotency-parallel-and-later-replay", async () => {
+    const idempotencyKey = `professional_request:${Date.now()}:${crypto.randomUUID()}`;
+    const firstFormData = uploadFormData();
+    const secondFormData = uploadFormData();
+    firstFormData.append("photo", syntheticPdf(8, "same-request.pdf"));
+    secondFormData.append("photo", syntheticPdf(8, "same-request.pdf"));
+    const callsBefore = calls.length;
+
+    const [first, second] = await Promise.all([
+      submitFormData(firstFormData, { idempotencyKey }),
+      submitFormData(secondFormData, { idempotencyKey }),
+    ]);
+    assert(first.response.status === 201 && second.response.status === 201, "parallel keyed submissions must both return 201");
+    assert(
+      first.body.requestId === second.body.requestId && first.body.bookingId === second.body.bookingId,
+      "parallel keyed submissions must replay the same identifiers",
+    );
+
+    const parallelCalls = calls.slice(callsBefore);
+    assert(
+      parallelCalls.filter((call) => call.url.includes("/storage/v1/object/")).length === 1,
+      "parallel replay must upload only once",
+    );
+    assert(
+      parallelCalls.filter((call) => call.url.includes("/rest/v1/bookings")).length === 1,
+      "parallel replay must insert only once",
+    );
+    assert(
+      parallelCalls.filter((call) => call.url.includes("api.resend.com")).length === 2,
+      "parallel replay must send the internal and customer emails only once",
+    );
+
+    const replayFormData = uploadFormData();
+    replayFormData.append("photo", syntheticPdf(8, "same-request.pdf"));
+    const callsBeforeReplay = calls.length;
+    const replay = await submitFormData(replayFormData, { idempotencyKey });
+    assert(replay.response.status === 201, "later same-isolate replay must return 201");
+    assert(
+      replay.body.requestId === first.body.requestId && replay.body.bookingId === first.body.bookingId,
+      "later same-isolate replay must preserve the original identifiers",
+    );
+    assert(calls.length === callsBeforeReplay, "later replay must not repeat any external side effect");
+
+    const newFormData = uploadFormData();
+    newFormData.append("photo", syntheticPdf(8, "new-request.pdf"));
+    const callsBeforeNewKey = calls.length;
+    const newSubmission = await submitFormData(newFormData, { idempotencyKey: crypto.randomUUID() });
+    const newKeyCalls = calls.slice(callsBeforeNewKey);
+    assert(newSubmission.response.status === 201 && newSubmission.body.ok === true, "a legitimate new key must still succeed");
+    assert(newSubmission.body.requestId !== first.body.requestId, "a new key must create a new request identifier");
+    assert(
+      newKeyCalls.filter((call) => call.url.includes("/storage/v1/object/")).length === 1
+      && newKeyCalls.filter((call) => call.url.includes("/rest/v1/bookings")).length === 1
+      && newKeyCalls.filter((call) => call.url.includes("api.resend.com")).length === 2,
+      "a new key must perform one upload, one insert, and one notification pair",
+    );
+  });
+
+  await test("server-idempotency-failure-releases-key", async () => {
+    const idempotencyKey = crypto.randomUUID();
+    const callsBefore = calls.length;
+    let failed;
+    mode.insertFailure = true;
+    try {
+      failed = await submit(validPayload(), { idempotencyKey });
+    } finally {
+      mode.insertFailure = false;
+    }
+    assert(failed.response.status === 500 && failed.body.code === "SUBMISSION_FAILED", "failed keyed insert must return 500");
+
+    const recovered = await submit(validPayload(), { idempotencyKey });
+    assert(recovered.response.status === 201 && recovered.body.ok === true, "the same key must be reusable after failure");
+    assert(recovered.body.requestId !== failed.body.requestId, "the recovered attempt must be a new operation");
+
+    const callsBeforeReplay = calls.length;
+    const replay = await submit(validPayload(), { idempotencyKey });
+    assert(
+      replay.response.status === 201
+      && replay.body.requestId === recovered.body.requestId
+      && replay.body.bookingId === recovered.body.bookingId,
+      "a recovered success must become replayable",
+    );
+    assert(calls.length === callsBeforeReplay, "a recovered success replay must not repeat side effects");
+
+    const attemptCalls = calls.slice(callsBefore);
+    assert(
+      attemptCalls.filter((call) => call.url.includes("/rest/v1/bookings")).length === 2,
+      "failure release must permit exactly one fresh insert attempt",
+    );
+    assert(
+      attemptCalls.filter((call) => call.url.includes("api.resend.com")).length === 2,
+      "only the recovered success may send the notification pair",
+    );
   });
 
   await test("pages-function-entrypoints", async () => {

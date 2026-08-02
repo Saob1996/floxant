@@ -21,6 +21,13 @@ const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
 const MAX_FILES = REQUEST_ATTACHMENT_RULES.maxFiles;
 const ALLOWED_FILE_TYPES = new Set(REQUEST_ATTACHMENT_RULES.allowedMimeTypes);
 const RESEND_TIMEOUT_MS = 4_000;
+const IDEMPOTENCY_SUCCESS_TTL_MS = 15 * 60 * 1000;
+const MAX_IDEMPOTENCY_ENTRIES = 500;
+const MAX_IDEMPOTENCY_KEY_LENGTH = 96;
+const UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
+const PLAIN_IDEMPOTENCY_KEY = new RegExp(`^${UUID_PATTERN}$`, "i");
+const NAMESPACED_IDEMPOTENCY_KEY = new RegExp(`^[a-z][a-z0-9_-]{0,31}:[0-9]{10,16}:${UUID_PATTERN}$`, "i");
+const idempotencyEntries = new Map();
 const PUBLIC_ORIGINS = new Set([
   "https://www.floxant.de",
   "https://floxant.de",
@@ -76,6 +83,59 @@ function json(body, status, request, env) {
     status,
     headers: responseHeaders(request, env),
   });
+}
+
+function readIdempotencyKey(request) {
+  const rawKey = request.headers.get("Idempotency-Key");
+  if (rawKey === null) return { key: null };
+
+  const key = rawKey.trim();
+  if (
+    !key
+    || key.length > MAX_IDEMPOTENCY_KEY_LENGTH
+    || (!PLAIN_IDEMPOTENCY_KEY.test(key) && !NAMESPACED_IDEMPOTENCY_KEY.test(key))
+  ) {
+    return { key: null, invalid: true };
+  }
+
+  return { key: key.toLowerCase(), invalid: false };
+}
+
+function idempotencyScope(request) {
+  const origin = request.headers.get("Origin");
+  try {
+    return new URL(origin || request.url).origin;
+  } catch {
+    return "unknown-origin";
+  }
+}
+
+function pruneIdempotencyEntries(now = Date.now()) {
+  for (const [key, entry] of idempotencyEntries) {
+    if (entry.state === "fulfilled" && entry.expiresAt <= now) idempotencyEntries.delete(key);
+  }
+}
+
+function makeIdempotencyCapacity(now = Date.now()) {
+  pruneIdempotencyEntries(now);
+  if (idempotencyEntries.size < MAX_IDEMPOTENCY_ENTRIES) return true;
+
+  // Preserve active work and shed the oldest completed result if this isolate is full.
+  for (const [key, entry] of idempotencyEntries) {
+    if (entry.state !== "fulfilled") continue;
+    idempotencyEntries.delete(key);
+    return true;
+  }
+  return false;
+}
+
+function isSuccessfulSubmission(result) {
+  return result.status === 201 && result.body?.ok === true;
+}
+
+async function captureLeadSubmission(context) {
+  const response = await handleLeadSubmissionUncached(context);
+  return { status: response.status, body: await response.clone().json() };
 }
 
 function configuredOrigins(env) {
@@ -941,7 +1001,7 @@ export function handleLeadOptions(context) {
   });
 }
 
-export async function handleLeadSubmission(context) {
+async function handleLeadSubmissionUncached(context) {
   const requestId = crypto.randomUUID();
   const env = context.env || {};
   try {
@@ -1021,6 +1081,73 @@ export async function handleLeadSubmission(context) {
       requestId,
       status: 500,
       errorType: error?.internalType || error?.name || "UNKNOWN",
+    });
+    return json({ ok: false, code: "SUBMISSION_FAILED", requestId }, 500, context.request, env);
+  }
+}
+
+export async function handleLeadSubmission(context) {
+  const env = context.env || {};
+
+  // Never allow a disallowed origin to probe another origin's cached result.
+  if (!allowedOrigin(context.request, env)) return handleLeadSubmissionUncached(context);
+
+  const idempotency = readIdempotencyKey(context.request);
+  if (idempotency.invalid) {
+    return json({
+      ok: false,
+      code: "INVALID_IDEMPOTENCY_KEY",
+      requestId: crypto.randomUUID(),
+    }, 400, context.request, env);
+  }
+  if (!idempotency.key) return handleLeadSubmissionUncached(context);
+
+  pruneIdempotencyEntries();
+  const cacheKey = `${idempotencyScope(context.request)}\n${idempotency.key}`;
+  const existingEntry = idempotencyEntries.get(cacheKey);
+  if (existingEntry) {
+    const result = existingEntry.state === "fulfilled"
+      ? existingEntry.result
+      : await existingEntry.promise;
+    return json(result.body, result.status, context.request, env);
+  }
+
+  if (!makeIdempotencyCapacity()) {
+    return json({
+      ok: false,
+      code: "IDEMPOTENCY_UNAVAILABLE",
+      requestId: crypto.randomUUID(),
+    }, 503, context.request, env);
+  }
+
+  // Module memory only covers duplicate requests routed to this warm isolate.
+  const pendingEntry = {
+    state: "pending",
+    promise: Promise.resolve().then(() => captureLeadSubmission(context)),
+  };
+  idempotencyEntries.set(cacheKey, pendingEntry);
+
+  try {
+    const result = await pendingEntry.promise;
+    if (isSuccessfulSubmission(result)) {
+      if (idempotencyEntries.get(cacheKey) === pendingEntry) {
+        idempotencyEntries.set(cacheKey, {
+          state: "fulfilled",
+          result,
+          expiresAt: Date.now() + IDEMPOTENCY_SUCCESS_TTL_MS,
+        });
+      }
+    } else if (idempotencyEntries.get(cacheKey) === pendingEntry) {
+      idempotencyEntries.delete(cacheKey);
+    }
+    return json(result.body, result.status, context.request, env);
+  } catch (error) {
+    if (idempotencyEntries.get(cacheKey) === pendingEntry) idempotencyEntries.delete(cacheKey);
+    const requestId = crypto.randomUUID();
+    console.error("Cloudflare lead idempotency capture failed", {
+      requestId,
+      status: 500,
+      errorType: error?.name || "UNKNOWN",
     });
     return json({ ok: false, code: "SUBMISSION_FAILED", requestId }, 500, context.request, env);
   }
