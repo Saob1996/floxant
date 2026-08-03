@@ -35,7 +35,7 @@ export default function GlobalError({
                 Erneut versuchen
               </button>
               <a
-                href="/kontakt"
+                href="/kontakt?mode=neutral&source=direct"
                 className="inline-flex min-h-11 items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-bold text-slate-950"
               >
                 Kontakt oeffnen

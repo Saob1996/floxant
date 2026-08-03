@@ -95,7 +95,7 @@ const serviceLinks: Record<RegionKey, Record<string, string>> = {
     Praxisreinigung: "/praxisreinigung-regensburg",
     Treppenhausreinigung: "/treppenhausreinigung-regensburg",
     Endreinigung: "/regensburg/endreinigung",
-    "Solar- / PV-Reinigung": "/regensburg/reinigung",
+    "Solar- / PV-Reinigung": "/solarreinigung",
     "Glas- oder Fassadenreinigung": "/spezialreinigung",
     "Büro startklar machen": "/regensburg/bueroreinigung",
     "Angebot prüfen lassen": "/angebot-vergleichen-regensburg",
@@ -631,7 +631,7 @@ export function FloxantObjectBriefBuilder() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
-                href="/kontakt"
+                href="/kontakt?mode=neutral&source=seo"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-black text-white transition hover:bg-white/15"
                 data-event="hero_cta_click"
                 data-region={region}

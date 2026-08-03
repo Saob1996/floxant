@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import React, { useMemo, useState } from "react";
@@ -105,6 +105,12 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setIsError(true);
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
         throw new Error(result.error || "Übertragung fehlgeschlagen");
       }
 
@@ -255,12 +261,21 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          onChange={() => {
+            setErrorMessage("");
+            if (isError) setIsError(false);
+          }}
+          className="relative z-10 space-y-6"
+        >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FieldBox label="Ihr Name" icon={<User size={14} className="text-blue-600" />}>
               <input
                 required
                 disabled={isSubmitting}
+                id="calculator-closing-name"
+                name="name"
                 type="text"
                 aria-label="Ihr Name"
                 placeholder="Max Mustermann"
@@ -273,6 +288,8 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
               <input
                 required
                 disabled={isSubmitting}
+                id="calculator-closing-phone"
+                name="phone"
                 type="tel"
                 aria-label="Telefon"
                 placeholder="+49 123 456789"
@@ -286,6 +303,8 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
           <FieldBox label="E-Mail optional" icon={<Mail size={14} className="text-blue-600" />}>
             <input
               disabled={isSubmitting}
+              id="calculator-closing-email"
+              name="email"
               type="email"
               aria-label="E-Mail optional"
               placeholder="max@beispiel.de, falls gewünscht"
@@ -378,7 +397,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             </div>
           </div>
 
-          <PrivacyConsentField />
+          <PrivacyConsentField id="calculator-closing-privacy" />
 
           <AnimatePresence>
             {isError ? (

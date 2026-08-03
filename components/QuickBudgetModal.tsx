@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { m, AnimatePresence } from "framer-motion";
@@ -128,6 +128,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
         method: "POST",
         body: submitData,
       });
+      const result = await response.json().catch(() => ({}));
 
       if (response.ok) {
         setIsSuccess(true);
@@ -144,7 +145,12 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
           });
         }, 3000);
       } else {
-        setErrorMessage("Der Budget-Check konnte gerade nicht gesendet werden. Bitte nutzen Sie alternativ WhatsApp.");
+        const fields = bookingFieldErrors(result);
+        setErrorMessage(
+          response.status === 400 && Object.keys(fields).length > 0
+            ? Object.values(fields)[0]
+            : "Der Budget-Check konnte gerade nicht gesendet werden. Bitte nutzen Sie alternativ WhatsApp.",
+        );
       }
     } catch (error) {
       console.error("Budget inquiry failed:", error);
@@ -214,7 +220,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} onChange={() => setErrorMessage("")} className="space-y-5">
                   <div>
                     <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-white/30">
                       Service
@@ -237,6 +243,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                       <User size={18} />
                     </div>
                     <input
+                      name="name"
                       required
                       type="text"
                       aria-label="Name"
@@ -253,6 +260,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                         <Mail size={18} />
                       </div>
                     <input
+                        name="email"
                         type="email"
                         aria-label="E-Mail-Adresse optional"
                         placeholder="E-Mail optional"
@@ -267,6 +275,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                         <Phone size={18} />
                       </div>
                       <input
+                        name="phone"
                         required
                         type="tel"
                         aria-label="Telefonnummer"

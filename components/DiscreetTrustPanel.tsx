@@ -23,7 +23,7 @@ export function DiscreetTrustPanel({ className = "" }: { className?: string }) {
               {item}
             </div>
           ))}
-          <Link href="/kontakt?service=diskret-service&intent=diskret-service&source=trust-proof" className="md:col-span-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
+          <Link href="/kontakt?mode=neutral&source=trust-proof" className="md:col-span-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
             Diskret-Service anfragen
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>

@@ -80,6 +80,14 @@ async function main() {
   const results = [];
 
   for (const scenario of contactScenarios) {
+    const scenarioParams = new URL(scenario.path, "https://www.floxant.de").searchParams;
+    const hasCompleteClientContext = scenario.expectedNeutral
+      ? scenarioParams.get("mode") === "neutral" && !scenarioParams.has("service")
+      : Boolean(
+          scenarioParams.get("service")
+          && (scenarioParams.get("location") || scenarioParams.get("region") || scenarioParams.get("city")),
+        );
+    const clientContextIsVerifiable = supportsClientQueryPersonalization && hasCompleteClientContext;
     const response = await fetchPath(baseUrl, scenario.path, { redirect: "manual" });
     if (!response.ok || response.status !== 200) {
       addResult(results, "FAIL", "contact-route", scenario.path, response.error || `HTTP ${response.status}`, "Contact URL must return 200.", { priority: "P0" });
@@ -105,11 +113,18 @@ async function main() {
 
     const attrsText = JSON.stringify(form.attrs);
     const htmlAndAttrs = `${formHtml} ${attrsText}`;
-    addResult(results, containsAny(htmlAndAttrs, scenario.expectedService) || supportsClientQueryPersonalization ? "PASS" : "WARN", "contact-params", scenario.path, containsAny(htmlAndAttrs, scenario.expectedService) ? `Expected service rendered: ${scenario.expectedService.join(" or ")}` : "Service is applied by the verified client-side query personalization.", "Verify query personalization if this check warns.", { priority: "P0" });
+    const serviceRendered = scenario.expectedNeutral
+      ? scenarioParams.get("mode") === "neutral" && !scenarioParams.has("service")
+      : containsAny(htmlAndAttrs, scenario.expectedService);
+    addResult(results, serviceRendered ? "PASS" : clientContextIsVerifiable ? "WARN" : "FAIL", "contact-params", scenario.path, serviceRendered ? (scenario.expectedNeutral ? "Explicit neutral URL carries no service preset." : `Expected service rendered: ${scenario.expectedService.join(" or ")}`) : "Complete query context is handled client-side and requires browser verification.", serviceRendered ? "No action." : "Verify client-side query personalization in the browser.", { priority: "P0" });
     if (scenario.expectedCity.length) {
-      addResult(results, containsAny(htmlAndAttrs, scenario.expectedCity) || supportsClientQueryPersonalization ? "PASS" : "WARN", "contact-params", scenario.path, containsAny(htmlAndAttrs, scenario.expectedCity) ? `Expected city rendered: ${scenario.expectedCity.join(" or ")}` : "City is applied by the verified client-side query personalization.", "Verify city propagation if this check warns.", { priority: "P0" });
+      const cityRendered = containsAny(htmlAndAttrs, scenario.expectedCity);
+      addResult(results, cityRendered ? "PASS" : clientContextIsVerifiable ? "WARN" : "FAIL", "contact-params", scenario.path, cityRendered ? `Expected city rendered: ${scenario.expectedCity.join(" or ")}` : "Complete query context is handled client-side and requires browser verification.", cityRendered ? "No action." : "Verify city propagation in the browser.", { priority: "P0" });
     }
-    addResult(results, htmlAndAttrs.toLowerCase().includes(scenario.expectedIntent.toLowerCase()) || supportsClientQueryPersonalization ? "PASS" : "WARN", "contact-params", scenario.path, htmlAndAttrs.toLowerCase().includes(scenario.expectedIntent.toLowerCase()) ? `Expected intent ${scenario.expectedIntent} rendered.` : "Intent is applied by the verified client-side query personalization.", "Verify intent propagation if this check warns.", { priority: "P0" });
+    if (scenario.expectedIntent) {
+      const intentRendered = htmlAndAttrs.toLowerCase().includes(scenario.expectedIntent.toLowerCase());
+      addResult(results, intentRendered ? "PASS" : clientContextIsVerifiable ? "WARN" : "FAIL", "contact-params", scenario.path, intentRendered ? `Expected intent ${scenario.expectedIntent} rendered.` : "Complete query context is handled client-side and requires browser verification.", intentRendered ? "No action." : "Verify intent propagation in the browser.", { priority: "P0" });
+    }
 
     const robots = findMetaContent(html, "robots");
     addResult(results, /\bnoindex\b/i.test(robots) ? "WARN" : "PASS", "contact-seo", scenario.path, /\bnoindex\b/i.test(robots) ? "Contact scenario has noindex." : "No noindex marker on contact scenario.", "Confirm contact noindex policy if present.", { priority: "P1" });

@@ -25,9 +25,9 @@ type CardItem = {
   Icon?: LucideIcon;
 };
 
-const primaryContactHref = "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo";
-const offerCheckHref = "/kontakt?service=seniorenumzug&intent=seniorenumzug-angebot-pruefen&source=seo";
-const discreetContactHref = "/kontakt?service=diskret-service&intent=seniorenumzug-diskret&source=seo";
+const primaryContactHref = "/kontakt?mode=neutral&source=seo";
+const offerCheckHref = "/kontakt?mode=neutral&source=seo";
+const discreetContactHref = "/kontakt?mode=neutral&source=seo";
 
 export const seniorMoveFaqItems = [
   {
@@ -507,7 +507,7 @@ export function SeniorMoveOfferCheckCTA({ compact = false }: { compact?: boolean
               <FileSearch className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/kontakt?service=umzug&intent=umzugsangebot-pruefen&source=seo"
+              href="/kontakt?mode=neutral&source=seo"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-5 text-sm font-black text-blue-900 transition hover:border-blue-300 hover:bg-blue-50"
             >
               Umzugsangebot einordnen lassen
@@ -569,7 +569,7 @@ export function EnglishSeniorMoveHint() {
             This is a practical moving request, not legal advice, medical advice or a guaranteed availability promise.
           </p>
           <Link
-            href="/kontakt?service=seniorenumzug&intent=english-senior-moving-request&source=seo"
+            href="/kontakt?mode=neutral&source=seo"
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
           >
             Start English senior moving request
@@ -651,7 +651,7 @@ export function LocalSeniorMoveSupport({ city, route }: { city: string; route: s
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Link href={`/kontakt?service=seniorenumzug&city=${route}&intent=seniorenumzug-${route}&source=seo`} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white">
+            <Link href="/kontakt?mode=neutral&source=seo" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white">
               Seniorenumzug {city} anfragen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

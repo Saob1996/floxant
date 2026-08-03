@@ -160,8 +160,12 @@ export function DuesseldorfB2BCleaningForm({
       if (response.status !== 201 || result.ok !== true) {
         const fields = bookingFieldErrors(result);
         const firstFieldError = Object.values(fields).find(Boolean);
+        if (firstFieldError) throw new Error(firstFieldError);
+        if (response.status === 400) {
+          throw new Error(result.message || result.error || "Bitte prüfen Sie Ihre Angaben.");
+        }
         const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
-        throw new Error(`${firstFieldError || result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
+        throw new Error(`${result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
       form.reset();
@@ -192,6 +196,10 @@ export function DuesseldorfB2BCleaningForm({
       <form
         className="mt-7 grid gap-5"
         onSubmit={handleSubmit}
+        onChange={() => {
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
         data-event="form_submit"
         data-region="duesseldorf"
         data-service={context}

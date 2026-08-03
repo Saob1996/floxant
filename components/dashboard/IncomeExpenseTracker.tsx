@@ -188,6 +188,8 @@ export function IncomeExpenseTracker() {
            </td>
            <td className="px-4 py-3 text-right">
             <button
+             type="button"
+             aria-label="Eintrag löschen"
              onClick={() => handleDelete(tx.id)}
              className="text-slate-400 hover:text-red-500 transition"
             >

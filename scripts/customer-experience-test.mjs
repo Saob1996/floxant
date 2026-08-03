@@ -43,9 +43,10 @@ test("optionale Angaben sind progressiv", () => {
 });
 
 test("mindestens ein passender Kontaktweg", () => {
-  assert.match(form, /!email\.trim\(\) && !phone\.trim\(\)/);
-  assert.match(form, /contactMethod === "email" && !email\.trim\(\)/);
-  assert.match(form, /\["telefon", "whatsapp"\]\.includes\(contactMethod\)/);
+  assert.match(form, /validateRequestContact/);
+  assert.match(requestPolicy, /!contact\.email && !contact\.phone/);
+  assert.match(requestPolicy, /contact\.contactMethod === "email"/);
+  assert.match(requestPolicy, /contact\.contactMethod === "telefon" \|\| contact\.contactMethod === "whatsapp"/);
 });
 
 test("Eingaben bleiben bei Validierungsfehlern erhalten", () => {

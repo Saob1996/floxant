@@ -647,7 +647,7 @@ export function DocumentSystemClient() {
             <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto]">
              <TextField label={`Service ${index + 1}`} value={service.title} onChange={(value) => updateService(service.id, { title: value })} />
              <TextField label="Ort / Objekt" value={service.location || ""} onChange={(value) => updateService(service.id, { location: value })} />
-             <button type="button" onClick={() => removeService(service.id)} className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-red-200 bg-red-50 px-3 text-red-700">
+             <button type="button" aria-label={`Service ${index + 1} entfernen`} onClick={() => removeService(service.id)} className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-red-200 bg-red-50 px-3 text-red-700">
               <Trash2 className="h-4 w-4" />
              </button>
             </div>

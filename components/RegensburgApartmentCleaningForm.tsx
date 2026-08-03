@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { FormEvent, useState } from "react";
@@ -15,10 +15,12 @@ const textareaClass =
 
 export function RegensburgApartmentCleaningForm() {
   const [state, setState] = useState<SubmitState>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState("submitting");
+    setErrorMessage("");
 
     const formData = new FormData(event.currentTarget);
     const payload = Object.fromEntries(
@@ -39,7 +41,16 @@ export function RegensburgApartmentCleaningForm() {
         }),
       });
 
-      if (!response.ok) throw new Error("submit_failed");
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setErrorMessage(result.error || Object.values(fields)[0] || "Bitte korrigieren Sie die markierten Angaben.");
+          setState("error");
+          return;
+        }
+        throw new Error("submit_failed");
+      }
 
       setState("success");
       event.currentTarget.reset();
@@ -51,6 +62,10 @@ export function RegensburgApartmentCleaningForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      onChange={() => {
+        setErrorMessage("");
+        if (state === "error") setState("idle");
+      }}
       data-event="form_submit"
       data-region="regensburg"
       data-service="regensburg_moeblierte_wohnung_reinigung"
@@ -257,7 +272,7 @@ export function RegensburgApartmentCleaningForm() {
       ) : null}
       {state === "error" ? (
         <p className="mt-4 rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm font-bold text-red-800">
-          Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.
+          {errorMessage || "Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp."}
         </p>
       ) : null}
     </form>

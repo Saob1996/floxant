@@ -23,7 +23,7 @@ export function DuesseldorfCleaningPlanner() {
     setScope((current) => current.includes(item) ? current.filter((candidate) => candidate !== item) : [...current, item]);
   }
 
-  const contactHref = `/kontakt?service=reinigung&city=duesseldorf&intent=objektbrief&scope=${encodeURIComponent(summary)}`;
+  const contactHref = "/kontakt?service=reinigung&location=duesseldorf&intent=reinigung-anfrage&source=objektbrief";
 
   return (
     <section aria-labelledby="duesseldorf-object-heading" className="border-y border-slate-200 bg-slate-50 px-5 py-16 sm:px-8 lg:px-10">
@@ -94,7 +94,7 @@ export function DuesseldorfCleaningPlanner() {
               </p>
               <p className="mt-5 text-lg font-bold leading-8">{summary}</p>
               <Link href={contactHref} className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-cyan-300 px-5 text-sm font-black text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-white">
-                Angaben in Anfrage übernehmen
+                Anfrageformular öffnen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </article>

@@ -785,7 +785,7 @@ export function SpecialtyPageLayout({
       text: "Wenn schon eine Zielgröße da ist und FLOXANT den passenden Rahmen daran spiegeln soll.",
     },
     {
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       title: "Rückfragen abstimmen",
       text: `Wenn Zugang, Fotos, Sonderfälle oder Terminfenster in ${germanText(city, city)} vorab geklärt werden müssen.`,
     },

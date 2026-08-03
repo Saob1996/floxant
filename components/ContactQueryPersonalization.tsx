@@ -14,6 +14,17 @@ import {
 } from "@/lib/lead-intents/resolve-request-context";
 import { cn } from "@/lib/utils";
 
+const offerConcernScopes: Readonly<Record<string, string>> = {
+  price_too_high: "Prüfgrund: Das Angebot wirkt zu teuer.",
+  scope_unclear: "Prüfgrund: Der Leistungsumfang ist unklar.",
+  too_cheap_risky: "Prüfgrund: Ein sehr billiges Angebot wirkt riskant.",
+  provider_unresponsive: "Prüfgrund: Der Anbieter reagiert nicht.",
+  date_problem: "Prüfgrund: Der vorgeschlagene Termin passt nicht.",
+  addons_unclear: "Prüfgrund: Mögliche Zusatzkosten sind unklar.",
+  multiple_offers: "Prüfgrund: Mehrere Angebote sind schwer vergleichbar.",
+  no_offer_yet: "Prüfgrund: Es liegt noch kein Angebot vor; gewünscht ist Orientierung.",
+};
+
 function useCurrentQuery() {
   const searchParams = useSearchParams();
   const routerQuery = searchParams.toString();
@@ -76,7 +87,7 @@ export function ContactHeroCopy({
       >
         {context.headline}
       </h1>
-      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
         {context.description}
       </p>
     </>
@@ -105,6 +116,7 @@ function RequestContextSelector({
       params.delete("service");
       params.delete("intent");
       params.delete("priority");
+      params.delete("offerConcern");
       params.set("location", nextLocation);
       if (!params.get("source")) params.set("source", "contact_selector");
     });
@@ -122,6 +134,7 @@ function RequestContextSelector({
       params.set("service", service.key);
       params.set("intent", service.intent);
       params.set("priority", "p1");
+      params.delete("offerConcern");
       if (!params.get("source")) params.set("source", "contact_selector");
     });
   }
@@ -179,7 +192,7 @@ function RequestContextSelector({
           ))}
         </select>
         {error ? (
-          <p id="request-context-error" role="alert" className="mt-3 text-sm font-semibold text-red-700">
+          <p id="request-context-error" className="mt-3 text-sm font-semibold text-red-700">
             {error}
           </p>
         ) : null}
@@ -211,6 +224,11 @@ export function ContactLeadForm({
     [defaultLocation, defaultService, sourcePage],
   );
   const context = useMemo(() => resolveQueryContext(query, fallback), [fallback, query]);
+  const offerConcern = useMemo(() => {
+    if (context.serviceKey !== "angebotscheck") return "";
+    const key = new URLSearchParams(query).get("offerConcern") || "";
+    return offerConcernScopes[key] || "";
+  }, [context.serviceKey, query]);
 
   useEffect(() => {
     const reset = () => setEntryReset((current) => current + 1);
@@ -225,9 +243,10 @@ export function ContactLeadForm({
       tabIndex={-1}
     >
       <ProfessionalRequestForm
-        key={`central-request:${entryReset}`}
+        key={`central-request:${entryReset}:${offerConcern}`}
         context={context}
         sourcePage={sourcePage}
+        initialScope={offerConcern}
         selection={(selectionError) => (
           <RequestContextSelector
             location={context.location}
@@ -251,12 +270,15 @@ export function LegacyBookingContextRedirect() {
 
   useEffect(() => {
     if (!redirectsToContact) return;
-    const next = new URLSearchParams(query);
-    next.delete("region");
+    const next = new URLSearchParams();
+    for (const key of ["service", "intent", "source", "priority", "mode", "locale"]) {
+      const value = searchParams.get(key)?.trim() || "";
+      if (value && /^[\p{L}\p{N} _-]{1,80}$/u.test(value)) next.set(key, value);
+    }
     next.set("location", "duesseldorf");
     if (!next.get("source")) next.set("source", "buchung");
     window.location.replace(`/kontakt?${next.toString()}#direktanfrage`);
-  }, [query, redirectsToContact]);
+  }, [redirectsToContact, searchParams]);
 
   return redirectsToContact ? (
     <div className="fixed inset-0 z-[100] grid place-items-center bg-white/95 px-6 text-center" role="status">

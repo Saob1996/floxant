@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { AnimatePresence, m } from "framer-motion";
@@ -45,6 +45,7 @@ export function BusinessDisposalForm() {
   const [submitError, setSubmitError] = useState("");
 
   function update(field: keyof typeof form, value: string) {
+    setSubmitError("");
     setForm((current) => ({ ...current, [field]: value }));
   }
 
@@ -125,7 +126,15 @@ export function BusinessDisposalForm() {
         body: submitData,
       });
 
-      if (!response.ok) throw new Error("Business disposal submit failed");
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitError(Object.values(fields)[0]);
+          return;
+        }
+        throw new Error("Business disposal submit failed");
+      }
 
       setIsSuccess(true);
       setForm(initialState);
@@ -166,6 +175,7 @@ export function BusinessDisposalForm() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               onSubmit={handleSubmit}
+              onChange={() => setSubmitError("")}
               className="space-y-4"
             >
               <div>
@@ -180,11 +190,11 @@ export function BusinessDisposalForm() {
 
               <Input icon={Building2} label="Firma" value={form.companyName} onChange={(value) => update("companyName", value)} required />
               <div className="grid gap-3 md:grid-cols-2">
-                <Input icon={User} label="Ansprechpartner" value={form.contactName} onChange={(value) => update("contactName", value)} required />
-                <Input icon={Phone} label="Telefon" value={form.phone} onChange={(value) => update("phone", value)} type="tel" required />
+                <Input name="name" icon={User} label="Ansprechpartner" value={form.contactName} onChange={(value) => update("contactName", value)} required />
+                <Input name="phone" icon={Phone} label="Telefon" value={form.phone} onChange={(value) => update("phone", value)} type="tel" required />
               </div>
               <div className="grid gap-3 md:grid-cols-2">
-                <Input icon={Mail} label="E-Mail" value={form.email} onChange={(value) => update("email", value)} type="email" />
+                <Input name="email" icon={Mail} label="E-Mail" value={form.email} onChange={(value) => update("email", value)} type="email" />
                 <Input icon={Calendar} label="Wunschtermin" value={form.preferredDate} onChange={(value) => update("preferredDate", value)} type="date" />
               </div>
               <Input icon={MapPin} label="Standort / Objektadresse" value={form.location} onChange={(value) => update("location", value)} required />
@@ -256,6 +266,7 @@ export function BusinessDisposalForm() {
 }
 
 function Input({
+  name,
   icon: Icon,
   label,
   value,
@@ -264,6 +275,7 @@ function Input({
   type = "text",
   placeholder,
 }: {
+  name?: string;
   icon: any;
   label: string;
   value: string;
@@ -279,6 +291,7 @@ function Input({
         {label}
       </span>
       <input
+        name={name}
         aria-label={label}
         required={required}
         type={type}

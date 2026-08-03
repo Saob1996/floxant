@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 import { FormEvent, useMemo, useState } from "react";
 import {
@@ -102,6 +102,8 @@ export function ReferralPartnerCodeForm() {
     const nextCode = sanitizePartnerCode(value);
     setPartnerCode(nextCode || "FLOXANT50");
     setCopied(false);
+    setErrorMessage("");
+    if (submitState === "error") setSubmitState("idle");
   }
 
   async function copyLink() {
@@ -183,7 +185,13 @@ export function ReferralPartnerCodeForm() {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Empfehlung konnte nicht gespeichert werden.");
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitState("error");
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
+        throw new Error(result.error || result.message || "Die Empfehlung konnte nicht gespeichert werden.");
       }
 
       form.reset();
@@ -259,20 +267,28 @@ export function ReferralPartnerCodeForm() {
         </div>
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+      >
         <input type="hidden" name="partnerCode" value={partnerCode} />
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ihr Name*
-            <input name="referrerName" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder="Empfehlender" />
+            <input id="name" name="referrerName" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder="Empfehlender" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="referrerPhone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder={PHONE_DISPLAY} />
+            <input id="phone" name="referrerPhone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder={PHONE_DISPLAY} />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
-            <input name="referrerEmail" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder={EMAIL} />
+            <input id="email" name="referrerEmail" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder={EMAIL} />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Auszahlung / Kontakt später klären*
@@ -334,7 +350,7 @@ export function ReferralPartnerCodeForm() {
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-700">
-          <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
+          <input id="privacyConsent" name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
           Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Empfehlung nutzt. Bankdaten werden im ersten Schritt nicht erhoben.
         </label>
 

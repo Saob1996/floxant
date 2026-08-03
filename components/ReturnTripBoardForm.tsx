@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 import { FormEvent, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, Mail, Phone } from "lucide-react";
@@ -145,7 +145,13 @@ export function ReturnTripBoardForm() {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Strecke konnte nicht gesendet werden.");
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitState("error");
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
+        throw new Error(result.error || result.message || "Die Strecke konnte nicht gesendet werden.");
       }
 
       form.reset();
@@ -168,7 +174,15 @@ export function ReturnTripBoardForm() {
         <strong>Wichtig:</strong> Die Rückfahrt-Börse ist ein Nachfrage-System, kein Live-Tourenversprechen. FLOXANT prüft Strecke, Datum, Umfang, Zugang und Kapazität nach Verfügbarkeit.
       </div>
 
-      <form className="grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        className="grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -326,7 +340,7 @@ export function ReturnTripBoardForm() {
           WhatsApp bevorzugt.
         </label>
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
-          <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-emerald-600" />
+          <input id="return-trip-privacy" name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-emerald-600" />
           Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Prüfung der Rückfahrt-/Leerfahrt-Anfrage verarbeitet. Es wird keine Verfügbarkeit oder ein Festpreis garantiert.
         </label>
 

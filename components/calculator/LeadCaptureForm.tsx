@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import React, { useEffect, useMemo, useState } from "react";
@@ -194,6 +194,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
    }
 
    if (!res.ok) {
+    const fields = bookingFieldErrors(result);
+    if (res.status === 400 && Object.keys(fields).length > 0) {
+     setSubmitError(result?.error || "Bitte korrigieren Sie die markierten Angaben.");
+     return;
+    }
     throw new Error(
      result?.error ||
      dic?.error?.generic ||
@@ -281,7 +286,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     </div>
    </div>
 
-   <form onSubmit={handleSubmit} className="space-y-6 p-6 md:p-8">
+   <form
+    onSubmit={handleSubmit}
+    onChange={() => setSubmitError("")}
+    className="space-y-6 p-6 md:p-8"
+   >
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
      <FieldBox
       label={dic?.calculator?.contact_person || ""}
@@ -289,6 +298,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
      >
       <input
        required
+       id="calculator-lead-name"
+       name="name"
        type="text"
        aria-label={dic?.calculator?.contact_person || "Kontaktperson"}
        placeholder={dic?.calculator?.name_placeholder || ""}
@@ -306,6 +317,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
      >
       <input
        required
+       id="calculator-lead-phone"
+       name="phone"
        type="tel"
        aria-label={dic?.calculator?.phone_number || "Telefonnummer"}
        placeholder="+49 170 1234567"
@@ -323,6 +336,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
      icon={<Mail size={12} className="text-blue-300" />}
     >
      <input
+       id="calculator-lead-email"
+       name="email"
        type="email"
       aria-label={dic?.calculator?.email_address || "E-Mail optional"}
       placeholder="max@beispiel.de"
@@ -405,7 +420,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
      </p>
     </div>
 
-    <PrivacyConsentField inverted />
+    <PrivacyConsentField id="calculator-lead-privacy" inverted />
 
     <div className="flex flex-col items-center justify-between gap-4 pt-2 md:flex-row">
      <button

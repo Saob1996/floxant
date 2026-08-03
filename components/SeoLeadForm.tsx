@@ -2,7 +2,7 @@
 
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 
 import {
@@ -20,6 +20,7 @@ import { getCustomerFacingErrorMessage } from "@/lib/customer-labels";
 import { buildRequestSummaryPayload } from "@/lib/missing-info";
 import { getLeadReplyTemplateForServiceKey } from "@/lib/lead-reply-templates";
 import { getMissingInfoQuestionsForServiceKey } from "@/lib/missing-info-questions";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 
 type SeoLeadFormProps = {
   initialIntent: LeadIntent;
@@ -32,11 +33,19 @@ type SeoLeadFormProps = {
   trackingSource?: string;
 };
 
-type FormErrors = Partial<Record<"name" | "contact" | "email" | "service" | "city" | "message" | "privacy" | "spam" | "form", string>>;
+type FormErrors = Partial<Record<"name" | "contact" | "email" | "phone" | "contactMethod" | "service" | "city" | "message" | "privacy" | "spam" | "form", string>>;
 
-function isEmailValid(value: string) {
-  return !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+function createSeoLeadIdempotencyKey() {
+  return `seo_lead:${Date.now()}:${globalThis.crypto.randomUUID()}`;
 }
+
+function isSolarPvService(service: string) {
+  return service === "solarreinigung" || service === "pv-anlagen-reinigung";
+}
+
+const selectableLeadServiceOptions = leadServiceOptions.filter(
+  (option) => !isSolarPvService(option.value),
+);
 
 function dispatchSeoConversionEvent(eventName: string, lead: LeadIntent, label: string) {
   if (typeof window === "undefined") return;
@@ -459,10 +468,16 @@ export function SeoLeadForm({
   displayIntro,
   trackingSource = "seo_contact_form",
 }: SeoLeadFormProps) {
-  const initialService = initialIntent.service === "kontakt" ? "sonstiges" : initialIntent.service;
+  const hasNeutralSolarPreset = isSolarPvService(initialIntent.service);
+  const initialService =
+    initialIntent.service === "kontakt" || hasNeutralSolarPreset
+      ? "sonstiges"
+      : initialIntent.service;
   const initialCityInput = initialIntent.cityLabel || "";
   const [service, setService] = useState<LeadService>(initialService);
-  const [serviceSelected, setServiceSelected] = useState(!initiallyNeutral);
+  const [serviceSelected, setServiceSelected] = useState(
+    !initiallyNeutral && !hasNeutralSolarPreset,
+  );
   const [city, setCity] = useState(initialCityInput);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -530,6 +545,8 @@ export function SeoLeadForm({
   const [startedAt] = useState(() => Date.now());
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
 
   const lead = useMemo(
     () => {
@@ -604,10 +621,21 @@ export function SeoLeadForm({
   }
 
   function validate() {
-    const nextErrors: FormErrors = {};
-    const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
-    const trimmedPhone = phone.trim();
+    const contactValidation = validateRequestContact(
+      {
+        name,
+        email,
+        phone,
+        contactMethod: resolvedContactMethod,
+        privacyConsent,
+      },
+      { requireContactMethod: true, requireConsent: true },
+    );
+    const {
+      privacyConsent: privacyError,
+      ...contactErrors
+    } = contactValidation.fields;
+    const nextErrors: FormErrors = { ...contactErrors };
     const trimmedCity = city.trim();
     const trimmedMessage = message.trim();
 
@@ -615,27 +643,62 @@ export function SeoLeadForm({
     if (Date.now() - startedAt < 2500) {
       nextErrors.spam = "Bitte prüfen Sie die Angaben kurz und senden Sie die Anfrage danach erneut.";
     }
-    if (trimmedName.length < 2) nextErrors.name = "Bitte geben Sie Ihren Namen ein.";
-    if (!trimmedEmail && !trimmedPhone) nextErrors.contact = "Bitte E-Mail oder Telefon angeben.";
-    if (trimmedEmail && !isEmailValid(trimmedEmail)) nextErrors.email = "Bitte eine gültige E-Mail-Adresse eintragen.";
-    if (trimmedPhone && trimmedPhone.length < 6) nextErrors.contact = "Die Telefonnummer ist zu kurz.";
     if (!serviceSelected) nextErrors.service = "Bitte eine Leistung auswählen.";
+    if (isSolarPvService(service)) {
+      nextErrors.service = "Bitte wählen Sie eine aktuell bestätigte Leistung aus.";
+    }
     if (!trimmedCity) nextErrors.city = "Bitte Ort oder Einsatzgebiet eintragen.";
     if (trimmedMessage.length < 10) nextErrors.message = "Bitte beschreiben Sie den Bedarf in einem kurzen Satz.";
-    if (!privacyConsent) nextErrors.privacy = "Bitte bestätigen Sie den Datenschutz-Hinweis.";
+    if (privacyError) nextErrors.privacy = privacyError;
 
     setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    return nextErrors;
+  }
+
+  function focusFirstError(nextErrors: FormErrors) {
+    const ids: Partial<Record<keyof FormErrors, string>> = {
+      name: "seo-lead-name",
+      service: "seo-lead-service",
+      email: "seo-lead-email",
+      phone: "seo-lead-phone",
+      contact: "seo-lead-email",
+      contactMethod: "seo-lead-contact-method",
+      city: "seo-lead-city",
+      message: "seo-lead-message",
+      privacy: "seo-lead-privacy",
+    };
+    const firstKey = [
+      "name",
+      "service",
+      "email",
+      "phone",
+      "contact",
+      "contactMethod",
+      "city",
+      "message",
+      "privacy",
+    ].find((key) => nextErrors[key as keyof FormErrors]);
+    const id = firstKey ? ids[firstKey as keyof FormErrors] : undefined;
+    if (id) requestAnimationFrame(() => document.getElementById(id)?.focus());
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "submitting") return;
-    if (!validate()) {
+    if (submitLockRef.current || status === "submitting") return;
+
+    submitLockRef.current = true;
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
       dispatchSeoConversionEvent("seo_lead_submit_error", lead, "Validierung fehlgeschlagen");
       setStatus("error");
+      focusFirstError(validationErrors);
+      submitLockRef.current = false;
       return;
     }
+
+    const attemptKey = idempotencyKeyRef.current ?? createSeoLeadIdempotencyKey();
+    idempotencyKeyRef.current = attemptKey;
+    let completedSuccessfully = false;
 
     setStatus("submitting");
     setErrors({});
@@ -1127,6 +1190,9 @@ export function SeoLeadForm({
       const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: payload,
+        headers: {
+          "Idempotency-Key": attemptKey,
+        },
       });
 
       let responsePayload: any = null;
@@ -1137,11 +1203,20 @@ export function SeoLeadForm({
       }
 
       if (response.status !== 201 || responsePayload?.ok !== true) {
+        if (idempotencyKeyRef.current !== attemptKey) return;
+
         const serverFields = bookingFieldErrors(responsePayload);
         const mappedErrors: FormErrors = {};
         if (serverFields.name) mappedErrors.name = serverFields.name;
         if (serverFields.email) mappedErrors.email = serverFields.email;
-        if (serverFields.phone || serverFields.contact) mappedErrors.contact = serverFields.phone || serverFields.contact;
+        if (serverFields.phone) mappedErrors.phone = serverFields.phone;
+        if (serverFields.contact) mappedErrors.contact = serverFields.contact;
+        if (serverFields.contactMethod || serverFields.preferredContactMethod || serverFields.preferredContact) {
+          mappedErrors.contactMethod =
+            serverFields.contactMethod ||
+            serverFields.preferredContactMethod ||
+            serverFields.preferredContact;
+        }
         if (serverFields.service) mappedErrors.service = serverFields.service;
         if (serverFields.city || serverFields.cityOrZip) mappedErrors.city = serverFields.city || serverFields.cityOrZip;
         if (serverFields.message) mappedErrors.message = serverFields.message;
@@ -1152,17 +1227,29 @@ export function SeoLeadForm({
         dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
         setErrors(mappedErrors);
         setStatus("error");
+        focusFirstError(mappedErrors);
         return;
       }
 
+      if (idempotencyKeyRef.current !== attemptKey) return;
+
       dispatchSeoConversionEvent("seo_lead_submit_success", lead, "SEO-Anfrage erfolgreich gesendet");
+      completedSuccessfully = true;
+      idempotencyKeyRef.current = null;
       setStatus("success");
     } catch {
+      if (idempotencyKeyRef.current !== attemptKey) return;
+
       dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
       setErrors({
         form: getCustomerFacingErrorMessage("submit-error"),
       });
       setStatus("error");
+    } finally {
+      if (!completedSuccessfully && idempotencyKeyRef.current !== attemptKey) {
+        setStatus("idle");
+      }
+      submitLockRef.current = false;
     }
   }
 
@@ -1211,6 +1298,8 @@ export function SeoLeadForm({
         <button
           type="button"
           onClick={() => {
+            idempotencyKeyRef.current = null;
+            submitLockRef.current = false;
             setStatus("idle");
             setMessage("");
             setScope("");
@@ -1233,8 +1322,14 @@ export function SeoLeadForm({
       data-priority={lead.priority}
     >
       <form
+        data-booking-field-errors="managed"
         id="direktanfrage"
         onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setErrors({});
+          if (status === "error") setStatus("idle");
+        }}
         className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 text-slate-950 shadow-sm shadow-slate-950/5 sm:p-6"
         data-event="seo_lead_submit_attempt"
         data-source={trackingSource}
@@ -1247,6 +1342,7 @@ export function SeoLeadForm({
         data-track-submit="attempt"
         noValidate
       >
+      <fieldset disabled={status === "submitting"} className="contents">
       <div>
         <div className="text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
           Schnelle Anfrage
@@ -1281,6 +1377,7 @@ export function SeoLeadForm({
             onChange={(event) => setName(event.target.value)}
             className={fieldClass(Boolean(errors.name))}
             aria-describedby={errors.name ? "seo-lead-name-error" : undefined}
+            aria-invalid={Boolean(errors.name)}
             autoComplete="name"
             placeholder="Ihr Name"
           />
@@ -1297,9 +1394,10 @@ export function SeoLeadForm({
             }}
             className={fieldClass(Boolean(errors.service))}
             aria-describedby={errors.service ? "seo-lead-service-error" : undefined}
+            aria-invalid={Boolean(errors.service)}
           >
             <option value="">Bitte Leistung auswählen</option>
-            {leadServiceOptions.map((option) => (
+            {selectableLeadServiceOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {germanText(option.label, option.label)}
               </option>
@@ -1309,7 +1407,7 @@ export function SeoLeadForm({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="E-Mail" htmlFor="seo-lead-email" error={errors.email || errors.contact}>
+        <Field label="E-Mail" htmlFor="seo-lead-email" error={errors.email}>
           <input
             id="seo-lead-email"
             name="email"
@@ -1317,34 +1415,55 @@ export function SeoLeadForm({
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             className={fieldClass(Boolean(errors.email || errors.contact))}
-            aria-describedby={errors.email || errors.contact ? "seo-lead-email-error" : undefined}
+            aria-describedby={[
+              errors.email ? "seo-lead-email-error" : "",
+              errors.contact ? "seo-lead-contact-error" : "",
+            ].filter(Boolean).join(" ") || undefined}
+            aria-invalid={Boolean(errors.email || errors.contact)}
             autoComplete="email"
             placeholder="name@beispiel.de"
           />
         </Field>
 
-        <Field label="Telefon" htmlFor="seo-lead-phone" error={errors.contact}>
+        <Field label="Telefon" htmlFor="seo-lead-phone" error={errors.phone}>
           <input
             id="seo-lead-phone"
             name="phone"
             type="tel"
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
-            className={fieldClass(Boolean(errors.contact))}
-            aria-describedby={errors.contact ? "seo-lead-phone-error" : undefined}
+            className={fieldClass(Boolean(errors.phone || errors.contact))}
+            aria-describedby={[
+              errors.phone ? "seo-lead-phone-error" : "",
+              errors.contact ? "seo-lead-contact-error" : "",
+            ].filter(Boolean).join(" ") || undefined}
+            aria-invalid={Boolean(errors.phone || errors.contact)}
             autoComplete="tel"
             placeholder="+49 ..."
           />
         </Field>
       </div>
 
-      <Field label="Bevorzugter Kontaktweg" htmlFor="seo-lead-contact-method">
+      {errors.contact ? (
+        <p id="seo-lead-contact-error" className="flex gap-2 text-sm font-semibold leading-6 text-red-700">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          {germanText(errors.contact, errors.contact)}
+        </p>
+      ) : null}
+
+      <Field
+        label="Bevorzugter Kontaktweg"
+        htmlFor="seo-lead-contact-method"
+        error={errors.contactMethod}
+      >
         <select
           id="seo-lead-contact-method"
           name="contactMethodPreference"
           value={contactMethod}
           onChange={(event) => setContactMethod(event.target.value)}
-          className={fieldClass(false)}
+          className={fieldClass(Boolean(errors.contactMethod))}
+          aria-describedby={errors.contactMethod ? "seo-lead-contact-method-error" : undefined}
+          aria-invalid={Boolean(errors.contactMethod)}
         >
           <option value="auto">automatisch nach Angabe</option>
           <option value="phone">Rückruf bevorzugt</option>
@@ -2174,10 +2293,13 @@ export function SeoLeadForm({
 
       <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
         <input
+          id="seo-lead-privacy"
           name="privacyConsent"
           type="checkbox"
           checked={privacyConsent}
           onChange={(event) => setPrivacyConsent(event.target.checked)}
+          aria-invalid={Boolean(errors.privacy)}
+          aria-describedby={errors.privacy ? "seo-lead-privacy-error" : undefined}
           className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700"
         />
         <span>
@@ -2185,7 +2307,7 @@ export function SeoLeadForm({
         </span>
       </label>
       {errors.privacy ? (
-        <p className="flex gap-2 text-sm font-semibold leading-6 text-red-700">
+        <p id="seo-lead-privacy-error" className="flex gap-2 text-sm font-semibold leading-6 text-red-700">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           {germanText(errors.privacy, errors.privacy)}
         </p>
@@ -2218,6 +2340,7 @@ export function SeoLeadForm({
         {status === "submitting" ? "Wird gesendet..." : "Anfrage senden"}
         <Send className="h-4 w-4" aria-hidden="true" />
       </button>
+      </fieldset>
       </form>
     </div>
   );

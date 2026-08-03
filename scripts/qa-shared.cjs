@@ -59,19 +59,19 @@ const criticalRoutes = [
 ];
 
 const contactScenarios = [
-  { path: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo", expectedService: ["angebot-pruefen", "angebot_pruefen"], expectedCity: [], expectedIntent: "angebot-pruefen" },
+  { path: "/kontakt?service=angebot-pruefen&city=duesseldorf&intent=angebot-pruefen&source=seo", expectedService: ["angebot-pruefen", "angebot_pruefen", "angebotscheck"], expectedCity: ["duesseldorf"], expectedIntent: "angebot-pruefen" },
   { path: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo", expectedService: ["reinigung"], expectedCity: ["duesseldorf"], expectedIntent: "reinigung-duesseldorf" },
   { path: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo", expectedService: ["bueroreinigung", "b2b_reinigung"], expectedCity: ["duesseldorf"], expectedIntent: "bueroreinigung-duesseldorf" },
   { path: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo", expectedService: ["gewerbereinigung", "b2b_reinigung"], expectedCity: ["duesseldorf"], expectedIntent: "gewerbereinigung-duesseldorf" },
   { path: "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo", expectedService: ["umzug"], expectedCity: ["regensburg"], expectedIntent: "umzug-regensburg" },
   { path: "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo", expectedService: ["entruempelung", "entsorgung"], expectedCity: ["regensburg"], expectedIntent: "entruempelung-regensburg" },
   { path: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo", expectedService: ["klaviertransport"], expectedCity: ["regensburg"], expectedIntent: "klaviertransport-regensburg" },
-  { path: "/kontakt?service=diskret-service&intent=diskret-service&source=seo", expectedService: ["diskret-service", "private-client", "private_client"], expectedCity: [], expectedIntent: "diskret-service" },
-  { path: "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo", expectedService: ["seniorenumzug"], expectedCity: [], expectedIntent: "seniorenumzug-anfragen" },
-  { path: "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo", expectedService: ["solarreinigung"], expectedCity: [], expectedIntent: "solarreinigung-anfragen" },
+  { path: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskret-service&source=seo", expectedService: ["diskret-service", "private-client", "private_client"], expectedCity: ["duesseldorf"], expectedIntent: "diskret-service" },
+  { path: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-anfragen&source=seo", expectedService: ["seniorenumzug"], expectedCity: ["regensburg"], expectedIntent: "seniorenumzug-anfragen" },
+  { path: "/kontakt?mode=neutral&intent=solarreinigung-anfragen&source=seo", expectedService: [], expectedCity: [], expectedIntent: "", expectedNeutral: true },
   { path: "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo", expectedService: ["cleaning", "reinigung"], expectedCity: ["duesseldorf"], expectedIntent: "english-cleaning-duesseldorf" },
   { path: "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo", expectedService: ["moving", "umzug"], expectedCity: ["regensburg"], expectedIntent: "english-moving-regensburg" },
-  { path: "/kontakt?service=offer-check&intent=english-offer-check&source=seo", expectedService: ["offer-check", "angebot-pruefen", "angebot_pruefen"], expectedCity: [], expectedIntent: "english-offer-check" },
+  { path: "/kontakt?service=offer-check&city=duesseldorf&intent=english-offer-check&source=seo", expectedService: ["offer-check", "angebot-pruefen", "angebot_pruefen", "angebotscheck"], expectedCity: ["duesseldorf"], expectedIntent: "english-offer-check" },
 ];
 
 const hardClaimRules = [

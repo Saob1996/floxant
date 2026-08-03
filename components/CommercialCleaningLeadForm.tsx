@@ -1,6 +1,7 @@
 "use client";
 
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { useMemo, useRef, useState } from "react";
@@ -126,6 +127,7 @@ export function CommercialCleaningLeadForm() {
    companyName: "",
    phone: "",
    email: "",
+   contactMethod: "email",
    propertyType: serviceContext.defaultPropertyType,
    spaceRange: "150 bis 400 m²",
    cadence: "Täglich",
@@ -139,7 +141,9 @@ export function CommercialCleaningLeadForm() {
  const [submitting, setSubmitting] = useState(false);
  const [state, setState] = useState<"idle" | "success" | "error">("idle");
  const [errorMessage, setErrorMessage] = useState("");
+ const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
  const startedAtRef = useRef(Date.now());
+ const submissionAttemptKeyRef = useRef("");
 
  const whatsappUrl = useMemo(() => {
   const text = `Hallo FLOXANT, ich möchte ${serviceContext.label} anfragen.`;
@@ -149,19 +153,50 @@ export function CommercialCleaningLeadForm() {
  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
   if (submitting) return;
+  const submittedForm = new FormData(event.currentTarget);
+  const privacyConsent = submittedForm.get("privacyConsent") === "true";
+  const { fields: contactErrors } = validateRequestContact(
+   {
+    name: form.name,
+    email: form.email,
+    phone: form.phone,
+    contactMethod: form.contactMethod,
+    privacyConsent,
+   },
+   { requireContactMethod: true, requireConsent: true },
+  );
+  if (Object.keys(contactErrors).length) {
+   const mappedErrors: Record<string, string> = {
+    ...contactErrors,
+    ...(contactErrors.contact ? { [form.contactMethod === "email" ? "email" : "phone"]: contactErrors.contact } : {}),
+    ...(contactErrors.privacyConsent ? { privacy: contactErrors.privacyConsent } : {}),
+   };
+   setFieldErrors(mappedErrors);
+   setErrorMessage("Bitte prüfen Sie die markierten Kontaktangaben.");
+   setState("error");
+   const firstField = ["name", "email", "phone", "contactMethod", "privacy"].find((field) => mappedErrors[field]);
+   if (firstField) requestAnimationFrame(() => document.getElementById(`commercial-${firstField}`)?.focus());
+   return;
+  }
   setSubmitting(true);
   setState("idle");
   setErrorMessage("");
+  setFieldErrors({});
 
-  const submittedForm = new FormData(event.currentTarget);
+  const attemptKey = submissionAttemptKeyRef.current
+   || `commercial_cleaning:${Date.now()}:${crypto.randomUUID()}`;
+  submissionAttemptKeyRef.current = attemptKey;
+
   const budgetValue = parseBudget(form.budget);
   const topDrivers = [serviceContext.label, form.propertyType, form.spaceRange, form.cadence, form.location].filter(Boolean);
 
   const payload = {
-   privacyConsent: true,
+   privacyConsent,
    name: form.name,
    email: form.email,
    phone: form.phone,
+   contactMethod: form.contactMethod,
+   preferredContactMethod: form.contactMethod,
    service: serviceContext.serviceType,
    type: "commercial_cleaning_request",
    lead_type: "commercial_cleaning_request",
@@ -179,7 +214,7 @@ export function CommercialCleaningLeadForm() {
      fullName: form.name,
      email: form.email,
      phone: form.phone,
-     callbackPreference: "Geschäftszeiten",
+     callbackPreference: form.contactMethod,
      notes: form.message,
     },
     service: {
@@ -259,7 +294,10 @@ export function CommercialCleaningLeadForm() {
   try {
    const response = await bookingFetch("/api/bookings", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+     "Content-Type": "application/json",
+     "Idempotency-Key": attemptKey,
+    },
     body: JSON.stringify(payload),
    });
 
@@ -269,17 +307,38 @@ export function CommercialCleaningLeadForm() {
     error?: string;
     fields?: Record<string, string>;
    };
+   if (submissionAttemptKeyRef.current !== attemptKey) return;
    if (response.status !== 201 || result.ok !== true) {
     const fields = bookingFieldErrors(result);
-    const firstFieldError = Object.values(fields).find(Boolean);
+    if (Object.keys(fields).length) {
+     const mappedFields: Record<string, string> = {
+      ...(fields.name ? { name: fields.name } : {}),
+      ...(fields.email ? { email: fields.email } : {}),
+      ...((fields.phone || fields.contact) ? { phone: fields.phone || fields.contact } : {}),
+      ...((fields.preferredContactMethod || fields.contactMethod)
+       ? { contactMethod: fields.preferredContactMethod || fields.contactMethod }
+       : {}),
+      ...(fields.privacyConsent ? { privacy: fields.privacyConsent } : {}),
+     };
+     if (Object.keys(mappedFields).length) {
+      setFieldErrors(mappedFields);
+      setErrorMessage("Bitte prüfen Sie die markierten Kontaktangaben.");
+      setState("error");
+      const firstField = ["name", "email", "phone", "contactMethod", "privacy"].find((field) => mappedFields[field]);
+      if (firstField) requestAnimationFrame(() => document.getElementById(`commercial-${firstField}`)?.focus());
+      return;
+     }
+    }
     const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
-    throw new Error(`${firstFieldError || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
+    throw new Error(`${result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
    }
 
+   submissionAttemptKeyRef.current = "";
    setState("success");
    setForm(initialForm);
    startedAtRef.current = Date.now();
   } catch (error) {
+   if (submissionAttemptKeyRef.current !== attemptKey) return;
    setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
    setState("error");
   } finally {
@@ -288,18 +347,42 @@ export function CommercialCleaningLeadForm() {
  }
 
  function updateField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
+  submissionAttemptKeyRef.current = "";
+  setFieldErrors((current) => {
+   const relatedKeys = key === "email" || key === "phone" || key === "contactMethod"
+    ? ["email", "phone", "contact", "contactMethod"]
+    : [key];
+   if (!relatedKeys.some((field) => field in current)) return current;
+   const next = { ...current };
+   relatedKeys.forEach((field) => delete next[field]);
+   return next;
+  });
   setForm((current) => ({ ...current, [key]: value }));
  }
 
  return (
   <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
    <form
+    data-booking-field-errors="managed"
     onSubmit={handleSubmit}
+    onChange={(event) => {
+     if (!(event.target instanceof HTMLInputElement) || event.target.name !== "privacyConsent") return;
+     submissionAttemptKeyRef.current = "";
+     setFieldErrors((current) => {
+      if (!current.privacy) return current;
+      const next = { ...current };
+      delete next.privacy;
+      return next;
+     });
+    }}
     data-event="form_submit"
     data-region="regensburg"
     data-source={serviceContext.source}
+    aria-busy={submitting}
+    noValidate
     className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
    >
+    <fieldset disabled={submitting} className="contents">
     <label className="sr-only" aria-hidden="true">
      Website
      <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
@@ -325,12 +408,16 @@ export function CommercialCleaningLeadForm() {
      <label className="space-y-2 text-sm font-semibold text-slate-800">
       Ansprechpartner
       <input
+       id="commercial-name"
        required
        value={form.name}
        onChange={(event) => updateField("name", event.target.value)}
+       aria-invalid={Boolean(fieldErrors.name)}
+       aria-describedby={fieldErrors.name ? "commercial-name-error" : undefined}
        className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-slate-950 outline-none transition focus:border-blue-300 focus:bg-white"
        placeholder="Name"
       />
+      {fieldErrors.name ? <span id="commercial-name-error" className="text-sm text-red-700">{fieldErrors.name}</span> : null}
      </label>
      <label className="space-y-2 text-sm font-semibold text-slate-800">
       Firma / Verwaltung
@@ -344,23 +431,46 @@ export function CommercialCleaningLeadForm() {
      <label className="space-y-2 text-sm font-semibold text-slate-800">
       Telefon
       <input
-       required
+       id="commercial-phone"
+       type="tel"
        value={form.phone}
        onChange={(event) => updateField("phone", event.target.value)}
+       aria-invalid={Boolean(fieldErrors.phone)}
+       aria-describedby={fieldErrors.phone ? "commercial-phone-error" : undefined}
        className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-slate-950 outline-none transition focus:border-blue-300 focus:bg-white"
        placeholder="Telefonnummer"
       />
+      {fieldErrors.phone ? <span id="commercial-phone-error" className="text-sm text-red-700">{fieldErrors.phone}</span> : null}
      </label>
      <label className="space-y-2 text-sm font-semibold text-slate-800">
       E-Mail
       <input
-       required
+       id="commercial-email"
        type="email"
        value={form.email}
        onChange={(event) => updateField("email", event.target.value)}
+       aria-invalid={Boolean(fieldErrors.email)}
+       aria-describedby={fieldErrors.email ? "commercial-email-error" : undefined}
        className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-slate-950 outline-none transition focus:border-blue-300 focus:bg-white"
        placeholder="E-Mail"
       />
+      {fieldErrors.email ? <span id="commercial-email-error" className="text-sm text-red-700">{fieldErrors.email}</span> : null}
+     </label>
+     <label className="space-y-2 text-sm font-semibold text-slate-800 md:col-span-2">
+      Bevorzugter Kontaktweg
+      <select
+       id="commercial-contactMethod"
+       value={form.contactMethod}
+       onChange={(event) => updateField("contactMethod", event.target.value)}
+       aria-invalid={Boolean(fieldErrors.contactMethod)}
+       aria-describedby={fieldErrors.contactMethod ? "commercial-contactMethod-error" : undefined}
+       className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-slate-950 outline-none transition focus:border-blue-300 focus:bg-white"
+      >
+       <option value="email">E-Mail</option>
+       <option value="telefon">Telefon</option>
+       <option value="whatsapp">WhatsApp</option>
+      </select>
+      {fieldErrors.contactMethod ? <span id="commercial-contactMethod-error" className="text-sm text-red-700">{fieldErrors.contactMethod}</span> : null}
      </label>
      <label className="space-y-2 text-sm font-semibold text-slate-800">
       Objektart
@@ -444,7 +554,7 @@ export function CommercialCleaningLeadForm() {
     </div>
 
     <div className="mt-5">
-     <PrivacyConsentField />
+     <PrivacyConsentField id="commercial-privacy" error={fieldErrors.privacy} />
     </div>
 
     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -467,16 +577,17 @@ export function CommercialCleaningLeadForm() {
     </div>
 
     {state === "success" ? (
-     <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+     <div role="status" aria-live="polite" className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
       Ihre Anfrage wurde erfolgreich übermittelt. Wir melden uns zeitnah zurück.
      </div>
     ) : null}
 
     {state === "error" ? (
-     <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
+     <div role="alert" aria-live="assertive" className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
       {errorMessage || "Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp."}
      </div>
     ) : null}
+    </fieldset>
    </form>
 
    <aside className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm shadow-slate-950/5">

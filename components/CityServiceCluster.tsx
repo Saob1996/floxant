@@ -112,7 +112,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
     {
       title: "Direkt abstimmen",
       text: "Wenn Fotos, Sonderfälle oder Rückfragen zuerst menschlich geklärt werden sollen.",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       icon: PhoneCall,
       tone: "bg-amber-50 text-amber-700",
     },

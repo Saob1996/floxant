@@ -93,13 +93,13 @@ function getLocalLinks(signal: string): RelatedLink[] {
   if (signal.includes("regensburg") || signal.includes("bayern")) {
     links.push(
       { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung im 50-km-Umkreis und Entruempelung." },
-      { href: "/kontakt", title: "Kontakt", text: "Ort, Termin, Fotos und kurze Beschreibung direkt senden." },
+      { href: "/kontakt?mode=neutral&source=seo", title: "Kontakt", text: "Ort, Termin, Fotos und kurze Beschreibung direkt senden." },
     );
   }
 
   if (!links.length) {
     links.push(
-      { href: "/kontakt", title: "Kontakt", text: "Anfrage mit Ort, Termin und Fotos starten." },
+      { href: "/kontakt?mode=neutral&source=seo", title: "Kontakt", text: "Anfrage mit Ort, Termin und Fotos starten." },
       { href: "/regensburg", title: "Regensburg", text: "Lokale Services in Regensburg ansehen." },
     );
   }
@@ -209,7 +209,7 @@ export function BlogQuickAnswer({
   intro: string;
   ctas: CtaLink[];
 }) {
-  const primaryCta = ctas[0] || { href: "/kontakt", label: "Anfrage starten" };
+  const primaryCta = ctas[0] || { href: "/kontakt?mode=neutral&source=seo", label: "Anfrage starten" };
 
   return (
     <section className="mt-8 rounded-[1.5rem] border border-blue-100 bg-blue-50 p-5">
@@ -297,7 +297,7 @@ export function BlogOfferCheckCTA({ ctas }: { ctas: CtaLink[] }) {
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
         <Link
-          href="/kontakt"
+          href="/kontakt?mode=neutral&source=seo"
           className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 text-sm font-bold text-white transition hover:bg-white hover:text-slate-950"
         >
           Situation beschreiben

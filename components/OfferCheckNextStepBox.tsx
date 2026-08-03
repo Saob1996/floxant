@@ -19,7 +19,7 @@ export function OfferCheckNextStepBox() {
             </p>
           </div>
           <Link
-            href="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
+            href="/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&source=seo"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
             data-event="seo_cta_click"
             data-service="angebot-pruefen"
@@ -27,7 +27,7 @@ export function OfferCheckNextStepBox() {
             data-page-intent="angebot-pruefen"
             data-priority="p0"
             data-cta-label="Angebot jetzt senden"
-            data-destination="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
+            data-destination="/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&source=seo"
           >
             Angebot jetzt senden
             <ArrowRight className="h-4 w-4" />

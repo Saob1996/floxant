@@ -112,7 +112,7 @@ for (const [number, label, fixture] of [
   test(`${number} ${label}`, () => assert.ok(functionTest.includes(`"${fixture}"`)));
 }
 test("41 Analytics nur nach Erfolg", () => {
-  assert.match(analyticsTest, /trackingCall > payloadGuard/);
+  assert.match(analyticsTest, /trackingCall > bookingIdGuard/);
   assert.match(form, /response\.status !== 201[\s\S]*result\.ok !== true/);
 });
 test("42 keine personenbezogenen Analytics-Daten", () => {
@@ -151,7 +151,10 @@ test("49 temporÃ¤rer Kontextwechsel behÃ¤lt das letzte Fachprofil", () => {
   assert.match(form, /if \(!context\.valid\)[\s\S]*?group: previous\.group/);
 });
 test("50 veraltete Submit-Antworten Ã¤ndern keinen neuen Kontext", () => {
-  assert.match(form, /const attemptKey = `professional_request:/);
+  assert.match(
+    form,
+    /const attemptKey = submissionAttemptKeyRef\.current[\s\S]{0,100}\|\| `professional_request:/,
+  );
   assert.match(form, /submissionAttemptKeyRef\.current !== attemptKey/);
   assert.match(submissionClient, /Idempotency-Key/);
   assert.match(submissionClient, /`\$\{url\}::\$\{idempotencyKey\}`/);

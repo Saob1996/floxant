@@ -67,7 +67,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
       text: "Wenn Budget und Machbarkeit gemeinsam geprüft werden sollen.",
     },
     {
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       title: "Rückfrage klären",
       text: "Wenn Fotos, Zugang oder Sonderfälle zuerst abgestimmt werden müssen.",
     },

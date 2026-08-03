@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { AnimatePresence, m } from "framer-motion";
@@ -115,6 +115,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
  }, [isOpen, onClose, pathname, searchParams]);
 
  function update(field: keyof typeof formData, value: string) {
+  setErrorMessage("");
   setFormData((current) => ({ ...current, [field]: value }));
  }
 
@@ -205,7 +206,15 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
     body: submitData,
    });
 
-   if (!response.ok) throw new Error("Express submit failed");
+   const result = await response.json().catch(() => ({}));
+   if (!response.ok) {
+    const fields = bookingFieldErrors(result);
+    if (response.status === 400 && Object.keys(fields).length > 0) {
+     setErrorMessage(Object.values(fields)[0]);
+     return;
+    }
+    throw new Error("Express submit failed");
+   }
 
    setIsSuccess(true);
    setTimeout(() => {
@@ -290,7 +299,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
         </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} onChange={() => setErrorMessage("")} className="space-y-4">
          <div className="grid gap-3 sm:grid-cols-3">
          {serviceOptions.map((option) => (
            (() => {
@@ -335,11 +344,11 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          <Field icon={Calendar} label="Wunschtermin" value={formData.date} onChange={(value) => update("date", value)} type="date" />
 
          <div className="grid gap-4 md:grid-cols-2">
-          <Field icon={User} label="Name" value={formData.name} onChange={(value) => update("name", value)} required />
-          <Field icon={Phone} label="Telefon" value={formData.phone} onChange={(value) => update("phone", value)} type="tel" required />
+          <Field name="name" icon={User} label="Name" value={formData.name} onChange={(value) => update("name", value)} required />
+          <Field name="phone" icon={Phone} label="Telefon" value={formData.phone} onChange={(value) => update("phone", value)} type="tel" required />
          </div>
 
-         <Field icon={Mail} label="E-Mail optional" value={formData.email} onChange={(value) => update("email", value)} type="email" />
+         <Field name="email" icon={Mail} label="E-Mail optional" value={formData.email} onChange={(value) => update("email", value)} type="email" />
 
          <label className="block">
           <span
@@ -387,6 +396,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
 }
 
 function Field({
+ name,
  icon: Icon,
  label,
  value,
@@ -394,6 +404,7 @@ function Field({
  required,
  type = "text",
 }: {
+ name?: string;
  icon: any;
  label: string;
  value: string;
@@ -411,6 +422,7 @@ function Field({
     {label}
    </span>
    <input
+    name={name}
     required={required}
     type={type}
     value={value}

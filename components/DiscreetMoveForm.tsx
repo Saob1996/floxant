@@ -1,8 +1,8 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Camera,
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -116,6 +117,9 @@ const packageOptions = [
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
+type DiscreetFieldErrors = Partial<
+  Record<"name" | "email" | "phone" | "contact" | "contactMethod" | "privacyConsent" | "cityOrZip" | "desiredDate" | "authorizationConfirmed" | "form", string>
+>;
 
 function getUtmValue(key: string) {
   if (typeof window === "undefined") return "";
@@ -143,6 +147,13 @@ export function DiscreetMoveForm() {
   const [photos, setPhotos] = useState<File[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<DiscreetFieldErrors>({});
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [requestType, safeContactMethod, selectedServices, contactRestrictions, photos]);
 
   const whatsappText = useMemo(
     () =>
@@ -170,9 +181,29 @@ export function DiscreetMoveForm() {
     );
   }
 
+  function focusFirstError(errors: DiscreetFieldErrors) {
+    const firstField = ["name", "email", "phone", "contact", "contactMethod", "cityOrZip", "desiredDate", "authorizationConfirmed", "privacyConsent"].find(
+      (field) => errors[field as keyof DiscreetFieldErrors],
+    );
+    const target =
+      firstField === "contact"
+        ? safeContactMethod === "E-Mail" ? "email" : "phone"
+        : firstField === "contactMethod"
+          ? "contactMethod"
+        : firstField === "privacyConsent"
+          ? "privacy"
+          : firstField === "authorizationConfirmed"
+            ? "authorization"
+            : firstField;
+    if (target) requestAnimationFrame(() => document.getElementById(`discreet-${target}`)?.focus());
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current || submitState === "submitting") return;
+    submitLockRef.current = true;
     setErrorMessage("");
+    setFieldErrors({});
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -181,51 +212,54 @@ export function DiscreetMoveForm() {
     const phone = String(formData.get("phone") || "").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const desiredDate = String(formData.get("desiredDate") || "").trim();
-
-    if (name.length < 2) {
-      setErrorMessage("Bitte geben Sie einen Namen oder Ansprechpartner an.");
-      return;
-    }
-    if (!safeContactMethod) {
-      setErrorMessage("Bitte sichere Kontaktmethode auswaehlen.");
-      return;
-    }
-    if (!phone && !email) {
-      setErrorMessage("Bitte Telefonnummer oder E-Mail angeben, damit FLOXANT diskret Rueckfragen stellen kann.");
-      return;
-    }
-    if (phone && phone.length < 6) {
-      setErrorMessage("Bitte pruefen Sie die Telefonnummer.");
-      return;
-    }
-    if (!cityOrZip) {
-      setErrorMessage("Bitte Ort oder PLZ angeben.");
-      return;
-    }
-    if (!desiredDate) {
-      setErrorMessage("Bitte gewuenschten Zeitraum oder Zeitfenster angeben.");
-      return;
+    const preferredContactMethod = safeContactMethod === "E-Mail"
+      ? "email"
+      : safeContactMethod === "WhatsApp"
+        ? "whatsapp"
+        : "telefon";
+    const contactValidation = validateRequestContact(
+      {
+        name,
+        email,
+        phone,
+        contactMethod: preferredContactMethod,
+        privacyConsent: formData.get("privacy") === "on",
+      },
+      { requireContactMethod: true, requireConsent: true },
+    );
+    const nextErrors: DiscreetFieldErrors = { ...contactValidation.fields };
+    if (!cityOrZip) nextErrors.cityOrZip = "Bitte Ort oder PLZ angeben.";
+    if (!desiredDate) nextErrors.desiredDate = "Bitte gewuenschten Zeitraum oder Zeitfenster angeben.";
+    if (formData.get("authorizationConfirmed") !== "on") {
+      nextErrors.authorizationConfirmed = "Bitte bestätigen Sie, dass Berechtigung und Eigentumsfragen geklärt sind.";
     }
     if (!requestType) {
       setErrorMessage("Bitte Anfrageart auswaehlen.");
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
     if (!selectedServices.length) {
       setErrorMessage("Bitte mindestens einen Baustein auswaehlen.");
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
-    if (formData.get("authorizationConfirmed") !== "on") {
-      setErrorMessage("Bitte bestaetigen Sie, dass Berechtigung und Eigentumsfragen fuer die Anfrage geklaert sind.");
-      return;
-    }
-    if (formData.get("privacy") !== "on") {
-      setErrorMessage("Bitte Datenschutz-Zustimmung bestaetigen.");
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFieldErrors(nextErrors);
+      setErrorMessage("Bitte prüfen Sie die markierten Angaben.");
+      focusFirstError(nextErrors);
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
 
     const fileError = validatePhotos(photos);
     if (fileError) {
       setErrorMessage(fileError);
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
 
@@ -237,8 +271,8 @@ export function DiscreetMoveForm() {
     formData.set("intent", "diskret");
     formData.set("requestType", requestType);
     formData.set("safeContactMethod", safeContactMethod);
-    formData.set("contactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
-    formData.set("preferredContactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : safeContactMethod.toLowerCase().includes("mail") ? "email" : "phone");
+    formData.set("contactMethod", preferredContactMethod);
+    formData.set("preferredContactMethod", preferredContactMethod);
     formData.set("isSensitiveCase", "true");
     formData.set("contactRestrictions", JSON.stringify(contactRestrictions));
     formData.set("selectedServices", JSON.stringify(selectedServices));
@@ -268,19 +302,46 @@ export function DiscreetMoveForm() {
     formData.set("partnerCode", getUtmValue("ref") || getUtmValue("partner_code") || getUtmValue("referral_code"));
     photos.forEach((file) => formData.append("discreetMovePhoto", file));
 
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `discreet_move:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+    let completedSuccessfully = false;
     setSubmitState("submitting");
 
     try {
       const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
+        headers: { "Idempotency-Key": attemptKey },
       });
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+        if (idempotencyKeyRef.current !== attemptKey) return;
+        const serverFields = bookingFieldErrors(result);
+        const mappedErrors: DiscreetFieldErrors = {};
+        for (const field of ["name", "email", "phone", "contact", "contactMethod", "cityOrZip", "desiredDate", "privacyConsent"] as const) {
+          if (serverFields[field]) mappedErrors[field] = serverFields[field];
+        }
+        if (serverFields.preferredContact || serverFields.preferredContactMethod) {
+          mappedErrors.contactMethod = serverFields.preferredContact || serverFields.preferredContactMethod;
+        }
+        if (serverFields.city) mappedErrors.cityOrZip = serverFields.city;
+        if (Object.keys(mappedErrors).length > 0) {
+          setFieldErrors(mappedErrors);
+          setErrorMessage("Bitte prüfen Sie die markierten Angaben.");
+          focusFirstError(mappedErrors);
+        } else {
+          setErrorMessage(result.error || "Die Anfrage konnte nicht gesendet werden.");
+        }
+        setSubmitState("error");
+        return;
       }
 
+      if (idempotencyKeyRef.current !== attemptKey) return;
+      completedSuccessfully = true;
+      idempotencyKeyRef.current = null;
       form.reset();
       setRequestType("diskreter_auszug");
       setSafeContactMethod("Telefon");
@@ -289,8 +350,12 @@ export function DiscreetMoveForm() {
       setPhotos([]);
       setSubmitState("success");
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
+    } finally {
+      if (!completedSuccessfully && idempotencyKeyRef.current !== attemptKey) setSubmitState("idle");
+      submitLockRef.current = false;
     }
   }
 
@@ -319,6 +384,7 @@ export function DiscreetMoveForm() {
             <button
               key={item.value}
               type="button"
+              disabled={isSubmitting}
               onClick={() => applyRequestType(item.value)}
               data-event="service_card_click"
               data-request-type={item.value}
@@ -337,63 +403,100 @@ export function DiscreetMoveForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        data-booking-field-errors="managed"
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setFieldErrors({});
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+        noValidate
+      >
+        <fieldset disabled={isSubmitting} className="contents">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Name oder Ansprechpartner*
             <input
+              id="discreet-name"
               name="name"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.name)}
+              aria-describedby={fieldErrors.name ? "discreet-name-error" : undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.name ? "border-red-300 bg-red-50" : "border-stone-200"}`}
               placeholder="Name"
             />
+            {fieldErrors.name ? <span id="discreet-name-error" className="text-xs text-red-700">{fieldErrors.name}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Sichere Kontaktmethode*
             <select
+              id="discreet-contactMethod"
               name="safeContactMethod"
               value={safeContactMethod}
               onChange={(event) => setSafeContactMethod(event.target.value)}
               data-event="hero_cta_click"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.contactMethod)}
+              aria-describedby={fieldErrors.contactMethod ? "discreet-contact-method-error" : undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.contactMethod ? "border-red-300 bg-red-50" : "border-stone-200"}`}
             >
               {safeContactMethods.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
+            {fieldErrors.contactMethod ? <span id="discreet-contact-method-error" className="text-xs text-red-700">{fieldErrors.contactMethod}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Telefon
             <input
+              id="discreet-phone"
               name="phone"
               type="tel"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.phone || fieldErrors.contact)}
+              aria-describedby={[fieldErrors.phone ? "discreet-phone-error" : "", fieldErrors.contact ? "discreet-contact-error" : ""].filter(Boolean).join(" ") || undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.phone || fieldErrors.contact ? "border-red-300 bg-red-50" : "border-stone-200"}`}
               placeholder="für Rückruf"
             />
+            {fieldErrors.phone ? <span id="discreet-phone-error" className="text-xs text-red-700">{fieldErrors.phone}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             E-Mail
             <input
+              id="discreet-email"
               name="email"
               type="email"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.email || fieldErrors.contact)}
+              aria-describedby={[fieldErrors.email ? "discreet-email-error" : "", fieldErrors.contact ? "discreet-contact-error" : ""].filter(Boolean).join(" ") || undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.email || fieldErrors.contact ? "border-red-300 bg-red-50" : "border-stone-200"}`}
               placeholder={EMAIL}
             />
+            {fieldErrors.email ? <span id="discreet-email-error" className="text-xs text-red-700">{fieldErrors.email}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Ort / PLZ*
             <input
+              id="discreet-cityOrZip"
               name="cityOrZip"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.cityOrZip)}
+              aria-describedby={fieldErrors.cityOrZip ? "discreet-city-error" : undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.cityOrZip ? "border-red-300 bg-red-50" : "border-stone-200"}`}
               placeholder="Regensburg, Landkreis, Bayern nach Verfügbarkeit"
             />
+            {fieldErrors.cityOrZip ? <span id="discreet-city-error" className="text-xs text-red-700">{fieldErrors.cityOrZip}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Gewuenschter Zeitraum*
             <input
+              id="discreet-desiredDate"
               name="desiredDate"
-              className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
+              aria-invalid={Boolean(fieldErrors.desiredDate)}
+              aria-describedby={fieldErrors.desiredDate ? "discreet-date-error" : undefined}
+              className={`min-h-12 rounded-xl border px-4 text-sm outline-none transition focus:border-stone-600 ${fieldErrors.desiredDate ? "border-red-300 bg-red-50" : "border-stone-200"}`}
               placeholder="z. B. diese Woche, bestimmtes Zeitfenster"
             />
+            {fieldErrors.desiredDate ? <span id="discreet-date-error" className="text-xs text-red-700">{fieldErrors.desiredDate}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Rückrufzeitfenster
@@ -413,6 +516,8 @@ export function DiscreetMoveForm() {
             />
           </label>
         </div>
+
+        {fieldErrors.contact ? <p id="discreet-contact-error" className="text-sm font-bold text-red-700">{fieldErrors.contact}</p> : null}
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
           <div className="text-sm font-black text-stone-950">Kontakt-Hinweise</div>
@@ -563,28 +668,30 @@ export function DiscreetMoveForm() {
           </label>
         </div>
 
-        <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700">
-          <input name="authorizationConfirmed" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
+        <label className={`flex items-start gap-3 rounded-xl border bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700 ${fieldErrors.authorizationConfirmed ? "border-red-300" : "border-stone-200"}`}>
+          <input id="discreet-authorization" name="authorizationConfirmed" type="checkbox" aria-invalid={Boolean(fieldErrors.authorizationConfirmed)} aria-describedby={fieldErrors.authorizationConfirmed ? "discreet-authorization-error" : undefined} className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
             Ich bestätige, dass ich berechtigt bin, die angefragten Gegenstände / Leistungen zu beauftragen.
           </span>
         </label>
+        {fieldErrors.authorizationConfirmed ? <p id="discreet-authorization-error" className="text-sm font-bold text-red-700">{fieldErrors.authorizationConfirmed}</p> : null}
 
-        <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
-          <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
+        <label className={`flex items-start gap-3 rounded-xl border bg-white px-4 py-3 text-sm leading-6 text-stone-700 ${fieldErrors.privacyConsent ? "border-red-300 bg-red-50" : "border-stone-200"}`}>
+          <input id="discreet-privacy" name="privacy" type="checkbox" aria-invalid={Boolean(fieldErrors.privacyConsent)} aria-describedby={fieldErrors.privacyConsent ? "discreet-privacy-error" : undefined} className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
             Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass
             FLOXANT keine Rechtsberatung, Sicherheitsdienstleistung, Mediation oder Konfliktloesung uebernimmt.
           </span>
         </label>
+        {fieldErrors.privacyConsent ? <p id="discreet-privacy-error" className="text-sm font-bold text-red-700">{fieldErrors.privacyConsent}</p> : null}
 
         {errorMessage ? (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">
+          <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">
             {errorMessage}
           </div>
         ) : null}
         {submitState === "success" ? (
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
+          <div role="status" aria-live="polite" className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
             Danke. Ihre diskrete Anfrage ist eingegangen. FLOXANT prüft Ort, Zeitraum, Umfang und gewuenschte
             Kontaktmethode. Falls Angaben fehlen, melden wir uns über den von Ihnen gewuenschten sicheren Kontaktweg.
@@ -637,6 +744,7 @@ export function DiscreetMoveForm() {
             <Clock3 className="h-3 w-3" /> {PHONE_DISPLAY}
           </span>
         </div>
+        </fieldset>
       </form>
 
       <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

@@ -27,6 +27,7 @@ import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company, duesseldorfCompany } from "@/lib/company";
 import type { GrowthServicePageConfig } from "@/lib/growth-service-pages";
+import { buildServiceContactHref } from "@/lib/service-routing";
 import { getServiceVisual } from "@/lib/service-visuals";
 import {
   buildBreadcrumbJsonLd,
@@ -68,6 +69,13 @@ function getRelatedSpecialKind(config: GrowthServicePageConfig) {
 }
 
 function getLocalBridgeTargets(config: GrowthServicePageConfig) {
+  if (isSolarPvPage(config)) {
+    return {
+      duesseldorfHref: "/solarreinigung",
+      regensburgHref: "/regensburg/solarreinigung",
+    };
+  }
+
   if (config.kind === "moving") {
     return {
       duesseldorfHref: "/regensburg/umzug",
@@ -98,16 +106,19 @@ function getLocalBridgeTargets(config: GrowthServicePageConfig) {
 function getSolarPvOfferLinks(config: GrowthServicePageConfig) {
   const city =
     config.path.includes("/regensburg") || config.cityLabel.toLowerCase().includes("regensburg")
-      ? "&city=regensburg"
+      ? "regensburg"
       : config.cityLabel.toLowerCase().includes("duesseldorf") || config.cityLabel.toLowerCase().includes("düsseldorf")
-        ? "&city=düsseldorf"
-        : "";
+        ? "duesseldorf"
+        : undefined;
+
+  const href = (service: "solarreinigung" | "angebotscheck", intent: string) =>
+    buildServiceContactHref({ service, city, intent, source: "seo", anchor: "" });
 
   return {
-    solarRequest: `/kontakt?service=solarreinigung${city}&intent=solarreinigung-anfragen&source=seo`,
-    solarOffer: `/kontakt?service=solarreinigung${city}&intent=solarreinigung-angebot-pruefen&source=seo`,
-    pvRequest: `/kontakt?service=pv-anlagen-reinigung${city}&intent=pv-reinigung-anfragen&source=seo`,
-    pvOffer: `/kontakt?service=pv-anlagen-reinigung${city}&intent=pv-reinigung-angebot-pruefen&source=seo`,
+    solarRequest: href("solarreinigung", "solarreinigung-anfragen"),
+    solarOffer: href("angebotscheck", "solarreinigung-angebot-pruefen"),
+    pvRequest: href("solarreinigung", "pv-reinigung-anfragen"),
+    pvOffer: href("angebotscheck", "pv-reinigung-angebot-pruefen"),
   };
 }
 

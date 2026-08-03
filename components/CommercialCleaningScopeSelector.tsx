@@ -2,30 +2,35 @@ import Link from "next/link";
 import { ArrowRight, Building2, Clock3, DoorOpen, Sparkles } from "lucide-react";
 
 import { germanText, germanizeDeep } from "@/lib/german-text";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 const scopes = germanizeDeep([
   {
     title: "Buero / Kanzlei",
     text: "Arbeitsplaetze, Meetingraeume, Empfang, Kueche und Sanitaer.",
-    href: "/kontakt?service=bueroreinigung&intent=buero-kanzlei-reinigung&source=b2b",
+    service: "bueroreinigung",
+    intent: "buero-kanzlei-reinigung",
     Icon: Building2,
   },
   {
     title: "Praxis / Studio",
     text: "Allgemeine Reinigung nach Absprache, ohne Spezialdesinfektionszusage.",
-    href: "/kontakt?service=gewerbereinigung&intent=praxis-studio-reinigung&source=b2b",
+    service: "gewerbereinigung",
+    intent: "praxis-studio-reinigung",
     Icon: Sparkles,
   },
   {
     title: "Treppenhaus / Verwaltung",
     text: "Eingang, Etagen, Gemeinschaftsflaechen, Zugang und Turnus.",
-    href: "/kontakt?service=gewerbereinigung&intent=treppenhaus-verwaltung&source=b2b",
+    service: "gewerbereinigung",
+    intent: "treppenhaus-verwaltung",
     Icon: DoorOpen,
   },
   {
     title: "Regelmaessiger Turnus",
     text: "Woechentlich, mehrfach pro Woche oder nach Bedarf mit Zeitfenster.",
-    href: "/kontakt?service=bueroreinigung&intent=regelmaessige-reinigung&source=b2b",
+    service: "bueroreinigung",
+    intent: "regelmaessige-reinigung",
     Icon: Clock3,
   },
 ] as const);
@@ -33,10 +38,6 @@ const scopes = germanizeDeep([
 type CommercialCleaningScopeSelectorProps = {
   city?: string;
 };
-
-function withCity(href: string, city: string) {
-  return href.includes("&source=") ? href.replace("&source=", `&city=${city}&source=`) : href;
-}
 
 function getHrefParam(href: string, key: string) {
   return new URLSearchParams(href.slice(href.indexOf("?") + 1)).get(key) || "";
@@ -54,7 +55,13 @@ export function CommercialCleaningScopeSelector({ city = "regensburg" }: Commerc
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {scopes.map((scope) => {
-            const href = withCity(scope.href, city);
+            const href = buildServiceContactHref({
+              service: scope.service,
+              city,
+              intent: scope.intent,
+              source: "b2b",
+              anchor: "",
+            });
             const service = getHrefParam(href, "service") || "bueroreinigung";
             const intent = getHrefParam(href, "intent") || "b2b";
 

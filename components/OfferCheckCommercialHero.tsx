@@ -17,7 +17,7 @@ export function OfferCheckCommercialHero() {
             FLOXANT schaut auf Umfang, Termin, Zugang, Zusatzkosten und die Frage, ob ein sinnvoller nächster Schritt möglich ist. Das ist keine Rechtsberatung und kein Unterbietungsversprechen.
           </p>
           <Link
-            href="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
+            href="/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&source=seo"
             className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
             data-event="seo_cta_click"
             data-service="angebot-pruefen"
@@ -25,7 +25,7 @@ export function OfferCheckCommercialHero() {
             data-page-intent="angebot-pruefen"
             data-priority="p0"
             data-cta-label="Angebot pruefen lassen"
-            data-destination="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
+            data-destination="/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&source=seo"
           >
             Angebot prüfen lassen
             <ArrowRight className="h-4 w-4" />

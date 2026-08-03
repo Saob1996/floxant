@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -28,6 +28,7 @@ import {
 import { UploadDropCard } from "@/components/UploadDropCard";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { germanizeDeep } from "@/lib/german-text";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 import { cn } from "@/lib/utils";
 import { useCalculatorStore } from "@/store/calculatorStore";
 
@@ -43,6 +44,10 @@ type ServiceType =
   | "akteneinlagerung"
   | "leerfahrt"
   | null;
+
+type WizardContactErrors = Partial<
+  Record<"name" | "email" | "phone" | "contact" | "contactMethod" | "privacyConsent", string>
+>;
 
 type StoredConversionEvent = {
   event?: string;
@@ -446,9 +451,24 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   const [files, setFiles] = useState<File[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [contactFieldErrors, setContactFieldErrors] = useState<WizardContactErrors>({});
   const [detailsExpanded, setDetailsExpanded] = useState(false);
   const [contactExpanded, setContactExpanded] = useState(() => isDetailedFlow || isUploadFlow);
   const [todayInputValue, setTodayInputValue] = useState("");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+  const normalizedPreferredContact = useMemo(
+    () =>
+      validateRequestContact(
+        { contactMethod: queryPreferredContact },
+        { requireContactMethod: false, requireConsent: false },
+      ).contact.contactMethod,
+    [queryPreferredContact],
+  );
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [state.service, state.details, state.upgrades, formData, files]);
 
   useEffect(() => {
     setTodayInputValue(new Date().toISOString().split("T")[0]);
@@ -545,15 +565,24 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     return Boolean(state.service && hasStart && !isDusseldorfServiceConflict);
   }, [isDusseldorfServiceConflict, state.details, state.service]);
 
-  const isContactValid = useMemo(
+  const contactValidation = useMemo(
     () => {
-      const email = formData.email.trim();
-      const emailLooksValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      return formData.name.trim().length >= 2 && formData.phone.trim().length >= 6 && emailLooksValid;
+      return validateRequestContact(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          contactMethod: normalizedPreferredContact,
+        },
+        {
+          requireContactMethod: Boolean(normalizedPreferredContact),
+          requireConsent: false,
+        },
+      );
     },
-    [formData]
+    [formData, normalizedPreferredContact],
   );
+  const isContactValid = Object.keys(contactValidation.fields).length === 0;
 
   const currentServiceLabel =
     state.service &&
@@ -608,7 +637,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       return {
         kicker: "Express-Start",
         title: `${currentServiceLabel || "Anfrage"} schnell einordnen`,
-        subtitle: "Nur Ort und Anliegen. Danach reicht Name und Telefon für den Rückruf.",
+        subtitle: "Nur Ort und Anliegen. Danach reichen Name und E-Mail oder Telefon für die Rückmeldung.",
         badge: "2 kurze Fragen",
         scopeLabel: "Was muss schnell geklärt werden?",
         scopePlaceholder: "z. B. heute noch Rückruf, Termin kippt, Übergabe steht an",
@@ -720,43 +749,41 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
   const contactReadiness = useMemo(
     () => {
-      const email = formData.email.trim();
-
       return [
         {
           label: "Name",
-          ready: formData.name.trim().length >= 2,
+          ready: Boolean(formData.name.trim()) && !contactValidation.fields.name,
           text: "damit wir Sie richtig zuordnen",
         },
         {
           label: "Telefon",
-          ready: formData.phone.trim().length >= 6,
-          text: "für schnelle Rückfragen",
+          ready: Boolean(formData.phone.trim()) && !contactValidation.fields.phone,
+          text:
+            normalizedPreferredContact === "telefon" || normalizedPreferredContact === "whatsapp"
+              ? "für den gewählten Kontaktweg erforderlich"
+              : "alternativ zur E-Mail",
         },
         {
           label: "E-Mail",
-          ready: !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-          text: "optional, aber hilfreich",
+          ready: Boolean(formData.email.trim()) && !contactValidation.fields.email,
+          text:
+            normalizedPreferredContact === "email"
+              ? "für den gewählten Kontaktweg erforderlich"
+              : "alternativ zum Telefon",
         },
       ];
     },
-    [formData.email, formData.name, formData.phone],
+    [contactValidation.fields, formData.email, formData.name, formData.phone, normalizedPreferredContact],
   );
 
-  const visibleContactReadiness = useMemo(
-    () =>
-      contactExpanded
-        ? contactReadiness
-        : contactReadiness.filter((item) => item.label !== "E-Mail"),
-    [contactExpanded, contactReadiness],
-  );
+  const visibleContactReadiness = contactReadiness;
 
   const contactIntro = useMemo(() => {
     if (isExpressFlow) {
       return {
         kicker: "Express-Rückruf",
-        title: "Nur Name und Telefon.",
-        subtitle: "Damit wir schnell nachfragen können. E-Mail, Fotos und Nachricht bleiben optional.",
+        title: "Name und ein Kontaktweg.",
+        subtitle: "E-Mail oder Telefon reichen. Fotos und Nachricht bleiben optional.",
         badge: "schnell",
         expandLabel: "Nachricht oder Fotos ergänzen",
       };
@@ -766,9 +793,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       return {
         kicker: "Rückmeldung zum Preisrahmen",
         title: "Kontakt für die Einschätzung.",
-        subtitle: "Name und Telefon reichen. Fotos oder eine kurze Nachricht können den Preisrahmen verbessern.",
+        subtitle: "Name und E-Mail oder Telefon reichen. Fotos oder eine kurze Nachricht können den Preisrahmen verbessern.",
         badge: "mittel",
-        expandLabel: "E-Mail, Nachricht oder Fotos ergänzen",
+        expandLabel: "Nachricht oder Fotos ergänzen",
       };
     }
 
@@ -806,6 +833,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   };
 
   const resetWizard = () => {
+    idempotencyKeyRef.current = null;
+    submitLockRef.current = false;
     setState({
       step: 1,
       service: null,
@@ -828,6 +857,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     setFiles([]);
     setIsSuccess(false);
     setSubmitError("");
+    setContactFieldErrors({});
     setIsSubmitting(false);
     setDetailsExpanded(false);
     setContactExpanded(isDetailedFlow || isUploadFlow);
@@ -895,17 +925,68 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       reader.onerror = () => resolve(file);
     });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const focusFirstContactError = (fieldErrors: WizardContactErrors) => {
+    const preferredField = normalizedPreferredContact === "email" ? "email" : "phone";
+    const firstField = ["name", preferredField, "email", "phone", "contact", "contactMethod", "privacyConsent"].find(
+      (field) => fieldErrors[field as keyof WizardContactErrors],
+    );
+    const targetField =
+      firstField === "contact" || firstField === "contactMethod"
+        ? preferredField
+        : firstField === "privacyConsent"
+          ? "privacy-consent"
+          : firstField;
+    if (targetField) {
+      requestAnimationFrame(() =>
+        document.getElementById(`booking-contact-${targetField}`)?.focus(),
+      );
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (submitLockRef.current || isSubmitting) return;
 
-    if (!state.service || !isStepTwoValid || !isContactValid) {
-      setSubmitError(t?.error?.generic || "Bitte prüfen Sie die Angaben und ergänzen Sie Name und Telefon.");
+    submitLockRef.current = true;
+
+    if (!state.service || !isStepTwoValid) {
+      setSubmitError(t?.error?.generic || "Bitte prüfen Sie die Angaben zum Auftrag.");
+      submitLockRef.current = false;
       return;
     }
 
+    const privacyConsent = new FormData(e.currentTarget).get("privacyConsent") === "true";
+    const nextContactErrors = {
+      ...validateRequestContact(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          contactMethod: normalizedPreferredContact,
+          privacyConsent,
+        },
+        {
+          requireContactMethod: Boolean(normalizedPreferredContact),
+          requireConsent: true,
+        },
+      ).fields,
+    } as WizardContactErrors;
+    if (Object.keys(nextContactErrors).length > 0) {
+      setContactFieldErrors(nextContactErrors);
+      setSubmitError("Bitte prüfen Sie die markierten Kontaktangaben.");
+      focusFirstContactError(nextContactErrors);
+      submitLockRef.current = false;
+      return;
+    }
+
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `booking_wizard:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+
     setSubmitError("");
+    setContactFieldErrors({});
     setIsSubmitting(true);
 
     const createdAt = new Date().toISOString();
@@ -957,7 +1038,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       utm_content: queryUtmContent,
       gclid: queryGclid || storeLead?.gclid || "",
       urgency: queryUrgency,
-      preferred_contact: queryPreferredContact,
+      preferred_contact: normalizedPreferredContact,
       referral_code: queryReferralCode,
       referral_source: queryReferralCode ? "partnercode_url" : "",
       referral_landing_page: queryReferralCode ? landingPage : "",
@@ -1022,7 +1103,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           accessNotes: state.details.access.trim(),
           customerBudgetText: state.details.budget.trim(),
           urgency: queryUrgency,
-          preferredContact: queryPreferredContact,
+          preferredContact: normalizedPreferredContact,
           upgrades: state.upgrades,
           hasUploads: files.length > 0,
           customerMessage: formData.message.trim(),
@@ -1055,7 +1136,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         accessNotes: state.details.access.trim(),
         customerBudgetText: state.details.budget.trim(),
         urgency: queryUrgency,
-        preferredContact: queryPreferredContact,
+        preferredContact: normalizedPreferredContact,
         selectedUpgrades: state.upgrades,
         message: formData.message.trim(),
       },
@@ -1083,7 +1164,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           utmContent: queryUtmContent,
           gclid: queryGclid || storeLead?.gclid || "",
           urgency: queryUrgency,
-          preferredContact: queryPreferredContact,
+          preferredContact: normalizedPreferredContact,
           conversionJourneyId: conversionJourney?.journeyId || "",
           conversionLastEvent: conversionJourney?.lastEventName || "",
           conversionLastSource: conversionJourney?.lastSource || "",
@@ -1122,7 +1203,10 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     submitData.append("utmContent", attribution.utm_content);
     submitData.append("gclid", attribution.gclid);
     submitData.append("urgency", queryUrgency);
-    submitData.append("preferredContact", queryPreferredContact);
+    if (normalizedPreferredContact) {
+      submitData.append("contactMethod", normalizedPreferredContact);
+      submitData.append("preferredContact", normalizedPreferredContact);
+    }
     submitData.append("conversionJourneyId", conversionJourney?.journeyId || "");
     submitData.append("conversionLastEvent", conversionJourney?.lastEventName || "");
     submitData.append("conversionLastSource", conversionJourney?.lastSource || "");
@@ -1145,21 +1229,55 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
+        headers: {
+          "Idempotency-Key": attemptKey,
+        },
       });
 
       if (!response.ok) {
+        let responsePayload: any = null;
         let errorMessage = t?.error?.submit || "Die Anfrage konnte nicht gesendet werden.";
         try {
-          const payload = await response.json();
-          errorMessage = payload?.message || payload?.error || errorMessage;
+          responsePayload = await response.json();
+          errorMessage = responsePayload?.message || responsePayload?.error || errorMessage;
         } catch {
           // Keep the user-facing fallback when the server response is not JSON.
         }
-        throw new Error(errorMessage);
+        if (idempotencyKeyRef.current !== attemptKey) return;
+
+        const serverFields = bookingFieldErrors(responsePayload);
+        const mappedContactErrors: WizardContactErrors = {};
+        if (serverFields.name) mappedContactErrors.name = serverFields.name;
+        if (serverFields.email) mappedContactErrors.email = serverFields.email;
+        if (serverFields.phone) mappedContactErrors.phone = serverFields.phone;
+        if (serverFields.contact) mappedContactErrors.contact = serverFields.contact;
+        if (serverFields.contactMethod || serverFields.preferredContact || serverFields.preferredContactMethod) {
+          mappedContactErrors.contactMethod =
+            serverFields.contactMethod ||
+            serverFields.preferredContact ||
+            serverFields.preferredContactMethod;
+        }
+        if (serverFields.privacyConsent) {
+          mappedContactErrors.privacyConsent = serverFields.privacyConsent;
+        }
+
+        if (Object.keys(mappedContactErrors).length > 0) {
+          setContactFieldErrors(mappedContactErrors);
+          setSubmitError("Bitte prüfen Sie die markierten Kontaktangaben.");
+          focusFirstContactError(mappedContactErrors);
+        } else {
+          setSubmitError(errorMessage);
+        }
+        return;
       }
 
+      if (idempotencyKeyRef.current !== attemptKey) return;
+
+      idempotencyKeyRef.current = null;
       setIsSuccess(true);
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
+
       console.error("Submission error:", error);
       setSubmitError(
         error instanceof Error
@@ -1167,6 +1285,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           : t?.error?.generic || "Die Anfrage konnte nicht gesendet werden."
       );
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   };
@@ -1222,7 +1341,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         desc: "PV-Anlage mit Modulfläche, Fotos, Dachzugang und Sicherheit einordnen",
         icon: Sparkles,
         isLink: true,
-        href: "/buchung?service=reinigung&addon=solarreinigung&entry=solar#buchungssystem",
+        href: "/kontakt?mode=neutral&source=booking_wizard_solar_pv#direktanfrage",
         eyebrow: "Solar/PV",
         accent: "from-emerald-500 to-cyan-500",
         actionLabel: "Solar/PV anfragen",
@@ -1852,15 +1971,23 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         </div>
 
         <form
+          data-booking-field-errors="managed"
           className="space-y-4"
           onSubmit={handleSubmit}
+          onChange={() => {
+            idempotencyKeyRef.current = null;
+            setContactFieldErrors({});
+            setSubmitError("");
+          }}
+          noValidate
           data-event="form_submit"
           data-service={state.service || "unknown"}
           data-source={queryUtmSource || "booking_wizard"}
-          data-contact-channel={queryPreferredContact || "form"}
+          data-contact-channel={normalizedPreferredContact || "form"}
           data-intent={queryUrgency ? "urgent_booking_submit" : "booking_submit"}
           data-priority={queryUrgency ? "hot" : "normal"}
         >
+          <fieldset disabled={isSubmitting} className="contents">
           <div className="rounded-[1.6rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
@@ -1897,34 +2024,100 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FieldBox label={t?.form?.name || "Name"}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <FieldBox
+              label={t?.form?.name || "Name"}
+              htmlFor="booking-contact-name"
+              error={contactFieldErrors.name}
+            >
               <input
+                id="booking-contact-name"
                 required
                 aria-label={t?.form?.name || "Name"}
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
                 }
-                className="calc-input h-11"
+                className={cn("calc-input h-11", contactFieldErrors.name && "border-red-300 bg-red-50/40")}
+                aria-describedby={contactFieldErrors.name ? "booking-contact-name-error" : undefined}
+                aria-invalid={Boolean(contactFieldErrors.name)}
                 placeholder={t?.form?.placeholder_name || defaultBooking.form.placeholder_name}
               />
             </FieldBox>
 
-            <FieldBox label={t?.form?.phone || "Telefon"}>
+            <FieldBox
+              label={t?.form?.phone || "Telefon"}
+              htmlFor="booking-contact-phone"
+              required={normalizedPreferredContact === "telefon" || normalizedPreferredContact === "whatsapp"}
+              error={contactFieldErrors.phone}
+            >
               <input
+                id="booking-contact-phone"
                 type="tel"
-                required
                 aria-label={t?.form?.phone || "Telefon"}
                 value={formData.phone}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, phone: e.target.value }))
                 }
-                className="calc-input h-11"
+                className={cn(
+                  "calc-input h-11",
+                  (contactFieldErrors.phone || contactFieldErrors.contact || contactFieldErrors.contactMethod) &&
+                    "border-red-300 bg-red-50/40",
+                )}
+                aria-describedby={[
+                  contactFieldErrors.phone ? "booking-contact-phone-error" : "",
+                  contactFieldErrors.contact ? "booking-contact-contact-error" : "",
+                  contactFieldErrors.contactMethod ? "booking-contact-method-error" : "",
+                ].filter(Boolean).join(" ") || undefined}
+                aria-invalid={Boolean(
+                  contactFieldErrors.phone || contactFieldErrors.contact || contactFieldErrors.contactMethod,
+                )}
                 placeholder={t?.form?.placeholder_phone || defaultBooking.form.placeholder_phone}
               />
             </FieldBox>
+
+            <FieldBox
+              label={t?.form?.email || "E-Mail"}
+              htmlFor="booking-contact-email"
+              required={normalizedPreferredContact === "email"}
+              error={contactFieldErrors.email}
+            >
+              <input
+                id="booking-contact-email"
+                type="email"
+                aria-label={t?.form?.email || "E-Mail"}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, email: e.target.value }))
+                }
+                className={cn(
+                  "calc-input h-11",
+                  (contactFieldErrors.email || contactFieldErrors.contact || contactFieldErrors.contactMethod) &&
+                    "border-red-300 bg-red-50/40",
+                )}
+                aria-describedby={[
+                  contactFieldErrors.email ? "booking-contact-email-error" : "",
+                  contactFieldErrors.contact ? "booking-contact-contact-error" : "",
+                  contactFieldErrors.contactMethod ? "booking-contact-method-error" : "",
+                ].filter(Boolean).join(" ") || undefined}
+                aria-invalid={Boolean(
+                  contactFieldErrors.email || contactFieldErrors.contact || contactFieldErrors.contactMethod,
+                )}
+                placeholder={t?.form?.placeholder_email || defaultBooking.form.placeholder_email}
+              />
+            </FieldBox>
           </div>
+
+          {contactFieldErrors.contact ? (
+            <p id="booking-contact-contact-error" className="text-sm font-semibold text-red-700">
+              {contactFieldErrors.contact}
+            </p>
+          ) : null}
+          {contactFieldErrors.contactMethod ? (
+            <p id="booking-contact-method-error" className="text-sm font-semibold text-red-700">
+              {contactFieldErrors.contactMethod}
+            </p>
+          ) : null}
 
           {!contactExpanded ? (
             <button
@@ -1942,19 +2135,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             </button>
           ) : (
             <div className="space-y-4 rounded-[1.6rem] border border-slate-200 bg-white p-4">
-              <FieldBox label={`${t?.form?.email || "E-Mail"} falls gewünscht`} required={false}>
-                <input
-                  type="email"
-                  aria-label={`${t?.form?.email || "E-Mail"} falls gewünscht`}
-                  value={formData.email}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, email: e.target.value }))
-                }
-                className="calc-input h-11"
-                placeholder={t?.form?.placeholder_email || defaultBooking.form.placeholder_email}
-                />
-              </FieldBox>
-
               <FieldBox label="Nachricht falls bekannt" icon={<MessageSquare className="h-4 w-4" />} required={false}>
                 <textarea
                   rows={3}
@@ -1986,7 +2166,10 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             </div>
           )}
 
-          <PrivacyConsentField />
+          <PrivacyConsentField
+            id="booking-contact-privacy-consent"
+            error={contactFieldErrors.privacyConsent}
+          />
 
           {submitError ? (
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
@@ -1996,7 +2179,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
           {!isContactValid ? (
             <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
-              Bitte Name und Telefonnummer eintragen. Dann kann FLOXANT sinnvoll zurückmelden.
+              Bitte Name und mindestens eine gültige E-Mail-Adresse oder Telefonnummer eintragen.
             </div>
           ) : null}
 
@@ -2005,12 +2188,13 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <ArrowLeft className="h-4 w-4" />
               {t?.buttons?.back || "Zurück"}
             </PremiumButton>
-            <PremiumButton type="submit" disabled={isSubmitting || !isContactValid}>
+            <PremiumButton type="submit" disabled={isSubmitting}>
               {isSubmitting
                 ? t?.buttons?.sending || "Wird gesendet..."
                 : t?.buttons?.submit || "Anfrage absenden"}
             </PremiumButton>
           </div>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -2149,15 +2333,19 @@ function FieldBox({
   icon,
   children,
   required = true,
+  htmlFor,
+  error,
 }: {
   label: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
   required?: boolean;
+  htmlFor?: string;
+  error?: string;
 }) {
   return (
     <div className="calc-field space-y-3 rounded-[1.8rem]">
-      <label className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+      <label htmlFor={htmlFor} className="flex items-center gap-2 text-sm font-semibold text-slate-950">
         {icon ? (
           <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
             {icon}
@@ -2167,6 +2355,11 @@ function FieldBox({
         {required ? <span className="text-red-400">*</span> : null}
       </label>
       {children}
+      {error ? (
+        <p id={htmlFor ? `${htmlFor}-error` : undefined} className="text-sm font-semibold text-red-700">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -8,10 +8,32 @@ import {
  JOURNEY_ID_STORAGE_KEY,
  LAST_CONVERSION_STORAGE_KEY,
 } from "@/lib/conversion-journey";
+import { isGoogleAnalyticsAllowed } from "@/lib/analytics/google-tag";
 
 const CONVERSION_HISTORY_KEY = "floxant:conversion_history";
+const CONVERSION_PRIVACY_VERSION = 2;
 const HIGH_INTENT_DWELL_MS = 14000;
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
+const ATTRIBUTION_QUERY_KEYS = [
+ "utm_source",
+ "utm_medium",
+ "utm_campaign",
+ "utm_content",
+ "utm_term",
+ "gclid",
+] as const;
+const SAFE_DATASET_KEYS = [
+ "event",
+ "source",
+ "service",
+ "city",
+ "contactChannel",
+ "intent",
+ "pageIntent",
+ "priority",
+ "label",
+ "ctaLabel",
+] as const;
 const TRACKED_LINK_SELECTOR = [
  "[data-event]",
  "a[href^='tel:']",
@@ -27,6 +49,8 @@ const TRACKED_LINK_SELECTOR = [
 ].join(",");
 
 function persistJourneyCookie(journeyId: string) {
+ if (!isGoogleAnalyticsAllowed() || typeof document === "undefined") return;
+
  const safeId = cleanJourneyId(journeyId);
  if (!safeId) return;
 
@@ -37,15 +61,43 @@ function persistJourneyCookie(journeyId: string) {
  }
 }
 
-function buildUtmSnapshot() {
+function resemblesPii(value: string) {
+ return (
+  /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/i.test(value) ||
+  /(?:\+?\d[\s()./-]*){7,}/.test(value) ||
+  /(?:^|[?&\s])(?:e-?mail|phone|telefon|tel|mobile|name|address|adresse|message|nachricht)=/i.test(value)
+ );
+}
+
+function sanitizeText(value: unknown, maxLength = 120) {
+ const text = String(value ?? "")
+  .replace(/[\u0000-\u001f\u007f]+/g, " ")
+  .replace(/\s+/g, " ")
+  .trim()
+  .slice(0, maxLength);
+ return text && !resemblesPii(text) ? text : "";
+}
+
+function sanitizeAttributionValue(value: unknown, maxLength = 120) {
+ const text = sanitizeText(value, maxLength);
+ if (!text) return "";
+
+ return text
+  .normalize("NFKC")
+  .replace(/[^\p{L}\p{N}._~-]+/gu, "-")
+  .replace(/^-+|-+$/g, "")
+  .slice(0, maxLength);
+}
+
+export function buildUtmSnapshot() {
+ if (typeof window === "undefined") return {};
+
  const params = new URLSearchParams(window.location.search);
- return {
-  utm_source: params.get("utm_source") || "",
-  utm_medium: params.get("utm_medium") || "",
-  utm_campaign: params.get("utm_campaign") || "",
-  utm_content: params.get("utm_content") || "",
-  gclid: params.get("gclid") || "",
- };
+ return ATTRIBUTION_QUERY_KEYS.reduce<Record<string, string>>((snapshot, key) => {
+  const value = sanitizeAttributionValue(params.get(key), key === "gclid" ? 160 : 120);
+  if (value) snapshot[key] = value;
+  return snapshot;
+ }, {});
 }
 
 function createBrowserId(prefix: string) {
@@ -57,14 +109,16 @@ function createBrowserId(prefix: string) {
 }
 
 function getJourneyId() {
+ if (!isGoogleAnalyticsAllowed() || typeof window === "undefined") return "";
+
  try {
-  const existing = localStorage.getItem(JOURNEY_ID_STORAGE_KEY);
+  const existing = cleanJourneyId(window.localStorage.getItem(JOURNEY_ID_STORAGE_KEY));
   if (existing) {
    persistJourneyCookie(existing);
    return existing;
   }
   const next = createBrowserId("journey");
-  localStorage.setItem(JOURNEY_ID_STORAGE_KEY, next);
+  window.localStorage.setItem(JOURNEY_ID_STORAGE_KEY, next);
   persistJourneyCookie(next);
   return next;
  } catch {
@@ -90,34 +144,166 @@ function compactDataset(dataset: DOMStringMap) {
  };
 }
 
-function rememberConversionEvent(snapshot: Record<string, unknown>) {
+function sanitizeHref(value: unknown) {
+ if (typeof window === "undefined") return "";
+
+ const href = String(value ?? "")
+  .replace(/[\u0000-\u001f\u007f]+/g, "")
+  .trim()
+  .slice(0, 500);
+ if (!href) return "";
+ if (/^tel:/i.test(href)) return "tel:";
+ if (/^mailto:/i.test(href)) return "mailto:";
+
  try {
-  localStorage.setItem(LAST_CONVERSION_STORAGE_KEY, JSON.stringify(snapshot));
-  const current = JSON.parse(localStorage.getItem(CONVERSION_HISTORY_KEY) || "[]");
-  const history = Array.isArray(current) ? current : [];
-  localStorage.setItem(CONVERSION_HISTORY_KEY, JSON.stringify([snapshot, ...history].slice(0, 12)));
+  const parsed = new URL(href, window.location.origin);
+  if (!/^https?:$/.test(parsed.protocol)) return "";
+  if (parsed.origin === window.location.origin) {
+   const pathname = decodeURIComponent(parsed.pathname || "/");
+   return resemblesPii(pathname) ? "" : parsed.pathname || "/";
+  }
+  return parsed.origin;
  } catch {
-  // Local attribution is helpful, but never required for the customer journey.
+  return "";
  }
 }
 
-function sendConversionEvent(payload: Record<string, unknown>) {
- const journeyId = getJourneyId();
- const snapshot = {
-  ...payload,
-  journeyId,
-  eventId: createBrowserId("event"),
-  path: window.location.pathname,
-  search: window.location.search,
-  referrer: document.referrer,
-  utm: buildUtmSnapshot(),
-  timestamp: Date.now(),
- };
- rememberConversionEvent(snapshot);
+function sanitizeDataset(value: unknown) {
+ if (!value || typeof value !== "object") return {};
+
+ const input = value as Record<string, unknown>;
+ const dataset = SAFE_DATASET_KEYS.reduce<Record<string, string>>((snapshot, key) => {
+  const safeValue = sanitizeText(input[key], key === "label" || key === "ctaLabel" ? 120 : 80);
+  if (safeValue) snapshot[key] = safeValue;
+  return snapshot;
+ }, {});
+ const destination = sanitizeHref(input.destination);
+ if (destination) dataset.destination = destination;
+ return dataset;
 }
 
-function trackConversion(payload: Record<string, unknown>) {
- sendConversionEvent(payload);
+export function sanitizeConversionPayload(payload: Record<string, unknown>) {
+ const snapshot: Record<string, unknown> = {};
+ for (const key of ["event", "source", "channel"] as const) {
+  const value = sanitizeText(payload[key], 80);
+  if (value) snapshot[key] = value;
+ }
+
+ const href = sanitizeHref(payload.href);
+ if (href) snapshot.href = href;
+ const label = sanitizeText(payload.label, 120);
+ if (label) snapshot.label = label;
+ if (typeof payload.fileCount === "number" && Number.isFinite(payload.fileCount)) {
+  snapshot.fileCount = Math.max(0, Math.min(100, Math.trunc(payload.fileCount)));
+ }
+
+ const dataset = sanitizeDataset(payload.dataset);
+ if (Object.keys(dataset).length > 0) snapshot.dataset = dataset;
+ return snapshot;
+}
+
+function rememberConversionEvent(snapshot: Record<string, unknown>) {
+ if (!isGoogleAnalyticsAllowed() || typeof window === "undefined") return false;
+
+ try {
+  window.localStorage.setItem(LAST_CONVERSION_STORAGE_KEY, JSON.stringify(snapshot));
+  const current = JSON.parse(window.localStorage.getItem(CONVERSION_HISTORY_KEY) || "[]");
+  const history = Array.isArray(current)
+   ? current.filter(
+      (entry) =>
+       entry &&
+       typeof entry === "object" &&
+       (entry as Record<string, unknown>).privacyVersion === CONVERSION_PRIVACY_VERSION,
+     )
+   : [];
+  window.localStorage.setItem(CONVERSION_HISTORY_KEY, JSON.stringify([snapshot, ...history].slice(0, 12)));
+  return true;
+ } catch {
+  // Local attribution is helpful, but never required for the customer journey.
+  return false;
+ }
+}
+
+function removeLegacyUnsafeAttribution() {
+ if (!isGoogleAnalyticsAllowed() || typeof window === "undefined") return;
+
+ try {
+  const lastRaw = window.localStorage.getItem(LAST_CONVERSION_STORAGE_KEY);
+  if (lastRaw) {
+   const last = JSON.parse(lastRaw) as Record<string, unknown>;
+   if (!last || last.privacyVersion !== CONVERSION_PRIVACY_VERSION) {
+    window.localStorage.removeItem(LAST_CONVERSION_STORAGE_KEY);
+   }
+  }
+
+  const historyRaw = window.localStorage.getItem(CONVERSION_HISTORY_KEY);
+  if (historyRaw) {
+   const history = JSON.parse(historyRaw) as unknown;
+   const safeHistory = Array.isArray(history)
+    ? history.filter(
+       (entry) =>
+        entry &&
+        typeof entry === "object" &&
+        (entry as Record<string, unknown>).privacyVersion === CONVERSION_PRIVACY_VERSION,
+      )
+    : [];
+   if (safeHistory.length > 0) {
+    window.localStorage.setItem(CONVERSION_HISTORY_KEY, JSON.stringify(safeHistory.slice(0, 12)));
+   } else {
+    window.localStorage.removeItem(CONVERSION_HISTORY_KEY);
+   }
+  }
+ } catch {
+  try {
+   window.localStorage.removeItem(LAST_CONVERSION_STORAGE_KEY);
+   window.localStorage.removeItem(CONVERSION_HISTORY_KEY);
+  } catch {
+   // A blocked storage API must not interrupt the customer journey.
+  }
+ }
+}
+
+export function clearPersistedConversionAttribution() {
+ if (typeof window !== "undefined") {
+  try {
+   window.localStorage.removeItem(JOURNEY_ID_STORAGE_KEY);
+   window.localStorage.removeItem(LAST_CONVERSION_STORAGE_KEY);
+   window.localStorage.removeItem(CONVERSION_HISTORY_KEY);
+  } catch {
+   // A blocked storage API must not interrupt consent handling.
+  }
+ }
+
+ if (typeof document !== "undefined") {
+  try {
+   document.cookie = `${CONVERSION_JOURNEY_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+  } catch {
+   // Cookie cleanup is best effort only.
+  }
+ }
+}
+
+export function sendConversionEvent(payload: Record<string, unknown>) {
+ if (!isGoogleAnalyticsAllowed() || typeof window === "undefined") return false;
+
+ const journeyId = getJourneyId();
+ if (!journeyId) return false;
+ const snapshot = {
+ ...sanitizeConversionPayload(payload),
+  journeyId,
+  eventId: createBrowserId("event"),
+  path: sanitizeHref(window.location.pathname) || "/",
+  utm: buildUtmSnapshot(),
+  timestamp: Date.now(),
+  privacyVersion: CONVERSION_PRIVACY_VERSION,
+ };
+ rememberConversionEvent(snapshot);
+ return true;
+}
+
+export function trackConversion(payload: Record<string, unknown>) {
+ if (!isGoogleAnalyticsAllowed()) return false;
+ return sendConversionEvent(payload);
 }
 
 function eventNameFor(element: HTMLElement, href: string) {
@@ -171,10 +357,12 @@ function getHighIntentPageSignal(pathname: string) {
 }
 
 function rememberDwellSignal(path: string) {
+ if (!isGoogleAnalyticsAllowed() || typeof window === "undefined") return false;
+
  const key = `floxant:conversion_dwell:${path}`;
  try {
-  if (sessionStorage.getItem(key)) return false;
-  sessionStorage.setItem(key, "1");
+  if (window.sessionStorage.getItem(key)) return false;
+  window.sessionStorage.setItem(key, "1");
   return true;
  } catch {
   return true;
@@ -183,6 +371,20 @@ function rememberDwellSignal(path: string) {
 
 export function ConversionEventReporter() {
  const pathname = usePathname();
+
+ useEffect(() => {
+  function handleConsentUpdate() {
+   if (isGoogleAnalyticsAllowed()) {
+    removeLegacyUnsafeAttribution();
+   } else {
+    clearPersistedConversionAttribution();
+   }
+  }
+
+  handleConsentUpdate();
+  window.addEventListener("cookie_consent_updated", handleConsentUpdate);
+  return () => window.removeEventListener("cookie_consent_updated", handleConsentUpdate);
+ }, []);
 
  useEffect(() => {
   function handleClick(event: MouseEvent) {

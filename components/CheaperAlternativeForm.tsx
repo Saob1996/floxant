@@ -274,7 +274,7 @@ export function CheaperAlternativeForm({
         </div>
       </div>
 
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} onChange={() => { setErrorMessage(""); if (submitState === "error") setSubmitState("idle"); }} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800 md:col-span-2">
             Was ist Ihr Ziel?

@@ -112,7 +112,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
               <Navigation className="h-4 w-4" />
             </Link>
             <Link
-              href="/kontakt"
+              href="/kontakt?mode=neutral&source=seo"
               className="flox-button-secondary h-11 px-5"
             >
               Kontakt & Standort

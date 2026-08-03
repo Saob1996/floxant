@@ -3733,7 +3733,7 @@ input[type="file"]:hover {
 .flox-mobile-action-whatsapp {
   position: relative;
   border: 1px solid rgba(37, 211, 102, 0.82);
-  background: linear-gradient(135deg, #25d366 0%, #16a34a 52%, #075e54 100%);
+  background: linear-gradient(135deg, #15803d 0%, #047857 52%, #075e54 100%);
   color: #ffffff !important;
   text-shadow: 0 1px 1px rgba(4, 47, 46, 0.28);
   box-shadow:
@@ -4194,7 +4194,7 @@ input[type="file"]:hover {
   overflow: hidden;
   border: 1px solid rgba(134, 239, 172, 0.6);
   background:
-    linear-gradient(135deg, #22c55e 0%, #10b981 46%, #047857 100%);
+    linear-gradient(135deg, #15803d 0%, #047857 46%, #065f46 100%);
   color: #ffffff !important;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.24) inset,
@@ -4544,7 +4544,7 @@ input[type="file"]:hover {
 .flox-cta-choice-whatsapp {
   border: 1px solid rgba(134, 239, 172, 0.58);
   background:
-    linear-gradient(135deg, #22c55e 0%, #10b981 48%, #047857 100%);
+    linear-gradient(135deg, #15803d 0%, #047857 48%, #065f46 100%);
   color: #ffffff !important;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.22) inset,
@@ -4614,7 +4614,7 @@ a[href*="wa.me"] :where(.flox-icon-tile, .flox-cta-choice-icon) > svg {
 
 a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-action):has(> svg) {
   border-color: rgba(37, 211, 102, 0.74) !important;
-  background: linear-gradient(135deg, #25d366 0%, #16a34a 54%, #075e54 100%) !important;
+  background: linear-gradient(135deg, #15803d 0%, #047857 54%, #075e54 100%) !important;
   color: #ffffff !important;
   box-shadow: 0 16px 34px rgba(7, 94, 84, 0.24);
 }
@@ -5401,7 +5401,7 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
 .flox-cta-choice-whatsapp {
   border-color: rgba(187, 247, 208, 0.72);
   background:
-    linear-gradient(135deg, #16a34a 0%, #059669 48%, #0f766e 100%);
+    linear-gradient(135deg, #15803d 0%, #047857 48%, #0f766e 100%);
 }
 
 .flox-cta-choice-light {
@@ -5755,7 +5755,7 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
 
 .flox-exit-whatsapp {
   border: 1px solid rgba(187, 247, 208, 0.42);
-  background: linear-gradient(135deg, #16a34a, #059669 52%, #0f766e);
+  background: linear-gradient(135deg, #15803d, #047857 52%, #0f766e);
   color: white;
   text-decoration: none;
 }

@@ -274,6 +274,7 @@ function Tooltip({ text }: { text: string }) {
     <div className="relative flex items-center">
       <button
         type="button"
+        aria-label="Erklärung anzeigen"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onFocus={() => setShow(true)}

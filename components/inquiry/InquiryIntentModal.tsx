@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { AnimatePresence, m } from "framer-motion";
@@ -236,6 +236,8 @@ export function InquiryIntentModal({
 
   function update(name: string, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
+    setErrorMessage("");
+    if (submitState === "error") setSubmitState("idle");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -279,10 +281,16 @@ export function InquiryIntentModal({
         method: "POST",
         body: submitData,
       });
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        const result = await response.json().catch(() => null);
-        throw new Error(result?.message || result?.error || "Anfrage konnte nicht gesendet werden.");
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitState("error");
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
+        throw new Error(result.error || result.message || "Anfrage konnte nicht gesendet werden.");
       }
 
       setSubmitState("success");
@@ -388,7 +396,14 @@ export function InquiryIntentModal({
                   </a>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid gap-4">
+                <form
+                  onSubmit={handleSubmit}
+                  onChange={() => {
+                    setErrorMessage("");
+                    if (submitState === "error") setSubmitState("idle");
+                  }}
+                  className="grid gap-4"
+                >
                   {showCleaningRegions ? (
                     <div>
                       <label className="text-sm font-black text-slate-950">Einsatzgebiet</label>
@@ -439,6 +454,8 @@ export function InquiryIntentModal({
                         </span>
                         {field.type === "select" ? (
                           <select
+                            id={`inquiry-${config.intent}-${field.name}`}
+                            name={field.name}
                             value={values[field.name] || ""}
                             required={field.required}
                             onChange={(event) => update(field.name, event.target.value)}
@@ -453,6 +470,8 @@ export function InquiryIntentModal({
                           </select>
                         ) : field.type === "textarea" ? (
                           <textarea
+                            id={`inquiry-${config.intent}-${field.name}`}
+                            name={field.name}
                             value={values[field.name] || ""}
                             required={field.required}
                             placeholder={field.placeholder}
@@ -462,6 +481,8 @@ export function InquiryIntentModal({
                           />
                         ) : (
                           <input
+                            id={`inquiry-${config.intent}-${field.name}`}
+                            name={field.name}
                             value={values[field.name] || ""}
                             required={field.required}
                             type={field.type || "text"}
@@ -480,7 +501,7 @@ export function InquiryIntentModal({
                     </p>
                   ) : null}
 
-                  <PrivacyConsentField />
+                  <PrivacyConsentField id="inquiry-intent-privacy" />
 
                   {submitState === "success" ? (
                     <div className="flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-black text-emerald-800">

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, Building2, HelpCircle, Home, Package, SearchCheck, ShieldCheck, Sparkles } from "lucide-react";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 const requestTypes = [
   {
     title: "Ich brauche Reinigung",
     text: "Wohnung, Büro, Endreinigung, Grundreinigung oder Reinigung nach Räumung.",
-    href: "/kontakt?service=reinigung&intent=reinigung-anfrage&priority=p1&source=contact-routing",
     service: "reinigung",
     intent: "reinigung-anfrage",
     priority: "p1",
@@ -14,7 +14,6 @@ const requestTypes = [
   {
     title: "Ich brauche Umzug/Transport",
     text: "Privatumzug, Möbeltransport, Beiladung, Seniorenumzug oder Plan-B.",
-    href: "/kontakt?service=umzug&intent=umzug-transport&priority=p1&source=contact-routing",
     service: "umzug",
     intent: "umzug-transport",
     priority: "p1",
@@ -23,7 +22,6 @@ const requestTypes = [
   {
     title: "Ich brauche Entrümpelung",
     text: "Keller, Wohnung, Haushaltsauflösung, Nachlass oder Räumung mit Reinigung.",
-    href: "/kontakt?service=entruempelung&intent=entruempelung-aufloesung&priority=p1&source=contact-routing",
     service: "entruempelung",
     intent: "entruempelung-aufloesung",
     priority: "p1",
@@ -32,7 +30,6 @@ const requestTypes = [
   {
     title: "Ich möchte ein Angebot prüfen",
     text: "Vorhandenes Angebot, unklare Zusatzkosten oder mehrere Anbieter vergleichen.",
-    href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&priority=p0&source=contact-routing",
     service: "angebot-pruefen",
     intent: "angebot-pruefen",
     priority: "p0",
@@ -41,7 +38,6 @@ const requestTypes = [
   {
     title: "Ich bin Gewerbekunde",
     text: "Büro, Gewerbe, Praxis, Hotel, Turnus, Zeitfenster oder vorhandenes B2B-Angebot.",
-    href: "/kontakt?service=bueroreinigung&intent=b2b-bueroreinigung&priority=p0&source=contact-routing",
     service: "bueroreinigung",
     intent: "b2b-bueroreinigung",
     priority: "p0",
@@ -50,7 +46,6 @@ const requestTypes = [
   {
     title: "Ich habe einen Plan-B-Fall",
     text: "Anbieter reagiert nicht, Termin kippt oder es muss schnell neu sortiert werden.",
-    href: "/kontakt?service=angebot-pruefen&intent=plan-b-anbieterabsage&priority=p0&source=contact-routing",
     service: "angebot-pruefen",
     intent: "plan-b-anbieterabsage",
     priority: "p0",
@@ -59,7 +54,6 @@ const requestTypes = [
   {
     title: "Ich bin unsicher",
     text: "Kurze Lage beschreiben. FLOXANT ordnet Service, Aufwand und Rückfragen ein.",
-    href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&priority=p2&source=contact-routing",
     service: "sonstiges",
     intent: "unsichere-anfrage",
     priority: "p2",
@@ -73,7 +67,14 @@ export function RequestTypeCards() {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-component="RequestTypeCards">
       {requestTypes.map((item) => {
-        const href = item.href.includes("&source=") ? item.href.replace("&source=", `&city=${city}&source=`) : item.href;
+        const href = buildServiceContactHref({
+          service: item.service,
+          city,
+          intent: item.intent,
+          priority: item.priority,
+          source: "contact-routing",
+          anchor: "",
+        });
 
         return (
         <Link

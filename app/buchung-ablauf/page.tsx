@@ -124,7 +124,7 @@ export default function BuchungAblaufPage() {
      <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
       Direkt rechnen, Anfrage vorbereiten und sauber beauftragen.
      </h1>
-     <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+     <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
       FLOXANT macht den Weg vom ersten Bedarf zur Umsetzung transparent: zuerst
       Orientierungsrahmen und Einschätzung, dann Rückfragen, Angebot, Auftragsbestätigung
       und Rechnung. So bleibt der Prozess schnell, aber nicht übereilt.

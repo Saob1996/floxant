@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Building2, ClipboardCheck } from "lucide-react";
 
 import { germanText } from "@/lib/german-text";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 const b2bFields = [
   "Firma",
@@ -19,7 +20,13 @@ type B2BRequestPanelProps = {
 };
 
 export function B2BRequestPanel({ city = "duesseldorf" }: B2BRequestPanelProps) {
-  const href = `/kontakt?service=bueroreinigung&city=${city}&intent=b2b-bueroreinigung&source=b2b`;
+  const href = buildServiceContactHref({
+    service: "bueroreinigung",
+    city,
+    intent: "b2b-bueroreinigung",
+    source: "b2b",
+    anchor: "",
+  });
 
   return (
     <section className="px-4 py-12 sm:px-6" data-component="B2BRequestPanel">

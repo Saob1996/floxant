@@ -103,7 +103,7 @@ export default async function KontaktPage() {
                   <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
                     Leistung unverbindlich anfragen
                   </h1>
-                  <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+                  <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
                     Wählen Sie den passenden Standort und die gewünschte Leistung.
                   </p>
                 </>

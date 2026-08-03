@@ -133,7 +133,7 @@ function buildJsonLd(page: PropertyOperationsPage) {
         ],
         potentialActions: [
           { type: "ContactAction", name: "WhatsApp Anfrage senden", target: buildWhatsAppHref(page) },
-          { type: "ContactAction", name: "Telefonisch anfragen", target: "/kontakt" },
+          { type: "ContactAction", name: "Telefonisch anfragen", target: "/kontakt?mode=neutral&source=seo" },
           { name: "Buchung starten", target: buildBookingHref(page) },
         ],
       }),

@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { AnimatePresence, m } from "framer-motion";
@@ -27,6 +27,7 @@ export function PrivateClientInquiryForm() {
  const [submitError, setSubmitError] = useState("");
 
  function update(field: keyof typeof form, value: string) {
+  setSubmitError("");
   setForm((current) => ({ ...current, [field]: value }));
  }
 
@@ -103,7 +104,15 @@ export function PrivateClientInquiryForm() {
     body: submitData,
    });
 
-   if (!response.ok) throw new Error("Private client inquiry failed");
+   const result = await response.json().catch(() => ({}));
+   if (!response.ok) {
+    const fields = bookingFieldErrors(result);
+    if (response.status === 400 && Object.keys(fields).length > 0) {
+     setSubmitError(Object.values(fields)[0]);
+     return;
+    }
+    throw new Error("Private client inquiry failed");
+   }
 
    setIsSuccess(true);
    setForm(initialState);
@@ -141,6 +150,7 @@ export function PrivateClientInquiryForm() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       onSubmit={handleSubmit}
+      onChange={() => setSubmitError("")}
       className="space-y-4"
      >
       <div>
@@ -151,10 +161,10 @@ export function PrivateClientInquiryForm() {
        </p>
       </div>
 
-      <Field icon={UserRound} label="Name / Assistenz / Hausverwaltung" value={form.name} onChange={(value) => update("name", value)} required />
+      <Field name="name" icon={UserRound} label="Name / Assistenz / Hausverwaltung" value={form.name} onChange={(value) => update("name", value)} required />
       <div className="grid gap-3 md:grid-cols-2">
-       <Field icon={Phone} label="Telefon" value={form.phone} onChange={(value) => update("phone", value)} required type="tel" />
-       <Field icon={Mail} label="E-Mail" value={form.email} onChange={(value) => update("email", value)} type="email" />
+       <Field name="phone" icon={Phone} label="Telefon" value={form.phone} onChange={(value) => update("phone", value)} required type="tel" />
+       <Field name="email" icon={Mail} label="E-Mail" value={form.email} onChange={(value) => update("email", value)} type="email" />
       </div>
       <Field icon={MapPin} label="Ort / Anwesen" value={form.location} onChange={(value) => update("location", value)} required placeholder="z. B. Starnberg, München, Stuttgart, Baden-Baden" />
 
@@ -204,6 +214,7 @@ export function PrivateClientInquiryForm() {
 }
 
 function Field({
+ name,
  icon: Icon,
  label,
  value,
@@ -212,6 +223,7 @@ function Field({
  type = "text",
  placeholder,
 }: {
+ name?: string;
  icon?: any;
  label: string;
  value: string;
@@ -227,6 +239,7 @@ function Field({
     {label}
    </span>
    <input
+    name={name}
     required={required}
     type={type}
     value={value}

@@ -280,7 +280,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
         })}
       </div>
 
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} onChange={() => { setErrorMessage(""); if (submitState === "error") setSubmitState("idle"); }} data-event="form_submit">
         <input type="hidden" name="leadSubtype" value={hasRedFlagResult ? "red_flag_scanner" : ""} />
         <input type="hidden" name="sourceComponent" value={hasRedFlagResult ? "red_flag_scanner" : "offer_check_form"} />
         <input type="hidden" name="scannerScoreLevel" value={hasRedFlagResult ? redFlagResult?.scoreLevel || "" : ""} />

@@ -1,6 +1,7 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 
 import {
   type ChangeEvent,
@@ -9,7 +10,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   ArrowRight,
@@ -88,15 +88,11 @@ const propertyTypeOptions = [
   { value: "unklar", label: "Noch unklar" },
 ] as const;
 
-type SubmitState = "idle" | "submitting" | "error";
+type SubmitState = "idle" | "submitting" | "success" | "error";
 
 type OfferComparisonAdsFormProps = {
   whatsappHref: string;
 };
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
 
 function getFileExtension(file: File) {
   return file.name.split(".").pop()?.toLowerCase() || "";
@@ -124,18 +120,27 @@ function formatFileSize(size: number) {
 
 function getUtmValue(key: string) {
   if (typeof window === "undefined") return "";
-  return new URLSearchParams(window.location.search).get(key) || "";
+  const value = new URLSearchParams(window.location.search).get(key) || "";
+  const normalized = value.normalize("NFKC").trim().slice(0, 160);
+  if (
+    /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/i.test(normalized)
+    || /(?:\+?\d[\s()./-]*){7,}/.test(normalized)
+  ) return "";
+  return normalized.replace(/[^\p{L}\p{N}._~-]+/gu, "-").replace(/^-+|-+$/g, "");
 }
 
 export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormProps) {
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const startedAtRef = useRef(Date.now());
+  const submissionAttemptKeyRef = useRef("");
+  const submitLockRef = useRef(false);
   const [files, setFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [uploadStarted, setUploadStarted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [successReference, setSuccessReference] = useState("");
 
   function markUploadStarted(source: "click" | "drop") {
     if (uploadStarted) return;
@@ -162,6 +167,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     }
 
     setErrorMessage("");
+    submissionAttemptKeyRef.current = "";
     setFiles(merged);
 
     if (merged.length) {
@@ -187,12 +193,15 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   }
 
   function removeFile(fileToRemove: File) {
+    submissionAttemptKeyRef.current = "";
     setFiles((current) => current.filter((file) => file !== fileToRemove));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current) return;
     setErrorMessage("");
+    setFieldErrors({});
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -215,20 +224,28 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     const honeypot = String(formData.get("website") || "").trim();
 
     if (honeypot) return;
-    if (name.length < 2) {
-      setErrorMessage("Bitte geben Sie Ihren Namen an.");
-      return;
-    }
-    if (phone.replace(/\D/g, "").length < 7 && !isValidEmail(email)) {
-      setErrorMessage("Bitte geben Sie Telefon oder E-Mail für die Rückmeldung an.");
-      return;
-    }
-    if (email && !isValidEmail(email)) {
-      setErrorMessage("Bitte geben Sie eine gültige E-Mail-Adresse an.");
-      return;
-    }
-    if (formData.get("privacy") !== "on") {
-      setErrorMessage("Bitte bestätigen Sie die DSGVO-Einwilligung.");
+    const { fields: contactErrors } = validateRequestContact(
+      {
+        name,
+        email,
+        phone,
+        contactMethod: preferredContact,
+        privacyConsent: formData.get("privacy") === "on",
+      },
+      { requireContactMethod: true, requireConsent: true },
+    );
+    if (Object.keys(contactErrors).length) {
+      const mappedErrors: Record<string, string> = {
+        ...contactErrors,
+        ...(contactErrors.contact ? { phone: contactErrors.contact } : {}),
+        ...(contactErrors.privacyConsent ? { privacy: contactErrors.privacyConsent } : {}),
+      };
+      setFieldErrors(mappedErrors);
+      setErrorMessage("Bitte prüfen Sie die markierten Kontaktangaben.");
+      const firstField = ["name", "email", "phone", "contactMethod", "privacy"].find(
+        (field) => mappedErrors[field],
+      );
+      if (firstField) requestAnimationFrame(() => document.getElementById(`offer-${firstField}`)?.focus());
       return;
     }
 
@@ -272,19 +289,24 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       .filter(Boolean)
       .join("\n");
 
-    formData.set("type", "offer_check");
-    formData.set("lead_type", "angebotspruefung");
+    formData.set("type", "professional_request");
+    formData.set("lead_type", "professional_request");
     formData.set("leadSubtype", "floxant_angebotspruefung_product");
     formData.set("leadSource", "offer_check_product");
     formData.set("source", "offer_check_product");
     formData.set("sourceComponent", "offer_comparison_ads_form");
-    formData.set("service", requestedService || "reinigung");
-    formData.set("serviceCategory", "angebot_pruefen");
+    formData.set("service", "angebot-pruefen");
+    formData.set("serviceId", "angebotscheck");
+    formData.set("serviceLabel", "FLOXANT Angebotscheck");
+    formData.set("serviceCategory", "angebotscheck");
     formData.set("intent", "angebot_pruefen");
     formData.set("region", region || "duesseldorf");
     formData.set("regionPreset", region || "duesseldorf");
-    formData.set("entryPoint", "/angebot-vergleichen-regensburg");
-    formData.set("sourcePage", "/angebot-vergleichen-regensburg");
+    formData.set("location", region || "duesseldorf");
+    formData.set("locationLabel", selectedRegionLabel);
+    formData.set("cityOrZip", cityOrZip || selectedRegionLabel);
+    formData.set("entryPoint", window.location.pathname);
+    formData.set("sourcePage", window.location.pathname);
     formData.set("offerStatus", offerStatus || "details");
     formData.set("existingOffer", offerStatus && offerStatus !== "no_offer" ? "true" : "false");
     formData.set("offerConcern", offerConcern || "general_second_opinion");
@@ -297,14 +319,15 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("propertyType", propertyType || "unklar");
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
+    formData.set("scope", composedMessage);
     formData.set("deadline", desiredDate || urgency);
     formData.set("privacyConsent", "true");
     formData.set("pageType", "offer_check");
     formData.set("funnelStage", "offer_check");
     formData.set("ctaLabel", "Prüfung anfordern");
     formData.set("timestamp", new Date().toISOString());
-    formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
-    formData.set("referrer", document.referrer);
+    formData.set("formStartedAt", String(startedAtRef.current));
+    formData.set("landingPage", window.location.pathname);
     formData.set("utmSource", getUtmValue("utm_source"));
     formData.set("utmMedium", getUtmValue("utm_medium"));
     formData.set("utmCampaign", getUtmValue("utm_campaign"));
@@ -313,6 +336,11 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("formDurationMs", String(Date.now() - startedAtRef.current));
     files.forEach((file) => formData.append("offerFile", file));
     appendConversionJourneyToFormData(formData);
+
+    const attemptKey = submissionAttemptKeyRef.current
+      || `offer_check:${Date.now()}:${crypto.randomUUID()}`;
+    submissionAttemptKeyRef.current = attemptKey;
+    submitLockRef.current = true;
 
     reportOfferComparisonAdsEvent("offer_check_started", {
       channel: "form",
@@ -328,12 +356,43 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     try {
       const response = await bookingFetch("/api/bookings", {
         method: "POST",
+        headers: { "Idempotency-Key": attemptKey },
         body: formData,
       });
-      const result = await response.json().catch(() => ({}));
+      const result = await response.json().catch(() => ({})) as {
+        ok?: boolean;
+        requestId?: string;
+        bookingId?: string;
+        error?: string;
+        message?: string;
+        fields?: Record<string, string>;
+      };
+      if (submissionAttemptKeyRef.current !== attemptKey) return;
 
-      if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || result.ok !== true || !result.requestId || !result.bookingId) {
+        const serverFields = bookingFieldErrors(result);
+        if (Object.keys(serverFields).length) {
+          const mappedErrors: Record<string, string> = {
+            ...serverFields,
+            ...(serverFields.contact ? { phone: serverFields.contact } : {}),
+            ...((serverFields.preferredContactMethod || serverFields.contactMethod)
+              ? { contactMethod: serverFields.preferredContactMethod || serverFields.contactMethod }
+              : {}),
+            ...(serverFields.privacyConsent ? { privacy: serverFields.privacyConsent } : {}),
+            ...((serverFields.city || serverFields.location)
+              ? { cityOrZip: serverFields.city || serverFields.location }
+              : {}),
+            ...(serverFields.scope ? { message: serverFields.scope } : {}),
+          };
+          setFieldErrors(mappedErrors);
+          const firstField = ["name", "email", "phone", "contactMethod", "privacy", "cityOrZip", "message"].find(
+            (field) => mappedErrors[field],
+          );
+          if (firstField) requestAnimationFrame(() => document.getElementById(`offer-${firstField}`)?.focus());
+          throw new Error(Object.values(serverFields).find(Boolean) || "Bitte prüfen Sie die markierten Angaben.");
+        }
+        const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+        throw new Error(`${result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
       reportOfferComparisonAdsEvent("form_submit_success", {
@@ -352,9 +411,12 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       });
 
       form.reset();
+      submissionAttemptKeyRef.current = "";
       setFiles([]);
-      router.push("/angebot-vergleichen-regensburg");
+      setSuccessReference(result.requestId);
+      setSubmitState("success");
     } catch (error) {
+      if (submissionAttemptKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
       reportOfferComparisonAdsEvent("form_submit_error", {
@@ -362,20 +424,58 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         label: error instanceof Error ? error.message : "Formularfehler",
         priority: "warm",
       });
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
   const isSubmitting = submitState === "submitting";
 
+  if (submitState === "success") {
+    return (
+      <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950" aria-live="polite">
+        <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
+        <h2 className="mt-4 text-2xl font-black">Ihre Angebotsprüfung ist angekommen.</h2>
+        <p className="mt-2 text-sm font-semibold leading-6">
+          FLOXANT prüft die übermittelten Angaben persönlich. Eine Zusage oder Preisgarantie entsteht dadurch nicht.
+        </p>
+        {successReference ? <p className="mt-4 text-xs font-bold">Referenz: {successReference}</p> : null}
+      </section>
+    );
+  }
+
   return (
     <form
+      data-booking-field-errors="managed"
       id="angebot-pruefen"
       className="grid w-full max-w-full min-w-0 scroll-mt-32 gap-6 overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] [&_input]:min-w-0 [&_input]:w-full [&_label]:min-w-0 [&_select]:min-w-0 [&_select]:w-full [&_textarea]:min-w-0 [&_textarea]:w-full sm:p-6 lg:p-8"
       onSubmit={handleSubmit}
+      noValidate
+      onChange={(event) => {
+        if (event.target instanceof HTMLInputElement && event.target.type === "file") return;
+        submissionAttemptKeyRef.current = "";
+        const field = event.target instanceof HTMLInputElement
+          || event.target instanceof HTMLSelectElement
+          || event.target instanceof HTMLTextAreaElement
+          ? event.target.name
+          : "";
+        if (!field) return;
+        setFieldErrors((current) => {
+          const aliases = field === "preferredContact"
+            ? ["preferredContact", "contactMethod", "email", "phone"]
+            : [field];
+          if (!aliases.some((alias) => current[alias])) return current;
+          const next = { ...current };
+          for (const alias of aliases) delete next[alias];
+          return next;
+        });
+      }}
       data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
       aria-label="Angebotsprüfung anfordern"
+      aria-busy={isSubmitting}
     >
+      <fieldset disabled={isSubmitting} className="contents">
       <div className="min-w-0">
         <p className="text-sm font-black uppercase tracking-normal text-blue-700">
           FLOXANT Angebotsprüfung
@@ -396,15 +496,18 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       <div className="grid min-w-0 gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name*
-          <input name="name" autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
+          <input id="offer-name" name="name" required autoComplete="name" aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? "offer-name-error" : undefined} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
+          {fieldErrors.name ? <span id="offer-name-error" className="text-sm text-red-700">{fieldErrors.name}</span> : null}
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Telefon
-          <input name="phone" type="tel" autoComplete="tel" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="+49 ..." />
+          <input id="offer-phone" name="phone" type="tel" autoComplete="tel" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? "offer-phone-error" : undefined} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="+49 ..." />
+          {fieldErrors.phone ? <span id="offer-phone-error" className="text-sm text-red-700">{fieldErrors.phone}</span> : null}
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           E-Mail
-          <input name="email" type="email" autoComplete="email" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="name@firma.de" />
+          <input id="offer-email" name="email" type="email" autoComplete="email" aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? "offer-email-error" : undefined} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="name@firma.de" />
+          {fieldErrors.email ? <span id="offer-email-error" className="text-sm text-red-700">{fieldErrors.email}</span> : null}
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Firma
@@ -422,7 +525,8 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Ort / PLZ
-          <input name="cityOrZip" autoComplete="address-level2" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. Düsseldorf, Regensburg, Neuss" />
+          <input id="offer-cityOrZip" name="cityOrZip" autoComplete="address-level2" aria-invalid={Boolean(fieldErrors.cityOrZip)} aria-describedby={fieldErrors.cityOrZip ? "offer-cityOrZip-error" : undefined} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. Düsseldorf, Regensburg, Neuss" />
+          {fieldErrors.cityOrZip ? <span id="offer-cityOrZip-error" className="text-sm text-red-700">{fieldErrors.cityOrZip}</span> : null}
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Leistungsbereich*
@@ -476,13 +580,14 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kontaktwunsch
-          <select name="preferredContact" defaultValue="telefon" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+          <select id="offer-contactMethod" name="preferredContact" defaultValue="telefon" aria-invalid={Boolean(fieldErrors.contactMethod)} aria-describedby={fieldErrors.contactMethod ? "offer-contactMethod-error" : undefined} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
             {preferredContactOptions.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.label}
               </option>
             ))}
           </select>
+          {fieldErrors.contactMethod ? <span id="offer-contactMethod-error" className="text-sm text-red-700">{fieldErrors.contactMethod}</span> : null}
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Gewünschter Zeitraum
@@ -502,6 +607,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         <input
           ref={inputRef}
           type="file"
+          aria-label="Angebotsdateien auswählen"
           accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
           multiple
           className="sr-only"
@@ -575,11 +681,15 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       <label className="grid gap-2 text-sm font-bold text-slate-800">
         Was möchten Sie prüfen lassen?
         <textarea
+          id="offer-message"
           name="message"
           rows={4}
+          aria-invalid={Boolean(fieldErrors.message)}
+          aria-describedby={fieldErrors.message ? "offer-message-error" : undefined}
           className="rounded-lg border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
           placeholder="Zum Beispiel: Leistungsumfang, Fläche oder Volumen, Termin, Zugang, Turnus, Übergabeziel oder offene Punkte."
         />
+        {fieldErrors.message ? <span id="offer-message-error" className="text-sm text-red-700">{fieldErrors.message}</span> : null}
       </label>
 
       <label className="hidden" aria-hidden="true">
@@ -588,11 +698,12 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       </label>
 
       <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700">
-        <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
+        <input id="offer-privacy" name="privacy" type="checkbox" required aria-invalid={Boolean(fieldErrors.privacy)} aria-describedby={fieldErrors.privacy ? "offer-privacy-error" : undefined} className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
         <span>
           Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
           Die Prüfung ist unverbindlich; es wird keine Preisgarantie gegeben.
         </span>
+        {fieldErrors.privacy ? <span id="offer-privacy-error" className="text-sm font-semibold text-red-700">{fieldErrors.privacy}</span> : null}
       </label>
 
       {errorMessage ? (
@@ -628,6 +739,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           FLOXANT prüft, ob eine passende Alternative oder offene Punkte erkennbar sind. Jede Anfrage wird individuell bewertet.
         </p>
       </div>
+      </fieldset>
     </form>
   );
 }

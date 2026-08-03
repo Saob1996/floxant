@@ -131,29 +131,29 @@ const windowContact =
 const windowOfferContact =
   "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo";
 const deepCleaningContact =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
 const deepCleaningOfferContact =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
 const maintenanceCleaningOfferContact =
   "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo";
 const constructionCleaningContact =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=seo";
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=baureinigung-duesseldorf&source=seo";
 const constructionCleaningOfferContact =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=bauendreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=baureinigung-angebot-pruefen&source=seo";
 const solarContact =
-  "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-duesseldorf&source=seo";
+  "/kontakt?mode=neutral&source=seo";
 const solarOfferContact =
-  "/kontakt?service=solarreinigung&city=duesseldorf&intent=solarreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=angebotscheck&city=duesseldorf&intent=pv-reinigungsangebot-pruefen&source=seo";
 const propertyManagementCleaningContact =
-  "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo";
+  "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo";
 const staircaseCleaningContact =
   "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-duesseldorf&source=seo";
 const maintenanceCleaningContact =
   "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo";
 const buildingCleaningContact =
-  "/kontakt?service=gebaeudereinigung&city=duesseldorf&intent=gebaeudereinigung-duesseldorf&source=seo";
+  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=objektreinigung-duesseldorf&source=seo";
 const propertyCleaningOfferContact =
-  "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo";
+  "/kontakt?service=angebotscheck&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo";
 
 const commonNeeds = [
   "Ort oder Stadtteil grob",
@@ -216,7 +216,7 @@ const hubServiceCards: Card[] = [
     icon: ClipboardCheck,
     title: "Hausverwaltung und Übergabe",
     text: "Für Treppenhaus, Allgemeinflächen, Übergabe, Fristen oder Reinigung nach Entrümpelung mit klarer Objektbeschreibung.",
-    href: "/kontakt?service=reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
     label: "Hausverwaltung anfragen",
   },
   {
@@ -306,7 +306,7 @@ const propertyCleaningCtas: CtaConfig[] = [
   {
     href: propertyManagementCleaningContact,
     label: "Hausverwaltung-Reinigung anfragen",
-    service: "hausverwaltung-reinigung",
+    service: "treppenhausreinigung",
     intent: "hausverwaltung-reinigung-duesseldorf",
     priority: "p0",
   },
@@ -320,7 +320,7 @@ const propertyCleaningCtas: CtaConfig[] = [
   {
     href: propertyCleaningOfferContact,
     label: "Reinigungsangebot prüfen lassen",
-    service: "hausverwaltung-reinigung",
+    service: "angebotscheck",
     intent: "hausverwaltung-reinigungsangebot-pruefen",
     priority: "p0",
   },
@@ -807,14 +807,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     primaryCta: {
       href: deepCleaningContact,
       label: "Grundreinigung in Düsseldorf anfragen",
-      service: "reinigung",
+      service: "grundreinigung",
       intent: "grundreinigung-duesseldorf",
       priority: "p0",
     },
     offerCta: {
       href: deepCleaningOfferContact,
       label: "Angebot für Grundreinigung prüfen",
-      service: "reinigung",
+      service: "grundreinigung",
       intent: "grundreinigung-angebot-pruefen",
       priority: "p1",
     },
@@ -969,14 +969,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     primaryCta: {
       href: constructionCleaningContact,
       label: "Bauendreinigung in Düsseldorf anfragen",
-      service: "reinigung",
+      service: "baureinigung",
       intent: "bauendreinigung-duesseldorf",
       priority: "p0",
     },
     offerCta: {
       href: constructionCleaningOfferContact,
       label: "Baureinigungsangebot prüfen",
-      service: "reinigung",
+      service: "baureinigung",
       intent: "bauendreinigung-angebot-pruefen",
       priority: "p1",
     },
@@ -1056,7 +1056,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     offerCta: {
       href: propertyCleaningOfferContact,
       label: "Treppenhaus-Angebot prüfen",
-      service: "treppenhausreinigung",
+      service: "angebotscheck",
       intent: "treppenhausreinigung-angebot-pruefen",
       priority: "p1",
     },

@@ -1,8 +1,8 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -12,6 +12,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
+import { validateRequestContact } from "@/lib/booking/request-service-policy.js";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
 
@@ -96,6 +97,9 @@ const previousSourceOptions = [
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
+type PlanBFieldErrors = Partial<
+  Record<"name" | "email" | "phone" | "contact" | "contactMethod" | "privacyConsent" | "cityOrZip" | "deadline" | "message" | "form", string>
+>;
 
 function getUtmValue(key: string) {
   if (typeof window === "undefined") return "";
@@ -132,6 +136,13 @@ export function PlanBServiceForm() {
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<PlanBFieldErrors>({});
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [riskLevel, uncertainArea, desiredPackage, selectedOpenItems, photos, offerFiles]);
 
   const whatsappHref = useMemo(() => {
     const text =
@@ -145,9 +156,27 @@ export function PlanBServiceForm() {
     setSelectedOpenItems((current) => (current.includes(value) ? current.filter((item) => item !== value) : [...current, value]));
   }
 
+  function focusFirstError(errors: PlanBFieldErrors) {
+    const firstField = ["name", "email", "phone", "contact", "contactMethod", "cityOrZip", "deadline", "message", "privacyConsent"].find(
+      (field) => errors[field as keyof PlanBFieldErrors],
+    );
+    const target =
+      firstField === "contact"
+        ? "phone"
+        : firstField === "contactMethod"
+          ? "contactMethod"
+        : firstField === "privacyConsent"
+          ? "privacy"
+          : firstField;
+    if (target) requestAnimationFrame(() => document.getElementById(`plan-b-${target}`)?.focus());
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current || submitState === "submitting") return;
+    submitLockRef.current = true;
     setErrorMessage("");
+    setFieldErrors({});
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -157,40 +186,49 @@ export function PlanBServiceForm() {
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const deadline = String(formData.get("deadline") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    const preferredContactMethod = formData.get("preferredContact") === "whatsapp"
+      ? "whatsapp"
+      : formData.get("callbackWanted") === "true"
+        ? "telefon"
+      : phone
+        ? "telefon"
+        : "email";
+    const contactValidation = validateRequestContact(
+      {
+        name,
+        email,
+        phone,
+        contactMethod: preferredContactMethod,
+        privacyConsent: formData.get("privacy") === "on",
+      },
+      { requireContactMethod: true, requireConsent: true },
+    );
+    const nextErrors: PlanBFieldErrors = { ...contactValidation.fields };
+    if (!cityOrZip) nextErrors.cityOrZip = "Bitte Ort oder PLZ angeben.";
+    if (!deadline) nextErrors.deadline = "Bitte Deadline, Termin oder Wunschzeitraum angeben.";
+    if (message.length < 10) nextErrors.message = "Bitte kurz beschreiben, warum Plan A unsicher ist.";
 
-    if (name.length < 2) {
-      setErrorMessage("Bitte geben Sie einen Namen an.");
-      return;
-    }
-    if (!phone && !email) {
-      setErrorMessage("Bitte Telefonnummer oder E-Mail angeben, damit FLOXANT reagieren kann.");
-      return;
-    }
-    if (!cityOrZip) {
-      setErrorMessage("Bitte Ort oder PLZ angeben.");
-      return;
-    }
-    if (!deadline) {
-      setErrorMessage("Bitte Deadline, Termin oder Wunschzeitraum angeben.");
-      return;
-    }
-    if (message.length < 10) {
-      setErrorMessage("Bitte kurz beschreiben, warum Plan A unsicher ist.");
-      return;
-    }
-    if (formData.get("privacy") !== "on") {
-      setErrorMessage("Bitte bestaetigen Sie den Datenschutz-Hinweis.");
+    if (Object.keys(nextErrors).length > 0) {
+      setFieldErrors(nextErrors);
+      setErrorMessage("Bitte prüfen Sie die markierten Angaben.");
+      focusFirstError(nextErrors);
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
 
     const photoError = validatePhotos(photos);
     if (photoError) {
       setErrorMessage(photoError);
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
     const offerError = validateOfferFiles(offerFiles);
     if (offerError) {
       setErrorMessage(offerError);
+      setSubmitState("error");
+      submitLockRef.current = false;
       return;
     }
 
@@ -212,8 +250,8 @@ export function PlanBServiceForm() {
     formData.set("source", "plan_b_service");
     formData.set("sourceComponent", "plan_b_form");
     formData.set("sourceContext", riskLevel);
-    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
-    formData.set("preferredContactMethod", formData.get("preferredContact") === "whatsapp" ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
+    formData.set("contactMethod", preferredContactMethod);
+    formData.set("preferredContactMethod", preferredContactMethod);
     formData.set("privacyConsent", "true");
     formData.set("pageType", "plan_b");
     formData.set("funnelStage", "urgent_lead");
@@ -228,13 +266,47 @@ export function PlanBServiceForm() {
     photos.forEach((file) => formData.append("planBPhoto", file));
     offerFiles.forEach((file) => formData.append("planBOfferFile", file));
 
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `plan_b_service:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+    let completedSuccessfully = false;
     setSubmitState("submitting");
 
     try {
-      const response = await bookingFetch("/api/bookings", { method: "POST", body: formData });
+      const response = await bookingFetch("/api/bookings", {
+        method: "POST",
+        body: formData,
+        headers: { "Idempotency-Key": attemptKey },
+      });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (!response.ok) {
+        if (idempotencyKeyRef.current !== attemptKey) return;
+        const serverFields = bookingFieldErrors(result);
+        const mappedErrors: PlanBFieldErrors = {};
+        for (const field of ["name", "email", "phone", "contact", "contactMethod", "cityOrZip", "deadline", "message", "privacyConsent"] as const) {
+          if (serverFields[field]) mappedErrors[field] = serverFields[field];
+        }
+        if (serverFields.preferredContact || serverFields.preferredContactMethod) {
+          mappedErrors.contactMethod = serverFields.preferredContact || serverFields.preferredContactMethod;
+        }
+        if (serverFields.city) mappedErrors.cityOrZip = serverFields.city;
+        if (serverFields.desiredDate) mappedErrors.deadline = serverFields.desiredDate;
+        if (Object.keys(mappedErrors).length > 0) {
+          setFieldErrors(mappedErrors);
+          setErrorMessage("Bitte prüfen Sie die markierten Angaben.");
+          focusFirstError(mappedErrors);
+        } else {
+          setErrorMessage(result.error || "Die Anfrage konnte nicht gesendet werden.");
+        }
+        setSubmitState("error");
+        return;
+      }
 
+      if (idempotencyKeyRef.current !== attemptKey) return;
+
+      completedSuccessfully = true;
+      idempotencyKeyRef.current = null;
       form.reset();
       setRiskLevel("absichern");
       setUncertainArea("mehrere Punkte");
@@ -244,8 +316,12 @@ export function PlanBServiceForm() {
       setOfferFiles([]);
       setSubmitState("success");
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
+    } finally {
+      if (!completedSuccessfully && idempotencyKeyRef.current !== attemptKey) setSubmitState("idle");
+      submitLockRef.current = false;
     }
   }
 
@@ -273,6 +349,7 @@ export function PlanBServiceForm() {
             <button
               key={level.id}
               type="button"
+              disabled={isSubmitting}
               onClick={() => setRiskLevel(level.id)}
               data-event="service_card_click"
               data-risk-level={level.id}
@@ -288,23 +365,40 @@ export function PlanBServiceForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        data-booking-field-errors="managed"
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setFieldErrors({});
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+        noValidate
+      >
+        <fieldset disabled={isSubmitting} className="contents">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
-            <input name="name" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Ansprechpartner" />
+            <input id="plan-b-name" name="name" aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? "plan-b-name-error" : undefined} className={`min-h-12 rounded-xl border px-4 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.name ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder="Ansprechpartner" />
+            {fieldErrors.name ? <span id="plan-b-name-error" className="text-xs text-red-700">{fieldErrors.name}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="für schnelle Rückfragen" />
+            <input id="plan-b-phone" name="phone" type="tel" aria-invalid={Boolean(fieldErrors.phone || fieldErrors.contact || fieldErrors.contactMethod)} aria-describedby={[fieldErrors.phone ? "plan-b-phone-error" : "", fieldErrors.contact ? "plan-b-contact-error" : "", fieldErrors.contactMethod ? "plan-b-contact-method-error" : ""].filter(Boolean).join(" ") || undefined} className={`min-h-12 rounded-xl border px-4 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.phone || fieldErrors.contact || fieldErrors.contactMethod ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder="für schnelle Rückfragen" />
+            {fieldErrors.phone ? <span id="plan-b-phone-error" className="text-xs text-red-700">{fieldErrors.phone}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
-            <input name="email" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder={EMAIL} />
+            <input id="plan-b-email" name="email" type="email" aria-invalid={Boolean(fieldErrors.email || fieldErrors.contact || fieldErrors.contactMethod)} aria-describedby={[fieldErrors.email ? "plan-b-email-error" : "", fieldErrors.contact ? "plan-b-contact-error" : "", fieldErrors.contactMethod ? "plan-b-contact-method-error" : ""].filter(Boolean).join(" ") || undefined} className={`min-h-12 rounded-xl border px-4 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.email || fieldErrors.contact || fieldErrors.contactMethod ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder={EMAIL} />
+            {fieldErrors.email ? <span id="plan-b-email-error" className="text-xs text-red-700">{fieldErrors.email}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Düsseldorf..." />
+            <input id="plan-b-cityOrZip" name="cityOrZip" aria-invalid={Boolean(fieldErrors.cityOrZip)} aria-describedby={fieldErrors.cityOrZip ? "plan-b-city-error" : undefined} className={`min-h-12 rounded-xl border px-4 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.cityOrZip ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder="Regensburg, Kelheim, Düsseldorf..." />
+            {fieldErrors.cityOrZip ? <span id="plan-b-city-error" className="text-xs text-red-700">{fieldErrors.cityOrZip}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Was ist unsicher?*
@@ -322,7 +416,8 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Deadline / Termin*
-            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. diese Woche, Übergabe am..." />
+            <input id="plan-b-deadline" name="deadline" aria-invalid={Boolean(fieldErrors.deadline)} aria-describedby={fieldErrors.deadline ? "plan-b-deadline-error" : undefined} className={`min-h-12 rounded-xl border px-4 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.deadline ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder="z. B. diese Woche, Übergabe am..." />
+            {fieldErrors.deadline ? <span id="plan-b-deadline-error" className="text-xs text-red-700">{fieldErrors.deadline}</span> : null}
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Gewuenschtes Plan-B-Paket
@@ -404,9 +499,13 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Kurze Beschreibung*
-            <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Warum wirkt Plan A unsicher? Was muss bis wann abgesichert werden?" />
+            <textarea id="plan-b-message" name="message" rows={4} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? "plan-b-message-error" : undefined} className={`rounded-xl border px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500 ${fieldErrors.message ? "border-red-300 bg-red-50" : "border-slate-200"}`} placeholder="Warum wirkt Plan A unsicher? Was muss bis wann abgesichert werden?" />
+            {fieldErrors.message ? <span id="plan-b-message-error" className="text-xs text-red-700">{fieldErrors.message}</span> : null}
           </label>
         </div>
+
+        {fieldErrors.contact ? <p id="plan-b-contact-error" className="text-sm font-bold text-red-700">{fieldErrors.contact}</p> : null}
+        {fieldErrors.contactMethod ? <p id="plan-b-contact-method-error" className="text-sm font-bold text-red-700">{fieldErrors.contactMethod}</p> : null}
 
         <div className="rounded-[1.75rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
@@ -440,23 +539,24 @@ export function PlanBServiceForm() {
 
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
-            <input name="preferredContact" type="checkbox" value="whatsapp" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
+            <input id="plan-b-contactMethod" name="preferredContact" type="checkbox" value="whatsapp" aria-invalid={Boolean(fieldErrors.contactMethod)} aria-describedby={fieldErrors.contactMethod ? "plan-b-contact-method-error" : undefined} className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
             <span>WhatsApp bevorzugt</span>
           </label>
           <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
-            <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
+            <input name="callbackWanted" type="checkbox" value="true" aria-invalid={Boolean(fieldErrors.contactMethod)} aria-describedby={fieldErrors.contactMethod ? "plan-b-contact-method-error" : undefined} className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
             <span>Rückruf gewünscht</span>
           </label>
         </div>
 
-        <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
-          <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
+        <label className={`flex items-start gap-3 rounded-[1.25rem] border bg-white p-4 text-sm leading-6 text-slate-700 ${fieldErrors.privacyConsent ? "border-red-300 bg-red-50" : "border-slate-200"}`}>
+          <input id="plan-b-privacy" name="privacy" type="checkbox" aria-invalid={Boolean(fieldErrors.privacyConsent)} aria-describedby={fieldErrors.privacyConsent ? "plan-b-privacy-error" : undefined} className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
           <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.</span>
         </label>
+        {fieldErrors.privacyConsent ? <p id="plan-b-privacy-error" className="text-sm font-bold text-red-700">{fieldErrors.privacyConsent}</p> : null}
 
-        {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
+        {errorMessage ? <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
         {submitState === "success" ? (
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">
+          <div role="status" aria-live="polite" className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">
             Danke. Ihre Plan-B-Anfrage ist eingegangen. FLOXANT prüft Ort, Termin, offene Punkte, Fotos und Verfügbarkeit. Wenn ein Ersatz- oder Ergaenzungsplan möglich ist oder Rückfragen nötig sind, melden wir uns.
           </div>
         ) : null}
@@ -481,6 +581,7 @@ export function PlanBServiceForm() {
           <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a>
           {""}- {EMAIL}
         </div>
+        </fieldset>
       </form>
     </div>
   );

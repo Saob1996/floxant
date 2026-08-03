@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
 import { useMemo, useState } from "react";
@@ -90,10 +90,12 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   );
 
   function updateField(field: keyof InquiryState, value: string) {
+    setSubmitError("");
     setForm((current) => ({ ...current, [field]: value }));
   }
 
   function applyPreset(preset: (typeof quickBackhaulPresets)[number]) {
+    setSubmitError("");
     setForm((current) => ({
       ...current,
       items: current.items || preset.items,
@@ -192,7 +194,15 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         body: submitData,
       });
 
-      if (!response.ok) throw new Error("Submit failed");
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitError(Object.values(fields)[0]);
+          return;
+        }
+        throw new Error("Submit failed");
+      }
 
       setIsSuccess(true);
       setForm({
@@ -325,6 +335,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               onSubmit={submitInquiry}
+              onChange={() => setSubmitError("")}
               className="space-y-4"
             >
               <div>
@@ -372,10 +383,10 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
               </div>
 
               <Input label="Firma optional" value={form.company} onChange={(value) => updateField("company", value)} placeholder="z. B. Büro, Kanzlei, Agentur, Lager" />
-              <Input label="Name" value={form.name} onChange={(value) => updateField("name", value)} required />
+              <Input name="name" label="Name" value={form.name} onChange={(value) => updateField("name", value)} required />
               <div className="grid gap-3 md:grid-cols-2">
-                <Input label="Telefon" value={form.phone} onChange={(value) => updateField("phone", value)} required type="tel" />
-                <Input label="E-Mail" value={form.email} onChange={(value) => updateField("email", value)} type="email" />
+                <Input name="phone" label="Telefon" value={form.phone} onChange={(value) => updateField("phone", value)} required type="tel" />
+                <Input name="email" label="E-Mail" value={form.email} onChange={(value) => updateField("email", value)} type="email" />
               </div>
               <Input label="Abholort" value={form.pickupLocation} onChange={(value) => updateField("pickupLocation", value)} required placeholder="z. B. München, Nürnberg, Berlin" />
               <Input label="Zielort" value={form.deliveryLocation} onChange={(value) => updateField("deliveryLocation", value)} placeholder="Regensburg / ca. 150 km Umkreis" />
@@ -429,6 +440,7 @@ function InfoPill({
 }
 
 function Input({
+  name,
   label,
   value,
   onChange,
@@ -436,6 +448,7 @@ function Input({
   type = "text",
   placeholder,
 }: {
+  name?: string;
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -449,6 +462,7 @@ function Input({
         {label}
       </span>
       <input
+        name={name}
         aria-label={label}
         required={required}
         type={type}

@@ -72,7 +72,8 @@ function item(input: FinderItemInput): FinderItem {
 function serviceGroupItems(source: string, currentCity?: string): readonly FinderItem[] {
   const city = currentCity || "regensburg";
   return [
-    item({ label: "Reinigung", description: "Wohnung, Endreinigung, Fenster oder PV.", serviceKey: "reinigung", city, intent: "reinigung-anfrage", priority: "p1", source, Icon: Sparkles }),
+    item({ label: "Reinigung", description: "Wohnung, Endreinigung, Fenster oder Grundreinigung.", serviceKey: "reinigung", city, intent: "reinigung-anfrage", priority: "p1", source, Icon: Sparkles }),
+    item({ label: "Solar/PV prüfen", description: "Anlage, Dachzugang und Verschmutzung zunächst neutral einordnen.", serviceKey: "solarreinigung", city, intent: "solarreinigung-anfrage", priority: "p2", source, Icon: Sparkles }),
     item({ label: "Büro/Gewerbe", description: "Fläche, Turnus, Zeitfenster und Zugang.", serviceKey: "bueroreinigung", city, intent: "b2b-bueroreinigung", priority: "p0", source, Icon: Building2 }),
     item({ label: "Hausverwaltung", description: "Treppenhaus, Unterhalt, Objekt und Angebot.", serviceKey: "hausverwaltung-reinigung", city, intent: "hausverwaltung-reinigung-anfrage", priority: "p0", source, Icon: Building2 }),
     item({ label: "Umzug/Transport", description: "Start, Ziel, Umfang, Etage und Termin.", serviceKey: "umzug", city, intent: "umzug-transport", priority: "p1", source, Icon: Truck }),

@@ -92,7 +92,7 @@ export function AuthorityMagnet({
     {
       title: "Kontakt direkt klären",
       desc: "Für Rückfragen, Fotos, Sonderfälle oder schnelle Abstimmung vor der Planung.",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       icon: PhoneCall,
       tone: "bg-amber-50 text-amber-700",
     },

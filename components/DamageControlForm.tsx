@@ -1,6 +1,6 @@
 "use client";
 
-import { bookingFetch } from "@/lib/booking-submission-client";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
@@ -371,7 +371,13 @@ export function DamageControlForm() {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitState("error");
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
+        throw new Error(result.error || result.message || "Die Anfrage konnte nicht gesendet werden.");
       }
 
       form.reset();
@@ -428,7 +434,15 @@ export function DamageControlForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+      >
         <input type="hidden" name="sourceComponent" value={planButtonSource ? "plan_gekippt_button" : "damage_control_form"} />
         <input type="hidden" name="sourceContext" value={sourceContext} />
         <input type="hidden" name="sourcePage" value={sourcePage} />
@@ -616,7 +630,7 @@ export function DamageControlForm() {
         </div>
 
         <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
-          <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-red-600" />
+          <input id="damage-control-privacy" name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-red-600" />
           <span>
             Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.
           </span>

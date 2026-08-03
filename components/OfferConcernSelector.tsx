@@ -27,7 +27,7 @@ export function OfferConcernSelector() {
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {offerConcerns.map(([label, concern]) => {
-            const href = `/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&offerConcern=${concern}&source=seo`;
+            const href = `/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&offerConcern=${concern}&source=seo`;
             return (
               <Link
                 key={concern}

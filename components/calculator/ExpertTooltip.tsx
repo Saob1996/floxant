@@ -16,6 +16,7 @@ export function ExpertTooltip({ content, children }: ExpertTooltipProps) {
     <div className="relative inline-flex items-center">
       <button
         type="button"
+        aria-label="Erklärung anzeigen"
         onMouseEnter={() => setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
         onClick={() => setIsVisible(!isVisible)}

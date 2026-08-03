@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, HelpCircle } from "lucide-react";
 
 export function NotSureWhatYouNeed() {
-  const href = "/kontakt?service=sonstiges&city=regensburg&intent=unsichere-anfrage&source=contact-routing";
+  const href = "/kontakt?mode=neutral&source=contact-routing";
 
   return (
     <aside className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5" data-component="NotSureWhatYouNeed">

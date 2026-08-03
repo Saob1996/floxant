@@ -145,7 +145,15 @@ export function EnglishRequestForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
+    <form
+      onSubmit={handleSubmit}
+      onChange={() => {
+        setErrorMessage("");
+        if (state === "error") setState("idle");
+      }}
+      className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+      aria-label="English FLOXANT request form"
+    >
       <label className="sr-only" aria-hidden="true">
         Website
         <input name="companyWebsite" tabIndex={-1} autoComplete="off" />

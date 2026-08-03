@@ -106,7 +106,7 @@ export default function LeistungenVergleichenPage() {
      <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
       FLOXANT Leistungen vergleichen und den richtigen Weg finden.
      </h1>
-     <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
+     <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
       Nicht jede Anfrage gehört sofort in denselben Service. Dieser Vergleich ordnet typische
       Kundensituationen sauber zu: Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt
       oder Private Client Service in Regensburg und Bayern.

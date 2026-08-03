@@ -11,7 +11,7 @@ const discreetSituations = [
 ] as const;
 
 export function DiscreetRequestPanel() {
-  const href = "/kontakt?service=diskret-service&city=deutschland&intent=diskret-service&source=discreet";
+  const href = "/kontakt?mode=neutral&source=discreet";
 
   return (
     <section className="px-4 py-12 sm:px-6" data-component="DiscreetRequestPanel">
@@ -31,8 +31,8 @@ export function DiscreetRequestPanel() {
             href={href}
             className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-stone-950 px-5 text-sm font-black text-white transition hover:bg-stone-800"
             data-event="seo_cta_click"
-            data-service="diskret-service"
-            data-city="deutschland"
+            data-service=""
+            data-city=""
             data-page-intent="diskret-service"
             data-priority="p0"
             data-cta-label="Diskret anfragen"

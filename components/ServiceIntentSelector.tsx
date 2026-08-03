@@ -1,28 +1,25 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 const intentOptions = [
   {
     label: "Fotos oder Angebot vorhanden",
-    href: "/kontakt?service=angebot-pruefen&intent=angebot-mit-fotos&source=contact-routing",
     service: "angebot-pruefen",
     intent: "angebot-mit-fotos",
   },
   {
     label: "Rückruf gewünscht",
-    href: "/kontakt?service=sonstiges&intent=rueckruf-gewuenscht&source=contact-routing",
     service: "sonstiges",
     intent: "rueckruf-gewuenscht",
   },
   {
     label: "Termin/Deadline wichtig",
-    href: "/kontakt?service=angebot-pruefen&intent=deadline-pruefen&source=contact-routing",
     service: "angebot-pruefen",
     intent: "deadline-pruefen",
   },
   {
     label: "Diskret abstimmen",
-    href: "/kontakt?service=diskret-service&intent=diskret-service&source=contact-routing",
     service: "diskret-service",
     intent: "diskret-service",
   },
@@ -39,7 +36,13 @@ export function ServiceIntentSelector() {
       </p>
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
         {intentOptions.map((item) => {
-          const href = item.href.includes("&source=") ? item.href.replace("&source=", `&city=${city}&source=`) : item.href;
+          const href = buildServiceContactHref({
+            service: item.service,
+            city,
+            intent: item.intent,
+            source: "contact-routing",
+            anchor: "",
+          });
 
           return (
           <Link
