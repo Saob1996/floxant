@@ -84,11 +84,16 @@ await test("central-form-uses-canonical-formdata-builder", () => {
     path.join(root, "components", "ProfessionalRequestForm.tsx"),
     "utf8",
   );
+  const detailsBuilder = source.match(/const details = \{[\s\S]*?\n    const requestFields = \{/u)?.[0] || "";
   assert.match(source, /appendBookingPayloadToFormData\(new FormData\(\), requestFields\)/);
   assert.doesNotMatch(source, /payload\.set\(["']area["']/);
   assert.doesNotMatch(source, /payload\.set\(["']rooms["']/);
   assert.doesNotMatch(source, /payload\.set\(["']preferredDate["']/);
   assert.doesNotMatch(source, /payload\.set\(["']timeframe["']/);
+  assert.doesNotMatch(detailsBuilder, /^\s{8}area:/mu);
+  assert.doesNotMatch(detailsBuilder, /^\s{8}rooms:/mu);
+  assert.doesNotMatch(detailsBuilder, /^\s{8}preferredDate:/mu);
+  assert.doesNotMatch(detailsBuilder, /^\s{8}timeframe:/mu);
   assert.match(source, /const landingPage = window\.location\.pathname/);
   assert.doesNotMatch(source, /const landingPage = `\$\{window\.location\.pathname\}\$\{window\.location\.search\}`/);
   assert.match(source, /utmCampaign: attributionValue/);
