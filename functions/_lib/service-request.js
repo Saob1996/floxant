@@ -49,7 +49,11 @@ function compact(value) {
 
 function serviceGroup(value) {
   const key = normalizedKey(value);
-  if (/(^|_)(umzug|moving|transport)(_|$)/.test(key)) return "moving";
+  if (
+    /umzug|moving|transport|beiladung|rueckfahrt|ruckfahrt|leerfahrt/.test(key)
+  ) {
+    return "moving";
+  }
   if (
     /entruempelung|raeumung|raumung|aufloesung|auflosung|clearance|entsorgung/.test(
       key,
@@ -98,13 +102,13 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
   );
   const group = serviceGroup(firstText(serviceId, normalizedService));
   const location = firstText(
-    payload?.location,
-    configuration.location,
     configuration.city,
     rawFields.cityOrZip,
+    configuration.location,
     rawFields.location,
     payload?.cityOrZip,
     payload?.city,
+    payload?.location,
     detailService.regionPreset,
   );
   const serviceLabel = firstText(
@@ -116,8 +120,9 @@ export function normalizeServiceRequest(payload, service = "", locale = "de") {
     normalizedService,
   );
   const locationLabel = firstText(
-    payload?.locationLabel,
     configuration.locationLabel,
+    location,
+    payload?.locationLabel,
     rawFields.locationLabel,
     detailService.regionLabel,
     detailService.regionPreset,

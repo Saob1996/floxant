@@ -13,6 +13,7 @@ import {
   getRequestService,
   isAllowedRequestCombination,
   normalizeRequestPolicyToken,
+  validateRequestContact,
 } from "../../lib/booking/request-service-policy.js";
 
 const MAX_FILE_BYTES = REQUEST_ATTACHMENT_RULES.maxFileBytes;
@@ -21,13 +22,10 @@ const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
 const MAX_FILES = REQUEST_ATTACHMENT_RULES.maxFiles;
 const ALLOWED_FILE_TYPES = new Set(REQUEST_ATTACHMENT_RULES.allowedMimeTypes);
 const RESEND_TIMEOUT_MS = 4_000;
-const IDEMPOTENCY_SUCCESS_TTL_MS = 15 * 60 * 1000;
-const MAX_IDEMPOTENCY_ENTRIES = 500;
 const MAX_IDEMPOTENCY_KEY_LENGTH = 96;
 const UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
 const PLAIN_IDEMPOTENCY_KEY = new RegExp(`^${UUID_PATTERN}$`, "i");
 const NAMESPACED_IDEMPOTENCY_KEY = new RegExp(`^[a-z][a-z0-9_-]{0,31}:[0-9]{10,16}:${UUID_PATTERN}$`, "i");
-const idempotencyEntries = new Map();
 const CLOUDFLARE_PROJECT_PREVIEW_SUFFIX = ".floxant.pages.dev";
 const PUBLIC_ORIGINS = new Set([
   "https://www.floxant.de",
@@ -49,12 +47,24 @@ class SubmissionFailure extends Error {
   }
 }
 
+class IdempotencyConflictFailure extends Error {
+  constructor() {
+    super("IDEMPOTENCY_CONFLICT");
+  }
+}
+
 function text(value) {
   return String(value ?? "").trim();
 }
 
 function firstText(...values) {
   return values.map(text).find(Boolean) || "";
+}
+
+function firstPresent(...values) {
+  return values.find(
+    (value) => value !== undefined && value !== null && !(typeof value === "string" && !value.trim()),
+  );
 }
 
 function record(value) {
@@ -102,41 +112,10 @@ function readIdempotencyKey(request) {
   return { key: key.toLowerCase(), invalid: false };
 }
 
-function idempotencyScope(request) {
-  const origin = request.headers.get("Origin");
-  try {
-    return new URL(origin || request.url).origin;
-  } catch {
-    return "unknown-origin";
-  }
-}
-
-function pruneIdempotencyEntries(now = Date.now()) {
-  for (const [key, entry] of idempotencyEntries) {
-    if (entry.state === "fulfilled" && entry.expiresAt <= now) idempotencyEntries.delete(key);
-  }
-}
-
-function makeIdempotencyCapacity(now = Date.now()) {
-  pruneIdempotencyEntries(now);
-  if (idempotencyEntries.size < MAX_IDEMPOTENCY_ENTRIES) return true;
-
-  // Preserve active work and shed the oldest completed result if this isolate is full.
-  for (const [key, entry] of idempotencyEntries) {
-    if (entry.state !== "fulfilled") continue;
-    idempotencyEntries.delete(key);
-    return true;
-  }
-  return false;
-}
-
-function isSuccessfulSubmission(result) {
-  return result.status === 201 && result.body?.ok === true;
-}
-
-async function captureLeadSubmission(context) {
-  const response = await handleLeadSubmissionUncached(context);
-  return { status: response.status, body: await response.clone().json() };
+function idempotencyBookingId(key) {
+  if (!key) return "";
+  const match = key.match(new RegExp(`(${UUID_PATTERN})$`, "i"));
+  return match?.[1]?.toLowerCase() || "";
 }
 
 function configuredOrigins(env) {
@@ -191,6 +170,42 @@ function parseJson(value, fallback = null) {
   }
 }
 
+const STRUCTURED_SELECTION_FIELDS = Object.freeze([
+  "selectedAddons",
+  "selectedServices",
+  "upgrades",
+]);
+
+function structuredSelectionItems(value, field) {
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => structuredSelectionItems(item, field));
+  }
+  if (value && typeof value === "object") {
+    return Object.entries(value)
+      .filter(([, enabled]) => isTruthyConsent(enabled))
+      .map(([key]) => key);
+  }
+  if (typeof value !== "string") {
+    throw new ValidationFailure({ [field]: "Bitte wählen Sie die Zusatzleistungen erneut aus." });
+  }
+
+  const normalized = value.trim();
+  if (!normalized) return [];
+  if (normalized.startsWith("[") || normalized.startsWith("{")) {
+    let parsed;
+    try {
+      parsed = JSON.parse(normalized);
+    } catch {
+      throw new ValidationFailure({ [field]: "Die Zusatzleistungen konnten nicht gelesen werden." });
+    }
+    if (!Array.isArray(parsed) && (!parsed || typeof parsed !== "object")) {
+      throw new ValidationFailure({ [field]: "Bitte wählen Sie die Zusatzleistungen erneut aus." });
+    }
+    return structuredSelectionItems(parsed, field);
+  }
+  return normalized.split(/[|,]/).map((item) => item.trim()).filter(Boolean);
+}
+
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -222,6 +237,83 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
+const VOLATILE_FINGERPRINT_FIELDS = new Set([
+  "timestamp",
+  "createdat",
+  "submittedat",
+  "updatedat",
+  "formstartedat",
+  "formdurationms",
+  "eventtimestamp",
+  "eventtime",
+  "occurredat",
+  "recordedat",
+  "trackedat",
+  "capturedat",
+  "idempotencyfingerprint",
+  "idempotencyrequestid",
+]);
+
+const ATTRIBUTION_FINGERPRINT_FIELDS = new Set([
+  "source",
+  "leadsource",
+  "sourcecomponent",
+  "sourcecontext",
+  "sourcepage",
+  "landingpage",
+  "entrypage",
+  "entrypoint",
+  "campaign",
+  "clientcontext",
+  "locale",
+  "priority",
+]);
+
+function isVolatileFingerprintField(key) {
+  const normalized = String(key).replace(/[^a-z0-9]/gi, "").toLowerCase();
+  return VOLATILE_FINGERPRINT_FIELDS.has(normalized)
+    || ATTRIBUTION_FINGERPRINT_FIELDS.has(normalized)
+    || /^(?:utm|gclid|gbraid|wbraid|fbclid|msclkid)/.test(normalized)
+    || /^(?:conversion|journey|analytics|attribution|tracking)/.test(normalized);
+}
+
+function stableSubmissionValue(value) {
+  if (Array.isArray(value)) return value.map(stableSubmissionValue);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.keys(value)
+        .filter((key) => !isVolatileFingerprintField(key))
+        .sort()
+        .map((key) => [key, stableSubmissionValue(value[key])]),
+    );
+  }
+  return value;
+}
+
+function hexDigest(buffer) {
+  return [...new Uint8Array(buffer)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function sha256(value) {
+  const bytes = typeof value === "string" ? new TextEncoder().encode(value) : value;
+  return hexDigest(await crypto.subtle.digest("SHA-256", bytes));
+}
+
+async function submissionFingerprint(payload, files) {
+  const fileFacts = [];
+  for (const { field, file } of files) {
+    fileFacts.push({
+      field,
+      name: safeFileName(file.name),
+      type: file.type,
+      size: file.size,
+      sha256: await sha256(await file.arrayBuffer()),
+    });
+  }
+  const canonical = stableSubmissionValue({ payload, files: fileFacts });
+  return `sha256:${await sha256(JSON.stringify(canonical))}`;
+}
+
 function normalizeService(value) {
   const raw = text(value).toLowerCase().replace(/[\s-]+/g, "_").slice(0, 100);
   const aliases = {
@@ -251,7 +343,7 @@ function isSafeRequestPolicyToken(value) {
 }
 
 const REQUIRED_REQUEST_FIELD_LABELS = Object.freeze({
-  location: "Standort",
+  cityOrZip: "Ort oder PLZ",
   objectType: "Objektart",
   areaSize: "Fläche oder Umfang",
   scope: "Leistungsumfang",
@@ -283,6 +375,13 @@ function requestListValues(...values) {
 function requestCoreFieldValue(payload, configuration, rawFields, detailService, field) {
   const direct = [payload[field], configuration[field], rawFields[field]];
   const aliases = {
+    cityOrZip: [
+      payload.cityOrZip,
+      configuration.cityOrZip,
+      configuration.city,
+      rawFields.cityOrZip,
+      rawFields.city,
+    ],
     location: [
       payload.location,
       detailService.regionPreset,
@@ -400,6 +499,7 @@ function validateProfessionalRequestContext(payload) {
 
   const submittedUpgrades = requestListValues(
     payload.selectedAddons,
+    payload.selectedServices,
     payload.upgrades,
     configuration.selectedAddons,
     configuration.selectedServices,
@@ -436,13 +536,17 @@ function validateProfessionalRequestContext(payload) {
   };
 }
 
-function canonicalizeProfessionalPayload(payload, professionalContext) {
+function canonicalizeProfessionalPayload(payload, professionalContext, contact) {
   if (!professionalContext) return payload;
   const details = record(payload.details);
   const detailService = record(details.service);
   const configuration = record(details.configuration);
   const rawFields = record(configuration.rawFields);
   const canonicalService = normalizeService(professionalContext.leadService);
+  const submittedLocation = firstText(
+    payload.cityOrZip,
+    professionalContext.locationLabel,
+  );
   const canonicalConfiguration = {
     ...configuration,
     requestContext: "professional_request",
@@ -457,18 +561,25 @@ function canonicalizeProfessionalPayload(payload, professionalContext) {
     requestedService: professionalContext.serviceId,
     formProfile: professionalContext.formProfile,
     confirmationEmailVariant: professionalContext.confirmationEmailVariant,
-    location: professionalContext.locationId,
-    locationLabel: professionalContext.locationLabel,
+    location: submittedLocation,
+    locationId: professionalContext.locationId,
+    locationLabel: submittedLocation,
     region: professionalContext.locationId,
+    regionLabel: professionalContext.locationLabel,
     regionPreset: professionalContext.locationId,
+    preferredContactMethod: contact.contactMethod,
     selectedAddons: professionalContext.canonicalUpgrades,
     selectedServices: professionalContext.canonicalUpgrades,
     rawFields: {
       ...rawFields,
       serviceId: professionalContext.serviceId,
       serviceLabel: professionalContext.serviceLabel,
-      location: professionalContext.locationId,
-      locationLabel: professionalContext.locationLabel,
+      location: submittedLocation,
+      locationId: professionalContext.locationId,
+      locationLabel: submittedLocation,
+      regionLabel: professionalContext.locationLabel,
+      contactMethod: contact.contactMethod,
+      preferredContactMethod: contact.contactMethod,
       selectedAddons: professionalContext.canonicalUpgrades,
       selectedServices: professionalContext.canonicalUpgrades,
     },
@@ -482,12 +593,23 @@ function canonicalizeProfessionalPayload(payload, professionalContext) {
     serviceLabel: professionalContext.serviceLabel,
     serviceCategory: professionalContext.serviceId,
     location: professionalContext.locationId,
-    locationLabel: professionalContext.locationLabel,
+    locationId: professionalContext.locationId,
+    locationLabel: submittedLocation,
+    regionLabel: professionalContext.locationLabel,
     intent: professionalContext.intent,
+    contactMethod: contact.contactMethod,
+    preferredContactMethod: contact.contactMethod,
     selectedAddons: professionalContext.canonicalUpgrades,
     upgrades: professionalContext.canonicalUpgrades,
     details: {
       ...details,
+      contact: {
+        ...record(details.contact),
+        fullName: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        callbackPreference: contact.contactMethod,
+      },
       service: {
         ...detailService,
         id: professionalContext.serviceId,
@@ -599,8 +721,10 @@ async function parsePayload(request) {
 
   const details = parseJson(payload.details);
   if (details) payload.details = details;
-  const upgrades = parseJson(payload.upgrades);
-  if (upgrades) payload.upgrades = upgrades;
+  for (const field of STRUCTURED_SELECTION_FIELDS) {
+    if (!Object.hasOwn(payload, field)) continue;
+    payload[field] = structuredSelectionItems(payload[field], field);
+  }
   return { payload, files };
 }
 
@@ -644,68 +768,107 @@ async function validateFiles(files) {
 function validateSubmission(payload) {
   const fields = {};
   const existingContact = payload.details?.contact || payload.contact || {};
-  const contact = {
+  const contactInput = {
     name: firstText(payload.name, payload.fullName, payload.contactName, existingContact.fullName),
     email: firstText(payload.email, existingContact.email),
     phone: firstText(payload.phone, existingContact.phone),
+    contactMethod: firstText(
+      payload.preferredContactMethod,
+      payload.contactMethod,
+      existingContact.callbackPreference,
+    ),
+    privacyConsent: firstPresent(
+      payload.privacyConsent,
+      payload.privacy,
+      payload.consent,
+      payload.dataProtectionConsent,
+      payload.details?.configuration?.privacyConsent,
+      payload.details?.metadata?.privacyConsent,
+    ),
   };
+  const validatedContact = validateRequestContact(contactInput, {
+    // Historical payloads without a preference stay compatible. As soon as a
+    // form explicitly names a route, that route must have matching contact
+    // data even when the request does not use the professional profile.
+    requireContactMethod: Boolean(firstText(payload.preferredContactMethod, payload.contactMethod)),
+    requireConsent: true,
+  });
+  const contact = validatedContact.contact;
+  Object.assign(fields, validatedContact.fields);
 
   if (firstText(payload.companyWebsite, payload.website, payload.url)) {
     throw new ValidationFailure({ form: "Die Anfrage konnte nicht angenommen werden." });
-  }
-  if (contact.name.length < 2 || contact.name.length > 120 || hasHeaderInjection(contact.name)) {
-    fields.name = "Bitte geben Sie einen gültigen Namen an.";
-  }
-  if (contact.email && (contact.email.length > 254 || !isValidEmail(contact.email) || hasHeaderInjection(contact.email))) {
-    fields.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
-  }
-  const phoneDigits = contact.phone.replace(/\D/g, "");
-  if (contact.phone && (phoneDigits.length < 6 || phoneDigits.length > 20 || contact.phone.length > 50 || hasHeaderInjection(contact.phone))) {
-    fields.phone = "Bitte geben Sie eine gültige Telefonnummer an.";
-  }
-  if (!contact.email && !contact.phone) {
-    fields.contact = "Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse an.";
-  }
-
-  const consent = firstText(
-    payload.privacyConsent,
-    payload.privacy,
-    payload.consent,
-    payload.dataProtectionConsent,
-    payload.details?.configuration?.privacyConsent,
-    payload.details?.metadata?.privacyConsent,
-  );
-  if (!isTruthyConsent(consent)) {
-    fields.privacyConsent = "Bitte bestätigen Sie den Datenschutz-Hinweis.";
   }
 
   if (payload.timestamp) {
     const timestamp = Date.parse(text(payload.timestamp));
     if (!Number.isFinite(timestamp) || timestamp > Date.now() + 10 * 60 * 1000) {
-      fields.timestamp = "Bitte prüfen Sie den Zeitpunkt der Anfrage.";
+      delete payload.timestamp;
     }
   }
   if (payload.formStartedAt !== undefined && text(payload.formStartedAt)) {
     const startedAt = Number(payload.formStartedAt);
     const elapsed = Date.now() - startedAt;
     if (!Number.isFinite(startedAt) || elapsed < 0 || elapsed > 24 * 60 * 60 * 1000) {
-      fields.formStartedAt = "Bitte laden Sie das Formular neu und versuchen Sie es erneut.";
-    } else if (elapsed < 1_500) {
-      fields.form = "Bitte prüfen Sie Ihre Angaben kurz und senden Sie dann erneut.";
+      delete payload.formStartedAt;
     }
   }
   if (Object.keys(fields).length) throw new ValidationFailure(fields);
   return contact;
 }
 
-function buildDetails(payload, contact, service, uploadedFiles, request, professionalContext = null) {
+function validateProfessionalContact(payload, contact) {
+  const existingContact = payload.details?.contact || payload.contact || {};
+  const submittedMethods = [
+    payload.preferredContactMethod,
+    payload.contactMethod,
+    existingContact.callbackPreference,
+  ].map(text).filter(Boolean);
+  const canonicalMethods = submittedMethods.map((contactMethod) => validateRequestContact({
+    ...contact,
+    contactMethod,
+  }, {
+    requireContactMethod: false,
+    requireConsent: false,
+  }).contact.contactMethod);
+  if (
+    submittedMethods.length > 1
+    && (canonicalMethods.some((contactMethod) => !contactMethod) || new Set(canonicalMethods).size > 1)
+  ) {
+    throw new ValidationFailure({
+      contactMethod: "Bitte wählen Sie einen eindeutigen bevorzugten Kontaktweg.",
+    });
+  }
+  const validated = validateRequestContact({
+    ...contact,
+    contactMethod: firstText(
+      payload.preferredContactMethod,
+      payload.contactMethod,
+      existingContact.callbackPreference,
+    ),
+    privacyConsent: true,
+  });
+  if (Object.keys(validated.fields).length) throw new ValidationFailure(validated.fields);
+  return validated.contact;
+}
+
+function buildDetails(
+  payload,
+  contact,
+  service,
+  uploadedFiles,
+  request,
+  professionalContext = null,
+  idempotency = null,
+) {
   const normalizedPayload = professionalContext
     ? {
         ...payload,
         serviceId: professionalContext.serviceId,
         serviceLabel: professionalContext.serviceLabel,
         location: professionalContext.locationId,
-        locationLabel: professionalContext.locationLabel,
+        locationId: professionalContext.locationId,
+        locationLabel: firstText(payload.locationLabel, payload.cityOrZip, professionalContext.locationLabel),
       }
     : payload;
   const existing = payload.details && typeof payload.details === "object"
@@ -744,6 +907,7 @@ function buildDetails(payload, contact, service, uploadedFiles, request, profess
       fullName: firstText(existing.contact?.fullName, contact.name, "Interessent"),
       email: firstText(existing.contact?.email, contact.email),
       phone: firstText(existing.contact?.phone, contact.phone),
+      callbackPreference: firstText(contact.contactMethod, existing.contact?.callbackPreference),
       notes: firstText(existing.contact?.notes, payload.message, payload.note),
     },
     service: {
@@ -782,9 +946,24 @@ function buildDetails(payload, contact, service, uploadedFiles, request, profess
         requestedService: professionalContext.serviceId,
         formProfile: professionalContext.formProfile,
         confirmationEmailVariant: professionalContext.confirmationEmailVariant,
-        location: professionalContext.locationId,
-        locationLabel: professionalContext.locationLabel,
+        location: firstText(
+          existing.configuration?.location,
+          existing.configuration?.city,
+          normalizedPayload.cityOrZip,
+          normalizedPayload.locationLabel,
+          professionalContext.locationLabel,
+        ),
+        locationId: professionalContext.locationId,
+        locationLabel: firstText(
+          existing.configuration?.locationLabel,
+          existing.configuration?.location,
+          existing.configuration?.city,
+          normalizedPayload.cityOrZip,
+          normalizedPayload.locationLabel,
+          professionalContext.locationLabel,
+        ),
         region: professionalContext.locationId,
+        regionLabel: professionalContext.locationLabel,
         regionPreset: professionalContext.locationId,
         selectedAddons: professionalContext.canonicalUpgrades,
         selectedServices: professionalContext.canonicalUpgrades,
@@ -798,16 +977,23 @@ function buildDetails(payload, contact, service, uploadedFiles, request, profess
       createdAt: firstText(existing.metadata?.createdAt, payload.timestamp, now),
       intakeVersion: firstText(existing.metadata?.intakeVersion, "cloudflare-pages-v2"),
       locale,
+      ...(idempotency?.fingerprint ? {
+        idempotencyFingerprint: idempotency.fingerprint,
+        idempotencyRequestId: idempotency.requestId,
+      } : {}),
     },
   };
 }
 
-async function uploadFiles(files, configuration, requestId) {
+async function uploadFiles(files, configuration, requestId, allowExisting = false) {
   if (!files.length) return [];
   const uploaded = [];
+  const storagePrefix = allowExisting
+    ? `cloudflare-pages/idempotent/${requestId}`
+    : `cloudflare-pages/${new Date().toISOString().slice(0, 10)}/${requestId}`;
   for (let index = 0; index < files.length; index += 1) {
     const { field, file } = files[index];
-    const storagePath = `cloudflare-pages/${new Date().toISOString().slice(0, 10)}/${requestId}/${index}_${safeFileName(file.name)}`;
+    const storagePath = `${storagePrefix}/${index}_${safeFileName(file.name)}`;
     const uploadUrl = `${configuration.supabaseUrl}/storage/v1/object/uploads/${encodeObjectPath(storagePath)}`;
     let response;
     try {
@@ -824,7 +1010,9 @@ async function uploadFiles(files, configuration, requestId) {
     } catch {
       throw new SubmissionFailure("UPLOAD_REQUEST_FAILED");
     }
-    if (!response.ok) throw new SubmissionFailure("UPLOAD_FAILED");
+    if (!response.ok && !(allowExisting && response.status === 409)) {
+      throw new SubmissionFailure("UPLOAD_FAILED");
+    }
     uploaded.push({
       field,
       originalName: safeFileName(file.name),
@@ -838,7 +1026,50 @@ async function uploadFiles(files, configuration, requestId) {
   return uploaded;
 }
 
-async function insertBooking(booking, configuration) {
+function bookingIdempotencyMetadata(row) {
+  let details = row?.details;
+  if (typeof details === "string") details = parseJson(details, {});
+  return record(record(details).metadata);
+}
+
+function replayedBooking(row, identity) {
+  const metadata = bookingIdempotencyMetadata(row);
+  if (text(metadata.idempotencyFingerprint) !== identity.fingerprint) {
+    throw new IdempotencyConflictFailure();
+  }
+  return {
+    bookingId: firstText(row?.id, identity.bookingId),
+    requestId: firstText(metadata.idempotencyRequestId, identity.requestId),
+    replayed: true,
+  };
+}
+
+async function readBookingById(bookingId, configuration) {
+  let response;
+  try {
+    const query = `id=eq.${encodeURIComponent(bookingId)}&select=id%2Cdetails&limit=1`;
+    response = await fetch(`${configuration.supabaseUrl}/rest/v1/bookings?${query}`, {
+      method: "GET",
+      headers: {
+        apikey: configuration.serviceRoleKey,
+        Authorization: `Bearer ${configuration.serviceRoleKey}`,
+        Accept: "application/json",
+      },
+    });
+  } catch {
+    throw new SubmissionFailure("DATABASE_REQUEST_FAILED");
+  }
+  if (!response.ok) throw new SubmissionFailure("DATABASE_LOOKUP_FAILED");
+  let rows;
+  try {
+    rows = await response.json();
+  } catch {
+    throw new SubmissionFailure("DATABASE_RESPONSE_INVALID");
+  }
+  return Array.isArray(rows) && rows[0] ? rows[0] : null;
+}
+
+async function insertBooking(booking, configuration, identity = null) {
   let response;
   try {
     response = await fetch(`${configuration.supabaseUrl}/rest/v1/bookings?select=id`, {
@@ -854,6 +1085,11 @@ async function insertBooking(booking, configuration) {
   } catch {
     throw new SubmissionFailure("DATABASE_REQUEST_FAILED");
   }
+  if (response.status === 409 && identity) {
+    const existing = await readBookingById(identity.bookingId, configuration);
+    if (!existing) throw new IdempotencyConflictFailure();
+    return replayedBooking(existing, identity);
+  }
   if (!response.ok) throw new SubmissionFailure("DATABASE_INSERT_FAILED");
   let rows;
   try {
@@ -862,7 +1098,11 @@ async function insertBooking(booking, configuration) {
     throw new SubmissionFailure("DATABASE_RESPONSE_INVALID");
   }
   if (!rows?.[0]?.id) throw new SubmissionFailure("DATABASE_ID_MISSING");
-  return String(rows[0].id);
+  return {
+    bookingId: String(rows[0].id),
+    requestId: identity?.requestId || "",
+    replayed: false,
+  };
 }
 
 async function sendResendEmail(apiKey, message) {
@@ -907,7 +1147,15 @@ function customerRequestFacts(details) {
   return candidates
     .map(([label, value]) => ({ label, value: text(value) }))
     .filter((fact) => fact.value && fact.value !== "[object Object]")
-    .slice(0, 4);
+    .slice(0, 8);
+}
+
+function contactMethodLabel(value) {
+  return {
+    email: "E-Mail",
+    telefon: "Telefon",
+    whatsapp: "WhatsApp",
+  }[text(value)] || "";
 }
 
 async function sendNotifications({
@@ -921,9 +1169,9 @@ async function sendNotifications({
 }, env) {
   const apiKey = text(env?.RESEND_API_KEY);
   const recipient = text(env?.INTAKE_NOTIFICATION_EMAIL);
-  if (!apiKey) return { status: "not_configured" };
+  if (!apiKey) return { status: "not_configured", deliveryCount: 0 };
   const from = text(env?.RESEND_FROM_EMAIL) || "FLOXANT Website <onboarding@resend.dev>";
-  if (hasHeaderInjection(from)) return { status: "failed" };
+  if (hasHeaderInjection(from)) return { status: "failed", deliveryCount: 0 };
 
   const uploadLinks = uploadedFiles.length
     ? `<ul>${uploadedFiles.map((item) => `<li><a href="${escapeHtml(item.publicUrl)}">${escapeHtml(item.originalName)}</a></li>`).join("")}</ul>`
@@ -937,6 +1185,7 @@ async function sendNotifications({
       <p><strong>Name:</strong> ${escapeHtml(contact.name)}</p>
       <p><strong>E-Mail:</strong> ${escapeHtml(contact.email || "-")}</p>
       <p><strong>Telefon:</strong> ${escapeHtml(contact.phone || "-")}</p>
+      <p><strong>Bevorzugter Kontakt:</strong> ${escapeHtml(contactMethodLabel(contact.contactMethod) || "-")}</p>
       ${uploadLinks}
       <h2>Strukturierte Angaben</h2>
       <pre style="white-space:pre-wrap;background:#f8fafc;padding:16px;border-radius:8px">${escapeHtml(JSON.stringify(details, null, 2))}</pre>
@@ -969,28 +1218,35 @@ async function sendNotifications({
     const factRows = customerRequestFacts(details)
       .map((fact) => `<tr><td style="padding:6px 0;color:#475569;vertical-align:top">${escapeHtml(fact.label)}</td><td style="padding:6px 0 6px 16px;font-weight:700">${escapeHtml(fact.value)}</td></tr>`)
       .join("");
+    const emailRow = `<tr><td style="padding:6px 0;color:#475569;vertical-align:top">E-Mail</td><td style="padding:6px 0 6px 16px;font-weight:700">${escapeHtml(contact.email)}</td></tr>`;
+    const phoneRow = contact.phone
+      ? `<tr><td style="padding:6px 0;color:#475569;vertical-align:top">Telefon</td><td style="padding:6px 0 6px 16px;font-weight:700">${escapeHtml(contact.phone)}</td></tr>`
+      : "";
+    const preferredContactRow = contact.contactMethod
+      ? `<tr><td style="padding:6px 0;color:#475569;vertical-align:top">Bevorzugter Kontakt</td><td style="padding:6px 0 6px 16px;font-weight:700">${escapeHtml(contactMethodLabel(contact.contactMethod))}</td></tr>`
+      : "";
     const customerHtml = `
       <div style="margin:0;background:#f8fafc;padding:20px 12px;font-family:Arial,sans-serif;color:#0f172a">
         <div style="box-sizing:border-box;width:100%;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;background:#ffffff;padding:24px">
-          <p style="margin:0 0 16px;font-size:22px;line-height:1.3;font-weight:700">Ihre unverbindliche Anfrage ist eingegangen</p>
-          <p style="margin:0 0 18px;line-height:1.6">Guten Tag ${escapeHtml(contact.name)}, diese Nachricht bestätigt den Eingang Ihrer unverbindlichen Anfrage bei FLOXANT.</p>
-          ${(serviceRow || locationRow || factRows) ? `<table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 18px"><tbody>${serviceRow}${locationRow}${factRows}</tbody></table>` : ""}
+          <p style="margin:0 0 16px;font-size:22px;line-height:1.3;font-weight:700">Ihre Anfrage bei FLOXANT ist eingegangen</p>
+          <p style="margin:0 0 18px;line-height:1.6">Guten Tag ${escapeHtml(contact.name)}, vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und prüfen den gewünschten Umfang persönlich.</p>
+          <table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 18px"><tbody>${serviceRow}${locationRow}${factRows}${emailRow}${phoneRow}${preferredContactRow}</tbody></table>
           <p style="margin:0 0 12px;line-height:1.6;color:#334155">Für eine verlässliche Einschätzung können Rückfragen oder – je nach Leistung und Umfang – eine Besichtigung erforderlich sein.</p>
-          <p style="margin:0;line-height:1.6;color:#334155">Die Anfrage ist unverbindlich und noch keine Termin- oder Auftragsbestätigung.</p>
+          <p style="margin:0;line-height:1.6;color:#334155">Diese Nachricht bestätigt den Eingang Ihrer Anfrage. Ein Auftrag oder Termin ist damit noch nicht automatisch bestätigt.</p>
         </div>
       </div>`;
     deliveries.push(sendResendEmail(apiKey, {
       from,
       to: [contact.email],
-      subject: "Ihre unverbindliche Anfrage ist eingegangen",
+      subject: "Ihre Anfrage bei FLOXANT ist eingegangen",
       html: customerHtml,
     }));
   }
 
-  if (!deliveries.length) return { status: failed ? "failed" : "not_configured" };
+  if (!deliveries.length) return { status: failed ? "failed" : "not_configured", deliveryCount: 0 };
   const deliveryStatuses = await Promise.all(deliveries);
   if (deliveryStatuses.includes("failed")) failed = true;
-  return { status: failed ? "failed" : "sent" };
+  return { status: failed ? "failed" : "sent", deliveryCount: deliveries.length };
 }
 
 export function handleLeadOptions(context) {
@@ -1009,7 +1265,7 @@ export function handleLeadOptions(context) {
   });
 }
 
-async function handleLeadSubmissionUncached(context) {
+async function handleLeadSubmissionUncached(context, idempotencyKey = "") {
   const requestId = crypto.randomUUID();
   const env = context.env || {};
   try {
@@ -1025,12 +1281,34 @@ async function handleLeadSubmissionUncached(context) {
 
     const { payload: rawPayload, files } = await parsePayload(context.request);
     const payload = normalizeLeadPayload(rawPayload, context.request);
-    const contact = validateSubmission(payload);
+    let contact = validateSubmission(payload);
     const professionalContext = validateProfessionalRequestContext(payload);
-    const effectivePayload = canonicalizeProfessionalPayload(payload, professionalContext);
+    if (professionalContext) contact = validateProfessionalContact(payload, contact);
+    const effectivePayload = canonicalizeProfessionalPayload(payload, professionalContext, contact);
     assertAllowedFileFields(files, context.request);
     await validateFiles(files);
-    const uploadedFiles = await uploadFiles(files, configuration, requestId);
+    const identity = idempotencyKey
+      ? {
+          bookingId: idempotencyBookingId(idempotencyKey),
+          fingerprint: await submissionFingerprint(effectivePayload, files),
+          requestId,
+        }
+      : null;
+    if (identity) {
+      const existing = await readBookingById(identity.bookingId, configuration);
+      if (existing) {
+        const replay = replayedBooking(existing, identity);
+        return json({
+          ok: true,
+          requestId: replay.requestId,
+          bookingId: replay.bookingId,
+        }, 201, context.request, env);
+      }
+    }
+    const uploadScope = identity
+      ? `${identity.bookingId}/${identity.fingerprint.replace(/^sha256:/, "")}`
+      : requestId;
+    const uploadedFiles = await uploadFiles(files, configuration, uploadScope, Boolean(identity));
     const service = normalizeService(firstText(
       professionalContext?.leadService,
       effectivePayload.details?.service?.type,
@@ -1039,16 +1317,25 @@ async function handleLeadSubmissionUncached(context) {
       effectivePayload.type,
       effectivePayload.lead_type,
     ));
-    const details = buildDetails(effectivePayload, contact, service, uploadedFiles, context.request, professionalContext);
+    const details = buildDetails(
+      effectivePayload,
+      contact,
+      service,
+      uploadedFiles,
+      context.request,
+      professionalContext,
+      identity,
+    );
     const serviceRequest = record(details.configuration?.serviceRequest);
     const serviceLabel = firstText(professionalContext?.serviceLabel, serviceRequest.serviceLabel, service);
     const locationLabel = firstText(
-      professionalContext?.locationLabel,
-      serviceRequest.locationLabel,
       serviceRequest.location,
+      serviceRequest.locationLabel,
+      professionalContext?.locationLabel,
     );
     const fileUrls = uploadedFiles.map((item) => item.publicUrl);
     const booking = {
+      ...(identity ? { id: identity.bookingId } : {}),
       name: contact.name,
       email: contact.email,
       phone: contact.phone,
@@ -1061,7 +1348,15 @@ async function handleLeadSubmissionUncached(context) {
       file_urls: fileUrls,
     };
 
-    const bookingId = await insertBooking(booking, configuration);
+    const inserted = await insertBooking(booking, configuration, identity);
+    if (inserted.replayed) {
+      return json({
+        ok: true,
+        requestId: inserted.requestId,
+        bookingId: inserted.bookingId,
+      }, 201, context.request, env);
+    }
+    const bookingId = inserted.bookingId;
     const notification = await sendNotifications({
       bookingId,
       contact,
@@ -1073,8 +1368,19 @@ async function handleLeadSubmissionUncached(context) {
     }, env);
     if (notification.status === "failed") {
       console.error("Cloudflare lead notification failed", { requestId, status: "NOTIFICATION_FAILED" });
+    } else if (notification.status === "sent") {
+      console.info("Cloudflare lead notification sent", {
+        requestId: inserted.requestId || requestId,
+        bookingId,
+        status: "sent",
+        deliveryCount: notification.deliveryCount,
+      });
     }
-    return json({ ok: true, requestId, bookingId }, 201, context.request, env);
+    return json({
+      ok: true,
+      requestId: inserted.requestId || requestId,
+      bookingId,
+    }, 201, context.request, env);
   } catch (error) {
     if (error instanceof ValidationFailure || error instanceof PayloadValidationError) {
       return json({
@@ -1084,6 +1390,13 @@ async function handleLeadSubmissionUncached(context) {
         fields: error.fields,
         ...(error.unsupportedFields?.length ? { unsupportedFields: error.unsupportedFields } : {}),
       }, 400, context.request, env);
+    }
+    if (error instanceof IdempotencyConflictFailure) {
+      return json({
+        ok: false,
+        code: "IDEMPOTENCY_CONFLICT",
+        requestId,
+      }, 409, context.request, env);
     }
     console.error("Cloudflare lead submission failed", {
       requestId,
@@ -1108,55 +1421,5 @@ export async function handleLeadSubmission(context) {
       requestId: crypto.randomUUID(),
     }, 400, context.request, env);
   }
-  if (!idempotency.key) return handleLeadSubmissionUncached(context);
-
-  pruneIdempotencyEntries();
-  const cacheKey = `${idempotencyScope(context.request)}\n${idempotency.key}`;
-  const existingEntry = idempotencyEntries.get(cacheKey);
-  if (existingEntry) {
-    const result = existingEntry.state === "fulfilled"
-      ? existingEntry.result
-      : await existingEntry.promise;
-    return json(result.body, result.status, context.request, env);
-  }
-
-  if (!makeIdempotencyCapacity()) {
-    return json({
-      ok: false,
-      code: "IDEMPOTENCY_UNAVAILABLE",
-      requestId: crypto.randomUUID(),
-    }, 503, context.request, env);
-  }
-
-  // Module memory only covers duplicate requests routed to this warm isolate.
-  const pendingEntry = {
-    state: "pending",
-    promise: Promise.resolve().then(() => captureLeadSubmission(context)),
-  };
-  idempotencyEntries.set(cacheKey, pendingEntry);
-
-  try {
-    const result = await pendingEntry.promise;
-    if (isSuccessfulSubmission(result)) {
-      if (idempotencyEntries.get(cacheKey) === pendingEntry) {
-        idempotencyEntries.set(cacheKey, {
-          state: "fulfilled",
-          result,
-          expiresAt: Date.now() + IDEMPOTENCY_SUCCESS_TTL_MS,
-        });
-      }
-    } else if (idempotencyEntries.get(cacheKey) === pendingEntry) {
-      idempotencyEntries.delete(cacheKey);
-    }
-    return json(result.body, result.status, context.request, env);
-  } catch (error) {
-    if (idempotencyEntries.get(cacheKey) === pendingEntry) idempotencyEntries.delete(cacheKey);
-    const requestId = crypto.randomUUID();
-    console.error("Cloudflare lead idempotency capture failed", {
-      requestId,
-      status: 500,
-      errorType: error?.name || "UNKNOWN",
-    });
-    return json({ ok: false, code: "SUBMISSION_FAILED", requestId }, 500, context.request, env);
-  }
+  return handleLeadSubmissionUncached(context, idempotency.key || "");
 }

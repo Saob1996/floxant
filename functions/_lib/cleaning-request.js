@@ -110,11 +110,11 @@ export function normalizeCleaningRequest(payload, service = "", locale = "de") {
     payload.serviceScope,
   );
   const cityOrZip = firstText(
-    configuration.location,
     configuration.city,
+    rawFields.cityOrZip,
     configuration.objectLocation,
     pricingSignals.location,
-    rawFields.cityOrZip,
+    configuration.location,
     rawFields.location,
     payload.cityOrZip,
     payload.location,

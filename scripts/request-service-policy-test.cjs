@@ -8,6 +8,7 @@ const root = process.cwd();
 const policyPath = path.join(root, "lib/booking/request-service-policy.js");
 const registryPath = path.join(root, "lib/services/service-registry.ts");
 const resolverPath = path.join(root, "lib/lead-intents/resolve-request-context.ts");
+const serviceNavigationPath = path.join(root, "lib/service-navigation.ts");
 const formPath = path.join(root, "components/ProfessionalRequestForm.tsx");
 
 function read(file) {
@@ -70,17 +71,24 @@ Module._extensions[".js"] = function loadJavaScript(module, filename) {
 };
 
 const {
+  REQUEST_CONTACT_METHODS,
   REQUEST_FORM_PROFILES,
   REQUEST_SERVICE_POLICY,
+  REQUEST_UNSURE_SERVICES,
   getRequestService,
   getRequestServicesForLocation,
   isAllowedRequestCombination,
+  validateRequestContact,
 } = require(policyPath);
 const { serviceRegistry } = require(registryPath);
 const {
   requestServiceOptionsByLocation,
   resolveRequestContext,
 } = require(resolverPath);
+const {
+  decisionCompassItems,
+  englishIntentLinks,
+} = require(serviceNavigationPath);
 
 const checks = [];
 const failures = [];
@@ -99,6 +107,21 @@ function sorted(values) {
 
 function ids(entries) {
   return sorted(entries.map((entry) => entry.id || entry.registryServiceId));
+}
+
+function requestContextFromHref(href) {
+  const url = new URL(href, "https://www.floxant.de");
+  return {
+    params: url.searchParams,
+    context: resolveRequestContext({
+      mode: url.searchParams.get("mode"),
+      location: url.searchParams.get("location"),
+      city: url.searchParams.get("city"),
+      service: url.searchParams.get("service"),
+      intent: url.searchParams.get("intent"),
+      source: url.searchParams.get("source"),
+    }),
+  };
 }
 
 const regionToLocation = {
@@ -175,6 +198,117 @@ test("Jede aktive Registry-Kombination ist in Policy, Optionen und Resolver ausw
   }
 });
 
+test("Jeder öffentliche Registry-CTA wählt Standort und dieselbe aktive Service-ID vor", () => {
+  for (const service of publicRegistryServices) {
+    const { params, context } = requestContextFromHref(service.cta.href);
+    const location = params.get("location") || params.get("city");
+
+    assert.equal(params.get("service"), service.id, `${service.id}: CTA klassifiziert Service um`);
+    assert.ok(location, `${service.id}: CTA enthält keinen Standort`);
+    assert.ok(
+      service.regions.map((region) => regionToLocation[region]).includes(location),
+      `${service.id}: CTA-Standort ${location} ist nicht in der Registry belegt`,
+    );
+    assert.equal(context.valid, true, `${service.id}: CTA muss einen gültigen Kontext öffnen`);
+    assert.equal(context.serviceKey, service.id, `${service.id}: Resolver klassifiziert aktive ID um`);
+    assert.equal(context.location, location);
+  }
+});
+
+test("Kontextbezogene Navigations-CTAs verwenden nur gültige Registry-Kombinationen", () => {
+  const requestItems = [...decisionCompassItems, ...englishIntentLinks].filter((item) =>
+    item.href.startsWith("/kontakt?"),
+  );
+  for (const item of requestItems) {
+    const { params, context } = requestContextFromHref(item.href);
+    const service = params.get("service");
+    const location = params.get("location") || params.get("city");
+
+    if (params.get("mode") === "neutral") {
+      assert.equal(service, null, `${item.label || item.problem}: neutraler Pfad darf keinen Service vorsetzen`);
+      assert.equal(context.neutral, true, `${item.label || item.problem}: neutraler Pfad wird nicht neutral aufgelöst`);
+      assert.equal(context.valid, false, `${item.label || item.problem}: neutraler Pfad darf keine gültige Servicekombination vortäuschen`);
+      continue;
+    }
+
+    assert.ok(service, `${item.label || item.problem}: Service-ID fehlt`);
+    assert.ok(location, `${item.label || item.problem}: Standort fehlt`);
+    assert.equal(context.valid, true, `${item.label || item.problem}: ungültiger Anfragekontext`);
+    assert.equal(context.serviceKey, service, `${item.label || item.problem}: Service wird umklassifiziert`);
+    assert.equal(context.location, location);
+  }
+});
+
+test("Englische Service-Aliase normalisieren auf aktive Registry-IDs", () => {
+  const aliases = [
+    ["cleaning", "reinigung", "duesseldorf"],
+    ["holiday-apartment-cleaning", "ferienwohnung-reinigung", "duesseldorf"],
+    ["office-cleaning", "bueroreinigung", "duesseldorf"],
+    ["commercial-cleaning", "gewerbereinigung", "duesseldorf"],
+    ["practice-cleaning", "praxisreinigung", "duesseldorf"],
+    ["window-cleaning", "fensterreinigung", "duesseldorf"],
+    ["deep-cleaning", "grundreinigung", "duesseldorf"],
+    ["stairwell-cleaning", "treppenhausreinigung", "duesseldorf"],
+    ["construction-cleaning", "baureinigung", "duesseldorf"],
+    ["move-out-cleaning", "endreinigung", "regensburg"],
+    ["moving", "umzug", "regensburg"],
+    ["senior-moving", "seniorenumzug", "regensburg"],
+    ["furniture-transport", "moebeltransport", "regensburg"],
+    ["piano-transport", "klaviertransport", "regensburg"],
+    ["house-clearance", "entruempelung", "regensburg"],
+    ["basement-clearance", "kellerentruempelung", "regensburg"],
+    ["household-clearance", "haushaltsaufloesung", "regensburg"],
+    ["apartment-clearance", "wohnungsaufloesung", "regensburg"],
+    ["estate-clearance", "nachlassaufloesung", "regensburg"],
+    ["offer-check", "angebotscheck", "duesseldorf"],
+    ["provider-comparison", "anbieter-vergleichen", "duesseldorf"],
+    ["property-brief", "objektbrief", "duesseldorf"],
+    ["handover-brief", "uebergabeakte", "duesseldorf"],
+    ["backup-assessment", "plan-b-service", "duesseldorf"],
+    ["discreet-request", "diskret-service", "duesseldorf"],
+    ["moving-with-cleaning", "umzug-mit-reinigung", "regensburg"],
+  ];
+
+  for (const [alias, expectedService, location] of aliases) {
+    const context = resolveRequestContext({ location, service: alias, source: "english-intent" });
+    assert.equal(context.valid, true, alias);
+    assert.equal(context.serviceKey, expectedService, alias);
+    assert.equal(context.location, location, alias);
+    assert.equal(context.sourceLabel, "english_intent", alias);
+  }
+});
+
+test("Manifest-inaktive Legacy-Services werden auf benannte aktive Ziele korrigiert", () => {
+  const corrections = [
+    ["hausverwaltung-reinigung", "treppenhausreinigung"],
+    ["gebaeudereinigung", "gewerbereinigung"],
+  ];
+
+  for (const [legacyService, expectedService] of corrections) {
+    const context = resolveRequestContext({
+      location: "duesseldorf",
+      service: legacyService,
+      source: "seo",
+    });
+    assert.equal(context.valid, true, legacyService);
+    assert.equal(context.serviceKey, expectedService, legacyService);
+    assert.equal(context.location, "duesseldorf", legacyService);
+  }
+});
+
+test("Manuell zu prüfende Services werden nicht still umklassifiziert", () => {
+  for (const service of ["solarreinigung", "pv-anlagen-reinigung", "solar-cleaning"]) {
+    const context = resolveRequestContext({
+      location: "duesseldorf",
+      service,
+      source: "seo",
+    });
+    assert.equal(context.valid, false, service);
+    assert.equal(context.neutral, true, service);
+    assert.equal(context.serviceKey, "", service);
+  }
+});
+
 test("Nicht belegte Standort-Service-Kombinationen werden nicht angeboten", () => {
   for (const service of REQUEST_SERVICE_POLICY) {
     for (const location of locations.filter((candidate) => !service.locations.includes(candidate))) {
@@ -236,29 +370,122 @@ test("Regensburg enthält Registry-aktive Reinigung, Umzug, Transport und Räumu
 test("Möbel- und Klaviertransport verwenden getrennte Fachprofile", () => {
   assert.equal(projectedById.get("moebeltransport")?.formProfile, "furniture");
   assert.equal(projectedById.get("klaviertransport")?.formProfile, "piano");
-  for (const field of [
+  assert.deepEqual(REQUEST_FORM_PROFILES.furniture.coreFields, [
     "startLocation",
     "destinationLocation",
     "itemDescription",
-    "dimensions",
-    "desiredDate",
-  ]) {
-    assert.ok(REQUEST_FORM_PROFILES.furniture.coreFields.includes(field), field);
-  }
-  for (const field of [
+  ]);
+  assert.deepEqual(REQUEST_FORM_PROFILES.piano.coreFields, [
     "startLocation",
     "destinationLocation",
     "instrumentType",
-    "dimensions",
-    "desiredDate",
-  ]) {
-    assert.ok(REQUEST_FORM_PROFILES.piano.coreFields.includes(field), field);
+  ]);
+  for (const profileName of ["furniture", "piano"]) {
+    assert.ok(REQUEST_FORM_PROFILES[profileName].optionalFields.includes("dimensions"));
+    assert.ok(REQUEST_FORM_PROFILES[profileName].optionalFields.includes("desiredDate"));
   }
   for (const service of REQUEST_SERVICE_POLICY) {
     const profile = REQUEST_FORM_PROFILES[service.formProfile];
     assert.ok(profile, `${service.id}: unbekanntes Formularprofil ${service.formProfile}`);
     assert.ok(profile.coreFields.length <= 7, `${service.id}: mehr als sieben Kernfelder`);
   }
+});
+
+test("Unsicherer Standort bietet und löst jedes neutrale Serviceprofil auf", () => {
+  assert.deepEqual(
+    ids(getRequestServicesForLocation("unsicher")),
+    ids(REQUEST_UNSURE_SERVICES),
+  );
+  for (const service of REQUEST_UNSURE_SERVICES) {
+    assert.equal(isAllowedRequestCombination("unsicher", service.id), true, service.id);
+    const context = resolveRequestContext({
+      location: "unsicher",
+      service: service.id,
+      source: "contact_selector",
+    });
+    assert.equal(context.valid, true, service.id);
+    assert.equal(context.location, "unsicher", service.id);
+    assert.equal(context.serviceKey, service.id, service.id);
+    assert.equal(context.formVariant, service.formProfile, service.id);
+  }
+});
+
+test("Alle Formularprofile besitzen exakt die sichtbaren Mindestfelder", () => {
+  const expectedCoreFields = {
+    cleaning: ["cityOrZip", "objectType", "areaSize", "scope"],
+    moving: ["startLocation", "destinationLocation", "scope"],
+    furniture: ["startLocation", "destinationLocation", "itemDescription"],
+    piano: ["startLocation", "destinationLocation", "instrumentType"],
+    clearance: ["cityOrZip", "objectType", "areaSize"],
+    offer_check: ["cityOrZip", "scope"],
+    general: ["cityOrZip", "scope"],
+  };
+  assert.deepEqual(Object.keys(REQUEST_FORM_PROFILES).sort(), Object.keys(expectedCoreFields).sort());
+  for (const [profileName, expected] of Object.entries(expectedCoreFields)) {
+    assert.deepEqual(REQUEST_FORM_PROFILES[profileName].coreFields, expected, profileName);
+    assert.ok(REQUEST_FORM_PROFILES[profileName].optionalFields.includes("desiredDate"), profileName);
+  }
+  assert.ok(REQUEST_FORM_PROFILES.cleaning.optionalFields.includes("frequency"));
+  assert.ok(REQUEST_FORM_PROFILES.clearance.optionalFields.includes("floor"));
+  assert.ok(REQUEST_FORM_PROFILES.clearance.optionalFields.includes("elevator"));
+});
+
+test("Gemeinsame Kontaktvalidierung akzeptiert echte Namen und formatierte Rufnummern", () => {
+  assert.deepEqual(REQUEST_CONTACT_METHODS, ["email", "telefon", "whatsapp"]);
+  const result = validateRequestContact({
+    name: "Miyuki O’Connor-Straße",
+    email: "miyuki@example.com",
+    phone: "+49 (0) 211 / 12 34-567",
+    contactMethod: "Whats App",
+    privacyConsent: "ja",
+  });
+  assert.deepEqual(result.fields, {});
+  assert.deepEqual(result.contact, {
+    name: "Miyuki O’Connor-Straße",
+    email: "miyuki@example.com",
+    phone: "+49 (0) 211 / 12 34-567",
+    contactMethod: "whatsapp",
+  });
+});
+
+test("Bevorzugter Kontaktweg verlangt das dazugehörige gültige Feld", () => {
+  const emailMissing = validateRequestContact({
+    name: "Jörg Beispiel",
+    phone: "+49 211 1234567",
+    contactMethod: "mail",
+    privacyConsent: true,
+  });
+  assert.ok(emailMissing.fields.email);
+  assert.equal(emailMissing.contact.contactMethod, "email");
+
+  const phoneMissing = validateRequestContact({
+    name: "Zoë Beispiel",
+    email: "zoe@example.com",
+    contactMethod: "phone",
+    privacyConsent: true,
+  });
+  assert.ok(phoneMissing.fields.phone);
+  assert.equal(phoneMissing.contact.contactMethod, "telefon");
+
+  const missingMethod = validateRequestContact({
+    name: "Éva Beispiel",
+    email: "eva@example.com",
+    privacyConsent: true,
+  });
+  assert.ok(missingMethod.fields.contactMethod);
+});
+
+test("Kontaktweg und Einwilligung können nur für Legacy-Aufrufe optional sein", () => {
+  const noContact = validateRequestContact({ name: "Legacy Beispiel", privacyConsent: true });
+  assert.ok(noContact.fields.contact);
+  const legacy = validateRequestContact({
+    name: "Legacy Beispiel",
+    email: "legacy@example.com",
+  }, {
+    requireContactMethod: false,
+    requireConsent: false,
+  });
+  assert.deepEqual(legacy.fields, {});
 });
 
 function assertFriendlyNeutralContext(input, label) {
@@ -305,6 +532,10 @@ test("Quellen werden auf eine sichere Allowlist normalisiert", () => {
     ["GLOBAL HEADER", "global_header"],
     ["google_ads", "google_ads"],
     ["service-finder", "service_finder"],
+    ["mobile-nav", "mobile_nav"],
+    ["decision-compass", "decision_compass"],
+    ["english-intent", "english_intent"],
+    ["b2b", "b2b"],
     ["../../admin", "direkt"],
     ["javascript:alert(1)", "direkt"],
     ["<script>seo</script>", "direkt"],
@@ -325,6 +556,10 @@ test("Quellen werden auf eine sichere Allowlist normalisiert", () => {
     "google_maps",
     "navigation",
     "footer",
+    "mobile_nav",
+    "decision_compass",
+    "english_intent",
+    "b2b",
     "direct",
     "direkt",
   ]);

@@ -110,8 +110,11 @@ export function getBookingSummary(booking: BookingRecord) {
       ? booking.details.trim()
       : "";
   const fromLocation = firstText(details, [
+    "configuration.serviceRequest.route.startLocation",
+    "configuration.startLocation",
     "configuration.fromAddress",
     "configuration.details.startLocation",
+    "configuration.rawFields.startLocation",
     "configuration.rawFields.startAddress",
     "configuration.rawFields.start_address",
     "startAddress",
@@ -119,8 +122,12 @@ export function getBookingSummary(booking: BookingRecord) {
     "calculator_inputs.umzug.fromAddressDetailed",
   ]);
   const toLocation = firstText(details, [
+    "configuration.serviceRequest.route.destinationLocation",
+    "configuration.destinationLocation",
     "configuration.toAddress",
     "configuration.details.destinationLocation",
+    "configuration.rawFields.destinationLocation",
+    "configuration.rawFields.destination",
     "configuration.rawFields.endAddress",
     "configuration.rawFields.end_address",
     "endAddress",
@@ -128,10 +135,15 @@ export function getBookingSummary(booking: BookingRecord) {
     "calculator_inputs.umzug.toAddressDetailed",
   ]);
   const directLocation = firstText(details, [
-    "configuration.city",
-    "configuration.location",
     "configuration.details.location",
+    "configuration.cleaningRequest.location",
+    "configuration.city",
+    "configuration.objectLocation",
+    "configuration.rawFields.cityOrZip",
     "configuration.rawFields.city",
+    "configuration.serviceRequest.locationLabel",
+    "configuration.serviceRequest.location",
+    "configuration.location",
     "configuration.rawFields.location",
     "configuration.rawFields.ort",
     "metadata.regionPreset",

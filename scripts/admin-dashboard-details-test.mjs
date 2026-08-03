@@ -65,6 +65,12 @@ const {
   buildAdminBookingDetailView,
 } = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "booking-details.ts"));
 const {
+  getBookingSummary,
+} = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "bookings.ts"));
+const {
+  normalizeServiceRequest,
+} = loadTypeScriptModule(path.join(root, "functions", "_lib", "service-request.js"));
+const {
   evaluateLeadCompleteness,
   getLeadCompletenessLabel,
 } = loadTypeScriptModule(path.join(root, "lib", "admin-dashboard", "lead-completeness.ts"));
@@ -335,6 +341,102 @@ for (const testCase of cases) {
   for (const expected of testCase.expected) assertContains(view, expected, testCase.label);
 }
 
+const movingServiceVariants = [
+  "umzug",
+  "moving",
+  "seniorenumzug",
+  "moebeltransport",
+  "klaviertransport",
+  "beiladung-rueckfahrt",
+  "umzug-mit-reinigung",
+];
+
+for (const serviceId of movingServiceVariants) {
+  const incomingPayload = {
+    serviceId,
+    service: serviceId,
+    location: "regensburg",
+    locationLabel: "Regensburg",
+    startLocation: "Regensburg Altstadt",
+    destinationLocation: "Muenchen Schwabing",
+    startFloor: "2",
+    destinationFloor: "1",
+    details: {
+      service: {
+        id: serviceId,
+        type: serviceId,
+        regionPreset: "regensburg",
+      },
+      configuration: {
+        serviceId,
+        service: serviceId,
+        location: "regensburg",
+        locationLabel: "Regensburg",
+      },
+      metadata: { locale: "de" },
+    },
+  };
+  const serviceRequest = normalizeServiceRequest(incomingPayload, serviceId, "de");
+  assert.equal(serviceRequest.group, "moving", `${serviceId}: must normalize as moving`);
+  assert.equal(serviceRequest.route.startLocation, "Regensburg Altstadt");
+  assert.equal(serviceRequest.route.destinationLocation, "Muenchen Schwabing");
+
+  const handlerShapedRecord = booking({
+    service: serviceId,
+    details: {
+      ...incomingPayload.details,
+      configuration: {
+        ...incomingPayload.details.configuration,
+        rawFields: {
+          serviceId,
+          startLocation: incomingPayload.startLocation,
+          destinationLocation: incomingPayload.destinationLocation,
+        },
+        serviceRequest,
+      },
+    },
+  });
+  const view = buildAdminBookingDetailView(handlerShapedRecord);
+  const locationSection = view.sections.find((section) => section.title === "Ort oder Route");
+  assert.ok(locationSection, `${serviceId}: location section missing`);
+  const locationLabels = Array.from(locationSection.items, (item) => item.label);
+  const startIndex = locationLabels.indexOf("Startort");
+  const destinationIndex = locationLabels.indexOf("Zielort");
+  const regionIndex = locationLabels.indexOf("Ort");
+  assert.ok(startIndex >= 0, `${serviceId}: start location missing`);
+  assert.ok(destinationIndex > startIndex, `${serviceId}: destination must follow start`);
+  assert.ok(regionIndex < 0 || destinationIndex < regionIndex, `${serviceId}: route must precede region`);
+  assert.equal(locationSection.items[startIndex].value, "Regensburg Altstadt");
+  assert.equal(locationSection.items[destinationIndex].value, "Muenchen Schwabing");
+
+  const summary = getBookingSummary(handlerShapedRecord);
+  assert.equal(summary.location, "Regensburg Altstadt → Muenchen Schwabing");
+}
+
+{
+  const recordWithRegionFallback = booking({
+    service: "reinigung",
+    details: {
+      service: { regionPreset: "duesseldorf" },
+      configuration: {
+        location: "duesseldorf",
+        rawFields: { cityOrZip: "40210 Duesseldorf" },
+        serviceRequest: {
+          group: "cleaning",
+          location: "duesseldorf",
+          locationLabel: "Duesseldorf",
+        },
+      },
+    },
+  });
+  assert.equal(getBookingSummary(recordWithRegionFallback).location, "40210 Duesseldorf");
+  const locationSection = buildAdminBookingDetailView(recordWithRegionFallback).sections.find(
+    (section) => section.title === "Ort oder Route",
+  );
+  assert.equal(locationSection?.items[0]?.label, "Ort");
+  assert.equal(locationSection?.items[0]?.value, "40210 Duesseldorf");
+}
+
 const securityView = buildAdminBookingDetailView(booking({
   details: {
     configuration: {
@@ -426,6 +528,8 @@ assert.doesNotMatch(englishDraft.body, /€|EUR|price confirmation/i);
 console.log(JSON.stringify({
   passed: true,
   cases: cases.map((testCase) => testCase.label),
+  handlerNormalization: movingServiceVariants,
+  locationPriority: "route and submitted city precede region presets",
   security: "sensitive fields and tokenized file links filtered",
   completeness: [
     "sufficient",
