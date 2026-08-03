@@ -135,7 +135,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Kontaktweg abstimmen",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       text: "Wenn Rückfragen, Erreichbarkeit oder Standortthemen vorab geklärt werden sollen.",
     },
   ],
@@ -186,7 +186,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Kontakt aufnehmen",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       text: "Wenn Fotos, Sonderfälle oder Rückfragen schnell abgestimmt werden sollen.",
     },
   ],
@@ -198,7 +198,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Projekt strukturieren",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       text: "Wenn mehrere Bausteine oder besondere Stücke vorab besprochen werden müssen.",
     },
     {
@@ -365,7 +365,7 @@ function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
           {
             title: "Kombinationen früh nennen",
             text: "Reinigung, Räumung, Restmengen, Übergabe oder Transport sollten früh sichtbar sein, damit der Ablauf nicht zu spät kippt.",
-            href: "/kontakt",
+            href: "/kontakt?mode=neutral&source=seo",
             cta: "Kontaktweg klären",
           },
         ]}

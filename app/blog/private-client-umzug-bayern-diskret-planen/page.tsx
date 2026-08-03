@@ -105,7 +105,7 @@ export default function BlogPrivateClientUmzugPage() {
     ]}
     ctas={[
       { href: "/private-client-service", label: "Private Client Seite öffnen" },
-      { href: "/kontakt", label: "Diskret Kontakt aufnehmen" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Diskret Kontakt aufnehmen" },
       { href: "/umzug", label: "Allgemeinen Umzugsservice ansehen" },
     ]}
     faqTitle="FAQ zum Private-Client-Umzug"

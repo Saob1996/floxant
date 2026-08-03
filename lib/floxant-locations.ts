@@ -1,4 +1,5 @@
 import { company, duesseldorfCompany } from "@/lib/company";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 export type FloxantLocationKey = "duesseldorf" | "regensburg";
 export type LocationDataStatus = "confirmed_from_code" | "needs_manual_confirmation";
@@ -213,5 +214,11 @@ export function getFloxantLocation(locationKey: FloxantLocationKey) {
 }
 
 export function getLocationContactHref(locationKey: FloxantLocationKey, service = "anfrage") {
-  return `/kontakt?service=${encodeURIComponent(service)}&city=${locationKey}&intent=${encodeURIComponent(`${service}-${locationKey}`)}&source=seo`;
+  return buildServiceContactHref({
+    service,
+    city: locationKey,
+    intent: `${service}-${locationKey}`,
+    source: "seo",
+    anchor: "",
+  });
 }

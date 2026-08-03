@@ -93,6 +93,10 @@ export const PUBLIC_SERVICE_STATUSES = [
 ] as const satisfies readonly ServiceStatus[];
 
 const publicStatusSet = new Set<ServiceStatus>(PUBLIC_SERVICE_STATUSES);
+const requestLocationByRegion: Readonly<Record<ServiceRegion, string>> = {
+  Düsseldorf: "duesseldorf",
+  Regensburg: "regensburg",
+};
 const defaultRequiredDetails = [
   "Einsatzort oder Postleitzahl",
   "kurze Beschreibung des Bedarfs",
@@ -119,8 +123,21 @@ function publicRegistry(source: string, note: string): ServiceEvidence {
   return { source, kind: "public_registry", note };
 }
 
+function getDefaultRequestLocation(seed: ServiceSeed) {
+  for (const region of seed.regions) {
+    const location = requestLocationByRegion[region];
+    if (seed.canonicalRoute.includes(location)) return location;
+  }
+  return seed.regions[0] ? requestLocationByRegion[seed.regions[0]] : "";
+}
+
 function defineService(seed: ServiceSeed): ServiceRegistryEntry {
   const englishAlternativeRoute = seed.englishAlternativeRoute ?? null;
+  const requestLocation = getDefaultRequestLocation(seed);
+  const defaultCtaHref =
+    publicStatusSet.has(seed.status) && requestLocation
+      ? `/kontakt?service=${encodeURIComponent(seed.id)}&city=${requestLocation}&source=seo`
+      : "/kontakt?mode=neutral&source=seo";
   return {
     ...seed,
     publicVisible: publicStatusSet.has(seed.status),
@@ -139,7 +156,7 @@ function defineService(seed: ServiceSeed): ServiceRegistryEntry {
     process: seed.process ?? defaultProcess,
     cta: seed.cta ?? {
       label: `${seed.germanName} anfragen`,
-      href: `/kontakt?service=${encodeURIComponent(seed.id)}&source=seo`,
+      href: defaultCtaHref,
     },
     regionalPrimaryRoutes: seed.regionalPrimaryRoutes ?? {},
     englishAlternativeRoute,
@@ -237,7 +254,7 @@ const seeds: readonly ServiceSeed[] = [
     ],
     cta: {
       label: "Ferienwohnungsreinigung anfragen",
-      href: "/kontakt?service=reinigung&intent=ferienwohnung-reinigung&source=seo",
+      href: "/kontakt?service=ferienwohnung-reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-anfrage&source=seo",
     },
     canonicalRoute: "/airbnb-turnover-express",
     lastReviewedAt: "2026-07-23",

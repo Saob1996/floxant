@@ -1,4 +1,9 @@
 // @ts-nocheck
+import {
+  REQUEST_SERVICE_POLICY,
+  getRequestService,
+  normalizeRequestPolicyToken,
+} from "@/lib/booking/request-service-policy.js";
 export type LeadPriority = "p0" | "p1" | "p2" | "p3";
 
 export type LeadService =
@@ -71,8 +76,6 @@ export const leadServiceOptions: Array<{ value: LeadService; label: string }> = 
   { value: "moebeltransport", label: "Möbeltransport" },
   { value: "praxisreinigung", label: "Praxisreinigung" },
   { value: "fensterreinigung", label: "Fensterreinigung" },
-  { value: "solarreinigung", label: "Solarreinigung" },
-  { value: "pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
   { value: "diskret-service", label: "Diskret-Service" },
   { value: "private-client", label: "Private Client" },
   { value: "angebot-pruefen", label: "Angebot prüfen" },
@@ -809,7 +812,7 @@ export function getBookingServiceForLead(service: string | null | undefined) {
     normalized === "gebaeudereinigung"
   ) return "b2b_reinigung";
   if (normalized === "fensterreinigung") return "reinigung";
-  if (normalized === "solarreinigung" || normalized === "pv-anlagen-reinigung") return "reinigung";
+  if (normalized === "solarreinigung" || normalized === "pv-anlagen-reinigung") return "sonstiges";
   if (normalized === "klaviertransport") return "klaviertransport";
   if (normalized === "moebeltransport") return "transport";
   if (normalized === "entruempelung" || normalized === "wohnungsaufloesung") return "entsorgung";
@@ -1097,16 +1100,35 @@ export function resolveLeadIntent(input: LeadIntentInput = {}): LeadIntent {
 
 export function buildLeadHref(input: LeadIntentInput = {}, destination = "/kontakt") {
   const lead = resolveLeadIntent(input);
+  const requestedCity = clean(input.city || lead.city).replace(/[^a-z0-9]+/g, "-");
+  const location = ["duesseldorf", "dusseldorf"].includes(requestedCity)
+    ? "duesseldorf"
+    : requestedCity === "regensburg"
+      ? "regensburg"
+      : "";
+  const source = "seo";
+
+  if (!location) {
+    return `${destination}?mode=neutral&source=${source}`;
+  }
+
+  const requestedServiceId = normalizeRequestPolicyToken(input.service);
+  const isExplicitRegistryService = REQUEST_SERVICE_POLICY.some(
+    (entry) => entry.id === requestedServiceId,
+  );
+  const requestService =
+    getRequestService(location, input.service) ||
+    (!isExplicitRegistryService ? getRequestService(location, lead.service) : null);
+  if (!requestService) {
+    return `${destination}?mode=neutral&source=${source}`;
+  }
+
   const params = new URLSearchParams();
 
-  if (lead.service && lead.service !== "kontakt" && lead.service !== "sonstiges") {
-    params.set("service", lead.service);
-  }
-  if (lead.city && lead.city !== "deutschland") {
-    params.set("city", lead.city);
-  }
+  params.set("service", requestService.id);
+  params.set("city", location);
   if (lead.intent) params.set("intent", lead.intent);
-  params.set("source", "seo");
+  params.set("source", source);
 
   const query = params.toString();
   return query ? `${destination}?${query}` : destination;

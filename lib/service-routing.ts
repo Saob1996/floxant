@@ -1,4 +1,9 @@
 import type { LeadPriority, LeadService } from "@/lib/lead-intents";
+import {
+  REQUEST_SERVICE_POLICY,
+  getRequestService,
+  normalizeRequestPolicyToken,
+} from "@/lib/booking/request-service-policy.js";
 import { getLocationDisplayName } from "@/lib/customer-labels";
 
 export type ServiceRoutingCategory =
@@ -552,8 +557,29 @@ export function buildServiceContactHref(input: ServiceRouteInput = {}) {
   const destination = input.destination || "/kontakt";
   const params = new URLSearchParams();
 
-  params.set("service", entry.contactService);
-  if (city && city !== "deutschland") params.set("city", city);
+  const location = city === "duesseldorf" || city === "regensburg" ? city : "";
+  const requestedServiceId = normalizeRequestPolicyToken(
+    input.serviceKey || input.service || entry.serviceKey || entry.contactService,
+  );
+  const isExplicitRegistryService = REQUEST_SERVICE_POLICY.some(
+    (serviceEntry) => serviceEntry.id === requestedServiceId,
+  );
+  const requestService = location
+    ? getRequestService(
+        location,
+        input.serviceKey || input.service || entry.serviceKey || entry.contactService,
+      ) || (!isExplicitRegistryService ? getRequestService(location, entry.contactService) : null)
+    : null;
+
+  if (!requestService) {
+    params.set("mode", "neutral");
+    params.set("source", source || "service-finder");
+    const anchor = input.anchor === "" ? "" : input.anchor || "direktanfrage";
+    return `${destination}?${params.toString()}${anchor ? `#${anchor}` : ""}`;
+  }
+
+  params.set("service", requestService.id);
+  params.set("city", location);
   if (intent) params.set("intent", intent);
   params.set("priority", priority);
   params.set("source", source);
@@ -569,6 +595,16 @@ export function resolveServiceRoute(input: ServiceRouteInput = {}): ServiceRoute
   const intent = normalizeRouteToken(input.intent || entry.defaultIntent);
   const priority = normalizePriority(input.priority, entry.priority);
 
+  const href = buildServiceContactHref({
+    serviceKey: entry.serviceKey,
+    city,
+    intent,
+    priority,
+    source: input.source || "service-finder",
+    destination: input.destination,
+    anchor: input.anchor,
+  });
+
   return {
     entry,
     serviceKey: entry.serviceKey,
@@ -577,16 +613,11 @@ export function resolveServiceRoute(input: ServiceRouteInput = {}): ServiceRoute
     cityLabel: getCityLabel(city),
     intent,
     priority,
-    href: buildServiceContactHref({
-      serviceKey: entry.serviceKey,
-      city,
-      intent,
-      priority,
-      source: input.source || "service-finder",
-      destination: input.destination,
-      anchor: input.anchor,
-    }),
-    manualReview: entry.serviceKey === "sonstiges" || !serviceRoutingByKey[rawKey],
+    href,
+    manualReview:
+      entry.serviceKey === "sonstiges"
+      || !serviceRoutingByKey[rawKey]
+      || /[?&]mode=neutral(?:&|#|$)/.test(href),
   };
 }
 

@@ -128,7 +128,7 @@ const duesseldorfCleaningOfferLinks = [
   {
     title: "Hausverwaltung-Reinigung Düsseldorf prüfen",
     text: "Objektart, Bereiche, Turnus, Zugang, Ansprechpartner und vorhandenes Angebot strukturieren.",
-    href: "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
     route: "/duesseldorf/reinigung#hausverwaltung-reinigung",
   },
   {

@@ -261,7 +261,7 @@ export default function SignatureServicesPage() {
           "Objekt unklar: Objektbrief oder Übergabeakte.",
           "Frist oder Ausfall: Plan-B-Service oder Übergabe-Sprint.",
         ]}
-        ctaHref="/kontakt?service=angebot-pruefen&intent=entscheidungs-kompass&source=signature-services#direktanfrage"
+        ctaHref="/kontakt?mode=neutral&source=signature-services#direktanfrage"
         ctaLabel="Entscheidung klaeren"
       />
 

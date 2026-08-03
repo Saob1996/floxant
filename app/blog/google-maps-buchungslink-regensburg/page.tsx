@@ -105,7 +105,7 @@ export default function BlogGoogleMapsBookingPage() {
     ]}
     ctas={[
      { href: "/buchung", label: "Buchungsseite öffnen" },
-     { href: "/kontakt", label: "Kontakt ansehen" },
+     { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt ansehen" },
      { href: "/standorte", label: "Standorte einordnen" },
     ]}
     faqTitle="FAQ zum Google Maps Buchungslink"

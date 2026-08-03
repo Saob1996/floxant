@@ -289,18 +289,6 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1.2,
   },
   {
-    id: "regensburg-solarreinigung",
-    title: "Solarreinigung",
-    shortDescription:
-      "PV-Anlagen in Regensburg mit Fotos, Dachzugang, Wasseranschluss und Sicherheitsgrenzen sauber vorprüfen.",
-    region: "regensburg",
-    category: "normal",
-    href: "/regensburg/reinigung",
-    ctaLabel: "PV-Anlage prüfen",
-    googleAdsRelevant: true,
-    priority: 1.25,
-  },
-  {
     id: "regensburg-glasreinigung",
     title: "Glasreinigung",
     shortDescription:

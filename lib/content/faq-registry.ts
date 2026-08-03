@@ -1,3 +1,5 @@
+import { buildServiceContactHref } from "@/lib/service-routing";
+
 export type FaqLocale = "de" | "en";
 
 export type FaqCategory =
@@ -1457,9 +1459,34 @@ function buildFaqPair(seed: FaqPairSeed): [FaqRegistryEntry, FaqRegistryEntry] {
     publicAllowed: true,
   } as const;
 
+  const requestLocation = seed.region.includes("Düsseldorf") && !seed.region.includes("Regensburg")
+    ? "duesseldorf"
+    : seed.region.includes("Regensburg") && !seed.region.includes("Düsseldorf")
+      ? "regensburg"
+      : "";
+  const normalizeCta = (copy: LocalizedFaqCopy): LocalizedFaqCopy => {
+    if (!copy.CTA.href.startsWith("/kontakt")) return copy;
+    const current = new URL(copy.CTA.href, "https://www.floxant.de");
+    const explicitLocation = current.searchParams.get("location") || current.searchParams.get("city") || "";
+    const city = ["duesseldorf", "regensburg"].includes(explicitLocation)
+      ? explicitLocation
+      : requestLocation;
+    const service = current.searchParams.get("service") || "";
+    const href = service && city
+      ? buildServiceContactHref({
+          service,
+          city,
+          intent: current.searchParams.get("intent"),
+          source: current.searchParams.get("source") || "seo",
+          anchor: current.hash.slice(1),
+        })
+      : "/kontakt?mode=neutral&source=seo";
+    return { ...copy, CTA: { ...copy.CTA, href } };
+  };
+
   return [
-    { id: deId, locale: "de", ...shared, ...seed.de, alternateLocaleId: enId },
-    { id: enId, locale: "en", ...shared, ...seed.en, alternateLocaleId: deId },
+    { id: deId, locale: "de", ...shared, ...normalizeCta(seed.de), alternateLocaleId: enId },
+    { id: enId, locale: "en", ...shared, ...normalizeCta(seed.en), alternateLocaleId: deId },
   ];
 }
 

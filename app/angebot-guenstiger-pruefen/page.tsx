@@ -59,8 +59,8 @@ import {
 } from "@/lib/structured-data";
 
 const path = "/angebot-guenstiger-pruefen";
-const offerCheckContactHref = "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo";
-const englishOfferCheckHref = "/kontakt?service=offer-check&intent=english-offer-check&source=seo";
+const offerCheckContactHref = "/kontakt?mode=neutral&source=seo";
+const englishOfferCheckHref = "/kontakt?mode=neutral&source=seo";
 
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
@@ -234,7 +234,7 @@ const offerCheckServiceMatrix = [
     service: "Hausverwaltung-Reinigung Düsseldorf",
     checked: "Objektart, Etagen, Bereiche, Turnus, Zugang, Ansprechpartner und Angebotsumfang.",
     helps: "Wohnanlage, WEG oder Mietobjekt, Treppenhaus/Keller/Garage, Turnus und vorhandenes Angebot.",
-    href: "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
   },
   {
     service: "Treppenhausreinigung Düsseldorf",
@@ -276,49 +276,49 @@ const offerCheckServiceMatrix = [
     service: "Reinigung",
     checked: "Fläche, Zustand, Ziel, Zugang, Reinigungsart und Übergabetermin.",
     helps: "Fotos, Quadratmeter, Objektart, Schlüssel-/Zugangsinfo und bisheriger Preis.",
-    href: "/kontakt?service=reinigung&intent=reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Büroreinigung",
     checked: "Turnus, Reinigungszeiten, Flächen, Sanitär-/Küchenanteil und Ansprechpartner.",
     helps: "m2, Räume, gewünschte Tage, Bestandsturnus und besondere Hygieneanforderungen.",
-    href: "/kontakt?service=bueroreinigung&intent=bueroreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Gewerbereinigung",
     checked: "Objektart, Nutzungszeiten, Sicherheits-/Zugangsregeln und Leistungsumfang.",
     helps: "Objektfotos, Schichtfenster, Fläche, Leistungsplan und vorhandenes Angebot.",
-    href: "/kontakt?service=gewerbereinigung&intent=gewerbereinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Praxisreinigung",
     checked: "Flächen, sensible Bereiche, Turnus, Zeitfenster und Dokumentationsbedarf.",
     helps: "Praxisart, Räume, Zeiten, vorhandener Plan und offene Hygiene-/Ablauffragen.",
-    href: "/kontakt?service=praxisreinigung&intent=praxisreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Fensterreinigung",
     checked: "Fensterzahl, Erreichbarkeit, Rahmen, Glasflächen, Etage und Terminlogik.",
     helps: "Fotos, Stückzahl, Innen/Außen, Zugang, Höhe und Preispositionen.",
-    href: "/kontakt?service=fensterreinigung&intent=fensterreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Umzug",
     checked: "Volumen, Etage, Laufweg, Haltezone, Strecke, Helfer und Zusatzleistungen.",
     helps: "Start/Ziel, Fotos, Liste, Termin, Angebot, Preisrahmen und besondere Stücke.",
-    href: "/kontakt?service=umzug&intent=umzugsangebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Fernumzug",
     checked: "Strecke, Ladefenster, Rückfahrt, Zwischenlagerung, Sperrgut und Zeitplan.",
     helps: "Adressen grob, Volumen, Fotos, Terminfenster und vorhandene Positionen.",
-    href: "/kontakt?service=umzug&intent=fernumzug-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Seniorenumzug",
     checked: "Ruhiger Ablauf, Angehörige, Demontage, Packhilfe, Übergabe und Terminpuffer.",
     helps: "Ansprechpartner, Umfang, Fotos, Fristen, besondere Rücksicht und Zielzustand.",
-    href: "/kontakt?service=seniorenumzug&intent=seniorenumzug-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Klaviertransport",
@@ -330,37 +330,37 @@ const offerCheckServiceMatrix = [
     service: "Entrümpelung",
     checked: "Menge, Räume, Zugang, Entsorgungsanteil, Trennung, Reinigung danach und Termin.",
     helps: "Fotos, Raumliste, Etage, Parken, gewünschter Endzustand und Angebot.",
-    href: "/kontakt?service=entruempelung&intent=entruempelungsangebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Haushaltsauflösung",
     checked: "Räume, Nachlass-/Freigabesituation, Wert-/Entsorgungsanteile und Übergabeziel.",
     helps: "Fotos, Schlüssel-/Zugangslage, Fristen, Zielzustand und vorhandene Kalkulation.",
-    href: "/kontakt?service=haushaltsaufloesung&intent=haushaltsaufloesung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Wohnungsauflösung",
     checked: "Wohnungsgröße, Keller/Dachboden, Sperrgut, Entsorgung, Reinigung und Übergabe.",
     helps: "Fotos, m2, Etage, Aufzug, Frist, Angebot und offene Vermieterpunkte.",
-    href: "/kontakt?service=wohnungsaufloesung&intent=wohnungsaufloesung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Solarreinigung / PV",
     checked: "Anlagengröße, Dachzugang, Verschmutzung, Sicherheit, Wasserzugang und Termin.",
     helps: "Fotos, kWp/Modulzahl, Dachart, Höhe, Zugang und bestehendes Angebot.",
-    href: "/kontakt?service=solarreinigung&intent=solarreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "Sonderreinigung",
     checked: "Zustand, Risiko, Material, Zugang, Dringlichkeit und notwendige Spezialschritte.",
     helps: "Fotos, kurze Lagebeschreibung, Objektart, Einschränkungen und Zielzustand.",
-    href: "/kontakt?service=sonderreinigung&intent=sonderreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
   {
     service: "B2B-Services",
     checked: "Leistung, Turnus, Schnittstellen, Zutritt, Verantwortliche und Dokumentation.",
     helps: "Leistungsplan, Standort, Fläche, Zeitfenster, SLA-Wünsche und Angebot.",
-    href: "/kontakt?service=b2b&intent=b2b-angebot-pruefen&source=seo",
+    href: "/kontakt?mode=neutral&source=seo",
   },
 ];
 

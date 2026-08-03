@@ -1,4 +1,5 @@
 import type { FloxantLocationKey } from "@/lib/floxant-locations";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 export type ServiceCategory =
   | "reinigung"
@@ -107,14 +108,13 @@ const defaultEffortFactors = [
 ] as const;
 
 function contactHref(service: string, city?: FloxantLocationKey) {
-  const params = new URLSearchParams({
+  return buildServiceContactHref({
     service,
+    city,
     intent: city ? `${service}-${city}` : service,
     source: "seo",
+    anchor: "",
   });
-
-  if (city) params.set("city", city);
-  return `/kontakt?${params.toString()}`;
 }
 
 function buildService(seed: ServiceSeed): ServiceInventoryItem {

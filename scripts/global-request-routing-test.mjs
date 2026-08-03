@@ -19,6 +19,11 @@ const siteChrome = read("components/layout/SiteChrome.tsx");
 const adsCleaning = read("components/forms/DuesseldorfCleaningAdsForm.tsx");
 const adsMoving = read("components/forms/RegensburgMovingAdsForm.tsx");
 const bookingPage = read("app/buchung/page.tsx");
+const serviceNavigation = read("lib/service-navigation.ts");
+const serviceRegistry = read("lib/services/service-registry.ts");
+const officeCleaningPage = read("app/bueroreinigung/page.tsx");
+const discreetServicePage = read("app/diskret-service/page.tsx");
+const duesseldorfCleaningPages = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
 
 const cases = [];
 function test(name, check) {
@@ -83,7 +88,8 @@ test("11. Ungültige Kombinationen fallen neutral zurück", () => {
 
 test("12. Ein neuer globaler Einstieg verwirft alten Formularzustand", () => {
   assert.match(contact, /floxant:neutral-request-entry/);
-  assert.match(contact, /key=\{`central-request:\$\{entryReset\}`\}/);
+  assert.match(contact, /key=\{`central-request:\$\{entryReset\}:\$\{offerConcern\}`\}/);
+  assert.match(contact, /initialScope=\{offerConcern\}/);
   assert.match(contact, /const routerQuery = searchParams\.toString\(\)/);
   assert.match(contact, /window\.addEventListener\("popstate", syncFromLocation\)/);
   assert.doesNotMatch(contact, /key=\{`[^`]*query/);
@@ -100,8 +106,14 @@ test("13. Validierungsfehler behalten Eingaben derselben Anfrage", () => {
 test("14. Google-Ads-Formulare behalten ihren Kampagnenkontext", () => {
   assert.match(siteChrome, /"cleaning-duesseldorf"/);
   assert.match(siteChrome, /"moving-regensburg"/);
-  assert.match(adsCleaning, /Google Ads – Reinigung Düsseldorf/);
-  assert.match(adsMoving, /Google Ads – Umzug Regensburg/);
+  assert.match(adsCleaning, /location: "duesseldorf"/);
+  assert.match(adsCleaning, /service: "reinigung"/);
+  assert.match(adsCleaning, /source: "google_ads"/);
+  assert.match(adsMoving, /location: "regensburg"/);
+  assert.match(adsMoving, /service: "umzug"/);
+  assert.match(adsMoving, /source: "google_ads"/);
+  assert.match(adsCleaning, /<ProfessionalRequestForm/);
+  assert.match(adsMoving, /<ProfessionalRequestForm/);
 });
 
 test("15. Angebotscheck ist im zentralen Anfrageprozess verfügbar", () => {
@@ -174,6 +186,66 @@ test("Alte Düsseldorf-Buchungsparameter öffnen den neutralen zentralen Kontext
   assert.match(contact, /next\.set\("location", "duesseldorf"\)/);
   assert.match(contact, /window\.location\.replace\(`\/kontakt\?/);
   assert.match(bookingPage, /<LegacyBookingContextRedirect \/>/);
+});
+
+test("Registry-CTAs behalten ihre aktive Service-ID und setzen einen Standort", () => {
+  assert.match(serviceRegistry, /service=\$\{encodeURIComponent\(seed\.id\)\}&city=\$\{requestLocation\}/);
+  assert.match(
+    serviceRegistry,
+    /service=ferienwohnung-reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-anfrage/,
+  );
+  assert.doesNotMatch(
+    serviceRegistry,
+    /service=reinigung&intent=ferienwohnung-reinigung/,
+  );
+});
+
+test("Globale mobile und Footer-Anfragen bleiben neutral", () => {
+  assert.match(serviceNavigation, /Unsicher\?"\s*,\s*href: "\/kontakt\?mode=neutral&source=mobile-nav"/);
+  assert.match(serviceNavigation, /Anfrage stellen"\s*,\s*href: "\/kontakt\?mode=neutral&source=footer"/);
+});
+
+test("Kontextseiten setzen Standort und kanonische Registry-Service-ID", () => {
+  for (const [label, source] of [
+    ["Büroreinigung", officeCleaningPage],
+    ["Diskret-Service", discreetServicePage],
+  ]) {
+    const hrefs = source.match(/\/kontakt\?service=[^"'`\s]+/g) || [];
+    assert.ok(hrefs.length > 0, `${label}: kein Anfrage-CTA gefunden`);
+    for (const href of hrefs) {
+      assert.match(href, /[?&]city=(?:duesseldorf|regensburg)(?:&|$)/, `${label}: ${href}`);
+    }
+  }
+
+  assert.match(duesseldorfCleaningPages, /service=grundreinigung&city=duesseldorf/);
+  assert.match(duesseldorfCleaningPages, /service=baureinigung&city=duesseldorf/);
+  assert.match(duesseldorfCleaningPages, /service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung/);
+  assert.match(duesseldorfCleaningPages, /service=gewerbereinigung&city=duesseldorf&intent=objektreinigung/);
+  assert.doesNotMatch(
+    duesseldorfCleaningPages,
+    /service=(?:solarreinigung|hausverwaltung-reinigung|gebaeudereinigung)&city=duesseldorf/,
+  );
+});
+
+test("Englische Navigation verwendet kanonische Registry-Service-IDs", () => {
+  for (const service of [
+    "reinigung",
+    "bueroreinigung",
+    "umzug",
+    "entruempelung",
+    "klaviertransport",
+    "angebotscheck",
+  ]) {
+    assert.match(
+      serviceNavigation,
+      new RegExp(`service=${service}&city=regensburg&intent=english-`),
+      service,
+    );
+  }
+  assert.doesNotMatch(
+    serviceNavigation,
+    /service=(?:cleaning|office-cleaning|moving|house-clearance|piano-transport|offer-check)&/,
+  );
 });
 
 console.log(`Global request routing tests: PASS (${cases.length} checks)`);

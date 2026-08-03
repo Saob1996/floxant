@@ -45,7 +45,7 @@ const regensburgCleaningAnchors = [
   { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/entruempelung-landshut", label: "Reinigung nach Entrümpelung Landshut" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-  { href: "/kontakt", label: "FLOXANT Kontakt" },
+  { href: "/kontakt?mode=neutral&source=seo", label: "FLOXANT Kontakt" },
 ] as const;
 
 const endCleaningRegensburgAnchors = [
@@ -95,7 +95,7 @@ const privateClientAnchors = [
   { href: "/diskret-service", label: "Diskret-Service für sensible Fälle" },
   { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreter Umzug" },
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung" },
-  { href: "/kontakt", label: "Diskret Kontakt aufnehmen" },
+  { href: "/kontakt?mode=neutral&source=seo", label: "Diskret Kontakt aufnehmen" },
   { href: "/anfrage-mit-preisrahmen", label: "Preisrahmen vertraulich nennen" },
 ] as const;
 
@@ -105,11 +105,11 @@ const diskretServiceAnchors = [
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassraeumung diskret klären" },
   { href: "/angebot-guenstiger-pruefen", label: "Diskretes Angebot prüfen" },
   { href: "/private-client-service", label: "Private Client Service" },
-  { href: "/kontakt?service=diskret-service&intent=diskret-service&source=seo", label: "Diskreten Fall beschreiben" },
+  { href: "/kontakt?mode=neutral&source=seo", label: "Diskreten Fall beschreiben" },
 ] as const;
 
 const contactAnchors = [
-  { href: "/kontakt", label: "FLOXANT Kontakt" },
+  { href: "/kontakt?mode=neutral&source=seo", label: "FLOXANT Kontakt" },
   { href: "/diskret-service", label: "Diskret-Service" },
   { href: "/buchung", label: "Buchung starten" },
   { href: "/rechner", label: "Preisrahmen prüfen" },
@@ -405,7 +405,7 @@ export const gscClickPriorities = {
       { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "Solarreinigungsangebot prüfen" },
       { href: "/fensterreinigung-regensburg", label: "Glas und Fensterreinigung Regensburg" },
-      { href: "/kontakt?service=reinigung&intent=reinigungsangebot-pruefen&source=seo", label: "Reinigungsangebot einordnen" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Reinigungsangebot einordnen" },
     ],
   },
   "/pv-anlagen-reinigung": {
@@ -426,7 +426,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: [
       { href: "/solarreinigung", label: "Solarreinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot prüfen" },
-      { href: "/kontakt?service=reinigung&intent=reinigungsangebot-pruefen&source=seo", label: "PV-Reinigung anfragen" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "PV-Reinigung anfragen" },
     ],
   },
   "/regensburg": {

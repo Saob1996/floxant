@@ -350,7 +350,7 @@ export default async function RechnerPage() {
     {
       title: "Standort und Kontakt klar finden",
       text: "Kontakt, Buchung und Angebote zeigen Kunden schnell, welcher Weg für ihre Anfrage passt.",
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       label: "Kontakt & Standort",
     },
     {

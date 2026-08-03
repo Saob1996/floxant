@@ -296,7 +296,7 @@ export const primaryHeaderLinks = [
 export const mobileQuickLinks = [
   { label: "Leistungen", href: "/leistungen" },
   ...primaryHeaderLinks,
-  { label: "Unsicher?", href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&source=mobile-nav" },
+  { label: "Unsicher?", href: "/kontakt?mode=neutral&source=mobile-nav" },
 ] as const;
 
 export const footerNavigationGroups = [
@@ -332,8 +332,8 @@ export const footerNavigationGroups = [
     title: "Kontakt",
     links: [
       { label: "Kontaktseite", href: "/kontakt" },
-      { label: "Anfrage stellen", href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&source=footer" },
-      { label: "Angebot prüfen", href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=footer" },
+      { label: "Anfrage stellen", href: "/kontakt?mode=neutral&source=footer" },
+      { label: "Angebot prüfen", href: "/kontakt?service=angebotscheck&city=duesseldorf&intent=angebotscheck-anfrage&source=footer" },
     ],
   },
 ] as const;
@@ -342,7 +342,7 @@ export const decisionCompassItems = [
   {
     problem: "Wohnung muss übergeben werden",
     recommendation: "Reinigung, Entrümpelung, Übergabeakte oder Objektbrief prüfen.",
-    href: "/kontakt?service=reinigung&intent=wohnungsuebergabe&source=decision-compass",
+    href: "/kontakt?service=uebergabeakte&city=duesseldorf&intent=uebergabeakte-anfrage&source=decision-compass",
   },
   {
     problem: "Angebot wirkt unklar oder teuer",
@@ -352,37 +352,37 @@ export const decisionCompassItems = [
   {
     problem: "Anbieter hat abgesagt",
     recommendation: "Plan-B-Service mit Frist, Ort, Fotos und vorhandenem Angebot starten.",
-    href: "/kontakt?service=angebot-pruefen&intent=plan-b-anbieterabsage&source=decision-compass",
+    href: "/kontakt?service=plan-b-service&city=duesseldorf&intent=plan-b-service-anfrage&source=decision-compass",
   },
   {
     problem: "Sensibler Fall",
     recommendation: "Diskret-Service, Haushaltsauflösung oder Entrümpelung mit sicherem Kontaktweg.",
-    href: "/kontakt?service=diskret-service&intent=diskret-service&source=decision-compass",
+    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskret-service-anfrage&source=decision-compass",
   },
   {
     problem: "Büro oder Gewerbe",
     recommendation: "Büroreinigung, Gewerbereinigung, Büro-Startklar oder Angebotsprüfung.",
-    href: "/kontakt?service=bueroreinigung&intent=b2b-bueroreinigung&source=decision-compass",
+    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-anfrage&source=decision-compass",
   },
   {
     problem: "Umzug mit Sonderstück",
     recommendation: "Umzug, Klaviertransport, Möbeltransport oder Rückfahrt/Beiladung.",
-    href: "/kontakt?service=klaviertransport&city=regensburg&intent=sondertransport&source=decision-compass",
+    href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-anfrage&source=decision-compass",
   },
   {
     problem: "PV, Glas oder Fassade verschmutzt",
     recommendation: "Solarreinigung, PV-Sichtklar, Glasreinigung oder Fassadenreinigung nach Zugang prüfen.",
-    href: "/kontakt?service=reinigung&city=regensburg&intent=pv-sichtklar&source=decision-compass",
+    href: "/kontakt?mode=neutral&source=decision-compass",
   },
 ] as const;
 
 export const englishIntentLinks = [
-  { label: "Cleaning service", href: "/kontakt?service=cleaning&city=regensburg&intent=english-cleaning&source=english-intent" },
-  { label: "Office cleaning", href: "/kontakt?service=office-cleaning&city=regensburg&intent=english-office-cleaning&source=english-intent" },
-  { label: "Moving help", href: "/kontakt?service=moving&city=regensburg&intent=english-moving&source=english-intent" },
-  { label: "House clearance", href: "/kontakt?service=house-clearance&intent=english-house-clearance&source=english-intent" },
-  { label: "Piano transport", href: "/kontakt?service=piano-transport&city=regensburg&intent=english-piano-transport&source=english-intent" },
-  { label: "Offer check", href: "/kontakt?service=offer-check&intent=english-offer-check&source=english-intent" },
+  { label: "Cleaning service", href: "/kontakt?service=reinigung&city=regensburg&intent=english-cleaning&source=english-intent" },
+  { label: "Office cleaning", href: "/kontakt?service=bueroreinigung&city=regensburg&intent=english-office-cleaning&source=english-intent" },
+  { label: "Moving help", href: "/kontakt?service=umzug&city=regensburg&intent=english-moving&source=english-intent" },
+  { label: "House clearance", href: "/kontakt?service=entruempelung&city=regensburg&intent=english-house-clearance&source=english-intent" },
+  { label: "Piano transport", href: "/kontakt?service=klaviertransport&city=regensburg&intent=english-piano-transport&source=english-intent" },
+  { label: "Offer check", href: "/kontakt?service=angebotscheck&city=regensburg&intent=english-offer-check&source=english-intent" },
 ] as const;
 
 export function getTaxonomyByGroup(group: ServiceNavigationItem["group"]) {

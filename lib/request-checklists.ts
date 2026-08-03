@@ -1,3 +1,5 @@
+import { buildServiceContactHref } from "@/lib/service-routing";
+
 export type RequestChecklistKey =
   | "reinigung"
   | "bueroreinigung"
@@ -832,14 +834,13 @@ export function getRequestChecklist(serviceKey?: string) {
 
 export function buildRequestChecklistContactHref(serviceKey?: string, options: { city?: string; source?: string } = {}) {
   const checklist = getRequestChecklist(serviceKey);
-  const params = new URLSearchParams({
+  return buildServiceContactHref({
     service: checklist.contactService,
+    city: options.city,
     intent: checklist.contactIntent,
     source: options.source || "request-checklist",
+    anchor: "",
   });
-
-  if (options.city) params.set("city", options.city);
-  return `/kontakt?${params.toString()}`;
 }
 
 export const p0RequestChecklistRoutes = [

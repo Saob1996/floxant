@@ -76,10 +76,16 @@ const faqItems = [
 
 const serviceClusterGuide = [
   {
-    title: "Reinigung, Solar und Außenflächen",
-    text: "Für Büro, Praxis, Gewerbe, Glas, Fassade, Solar/PV und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
+    title: "Reinigung und Außenflächen",
+    text: "Für Büro, Praxis, Gewerbe, Glas, Fassade und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
     href: "/reinigung",
     cta: "Reinigungswege öffnen",
+  },
+  {
+    title: "Solar- und PV-Anlagen",
+    text: "Dachart, Modulfläche, Zugang, sichtbare Verschmutzung und Fotos zunächst ohne Verfügbarkeitszusage einordnen.",
+    href: "/solarreinigung",
+    cta: "Solar/PV neutral prüfen",
   },
   {
     title: "Umzug und Transport",

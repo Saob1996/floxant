@@ -467,7 +467,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 </p>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Link
-                    href="/kontakt"
+                    href="/kontakt?mode=neutral&source=seo"
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-stone-950 px-5 text-sm font-black text-white transition hover:bg-stone-800"
                   >
                     Kontakt & Standort

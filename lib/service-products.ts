@@ -5,6 +5,7 @@ import {
   type ServiceInventoryItem,
   type ServicePriority,
 } from "@/lib/service-inventory";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 export type ServiceProduct = {
   serviceKey: string;
@@ -127,7 +128,7 @@ function safeContactService(service: string, category: ServiceCategory) {
 }
 
 function buildProductContactHref(service: string, intent: string) {
-  return `/kontakt?service=${encodeURIComponent(service)}&intent=${encodeURIComponent(intent)}&source=seo`;
+  return buildServiceContactHref({ service, intent, source: "seo", anchor: "" });
 }
 
 function productFromInventory(item: ServiceInventoryItem): ServiceProduct {

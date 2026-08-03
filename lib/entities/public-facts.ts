@@ -84,7 +84,7 @@ export const publicFacts = {
   })),
   languages: ["de", "en"],
   contactMethods: [
-    { type: "contact_form", label: "Kontaktformular", href: "/kontakt" },
+    { type: "contact_form", label: "Kontaktformular", href: "/kontakt?mode=neutral&source=seo" },
     { type: "booking_form", label: "Buchungsanfrage", href: "/buchung" },
     { type: "phone", label: "+49 1577 1105087", href: "tel:+4915771105087" },
     { type: "email", label: "info@floxant.de", href: "mailto:info@floxant.de" },

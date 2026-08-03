@@ -24,8 +24,8 @@ import { generatePageSEO } from "@/lib/seo";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const pagePath = "/gewerbereinigung";
-const bookingHref = "/buchung?service=gewerbereinigung&region=regensburg#buchungssystem";
-const callbackHref = "/kontakt?anliegen=rueckruf-gewerbereinigung-regensburg";
+const bookingHref = "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo";
+const callbackHref = "/kontakt?mode=neutral&source=seo";
 const betterPriceHref = "/angebot-vergleichen-regensburg";
 const offerRequestHref = "/reinigungsfirma-angebot";
 const whatsappText =

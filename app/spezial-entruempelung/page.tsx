@@ -129,7 +129,7 @@ function JsonLd() {
         path,
         about: specialClearanceLinks.map((item) => item.title),
         potentialActions: [
-          { name: "Spezial-Entrümpelung anfragen", target: "/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage", type: "ContactAction" },
+          { name: "Spezial-Entrümpelung anfragen", target: "/kontakt?mode=neutral&source=spezial-entruempelung#direktanfrage", type: "ContactAction" },
           { name: "Uebergabe vorbereiten", target: "/uebergabeakte" },
         ],
       }),
@@ -190,7 +190,7 @@ export default function SpezialentruempelungPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage"
+                href="/kontakt?mode=neutral&source=spezial-entruempelung#direktanfrage"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
               >
                 Spezial-Entrümpelung anfragen
@@ -247,7 +247,7 @@ export default function SpezialentruempelungPage() {
           "Nachlass/Wohnung: Freigabe und Ansprechpartner nennen.",
           "Übergabe naht: Übergabeakte oder Übergabe-Sprint nutzen.",
         ]}
-        ctaHref="/kontakt?service=entruempelung&intent=spezial-entruempelung-einordnen&source=spezial-entruempelung#direktanfrage"
+        ctaHref="/kontakt?mode=neutral&source=spezial-entruempelung#direktanfrage"
         ctaLabel="Raeumung einordnen"
       />
 
@@ -289,7 +289,7 @@ export default function SpezialentruempelungPage() {
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Umfang, Zielzustand und Verantwortung nicht geraten werden.",
-          href: "/kontakt?service=entruempelung&source=spezial-entruempelung#direktanfrage",
+          href: "/kontakt?mode=neutral&source=spezial-entruempelung#direktanfrage",
           cta: "Fall klären",
         }))}
       />

@@ -82,7 +82,7 @@ export default function BlogHubPage() {
       text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den kurzen Einstieg sind.",
     },
     {
-      href: "/kontakt",
+      href: "/kontakt?mode=neutral&source=seo",
       title: "Rückfragen klären",
       text: "Wenn Sonderfälle, Erreichbarkeit, Fotos oder Standortthemen vorab abgestimmt werden müssen.",
     },

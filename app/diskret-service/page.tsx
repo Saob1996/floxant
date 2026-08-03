@@ -42,9 +42,9 @@ export const metadata: Metadata = generatePageSEO({
     "Sensible Anfrage? Beschreiben Sie Umzug, Entrümpelung, Auflösung, Reinigung oder ein Angebot mit wenigen vertraulichen Angaben.",
 });
 
-const primaryHref = "/kontakt?service=diskret-service&intent=diskret-service&source=seo";
-const caseHref = "/kontakt?service=diskret-service&intent=diskreter-fall&source=seo";
-const offerHref = "/kontakt?service=diskret-service&intent=diskretes-angebot-pruefen&source=seo";
+const primaryHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskret-service-anfrage&source=seo";
+const caseHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskreter-fall&source=seo";
+const offerHref = "/kontakt?service=angebotscheck&city=duesseldorf&intent=diskretes-angebot-pruefen&source=seo";
 
 const quickTrust = [
   "Bevorzugter Kontaktweg kann angegeben werden.",
@@ -109,7 +109,7 @@ const serviceLinks = [
   {
     title: "Diskrete Entrümpelung",
     text: "Räume, Menge, Freigabe, Fotos und Reinigung danach ruhig einordnen.",
-    href: "/kontakt?service=diskret-service&intent=diskrete-entruempelung&source=seo",
+    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung&source=seo",
     Icon: ClipboardCheck,
   },
   {
@@ -264,14 +264,15 @@ function TrackingLink({
   className: string;
   label: string;
 }) {
+  const query = new URL(href, "https://www.floxant.de").searchParams;
   return (
     <Link
       href={href}
       className={className}
       data-event="seo_cta_click"
-      data-service="diskret-service"
-      data-city="deutschland"
-      data-page-intent="diskret-service"
+      data-service={query.get("service") || "diskret-service"}
+      data-city={query.get("city") || "deutschland"}
+      data-page-intent={query.get("intent") || "diskret-service"}
       data-priority="p0"
       data-cta-label={label}
       data-destination={href}
@@ -575,7 +576,7 @@ export default function DiskretServicePage() {
                 FLOXANT can help structure sensitive moving, decluttering, house clearance or cleaning requests
                 without requiring unnecessary details in the first step.
               </p>
-              <Link href="/kontakt?service=diskret-service&intent=english-discreet-request&source=seo" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
+              <Link href="/kontakt?service=diskret-service&city=duesseldorf&intent=english-discreet-request&source=seo" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
                 Start discreet request in English
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

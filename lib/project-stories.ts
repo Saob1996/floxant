@@ -69,7 +69,7 @@ export const projectStories: ProjectStory[] = [
     consentStatus: "not-needed",
     privacyStatus: "abstract",
     allowedForPublic: true,
-    relatedCTA: { label: "Diskret anfragen", href: "/kontakt?service=diskret-service&source=project-story" },
+    relatedCTA: { label: "Diskret anfragen", href: "/kontakt?mode=neutral&source=project-story" },
   },
   {
     storyKey: "real-case-placeholder",
@@ -86,7 +86,7 @@ export const projectStories: ProjectStory[] = [
     consentStatus: "missing",
     privacyStatus: "needs-review",
     allowedForPublic: false,
-    relatedCTA: { label: "Guidelines lesen", href: "/kontakt?service=projektstory&source=project-story-guidelines" },
+    relatedCTA: { label: "Guidelines lesen", href: "/kontakt?mode=neutral&source=project-story-guidelines" },
   },
 ];
 

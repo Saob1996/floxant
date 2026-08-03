@@ -434,7 +434,7 @@ export default function DuesseldorfHubPage() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/kontakt?service=angebot-pruefen&intent=english-offer-check&source=seo"
+              href="/kontakt?service=angebotscheck&city=duesseldorf&intent=english-offer-check&source=seo"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-black text-white transition hover:bg-white/10"
             >
               English contact path

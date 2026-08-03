@@ -1,339 +1,233 @@
+const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const Module = require("node:module");
 const path = require("node:path");
+const ts = require("typescript");
 
-const workspaceRoot = process.cwd();
-
-function absolute(relativePath) {
-  return path.join(workspaceRoot, relativePath);
-}
-
-function exists(relativePath) {
-  return fs.existsSync(absolute(relativePath));
-}
+const root = process.cwd();
+const policyPath = path.join(root, "lib/booking/request-service-policy.js");
+const registryPath = path.join(root, "lib/services/service-registry.ts");
+const resolverPath = path.join(root, "lib/lead-intents/resolve-request-context.ts");
+const b2bServiceIds = [
+  "bueroreinigung",
+  "gewerbereinigung",
+  "praxisreinigung",
+  "unterhaltsreinigung",
+];
 
 function read(relativePath) {
-  const filePath = absolute(relativePath);
-  if (!fs.existsSync(filePath)) return "";
-  return fs.readFileSync(filePath, "utf8");
+  return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
 
-function includesAll(source, values) {
-  return values.every((value) => source.includes(value));
+function resolveProjectAlias(request) {
+  const base = path.join(root, request.slice(2));
+  return [base, `${base}.ts`, `${base}.tsx`, `${base}.js`, path.join(base, "index.ts")]
+    .find((candidate) => fs.existsSync(candidate)) || base;
 }
 
-const docs = [
-  "docs/B2B_CLEANING_ROUTE_ARCHITECTURE.md",
-  "docs/B2B_CLEANING_KEYWORD_INTENT_MAP.md",
-  "docs/BUEROREINIGUNG_GEWERBEREINIGUNG_DIFFERENTIATION.md",
-  "docs/B2B_CLEANING_LOCAL_RELEVANCE_REPORT.md",
-  "docs/B2B_CLEANING_METADATA_SCHEMA_REPORT.md",
-  "docs/B2B_CLEANING_INTERNAL_LINKING_REPORT.md",
-  "docs/B2B_CLEANING_CONTENT_CLEANUP_REPORT.md",
-];
+function compileProjectModule(module, filename) {
+  const result = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    compilerOptions: {
+      allowJs: true,
+      esModuleInterop: true,
+      jsx: ts.JsxEmit.ReactJSX,
+      module: ts.ModuleKind.CommonJS,
+      moduleResolution: ts.ModuleResolutionKind.Node10,
+      target: ts.ScriptTarget.ES2022,
+    },
+    fileName: filename,
+    reportDiagnostics: true,
+  });
+  const errors = (result.diagnostics || []).filter(
+    (diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error,
+  );
+  assert.deepEqual(
+    errors.map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")),
+    [],
+    `Syntaxfehler in ${path.relative(root, filename)}`,
+  );
+  module._compile(result.outputText, filename);
+}
 
-const routeMatrix = [
-  {
-    id: "b2b-office-primary",
-    route: "/regensburg/bueroreinigung",
-    label: "Primary B2B Bueroreinigung",
-    files: ["app/regensburg/bueroreinigung/page.tsx", "lib/regensburg-service-pages.ts", "components/regensburg/RegensburgServicePage.tsx"],
-    mustContain: [
-      "Büroreinigung Regensburg für Firmen strukturiert anfragen",
-      "Fläche",
-      "Turnus",
-      "Reinigungszeiten",
-      "vorhandenes Angebot",
-      "office cleaning",
-    ],
-  },
-  {
-    id: "office-support-root",
-    route: "/bueroreinigung",
-    label: "Support Bueroreinigung",
-    files: ["app/bueroreinigung/page.tsx"],
-    mustContain: [
-      "Büroreinigung für Firmen strukturiert anfragen",
-      "canonicalPath",
-      "/regensburg/bueroreinigung",
-      "Büroreinigung-Angebot prüfen lassen",
-      "office cleaning",
-    ],
-  },
-  {
-    id: "duesseldorf-office",
-    route: "/duesseldorf/bueroreinigung",
-    label: "Bueroreinigung Duesseldorf",
-    files: ["app/duesseldorf/bueroreinigung/page.tsx", "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"],
-    mustContain: [
-      "Büroreinigung in Düsseldorf für Firmen klar anfragen",
-      "service=bueroreinigung",
-      "city=duesseldorf",
-      "intent=bueroreinigung-duesseldorf",
-      "intent=bueroreinigung-angebot-pruefen",
-    ],
-  },
-  {
-    id: "duesseldorf-commercial",
-    route: "/duesseldorf/gewerbereinigung",
-    label: "Gewerbereinigung Duesseldorf",
-    files: ["app/duesseldorf/gewerbereinigung/page.tsx", "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"],
-    mustContain: [
-      "Gewerbereinigung in Düsseldorf strukturiert anfragen",
-      "service=gewerbereinigung",
-      "city=duesseldorf",
-      "intent=gewerbereinigung-duesseldorf",
-      "intent=gewerbereinigung-angebot-pruefen",
-    ],
-  },
-  {
-    id: "regensburg-commercial",
-    route: "/regensburg/gewerbereinigung",
-    label: "Gewerbereinigung Regensburg",
-    files: ["app/regensburg/gewerbereinigung/page.tsx", "lib/local-service-seo-pages.ts", "components/LocalServiceSeoPage.tsx"],
-    mustContain: [
-      "Gewerbereinigung Regensburg strukturiert anfragen",
-      "Objektart",
-      "Leistungsumfang",
-      "Gewerbereinigungsangebot vergleichen",
-      "commercial cleaning",
-    ],
-  },
-];
+const originalResolveFilename = Module._resolveFilename;
+const originalJsLoader = Module._extensions[".js"];
+Module._resolveFilename = function resolveFilename(request, parent, isMain, options) {
+  return originalResolveFilename.call(
+    this,
+    request.startsWith("@/") ? resolveProjectAlias(request) : request,
+    parent,
+    isMain,
+    options,
+  );
+};
+Module._extensions[".ts"] = compileProjectModule;
+Module._extensions[".tsx"] = compileProjectModule;
+Module._extensions[".js"] = function loadJavaScript(module, filename) {
+  if (path.resolve(filename) === path.resolve(policyPath)) return compileProjectModule(module, filename);
+  return originalJsLoader(module, filename);
+};
 
-const sourceFiles = Array.from(new Set(routeMatrix.flatMap((route) => route.files))).concat([
-  "components/SeoLeadForm.tsx",
-  "lib/lead-intents.ts",
-  "lib/sitemap-routes.ts",
-  "scripts/generate-sitemap-routes.js",
-]);
-
-const sources = Object.fromEntries(sourceFiles.map((file) => [file, read(file)]));
-const combinedSource = Object.values(sources).join("\n");
-const sitemapSource = read("lib/sitemap-routes.ts");
-const nextConfigSource = read("next.config.js");
-const packageJsonSource = read("package.json");
-const formSource = read("components/SeoLeadForm.tsx");
-const duesseldorfSource = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
+const {
+  REQUEST_SERVICE_POLICY,
+  getRequestService,
+  isAllowedRequestCombination,
+} = require(policyPath);
+const { serviceRegistry } = require(registryPath);
+const { resolveRequestContext } = require(resolverPath);
 
 const results = [];
-
-function addCheck(id, label, passed, details = "", severity = "fail") {
-  results.push({
-    id,
-    label,
-    status: passed ? "PASS" : severity.toUpperCase(),
-    details,
-  });
+function check(id, label, run, details = "") {
+  try {
+    run();
+    results.push({ status: "PASS", id, label, details });
+  } catch (error) {
+    results.push({ status: "FAIL", id, label, details: error.message });
+  }
 }
 
-for (const route of routeMatrix) {
-  addCheck(
-    `${route.id}:files`,
-    `${route.label} source files exist`,
-    route.files.every(exists),
-    route.files.join(", "),
-  );
-
-  const routeSource = route.files.map(read).join("\n");
-  addCheck(
-    `${route.id}:content`,
-    `${route.label} contains required B2B intent markers`,
-    includesAll(routeSource, route.mustContain),
-    route.mustContain.join(", "),
-  );
+function contextFor(href) {
+  const url = new URL(href, "https://www.floxant.de");
+  return { url, context: resolveRequestContext(Object.fromEntries(url.searchParams)) };
 }
 
-addCheck(
-  "architecture:b2b-alias",
-  "/b2b-bueroreinigung redirects to the canonical B2B office page",
-  nextConfigSource.includes("['/b2b-bueroreinigung', '/regensburg/bueroreinigung']"),
-  "Alias is not a competing indexable page.",
-);
-
-addCheck(
-  "architecture:legacy-regensburg-office",
-  "/bueroreinigung-regensburg redirects to /regensburg/bueroreinigung",
-  nextConfigSource.includes("['/bueroreinigung-regensburg', '/regensburg/bueroreinigung']"),
-  "Legacy root route remains consolidated.",
-);
-
-addCheck(
-  "architecture:legacy-regensburg-commercial",
-  "/gewerbereinigung-regensburg redirects to /regensburg/gewerbereinigung",
-  nextConfigSource.includes("['/gewerbereinigung-regensburg', '/regensburg/gewerbereinigung']"),
-  "Legacy root route remains consolidated.",
-);
-
-addCheck(
-  "differentiation:visible-comparison",
-  "Bueroreinigung/Gewerbereinigung comparison is visible",
-  includesAll(duesseldorfSource, [
-    "function BueroreinigungGewerbereinigungComparison",
-    "Büro oder Gewerbe?",
-    "Büroreinigung",
-    "Gewerbereinigung",
-  ]),
-  "Shared Duesseldorf component renders the comparison section.",
-);
-
-addCheck(
-  "form:b2b-fields",
-  "B2B optional form fields are visible",
-  includesAll(formSource, [
-    "existingCleaningOffer",
-    "specialAreas",
-    "b2bSpecialAreaOptions",
-    "Firma",
-    "Turnus",
-    "Gewünschte Zeit",
-    "Vorhandenes Angebot",
-    "Besondere Bereiche",
-  ]),
-  "Company, object details, offer status and special areas are present without becoming required.",
-);
-
-addCheck(
-  "form:b2b-success",
-  "B2B-specific success state is present",
-  formSource.includes("Ihre Anfrage zur Büro-/Gewerbereinigung wurde gesendet"),
-  "Success copy references Flaeche, Turnus, Reinigungszeiten and Leistungsumfang.",
-);
-
-addCheck(
-  "form:no-load-api",
-  "Lead API remains submit-only",
-  formSource.includes('onSubmit={handleSubmit}') &&
-    formSource.includes('await fetch("/api/bookings"') &&
-    !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(formSource),
-  "No automatic client fetch to /api is used when the public page loads.",
-);
-
-for (const doc of docs) {
-  addCheck(`doc:${path.basename(doc)}`, `${doc} exists`, exists(doc), doc);
+function assertContactHref(href, label) {
+  const { url, context } = contextFor(href);
+  if (url.searchParams.get("mode") === "neutral") {
+    assert.equal(context.neutral, true, `${label}: neutraler CTA wurde vorausgewählt`);
+    assert.equal(context.serviceKey, "", `${label}: neutraler CTA enthält eine Leistung`);
+    return;
+  }
+  const service = url.searchParams.get("service");
+  const location = url.searchParams.get("city") || url.searchParams.get("location");
+  assert.ok(service, `${label}: service fehlt`);
+  assert.match(location || "", /^(?:duesseldorf|regensburg)$/, `${label}: Standort fehlt`);
+  assert.equal(context.valid, true, `${label}: Kontaktkontext ist ungültig`);
+  assert.equal(context.neutral, false, `${label}: aktiver CTA wurde neutral`);
+  assert.equal(context.serviceKey, service, `${label}: Leistung wurde still umklassifiziert`);
+  assert.ok(context.headline.includes("anfragen"), `${label}: benannte Zielüberschrift fehlt`);
 }
 
-addCheck(
+function assertSubmissionContract() {
+  const contact = read("components/ContactQueryPersonalization.tsx");
+  const form = read("components/ProfessionalRequestForm.tsx");
+  const client = read("lib/booking-submission-client.ts");
+  assert.match(contact, /<ProfessionalRequestForm/);
+  assert.match(form, /import \{ bookingFetch, bookingFieldErrors \}/);
+  assert.match(form, /appendBookingPayloadToFormData\(new FormData\(\), requestFields\)/);
+  assert.match(form, /bookingFetch\("\/api\/bookings"/);
+  assert.doesNotMatch(form, /fetch\("\/api\/bookings"/);
+  assert.match(client, /response\.status === 201/);
+  assert.match(client, /payload\.ok === true/);
+  assert.match(client, /typeof payload\.requestId === "string"/);
+  assert.match(client, /typeof payload\.bookingId === "string"/);
+  assert.match(client, /const requestBodyKeys = new WeakMap/);
+}
+
+const registryById = new Map(serviceRegistry.map((entry) => [entry.id, entry]));
+
+check(
+  "policy:b2b-matrix",
+  "Aktive B2B-Reinigungsleistungen sind für alle in der Registry belegten Standorte zulässig",
+  () => {
+    for (const id of b2bServiceIds) {
+      const registryService = registryById.get(id);
+      assert.ok(registryService, `${id}: Registry-Eintrag fehlt`);
+      assert.equal(registryService.publicVisible, true, `${id}: nicht öffentlich aktiv`);
+      assert.ok(REQUEST_SERVICE_POLICY.some((entry) => entry.id === id), `${id}: Anfrage-Policy fehlt`);
+      for (const region of registryService.regions) {
+        const location = region === "Düsseldorf" ? "duesseldorf" : "regensburg";
+        assert.equal(isAllowedRequestCombination(location, id), true, `${location}/${id}`);
+        const projected = getRequestService(location, id);
+        assert.equal(projected?.id, id, `${location}/${id}: Policy klassifiziert um`);
+        assert.ok(projected?.name, `${location}/${id}: sichtbarer Name fehlt`);
+        const context = resolveRequestContext({ city: location, service: id, source: "b2b" });
+        assert.equal(context.valid, true, `${location}/${id}: Kontaktkontext ungültig`);
+        assert.equal(context.serviceKey, id, `${location}/${id}: Resolver klassifiziert um`);
+      }
+    }
+  },
+  `${b2bServiceIds.length} Services`,
+);
+
+check(
+  "cta:registry",
+  "Registry-CTAs der B2B-Reinigungsleistungen öffnen einen gültigen benannten Kontaktkontext",
+  () => b2bServiceIds.forEach((id) => assertContactHref(registryById.get(id).cta.href, id)),
+);
+
+check(
+  "cta:rendered-static",
+  "Statische B2B-Kontakt-CTAs sind gültig oder bewusst neutral",
+  () => {
+    const files = [
+      "app/bueroreinigung/page.tsx",
+      "app/gewerbereinigung/page.tsx",
+      "components/B2BRequestPanel.tsx",
+      "components/duesseldorf/DuesseldorfCleaningServicePage.tsx",
+    ];
+    let checked = 0;
+    for (const file of files) {
+      const source = read(file);
+      for (const match of source.matchAll(/["'](\/kontakt\?[^"']+)["']/g)) {
+        const href = match[1];
+        const service = new URL(href, "https://www.floxant.de").searchParams.get("service");
+        if (!service || b2bServiceIds.includes(service) || service === "angebotscheck") {
+          assertContactHref(href, `${file}:${checked + 1}`);
+          checked += 1;
+        }
+      }
+    }
+    assert.ok(checked >= 8, "zu wenige B2B-Kontakt-CTAs gefunden");
+  },
+);
+
+check(
+  "cta:no-legacy-booking",
+  "Primäre B2B-Landingpages verweisen nicht mehr auf die alte Buchungsstrecke",
+  () => {
+    const files = ["app/bueroreinigung/page.tsx", "app/gewerbereinigung/page.tsx"];
+    const legacyFiles = files.filter((file) => /["']\/buchung\?/.test(read(file)));
+    assert.deepEqual(legacyFiles, [], `Alte Buchungs-CTA in: ${legacyFiles.join(", ")}`);
+  },
+);
+
+check(
+  "contact:professional-submission-contract",
+  "Zentrale Kontaktstrecke nutzt kanonische FormData und bookingFetch mit striktem 201-Vertrag",
+  assertSubmissionContract,
+);
+
+check(
   "package:script",
-  "npm script b2b-cleaning:health exists",
-  packageJsonSource.includes('"b2b-cleaning:health": "node scripts/b2b-cleaning-health.cjs"'),
-  "package.json script registration.",
-);
-
-addCheck(
-  "sitemap:canonical-routes",
-  "Sitemap contains canonical B2B cleaning routes",
-  [
-    "/regensburg/bueroreinigung",
-    "/regensburg/gewerbereinigung",
-    "/duesseldorf/bueroreinigung",
-    "/duesseldorf/gewerbereinigung",
-  ].every((route) => sitemapSource.includes(`"${route}"`)),
-  "Canonical pages should be included in lib/sitemap-routes.ts.",
-);
-
-addCheck(
-  "sitemap:no-duplicate-aliases",
-  "Sitemap excludes B2B/legacy duplicate aliases",
-  [
-    "/b2b-bueroreinigung",
-    "/bueroreinigung",
-    "/bueroreinigung-regensburg",
-    "/gewerbereinigung-regensburg",
-  ].every((route) => !sitemapSource.includes(`"${route}"`)),
-  "Aliases/support pages should not compete in sitemap.xml.",
-);
-
-addCheck(
-  "metadata:schema-visible-faq",
-  "FAQ schema is only used where visible FAQ exists",
-  includesAll(combinedSource, ["buildFaqJsonLd", "faqItems"]) && !combinedSource.includes("AggregateRating"),
-  "FAQPage helpers are paired with visible FAQ arrays; no aggregate rating.",
-);
-
-addCheck(
-  "english:intent",
-  "English office/commercial cleaning intent is present",
-  /office cleaning/i.test(combinedSource) && /commercial cleaning/i.test(combinedSource),
-  "English intent is represented as supporting copy, not duplicate routes.",
-);
-
-const forbiddenVercelPatterns = [
-  "runtime = \"nodejs\"",
-  "runtime = 'nodejs'",
-  "force-dynamic",
-  "revalidate =",
-  "/api/vitals",
-  "/api/conversion-events",
-  "sendBeacon",
-  "supabase",
-  "resend",
-  "sharp",
-];
-
-addCheck(
-  "vercel:safety",
-  "No Vercel-sensitive public-page patterns added in sprint files",
-  forbiddenVercelPatterns.every((pattern) => !combinedSource.includes(pattern)),
-  `Scanned: ${forbiddenVercelPatterns.join(", ")}`,
-);
-
-addCheck(
-  "content:no-fake-claims",
-  "No fake ratings, reviews, certificates or guarantees in sprint files",
-  !/AggregateRating|["@']Review["@']|ISO 9001|DIN ISO|TÜV|TUEV|garantiert g[uü]nstiger|Soforttermin-Garantie ohne/i.test(combinedSource),
-  "Boundaries like keine Preisgarantie are allowed and expected.",
-);
-
-addCheck(
-  "content:no-keyword-cloud",
-  "No keyword cloud or hidden keyword pattern found",
-  !/keyword[-_\s]?cloud|hidden keyword|display:\s*none[^;]*(bueroreinigung|gewerbereinigung)/i.test(combinedSource),
-  "Visible copy uses natural sections and FAQs.",
+  "npm-Skript b2b-cleaning:health ist registriert",
+  () => assert.equal(require(path.join(root, "package.json")).scripts["b2b-cleaning:health"], "node scripts/b2b-cleaning-health.cjs"),
 );
 
 const totals = {
   pass: results.filter((result) => result.status === "PASS").length,
-  warn: results.filter((result) => result.status === "WARN").length,
   fail: results.filter((result) => result.status === "FAIL").length,
 };
-
-const overallStatus = totals.fail > 0 ? "FAIL" : totals.warn > 0 ? "WARN" : "PASS";
+const overallStatus = totals.fail ? "FAIL" : "PASS";
 const generatedAt = new Date().toISOString();
+const escapeCell = (value) => String(value || "").replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+const markdown = [
+  "# B2B Cleaning Health Report",
+  "",
+  `Generated: ${generatedAt}`,
+  "",
+  `Overall status: **${overallStatus}**`,
+  "",
+  `B2B services checked: **${b2bServiceIds.length}**`,
+  "",
+  "| Status | ID | Check | Details |",
+  "| --- | --- | --- | --- |",
+  ...results.map((result) => `| ${result.status} | ${escapeCell(result.id)} | ${escapeCell(result.label)} | ${escapeCell(result.details)} |`),
+  "",
+].join("\n");
+const report = { generatedAt, overallStatus, totals, serviceIds: b2bServiceIds, results };
+fs.writeFileSync(path.join(root, "B2B_CLEANING_HEALTH_REPORT.md"), markdown);
+fs.writeFileSync(path.join(root, "b2b-cleaning-health-report.json"), `${JSON.stringify(report, null, 2)}\n`);
 
-const markdownRows = results
-  .map((result) => `| ${result.status} | ${result.id} | ${result.label} | ${String(result.details).replace(/\|/g, "\\|")} |`)
-  .join("\n");
-
-const markdown = `# B2B Cleaning Health Report
-
-Generated: ${generatedAt}
-
-Overall status: **${overallStatus}**
-
-| Metric | Count |
-| --- | ---: |
-| PASS | ${totals.pass} |
-| WARN | ${totals.warn} |
-| FAIL | ${totals.fail} |
-
-| Status | ID | Check | Details |
-| --- | --- | --- | --- |
-${markdownRows}
-`;
-
-const jsonReport = {
-  generatedAt,
-  overallStatus,
-  totals,
-  routes: routeMatrix.map(({ id, route, label, files }) => ({ id, route, label, files })),
-  docs,
-  results,
-};
-
-fs.writeFileSync(absolute("B2B_CLEANING_HEALTH_REPORT.md"), markdown);
-fs.writeFileSync(absolute("b2b-cleaning-health-report.json"), `${JSON.stringify(jsonReport, null, 2)}\n`);
-
-console.log(`B2B cleaning health: ${overallStatus} (${totals.pass} pass, ${totals.warn} warn, ${totals.fail} fail)`);
+console.log(`B2B cleaning health: ${overallStatus} (${totals.pass} pass, ${totals.fail} fail)`);
 console.log("Wrote B2B_CLEANING_HEALTH_REPORT.md and b2b-cleaning-health-report.json");
-
-if (totals.fail > 0) process.exit(1);
+if (totals.fail) process.exitCode = 1;

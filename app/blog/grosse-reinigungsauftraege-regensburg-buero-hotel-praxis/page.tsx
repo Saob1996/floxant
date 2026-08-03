@@ -120,7 +120,7 @@ export default function BlogLargeCommercialCleaningPage() {
           { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
           { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
-          { href: "/kontakt", label: "Kontakt ansehen" },
+          { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt ansehen" },
         ]}
         faqTitle="FAQ zu größeren B2B-Reinigungsanfragen"
         faqItems={faqItems}

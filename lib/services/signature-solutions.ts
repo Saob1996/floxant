@@ -314,7 +314,7 @@ export const signatureSolutions: readonly SignatureSolution[] = [
     requiredDetails: ["Ort", "Fotos", "Dachzugang", "Modulfläche", "Sicherheitslage"],
     regions: [],
     serviceIds: ["pv-sichtklar-service", "solarreinigung"],
-    cta: { label: "Nicht öffentlich", href: "/kontakt" },
+    cta: { label: "Nicht öffentlich", href: "/kontakt?mode=neutral&source=seo" },
     canonicalRoute: "/pv-anlagen-reinigung",
     evidence: [registry("lib/service-inventory.ts", "PV-Reinigung ist für beide Regionen needs_manual_confirmation.")],
     evidenceStatus: "MANUAL_REVIEW_REQUIRED",

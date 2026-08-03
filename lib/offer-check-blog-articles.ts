@@ -1305,7 +1305,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
       { href: "/angebotscheck", label: "Angebotscheck starten" },
-      { href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo", label: "Offene Punkte senden" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Offene Punkte senden" },
     ],
     faqTitle: "FAQ zu teuren Angeboten",
     faqItems: [

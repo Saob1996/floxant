@@ -1,3 +1,5 @@
+import { buildServiceContactHref } from "@/lib/service-routing";
+
 export type ServiceFitPriority = "p0" | "p1" | "p2" | "p3";
 
 export type ServiceFitOption = {
@@ -16,15 +18,14 @@ export type ServiceFitOption = {
 };
 
 function buildContactHref(option: ServiceFitOption, cityOverride?: string) {
-  const params = new URLSearchParams({
+  return buildServiceContactHref({
     service: option.service,
+    city: cityOverride || option.city,
     intent: option.intent,
     priority: option.priority,
     source: "service-fit-advisor",
+    anchor: "direktanfrage",
   });
-  const city = cityOverride || option.city;
-  if (city) params.set("city", city);
-  return `/kontakt?${params.toString()}#direktanfrage`;
 }
 
 export const serviceFitOptions: readonly ServiceFitOption[] = [

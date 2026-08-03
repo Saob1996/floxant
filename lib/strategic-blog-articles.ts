@@ -167,7 +167,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/buchung", label: "Wohnungsübergabe anfragen" },
       { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung ansehen" },
       { href: "/rechner?service=reinigung", label: "Aufwand realistisch einschätzen" },
-      { href: "/kontakt", label: "Situation kurz schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Situation kurz schildern" },
     ],
     faqTitle: "FAQ zum Wohnungsübergabe-Komplettpaket",
     faqItems: [
@@ -315,7 +315,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/buchung", label: "Schlüsselübergabe anfragen" },
-      { href: "/kontakt", label: "Termin kurz abstimmen" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Termin kurz abstimmen" },
       { href: "/blog/wohnungsuebergabe-komplettpaket", label: "Komplettpaket verstehen" },
       { href: "/reinigung", label: "Reinigung vor Übergabe prüfen" },
     ],
@@ -465,7 +465,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/buchung", label: "Nicht-vor-Ort-Fall schildern" },
-      { href: "/kontakt", label: "Schlüsselzugang abstimmen" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Schlüsselzugang abstimmen" },
       { href: "/blog/schluesseluebergabe-service", label: "Schlüsselübergabe verstehen" },
       { href: "/reinigung", label: "Reinigung nach Auszug prüfen" },
     ],
@@ -612,7 +612,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/buchung", label: "Übergaberisiko prüfen lassen" },
       { href: "/reinigung", label: "Reinigung vor Übergabe ansehen" },
       { href: "/blog/uebergabe-check-vor-vermietertermin", label: "Übergabe-Check lesen" },
-      { href: "/kontakt", label: "Situation kurz schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Situation kurz schildern" },
     ],
     faqTitle: "FAQ zur Kautionsschutz-Vorbereitung",
     faqItems: [
@@ -756,7 +756,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/buchung", label: "Übergabe-Check anfragen" },
       { href: "/rechner?service=reinigung", label: "Reinigungsaufwand einschätzen" },
       { href: "/blog/kautionsschutz-vorbereitung", label: "Kautionsvorbereitung lesen" },
-      { href: "/kontakt", label: "Termin kurz klären" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Termin kurz klären" },
     ],
     faqTitle: "FAQ zum Übergabe-Check",
     faqItems: [
@@ -901,7 +901,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/buchung", label: "Fotodokumentation anfragen" },
       { href: "/blog/nicht-vor-ort-paket", label: "Nicht-vor-Ort-Paket lesen" },
       { href: "/blog/wohnungsuebergabe-komplettpaket", label: "Übergabe-Komplettpaket ansehen" },
-      { href: "/kontakt", label: "Dokumentationsbedarf klären" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Dokumentationsbedarf klären" },
     ],
     faqTitle: "FAQ zur Fotodokumentation",
     faqItems: [
@@ -1853,7 +1853,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/blog/nicht-vor-ort-paket", label: "Nicht-vor-Ort-Paket lesen" },
       { href: "/blog/schluesseluebergabe-service", label: "Schlüsselübergabe verstehen" },
       { href: "/buchung", label: "Remote-Fall prüfen lassen" },
-      { href: "/kontakt", label: "Situation kurz schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Situation kurz schildern" },
     ],
     faqTitle: "FAQ zum Remote Move-Out Service",
     faqItems: [
@@ -1996,7 +1996,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/seniorenumzug", label: "Seniorenumzug ansehen" },
       { href: "/entruempelung", label: "Entrümpelung prüfen" },
       { href: "/blog/wohnungsuebergabe-komplettpaket", label: "Übergabe-Komplettpaket lesen" },
-      { href: "/kontakt", label: "Familiensituation schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Familiensituation schildern" },
     ],
     faqTitle: "FAQ zum Seniorenumzug für Angehörige",
     faqItems: [
@@ -2124,7 +2124,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/private-client-service", label: "Diskrete Betreuung ansehen" },
       { href: "/umzug", label: "Umzug anfragen" },
-      { href: "/kontakt", label: "Situation vertraulich schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Situation vertraulich schildern" },
       { href: "/blog/nicht-vor-ort-paket", label: "Nicht-vor-Ort-Option lesen" },
     ],
     faqTitle: "FAQ zum diskreten Umzug",
@@ -2252,7 +2252,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/entruempelung", label: "Nachlassräumung anfragen" },
-      { href: "/kontakt", label: "Situation vorsichtig schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Situation vorsichtig schildern" },
       { href: "/blog/seniorenumzug-fuer-angehoerige", label: "Seniorenumzug lesen" },
       { href: "/reinigung", label: "Reinigung nach Räumung prüfen" },
     ],
@@ -2528,7 +2528,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/regensburg/gewerbereinigung", label: "Gewerbliche Reinigung prüfen" },
       { href: "/entruempelung", label: "Rest-Entrümpelung anfragen" },
       { href: "/blog/hausverwaltung-treppenhausreinigung-regensburg", label: "Treppenhausreinigung lesen" },
-      { href: "/kontakt", label: "Objektfall schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Objektfall schildern" },
     ],
     faqTitle: "FAQ für Hausverwaltungen",
     faqItems: [
@@ -2656,7 +2656,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/entruempelung", label: "Objekt räumen lassen" },
       { href: "/reinigung", label: "Reinigung vor Besichtigung prüfen" },
-      { href: "/kontakt", label: "Maklerfall schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Maklerfall schildern" },
       { href: "/blog/service-fuer-hausverwaltungen", label: "Service für Verwaltungen lesen" },
     ],
     faqTitle: "FAQ für Makler",
@@ -2787,7 +2787,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/umzug", label: "Gewerbe-Auszug anfragen" },
       { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung prüfen" },
       { href: "/blog/bueroumzug-regensburg-kostenfaktoren-checkliste", label: "Büroumzug-Checkliste lesen" },
-      { href: "/kontakt", label: "Objekt kurz schildern" },
+      { href: "/kontakt?mode=neutral&source=seo", label: "Objekt kurz schildern" },
     ],
     faqTitle: "FAQ zum Gewerbe-Auszug",
     faqItems: [

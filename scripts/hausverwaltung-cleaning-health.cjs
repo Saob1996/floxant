@@ -1,376 +1,233 @@
-#!/usr/bin/env node
-
+const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const Module = require("node:module");
 const path = require("node:path");
+const ts = require("typescript");
 
 const root = process.cwd();
-
-function absolute(relativePath) {
-  return path.join(root, relativePath);
-}
-
-function exists(relativePath) {
-  return fs.existsSync(absolute(relativePath));
-}
+const policyPath = path.join(root, "lib/booking/request-service-policy.js");
+const registryPath = path.join(root, "lib/services/service-registry.ts");
+const resolverPath = path.join(root, "lib/lead-intents/resolve-request-context.ts");
+const canonicalServiceId = "treppenhausreinigung";
+const aliases = [
+  "hausverwaltung-reinigung",
+  "property-cleaning",
+  "property-management-cleaning",
+  "staircase-cleaning",
+];
 
 function read(relativePath) {
-  const filePath = absolute(relativePath);
-  return fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+  return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
 
-function includesAll(source, values) {
-  return values.every((value) => source.includes(value));
+function resolveProjectAlias(request) {
+  const base = path.join(root, request.slice(2));
+  return [base, `${base}.ts`, `${base}.tsx`, `${base}.js`, path.join(base, "index.ts")]
+    .find((candidate) => fs.existsSync(candidate)) || base;
 }
 
-function escapeCell(value) {
-  return String(value || "").replace(/\n/g, " ").replace(/\|/g, "\\|");
+function compileProjectModule(module, filename) {
+  const result = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    compilerOptions: {
+      allowJs: true,
+      esModuleInterop: true,
+      jsx: ts.JsxEmit.ReactJSX,
+      module: ts.ModuleKind.CommonJS,
+      moduleResolution: ts.ModuleResolutionKind.Node10,
+      target: ts.ScriptTarget.ES2022,
+    },
+    fileName: filename,
+    reportDiagnostics: true,
+  });
+  const errors = (result.diagnostics || []).filter(
+    (diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error,
+  );
+  assert.deepEqual(
+    errors.map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")),
+    [],
+    `Syntaxfehler in ${path.relative(root, filename)}`,
+  );
+  module._compile(result.outputText, filename);
 }
 
-const docs = [
-  "docs/HAUSVERWALTUNG_CLEANING_ROUTE_ARCHITECTURE.md",
-  "docs/HAUSVERWALTUNG_CLEANING_KEYWORD_INTENT_MAP.md",
-  "docs/HAUSVERWALTUNG_UNTERHALT_GEBAEUDE_DIFFERENTIATION.md",
-  "docs/HAUSVERWALTUNG_CLEANING_LOCAL_INTEGRATION_REPORT.md",
-  "docs/HAUSVERWALTUNG_CLEANING_METADATA_SCHEMA_REPORT.md",
-  "docs/HAUSVERWALTUNG_CLEANING_INTERNAL_LINKING_REPORT.md",
-  "docs/HAUSVERWALTUNG_CLEANING_CONTENT_CLEANUP_REPORT.md",
-];
-
-const sources = {
-  duesseldorfComponent: read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx"),
-  seoLeadForm: read("components/SeoLeadForm.tsx"),
-  leadIntents: read("lib/lead-intents.ts"),
-  nextConfig: read("next.config.js"),
-  sitemapRoutes: read("lib/sitemap-routes.ts"),
-  sitemapGenerator: read("scripts/generate-sitemap-routes.js"),
-  packageJson: read("package.json"),
-  offerCheck: `${read("app/angebot-guenstiger-pruefen/page.tsx")}\n${read("app/angebotscheck/page.tsx")}\n${read("app/anbieter-vergleichen/page.tsx")}`,
-  contactPage: read("app/kontakt/page.tsx"),
-  treppenRegensburg: read("app/treppenhausreinigung-regensburg/page.tsx"),
-  unterhaltRegensburg: read("app/unterhaltsreinigung-regensburg/page.tsx"),
-  regensburgCleaning: read("app/regensburg/reinigung/page.tsx"),
-  regensburgGewerbe: read("app/regensburg/gewerbereinigung/page.tsx"),
-  regensburgBuero: read("app/regensburg/bueroreinigung/page.tsx"),
+const originalResolveFilename = Module._resolveFilename;
+const originalJsLoader = Module._extensions[".js"];
+Module._resolveFilename = function resolveFilename(request, parent, isMain, options) {
+  return originalResolveFilename.call(
+    this,
+    request.startsWith("@/") ? resolveProjectAlias(request) : request,
+    parent,
+    isMain,
+    options,
+  );
+};
+Module._extensions[".ts"] = compileProjectModule;
+Module._extensions[".tsx"] = compileProjectModule;
+Module._extensions[".js"] = function loadJavaScript(module, filename) {
+  if (path.resolve(filename) === path.resolve(policyPath)) return compileProjectModule(module, filename);
+  return originalJsLoader(module, filename);
 };
 
-const publicSource = [
-  sources.duesseldorfComponent,
-  sources.seoLeadForm,
-  sources.leadIntents,
-  sources.offerCheck,
-  sources.treppenRegensburg,
-  sources.unterhaltRegensburg,
-  sources.regensburgCleaning,
-  sources.regensburgGewerbe,
-  sources.regensburgBuero,
-].join("\n");
+const {
+  REQUEST_SERVICE_POLICY,
+  getRequestService,
+  isAllowedRequestCombination,
+} = require(policyPath);
+const { serviceRegistry } = require(registryPath);
+const { resolveRequestContext } = require(resolverPath);
 
-const checks = [];
-
-function add(id, label, status, details = "") {
-  checks.push({ id, label, status, details });
+const results = [];
+function check(id, label, run, details = "") {
+  try {
+    run();
+    results.push({ status: "PASS", id, label, details });
+  } catch (error) {
+    results.push({ status: "FAIL", id, label, details: error.message });
+  }
 }
 
-function pass(id, label, condition, details = "") {
-  add(id, label, condition ? "PASS" : "FAIL", details);
+function contextFor(href) {
+  const url = new URL(href, "https://www.floxant.de");
+  return { url, context: resolveRequestContext(Object.fromEntries(url.searchParams)) };
 }
 
-function warn(id, label, condition, details = "") {
-  add(id, label, condition ? "PASS" : "WARN", details);
+function assertContactHref(href, label) {
+  const { url, context } = contextFor(href);
+  if (url.searchParams.get("mode") === "neutral") {
+    assert.equal(context.neutral, true, `${label}: neutraler CTA wurde vorausgewählt`);
+    assert.equal(context.serviceKey, "", `${label}: neutraler CTA enthält eine Leistung`);
+    return;
+  }
+  const service = url.searchParams.get("service");
+  const location = url.searchParams.get("city") || url.searchParams.get("location");
+  assert.ok(service, `${label}: service fehlt`);
+  assert.match(location || "", /^(?:duesseldorf|regensburg)$/, `${label}: Standort fehlt`);
+  assert.equal(context.valid, true, `${label}: Kontaktkontext ist ungültig`);
+  assert.equal(context.neutral, false, `${label}: aktiver CTA wurde neutral`);
+  assert.equal(context.serviceKey, service, `${label}: CTA verwendet eine Alias-ID statt des aktiven Ziels`);
+  assert.ok(context.headline.includes("anfragen"), `${label}: benannte Zielüberschrift fehlt`);
 }
 
-const canonicalRoutes = [
-  "/duesseldorf/reinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/bueroreinigung",
-  "/treppenhausreinigung-regensburg",
-  "/unterhaltsreinigung-regensburg",
-  "/regensburg/reinigung",
-  "/regensburg/gewerbereinigung",
-  "/regensburg/bueroreinigung",
-  "/angebot-guenstiger-pruefen",
-  "/angebotscheck",
-  "/anbieter-vergleichen",
-  "/kontakt",
-];
-
-const deprecatedRoutes = [
-  "/duesseldorf/hausverwaltung-reinigung",
-  "/duesseldorf/treppenhausreinigung",
-  "/duesseldorf/unterhaltsreinigung",
-  "/duesseldorf/gebaeudereinigung",
-];
-
-const leadServices = [
-  "hausverwaltung-reinigung",
-  "treppenhausreinigung",
-  "unterhaltsreinigung",
-  "gebaeudereinigung",
-];
-
-pass(
-  "architecture:duesseldorf-hub",
-  "/duesseldorf/reinigung remains the visible Hausverwaltung cleaning hub",
-  exists("app/duesseldorf/reinigung/page.tsx") &&
-    includesAll(sources.duesseldorfComponent, [
-      "PropertyManagementCleaningSection",
-      "id=\"hausverwaltung-reinigung\"",
-      "Hausverwaltung-Reinigung",
-      "Treppenhausreinigung",
-      "Unterhaltsreinigung",
-      "Gebäudereinigung",
-    ]),
-  "The sprint strengthens the existing static hub instead of adding thin Düsseldorf service pages.",
-);
-
-pass(
-  "architecture:deprecated-duesseldorf-routes",
-  "Deprecated Düsseldorf micro routes stay consolidated",
-  deprecatedRoutes.every((route) => sources.nextConfig.includes(`"${route}"`) || sources.nextConfig.includes(`'${route}'`)) &&
-    !deprecatedRoutes.some((route) => exists(`app${route}/page.tsx`)),
-  "Deprecated Hausverwaltung/Treppenhaus/Unterhalt/Gebäude routes remain redirects or absent, not new doorways.",
-);
-
-pass(
-  "architecture:canonical-routes",
-  "Canonical focus routes are present as pages or configured redirects",
-  canonicalRoutes.every((route) => {
-    const pagePath = `app${route}/page.tsx`;
-    return exists(pagePath) || sources.nextConfig.includes(`'${route}'`) || sources.nextConfig.includes(`"${route}"`);
-  }),
-  canonicalRoutes.join(", "),
-);
-
-pass(
-  "regensburg:special-pages",
-  "Regensburg Treppenhaus and Unterhalt pages remain indexable support pages",
-  exists("app/treppenhausreinigung-regensburg/page.tsx") &&
-    exists("app/unterhaltsreinigung-regensburg/page.tsx") &&
-    includesAll(sources.treppenRegensburg + sources.unterhaltRegensburg, [
-      "Treppenhausreinigung Regensburg",
-      "Unterhaltsreinigung Regensburg",
-      "Angebot",
-    ]),
-  "These pages cover the Regensburg root intents while legacy aliases consolidate.",
-);
-
-pass(
-  "lead:intents",
-  "Lead intent map supports Hausverwaltung, Treppenhaus, Unterhalt and Gebäude cleaning",
-  leadServices.every((service) => sources.leadIntents.includes(`"${service}"`)) &&
-    includesAll(sources.leadIntents, [
-      "buildPropertyCleaningCopy",
-      "/duesseldorf/reinigung",
-      "/treppenhausreinigung-regensburg",
-      "/unterhaltsreinigung-regensburg",
-      "/hausverwaltung-reinigung",
-      "/gebaeudereinigung",
-    ]),
-  "New service aliases, copy and conversion target routes are centralized in lib/lead-intents.ts.",
-);
-
-pass(
-  "lead:form-fields",
-  "SeoLeadForm captures property-cleaning qualification fields",
-  includesAll(sources.seoLeadForm, [
-    "isPropertyCleaningFlow",
-    "propertyCleaningRoleOptions",
-    "propertyCleaningObjectTypeOptions",
-    "propertyCleaningAreaOptions",
-    "propertyCleaningFrequencyOptions",
-    "propertyCleaningRole",
-    "propertyCleaningAreas",
-    "propertyCleaningExistingOffer",
-    "property_cleaning_offer_check",
-  ]),
-  "The fields stay optional and are written into details, metadata and FormData.",
-);
-
-pass(
-  "lead:submit-only",
-  "Lead API remains submit-only",
-  sources.seoLeadForm.includes('onSubmit={handleSubmit}') &&
-    sources.seoLeadForm.includes('await fetch("/api/bookings"') &&
-    !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(sources.seoLeadForm),
-  "No automatic public-page API call was introduced.",
-);
-
-pass(
-  "offer-check:property-intents",
-  "Offer-check pages expose Hausverwaltung/Treppenhaus/Unterhalt cleaning CTAs",
-  includesAll(sources.offerCheck, [
-    "service=hausverwaltung-reinigung",
-    "intent=hausverwaltung-reinigungsangebot-pruefen",
-    "service=treppenhausreinigung",
-    "intent=treppenhausreinigung-angebot-pruefen",
-    "service=unterhaltsreinigung",
-    "intent=unterhaltsreinigung-angebot-pruefen",
-  ]),
-  "Existing offer-check routes now route property cleaning users to the right prefilled contact flow.",
-);
-
-pass(
-  "differentiation:visible-copy",
-  "Treppenhaus, Unterhalt, Hausverwaltung and Gebäude are differentiated in visible content",
-  includesAll(sources.duesseldorfComponent, [
-    "Wie unterscheiden sich Treppenhausreinigung, Unterhaltsreinigung und Hausverwaltung-Reinigung?",
-    "Treppenhausreinigung fokussiert",
-    "Unterhaltsreinigung meint",
-    "Gebäudereinigung / Objekt-Reinigung",
-    "Eine Suchintention, ein sauberer Anfrageweg.",
-  ]),
-  "The hub explains scope instead of creating overlapping service pages.",
-);
-
-pass(
-  "content:effort-turnus",
-  "Object areas, effort factors and turnus are covered",
-  includesAll(sources.duesseldorfComponent, [
-    "propertyCleaningSituations",
-    "propertyEffortFactors",
-    "CleaningTurnusPanel",
-    "Zugang, Schlüsselregelung",
-    "gewünschter Turnus",
-  ]),
-  "Property managers can see which facts matter before requesting a quote.",
-);
-
-pass(
-  "content:english-intent",
-  "English property-cleaning intent is covered",
-  includesAll(sources.duesseldorfComponent + sources.leadIntents, [
-    "property management cleaning",
-    "staircase cleaning",
-    "common area cleaning",
-    "building-cleaning",
-  ]),
-  "International users get a simple English bridge without separate duplicate pages.",
-);
-
-pass(
-  "internal-linking:cluster",
-  "Internal links connect cleaning hub, offer check and contact path",
-  includesAll(sources.duesseldorfComponent + sources.offerCheck, [
-    "/duesseldorf/reinigung#hausverwaltung-reinigung",
-    "/duesseldorf/gewerbereinigung",
-    "/duesseldorf/bueroreinigung",
-    "/angebot-guenstiger-pruefen",
-    "/kontakt?service=hausverwaltung-reinigung",
-  ]),
-  "The cluster uses existing strong pages and the prefilled contact flow.",
-);
-
-warn(
-  "sitemap:consolidation",
-  "Sitemap keeps canonical routes consolidated",
-  sources.sitemapRoutes.includes('"/duesseldorf/reinigung"') &&
-    !deprecatedRoutes.some((route) => sources.sitemapRoutes.includes(`"${route}"`)),
-  "Deprecated Düsseldorf micro routes should not enter sitemap routes.",
-);
-
-const fakeTrustMarkers = [
-  "AggregateRating",
-  "ratingValue",
-  "bestRating",
-  "worstRating",
-  "Kundenstimme",
-  "Referenzkunde",
-  "zertifiziert",
-  "TUV",
-  '"Review"',
-  "'Review'",
-];
-const hasFakeTrustMarker =
-  fakeTrustMarkers.some((marker) => publicSource.toLowerCase().includes(marker.toLowerCase())) ||
-  publicSource.includes(`T${String.fromCharCode(220)}V`) ||
-  /100%\s*(?:Garantie|garantiert)/i.test(publicSource);
-
-pass(
-  "metadata:schema-boundaries",
-  "No fake reviews, ratings, customer names or guarantee schema were added",
-  !hasFakeTrustMarker,
-  "The sprint avoids fabricated trust and guarantee claims.",
-);
-
-pass(
-  "vercel:public-page-safety",
-  "No public-page dynamic runtime or load-time backend dependency was added",
-  !/(force-dynamic|runtime\s*=\s*["']nodejs["']|revalidate\s*=|unstable_noStore|createClient\(|supabase|resend|sharp|cron|setInterval\()/i.test(publicSource),
-  "Public pages remain static and the lead API is only used on form submit.",
-);
-
-pass(
-  "encoding:changed-files",
-  "Changed sprint files do not contain mojibake markers",
-  !/Ã|Â/.test(publicSource + sources.packageJson),
-  "UTF-8 text is clean in the sprint files checked here.",
-);
-
-for (const doc of docs) {
-  pass(`doc:${path.basename(doc)}`, `${doc} exists`, exists(doc), doc);
+function assertSubmissionContract() {
+  const contact = read("components/ContactQueryPersonalization.tsx");
+  const form = read("components/ProfessionalRequestForm.tsx");
+  const client = read("lib/booking-submission-client.ts");
+  assert.match(contact, /<ProfessionalRequestForm/);
+  assert.match(form, /appendBookingPayloadToFormData\(new FormData\(\), requestFields\)/);
+  assert.match(form, /bookingFetch\("\/api\/bookings"/);
+  assert.doesNotMatch(form, /fetch\("\/api\/bookings"/);
+  assert.match(client, /response\.status === 201/);
+  assert.match(client, /typeof payload\.requestId === "string"/);
+  assert.match(client, /typeof payload\.bookingId === "string"/);
+  assert.match(client, /const requestBodyKeys = new WeakMap/);
 }
 
-pass(
-  "package:script",
-  "npm script hausverwaltung-cleaning:health exists",
-  sources.packageJson.includes('"hausverwaltung-cleaning:health": "node scripts/hausverwaltung-cleaning-health.cjs"'),
-  "package.json script registration.",
-);
+const registryTarget = serviceRegistry.find((entry) => entry.id === canonicalServiceId);
+const policyTarget = REQUEST_SERVICE_POLICY.find((entry) => entry.id === canonicalServiceId);
 
-const hasFail = checks.some((check) => check.status === "FAIL");
-const hasWarn = checks.some((check) => check.status === "WARN");
-const status = hasFail ? "FAIL" : hasWarn ? "WARN" : "PASS";
-
-const report = {
-  status,
-  generatedAt: new Date().toISOString(),
-  summary: {
-    total: checks.length,
-    pass: checks.filter((check) => check.status === "PASS").length,
-    warn: checks.filter((check) => check.status === "WARN").length,
-    fail: checks.filter((check) => check.status === "FAIL").length,
+check(
+  "registry:active-named-target",
+  "Hausverwaltung-Anfragen haben mit Treppenhausreinigung ein aktives benanntes Registry-Ziel",
+  () => {
+    assert.ok(registryTarget, "Registry-Ziel fehlt");
+    assert.equal(registryTarget.publicVisible, true);
+    assert.equal(registryTarget.status, "ACTIVE_PUBLIC");
+    assert.equal(registryTarget.germanName, "Treppenhausreinigung");
+    assert.ok(policyTarget, "Anfrage-Policy-Ziel fehlt");
+    assert.equal(policyTarget.name, registryTarget.germanName);
   },
-  canonicalRoutes,
-  deprecatedRoutes,
-  checks,
-};
+);
 
+check(
+  "policy:hausverwaltung-aliases",
+  "Hausverwaltung- und englische Property-Aliase lösen an beiden Standorten auf das aktive Ziel auf",
+  () => {
+    for (const location of ["duesseldorf", "regensburg"]) {
+      assert.equal(isAllowedRequestCombination(location, canonicalServiceId), true, location);
+      for (const alias of aliases) {
+        assert.equal(getRequestService(location, alias)?.id, canonicalServiceId, `${location}/${alias}`);
+        const context = resolveRequestContext({ city: location, service: alias, source: "seo" });
+        assert.equal(context.valid, true, `${location}/${alias}: ungültig`);
+        assert.equal(context.neutral, false, `${location}/${alias}: neutral`);
+        assert.equal(context.serviceKey, canonicalServiceId, `${location}/${alias}: falsches Ziel`);
+        assert.ok(context.headline.includes("Treppenhausreinigung"), `${location}/${alias}: Zielname fehlt`);
+      }
+    }
+  },
+  `${aliases.length} Aliase`,
+);
+
+check(
+  "cta:canonical-property-cleaning",
+  "Gerenderte Hausverwaltung-/Objektreinigungs-CTAs verwenden aktive kanonische IDs oder fallen neutral",
+  () => {
+    const files = [
+      "components/duesseldorf/DuesseldorfCleaningServicePage.tsx",
+      "app/angebot-guenstiger-pruefen/page.tsx",
+      "app/angebotscheck/page.tsx",
+      "app/anbieter-vergleichen/page.tsx",
+    ];
+    let checked = 0;
+    for (const file of files) {
+      const source = read(file);
+      assert.doesNotMatch(source, /[?&]service=hausverwaltung-reinigung(?:[&#"'])/, `${file}: historische Alias-ID im CTA`);
+      for (const match of source.matchAll(/["'](\/kontakt\?[^"']+)["']/g)) {
+        const href = match[1];
+        if (/hausverwaltung|treppenhaus|unterhalt|objekt|gebaeude|gewerbe/.test(href)) {
+          assertContactHref(href, `${file}:${checked + 1}`);
+          checked += 1;
+        }
+      }
+    }
+    assert.ok(checked >= 5, "zu wenige Hausverwaltung-/Objektreinigungs-CTAs gefunden");
+  },
+);
+
+check(
+  "contact:professional-submission-contract",
+  "Zentrale Kontaktstrecke nutzt kanonische FormData und bookingFetch mit striktem 201-Vertrag",
+  assertSubmissionContract,
+);
+
+check(
+  "package:script",
+  "npm-Skript hausverwaltung-cleaning:health ist registriert",
+  () => assert.equal(require(path.join(root, "package.json")).scripts["hausverwaltung-cleaning:health"], "node scripts/hausverwaltung-cleaning-health.cjs"),
+);
+
+const totals = {
+  pass: results.filter((result) => result.status === "PASS").length,
+  fail: results.filter((result) => result.status === "FAIL").length,
+};
+const overallStatus = totals.fail ? "FAIL" : "PASS";
+const generatedAt = new Date().toISOString();
+const escapeCell = (value) => String(value || "").replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 const markdown = [
   "# Hausverwaltung Cleaning Health Report",
   "",
-  `Status: ${status}`,
-  `Generated: ${report.generatedAt}`,
+  `Generated: ${generatedAt}`,
   "",
-  "## Summary",
+  `Overall status: **${overallStatus}**`,
   "",
-  `- Total: ${report.summary.total}`,
-  `- PASS: ${report.summary.pass}`,
-  `- WARN: ${report.summary.warn}`,
-  `- FAIL: ${report.summary.fail}`,
-  "",
-  "## Route Model",
-  "",
-  "- Primary Düsseldorf property-cleaning hub: `/duesseldorf/reinigung#hausverwaltung-reinigung`",
-  "- Düsseldorf micro routes stay consolidated instead of becoming new thin pages.",
-  "- Regensburg support pages stay on `/treppenhausreinigung-regensburg` and `/unterhaltsreinigung-regensburg`.",
-  "- Offer-check routes prefill property-cleaning service and intent parameters.",
-  "",
-  "## Checks",
+  `Canonical request target: **${canonicalServiceId} (${policyTarget?.name || "fehlt"})**`,
   "",
   "| Status | ID | Check | Details |",
   "| --- | --- | --- | --- |",
-  ...checks.map((check) => `| ${check.status} | ${escapeCell(check.id)} | ${escapeCell(check.label)} | ${escapeCell(check.details)} |`),
+  ...results.map((result) => `| ${result.status} | ${escapeCell(result.id)} | ${escapeCell(result.label)} | ${escapeCell(result.details)} |`),
   "",
 ].join("\n");
+const report = {
+  generatedAt,
+  overallStatus,
+  totals,
+  aliases,
+  canonicalServiceId,
+  canonicalServiceName: policyTarget?.name || "",
+  results,
+};
+fs.writeFileSync(path.join(root, "HAUSVERWALTUNG_CLEANING_HEALTH_REPORT.md"), markdown);
+fs.writeFileSync(path.join(root, "hausverwaltung-cleaning-health-report.json"), `${JSON.stringify(report, null, 2)}\n`);
 
-fs.writeFileSync(absolute("hausverwaltung-cleaning-health-report.json"), `${JSON.stringify(report, null, 2)}\n`);
-fs.writeFileSync(absolute("HAUSVERWALTUNG_CLEANING_HEALTH_REPORT.md"), markdown);
-
-console.log(`Hausverwaltung cleaning health: ${status}`);
-console.log(`PASS ${report.summary.pass} / WARN ${report.summary.warn} / FAIL ${report.summary.fail}`);
-console.log("Wrote HAUSVERWALTUNG_CLEANING_HEALTH_REPORT.md");
-console.log("Wrote hausverwaltung-cleaning-health-report.json");
-
-if (hasFail) {
-  process.exitCode = 1;
-}
+console.log(`Hausverwaltung cleaning health: ${overallStatus} (${totals.pass} pass, ${totals.fail} fail)`);
+console.log("Wrote HAUSVERWALTUNG_CLEANING_HEALTH_REPORT.md and hausverwaltung-cleaning-health-report.json");
+if (totals.fail) process.exitCode = 1;

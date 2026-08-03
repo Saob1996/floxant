@@ -126,7 +126,7 @@ function JsonLd() {
         path,
         about: specialMovingLinks.map((item) => item.title),
         potentialActions: [
-          { name: "Spezialumzug anfragen", target: "/kontakt?service=umzug&source=spezialumzug#direktanfrage", type: "ContactAction" },
+          { name: "Spezialumzug anfragen", target: "/kontakt?mode=neutral&source=spezialumzug#direktanfrage", type: "ContactAction" },
           { name: "Rueckfahrt pruefen", target: "/rueckfahrt-boerse" },
         ],
       }),
@@ -187,7 +187,7 @@ export default function SpezialumzugPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/kontakt?service=umzug&source=spezialumzug#direktanfrage"
+                href="/kontakt?mode=neutral&source=spezialumzug#direktanfrage"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
               >
                 Spezialumzug anfragen
@@ -244,7 +244,7 @@ export default function SpezialumzugPage() {
           "Anbieter wackelt: Plan-B-Service.",
           "Route flexibel: Rückfahrt-Radar oder Beiladung prüfen.",
         ]}
-        ctaHref="/kontakt?service=umzug&intent=spezialumzug-einordnen&source=spezialumzug#direktanfrage"
+        ctaHref="/kontakt?mode=neutral&source=spezialumzug#direktanfrage"
         ctaLabel="Umzug einordnen"
       />
 
@@ -286,7 +286,7 @@ export default function SpezialumzugPage() {
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Route, Aufwand und Termin nicht geraten werden.",
-          href: "/kontakt?service=umzug&source=spezialumzug#direktanfrage",
+          href: "/kontakt?mode=neutral&source=spezialumzug#direktanfrage",
           cta: "Fall klären",
         }))}
       />

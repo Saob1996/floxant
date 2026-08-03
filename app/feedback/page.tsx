@@ -45,7 +45,7 @@ export default function SmartReviewPage() {
        Google-Profil öffnen
       </a>
       <a
-       href="/kontakt"
+       href="/kontakt?mode=neutral&source=direct"
        className="rounded-xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90"
       >
        Kontakt aufnehmen
