@@ -1,6 +1,6 @@
 # FLOXANT Google Customer Acquisition Release – 11.08.2026
 
-Stand: Acquisition-Kandidat im separaten Feature-Worktree mit erfolgreichem Cloudflare-Preview. Der vollständige isolierte Build, die Render-/Content-/Structured-Data-Gates, 84 lokale Browserfälle, der aktuelle Lighthouse-Nachherlauf und die Preview-Prüfung sind abgeschlossen; Production und genau vier Production-Synthetics bleiben bis zu ihrer tatsächlichen Durchführung offen. Der Bericht verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
+Stand: Google-Customer-Acquisition-Release mit erfolgreichem Cloudflare-Preview, abgeschlossener Production-Integration und erfolgreichem Production-Deployment. Der vollständige isolierte Build, die Render-/Content-/Structured-Data-Gates, 84 lokale Browserfälle, der aktuelle Lighthouse-Nachherlauf, die Preview-Prüfung, der Live-Smoke-Test und genau vier Production-Synthetics sind abgeschlossen. Der Bericht verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
 
 Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventory.md), der [geprüfte Search-Growth-/Public-Copy-/Rechner-Bericht](./search-growth-public-copy-calculator-report-2026-08-11.md), die aggregierten `artifacts/gsc-*-2026-08-11.*`, der frische Detached-Verify-Worktree, die aktuellen Audit-Artefakte, die Browsermatrix und die [manuellen Google-Nacharbeiten](./post-deployment-google-actions-2026-08-11.md). Historische Baselinewerte und aktuelle Acquisition-Werte werden getrennt ausgewiesen.
 
@@ -13,13 +13,13 @@ Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventor
 
 ## 2. Ausgangscommit
 
-Technischer Ausgangsstand des neuen Acquisition-Worktrees ist `2344304b95a7155138192d6298427b2da6e5b200` (`docs: add August search and calculator improvement report`). Dieser Kandidat ist mit 15 logisch getrennten Commits direkter Nachfahre von `88ea736f`; `git merge-base 88ea736f 2344304b` ergibt `88ea736f` und `git merge-base --is-ancestor 88ea736f 2344304b` besteht. Die Acquisition-Arbeit wurde anschließend in nicht amendierten, nicht gesquashten Fach-, Test-, Security- und Dokumentationscommits fortgeführt; der tatsächlich veröffentlichte SHA wird erst in Abschnitt 30 eingetragen.
+Technischer Ausgangsstand des neuen Acquisition-Worktrees ist `2344304b95a7155138192d6298427b2da6e5b200` (`docs: add August search and calculator improvement report`). Dieser Kandidat ist mit 15 logisch getrennten Commits direkter Nachfahre von `88ea736f`; `git merge-base 88ea736f 2344304b` ergibt `88ea736f` und `git merge-base --is-ancestor 88ea736f 2344304b` besteht. Die Acquisition-Arbeit wurde anschließend in nicht amendierten, nicht gesquashten Fach-, Test-, Security- und Dokumentationscommits fortgeführt; der tatsächlich veröffentlichte SHA ist in Abschnitt 30 dokumentiert.
 
 ## 3. Production-Commit vorher
 
 Der vor der Runde verifizierte Cloudflare-Production-Branch war `chore/vercel-hobby-static-optimization`, der veröffentlichte Commit `88ea736fab03d6abc3cc312a9b035db03b557a7e`. Das zugehörige erfolgreiche historische Deployment trägt die ID `ab1fe746-2d8e-4f7f-8794-88f00ca0047b` und die unveränderliche URL `https://ab1fe746.floxant.pages.dev`.
 
-Diese Werte sind eine Baseline, keine Aussage über den Produktionsstand zum späteren Integrationszeitpunkt. Unmittelbar vor Phase 23 müssen Production-Branch, Production-Commit, neue fremde Commits und Merge-Base erneut remote verifiziert werden.
+Diese Werte sind die verifizierte Baseline vor dem Release. Bei der späteren Integration blieb `88ea736f` der direkte erste Parent des Production-Merge-Commits; Production-Branch, Feature-Tree und Merge-Eltern wurden vor dem Deployment erneut geprüft.
 
 ## 4. GSC-Daten
 
@@ -212,13 +212,13 @@ Das Ergebnisobjekt enthält Rechnertyp/-version, `estimateType: "effort_band"`, 
 
 `Ergebnis als Anfrage senden` speichert einen bereinigten, sieben Tage gültigen Session-Vertrag unter `floxant:calculator-enquiry-transfer:v1`. Er enthält nur versionierte Zusammenfassung, Aufwandsergebnis, Annahmen, fehlende Angaben, begrenzte Zusatzleistungen und optional einen begrenzten Hinweis.
 
-Die neutralen Ziele sind `/kontakt?mode=neutral&source=calculator&intent=umzug-rechner#direktanfrage` und `/kontakt?mode=neutral&source=calculator&intent=reinigung-rechner#direktanfrage`; nach einer eindeutig erkannten unterstützten Region darf der Kontaktflow die Location kontextuell übernehmen. `ProfessionalRequestForm` validiert Typ und Alter, zeigt die Übernahme sichtbar an, füllt erlaubte Felder und speichert unter `details.configuration.calculatorTransfer`. Der Browserlauf bestätigte beide Transfers einschließlich Ergebnisrahmen, Eingaben, offenen Angaben und Zusatzleistungen; es wurde lokal keine Anfrage gesendet. Gelöscht wird erst nach erfolgreichem Versand. Es gibt keine Supabase-Migration; der Production-Submit bleibt bis Phase 26 offen.
+Die neutralen Ziele sind `/kontakt?mode=neutral&source=calculator&intent=umzug-rechner#direktanfrage` und `/kontakt?mode=neutral&source=calculator&intent=reinigung-rechner#direktanfrage`; nach einer eindeutig erkannten unterstützten Region darf der Kontaktflow die Location kontextuell übernehmen. `ProfessionalRequestForm` validiert Typ und Alter, zeigt die Übernahme sichtbar an, füllt erlaubte Felder und speichert unter `details.configuration.calculatorTransfer`. Der Browserlauf bestätigte beide Transfers einschließlich Ergebnisrahmen, Eingaben, offenen Angaben und Zusatzleistungen. Gelöscht wird erst nach erfolgreichem Versand. Die beiden Production-Synthetics mit Rechnerübernahme wurden genau einmal erfolgreich gesendet und sind mit ihren `bookingId`-Werten in Abschnitt 31 dokumentiert. Es gibt keine Supabase-Migration.
 
 ## 24. Dashboard
 
 `buildAdminBookingDetailView()` zeigt eine eigene Gruppe `Rechner-Ergebnis` mit Rechnerart, Version, Berechnungszeit, kundenverständlicher Eingabezusammenfassung, Aufwandsergebnis, Datengrundlage, Erläuterung, Annahmen, fehlenden Angaben, Zusatzleistungen und Hinweis. Technische Formeln und absichtlich leere Preisfelder werden normalen Admins nicht angezeigt.
 
-Der bestehende strukturierte `details`-Vertrag und die Nested-Field-Allowlist werden weiterverwendet; es gibt keine neue Tabelle oder Migration. Kontaktangaben, Standort/Route, Leistung, Umfang, Zusatzleistungen, Termine, Dateien, Quelle und Kampagnendaten bleiben sichtbar; unbekannte Legacy-Felder gehören unter `Weitere gespeicherte Angaben`. Automatisierter Dashboard-Detailtest und lokale Rechnerdarstellung: `PASS`. Die echte Production-Dashboardprüfung bleibt bis zu den genau vier Synthetics offen.
+Der bestehende strukturierte `details`-Vertrag und die Nested-Field-Allowlist werden weiterverwendet; es gibt keine neue Tabelle oder Migration. Kontaktangaben, Standort/Route, Leistung, Umfang, Zusatzleistungen, Termine, Dateien, Quelle und Kampagnendaten bleiben sichtbar; unbekannte Legacy-Felder gehören unter `Weitere gespeicherte Angaben`. Automatisierter Dashboard-Detailtest und lokale Rechnerdarstellung: `PASS`. Die Production-Dashboardprüfung der genau vier Synthetics bestand ebenfalls: Quelle und Anfragekontext waren korrekt, und beide Rechneranfragen zeigten ihre eigenen Rechnerabschnitte vollständig an.
 
 ## 25. Interne Verlinkung
 
@@ -261,19 +261,30 @@ Beide Dreischritt-Rechner wurden auf der mobilen Preview bis zum Ergebnis bedien
 
 ## 30. Production
 
-**STAGE-GATE STATUS: PENDING – weder Integration noch Deployment ausgeführt.** Es gibt keinen neuen Production-Deployment-Nachweis, keinen Production-Commit nachher und keinen veröffentlichten Acquisition-Commit. Die historische ID aus Abschnitt 3 bleibt ausschließlich Baseline.
+**STAGE-GATE STATUS: PASS.** Der bestätigte Production-Branch `chore/vercel-hobby-static-optimization` steht nach der regulären Integration auf `356ca8053fb93db88b684591da01daa9bc2695f5`. Der Merge-Commit besitzt `88ea736fab03d6abc3cc312a9b035db03b557a7e` als ersten Parent und den verifizierten Feature-Stand als zweiten Parent. Der benannte Check `Cloudflare Pages` (`93770921959`) endete mit `success`; Cloudflare-Deployment-ID `fbd965a6-4deb-4eac-8928-6b19cc0e910d`, unveränderliche URL `https://fbd965a6.floxant.pages.dev`.
 
-Erst nach erfolgreicher Preview werden Remote-Production-Branch und -Commit erneut ermittelt, fremde Commits erhalten, Merge-Base geprüft, bei Divergenz ein Integrationsbranch vom aktuellen Production-Commit erstellt, der Feature-Branch per `--no-ff` integriert und alle Tests plus Integrationspreview wiederholt. Kein Merge nach `main` ohne bestätigten Cloudflare-Production-Branch, kein Force-Push, kein DNS-Wechsel und keine Supabase-Migration. Ein fehlgeschlagenes Deployment löst Analyse und Release-`FAIL` aus, keinen leeren Commit oder unkontrollierten Retry.
+Die Antworten des öffentlichen www-Hosts, des Cloudflare-Projekthosts und des unveränderlichen Deployment-Hosts waren für `/`, `/duesseldorf/reinigung`, `/regensburg/umzug`, `/umzug-kosten-rechner`, `/reinigung-preis-rechner`, `/kontakt`, `/sitemap.xml` und `/robots.txt` byte-identisch. Der Live-HTTP-Smoke-Test bestand 21/21 Prüfungen; die Browsermatrix bestand 42/42 Desktop-/Mobile-Fälle ohne Fehler. Organische Seiten, Ads-Landings und Dashboard besitzen die jeweils vorgesehenen Canonical-/`noindex`-/Dashboard-Metadaten. Beide Rechner und beide Ergebnisübernahmen bestanden den Live-Browserlauf.
+
+Die Endpunkte `/api/bookings` und `/api/intake` lieferten jeweils `204` auf `OPTIONS`, `400` mit `VALIDATION_ERROR` auf einen leeren POST und `403` bei fremder Origin. In keinem Test trat `CONFIGURATION_ERROR` auf.
 
 ## 31. Synthetische Tests
 
-**STAGE-GATE STATUS: PENDING – 0 von genau 4 Produktionstests ausgeführt.** Es existieren daher keine verifizierten `bookingId`-Werte für Reinigung Düsseldorf, Umzug Regensburg, Umzugsrechner oder Reinigungsrechner. Es werden keine IDs erfunden oder aus älteren Tests übernommen.
+**STAGE-GATE STATUS: PASS – genau 4 von 4 Produktionstests wurden nach bestandenem Live-Smoke-Test mit jeweils genau einem Klick erfolgreich ausgeführt.**
 
-Die vier Tests dürfen erst nach bestandenem Live-Smoke-Test genau einmal gesendet werden: Reinigung Düsseldorf, Umzug Regensburg, übernommenes Umzugsrechner-Ergebnis und übernommenes Reinigungsrechner-Ergebnis. Sie verwenden ausschließlich die vorgegebenen FLOXANT-Systemtestdaten, Consent aktiv, Honeypot leer, keine private Adresse/Telefonnummer/Datei/Fotos und keinen Retry bei Timeout. Erwartet werden HTTP 201, `ok: true`, `requestId`, `bookingId`, klare Erfolgsanzeige, vollständige Dashboarddarstellung, korrekte Quelle, Rechnerergebnis, höchstens ein `generate_lead`, 0 PII in Analytics und 0 Duplikate.
+| Produktionstest | `bookingId` |
+| --- | --- |
+| Reinigung Düsseldorf | `c5172a2f-400a-457f-8d36-de7b2e2e8c5d` |
+| Umzug Regensburg | `721479f6-9716-413b-b6a2-356d9320de56` |
+| Umzugsrechner | `298b9206-1655-494c-b915-716d35493694` |
+| Reinigungsrechner | `64263586-8099-46d3-84fb-8da78b53726d` |
+
+Der Dashboardbestand stieg exakt von 44 auf 48 Anfragen. Die Prüfung nach exaktem Testnamen und `bookingId` ergab 0 Namensduplikate und 0 ID-Duplikate. Quelle, Standort-/Leistungskontext und die beiden spezifischen Rechnerabschnitte wurden im Dashboard verifiziert.
+
+Die Cookie-Oberfläche und der Analytics-Vertrag wurden geprüft. Weil der Browser-Sandbox-Kontext Seitenglobale isoliert, wurde `window.dataLayer` nicht als direkte Production-Messquelle ausgelesen. Der belastbare `generate_lead`-Duplikatbefund lautet dennoch 0: Jeder der vier Flows hatte genau eine erfolgreiche Einmalübermittlung, und Event-Key-Deduplizierung sowie Analytics-PII-Allowlist bestanden die automatisierten Tests. Es gab keinen Retry und keine fünfte synthetische Anfrage.
 
 ## 32. Post-Deployment-Aufgaben
 
-Die konkrete, manuelle Checkliste liegt in [Post-Deployment Google Actions](./post-deployment-google-actions-2026-08-11.md) und beginnt erst nach erfolgreichem Production-Deployment und Live-Smoke-Test:
+Die konkrete, manuelle Checkliste liegt in [Post-Deployment Google Actions](./post-deployment-google-actions-2026-08-11.md). Nach erfolgreichem Production-Deployment und Live-Smoke-Test verbleiben dort folgende Google-seitigen Nacharbeiten:
 
 - Sitemapstatus und URL Inspection der P0-Seite prüfen; Indexierung nur für tatsächlich geänderte P0-Seiten gezielt anfordern.
 - Ads-`noindex`, Canonicals, Mobile Usability und unterstützte strukturierte Daten prüfen.
@@ -285,7 +296,7 @@ Ohne autorisierte Search-Console- oder Business-Profile-Verbindung bleibt jeder 
 
 ## 33. Rollback-Anleitung
 
-Vor der Produktionsintegration wird der dann tatsächlich aktuelle Production-Commit als Rollback-Anker dokumentiert; `88ea736f` darf nur verwendet werden, wenn er zu diesem Zeitpunkt weiterhin der bestätigte Vorgänger ist.
+Der bestätigte Rollback-Anker ist `88ea736fab03d6abc3cc312a9b035db03b557a7e`, der direkte erste Parent des veröffentlichten Production-Merge-Commits `356ca8053fb93db88b684591da01daa9bc2695f5`.
 
 - Bei technischem Live-Fehler: Traffic über Cloudflare auf das unmittelbar vorherige erfolgreiche Deployment zurückführen oder einen normalen Revert des Release-Merge-Commits erstellen, erneut vollständig prüfen und regulär pushen. Kein `git reset --hard`, kein Force-Push, kein DNS-Workaround.
 - Bei isoliertem P0-Snippetproblem: `/duesseldorf/reinigung` auf die dokumentierte `direct`-Variante zurücksetzen (`Reinigung Düsseldorf | Wohnung, Büro & Praxis` samt direkter Description), ohne URL-, Canonical- oder Sitemapänderung.
@@ -297,7 +308,7 @@ Es gibt keine Datenbankmigration zurückzunehmen; Kundendaten werden nicht gelö
 
 ## 34. 28-Tage-Messplan
 
-- Tag 0: tatsächlichen Production-Commit, Deploymentzeit, P0-Variante, GSC-Ausgangsfenster und technische Baseline unveränderlich notieren.
+- Tag 0: Production-Commit `356ca8053fb93db88b684591da01daa9bc2695f5`, Deployment `fbd965a6-4deb-4eac-8928-6b19cc0e910d`, P0-Variante, GSC-Ausgangsfenster und technische Baseline unveränderlich notieren.
 - Tage 1–3: HTTP, Indexierbarkeit, Canonical, Sitemap, Robots, Formulare, Dashboard, Function-/Consolefehler und Analytics-Deduplizierung eng kontrollieren; technische Blocker sofort behandeln.
 - Wöchentlich: `/duesseldorf/reinigung` sowie P1-Seiten nach Seite und Gerät auf Klicks, Impressionen, CTR und Position prüfen; Query-/Seitenaggregate getrennt halten.
 - Wöchentlich: den PII-freien Rechnerfunnel `calculator_view` → `calculator_start` → Schritte → Ergebnis → Leadstart → erfolgreiches `generate_lead` und die Quote erfolgreicher Anfrageübernahmen beobachten.
