@@ -25,7 +25,7 @@ export type ServiceEvidence = {
 
 export type ServiceCallToAction = { label: string; href: string };
 
-export type ServiceRegistryEntry = {
+export type InternalServiceRecord = {
   id: string;
   slug: string;
   status: ServiceStatus;
@@ -69,6 +69,34 @@ export type ServiceRegistryEntry = {
   owner: string;
 };
 
+/**
+ * Explicit allow-list for data that may cross into public client components.
+ * Internal status, evidence, ownership and review fields deliberately have no
+ * representation here.
+ */
+export type PublicServiceContent = {
+  publicTitle: string;
+  publicEnglishTitle: string;
+  publicHeadline: string;
+  publicDescription: string;
+  publicLabel: string;
+  publicBenefits: readonly string[];
+  publicRequirements: readonly string[];
+  publicFaq: readonly string[];
+  publicCta: ServiceCallToAction;
+  publicCategory: "Reinigung" | "Umzug und Transport" | "Räumung und Auflösung" | "Angebotsprüfung";
+  publicCadence: "Einmalig" | "Regelmäßig" | "Einmalig oder regelmäßig";
+  publicAudienceLabels: readonly ("Privat" | "Gewerblich")[];
+  publicTargetAudiences: readonly string[];
+  publicRegions: readonly ServiceRegion[];
+  publicRoute: string;
+  publicEnglishRoute: string | null;
+  publicBadges: readonly ("Signature Service" | "Speziallösung")[];
+};
+
+/** @deprecated Prefer InternalServiceRecord for internal data. */
+export type ServiceRegistryEntry = InternalServiceRecord;
+
 type RequiredSeedKeys =
   | "id"
   | "slug"
@@ -83,8 +111,8 @@ type RequiredSeedKeys =
   | "problemStatement"
   | "canonicalRoute"
   | "evidence";
-type ServiceSeed = Pick<ServiceRegistryEntry, RequiredSeedKeys> &
-  Partial<Omit<ServiceRegistryEntry, RequiredSeedKeys>>;
+type ServiceSeed = Pick<InternalServiceRecord, RequiredSeedKeys> &
+  Partial<Omit<InternalServiceRecord, RequiredSeedKeys>>;
 
 export const PUBLIC_SERVICE_STATUSES = [
   "ACTIVE_PUBLIC",
@@ -131,13 +159,13 @@ function getDefaultRequestLocation(seed: ServiceSeed) {
   return seed.regions[0] ? requestLocationByRegion[seed.regions[0]] : "";
 }
 
-function defineService(seed: ServiceSeed): ServiceRegistryEntry {
+function defineService(seed: ServiceSeed): InternalServiceRecord {
   const englishAlternativeRoute = seed.englishAlternativeRoute ?? null;
   const requestLocation = getDefaultRequestLocation(seed);
   const defaultCtaHref =
     publicStatusSet.has(seed.status) && requestLocation
-      ? `/kontakt?service=${encodeURIComponent(seed.id)}&city=${requestLocation}&source=seo`
-      : "/kontakt?mode=neutral&source=seo";
+      ? `/kontakt?service=${encodeURIComponent(seed.id)}&city=${requestLocation}&source=website`
+      : "/kontakt?mode=neutral&source=website";
   return {
     ...seed,
     publicVisible: publicStatusSet.has(seed.status),
@@ -254,7 +282,7 @@ const seeds: readonly ServiceSeed[] = [
     ],
     cta: {
       label: "Ferienwohnungsreinigung anfragen",
-      href: "/kontakt?service=ferienwohnung-reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-anfrage&source=seo",
+      href: "/kontakt?service=ferienwohnung-reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-anfrage&source=website",
     },
     canonicalRoute: "/airbnb-turnover-express",
     lastReviewedAt: "2026-07-23",
@@ -691,7 +719,7 @@ const seeds: readonly ServiceSeed[] = [
   },
 ];
 
-export const serviceRegistry: readonly ServiceRegistryEntry[] = seeds.map(defineService);
+export const serviceRegistry: readonly InternalServiceRecord[] = seeds.map(defineService);
 
 const duplicateIds = serviceRegistry.map(({ id }) => id).filter((id, index, ids) => ids.indexOf(id) !== index);
 if (duplicateIds.length > 0) {
@@ -707,9 +735,60 @@ for (const service of serviceRegistry) {
   }
 }
 
-export const publicServices: readonly ServiceRegistryEntry[] = serviceRegistry.filter(({ publicVisible }) => publicVisible);
+export const publicServices: readonly InternalServiceRecord[] = serviceRegistry.filter(({ publicVisible }) => publicVisible);
 
-export function getServiceById(id: string): ServiceRegistryEntry | undefined {
+const publicCategoryLabels: Readonly<Record<ServiceCategory, PublicServiceContent["publicCategory"]>> = {
+  cleaning: "Reinigung",
+  moving: "Umzug und Transport",
+  clearance: "Räumung und Auflösung",
+  offer_check: "Angebotsprüfung",
+};
+
+const publicCadenceLabels: Readonly<Record<ServiceCadence, PublicServiceContent["publicCadence"]>> = {
+  one_off: "Einmalig",
+  recurring: "Regelmäßig",
+  both: "Einmalig oder regelmäßig",
+};
+
+export function selectPublicServiceFields(
+  service: InternalServiceRecord,
+  overrides: Partial<PublicServiceContent> = {},
+): PublicServiceContent {
+  return {
+    publicTitle: service.germanName,
+    publicEnglishTitle: service.englishName,
+    publicHeadline: service.headline,
+    publicDescription: service.shortDescription,
+    publicLabel: service.shortTitle,
+    publicBenefits: service.includedServices,
+    publicRequirements: service.requiredDetails,
+    publicFaq: [],
+    publicCta: { label: service.cta.label, href: service.cta.href },
+    publicCategory: publicCategoryLabels[service.category],
+    publicCadence: publicCadenceLabels[service.cadence],
+    publicAudienceLabels: service.audienceTypes.map((audience) => audience === "private" ? "Privat" as const : "Gewerblich" as const),
+    publicTargetAudiences: service.targetAudiences,
+    publicRegions: service.regions,
+    publicRoute: service.canonicalRoute,
+    publicEnglishRoute: service.englishAlternativeRoute,
+    publicBadges: [
+      ...(service.signature ? ["Signature Service" as const] : []),
+      ...(service.specialSolution ? ["Speziallösung" as const] : []),
+    ],
+    ...overrides,
+  };
+}
+
+export const publicServiceContents: readonly PublicServiceContent[] =
+  publicServices.map((service) => selectPublicServiceFields(service));
+
+export function getPublicServiceContentsByLocale(locale: ServiceLocale): readonly PublicServiceContent[] {
+  return publicServices
+    .filter((service) => service.locale.includes(locale))
+    .map((service) => selectPublicServiceFields(service));
+}
+
+export function getServiceById(id: string): InternalServiceRecord | undefined {
   return serviceRegistry.find((service) => service.id === id);
 }
 

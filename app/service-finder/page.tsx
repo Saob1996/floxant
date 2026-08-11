@@ -8,7 +8,10 @@ import {
   type FinderSignature,
 } from "@/components/services/StrategicServiceFinder";
 import { company } from "@/lib/company";
-import { publicServices } from "@/lib/services/service-registry";
+import {
+  publicServices,
+  selectPublicServiceFields,
+} from "@/lib/services/service-registry";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
 import { getFaqsForService } from "@/lib/content/faq-registry";
 
@@ -34,6 +37,7 @@ export const metadata: Metadata = {
 };
 
 const finderServices: readonly FinderService[] = publicServices.map((service) => {
+  const publicContent = selectPublicServiceFields(service);
   const faqs = getFaqsForService(service.id, "de");
   const articles = [...new Map(
     faqs
@@ -41,27 +45,28 @@ const finderServices: readonly FinderService[] = publicServices.map((service) =>
       .map((faq) => [faq.relatedArticle!, { href: faq.relatedArticle!, label: "Passenden Ratgeber öffnen" }]),
   ).values()];
   return {
-    id: service.id,
-    title: service.germanName,
-    description: service.shortDescription,
+    title: publicContent.publicTitle,
+    description: publicContent.publicDescription,
     category: service.category,
-    regions: [...service.regions],
+    regions: [...publicContent.publicRegions],
     audiences: [...service.audienceTypes],
     cadence: service.cadence,
     objectTypes: [...service.objectTypes],
-    requiredDetails: [...service.requiredDetails],
-    canonicalRoute: service.canonicalRoute,
-    ctaHref: service.cta.href,
+    requiredDetails: [...publicContent.publicRequirements],
+    canonicalRoute: publicContent.publicRoute,
+    ctaHref: publicContent.publicCta.href,
     faqLinks: faqs.slice(0, 2).map((faq) => ({ href: `/fragen#${faq.id}`, label: faq.question })),
     articleLinks: articles.slice(0, 2),
   };
 });
 
 const finderSignatures: readonly FinderSignature[] = publicSignatureSolutions.map((solution) => ({
-  id: solution.id,
   title: solution.name,
   problem: solution.problem,
-  serviceIds: [...solution.serviceIds],
+  relatedServiceRoutes: solution.serviceIds.flatMap((serviceId) => {
+    const service = publicServices.find((item) => item.id === serviceId);
+    return service ? [service.canonicalRoute] : [];
+  }),
   regions: [...solution.regions],
   canonicalRoute: solution.canonicalRoute,
 }));

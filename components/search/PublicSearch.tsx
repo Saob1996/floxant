@@ -5,15 +5,12 @@ import Link from "next/link";
 import { ArrowRight, Search, X } from "lucide-react";
 
 export type PublicSearchEntry = {
-  id: string;
   title: string;
   description: string;
   url: string;
   locale: "de" | "en";
-  type: "service" | "signature" | "special_solution" | "faq" | "article" | "location" | "guide";
+  type: "Leistung" | "Besondere Leistung" | "Frage" | "Ratgeber" | "Standort" | "Service" | "Special service" | "Question" | "Guide" | "Location";
   regions: string[];
-  serviceIds: string[];
-  keywords: string[];
 };
 
 const synonyms: Record<string, string[]> = {
@@ -65,7 +62,7 @@ function scoreEntry(entry: PublicSearchEntry, query: string) {
   if (!normalizedQuery) return 0;
   const queryTokens = normalizedQuery.split(/\s+/).flatMap((token) => [token, ...(synonyms[token] || []).map(normalize)]);
   const title = normalize(entry.title);
-  const haystack = normalize(`${entry.title} ${entry.description} ${entry.keywords.join(" ")} ${entry.regions.join(" ")}`);
+  const haystack = normalize(`${entry.title} ${entry.description} ${entry.regions.join(" ")}`);
   const haystackTokens = haystack.split(/\s+/);
   let score = title.includes(normalizedQuery) ? 12 : haystack.includes(normalizedQuery) ? 7 : 0;
   for (const token of queryTokens) {
@@ -167,6 +164,19 @@ export function PublicSearch({
     clear: "Clear search",
     noScript: "JavaScript is required for local search. All main links remain available below.",
   };
+  const typeOptions = locale === "de"
+    ? [
+        { value: "Leistung", label: copy.service },
+        { value: "Besondere Leistung", label: copy.signature },
+        { value: "Frage", label: copy.faq },
+        { value: "Ratgeber", label: copy.article },
+      ]
+    : [
+        { value: "Service", label: copy.service },
+        { value: "Special service", label: copy.signature },
+        { value: "Question", label: copy.faq },
+        { value: "Guide", label: copy.article },
+      ];
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Escape") { setQuery(""); setActiveIndex(-1); return; }
@@ -204,7 +214,7 @@ export function PublicSearch({
           {query ? <button type="button" onClick={() => setQuery("")} aria-label={copy.clear} className="absolute right-2 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-lg text-slate-700 outline-none hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-600"><X className="h-5 w-5" aria-hidden="true" /></button> : null}
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <label className="text-sm font-bold text-slate-800">{copy.type}<select value={type} onChange={(event) => setType(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"><option value="all">{copy.all}</option><option value="service">{copy.service}</option><option value="signature">{copy.signature}</option><option value="special_solution">{copy.signature}</option><option value="faq">{copy.faq}</option><option value="article">{copy.article}</option><option value="guide">{copy.article}</option></select></label>
+          <label className="text-sm font-bold text-slate-800">{copy.type}<select value={type} onChange={(event) => setType(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"><option value="all">{copy.all}</option>{typeOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
           <label className="text-sm font-bold text-slate-800">{copy.region}<select value={region} onChange={(event) => setRegion(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"><option value="all">{copy.all}</option><option value="Düsseldorf">Düsseldorf</option><option value="Regensburg">Regensburg</option></select></label>
         </div>
       </section>
@@ -228,9 +238,9 @@ export function PublicSearch({
         {query && results.length ? (
           <ul role="listbox" className="grid list-none gap-3">
             {results.map(({ entry }, index) => (
-              <li key={entry.id} role="option" aria-selected={activeIndex === index}>
+              <li key={entry.url} role="option" aria-selected={activeIndex === index}>
                 <Link id={`search-result-${locale}-${index}`} href={entry.url} prefetch={false} className={`group block rounded-2xl border bg-white p-5 outline-none ${activeIndex === index ? "border-cyan-700 ring-2 ring-cyan-600/30" : "border-slate-200 hover:border-cyan-600 focus-visible:ring-2 focus-visible:ring-cyan-600"}`}>
-                  <span className="text-xs font-black uppercase tracking-[0.1em] text-cyan-900">{entry.type.replace("_", " ")}</span><span className="mt-1 block text-xl font-black text-slate-950">{entry.title}</span><span className="mt-2 block text-sm font-medium leading-6 text-slate-700">{entry.description}</span><ArrowRight className="mt-3 h-4 w-4 text-blue-800 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
+                  <span className="text-xs font-black uppercase tracking-[0.1em] text-cyan-900">{entry.type}</span><span className="mt-1 block text-xl font-black text-slate-950">{entry.title}</span><span className="mt-2 block text-sm font-medium leading-6 text-slate-700">{entry.description}</span><ArrowRight className="mt-3 h-4 w-4 text-blue-800 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
                 </Link>
               </li>
             ))}

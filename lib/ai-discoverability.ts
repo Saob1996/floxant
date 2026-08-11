@@ -1,5 +1,8 @@
 import { publicFacts } from "@/lib/entities/public-facts";
-import { publicServices } from "@/lib/services/service-registry";
+import {
+  publicServices,
+  selectPublicServiceFields,
+} from "@/lib/services/service-registry";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
 
 function uniqueSortedStrings(values: readonly string[]): string[] {
@@ -15,24 +18,23 @@ function absolutePublicUrl(route: string | null): string | null {
   return `${origin}${pathname}`;
 }
 
-const verifiedPublicServiceIds = new Set(
-  publicFacts.verifiedServices.map(({ id }) => id),
+const verifiedPublicServiceRoutes = new Set(
+  publicFacts.verifiedServices.map(({ canonicalRoute }) => canonicalRoute),
 );
 
 const visibleServices = publicServices
   .filter(
     (service) =>
-      service.publicVisible && verifiedPublicServiceIds.has(service.id),
+      service.publicVisible && verifiedPublicServiceRoutes.has(service.canonicalRoute),
   )
+  .map((service) => selectPublicServiceFields(service))
   .slice()
-  .sort((left, right) => left.id.localeCompare(right.id, "de"));
-
-const visibleServiceIds = new Set(visibleServices.map(({ id }) => id));
+  .sort((left, right) => left.publicRoute.localeCompare(right.publicRoute, "de"));
 
 const visibleSignatureSolutions = publicSignatureSolutions
   .filter(({ publicAllowed }) => publicAllowed)
   .slice()
-  .sort((left, right) => left.id.localeCompare(right.id, "de"));
+  .sort((left, right) => left.name.localeCompare(right.name, "de"));
 
 /**
  * Public, deterministic service data for machine-readable discovery surfaces.
@@ -41,96 +43,60 @@ const visibleSignatureSolutions = publicSignatureSolutions
  */
 export const serviceGraph = {
   version: 1,
-  reviewedAt: publicFacts.reviewedAt,
-  source: "FLOXANT publicFacts, publicServices and publicSignatureSolutions",
   organization: {
     name: publicFacts.organizationName,
     canonicalDomain: publicFacts.canonicalDomain,
     languages: uniqueSortedStrings(publicFacts.languages),
     addresses: publicFacts.verifiedAddresses
-      .map(({ id, streetAddress, postalCode, city, state, country }) => ({
-        id,
+      .map(({ streetAddress, postalCode, city, state, country }) => ({
         streetAddress,
         postalCode,
         city,
         state,
         country,
       }))
-      .sort((left, right) => left.id.localeCompare(right.id, "de")),
+      .sort((left, right) => left.city.localeCompare(right.city, "de")),
     phone: {
       display: publicFacts.verifiedPhone.display,
       e164: publicFacts.verifiedPhone.e164,
     },
     email: publicFacts.verifiedEmail.address,
     regions: publicFacts.verifiedRegions
-      .map(({ id, name, kind }) => ({ id, name, kind }))
-      .sort((left, right) => left.id.localeCompare(right.id, "de")),
+      .map(({ name }) => name)
+      .sort((left, right) => left.localeCompare(right, "de")),
     contactMethods: publicFacts.contactMethods
-      .map(({ type, label, href }) => ({ type, label, href }))
+      .map(({ label, href }) => ({ label, href }))
       .sort(
         (left, right) =>
-          left.type.localeCompare(right.type, "de") ||
+          left.label.localeCompare(right.label, "de") ||
           left.href.localeCompare(right.href, "de"),
       ),
     businessProfiles: publicFacts.businessProfiles
-      .map(({ type, href }) => ({ type, href }))
-      .sort((left, right) => left.type.localeCompare(right.type, "de")),
+      .map(({ type, href }) => ({ label: type === "instagram" ? "Instagram" : "Facebook", href }))
+      .sort((left, right) => left.label.localeCompare(right.label, "de")),
   },
   services: visibleServices.map((service) => ({
-    id: service.id,
-    slug: service.slug,
-    status: service.status,
-    category: service.category,
-    cadence: service.cadence,
-    locales: uniqueSortedStrings(service.locale),
-    audienceTypes: uniqueSortedStrings(service.audienceTypes),
     names: {
-      de: service.germanName,
-      en: service.englishName,
+      de: service.publicTitle,
+      en: service.publicEnglishTitle,
     },
-    title: service.shortTitle,
-    headline: service.headline,
-    summary: service.shortDescription,
-    description: service.detailedDescription,
-    problem: service.problemStatement,
-    regions: uniqueSortedStrings(service.regions),
-    targetAudiences: uniqueSortedStrings(service.targetAudiences),
-    objectTypes: uniqueSortedStrings(service.objectTypes),
-    scope: {
-      included: uniqueSortedStrings(service.includedServices),
-      optional: uniqueSortedStrings(service.optionalAddOns),
-      excluded: uniqueSortedStrings(service.excludedServices),
-    },
-    request: {
-      requiredDetails: uniqueSortedStrings(service.requiredDetails),
-      effortDrivers: uniqueSortedStrings(service.effortDrivers),
-      process: [...service.process],
-    },
+    title: service.publicLabel,
+    headline: service.publicHeadline,
+    description: service.publicDescription,
+    regions: uniqueSortedStrings(service.publicRegions),
+    suitableFor: uniqueSortedStrings(service.publicTargetAudiences),
+    benefits: uniqueSortedStrings(service.publicBenefits),
+    requiredDetails: uniqueSortedStrings(service.publicRequirements),
     cta: {
-      label: service.cta.label,
-      href: service.cta.href,
+      label: service.publicCta.label,
+      href: service.publicCta.href,
     },
-    canonicalUrl: absolutePublicUrl(service.canonicalRoute),
-    englishAlternativeUrl: absolutePublicUrl(service.englishAlternativeRoute),
-    additionalUrls: uniqueSortedStrings(service.additionalRoutes)
-      .map(absolutePublicUrl)
-      .filter((url): url is string => Boolean(url)),
-    hubUrls: uniqueSortedStrings(service.hubRoutes)
-      .map(absolutePublicUrl)
-      .filter((url): url is string => Boolean(url)),
-    relatedServiceIds: uniqueSortedStrings(service.relatedServiceIds).filter(
-      (id) => visibleServiceIds.has(id),
-    ),
-    signature: service.signature,
-    specialSolution: service.specialSolution,
-    evidenceStatus: service.evidenceStatus,
-    lastReviewedAt: service.lastReviewedAt,
+    url: absolutePublicUrl(service.publicRoute),
+    englishUrl: absolutePublicUrl(service.publicEnglishRoute),
   })),
   signatureSolutions: visibleSignatureSolutions.map((solution) => ({
-    id: solution.id,
     name: solution.name,
-    kind: solution.kind,
-    actualFunction: solution.actualFunction,
+    description: solution.actualFunction,
     targetGroups: uniqueSortedStrings(solution.targetGroups),
     problem: solution.problem,
     result: solution.result,
@@ -138,24 +104,12 @@ export const serviceGraph = {
     boundaries: uniqueSortedStrings(solution.boundaries),
     requiredDetails: uniqueSortedStrings(solution.requiredDetails),
     regions: uniqueSortedStrings(solution.regions),
-    serviceIds: uniqueSortedStrings(solution.serviceIds).filter((id) =>
-      visibleServiceIds.has(id),
-    ),
     cta: {
       label: solution.cta.label,
       href: solution.cta.href,
     },
-    canonicalUrl: absolutePublicUrl(solution.canonicalRoute),
-    evidenceStatus: solution.evidenceStatus,
-    lastReviewedAt: solution.lastReviewedAt,
+    url: absolutePublicUrl(solution.canonicalRoute),
   })),
-  publicationPolicy: {
-    publicOnly: true,
-    includesPrivateData: false,
-    rankingGuarantee: false,
-    priceGuarantee: false,
-    availabilityGuarantee: false,
-  },
 } as const;
 
 export type ServiceGraph = typeof serviceGraph;
@@ -165,9 +119,7 @@ const organizationLines = [
   "",
   `Canonical: ${serviceGraph.organization.canonicalDomain}`,
   `Languages: ${serviceGraph.organization.languages.join(", ")}`,
-  `Verified service regions: ${serviceGraph.organization.regions
-    .map(({ name }) => name)
-    .join(", ")}`,
+  `Verified service regions: ${serviceGraph.organization.regions.join(", ")}`,
   "",
   "## Public contact",
   ...serviceGraph.organization.contactMethods.map(
@@ -177,21 +129,20 @@ const organizationLines = [
 
 const serviceLines = serviceGraph.services.flatMap((service) => [
   `### ${service.names.de} / ${service.names.en}`,
-  service.summary,
+  service.description,
   `Regions: ${service.regions.join(", ") || "not region-specific"}`,
-  `Public URL: ${service.canonicalUrl}`,
-  `Request details: ${service.request.requiredDetails.join("; ")}`,
-  `Boundaries: ${service.scope.excluded.join("; ")}`,
+  `Public URL: ${service.url}`,
+  `Request details: ${service.requiredDetails.join("; ")}`,
   "",
 ]);
 
 const solutionLines = serviceGraph.signatureSolutions.flatMap((solution) => [
   `### ${solution.name}`,
-  solution.actualFunction,
+  solution.description,
   `Result: ${solution.result}`,
   `Regions: ${solution.regions.join(", ") || "not region-specific"}`,
   `Boundaries: ${solution.boundaries.join("; ")}`,
-  `Public URL: ${solution.canonicalUrl}`,
+  `Public URL: ${solution.url}`,
   "",
 ]);
 
@@ -206,7 +157,7 @@ export const llmsText = [
   ...serviceLines,
   "## Public signature solutions",
   ...solutionLines,
-  "## Publication limits",
-  "This document contains public business information only. It makes no ranking, price, availability or outcome guarantee.",
+  "## Service limits",
+  "Prices, availability and results are confirmed only after the supplied details have been checked.",
   "",
 ].join("\n");

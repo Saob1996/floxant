@@ -8,27 +8,27 @@ const indexFile = path.join(root, "public", "search-index.json");
 const appDirectory = path.join(root, "app");
 const errors = [];
 
-const allowedRootKeys = new Set(["version", "source", "entries"]);
+const allowedRootKeys = new Set(["version", "entries"]);
 const allowedEntryKeys = new Set([
-  "id",
   "title",
   "description",
   "url",
   "locale",
   "type",
   "regions",
-  "serviceIds",
-  "keywords",
 ]);
 const allowedLocales = new Set(["de", "en"]);
 const allowedTypes = new Set([
-  "service",
-  "signature",
-  "special_solution",
-  "faq",
-  "article",
-  "location",
-  "guide",
+  "Leistung",
+  "Besondere Leistung",
+  "Frage",
+  "Ratgeber",
+  "Standort",
+  "Service",
+  "Special service",
+  "Question",
+  "Guide",
+  "Location",
 ]);
 const forbiddenRouteSegments = new Set(["api", "dashboard", "admin"]);
 
@@ -169,7 +169,7 @@ function validatePublicLocalUrl(value, location) {
   }
 }
 
-function validateEntry(entry, index, seenIds) {
+function validateEntry(entry, index) {
   const location = `entries[${index}]`;
   if (!isPlainObject(entry)) {
     addError(location, "must be an object");
@@ -186,15 +186,6 @@ function validateEntry(entry, index, seenIds) {
       addError(`${location}.${key}`, "is required");
     }
   });
-
-  if (validateString(entry.id, `${location}.id`)) {
-    const normalizedId = entry.id.trim().toLocaleLowerCase("en");
-    if (seenIds.has(normalizedId)) {
-      addError(`${location}.id`, `duplicates the ID from entries[${seenIds.get(normalizedId)}]`);
-    } else {
-      seenIds.set(normalizedId, index);
-    }
-  }
 
   validateString(entry.title, `${location}.title`);
   validateString(entry.description, `${location}.description`);
@@ -219,8 +210,6 @@ function validateEntry(entry, index, seenIds) {
   }
 
   validateStringArray(entry.regions, `${location}.regions`);
-  validateStringArray(entry.serviceIds, `${location}.serviceIds`);
-  validateStringArray(entry.keywords, `${location}.keywords`);
 }
 
 function validateSearchIndex(document) {
@@ -238,10 +227,9 @@ function validateSearchIndex(document) {
     if (!Object.hasOwn(document, key)) addError(key, "is required");
   });
 
-  if (!Number.isInteger(document.version) || document.version !== 1) {
-    addError("version", "must be the integer 1");
+  if (!Number.isInteger(document.version) || document.version !== 2) {
+    addError("version", "must be the integer 2");
   }
-  validateString(document.source, "source");
 
   if (!Array.isArray(document.entries)) {
     addError("entries", "must be an array");
@@ -251,8 +239,7 @@ function validateSearchIndex(document) {
     addError("entries", "must contain at least one public entry");
   }
 
-  const seenIds = new Map();
-  document.entries.forEach((entry, index) => validateEntry(entry, index, seenIds));
+  document.entries.forEach((entry, index) => validateEntry(entry, index));
 }
 
 if (!fs.existsSync(indexFile)) {

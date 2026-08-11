@@ -4,7 +4,10 @@ import { ArrowRight, CheckCircle2, SlidersHorizontal } from "lucide-react";
 
 import { ServiceCatalog } from "@/components/services/ServiceCatalog";
 import { company } from "@/lib/company";
-import { publicServices } from "@/lib/services/service-registry";
+import {
+  publicServices,
+  selectPublicServiceFields,
+} from "@/lib/services/service-registry";
 
 const path = "/en/services";
 
@@ -134,22 +137,19 @@ const englishServices = publicServices.flatMap((service) => {
   return routes.flatMap((route) => {
     const region = regionForEnglishRoute(route);
     if (!region || !service.regions.includes(region)) return [];
-    return [{
-      ...service,
-      id: `${service.id}-${region.toLowerCase()}`,
-      regions: [region],
-      locale: ["en"] as const,
-      shortDescription: copy.description,
-      detailedDescription: copy.description,
-      targetAudiences: copy.audiences,
-      requiredDetails: copy.requiredDetails,
-      canonicalRoute: route,
-      englishAlternativeRoute: route,
-      cta: {
+    const publicService = selectPublicServiceFields(service, {
+      publicDescription: copy.description,
+      publicTargetAudiences: copy.audiences,
+      publicRequirements: copy.requiredDetails,
+      publicRegions: [region],
+      publicRoute: route,
+      publicEnglishRoute: route,
+      publicCta: {
         label: `Request ${service.englishName.toLowerCase()}`,
         href: `/en/contact?service=${encodeURIComponent(service.id)}&city=${region === "Düsseldorf" ? "duesseldorf" : "regensburg"}`,
       },
-    }];
+    });
+    return [publicService];
   });
 });
 
@@ -161,8 +161,8 @@ const itemListSchema = {
   itemListElement: englishServices.map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
-    name: service.englishName,
-    url: `${company.url}${service.canonicalRoute}`,
+    name: service.publicEnglishTitle,
+    url: `${company.url}${service.publicRoute}`,
   })),
 };
 

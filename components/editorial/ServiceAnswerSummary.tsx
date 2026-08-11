@@ -1,5 +1,4 @@
 import {
-  CostDrivers,
   IncludedExcluded,
   KeyFacts,
   NextStep,
@@ -8,8 +7,11 @@ import {
   RequiredDetails,
   ScopeSummary,
 } from "@/components/editorial/AuthorityBlocks";
-import { germanizeDeep } from "@/lib/german-text";
-import { getServiceById, type ServiceRegistryEntry } from "@/lib/services/service-registry";
+import {
+  getServiceById,
+  selectPublicServiceFields,
+  type InternalServiceRecord,
+} from "@/lib/services/service-registry";
 
 export function ServiceAnswerSummary({
   serviceId,
@@ -22,57 +24,55 @@ export function ServiceAnswerSummary({
 }) {
   const rawService = getServiceById(serviceId);
   if (!rawService?.publicVisible) return null;
-  const service = germanizeDeep(rawService) as ServiceRegistryEntry;
-  const related = service.relatedServiceIds
+  const service = selectPublicServiceFields(rawService);
+  const related = rawService.relatedServiceIds
     .map((id) => getServiceById(id))
-    .filter((item): item is ServiceRegistryEntry => Boolean(item?.publicVisible))
+    .filter((item): item is InternalServiceRecord => Boolean(item?.publicVisible))
     .slice(0, 4)
+    .map((item) => selectPublicServiceFields(item))
     .map((item) => ({
-      href: item.canonicalRoute,
-      label: germanizeDeep(item.germanName) as string,
-      description: germanizeDeep(item.shortDescription) as string,
+      href: item.publicRoute,
+      label: item.publicTitle,
+      description: item.publicDescription,
     }));
-  const regions = region ? [region] : service.regions;
+  const regions = region ? [region] : service.publicRegions;
 
   return (
     <section
-      aria-label={`Kurzüberblick ${service.germanName}`}
+      aria-label={`Kurzüberblick ${service.publicTitle}`}
       className={`bg-white px-5 py-16 sm:px-8 lg:px-10 ${className}`.trim()}
     >
       <div className="mx-auto grid max-w-7xl gap-8">
-        <QuickAnswer title={`${service.germanName}: Was wird angeboten?`}>
-          <p>{service.detailedDescription}</p>
+        <QuickAnswer title={`${service.publicTitle}: Was wird angeboten?`}>
+          <p>{service.publicDescription}</p>
         </QuickAnswer>
 
         <KeyFacts
           items={[
-            { label: "Für wen", value: service.targetAudiences.slice(0, 3).join(", ") || "private und gewerbliche Anfragen" },
+            { label: "Für wen", value: service.publicTargetAudiences.slice(0, 3).join(", ") || service.publicAudienceLabels.join(", ") },
             { label: "Wo", value: regions.join(" und ") },
-            { label: "Rhythmus", value: service.cadence === "both" ? "einmalig oder regelmäßig" : service.cadence === "recurring" ? "regelmäßig" : "einmalig" },
+            { label: "Rhythmus", value: service.publicCadence },
           ]}
         />
 
         <ScopeSummary title="Leistung und Grenze gehören zusammen.">
-          <p>{service.problemStatement}</p>
+          <p>{service.publicHeadline}</p>
         </ScopeSummary>
 
         <IncludedExcluded
-          included={service.includedServices.length ? service.includedServices : [service.shortDescription]}
-          excluded={service.excludedServices}
+          included={service.publicBenefits.length ? service.publicBenefits : [service.publicDescription]}
+          excluded={["Nicht beschriebene Zusatzleistungen werden vor einem Angebot persönlich geklärt."]}
         />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          <RequiredDetails items={service.requiredDetails} />
-          <CostDrivers items={service.effortDrivers} />
-        </div>
+        <RequiredDetails items={service.publicRequirements} />
 
         {related.length ? <RelatedServices links={related} /> : null}
 
         <NextStep
           title="Nächsten Schritt vorbereiten"
           text="Senden Sie die bekannten Eckdaten. Offene Punkte dürfen als unklar markiert werden; eine Anfrage ist noch keine Buchung."
-          href={service.cta.href}
-          label={service.cta.label}
+          href={service.publicCta.href}
+          label={service.publicCta.label}
         />
       </div>
     </section>

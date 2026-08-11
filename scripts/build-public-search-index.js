@@ -157,11 +157,43 @@ function localizedServiceDescription(service, locale) {
 function unique(entries) {
   const seen = new Set();
   return entries.filter((entry) => {
-    const key = `${entry.locale}:${entry.url}:${entry.id}`;
+    const key = `${entry.locale}:${entry.url}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
+}
+
+const publicTypeLabels = {
+  de: {
+    service: "Leistung",
+    signature: "Besondere Leistung",
+    special_solution: "Besondere Leistung",
+    faq: "Frage",
+    article: "Ratgeber",
+    location: "Standort",
+    guide: "Ratgeber",
+  },
+  en: {
+    service: "Service",
+    signature: "Special service",
+    special_solution: "Special service",
+    faq: "Question",
+    article: "Guide",
+    location: "Location",
+    guide: "Guide",
+  },
+};
+
+function toPublicSearchEntry(entry) {
+  return {
+    title: entry.title,
+    description: entry.description,
+    url: entry.url,
+    locale: entry.locale,
+    type: publicTypeLabels[entry.locale]?.[entry.type] || (entry.locale === "en" ? "Guide" : "Ratgeber"),
+    regions: cleanArray(entry.regions),
+  };
 }
 
 const servicesModule = loadTypeScriptModule(
@@ -433,11 +465,11 @@ entries.push(
 );
 
 const searchIndex = {
-  version: 1,
-  source: "FLOXANT public registries and reviewed public routes",
-  entries: unique(entries).map((entry) =>
-    entry.locale === "de" ? normalizeGermanEntry(entry) : entry,
-  ).sort(
+  version: 2,
+  entries: unique(entries)
+    .map((entry) => entry.locale === "de" ? normalizeGermanEntry(entry) : entry)
+    .map(toPublicSearchEntry)
+    .sort(
     (left, right) =>
       left.locale.localeCompare(right.locale) ||
       left.title.localeCompare(right.title, left.locale),
@@ -453,9 +485,9 @@ console.log(
       entries: searchIndex.entries.length,
       de: searchIndex.entries.filter((entry) => entry.locale === "de").length,
       en: searchIndex.entries.filter((entry) => entry.locale === "en").length,
-      services: searchIndex.entries.filter((entry) => entry.type === "service").length,
-      faq: searchIndex.entries.filter((entry) => entry.type === "faq").length,
-      articles: searchIndex.entries.filter((entry) => entry.type === "article").length,
+      services: searchIndex.entries.filter((entry) => ["Leistung", "Service"].includes(entry.type)).length,
+      questions: searchIndex.entries.filter((entry) => ["Frage", "Question"].includes(entry.type)).length,
+      guides: searchIndex.entries.filter((entry) => ["Ratgeber", "Guide"].includes(entry.type)).length,
     },
     null,
     2,

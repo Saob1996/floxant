@@ -4,13 +4,13 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, FileSearch, PackageOpen, Sparkles, Truck, X } from "lucide-react";
 
-import type { ServiceRegistryEntry } from "@/lib/services/service-registry";
+import type { PublicServiceContent } from "@/lib/services/service-registry";
 
 type FilterState = {
   region: string;
-  audience: "all" | "private" | "business";
-  category: "all" | ServiceRegistryEntry["category"];
-  cadence: "all" | "one_off" | "recurring";
+  audience: "all" | "Privat" | "Gewerblich";
+  category: "all" | PublicServiceContent["publicCategory"];
+  cadence: "all" | PublicServiceContent["publicCadence"];
 };
 
 const initialFilters: FilterState = {
@@ -21,31 +21,28 @@ const initialFilters: FilterState = {
 };
 
 const categoryIcons = {
-  cleaning: Sparkles,
-  moving: Truck,
-  clearance: PackageOpen,
-  offer_check: FileSearch,
+  Reinigung: Sparkles,
+  "Umzug und Transport": Truck,
+  "Räumung und Auflösung": PackageOpen,
+  Angebotsprüfung: FileSearch,
 } as const;
 
 export function ServiceCatalog({
   services,
   locale,
 }: {
-  services: readonly ServiceRegistryEntry[];
+  services: readonly PublicServiceContent[];
   locale: "de" | "en";
 }) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
-  const visibleServices = useMemo(
-    () => services.filter((service) => service.publicVisible && service.locale.includes(locale)),
-    [locale, services],
-  );
-  const regions = useMemo(() => [...new Set(visibleServices.flatMap((service) => service.regions))].sort(), [visibleServices]);
+  const visibleServices = services;
+  const regions = useMemo(() => [...new Set(visibleServices.flatMap((service) => service.publicRegions))].sort(), [visibleServices]);
 
   const filtered = useMemo(() => visibleServices.filter((service) => {
-    if (filters.region !== "all" && !service.regions.some((region) => region === filters.region)) return false;
-    if (filters.audience !== "all" && !service.audienceTypes.includes(filters.audience)) return false;
-    if (filters.category !== "all" && service.category !== filters.category) return false;
-    if (filters.cadence !== "all" && service.cadence !== "both" && service.cadence !== filters.cadence) return false;
+    if (filters.region !== "all" && !service.publicRegions.some((region) => region === filters.region)) return false;
+    if (filters.audience !== "all" && !service.publicAudienceLabels.includes(filters.audience)) return false;
+    if (filters.category !== "all" && service.publicCategory !== filters.category) return false;
+    if (filters.cadence !== "all" && service.publicCadence !== "Einmalig oder regelmäßig" && service.publicCadence !== filters.cadence) return false;
     return true;
   }), [filters, visibleServices]);
 
@@ -105,9 +102,9 @@ export function ServiceCatalog({
       <section aria-label={locale === "de" ? "Servicefilter" : "Service filters"} className="rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <FilterSelect label={copy.region} value={filters.region} onChange={(value) => setFilter("region", value)} options={[{ value: "all", label: copy.all }, ...regions.map((region) => ({ value: region, label: region }))]} />
-          <FilterSelect label={copy.audience} value={filters.audience} onChange={(value) => setFilter("audience", value as FilterState["audience"])} options={[{ value: "all", label: copy.all }, { value: "private", label: copy.private }, { value: "business", label: copy.business }]} />
-          <FilterSelect label={copy.category} value={filters.category} onChange={(value) => setFilter("category", value as FilterState["category"])} options={[{ value: "all", label: copy.all }, { value: "cleaning", label: copy.cleaning }, { value: "moving", label: copy.moving }, { value: "clearance", label: copy.clearance }, { value: "offer_check", label: copy.offer }]} />
-          <FilterSelect label={copy.cadence} value={filters.cadence} onChange={(value) => setFilter("cadence", value as FilterState["cadence"])} options={[{ value: "all", label: copy.all }, { value: "one_off", label: copy.oneOff }, { value: "recurring", label: copy.recurring }]} />
+          <FilterSelect label={copy.audience} value={filters.audience} onChange={(value) => setFilter("audience", value as FilterState["audience"])} options={[{ value: "all", label: copy.all }, { value: "Privat", label: copy.private }, { value: "Gewerblich", label: copy.business }]} />
+          <FilterSelect label={copy.category} value={filters.category} onChange={(value) => setFilter("category", value as FilterState["category"])} options={[{ value: "all", label: copy.all }, { value: "Reinigung", label: copy.cleaning }, { value: "Umzug und Transport", label: copy.moving }, { value: "Räumung und Auflösung", label: copy.clearance }, { value: "Angebotsprüfung", label: copy.offer }]} />
+          <FilterSelect label={copy.cadence} value={filters.cadence} onChange={(value) => setFilter("cadence", value as FilterState["cadence"])} options={[{ value: "all", label: copy.all }, { value: "Einmalig", label: copy.oneOff }, { value: "Regelmäßig", label: copy.recurring }]} />
         </div>
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
           <p className="font-bold text-slate-700" aria-live="polite">{filtered.length} {copy.results}</p>
@@ -118,21 +115,21 @@ export function ServiceCatalog({
       {filtered.length ? (
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {filtered.map((service) => {
-            const Icon = categoryIcons[service.category];
-            const title = locale === "de" ? service.germanName : service.englishName;
+            const Icon = categoryIcons[service.publicCategory];
+            const title = locale === "de" ? service.publicTitle : service.publicEnglishTitle;
             const description = locale === "de"
-              ? service.shortDescription
-              : `${title} in ${service.regions.join(" and ")}. Scope and availability are checked from the details supplied with the enquiry.`;
-            const audience = locale === "de" ? service.targetAudiences.slice(0, 3).join(" · ") : service.audienceTypes.map((item) => item === "private" ? "Private customers" : "Businesses").join(" · ");
-            const details = locale === "de" ? service.requiredDetails.slice(0, 3).join(" · ") : "Location · service scope · preferred date";
-            const href = locale === "en" ? service.englishAlternativeRoute ?? service.canonicalRoute : service.canonicalRoute;
+              ? service.publicDescription
+              : `${title} in ${service.publicRegions.join(" and ")}. Scope and availability are checked from the details supplied with the enquiry.`;
+            const audience = locale === "de" ? service.publicTargetAudiences.slice(0, 3).join(" · ") : service.publicAudienceLabels.map((item) => item === "Privat" ? "Private customers" : "Businesses").join(" · ");
+            const details = locale === "de" ? service.publicRequirements.slice(0, 3).join(" · ") : "Location · service scope · preferred date";
+            const href = locale === "en" ? service.publicEnglishRoute ?? service.publicRoute : service.publicRoute;
             return (
-              <article key={`${locale}-${service.id}`} className="flex min-w-0 flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md motion-reduce:transition-none">
+              <article key={`${locale}-${href}`} className="flex min-w-0 flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md motion-reduce:transition-none">
                 <div className="flex items-start justify-between gap-4">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-slate-950 text-cyan-200"><Icon className="h-6 w-6" aria-hidden="true" /></span>
                   <div className="flex flex-wrap justify-end gap-2">
-                    {service.signature ? <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-black text-cyan-950">{copy.signature}</span> : null}
-                    {service.specialSolution ? <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-950">{copy.special}</span> : null}
+                    {service.publicBadges.includes("Signature Service") ? <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-black text-cyan-950">{copy.signature}</span> : null}
+                    {service.publicBadges.includes("Speziallösung") ? <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-violet-950">{copy.special}</span> : null}
                   </div>
                 </div>
                 <h2 className="mt-5 text-2xl font-black leading-tight text-slate-950">{title}</h2>
