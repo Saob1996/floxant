@@ -1,6 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { pathToFileURL } = require("node:url");
+const { loadTypeScriptModule } = require("./lib/load-typescript-module.cjs");
 
 const root = path.resolve(__dirname, "..");
 const registryFile = path.join(root, "lib", "content", "faq-registry.ts");
@@ -144,7 +144,7 @@ function csvCell(value) {
 
 async function main() {
   if (!fs.existsSync(registryFile)) throw new Error(`FAQ registry not found: ${registryFile}`);
-  const registryModule = await import(`${pathToFileURL(registryFile).href}?audit=${Date.now()}`);
+  const registryModule = loadTypeScriptModule(registryFile, { projectRoot: root });
   const faqRegistry = registryModule.faqRegistry || [];
   const assignments = registryModule.priorityFaqAssignments || [];
   const knownRoutes = buildKnownRoutes();
