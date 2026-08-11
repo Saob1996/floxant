@@ -1,6 +1,6 @@
 # FLOXANT Google Customer Acquisition Release – 11.08.2026
 
-Stand: lokaler Acquisition-Kandidat im separaten Feature-Worktree. Der vollständige isolierte Build, die Render-/Content-/Structured-Data-Gates, 84 Browserfälle und der aktuelle Lighthouse-Nachherlauf sind geprüft; Preview, Production und genau vier Production-Synthetics bleiben bis zu ihrer tatsächlichen Durchführung offen. Der Bericht verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
+Stand: Acquisition-Kandidat im separaten Feature-Worktree mit erfolgreichem Cloudflare-Preview. Der vollständige isolierte Build, die Render-/Content-/Structured-Data-Gates, 84 lokale Browserfälle, der aktuelle Lighthouse-Nachherlauf und die Preview-Prüfung sind abgeschlossen; Production und genau vier Production-Synthetics bleiben bis zu ihrer tatsächlichen Durchführung offen. Der Bericht verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
 
 Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventory.md), der [geprüfte Search-Growth-/Public-Copy-/Rechner-Bericht](./search-growth-public-copy-calculator-report-2026-08-11.md), die aggregierten `artifacts/gsc-*-2026-08-11.*`, der frische Detached-Verify-Worktree, die aktuellen Audit-Artefakte, die Browsermatrix und die [manuellen Google-Nacharbeiten](./post-deployment-google-actions-2026-08-11.md). Historische Baselinewerte und aktuelle Acquisition-Werte werden getrennt ausgewiesen.
 
@@ -253,9 +253,11 @@ Der aktuelle Acquisition-Stand bestand 21 Pflichtrouten × 4 Viewports = 84/84 B
 
 ## 29. Preview
 
-**STAGE-GATE STATUS: PENDING – noch nicht gestartet.** Für diesen Acquisition-Release existieren noch keine verifizierte Preview-Deployment-ID und keine Preview-URL; es werden keine Werte aus einem älteren Deployment als neue Preview ausgegeben.
+**STAGE-GATE STATUS: PASS.** Der Feature-Branch wurde ohne Force-Push auf Commit `c556cf06efb11da85e983f285ab82bd7a614b0e8` veröffentlicht. Der benannte GitHub-Check `Cloudflare Pages` (`93751404361`) endete mit `success`; Cloudflare-Deployment-ID `f0e5d411-6e13-4b83-b384-bfb7b7ea4dad`, unveränderliche Preview-URL `https://f0e5d411.floxant.pages.dev`, Check-Start und -Ende jeweils `2026-08-11T10:34:36Z`.
 
-Voraussetzungen sind sauberer Worktree, vollständige Tests, Secret-/PII-/Rohdatenprüfung und normaler Push des Feature-Branches ohne Force-Push. Danach sind P0/P1, beide Rechner, Ads-Seiten, Kontakt, Dashboard-Login, Sitemap und Robots zu prüfen: HTTP 200, Preview `noindex`, keine Preview-Canonicals, Ads/Dashboard `noindex`, keine Asset-/Consolefehler, mobile und Tastaturbedienung. Eine gültige Preview-Anfrage wird nur gesendet, wenn die Umgebung nachweislich isoliert ist.
+Die Preview-Prüfung umfasste 21 Pflichtrouten als direkte HTTP-Prüfung und 42 Browserfälle bei 1440 × 1000 sowie 390 × 844. Ergebnis: 21/21 HTTP 200, auf jeder Route `X-Robots-Tag: noindex`, 0 Preview-/Nicht-www-Canonicals, 0 falsche oder fehlende H1, 0 Überbreite, 0 interne Texte, 0 defekte Bilder, 0 404 und 0 Konsolenfehler. Beide Ads-Seiten sind `noindex`, canonicalisieren auf ihre organischen Primärseiten und enthalten ein Formular; Dashboard-Login ist `noindex, nofollow, nocache` und ohne Canonical. Die Sitemap enthält 419 ausschließlich öffentliche www-URLs sowie 0 Ads-, Dashboard- oder Pages-Preview-URLs; `robots.txt` ist erreichbar und verweist auf die Produktions-Sitemap.
+
+Beide Dreischritt-Rechner wurden auf der mobilen Preview bis zum Ergebnis bedient. Umzug und Reinigung lieferten jeweils eine nachvollziehbare mittlere Aufwandseinstufung ohne `NaN`, negativen Wert oder Preispräzision. Die Ergebnisübernahme führte im selben Tab in den neutralen Kontaktfluss und zeigte nach Standort-/Serviceauswahl `Rechner-Ergebnis übernommen` samt korrekten Ausgangswerten. Es wurde keine Preview-Anfrage abgesendet, weil die Preview nicht als isoliertes Datensystem nachgewiesen ist.
 
 ## 30. Production
 
