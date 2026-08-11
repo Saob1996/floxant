@@ -1,2 +1,1 @@
 route,file,term,context,sourceType,severity,replacementRequired,status
-/llms.txt,out/llms.txt,Canonical,"# FLOXANT Canonical: https://www.floxant.de Languages: de, en Verified service regions: Düsseldorf, Regensburg ## Public contact -…",publicText,P1,yes,OPEN

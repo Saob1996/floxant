@@ -59,4 +59,3 @@ function sanitizeValue(value: unknown): unknown {
 export function sanitizePublicContent<T>(content: T): T {
   return sanitizeValue(content) as T;
 }
-

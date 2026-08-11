@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "out");
 const ARTIFACT_DIR = path.join(ROOT, "artifacts");
 const OUTPUT_FILE = path.join(ARTIFACT_DIR, "content-overlap-audit.csv");
+const REDIRECTS_FILE = path.join(ROOT, "public", "_redirects");
 
 const INTRO_THRESHOLD = 0.75;
 const MAIN_THRESHOLD = 0.65;
@@ -38,6 +39,19 @@ function routeFromHtmlFile(file) {
   if (relative === "index.html") return "/";
   if (relative.endsWith("/index.html")) return `/${relative.slice(0, -"/index.html".length)}`;
   return `/${relative.replace(/\.html$/i, "")}`;
+}
+
+function exactRedirectSources() {
+  if (!fs.existsSync(REDIRECTS_FILE)) return new Set();
+  const sources = new Set();
+  for (const rawLine of fs.readFileSync(REDIRECTS_FILE, "utf8").split(/\r?\n/u)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const [source, , status] = line.split(/\s+/u);
+    if (!/^30[1278]$/u.test(status ?? "") || !source?.startsWith("/") || /[*:]/u.test(source)) continue;
+    sources.add(source === "/" ? "/" : source.replace(/\/$/u, ""));
+  }
+  return sources;
 }
 
 function decodeHtml(value) {
@@ -467,12 +481,14 @@ if (!fs.existsSync(OUT_DIR)) {
 
 const htmlFiles = walkFiles(OUT_DIR).filter((file) => file.toLowerCase().endsWith(".html"));
 const routes = htmlFiles.map(routeFromHtmlFile);
+const redirectSources = exactRedirectSources();
 const locationPhrases = discoverLocationPhrases(routes);
 locationPattern = new RegExp(`\\b(?:${locationPhrases.map(escapeRegExp).join("|")})\\b`, "g");
 
 const pages = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
+  if (redirectSources.has(routeFromHtmlFile(file))) continue;
   if (!isIndexable(html)) continue;
   const parsed = parseDocument(html);
   const page = {

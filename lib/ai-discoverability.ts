@@ -117,7 +117,7 @@ export type ServiceGraph = typeof serviceGraph;
 const organizationLines = [
   `# ${serviceGraph.organization.name}`,
   "",
-  `Canonical: ${serviceGraph.organization.canonicalDomain}`,
+  `Website: ${serviceGraph.organization.canonicalDomain}`,
   `Languages: ${serviceGraph.organization.languages.join(", ")}`,
   `Verified service regions: ${serviceGraph.organization.regions.join(", ")}`,
   "",
