@@ -54,8 +54,8 @@ export const prioritySeoMetaRegistry = {
     location: "Düsseldorf",
     service: "Reinigung",
     searchIntent: "Passende Reinigungsleistung in Düsseldorf auswählen und konkret anfragen",
-    experimentId: "gsc-2026-07-duesseldorf-reinigung-title",
-    activeVariant: "direct",
+    experimentId: "gsc-2026-08-11-duesseldorf-reinigung-title",
+    activeVariant: "conversion",
     variants: {
       direct: {
         title: "Reinigung Düsseldorf | Wohnung, Büro & Praxis",
@@ -440,33 +440,33 @@ export const prioritySeoMetaRegistry = {
   "/reinigungsfirma-angebot": defineMeta({
     route: "/reinigungsfirma-angebot",
     shortTitle: "Reinigungsangebot",
-    headline: "Reinigungsangebot anfragen oder vorhandenes Angebot prüfen",
-    ogTitle: "Reinigungsangebot mit Objekt, Fläche und Umfang klären",
+    headline: "Neues Reinigungsangebot mit klaren Eckdaten anfragen",
+    ogTitle: "Reinigungsangebot mit Objekt, Fläche und Umfang anfragen",
     ogDescription:
-      "Ort, Objekt, Fläche, Zustand, Turnus, Leistungsumfang, Fotos und Termin für eine Anfrage oder Angebotsprüfung senden.",
+      "Ort, Objekt, Fläche, Zustand, Turnus, Leistungsumfang, Fotos und Termin für eine neue Reinigungsanfrage senden.",
     primaryQuery: "angebot reinigungsfirma",
-    secondaryQueries: ["reinigungsfirma angebot", "reinigungsangebot anfragen", "reinigungsangebot prüfen"],
+    secondaryQueries: ["reinigungsfirma angebot", "reinigungsangebot anfragen", "angebot für reinigungsarbeiten"],
     locale: "de-DE",
     location: "Standortauswahl",
     service: "Reinigungsangebot",
-    searchIntent: "Neues Reinigungsangebot anfragen oder vorhandene Positionen sachlich prüfen",
-    experimentId: "gsc-2026-07-reinigungsangebot-intent",
+    searchIntent: "Ein neues Reinigungsangebot mit konkretem Objekt- und Leistungsumfang anfragen",
+    experimentId: "gsc-2026-08-11-reinigungsangebot-intent",
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Reinigungsangebot anfragen oder prüfen | FLOXANT",
+        title: "Reinigungsangebot anfragen | FLOXANT",
         description:
-          "Reinigungsangebot mit Ort, Objekt, Fläche, Zustand, Turnus, Leistungsumfang, Fotos und Termin anfragen oder sachlich prüfen lassen.",
+          "Neues Reinigungsangebot mit Ort, Objekt, Fläche, Zustand, Turnus, Leistungsumfang, Fotos und Termin anfragen.",
       },
       benefit: {
         title: "Reinigungsangebot mit klarem Umfang vorbereiten",
         description:
-          "Leistung, Turnus, Zusatzpositionen und offene Punkte verständlich ordnen – für eine neue Anfrage oder den Vergleich eines Angebots.",
+          "Leistung, Turnus, Zeitfenster und gewünschte Zusatzarbeiten verständlich ordnen und eine neue Reinigungsanfrage vorbereiten.",
       },
       conversion: {
         title: "Reinigungsangebot mit Eckdaten anfragen",
         description:
-          "Senden Sie Objekt, Fläche, Zustand, Turnus, Fotos und Termin. FLOXANT führt Sie zur passenden Reinigung oder Angebotsprüfung.",
+          "Senden Sie Objekt, Fläche, Zustand, Turnus, Fotos und Termin. FLOXANT ordnet die Anfrage der passenden Reinigung zu.",
       },
     },
   }),

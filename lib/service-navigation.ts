@@ -333,7 +333,7 @@ export const footerNavigationGroups = [
     links: [
       { label: "Kontaktseite", href: "/kontakt" },
       { label: "Anfrage stellen", href: "/kontakt?mode=neutral&source=footer" },
-      { label: "Angebot prüfen", href: "/kontakt?service=angebotscheck&city=duesseldorf&intent=angebotscheck-anfrage&source=footer" },
+      { label: "Angebot prüfen", href: "/angebotscheck" },
     ],
   },
 ] as const;
