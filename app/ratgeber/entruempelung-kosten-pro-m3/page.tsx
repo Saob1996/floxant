@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/entruempelung-kosten-pro-m3',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Entrümpelungskosten pro m³ erklärt | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Entruempelung Kosten einordnen",
   });
 }

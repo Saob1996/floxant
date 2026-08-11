@@ -135,7 +135,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Kontaktweg abstimmen",
-      href: "/kontakt?mode=neutral&source=seo",
+      href: "/kontakt?mode=neutral&source=website",
       text: "Wenn Rückfragen, Erreichbarkeit oder Standortthemen vorab geklärt werden sollen.",
     },
   ],
@@ -186,7 +186,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Kontakt aufnehmen",
-      href: "/kontakt?mode=neutral&source=seo",
+      href: "/kontakt?mode=neutral&source=website",
       text: "Wenn Fotos, Sonderfälle oder Rückfragen schnell abgestimmt werden sollen.",
     },
   ],
@@ -198,7 +198,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     },
     {
       title: "Projekt strukturieren",
-      href: "/kontakt?mode=neutral&source=seo",
+      href: "/kontakt?mode=neutral&source=website",
       text: "Wenn mehrere Bausteine oder besondere Stücke vorab besprochen werden müssen.",
     },
     {
@@ -318,6 +318,35 @@ function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
   }
 }
 
+const LOCAL_H1_OVERRIDES: Readonly<Record<string, string>> = {
+  "/24h-umzug-bayern": "Kurzfristigen Umzug in Bayern anfragen",
+  "/umzug-nuernberg": "Umzug in Nürnberg anfragen",
+};
+
+function foldGermanForComparison(value: string) {
+  return germanizeText(value)
+    .toLocaleLowerCase("de")
+    .replaceAll("ä", "ae")
+    .replaceAll("ö", "oe")
+    .replaceAll("ü", "ue")
+    .replaceAll("ß", "ss")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function resolveLocalHeroTitle(route: DynamicLocalSeoRoute, title: string, city: string) {
+  const override = LOCAL_H1_OVERRIDES[route.route];
+  if (override) return override;
+  const titleComparable = foldGermanForComparison(title);
+  const labelComparable = foldGermanForComparison(route.label);
+  const includesServiceLabel = titleComparable.split(" ").includes(labelComparable);
+  const includesCity = titleComparable.includes(foldGermanForComparison(city));
+  if (includesServiceLabel && includesCity) return title;
+  return `${germanizeText(route.label)} in ${city} anfragen`;
+}
+
 function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
   const gscPriority = getGscClickPriority(route.route);
 
@@ -365,7 +394,7 @@ function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
           {
             title: "Kombinationen früh nennen",
             text: "Reinigung, Räumung, Restmengen, Übergabe oder Transport sollten früh sichtbar sein, damit der Ablauf nicht zu spät kippt.",
-            href: "/kontakt?mode=neutral&source=seo",
+            href: "/kontakt?mode=neutral&source=website",
             cta: "Kontaktweg klären",
           },
         ]}
@@ -543,6 +572,11 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
   });
   const resolvedCity = germanizeText(city);
   const gscOpportunity = renderLocalGscOpportunity(route, resolvedCity);
+  const resolvedHeroTitle = resolveLocalHeroTitle(
+    route,
+    resolveField(content.hero_h1, fallback.hero_h1, resolvedCity, "de"),
+    resolvedCity,
+  );
 
   return (
     <SpecialtyPageLayout
@@ -550,7 +584,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
       dict={localeDict}
       city={resolvedCity}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, resolvedCity, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, resolvedCity, "de")}
+      heroTitle={resolvedHeroTitle}
       heroText={resolveField(content.hero_p, fallback.hero_p, resolvedCity, "de")}
       ctaText={resolveField(content.cta, fallback.cta, resolvedCity, "de")}
       breadcrumbs={getLocalSeoBreadcrumbs(route)}
@@ -800,11 +834,9 @@ export default async function CoreServicePage({ params }: PageProps) {
             <div className="mt-8 flex justify-center">
               <Link
                 href={coreContactHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={coreLead.trackingService}
                 data-city={coreLead.trackingCity}
-                data-page-intent={coreLead.trackingIntent}
-                data-priority={coreLead.priority}
                 data-cta-label={coreLead.ctaLabel}
                 data-destination={coreContactHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white shadow-sm transition hover:bg-primary"

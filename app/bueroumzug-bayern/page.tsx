@@ -44,7 +44,7 @@ export default async function BueroUmzugBayernPage({ params }: PageProps) {
       dict={localeDict}
       city={city}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+      heroTitle="Büroumzug in Bayern planen"
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale,
     path: 'blog/wohnungsaufloesung-was-tun',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Wohnungsauflösung im Todesfall: Leitfaden | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung im Todesfall",
   });
 }
