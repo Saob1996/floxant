@@ -1251,6 +1251,16 @@
       "regions": []
     },
     {
+      "title": "Welche Fotos helfen bei einer ersten Einschätzung?",
+      "description": "Hilfreich sind Übersichtsaufnahmen, Zugänge, Laufwege und auffällige oder schwer beschreibbare Bereiche.",
+      "url": "/kontakt",
+      "locale": "de",
+      "type": "Frage",
+      "regions": [
+        "Deutschland"
+      ]
+    },
+    {
       "title": "Wohnungsauflösung",
       "description": "Auflösung einer Wohnung nach Auszug, Nachlass oder Leerstand mit Freigabe und vereinbartem Zielzustand.",
       "url": "/regensburg/wohnungsaufloesung",
