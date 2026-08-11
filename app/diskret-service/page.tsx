@@ -42,9 +42,9 @@ export const metadata: Metadata = generatePageSEO({
     "Sensible Anfrage? Beschreiben Sie Umzug, Entrümpelung, Auflösung, Reinigung oder ein Angebot mit wenigen vertraulichen Angaben.",
 });
 
-const primaryHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskret-service-anfrage&source=seo";
-const caseHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskreter-fall&source=seo";
-const offerHref = "/kontakt?service=angebotscheck&city=duesseldorf&intent=diskretes-angebot-pruefen&source=seo";
+const primaryHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskret-service-anfrage&source=website";
+const caseHref = "/kontakt?service=diskret-service&city=duesseldorf&intent=diskreter-fall&source=website";
+const offerHref = "/kontakt?service=angebotscheck&city=duesseldorf&intent=diskretes-angebot-pruefen&source=website";
 
 const quickTrust = [
   "Bevorzugter Kontaktweg kann angegeben werden.",
@@ -109,7 +109,7 @@ const serviceLinks = [
   {
     title: "Diskrete Entrümpelung",
     text: "Räume, Menge, Freigabe, Fotos und Reinigung danach ruhig einordnen.",
-    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung&source=seo",
+    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung&source=website",
     Icon: ClipboardCheck,
   },
   {
@@ -172,12 +172,12 @@ const localLinks = [
   {
     title: "Regensburg diskret starten",
     text: "Für Entrümpelung, Umzug, Wohnungsauflösung, Reinigung oder Übergabe im echten Servicegebiet.",
-    href: "/kontakt?service=diskret-service&city=regensburg&intent=diskrete-entruempelung-regensburg&source=seo",
+    href: "/kontakt?service=diskret-service&city=regensburg&intent=diskrete-entruempelung-regensburg&source=website",
   },
   {
     title: "Düsseldorf diskret starten",
     text: "Für lokale Entrümpelung oder Haushaltsauflösung in Düsseldorf ohne Fake-Niederlassung.",
-    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung-duesseldorf&source=seo",
+    href: "/kontakt?service=diskret-service&city=duesseldorf&intent=diskrete-entruempelung-duesseldorf&source=website",
   },
   {
     title: "Angebot sensibel prüfen",
@@ -269,11 +269,9 @@ function TrackingLink({
     <Link
       href={href}
       className={className}
-      data-event="seo_cta_click"
+      data-event="request_cta_click"
       data-service={query.get("service") || "diskret-service"}
       data-city={query.get("city") || "deutschland"}
-      data-page-intent={query.get("intent") || "diskret-service"}
-      data-priority="p0"
       data-cta-label={label}
       data-destination={href}
     >
@@ -576,7 +574,7 @@ export default function DiskretServicePage() {
                 FLOXANT can help structure sensitive moving, decluttering, house clearance or cleaning requests
                 without requiring unnecessary details in the first step.
               </p>
-              <Link href="/kontakt?service=diskret-service&city=duesseldorf&intent=english-discreet-request&source=seo" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
+              <Link href="/kontakt?service=diskret-service&city=duesseldorf&intent=english-discreet-request&source=website" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
                 Start discreet request in English
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

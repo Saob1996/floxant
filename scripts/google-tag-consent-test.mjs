@@ -524,7 +524,7 @@ for (const relativePath of [
   const harness = createConversionReporterHarness(false);
   assert.equal(
     harness.reporter.trackConversion({
-      event: "seo_cta_click",
+      event: "request_cta_click",
       email: "person@example.com",
       phone: "+491234567890",
     }),
@@ -554,7 +554,7 @@ for (const relativePath of [
 
   assert.equal(
     harness.reporter.trackConversion({
-      event: "seo_cta_click",
+      event: "request_cta_click",
       source: "global_header",
       channel: "form",
       href:

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -300,11 +300,9 @@ export default function WohnungsaufloesungRegensburgPage() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="wohnungsaufloesung"
                   data-city="regensburg"
-                  data-page-intent="wohnungsaufloesung-regensburg"
-                  data-priority="p2"
                   data-cta-label="Fotos per WhatsApp senden"
                   data-destination={whatsappHref}
                   data-contact-channel="whatsapp"

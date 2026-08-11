@@ -280,7 +280,7 @@ function checkLeadToBookingComponents() {
   }
 
   const source = componentFiles.map((file) => read(path.join(ROOT, file))).join("\n");
-  const requiredSignals = ["data-event=\"seo_cta_click\"", "data-service", "data-page-intent", "data-priority"];
+  const requiredSignals = ["data-event=\"request_cta_click\"", "data-service", "data-cta-label", "data-destination"];
   const missingSignals = requiredSignals.filter((needle) => !source.includes(needle));
   return missingSignals.length
     ? result("lead-to-booking-components", "FAIL", `CTA tracking signals missing: ${missingSignals.join(", ")}.`, componentFiles)

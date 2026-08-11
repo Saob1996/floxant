@@ -148,6 +148,43 @@ function compactItems(items: Array<AdminDetailItem | null>): AdminDetailItem[] {
   return items.filter((item): item is AdminDetailItem => item !== null);
 }
 
+function mappedItem(
+  label: string,
+  details: UnknownRecord,
+  path: string,
+  consumed: Set<string>,
+  labels: Readonly<Record<string, string>>,
+): AdminDetailItem | null {
+  const rawValue = valueAt(details, path);
+  const key = typeof rawValue === "string" ? rawValue : "";
+  if (!key || !labels[key]) return null;
+  consumed.add(path);
+  return { label, path, value: labels[key] };
+}
+
+function calculatorInputItem(
+  details: UnknownRecord,
+  consumed: Set<string>,
+): AdminDetailItem | null {
+  const path = "configuration.calculatorTransfer.inputSummary";
+  const inputSummary = valueAt(details, path);
+  if (!Array.isArray(inputSummary)) return null;
+
+  const entries = inputSummary.flatMap((value) => {
+    const record = asRecord(value);
+    const label = typeof record.label === "string" ? record.label.trim() : "";
+    const itemValue = toDisplayValue(record.value);
+    return label && itemValue !== null ? [[label, itemValue] as const] : [];
+  });
+  if (!entries.length) return null;
+  consumed.add(path);
+  return {
+    label: "Eingaben",
+    path,
+    value: Object.fromEntries(entries),
+  };
+}
+
 function flattenUnknown(
   value: unknown,
   prefix: string,
@@ -279,6 +316,15 @@ export function buildAdminBookingDetailView(
   const { record: details, legacyText } = normalizeDetails(booking.details);
   const consumed = new Set<string>();
   const upgrades = toDisplayValue(parseJson(booking.upgrades));
+  for (const path of [
+    "configuration.calculatorTransfer.schemaVersion",
+    "configuration.calculatorTransfer.result.estimateType",
+    "configuration.calculatorTransfer.result.minimum",
+    "configuration.calculatorTransfer.result.maximum",
+    "configuration.calculatorTransfer.result.currency",
+  ]) {
+    consumed.add(path);
+  }
 
   const sections: AdminDetailSection[] = [
     {
@@ -909,6 +955,85 @@ export function buildAdminBookingDetailView(
             "configuration.materialTypes",
             "configuration.rawFields.materialTypes",
           ],
+          consumed,
+        ),
+      ]),
+    },
+    {
+      id: "calculator",
+      title: "Rechner-Ergebnis",
+      items: compactItems([
+        mappedItem(
+          "Rechner",
+          details,
+          "configuration.calculatorTransfer.calculatorType",
+          consumed,
+          { moving: "Umzugsrechner", cleaning: "Reinigungsrechner" },
+        ),
+        item(
+          "Version",
+          details,
+          ["configuration.calculatorTransfer.calculatorVersion"],
+          consumed,
+        ),
+        item(
+          "Berechnet am",
+          details,
+          ["configuration.calculatorTransfer.createdAt"],
+          consumed,
+        ),
+        calculatorInputItem(details, consumed),
+        mappedItem(
+          "Ergebnis",
+          details,
+          "configuration.calculatorTransfer.result.effortBand",
+          consumed,
+          {
+            small: "Kleiner Aufwand",
+            medium: "Mittlerer Aufwand",
+            large: "Größerer Aufwand",
+            manual_review: "Individuelle Prüfung erforderlich",
+          },
+        ),
+        mappedItem(
+          "Datengrundlage",
+          details,
+          "configuration.calculatorTransfer.result.confidence",
+          consumed,
+          {
+            high: "Gut",
+            medium: "Teilweise offen",
+            low: "Mehrere Angaben offen",
+          },
+        ),
+        item(
+          "Ergebnis-Erläuterung",
+          details,
+          ["configuration.calculatorTransfer.result.calculationSummary"],
+          consumed,
+        ),
+        item(
+          "Annahmen",
+          details,
+          ["configuration.calculatorTransfer.assumptions"],
+          consumed,
+        ),
+        item(
+          "Fehlende Informationen",
+          details,
+          ["configuration.calculatorTransfer.missingInformation"],
+          consumed,
+        ),
+        item(
+          "Zusatzleistungen",
+          details,
+          ["configuration.calculatorTransfer.selectedAdditionalServices"],
+          consumed,
+        ),
+        item(
+          "Hinweis aus dem Rechner",
+          details,
+          ["configuration.calculatorTransfer.enquiryNote"],
           consumed,
         ),
       ]),

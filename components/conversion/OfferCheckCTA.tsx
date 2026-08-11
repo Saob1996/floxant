@@ -22,7 +22,7 @@ export function OfferCheckCTA({
   service = "angebot-pruefen",
   city,
   intent = "angebot-pruefen",
-  source = "seo",
+  source = "website",
   ctaLabel = "Angebot prüfen lassen",
   className = "",
 }: OfferCheckCTAProps) {
@@ -53,8 +53,6 @@ export function OfferCheckCTA({
           data-event={cta.dataAttributes.event}
           data-service={cta.dataAttributes.service}
           data-city={cta.dataAttributes.city}
-          data-page-intent={cta.dataAttributes.pageIntent}
-          data-priority={cta.dataAttributes.priority}
           data-source={cta.dataAttributes.source}
           data-cta-label={cta.dataAttributes.ctaLabel}
           data-destination={cta.dataAttributes.destination}

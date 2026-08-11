@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, ShieldCheck } from "lucide-react";
 
 export type FinderService = {
-  id: string;
   title: string;
   description: string;
   category: "cleaning" | "moving" | "clearance" | "offer_check";
@@ -21,10 +20,9 @@ export type FinderService = {
 };
 
 export type FinderSignature = {
-  id: string;
   title: string;
   problem: string;
-  serviceIds: string[];
+  relatedServiceRoutes: string[];
   regions: string[];
   canonicalRoute: string;
 };
@@ -135,15 +133,15 @@ export function StrategicServiceFinder({
     }).sort((a, b) => b.score - a.score || a.service.title.localeCompare(b.service.title, locale));
     const primary = ranked[0]?.service;
     const addOn = answers.situation === "combined"
-      ? eligibleServices.find((service) => service.id !== primary?.id && service.category !== primary?.category && service.category !== "offer_check")
+      ? eligibleServices.find((service) => service.canonicalRoute !== primary?.canonicalRoute && service.category !== primary?.category && service.category !== "offer_check")
       : undefined;
     const eligibleSignatures = signatures.filter((item) => !answers.region || item.regions.includes(answers.region));
     const signature = eligibleSignatures.find((item) => {
-      if (answers.hasOffer === "yes" && /offer|angebot|quote/i.test(`${item.id} ${item.title}`)) return true;
-      if (answers.situation === "sensitive" && /diskret|sensitive/i.test(`${item.id} ${item.title}`)) return true;
-      if (answers.situation === "deadline" && /plan|uebergabe|handover/i.test(`${item.id} ${item.title}`)) return true;
-      if (answers.specialRequirements.includes("handover") && /uebergabe|handover/i.test(`${item.id} ${item.title}`)) return true;
-      return primary ? item.serviceIds.includes(primary.id) : false;
+      if (answers.hasOffer === "yes" && /offer|angebot|quote/i.test(`${item.canonicalRoute} ${item.title}`)) return true;
+      if (answers.situation === "sensitive" && /diskret|sensitive/i.test(`${item.canonicalRoute} ${item.title}`)) return true;
+      if (answers.situation === "deadline" && /plan|uebergabe|handover/i.test(`${item.canonicalRoute} ${item.title}`)) return true;
+      if (answers.specialRequirements.includes("handover") && /uebergabe|handover/i.test(`${item.canonicalRoute} ${item.title}`)) return true;
+      return primary ? item.relatedServiceRoutes.includes(primary.canonicalRoute) : false;
     });
     const requiredDetails = [
       ...(primary?.requiredDetails ?? []),

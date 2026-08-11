@@ -28,7 +28,6 @@ import {
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -90,11 +89,10 @@ function pageJsonLd(page: PsychologicalCleaningLandingPage) {
         about: [page.serviceName, page.category, ...page.searchIntents, "Regensburg", "Oberpfalz", "Bayern"],
         potentialActions: [
           { type: "ContactAction", name: "WhatsApp Anfrage", target: whatsappUrl(page) },
-          { type: "ContactAction", name: "Telefon Anfrage", target: "/kontakt?mode=neutral&source=seo" },
+          { type: "ContactAction", name: "Telefon Anfrage", target: "/kontakt?mode=neutral&source=website" },
           { name: "Buchung starten", target: bookingUrl(page) },
         ],
       }),
-      buildFaqJsonLd(page.faqItems),
       {
         "@type": "ItemList",
         name: `Interne Empfehlungen zu ${page.serviceName}`,

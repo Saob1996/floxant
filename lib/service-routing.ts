@@ -581,7 +581,6 @@ export function buildServiceContactHref(input: ServiceRouteInput = {}) {
   params.set("service", requestService.id);
   params.set("city", location);
   if (intent) params.set("intent", intent);
-  params.set("priority", priority);
   params.set("source", source);
 
   const anchor = input.anchor === "" ? "" : input.anchor || "direktanfrage";

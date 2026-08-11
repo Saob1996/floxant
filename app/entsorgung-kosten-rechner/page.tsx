@@ -7,6 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{}> }) {
   return {
     title: dict.pages?.calc_entsorgung?.meta_title || "FLOXANT",
     description: dict.pages?.calc_entsorgung?.meta_desc || "FLOXANT",
+    alternates: { canonical: "/entsorgung-kosten-rechner" },
   };
 }
 export default async function EntsorgungKostenRechnerPage() {

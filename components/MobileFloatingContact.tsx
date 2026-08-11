@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
-import { resolveCtaConfig } from "@/lib/cta-config";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 export default function MobileFloatingContact() {
@@ -18,36 +18,10 @@ export default function MobileFloatingContact() {
 
   if (isPrivatePath) return null;
 
-  const city = pathname.includes("duesseldorf")
-    ? "duesseldorf"
-    : pathname.includes("regensburg")
-      ? "regensburg"
-      : "deutschland";
-  const requestCta = resolveCtaConfig({
-    ctaKey: "mobile-sticky",
-    label: "Anfrage",
-    service: "sonstiges",
-    city,
-    intent: "allgemeine-anfrage",
-    priority: "p1",
-    source: "floating",
-  });
-  const offerCta = resolveCtaConfig({
-    ctaKey: "offer-check",
-    label: "Angebot",
-    service: "angebot-pruefen",
-    city,
-    intent: "angebot-pruefen",
-    priority: "p0",
-    source: "floating",
-  });
+  const requestHref = buildGlobalRequestHref("global_floating");
+  const offerHref = "/angebotscheck";
   const budgetHref = "/anfrage-mit-preisrahmen";
-  const whatsappText =
-    city === "duesseldorf"
-      ? "Hallo FLOXANT, ich möchte eine Anfrage in Düsseldorf stellen."
-      : city === "regensburg"
-        ? "Hallo FLOXANT, ich möchte eine Anfrage in Regensburg stellen."
-        : "Hallo FLOXANT, ich möchte eine Anfrage stellen.";
+  const whatsappText = "Hallo FLOXANT, ich möchte eine Anfrage stellen.";
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappText);
 
   return (
@@ -55,17 +29,13 @@ export default function MobileFloatingContact() {
       <div className="flox-mobile-action-shell safe-area-bottom">
         <div className="flox-mobile-action-grid">
           <Link
-            href={requestCta.href}
+            href={requestHref}
             className="flox-mobile-action flox-mobile-action-primary"
             aria-label="Anfrage an FLOXANT senden"
-            data-event="seo_cta_click"
-            data-source="floating_contact"
-            data-service={requestCta.dataAttributes.service}
-            data-city={requestCta.dataAttributes.city}
-            data-page-intent={requestCta.dataAttributes.pageIntent}
-            data-priority={requestCta.dataAttributes.priority}
-            data-cta-label={requestCta.dataAttributes.ctaLabel}
-            data-destination={requestCta.dataAttributes.destination}
+            data-event="request_cta_click"
+            data-source="global_floating"
+            data-cta-label="Anfrage"
+            data-destination={requestHref}
           >
             <ClipboardCheck aria-hidden="true" />
             <span className="flox-mobile-action-copy">
@@ -95,7 +65,7 @@ export default function MobileFloatingContact() {
             href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
             className="flox-mobile-action flox-mobile-action-light"
             aria-label="FLOXANT anrufen"
-            data-event="seo_phone_click"
+            data-event="phone_click"
             data-source="floating_contact"
           >
             <Phone aria-hidden="true" />
@@ -122,16 +92,12 @@ export default function MobileFloatingContact() {
           </a>
 
           <Link
-            href={offerCta.href}
+            href={offerHref}
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Vorhandenes Angebot prüfen lassen"
             data-event="service_card_click"
             data-source="floating_contact"
-            data-service={offerCta.dataAttributes.service}
-            data-city={offerCta.dataAttributes.city}
-            data-page-intent={offerCta.dataAttributes.pageIntent}
-            data-priority={offerCta.dataAttributes.priority}
-            data-destination={offerCta.dataAttributes.destination}
+            data-destination={offerHref}
           >
             <FileSearch aria-hidden="true" />
             <span className="flox-mobile-action-copy">
@@ -146,7 +112,6 @@ export default function MobileFloatingContact() {
             aria-label="Budget oder Preisrahmen nennen"
             data-event="service_card_click"
             data-source="floating_contact"
-            data-page-intent="preisrahmen"
             data-destination={budgetHref}
           >
             <BadgeEuro aria-hidden="true" />

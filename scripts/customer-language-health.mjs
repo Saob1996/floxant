@@ -426,7 +426,6 @@ function scanEntry(entry, context) {
 
 const files = SOURCE_ROOTS.flatMap((root) => walk(path.join(ROOT, root)))
   .filter((file) => !EXCLUDED_PARTS.some((part) => file.includes(part)))
-  .filter((file) => path.relative(ROOT, file).replaceAll("\\", "/") !== "data/bookings.json")
   .sort();
 
 const findings = [];

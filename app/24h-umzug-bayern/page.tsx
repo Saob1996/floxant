@@ -38,6 +38,7 @@ export default async function TwentyFourHourUmzugBayernPage({ params }: PageProp
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/24h-umzug-bayern"
       lang="de"
       dict={localeDict}
       city={city}

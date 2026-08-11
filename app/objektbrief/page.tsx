@@ -24,7 +24,7 @@ import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/objektbrief";
 const canonical = `${company.url}${path}`;
-const objectBriefContactHref = "/kontakt?service=reinigung&city=regensburg&intent=objektbrief-uebergabe&source=seo";
+const objectBriefContactHref = "/kontakt?service=reinigung&city=regensburg&intent=objektbrief-uebergabe&source=website";
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -197,11 +197,9 @@ export default function ObjektbriefPage() {
               <Link
                 href={objectBriefContactHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service="reinigung"
                 data-city="regensburg"
-                data-page-intent="objektbrief-uebergabe"
-                data-priority="p1"
                 data-cta-label="Objektbrief anfragen"
                 data-destination={objectBriefContactHref}
               >

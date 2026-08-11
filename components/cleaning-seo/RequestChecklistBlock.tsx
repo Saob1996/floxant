@@ -52,7 +52,7 @@ export function RequestChecklistBlock({
           </p>
           <Link
             href={ctaHref}
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-region="regensburg"
             data-service="reinigung"
             data-source="request_checklist_block"

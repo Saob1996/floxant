@@ -28,6 +28,8 @@ export default async function EntrümpelungKostenRegensburg() {
   };
   const serviceJsonLd = {
     "@context": "https://schema.org", "@type": "Service",
+    "name": "Entrümpelung in Regensburg",
+    "url": "https://www.floxant.de/entruempelung-kosten-regensburg",
     "serviceType": "Entrümpelung, Haushaltsauflösung",
     "provider": { "@type": "LocalBusiness", "name": "FLOXANT Entrümpelung Regensburg", "telephone": "+4915771105087" },
     "areaServed": { "@type": "City", "name": "Regensburg" }

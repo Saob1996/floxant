@@ -5,7 +5,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Haushaltsauflösung & Entrümpelung in Bayern | FLOXANT Blog",
-  description: "Ein seriöser Leitfaden für Räumung, Wertanrechnung, Materialtrennung und fachgerechte Entsorgung in Bayern."
+  description: "Ein seriöser Leitfaden für Räumung, Wertanrechnung, Materialtrennung und fachgerechte Entsorgung in Bayern.",
+  alternates: { canonical: "/blog/entruempelung-bayern-leitfaden" },
 };
 
 export default function BlogPost() {

@@ -1,6 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { pathToFileURL } = require("node:url");
+const { loadTypeScriptModule } = require("./lib/load-typescript-module.cjs");
 
 const root = process.cwd();
 const appRoot = path.join(root, "app");
@@ -88,8 +88,8 @@ function addFinding(findings, finding) {
 }
 
 async function main() {
-  const registryUrl = pathToFileURL(path.join(root, "lib", "services", "service-registry.ts")).href;
-  const { serviceRegistry, publicServices } = await import(registryUrl);
+  const registryPath = path.join(root, "lib", "services", "service-registry.ts");
+  const { serviceRegistry, publicServices } = loadTypeScriptModule(registryPath, { projectRoot: root });
   const sourceFiles = walkFiles(root, (file) => sourceExtensions.has(path.extname(file)));
   const sourceCache = new Map(sourceFiles.map((file) => [file, read(file)]));
   const findings = [];
@@ -144,7 +144,9 @@ async function main() {
     const visibleOnHub = service.hubRoutes.some((hubRoute) => {
       const hubFile = routeToStaticPage(hubRoute);
       const content = read(hubFile);
-      const registryBackedCatalog = content.includes("ServiceCatalog") && content.includes("publicServices");
+      const registryBackedCatalog = content.includes("ServiceCatalog")
+        && ["publicServices", "publicServiceContents", "getPublicServiceContentsByLocale"]
+          .some((selector) => content.includes(selector));
       return registryBackedCatalog
         || serviceRoutes.some((route) => content.includes(route))
         || fold(content).includes(fold(service.germanName.replace(/^FLOXANT\s+/i, "")));

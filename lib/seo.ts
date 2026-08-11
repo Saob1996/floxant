@@ -14,7 +14,7 @@ import { getSearchIntentMetaTags } from "@/lib/search-intent-keywords";
 const BASE_URL = company.url;
 const OG_IMAGE = `${BASE_URL}/opengraph-image`;
 const TWITTER_IMAGE = `${BASE_URL}/twitter-image`;
-const SOCIAL_IMAGE_BASE = `${BASE_URL}/seo-image`;
+const SOCIAL_IMAGE_BASE = `${BASE_URL}/share-image`;
 const TITLE_LIMIT = 68;
 const DESCRIPTION_LIMIT = 220;
 const SIGNATURE_ROOT_SLUGS = new Set([
@@ -167,11 +167,17 @@ function trimDescription(description: string) {
 }
 
 function isDuesseldorfRoute(path: string) {
-  return path.includes("regensburg");
+  return path.includes("duesseldorf");
 }
 
 function isDuesseldorfDisposalRoute(path: string) {
   return isDuesseldorfRoute(path) && path.includes("entsorgung");
+}
+
+function getRegionalRouteLabel(path: string) {
+  if (path.includes("duesseldorf")) return "Düsseldorf";
+  if (path.includes("regensburg")) return "Regensburg";
+  return null;
 }
 
 function getDescriptionExpansion(path: string, geoPlacename: string) {
@@ -182,14 +188,15 @@ function getDescriptionExpansion(path: string, geoPlacename: string) {
     return `${serviceLabel}, Fotos, Termin, Zugang, vorhandenes Angebot und Preisrahmen für ${geoPlacename} übersichtlich senden.`;
   }
 
-  if (isDuesseldorfRoute(path)) {
+  const regionalRouteLabel = getRegionalRouteLabel(path);
+  if (regionalRouteLabel) {
     if (path.includes("bueroreinigung") || path.includes("b2b")) {
       return "Fläche, Frequenz, Zeitfenster und Fotos für kleine Unternehmen direkt senden.";
     }
-    if (isDuesseldorfDisposalRoute(path)) {
-      return "Fotos, Umfang, Zugang und Termin für Entsorgung in Regensburg prüfen lassen.";
+    if (path.includes("entsorgung")) {
+      return `Fotos, Umfang, Zugang und Termin für Entsorgung in ${regionalRouteLabel} prüfen lassen.`;
     }
-    return "Regensburg-Service nach Leistung, Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.";
+    return `${regionalRouteLabel}-Service nach Leistung, Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.`;
   }
 
   if (path.includes("angebot-guenstiger")) {
@@ -363,6 +370,8 @@ function isPrivateRoute(path: string) {
 
 function isLowValueRoute(path: string) {
   if (REDIRECTED_NOINDEX_ROUTES.has(path)) return true;
+  const canonicalTarget = LEGACY_CANONICAL_PATHS[path];
+  if (canonicalTarget && canonicalTarget !== path) return true;
 
   if (
     LOW_VALUE_NOINDEX_PREFIXES.some(

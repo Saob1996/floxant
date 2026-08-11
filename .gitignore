@@ -9,5 +9,6 @@ out
 .env.local
 .env.production
 data/private/search-console/
+data/bookings.json
 public/uploads
 *.log

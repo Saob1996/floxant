@@ -71,7 +71,6 @@ export default function EnglishHubPage() {
       <PriorityFaqSection
         route="/en"
         locale="en"
-        includeJsonLd
         className="border-t border-slate-200 bg-slate-50"
       />
     </main>

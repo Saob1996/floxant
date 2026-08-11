@@ -22,7 +22,6 @@ import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -213,12 +212,9 @@ export default function EntsorgungDuesseldorfPage() {
       },
     ],
   };
-  const faqJsonLd = buildFaqJsonLd(faqs);
-
   return (
     <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fffaf4_0%,#f8fbff_42%,#edf4f8_100%)] text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Breadcrumbs items={[{ label: "Entsorgung Düsseldorf" }]} />
 
       <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20">

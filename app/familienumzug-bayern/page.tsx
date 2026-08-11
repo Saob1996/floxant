@@ -100,6 +100,7 @@ export default async function FamilienumzugBayernPage({
   };
   return (
     <SpecialtyPageLayout
+      pagePath="/familienumzug-bayern"
         lang="de"
         dict={localeDict}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}

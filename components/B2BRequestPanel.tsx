@@ -45,11 +45,9 @@ export function B2BRequestPanel({ city = "duesseldorf" }: B2BRequestPanelProps) 
           <Link
             href={href}
             className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-cyan-900"
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-service="bueroreinigung"
             data-city={city}
-            data-page-intent="b2b-bueroreinigung"
-            data-priority="p0"
             data-cta-label="B2B-Reinigung anfragen"
             data-destination={href}
           >

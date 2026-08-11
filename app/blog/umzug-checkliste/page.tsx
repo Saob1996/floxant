@@ -22,7 +22,9 @@ export default async function BlogUmzugCheckliste() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Umzug Checkliste: Zeitplan und wichtige Punkte",
+    "description": "Vom Packen bis zur Ummeldung: eine klare Umzug-Checkliste für eine bessere Vorbereitung.",
     "author": { "@type": "Organization", "name": "FLOXANT Redaktion" },
+    "publisher": { "@type": "Organization", "name": "FLOXANT" },
     "datePublished": "2024-03-26T08:00:00+01:00",
   };
   

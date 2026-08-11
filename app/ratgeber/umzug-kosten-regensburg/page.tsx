@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-kosten-regensburg',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzugskosten in Regensburg einordnen | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug Kosten Regensburg",
   });
 }

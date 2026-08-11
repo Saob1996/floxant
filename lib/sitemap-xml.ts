@@ -69,6 +69,11 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "duesseldorf/umzug",
 ]);
 
+const CANONICAL_ALIAS_ROUTES = new Set([
+  "duesseldorf/entsorgung",
+  "seniorenumzug",
+]);
+
 const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
   "umzug",
   "umzugs",
@@ -277,6 +282,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
+    CANONICAL_ALIAS_ROUTES.has(normalizedRoute) ||
     CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.has(normalizedRoute) ||
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||

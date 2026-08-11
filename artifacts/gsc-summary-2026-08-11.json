@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "1.0.0",
+  "exportDate": "2026-08-11",
+  "property": "https://www.floxant.de/",
+  "sourceStorage": "data/private/search-console/2026-08-11/",
+  "rawFilesCommitted": false,
+  "validation": {
+    "status": "PASS",
+    "requiredCsvFiles": [
+      "Diagramm.csv",
+      "Suchanfragen.csv",
+      "Seiten.csv",
+      "Länder.csv",
+      "Geräte.csv",
+      "Darstellung in der Suche.csv",
+      "Filter.csv"
+    ],
+    "validatedCsvFileCount": 7,
+    "rowCounts": {
+      "chart": 28,
+      "queries": 778,
+      "pages": 616,
+      "countries": 83,
+      "devices": 3,
+      "appearances": 0,
+      "filters": 2
+    },
+    "utf8": "PASS",
+    "headers": "PASS",
+    "columnCounts": "PASS",
+    "numericValues": "PASS",
+    "ctrReconciliationWithinDisplayRounding": "PASS",
+    "uniqueQueryAndPageLabels": "PASS",
+    "dateRange": {
+      "start": "2026-07-12",
+      "end": "2026-08-08",
+      "days": 28,
+      "continuous": true
+    },
+    "filter": {
+      "searchType": "Web",
+      "period": "Letzte 28 Tage"
+    },
+    "searchAppearanceRows": 0,
+    "chartMatchesDeviceTotals": true,
+    "chartMatchesCountryTotals": true,
+    "privateSourceGitIgnored": true,
+    "privateSourceTrackedFiles": 0,
+    "sourceFilesUnmodifiedDuringImport": true
+  },
+  "overall": {
+    "clicks": 67,
+    "impressions": 13093,
+    "ctrPercent": 0.51,
+    "weightedAveragePosition": 16.71
+  },
+  "separateDimensionAggregates": {
+    "queries": {
+      "rows": 778,
+      "clicks": 11,
+      "impressions": 10153
+    },
+    "pages": {
+      "rows": 616,
+      "clicks": 67,
+      "impressions": 15086
+    },
+    "reconciliationRule": "Query- und Seitenwerte sind getrennte Dimension-Aggregate und werden weder miteinander noch ersatzweise mit den Site-Gesamtwerten summiert."
+  },
+  "dimensionCoverage": {
+    "queryClickCoveragePercent": 16.42,
+    "queryImpressionCoveragePercent": 77.55,
+    "pageClickRatioPercent": 100,
+    "pageImpressionRatioPercent": 115.22,
+    "ratiosAreDiagnosticOnly": true
+  },
+  "sourceDeduplication": {
+    "processedLogicalCsvTables": 7,
+    "processedArchives": 0,
+    "ignoredArchives": [
+      "gsc-export-2026-08-11.zip"
+    ],
+    "logicalTablesProcessedExactlyOnce": true
+  },
+  "devices": {
+    "mobile": {
+      "clicks": 45,
+      "impressions": 3900,
+      "ctrPercent": 1.15,
+      "position": 12.22
+    },
+    "desktop": {
+      "clicks": 21,
+      "impressions": 9014,
+      "ctrPercent": 0.23,
+      "position": 18.52
+    },
+    "tablet": {
+      "clicks": 1,
+      "impressions": 179,
+      "ctrPercent": 0.56,
+      "position": 24.09
+    }
+  },
+  "desktopCtrGap": {
+    "mobileMinusDesktopPercentagePoints": 0.92,
+    "desktopCtrIndexVsMobilePercent": 20,
+    "desktopMinusMobilePosition": 6.3,
+    "desktopImpressionSharePercent": 68.85,
+    "scenarioAdditionalDesktopClicksAtMobileCtr": 82.66,
+    "scenarioIsNotForecast": true
+  },
+  "countryFocus": {
+    "germany": {
+      "clicks": 62,
+      "impressions": 12324,
+      "ctrPercent": 0.5,
+      "position": 16.37
+    }
+  },
+  "methodology": {
+    "queryAndPageExportsAreSeparateAggregates": true,
+    "queryToUrlRelationsAreNotTreatedAsProof": true,
+    "allowedRelationLabels": [
+      "CONFIRMED",
+      "LIKELY",
+      "UNCLEAR",
+      "MANUAL_REVIEW"
+    ],
+    "confirmedQueryToUrlMappings": 0,
+    "redirectsInferred": false,
+    "redirectRecommendations": [],
+    "urlIntentReviewRelationStatus": "MANUAL_REVIEW",
+    "allowedClassifications": [
+      "PROTECT_WINNER",
+      "HIGH_IMPRESSIONS_LOW_CTR",
+      "POSITION_1_TO_5_NO_CLICK",
+      "POSITION_6_TO_10_LOW_CTR",
+      "POSITION_11_TO_20",
+      "URL_INTENT_MISMATCH",
+      "TECHNICAL_CANNIBALIZATION",
+      "LIKELY_CANNIBALIZATION",
+      "CONTENT_OVERLAP",
+      "WEAK_SERVICE_PAGE",
+      "NEW_OR_LOW_DATA",
+      "IRRELEVANT_QUERY",
+      "MANUAL_REVIEW"
+    ],
+    "technicalCannibalizationConfirmedFromGscAggregates": 0,
+    "contentOverlapConfirmedFromGscAggregates": 0
+  },
+  "opportunityCounts": {
+    "queries": {
+      "PROTECT_WINNER": 6,
+      "HIGH_IMPRESSIONS_LOW_CTR": 18,
+      "POSITION_1_TO_5_NO_CLICK": 44,
+      "POSITION_6_TO_10_LOW_CTR": 45,
+      "POSITION_11_TO_20": 47,
+      "URL_INTENT_MISMATCH": 0,
+      "TECHNICAL_CANNIBALIZATION": 0,
+      "LIKELY_CANNIBALIZATION": 0,
+      "CONTENT_OVERLAP": 0,
+      "WEAK_SERVICE_PAGE": 0,
+      "NEW_OR_LOW_DATA": 558,
+      "IRRELEVANT_QUERY": 2,
+      "MANUAL_REVIEW": 170
+    },
+    "pages": {
+      "PROTECT_WINNER": 4,
+      "HIGH_IMPRESSIONS_LOW_CTR": 11,
+      "POSITION_1_TO_5_NO_CLICK": 7,
+      "POSITION_6_TO_10_LOW_CTR": 25,
+      "POSITION_11_TO_20": 18,
+      "URL_INTENT_MISMATCH": 0,
+      "TECHNICAL_CANNIBALIZATION": 0,
+      "LIKELY_CANNIBALIZATION": 2,
+      "CONTENT_OVERLAP": 0,
+      "WEAK_SERVICE_PAGE": 8,
+      "NEW_OR_LOW_DATA": 524,
+      "IRRELEVANT_QUERY": 0,
+      "MANUAL_REVIEW": 33
+    },
+    "calculatorQueryRows": 25,
+    "calculatorPageRows": 4,
+    "urlIntentReviewPages": 2
+  },
+  "gscPriorityFramework": {
+    "P0": [
+      "/duesseldorf/reinigung"
+    ],
+    "P1": [
+      "/duesseldorf/bueroreinigung",
+      "/duesseldorf/praxisreinigung",
+      "/duesseldorf/fensterreinigung",
+      "/duesseldorf/grundreinigung",
+      "/duesseldorf/unterhaltsreinigung",
+      "/duesseldorf/baureinigung",
+      "/regensburg/umzug"
+    ],
+    "P2": [
+      "/regensburg/entruempelung",
+      "/regensburg/wohnungsaufloesung",
+      "/reinigungsfirma-angebot"
+    ]
+  },
+  "observedPriorityPages": {
+    "P0": [
+      "/duesseldorf/reinigung"
+    ],
+    "P1": [
+      "/duesseldorf/praxisreinigung",
+      "/rechner",
+      "/duesseldorf/bueroreinigung",
+      "/regensburg/umzug",
+      "/duesseldorf/grundreinigung",
+      "/duesseldorf/fensterreinigung",
+      "/umzug-kosten-rechner",
+      "/reinigung-preis-rechner"
+    ],
+    "P2": [
+      "/regensburg/entruempelung",
+      "/reinigungsfirma-angebot",
+      "/duesseldorf/gewerbereinigung",
+      "/duesseldorf/reinigungsfirma",
+      "/regensburg/wohnungsaufloesung",
+      "/duesseldorf/reinigungsdienst",
+      "/entsorgung-kosten-rechner"
+    ]
+  },
+  "protectedWinnerQueries": [
+    "grundreinigung wohnung düsseldorf",
+    "floxant",
+    "bauendreinigung düsseldorf",
+    "grundreinigung düsseldorf",
+    "grundreinigung duesseldorf",
+    "baugrundreinigung düsseldorf"
+  ],
+  "protectedWinnerPages": [
+    "/duesseldorf/reinigung",
+    "/",
+    "/klaviertransport-ergoldsbach",
+    "/duesseldorf/grundreinigung"
+  ],
+  "highImpressionLowCtrPages": [
+    "/duesseldorf/reinigung",
+    "/",
+    "/duesseldorf",
+    "/regensburg/reinigung",
+    "/duesseldorf/praxisreinigung",
+    "/regensburg/entruempelung",
+    "/duesseldorf/bueroreinigung",
+    "/reinigungsfirma-angebot",
+    "/regensburg/umzug",
+    "/duesseldorf/gewerbereinigung",
+    "/seniorenumzug-bayern"
+  ],
+  "manualCannibalizationReviewPages": [
+    "/duesseldorf/reinigungsfirma",
+    "/duesseldorf/reinigungsdienst"
+  ]
+}

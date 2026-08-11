@@ -1,6 +1,6 @@
 route,field,value,length,duplicateOf,status,note
-/duesseldorf/reinigung,title,"Reinigung Düsseldorf | Wohnung, Büro & Praxis",45,,PASS,Unique and within the review range.
-/duesseldorf/reinigung,description,"Reinigung in Düsseldorf für Wohnung, Büro, Praxis und Gewerbe. Objekt, Fläche, Turnus und Termin nennen und passende Leistung anfragen.",135,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,title,Reinigung Düsseldorf anfragen | FLOXANT,39,,PASS,Unique and within the review range.
+/duesseldorf/reinigung,description,"Wohnung, Büro, Praxis oder Gewerbefläche reinigen lassen? Senden Sie Fläche, Zustand, Turnus, Fotos und Terminwunsch an FLOXANT.",128,,PASS,Unique and within the review range.
 /duesseldorf/reinigung,h1,"Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt",78,,PASS,Unique and within the review range.
 /duesseldorf/reinigung,ogTitle,Reinigung in Düsseldorf passend zu Objekt und Umfang anfragen,61,,PASS,Unique and within the review range.
 /duesseldorf/reinigung,ogDescription,"Reinigung für Wohnung, Büro, Praxis und Gewerbe in Düsseldorf mit Objektart, Fläche, Turnus und Termin anfragen.",112,,PASS,Unique and within the review range.
@@ -85,7 +85,7 @@ route,field,value,length,duplicateOf,status,note
 /klaviertransport-regensburg,robots,"index, follow",13,,PASS,Priority public route must be indexable.
 /reinigungsfirma-angebot,title,Reinigungsfirma Angebot mit Objekt und Turnus klären,52,,PASS,Unique and within the review range.
 /reinigungsfirma-angebot,description,"Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind.",136,,PASS,Unique and within the review range.
-/reinigungsfirma-angebot,h1,Reinigungsangebot anfragen oder vorhandenes Angebot prüfen,58,,PASS,Unique and within the review range.
+/reinigungsfirma-angebot,h1,Neues Reinigungsangebot mit klaren Eckdaten anfragen,52,,PASS,Unique and within the review range.
 /reinigungsfirma-angebot,ogTitle,Reinigungsfirma Angebot anfragen,32,,PASS,Unique and within the review range.
 /reinigungsfirma-angebot,ogDescription,"Reinigungsangebot für Büro, Praxis, Wohnung, Grundreinigung oder Treppenhaus mit klaren Eckdaten vorbereiten.",109,,PASS,Unique and within the review range.
 /reinigungsfirma-angebot,canonical,https://www.floxant.de/reinigungsfirma-angebot,46,,PASS,Expected https://www.floxant.de/reinigungsfirma-angebot

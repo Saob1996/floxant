@@ -59,7 +59,7 @@ check("dynamic contact heading helper exported", routing.includes("buildContactP
 check("all selections marked noApiOnSelect", routing.includes("noApiOnSelect: true"), "Matrix records that selection is link-only.");
 check("ServiceFinder component exists", finder.includes("export function ServiceFinder"), "ContactPathChooser exports the central ServiceFinder.");
 check("ContactPathChooser remains compatible", finder.includes("export function ContactPathChooser"), "Existing import path remains stable.");
-check("Finder has CTA data attributes", ["data-event", "data-service", "data-city", "data-page-intent", "data-priority", "data-destination", "data-no-api-on-select"].every((token) => finder.includes(token)), "Finder links expose conversion-safe attributes.");
+check("Finder has public-safe CTA data attributes", ["data-event", "data-service", "data-city", "data-cta-label", "data-destination", "data-no-api-on-select"].every((token) => finder.includes(token)) && !finder.includes("data-page-intent") && !finder.includes("data-priority"), "Finder links expose only the public-safe conversion attributes.");
 check("Finder has no fetch", !/fetch\s*\(/.test(finder), "Selecting a service must not call an API.");
 check("Finder has no bookings API", !finder.includes("/api/bookings"), "Bookings API only belongs to submit flow.");
 check("Image optimization remains disabled", /images\s*:\s*{[\s\S]*unoptimized\s*:\s*true/.test(nextConfig), "next.config.js keeps images.unoptimized=true.");

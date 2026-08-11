@@ -25,6 +25,7 @@ export {
 export type GlobalRequestSource =
   | "global_header"
   | "global_mobile_header"
+  | "global_floating"
   | "global_footer"
   | "global_404";
 
@@ -92,7 +93,7 @@ function normalizeSource(value: string | null | undefined) {
   const source = normalizeRouteToken(value);
   if (!source) return "kontakt";
   if (
-    /^(?:global-(?:header|mobile-header|footer|404)|seo|service-finder|contact-selector|kontakt|booking|buchung|homepage|google-ads|google-maps|navigation|footer|mobile-nav|decision-compass|english-intent|b2b|direct)$/.test(
+    /^(?:global-(?:header|mobile-header|floating|footer|404)|seo|website|service-finder|contact-selector|kontakt|booking|buchung|homepage|google-ads|google-maps|navigation|footer|mobile-nav|decision-compass|english-intent|b2b|calculator|direct)$/.test(
       source,
     )
   ) {

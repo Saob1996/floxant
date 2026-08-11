@@ -72,20 +72,20 @@ const STATIC_METADATA_ROUTES = [
   "/robots.txt",
   "/service-graph.json",
   "/indexnow-key.txt",
-  "/seo-image/floxant",
-  "/seo-image/buchung",
-  "/seo-image/rechner",
-  "/seo-image/umzug",
-  "/seo-image/reinigung",
-  "/seo-image/entruempelung",
-  "/seo-image/bueroumzug",
-  "/seo-image/qualitaet-ablauf",
-  "/seo-image/praxisfaelle",
-  "/seo-image/kostenfaktoren",
-  "/seo-image/leistungen-vergleichen",
-  "/seo-image/anbieter-vergleichen",
-  "/seo-image/buchung-ablauf",
-  "/seo-image/kontakt",
+  "/share-image/floxant",
+  "/share-image/buchung",
+  "/share-image/rechner",
+  "/share-image/umzug",
+  "/share-image/reinigung",
+  "/share-image/entruempelung",
+  "/share-image/bueroumzug",
+  "/share-image/qualitaet-ablauf",
+  "/share-image/praxisfaelle",
+  "/share-image/kostenfaktoren",
+  "/share-image/leistungen-vergleichen",
+  "/share-image/anbieter-vergleichen",
+  "/share-image/buchung-ablauf",
+  "/share-image/kontakt",
 ];
 const DOMINANCE_MONEY_ROUTES = [
   "/",
@@ -633,7 +633,7 @@ function runDominanceCheck({ optionalOnly = false } = {}) {
   const twitterImagePath = path.join(ROOT, "app", "twitter-image.tsx");
   const trustFlowPath = path.join(ROOT, "components", "seo", "TrustFlowSection.tsx");
   const serviceAuthorityFaqPath = path.join(ROOT, "components", "seo", "ServiceAuthorityFaq.tsx");
-  const seoImageRoutePath = path.join(ROOT, "app", "seo-image", "[slug]", "route.tsx");
+  const shareImageRoutePath = path.join(ROOT, "app", "share-image", "[slug]", "route.tsx");
   const searchDominancePath = path.join(ROOT, "components", "seo", "SearchDominanceExperience.tsx");
   const manifestPath = path.join(ROOT, "app", "manifest.ts");
 
@@ -799,7 +799,7 @@ function runDominanceCheck({ optionalOnly = false } = {}) {
     failures.push("twitter/social image metadata is not wired");
   }
 
-  if (!fileContains(seoImageRoutePath, ["ImageResponse", "umzug", "reinigung", "entruempelung"]) || !fileContains(seoPath, ["seo-image"])) {
+  if (!fileContains(shareImageRoutePath, ["ImageResponse", "umzug", "reinigung", "entruempelung"]) || !fileContains(seoPath, ["share-image"])) {
     failures.push("service-specific social image route is not wired");
   }
 

@@ -118,7 +118,7 @@ export default function BlogBueroreinigungRegensburgAngebotEinholenPage() {
           { href: "/regensburg/bueroreinigung", label: "Büroreinigung anfragen" },
           { href: "/regensburg/gewerbereinigung", label: "Zur B2B-Reinigungsseite" },
           { href: "/buchung", label: "Direkt anfragen" },
-          { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt & Standort" },
+          { href: "/kontakt?mode=neutral&source=website", label: "Kontakt & Standort" },
         ]}
         faqTitle="FAQ zur Anfrage für Büroreinigung"
         faqItems={faqItems}

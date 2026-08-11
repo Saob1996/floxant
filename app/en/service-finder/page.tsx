@@ -8,7 +8,10 @@ import {
   type FinderSignature,
 } from "@/components/services/StrategicServiceFinder";
 import { company } from "@/lib/company";
-import { publicServices } from "@/lib/services/service-registry";
+import {
+  publicServices,
+  selectPublicServiceFields,
+} from "@/lib/services/service-registry";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
 import { getFaqsForService } from "@/lib/content/faq-registry";
 
@@ -70,6 +73,15 @@ const finderServices: readonly FinderService[] = publicServices
   .filter((service) => service.locale.includes("en") && Boolean(service.englishAlternativeRoute))
   .map((service) => {
     const copy = categoryCopy[service.category];
+    const publicContent = selectPublicServiceFields(service, {
+      publicTitle: service.englishName,
+      publicDescription: copy.description,
+      publicRoute: service.id === "umzug" ? "/en/regensburg/moving" : service.englishAlternativeRoute!,
+      publicCta: {
+        label: "Prepare enquiry",
+        href: `/en/contact?service=${encodeURIComponent(service.id)}`,
+      },
+    });
     const faqs = getFaqsForService(service.id, "en");
     const articles = [...new Map(
       faqs
@@ -77,18 +89,16 @@ const finderServices: readonly FinderService[] = publicServices
         .map((faq) => [faq.relatedArticle!, { href: faq.relatedArticle!, label: "Open related guide" }]),
     ).values()];
     return {
-      id: service.id,
-      title: service.englishName,
-      description: copy.description,
+      title: publicContent.publicTitle,
+      description: publicContent.publicDescription,
       category: service.category,
-      regions: [...service.regions],
+      regions: [...publicContent.publicRegions],
       audiences: [...service.audienceTypes],
       cadence: service.cadence,
       objectTypes: copy.objects,
       requiredDetails: copy.details,
-      canonicalRoute:
-        service.id === "umzug" ? "/en/regensburg/moving" : service.englishAlternativeRoute!,
-      ctaHref: `/en/contact?service=${encodeURIComponent(service.id)}`,
+      canonicalRoute: publicContent.publicRoute,
+      ctaHref: publicContent.publicCta.href,
       faqLinks: faqs.slice(0, 2).map((faq) => ({ href: `/en/questions#${faq.id}`, label: faq.question })),
       articleLinks: articles.slice(0, 2),
     };
@@ -97,10 +107,13 @@ const finderServices: readonly FinderService[] = publicServices
 const finderSignatures: readonly FinderSignature[] = publicSignatureSolutions
   .filter((solution) => Boolean(englishSignatureCopy[solution.id]))
   .map((solution) => ({
-    id: solution.id,
     title: englishSignatureCopy[solution.id].title,
     problem: englishSignatureCopy[solution.id].problem,
-    serviceIds: [...solution.serviceIds],
+    relatedServiceRoutes: solution.serviceIds.flatMap((serviceId) => {
+      const service = publicServices.find((item) => item.id === serviceId);
+      if (!service?.englishAlternativeRoute) return [];
+      return [service.id === "umzug" ? "/en/regensburg/moving" : service.englishAlternativeRoute];
+    }),
     regions: [...solution.regions],
     canonicalRoute: `/en/signature-services#solution-${solution.id}`,
   }));

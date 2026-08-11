@@ -50,9 +50,9 @@ const jsonLd = {
         "senior moving service Germany",
       ],
       potentialActions: [
-        { name: "Seniorenumzug anfragen", target: "/kontakt?mode=neutral&source=seo" },
-        { name: "Seniorenumzug-Angebot prüfen", target: "/kontakt?mode=neutral&source=seo" },
-        { name: "Diskreten Fall beschreiben", target: "/kontakt?mode=neutral&source=seo" },
+        { name: "Seniorenumzug anfragen", target: "/kontakt?mode=neutral&source=website" },
+        { name: "Seniorenumzug-Angebot prüfen", target: "/kontakt?mode=neutral&source=website" },
+        { name: "Diskreten Fall beschreiben", target: "/kontakt?mode=neutral&source=website" },
       ],
     }),
     buildServiceJsonLd({
@@ -91,7 +91,7 @@ export default function SeniorenumzugBayernPage() {
       <SeniorMovePageSections />
       <RequestChecklistBlock
         serviceKey="seniorenumzug"
-        ctaHref="/kontakt?mode=neutral&source=seo"
+        ctaHref="/kontakt?mode=neutral&source=website"
         ctaLabel="Seniorenumzug-Eckdaten vorbereiten"
         compact
       />

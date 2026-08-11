@@ -173,10 +173,10 @@ export function SourceList({ sources }: { sources: readonly { label: string; hre
   return <section className="border-t border-slate-200 pt-6"><h2 className="text-lg font-black text-slate-950">Quellen und Grundlagen</h2><ul className="mt-3 grid gap-2 text-sm font-medium text-slate-700">{sources.map((source) => <li key={`${source.label}-${source.href || "internal"}`}>{source.href ? <a className="text-blue-800 underline underline-offset-4" href={source.href} rel="noreferrer">{source.label}</a> : source.label}</li>)}</ul></section>;
 }
 
-export function LastReviewed({ date, owner, locale = "de" }: { date: string; owner: string; locale?: "de" | "en" }) {
+export function LastReviewed({ date, locale = "de" }: { date: string; locale?: "de" | "en" }) {
   return locale === "en"
-    ? <p className="text-sm font-bold text-slate-600">Last reviewed: <time dateTime={date}>{date}</time> · Responsible: {owner}</p>
-    : <p className="text-sm font-bold text-slate-600">Zuletzt inhaltlich geprüft: <time dateTime={date}>{date}</time> · Verantwortlich: {owner}</p>;
+    ? <p className="text-sm font-bold text-slate-600">Last reviewed: <time dateTime={date}>{date}</time> · FLOXANT editorial team</p>
+    : <p className="text-sm font-bold text-slate-600">Zuletzt inhaltlich geprüft: <time dateTime={date}>{date}</time> · FLOXANT Redaktion</p>;
 }
 
 export function ArticleCTA(props: { title: string; text: string; href: string; label: string }) {

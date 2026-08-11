@@ -32,7 +32,7 @@ const defaultLinks: SearchIntentLink[] = [
   { href: "/buchung", label: "Anfrage starten" },
   { href: "/rechner", label: "Budget grob einschätzen" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
-  { href: "/kontakt?mode=neutral&source=seo", label: "Rückruf oder WhatsApp" },
+  { href: "/kontakt?mode=neutral&source=website", label: "Rückruf oder WhatsApp" },
 ];
 
 const duesseldorfLinks: SearchIntentLink[] = [

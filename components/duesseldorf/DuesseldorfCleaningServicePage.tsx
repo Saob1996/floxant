@@ -111,49 +111,49 @@ const noPromiseItems = [
   "keine automatische Buchung durch eine Anfrage",
 ] as const;
 
-const cleaningContact = "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo";
+const cleaningContact = "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=website";
 const cleaningOfferContact =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=website";
 const officeContact =
-  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo";
+  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=website";
 const officeOfferContact =
-  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=website";
 const commercialContact =
-  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo";
+  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=website";
 const commercialOfferContact =
-  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=website";
 const practiceContact =
-  "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo";
+  "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=website";
 const practiceOfferContact =
-  "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=website";
 const windowContact =
-  "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo";
+  "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=website";
 const windowOfferContact =
-  "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=website";
 const deepCleaningContact =
-  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=seo";
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-duesseldorf&source=website";
 const deepCleaningOfferContact =
-  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=grundreinigung&city=duesseldorf&intent=grundreinigung-angebot-pruefen&source=website";
 const maintenanceCleaningOfferContact =
-  "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=website";
 const constructionCleaningContact =
-  "/kontakt?service=baureinigung&city=duesseldorf&intent=baureinigung-duesseldorf&source=seo";
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=bauendreinigung-duesseldorf&source=website";
 const constructionCleaningOfferContact =
-  "/kontakt?service=baureinigung&city=duesseldorf&intent=baureinigung-angebot-pruefen&source=seo";
+  "/kontakt?service=baureinigung&city=duesseldorf&intent=baureinigung-angebot-pruefen&source=website";
 const solarContact =
-  "/kontakt?mode=neutral&source=seo";
+  "/kontakt?mode=neutral&source=website";
 const solarOfferContact =
-  "/kontakt?service=angebotscheck&city=duesseldorf&intent=pv-reinigungsangebot-pruefen&source=seo";
+  "/kontakt?service=angebotscheck&city=duesseldorf&intent=pv-reinigungsangebot-pruefen&source=website";
 const propertyManagementCleaningContact =
-  "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo";
+  "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=website";
 const staircaseCleaningContact =
-  "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-duesseldorf&source=seo";
+  "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-duesseldorf&source=website";
 const maintenanceCleaningContact =
-  "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=seo";
+  "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-duesseldorf&source=website";
 const buildingCleaningContact =
-  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=objektreinigung-duesseldorf&source=seo";
+  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=objektreinigung-duesseldorf&source=website";
 const propertyCleaningOfferContact =
-  "/kontakt?service=angebotscheck&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo";
+  "/kontakt?service=angebotscheck&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=website";
 
 const commonNeeds = [
   "Ort oder Stadtteil grob",
@@ -176,13 +176,211 @@ const commonEffortFactors = [
   "Fotos und vorhandenes Angebot",
 ] as const;
 
+type PageSpecificCopy = {
+  briefing: readonly string[];
+  scopeIntro: string;
+  processTitle: string;
+  processIntro: string;
+  processSteps: readonly string[];
+  effortIntro: string;
+  relatedTitle: string;
+  relatedIntro: string;
+  hubLinkLabel?: string;
+};
+
+const defaultPageSpecificCopy: PageSpecificCopy = {
+  briefing: [
+    "Objektart und ungefähre Fläche",
+    "Reinigungsart oder gewünschter Zielzustand",
+    "Turnus, Termin und Zugang",
+  ],
+  scopeIntro:
+    "Der konkrete Umfang entsteht erst aus Objekt, Bereichen, Zustand, Zugang und Termin. Die Übersicht verhindert, dass wichtige Zusatzarbeiten stillschweigend vorausgesetzt werden.",
+  processTitle: "Vom Reinigungswunsch zur klaren Rückmeldung.",
+  processIntro:
+    "FLOXANT braucht keine perfekte Ausschreibung, aber genug Eckdaten für eine seriöse Einordnung.",
+  processSteps: [
+    "Objektart und Ort angeben",
+    "Fläche, Zustand und Termin beschreiben",
+    "Fotos oder vorhandenes Angebot optional ergänzen",
+    "FLOXANT ordnet Anfrage und nächste Schritte ein",
+    "Rückmeldung über den gewünschten Kontaktweg",
+  ],
+  effortIntro:
+    "Je klarer Fläche, Objektart, Turnus und Zielzustand sind, desto besser kann FLOXANT die Anfrage einordnen. Das ersetzt keine Zusage, verhindert aber blinde Pauschalen.",
+  relatedTitle: "Reinigungsart passend zum Objekt auswählen.",
+  relatedIntro:
+    "Die Links führen zu fachlich getrennten Leistungen oder zurück zum Düsseldorfer Reinigungsüberblick.",
+};
+
+const tailoredFaqPageKeys = new Set<DuesseldorfCleaningPageKey>([
+  "reinigung",
+  "bueroreinigung",
+  "praxisreinigung",
+  "fensterreinigung",
+  "grundreinigung",
+  "unterhaltsreinigung",
+  "baureinigung",
+]);
+
+const pageSpecificCopy: Partial<Record<DuesseldorfCleaningPageKey, Partial<PageSpecificCopy>>> = {
+  bueroreinigung: {
+    briefing: [
+      "Arbeitsplätze, Besprechungsräume und Fläche",
+      "Küche, Sanitär, Papierkörbe und Turnus",
+      "Zeitfenster, Schlüsselweg und Ansprechpartner",
+    ],
+    scopeIntro:
+      "Im Büro werden Arbeitsplätze, Besprechungsräume, Empfang, Küche, Sanitär und Papierkörbe einzeln vereinbart. Fenster, Grundreinigung und Verbrauchsmaterial gehören nur dazu, wenn sie im Leistungsplan stehen.",
+    processTitle: "Bürofläche und Reinigungsplan konkret beschreiben.",
+    processIntro:
+      "Raumliste, Nutzungszeiten und Zugang machen aus einer allgemeinen Anfrage einen belastbaren Büroreinigungsauftrag.",
+    processSteps: [
+      "Arbeitsplätze, Besprechungsräume und Nebenräume auflisten",
+      "Turnus und mögliche Reinigungszeiten festlegen",
+      "Küche, Sanitär, Papierkörbe und Zusatzflächen benennen",
+      "Zugang, Schlüsselweg und Ansprechpartner abstimmen",
+    ],
+    effortIntro:
+      "Bei Büroreinigung bestimmen nicht nur Quadratmeter den Aufwand. Raumaufteilung, Personenfrequenz, Küche, Sanitär, Turnus und ein sicherer Zugang außerhalb der Arbeitszeit zählen ebenso.",
+    relatedTitle: "Büroreinigung von Gewerbe, Praxis und Grundreinigung abgrenzen.",
+    relatedIntro:
+      "Wählen Sie die Seite, die Nutzung und Leistungsrhythmus Ihres Objekts am genauesten beschreibt.",
+    hubLinkLabel: "Alle Reinigungsarten in Düsseldorf vergleichen",
+  },
+  praxisreinigung: {
+    briefing: [
+      "Empfang, Warte- und Behandlungsräume",
+      "Sanitär, sensible Bereiche und Raumanzahl",
+      "Öffnungszeiten, Reinigungsfenster und Zugang",
+    ],
+    scopeIntro:
+      "Der Leistungsplan benennt Empfang, Wartebereich, Behandlungsräume, Sanitär und sensible Zonen. Medizinische Desinfektion, OP-Reinigung oder nicht belegte Hygienezusagen werden weder vorausgesetzt noch versprochen.",
+    processTitle: "Praxisräume ohne Störung des Betriebs einordnen.",
+    processIntro:
+      "Raumanzahl, Öffnungszeiten, interne Vorgaben und der verantwortliche Kontakt gehören vor dem möglichen Start in die Abstimmung.",
+    processSteps: [
+      "Empfang, Wartebereich, Behandlungsräume und Sanitär auflisten",
+      "Sensible Bereiche und interne Vorgaben benennen",
+      "Öffnungs- und mögliche Reinigungszeiten angeben",
+      "Zugang und verantwortlichen Ansprechpartner klären",
+    ],
+    effortIntro:
+      "Praxisart, Raumanzahl, Publikumsverkehr, sensible Bereiche und enge Zeitfenster beeinflussen den Aufwand. Fachliche Hygienevorgaben müssen von der Praxis konkret vorgegeben werden.",
+    relatedTitle: "Praxisreinigung klar von Büro- und Gewerbereinigung trennen.",
+    relatedIntro:
+      "Für gemischte Flächen entscheidet die tatsächliche Nutzung, welche Fachseite und welche Angaben passen.",
+    hubLinkLabel: "Zum Überblick Reinigung Düsseldorf",
+  },
+  fensterreinigung: {
+    briefing: [
+      "Fensterzahl oder grobe Glasgröße",
+      "Innen, außen und Rahmen",
+      "Höhe, Erreichbarkeit, Termin und Fotos",
+    ],
+    scopeIntro:
+      "Glas innen und außen, Rahmen, Falze und Fensterbänke werden getrennt vereinbart. Höhe, Zugänglichkeit und sichere Erreichbarkeit müssen vor einer Zusage anhand von Beschreibung oder Fotos geprüft werden.",
+    processTitle: "Fensterflächen so beschreiben, dass der Zugang prüfbar ist.",
+    processIntro:
+      "Eine grobe Anzahl oder Größe reicht für den Start, wenn Innen- und Außenseite, Rahmen und besondere Höhen klar getrennt sind.",
+    processSteps: [
+      "Fensterzahl, Maße oder grobe Glasfläche nennen",
+      "Innen, außen, Rahmen und Falze auswählen",
+      "Etage, Höhe und Erreichbarkeit beschreiben",
+      "Übersichts- und Zugangsfotos sowie Termin ergänzen",
+    ],
+    effortIntro:
+      "Anzahl und Größe allein reichen nicht: Innen- oder Außenseite, Rahmen, Höhe, Öffnungsart, Zugänglichkeit und gewerbliche Glasflächen verändern den Aufwand deutlich.",
+    relatedTitle: "Fensterreinigung von Grund-, Büro- und Baureinigung abgrenzen.",
+    relatedIntro:
+      "Glasflächen können eine eigene Leistung oder eine ausdrücklich vereinbarte Ergänzung zu einer anderen Reinigung sein.",
+    hubLinkLabel: "Weitere Reinigungsleistungen in Düsseldorf ansehen",
+  },
+  grundreinigung: {
+    briefing: [
+      "Einmaliger Anlass, Fläche und Zustand",
+      "Böden, Küche, Sanitär und Detailflächen",
+      "Schwer erreichbare Stellen, Zugang und Fotos",
+    ],
+    scopeIntro:
+      "Grundreinigung ist ein einmaliger intensiver Auftrag mit vereinbartem Zielzustand. Böden, Küche, Sanitär und schwer erreichbare Bereiche werden benannt; Fenster oder Geräte innen sind nur nach ausdrücklicher Vereinbarung enthalten.",
+    processTitle: "Zustand und gewünschte Intensität vorab festhalten.",
+    processIntro:
+      "Fotos und konkrete Schwerpunkte zeigen besser als eine pauschale Tätigkeitsliste, wo sich stärkere oder länger aufgebaute Verschmutzung befindet.",
+    processSteps: [
+      "Objekt, Fläche und einmaligen Anlass beschreiben",
+      "Böden, Küche, Sanitär und Schwerpunkte benennen",
+      "Zustand und schwer erreichbare Bereiche fotografieren",
+      "Zielzustand, Zugang und Termin abstimmen",
+    ],
+    effortIntro:
+      "Materialien, aktueller Zustand, Detailtiefe, Möblierung und schwer erreichbare Bereiche bestimmen die Intensität. Der Auftrag bleibt von einem wiederkehrenden Unterhaltsplan getrennt.",
+    relatedTitle: "Grundreinigung von laufender Reinigung und Bauabschluss trennen.",
+    relatedIntro:
+      "Für regelmäßige Intervalle passt Unterhaltsreinigung; für Rückstände nach Bau oder Renovierung die Bauendreinigung.",
+    hubLinkLabel: "Alle Reinigungsarten in Düsseldorf einordnen",
+  },
+  unterhaltsreinigung: {
+    briefing: [
+      "Objektart, Fläche und feste Bereiche",
+      "Turnus, Wochentage und Zeitfenster",
+      "Zugang, Ansprechpartner und Leistungsplan",
+    ],
+    scopeIntro:
+      "Unterhaltsreinigung beschreibt einen wiederkehrenden Leistungsplan. Bereiche, Häufigkeit, Zeitfenster und Verantwortlichkeiten werden festgelegt; einmalige Intensivarbeiten bleiben als Grundreinigung getrennt.",
+    processTitle: "Einen wiederkehrenden Reinigungsplan vorbereiten.",
+    processIntro:
+      "Objektnutzung und gewünschter Zustand zwischen den Einsätzen helfen, einen sinnvollen Turnus statt einer pauschalen Häufigkeit zu prüfen.",
+    processSteps: [
+      "Objektart, Fläche und regelmäßig genutzte Bereiche nennen",
+      "Turnus, Wochentage und Zeitfenster vorschlagen",
+      "Leistungsumfang und gewünschte Kontrollpunkte festhalten",
+      "Zugang, Schlüsselregelung und Ansprechpartner klären",
+    ],
+    effortIntro:
+      "Nutzungsintensität, Fläche, wiederkehrender Umfang, Zeitfenster und Schlüsselorganisation prägen den Aufwand je Einsatz. Einmalige starke Verschmutzung wird separat eingeordnet.",
+    relatedTitle: "Unterhaltsreinigung von Grund- und Büroreinigung abgrenzen.",
+    relatedIntro:
+      "Der Turnus ist das Kernelement; je nach Objekt kann der Leistungsplan Büro-, Gewerbe- oder Gemeinschaftsflächen betreffen.",
+    hubLinkLabel: "Zur Auswahl Reinigung Düsseldorf",
+  },
+  baureinigung: {
+    briefing: [
+      "Bauphase, Fläche und Übergabestatus",
+      "Staub, Folien und andere Rückstände",
+      "Restarbeiten, Zugänge, Termin und Fotos",
+    ],
+    scopeIntro:
+      "Bauzwischen-, Baufein- und Bauendreinigung richten sich nach Bauphase und Übergabestatus. Baustaub, Schutzfolien und Rückstände werden beschrieben; Gefahrstoffe und Arbeiten anderer Gewerke sind nicht automatisch enthalten.",
+    processTitle: "Baufortschritt und Übergabeziel aufeinander abstimmen.",
+    processIntro:
+      "Eine Reinigung vor Abschluss stauberzeugender Restarbeiten ist anders zu planen als die letzte Vorbereitung für Abnahme, Einzug oder Übergabe.",
+    processSteps: [
+      "Bauphase, Fläche und aktuelle Restarbeiten nennen",
+      "Staub, Folien, Etiketten und Rückstände dokumentieren",
+      "Wasser, Strom, Laufwege und Zugänglichkeit klären",
+      "Gewünschten Übergabestatus und Termin abstimmen",
+    ],
+    effortIntro:
+      "Bauphase, Fläche, Staubmenge, anhaftende Rückstände, neue Oberflächen und Restarbeiten beeinflussen Umfang und Termin. Fotos zeigen, ob eine Zwischen- oder Endreinigung gemeint ist.",
+    relatedTitle: "Bauendreinigung von Grund- und Fensterreinigung trennen.",
+    relatedIntro:
+      "Der Bau- oder Renovierungsstand entscheidet; Glas- und intensive Detailarbeiten werden bei Bedarf ausdrücklich ergänzt.",
+    hubLinkLabel: "Weitere Reinigung in Düsseldorf auswählen",
+  },
+};
+
+function getPageSpecificCopy(pageKey: DuesseldorfCleaningPageKey): PageSpecificCopy {
+  return { ...defaultPageSpecificCopy, ...pageSpecificCopy[pageKey] };
+}
+
 const hubServiceCards: Card[] = [
   {
     icon: Building2,
     title: "Büroreinigung Düsseldorf",
     text: "Für Firmen, Büroflächen, Empfang, Küche, Sanitärbereiche, Turnus, Reinigungszeiten und klare Ansprechpartner.",
     href: "/duesseldorf/bueroreinigung",
-    label: "Büroreinigung ansehen",
+    label: "Leistungsumfang der Büroreinigung ansehen",
   },
   {
     icon: Store,
@@ -196,14 +394,14 @@ const hubServiceCards: Card[] = [
     title: "Praxisreinigung Düsseldorf",
     text: "Für Praxisräume, sensible Bereiche, Reinigungszeiten und sachliche Hygieneabstimmung ohne erfundene Zertifikate.",
     href: "/duesseldorf/praxisreinigung",
-    label: "Praxisreinigung vorbereiten",
+    label: "Räume für die Praxisreinigung vorbereiten",
   },
   {
     icon: PanelsTopLeft,
     title: "Fenster- und Glasreinigung",
     text: "Für Fenster, Glasflächen, Rahmen/Falze optional, Erreichbarkeit, Turnus und Terminlogik.",
     href: "/duesseldorf/fensterreinigung",
-    label: "Fensterreinigung anfragen",
+    label: "Fenster und Zugang beschreiben",
   },
   {
     icon: Sun,
@@ -216,7 +414,7 @@ const hubServiceCards: Card[] = [
     icon: ClipboardCheck,
     title: "Hausverwaltung und Übergabe",
     text: "Für Treppenhaus, Allgemeinflächen, Übergabe, Fristen oder Reinigung nach Entrümpelung mit klarer Objektbeschreibung.",
-    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=website",
     label: "Hausverwaltung anfragen",
   },
   {
@@ -238,21 +436,21 @@ const hubServiceCards: Card[] = [
     title: "Grundreinigung Düsseldorf",
     text: "Für intensivere Reinigung von Wohnung, Haus, Büro oder Gewerbefläche mit klaren Schwerpunkten und Zielzustand.",
     href: "/duesseldorf/grundreinigung",
-    label: "Grundreinigung ansehen",
+    label: "Einmalige Grundreinigung einordnen",
   },
   {
     icon: CalendarClock,
     title: "Unterhaltsreinigung Düsseldorf",
     text: "Für wiederkehrende Reinigung mit Bereichen, Turnus, Zeitfenstern, Zugang und festem Ansprechpartner.",
     href: "/duesseldorf/unterhaltsreinigung",
-    label: "Unterhaltsreinigung ansehen",
+    label: "Regelmäßige Unterhaltsreinigung planen",
   },
   {
     icon: ClipboardCheck,
     title: "Bau- und Bauendreinigung Düsseldorf",
     text: "Für Bauzwischenstand, Renovierung oder Abschluss vor Übergabe mit Bauphase, Fläche, Restarbeiten und Termin.",
     href: "/duesseldorf/baureinigung",
-    label: "Baureinigung ansehen",
+    label: "Bauphase und Endreinigung klären",
   },
   {
     icon: Building2,
@@ -269,36 +467,20 @@ const baseFaqItems: FaqItem[] = [
     a: "Hilfreich sind Objektart, Fläche, gewünschter Zustand, Terminwunsch, Turnus, Zugang, Fotos und ein vorhandenes Angebot, falls es schon eines gibt.",
   },
   {
-    q: "Kann ich ein Reinigungsangebot prüfen lassen?",
-    a: "Ja. FLOXANT kann Fläche, Objektart, Turnus, Leistungsumfang, Termin und mögliche Zusatzkosten prüfen. Es gibt keine Ersparnisgarantie und keine Rechtsberatung.",
-  },
-  {
-    q: "Kann ich Solar- oder PV-Reinigung in Düsseldorf anfragen?",
-    a: "Ja. Beschreiben Sie Dachart, Zugang, Modulfläche, sichtbare Verschmutzung, Fotos und gewünschtes Zeitfenster. FLOXANT prüft Machbarkeit und offene Punkte ohne Ertrags- oder Sicherheitsgarantie.",
-  },
-  {
-    q: "Kann ich ein Solarreinigungsangebot prüfen lassen?",
-    a: "Ja. Ein vorhandenes Angebot kann nach Dachzugang, Modulfläche, Sicherheitslage, sichtbarer Verschmutzung und möglichen Zusatzkosten eingeordnet werden. Es gibt keine Preis- oder Ertragsgarantie.",
+    q: "Welche Reinigungsseite passt zu meinem Objekt?",
+    a: "Für Büros, Praxen, Fenster, einmalige Grundreinigung, regelmäßige Unterhaltsreinigung und Bauabschluss gibt es eigene Fachseiten. Dieser Überblick hilft bei der Auswahl, ohne deren vollständigen Leistungsumfang zu wiederholen.",
   },
   {
     q: "Was beeinflusst den Aufwand bei einer Reinigung?",
     a: "Entscheidend sind Fläche, Objektart, Verschmutzungsgrad, gewünschter Turnus, Zugänglichkeit, Sonderflächen, Fenster/Glas, Sanitär/Küche, Frist und vorhandene Fotos.",
   },
   {
+    q: "Kann ich ein vorhandenes Reinigungsangebot prüfen lassen?",
+    a: "Ja. Nutzen Sie dafür die Angebotsprüfung und senden Sie Objekt, Fläche, Turnus, Leistungsumfang und offene Positionen. Das ist eine praktische Einordnung ohne Ersparnisgarantie oder Rechtsberatung.",
+  },
+  {
     q: "Ist die Anfrage schon eine Buchung?",
     a: "Nein. Eine Anfrage löst keine automatische Buchung aus. FLOXANT prüft die Angaben und meldet sich über den gewählten Kontaktweg mit dem nächsten Schritt.",
-  },
-  {
-    q: "Wie unterscheiden sich Treppenhausreinigung, Unterhaltsreinigung und Hausverwaltung-Reinigung?",
-    a: "Treppenhausreinigung fokussiert Eingänge, Etagen, Geländer, Aufzug und Gemeinschaftswege. Unterhaltsreinigung meint wiederkehrende Reinigung nach Turnus und Leistungsumfang. Hausverwaltung-Reinigung bündelt Objektart, Ansprechpartner, Zugang, Bereiche und vorhandene Angebote für Verwaltung, Vermieter oder WEG.",
-  },
-  {
-    q: "Kann eine Hausverwaltung ein Treppenhaus- oder Unterhaltsreinigungsangebot prüfen lassen?",
-    a: "Ja. FLOXANT kann Fläche, Etagen, Bereiche, Turnus, Zugang, Ansprechpartner, Zusatzpositionen und fehlende Angaben strukturieren. Das ist eine organisatorische Einordnung, keine Rechtsberatung und keine Preis- oder Ersparnisgarantie.",
-  },
-  {
-    q: "Kann ich auf Englisch anfragen?",
-    a: "Yes. International customers can describe a cleaning service, property management cleaning, staircase cleaning, common area cleaning, office cleaning or commercial cleaning request in simple English.",
   },
 ];
 
@@ -379,7 +561,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     eyebrow: "Reinigung Düsseldorf",
     h1: "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt",
     intro:
-      "Sie suchen einen Reinigungsdienst in Düsseldorf, der Ihre Situation zuerst versteht? Nennen Sie Objektart, Fläche, gewünschtes Ergebnis und Terminwunsch. FLOXANT ordnet Ihre Anfrage ohne Umwege der passenden Reinigung zu – von Wohnung und Apartment über Büro, Praxis und Gewerbe bis Grund-, Unterhalts-, Fenster- oder Bauendreinigung.",
+      "Sie möchten eine Wohnung, ein Büro, eine Praxis oder eine Gewerbefläche in Düsseldorf reinigen lassen? Beschreiben Sie Objekt, ungefähre Fläche, gewünschten Zustand und Termin. FLOXANT führt Sie zur passenden Leistung – etwa Büro-, Praxis-, Fenster-, Grund-, Unterhalts- oder Bauendreinigung – ohne den Hub mit allen Fachdetails zu überladen.",
     quickAnswer:
       "Für eine Reinigungsanfrage in Düsseldorf helfen Objektart, Fläche, gewünschter Zustand, Terminwunsch, Turnus und Fotos. FLOXANT kann die Angaben strukturieren und passende nächste Schritte einordnen. Eine Anfrage ist noch keine Buchung.",
     serviceType: "Reinigung, Reinigungsanfrage und Reinigungsangebot-Prüfung",
@@ -433,7 +615,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     effortFactors: [
       ...commonEffortFactors,
       "Dachart, PV-Zugang und Modulfläche bei Solar-/PV-Reinigung",
-      "sichtbare Verschmutzung und Fotos bei Solar panel cleaning",
+      "sichtbare Verschmutzung und Fotos bei Solar- oder PV-Reinigung",
     ],
     serviceCards: hubServiceCards,
     b2bTrust: [
@@ -488,7 +670,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       {
         icon: Building2,
         title: "Regelmäßige Büroreinigung",
-        text: "Turnus, Zeiten, Flächen, Küche, Sanitär und Schlüsselweg müssen vor einem Angebot klar sein.",
+        text: "Arbeitsplätze, Besprechungsräume, Küche, Sanitär, Papierkörbe, Turnus und Schlüsselweg werden vor einem Angebot getrennt benannt.",
       },
       {
         icon: CalendarClock,
@@ -505,7 +687,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Firmenname optional und Ansprechpartner",
       "Fläche, Raumliste und Anzahl Arbeitsplätze",
       "gewünschter Turnus und Reinigungszeiten",
-      "Sanitär, Küche, Empfang und Sonderflächen",
+      "Besprechungsräume, Sanitär, Küche, Empfang und Papierkörbe",
       "Zugang, Schlüsselweg und gewünschter Start",
       "vorhandenes Büroreinigungsangebot optional",
     ],
@@ -513,16 +695,11 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Fläche und Raumtypen",
       "Turnus und Wochentage",
       "Reinigung außerhalb Geschäftszeiten",
-      "Sanitär- und Küchenanteil",
+      "Arbeitsplätze, Besprechungsräume, Sanitär, Küche und Papierkörbe",
       "Zugang, Schlüssel und Ansprechpartner",
       "Sonderleistungen wie Glas oder Grundreinigung",
     ],
-    serviceCards: [
-      hubServiceCards[1],
-      hubServiceCards[2],
-      hubServiceCards[3],
-      hubServiceCards[5],
-    ],
+    serviceCards: [hubServiceCards[1], hubServiceCards[2], hubServiceCards[9]],
     b2bTrust: [
       "B2B-Anfragen werden mit Fläche, Turnus, Zeiten und Ansprechpartner vorbereitet.",
       "Keine Fake-Firmenkunden, keine erfundenen Referenzen und keine Zertifikatsbehauptungen.",
@@ -537,7 +714,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Wie unterscheiden sich Büroreinigung und Gewerbereinigung?",
         a: "Büroreinigung meint vor allem Büroalltag, Arbeitsplätze, Besprechungsräume, Küche, Sanitär, Turnus und Reinigungszeiten. Gewerbereinigung ist breiter und hängt stärker von Objektart, Nutzung, Sonderflächen, Zugang und Leistungsumfang ab.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Welche Angaben werden für Turnus und Zugang benötigt?",
+        a: "Nennen Sie Wochentage, gewünschte Reinigungszeit, Öffnungs- oder Arbeitszeiten, Ansprechpartner und Schlüsselweg. Zugangsdaten gehören nicht in ein öffentliches Freitextfeld.",
+      },
+      {
+        q: "Sind Papierkörbe, Küche und Verbrauchsmaterial automatisch enthalten?",
+        a: "Nein. Papierkörbe, Küchenflächen, Geschirr, Seife, Papier oder Müllbeutel sollten im Leistungsplan einzeln zugeordnet werden.",
+      },
     ],
     about: ["Büroreinigung Düsseldorf", "B2B Büroreinigung", "Büroreinigungsangebot prüfen"],
   },
@@ -623,7 +807,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Wann ist Gewerbereinigung passender als Büroreinigung?",
         a: "Gewerbereinigung passt eher bei Laden, Objektflächen, Hausverwaltung, Praxisflächen nach Absprache oder gemischten Flächen. Büroreinigung passt eher bei Arbeitsplätzen, Besprechungsräumen, Küche, Sanitär und planbarem Büroturnus.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Welche Nutzungszeiten gehören in die Gewerbereinigungsanfrage?",
+        a: "Öffnungszeit, Kundenverkehr, Produktions- oder Lieferfenster und mögliche Sperrzeiten helfen, Zugang und Reinigungszeit realistisch einzuordnen.",
+      },
+      {
+        q: "Wie werden Sonderflächen behandelt?",
+        a: "Glas, Lager, Außenflächen, empfindliche Böden oder stark beanspruchte Zonen werden einzeln beschrieben und nur nach Vereinbarung aufgenommen.",
+      },
     ],
     about: ["Gewerbereinigung Düsseldorf", "gewerbliche Reinigung Düsseldorf", "Gewerbereinigung Angebot prüfen"],
   },
@@ -638,7 +829,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     eyebrow: "Praxisreinigung Düsseldorf",
     h1: "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen",
     intro:
-      "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen, Reinigungszeiten, Zugang und Ansprechpartnern. FLOXANT formuliert keine medizinische Zertifizierung und keine Hygienegarantie.",
+      "Praxisreinigung braucht sachliche Angaben zu Praxisräumen, sensiblen Bereichen, Reinigungszeiten, Zugang und Ansprechpartnern. FLOXANT nennt keine medizinische Zertifizierung und macht keine nicht belegten Hygienezusagen.",
     quickAnswer:
       "Für Praxisreinigung in Düsseldorf helfen Praxisart, Räume, sensible Bereiche, Turnus, Reinigungszeiten, Zugang, Ansprechpartner und vorhandenes Angebot. Eine Anfrage ist noch keine Buchung.",
     serviceType: "Praxisreinigung Düsseldorf",
@@ -660,7 +851,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       {
         icon: Stethoscope,
         title: "Praxisräume mit sensiblen Bereichen",
-        text: "Räume, Abläufe, sensible Zonen und Reinigungszeiten werden sachlich beschrieben.",
+        text: "Empfang, Wartebereich, Behandlungsräume, Sanitär, Raumanzahl und sensible Zonen werden sachlich beschrieben.",
       },
       {
         icon: CalendarClock,
@@ -674,7 +865,8 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       },
     ],
     needs: [
-      "Praxisart und Raumliste",
+      "Praxisart, Raumanzahl und Raumliste",
+      "Empfang, Wartebereich, Behandlungsräume und Sanitär",
       "sensible Bereiche und gewünschter Turnus",
       "Reinigungszeiten und Ansprechpartner",
       "Zugang, Schlüsselweg und Fristen",
@@ -689,14 +881,10 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Dokumentationsbedarf, falls vorhanden",
       "Leistungsumfang im Angebot",
     ],
-    serviceCards: [
-      hubServiceCards[0],
-      hubServiceCards[1],
-      hubServiceCards[5],
-    ],
+    serviceCards: [hubServiceCards[0], hubServiceCards[9], hubServiceCards[3]],
     b2bTrust: [
       "Praxisreinigung wird sachlich beschrieben, ohne rechtliche Hygieneberatung.",
-      "Keine medizinische Zertifizierung, keine Desinfektionsgarantie und keine erfundenen Nachweise.",
+      "Keine medizinische Zertifizierung, keine unbelegten Desinfektionszusagen und keine erfundenen Nachweise.",
       "Anfrage und Angebot werden nach Räumen, Zeiten, Zugang und Leistungsumfang sortiert.",
     ],
     faqItems: [
@@ -704,7 +892,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Für welche Praxen ist die Anfrage gedacht?",
         a: "Für Praxisräume, Empfang, Sanitärbereiche, sensible Bereiche und regelmäßige Reinigung, wenn Räume, Zeiten, Zugang und Ansprechpartner klar beschrieben werden.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Welche Räume sollten einzeln genannt werden?",
+        a: "Empfang, Wartebereich, Behandlungs- oder Therapieräume, Sanitär, Personalbereiche und weitere sensible Zonen sollten mit Raumanzahl aufgeführt werden.",
+      },
+      {
+        q: "Sind medizinische Desinfektion oder OP-Reinigung zugesagt?",
+        a: "Nein. FLOXANT sagt weder OP-Reinigung noch eine medizinische oder hygienische Spezialleistung zu. Interne Fachvorgaben und freigegebene Mittel muss die Praxis konkret benennen.",
+      },
+      {
+        q: "Wie werden Öffnungs- und Reinigungszeiten abgestimmt?",
+        a: "Teilen Sie Sprechzeiten, mögliche Zeitfenster, Zugang, Schlüsselweg und einen erreichbaren Ansprechpartner mit. So bleibt die Reinigung vom Praxisbetrieb getrennt planbar.",
+      },
     ],
     about: ["Praxisreinigung Düsseldorf", "Arztpraxis reinigen lassen Düsseldorf", "Praxisreinigung Angebot prüfen"],
   },
@@ -719,7 +918,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     eyebrow: "Fensterreinigung Düsseldorf",
     h1: "Fensterreinigung in Düsseldorf anfragen - Glasflächen, Umfang und Termin klären",
     intro:
-      "Für Fenster- und Glasreinigung in Düsseldorf zählen Glasflächen, Fensterzahl, Rahmen/Falze optional, Erreichbarkeit, Turnus und Termin. FLOXANT macht keine riskanten Höhen- oder Sicherheitsversprechen ohne Prüfung.",
+      "Für Fenster- und Glasreinigung in Düsseldorf zählen Anzahl oder grobe Größe, Innen- und Außenseite, Rahmen, Höhe, Erreichbarkeit und Termin. Fotos helfen bei gewerblichen Glasflächen oder schwer zugänglichen Fenstern; eine Höhen- oder Sicherheitszusage erfolgt erst nach Prüfung.",
     quickAnswer:
       "Für Fensterreinigung in Düsseldorf helfen Fensterzahl, Glasflächen, Innen/Außen, Rahmen/Falze optional, Etage, Erreichbarkeit, Turnus, Fotos und Terminwunsch.",
     serviceType: "Fensterreinigung und Glasreinigung Düsseldorf",
@@ -755,7 +954,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       },
     ],
     needs: [
-      "Fensterzahl oder grobe Glasfläche",
+      "Fensterzahl, Maße oder grobe Glasfläche",
       "innen, außen, Rahmen/Falze optional",
       "Etage und Erreichbarkeit",
       "privat, Büro oder Gewerbe",
@@ -770,11 +969,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Sonderflächen oder schwer erreichbare Bereiche",
       "Fotos und vorhandenes Angebot",
     ],
-    serviceCards: [
-      hubServiceCards[0],
-      hubServiceCards[1],
-      hubServiceCards[5],
-    ],
+    serviceCards: [hubServiceCards[8], hubServiceCards[10], hubServiceCards[0]],
     b2bTrust: [
       "Fensterreinigung wird nach Fläche, Erreichbarkeit, Turnus und Leistungsumfang eingeordnet.",
       "Keine erfundenen Spezialgeräte, keine Höhenzusage und keine Sicherheitsgarantie ohne Prüfung.",
@@ -785,7 +980,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Welche Angaben helfen bei Fensterreinigung in Düsseldorf?",
         a: "Hilfreich sind Fensterzahl, Glasflächen, innen/außen, Rahmen/Falze, Etage, Erreichbarkeit, Turnus, Termin und Fotos.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Wie gebe ich Größe und Umfang ohne genaue Aufmaße an?",
+        a: "Eine grobe Fensterzahl, typische Maße oder Übersichtsaufnahmen reichen für den Start. Große Schaufenster oder gewerbliche Glasfronten sollten separat beschrieben werden.",
+      },
+      {
+        q: "Sind Innen-, Außenseite und Rahmen automatisch zusammen enthalten?",
+        a: "Nein. Innen- und Außenseite, Rahmen, Falze und Fensterbänke werden ausdrücklich ausgewählt, damit der gewünschte Umfang eindeutig bleibt.",
+      },
+      {
+        q: "Wann sind Fotos für die Erreichbarkeit nötig?",
+        a: "Fotos helfen bei hohen Fenstern, Wintergärten, Überbauten, schwer öffnenden Elementen oder eingeschränktem Zugang. Eine sichere Ausführung wird erst nach Prüfung bestätigt.",
+      },
     ],
     about: ["Fensterreinigung Düsseldorf", "Glasreinigung Düsseldorf", "Fensterreinigungsangebot prüfen"],
   },
@@ -851,7 +1057,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "gewünschter Zielzustand und Termin",
       "Zusatzleistungen wie Fenster oder Geräte innen",
     ],
-    serviceCards: [hubServiceCards[0], hubServiceCards[3], hubServiceCards[8], hubServiceCards[9]],
+    serviceCards: [hubServiceCards[9], hubServiceCards[10], hubServiceCards[3]],
     b2bTrust: [
       "Der gewünschte Umfang wird vorab als Liste geklärt, damit Grundreinigung nicht mit Unterhaltsreinigung verwechselt wird.",
       "Materialien, empfindliche Oberflächen und schwer erreichbare Bereiche werden vor einer Zusage geprüft.",
@@ -866,7 +1072,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Was ist der Unterschied zur Unterhaltsreinigung?",
         a: "Grundreinigung ist intensiver und meist einmalig oder in größeren Abständen. Unterhaltsreinigung ist eine wiederkehrende Reinigung nach festem Plan und Turnus.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Welche Angaben zeigen den tatsächlichen Zustand?",
+        a: "Fotos von Böden, Küche, Sanitär, Kanten und schwer erreichbaren Bereichen sowie Hinweise zu Materialien und Möblierung machen die Intensität nachvollziehbar.",
+      },
+      {
+        q: "Sind Fenster und Geräte innen Teil jeder Grundreinigung?",
+        a: "Nein. Fenster, Backofen, Kühlschrank, Schränke innen oder andere Detailarbeiten müssen ausdrücklich genannt und geprüft werden.",
+      },
     ],
     about: ["Grundreinigung Düsseldorf", "Grundreinigung Wohnung Düsseldorf", "Intensivreinigung Düsseldorf"],
   },
@@ -932,7 +1145,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Zugang und Schlüsselorganisation",
       "Verbrauchsmaterial oder Zusatzleistungen nach Abstimmung",
     ],
-    serviceCards: [hubServiceCards[0], hubServiceCards[1], hubServiceCards[5], hubServiceCards[8]],
+    serviceCards: [hubServiceCards[0], hubServiceCards[8], hubServiceCards[11]],
     b2bTrust: [
       "Turnus, Bereiche und Verantwortlichkeiten werden vorab verständlich festgehalten.",
       "Keine erfundenen Referenzen oder pauschalen Qualitätsgarantien ohne konkreten Leistungsumfang.",
@@ -947,7 +1160,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Ist Treppenhausreinigung Teil der Unterhaltsreinigung?",
         a: "Sie kann Teil eines laufenden Objektplans sein. Eingang, Etagen, Geländer, Aufzug und Zusatzbereiche sollten im Leistungsverzeichnis einzeln benannt werden.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Was unterscheidet Unterhalts- und Grundreinigung?",
+        a: "Unterhaltsreinigung hält vereinbarte Bereiche in einem regelmäßigen Rhythmus sauber. Stärkere, länger aufgebaute oder einmalig intensive Arbeiten werden als Grundreinigung abgegrenzt.",
+      },
+      {
+        q: "Welche Zeit- und Zugangsdaten braucht ein wiederkehrender Plan?",
+        a: "Wochentage, Zeitfenster, Nutzungszeiten, Ansprechpartner, Schlüsselregelung und gesperrte Bereiche sollten vor dem ersten Einsatz feststehen.",
+      },
     ],
     about: ["Unterhaltsreinigung Düsseldorf", "laufende Büroreinigung Düsseldorf", "Objektreinigung Düsseldorf"],
   },
@@ -1013,7 +1233,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Zugang, Wasser, Strom und Laufwege",
       "Abnahmefrist und gewünschter Zielzustand",
     ],
-    serviceCards: [hubServiceCards[7], hubServiceCards[8], hubServiceCards[3], hubServiceCards[6]],
+    serviceCards: [hubServiceCards[8], hubServiceCards[3], hubServiceCards[0]],
     b2bTrust: [
       "Bauzwischenreinigung und Bauendreinigung werden nach Bauphase und Zielzustand getrennt.",
       "Fest anhaftende Rückstände, Gefahrstoffe oder Entsorgung werden nicht pauschal zugesagt.",
@@ -1028,7 +1248,14 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         q: "Wann sollte die Bauendreinigung angefragt werden?",
         a: "Sobald Bauphase, Restarbeiten und voraussichtlicher Übergabetermin absehbar sind. Fotos und eine Raumliste helfen, den Umfang früh zu prüfen.",
       },
-      ...baseFaqItems.slice(1),
+      {
+        q: "Welche Rückstände gehören in die Beschreibung?",
+        a: "Baustaub, Schutzfolien, Etiketten, Farb- oder Mörtelreste und empfindliche neue Oberflächen sollten getrennt gezeigt werden. Gefahrstoffe werden nicht pauschal übernommen.",
+      },
+      {
+        q: "Warum ist der Übergabestatus wichtig?",
+        a: "Für Abnahme, Einzug oder Übergabe gelten unterschiedliche Zielzustände. Offene Arbeiten anderer Gewerke können den Termin oder eine erneute Reinigung beeinflussen.",
+      },
     ],
     about: ["Bauendreinigung Düsseldorf", "Baureinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf"],
   },
@@ -1289,9 +1516,9 @@ function JsonLd({ config }: { config: PageConfig }) {
         { name: "Düsseldorf", item: "/duesseldorf" },
         { name: config.eyebrow, item: config.path },
       ]),
-      ...(getActivePriorityFaqAssignment(config.path)
-        ? []
-        : [buildFaqJsonLd(config.faqItems)]),
+      ...(tailoredFaqPageKeys.has(config.key) || !getActivePriorityFaqAssignment(config.path)
+        ? [buildFaqJsonLd(config.faqItems)]
+        : []),
     ],
   };
 
@@ -1326,13 +1553,11 @@ function CleaningCta({ cta, variant = "dark" }: { cta: CtaConfig; variant?: "dar
   return (
     <Link
       href={cta.href}
-      data-event="seo_cta_click"
+      data-event="request_cta_click"
       data-service={cta.service}
       data-city="duesseldorf"
-      data-page-intent={cta.intent}
-      data-priority={cta.priority}
       data-destination={cta.href}
-      data-source="seo"
+      data-source="website"
       data-cta-label={cta.label}
       className={className}
     >
@@ -1343,6 +1568,8 @@ function CleaningCta({ cta, variant = "dark" }: { cta: CtaConfig; variant?: "dar
 }
 
 function DuesseldorfCleaningHero({ config }: { config: PageConfig }) {
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-14 pt-28 text-white sm:px-8 lg:px-10 lg:pt-32">
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#020617_0%,#103a46_48%,#263022_100%)]" />
@@ -1375,10 +1602,10 @@ function DuesseldorfCleaningHero({ config }: { config: PageConfig }) {
           </p>
         </div>
         <aside className="rounded-lg border border-white/12 bg-white p-5 text-slate-950 shadow-2xl shadow-slate-950/25">
-          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Anfragebriefing</p>
+          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Für Ihre Anfrage</p>
           <h2 className="mt-2 text-2xl font-black tracking-normal">Was zuerst geklärt werden sollte.</h2>
           <div className="mt-5 grid gap-3">
-            {["Objektart und Fläche", "Zielzustand, Turnus und Termin", "Fotos oder Angebot optional"].map((item, index) => (
+            {copy.briefing.map((item, index) => (
               <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-sm font-black text-white">
                   {index + 1}
@@ -1388,9 +1615,9 @@ function DuesseldorfCleaningHero({ config }: { config: PageConfig }) {
             ))}
           </div>
           <div className="mt-5 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-            <p className="text-sm font-black text-emerald-950">Kontaktfluss</p>
+            <p className="text-sm font-black text-emerald-950">Nächster Schritt</p>
             <p className="mt-2 text-sm font-semibold leading-7 text-emerald-950/80">
-              Der Button öffnet die passende Reinigungsanfrage für Düsseldorf.
+              Starten Sie direkt mit der passenden Reinigungsanfrage für Düsseldorf.
             </p>
           </div>
         </aside>
@@ -1426,6 +1653,8 @@ function CleaningQuickAnswer({ config }: { config: PageConfig }) {
 
 function ServiceIntentFocus({ config }: { config: PageConfig }) {
   const focus = intentFocusByPage[config.key];
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="border-b border-slate-200 bg-slate-50 px-5 py-12 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
@@ -1447,6 +1676,15 @@ function ServiceIntentFocus({ config }: { config: PageConfig }) {
             </article>
           ))}
         </div>
+        {copy.hubLinkLabel ? (
+          <Link
+            href="/duesseldorf/reinigung"
+            className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-sm font-black text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-50"
+          >
+            {copy.hubLinkLabel}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        ) : null}
       </div>
     </section>
   );
@@ -1707,11 +1945,9 @@ function TreppenhausCleaningPanel() {
       <Link
         href={staircaseCleaningContact}
         className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800"
-        data-event="seo_cta_click"
+        data-event="request_cta_click"
         data-service="treppenhausreinigung"
         data-city="duesseldorf"
-        data-page-intent="treppenhausreinigung-duesseldorf"
-        data-priority="p0"
         data-cta-label="Treppenhausreinigung einordnen"
         data-destination={staircaseCleaningContact}
       >
@@ -1734,11 +1970,9 @@ function UnterhaltsreinigungPanel() {
       <Link
         href={maintenanceCleaningContact}
         className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800"
-        data-event="seo_cta_click"
+        data-event="request_cta_click"
         data-service="unterhaltsreinigung"
         data-city="duesseldorf"
-        data-page-intent="unterhaltsreinigung-duesseldorf"
-        data-priority="p0"
         data-cta-label="Unterhaltsreinigung mit Turnus klaeren"
         data-destination={maintenanceCleaningContact}
       >
@@ -1934,13 +2168,15 @@ function CleaningSituationGrid({ config }: { config: PageConfig }) {
 }
 
 function CleaningScopeAndBoundaries({ config }: { config: PageConfig }) {
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Leistungsumfang"
           title="Was vereinbart werden kann – und was nicht automatisch dazugehört."
-          intro="Der konkrete Umfang entsteht erst aus Objekt, Bereichen, Zustand, Zugang und Termin. Die Übersicht verhindert, dass wichtige Zusatzarbeiten stillschweigend vorausgesetzt werden."
+          intro={copy.scopeIntro}
         />
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           <article className="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
@@ -1972,6 +2208,8 @@ function CleaningScopeAndBoundaries({ config }: { config: PageConfig }) {
 }
 
 function CleaningEffortFactorsPanel({ config }: { config: PageConfig }) {
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="border-y border-slate-200 bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
@@ -1981,8 +2219,7 @@ function CleaningEffortFactorsPanel({ config }: { config: PageConfig }) {
             Wovon Aufwand und Rückfragen abhängen.
           </h2>
           <p className="mt-5 text-base font-semibold leading-8 text-slate-300">
-            Je klarer Fläche, Objektart, Turnus und Zielzustand sind, desto besser kann FLOXANT die Anfrage einordnen.
-            Das ersetzt keine Zusage, verhindert aber blinde Pauschalen.
+            {copy.effortIntro}
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -1998,23 +2235,19 @@ function CleaningEffortFactorsPanel({ config }: { config: PageConfig }) {
 }
 
 function CleaningNeedsPanel({ config }: { config: PageConfig }) {
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.96fr_1.04fr]">
         <article>
           <SectionHeading
             eyebrow="Ablauf"
-            title="Vom Reinigungswunsch zur klaren Rückmeldung."
-            intro="FLOXANT braucht keine perfekte Ausschreibung, aber genug Eckdaten für eine seriöse Einordnung."
+            title={copy.processTitle}
+            intro={copy.processIntro}
           />
           <div className="mt-8 grid gap-3">
-            {[
-              "Objektart und Ort angeben",
-              "Fläche, Zustand und Termin beschreiben",
-              "Fotos oder vorhandenes Angebot optional ergänzen",
-              "FLOXANT ordnet Anfrage und nächste Schritte ein",
-              "Rückmeldung über den gewünschten Kontaktweg",
-            ].map((step, index) => (
+            {copy.processSteps.map((step, index) => (
               <div key={step} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-sm font-black text-white">
                   {index + 1}
@@ -2047,13 +2280,15 @@ function CleaningNeedsPanel({ config }: { config: PageConfig }) {
 }
 
 function CleaningServiceClusterCards({ config }: { config: PageConfig }) {
+  const copy = getPageSpecificCopy(config.key);
+
   return (
     <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Ähnliche Leistungen"
-          title="Reinigung, Büro, Gewerbe, Praxis und Glas sauber trennen."
-          intro="Die Karten führen zu den passenden Reinigungsleistungen oder direkt zur Anfrage."
+          title={copy.relatedTitle}
+          intro={copy.relatedIntro}
         />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {config.serviceCards.map(({ icon: Icon, title, text, href, label }) => (
@@ -2270,11 +2505,11 @@ function CleaningFAQ({ config }: { config: PageConfig }) {
 
 export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: DuesseldorfCleaningPageKey }) {
   const config = duesseldorfCleaningPages[pageKey];
-  const showsOfficeComparison = ["reinigung", "bueroreinigung", "gewerbereinigung"].includes(config.key);
+  const isHub = config.key === "reinigung";
+  const showsOfficeComparison = isHub;
   const showsPropertyManagement = [
     "reinigung",
     "gewerbereinigung",
-    "unterhaltsreinigung",
     "treppenhausreinigung",
   ].includes(config.key);
 
@@ -2283,8 +2518,8 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <JsonLd config={config} />
       <DuesseldorfCleaningHero config={config} />
       <CleaningQuickAnswer config={config} />
-      {config.key === "reinigung" ? <DuesseldorfCleaningAuthorityBlock config={config} /> : <ServiceIntentFocus config={config} />}
-      <DuesseldorfCleaningNavigator config={config} />
+      {isHub ? <DuesseldorfCleaningAuthorityBlock config={config} /> : <ServiceIntentFocus config={config} />}
+      {isHub ? <DuesseldorfCleaningNavigator config={config} /> : null}
       <RequestBriefChecklistBlock
         serviceKey={config.key}
         ctaHref={config.primaryCta.href}
@@ -2299,15 +2534,16 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <CleaningNeedsPanel config={config} />
       <CleaningEffortFactorsPanel config={config} />
       <CleaningServiceClusterCards config={config} />
-      <CleaningOfferCheckCTA config={config} />
-      <DuesseldorfLocalProofPanel />
+      {isHub ? <CleaningOfferCheckCTA config={config} /> : null}
+      {isHub ? <DuesseldorfLocalProofPanel /> : null}
       <B2BTrustPanel config={config} />
-      <CleaningNoGuaranteePanel />
-      <EnglishCleaningHint config={config} />
-      {getActivePriorityFaqAssignment(config.path) ? (
+      {isHub ? <CleaningNoGuaranteePanel /> : null}
+      {isHub ? <EnglishCleaningHint config={config} /> : null}
+      {tailoredFaqPageKeys.has(config.key) ? (
+        <CleaningFAQ config={config} />
+      ) : getActivePriorityFaqAssignment(config.path) ? (
         <PriorityFaqSection
           route={config.path}
-          includeJsonLd
           tone="dark"
           title={`Häufige Fragen zu ${config.eyebrow}`}
           className="bg-slate-950"

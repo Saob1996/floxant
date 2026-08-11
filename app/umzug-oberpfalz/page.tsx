@@ -34,6 +34,7 @@ export default async function UmzugOberpfalzPage({ params }: PageProps) {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/umzug-oberpfalz"
         lang="de"
         dict={localeDict}
         city={city}

@@ -259,7 +259,7 @@ const urgentArticles: PsychologicalCleaningArticleSeed[] = [
     articleSlug: "kurzfristige-reinigung-regensburg-24h-realistisch",
     category: "Express",
     title: "Kurzfristige Reinigung in Regensburg: Was realistisch ist",
-    metaTitle: "Kurzfristige Reinigung Regensburg prüfen | FLOXANT",
+    metaTitle: "Kurzfristige Reinigung in Regensburg: 24h realistisch? | FLOXANT",
     description:
       "Was bei kurzfristiger Reinigung bis morgen wirklich machbar ist und welche Angaben FLOXANT fuer eine schnelle Pruefung braucht.",
     intro:

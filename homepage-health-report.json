@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T10:11:25.682Z",
+  "generatedAt": "2026-08-11T07:09:11.975Z",
   "baseUrl": "http://127.0.0.1:4173",
   "overall": "PASS",
   "totals": {
@@ -105,7 +105,7 @@
     {
       "name": "Neutraler Schnellkontakt ohne Standort-Vorbelegung",
       "status": "PASS",
-      "detail": "Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus"
+      "detail": "Deferred Schnellkontakt nutzt den zentralen mode=neutral-Builder ohne Standort oder Leistung"
     },
     {
       "name": "Kein Menü über dem Hero beim Laden",

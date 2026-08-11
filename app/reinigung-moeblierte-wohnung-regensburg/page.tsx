@@ -149,7 +149,7 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="#anfrage"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-region="regensburg"
                 data-service="regensburg_moeblierte_wohnung_reinigung"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
@@ -312,7 +312,6 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
         route={pagePath}
         title="Häufige Fragen zu Ferienwohnung und Gästewechsel"
         intro="Die Antworten trennen Reinigung, optionale Zusatzpunkte und Plattformaufgaben klar voneinander."
-        includeJsonLd
         className="bg-slate-50"
       />
     </main>

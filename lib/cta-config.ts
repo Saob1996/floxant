@@ -43,7 +43,7 @@ export type ResolvedCtaConfig = {
   priority: string;
   source: string;
   dataAttributes: {
-    event: "seo_cta_click";
+    event: "request_cta_click";
     service: string;
     city?: string;
     pageIntent: string;
@@ -79,7 +79,7 @@ export function resolveCtaConfig(input: CtaInput = {}): ResolvedCtaConfig {
     city: input.cityKey || input.city,
     intent: input.intentKey || input.intent,
     priority: input.priority,
-    source: input.source || "seo",
+    source: input.source || "website",
     destination: input.destination,
     anchor: input.anchor,
   });
@@ -88,7 +88,7 @@ export function resolveCtaConfig(input: CtaInput = {}): ResolvedCtaConfig {
   const intentKey = normalizeIntentKey(input.intentKey || input.intent || route.intent);
   const priority = coercePriority(input.priority, route.priority);
   const label = input.label || defaultLabels[ctaKey] || route.entry.label;
-  const source = normalizeIntentKey(input.source || "seo");
+  const source = normalizeIntentKey(input.source || "website");
   const href =
     input.href ||
     buildContactHref({
@@ -111,7 +111,7 @@ export function resolveCtaConfig(input: CtaInput = {}): ResolvedCtaConfig {
     priority,
     source,
     dataAttributes: {
-      event: "seo_cta_click",
+      event: "request_cta_click",
       service: route.service,
       city: cityKey && cityKey !== "deutschland" && cityKey !== "unbekannt" ? cityKey : undefined,
       pageIntent: intentKey,
@@ -128,25 +128,25 @@ export const ctaDefinitions = [
     ctaKey: "service-contact",
     label: defaultLabels["service-contact"],
     hrefBuilder: buildContactHref,
-    dataEvent: "seo_cta_click",
+    dataEvent: "request_cta_click",
     priority: "p1",
-    source: "seo",
+    source: "website",
   },
   {
     ctaKey: "offer-check",
     label: defaultLabels["offer-check"],
     hrefBuilder: buildContactHref,
-    dataEvent: "seo_cta_click",
+    dataEvent: "request_cta_click",
     service: "angebot-pruefen",
     intent: "angebot-pruefen",
     priority: "p0",
-    source: "seo",
+    source: "website",
   },
   {
     ctaKey: "mobile-sticky",
     label: defaultLabels["mobile-sticky"],
     hrefBuilder: buildContactHref,
-    dataEvent: "seo_cta_click",
+    dataEvent: "request_cta_click",
     priority: "p2",
     source: "mobile_floating_contact",
   },

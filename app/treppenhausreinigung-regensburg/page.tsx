@@ -305,14 +305,6 @@ export default function TreppenhausreinigungRegensburgPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#kontakt"
-                  data-event="seo_cta_click"
-                  data-service="treppenhausreinigung"
-                  data-city="regensburg"
-                  data-page-intent="treppenhausreinigung-regensburg"
-                  data-priority="p0"
-                  data-destination="/kontakt?service=treppenhausreinigung&city=regensburg&intent=treppenhausreinigung-regensburg&source=seo"
-                  data-source="seo"
-                  data-cta-label="Treppenhausreinigung anfragen"
                   className="flox-button-primary px-6"
                 >
                   Treppenhausreinigung anfragen

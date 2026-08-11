@@ -101,7 +101,7 @@ function main() {
     const clientHints = count(/"use client"|<SmartBookingWizard|<ConversionEventReporter|<CookieBanner|<QuickBudgetModal|<QuickExpressModal/g, source);
     const imageCount = count(/<Image\b|<img\b/g, source);
     const priorityImages = count(/\bpriority\b|fetchPriority=["']high["']/g, source);
-    const ctaCount = count(/data-event=["']seo_cta_click["']|href=["'][^"']*kontakt\?/g, source);
+    const ctaCount = count(/data-event=["']request_cta_click["']|href=["'][^"']*kontakt\?/g, source);
     const sectionCount = count(/<section\b/g, source);
     const htmlKb = html ? Math.round((Buffer.byteLength(html, "utf8") / 1024) * 10) / 10 : null;
     const scriptCount = html ? count(/<script\b/g, html) : null;

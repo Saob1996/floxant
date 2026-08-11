@@ -172,11 +172,9 @@ export default function FernumzugMuenchenPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
                   href={leadHref}
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="fernumzug"
                   data-city="muenchen"
-                  data-page-intent="fernumzug-muenchen"
-                  data-priority="p0"
                   data-cta-label="Fernumzug anfragen"
                   data-destination={leadHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
@@ -188,11 +186,9 @@ export default function FernumzugMuenchenPage() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="fernumzug"
                   data-city="muenchen"
-                  data-page-intent="fernumzug-muenchen"
-                  data-priority="p0"
                   data-cta-label="WhatsApp mit Fotos"
                   data-destination={whatsappHref}
                   data-contact-channel="whatsapp"
@@ -203,11 +199,9 @@ export default function FernumzugMuenchenPage() {
                 </a>
                 <Link
                   href={leadHref}
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="fernumzug"
                   data-city="muenchen"
-                  data-page-intent="fernumzug-muenchen"
-                  data-priority="p0"
                   data-cta-label="Rueckruf anfragen"
                   data-destination={leadHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
@@ -280,7 +274,6 @@ export default function FernumzugMuenchenPage() {
                   data-event="service_card_click"
                   data-service="umzug"
                   data-city="muenchen"
-                  data-page-intent="fernumzug-muenchen"
                   className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg"
                 >
                   <Route className="h-6 w-6 text-blue-700" aria-hidden="true" />

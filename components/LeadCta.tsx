@@ -26,7 +26,7 @@ export function LeadCta({
   priority,
   label,
   href,
-  source = "seo",
+  source = "website",
   className,
   children,
   prefetch,
@@ -58,8 +58,6 @@ export function LeadCta({
       data-event={cta.dataAttributes.event}
       data-service={cta.dataAttributes.service}
       data-city={cta.dataAttributes.city}
-      data-page-intent={cta.dataAttributes.pageIntent}
-      data-priority={cta.dataAttributes.priority}
       data-cta-label={cta.dataAttributes.ctaLabel}
       data-destination={cta.dataAttributes.destination}
       data-source={cta.dataAttributes.source}

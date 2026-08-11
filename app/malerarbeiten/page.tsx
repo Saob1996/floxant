@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `malerarbeiten`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
+    title: "Malerarbeiten in Bayern anfragen | FLOXANT",
     description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
   });
 }
@@ -36,6 +36,7 @@ export default async function MalerarbeitenPage({ params }: PageProps) {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/malerarbeiten"
         lang="de"
         dict={localeDict}
         city={city}

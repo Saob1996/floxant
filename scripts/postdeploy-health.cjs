@@ -34,13 +34,13 @@ const criticalRoutes = [
 ];
 
 const contactRoutes = [
-  "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
-  "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
-  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
-  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
-  "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
-  "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
-  "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+  "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=website",
+  "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=website",
+  "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=website",
+  "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=website",
+  "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website",
+  "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=website",
+  "/kontakt?service=diskret-service&intent=diskret-service&source=website",
 ];
 
 const technicalRoutes = [

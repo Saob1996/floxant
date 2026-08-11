@@ -147,7 +147,7 @@ function main() {
       }
     }
 
-    const ctaCount = count(/data-event=["']seo_cta_click["']|href=["'][^"']*kontakt\?/g, source);
+    const ctaCount = count(/data-event=["']request_cta_click["']|href=["'][^"']*kontakt\?/g, source);
     if (ctaCount > 12) {
       add(rows, "WARN", route, relative, "CTA", "too_many_ctas", "shorten", `${ctaCount} SEO-/Kontakt-CTA-Signale koennen die Seite unruhig machen.`, "teilweise");
     }

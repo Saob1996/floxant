@@ -567,7 +567,7 @@ export const localServiceSeoPages = {
       "Bei Gewerbereinigung in Regensburg zählen Objektart, Fläche, Reinigungszeiten, Leistungsumfang, Turnus und Zugang. FLOXANT hilft, die Anfrage klar vorzubereiten und vorhandene Angebote besser einzuordnen. Eine Anfrage ist noch keine Beauftragung.",
     primaryCta: "Gewerbereinigung Regensburg anfragen",
     secondaryCta: "Objektangaben senden",
-    bookingHref: "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo",
+    bookingHref: "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=website",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Gewerbereinigung in Regensburg anfragen. Objektart, Raumliste, Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
     proofItems: [

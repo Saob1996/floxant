@@ -11,6 +11,7 @@ const pageSource = read("app/page.tsx");
 const menuSource = read("components/FloxServicesMegaMenu.tsx");
 const headerSource = read("components/FloxNavigation.tsx");
 const mobileFloatingContactSource = read("components/MobileFloatingContact.tsx");
+const requestContextSource = read("lib/lead-intents/resolve-request-context.ts");
 const safetySource = [
   pageSource,
   headerSource,
@@ -58,6 +59,20 @@ const countMatches = (value, pattern) => (value.match(pattern) || []).length;
 const homeCardCount = countMatches(html, /\sdata-home-card(?:="[^"]*")?/g);
 const attributeValues = (attribute) =>
   [...html.matchAll(new RegExp(`${attribute}="([^"]+)"`, "g"))].map((match) => decodeEntities(match[1]));
+const globalFloatingRequestHrefs = attributeValues("href")
+  .filter((href) => href.includes("source=global_floating"));
+const globalFloatingRequestsAreNeutral = globalFloatingRequestHrefs.length > 0
+  && globalFloatingRequestHrefs.every((href) => {
+    const url = new URL(href, baseUrl);
+    return url.pathname === "/kontakt"
+      && url.searchParams.get("mode") === "neutral"
+      && !url.searchParams.has("location")
+      && !url.searchParams.has("city")
+      && !url.searchParams.has("service");
+  });
+const deferredGlobalFloatingRequestIsNeutral =
+  mobileFloatingContactSource.includes('buildGlobalRequestHref("global_floating")')
+  && /export function buildGlobalRequestHref[\s\S]*?return `\/kontakt\?mode=neutral&source=\$\{source\}`;/u.test(requestContextSource);
 
 const mainServices = attributeValues("data-home-main-service");
 const specialServices = attributeValues("data-home-special");
@@ -111,9 +126,13 @@ addCheck("Kein sichtbarer Debug-Text", !/\b(?:TODO|DEBUG|undefined|NaN)\b/i.test
 addCheck("Keine sichtbaren Rohschlüssel", !/\b(?:serviceKey|intentKey)\b/.test(visibleText), "Keine serviceKey-/intentKey-Ausgabe");
 addCheck(
   "Neutraler Schnellkontakt ohne Standort-Vorbelegung",
-  mobileFloatingContactSource.includes(': "deutschland"') &&
-    mobileFloatingContactSource.includes("ich möchte eine Anfrage stellen."),
-  "Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus",
+  (globalFloatingRequestsAreNeutral || deferredGlobalFloatingRequestIsNeutral)
+    && mobileFloatingContactSource.includes("ich möchte eine Anfrage stellen."),
+  globalFloatingRequestsAreNeutral
+    ? `${globalFloatingRequestHrefs.length} neutraler Anfrage-Link ohne Standort oder Leistung`
+    : deferredGlobalFloatingRequestIsNeutral
+      ? "Deferred Schnellkontakt nutzt den zentralen mode=neutral-Builder ohne Standort oder Leistung"
+      : `Gefundene globale Anfrage-Links: ${globalFloatingRequestHrefs.join(", ") || "keine"}`,
 );
 addCheck("Kein Menü über dem Hero beim Laden", !renderedMarkup.includes("data-desktop-mega-menu"), "Hero startet frei");
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");

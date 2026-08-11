@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-im-winter',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzug im Winter: Vor- und Nachteile | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug im Winter vorbereiten",
   });
 }

@@ -239,10 +239,8 @@ export function ServicePackageDecisionExperience({
                         <Link
                           href={buildServicePackageHref(item)}
                           className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg bg-slate-950 px-3 text-xs font-black text-white transition hover:bg-blue-800"
-                          data-event="seo_cta_click"
+                          data-event="request_cta_click"
                           data-service={item.kontaktParameter.service}
-                          data-page-intent={item.kontaktParameter.intent}
-                          data-priority={item.priority}
                           data-cta-label={item.empfohlenerCTA}
                         >
                           {germanizeText(item.empfohlenerCTA)}
@@ -309,10 +307,8 @@ export function ServicePackageDecisionExperience({
             <Link
               href={contactHref("sonstiges", "kombiservice-klaeren")}
               className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-sm font-black text-slate-950 transition hover:border-blue-200 hover:bg-blue-50"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="sonstiges"
-              data-page-intent="kombiservice-klaeren"
-              data-priority="p1"
             >
               Kombi-Fall senden
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -343,11 +339,9 @@ export function ServicePackageDecisionExperience({
                 <Link
                   href={item.href}
                   className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg bg-slate-950 px-3 text-xs font-black text-white transition hover:bg-blue-800"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service={item.contact.service}
                   data-city={item.contact.city || ""}
-                  data-page-intent={item.contact.intent}
-                  data-priority={item.contact.priority}
                   data-cta-label={item.contact.ctaLabel}
                 >
                   {germanizeText(item.contact.ctaLabel)}
@@ -417,10 +411,8 @@ export function ServicePackageDecisionExperience({
             <Link
               href={offerPackage ? buildServicePackageHref(offerPackage) : buildLeadHref({ service: "angebot-pruefen", intent: "angebot-pruefen", priority: "p0" })}
               className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-blue-800 px-4 text-sm font-black text-white transition hover:bg-slate-950"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="angebot-pruefen"
-              data-page-intent="angebot-pruefen"
-              data-priority="p0"
             >
               Angebot prüfen lassen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

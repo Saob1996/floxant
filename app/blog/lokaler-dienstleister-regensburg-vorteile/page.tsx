@@ -105,7 +105,7 @@ export default function BlogLokalerDienstleisterPage() {
     ]}
     ctas={[
      { href: "/buchung", label: "Direkt anfragen" },
-     { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt Regensburg öffnen" },
+     { href: "/kontakt?mode=neutral&source=website", label: "Kontakt Regensburg öffnen" },
      { href: "/standorte", label: "Standorte ansehen" },
     ]}
     faqTitle="FAQ zu lokalen Vorteilen in Regensburg"

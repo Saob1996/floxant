@@ -30,7 +30,7 @@ export type ServiceInventoryItem = {
   contactParams: {
     service: string;
     intent: string;
-    source: "seo";
+    source: "website";
   };
   relatedServices: readonly string[];
   relatedSignatureServices: readonly string[];
@@ -112,7 +112,7 @@ function contactHref(service: string, city?: FloxantLocationKey) {
     service,
     city,
     intent: city ? `${service}-${city}` : service,
-    source: "seo",
+    source: "website",
     anchor: "",
   });
 }
@@ -134,7 +134,7 @@ function buildService(seed: ServiceSeed): ServiceInventoryItem {
     optionalInfo: seed.optionalInfo || defaultOptionalInfo,
     effortFactors: seed.effortFactors || defaultEffortFactors,
     primaryCTA: seed.primaryCTA || contactHref(service),
-    contactParams: seed.contactParams || { service, intent, source: "seo" },
+    contactParams: seed.contactParams || { service, intent, source: "website" },
     relatedSignatureServices:
       seed.relatedSignatureServices ||
       ["floxant-angebotscheck", "floxant-objektbrief", "floxant-plan-b-service"],

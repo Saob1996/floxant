@@ -233,11 +233,9 @@ export default function HomePage() {
               <Link
                 href={requestHref}
                 data-home-hero-primary
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="homepage_hero"
                 data-service="sonstiges"
-                data-page-intent="homepage-anfrage"
-                data-priority="p1"
                 data-cta-label="Anfrage senden"
                 data-destination={requestHref}
                 className={primaryButton}
@@ -373,7 +371,7 @@ export default function HomePage() {
 
       <section data-home-section="faq-final" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">
-          <PriorityFaqSection route="/" includeJsonLd tone="dark" title="Kurz erklärt" className="!px-0 !py-0" />
+          <PriorityFaqSection route="/" tone="dark" title="Kurz erklärt" className="!px-0 !py-0" />
           <aside className="self-start rounded-2xl bg-white p-7 text-slate-950 sm:p-9">
             <h2 className="text-3xl font-black tracking-tight">Bereit für Ihre Anfrage?</h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">Nennen Sie Leistung, Einsatzort und Terminwunsch. Weitere Angaben können Sie später ergänzen.</p>

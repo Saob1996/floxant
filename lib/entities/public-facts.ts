@@ -1,4 +1,6 @@
-import { publicServices } from "../services/service-registry";
+import {
+  publicServiceContents,
+} from "../services/service-registry";
 
 export type PublicFactEvidence = {
   source: string;
@@ -74,17 +76,15 @@ export const publicFacts = {
       ],
     },
   ] satisfies readonly VerifiedRegion[],
-  verifiedServices: publicServices.map((service) => ({
-    id: service.id,
-    germanName: service.germanName,
-    englishName: service.englishName,
-    regions: service.regions,
-    canonicalRoute: service.canonicalRoute,
-    evidenceStatus: service.evidenceStatus,
+  verifiedServices: publicServiceContents.map((service) => ({
+    germanName: service.publicTitle,
+    englishName: service.publicEnglishTitle,
+    regions: service.publicRegions,
+    canonicalRoute: service.publicRoute,
   })),
   languages: ["de", "en"],
   contactMethods: [
-    { type: "contact_form", label: "Kontaktformular", href: "/kontakt?mode=neutral&source=seo" },
+    { type: "contact_form", label: "Kontaktformular", href: "/kontakt?mode=neutral&source=website" },
     { type: "booking_form", label: "Buchungsanfrage", href: "/buchung" },
     { type: "phone", label: "+49 1577 1105087", href: "tel:+4915771105087" },
     { type: "email", label: "info@floxant.de", href: "mailto:info@floxant.de" },

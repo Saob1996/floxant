@@ -116,7 +116,7 @@ export default function BlogUmzugsfirmaRegensburgGoogleMapsVertrauenPage() {
         ]}
         ctas={[
           { href: "/buchung", label: "Direkten Buchungsweg öffnen" },
-          { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt & Standort ansehen" },
+          { href: "/kontakt?mode=neutral&source=website", label: "Kontakt & Standort ansehen" },
           { href: "/umzug", label: "Umzugsservice ansehen" },
         ]}
         faqTitle="FAQ zu Google Maps und direkter Anfrage"

@@ -94,11 +94,9 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                 <Link
                   href={href}
                   className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service={item.kontaktParameter.service}
                   data-city={ctaCity}
-                  data-page-intent={item.kontaktParameter.intent}
-                  data-priority={item.priority}
                   data-cta-label={item.empfohlenerCTA}
                   data-destination={href}
                 >

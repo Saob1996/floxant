@@ -105,7 +105,7 @@ function main() {
     else failures.push(`${file}: Dokumentation fehlt`);
   }
 
-  if (exists(files.contact) && read(files.contact).includes("SeoLeadForm")) checks.push("Kontaktformular bleibt vorhanden");
+  if (exists(files.contact) && read(files.contact).includes("WebsiteRequestForm")) checks.push("Kontaktformular bleibt vorhanden");
   else failures.push("SeoLeadForm auf /kontakt nicht gefunden");
 
   if (component.includes("Regensburg plus 50 km") && component.includes("Duesseldorf")) {

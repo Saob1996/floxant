@@ -25,9 +25,9 @@ type CardItem = {
   Icon?: LucideIcon;
 };
 
-const primaryContactHref = "/kontakt?mode=neutral&source=seo";
-const offerCheckHref = "/kontakt?mode=neutral&source=seo";
-const discreetContactHref = "/kontakt?mode=neutral&source=seo";
+const primaryContactHref = "/kontakt?mode=neutral&source=website";
+const offerCheckHref = "/kontakt?mode=neutral&source=website";
+const discreetContactHref = "/kontakt?mode=neutral&source=website";
 
 export const seniorMoveFaqItems = [
   {
@@ -261,9 +261,8 @@ export function SeniorMoveHero() {
             <Link
               href={primaryContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="seniorenumzug"
-              data-page-intent="seniorenumzug-anfragen"
               data-source="seniorenumzug_hero"
             >
               Seniorenumzug anfragen
@@ -272,9 +271,8 @@ export function SeniorMoveHero() {
             <Link
               href={offerCheckHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-5 text-sm font-black text-blue-900 transition hover:border-blue-300 hover:bg-blue-50"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="seniorenumzug"
-              data-page-intent="seniorenumzug-angebot-pruefen"
               data-source="seniorenumzug_hero"
             >
               Seniorenumzug-Angebot prüfen lassen
@@ -283,9 +281,8 @@ export function SeniorMoveHero() {
             <Link
               href={discreetContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 text-sm font-black text-slate-800 transition hover:border-slate-300 hover:bg-slate-100"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="diskret-service"
-              data-page-intent="seniorenumzug-diskret"
               data-source="seniorenumzug_hero"
             >
               Unsicheren Fall beschreiben
@@ -507,7 +504,7 @@ export function SeniorMoveOfferCheckCTA({ compact = false }: { compact?: boolean
               <FileSearch className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/kontakt?mode=neutral&source=seo"
+              href="/kontakt?mode=neutral&source=website"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-white px-5 text-sm font-black text-blue-900 transition hover:border-blue-300 hover:bg-blue-50"
             >
               Umzugsangebot einordnen lassen
@@ -569,7 +566,7 @@ export function EnglishSeniorMoveHint() {
             This is a practical moving request, not legal advice, medical advice or a guaranteed availability promise.
           </p>
           <Link
-            href="/kontakt?mode=neutral&source=seo"
+            href="/kontakt?mode=neutral&source=website"
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
           >
             Start English senior moving request
@@ -651,7 +648,7 @@ export function LocalSeniorMoveSupport({ city, route }: { city: string; route: s
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Link href="/kontakt?mode=neutral&source=seo" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white">
+            <Link href="/kontakt?mode=neutral&source=website" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white">
               Seniorenumzug {city} anfragen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

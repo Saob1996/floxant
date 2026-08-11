@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-anmelden-ummelden',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzug anmelden und ummelden: Checkliste | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug anmelden und ummelden",
   });
 }

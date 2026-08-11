@@ -79,7 +79,7 @@ export default function RegensburgWohnungsaufloesungPage() {
           {
             title: "Nicht vor Ort organisieren",
             text: "Wenn Angehörige oder Ansprechpartner nicht in Regensburg sind, helfen Freigabe, Schlüsselweg, Fotos und ein klarer Kontaktweg.",
-            href: "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=nicht-vor-ort&source=seo",
+            href: "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=nicht-vor-ort&source=website",
             cta: "Situation beschreiben",
           },
         ]}

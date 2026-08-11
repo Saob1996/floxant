@@ -14,11 +14,9 @@ export function NotSureWhatYouNeed() {
       <Link
         href={href}
         className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700"
-        data-event="seo_cta_click"
+        data-event="request_cta_click"
         data-service="sonstiges"
         data-city="regensburg"
-        data-page-intent="unsichere-anfrage"
-        data-priority="p2"
         data-cta-label="Unsichere Anfrage senden"
         data-destination={href}
       >

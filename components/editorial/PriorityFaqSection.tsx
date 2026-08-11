@@ -2,8 +2,7 @@ import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 
 import { FaqAccordion } from "@/components/editorial/FaqAccordion";
 import type { DisplayFaq } from "@/components/editorial/types";
-import { getFaqsForRoute, getSchemaFaqsForRoute } from "@/lib/content/faq-registry";
-import { buildFaqJsonLd } from "@/lib/structured-data";
+import { getFaqsForRoute } from "@/lib/content/faq-registry";
 
 type PriorityFaqSectionProps = {
   route: string;
@@ -12,7 +11,6 @@ type PriorityFaqSectionProps = {
   intro?: string;
   limit?: number;
   openFirst?: boolean;
-  includeJsonLd?: boolean;
   tone?: "light" | "dark";
   className?: string;
   allQuestionsHref?: string;
@@ -59,7 +57,6 @@ export function PriorityFaqSection({
   intro,
   limit = 8,
   openFirst = true,
-  includeJsonLd = false,
   tone = "light",
   className = "",
   allQuestionsHref,
@@ -87,23 +84,10 @@ export function PriorityFaqSection({
   const headingId = `priority-faq-heading-${locale}-${routeId}`;
   const questionsHref = allQuestionsHref ?? copy.allQuestionsHref;
   const isDark = tone === "dark";
-  const schemaItems = includeJsonLd
-    ? getSchemaFaqsForRoute(route).map((faq) => ({ q: faq.question, a: faq.detailedAnswer }))
-    : [];
-
   return (
     <>
-      {schemaItems.length > 0 ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildFaqJsonLd(schemaItems)).replace(/</g, "\\u003c"),
-          }}
-        />
-      ) : null}
       <section
         aria-labelledby={headingId}
-        data-priority-faq-route={route}
         className={`px-6 py-16 sm:py-20 ${className}`.trim()}
       >
         <div className="mx-auto max-w-4xl">

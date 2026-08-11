@@ -27,7 +27,7 @@ const clusters = [
   intro: "Budget, Ablauf, Region und offene Fragen vor dem Auftrag klären.",
   links: [
    { href: "/rechner", label: "FLOXANT Rechner" },
-   { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt Regensburg" },
+   { href: "/kontakt?mode=neutral&source=website", label: "Kontakt Regensburg" },
    { href: "/buchung-ablauf", label: "Buchung und Ablauf" },
    { href: "/leistungen-vergleichen", label: "Leistungen vergleichen" },
    { href: "/anbieter-vergleichen", label: "Anbieter fair vergleichen" },

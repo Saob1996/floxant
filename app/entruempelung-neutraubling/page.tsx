@@ -42,7 +42,7 @@ export default async function EntruempelungNeutraublingPage({ params }: PageProp
                 dict={localeDict}
                 city={city}
                 heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+        heroTitle="Entrümpelung in Neutraubling anfragen"
                 heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
                 ctaText={resolveField(content.cta, fallback.cta, city, "de")}
                 breadcrumbs={[{"label":"Home","href":"/"},{"label":"Entrümpelung","href":"/entruempelung"},{"label":"Neutraubling"}]}

@@ -13,7 +13,7 @@ const requestCtas = [
   { href: "/buchung", label: "Passende Anfrage starten" },
   { href: "/rechner", label: "Aufwand einordnen" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
-  { href: "/kontakt?mode=neutral&source=seo", label: "Kurz Rückfrage klären" },
+  { href: "/kontakt?mode=neutral&source=website", label: "Kurz Rückfrage klären" },
 ];
 
 const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
@@ -320,7 +320,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     date: "4. Juni 2026",
     datePublished: "2026-06-04",
     title: "FLOXANT in Regensburg: Umzug, Reinigung, Entrümpelung und Übergabe einordnen",
-    metaTitle: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
+    metaTitle: "Services in Regensburg im Überblick | FLOXANT",
     description:
       "Welche FLOXANT Leistungen in Regensburg passen: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung, Büroumzug, Klaviertransport, Übergabe und Angebotsprüfung.",
     intro:
@@ -834,7 +834,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
       { href: "/angebotscheck", label: "Angebotscheck ansehen" },
       { href: "/plattform-auftrag-pruefen", label: "Plattformauftrag prüfen" },
-      { href: "/kontakt?mode=neutral&source=seo", label: "Angebot per WhatsApp senden" },
+      { href: "/kontakt?mode=neutral&source=website", label: "Angebot per WhatsApp senden" },
     ],
     faqTitle: "FAQ zur Angebotsprüfung",
     faqItems: [
@@ -920,7 +920,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
       { href: "/express-anfrage", label: "Express-Anfrage senden" },
       { href: "/schadensbegrenzung", label: "Schadensbegrenzung prüfen" },
       { href: "/plan-b-service", label: "Plan-B-Service ansehen" },
-      { href: "/kontakt?mode=neutral&source=seo", label: "Sofort Kontakt aufnehmen" },
+      { href: "/kontakt?mode=neutral&source=website", label: "Sofort Kontakt aufnehmen" },
     ],
     faqTitle: "FAQ zum Plan-B-Service",
     faqItems: [

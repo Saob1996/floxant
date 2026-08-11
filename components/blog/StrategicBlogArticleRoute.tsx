@@ -4,7 +4,6 @@ import type { StrategicBlogArticle } from "@/lib/strategic-blog-articles";
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
@@ -35,7 +34,6 @@ export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRoute
         path,
         datePublished: article.datePublished,
       }),
-      buildFaqJsonLd(normalizedFaqItems),
     ],
   };
 
@@ -60,7 +58,6 @@ export function StrategicBlogArticleRoute({ article }: StrategicBlogArticleRoute
         ctas={article.ctas}
         faqTitle={article.faqTitle}
         faqItems={normalizedFaqItems}
-        owner={article.owner}
         reviewedAt={article.reviewedAt}
       />
     </>

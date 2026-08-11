@@ -117,10 +117,8 @@ export function Footer({ dic }: { dic?: any } = {}) {
             <Link
               href={footerContactHref}
               onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-source="global_footer"
-              data-page-intent="neutrale-anfrage"
-              data-priority="p2"
               data-cta-label="Angebot anfragen"
               data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
@@ -137,11 +135,11 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </Link>
             <div className="mt-5 grid gap-3 text-sm font-semibold leading-7 text-slate-300">
-              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="seo_email_click">
+              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="email_click">
                 <Mail className="h-4 w-4 text-cyan-200" />
                 {company.email}
               </a>
-              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="seo_phone_click">
+              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="phone_click">
                 <Phone className="h-4 w-4 text-cyan-200" />
                 {company.phone}
               </a>

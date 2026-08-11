@@ -52,6 +52,14 @@ function parseRedirects(content) {
     });
 }
 
+function findMetaDescription(html) {
+  for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+    if (!/\bname=["']description["']/i.test(match[0])) continue;
+    return decodeEntities(match[0].match(/\bcontent=["']([^"']*)["']/i)?.[1] || "");
+  }
+  return "";
+}
+
 const files = await walk(root);
 const fileStats = await Promise.all(files.map(async (file) => ({ file, ...(await stat(file)) })));
 const fileSet = new Set(files.map((file) => path.relative(root, file).replace(/\\/g, "/")));
@@ -84,6 +92,7 @@ for (const value of sitemapUrls) {
 const brokenLinks = [];
 const missingImages = [];
 const noindexSitemapPages = [];
+const locationMetadataMismatches = [];
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
 const checkedLinks = new Set();
 const checkedImages = new Set();
@@ -95,6 +104,14 @@ for (const [index, file] of htmlFiles.entries()) {
 
   if (sitemapPaths.has(route) && /<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) {
     noindexSitemapPages.push(route);
+  }
+
+  const metaDescription = findMetaDescription(html);
+  if (
+    route.includes("duesseldorf")
+    && /(?:Regensburg-Service nach Leistung|für Entsorgung in Regensburg)/i.test(metaDescription)
+  ) {
+    locationMetadataMismatches.push({ route, metaDescription });
   }
 
   const attributes = [...html.matchAll(/\b(href|src|poster)=["']([^"']+)["']/gi)];
@@ -155,6 +172,7 @@ const report = {
     brokenLinks: brokenLinks.length,
     missingImages: missingImages.length,
     noindexSitemapPages: noindexSitemapPages.length,
+    locationMetadataMismatches: locationMetadataMismatches.length,
     redirectChains: redirectChains.length,
   },
   failures: {
@@ -165,6 +183,7 @@ const report = {
     brokenLinks,
     missingImages,
     noindexSitemapPages,
+    locationMetadataMismatches,
     redirectChains,
     redirectLoops,
     invalidRedirectStatuses,
@@ -174,7 +193,7 @@ const report = {
 const failureCount = Number(report.failures.fileCountExceeded)
   + tooLarge.length + missingRequired.length + sitemapIssues.length + brokenLinks.length
   + missingImages.length + noindexSitemapPages.length + redirectChains.length
-  + redirectLoops.length + invalidRedirectStatuses.length;
+  + redirectLoops.length + invalidRedirectStatuses.length + locationMetadataMismatches.length;
 
 await mkdir(path.dirname(reportPath), { recursive: true });
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");

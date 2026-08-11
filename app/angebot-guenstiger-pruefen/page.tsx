@@ -59,8 +59,8 @@ import {
 } from "@/lib/structured-data";
 
 const path = "/angebot-guenstiger-pruefen";
-const offerCheckContactHref = "/kontakt?mode=neutral&source=seo";
-const englishOfferCheckHref = "/kontakt?mode=neutral&source=seo";
+const offerCheckContactHref = "/kontakt?mode=neutral&source=website";
+const englishOfferCheckHref = "/kontakt?mode=neutral&source=website";
 
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
@@ -228,139 +228,139 @@ const offerCheckServiceMatrix = [
     service: "Reinigung Düsseldorf",
     checked: "Fläche, Zustand, Ziel, Zugang, Reinigungsart, Termin und Angebotsumfang in Düsseldorf.",
     helps: "Fotos, Quadratmeter, Objektart, Schlüssel-/Zugangsinfo, bisheriger Preis und Stadtteil.",
-    href: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=website",
   },
   {
     service: "Hausverwaltung-Reinigung Düsseldorf",
     checked: "Objektart, Etagen, Bereiche, Turnus, Zugang, Ansprechpartner und Angebotsumfang.",
     helps: "Wohnanlage, WEG oder Mietobjekt, Treppenhaus/Keller/Garage, Turnus und vorhandenes Angebot.",
-    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=website",
   },
   {
     service: "Treppenhausreinigung Düsseldorf",
     checked: "Eingang, Etagen, Geländer, Aufzug, Laufwege, Turnus, Zugang und Zusatzbereiche.",
     helps: "Etagenzahl, Einheiten, Fotos, Schlüsselweg, Ansprechpartner und bisherige Positionen.",
-    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=website",
   },
   {
     service: "Unterhaltsreinigung Düsseldorf",
     checked: "Bereiche, Fläche, Turnus, Zeitfenster, Leistungsplan, Zugang und Ansprechpartner.",
     helps: "Leistungsumfang, Räume, m2, gewünschte Tage, bestehender Turnus und Angebot.",
-    href: "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=website",
   },
   {
     service: "Büroreinigung Düsseldorf",
     checked: "Turnus, Reinigungszeiten, Flächen, Sanitär-/Küchenanteil, Ansprechpartner und Zutritt.",
     helps: "m2, Räume, gewünschte Tage, Bestandsturnus, bisheriges Angebot und besondere Ablaufpunkte.",
-    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=website",
   },
   {
     service: "Gewerbereinigung Düsseldorf",
     checked: "Objektart, Nutzungszeiten, Sicherheits-/Zugangsregeln, Leistungsumfang und Sonderflächen.",
     helps: "Objektfotos, Schichtfenster, Fläche, Leistungsplan, Preispositionen und vorhandenes Angebot.",
-    href: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=website",
   },
   {
     service: "Praxisreinigung Düsseldorf",
     checked: "Flächen, sensible Bereiche, Turnus, Zeitfenster, Ansprechpartner und Dokumentationsbedarf.",
     helps: "Praxisart, Räume, Zeiten, vorhandener Plan, Fotos und offene Hygiene-/Ablauffragen.",
-    href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=website",
   },
   {
     service: "Fensterreinigung Düsseldorf",
     checked: "Fensterzahl, Erreichbarkeit, Rahmen, Glasflächen, Etage, Innen/Außen und Terminlogik.",
     helps: "Fotos, Stückzahl, Zugang, Höhe, bisherige Preispositionen und gewünschter Turnus.",
-    href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=website",
   },
   {
     service: "Reinigung",
     checked: "Fläche, Zustand, Ziel, Zugang, Reinigungsart und Übergabetermin.",
     helps: "Fotos, Quadratmeter, Objektart, Schlüssel-/Zugangsinfo und bisheriger Preis.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Büroreinigung",
     checked: "Turnus, Reinigungszeiten, Flächen, Sanitär-/Küchenanteil und Ansprechpartner.",
     helps: "m2, Räume, gewünschte Tage, Bestandsturnus und besondere Hygieneanforderungen.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Gewerbereinigung",
     checked: "Objektart, Nutzungszeiten, Sicherheits-/Zugangsregeln und Leistungsumfang.",
     helps: "Objektfotos, Schichtfenster, Fläche, Leistungsplan und vorhandenes Angebot.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Praxisreinigung",
     checked: "Flächen, sensible Bereiche, Turnus, Zeitfenster und Dokumentationsbedarf.",
     helps: "Praxisart, Räume, Zeiten, vorhandener Plan und offene Hygiene-/Ablauffragen.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Fensterreinigung",
     checked: "Fensterzahl, Erreichbarkeit, Rahmen, Glasflächen, Etage und Terminlogik.",
     helps: "Fotos, Stückzahl, Innen/Außen, Zugang, Höhe und Preispositionen.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Umzug",
     checked: "Volumen, Etage, Laufweg, Haltezone, Strecke, Helfer und Zusatzleistungen.",
     helps: "Start/Ziel, Fotos, Liste, Termin, Angebot, Preisrahmen und besondere Stücke.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Fernumzug",
     checked: "Strecke, Ladefenster, Rückfahrt, Zwischenlagerung, Sperrgut und Zeitplan.",
     helps: "Adressen grob, Volumen, Fotos, Terminfenster und vorhandene Positionen.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Seniorenumzug",
     checked: "Ruhiger Ablauf, Angehörige, Demontage, Packhilfe, Übergabe und Terminpuffer.",
     helps: "Ansprechpartner, Umfang, Fotos, Fristen, besondere Rücksicht und Zielzustand.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Klaviertransport",
     checked: "Instrumenttyp, Gewicht, Treppen, Laufwege, Strecke, Schutz und Trageaufwand.",
     helps: "Fotos von Instrument und Zugang, Etagen, Maße, Termin und Angebot.",
-    href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-angebot-pruefen&source=seo",
+    href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-angebot-pruefen&source=website",
   },
   {
     service: "Entrümpelung",
     checked: "Menge, Räume, Zugang, Entsorgungsanteil, Trennung, Reinigung danach und Termin.",
     helps: "Fotos, Raumliste, Etage, Parken, gewünschter Endzustand und Angebot.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Haushaltsauflösung",
     checked: "Räume, Nachlass-/Freigabesituation, Wert-/Entsorgungsanteile und Übergabeziel.",
     helps: "Fotos, Schlüssel-/Zugangslage, Fristen, Zielzustand und vorhandene Kalkulation.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Wohnungsauflösung",
     checked: "Wohnungsgröße, Keller/Dachboden, Sperrgut, Entsorgung, Reinigung und Übergabe.",
     helps: "Fotos, m2, Etage, Aufzug, Frist, Angebot und offene Vermieterpunkte.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Solarreinigung / PV",
     checked: "Anlagengröße, Dachzugang, Verschmutzung, Sicherheit, Wasserzugang und Termin.",
     helps: "Fotos, kWp/Modulzahl, Dachart, Höhe, Zugang und bestehendes Angebot.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "Sonderreinigung",
     checked: "Zustand, Risiko, Material, Zugang, Dringlichkeit und notwendige Spezialschritte.",
     helps: "Fotos, kurze Lagebeschreibung, Objektart, Einschränkungen und Zielzustand.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
   {
     service: "B2B-Services",
     checked: "Leistung, Turnus, Schnittstellen, Zutritt, Verantwortliche und Dokumentation.",
     helps: "Leistungsplan, Standort, Fläche, Zeitfenster, SLA-Wünsche und Angebot.",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
   },
 ];
 
@@ -763,10 +763,9 @@ export default function AngebotGuenstigerPruefenPage() {
                 <Link
                   href={offerCheckContactHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="angebot-pruefen"
-                  data-page-intent="angebot-pruefen"
-                  data-source="seo"
+                  data-source="website"
                 >
                   Situation kurz beschreiben
                   <ArrowRight className="h-4 w-4" />
@@ -1453,7 +1452,6 @@ export default function AngebotGuenstigerPruefenPage() {
 
         <PriorityFaqSection
           route={path}
-          includeJsonLd
           title="Häufige Fragen zur Angebotsprüfung"
           className="border-t border-slate-200 bg-white"
         />

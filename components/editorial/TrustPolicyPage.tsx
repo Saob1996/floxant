@@ -25,14 +25,14 @@ export function TrustPolicyPage({
   reviewedAt: string;
 }) {
   const copy = locale === "de"
-    ? { owner: "FLOXANT Redaktion", contact: "Hinweis oder Korrektur senden", note: "Diese Seite beschreibt den redaktionellen Prozess. Sie ist keine Rechts-, Preis- oder Sicherheitsberatung." }
-    : { owner: "FLOXANT editorial team", contact: "Send a correction or note", note: "This page explains the editorial process. It does not provide legal, pricing or safety advice." };
+    ? { contact: "Hinweis oder Korrektur senden", note: "Diese Seite beschreibt den redaktionellen Prozess. Sie ist keine Rechts-, Preis- oder Sicherheitsberatung." }
+    : { contact: "Send a correction or note", note: "This page explains the editorial process. It does not provide legal, pricing or safety advice." };
 
   return (
     <main className="bg-white text-slate-950">
       <ArticleHero eyebrow={eyebrow} title={title} description={intro} />
       <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8">
-        <LastReviewed date={reviewedAt} owner={copy.owner} locale={locale} />
+        <LastReviewed date={reviewedAt} locale={locale} />
         <div className="mt-10 grid gap-10">
           {sections.map((section) => (
             <section key={section.id} id={section.id} className="scroll-mt-28 border-t border-slate-200 pt-8">

@@ -27,11 +27,11 @@ function regensburgDistrict(slug: string, displayName: string, nearby: readonly 
     relevantServices: ["reinigung", "reinigung-nach-umzug", "wohnungsreinigung"],
     specialCases: ["Auszug", "Uebergabe", "Treppenhaus", "Reinigung nach Umzug"],
     localIntro:
-      `Die Regensburger Stadtteilseite fuer ${displayName} ist vorbereitet und bleibt noindex, bis sie mehr bietet als eine generische Reinigungsseite.`,
+      `Für eine Reinigungsanfrage in ${displayName} können Sie Objektart, Flächen, Zustand und Wunschtermin direkt beschreiben.`,
     localProofNotes: [
-      "M0-Seite ist nicht in der Sitemap.",
-      "Keine kuenstliche Stadtteil-Linkfarm.",
-      "Indexierung erst nach individueller FAQ und Kundensituationen.",
+      "Für den Start reichen Ort, Objektart, Flächen und gewünschter Zeitraum.",
+      "Fotos helfen bei besonderen Verschmutzungen oder schwer erreichbaren Bereichen.",
+      "FLOXANT prüft die Angaben persönlich und klärt offene Punkte vor dem Angebot.",
     ],
     maturity: preparedM0,
   };

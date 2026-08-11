@@ -3,7 +3,7 @@ import {
   REQUEST_SERVICE_POLICY,
   getRequestService,
   normalizeRequestPolicyToken,
-} from "@/lib/booking/request-service-policy.js";
+} from "./booking/request-service-policy.js";
 export type LeadPriority = "p0" | "p1" | "p2" | "p3";
 
 export type LeadService =
@@ -1106,7 +1106,7 @@ export function buildLeadHref(input: LeadIntentInput = {}, destination = "/konta
     : requestedCity === "regensburg"
       ? "regensburg"
       : "";
-  const source = "seo";
+  const source = "website";
 
   if (!location) {
     return `${destination}?mode=neutral&source=${source}`;

@@ -87,7 +87,6 @@ export function ServiceRequestCompass() {
                     data-source="homepage_compass"
                     data-contact-channel="booking"
                     data-intent="service_compass_booking"
-                    data-priority="hot"
                   >
                     Anfrage starten
                     <ArrowRight className="h-4 w-4" />
@@ -101,7 +100,6 @@ export function ServiceRequestCompass() {
                     data-source="homepage_compass"
                     data-contact-channel="whatsapp"
                     data-intent="service_compass_whatsapp"
-                    data-priority="hot"
                   >
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp mit Fotos
@@ -214,7 +212,6 @@ function ServiceRegionColumn({
         data-source={source}
         data-contact-channel="booking"
         data-intent="service_region_booking"
-        data-priority="hot"
       >
         {actionLabel}
         <ArrowRight className="h-4 w-4" />

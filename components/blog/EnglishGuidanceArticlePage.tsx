@@ -9,7 +9,7 @@ export function EnglishGuidanceArticlePage({ article }: { article: DominanceArti
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      buildWebPageJsonLd({ name: article.title, description: article.description, path, about: article.about }),
+      buildWebPageJsonLd({ name: article.title, description: article.description, path, inLanguage: "en", about: article.about }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/en" },
         { name: "Guides", item: "/en/blog" },
@@ -34,7 +34,7 @@ export function EnglishGuidanceArticlePage({ article }: { article: DominanceArti
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-slate-300">
             <span className="inline-flex items-center gap-2"><Clock3 className="h-4 w-4" aria-hidden="true" />{article.readTime}</span>
             <span>Reviewed {article.reviewedAt}</span>
-            <span>Responsible: {article.owner}</span>
+            <span>FLOXANT editorial team</span>
           </div>
         </div>
       </header>

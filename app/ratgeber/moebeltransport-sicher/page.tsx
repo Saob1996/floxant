@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/moebeltransport-sicher',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Möbeltransport sicher organisieren | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Moebeltransport vorbereiten",
   });
 }

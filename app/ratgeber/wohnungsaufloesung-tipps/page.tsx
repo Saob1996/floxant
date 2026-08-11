@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/wohnungsaufloesung-tipps',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Wohnungsauflösung: Tipps und Kosten | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung vorbereiten",
   });
 }

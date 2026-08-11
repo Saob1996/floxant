@@ -74,6 +74,10 @@ const legacyRedirectRoutes = new Set([
   "/endreinigung-regensburg",
   "/seo-gone",
 ]);
+const canonicalAliasRoutes = new Set([
+  "/duesseldorf/entsorgung",
+  "/seniorenumzug",
+]);
 const allowedDuesseldorfCleaningRoutes = new Set([
   "/duesseldorf/reinigung",
   "/duesseldorf/bueroreinigung",
@@ -225,6 +229,7 @@ function isIndexableRoute(route) {
   if (verifiedApartmentCleaningRoutes.has(route)) return true;
   if (nonHtmlSitemapExtensionPattern.test(route)) return false;
   if (legacyRedirectRoutes.has(route)) return false;
+  if (canonicalAliasRoutes.has(route)) return false;
   if (consciouslyExcludedSignatureLandingRoutes.has(route)) return false;
   if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
   if (!isCleaningRouteAllowed(route)) return false;

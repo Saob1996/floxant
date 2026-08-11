@@ -16,7 +16,6 @@ import { company } from "@/lib/company";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { germanizeDeep } from "@/lib/german-text";
@@ -183,9 +182,6 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         { name: page.city.displayName, item: `/${page.region}` },
         { name: page.serviceName, item: page.path },
       ]),
-      ...(getActivePriorityFaqAssignment(page.path)
-        ? []
-        : [buildFaqJsonLd(page.faq)]),
     ],
   };
 
@@ -243,10 +239,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
               <Link
                 href={page.primaryCta.href}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={page.serviceKey}
                 data-city={page.city.slug}
-                data-page-intent={page.serviceName}
                 data-region={page.region}
                 data-cta-label={page.primaryCta.label}
               >
@@ -258,10 +253,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={page.serviceKey}
                 data-city={page.city.slug}
-                data-page-intent={page.serviceName}
                 data-contact-channel="whatsapp"
                 data-region={page.region}
                 data-cta-label={copy.whatsappWithPhotos}
@@ -272,10 +266,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
               <Link
                 href={page.secondaryCta.href}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={page.serviceKey}
                 data-city={page.city.slug}
-                data-page-intent="angebot-pruefen"
                 data-contact-channel="offer_check"
                 data-region={page.region}
                 data-cta-label={page.secondaryCta.label}
@@ -408,10 +401,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
             <Link
               href={page.secondaryCta.href}
               className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service={page.serviceKey}
               data-city={page.city.slug}
-              data-page-intent="angebot-pruefen"
             >
               {copy.offerCheckButton}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -465,7 +457,6 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
           <PriorityFaqSection
             route={page.path}
             locale={page.locale === "en" ? "en" : "de"}
-            includeJsonLd
             className="!px-0 !py-0"
           />
         ) : (
@@ -505,10 +496,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
             <Link
               href={page.primaryCta.href}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service={page.serviceKey}
               data-city={page.city.slug}
-              data-page-intent={page.serviceName}
             >
               {page.primaryCta.label}
             </Link>
@@ -517,10 +507,9 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-5 text-sm font-black text-slate-950"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service={page.serviceKey}
               data-city={page.city.slug}
-              data-page-intent={page.serviceName}
               data-contact-channel="whatsapp"
             >
               {copy.whatsappShort}

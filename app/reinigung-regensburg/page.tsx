@@ -272,8 +272,8 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     cityLabel="Regensburg"
                     serviceLabel="Reinigung, Büroreinigung oder Übergabereinigung"
                     tags={["Cleaning service", "Office cleaning", "End-of-tenancy cleaning", "Photos welcome"]}
-                    primaryHref="/kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=seo#direktanfrage"
-                    photoHref="/kontakt?service=reinigung&city=regensburg&intent=reinigung-mit-fotos&source=seo#direktanfrage"
+                    primaryHref="/kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=website#direktanfrage"
+                    photoHref="/kontakt?service=reinigung&city=regensburg&intent=reinigung-mit-fotos&source=website#direktanfrage"
                     offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
                 />
                 <section className="mx-auto my-10 max-w-6xl rounded-lg border border-cyan-100 bg-cyan-50 p-5 text-slate-950">
@@ -294,7 +294,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                             Solarreinigung Regensburg ansehen
                         </a>
                         <a
-                            href="/kontakt?service=angebotscheck&city=regensburg&intent=solarreinigungsangebot-pruefen&source=seo"
+                            href="/kontakt?service=angebotscheck&city=regensburg&intent=solarreinigungsangebot-pruefen&source=website"
                             className="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-sm font-black text-slate-950"
                         >
                             Solarreinigungsangebot prüfen

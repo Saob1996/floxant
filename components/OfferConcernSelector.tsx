@@ -27,17 +27,15 @@ export function OfferConcernSelector() {
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {offerConcerns.map(([label, concern]) => {
-            const href = `/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&offerConcern=${concern}&source=seo`;
+            const href = `/kontakt?service=angebotscheck&city=regensburg&intent=angebot-pruefen&offerConcern=${concern}&source=website`;
             return (
               <Link
                 key={concern}
                 href={href}
                 className="group rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service="angebot-pruefen"
                 data-city="regensburg"
-                data-page-intent="angebot-pruefen"
-                data-priority="p0"
                 data-cta-label={label}
                 data-destination={href}
               >

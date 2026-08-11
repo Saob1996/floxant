@@ -4,7 +4,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Umzug in Regensburg planen: Zugang, Parken, Laufwege | FLOXANT Blog",
-  description: "Wie Sie Ihren Umzug in Regensburg und der Oberpfalz mit Zugang, Parkmöglichkeit, Volumen und Termin besser vorbereiten."
+  description: "Wie Sie Ihren Umzug in Regensburg und der Oberpfalz mit Zugang, Parkmöglichkeit, Volumen und Termin besser vorbereiten.",
+  alternates: { canonical: "/blog/umzug-regensburg-tipps" },
 };
 
 export default function BlogPost() {

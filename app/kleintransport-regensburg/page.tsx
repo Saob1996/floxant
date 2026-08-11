@@ -34,6 +34,7 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
 
   return (
     <SpecialtyPageLayout
+      pagePath="/kleintransport-regensburg"
       lang="de"
       dict={localeDict}
       city={city}

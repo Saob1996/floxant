@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: "akteneinlagerung-regensburg",
-    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
+    title: "Aktenlagerung in Regensburg anfragen | FLOXANT",
     description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
   });
 }
@@ -34,6 +34,7 @@ export default async function AkteneinlagerungRegensburgPage({ params }: PagePro
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/akteneinlagerung-regensburg"
         lang="de"
         dict={localeDict}
         city={city}

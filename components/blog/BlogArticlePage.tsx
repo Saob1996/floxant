@@ -105,7 +105,6 @@ export function BlogArticlePage({
   ctas,
   faqTitle,
   faqItems,
-  owner,
   reviewedAt,
 }: BlogArticlePageProps) {
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
@@ -161,9 +160,9 @@ export function BlogArticlePage({
               Hier geht es um die praktische Frage: Was ist wirklich gemeint, welche Angaben
               braucht FLOXANT und welcher nächste Schritt passt, ohne vorschnelle Versprechen.
             </p>
-            {owner && reviewedAt ? (
+            {reviewedAt ? (
               <p className="mt-3 text-sm font-bold text-slate-600">
-                Verantwortlich: {owner} · Zuletzt geprüft: <time dateTime={reviewedAt}>{reviewedAt}</time>
+                FLOXANT Redaktion · Zuletzt geprüft: <time dateTime={reviewedAt}>{reviewedAt}</time>
               </p>
             ) : null}
 

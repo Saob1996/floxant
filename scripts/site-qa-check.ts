@@ -13,7 +13,7 @@ const REPORT_FILES = {
 
 const CRITICAL_ROUTES = [
   { route: "/", purpose: "Homepage entry", intent: "Brand and service entry", funnel: "Awareness/Lead", service: "reinigung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/kontakt", purpose: "Central lead form", intent: "Contact", funnel: "Lead", service: "kontakt", city: "regensburg", priority: "P0", structuredData: true, form: "SeoLeadForm" },
+  { route: "/kontakt", purpose: "Central lead form", intent: "Contact", funnel: "Lead", service: "kontakt", city: "regensburg", priority: "P0", structuredData: true, form: "WebsiteRequestForm" },
   { route: "/leistungen", purpose: "Service overview", intent: "Service selection", funnel: "Consideration", service: "multi", city: "bayern", priority: "P1" },
   { route: "/reinigung", purpose: "Cleaning overview", intent: "Cleaning", funnel: "Consideration", service: "reinigung", city: "regensburg", priority: "P1" },
   { route: "/umzug", purpose: "Moving overview", intent: "Moving", funnel: "Consideration", service: "umzug", city: "bayern", priority: "P1" },
@@ -272,11 +272,11 @@ function checkCtaIntegrity() {
     if (!source) continue;
 
     const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|<ContactLeadForm\b|<ProfessionalRequestForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|DuesseldorfCleaningServicePage/.test(source);
-    const hasCta = /data-event=["']seo_cta_click["']|buildLeadHref\(|\bcta(Text)?\s*=|\bcta\s*:|\bprimaryCta\b|\bsecondaryHref\b|\bofferHref\b|\bbookingHref\b|\bleadHref\b|href\s*[:=]\s*["']\/(?:kontakt|buchung|angebot-guenstiger-pruefen|angebotscheck)/.test(source) || centralCtaComponent;
+    const hasCta = /data-event=["']request_cta_click["']|buildLeadHref\(|\bcta(Text)?\s*=|\bcta\s*:|\bprimaryCta\b|\bsecondaryHref\b|\bofferHref\b|\bbookingHref\b|\bleadHref\b|href\s*[:=]\s*["']\/(?:kontakt|buchung|angebot-guenstiger-pruefen|angebotscheck)/.test(source) || centralCtaComponent;
     const hasRealHref = /href=|\bhref\s*:|<Link\b|<a\b|\bbookingHref\b|\bleadHref\b/.test(source) || centralCtaComponent;
     const hrefValues = collectHrefValues(source);
     const piiHref = hrefValues.find((href) => typeof href === "string" && href.includes("/kontakt?") && !hasNoPiiInUrl(href));
-    const hasDataAttrs = /data-service=|data-service["']|data-page-intent=|data-page-intent["']|<LeadCta\b|buildLeadHref\(/.test(source) || centralCtaComponent;
+    const hasDataAttrs = /data-service=|data-service["']|data-cta-label=|data-cta-label["']|<LeadCta\b|buildLeadHref\(/.test(source) || centralCtaComponent;
 
     if (!hasCta) {
       results.push(item("WARN", "CTA", file, route.route, "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.", route.priority, "Hero- und Content-CTA manuell pruefen.", false, true));
@@ -285,7 +285,7 @@ function checkCtaIntegrity() {
     } else if (piiHref) {
       results.push(item("FAIL", "CTA", file, route.route, "Kontakt-CTA enthaelt personenbezogene Query-Parameter.", route.priority, "PII aus URL entfernen."));
     } else if (!hasDataAttrs) {
-      results.push(item("WARN", "CTA", file, route.route, "CTA vorhanden, aber Tracking-/Intent-Attribute statisch nicht klar nachweisbar.", route.priority, "data-service, data-city, data-page-intent, data-priority manuell pruefen.", false, true));
+      results.push(item("WARN", "CTA", file, route.route, "CTA vorhanden, aber öffentliche Tracking-Attribute statisch nicht klar nachweisbar.", route.priority, "data-service, data-city und sichtbares CTA-Label manuell prüfen.", false, true));
     } else {
       results.push(item("PASS", "CTA", file, route.route, "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.", route.priority, "Keine Aktion."));
     }
@@ -312,7 +312,7 @@ function checkFormsAndSuccess() {
   const bookingApiSource = bookingApiFiles.map(read).join("\n");
   const offerSource = offerFiles.map(read).join("\n");
 
-  const requiredFormSignals = ["name", "email", "phone", "servicePreset", "city", "message", "Datenschutz", "companyWebsite", "seo_lead_submit_success", "seo_lead_submit_error"];
+  const requiredFormSignals = ["name", "email", "phone", "servicePreset", "city", "message", "Datenschutz", "companyWebsite", "request_submit_success", "request_submit_error"];
   const missing = requiredFormSignals.filter((needle) => !leadFormSource.includes(needle) && !contactSource.includes(needle));
   results.push(missing.length
     ? item("FAIL", "Lead-Formular", leadFormFile, "/kontakt", `Zentrale Formularsignale fehlen: ${missing.join(", ")}.`, "P0", "SeoLeadForm/Kontaktseite ergaenzen.")

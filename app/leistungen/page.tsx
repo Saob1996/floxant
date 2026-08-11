@@ -44,7 +44,7 @@ import {
   specialClearanceLinks,
   specialMovingLinks,
 } from "@/lib/signature-special-services";
-import { publicServices } from "@/lib/services/service-registry";
+import { getPublicServiceContentsByLocale } from "@/lib/services/service-registry";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -54,6 +54,7 @@ import {
 const path = "/leistungen";
 const canonical = `${company.url}${path}`;
 const regionOrder: FloxantRegion[] = ["duesseldorf", "regensburg"];
+const germanServiceContents = getPublicServiceContentsByLocale("de");
 
 const faqItems = [
   {
@@ -283,7 +284,7 @@ export default function LeistungenPage() {
               Alle freigegebenen Leistungen bleiben als Links sichtbar; die Filter benötigen JavaScript.
             </p>
           </noscript>
-          <ServiceCatalog services={publicServices} locale="de" />
+          <ServiceCatalog services={germanServiceContents} locale="de" />
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/service-finder" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600">
               Service Finder öffnen

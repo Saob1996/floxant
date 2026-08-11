@@ -112,7 +112,7 @@ export default function BlogBueroumzugBayernPage() {
         ctas={[
           { href: "/bueroumzug", label: "Büroumzug-Seite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
-          { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt ansehen" },
+          { href: "/kontakt?mode=neutral&source=website", label: "Kontakt ansehen" },
         ]}
         faqTitle="FAQ zum Büroumzug in Bayern"
         faqItems={faqItems}

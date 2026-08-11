@@ -4016,9 +4016,9 @@ export async function POST(req: Request) {
   const contactPhone = String(payload.phone || "").trim();
   const isSeoQuickLead =
    payload.type === "booking_wizard" &&
-   (payloadText(payload, "lead_type") === "seo_quick_lead" ||
-    payloadText(payload, "leadSource") === "seo_quick_lead_form" ||
-    payloadText(payload, "sourceComponent") === "SeoLeadForm");
+   (payloadText(payload, "lead_type") === "website_quick_request" ||
+    payloadText(payload, "leadSource") === "website_quick_request_form" ||
+    payloadText(payload, "sourceComponent") === "WebsiteRequestForm");
   const honeypotValue =
    payloadText(payload, "companyWebsite") || payloadText(payload, "website") || payloadText(payload, "url");
 

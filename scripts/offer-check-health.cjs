@@ -132,7 +132,7 @@ add(
 add(
   checks,
   "cta-present",
-  primaryPage.includes("/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo") &&
+  primaryPage.includes("/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=website") &&
     primaryPage.includes("#guenstiger-form")
     ? "PASS"
     : "FAIL",
@@ -179,7 +179,7 @@ add(
 add(
   checks,
   "internal-links",
-  (internalSources.match(/angebot-guenstiger-pruefen/g) || []).length >= 8 && ctaComponent.includes("data-page-intent")
+  (internalSources.match(/angebot-guenstiger-pruefen/g) || []).length >= 8 && ctaComponent.includes("data-service")
     ? "PASS"
     : "WARN",
   "Offer-check links exist in key hubs/service pages; some deleted Düsseldorf pages require manual follow-up.",

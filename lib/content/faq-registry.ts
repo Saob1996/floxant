@@ -1477,10 +1477,10 @@ function buildFaqPair(seed: FaqPairSeed): [FaqRegistryEntry, FaqRegistryEntry] {
           service,
           city,
           intent: current.searchParams.get("intent"),
-          source: current.searchParams.get("source") || "seo",
+          source: current.searchParams.get("source") || "website",
           anchor: current.hash.slice(1),
         })
-      : "/kontakt?mode=neutral&source=seo";
+      : "/kontakt?mode=neutral&source=website";
     return { ...copy, CTA: { ...copy.CTA, href } };
   };
 
@@ -1495,6 +1495,9 @@ export const faqRegistry: readonly FaqRegistryEntry[] = faqPairSeeds.flatMap(bui
 export const publicFaqs: readonly FaqRegistryEntry[] = faqRegistry.filter(
   (faq) => faq.publicAllowed && faq.verified,
 );
+
+const TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE =
+  "Tailored page-local config.faqItems remain canonical; registry activation requires component migration.";
 
 export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
   {
@@ -1516,7 +1519,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/reinigung",
     locale: "de",
     pageType: "service-hub",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-cleaning-details-duesseldorf-de",
       "faq-cleaning-effort-duesseldorf-de",
@@ -1582,7 +1586,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/bueroreinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-office-scope-de",
       "faq-office-frequency-de",
@@ -1604,7 +1609,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/praxisreinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-practice-details-duesseldorf-de",
       "faq-practice-areas-duesseldorf-de",
@@ -1626,7 +1632,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/fensterreinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-window-details-duesseldorf-de",
       "faq-window-frame-scope-duesseldorf-de",
@@ -1648,7 +1655,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/baureinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-construction-cleaning-duesseldorf-de",
       "faq-cleaning-details-duesseldorf-de",
@@ -1883,7 +1891,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/grundreinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-cleaning-scope-boundary-de",
       "faq-cleaning-details-duesseldorf-de",
@@ -1907,7 +1916,8 @@ export const priorityFaqAssignments: readonly PriorityFaqAssignment[] = [
     route: "/duesseldorf/unterhaltsreinigung",
     locale: "de",
     pageType: "service",
-    status: "ACTIVE",
+    status: "PLANNED",
+    note: TAILORED_DUESSELDORF_FAQ_MIGRATION_NOTE,
     faqIds: [
       "faq-office-frequency-de",
       "faq-office-scope-de",

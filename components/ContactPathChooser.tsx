@@ -110,16 +110,13 @@ function LinkGrid({ items }: { items: readonly FinderItem[] }) {
           key={`${link.label}-${link.href}`}
           href={link.href}
           className="group grid min-h-16 grid-cols-[auto_1fr_auto] items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-          data-event="seo_cta_click"
+          data-event="request_cta_click"
           data-source={link.source}
           data-service={link.route.service}
           data-city={link.route.city}
-          data-page-intent={link.route.intent}
-          data-priority={link.route.priority}
           data-cta-label={link.label}
           data-destination={link.href}
           data-no-api-on-select="true"
-          data-manual-review={link.route.manualReview ? "true" : undefined}
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-blue-700 ring-1 ring-slate-200">
             <link.Icon className="h-4 w-4" aria-hidden="true" />

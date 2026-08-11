@@ -38,7 +38,6 @@ import { germanText, germanizeDeep } from "@/lib/german-text";
 import { applyCity } from "@/lib/specialty-page";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -70,6 +69,7 @@ type SpecialtyPageLayoutProps = {
   heroText?: string;
   ctaText?: string;
   primaryCtaHref?: string;
+  pagePath?: string;
   breadcrumbs: BreadcrumbItem[];
   chips?: IconEntry[];
   cards?: ServiceCard[];
@@ -621,6 +621,7 @@ export function SpecialtyPageLayout({
   heroText,
   ctaText,
   primaryCtaHref,
+  pagePath,
   breadcrumbs,
   chips = [],
   cards = [],
@@ -659,6 +660,7 @@ export function SpecialtyPageLayout({
     breadcrumbs.some((item) => item.label.toLowerCase().includes("bayern") || item.href?.endsWith("-bayern"));
   const regionName = geo?.region || "Region";
   const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
+  const structuredPagePath = pagePath || serviceContext.pagePath;
   const resolvedHeroTitle = resolveVisibleHeroTitle(heroTitle, city, serviceContext.name);
   const resolvedPrimaryCtaHref = primaryCtaHref || "#wizard";
   const primaryCtaQuery = resolvedPrimaryCtaHref.includes("?")
@@ -785,7 +787,7 @@ export function SpecialtyPageLayout({
       text: "Wenn schon eine Zielgröße da ist und FLOXANT den passenden Rahmen daran spiegeln soll.",
     },
     {
-      href: "/kontakt?mode=neutral&source=seo",
+      href: "/kontakt?mode=neutral&source=website",
       title: "Rückfragen abstimmen",
       text: `Wenn Zugang, Fotos, Sonderfälle oder Terminfenster in ${germanText(city, city)} vorab geklärt werden müssen.`,
     },
@@ -823,7 +825,7 @@ export function SpecialtyPageLayout({
       buildServiceJsonLd({
         name: `${serviceContext.name} ${city}`,
         description: heroText || `${serviceContext.name} in ${city} mit FLOXANT.`,
-        path: serviceContext.pagePath,
+        path: structuredPagePath,
         serviceType: `${serviceContext.name} in ${city}`,
         areaServed: Array.from(
           new Set([
@@ -835,7 +837,7 @@ export function SpecialtyPageLayout({
       buildWebPageJsonLd({
         name: `${resolvedHeroTitle} | FLOXANT`,
         description: heroText || `${serviceContext.name} in ${city}.`,
-        path: serviceContext.pagePath,
+        path: structuredPagePath,
         about: [
           serviceContext.name,
           city,
@@ -850,7 +852,7 @@ export function SpecialtyPageLayout({
           },
           {
             name: `${serviceContext.name} in ${city} direkt anfragen`,
-            target: `${serviceContext.pagePath}#wizard`,
+            target: `${structuredPagePath}#wizard`,
           },
         ],
       }),
@@ -861,7 +863,6 @@ export function SpecialtyPageLayout({
           item: item.href,
         })),
       ]),
-      ...(faqItems.length > 0 ? [buildFaqJsonLd(faqItems)] : []),
     ],
   };
 
@@ -911,11 +912,9 @@ export function SpecialtyPageLayout({
               <a
                 href={resolvedPrimaryCtaHref}
                 className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={primaryCtaService}
                 data-city={primaryCtaCity || undefined}
-                data-page-intent={primaryCtaIntent}
-                data-priority={primaryCtaPriority}
                 data-cta-label={ctaText || `${serviceContext.name} in ${city} anfragen`}
                 data-destination={resolvedPrimaryCtaHref}
                 data-source="specialty_hero"
@@ -1027,7 +1026,7 @@ export function SpecialtyPageLayout({
       />
 
       <SearchIntentExpansion
-        route={serviceContext.pagePath}
+        route={structuredPagePath}
         city={city}
         serviceName={serviceContext.name}
         relatedLinks={helpfulLinks}
@@ -1601,11 +1600,9 @@ export function SpecialtyPageLayout({
                     <a
                       href={resolvedPrimaryCtaHref}
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
-                      data-event="seo_cta_click"
+                      data-event="request_cta_click"
                       data-service={primaryCtaService}
                       data-city={primaryCtaCity || undefined}
-                      data-page-intent={primaryCtaIntent}
-                      data-priority={primaryCtaPriority}
                       data-cta-label={`${serviceContext.name} in ${city} anfragen`}
                       data-destination={resolvedPrimaryCtaHref}
                       data-source="local_check_block"
@@ -1619,11 +1616,9 @@ export function SpecialtyPageLayout({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-5 text-sm font-black text-white transition hover:bg-emerald-600"
-                      data-event="seo_cta_click"
+                      data-event="request_cta_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-city={citySlug}
-                      data-page-intent={primaryCtaIntent}
-                      data-priority={primaryCtaPriority}
                       data-cta-label="WhatsApp mit Fotos"
                       data-destination={whatsappHref}
                       data-source="local_check_block"

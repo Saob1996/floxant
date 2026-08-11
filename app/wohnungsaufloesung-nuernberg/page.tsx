@@ -39,11 +39,12 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
 
     return (
         <SpecialtyPageLayout
+            pagePath="/wohnungsaufloesung-nuernberg"
                 lang="de"
                 dict={localeDict}
                 city={city}
                 heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+      heroTitle="Wohnungsauflösung in Nürnberg anfragen"
                 heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
                 ctaText={resolveField(content.cta, fallback.cta, city, "de")}
                 breadcrumbs={[{"label":"Home","href":"/"},{"label":"Entrümpelung","href":"/entruempelung"},{"label":"Wohnungsauflösung","href":"/wohnungsaufloesung-bayern"},{"label":"Nürnberg"}]}

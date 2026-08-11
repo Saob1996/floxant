@@ -62,11 +62,9 @@ export function LocalContactPanel({
                   </div>
                   <Link
                     href={contactHref}
-                    data-event="seo_cta_click"
+                    data-event="request_cta_click"
                     data-service={service}
                     data-city={location.locationKey}
-                    data-page-intent={`${service}-${location.locationKey}`}
-                    data-priority="p1"
                     data-cta-label={`Anfrage ${location.displayName}`}
                     data-destination={contactHref}
                     className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
@@ -80,7 +78,7 @@ export function LocalContactPanel({
                   {location.phone && location.phoneRaw ? (
                     <a
                       href={`tel:${location.phoneRaw}`}
-                      data-event="seo_phone_click"
+                      data-event="phone_click"
                       data-city={location.locationKey}
                       className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-800"
                     >
@@ -91,7 +89,7 @@ export function LocalContactPanel({
                   {location.email ? (
                     <a
                       href={`mailto:${location.email}`}
-                      data-event="seo_email_click"
+                      data-event="email_click"
                       data-city={location.locationKey}
                       className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-800"
                     >

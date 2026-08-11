@@ -211,7 +211,7 @@ export default function AnbieterVergleichenPage() {
       <Link href="/leerfahrt-rueckfahrt" className="rounded-[1.4rem] border border-emerald-300/20 bg-emerald-400/10 px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-emerald-500  transition hover:bg-emerald-400/15">
        Leer-Rückfahrt nutzen
       </Link>
-      <Link href="/kontakt?mode=neutral&source=seo" className="rounded-[1.4rem] border border-foreground/10 bg-white/[0.04] px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-foreground/72 transition hover:bg-white/[0.07] hover:text-foreground">
+      <Link href="/kontakt?mode=neutral&source=website" className="rounded-[1.4rem] border border-foreground/10 bg-white/[0.04] px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-foreground/72 transition hover:bg-white/[0.07] hover:text-foreground">
        Direkt Kontakt aufnehmen
       </Link>
      </div>
@@ -259,7 +259,6 @@ export default function AnbieterVergleichenPage() {
 
    <PriorityFaqSection
     route="/anbieter-vergleichen"
-    includeJsonLd
     title="Häufige Fragen zum Anbieter-Vergleich"
     className="border-t border-foreground/5"
    />

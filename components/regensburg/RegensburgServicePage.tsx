@@ -324,7 +324,7 @@ const endCleaningAuthorityLinks = [
     text: "Sortiert Reinigung, Restmengen, Besichtigung, Schlüsselweg und Wiedervermietungslogik in einem Ablauf.",
   },
   {
-    href: "/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=seo",
+    href: "/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=website",
     title: "Angebotsprüfung",
     text: "Hilft, vorhandene Reinigungsangebote nach Umfang, Zusatzpositionen, Frist und praktischen Risiken einzuordnen.",
   },
@@ -356,9 +356,8 @@ function EndCleaningAuthoritySection({
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={bookingHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="endreinigung_authority_section"
-                data-page-intent="endreinigung-wohnungsuebergabe"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
               >
                 Übergabe-Endreinigung anfragen
@@ -366,9 +365,8 @@ function EndCleaningAuthoritySection({
               </Link>
               <Link
                 href={offerHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="endreinigung_authority_offer_check"
-                data-page-intent="uebergabe-angebot-pruefen"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-6 text-sm font-black text-blue-800 transition hover:bg-blue-100"
               >
                 Angebot vergleichen
@@ -567,12 +565,10 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={bookingHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-region="regensburg"
                 data-service={bookingLead.trackingService}
                 data-city={bookingLead.trackingCity}
-                data-page-intent={bookingLead.trackingIntent}
-                data-priority={bookingLead.priority}
                 data-cta-label={config.primaryCta}
                 data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/25 transition hover:bg-cyan-50"
@@ -582,12 +578,10 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </Link>
               <a
                 href={whatsappHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-region="regensburg"
                 data-service={bookingLead.trackingService}
                 data-city={bookingLead.trackingCity}
-                data-page-intent={bookingLead.trackingIntent}
-                data-priority={bookingLead.priority}
                 data-cta-label="Fotos per WhatsApp senden"
                 data-destination={whatsappHref}
                 data-contact-channel="whatsapp"
@@ -598,7 +592,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </a>
               <a
                 href={`tel:${company.phoneRaw}`}
-                data-event="seo_phone_click"
+                data-event="phone_click"
                 data-region="regensburg"
                 data-service={config.slug}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
@@ -643,12 +637,10 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               <div className="mt-6 grid gap-3">
                 <Link
                   href={bookingHref}
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-region="regensburg"
                   data-service={bookingLead.trackingService}
                   data-city={bookingLead.trackingCity}
-                  data-page-intent={bookingLead.trackingIntent}
-                  data-priority={bookingLead.priority}
                   data-cta-label="Anfrageformular öffnen"
                   data-destination={bookingHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
@@ -658,12 +650,10 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
                 </Link>
                 <a
                   href={whatsappHref}
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-region="regensburg"
                   data-service={bookingLead.trackingService}
                   data-city={bookingLead.trackingCity}
-                  data-page-intent={bookingLead.trackingIntent}
-                  data-priority={bookingLead.priority}
                   data-cta-label="WhatsApp mit Fotos"
                   data-destination={whatsappHref}
                   data-contact-channel="whatsapp"
@@ -705,7 +695,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       {config.slug === "endreinigung" ? (
         <EndCleaningAuthoritySection
           bookingHref={bookingHref}
-          offerHref="/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=seo"
+          offerHref="/angebot-guenstiger-pruefen?service=reinigung&city=regensburg&intent=uebergabe-angebot-pruefen&source=website"
         />
       ) : null}
 
@@ -881,7 +871,6 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       {getActivePriorityFaqAssignment(config.path) ? (
         <PriorityFaqSection
           route={config.path}
-          includeJsonLd
           className="border-t border-slate-200 bg-white"
         />
       ) : (
