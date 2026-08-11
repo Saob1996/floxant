@@ -122,49 +122,49 @@ const duesseldorfCleaningOfferLinks = [
   {
     title: "Reinigungsangebot Düsseldorf prüfen",
     text: "Fläche, Objektart, Zielzustand, Termin, Turnus und vorhandenen Preis einordnen.",
-    href: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=reinigung&city=duesseldorf&intent=reinigungsangebot-pruefen&source=website",
     route: "/duesseldorf/reinigung",
   },
   {
     title: "Hausverwaltung-Reinigung Düsseldorf prüfen",
     text: "Objektart, Bereiche, Turnus, Zugang, Ansprechpartner und vorhandenes Angebot strukturieren.",
-    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung-reinigungsangebot-pruefen&source=website",
     route: "/duesseldorf/reinigung#hausverwaltung-reinigung",
   },
   {
     title: "Treppenhausreinigung Düsseldorf prüfen",
     text: "Etagen, Eingang, Geländer, Aufzug, Schlüsselweg, Turnus und Zusatzbereiche einordnen.",
-    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=treppenhausreinigung&city=duesseldorf&intent=treppenhausreinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/reinigung#hausverwaltung-reinigung",
   },
   {
     title: "Unterhaltsreinigung Düsseldorf prüfen",
     text: "Fläche, Leistungsplan, Reinigungszeiten, Turnus, Zugang und Angebot vergleichbar machen.",
-    href: "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=unterhaltsreinigung&city=duesseldorf&intent=unterhaltsreinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/gewerbereinigung",
   },
   {
     title: "Büroreinigung Düsseldorf prüfen",
     text: "Turnus, Reinigungszeiten, Räume, Sanitär/Küche, Ansprechpartner und Zugang klären.",
-    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/bueroreinigung",
   },
   {
     title: "Gewerbereinigung Düsseldorf prüfen",
     text: "Objektart, Nutzungszeiten, Leistungsplan, Sonderflächen und Zusatzpositionen vergleichen.",
-    href: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/gewerbereinigung",
   },
   {
     title: "Praxisreinigung Düsseldorf prüfen",
     text: "Praxisart, sensible Bereiche, Zeiten, Turnus und sachliche Ablaufanforderungen sammeln.",
-    href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/praxisreinigung",
   },
   {
     title: "Fensterreinigung Düsseldorf prüfen",
     text: "Fensterzahl, Glasflächen, Erreichbarkeit, Rahmen/Falze, Etage und Terminlogik erfassen.",
-    href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=seo",
+    href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-angebot-pruefen&source=website",
     route: "/duesseldorf/fensterreinigung",
   },
 ];
@@ -365,9 +365,9 @@ export default function AngebotscheckPage() {
                     <Link
                       href={item.href}
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
-                      data-event="seo_cta_click"
+                      data-event="request_cta_click"
                       data-city="duesseldorf"
-                      data-source="seo"
+                      data-source="website"
                       data-destination={item.href}
                     >
                       Angebot prüfen

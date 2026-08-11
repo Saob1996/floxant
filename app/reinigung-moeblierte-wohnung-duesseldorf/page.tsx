@@ -34,7 +34,7 @@ import {
 
 const pagePath = "/reinigung-moeblierte-wohnung-duesseldorf";
 const contactHref =
-  "/kontakt?service=reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-duesseldorf&source=seo";
+  "/kontakt?service=reinigung&city=duesseldorf&intent=ferienwohnung-reinigung-duesseldorf&source=website";
 const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
   "Hallo FLOXANT, ich möchte eine Ferienwohnung oder ein möbliertes Apartment in Düsseldorf reinigen lassen. Objekt, Fläche, Checkout, nächsten Check-in und Fotos kann ich senden.",
 )}`;
@@ -206,7 +206,7 @@ export default function FurnishedApartmentCleaningDuesseldorfPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={contactHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-region="duesseldorf"
                 data-service="ferienwohnung_reinigung"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"

@@ -111,7 +111,7 @@ export default function BlogFamilyOfficeUmzugBayernPage() {
         ]}
         ctas={[
           { href: "/private-client-service", label: "Private Client Seite öffnen" },
-          { href: "/kontakt?mode=neutral&source=seo", label: "Diskret Kontakt aufnehmen" },
+          { href: "/kontakt?mode=neutral&source=website", label: "Diskret Kontakt aufnehmen" },
           { href: "/blog/private-client-umzug-bayern-diskret-planen", label: "Weiteren Private-Client-Ratgeber lesen" },
         ]}
         faqTitle="FAQ zu Family Office und Private Client"

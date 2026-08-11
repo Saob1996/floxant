@@ -79,7 +79,7 @@ export function LocalTrustBlock({
 
           <Link
             href={ctaHref}
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-region="regensburg"
             data-service="reinigung"
             data-source="local_trust_block"

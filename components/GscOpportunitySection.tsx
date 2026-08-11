@@ -211,11 +211,9 @@ export function GscOpportunitySection({
               <Link
                 href={primaryHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-white px-5 text-sm font-black text-slate-950"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={inferredTrackingService}
                 data-city={inferredTrackingCity}
-                data-page-intent={resolvedTrackingIntent}
-                data-priority={trackingPriority}
                 data-cta-label={primaryLabel}
                 data-destination={primaryHref}
               >
@@ -239,11 +237,9 @@ export function GscOpportunitySection({
                 <Link
                   href={secondaryHref}
                   className="inline-flex min-h-12 items-center justify-center rounded-[0.85rem] border border-white/20 bg-white/10 px-5 text-sm font-black text-white"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service={inferredTrackingService}
                   data-city={inferredTrackingCity}
-                  data-page-intent={resolvedTrackingIntent}
-                  data-priority={trackingPriority}
                   data-cta-label={secondaryLabel}
                   data-destination={secondaryHref}
                 >

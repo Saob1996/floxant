@@ -81,11 +81,9 @@ export function RequestTypeCards() {
           key={item.title}
           href={href}
           className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200"
-          data-event="seo_cta_click"
+          data-event="request_cta_click"
           data-service={item.service}
           data-city={city}
-          data-page-intent={item.intent}
-          data-priority={item.priority}
           data-cta-label={item.title}
           data-destination={href}
         >

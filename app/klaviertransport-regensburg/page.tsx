@@ -60,9 +60,9 @@ const offerCheckHref = buildLeadHref({
 });
 
 const furnitureTransportHref =
-  "/kontakt?service=moebeltransport&city=regensburg&intent=moebeltransport-regensburg&source=seo";
+  "/kontakt?service=moebeltransport&city=regensburg&intent=moebeltransport-regensburg&source=website";
 const backhaulCheckHref =
-  "/kontakt?service=moebeltransport&city=regensburg&intent=rueckfahrt-beiladung-regensburg&source=seo";
+  "/kontakt?service=moebeltransport&city=regensburg&intent=rueckfahrt-beiladung-regensburg&source=website";
 
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
@@ -413,11 +413,9 @@ export default function KlaviertransportRegensburgPage() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="klaviertransport"
                   data-city="regensburg"
-                  data-page-intent="klaviertransport-regensburg"
-                  data-priority="p0"
                   data-cta-label="Fotos per WhatsApp senden"
                   data-destination={whatsappHref}
                   data-contact-channel="whatsapp"
@@ -428,11 +426,9 @@ export default function KlaviertransportRegensburgPage() {
                 </a>
                 <Link
                   href={offerCheckHref}
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="klaviertransport"
                   data-city="regensburg"
-                  data-page-intent="klaviertransport-angebot-pruefen"
-                  data-priority="p0"
                   data-cta-label="Klaviertransport-Angebot prüfen lassen"
                   data-destination={offerCheckHref}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:text-cyan-800 sm:w-auto"
@@ -674,11 +670,9 @@ export default function KlaviertransportRegensburgPage() {
               </Link>
               <Link
                 href={backhaulCheckHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service="moebeltransport"
                 data-city="regensburg"
-                data-page-intent="rueckfahrt-beiladung-regensburg"
-                data-priority="p1"
                 data-cta-label="Rückfahrt oder Beiladung prüfen"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-emerald-300 bg-white px-5 text-sm font-black text-emerald-900 transition hover:bg-emerald-100"
               >
@@ -732,11 +726,9 @@ export default function KlaviertransportRegensburgPage() {
             </div>
             <Link
               href={offerCheckHref}
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-service="klaviertransport"
               data-city="regensburg"
-              data-page-intent="klaviertransport-angebot-pruefen"
-              data-priority="p0"
               data-cta-label="Klaviertransport-Angebot prüfen lassen"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-800"
             >

@@ -22,8 +22,8 @@ import {
 const pagePath = "/bueroreinigung";
 const canonicalPath = "/regensburg/bueroreinigung";
 
-const primaryHref = "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-anfrage&source=seo";
-const offerHref = "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-angebot-pruefen&source=seo";
+const primaryHref = "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-anfrage&source=website";
+const offerHref = "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-angebot-pruefen&source=website";
 
 const faqItems = [
   {

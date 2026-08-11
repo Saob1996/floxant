@@ -74,11 +74,9 @@ export function LocationServiceSwitcher({
                   <Link
                     key={service}
                     href={getLocationContactHref(location.locationKey, toContactServiceSlug(service))}
-                    data-event="seo_cta_click"
+                    data-event="request_cta_click"
                     data-service={toContactServiceSlug(service)}
                     data-city={location.locationKey}
-                    data-page-intent={`${toContactServiceSlug(service)}-${location.locationKey}`}
-                    data-priority="p2"
                     data-cta-label={service}
                     className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold leading-6 text-slate-800 transition hover:border-blue-200 hover:bg-white"
                   >

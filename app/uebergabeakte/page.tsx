@@ -40,7 +40,7 @@ export const metadata: Metadata = generatePageSEO({
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20m%C3%B6chte%20eine%20%C3%9Cbergabeakte%20anfragen.%20Es%20geht%20um%20ein%20Objekt%20in%20%5BOrt%5D.%20Gew%C3%BCnscht%20sind%20Dokumentation%2C%20Fotos%2FSchl%C3%BCsselstatus%2FEndreinigung%2F%C3%9Cbergabevorbereitung%20nach%20Absprache.%20Termin%20und%20Details%20kann%20ich%20senden.";
-const handoverFileContactHref = "/kontakt?service=reinigung&city=regensburg&intent=uebergabeakte&source=seo";
+const handoverFileContactHref = "/kontakt?service=reinigung&city=regensburg&intent=uebergabeakte&source=website";
 
 const statusSteps = ["Objekt", "Leistungen", "Fotos", "Schlüssel", "Hinweise", "Übergabe"];
 
@@ -274,11 +274,9 @@ export default function UebergabeaktePage() {
                 <Link
                   href={handoverFileContactHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-service="reinigung"
                   data-city="regensburg"
-                  data-page-intent="uebergabeakte"
-                  data-priority="p1"
                   data-cta-label="Übergabeakte anfragen"
                   data-destination={handoverFileContactHref}
                 >

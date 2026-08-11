@@ -45,7 +45,7 @@ const regensburgCleaningAnchors = [
   { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/entruempelung-landshut", label: "Reinigung nach Entrümpelung Landshut" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-  { href: "/kontakt?mode=neutral&source=seo", label: "FLOXANT Kontakt" },
+  { href: "/kontakt?mode=neutral&source=website", label: "FLOXANT Kontakt" },
 ] as const;
 
 const endCleaningRegensburgAnchors = [
@@ -95,7 +95,7 @@ const privateClientAnchors = [
   { href: "/diskret-service", label: "Diskret-Service für sensible Fälle" },
   { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreter Umzug" },
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung" },
-  { href: "/kontakt?mode=neutral&source=seo", label: "Diskret Kontakt aufnehmen" },
+  { href: "/kontakt?mode=neutral&source=website", label: "Diskret Kontakt aufnehmen" },
   { href: "/anfrage-mit-preisrahmen", label: "Preisrahmen vertraulich nennen" },
 ] as const;
 
@@ -105,11 +105,11 @@ const diskretServiceAnchors = [
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassraeumung diskret klären" },
   { href: "/angebot-guenstiger-pruefen", label: "Diskretes Angebot prüfen" },
   { href: "/private-client-service", label: "Private Client Service" },
-  { href: "/kontakt?mode=neutral&source=seo", label: "Diskreten Fall beschreiben" },
+  { href: "/kontakt?mode=neutral&source=website", label: "Diskreten Fall beschreiben" },
 ] as const;
 
 const contactAnchors = [
-  { href: "/kontakt?mode=neutral&source=seo", label: "FLOXANT Kontakt" },
+  { href: "/kontakt?mode=neutral&source=website", label: "FLOXANT Kontakt" },
   { href: "/diskret-service", label: "Diskret-Service" },
   { href: "/buchung", label: "Buchung starten" },
   { href: "/rechner", label: "Preisrahmen prüfen" },
@@ -339,7 +339,7 @@ export const gscClickPriorities = {
       { href: "/regensburg/reinigung", label: "Reinigung nach Umzug Regensburg" },
       { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-      { href: "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=seo", label: "Umzugsangebot einordnen" },
+      { href: "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website", label: "Umzugsangebot einordnen" },
     ],
   },
   "/regensburg/entruempelung": {
@@ -361,7 +361,7 @@ export const gscClickPriorities = {
       { href: "/regensburg/reinigung", label: "Reinigung nach Entrümpelung Regensburg" },
       { href: "/regensburg/haushaltsaufloesung", label: "Haushaltsauflösung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
-      { href: "/kontakt?service=entruempelung&city=regensburg&intent=entruempelungsangebot-pruefen&source=seo", label: "Räumungsangebot einordnen" },
+      { href: "/kontakt?service=entruempelung&city=regensburg&intent=entruempelungsangebot-pruefen&source=website", label: "Räumungsangebot einordnen" },
     ],
   },
   "/klaviertransport-regensburg": {
@@ -383,7 +383,7 @@ export const gscClickPriorities = {
       { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug", label: "Umzug in Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Transportangebot prüfen" },
-      { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo", label: "Klaviertransport anfragen" },
+      { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=website", label: "Klaviertransport anfragen" },
     ],
   },
   "/solarreinigung": {
@@ -405,7 +405,7 @@ export const gscClickPriorities = {
       { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "Solarreinigungsangebot prüfen" },
       { href: "/fensterreinigung-regensburg", label: "Glas und Fensterreinigung Regensburg" },
-      { href: "/kontakt?mode=neutral&source=seo", label: "Reinigungsangebot einordnen" },
+      { href: "/kontakt?mode=neutral&source=website", label: "Reinigungsangebot einordnen" },
     ],
   },
   "/pv-anlagen-reinigung": {
@@ -426,7 +426,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: [
       { href: "/solarreinigung", label: "Solarreinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot prüfen" },
-      { href: "/kontakt?mode=neutral&source=seo", label: "PV-Reinigung anfragen" },
+      { href: "/kontakt?mode=neutral&source=website", label: "PV-Reinigung anfragen" },
     ],
   },
   "/regensburg": {
@@ -959,7 +959,7 @@ export type SeoMoneyPage = {
   expectedTitleIncludes: readonly string[];
   expectedH1Includes: readonly string[];
   expectedSchemaTypes: readonly string[];
-  expectedCtaEvent: "seo_cta_click";
+  expectedCtaEvent: "request_cta_click";
   expectedRelatedLinks: readonly string[];
   language: "de" | "fa";
   shouldBeInSitemap: boolean;
@@ -1106,7 +1106,7 @@ export const seoMoneyPages = monitoredMoneyPageTargets.map((target) => {
       .filter((token) => token.length >= 5)
       .slice(0, 4),
     expectedSchemaTypes: priority.jsonLdTypes,
-    expectedCtaEvent: "seo_cta_click",
+    expectedCtaEvent: "request_cta_click",
     expectedRelatedLinks: context.expectedRelatedLinks,
     language,
     shouldBeInSitemap: language === "de",

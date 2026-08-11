@@ -308,9 +308,9 @@ export function trackConversion(payload: Record<string, unknown>) {
 
 function eventNameFor(element: HTMLElement, href: string) {
  if (element.dataset.event) return element.dataset.event;
- if (href.startsWith("tel:")) return "seo_phone_click";
+ if (href.startsWith("tel:")) return "phone_click";
  if (href.includes("wa.me") || href.includes("whatsapp")) return "whatsapp_click";
- if (href.startsWith("mailto:")) return "seo_email_click";
+ if (href.startsWith("mailto:")) return "email_click";
  if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebot-vergleichen") || href.includes("angebotscheck")) return "hero_cta_click";
  if (href.includes("rueckruf") || href.includes("anliegen=rueckruf")) return "hero_cta_click";
  return "service_card_click";
@@ -483,7 +483,7 @@ export function ConversionEventReporter() {
 
      if (successful) {
       trackConversion({
-       event: "seo_lead_submit_success",
+       event: "request_submit_success",
        source: "api_success",
        channel: "form",
        href: requestUrl.pathname,

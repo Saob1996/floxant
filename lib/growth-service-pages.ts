@@ -159,7 +159,7 @@ const growthServicePageSeeds = [
       "Wenn Solarmodule sichtbar verschmutzt sind oder eine Reinigung geprüft werden soll, helfen klare Angaben zu Dachart, Zugang, Modulfläche, Verschmutzung und Fotos. FLOXANT prüft die Anfrage anhand der genannten Eckdaten und hilft, den nächsten Schritt zu klären. Eine Ertragssteigerung oder Verfügbarkeit wird nicht garantiert.",
     primaryCta: "Solarreinigung anfragen",
     secondaryCta: "PV-Fotos senden",
-    bookingHref: "/kontakt?mode=neutral&source=seo",
+    bookingHref: "/kontakt?mode=neutral&source=website",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Solarreinigung prüfen lassen. Ort, PV-Größe, Dachzugang, Verschmutzung und Fotos kann ich senden.",
     heroHighlights: [
@@ -283,7 +283,7 @@ const growthServicePageSeeds = [
       "Bei Photovoltaik zählt nicht nur die Modulfläche. FLOXANT fragt nach Dachform, Begehbarkeit, Abstand, Wasser, Verschmutzung und möglichem Risiko. So wird klar, ob Reinigung sinnvoll und sicher planbar ist.",
     primaryCta: "PV-Anlagen-Reinigung anfragen",
     secondaryCta: "Modul-Fotos senden",
-    bookingHref: "/kontakt?mode=neutral&source=seo",
+    bookingHref: "/kontakt?mode=neutral&source=website",
     whatsappMessage:
       "Hallo FLOXANT, bitte prüfen Sie eine PV-Anlagen-Reinigung. Ort, Modulzahl, Dachform, Zugang, Wasseranschluss und Fotos kann ich senden.",
     heroHighlights: [
@@ -506,7 +506,7 @@ const growthServicePageSeeds = [
       "In Regensburg und Umgebung prüft FLOXANT Solarreinigung nach Modulfläche, Dachzugang, Wasseranschluss, Verschmutzung und Terminfenster. Besonders wichtig ist, ob die Anlage ohne unverhältnismäßiges Risiko erreichbar ist.",
     primaryCta: "Solarreinigung Regensburg anfragen",
     secondaryCta: "PV-Fotos senden",
-    bookingHref: "/kontakt?mode=neutral&source=seo",
+    bookingHref: "/kontakt?mode=neutral&source=website",
     whatsappMessage:
       "Hallo FLOXANT Regensburg, ich möchte Solarreinigung prüfen lassen. Ort, PV-Fläche, Dachzugang, Verschmutzung und Fotos kann ich senden.",
     heroHighlights: [
@@ -1649,7 +1649,7 @@ const growthServicePageSeeds = [
       "Der Übergabe-Sprint bündelt die letzten praktischen Punkte vor Rückgabe, Besichtigung oder Nachnutzung: Restmengen, Reinigung, Fotos, Schlüssel, Zugang und sichtbare Problemstellen.",
     primaryCta: "Übergabe-Sprint starten",
     secondaryCta: "Deadline senden",
-    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=uebergabe-sprint&source=seo",
+    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=uebergabe-sprint&source=website",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte den Übergabe-Sprint prüfen lassen. Ort, Deadline, Fotos, Restpunkte, Schlüsselweg und Zielzustand kann ich senden.",
     heroHighlights: [
@@ -1750,7 +1750,7 @@ const growthServicePageSeeds = [
       "Vermieter-ready heißt nicht perfekte Garantie, sondern sichtbar geordnete Vorbereitung: Restmengen, Reinigung, Fotos, Schlüsselstatus und offene Punkte werden vor Rückgabe oder Neuvermietung sortiert.",
     primaryCta: "Wohnung vorbereiten lassen",
     secondaryCta: "Restpunkte senden",
-    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=vermieter-ready-service&source=seo",
+    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=vermieter-ready-service&source=website",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte den Vermieter-Ready-Service prüfen lassen. Ort, Termin, Fotos, Restpunkte und Schlüsselweg kann ich senden.",
     heroHighlights: [

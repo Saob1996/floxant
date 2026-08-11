@@ -785,7 +785,7 @@ export function SpecialtyPageLayout({
       text: "Wenn schon eine Zielgröße da ist und FLOXANT den passenden Rahmen daran spiegeln soll.",
     },
     {
-      href: "/kontakt?mode=neutral&source=seo",
+      href: "/kontakt?mode=neutral&source=website",
       title: "Rückfragen abstimmen",
       text: `Wenn Zugang, Fotos, Sonderfälle oder Terminfenster in ${germanText(city, city)} vorab geklärt werden müssen.`,
     },
@@ -911,11 +911,9 @@ export function SpecialtyPageLayout({
               <a
                 href={resolvedPrimaryCtaHref}
                 className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={primaryCtaService}
                 data-city={primaryCtaCity || undefined}
-                data-page-intent={primaryCtaIntent}
-                data-priority={primaryCtaPriority}
                 data-cta-label={ctaText || `${serviceContext.name} in ${city} anfragen`}
                 data-destination={resolvedPrimaryCtaHref}
                 data-source="specialty_hero"
@@ -1601,11 +1599,9 @@ export function SpecialtyPageLayout({
                     <a
                       href={resolvedPrimaryCtaHref}
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
-                      data-event="seo_cta_click"
+                      data-event="request_cta_click"
                       data-service={primaryCtaService}
                       data-city={primaryCtaCity || undefined}
-                      data-page-intent={primaryCtaIntent}
-                      data-priority={primaryCtaPriority}
                       data-cta-label={`${serviceContext.name} in ${city} anfragen`}
                       data-destination={resolvedPrimaryCtaHref}
                       data-source="local_check_block"
@@ -1619,11 +1615,9 @@ export function SpecialtyPageLayout({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-5 text-sm font-black text-white transition hover:bg-emerald-600"
-                      data-event="seo_cta_click"
+                      data-event="request_cta_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-city={citySlug}
-                      data-page-intent={primaryCtaIntent}
-                      data-priority={primaryCtaPriority}
                       data-cta-label="WhatsApp mit Fotos"
                       data-destination={whatsappHref}
                       data-source="local_check_block"

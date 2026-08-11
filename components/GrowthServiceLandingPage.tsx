@@ -112,7 +112,7 @@ function getSolarPvOfferLinks(config: GrowthServicePageConfig) {
         : undefined;
 
   const href = (service: "solarreinigung" | "angebotscheck", intent: string) =>
-    buildServiceContactHref({ service, city, intent, source: "seo", anchor: "" });
+    buildServiceContactHref({ service, city, intent, source: "website", anchor: "" });
 
   return {
     solarRequest: href("solarreinigung", "solarreinigung-anfragen"),
@@ -422,11 +422,9 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
               <Link
                 href={config.bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-50"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={bookingTrackingService}
                 data-city={bookingTrackingCity || undefined}
-                data-page-intent={bookingTrackingIntent}
-                data-priority={bookingTrackingPriority}
                 data-cta-label={config.primaryCta}
                 data-destination={config.bookingHref}
                 data-source="growth_service_hero"
@@ -667,11 +665,9 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
           <Link
             href={config.bookingHref}
             className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-service={bookingTrackingService}
             data-city={bookingTrackingCity || undefined}
-            data-page-intent={bookingTrackingIntent}
-            data-priority={bookingTrackingPriority}
             data-cta-label={config.primaryCta}
             data-destination={config.bookingHref}
             data-source="growth_service_final"

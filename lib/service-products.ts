@@ -24,7 +24,7 @@ export type ServiceProduct = {
   contactParams: {
     service: string;
     intent: string;
-    source: "seo";
+    source: "website";
   };
   relatedServices: readonly string[];
   relatedSignatureServices: readonly string[];
@@ -128,7 +128,7 @@ function safeContactService(service: string, category: ServiceCategory) {
 }
 
 function buildProductContactHref(service: string, intent: string) {
-  return buildServiceContactHref({ service, intent, source: "seo", anchor: "" });
+  return buildServiceContactHref({ service, intent, source: "website", anchor: "" });
 }
 
 function productFromInventory(item: ServiceInventoryItem): ServiceProduct {
@@ -141,7 +141,7 @@ function productFromInventory(item: ServiceInventoryItem): ServiceProduct {
     contactParams: {
       service,
       intent,
-      source: "seo",
+      source: "website",
     },
     commonQuestions: item.faqCandidates,
     commonObjections: item.notSuitableFor,
@@ -177,7 +177,7 @@ function makeSupplementalProduct(input: SupplementalProductInput): ServiceProduc
     contactParams: input.contactParams || {
       service: contactService,
       intent: contactIntent,
-      source: "seo",
+      source: "website",
     },
     relatedServices: input.relatedServices || [],
     relatedSignatureServices:

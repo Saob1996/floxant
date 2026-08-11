@@ -67,9 +67,8 @@ export function RequestChecklistBlock({
           </p>
           <Link
             href={href}
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-service={checklist.contactService}
-            data-page-intent={checklist.contactIntent}
             data-source="request_checklist_block"
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
           >

@@ -103,8 +103,6 @@ export function ServiceClusterGrid({
                       data-event="service_card_click"
                       data-service={service.serviceKey}
                       data-city={locationKey || ""}
-                      data-page-intent={service.seoIntent}
-                      data-priority={service.priority.toLowerCase()}
                       data-destination={service.recommendedRoute}
                       className="group min-w-0 rounded-lg border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-sm"
                     >

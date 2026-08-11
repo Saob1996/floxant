@@ -1477,10 +1477,10 @@ function buildFaqPair(seed: FaqPairSeed): [FaqRegistryEntry, FaqRegistryEntry] {
           service,
           city,
           intent: current.searchParams.get("intent"),
-          source: current.searchParams.get("source") || "seo",
+          source: current.searchParams.get("source") || "website",
           anchor: current.hash.slice(1),
         })
-      : "/kontakt?mode=neutral&source=seo";
+      : "/kontakt?mode=neutral&source=website";
     return { ...copy, CTA: { ...copy.CTA, href } };
   };
 

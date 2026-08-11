@@ -292,14 +292,6 @@ export default function UnterhaltsreinigungRegensburgPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#kontakt"
-                  data-event="seo_cta_click"
-                  data-service="unterhaltsreinigung"
-                  data-city="regensburg"
-                  data-page-intent="unterhaltsreinigung-regensburg"
-                  data-priority="p0"
-                  data-destination="/kontakt?service=unterhaltsreinigung&city=regensburg&intent=unterhaltsreinigung-regensburg&source=seo"
-                  data-source="seo"
-                  data-cta-label="Unterhaltsreinigung anfragen"
                   className="flox-button-primary px-6"
                 >
                   Angebot anfragen

@@ -101,7 +101,7 @@ const supportingLinks = [
   },
   {
     title: "Kontakt & Standort ansehen",
-    href: "/kontakt?mode=neutral&source=seo",
+    href: "/kontakt?mode=neutral&source=website",
     text: "Wenn Adresse, Telefonnummer und direkte Kontaktwege zuerst sichtbar werden sollen.",
   },
 ] as const;
@@ -416,7 +416,7 @@ export default function StandortePage() {
               text: "Gezielter B2B-Startpunkt für Büro, Praxis, Hotel, Kanzlei und Objektbetrieb.",
             },
             {
-              href: "/kontakt?mode=neutral&source=seo",
+              href: "/kontakt?mode=neutral&source=website",
               title: "Kontakt Regensburg",
               text: "Telefon, WhatsApp, Standort und weitere Wege für eine schnelle Rückfrage.",
             },

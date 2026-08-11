@@ -195,7 +195,7 @@ function classifyBuildOnly(route) {
   if (LEGACY_ROOT_ROUTES.includes(route)) return "legacy-redirect";
   if (hasRemovedCity(route)) return "deprioritized-city";
   if (NON_SITEMAP_PUBLIC_PATTERNS.some((pattern) => pattern.test(route))) return "dynamic-index-excluded";
-  if (route.startsWith("/seo-image") || ["/icon", "/icon.png", "/manifest.webmanifest", "/opengraph-image", "/robots.txt", "/indexnow-key.txt"].includes(route)) {
+  if (route.startsWith("/share-image") || ["/icon", "/icon.png", "/manifest.webmanifest", "/opengraph-image", "/robots.txt", "/indexnow-key.txt"].includes(route)) {
     return "technical-public";
   }
   return "other-build-not-sitemap";

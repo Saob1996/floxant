@@ -49,11 +49,9 @@ export function ServiceIntentSelector() {
             key={item.label}
             href={href}
             className="inline-flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-service={item.service}
             data-city={city}
-            data-page-intent={item.intent}
-            data-priority="p1"
             data-cta-label={item.label}
             data-destination={href}
           >

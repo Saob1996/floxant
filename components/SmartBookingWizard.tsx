@@ -1985,7 +1985,6 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           data-source={queryUtmSource || "booking_wizard"}
           data-contact-channel={normalizedPreferredContact || "form"}
           data-intent={queryUrgency ? "urgent_booking_submit" : "booking_submit"}
-          data-priority={queryUrgency ? "hot" : "normal"}
         >
           <fieldset disabled={isSubmitting} className="contents">
           <div className="rounded-[1.6rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">

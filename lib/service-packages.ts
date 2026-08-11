@@ -722,7 +722,7 @@ export function buildServicePackageHref(item: ServicePackage, destination = "/ko
       ctaLabel: item.empfohlenerCTA,
     },
     destination,
-  ).replace("source=seo", `source=${item.kontaktParameter.source}`);
+  ).replace("source=website", `source=${item.kontaktParameter.source}`);
 }
 
 export const servicePackageGroups: Record<ServicePackageGroup, { title: string; intro: string }> = {

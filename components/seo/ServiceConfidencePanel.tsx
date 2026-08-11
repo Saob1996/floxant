@@ -151,7 +151,7 @@ export function ServiceConfidencePanel({
       <ArrowRight className="h-3.5 w-3.5" />
      </Link>
      <Link
-      href="/kontakt?mode=neutral&source=seo"
+      href="/kontakt?mode=neutral&source=website"
       className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-700 hover:border-blue-200 hover:text-blue-700"
      >
       Kontakt wählen

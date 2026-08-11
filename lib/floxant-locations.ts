@@ -218,7 +218,7 @@ export function getLocationContactHref(locationKey: FloxantLocationKey, service 
     service,
     city: locationKey,
     intent: `${service}-${locationKey}`,
-    source: "seo",
+    source: "website",
     anchor: "",
   });
 }

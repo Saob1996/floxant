@@ -319,12 +319,10 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={bookingHref}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-region={config.cityKey}
                 data-service={bookingLead.trackingService}
                 data-city={bookingLead.trackingCity}
-                data-page-intent={bookingLead.trackingIntent}
-                data-priority={bookingLead.priority}
                 data-cta-label={config.primaryCta}
                 data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-50"
@@ -466,12 +464,10 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             <Link
               href={bookingHref}
               className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-region={config.cityKey}
               data-service={bookingLead.trackingService}
               data-city={bookingLead.trackingCity}
-              data-page-intent={bookingLead.trackingIntent}
-              data-priority={bookingLead.priority}
               data-cta-label="Angebot prüfen lassen"
               data-destination={bookingHref}
             >
@@ -716,12 +712,10 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             <Link
               href={bookingHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-region={config.cityKey}
               data-service={bookingLead.trackingService}
               data-city={bookingLead.trackingCity}
-              data-page-intent={bookingLead.trackingIntent}
-              data-priority={bookingLead.priority}
               data-cta-label={config.primaryCta}
               data-destination={bookingHref}
             >
@@ -748,12 +742,10 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           <Link
             href={bookingHref}
             className="flex min-h-14 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white shadow-xl shadow-slate-950/25"
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-region={config.cityKey}
             data-service={bookingLead.trackingService}
             data-city={bookingLead.trackingCity}
-            data-page-intent={bookingLead.trackingIntent}
-            data-priority={bookingLead.priority}
             data-cta-label={config.primaryCta}
             data-destination={bookingHref}
           >

@@ -68,7 +68,6 @@ export function ServiceNavigationOverview({
                       data-event="service_card_click"
                       data-service={item.serviceKey}
                       data-city={location || ""}
-                      data-priority={item.priority.toLowerCase()}
                       data-source="service_navigation_overview"
                     >
                       <h4 className="mt-3 text-lg font-black text-slate-950">{item.name}</h4>

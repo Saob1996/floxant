@@ -32,7 +32,7 @@ export function DecisionCompassPanel({
               key={item.problem}
               href={item.href}
               className="group flex min-h-[11rem] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200"
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-source="decision_compass"
               data-cta-label={item.problem}
               data-destination={item.href}

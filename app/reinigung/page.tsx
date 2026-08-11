@@ -192,8 +192,6 @@ export default function ReinigungLocationChooserPage() {
                   data-event="service_card_click"
                   data-service="reinigung"
                   data-city={card.city === "Düsseldorf" ? "duesseldorf" : "regensburg"}
-                  data-page-intent="reinigung-standort-waehlen"
-                  data-priority="p0"
                   data-destination={card.href}
                 >
                   {card.cta}
@@ -230,8 +228,6 @@ export default function ReinigungLocationChooserPage() {
                     data-event="service_card_click"
                     data-service={item.id}
                     data-city="duesseldorf"
-                    data-page-intent={`${item.id}-duesseldorf`}
-                    data-priority="p1"
                     data-destination={item.duesseldorf}
                   >
                     Düsseldorf
@@ -243,8 +239,6 @@ export default function ReinigungLocationChooserPage() {
                     data-event="service_card_click"
                     data-service={item.id}
                     data-city="regensburg"
-                    data-page-intent={`${item.id}-regensburg`}
-                    data-priority="p1"
                     data-destination={item.regensburg}
                   >
                     Regensburg

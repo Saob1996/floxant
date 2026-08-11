@@ -233,11 +233,9 @@ export default function HomePage() {
               <Link
                 href={requestHref}
                 data-home-hero-primary
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="homepage_hero"
                 data-service="sonstiges"
-                data-page-intent="homepage-anfrage"
-                data-priority="p1"
                 data-cta-label="Anfrage senden"
                 data-destination={requestHref}
                 className={primaryButton}

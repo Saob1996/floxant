@@ -43,12 +43,10 @@ export function ServiceFitAdvisor({
                 key={rawOption.optionKey}
                 href={href}
                 className="group min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-sm"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="service_fit_advisor"
                 data-service={rawOption.service}
                 data-city={currentCity || rawOption.city || ""}
-                data-page-intent={rawOption.intent}
-                data-priority={rawOption.priority}
                 data-cta-label={rawOption.ctaLabel}
                 data-destination={href}
               >

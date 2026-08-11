@@ -314,10 +314,8 @@ export function PublicHeader({
           <Link
             href={headerOfferHref}
             onClick={resetNeutralRequestState}
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-source="global_header"
-            data-page-intent="neutrale-anfrage"
-            data-priority="p1"
             data-cta-label="Anfrage senden"
             data-destination={headerOfferHref}
             className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -331,7 +329,6 @@ export function PublicHeader({
               href={headerBudgetHref}
               data-event="service_card_click"
               data-source="header"
-              data-page-intent="preisrahmen"
               data-destination={headerBudgetHref}
               className="inline-flex h-11 items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-950 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
@@ -341,10 +338,8 @@ export function PublicHeader({
             <Link
               href={headerOfferHref}
               onClick={resetNeutralRequestState}
-              data-event="seo_cta_click"
+              data-event="request_cta_click"
               data-source="global_header"
-              data-page-intent="neutrale-anfrage"
-              data-priority="p1"
               data-cta-label="Angebot anfragen"
               data-destination={headerOfferHref}
               className="inline-flex h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-black text-slate-950 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -423,10 +418,8 @@ export function PublicHeader({
                   resetNeutralRequestState();
                   closeMobileMenu();
                 }}
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-source="global_mobile_header"
-                data-page-intent="neutrale-anfrage"
-                data-priority="p1"
                 data-cta-label="Angebot anfragen"
                 data-destination={mobileOfferHref}
                 className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"

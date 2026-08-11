@@ -70,11 +70,9 @@ export function CommercialCleaningScopeSelector({ city = "regensburg" }: Commerc
                 key={scope.title}
                 href={href}
                 className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-cyan-200"
-                data-event="seo_cta_click"
+                data-event="request_cta_click"
                 data-service={service}
                 data-city={city}
-                data-page-intent={intent}
-                data-priority="p1"
                 data-cta-label={scope.title}
                 data-destination={href}
               >

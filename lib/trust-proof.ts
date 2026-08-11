@@ -201,7 +201,7 @@ export const trustSignals: TrustSignal[] = [
     proofType: "service",
     allowedPages: ["/pv-anlagen-reinigung", "/solarreinigung", "/regensburg/solarreinigung"],
     forbiddenClaims: ["Ertragsgarantie", "Dachbegehung ohne Pruefung", "technische Leistungszusage"],
-    cta: { label: "PV-Sichtklar pruefen", href: "/kontakt?mode=neutral&source=seo" },
+    cta: { label: "PV-Sichtklar pruefen", href: "/kontakt?mode=neutral&source=website" },
     relatedFAQ: ["Welche Fotos helfen bei PV-Reinigung?", "Wann ist Dachzugang unsicher?"],
     needsManualProof: false,
     visibleIfDataConfirmed: true,
@@ -290,7 +290,7 @@ export const localProofs: Record<TrustLocationKey, LocalProof> = {
       "Rückmeldung erst nach Prüfung der konkreten Angaben",
     ],
     manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
-    cta: { label: "Duesseldorf kontaktieren", href: "/kontakt?city=duesseldorf&source=local-proof" },
+    cta: { label: "Duesseldorf kontaktieren", href: "/kontakt?mode=neutral&source=local-proof" },
   },
   regensburg: {
     locationKey: "regensburg",
@@ -304,7 +304,7 @@ export const localProofs: Record<TrustLocationKey, LocalProof> = {
       "Rückmeldung nach Prüfung von Ort, Umfang und Verfügbarkeit",
     ],
     manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
-    cta: { label: "Regensburg kontaktieren", href: "/kontakt?city=regensburg&source=local-proof" },
+    cta: { label: "Regensburg kontaktieren", href: "/kontakt?mode=neutral&source=local-proof" },
   },
 };
 

@@ -103,7 +103,6 @@ export function PriorityFaqSection({
       ) : null}
       <section
         aria-labelledby={headingId}
-        data-priority-faq-route={route}
         className={`px-6 py-16 sm:py-20 ${className}`.trim()}
       >
         <div className="mx-auto max-w-4xl">

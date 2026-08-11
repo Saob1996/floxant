@@ -115,7 +115,7 @@ export default function BlogGoogleBusinessProfileBookingPage() {
         ]}
         ctas={[
           { href: "/buchung", label: "Buchungsseite öffnen" },
-          { href: "/kontakt?mode=neutral&source=seo", label: "Kontakt ansehen" },
+          { href: "/kontakt?mode=neutral&source=website", label: "Kontakt ansehen" },
           { href: "/standorte", label: "Standorte einordnen" },
         ]}
         faqTitle="FAQ zum Buchungslink im Unternehmensprofil"

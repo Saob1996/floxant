@@ -30,11 +30,9 @@ export function DiscreetRequestPanel() {
           <Link
             href={href}
             className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-stone-950 px-5 text-sm font-black text-white transition hover:bg-stone-800"
-            data-event="seo_cta_click"
+            data-event="request_cta_click"
             data-service=""
             data-city=""
-            data-page-intent="diskret-service"
-            data-priority="p0"
             data-cta-label="Diskret anfragen"
             data-destination={href}
           >

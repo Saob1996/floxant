@@ -184,7 +184,7 @@ const relatedLinks = [
 ];
 
 const fensterLeadHref =
-  "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo";
+  "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=website";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -312,12 +312,10 @@ export default function FensterreinigungRegensburgPage() {
                 <Link
                   href={fensterLeadHref}
                   className="flox-button-primary px-6"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-region="regensburg"
                   data-service="fensterreinigung"
                   data-city="regensburg"
-                  data-page-intent="fensterreinigung-regensburg"
-                  data-priority="p0"
                   data-cta-label="Fensterreinigung anfragen"
                   data-destination={fensterLeadHref}
                 >

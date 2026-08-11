@@ -169,7 +169,7 @@ export function CustomerJourneyMobile({
 
                 <div className="mt-4 text-center">
                   <Link
-                    href="/kontakt?mode=neutral&source=seo"
+                    href="/kontakt?mode=neutral&source=website"
                     className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700"
                     onClick={() => setDrawerOpen(false)}
                   >

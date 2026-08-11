@@ -182,7 +182,7 @@ const relatedLinks = [
 ];
 
 const praxisLeadHref =
-  "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo";
+  "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=website";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -311,12 +311,10 @@ export default function PraxisreinigungRegensburgPage() {
                 <Link
                   href={praxisLeadHref}
                   className="flox-button-primary px-6"
-                  data-event="seo_cta_click"
+                  data-event="request_cta_click"
                   data-region="regensburg"
                   data-service="praxisreinigung"
                   data-city="regensburg"
-                  data-page-intent="praxisreinigung-regensburg"
-                  data-priority="p0"
                   data-cta-label="Praxisreinigung anfragen"
                   data-destination={praxisLeadHref}
                 >

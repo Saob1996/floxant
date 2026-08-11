@@ -1305,7 +1305,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
       { href: "/angebotscheck", label: "Angebotscheck starten" },
-      { href: "/kontakt?mode=neutral&source=seo", label: "Offene Punkte senden" },
+      { href: "/kontakt?mode=neutral&source=website", label: "Offene Punkte senden" },
     ],
     faqTitle: "FAQ zu teuren Angeboten",
     faqItems: [
@@ -1382,7 +1382,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg anfragen" },
       { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot pruefen" },
-      { href: "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo", label: "Praxisdaten senden" },
+      { href: "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=website", label: "Praxisdaten senden" },
     ],
     faqTitle: "FAQ zur Praxisreinigung in Regensburg",
     faqItems: [
@@ -1459,7 +1459,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
       { href: "/angebot-vergleichen-regensburg", label: "Angebot pruefen" },
-      { href: "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo", label: "Fensterdaten senden" },
+      { href: "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=website", label: "Fensterdaten senden" },
     ],
     faqTitle: "FAQ zu Fensterreinigung Regensburg",
     faqItems: [
@@ -1535,7 +1535,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/klaviertransport-regensburg", label: "Klaviertransport Regensburg" },
-      { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo", label: "Klaviertransport anfragen" },
+      { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=website", label: "Klaviertransport anfragen" },
       { href: "/angebot-guenstiger-pruefen", label: "Vorhandenes Angebot pruefen" },
     ],
     faqTitle: "FAQ zum Klaviertransport",
@@ -1613,7 +1613,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
       { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
-      { href: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=seo", label: "Angehoerigenanfrage senden" },
+      { href: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=website", label: "Angehoerigenanfrage senden" },
     ],
     faqTitle: "FAQ zum Seniorenumzug",
     faqItems: [
