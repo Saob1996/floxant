@@ -35,6 +35,25 @@ const explanationCards = [
   },
 ] as const;
 
+const movingQuestions = [
+  {
+    question: "Brauche ich eine genaue Adresse für die Einschätzung?",
+    answer: "Nein. Start- und Zielort oder die jeweilige Postleitzahl reichen für die erste Einordnung. Genaue Adressen können Sie später in der Anfrage ergänzen.",
+  },
+  {
+    question: "Was kann ich angeben, wenn der Umzugsumfang noch unklar ist?",
+    answer: "Wählen Sie „Ich weiß es nicht genau“. Das Ergebnis nennt die fehlende Information und bleibt eine Aufwandseinschätzung statt einen ungenauen Preis vorzutäuschen.",
+  },
+  {
+    question: "Werden Etagen und Aufzüge berücksichtigt?",
+    answer: "Ja. Etagen, vorhandene Aufzüge und ein längerer Trageweg beeinflussen die Einordnung, weil sie den Zugang am Start oder Ziel verändern können.",
+  },
+  {
+    question: "Kann ich das Ergebnis für eine Anfrage übernehmen?",
+    answer: "Ja. Nach dem Ergebnis können Sie die Zusammenfassung ohne erneute Eingabe in das Anfrageformular übernehmen und dort offene Angaben ergänzen.",
+  },
+] as const;
+
 export default function MovingCalculatorPage() {
   return (
     <main className="min-h-screen overflow-x-clip bg-slate-50 pb-20 text-slate-950">
@@ -47,8 +66,8 @@ export default function MovingCalculatorPage() {
             Umzugsaufwand in wenigen Schritten einschätzen
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            Drei kurze Eingabeschritte führen zu einer unverbindlichen Aufwandseinstufung.
-            Sie sehen das Ergebnis, bevor Kontaktdaten benötigt werden.
+            Nennen Sie Start, Ziel, Zeitraum, groben Umfang und Zugang. Daraus entsteht eine
+            unverbindliche Aufwandseinstufung, die Sie vor jeder Eingabe von Kontaktdaten sehen.
           </p>
         </div>
       </section>
@@ -68,6 +87,24 @@ export default function MovingCalculatorPage() {
                 <h3 className="font-black text-slate-950">{card.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{card.text}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pt-12 sm:px-6 sm:pt-16" aria-labelledby="moving-calculator-questions">
+        <div className="mx-auto max-w-4xl">
+          <h2 id="moving-calculator-questions" className="text-center text-3xl font-black tracking-tight">
+            Fragen zur Umzugseinschätzung
+          </h2>
+          <div className="mt-7 space-y-3">
+            {movingQuestions.map((item) => (
+              <details key={item.question} className="rounded-2xl border border-slate-200 bg-white p-5 open:border-blue-200">
+                <summary className="cursor-pointer font-black text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200">
+                  {item.question}
+                </summary>
+                <p className="mt-3 leading-7 text-slate-600">{item.answer}</p>
+              </details>
             ))}
           </div>
         </div>

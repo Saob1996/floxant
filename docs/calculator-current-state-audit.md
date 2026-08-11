@@ -1,6 +1,6 @@
 # Rechner-Iststand und Vereinfachung
 
-Stand: 11.08.2026  
+Stand: 11.08.2026
 Scope: `/rechner`, `/umzug-kosten-rechner` und `/reinigung-preis-rechner`
 
 ## Kurzfazit
