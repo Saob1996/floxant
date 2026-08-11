@@ -1,6 +1,6 @@
 # Homepage Health Report
 
-Stand: 2026-07-30T10:11:25.682Z
+Stand: 2026-08-11T07:09:11.975Z
 
 Gesamtergebnis: **PASS**
 Prüfziel: `http://127.0.0.1:4173/`
@@ -35,7 +35,7 @@ Prüfziel: `http://127.0.0.1:4173/`
 | PASS | Keine sichtbaren internen Begriffe | Keine Treffer |
 | PASS | Kein sichtbarer Debug-Text | Keine Debug-Platzhalter |
 | PASS | Keine sichtbaren Rohschlüssel | Keine serviceKey-/intentKey-Ausgabe |
-| PASS | Neutraler Schnellkontakt ohne Standort-Vorbelegung | Neutrale Seiten setzen weder Düsseldorf noch Regensburg voraus |
+| PASS | Neutraler Schnellkontakt ohne Standort-Vorbelegung | Deferred Schnellkontakt nutzt den zentralen mode=neutral-Builder ohne Standort oder Leistung |
 | PASS | Kein Menü über dem Hero beim Laden | Hero startet frei |
 | PASS | Horizontaler Overflow geschützt | Homepage begrenzt horizontalen Überlauf |
 | PASS | Keine Vercel-Usage-Rückkehr | Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette |
