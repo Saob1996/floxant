@@ -24,7 +24,7 @@ export function B2BTrustPanel({ className = "" }: { className?: string }) {
               <span>{item}</span>
             </div>
           ))}
-          <Link href="/kontakt?service=bueroreinigung&city=regensburg&source=b2b-trust" className="md:col-span-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
+          <Link href="/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-regensburg&source=b2b-trust" className="md:col-span-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
             B2B-Anfrage starten
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>

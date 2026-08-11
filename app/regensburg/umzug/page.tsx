@@ -40,11 +40,11 @@ import {
 
 const canonicalPath = "/regensburg/umzug";
 const moveContactHref =
-  "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo";
+  "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website";
 const offerCheckHref =
-  "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=seo";
+  "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
 const pianoContactHref =
-  "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo";
+  "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=website";
 
 const pageMeta = getPrioritySeoMeta("/regensburg/umzug");
 const pageTitle = pageMeta.seoTitle;
@@ -90,9 +90,9 @@ export const metadata: Metadata = {
 };
 
 const heroFacts = [
-  "Start, Ziel, Etage, Aufzug und Trageweg",
-  "Umfang, Kartons, Einzelstücke und Fotos",
-  "Terminwunsch, Zeitfenster und Kontaktweg",
+  "Start, Ziel, Etagen, Aufzüge und Tragewege",
+  "Möbel, Kartons, Demontage, Montage und Fotos",
+  "Gewünschter Zeitraum und mögliche Zeitfenster",
 ] as const;
 
 const situations: PlainCard[] = [
@@ -386,13 +386,11 @@ function PrimaryCta({
   return (
     <Link
       href={href}
-      data-event="seo_cta_click"
+      data-event="request_cta_click"
       data-service="umzug"
       data-city="regensburg"
-      data-page-intent={href.includes("umzugsangebot-pruefen") ? "umzugsangebot-pruefen" : "umzug-regensburg"}
-      data-priority="p0"
       data-destination={href}
-      data-source="seo"
+      data-source="website"
       data-cta-label={label}
       className={className}
     >
@@ -426,8 +424,9 @@ function RegensburgMoveHero() {
           </h1>
           <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg">
             Sie planen einen Privatumzug, Kleintransport, Seniorenumzug oder Büroumzug in Regensburg? Senden Sie Start,
-            Ziel, Etagen, Aufzüge, Möbelmenge und Wunschtermin. FLOXANT prüft Ihre Angaben und klärt verständlich, welche
-            Rückfragen oder nächsten Schritte für Ihren Umzug wichtig sind.
+            Ziel, Etagen, Aufzüge, Möbel, Kartons, gewünschte Demontage oder Montage und den möglichen Zeitraum.
+            FLOXANT prüft Ihre Angaben und klärt verständlich, welche Rückfragen oder nächsten Schritte für den Umzug
+            wichtig sind.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -455,9 +454,9 @@ function RegensburgMoveHero() {
             ))}
           </div>
           <div className="mt-5 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-            <p className="text-sm font-black text-emerald-950">Schneller Kontaktfluss</p>
+            <p className="text-sm font-black text-emerald-950">Nächster Schritt</p>
             <p className="mt-2 text-sm font-semibold leading-7 text-emerald-950/80">
-              Der Button öffnet die Umzugsanfrage für Regensburg. Dort ergänzen Sie Start, Ziel, Umfang und Termin.
+              Starten Sie direkt mit der Umzugsanfrage für Regensburg. Dort ergänzen Sie Start, Ziel, Umfang und Termin.
             </p>
           </div>
         </aside>
@@ -481,13 +480,20 @@ function MovingQuickAnswer() {
         </div>
         <div className="rounded-lg border border-cyan-100 bg-cyan-50 p-5">
           <p className="text-base font-semibold leading-8 text-slate-800">
-            Für eine Umzugsanfrage in Regensburg helfen Startadresse, Zielort, Etage, Aufzug, Umfang,
-            Terminwunsch und besondere Möbelstücke. FLOXANT kann die Angaben strukturieren und den passenden
-            nächsten Schritt einordnen. Eine Anfrage ist noch keine Buchung.
+            Für eine Umzugsanfrage in Regensburg helfen Start, Ziel, Etagen, Aufzüge, Möbel- und Kartonumfang,
+            Demontage oder Montage, Tragewege und der gewünschte Zeitraum. FLOXANT kann die Angaben strukturieren
+            und den passenden nächsten Schritt einordnen. Eine Anfrage ist noch keine Buchung.
           </p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <PrimaryCta href={moveContactHref} label="Eckdaten senden" />
             <PrimaryCta href={offerCheckHref} label="Angebot einordnen" variant="outline" />
+            <Link
+              href="/regensburg"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-white px-5 text-sm font-black text-cyan-800 transition hover:border-cyan-400 hover:bg-cyan-50"
+            >
+              Alle Leistungen in Regensburg ansehen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </div>

@@ -275,7 +275,7 @@ export default function RegensburgHubPage() {
         usefulWhen={["Termin oder Frist absehbar ist", "Fotos oder ein Angebot vorliegen", "mehrere Leistungen kombiniert werden müssen"]}
         notUsefulWhen={["eine Preisgarantie ohne Orts- und Objektangaben erwartet wird", "rechtliche Beratung zur Übergabe gesucht wird"]}
         neededInfo={["Ort und Termin", "Leistung", "Fotos", "vorhandenes Angebot oder kurze Lagebeschreibung"]}
-        ctaHref="/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo"
+        ctaHref="/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website"
         ctaLabel="Regensburg-Anfrage starten"
       />
 
