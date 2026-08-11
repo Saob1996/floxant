@@ -14,13 +14,17 @@ const {
 
 function expectedQuery(route) {
   const params = {};
-  if (route.expectedService && !["multi", "legal", "technical", "kontakt"].includes(route.expectedService)) {
+  // The public request policy only preselects context when the route supplies a
+  // supported city. National/Bavaria-wide and contact-page links deliberately
+  // stay neutral until the visitor chooses a location in the form.
+  const supportsContext = ["duesseldorf", "regensburg"].includes(route.expectedCity);
+  if (supportsContext && route.expectedService && !["multi", "legal", "technical", "kontakt"].includes(route.expectedService)) {
     params.service = route.expectedService;
   }
-  if (route.expectedCity && !["deutschland", "bayern"].includes(route.expectedCity)) {
+  if (supportsContext) {
     params.city = route.expectedCity;
   }
-  if (route.expectedIntent && !["home", "technical", "robots", "sitemap", "impressum", "datenschutz", "agb"].includes(route.expectedIntent)) {
+  if (supportsContext && route.expectedIntent && !["home", "technical", "robots", "sitemap", "impressum", "datenschutz", "agb"].includes(route.expectedIntent)) {
     params.intent = route.expectedIntent;
   }
   return params;
