@@ -1,8 +1,8 @@
 # FLOXANT Google Customer Acquisition Release – 11.08.2026
 
-Stand: lokale Release-Unterlage im Feature-Worktree. Dieser Bericht autorisiert keinen Push, Merge oder Deploy. Er trennt verifizierte Baseline-Evidenz von noch ausstehenden Release-Gates und verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
+Stand: lokaler Acquisition-Kandidat im separaten Feature-Worktree. Der vollständige isolierte Build, die Render-/Content-/Structured-Data-Gates, 84 Browserfälle und der aktuelle Lighthouse-Nachherlauf sind geprüft; Preview, Production und genau vier Production-Synthetics bleiben bis zu ihrer tatsächlichen Durchführung offen. Der Bericht verspricht weder Rankings noch Klicks, Anfragen, Aufträge, Reaktionszeiten oder Verfügbarkeit.
 
-Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventory.md), der [geprüfte Search-Growth-/Public-Copy-/Rechner-Bericht](./search-growth-public-copy-calculator-report-2026-08-11.md), die aggregierten `artifacts/gsc-*-2026-08-11.*`, der aktuelle Quellstand und die [manuellen Google-Nacharbeiten](./post-deployment-google-actions-2026-08-11.md). `PASS (Baseline)` bezeichnet ausschließlich den unveränderten, bereits geprüften Kandidaten `2344304b`; Änderungen dieses Acquisition-Arbeitsbaums benötigen vor einer Veröffentlichung einen neuen vollständigen Lauf.
+Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventory.md), der [geprüfte Search-Growth-/Public-Copy-/Rechner-Bericht](./search-growth-public-copy-calculator-report-2026-08-11.md), die aggregierten `artifacts/gsc-*-2026-08-11.*`, der frische Detached-Verify-Worktree, die aktuellen Audit-Artefakte, die Browsermatrix und die [manuellen Google-Nacharbeiten](./post-deployment-google-actions-2026-08-11.md). Historische Baselinewerte und aktuelle Acquisition-Werte werden getrennt ausgewiesen.
 
 ## 1. Ausgangsbranch
 
@@ -13,7 +13,7 @@ Evidenzquellen sind das [Release-Inventar](./google-acquisition-release-inventor
 
 ## 2. Ausgangscommit
 
-Technischer Ausgangsstand des neuen Acquisition-Worktrees ist `2344304b95a7155138192d6298427b2da6e5b200` (`docs: add August search and calculator improvement report`). Dieser Kandidat ist mit 15 logisch getrennten Commits direkter Nachfahre von `88ea736f`; `git merge-base 88ea736f 2344304b` ergibt `88ea736f` und `git merge-base --is-ancestor 88ea736f 2344304b` besteht. Bei Erstellung dieses Berichts zeigte `git rev-parse HEAD` weiterhin `2344304b`; die Acquisition-Änderungen waren noch nicht committed.
+Technischer Ausgangsstand des neuen Acquisition-Worktrees ist `2344304b95a7155138192d6298427b2da6e5b200` (`docs: add August search and calculator improvement report`). Dieser Kandidat ist mit 15 logisch getrennten Commits direkter Nachfahre von `88ea736f`; `git merge-base 88ea736f 2344304b` ergibt `88ea736f` und `git merge-base --is-ancestor 88ea736f 2344304b` besteht. Die Acquisition-Arbeit wurde anschließend in nicht amendierten, nicht gesquashten Fach-, Test-, Security- und Dokumentationscommits fortgeführt; der tatsächlich veröffentlichte SHA wird erst in Abschnitt 30 eingetragen.
 
 ## 3. Production-Commit vorher
 
@@ -60,7 +60,7 @@ Der unveränderte Baseline-Export enthielt auf 1.570 öffentlichen Routen 13.602
 
 Der geprüfte Kandidat entfernte öffentliche Prioritäts-/Intentattribute, technische Formularquellen und breite Registry-Spreads. Explizite Public-Typen und Allowlist-Selektoren begrenzen Service-, Page-, Suchindex-, Graph- und Faktenausgaben. Sein finaler Export hatte 0 P0-Fundstellen und eine zulässige P1-Hinweisstelle; Baseline-Auditstatus: `PASS`.
 
-Der aktuelle Acquisition-Arbeitsbaum ergänzt `sanitizePublicContent()` als Defense-in-depth für verschachtelte Runtime-Overrides und einen Boundary-Test gegen interne Schlüssel. Für diesen veränderten Stand gilt das Release-Gate dennoch `PENDING`: Nach einem frischen Build müssen öffentliche interne SEO-/Entwicklerbegriffe, Statuswerte und technische IDs jeweils 0 ergeben. Ein Quellcode-Suchlauf ersetzt diesen Render-Audit nicht.
+Der aktuelle Acquisition-Arbeitsbaum ergänzt `sanitizePublicContent()` als Defense-in-depth für verschachtelte Runtime-Overrides und einen Boundary-Test gegen interne Schlüssel. Der frische Render-Audit prüfte 1.585 HTML-Dateien und meldete 0 Findings auf 0 Routen; P0, P1 und P2 sind jeweils 0. Öffentliche interne SEO-/Entwicklerbegriffe, Statuswerte und technische IDs sind damit im aktuellen Export 0; Status: `PASS`.
 
 ## 8. Content-Overlap vorher
 
@@ -80,15 +80,13 @@ Diese Schwellen sind interne Diagnosegrenzen, keine behaupteten Google-Grenzwert
 
 ## 9. Content-Overlap nachher
 
-Der geprüfte Kandidat erreichte auf 1.479 indexierbaren Seiten 0 identische Titles, 0 identische H1, 0 identische Langblockgruppen und 0 Fehler; 78 wiederholte FAQ-Gruppen blieben diagnostisch. Die 595.819 qualifizierenden Paare und 5.702 repräsentativen Kanten sind keine offenen Akzeptanzfehler, sondern das verdichtete Diagnoseinventar großer Ortsfamilien.
-
-Im Acquisition-Arbeitsbaum überspringt der Overlap-Audit zusätzlich exakte Redirect-Quellen aus `public/_redirects`, damit Alias-HTML keine indexierbare Seite vortäuscht. Wegen dieser Auditänderung und neuer FAQ-Inhalte ist der finale Nachherwert `PENDING`; maßgeblich ist nur der frische Release-Export. Keine automatische Massenlöschung und keine spekulativen Redirects.
+Der aktuelle Export erreicht auf 1.475 indexierbaren Seiten 0 identische Titles, 0 identische H1, 0 identische Langblockgruppen, 0 gleiche Primary-Intent-Paare und 0 Fehler. Der Audit betrachtete 594.855 Kandidatenpaare, 594.675 qualifizierende Diagnosepaare und 5.665 repräsentative Kanten; 74 wiederholte FAQ-Gruppen bleiben rein diagnostisch. Redirect-Quellen aus `public/_redirects` werden als nicht indexierbare Aliase korrekt ausgeschlossen. Keine automatische Massenlöschung und keine spekulativen Redirects; Status: `PASS`.
 
 ## 10. Page-Intent-Registry
 
 `lib/content/page-intent-registry.ts` inventarisiert 1.585 HTML-Routen als interne Verträge mit Route, Sprache, Standort, Seitentyp, primärer/sekundärer Intention, Zielgruppe, Parent-Hub, Canonical, Indexierbarkeit, Sitemapstatus, erlaubten/verbotenen Abschnitten, verwandten Leistungen, Owner, Reviewdatum und Status. Explizite P0-/P1- sowie Ads-Verträge überschreiben nur die deterministischen Defaults.
 
-Der geprüfte Kandidat meldete 0 indexierbare Routen ohne Vertrag, 0 doppelte Primary-Intents und 0 Alias-/Canonical-/Sitemapkonflikte. Rollen bleiben getrennt: Hub wählt und verlinkt, Spezialseite erklärt eine Leistung, Tool schätzt Aufwand, Kontakt übermittelt eine Anfrage, Ads-Seite bleibt `noindex`, Alias erhält keine zweite indexierbare Hauptaufgabe. Der aktuelle Runtime-Sanitizer verändert die Default-Erzeugung; deshalb muss der Registry-Audit vor Release erneut `PASS` liefern.
+Der aktuelle Audit inventarisiert 1.585 gebaute HTML-Routen, 1.477 indexierbare Routen, 1.585 generierte Verträge, 1.585 Registry-Einträge und 419 Sitemap-URLs. `missingGenerated`, `missingRegistry`, doppelte Primary-Intents, `ERROR` und `CANNIBALIZATION_RISK` sind jeweils 0. Rollen bleiben getrennt: Hub wählt und verlinkt, Spezialseite erklärt eine Leistung, Tool schätzt Aufwand, Kontakt übermittelt eine Anfrage, Ads-Seite bleibt `noindex`, Alias erhält keine zweite indexierbare Hauptaufgabe. 1.155 `SPECIALIST_WITHOUT_HUB_LINK`-Hinweise bleiben ein priorisierbares Diagnoseinventar, kein technischer Releasefehler; Status: `PASS`.
 
 ## 11. Eigenständige Kundentexte
 
@@ -118,7 +116,7 @@ Das zentrale Modell `lib/content/seo-meta-registry.ts` hält für jede priorisie
 | `/duesseldorf/baureinigung` | `Bauendreinigung Düsseldorf \| Bauphase & Abnahme` | identische `direct`-Variante |
 | `/regensburg/umzug` | `Umzug Regensburg \| Start, Ziel & Umfang anfragen` | identische `direct`-Variante |
 
-Im geprüften Vorgängerexport wurden 26 Titles gegenüber Production geändert und 0 identische Titles gemessen. Der Wert des aktuellen Acquisition-Exports bleibt bis zum frischen Build `PENDING`. Pro URL ist höchstens ein großes Snippet-Experiment aktiv; `/duesseldorf/reinigung` muss nach Veröffentlichung mindestens 28 volle Tage unverändert gemessen werden.
+Gegenüber Production sind 26 Titles geändert; der aktuelle Meta-/Overlap-Audit meldet 0 identische Titles und besteht. Pro URL ist höchstens ein großes Snippet-Experiment aktiv; `/duesseldorf/reinigung` muss nach Veröffentlichung mindestens 28 volle Tage unverändert gemessen werden.
 
 ## 13. Meta Descriptions
 
@@ -135,7 +133,7 @@ Die aktiven Descriptions benennen Leistung, Standort, konkrete benötigte Angabe
 | `/duesseldorf/baureinigung` | Bauphase, Fläche, Rückstände, Restarbeiten, Fotos und Abnahmetermin nennen |
 | `/regensburg/umzug` | Start, Ziel, Etagen, Aufzug, Möbelmenge, Zugang und Termin beschreiben |
 
-Es gibt keine unbelegten Europreise, Antwortzeiten, Sofortverfügbarkeit, künstliche Dringlichkeit oder Ergebnisgarantien. Der Vorgängerexport enthielt 18 geänderte Descriptions gegenüber Production; Eindeutigkeit und Renderkonsistenz des aktuellen Stands sind erneut zu prüfen.
+Es gibt keine unbelegten Europreise, Antwortzeiten, Sofortverfügbarkeit, künstliche Dringlichkeit oder Ergebnisgarantien. Gegenüber Production sind 18 Meta Descriptions geändert; Render-, Claims- und SEO-Prüfung des aktuellen Stands bestehen.
 
 ## 14. H1
 
@@ -150,13 +148,13 @@ Es gibt keine unbelegten Europreise, Antwortzeiten, Sofortverfügbarkeit, künst
 | `/duesseldorf/baureinigung` | `Bau- und Bauendreinigung in Düsseldorf: vorbereitet für Abnahme, Einzug oder Übergabe` |
 | `/regensburg/umzug` | `Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang` |
 
-Der geprüfte Vorgängerexport hatte 0 identische H1 und genau eine fachlich passende Hauptüberschrift je geprüfter Prioritätsseite. Da der neue Arbeitsbaum Inhalte verändert, müssen H1-Anzahl, gerenderter Text und Title-/Intentpassung im aktuellen Build erneut bestätigt werden.
+Gegenüber Production sind 908 H1 geändert. Der aktuelle Overlap-Audit meldet 0 identische H1; alle 84 Browserfälle zeigten genau eine sichtbare, zur Route und zum Above-the-fold passende Hauptüberschrift. Status: `PASS`.
 
 ## 15. Above-the-fold
 
 Money Pages zeigen im ersten Bereich Standort/Leistung, eindeutige H1, zwei kurze erklärende Sätze, konkrete benötigte Angaben beziehungsweise Vorteile, eine primäre CTA und eine sekundäre Kontaktmöglichkeit. Der Hub führt zur passenden Reinigungsart; Spezialseiten beginnen mit ihrer eigenen Leistung statt einer allgemeinen Marketingeinleitung.
 
-Die Rechner nennen im Hero unmittelbar Eingaben und Ergebnisgrenze: Der Umzugsrechner fragt Start, Ziel, Zeitraum, Umfang und Zugang; der Reinigungsrechner Objekt, Fläche, Reinigungsart und Ergänzungen. Beide sagen vorab, dass das Ergebnis vor Kontaktdaten sichtbar ist. Öffentliche Fachbegriffe, Linkwände, unpassende Services und vier gleichwertige Hauptbuttons sind nicht vorgesehen. Die tatsächliche Sichtbarkeit an allen vier Pflicht-Viewports bleibt ein Browser-Release-Gate.
+Die Rechner nennen im Hero unmittelbar Eingaben und Ergebnisgrenze: Der Umzugsrechner fragt Start, Ziel, Zeitraum, Umfang und Zugang; der Reinigungsrechner Objekt, Fläche, Reinigungsart und Ergänzungen. Beide sagen vorab, dass das Ergebnis vor Kontaktdaten sichtbar ist. Die 21 Pflichtrouten bestanden bei 1440 × 1000, 1024 × 900, 768 × 1024 und 390 × 844 insgesamt 84/84 Fälle: 0 H1-/Intentfehler, 0 Überbreite, 0 sichtbare defekte Bilder, 0 interne Begriffe, 0 Framework-/Konsolenfehler und 0 Fokusfehler.
 
 ## 16. Claims
 
@@ -166,7 +164,7 @@ Die Rechner nennen im Hero unmittelbar Eingaben und Ergebnisgrenze: Der Umzugsre
 - Negierte Grenzen wie „keine Preisgarantie“ sind keine Leistungszusage, müssen aber weiterhin verständlich und kontextgerecht bleiben.
 - Der neue Claims-/Structured-Data-Policy-Scan blockiert unbelegte Marktführungs-, Garantie-, Zertifizierungs-, Preis-/Zeit- und Sterneclaims in öffentlichem Text, Metadaten und JSON-LD.
 
-Der endgültige Wert „unverifizierte öffentliche Claims = 0“ ist für den aktuellen Export `PENDING` und darf erst nach Source- und Render-Audit als `PASS` gemeldet werden.
+Der aktuelle Release-Gate-Export enthält 0 unverifizierte öffentliche Claims. Die 40 heuristischen Treffer des breiten Scans sind 40/40 verifizierte negative Einschränkungen wie „keine Preisgarantie“, keine positiven Leistungsversprechen. Status: `PASS`.
 
 ## 17. Echte Bewertungen
 
@@ -178,13 +176,13 @@ Es gibt kein selbstbezogenes `AggregateRating`/`Review` für FLOXANT und keine S
 
 Zulässig bleiben `Organization`, passendes `LocalBusiness`, `Service`, `WebPage`, `BreadcrumbList`, `Article`, `BlogPosting` und `WebSite` mit sichtbarem Inhalt, richtiger Route, Sprache und Region. Telefon, E-Mail und `sameAs` dürfen nur reale Werte enthalten.
 
-Der Acquisition-Arbeitsbaum erweitert den Audit um Pflichtfelder, Route-/Sprachabgleich, Breadcrumbfolge, ungültiges JSON, verborgene FAQ, massenhafte FAQ-Duplikate, Sterne in Metadaten, selbstbezogene Review-Schemas, statisches `QAPage` und unbelegte Claims. Vorhandene ältere `FAQPage`-Emitter stehen auf einer expliziten Bestandsliste und werden trotzdem vollständig am Render-Output geprüft. Neues `FAQPage` mit dem Ziel eines Google-FAQ-Rich-Results: **nein**. `QAPage` für normale FAQ: **nein**. Finaler Structured-Data-Status des veränderten Exports: `PENDING`.
+Der Acquisition-Arbeitsbaum erweitert den Audit um Pflichtfelder, Route-/Sprachabgleich, Breadcrumbfolge, ungültiges JSON, verborgene FAQ, massenhafte FAQ-Duplikate, Sterne in Metadaten, selbstbezogene Review-Schemas, statisches `QAPage` und unbelegte Claims. Der aktuelle Lauf prüfte 1.585 HTML-Dateien, 871 Source-Dateien und 5.992 JSON-LD-Blöcke sowie 611 konfigurierte Redirects und 11 Alias-Dokumente. Ungültiges JSON, selbstbezogene Review-Schemas, `QAPage`, verborgene/duplizierte Schema-FAQ, Metadatensterne, Route-/Sprachmismatch, unverifizierte Claims und Findings sind jeweils 0. Neues `FAQPage` mit dem Ziel eines Google-FAQ-Rich-Results: **nein**. `QAPage` für normale FAQ: **nein**. Status: `PASS`.
 
 ## 19. FAQ-Strategie
 
 FAQ bleiben sichtbarer Kundeninhalt, kein versprochener Ranking- oder Rich-Result-Hebel. Hubs erhalten fünf bis acht, Spezialseiten vier bis sechs, Rechner vier bis fünf und Ads-Seiten vier bis sechs passende Fragen. Antworten beginnen direkt, listen keine Suchbegriffe auf und erfinden weder Preis noch Verfügbarkeit.
 
-Die Rechnerseiten ergänzen aktuell vier Umzugs- und fünf Reinigungsfragen zu benötigten Angaben, Unsicherheit, Zugang, Ergebnisgrenze und Anfrageübernahme. Sie werden als native `details`/`summary`-Elemente vollständig im HTML ausgegeben und mit sichtbarem Fokus bedienbar gemacht. Die Prüfung auf Einzigartigkeit, Sichtbarkeit und Bestands-`FAQPage`-Deckung ist Teil des noch ausstehenden finalen Structured-Data-/Browser-Gates.
+Die Rechnerseiten ergänzen vier Umzugs- und fünf Reinigungsfragen zu benötigten Angaben, Unsicherheit, Zugang, Ergebnisgrenze und Anfrageübernahme. Sie werden als native `details`/`summary`-Elemente vollständig im HTML ausgegeben und mit sichtbarem Fokus bedienbar gemacht. Einzigartigkeit, Sichtbarkeit, Tastaturfokus und Bestands-`FAQPage`-Deckung bestehen im Structured-Data- und Browser-Gate.
 
 ## 20. Rechner vorher
 
@@ -200,7 +198,7 @@ Die organische Ausgangsdatenmenge ist gering: `/rechner` 1 Klick/4 Impressionen,
 - Das Ergebnis erscheint ohne Name, Telefon oder E-Mail. Es gibt keine Ergebnisroute, indexierbare Queryzustands-URL oder Maps-API.
 - `/entsorgung-kosten-rechner` und Calculator-Ratgeber bleiben außerhalb dieses Scopes.
 
-Der geprüfte Kandidat bestand Canonical-, Sitemap-, Route- und Browserprüfungen. Die neu ergänzten FAQ-/Hero-Inhalte benötigen vor Release erneut die vier Viewports und den vollständigen Build.
+Alle drei Scope-Routen bestehen Canonical-, Sitemap-, Route- und Browserprüfung. Beide Rechner zeigen exakt drei Eingabeschritte plus Ergebnis, erlauben unbekannte Kernangaben, zeigen das Ergebnis ohne Kontaktdaten und erzeugen weder `NaN`, Negativwerte noch scheinpräzise Europreise.
 
 ## 22. Rechnerlogik
 
@@ -214,46 +212,44 @@ Das Ergebnisobjekt enthält Rechnertyp/-version, `estimateType: "effort_band"`, 
 
 `Ergebnis als Anfrage senden` speichert einen bereinigten, sieben Tage gültigen Session-Vertrag unter `floxant:calculator-enquiry-transfer:v1`. Er enthält nur versionierte Zusammenfassung, Aufwandsergebnis, Annahmen, fehlende Angaben, begrenzte Zusatzleistungen und optional einen begrenzten Hinweis.
 
-Die neutralen Ziele sind `/kontakt?mode=neutral&source=calculator&intent=umzug-rechner#direktanfrage` und `/kontakt?mode=neutral&source=calculator&intent=reinigung-rechner#direktanfrage`. `ProfessionalRequestForm` validiert Typ und Alter, zeigt die Übernahme sichtbar an, füllt erlaubte Felder und speichert unter `details.configuration.calculatorTransfer`. Gelöscht wird erst nach erfolgreichem Versand. Es gibt keine Supabase-Migration. Ein erneuter End-to-End-Lauf einschließlich Fehlererhalt und Doppelklickschutz bleibt Teil des aktuellen Test-Gates.
+Die neutralen Ziele sind `/kontakt?mode=neutral&source=calculator&intent=umzug-rechner#direktanfrage` und `/kontakt?mode=neutral&source=calculator&intent=reinigung-rechner#direktanfrage`; nach einer eindeutig erkannten unterstützten Region darf der Kontaktflow die Location kontextuell übernehmen. `ProfessionalRequestForm` validiert Typ und Alter, zeigt die Übernahme sichtbar an, füllt erlaubte Felder und speichert unter `details.configuration.calculatorTransfer`. Der Browserlauf bestätigte beide Transfers einschließlich Ergebnisrahmen, Eingaben, offenen Angaben und Zusatzleistungen; es wurde lokal keine Anfrage gesendet. Gelöscht wird erst nach erfolgreichem Versand. Es gibt keine Supabase-Migration; der Production-Submit bleibt bis Phase 26 offen.
 
 ## 24. Dashboard
 
 `buildAdminBookingDetailView()` zeigt eine eigene Gruppe `Rechner-Ergebnis` mit Rechnerart, Version, Berechnungszeit, kundenverständlicher Eingabezusammenfassung, Aufwandsergebnis, Datengrundlage, Erläuterung, Annahmen, fehlenden Angaben, Zusatzleistungen und Hinweis. Technische Formeln und absichtlich leere Preisfelder werden normalen Admins nicht angezeigt.
 
-Der bestehende strukturierte `details`-Vertrag und die Nested-Field-Allowlist werden weiterverwendet; es gibt keine neue Tabelle oder Migration. Kontaktangaben, Standort/Route, Leistung, Umfang, Zusatzleistungen, Termine, Dateien, Quelle und Kampagnendaten bleiben sichtbar; unbekannte Legacy-Felder gehören unter `Weitere gespeicherte Angaben`. Baseline-Dashboardtest: `PASS`; aktueller Release-End-to-End-Test: `PENDING`.
+Der bestehende strukturierte `details`-Vertrag und die Nested-Field-Allowlist werden weiterverwendet; es gibt keine neue Tabelle oder Migration. Kontaktangaben, Standort/Route, Leistung, Umfang, Zusatzleistungen, Termine, Dateien, Quelle und Kampagnendaten bleiben sichtbar; unbekannte Legacy-Felder gehören unter `Weitere gespeicherte Angaben`. Automatisierter Dashboard-Detailtest und lokale Rechnerdarstellung: `PASS`. Die echte Production-Dashboardprüfung bleibt bis zu den genau vier Synthetics offen.
 
 ## 25. Interne Verlinkung
 
 Die beabsichtigte Hierarchie ist Startseite → Düsseldorf → Reinigung Düsseldorf → spezialisierte Reinigungsservices, Startseite → Regensburg → Umzug/Räumung/Auflösung → Spezialservices sowie Startseite → Rechner → beide dedizierten Rechner. Money Pages sollen höchstens drei Klicks von der Startseite entfernt sein.
 
-Der geprüfte Kandidat stärkte den Link von `/regensburg` zu `/regensburg/umzug`, trennte Hub- von Spezialwissen und bestand den Internal-Link-Audit mit 0 defekten Links, 0 Redirect-Ketten sowie korrekten Canonicals/Breadcrumbs. Große Listen nutzen `prefetch={false}`. Es bleiben 1.155 diagnostische `REVIEW`-Hinweise zu Spezialseiten ohne erwarteten Hub-Link; sie sind kein Beleg für 1.155 defekte Links, benötigen aber kontrollierte Priorisierung statt einer Linkwand. Der aktuelle Export muss erneut Links auf Redirect-Quellen, `noindex`-Seiten und Standortmix prüfen.
+Der aktuelle Export stärkt den Link von `/regensburg` zu `/regensburg/umzug`, trennt Hub- von Spezialwissen und besteht den Internal-Link-/Cloudflare-Audit mit 0 defekten Links, 0 Redirect-Ketten, 0 `noindex`-Sitemapseiten und 0 Standort-Metadatenmischungen. Große Listen nutzen `prefetch={false}`. Es bleiben 1.155 diagnostische `REVIEW`-Hinweise zu Spezialseiten ohne erwarteten Hub-Link; sie sind kein Beleg für 1.155 defekte Links und werden kontrolliert priorisiert statt als Linkwand massenhaft ergänzt.
 
 ## 26. Performance
 
 Der geprüfte Kandidat reduzierte `search-index.json` von 154.923 auf 53.962 Byte, den Rechner-Hub im Quellcode von 71.761 auf 3.342 Byte und die unkomprimierte eindeutige Scriptmenge auf `/umzug-kosten-rechner` von 1.176.943 auf 949.783 Byte sowie auf `/reinigung-preis-rechner` auf 949.387 Byte. Rechnerimports sind getrennt; Dashboard-Code gehört nicht in öffentliche Bundles.
 
-| Lighthouse | vorher | geprüfter Kandidat |
+| Lighthouse | vorher | aktueller Acquisition-Kandidat |
 | --- | ---: | ---: |
-| Mobile Performance Median | 67,5 | 68,5 |
+| Mobile Performance Median | 67,5 | 71 |
 | Mobile Accessibility / Best Practices / SEO | 100 / 100 / 100 | 100 / 100 / 100 |
-| Mobile p75 LCP / TBT / CLS | 4.200,65 ms / 1.000,29 ms / 0 | 4.142,13 ms / 738,41 ms / 0 |
-| Desktop Performance Median | 94 | 97,5 |
+| Mobile p75 LCP / TBT / CLS | 4.200,65 ms / 1.000,29 ms / 0 | 4.017,30 ms / 665,76 ms / 0 |
+| Desktop Performance Median | 94 | 94,5 |
 | Desktop Accessibility / Best Practices / SEO | 100 / 100 / 100 | 100 / 100 / 100 |
-| Desktop p75 LCP / TBT / CLS | 867,07 ms / 212,74 ms / 0 | 877,88 ms / 159,14 ms / 0 |
+| Desktop p75 LCP / TBT / CLS | 867,07 ms / 212,74 ms / 0 | 886,10 ms / 200,50 ms / 0 |
 
-Die neuen FAQ-Blöcke und Sanitizer-/Auditänderungen sind in diesen Zahlen noch nicht enthalten. Ein pfadgleicher aktueller Nachherlauf ist `PENDING`; Releasegrenzen bleiben CLS höchstens 0,1, keine horizontale Überbreite und keine Performance-Regression. Einzelne Labormessungen sind keine Felddaten- oder Geschäftsgarantie.
+Der aktuelle Nachherlauf umfasst dieselben zehn Routen in Mobile und Desktop mit jeweils drei Läufen, insgesamt 60/60 gültige Rohberichte. Das dokumentierte Median-/CLS-Gate ist `PASS`: Mobile +3,5 Punkte, Desktop +0,5 Punkte und CLS p75 jeweils 0. Transparenz: Der Desktop-Rohmittelwert sank um 1,57 Punkte und Desktop-p75-LCP stieg um 19,03 ms; deshalb lautet die belastbare Aussage „keine Median-Performance-/CLS-Regression“, nicht „alle Aggregate verbessert“. INP ist bei statischen Labormessungen erwartungsgemäß 60-mal `null`. Einzelne Labormessungen sind keine Felddaten- oder Geschäftsgarantie.
 
 ## 27. Technische Tests
 
 Der Kandidat `2344304b` bestand in einer frischen isolierten Kopie `npm ci`, Lint, Typecheck, Tests, Functions-Test, Build, Cloudflare-Check sowie Customer-Language-, Public-Copy-, Navigation-, Routes-, CTA-, Contact-, SEO-, Content-Safety-, Critical- und Predeploy-Gates. Seine Struktur: 1.618 statische Prerender-Routen, 1.585 exportierte HTML-Routen, 0 ISR, 0 Next.js Serverless Functions, 8 bestehende Cloudflare Pages Function-Entrypoints, 0 Middleware, 0 defekte Links, 0 fehlende Bilder und 0 Redirect-Ketten.
 
-Status des veränderten Acquisition-Arbeitsbaums: **STAGE-GATE PENDING**. Vor Commit/Push müssen in einer frischen isolierten Kopie mindestens `npm ci`, `npm run lint`, `npm run typecheck`, `npm test --if-present`, `node scripts/cloudflare-functions-test.mjs`, `npm run build`, `npm run check:cloudflare-pages`, alle bestehenden QA-Befehle sowie Public-Language-, Overlap-, Intent-, GSC-, Canonical-, Link-, Calculator-, Analytics-PII-, Structured-Data- und Claims-Audits erneut bestehen. Frühere Baseline-Pässe dürfen dafür nicht als aktueller Release-Nachweis ausgegeben werden.
+Der aktuelle Acquisition-Stand bestand in einem frischen Detached-Verify-Worktree `npm ci`, Lint, Typecheck, Tests, Functions-Test, Build, Cloudflare-Check sowie Public-Language-, Public-Copy-, Navigation-, Routes-, SEO-, Safety-, Calculator-, Analytics-PII-, Structured-Data- und Claims-Gates. Der Build erzeugt 1.618 statische Prerender-Ausgaben, 1.585 HTML-Dateien und 419 Sitemap-URLs; ISR, Next.js Serverless Functions und Middleware bleiben 0. Es bestehen 8 Cloudflare Pages Function-Entrypoints. Der Cloudflare-Audit prüfte 13.519 Dateien, maximal 1.640.047 Byte pro Datei und 4.387.791.022 Byte Gesamtoutput: 0 defekte Links, 0 fehlende Bilder und 0 Redirect-Ketten. CTA: `PASS` mit 36 Routen/379 Checks. Contact: Browser-Hydration `PASS`; der statische HTML-Scan bleibt bewusst `WARN` mit 171 PASS, 36 ausschließlich hydration-bedingten WARN und 0 FAIL. Critical/Predeploy bleiben `WARN` bei 0 FAIL, weil historische Architektur-/Risk-Diagnosen und der reale Preview-Lifecycle-Punkt gelb geführt werden; es gibt keinen ungeklärten lokalen Codeblocker.
 
 ## 28. Browserprüfungen
 
-Der geprüfte Kandidat bestand 60 Routen-/Viewportprüfungen sowie 24 gezielte Regressionen bei 1440 × 1000, 1024 × 900, 768 × 1024 und 390 × 844. Geprüft wurden unter anderem interne Texte, H1/Intent, eigenständige Inhalte, Rechner, werterhaltende Navigation, CTA, Standorttrennung, Cookie-Banner, Fokus, Konsole, 404 und horizontale Überbreite.
-
-Status des aktuellen Acquisition-Stands: **STAGE-GATE PENDING**. Erneut zu prüfen sind mindestens Startseite, Düsseldorfer Hub und alle P0/P1-Reinigungsseiten, Regensburger Hub/Primärservices, Klaviertransport, Rechner, beide Ads-Seiten, Kontakt und Dashboard-Login an allen vier Viewports. Insbesondere die neuen Rechner-FAQ, `details`-Tastaturbedienung, sichtbarer Fokus und die neuen Public-/Structured-Data-Grenzen dürfen erst nach tatsächlichem Lauf `PASS` heißen.
+Der aktuelle Acquisition-Stand bestand 21 Pflichtrouten × 4 Viewports = 84/84 Browserfälle bei 1440 × 1000, 1024 × 900, 768 × 1024 und 390 × 844. Geprüft wurden interne Texte, H1/Intent/Above-the-fold, eigenständige Inhalte, CTA, Standorttrennung, Cookie-Layout, sichtbarer Fokus, Konsole, Frameworkfehler, sichtbare Bilder, 404 und horizontale Überbreite. Ergebnis: in allen technischen Kategorien 0 Fehler. Zusätzlich bestanden 13/13 hydrierte Kontaktkontexte, beide Ads-Formulare (`noindex`, 16-px-Eingaben), mobile Navigation und beide interaktiven Dreischritt-Rechner samt Ergebnisübernahme. Das lokale Dashboard-Loginformular ist vollständig vorhanden; ohne nicht versionierte Supabase-Buildvariablen bleibt es im isolierten Export erwartungsgemäß deaktiviert und wird im Cloudflare-Preview erneut geprüft.
 
 ## 29. Preview
 
