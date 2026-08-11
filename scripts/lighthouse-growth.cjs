@@ -47,7 +47,7 @@ const outputPath = path.join(
   artifactsDir,
   label === "release-candidate"
     ? "lighthouse-release-candidate.json"
-    : `lighthouse-${label}-2026-07-30.json`,
+    : `lighthouse-${label}-2026-08-11.json`,
 );
 
 fs.mkdirSync(temporaryDir, { recursive: true });
