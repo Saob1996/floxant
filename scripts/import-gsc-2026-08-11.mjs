@@ -14,6 +14,7 @@ const OUTPUTS = {
   queries: path.join(ARTIFACTS_DIR, `gsc-query-opportunities-${EXPORT_DATE}.csv`),
   pages: path.join(ARTIFACTS_DIR, `gsc-page-opportunities-${EXPORT_DATE}.csv`),
   devices: path.join(ARTIFACTS_DIR, `gsc-device-gap-${EXPORT_DATE}.csv`),
+  urlIntentReview: path.join(ARTIFACTS_DIR, `gsc-url-intent-review-${EXPORT_DATE}.csv`),
   calculators: path.join(ARTIFACTS_DIR, `gsc-calculator-opportunities-${EXPORT_DATE}.csv`),
 };
 
@@ -449,6 +450,10 @@ function redactQuery(value) {
     .replace(/(?:\+?\d[\d\s()./-]{7,}\d)/gu, "[REDACTED_PHONE]");
 }
 
+function sanitizeAggregateLabel(value) {
+  return value.replace(/\s+/gu, " ").trim();
+}
+
 function csvCell(value) {
   let text = String(value ?? "");
   if (/^[=+\-@]/u.test(text)) text = `'${text}`;
@@ -520,13 +525,13 @@ invariant(countryTotals.clicks === totals.clicks && countryTotals.impressions ==
 const germany = countryMetrics.find((row) => row.country === "Deutschland");
 invariant(germany?.clicks === 62 && germany?.impressions === 12_324 && germany?.ctrPercent === 0.5 && germany?.position === 16.37, "Deutschlandwerte weichen von den erwarteten Werten ab.");
 
-const queryLabels = sources.queries.objects.map((row) => row["Häufigste Suchanfragen"]);
+const queryLabels = sources.queries.objects.map((row) => sanitizeAggregateLabel(row["Häufigste Suchanfragen"]));
 const pageLabels = sources.pages.objects.map((row) => row["Die häufigsten Seiten"]);
 invariant(new Set(queryLabels).size === queryLabels.length, "Suchanfragen.csv enthält doppelte Query-Zeilen.");
 invariant(new Set(pageLabels).size === pageLabels.length, "Seiten.csv enthält doppelte Seiten-Zeilen.");
 
 const queryRows = sources.queries.objects.map((row, index) => {
-  const query = row["Häufigste Suchanfragen"];
+  const query = sanitizeAggregateLabel(row["Häufigste Suchanfragen"]);
   const metrics = metricFromRow(row, `Suchanfragen.csv:${index + 2}`);
   const context = inferQuery(query, metrics);
   const classifications = classificationsFor(metrics, "QUERY", context);
@@ -644,16 +649,43 @@ const calculatorPageRows = pageRows.filter((row) => row._context.calculatorType)
   recommendedAction: row.recommendedAction,
 }));
 const calculatorRows = [...calculatorQueryRows, ...calculatorPageRows];
+const urlIntentReviewRows = pageRows
+  .filter((row) => row._context.likelyCannibalization
+    || row.classifications.split("|").some((classification) => [
+      "URL_INTENT_MISMATCH",
+      "TECHNICAL_CANNIBALIZATION",
+      "LIKELY_CANNIBALIZATION",
+      "CONTENT_OVERLAP",
+    ].includes(classification)))
+  .map((row) => ({
+    aggregateType: "PAGE",
+    sourceFile: row.sourceFile,
+    sourceRow: row.sourceRow,
+    path: row.path,
+    clicks: row.clicks,
+    impressions: row.impressions,
+    ctrPercent: row.ctrPercent,
+    position: row.position,
+    classifications: row.classifications,
+    relatedPrimaryRouteForReview: row.relatedPrimaryRouteForReview,
+    relationStatus: "MANUAL_REVIEW",
+    evidenceBoundary: row.evidenceBoundary,
+    technicalFinding: "Bestehende technische Signale separat prüfen; aus dem GSC-Seitenaggregat ist keine Query-zu-URL-Beziehung bestätigt.",
+    redirectRecommendation: "NONE_FROM_GSC",
+    recommendedAction: row.recommendedAction,
+  }));
 
 fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
 const queryHeaders = ["aggregateType", "sourceFile", "sourceRow", "query", "clicks", "impressions", "ctrPercent", "position", "priority", "classifications", "cluster", "service", "city", "suggestedPrimaryRoute", "relationStatus", "relationBasis", "recommendedAction"];
 const pageHeaders = ["aggregateType", "sourceFile", "sourceRow", "pageUrl", "path", "clicks", "impressions", "ctrPercent", "position", "priority", "classifications", "cluster", "service", "city", "relatedPrimaryRouteForReview", "evidenceBoundary", "recommendedAction"];
 const deviceHeaders = ["sourceFile", "device", "sourceLabel", "clicks", "impressions", "impressionSharePercent", "ctrPercent", "mobileMinusDeviceCtrPercentagePoints", "ctrIndexVsMobilePercent", "position", "positionDifferenceVsMobile", "scenarioClicksAtMobileCtr", "scenarioAdditionalClicksAtMobileCtr", "classifications", "scenarioBoundary", "recommendedAction"];
+const urlIntentReviewHeaders = ["aggregateType", "sourceFile", "sourceRow", "path", "clicks", "impressions", "ctrPercent", "position", "classifications", "relatedPrimaryRouteForReview", "relationStatus", "evidenceBoundary", "technicalFinding", "redirectRecommendation", "recommendedAction"];
 const calculatorHeaders = ["aggregateType", "sourceFile", "sourceRow", "label", "clicks", "impressions", "ctrPercent", "position", "calculatorType", "calculatorSignal", "candidateCalculatorRoute", "priority", "classifications", "relationStatus", "relationBasis", "recommendedAction"];
 
 writeCsv(OUTPUTS.queries, queryHeaders, queryRows);
 writeCsv(OUTPUTS.pages, pageHeaders, pageRows);
 writeCsv(OUTPUTS.devices, deviceHeaders, deviceRows);
+writeCsv(OUTPUTS.urlIntentReview, urlIntentReviewHeaders, urlIntentReviewRows);
 writeCsv(OUTPUTS.calculators, calculatorHeaders, calculatorRows);
 
 const queryDimensionTotals = queryRows.reduce((sum, row) => ({ clicks: sum.clicks + row.clicks, impressions: sum.impressions + row.impressions }), { clicks: 0, impressions: 0 });
@@ -737,6 +769,7 @@ const summary = {
     confirmedQueryToUrlMappings: 0,
     redirectsInferred: false,
     redirectRecommendations: [],
+    urlIntentReviewRelationStatus: "MANUAL_REVIEW",
     allowedClassifications: ALLOWED_CLASSIFICATIONS,
     technicalCannibalizationConfirmedFromGscAggregates: 0,
     contentOverlapConfirmedFromGscAggregates: 0,
@@ -746,6 +779,7 @@ const summary = {
     pages: classCounts(pageRows),
     calculatorQueryRows: calculatorQueryRows.length,
     calculatorPageRows: calculatorPageRows.length,
+    urlIntentReviewPages: urlIntentReviewRows.length,
   },
   gscPriorityFramework: {
     P0: ["/duesseldorf/reinigung"],
@@ -798,6 +832,9 @@ function verifyOutputCsv(filePath, expectedHeaders, expectedRows, dimension) {
 verifyOutputCsv(OUTPUTS.queries, queryHeaders, queryRows.length, "QUERY");
 verifyOutputCsv(OUTPUTS.pages, pageHeaders, pageRows.length, "PAGE");
 verifyOutputCsv(OUTPUTS.devices, deviceHeaders, deviceRows.length, "");
+const verifiedUrlIntentRows = verifyOutputCsv(OUTPUTS.urlIntentReview, urlIntentReviewHeaders, urlIntentReviewRows.length, "PAGE");
+invariant(verifiedUrlIntentRows.every((row) => row.relationStatus === "MANUAL_REVIEW"), "URL-Intent-Artefakt behauptet eine bestätigte Query-zu-URL-Beziehung.");
+invariant(verifiedUrlIntentRows.every((row) => row.redirectRecommendation === "NONE_FROM_GSC"), "URL-Intent-Artefakt leitet einen Redirect aus GSC-Aggregaten ab.");
 const verifiedCalculatorRows = verifyOutputCsv(OUTPUTS.calculators, calculatorHeaders, calculatorRows.length, "");
 invariant(verifiedCalculatorRows.slice(0, calculatorQueryRows.length).every((row) => row.aggregateType === "QUERY"), "Rechnerartefakt hält den Query-Block nicht getrennt.");
 invariant(verifiedCalculatorRows.slice(calculatorQueryRows.length).every((row) => row.aggregateType === "PAGE"), "Rechnerartefakt hält den Seiten-Block nicht getrennt.");
@@ -811,4 +848,5 @@ console.log(`GSC_AUGUST_IMPORT_PASS export_date=${EXPORT_DATE} csv_files=7 date_
 console.log(`GSC_TOTALS clicks=${totals.clicks} impressions=${totals.impressions} ctr=${round((totals.clicks / totals.impressions) * 100, 2)}% position=${round(weightedPosition, 2)}`);
 console.log(`GSC_DEVICES mobile_ctr=${mobile.ctrPercent}% desktop_ctr=${desktop.ctrPercent}% tablet_ctr=${tablet.ctrPercent}% mobile_minus_desktop=${round(mobile.ctrPercent - desktop.ctrPercent)}pp`);
 console.log(`GSC_ROWS queries=${queryRows.length} pages=${pageRows.length} countries=${countryMetrics.length} devices=${deviceRows.length} calculator_queries=${calculatorQueryRows.length} calculator_pages=${calculatorPageRows.length}`);
+console.log(`GSC_URL_INTENT_REVIEW rows=${urlIntentReviewRows.length} confirmed_query_url_relations=0 redirect_recommendations=0`);
 console.log(`GSC_COUNTRY_DE clicks=${germany.clicks} impressions=${germany.impressions} ctr=${germany.ctrPercent}% position=${germany.position}`);

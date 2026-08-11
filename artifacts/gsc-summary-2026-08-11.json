@@ -130,6 +130,7 @@
     "confirmedQueryToUrlMappings": 0,
     "redirectsInferred": false,
     "redirectRecommendations": [],
+    "urlIntentReviewRelationStatus": "MANUAL_REVIEW",
     "allowedClassifications": [
       "PROTECT_WINNER",
       "HIGH_IMPRESSIONS_LOW_CTR",
@@ -180,7 +181,8 @@
       "MANUAL_REVIEW": 33
     },
     "calculatorQueryRows": 25,
-    "calculatorPageRows": 4
+    "calculatorPageRows": 4,
+    "urlIntentReviewPages": 2
   },
   "gscPriorityFramework": {
     "P0": [

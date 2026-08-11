@@ -1,8 +1,8 @@
 # CTR-Experiment: `/duesseldorf/reinigung`
 
-Version: 2026-08-11  
-Status: lokal vorbereitet, nicht veröffentlicht  
-Messquelle: Google Search Console, getrennte Seitenaggregation  
+Version: 2026-08-11
+Status: lokal vorbereitet, nicht veröffentlicht
+Messquelle: Google Search Console, getrennte Seitenaggregation
 Messfenster der Ausgangsdaten: 2026-07-12 bis 2026-08-08
 
 ## Ausgangslage
