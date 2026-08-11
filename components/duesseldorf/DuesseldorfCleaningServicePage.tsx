@@ -2544,7 +2544,6 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       ) : getActivePriorityFaqAssignment(config.path) ? (
         <PriorityFaqSection
           route={config.path}
-          includeJsonLd
           tone="dark"
           title={`Häufige Fragen zu ${config.eyebrow}`}
           className="bg-slate-950"

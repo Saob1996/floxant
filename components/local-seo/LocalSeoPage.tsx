@@ -16,7 +16,6 @@ import { company } from "@/lib/company";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { germanizeDeep } from "@/lib/german-text";
@@ -183,9 +182,6 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         { name: page.city.displayName, item: `/${page.region}` },
         { name: page.serviceName, item: page.path },
       ]),
-      ...(getActivePriorityFaqAssignment(page.path)
-        ? []
-        : [buildFaqJsonLd(page.faq)]),
     ],
   };
 
@@ -461,7 +457,6 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
           <PriorityFaqSection
             route={page.path}
             locale={page.locale === "en" ? "en" : "de"}
-            includeJsonLd
             className="!px-0 !py-0"
           />
         ) : (

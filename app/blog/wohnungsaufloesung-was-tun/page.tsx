@@ -21,6 +21,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
     "headline": "Wohnungsauflösung im Todesfall: Ein Leitfaden für Angehörige",
     "description": "Was ist nach einem Todesfall bezüglich der Mietwohnung zu tun? Ein kompletter Leitfaden zu Erbrecht, Kündigung, Kosten und Räumung.",
     "author": { "@type": "Organization", "name": "FLOXANT Redaktion" },
+    "publisher": { "@type": "Organization", "name": "FLOXANT" },
     "datePublished": "2024-03-30T14:00:00+01:00",
     "dateModified": "2024-03-30T14:00:00+01:00"
   };

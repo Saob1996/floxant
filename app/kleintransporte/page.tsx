@@ -40,6 +40,7 @@ export default async function KleintransportePage() {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/kleintransporte"
       lang="de"
       dict={localeDict}
       city={city}

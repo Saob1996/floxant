@@ -312,7 +312,6 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
         route={pagePath}
         title="Häufige Fragen zu Ferienwohnung und Gästewechsel"
         intro="Die Antworten trennen Reinigung, optionale Zusatzpunkte und Plattformaufgaben klar voneinander."
-        includeJsonLd
         className="bg-slate-50"
       />
     </main>

@@ -281,7 +281,6 @@ export default function RegensburgHubPage() {
 
       <LocationFaq
         location="regensburg"
-        includeJsonLd
         className="border-y border-slate-200"
       />
 

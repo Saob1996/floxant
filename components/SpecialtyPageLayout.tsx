@@ -38,7 +38,6 @@ import { germanText, germanizeDeep } from "@/lib/german-text";
 import { applyCity } from "@/lib/specialty-page";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -70,6 +69,7 @@ type SpecialtyPageLayoutProps = {
   heroText?: string;
   ctaText?: string;
   primaryCtaHref?: string;
+  pagePath?: string;
   breadcrumbs: BreadcrumbItem[];
   chips?: IconEntry[];
   cards?: ServiceCard[];
@@ -621,6 +621,7 @@ export function SpecialtyPageLayout({
   heroText,
   ctaText,
   primaryCtaHref,
+  pagePath,
   breadcrumbs,
   chips = [],
   cards = [],
@@ -659,6 +660,7 @@ export function SpecialtyPageLayout({
     breadcrumbs.some((item) => item.label.toLowerCase().includes("bayern") || item.href?.endsWith("-bayern"));
   const regionName = geo?.region || "Region";
   const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
+  const structuredPagePath = pagePath || serviceContext.pagePath;
   const resolvedHeroTitle = resolveVisibleHeroTitle(heroTitle, city, serviceContext.name);
   const resolvedPrimaryCtaHref = primaryCtaHref || "#wizard";
   const primaryCtaQuery = resolvedPrimaryCtaHref.includes("?")
@@ -823,7 +825,7 @@ export function SpecialtyPageLayout({
       buildServiceJsonLd({
         name: `${serviceContext.name} ${city}`,
         description: heroText || `${serviceContext.name} in ${city} mit FLOXANT.`,
-        path: serviceContext.pagePath,
+        path: structuredPagePath,
         serviceType: `${serviceContext.name} in ${city}`,
         areaServed: Array.from(
           new Set([
@@ -835,7 +837,7 @@ export function SpecialtyPageLayout({
       buildWebPageJsonLd({
         name: `${resolvedHeroTitle} | FLOXANT`,
         description: heroText || `${serviceContext.name} in ${city}.`,
-        path: serviceContext.pagePath,
+        path: structuredPagePath,
         about: [
           serviceContext.name,
           city,
@@ -850,7 +852,7 @@ export function SpecialtyPageLayout({
           },
           {
             name: `${serviceContext.name} in ${city} direkt anfragen`,
-            target: `${serviceContext.pagePath}#wizard`,
+            target: `${structuredPagePath}#wizard`,
           },
         ],
       }),
@@ -861,7 +863,6 @@ export function SpecialtyPageLayout({
           item: item.href,
         })),
       ]),
-      ...(faqItems.length > 0 ? [buildFaqJsonLd(faqItems)] : []),
     ],
   };
 
@@ -1025,7 +1026,7 @@ export function SpecialtyPageLayout({
       />
 
       <SearchIntentExpansion
-        route={serviceContext.pagePath}
+        route={structuredPagePath}
         city={city}
         serviceName={serviceContext.name}
         relatedLinks={helpfulLinks}

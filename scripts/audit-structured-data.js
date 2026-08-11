@@ -2,70 +2,117 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-const { htmlFileToRoute, normalizeText, walk, writeCsv } = require("./editorial-audit-utils.js");
+
+const { htmlFileToRoute, walk, writeCsv } = require("./editorial-audit-utils.js");
+const {
+  analyzeHtmlDocuments,
+  normalizeRoute,
+  parseRedirectSourceRoutes,
+  scanPublicSource,
+} = require("./structured-data-policy.cjs");
 
 const root = process.cwd();
 const outRoot = path.join(root, "out");
 const reportFile = path.join(root, "artifacts", "structured-data-audit.csv");
+const redirectsFile = path.join(root, "public", "_redirects");
 
 if (!fs.existsSync(outRoot)) {
   console.error("Structured-data audit requires an existing out/ build.");
   process.exit(1);
 }
 
-function graphNodes(value) {
-  if (!value || typeof value !== "object") return [];
-  if (Array.isArray(value)) return value.flatMap(graphNodes);
-  const graph = Array.isArray(value["@graph"]) ? value["@graph"] : null;
-  const nodes = graph ? [] : [value];
-  if (graph) nodes.push(...graph.flatMap(graphNodes));
-  return nodes;
-}
+const htmlFiles = walk(outRoot, (entry) => entry.endsWith(".html"));
+const redirectSources = fs.existsSync(redirectsFile)
+  ? parseRedirectSourceRoutes(fs.readFileSync(redirectsFile, "utf8"))
+  : new Set();
+const documents = htmlFiles.map((file) => ({
+  route: htmlFileToRoute(outRoot, file),
+  html: fs.readFileSync(file, "utf8"),
+  isRedirectAlias: redirectSources.has(normalizeRoute(htmlFileToRoute(outRoot, file))),
+}));
+const rendered = analyzeHtmlDocuments(documents);
+const source = scanPublicSource(root);
+const sitemapFile = path.join(outRoot, "sitemap.xml");
+const sitemapAliasFindings = [];
 
-const rows = [];
-let blocks = 0;
-let invalidJson = 0;
-let invisibleFaq = 0;
-let prohibitedClaimSchemas = 0;
-
-for (const file of walk(outRoot, (entry) => entry.endsWith(".html"))) {
-  const html = fs.readFileSync(file, "utf8");
-  const route = htmlFileToRoute(outRoot, file);
-  const visible = normalizeText(html);
-  const scripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
-  scripts.forEach((match, blockIndex) => {
-    blocks += 1;
-    let parsed;
+if (fs.existsSync(sitemapFile)) {
+  const sitemap = fs.readFileSync(sitemapFile, "utf8");
+  for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/gi)) {
     try {
-      parsed = JSON.parse(match[1].replace(/&quot;/g, '"'));
-    } catch (error) {
-      invalidJson += 1;
-      rows.push({ route, block: blockIndex + 1, type: "UNKNOWN", issue: "INVALID_JSON", severity: "error", detail: String(error.message || error).slice(0, 180) });
-      return;
-    }
-    for (const node of graphNodes(parsed)) {
-      const types = Array.isArray(node["@type"]) ? node["@type"] : [node["@type"]].filter(Boolean);
-      const typeText = types.join("|") || "UNKNOWN";
-      if (types.some((type) => ["AggregateRating", "Review", "Offer"].includes(type)) || Object.hasOwn(node, "aggregateRating") || Object.hasOwn(node, "review")) {
-        prohibitedClaimSchemas += 1;
-        rows.push({ route, block: blockIndex + 1, type: typeText, issue: "CLAIM_SCHEMA_REVIEW", severity: "warning", detail: "Rating, review or offer data requires an explicit evidence review." });
+      const route = normalizeRoute(new URL(match[1]).pathname);
+      if (redirectSources.has(route)) {
+        sitemapAliasFindings.push({
+          route,
+          source: "out/sitemap.xml",
+          block: 0,
+          type: "RedirectAlias",
+          issue: "REDIRECT_ALIAS_IN_SITEMAP",
+          severity: "error",
+          detail: `${route} is a redirect source and must not be listed as an indexable sitemap URL.`,
+        });
       }
-      if (types.includes("FAQPage")) {
-        const questions = Array.isArray(node.mainEntity) ? node.mainEntity : [];
-        for (const question of questions) {
-          const questionText = normalizeText(question?.name || "");
-          const answerText = normalizeText(question?.acceptedAnswer?.text || "");
-          if (!questionText || !answerText || !visible.includes(questionText) || !visible.includes(answerText)) {
-            invisibleFaq += 1;
-            rows.push({ route, block: blockIndex + 1, type: "FAQPage", issue: "SCHEMA_NOT_VISIBLE", severity: "error", detail: String(question?.name || "unnamed question").slice(0, 180) });
-          }
-        }
-      }
-      if (!types.length) rows.push({ route, block: blockIndex + 1, type: typeText, issue: "MISSING_TYPE", severity: "warning", detail: "JSON-LD node has no @type." });
+    } catch {
+      // Sitemap syntax is validated by the dedicated sitemap/SEO gates.
     }
-  });
+  }
 }
 
-writeCsv(reportFile, ["route", "block", "type", "issue", "severity", "detail"], rows);
-console.log(JSON.stringify({ passed: invalidJson === 0 && invisibleFaq === 0, htmlFiles: walk(outRoot, (entry) => entry.endsWith(".html")).length, jsonLdBlocks: blocks, invalidJson, invisibleFaq, claimSchemaReview: prohibitedClaimSchemas, findings: rows.length, report: path.relative(root, reportFile) }, null, 2));
-if (invalidJson || invisibleFaq) process.exit(1);
+const rows = [
+  ...rendered.findings.map((item) => ({
+    route: item.route,
+    source: "rendered-html",
+    block: item.block,
+    type: item.type,
+    issue: item.issue,
+    severity: item.severity,
+    detail: item.detail,
+  })),
+  ...source.findings.map((item) => ({
+    route: "",
+    source: item.source,
+    block: 0,
+    type: "SOURCE",
+    issue: item.issue,
+    severity: item.severity,
+    detail: item.detail,
+  })),
+  ...sitemapAliasFindings,
+];
+
+writeCsv(reportFile, ["route", "source", "block", "type", "issue", "severity", "detail"], rows);
+
+const counts = rows.reduce((result, row) => {
+  result[row.issue] = (result[row.issue] || 0) + 1;
+  return result;
+}, {});
+const errors = rows.filter((row) => row.severity === "error").length;
+
+console.log(JSON.stringify({
+  passed: errors === 0,
+  htmlFiles: htmlFiles.length,
+  sourceFiles: source.filesScanned,
+  jsonLdBlocks: rendered.jsonLdBlocks,
+  configuredRedirectSources: redirectSources.size,
+  renderedRedirectAliasDocuments: rendered.redirectAliasDocuments,
+  redirectAliasesInSitemap: counts.REDIRECT_ALIAS_IN_SITEMAP || 0,
+  invalidJson: counts.INVALID_JSON || 0,
+  selfReferentialReviewSchema: counts.SELF_REFERENTIAL_REVIEW_SCHEMA || 0,
+  qAPageStaticFaq: counts.QAPAGE_STATIC_FAQ || 0,
+  faqContentNotVisible: counts.FAQ_CONTENT_NOT_VISIBLE || 0,
+  faqDuplication: (counts.FAQ_DUPLICATE_ENTRY || 0)
+    + (counts.FAQ_BLOCK_DUPLICATED_ACROSS_ROUTES || 0)
+    + (counts.FAQ_ENTRY_MASS_DUPLICATED || 0),
+  starRatingsInMetadata: counts.STAR_RATING_IN_METADATA || 0,
+  invalidOrMismatchedSchemas: (counts.INVALID_SUPPORTED_SCHEMA || 0)
+    + (counts.SCHEMA_ROUTE_MISMATCH || 0)
+    + (counts.SCHEMA_LANGUAGE_MISMATCH || 0)
+    + (counts.INVALID_SCHEMA_CONTEXT || 0),
+  unverifiedClaims: Object.entries(counts)
+    .filter(([issue]) => issue.startsWith("UNVERIFIED_"))
+    .reduce((sum, [, count]) => sum + count, 0),
+  findings: rows.length,
+  errors,
+  report: path.relative(root, reportFile),
+}, null, 2));
+
+if (errors) process.exit(1);

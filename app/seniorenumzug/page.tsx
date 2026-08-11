@@ -36,6 +36,7 @@ export default async function SeniorenumzugPage({ params }: PageProps) {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/seniorenumzug-bayern"
         lang="de"
         dict={localeDict}
         city={city}

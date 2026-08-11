@@ -40,6 +40,7 @@ export default async function BeiladungRegensburgPage({ params }: PageProps) {
 
   return (
     <SpecialtyPageLayout
+      pagePath="/beiladung-regensburg"
       lang="de"
       dict={localeDict}
       city={city}

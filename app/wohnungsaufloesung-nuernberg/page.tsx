@@ -39,6 +39,7 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
 
     return (
         <SpecialtyPageLayout
+            pagePath="/wohnungsaufloesung-nuernberg"
                 lang="de"
                 dict={localeDict}
                 city={city}

@@ -38,6 +38,7 @@ export default async function BueroumzugPage() {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/bueroumzug"
         lang="de"
         dict={localeDict}
         city={city}

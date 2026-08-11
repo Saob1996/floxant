@@ -19,7 +19,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-const pagePath = "/bueroreinigung";
 const canonicalPath = "/regensburg/bueroreinigung";
 
 const primaryHref = "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-anfrage&source=website";
@@ -89,6 +88,10 @@ export const metadata: Metadata = {
       "x-default": canonicalPath,
     },
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     locale: "de_DE",
@@ -107,7 +110,7 @@ export default function BueroreinigungPage() {
         name: "Büroreinigung für Firmen mit konkreten Eckdaten anfragen",
         description:
           "Support-Seite für B2B-Büroreinigung mit klarer Weiterleitung zu Regensburg, Düsseldorf, Gewerbereinigung und Angebotsprüfung.",
-        path: pagePath,
+        path: canonicalPath,
         about: [
           "B2B-Büroreinigung",
           "Büroreinigung für Firmen",
@@ -121,7 +124,7 @@ export default function BueroreinigungPage() {
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
-        { name: "Büroreinigung", item: pagePath },
+        { name: "Büroreinigung", item: canonicalPath },
       ]),
       buildFaqJsonLd(faqItems),
     ],

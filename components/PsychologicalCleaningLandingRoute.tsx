@@ -28,7 +28,6 @@ import {
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
@@ -94,7 +93,6 @@ function pageJsonLd(page: PsychologicalCleaningLandingPage) {
           { name: "Buchung starten", target: bookingUrl(page) },
         ],
       }),
-      buildFaqJsonLd(page.faqItems),
       {
         "@type": "ItemList",
         name: `Interne Empfehlungen zu ${page.serviceName}`,

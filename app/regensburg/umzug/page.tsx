@@ -918,7 +918,6 @@ function MovingFAQ() {
   return (
     <PriorityFaqSection
       route={canonicalPath}
-      includeJsonLd
       tone="dark"
       title="Häufige Fragen zum Umzug in Regensburg"
       className="bg-slate-950"

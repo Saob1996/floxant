@@ -36,6 +36,7 @@ export default async function EinlagerungPage({ params }: PageProps) {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/einlagerung"
         lang="de"
         dict={localeDict}
         city={city}

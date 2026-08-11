@@ -34,6 +34,7 @@ export default async function AkteneinlagerungRegensburgPage({ params }: PagePro
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/akteneinlagerung-regensburg"
         lang="de"
         dict={localeDict}
         city={city}

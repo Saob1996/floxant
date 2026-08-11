@@ -1452,7 +1452,6 @@ export default function AngebotGuenstigerPruefenPage() {
 
         <PriorityFaqSection
           route={path}
-          includeJsonLd
           title="Häufige Fragen zur Angebotsprüfung"
           className="border-t border-slate-200 bg-white"
         />

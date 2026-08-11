@@ -9,7 +9,7 @@ export function EnglishGuidanceArticlePage({ article }: { article: DominanceArti
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      buildWebPageJsonLd({ name: article.title, description: article.description, path, about: article.about }),
+      buildWebPageJsonLd({ name: article.title, description: article.description, path, inLanguage: "en", about: article.about }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/en" },
         { name: "Guides", item: "/en/blog" },

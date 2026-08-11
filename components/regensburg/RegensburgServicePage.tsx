@@ -871,7 +871,6 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       {getActivePriorityFaqAssignment(config.path) ? (
         <PriorityFaqSection
           route={config.path}
-          includeJsonLd
           className="border-t border-slate-200 bg-white"
         />
       ) : (

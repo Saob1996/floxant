@@ -581,6 +581,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
   return (
     <SpecialtyPageLayout
       lang="de"
+      pagePath={route.route}
       dict={localeDict}
       city={resolvedCity}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, resolvedCity, "de")}

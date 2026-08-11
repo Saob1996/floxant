@@ -259,7 +259,6 @@ export default function AnbieterVergleichenPage() {
 
    <PriorityFaqSection
     route="/anbieter-vergleichen"
-    includeJsonLd
     title="Häufige Fragen zum Anbieter-Vergleich"
     className="border-t border-foreground/5"
    />

@@ -36,6 +36,7 @@ export default async function MalerarbeitenPage({ params }: PageProps) {
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/malerarbeiten"
         lang="de"
         dict={localeDict}
         city={city}

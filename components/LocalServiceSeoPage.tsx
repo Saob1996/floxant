@@ -37,7 +37,6 @@ import type { LocalServiceSeoPageConfig } from "@/lib/local-service-seo-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
@@ -232,7 +231,6 @@ function JsonLd({
         { name: config.cityName, item: `/${config.cityKey}` },
         { name: config.serviceName, item: config.path },
       ]),
-      buildFaqJsonLd(config.faq),
     ],
   };
 

@@ -38,6 +38,7 @@ export default async function WohnungsaufloesungMuenchenPage({ params }: PagePro
 
     return (
         <SpecialtyPageLayout
+            pagePath="/wohnungsaufloesung-muenchen"
                 lang="de"
                 dict={localeDict}
                 city={city}

@@ -34,6 +34,7 @@ export default async function UmzugLandkreisRegensburgPage({ params }: PageProps
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/umzug-landkreis-regensburg"
         lang="de"
         dict={localeDict}
         city={city}

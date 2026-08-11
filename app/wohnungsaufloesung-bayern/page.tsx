@@ -40,6 +40,7 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
   });
   return (
     <SpecialtyPageLayout
+      pagePath="/wohnungsaufloesung-bayern"
       lang="de"
       dict={localeDict}
       city={city}
