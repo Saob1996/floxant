@@ -179,7 +179,7 @@ function collectAnchors(html) {
 
 function collectSeoCtas(html) {
   const items = [];
-  const tagRegex = /<(a|button|form)\b[^>]*data-event\s*=\s*["']seo_cta_click["'][^>]*>/gi;
+  const tagRegex = /<(a|button|form)\b[^>]*data-event\s*=\s*["']request_cta_click["'][^>]*>/gi;
   let match;
   while ((match = tagRegex.exec(html))) {
     items.push({
@@ -412,11 +412,11 @@ async function auditPage(baseUrl, page, sitemapRoutes, canonicalMoneyPages) {
   if (jsonLd.types.includes("FAQPage") && !/(faq|fragen|<details\b)/i.test(html)) {
     warnings.push("FAQPage vorhanden, aber keine sichtbare FAQ-Struktur erkannt");
   }
-  if (!seoCtas.length) issues.push('data-event="seo_cta_click" fehlt');
+  if (!seoCtas.length) issues.push('data-event="request_cta_click" fehlt');
   if (!ctaAboveFold) warnings.push("SEO-CTA nicht im ersten Hauptbereich erkannt");
   for (const cta of seoCtas) {
     const attrs = cta.attrs;
-    const missing = ["data-service", "data-city", "data-page-intent", "data-priority", "data-cta-label"].filter(
+    const missing = ["data-service", "data-city", "data-cta-label"].filter(
       (name) => !attrs[name],
     );
     if (missing.length) warnings.push(`SEO-CTA ohne ${missing.join(", ")}`);

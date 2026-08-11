@@ -47,7 +47,7 @@ function queryParam(href, key) {
 function hasExpectedParam(cta, key, value) {
   if (!value) return true;
   const fromHref = queryParam(cta.href, key);
-  const attrKey = key === "intent" ? "data-page-intent" : `data-${key}`;
+  const attrKey = `data-${key}`;
   const fromData = cta.attrs[attrKey] || "";
   if (fromHref === value || fromData === value) return true;
   if (key === "intent" && (fromHref || fromData)) return true;
@@ -120,7 +120,7 @@ async function main() {
       const attrs = cta.attrs || {};
       const hasDataEvent = Boolean(attrs["data-event"]);
       const hasDataService = Boolean(attrs["data-service"]);
-      const hasDataIntent = Boolean(attrs["data-page-intent"] || attrs["data-intent"]);
+      const hasDataIntent = Boolean(attrs["data-intent"]);
       const hasDataLabel = Boolean(attrs["data-cta-label"]);
 
       addResult(results, hasDataEvent || Boolean(cta.href) ? "PASS" : "WARN", "cta-data", route.path, hasDataEvent ? "data-event present." : "CTA uses a real link; tracking metadata is optional.", "No action.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
@@ -131,7 +131,7 @@ async function main() {
         addResult(results, hasCity ? "PASS" : "WARN", "cta-data", route.path, hasCity ? "data-city/city param present." : "Local route CTA missing city.", hasCity ? "No action." : "Add data-city or city query parameter.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
       }
       const intentContextOk = !expected.intent || hasDataIntent || Boolean(queryParam(cta.href, "intent"));
-      addResult(results, intentContextOk ? "PASS" : "WARN", "cta-data", route.path, hasDataIntent ? "data-page-intent present." : expected.intent ? "Intent query parameter present." : "No intent parameter required for this route.", intentContextOk ? "No action." : "Add intent context to the primary contact CTA.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
+      addResult(results, intentContextOk ? "PASS" : "WARN", "cta-data", route.path, hasDataIntent ? "Public request context present." : expected.intent ? "Intent query parameter present." : "No intent parameter required for this route.", intentContextOk ? "No action." : "Add intent context to the primary contact CTA URL.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
       addResult(results, hasDataLabel || Boolean(cta.text) ? "PASS" : "WARN", "cta-data", route.path, hasDataLabel ? "data-cta-label present." : "Visible CTA label present.", hasDataLabel || cta.text ? "No action." : "Add a visible CTA label.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
 
       addResult(results, hasPiiInUrl(cta.href) ? "FAIL" : "PASS", "cta-pii", route.path, hasPiiInUrl(cta.href) ? `PII-like query key found in ${cta.href}` : "No PII-like query keys in CTA href.", hasPiiInUrl(cta.href) ? "Remove personal query parameters from CTA href." : "No action.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });

@@ -149,7 +149,7 @@ check(
   () => {
     for (const token of publicSolarTokens) {
       for (const location of ["duesseldorf", "regensburg"]) {
-        const context = resolveRequestContext({ city: location, service: token, source: "seo" });
+        const context = resolveRequestContext({ city: location, service: token, source: "website" });
         assert.equal(context.valid, false, `${location}/${token}: unerwartet gültig`);
         assert.equal(context.neutral, true, `${location}/${token}: nicht neutral`);
         assert.equal(context.serviceKey, "", `${location}/${token}: Leistung gesetzt`);
@@ -168,7 +168,7 @@ check(
       assertNeutralHref(config.bookingHref, `${slug} bookingHref`);
     }
     const source = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
-    assert.match(source, /const solarContact\s*=\s*[\r\n\s]*["']\/kontakt\?mode=neutral&source=seo["']/);
+    assert.match(source, /const solarContact\s*=\s*[\r\n\s]*["']\/kontakt\?mode=neutral&source=website["']/);
   },
 );
 
@@ -267,7 +267,7 @@ const report = {
   totals,
   manualRegistryIds,
   publicSolarTokens,
-  expectedFallback: "/kontakt?mode=neutral&source=seo",
+  expectedFallback: "/kontakt?mode=neutral&source=website",
   results,
 };
 fs.writeFileSync(path.join(root, "SOLAR_PV_HEALTH_REPORT.md"), markdown);

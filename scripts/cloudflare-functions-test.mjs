@@ -176,7 +176,7 @@ function largestActiveContactPayload() {
     customerAcknowledgement: "Synthetic acknowledgement",
   };
   const repeatedContext = {
-    inquiryMode: "seo_quick_lead",
+    inquiryMode: "website_quick_request",
     serviceType: "reinigung",
     bookingService: "reinigung",
     city: "Synthetic City",
@@ -214,10 +214,10 @@ function largestActiveContactPayload() {
     timestamp: new Date().toISOString(),
     formStartedAt: String(Date.now() - 5_000),
     type: "booking_wizard",
-    lead_type: "seo_quick_lead",
-    leadSource: "seo_quick_lead_form",
-    source: "seo",
-    sourceComponent: "SeoLeadForm",
+    lead_type: "website_quick_request",
+    leadSource: "website_quick_request_form",
+    source: "website",
+    sourceComponent: "WebsiteRequestForm",
     sourceContext: "synthetic-contact",
     sourcePage: "/kontakt",
     landingPage: "/kontakt",
@@ -233,7 +233,7 @@ function largestActiveContactPayload() {
       },
       service: {
         type: "reinigung",
-        source: "seo_quick_lead_form",
+        source: "website_quick_request_form",
         entryPoint: "/kontakt",
         presetFromUrl: "reinigung",
         regionPreset: "regensburg",
@@ -251,8 +251,8 @@ function largestActiveContactPayload() {
         pricingSignals: repeatedContext,
       },
       configuration: {
-        requestContext: "seo_quick_lead",
-        leadType: "seo_quick_lead",
+        requestContext: "website_quick_request",
+        leadType: "website_quick_request",
         service: "reinigung",
         bookingService: "reinigung",
         serviceLabel: "Reinigung",
@@ -265,14 +265,14 @@ function largestActiveContactPayload() {
       },
       metadata: {
         createdAt: new Date().toISOString(),
-        intakeVersion: "seo-lead-1.0.0",
-        source: "seo_quick_lead_form",
+        intakeVersion: "request-form-1.0.0",
+        source: "website_quick_request_form",
         servicePresetFromUrl: "reinigung",
         regionPreset: "regensburg",
         clientContext: {
-          leadSource: "seo",
-          leadType: "seo_quick_lead",
-          sourceComponent: "SeoLeadForm",
+          leadSource: "website",
+          leadType: "website_quick_request",
+          sourceComponent: "WebsiteRequestForm",
           service: "reinigung",
           city: "Synthetic City",
           ...repeatedContext,
@@ -1083,19 +1083,19 @@ try {
     const formData = new FormData();
     const details = {
       contact: { fullName: "Synthetic Moving Test", email: "synthetic@example.com", phone: "0000000", callbackPreference: "email", notes: "Synthetischer Umzugstest ohne Kundendaten." },
-      service: { type: "Umzug", source: "seo", entryPoint: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1", regionPreset: "regensburg" },
+      service: { type: "Umzug", source: "website", entryPoint: "/kontakt?source=website&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1", regionPreset: "regensburg" },
       configuration: {
         requestContext: "professional_request", leadType: "professional_request", sourcePage: "/kontakt",
-        landingPage: "/kontakt?source=seo&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1",
+        landingPage: "/kontakt?source=website&location=regensburg&service=umzug&intent=umzug-anfrage&priority=p1",
         location: "Regensburg", city: "Regensburg", startLocation: "Regensburg", destinationLocation: "Nürnberg", desiredDate: "August 2099",
         scope: "2 Zimmer, synthetischer Test", selectedAddons: ["reinigung", "entrümpelung", "möbelmontage"],
         message: "Synthetischer Umzugstest ohne Kundendaten.", preferredContactMethod: "email", privacyConsent: true,
         rawFields: { startLocation: "Regensburg", destinationLocation: "Nürnberg", desiredDate: "August 2099", scope: "2 Zimmer, synthetischer Test", selectedAddons: ["reinigung", "entrümpelung", "möbelmontage"], entryPage: "/kontakt", locale: "de" },
       },
-      metadata: { createdAt: "2026-07-31T12:00:00.000Z", intakeVersion: "professional-request-1.0.0", locale: "de", source: "seo", clientContext: { source: "seo", entryPoint: "/kontakt", landingPage: "/kontakt", campaign: "", locale: "de" } },
+      metadata: { createdAt: "2026-07-31T12:00:00.000Z", intakeVersion: "professional-request-1.0.0", locale: "de", source: "website", clientContext: { source: "website", entryPoint: "/kontakt", landingPage: "/kontakt", campaign: "", locale: "de" } },
     };
     for (const [key, value] of Object.entries({
-      type: "professional_request", lead_type: "professional_request", leadSource: "seo", source: "seo",
+      type: "professional_request", lead_type: "professional_request", leadSource: "website", source: "website",
       sourceComponent: "ProfessionalRequestForm", sourcePage: "/kontakt", landingPage: "/kontakt", service: "Umzug",
       serviceCategory: "umzug", intent: "umzug-anfrage", name: "Synthetic Moving Test", email: "synthetic@example.com",
       phone: "0000000", preferredContactMethod: "email", startLocation: "Regensburg", destinationLocation: "Nürnberg",
@@ -1653,6 +1653,61 @@ try {
       },
     }, { endpoint: "/api/intake" });
     assert(result.response.status === 201 && result.body.ok === true, "full known calculator details must return 201");
+  });
+
+  await test("calculator-transfer-details-schema-201", async () => {
+    const calculatorTransfer = {
+      schemaVersion: 1,
+      calculatorType: "moving",
+      calculatorVersion: "effort-2026-08-11-v1",
+      createdAt: new Date().toISOString(),
+      inputSummary: [
+        { label: "Start", value: "Regensburg" },
+        { label: "Ziel", value: "München" },
+        { label: "Umfang", value: "3 Zimmer" },
+      ],
+      result: {
+        estimateType: "effort_band",
+        effortBand: "medium",
+        minimum: null,
+        maximum: null,
+        currency: null,
+        confidence: "medium",
+        calculationSummary: "Route, Umfang und Zugang ergeben einen mittleren Aufwand.",
+      },
+      assumptions: ["Normale Zufahrt"],
+      missingInformation: ["Trageweg am Ziel"],
+      selectedAdditionalServices: ["Verpackung"],
+      enquiryNote: "Zeitfenster bitte abstimmen",
+    };
+    const result = await submit({
+      name: "Synthetic Calculator Transfer",
+      phone: "+49123456789",
+      service: "umzug",
+      privacyConsent: true,
+      timestamp: new Date().toISOString(),
+      details: {
+        contact: {
+          fullName: "Synthetic Calculator Transfer",
+          phone: "+49123456789",
+          callbackPreference: "telefon",
+        },
+        service: { type: "umzug", source: "calculator", entryPoint: "/kontakt" },
+        configuration: { calculatorTransfer },
+        metadata: { createdAt: new Date().toISOString(), source: "calculator" },
+      },
+    }, { endpoint: "/api/intake" });
+    assert(result.response.status === 201 && result.body.ok === true, "calculator transfer must return 201");
+    const lastInsert = [...calls].reverse().find((call) => call.url.includes("/rest/v1/bookings"));
+    const booking = JSON.parse(lastInsert.body)[0];
+    const storedTransfer = booking.details.configuration.calculatorTransfer;
+    assert(storedTransfer.calculatorType === "moving", "calculator type must remain structured");
+    assert(storedTransfer.calculatorVersion === calculatorTransfer.calculatorVersion, "calculator version must remain structured");
+    assert(storedTransfer.inputSummary.length === 3, "calculator input summary must remain structured");
+    assert(storedTransfer.result.effortBand === "medium", "calculator result band must remain structured");
+    assert(storedTransfer.assumptions[0] === "Normale Zufahrt", "calculator assumptions must remain structured");
+    assert(storedTransfer.missingInformation[0] === "Trageweg am Ziel", "calculator missing information must remain structured");
+    assert(storedTransfer.selectedAdditionalServices[0] === "Verpackung", "calculator extras must remain structured");
   });
 
   await test("backhaul-selected-offer-schema-201", async () => {

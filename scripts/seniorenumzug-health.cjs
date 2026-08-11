@@ -84,7 +84,7 @@ pass("canonical:hub", "/seniorenumzug canonicalizes to /seniorenumzug-bayern", s
 pass("sitemap:primary", "Sitemap contains primary Seniorenumzug hub", sources.sitemap.includes('"/seniorenumzug-bayern"'));
 pass("sitemap:no-umzug-im-alter", "Sitemap does not list Umzug-im-Alter aliases", !/\"\/umzug-im-alter-/.test(sources.sitemap));
 warn("sitemap:seniorenumzug-support", "/seniorenumzug is not treated as a second primary route", !sources.sitemap.includes('"/seniorenumzug"'), "If present, it is documented as canonical support risk.");
-pass("cta:primary", "Hero CTA points to Seniorenumzug contact flow", sources.components.includes("/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo"));
+pass("cta:primary", "Hero CTA points to Seniorenumzug contact flow", sources.components.includes("/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=website"));
 pass("cta:offer-check", "Seniorenumzug offer-check CTA is present", sources.components.includes("seniorenumzug-angebot-pruefen") && sources.offerCheck.includes("Seniorenumzug"));
 pass("cta:discreet", "Discreet Seniorenumzug CTA is present", sources.components.includes("seniorenumzug-diskret") && sources.components.includes("diskret-service"));
 pass("content:quick-answer", "Quick Answer is visible", includesAll(sources.components, ["Quick Answer", "Eine Anfrage ist noch keine Buchung"]));

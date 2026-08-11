@@ -30,13 +30,13 @@ function syntheticFormData() {
   const now = new Date().toISOString();
   const form = new FormData();
   form.set("type", "booking_wizard");
-  form.set("lead_type", "seo_quick_lead");
-  form.set("leadSource", "seo_quick_lead_form");
+  form.set("lead_type", "website_quick_request");
+  form.set("leadSource", "website_quick_request_form");
   form.set("source", "seo");
-  form.set("sourceComponent", "SeoLeadForm");
+  form.set("sourceComponent", "WebsiteRequestForm");
   form.set("sourceContext", "angebot-pruefen");
   form.set("sourcePage", "/kontakt");
-  form.set("landingPage", "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo");
+  form.set("landingPage", "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=website");
   form.set("service", "angebot-pruefen");
   form.set("serviceCategory", "angebot_pruefen");
   form.set("cityOrZip", "duesseldorf");
@@ -66,7 +66,7 @@ function syntheticFormData() {
     },
     service: {
       type: "angebot_pruefen",
-      source: "seo_quick_lead_form",
+      source: "website_quick_request_form",
       entryPoint: "/kontakt",
       presetFromUrl: "angebot-pruefen",
     },
@@ -81,11 +81,11 @@ function syntheticFormData() {
       topDrivers: ["synthetic test payload"],
     },
     configuration: {
-      requestContext: "seo_quick_lead",
+      requestContext: "website_quick_request",
       sourcePage: "/kontakt",
       city: "duesseldorf",
       intent: "angebot-pruefen",
-      source: "seo",
+      source: "website",
       privacyConsent: true,
     },
     metadata: {

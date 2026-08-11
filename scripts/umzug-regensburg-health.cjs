@@ -123,8 +123,8 @@ function checkSitemap(results, sitemapSource) {
 }
 
 function checkConversion(results, primarySource) {
-  const moveParams = "service=umzug&city=regensburg&intent=umzug-regensburg&source=seo";
-  const offerParams = "service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=seo";
+  const moveParams = "service=umzug&city=regensburg&intent=umzug-regensburg&source=website";
+  const offerParams = "service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
   add(
     results,
     "hero-contact-cta",

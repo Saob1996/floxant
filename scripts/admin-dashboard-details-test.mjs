@@ -218,6 +218,50 @@ const cases = [
     expected: ["Düsseldorf", "40210", "Wohnung", "85 m²"],
   },
   {
+    label: "Rechner-Ergebnis",
+    record: booking({
+      service: "umzug",
+      details: {
+        configuration: {
+          calculatorTransfer: {
+            schemaVersion: 1,
+            calculatorType: "moving",
+            calculatorVersion: "effort-2026-08-11-v1",
+            createdAt: "2026-08-11T08:30:00.000Z",
+            inputSummary: [
+              { label: "Start", value: "Regensburg" },
+              { label: "Ziel", value: "München" },
+              { label: "Umfang", value: "3 Zimmer" },
+            ],
+            result: {
+              estimateType: "effort_band",
+              effortBand: "medium",
+              minimum: null,
+              maximum: null,
+              currency: null,
+              confidence: "medium",
+              calculationSummary: "Route, Umfang und Zugang ergeben einen mittleren Aufwand.",
+            },
+            assumptions: ["Normale Zufahrt"],
+            missingInformation: ["Trageweg am Ziel"],
+            selectedAdditionalServices: ["Verpackung"],
+          },
+        },
+      },
+    }),
+    expected: [
+      "Rechner-Ergebnis",
+      "Umzugsrechner",
+      "effort-2026-08-11-v1",
+      "Regensburg",
+      "München",
+      "Mittlerer Aufwand",
+      "Normale Zufahrt",
+      "Trageweg am Ziel",
+      "Verpackung",
+    ],
+  },
+  {
     label: "Büroreinigungsanfrage",
     record: booking({
       service: "b2b_reinigung",

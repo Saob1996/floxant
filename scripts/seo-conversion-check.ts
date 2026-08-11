@@ -115,21 +115,8 @@ function collectForms(html) {
   return collectTags(html, "form");
 }
 
-function collectSeoCtas(html) {
-  const items = [];
-  const tagRegex = /<(a|button|form)\b[^>]*data-event\s*=\s*["']seo_cta_click["'][^>]*>/gi;
-  let match;
-  while ((match = tagRegex.exec(html))) {
-    const attrs = getAttrs(match[0]);
-    items.push({
-      tag: match[1].toLowerCase(),
-      attrs,
-      href: attrs.href || attrs.action || attrs["data-destination"] || "",
-      text: "",
-      index: match.index,
-    });
-  }
-  return items;
+function collectContactCtas(html) {
+  return collectAnchors(html).filter((anchor) => isLocalContactDestination(anchor.href));
 }
 
 function hasInput(html, name) {
@@ -144,8 +131,8 @@ function hasDataEvent(html, eventName) {
 function hasNoPiiParams(href) {
   try {
     const url = new URL(href || "/", PUBLIC_BASE_URL);
-    const forbidden = ["name", "email", "mail", "phone", "telefon", "adresse", "address"];
-    return forbidden.every((key) => !url.searchParams.has(key));
+    const forbidden = /^(?:name|first-?name|last-?name|email|e-?mail|mail|phone|telefon|adresse|address)$/i;
+    return Array.from(url.searchParams.keys()).every((key) => !forbidden.test(key));
   } catch {
     return false;
   }
@@ -156,115 +143,179 @@ function isLocalContactDestination(value, allowContactAnchor = false) {
   if (allowContactAnchor && value.startsWith("#")) return value === "#direktanfrage";
   try {
     const url = new URL(value, PUBLIC_BASE_URL);
-    return normalizeRoute(url.pathname) === "/kontakt";
+    const isPublicOrigin = url.origin === PUBLIC_BASE_URL || url.origin === "https://floxant.de";
+    return isPublicOrigin && normalizeRoute(url.pathname) === "/kontakt";
   } catch {
     return false;
   }
 }
 
-function checkLeadQuery(href, lead) {
-  const warnings = [];
-  const failures = [];
-
+function contactHrefContext(href) {
   try {
     const url = new URL(href || "/", PUBLIC_BASE_URL);
-    if (lead.service && !["kontakt", "sonstiges"].includes(lead.service)) {
-      if (url.searchParams.get("service") !== lead.service) {
-        failures.push(`service fehlt/abweichend (${lead.service})`);
-      }
-    }
-    if (lead.city && lead.city !== "deutschland" && url.searchParams.get("city") !== lead.city) {
-      failures.push(`city fehlt/abweichend (${lead.city})`);
-    }
-    if (lead.intent && url.searchParams.get("intent") !== lead.intent) {
-      failures.push(`intent fehlt/abweichend (${lead.intent})`);
-    }
-    if (url.searchParams.get("source") !== "seo") {
-      warnings.push("source=seo fehlt");
-    }
+    const city = (url.searchParams.get("city") || "").trim();
+    const location = (url.searchParams.get("location") || "").trim();
+    const service = (url.searchParams.get("service") || "").trim();
+    const intent = (url.searchParams.get("intent") || "").trim();
+    const mode = (url.searchParams.get("mode") || "").trim().toLowerCase();
+    const hasContext = Boolean(service || city || location || intent);
+    return {
+      url,
+      service,
+      city,
+      location,
+      intent,
+      mode,
+      source: (url.searchParams.get("source") || "").trim(),
+      kind: mode === "neutral" && !hasContext ? "neutral" : hasContext ? "contextual" : "bare",
+    };
   } catch {
+    return null;
+  }
+}
+
+function servicesAreEquivalent(actualService, expectedService, city, getRequestService) {
+  if (actualService === expectedService) return true;
+  if (typeof getRequestService !== "function") return false;
+  const actual = getRequestService(city, actualService);
+  const expected = getRequestService(city, expectedService);
+  return Boolean(actual && expected && actual.leadService === expected.leadService);
+}
+
+function checkContextualHref(href, { expectedHref = "", getRequestService, requireExpected = false } = {}) {
+  const warnings = [];
+  const failures = [];
+  const context = contactHrefContext(href);
+
+  if (!context) {
     failures.push("CTA-Ziel ist keine gueltige URL");
+    return { warnings, failures };
   }
 
+  if (context.kind !== "contextual") failures.push("CTA ist nicht kontextuell");
+  if (context.mode === "neutral") failures.push("mode=neutral darf nicht mit Kontextparametern kombiniert werden");
+  if (!context.service) failures.push("service fehlt");
+  if (!context.city) failures.push("city fehlt");
+  if (!context.intent) failures.push("intent fehlt");
+  if (context.location && context.city && context.location !== context.city) {
+    failures.push(`location/city widersprechen sich (${context.location}/${context.city})`);
+  }
+  if (context.service && context.city && typeof getRequestService === "function") {
+    if (!getRequestService(context.city, context.service)) {
+      failures.push(`service/city nicht erlaubt (${context.service}/${context.city})`);
+    }
+  }
+  if (!context.source) warnings.push("source fehlt");
+
+  const expected = contactHrefContext(expectedHref);
+  if (requireExpected && expected?.kind === "contextual") {
+    if (context.city !== expected.city) failures.push(`city weicht vom Seitenkontext ab (${expected.city})`);
+    if (context.intent !== expected.intent) failures.push(`intent weicht vom Seitenkontext ab (${expected.intent})`);
+    if (
+      context.service &&
+      expected.service &&
+      !servicesAreEquivalent(context.service, expected.service, expected.city, getRequestService)
+    ) {
+      failures.push(`service weicht vom Seitenkontext ab (${expected.service})`);
+    }
+  }
   if (!hasNoPiiParams(href)) failures.push("CTA-URL enthaelt PII-Parameter");
   return { warnings, failures };
 }
 
-function ctaMatchesLead(cta, lead, route) {
-  const destination = cta.attrs["data-destination"] || cta.href;
-  if (normalizeRoute(route) === "/kontakt" && destination === "#direktanfrage") return true;
-  if (!isLocalContactDestination(destination, false)) return false;
-  return checkLeadQuery(destination, lead).failures.length === 0;
+function isValidNeutralHref(href) {
+  const context = contactHrefContext(href);
+  return Boolean(context?.kind === "neutral" && context.source && hasNoPiiParams(href));
 }
 
-function checkCtaAttrs(cta, lead) {
-  const failures = [];
-  const warnings = [];
-  const attrs = cta.attrs || {};
-  const required = ["data-service", "data-page-intent", "data-priority", "data-cta-label", "data-destination"];
+function isExcludedGlobalContactHref(href) {
+  const source = (contactHrefContext(href)?.source || "").toLowerCase().replace(/-/g, "_");
+  return /^(?:global_|footer$|mobile_|floating(?:_|$)|navigation$)/.test(source);
+}
 
-  for (const key of required) {
-    if (!attrs[key]) failures.push(`${key} fehlt`);
-  }
-  if (lead.city && lead.city !== "deutschland" && !attrs["data-city"]) {
-    failures.push("data-city fehlt");
-  }
-  if (attrs["data-service"] && attrs["data-service"] !== lead.service) {
-    warnings.push(`data-service ${attrs["data-service"]} statt ${lead.service}`);
-  }
+function hasLocalContextualForm(html, route, expectedHref) {
+  const allowedRoutes = new Set([
+    "/treppenhausreinigung-regensburg",
+    "/unterhaltsreinigung-regensburg",
+  ]);
+  if (!allowedRoutes.has(normalizeRoute(route))) return false;
 
-  return { failures, warnings };
+  const expected = contactHrefContext(expectedHref);
+  const routeIntent = normalizeRoute(route).slice(1);
+  const formSource = read(path.join(ROOT, "components", "CommercialCleaningLeadForm.tsx"));
+  return Boolean(
+    expected?.kind === "contextual" &&
+      expected.city === "regensburg" &&
+      expected.intent === routeIntent &&
+      expected.service &&
+      html.includes('href="#kontakt"') &&
+      html.includes('id="kontakt"') &&
+      /<form\b/i.test(html) &&
+      formSource.includes(`"${normalizeRoute(route)}":`) &&
+      formSource.includes(expected.service) &&
+      formSource.includes('regionPreset: "regensburg"')
+  );
 }
 
 function checkContactForm(html) {
   const failures = [];
   const warnings = [];
+  const browserRequirements = [];
   const componentSourcePath = path.join(ROOT, "components", "ProfessionalRequestForm.tsx");
   const componentSource = fs.existsSync(componentSourcePath)
     ? fs.readFileSync(componentSourcePath, "utf8")
     : "";
   const progressiveForm = html.includes("data-professional-request-form");
 
+  function hasClientContract(pattern) {
+    return progressiveForm && pattern.test(componentSource);
+  }
+
   if (
-    !hasDataEvent(html, "seo_lead_submit_attempt") &&
-    !(progressiveForm && componentSource.includes('data-track-submit="success_only"'))
+    !hasDataEvent(html, "request_submit_attempt") &&
+    !hasClientContract(/data-track-submit=["']success_only["']/)
   ) failures.push("Formular-Submit-Vertrag fehlt");
   if (
     !hasInput(html, "name") &&
-    !(progressiveForm && componentSource.includes('id="request-name"'))
+    !hasClientContract(/id=["']request-name["']/)
   ) failures.push("Name-Feld fehlt");
   if (
     !hasInput(html, "email") &&
-    !(progressiveForm && componentSource.includes('id="request-email"'))
+    !hasClientContract(/id=["']request-email["']/)
   ) failures.push("E-Mail-Feld fehlt");
   if (
     !hasInput(html, "phone") &&
-    !(progressiveForm && componentSource.includes('id="request-phone"'))
+    !hasClientContract(/id=["']request-phone["']/)
   ) failures.push("Telefon-Feld fehlt");
   if (
     !hasInput(html, "servicePreset") &&
-    !(progressiveForm && componentSource.includes('payload.set("service", bookingService)'))
+    !hasClientContract(/\bservice\s*:\s*bookingService\b/)
   ) failures.push("Service-Feld fehlt");
   if (
     !hasInput(html, "city") &&
-    !(progressiveForm && componentSource.includes('id="request-city"'))
+    !hasClientContract(/id=["']request-city["']/)
   ) failures.push("Ort-Feld fehlt");
   if (
     !hasInput(html, "message") &&
-    !(progressiveForm && componentSource.includes('id="request-message"'))
+    !hasClientContract(/id=["']request-message["']/)
   ) failures.push("Nachricht-Feld fehlt");
   if (
     !hasInput(html, "companyWebsite") &&
-    !(progressiveForm && componentSource.includes('id="request-company-website"'))
+    !hasClientContract(/id=["']request-company-website["']/)
   ) failures.push("Honeypot-Feld fehlt");
   if (
     !hasInput(html, "formStartedAt") &&
-    !(progressiveForm && componentSource.includes('payload.set("formStartedAt"'))
+    !hasClientContract(/\bformStartedAt\s*:/)
   ) failures.push("Timestamp-Feld fehlt");
-  if (!componentSource.includes("seo_lead_submit_success")) failures.push("Success-State-Event fehlt im Formular");
+  if (!componentSource.includes("request_submit_success")) failures.push("Success-State-Event fehlt im Formular");
   if (!componentSource.includes("appendConversionJourneyToFormData")) warnings.push("Conversion-Journey wird nicht an Payload angehaengt");
+  if (progressiveForm) {
+    browserRequirements.push(
+      "Kontakt-Personalisierung nach Hydration pruefen: service/city/intent, Ueberschrift, Auswahl und Submit-Payload.",
+    );
+  }
 
-  return { failures, warnings };
+  return { failures, warnings, browserRequirements };
 }
 
 function checkLeadToBookingAssets() {
@@ -274,6 +325,8 @@ function checkLeadToBookingAssets() {
     packages: path.join(ROOT, "lib", "service-packages.ts"),
     factors: path.join(ROOT, "lib", "service-effort-factors.ts"),
     contact: path.join(ROOT, "app", "kontakt", "page.tsx"),
+    leadIntents: path.join(ROOT, "lib", "lead-intents.ts"),
+    requestContext: path.join(ROOT, "lib", "lead-intents", "resolve-request-context.ts"),
     leadForm: path.join(ROOT, "components", "SeoLeadForm.tsx"),
     offerConcern: path.join(ROOT, "components", "OfferConcernSelector.tsx"),
     b2b: path.join(ROOT, "components", "B2BRequestPanel.tsx"),
@@ -287,7 +340,8 @@ function checkLeadToBookingAssets() {
   const packageSource = read(files.packages);
   const factorSource = read(files.factors);
   const leadFormSource = read(files.leadForm);
-  const combined = Object.values(files).map(read).join("\n");
+  const leadIntentSource = read(files.leadIntents);
+  const requestContextSource = read(files.requestContext);
   const required = [
     [packageSource, "geeignetWenn", "Service-Paket-Fit fehlt"],
     [packageSource, "nichtGeeignetWenn", "Service-Paket-Grenzen fehlen"],
@@ -296,7 +350,8 @@ function checkLeadToBookingAssets() {
     [factorSource, "boundaries", "Aufwandsfaktor-Grenzen fehlen"],
     [leadFormSource, "getSuccessCopy", "Intent-Success-Copy fehlt"],
     [leadFormSource, "contactMethodPreference", "Kontaktweg-Auswahl fehlt"],
-    [combined, "data-event=\"seo_cta_click\"", "SEO-CTA-Signale fehlen"],
+    [leadIntentSource, "buildLeadHref", "Zentraler Kontakt-Href-Builder fehlt"],
+    [requestContextSource, "resolveRequestContext", "Kontakt-Query-Aufloesung fehlt"],
   ];
 
   for (const [source, needle, message] of required) {
@@ -367,22 +422,46 @@ async function probeBaseUrl(baseUrl) {
   }
 }
 
+function usesStaticExport() {
+  return ["next.config.js", "next.config.mjs", "next.config.ts"]
+    .map((file) => read(path.join(ROOT, file)))
+    .some((source) => /\boutput\s*:\s*["']export["']/.test(source));
+}
+
 async function startServerIfNeeded() {
   const baseUrl = EXPLICIT_BASE_URL || DEFAULT_BASE_URL;
   if (await probeBaseUrl(baseUrl)) {
-    return { baseUrl, stop: async () => {}, started: false };
+    return {
+      baseUrl,
+      stop: async () => {},
+      started: false,
+      mode: EXPLICIT_BASE_URL ? "explicit-url" : "existing-server",
+    };
   }
 
   if (EXPLICIT_BASE_URL) {
     throw new Error(`SEO_CONVERSION_BASE_URL nicht erreichbar: ${EXPLICIT_BASE_URL}`);
   }
 
+  const staticExport = usesStaticExport();
+  const staticPreview = path.join(ROOT, "scripts", "serve-static-export.mjs");
   const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  if (!fs.existsSync(nextBin)) {
-    throw new Error("Next.js Binary nicht gefunden. Bitte npm install ausfuehren.");
+  const executable = staticExport ? staticPreview : nextBin;
+  const args = staticExport ? [staticPreview] : [nextBin, "start", "--port", String(PORT)];
+  const serverLabel = staticExport ? "preview:static" : "next start";
+
+  if (!fs.existsSync(executable)) {
+    throw new Error(
+      staticExport
+        ? "Static-Preview-Script fehlt: scripts/serve-static-export.mjs"
+        : "Next.js Binary nicht gefunden. Bitte npm install ausfuehren.",
+    );
+  }
+  if (staticExport && !fs.existsSync(path.join(ROOT, "out", "index.html"))) {
+    throw new Error("out/ fehlt. Fuer output: export bitte zuerst npm run build ausfuehren.");
   }
 
-  const child = spawn(process.execPath, [nextBin, "start", "--port", String(PORT)], {
+  const child = spawn(process.execPath, args, {
     cwd: ROOT,
     env: { ...process.env, PORT: String(PORT) },
     stdio: ["ignore", "pipe", "pipe"],
@@ -398,7 +477,7 @@ async function startServerIfNeeded() {
   const start = Date.now();
   while (Date.now() - start < START_TIMEOUT_MS) {
     if (child.exitCode !== null) {
-      throw new Error(`next start wurde beendet, bevor der Conversion-Check starten konnte:\n${output}`);
+      throw new Error(`${serverLabel} wurde beendet, bevor der Conversion-Check starten konnte:\n${output}`);
     }
     if (await probeBaseUrl(baseUrl)) break;
     await sleep(750);
@@ -406,12 +485,13 @@ async function startServerIfNeeded() {
 
   if (!(await probeBaseUrl(baseUrl))) {
     child.kill();
-    throw new Error(`next start auf ${baseUrl} wurde nicht rechtzeitig erreichbar:\n${output.slice(-1200)}`);
+    throw new Error(`${serverLabel} auf ${baseUrl} wurde nicht rechtzeitig erreichbar:\n${output.slice(-1200)}`);
   }
 
   return {
     baseUrl,
     started: true,
+    mode: serverLabel,
     stop: async () => {
       child.kill();
       await sleep(500);
@@ -420,74 +500,100 @@ async function startServerIfNeeded() {
 }
 
 async function loadLeadTools() {
-  const fileUrl = pathToFileURL(path.join(ROOT, "lib", "lead-intents.ts")).href;
-  const mod = await import(fileUrl);
-  if (!Array.isArray(mod.leadConversionTargets)) {
+  const leadFileUrl = pathToFileURL(path.join(ROOT, "lib", "lead-intents.ts")).href;
+  const policyFileUrl = pathToFileURL(
+    path.join(ROOT, "lib", "booking", "request-service-policy.js"),
+  ).href;
+  const [leadMod, policyMod] = await Promise.all([import(leadFileUrl), import(policyFileUrl)]);
+  if (!Array.isArray(leadMod.leadConversionTargets)) {
     throw new Error("leadConversionTargets export fehlt in lib/lead-intents.ts");
   }
-  return mod;
+  if (typeof policyMod.getRequestService !== "function") {
+    throw new Error("getRequestService export fehlt in lib/booking/request-service-policy.js");
+  }
+  return { ...leadMod, getRequestService: policyMod.getRequestService };
 }
 
-function evaluatePage({ route, html, status, lead }) {
-  const failures = [];
-  const warnings = [];
+function evaluatePage({ route, html, status, expectedHref, getRequestService }) {
+  const failures = new Set();
+  const warnings = new Set();
   const h1 = getHeadings(html, 1);
-  const ctas = collectSeoCtas(html);
-  const contactLikeCtas = ctas.filter((cta) => {
-    const destination = cta.attrs["data-destination"] || cta.href;
-    return isLocalContactDestination(destination, route === "/kontakt");
-  });
-  const matchingCtas = contactLikeCtas.filter((cta) => ctaMatchesLead(cta, lead, route));
-  const primaryCta = matchingCtas[0] || contactLikeCtas[0] || ctas[0];
+  const allContactCtas = Array.from(
+    new Map(collectContactCtas(html).map((cta) => [pathWithQuery(cta.href), cta])).values(),
+  );
+  const ctas = allContactCtas.filter((cta) => !isExcludedGlobalContactHref(cta.href));
+  const neutralCtas = ctas.filter((cta) => contactHrefContext(cta.href)?.kind === "neutral");
+  const contextualCtas = ctas.filter((cta) => contactHrefContext(cta.href)?.kind === "contextual");
+  const expected = contactHrefContext(expectedHref);
+  const contextRequired = expected?.kind === "contextual";
+  const localContextualForm = hasLocalContextualForm(html, route, expectedHref);
   const isNeutralContactForm =
     normalizeRoute(route) === "/kontakt" &&
     html.includes("data-professional-request-form") &&
     html.includes("data-request-context-selector");
 
-  if (status !== 200) failures.push(`HTTP ${status}`);
-  if (h1.length < 1) failures.push("H1 fehlt");
-  if (!isNeutralContactForm && ctas.length < 1) failures.push("Kein seo_cta_click gefunden");
-  if (isNeutralContactForm) {
-    if (!html.includes("mode=neutral")) {
-      warnings.push("Globaler neutraler Einstieg ist im gerenderten Header nicht sichtbar");
-    }
-  } else if (!primaryCta) {
-    failures.push("Kein pruefbarer CTA gefunden");
-  } else {
-    const destination = primaryCta.attrs["data-destination"] || primaryCta.href;
-    const allowAnchor = normalizeRoute(route) === "/kontakt";
-    if (!isLocalContactDestination(destination, allowAnchor)) {
-      failures.push(`CTA fuehrt nicht zur Kontaktstrecke: ${destination || "(leer)"}`);
-    }
-    const attrResult = checkCtaAttrs(primaryCta, lead);
-    failures.push(...attrResult.failures);
-    warnings.push(...attrResult.warnings);
+  if (status !== 200) failures.add(`HTTP ${status}`);
+  if (h1.length < 1) failures.add("H1 fehlt");
 
-    if (!destination.startsWith("#")) {
-      const queryResult = checkLeadQuery(destination, lead);
-      failures.push(...queryResult.failures);
-      warnings.push(...queryResult.warnings);
+  for (const cta of contextualCtas) {
+    const result = checkContextualHref(cta.href, { getRequestService });
+    result.failures.forEach((item) => failures.add(`${pathWithQuery(cta.href)}: ${item}`));
+    result.warnings.forEach((item) => warnings.add(`${pathWithQuery(cta.href)}: ${item}`));
+  }
+  for (const cta of neutralCtas) {
+    if (!isValidNeutralHref(cta.href)) {
+      failures.add(`${pathWithQuery(cta.href)}: neutraler CTA braucht mode=neutral, source und darf keine PII enthalten`);
     }
   }
 
+  const matchingCtas = contextRequired
+    ? contextualCtas.filter((cta) => {
+        const result = checkContextualHref(cta.href, {
+          expectedHref,
+          getRequestService,
+          requireExpected: true,
+        });
+        return result.failures.length === 0;
+      })
+    : [];
+
+  if (isNeutralContactForm) {
+    // Das Formular selbst ist der neutrale Einstieg; globale Navigation wird nicht als Seiten-CTA gewertet.
+  } else if (contextRequired && matchingCtas.length < 1 && !localContextualForm) {
+    failures.add(`Kein kontextueller CTA passend zu ${pathWithQuery(expectedHref)}`);
+  } else if (!contextRequired && !neutralCtas.some((cta) => isValidNeutralHref(cta.href))) {
+    failures.add("Kein gueltiger neutraler CTA gefunden");
+  }
+
+  const primaryCta = matchingCtas[0] || neutralCtas.find((cta) => isValidNeutralHref(cta.href)) || contextualCtas[0];
+  if (!isNeutralContactForm && !primaryCta) {
+    if (!localContextualForm) failures.add("Kein pruefbarer Kontakt-CTA-Href gefunden");
+  }
+
   for (const cta of ctas) {
-    const destination = cta.attrs["data-destination"] || cta.href;
-    if (destination && !hasNoPiiParams(destination)) {
-      failures.push(`PII-Parameter in CTA ${destination}`);
+    if (!hasNoPiiParams(cta.href)) {
+      failures.add(`PII-Parameter in CTA ${pathWithQuery(cta.href)}`);
     }
   }
 
   const channelResult = checkContactChannels(html);
-  failures.push(...channelResult.failures);
-  warnings.push(...channelResult.warnings);
+  channelResult.failures.forEach((item) => failures.add(item));
+  channelResult.warnings.forEach((item) => warnings.add(item));
 
+  const failureList = Array.from(failures);
+  const warningList = Array.from(warnings);
   return {
-    status: failures.length ? "FAIL" : warnings.length ? "WARN" : "PASS",
+    status: failureList.length ? "FAIL" : warningList.length ? "WARN" : "PASS",
     h1: h1[0] || "",
-    ctaCount: ctas.length,
-    contactCta: primaryCta ? pathWithQuery(primaryCta.attrs["data-destination"] || primaryCta.href) : "",
-    failures,
-    warnings,
+    ctaCount: neutralCtas.length + contextualCtas.length,
+    contextualCtaCount: contextualCtas.length,
+    neutralCtaCount: neutralCtas.length,
+    contextRequired,
+    conversionMode: localContextualForm ? "inpage-form" : contextRequired ? "contextual-href" : "neutral-href",
+    expectedContactCta: pathWithQuery(expectedHref),
+    contactCta: localContextualForm ? "#kontakt" : primaryCta ? pathWithQuery(primaryCta.href) : "",
+    failures: failureList,
+    warnings: warningList,
   };
 }
 
@@ -497,15 +603,16 @@ function renderMarkdown(report) {
   lines.push("");
   lines.push(`Zeitpunkt: ${report.generatedAt}`);
   lines.push(`Getestete Base-URL: ${report.baseUrl}`);
+  lines.push(`Servermodus: ${report.serverMode}`);
   lines.push(`Gesamtstatus: ${report.status}`);
   lines.push("");
   lines.push("## Money-Page-Tabelle");
   lines.push("");
-  lines.push("| URL | Service | Stadt | Intent | CTA-Ziel | CTAs | Ergebnis |");
-  lines.push("| --- | --- | --- | --- | --- | ---: | --- |");
+  lines.push("| URL | Service | Stadt | Intent | Erwartet | CTA-Ziel | Kontext / neutral | Ergebnis |");
+  lines.push("| --- | --- | --- | --- | --- | --- | ---: | --- |");
   for (const page of report.pages) {
     lines.push(
-      `| ${page.path} | ${page.lead.service} | ${page.lead.city || "-"} | ${page.lead.intent} | ${page.contactCta || "-"} | ${page.ctaCount} | ${page.status} |`,
+      `| ${page.path} | ${page.lead.service} | ${page.lead.city || "-"} | ${page.lead.intent} | ${page.expectedContactCta || "-"} | ${page.contactCta || "-"} | ${page.contextualCtaCount} / ${page.neutralCtaCount} | ${page.status} |`,
     );
   }
   lines.push("");
@@ -517,6 +624,9 @@ function renderMarkdown(report) {
   if (report.contact.warnings.length) {
     lines.push(`- Warnungen: ${report.contact.warnings.join("; ")}`);
   }
+  lines.push(
+    `- Browserpflichten: ${report.contact.browserRequirements.length ? report.contact.browserRequirements.join("; ") : "keine"}`,
+  );
   lines.push("");
   lines.push("## Lead-to-Booking Erweiterungen");
   lines.push("");
@@ -547,7 +657,7 @@ function renderMarkdown(report) {
   lines.push("## Priorisierte naechste Pruefung");
   lines.push("");
   lines.push("- Nach echten SEO-Klicks pruefen: Abbruchrate auf /kontakt, meistgewaehlte Leistung, fehlende Ortsangaben, Spamquote.");
-  lines.push("- Keine externen Trackingdienste eingebaut; Events sind als data-Attribute und vorhandene lokale Conversion-Reporter-Events vorbereitet.");
+  lines.push("- Keine externen Trackingdienste eingebaut; Kontaktkontext wird ueber URL-Query und vorhandene lokale Conversion-Reporter-Events geprueft.");
   return `${lines.join("\n")}\n`;
 }
 
@@ -559,12 +669,19 @@ async function main() {
     const pages = [];
     for (const target of leadTools.leadConversionTargets) {
       const lead = leadTools.resolveLeadIntent({ path: target.priorityPath || target.path });
+      const expectedHref = leadTools.buildLeadHref({
+        path: target.priorityPath || target.path,
+        service: lead.service,
+        city: lead.city,
+        intent: lead.intent,
+      });
       const result = await fetchHtml(server.baseUrl, target.path);
       const evaluation = evaluatePage({
         route: target.path,
         html: result.html,
         status: result.status,
-        lead,
+        expectedHref,
+        getRequestService: leadTools.getRequestService,
       });
       pages.push({
         path: target.path,
@@ -579,14 +696,13 @@ async function main() {
       });
     }
 
-    const contactLead = leadTools.resolveLeadIntent({
-      path: "/kontakt",
-      service: "bueroreinigung",
-      city: "duesseldorf",
-      intent: "bueroreinigung-regensburg",
-      priority: "p0",
+    const contactLead = leadTools.resolveLeadIntent({ path: "/duesseldorf/bueroreinigung" });
+    const contactPath = leadTools.buildLeadHref({
+      path: contactLead.path,
+      service: contactLead.service,
+      city: contactLead.city,
+      intent: contactLead.intent,
     });
-    const contactPath = leadTools.buildLeadHref(contactLead);
     const contactResult = await fetchHtml(server.baseUrl, contactPath);
     const contactChecks = checkContactForm(contactResult.html);
     const contactH1 = getHeadings(contactResult.html, 1)[0] || "";
@@ -597,11 +713,18 @@ async function main() {
       personalizationSource.includes("context.headline") &&
       requestContextSource.includes("resolveAllowedRequestService");
     if (contactResult.status !== 200) contactChecks.failures.push(`HTTP ${contactResult.status}`);
-    if (!/bueroreinigung|büroreinigung|buero/i.test(contactResult.html) && !supportsClientContext) {
+    const personalizedServiceVisible = /bueroreinigung|büroreinigung|buero/i.test(contactResult.html);
+    const personalizedCityVisible = /duesseldorf|düsseldorf/i.test(contactResult.html);
+    if (!personalizedServiceVisible && !supportsClientContext) {
       contactChecks.failures.push("Service-Vorauswahl/Service-Kontext nicht sichtbar");
     }
-    if (!/duesseldorf|düsseldorf/i.test(contactResult.html) && !supportsClientContext) {
+    if (!personalizedCityVisible && !supportsClientContext) {
       contactChecks.failures.push("City-Vorauswahl/City-Kontext nicht sichtbar");
+    }
+    if ((!personalizedServiceVisible || !personalizedCityVisible) && supportsClientContext) {
+      contactChecks.browserRequirements.push(
+        "Query-Personalisierung ist clientseitig; service/city/intent nach Hydration im Browser bestaetigen.",
+      );
     }
     if (!contactH1) contactChecks.failures.push("Kontakt-H1 fehlt");
 
@@ -611,6 +734,7 @@ async function main() {
       h1: contactH1,
       failures: contactChecks.failures,
       warnings: contactChecks.warnings,
+      browserRequirements: Array.from(new Set(contactChecks.browserRequirements)),
     };
     const leadToBooking = checkLeadToBookingAssets();
 
@@ -622,6 +746,7 @@ async function main() {
     const report = {
       generatedAt: new Date().toISOString(),
       baseUrl: server.baseUrl,
+      serverMode: server.mode,
       status,
       pages,
       contact,

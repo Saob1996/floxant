@@ -103,7 +103,7 @@ async function main() {
 
     const formHtml = form.html;
     const progressiveForm = html.includes("data-professional-request-form");
-    addResult(results, formContains(formHtml, [/name=["']name["']/i, /id=["']seo-lead-name["']/i]) || (progressiveForm && progressiveFieldChecks.name) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Name field check.", "Add/restore name input.", { priority: "P0" });
+    addResult(results, formContains(formHtml, [/name=["']name["']/i, /id=["']request-form-name["']/i]) || (progressiveForm && progressiveFieldChecks.name) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Name field check.", "Add/restore name input.", { priority: "P0" });
     addResult(results, formContains(formHtml, [/name=["']email["']/i, /name=["']phone["']/i, /kontaktweg|contactMethod/i]) || (progressiveForm && progressiveFieldChecks.contact) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Contact method/email/phone field check.", "Add at least one contact method field.", { priority: "P0" });
     addResult(results, formContains(formHtml, [/name=["']servicePreset["']/i, /name=["']service["']/i, /data-service=/i]) || (progressiveForm && progressiveFieldChecks.service) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Service field/value check.", "Preserve service field or hidden service value.", { priority: "P0" });
     addResult(results, formContains(formHtml, [/name=["']city["']/i, /name=["']cityOrZip["']/i, /ort|stadt/i]) || (progressiveForm && progressiveFieldChecks.location) ? "PASS" : "FAIL", "contact-fields", scenario.path, "City/location field check.", "Preserve city/location field.", { priority: "P0" });
