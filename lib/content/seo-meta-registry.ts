@@ -20,11 +20,12 @@ export type SeoMetaModel = {
   service: string;
   searchIntent: string;
   experimentId: string;
+  rollbackValue: SeoSnippetVariant;
   activeVariant: SeoSnippetVariantName;
   variants: Record<SeoSnippetVariantName, SeoSnippetVariant>;
 };
 
-type SeoMetaSeed = Omit<SeoMetaModel, "seoTitle" | "description">;
+type SeoMetaSeed = Omit<SeoMetaModel, "seoTitle" | "description" | "rollbackValue">;
 
 function defineMeta(seed: SeoMetaSeed): SeoMetaModel {
   const active = seed.variants[seed.activeVariant];
@@ -32,6 +33,7 @@ function defineMeta(seed: SeoMetaSeed): SeoMetaModel {
     ...seed,
     seoTitle: active.title,
     description: active.description,
+    rollbackValue: { ...seed.variants.direct },
   };
 }
 

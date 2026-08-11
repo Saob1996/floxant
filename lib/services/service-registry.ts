@@ -1,3 +1,5 @@
+import { sanitizePublicContent } from "../content/public-content";
+
 export type ServiceStatus =
   | "ACTIVE_PUBLIC"
   | "ACTIVE_SUPPORTING"
@@ -754,7 +756,7 @@ export function selectPublicServiceFields(
   service: InternalServiceRecord,
   overrides: Partial<PublicServiceContent> = {},
 ): PublicServiceContent {
-  return {
+  return sanitizePublicContent({
     publicTitle: service.germanName,
     publicEnglishTitle: service.englishName,
     publicHeadline: service.headline,
@@ -776,7 +778,7 @@ export function selectPublicServiceFields(
       ...(service.specialSolution ? ["Speziallösung" as const] : []),
     ],
     ...overrides,
-  };
+  });
 }
 
 export const publicServiceContents: readonly PublicServiceContent[] =

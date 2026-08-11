@@ -1,4 +1,5 @@
 import { generatedPageRouteInventory } from "@/lib/content/generated-page-route-inventory";
+import { sanitizePublicContent } from "@/lib/content/public-content";
 
 export type PageLanguage = "de" | "en";
 export type PageLocation = "Düsseldorf" | "Regensburg" | "Mehrere Standorte" | "Überregional";
@@ -589,7 +590,7 @@ export function getPageIntentContract(url: string) {
 }
 
 export function selectPublicPageContent(record: InternalPageRecord): PublicPageContent {
-  return {
+  return sanitizePublicContent({
     publicRoute: record.route,
     publicTitle: record.recommendedSeoTitle,
     publicHeadline: record.recommendedH1,
@@ -599,5 +600,5 @@ export function selectPublicPageContent(record: InternalPageRecord): PublicPageC
     publicRequirements: [],
     publicFaq: [],
     publicCta: record.primaryCta,
-  };
+  });
 }

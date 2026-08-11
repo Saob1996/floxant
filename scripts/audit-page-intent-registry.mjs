@@ -106,6 +106,9 @@ function loadRegistry() {
   const source = fs.readFileSync(REGISTRY_FILE, "utf8").replace(
     /import\s*\{\s*generatedPageRouteInventory\s*\}\s*from\s*["']@\/lib\/content\/generated-page-route-inventory["'];?\s*/,
     `const generatedPageRouteInventory = ${JSON.stringify(generatedPageRouteInventory)};\n`,
+  ).replace(
+    /import\s*\{\s*sanitizePublicContent\s*\}\s*from\s*["']@\/lib\/content\/public-content["'];?\s*/,
+    "const sanitizePublicContent = (value) => value;\n",
   );
   const registryExports = evaluateTypescriptModule(source, REGISTRY_FILE);
   const contracts = registryExports.allPageIntentContracts;
