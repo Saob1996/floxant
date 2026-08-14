@@ -90,6 +90,9 @@ const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
   "duesseldorf/gewerbereinigung",
   "duesseldorf/praxisreinigung",
   "duesseldorf/fensterreinigung",
+  "duesseldorf/grundreinigung",
+  "duesseldorf/unterhaltsreinigung",
+  "duesseldorf/baureinigung",
   "duesseldorf/luxusreinigung",
 ]);
 
@@ -100,6 +103,8 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "widerruf",
   "buchungsbedingungen",
   "angebot-vergleichen-duesseldorf/danke",
+  "duesseldorf/reinigung/anfrage",
+  "umzug-regensburg/anfrage",
   "regensburg/reinigung/datenschutz",
   "regensburg/reinigung/agb",
 ]);
@@ -277,6 +282,10 @@ function shouldSkipSitemapRoute(route: string): boolean {
 
 function isBroadRootCityServiceRoute(route: string): boolean {
   const normalizedRoute = route.toLowerCase();
+
+  if (normalizedRoute === "umzug-kosten-rechner") {
+    return false;
+  }
 
   if (normalizedRoute === "seniorenumzug-landshut") {
     return false;

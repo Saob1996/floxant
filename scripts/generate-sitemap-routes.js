@@ -31,6 +31,8 @@ const nonSeoPublicRoutes = new Set([
   "/widerruf",
   "/buchungsbedingungen",
   "/angebot-vergleichen-duesseldorf/danke",
+  "/duesseldorf/reinigung/anfrage",
+  "/umzug-regensburg/anfrage",
   "/regensburg/reinigung/datenschutz",
   "/regensburg/reinigung/agb",
 ]);
@@ -77,6 +79,9 @@ const allowedDuesseldorfCleaningRoutes = new Set([
   "/duesseldorf/gewerbereinigung",
   "/duesseldorf/praxisreinigung",
   "/duesseldorf/fensterreinigung",
+  "/duesseldorf/grundreinigung",
+  "/duesseldorf/unterhaltsreinigung",
+  "/duesseldorf/baureinigung",
   "/duesseldorf/luxusreinigung",
 ]);
 const removedServicePrefixes = [
@@ -93,6 +98,7 @@ const broadRootCityServicePrefixes = [
 ];
 const gscValidatedRootCityServiceRoutes = new Set([
   "/entruempelung-landshut",
+  "/umzug-kosten-rechner",
   "/umzug-neustadt-an-der-waldnaab",
   "/umzug-vohenstrauss",
 ]);
