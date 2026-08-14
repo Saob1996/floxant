@@ -354,7 +354,7 @@ export default function LeistungenPage() {
 
       <ServiceProofChecklist
         serviceKey="reinigung"
-        title="Proof-Inputs für Reinigung, Umzug und Sonderfälle"
+        title="Welche Angaben bei Reinigung, Umzug und besonderen Situationen helfen"
         intro="Die Checkliste startet mit Reinigung, gilt als Muster für alle Leistungen: Objekt, Zugang, Fotos, Termin und Ziel müssen zusammenpassen."
       />
 

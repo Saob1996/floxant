@@ -74,17 +74,17 @@ const variantCopy: Record<
     comboLimit: 4,
   },
   duesseldorf: {
-    eyebrow: "Duesseldorf-Serviceklarheit",
-    heading: "Duesseldorf zuerst als Anfragehub und Servicegebiet sauber klaeren.",
+    eyebrow: "Leistungen in Düsseldorf",
+    heading: "Die passende Reinigung für Ihr Objekt auswählen.",
     intro:
-      "Umzug, Raeumung, Angebotscheck und Signature Services werden sichtbar. Reinigungsunterseiten werden nicht als ungepruefte Ortsmasse nachgebaut.",
+      "Wählen Sie nach Objekt, Umfang und gewünschtem Turnus. Ein vorhandenes Angebot können Sie getrennt prüfen lassen.",
     comboLimit: 4,
   },
   regensburg: {
-    eyebrow: "Regensburg-Servicefit",
-    heading: "Regensburg trennt Reinigung, Umzug, Raeumung und Uebergabe mit 50-km-Logik.",
+    eyebrow: "Leistungen in Regensburg",
+    heading: "Umzug, Räumung und weitere Leistungen klar auswählen.",
     intro:
-      "Der Block zeigt, wann Reinigung lokal passt, wann Strecke oder Raeumung fuehrt und wann Angebotspruefung der kuerzere Weg ist.",
+      "Wählen Sie nach Aufgabe, Strecke und Umfang. Wenn bereits ein Angebot vorliegt, können Sie es getrennt prüfen lassen.",
     comboLimit: 5,
   },
   contact: {

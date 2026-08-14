@@ -323,7 +323,7 @@ export default function RegensburgHubPage() {
           "signature_service",
         ]}
         title="Regensburger Services nach Umzug, Räumung, Reinigung und Plan B."
-        intro="Die zentrale Inventur zeigt, welche Leistungen direkt gepflegt sind und welche manuell bestätigt werden müssen."
+        intro="Wählen Sie die Leistung, die am besten zu Ihrem Vorhaben passt. Einzelheiten ergänzen Sie anschließend in der Anfrage."
         limitPerCategory={5}
       />
 
@@ -355,7 +355,7 @@ export default function RegensburgHubPage() {
         allowedPage="/regensburg"
         serviceKey="umzug"
         locationKey="regensburg"
-        title="Regensburg-Trust bleibt lokal und prüfbar."
+        title="Klare Angaben für Ihre Regensburger Anfrage."
         intro="In Regensburg finden Sie direkte Kontaktwege für Umzug, Reinigung, Räumung und besondere Situationen. Zusagen erfolgen erst nach Prüfung Ihrer Angaben."
       />
 

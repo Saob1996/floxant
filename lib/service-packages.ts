@@ -743,7 +743,7 @@ export const servicePackageGroups: Record<ServicePackageGroup, { title: string; 
     intro: "Der Check sortiert Angebot, Umfang, Warnsignale und naechste Schritte ohne Preisgarantie oder Rechtsberatung.",
   },
   signature: {
-    title: "Signature-Pakete fuer Entscheidung und Sonderfaelle",
-    intro: "Diese Pakete verbinden Angebot, Objekt, Uebergabe, Plan B, Rueckfahrt, Diskretion und Servicewahl ohne neue Schnellpreisversprechen.",
+    title: "Besondere Leistungen für unterschiedliche Situationen",
+    intro: "Diese Leistungen verbinden Angebot, Objekt, Übergabe, Plan B, Rückfahrt, Diskretion und Servicewahl ohne ein Preisversprechen vor der Prüfung.",
   },
 };
