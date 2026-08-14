@@ -29,6 +29,7 @@ export const company = {
     "https://www.facebook.com/floxant",
   ],
   primaryServiceAreas: [
+    "Düsseldorf",
     "Regensburg",
     "Landkreis Regensburg",
     "Regensburg plus 50 km",
@@ -40,6 +41,7 @@ export const company = {
     "Straubing",
   ],
   keyGeoTargets: [
+    "Düsseldorf",
     "Regensburg",
     "Landkreis Regensburg",
     "Regensburg plus 50 km",

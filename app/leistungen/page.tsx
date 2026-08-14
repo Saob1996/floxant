@@ -56,7 +56,7 @@ const regionOrder: FloxantRegion[] = ["regensburg"];
 const faqItems = [
   {
     q: "Wo ist Reinigung bei FLOXANT verfügbar?",
-    a: "FLOXANT bündelt Reinigung in Regensburg und im Umkreis von maximal 50 km. Die Trennung hilft Kunden, keine überregionalen Reinigungszusagen zu erwarten.",
+    a: "Düsseldorf ist der Schwerpunkt für Reinigung. In Regensburg stehen Umzug, Räumung und Transport im Mittelpunkt. Ob ein weiterer Einsatz passt, klären wir anhand Ihrer Orts- und Leistungsangaben.",
   },
   {
     q: "Kann ich ein bestehendes Angebot prüfen lassen?",
@@ -109,7 +109,7 @@ const serviceTrustProofs = [
   "Jede Anfrage beginnt mit Ort, Leistung, kurzer Beschreibung und einem Kontaktweg.",
   "Fotos, vorhandene Angebote, Budget, Termin oder Dringlichkeit bleiben optional, aber hilfreich.",
   "Die Leistungsseite führt zu echten Kontaktwegen statt zu dünnen Einzelideen.",
-  "Reinigung bleibt lokal auf Regensburg plus 50 km begrenzt, damit Anfrage und Erwartung zusammenpassen.",
+  "Düsseldorf und Regensburg haben getrennte Leistungsbereiche, damit Anfrage und Erwartung zusammenpassen.",
 ] as const;
 
 export const metadata: Metadata = {
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Leistungen nach Region und Aufgabe",
     description:
-      "Leistung wählen und mit Ort, Umfang, Fotos und Termin in Regensburg anfragen.",
+      "Leistung und Standort wählen und die wichtigsten Eckdaten direkt an FLOXANT senden.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -146,13 +146,13 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Leistungen",
         description:
-          "Zentrale Leistungsübersicht für FLOXANT Regensburg: Reinigung im 50-km-Umkreis, Umzug, Transport, Entrümpelung, Haushaltsauflösung und Übergabe.",
+          "Leistungsübersicht für Reinigung in Düsseldorf sowie Umzug, Transport, Entrümpelung und Wohnungsauflösung in Regensburg.",
         path,
         about: [
-          "Gewerbereinigung Regensburg",
-          "Büroreinigung Regensburg",
-          "Praxisreinigung Regensburg",
-          "Reinigung Regensburg 50 km",
+          "Gewerbereinigung Düsseldorf",
+          "Büroreinigung Düsseldorf",
+          "Praxisreinigung Düsseldorf",
+          "Reinigung Düsseldorf",
           "Glasreinigung",
           "Fassadenreinigung",
           "Umzug Regensburg",
@@ -222,9 +222,9 @@ export default function LeistungenPage() {
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
-            Regensburg bündelt Reinigung im 50-km-Umkreis, Umzug, Transport, Räumung
-            und Übergabe. Wenn bereits ein Angebot vorliegt,
-            ist die Angebotsprüfung der kuerzere Weg.
+            Düsseldorf bündelt Reinigungsleistungen. Regensburg bündelt Umzug, Transport,
+            Räumung und Wohnungsauflösung. Wenn bereits ein Angebot vorliegt,
+            können Sie es getrennt prüfen lassen.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {regionOrder.map((regionId) => {
@@ -274,9 +274,9 @@ export default function LeistungenPage() {
       <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            "Regensburg: Reinigung, Büro, Gewerbe, Praxis und Übergabe",
-            "Regensburg: Umzug, Transport, Räumung, Haushaltsauflösung und Übergabe",
-            "FLOXANT Signature für diskrete oder abstimmungsintensive Fälle",
+            "Düsseldorf: Reinigung für Wohnung, Büro, Praxis und Gewerbe",
+            "Regensburg: Umzug, Transport, Räumung und Wohnungsauflösung",
+            "Besondere Hilfe für diskrete oder abstimmungsintensive Situationen",
             "Angebotsprüfung, wenn bereits ein Preis oder Angebot vorliegt",
           ].map((item) => (
             <div key={item} className="flex min-w-0 gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">

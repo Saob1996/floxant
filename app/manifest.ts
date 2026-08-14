@@ -6,10 +6,10 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return germanizeDeep({
-    name: "FLOXANT | Umzug, Reinigung und Entrümpelung",
+    name: "FLOXANT | Reinigung Düsseldorf und Services Regensburg",
     short_name: "FLOXANT",
     description:
-      "FLOXANT prueft Umzug, Entruempelung und Reinigung lokal ab Regensburg. Reinigung gilt fuer Regensburg und maximal 50 km Umkreis.",
+      "FLOXANT bietet Reinigung in Düsseldorf sowie Umzug, Räumung und Transport in Regensburg. Anfragen starten mit Standort, Leistung und Eckdaten.",
     start_url: "/",
     display: "standalone",
     background_color: "#EEF5FF",
@@ -44,10 +44,10 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
       {
-        name: "Reinigung Regensburg",
+        name: "Reinigung Düsseldorf",
         short_name: "Reinigung",
-        description: "Reinigung, Bueroreinigung oder Endreinigung in Regensburg und im 50-km-Umkreis anfragen.",
-        url: "/regensburg/reinigung",
+        description: "Reinigung für Wohnung, Büro, Praxis und Gewerbe in Düsseldorf anfragen.",
+        url: "/duesseldorf/reinigung",
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
       {
