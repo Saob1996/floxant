@@ -176,12 +176,28 @@ function inferGoogleAdsConversion(payload: Record<string, unknown>): GoogleAdsCo
  const href = normalizeForTracking(payload.href);
  const label = normalizeForTracking(payload.label);
  const channel = normalizeForTracking(payload.channel);
- const combined = `${event} ${href} ${label} ${channel}`;
+ const dataset = normalizeForTracking(JSON.stringify(payload.dataset || {}));
+ const combined = `${event} ${href} ${label} ${channel} ${dataset}`;
+ const isSuccessfulSubmission = [
+  "form submit success",
+  "submit form success",
+  "lead submit success",
+  "booking success",
+  "offer check submit success",
+ ].some((signal) => event.includes(signal));
+ const isOfferCheck = [
+  "angebot",
+  "angebotscheck",
+  "offer check",
+  "offer comparison",
+  "vielleicht guenstiger",
+ ].some((signal) => combined.includes(signal));
 
- if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success") || event.includes("lead submit success")) return "form_success";
+ if (isSuccessfulSubmission) return isOfferCheck ? "offer_check" : "form_success";
  if (href.startsWith("tel") || channel === "phone" || event.includes("phone") || event.includes("call")) return "phone";
  if (href.includes("wa me") || href.includes("whatsapp") || channel === "whatsapp" || event.includes("whatsapp")) return "whatsapp";
- if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("offer comparison") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
+ // Opening or starting an offer check is engagement, not a completed Ads conversion.
+ if (isOfferCheck) return null;
  if (combined.includes("ruckruf") || combined.includes("callback")) return "callback";
  if (event.includes("start booking") || event.includes("booking") || event.includes("anfrage")) return "booking_start";
  return null;
@@ -199,6 +215,7 @@ function sendGoogleAdsConversion(payload: Record<string, unknown>) {
 
  window.gtag("event", "conversion", {
   send_to: sendTo,
+  ...(conversionName === "offer_check" ? { value: 1, currency: "EUR" } : {}),
   transport_type: "beacon",
   event_category: "google_ads",
   event_label: conversionName,

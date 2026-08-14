@@ -7,9 +7,11 @@ export type InquiryRegion = "regensburg-bayern" | "duesseldorf";
 export type InquiryField = {
   name: string;
   label: string;
-  type?: "text" | "textarea" | "select" | "tel" | "email";
+  type?: "text" | "textarea" | "select" | "tel" | "email" | "number";
   placeholder?: string;
   required?: boolean;
+  min?: number;
+  step?: number | "any";
   options?: string[];
 };
 
@@ -81,7 +83,15 @@ export const inquiryConfigs: Record<InquiryIntent, InquiryConfig> = {
         required: true,
         options: ["Wohnung", "Haus", "Büro / Praxis", "Treppenhaus", "Möblierte Wohnung", "Sonstiges Objekt"],
       },
-      { name: "size", label: "Fläche oder grobe Größe", placeholder: "z. B. 75 m², 3 Zimmer, kleines Büro", required: true },
+      {
+        name: "size",
+        label: "Ungefähr zu bearbeitende Fläche (m²)",
+        type: "number",
+        placeholder: "z. B. 1, 75 oder 2500",
+        required: true,
+        min: 1,
+        step: "any",
+      },
       { name: "timeframe", label: "Gewünschter Zeitraum", placeholder: "z. B. diese Woche, vor Übergabe" },
       { name: "phone", label: "Telefon oder WhatsApp", type: "tel", placeholder: "+49 ...", required: true },
       { name: "contactName", label: "Name optional", placeholder: "Ihr Name" },

@@ -21,6 +21,66 @@ export interface BackhaulOffer {
  updatedAt: string;
 }
 
+export interface BackhaulOfferRow {
+ id: string;
+ title: string;
+ departure_date: string;
+ time_window: string;
+ origin: string;
+ destination: string;
+ destination_radius: string;
+ route_areas: string[] | null;
+ vehicle_type: string;
+ available_capacity: string;
+ price_hint: string;
+ fair_price_note: string;
+ status: BackhaulOfferStatus;
+ admin_note?: string | null;
+ created_at: string;
+ updated_at: string;
+}
+
+export const PUBLIC_BACKHAUL_OFFER_SELECT = [
+ "id",
+ "title",
+ "departure_date",
+ "time_window",
+ "origin",
+ "destination",
+ "destination_radius",
+ "route_areas",
+ "vehicle_type",
+ "available_capacity",
+ "price_hint",
+ "fair_price_note",
+ "status",
+ "created_at",
+ "updated_at",
+].join(",");
+
+export const ADMIN_BACKHAUL_OFFER_SELECT = `${PUBLIC_BACKHAUL_OFFER_SELECT},admin_note`;
+
+export function mapBackhaulOfferRow(row: BackhaulOfferRow): BackhaulOffer {
+ return {
+  id: row.id,
+  title: row.title,
+  date: row.departure_date,
+  timeWindow: row.time_window,
+  origin: row.origin,
+  destination: row.destination,
+  destinationRadius: row.destination_radius,
+  routeAreas: Array.isArray(row.route_areas) ? row.route_areas : [],
+  vehicleType: row.vehicle_type,
+  availableCapacity: row.available_capacity,
+  priceHint: row.price_hint,
+  fairPriceNote: row.fair_price_note,
+  status: row.status,
+  adminNote: row.admin_note || "",
+  createdAt: row.created_at,
+  updatedAt: row.updated_at,
+ };
+}
+
 // Intentionally empty: public pages must not show fake or assumed return trips.
 export const FALLBACK_BACKHAUL_OFFERS: BackhaulOffer[] = [];
 
@@ -41,8 +101,8 @@ function asArray(value: unknown): string[] {
 }
 
 function normalizeDestinationRadius(value: unknown) {
- const text = asString(value, "ca. 150 km um Regensburg");
- return text.replace("100 km", "150 km");
+ const text = asString(value, "ca. 200 km um Regensburg");
+ return text.replace(/(?:100|150) km/g, "200 km");
 }
 
 export function normalizeBackhaulOffer(record: any): BackhaulOffer {
@@ -98,7 +158,7 @@ export function buildBackhaulOfferDetails(offer: BackhaulOffer, updatedBy = "das
    accuracyState: "Admin-gepflegte Rückfahrt",
    topDrivers: ["Datum", "Route", "freie Fahrzeugkapazität", "Umwegprüfung"],
    priceExplanation:
-    "Dieses Angebot beschreibt eine geplante Rückfahrt nach Regensburg und ca. 150 km Umkreis. Kunden erhalten einen fairen Preis, wenn Route, Volumen und Terminfenster passen; sinnvolle Stopps unterwegs werden mit transparentem Umwegpreis geprüft.",
+    "Dieses Angebot beschreibt eine geplante Rückfahrt nach Regensburg und ca. 200 km Umkreis. Kunden erhalten einen fairen Preis, wenn Route, Volumen und Terminfenster passen; sinnvolle Stopps unterwegs werden mit transparentem Umwegpreis geprüft.",
    pricingSignals: {
     routeAreas: offer.routeAreas,
     destinationRadius: offer.destinationRadius,

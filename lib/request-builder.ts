@@ -69,7 +69,7 @@ const groupFields: Record<RequestBuilderGroup, readonly RequestBuilderField[]> =
       { value: "other", de: "Anderes Objekt", en: "Other property" },
     ] },
     { id: "area", labelDe: "Fläche und Räume", labelEn: "Area and rooms", placeholderDe: "z. B. 180 m², 6 Büros, Küche und Sanitär", placeholderEn: "e.g. 180 m², 6 offices, kitchen and sanitary areas", type: "text", required: true },
-    { id: "scope", labelDe: "Gewünschte Reinigungsleistung", labelEn: "Required cleaning scope", placeholderDe: "Welche Bereiche und Arbeiten sollen enthalten sein?", placeholderEn: "Which areas and tasks should be included?", type: "textarea", required: true },
+    { id: "scope", labelDe: "Gewünschte Reinigungsleistung (optional)", labelEn: "Required cleaning scope (optional)", placeholderDe: "Optional: Welche Bereiche und Arbeiten sollen enthalten sein?", placeholderEn: "Optional: Which areas and tasks should be included?", type: "textarea", required: false },
     { id: "frequency", labelDe: "Einmalig oder regelmäßig", labelEn: "One-off or recurring", type: "select", required: true, options: [
       { value: "once", de: "Einmalig", en: "One-off" },
       { value: "weekly", de: "Wöchentlich", en: "Weekly" },

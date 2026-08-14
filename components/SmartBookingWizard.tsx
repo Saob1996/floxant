@@ -1469,6 +1469,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <FieldBox
                 label={flowDetailsIntro.scopeLabel}
                 icon={isExpressFlow ? <MessageSquare className="h-4 w-4" /> : <PackageOpen className="h-4 w-4" />}
+                required={false}
               >
                 <input
                   aria-label={flowDetailsIntro.scopeLabel}

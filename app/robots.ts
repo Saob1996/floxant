@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: publicDisallow,
       },
       {
-        userAgent: ["OAI-SearchBot", "GPTBot", "ChatGPT-User"],
+        userAgent: ["OAI-SearchBot", "OAI-AdsBot", "GPTBot", "ChatGPT-User"],
         allow: "/",
         disallow: publicDisallow,
       },

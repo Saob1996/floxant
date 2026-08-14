@@ -122,6 +122,24 @@ export function reportOfferComparisonAdsEvent(event: string, data: OfferComparis
     // Google Ads / GA Events dürfen die Bedienung nicht beeinflussen.
   }
 
+  if (event === "form_submit_success") {
+    window.dispatchEvent(
+      new CustomEvent("floxant:conversion-event", {
+        detail: {
+          event: "offer_check_submit_success",
+          source: "google_ads_offer_comparison_landingpage",
+          channel: "form",
+          label: "Angebotsprüfung erfolgreich angefordert",
+          dataset: {
+            intent: "offer_check",
+            priority: "critical",
+            ...data,
+          },
+        },
+      }),
+    );
+  }
+
 }
 
 export function OfferComparisonSuccessTracker() {

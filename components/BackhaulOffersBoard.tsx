@@ -1,10 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, Calendar, CheckCircle2, Loader2, MapPin, PackageOpen, Route, Send, Truck } from "lucide-react";
 
-import type { BackhaulOffer } from "@/lib/backhaul-offers";
+import {
+  mapBackhaulOfferRow,
+  PUBLIC_BACKHAUL_OFFER_SELECT,
+  type BackhaulOffer,
+  type BackhaulOfferRow,
+} from "@/lib/backhaul-offers";
+import { getPublicSupabaseClient } from "@/lib/public-supabase-browser";
 
 type InquiryState = {
   offerId: string;
@@ -27,7 +33,7 @@ const emptyInquiry: InquiryState = {
   email: "",
   phone: "",
   pickupLocation: "",
-  deliveryLocation: "Regensburg / ca. 150 km Umkreis",
+  deliveryLocation: "Regensburg / ca. 200 km Umkreis",
   dateFlexibility: "",
   items: "",
   budget: "",
@@ -71,7 +77,8 @@ function formatDate(date: string) {
 }
 
 export function BackhaulOffersBoard({ initialOffers }: { initialOffers: BackhaulOffer[] }) {
-  const offers = initialOffers;
+  const [offers, setOffers] = useState(initialOffers);
+  const [loadingOffers, setLoadingOffers] = useState(true);
   const [selectedOffer, setSelectedOffer] = useState<BackhaulOffer | null>(initialOffers[0] || null);
   const [form, setForm] = useState<InquiryState>({
     ...emptyInquiry,
@@ -80,6 +87,40 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  useEffect(() => {
+    const supabase = getPublicSupabaseClient();
+    if (!supabase) {
+      setLoadingOffers(false);
+      return;
+    }
+    const supabaseClient = supabase;
+
+    let active = true;
+    async function loadActiveOffers() {
+      const today = new Date().toISOString().slice(0, 10);
+      const { data, error } = await supabaseClient
+        .from("backhaul_offers")
+        .select(PUBLIC_BACKHAUL_OFFER_SELECT)
+        .eq("status", "active")
+        .gte("departure_date", today)
+        .order("departure_date", { ascending: true });
+
+      if (!active) return;
+      if (!error && Array.isArray(data)) {
+        const nextOffers = (data as unknown as BackhaulOfferRow[]).map(mapBackhaulOfferRow);
+        setOffers(nextOffers);
+        setSelectedOffer(nextOffers[0] || null);
+        setForm((current) => ({ ...current, offerId: nextOffers[0]?.id || "" }));
+      }
+      setLoadingOffers(false);
+    }
+
+    void loadActiveOffers();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const activeOffer = useMemo(
     () => offers.find((offer) => offer.id === form.offerId) || selectedOffer || offers[0],
@@ -143,7 +184,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         customerBudget: budget,
         priceSuggestion: budget,
         priceExplanation:
-          "Die Anfrage bezieht sich auf eine mögliche Leer-Rückfahrt Richtung Regensburg und ca. 150 km Umkreis. FLOXANT prüft, ob Route, Datum, Volumen, Ladepunkte und ein möglicher Umweg zur freien Fahrzeugkapazität passen.",
+          "Die Anfrage bezieht sich auf eine mögliche Leer-Rückfahrt Richtung Regensburg und ca. 200 km Umkreis. FLOXANT prüft, ob Route, Datum, Volumen, Ladepunkte und ein möglicher Umweg zur freien Fahrzeugkapazität passen.",
         pricingSignals: {
           inquiryMode: "backhaul_inquiry",
           companyName: form.company.trim(),
@@ -205,7 +246,14 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   return (
     <div className="grid gap-8 lg:grid-cols-[1.03fr_0.97fr]">
       <div className="space-y-4">
-        {offers.length === 0 ? (
+        {loadingOffers ? (
+          <div className="flex min-h-40 items-center justify-center gap-3 rounded-[2rem] border border-slate-200 bg-white p-6 text-sm font-bold text-slate-600" role="status">
+            <Loader2 className="h-5 w-5 animate-spin text-emerald-600" />
+            Aktuelle Rückfahrten werden geladen …
+          </div>
+        ) : null}
+
+        {!loadingOffers && offers.length === 0 ? (
           <div className="rounded-[2rem] border border-dashed border-emerald-300 bg-emerald-50/70 p-6">
             <Truck className="mb-4 h-7 w-7 text-emerald-700" />
             <h3 className="text-2xl font-bold tracking-tight text-slate-950">
@@ -374,7 +422,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 <Input label="E-Mail" value={form.email} onChange={(value) => updateField("email", value)} type="email" />
               </div>
               <Input label="Abholort" value={form.pickupLocation} onChange={(value) => updateField("pickupLocation", value)} required placeholder="z. B. München, Nürnberg, Berlin" />
-              <Input label="Zielort" value={form.deliveryLocation} onChange={(value) => updateField("deliveryLocation", value)} placeholder="Regensburg / ca. 150 km Umkreis" />
+              <Input label="Zielort" value={form.deliveryLocation} onChange={(value) => updateField("deliveryLocation", value)} placeholder="Regensburg / ca. 200 km Umkreis" />
               <Input label="Terminflexibilität" value={form.dateFlexibility} onChange={(value) => updateField("dateFlexibility", value)} placeholder="z. B. flexibel in KW 18" />
               <Textarea label="Was soll mit?" value={form.items} onChange={(value) => updateField("items", value)} required placeholder="Büroinventar, Möbel, Kartons, Paletten, Maschine, Einzelstück..." />
               <Input label="Preisvorstellung optional" value={form.budget} onChange={(value) => updateField("budget", value)} placeholder="z. B. 250 EUR" />

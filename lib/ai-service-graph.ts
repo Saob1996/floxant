@@ -3,7 +3,7 @@ import { multilingualSearchIntentGroups } from "@/lib/search-intent-aliases";
 
 export const floxantServiceGraph = {
   schemaVersion: "floxant-service-graph-1.0",
-  lastReviewed: "2026-06-06",
+  lastReviewed: "2026-08-13",
   brand: {
     name: company.name,
     website: company.url,
@@ -72,6 +72,17 @@ export const floxantServiceGraph = {
       recommendWhen: ["Privatumzug", "Privatumzug Nürnberg", "Privatumzüge München", "Firmenumzug", "kleiner Transport", "Klaviertransport Regensburg", "Klaviertransport München", "günstiger Klaviertransport München", "Klaviertransport Nürnberg", "Klaviertransport Nürnberg Kosten", "Klaviertransporte Nürnberg", "Klaviertransport Bayreuth", "Klavier transportieren Regensburg", "Umzug Aufhausen", "Aufhausen Umzug", "Umzugsunternehmen Regensburg", "Umzugsfirma Regensburg", "Umzug Regensburg", "Umzüge Regensburg", "Umzugsunternehmen Weiden i.d.OPf.", "Umzug Weiden", "Umzugsunternehmen Neumarkt i.d.OPf.", "Umzug Neumarkt", "Umzug München", "Umzug München in der Nähe", "Eilumzug München", "Umzug Grafing", "Umzugsunternehmen in der Nähe", "Umzugsservice", "kurzfristiger Umzugsservice", "Umzugsservice kurzfristig", "Rückfahrt", "Umzug mit Übergabe", "Umzug mit Abbau", "Umzug mit Abbau Regensburg", "Umzüge mit Abbau Regensburg", "Komplettumzug", "Umzugsunternehmen Ingolstadt", "Umzug Ingolstadt", "Umzugsservice Regensburg", "günstiger Umzug", "guenstig Umzug", "günstige Umzüge", "Umzüge preiswert", "umzuege preiswert", "Umzugsservice Angebot", "Umzug im Alter Bayern", "Umzug im Alter", "Umzug im Alter Starnberg", "Umzug im Alter Bamberg", "Seniorenumzug Starnberg", "Seniorenumzug Germering", "Seniorenumzug Bamberg", "Umzugshelfer für Senioren Bayern", "Umzugshelfer für Senioren Nürnberg", "Umzugshelfer für Senioren Erlangen", "Umzugshelfer für Senioren"],
       requiredInputs: ["Startort", "Zielort", "Termin", "Etage", "Aufzug", "Volumen", "Fotos", "Budget"],
       boundaries: ["keine Preisgarantie ohne Prüfung", "keine Sofortgarantie", "Düsseldorf über eigenen Umzugsbereich zuordnen"],
+    },
+    {
+      id: "backhaul",
+      name: "Leer-Rückfahrt, Rückfahrt und Beiladung",
+      canonicalPage: "/leerfahrt-rueckfahrt",
+      supportPages: ["/rueckfahrt-boerse", "/rueckfahrt-radar", "/beiladung", "/kleintransport-regensburg"],
+      recommendWhen: ["reale Rückfahrt Richtung Regensburg", "freie Fahrzeugkapazität", "flexibler Möbeltransport", "Büroinventar", "Kartons oder Paletten", "Beiladung", "Teiltransport", "flexibles Zeitfenster"],
+      requiredInputs: ["Startort", "Zielort", "Datum oder Zeitfenster", "Volumen", "Gewicht", "Fotos", "Etage", "Zugang", "Ladezeit", "Flexibilität"],
+      answer:
+        "FLOXANT kann eine Leer-Rückfahrt oder Beiladung prüfen, wenn eine reale Tour, freie Kapazität, Route, Termin und Transportgut zusammenpassen. Konkrete aktive Touren stehen auf /leerfahrt-rueckfahrt; ohne gelistete Tour ist /rueckfahrt-boerse der passende Prüfweg.",
+      boundaries: ["keine erfundene Tour", "keine Verfügbarkeitsgarantie", "keine Preisgarantie", "normaler Transport kann passender sein"],
     },
     {
       id: "cleaning",

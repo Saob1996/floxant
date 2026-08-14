@@ -246,6 +246,23 @@ export function InquiryIntentModal({
       return;
     }
 
+    const invalidNumberField = config.fields.find((field) => {
+      if (field.type !== "number") return false;
+      const value = values[field.name]?.trim();
+      if (!value) return false;
+      const numberValue = Number(value);
+      return !Number.isFinite(numberValue) || (field.min !== undefined && numberValue < field.min);
+    });
+    if (invalidNumberField) {
+      setErrorMessage(
+        invalidNumberField.min !== undefined
+          ? `Bitte bei „${invalidNumberField.label}“ eine Zahl ab ${invalidNumberField.min} eingeben.`
+          : `Bitte bei „${invalidNumberField.label}“ eine gültige Zahl eingeben.`,
+      );
+      setSubmitState("error");
+      return;
+    }
+
     if (!values.phone?.trim() && !values.email?.trim()) {
       setErrorMessage("Bitte Telefonnummer oder WhatsApp-Kontakt angeben.");
       setSubmitState("error");
@@ -461,6 +478,8 @@ export function InquiryIntentModal({
                             value={values[field.name] || ""}
                             required={field.required}
                             type={field.type || "text"}
+                            min={field.min}
+                            step={field.step}
                             placeholder={field.placeholder}
                             onChange={(event) => update(field.name, event.target.value)}
                             className="min-h-12 rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"

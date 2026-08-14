@@ -23,9 +23,12 @@ import {
   RefreshCw,
   Search,
   ShieldCheck,
+  Truck,
   UserRound,
   X,
 } from "lucide-react";
+
+import { AdminBackhaulPanel } from "@/components/admin-dashboard/AdminBackhaulPanel";
 
 import {
   BOOKING_SELECT,
@@ -70,6 +73,7 @@ import {
 } from "@/lib/admin-dashboard/supabase-browser";
 
 type AdminMetaState = "loading" | "ready" | "unavailable";
+type DashboardView = "leads" | "backhauls";
 
 function isAdmin(appMetadata: Record<string, unknown> | undefined): boolean {
   return appMetadata?.role === "admin";
@@ -134,6 +138,7 @@ export function AdminDashboard() {
   const [completenessFilter, setCompletenessFilter] = useState("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [dashboardView, setDashboardView] = useState<DashboardView>("leads");
 
   const loadBookings = useCallback(async () => {
     const supabase = getDashboardSupabaseClient();
@@ -343,13 +348,21 @@ export function AdminDashboard() {
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-cyan-300 text-slate-950"><ShieldCheck className="h-5 w-5" aria-hidden="true" /></span>
             <div className="min-w-0"><p className="truncate text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</p><p className="truncate text-xs font-semibold text-slate-400">Lead Operations</p></div>
           </div>
-          <button type="button" onClick={logout} className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 text-sm font-black text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
-            <LogOut className="h-4 w-4" aria-hidden="true" /><span className="hidden sm:inline">Abmelden</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <nav className="flex rounded-xl border border-white/10 bg-white/[0.04] p-1" aria-label="Dashboard-Bereiche">
+              <button type="button" onClick={() => setDashboardView("leads")} aria-current={dashboardView === "leads" ? "page" : undefined} className={`inline-flex min-h-9 items-center gap-2 rounded-lg px-3 text-xs font-black ${dashboardView === "leads" ? "bg-cyan-300 text-slate-950" : "text-slate-300"}`}><Inbox className="h-4 w-4" /><span className="hidden sm:inline">Anfragen</span></button>
+              <button type="button" onClick={() => setDashboardView("backhauls")} aria-current={dashboardView === "backhauls" ? "page" : undefined} className={`inline-flex min-h-9 items-center gap-2 rounded-lg px-3 text-xs font-black ${dashboardView === "backhauls" ? "bg-emerald-200 text-slate-950" : "text-slate-300"}`}><Truck className="h-4 w-4" /><span className="hidden sm:inline">Rückfahrten</span></button>
+            </nav>
+            <button type="button" onClick={logout} className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 text-sm font-black text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+              <LogOut className="h-4 w-4" aria-hidden="true" /><span className="hidden lg:inline">Abmelden</span>
+            </button>
+          </div>
         </div>
       </header>
 
       <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+        {dashboardView === "leads" ? (
+          <>
         <section className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div><p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">Interne Pipeline</p><h1 className="mt-3 text-3xl font-black tracking-[-0.03em] sm:text-5xl">Kundenanfragen</h1><p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-400 sm:text-base">Vollständigkeit, nächste Aktion und bearbeitbare Antwortentwürfe. Keine automatische Ablehnung, Preisberechnung oder Kontaktaufnahme.</p></div>
           <button type="button" onClick={() => void loadBookings()} disabled={loading} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 text-sm font-black text-slate-950 disabled:opacity-60"><RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} aria-hidden="true" />Aktualisieren</button>
@@ -406,6 +419,16 @@ export function AdminDashboard() {
             </div>
           )}
         </section>
+          </>
+        ) : (
+          <>
+            <section className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div><p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-200">Freie Fahrzeugkapazität</p><h1 className="mt-3 text-3xl font-black tracking-[-0.03em] sm:text-5xl">Leer-Rückfahrten</h1><p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-400 sm:text-base">Echte Touren als Entwurf vorbereiten, veröffentlichen, pausieren oder archivieren. Aktive zukünftige Rückfahrten erscheinen automatisch auf der öffentlichen Seite.</p></div>
+              <a href="/leerfahrt-rueckfahrt#aktuelle-rueckfahrten" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-emerald-200/20 bg-emerald-200/10 px-5 text-sm font-black text-emerald-100">Öffentliche Seite öffnen<ChevronRight className="h-4 w-4" /></a>
+            </section>
+            <AdminBackhaulPanel />
+          </>
+        )}
       </div>
 
       {selectedBooking ? (
