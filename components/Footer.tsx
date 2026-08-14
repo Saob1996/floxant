@@ -12,7 +12,7 @@ import {
   type FloxantRegion,
 } from "@/lib/floxant-services";
 import { germanText } from "@/lib/german-text";
-import { buildLeadHref } from "@/lib/lead-intents";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
@@ -70,12 +70,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
     : isRegensburgContext
       ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
       : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
-  const footerLead = isRegensburgContext && !isDuesseldorfContext
-    ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage" }
-    : isDuesseldorfContext
-      ? { service: "angebot-pruefen", city: "duesseldorf", intent: "duesseldorf-anfrage" }
-      : { service: "sonstiges", city: "deutschland", intent: "homepage-anfrage" };
-  const footerContactHref = buildLeadHref(footerLead);
+  const footerContactHref = buildGlobalRequestHref("global_footer");
 
   return (
     <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
@@ -114,11 +109,10 @@ export function Footer({ dic }: { dic?: any } = {}) {
             </a>
             <Link
               href={footerContactHref}
+              onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
               data-event="seo_cta_click"
               data-source="global_footer"
-              data-service={footerLead.service}
-              data-city={footerLead.city}
-              data-page-intent={footerLead.intent}
+              data-page-intent="neutrale-anfrage"
               data-priority="p2"
               data-cta-label="Kontakt oeffnen"
               data-destination={footerContactHref}

@@ -9,22 +9,15 @@ import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
 import { FloxServicesMegaMenu } from "@/components/FloxServicesMegaMenu";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
-import { buildLeadHref } from "@/lib/lead-intents";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { cn } from "@/lib/utils";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
 type DesktopMenu = "services" | "locations" | "special" | null;
 
-const requestHref = buildLeadHref({
-  service: "sonstiges",
-  intent: "allgemeine-anfrage",
-  priority: "p1",
-});
-const headerOfferHref = buildLeadHref({
-  service: "reinigung",
-  intent: "reinigungsfirma-angebot",
-  priority: "p1",
-});
+const requestHref = buildGlobalRequestHref("global_header");
+const mobileRequestHref = buildGlobalRequestHref("global_mobile_header");
+const headerOfferHref = buildGlobalRequestHref("global_header");
 const headerBudgetHref = "/anfrage-mit-preisrahmen";
 const headerWhatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich möchte eine Anfrage stellen.")}`;
 
@@ -66,6 +59,10 @@ export function PublicHeader({
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const mobileTriggerRef = useRef<HTMLButtonElement>(null);
   const lastDesktopTriggerRef = useRef<HTMLButtonElement | null>(null);
+
+  function resetNeutralRequestState() {
+    window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"));
+  }
 
   function closeDesktopMenu(restoreFocus = false) {
     setOpenMenu(null);
@@ -284,10 +281,10 @@ export function PublicHeader({
 
           <Link
             href={requestHref}
+            onClick={resetNeutralRequestState}
             data-event="seo_cta_click"
-            data-source="header"
-            data-service="sonstiges"
-            data-page-intent="allgemeine-anfrage"
+            data-source="global_header"
+            data-page-intent="neutrale-anfrage"
             data-priority="p1"
             data-cta-label="Anfrage senden"
             data-destination={requestHref}
@@ -311,10 +308,10 @@ export function PublicHeader({
             </Link>
             <Link
               href={headerOfferHref}
+              onClick={resetNeutralRequestState}
               data-event="seo_cta_click"
-              data-source="header"
-              data-service="reinigung"
-              data-page-intent="reinigungsfirma-angebot"
+              data-source="global_header"
+              data-page-intent="neutrale-anfrage"
               data-priority="p1"
               data-cta-label="Angebot anfragen"
               data-destination={headerOfferHref}
@@ -384,8 +381,8 @@ export function PublicHeader({
                 <Link href="/kontakt" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Kontakt</Link>
               </nav>
 
-              <Link href={requestHref} onClick={() => closeMobileMenu()} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
-                Anfrage senden
+              <Link href={mobileRequestHref} onClick={() => { resetNeutralRequestState(); closeMobileMenu(); }} data-event="seo_cta_click" data-source="global_mobile_header" data-page-intent="neutrale-anfrage" data-priority="p1" data-cta-label="Angebot anfragen" data-destination={mobileRequestHref} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
+                Angebot anfragen
                 <FileText className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>

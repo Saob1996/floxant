@@ -19,19 +19,14 @@ import {
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
-import { buildLeadHref } from "@/lib/lead-intents";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { generatePageSEO } from "@/lib/seo";
 import { searchAuthorityPages } from "@/lib/search-authority";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
-const requestHref = buildLeadHref({
-  path,
-  service: "sonstiges",
-  intent: "homepage-anfrage",
-  priority: "p1",
-});
+const requestHref = buildGlobalRequestHref("global_homepage");
 const offerHref = "/angebot-guenstiger-pruefen";
 
 const homepageAuthority = searchAuthorityPages["/"];

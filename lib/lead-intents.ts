@@ -151,8 +151,8 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
   },
   "/kontakt": {
     service: "kontakt",
-    city: "regensburg",
-    intent: "kontakt-anfrage",
+    city: "deutschland",
+    intent: "neutrale-anfrage",
     priority: "p0",
     ctaLabel: "Anfrage stellen",
   },
@@ -1091,6 +1091,20 @@ export function resolveLeadIntent(input: LeadIntentInput = {}): LeadIntent {
 export function buildLeadHref(input: LeadIntentInput = {}, destination = "/kontakt") {
   const lead = resolveLeadIntent(input);
   const params = new URLSearchParams();
+  const hasSupportedContactCity = ["duesseldorf", "dusseldorf", "regensburg", "regensburg-bayern"].includes(
+    lead.city,
+  );
+  const hasNamedOtherCity = Boolean(
+    lead.city && lead.city !== "deutschland" && !hasSupportedContactCity,
+  );
+
+  if (destination === "/kontakt") {
+    if (hasNamedOtherCity) {
+      params.set("location", "unsicher");
+    } else if (!hasSupportedContactCity) {
+      params.set("mode", "neutral");
+    }
+  }
 
   if (lead.service && lead.service !== "kontakt" && lead.service !== "sonstiges") {
     params.set("service", lead.service);

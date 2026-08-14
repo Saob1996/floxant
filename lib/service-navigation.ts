@@ -296,7 +296,7 @@ export const primaryHeaderLinks = [
 export const mobileQuickLinks = [
   { label: "Leistungen", href: "/leistungen" },
   ...primaryHeaderLinks,
-  { label: "Unsicher?", href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&source=mobile-nav" },
+  { label: "Unsicher?", href: "/kontakt?mode=neutral&source=mobile-nav" },
 ] as const;
 
 export const footerNavigationGroups = [
@@ -332,8 +332,8 @@ export const footerNavigationGroups = [
     title: "Kontakt",
     links: [
       { label: "Kontaktseite", href: "/kontakt" },
-      { label: "Anfrage stellen", href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&source=footer" },
-      { label: "Angebot prüfen", href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=footer" },
+      { label: "Anfrage stellen", href: "/kontakt?mode=neutral&source=global_footer" },
+      { label: "Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
     ],
   },
 ] as const;

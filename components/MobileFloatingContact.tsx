@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 
 export default function MobileFloatingContact() {
   const pathname = usePathname() || "/";
@@ -16,11 +17,19 @@ export default function MobileFloatingContact() {
 
   if (isPrivatePath) return null;
 
-  const city = pathname.includes("duesseldorf") ? "duesseldorf" : "regensburg";
-  const requestHref = `/kontakt?service=sonstiges&city=${city}&intent=allgemeine-anfrage&source=floating`;
-  const offerHref = `/kontakt?service=angebot-pruefen&city=${city}&intent=angebot-pruefen&source=floating`;
+  const city = pathname.includes("duesseldorf")
+    ? "duesseldorf"
+    : pathname.includes("regensburg")
+      ? "regensburg"
+      : "deutschland";
+  const requestHref = buildGlobalRequestHref("global_floating");
+  const offerHref = "/angebot-guenstiger-pruefen";
   const budgetHref = "/anfrage-mit-preisrahmen";
-  const whatsappText = `Hallo FLOXANT, ich möchte eine Anfrage in ${city === "duesseldorf" ? "Düsseldorf" : "Regensburg"} stellen.`;
+  const whatsappText = city === "duesseldorf"
+    ? "Hallo FLOXANT, ich möchte eine Anfrage in Düsseldorf stellen."
+    : city === "regensburg"
+      ? "Hallo FLOXANT, ich möchte eine Anfrage in Regensburg stellen."
+      : "Hallo FLOXANT, ich möchte eine Anfrage stellen.";
   const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
@@ -29,13 +38,12 @@ export default function MobileFloatingContact() {
         <div className="flox-mobile-action-grid">
           <Link
             href={requestHref}
+            onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
             className="flox-mobile-action flox-mobile-action-primary"
             aria-label="Anfrage an FLOXANT senden"
             data-event="seo_cta_click"
-            data-source="floating_contact"
-            data-service="sonstiges"
-            data-city={city}
-            data-page-intent="allgemeine-anfrage"
+            data-source="global_floating"
+            data-page-intent="neutrale-anfrage"
             data-priority="p1"
             data-cta-label="Anfrage"
             data-destination={requestHref}
@@ -85,7 +93,6 @@ export default function MobileFloatingContact() {
             data-event="service_card_click"
             data-source="floating_contact"
             data-service="angebot-pruefen"
-            data-city={city}
             data-page-intent="angebot-pruefen"
             data-destination={offerHref}
           >
