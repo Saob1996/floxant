@@ -23,11 +23,8 @@ import {
 } from "lucide-react";
 
 import { LeadCta } from "@/components/LeadCta";
-import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
-import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
-import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
@@ -91,7 +88,7 @@ const neededDetails = [
 ] as const;
 
 const quickAnswerItems = [
-  "Instrumentart, Etage, Aufzug, Treppenhaus, Trageweg und Zugang sind wichtiger als ein schneller Blindpreis.",
+  "Instrumentart, Etage, Aufzug, Treppenhaus, Trageweg und Zugang werden vor einem Preis geklärt.",
   "Fotos vom Instrument und vom Weg können die Einschätzung erleichtern, sind aber im ersten Schritt optional.",
   "Eine Anfrage ist noch keine Buchung und keine Preis-, Soforttermin- oder Verfügbarkeitsgarantie.",
 ] as const;
@@ -320,8 +317,8 @@ function PianoTransportVisual() {
       <div className="relative rounded-lg border border-slate-200 bg-slate-950 p-5 text-white">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-black uppercase tracking-normal text-cyan-200">Transportbriefing</p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal">Klavier nicht blind planen.</h2>
+            <p className="text-xs font-black uppercase tracking-normal text-cyan-200">Angaben zum Transport</p>
+            <h2 className="mt-2 text-2xl font-black tracking-normal">Zugänge vor dem Transport klären.</h2>
           </div>
           <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg bg-white text-slate-950">
             <Piano className="h-8 w-8" aria-hidden="true" />
@@ -342,14 +339,14 @@ function PianoTransportVisual() {
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-normal text-slate-500">
             <Ruler className="h-4 w-4" aria-hidden="true" />
-            Zugangscheck
+            Zugang
           </div>
           <p className="mt-2 text-sm font-bold leading-6 text-slate-800">Treppen, Türen, Aufzug und Laufweg vorab sichtbar machen.</p>
         </div>
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-normal text-slate-500">
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-            Saubere Zusage
+            Abstimmung
           </div>
           <p className="mt-2 text-sm font-bold leading-6 text-slate-800">Erst prüfen, dann Termin, Aufwand und nächsten Schritt abstimmen.</p>
         </div>
@@ -693,12 +690,12 @@ export default function KlaviertransportRegensburgPage() {
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Kosten und Angebot</p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Ein seriöser Preis braucht zuerst einen seriösen Fallcheck.
+              Ein verlässlicher Preis braucht vollständige Angaben.
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
               Beim Klaviertransport hängt der Aufwand nicht nur von Kilometern ab. Treppenhaus,
               Aufzug, Türbreiten, Laufweg, Gewicht, Schutzbedarf und Termin entscheiden mit. Deshalb
-              ist ein kurzer Foto- und Zugangsscheck besser als ein schneller Blindpreis.
+              geben Fotos und genaue Zugangsdaten eine verlässliche Grundlage.
             </p>
           </article>
 
@@ -745,22 +742,6 @@ export default function KlaviertransportRegensburgPage() {
           </div>
         </div>
       </section>
-
-      <TrustProofPanel
-        allowedPage={path}
-        serviceKey="umzug"
-        locationKey="regensburg"
-        title="Was Sie beim Klaviertransport in Regensburg erwarten können"
-        intro="Diese Seite setzt auf prüfbare Transport-Eckdaten statt schneller Blindzusagen: Instrument, Zugang, Fotos, Laufweg, Haltepunkt und Termin bleiben sichtbar."
-      />
-
-      <ServiceProofChecklist
-        serviceKey="umzug"
-        title="Welche Angaben den Klaviertransport belastbarer machen"
-        intro="Ein Klaviertransport wird planbarer, wenn Instrument, Treppenhaus, Laufweg, Haltepunkt und Zielraum vor der Zusage nachvollziehbar sind."
-      />
-
-      <LocalProofPanel location="regensburg" />
 
       <section className="bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl rounded-lg border border-slate-200 bg-slate-50 p-6">
