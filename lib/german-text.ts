@@ -31,6 +31,19 @@ const machineValueKeys = new Set([
   "locale",
   "market",
   "schemaVersion",
+  "group",
+  "priority",
+  "source",
+  "service",
+  "city",
+  "intent",
+  "contactService",
+  "contactIntent",
+  "pageIntent",
+  "trackingIntent",
+  "type",
+  "variant",
+  "status",
 ]);
 
 const chr = (...codes: number[]) => String.fromCharCode(...codes);
@@ -52,6 +65,8 @@ const directSequenceReplacements: Array<[string, string]> = [
 ];
 
 const transliterationReplacements: Array<[RegExp, string]> = [
+  [/\bAender/g, "\u00c4nder"],
+  [/\baender/g, "\u00e4nder"],
   [/\bFuer\b/g, "F\u00fcr"],
   [/\bfuer\b/g, "f\u00fcr"],
   [/\bGuenst/g, "G\u00fcnst"],
@@ -86,6 +101,8 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bbuero\b/g, "b\u00fcro"],
   [/\bEntruempel/g, "Entr\u00fcmpel"],
   [/\bentruempel/g, "entr\u00fcmpel"],
+  [/\bKellerentruempel/g, "Kellerentr\u00fcmpel"],
+  [/\bkellerentruempel/g, "kellerentr\u00fcmpel"],
   [/\bHaushaltsaufloes/g, "Haushaltsaufl\u00f6s"],
   [/\bhaushaltsaufloes/g, "haushaltsaufl\u00f6s"],
   [/\bWohnungsaufloes/g, "Wohnungsaufl\u00f6s"],
@@ -114,6 +131,8 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bSchluessel\b/g, "Schl\u00fcssel"],
   [/\bMoebel/g, "M\u00f6bel"],
   [/\bmoebel/g, "m\u00f6bel"],
+  [/\bMietvertraege\b/g, "Mietvertr\u00e4ge"],
+  [/\bmietvertraege\b/g, "mietvertr\u00e4ge"],
   [/\bKueche\b/g, "K\u00fcche"],
   [/\bkueche\b/g, "k\u00fcche"],
   [/\bGewerbeflaeche/g, "Gewerbefl\u00e4che"],
@@ -146,6 +165,10 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bloesung\b/g, "l\u00f6sung"],
   [/\bUebergabe/g, "\u00dcbergabe"],
   [/\buebergabe/g, "\u00fcbergabe"],
+  [/\bHaltemoeg/g, "Haltem\u00f6g"],
+  [/\bhaltemoeg/g, "haltem\u00f6g"],
+  [/\bFlexibilitaet\b/g, "Flexibilit\u00e4t"],
+  [/\bflexibilitaet\b/g, "flexibilit\u00e4t"],
   [/\bBestaetigung\b/g, "Best\u00e4tigung"],
   [/\bbestaetigung\b/g, "best\u00e4tigung"],
   [/\bBestaetig/g, "Best\u00e4tig"],
@@ -225,6 +248,8 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\boeffentlich/g, "\u00f6ffentlich"],
   [/\bOeffn/g, "\u00d6ffn"],
   [/\boeffn/g, "\u00f6ffn"],
+  [/\bLeistungsuebersicht\b/g, "Leistungs\u00fcbersicht"],
+  [/\bleistungsuebersicht\b/g, "leistungs\u00fcbersicht"],
   [/\bAusfuehr/g, "Ausf\u00fchr"],
   [/\bausfuehr/g, "ausf\u00fchr"],
   [/\bGegenstaend/g, "Gegenst\u00e4nd"],
@@ -263,6 +288,14 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\blageraufloes/g, "lageraufl\u00f6s"],
   [/\bzusammenhaeng/g, "zusammenh\u00e4ng"],
   [/\bZusammenhaeng/g, "Zusammenh\u00e4ng"],
+  [/\bSonderfaell/g, "Sonderf\u00e4ll"],
+  [/\bsonderfaell/g, "sonderf\u00e4ll"],
+  [/\bSuedstadt\b/g, "S\u00fcdstadt"],
+  [/\bsuedstadt\b/g, "s\u00fcdstadt"],
+  [/\bMoegeldorf\b/g, "M\u00f6geldorf"],
+  [/\bmoegeldorf\b/g, "m\u00f6geldorf"],
+  [/\bunvollstaendig/g, "unvollst\u00e4ndig"],
+  [/\bUnvollstaendig/g, "Unvollst\u00e4ndig"],
 ];
 
 const brokenWordReplacements: Array<[RegExp, string]> = [

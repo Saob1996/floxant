@@ -827,7 +827,7 @@ export function resolveRequestChecklistKey(input: {
 }
 
 export function getRequestChecklist(serviceKey?: string) {
-  return requestChecklistDefinitions[normalizeRequestChecklistKey(serviceKey)];
+  return germanizeDeep(requestChecklistDefinitions[normalizeRequestChecklistKey(serviceKey)]);
 }
 
 export function buildRequestChecklistContactHref(serviceKey?: string, options: { city?: string; source?: string } = {}) {
@@ -863,3 +863,4 @@ export const p0RequestChecklistRoutes = [
   { path: "/uebergabe-sprint", serviceKey: "uebergabe", optional: true },
   { path: "/vermieter-ready-service", serviceKey: "uebergabe", optional: true },
 ] as const;
+import { germanizeDeep } from "@/lib/german-text";
