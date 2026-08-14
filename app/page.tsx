@@ -311,7 +311,7 @@ export default function HomePage() {
                   data-source="homepage_main_services"
                   className="group flex min-h-64 flex-col rounded-xl border border-slate-200 bg-slate-50 p-6 transition hover:border-blue-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                 >
-                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-cyan-200"><Icon className="h-5 w-5" aria-hidden="true" /></span>
                   <h3 className="mt-5 text-xl font-black">{service.title}</h3>
                   <p className="mt-3 flex-1 text-sm font-semibold leading-7 text-slate-600">{service.text}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-800">{service.cta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
