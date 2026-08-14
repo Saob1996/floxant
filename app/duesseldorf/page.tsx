@@ -1,90 +1,68 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Building2, CheckCircle2, FileSearch, MapPin, ShieldCheck } from "lucide-react";
-import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
+import { ArrowRight, Building2, MapPin, Phone, Sparkles } from "lucide-react";
+
 import { company, duesseldorfCompany } from "@/lib/company";
-import { buildLeadHref } from "@/lib/lead-intents";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/duesseldorf";
 const canonical = `${company.url}${path}`;
+const contactHref = "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=location";
 
-const offerHref = buildLeadHref({
-  service: "angebot-pruefen",
-  city: "duesseldorf",
-  intent: "angebot-vergleichen-duesseldorf",
-  priority: "p0",
-});
-
-const cleaningHref = buildLeadHref({
-  service: "reinigung",
-  city: "duesseldorf",
-  intent: "reinigung-duesseldorf",
-  priority: "p0",
-});
-
-const duesseldorfCleaningLinks = [
+const cleaningServices = [
   {
-    title: "Reinigung Düsseldorf",
-    text: "Objektart, Fläche, Zielzustand, Termin und Fotos für private oder gewerbliche Reinigungsanfragen.",
-    href: "/duesseldorf/reinigung",
-    cta: "Reinigung öffnen",
-  },
-  {
-    title: "Büroreinigung Düsseldorf",
-    text: "Turnus, Räume, Reinigungszeiten, Sanitär/Küche, Ansprechpartner und vorhandenes Angebot.",
+    title: "Büroreinigung",
+    text: "Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche mit passendem Turnus.",
     href: "/duesseldorf/bueroreinigung",
-    cta: "Büroreinigung öffnen",
   },
   {
-    title: "Gewerbereinigung Düsseldorf",
-    text: "Gewerbeflächen, Nutzungszeiten, Leistungsumfang, Sonderflächen und Angebotsprüfung.",
-    href: "/duesseldorf/gewerbereinigung",
-    cta: "Gewerbereinigung öffnen",
-  },
-  {
-    title: "Angebot prüfen Düsseldorf",
-    text: "Bestehendes Reinigungsangebot, Umfang, Turnus und offene Punkte sachlich einordnen.",
-    href: "/angebot-vergleichen-duesseldorf",
-    cta: "Angebot prüfen",
-  },
-  {
-    title: "Premium-Reinigung Düsseldorf",
-    text: "Diskrete Reinigung für anspruchsvolle private oder hochwertige Objekte abstimmen.",
-    href: "/duesseldorf/luxusreinigung",
-    cta: "Premium-Reinigung öffnen",
-  },
-  {
-    title: "Praxisreinigung Düsseldorf",
-    text: "Praxisräume, sensible Bereiche, Zeitfenster, Turnus und sachliche Ablaufklärung.",
+    title: "Praxisreinigung",
+    text: "Praxisräume, eigene Vorgaben und Zeitfenster außerhalb des laufenden Betriebs abstimmen.",
     href: "/duesseldorf/praxisreinigung",
-    cta: "Praxisreinigung öffnen",
   },
   {
-    title: "Fensterreinigung Düsseldorf",
-    text: "Fensterzahl, Glasflächen, Erreichbarkeit, Rahmen/Falze, Etage und Terminlogik.",
+    title: "Fensterreinigung",
+    text: "Glasflächen, gewünschte Seiten, Rahmen und sichere Erreichbarkeit vorab klären.",
     href: "/duesseldorf/fensterreinigung",
-    cta: "Fensterreinigung öffnen",
   },
-];
+  {
+    title: "Gewerbereinigung",
+    text: "Läden, Studios und gemischt genutzte Flächen passend zu Nutzung und Öffnungszeiten reinigen.",
+    href: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    title: "Grundreinigung",
+    text: "Einmalige Intensivreinigung nach Zustand, Oberfläche und gewünschtem Ergebnis planen.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
+    title: "Unterhaltsreinigung",
+    text: "Wiederkehrende Aufgaben mit Raumplan, Häufigkeiten und festen Zeitfenstern festlegen.",
+    href: "/duesseldorf/unterhaltsreinigung",
+  },
+  {
+    title: "Baureinigung",
+    text: "Zwischen- oder Endreinigung passend zu Bauphase, Rückständen und Übergabetermin.",
+    href: "/duesseldorf/baureinigung",
+  },
+] as const;
 
 const faqItems = [
   {
-    q: "Wie erreiche ich FLOXANT in Düsseldorf?",
-    a: "FLOXANT ist in Düsseldorf unter Breite Str. 22, 40213 Düsseldorf geführt. Für eine Reinigungsanfrage können Sie Telefon, WhatsApp oder das Formular nutzen.",
+    q: "Welche Reinigungsleistungen bietet FLOXANT in Düsseldorf an?",
+    a: "Sie können Büro-, Praxis-, Fenster-, Gewerbe-, Grund-, Unterhalts- und Baureinigung anfragen. Die einzelnen Seiten zeigen, welche Angaben für den jeweiligen Service wichtig sind.",
   },
   {
-    q: "Gibt es eine 50-km-Umgebung um Düsseldorf?",
-    a: "Die Umgebung wird nur als möglicher Servicebereich erklärt. Orte wie Neuss, Ratingen, Meerbusch, Hilden, Erkrath, Krefeld, Mettmann oder Duisburg sind keine zusätzlichen Niederlassungen.",
+    q: "Welche Angaben braucht FLOXANT für eine erste Einschätzung?",
+    a: "Nennen Sie Objektart, Stadtteil, ungefähre Fläche, gewünschte Leistung und Termin. Bei regelmäßiger Reinigung helfen zusätzlich Turnus und mögliche Zeitfenster.",
   },
   {
-    q: "Welche Düsseldorfer Reinigungsseiten sind jetzt direkt verlinkt?",
-    a: "Reinigung, Büroreinigung, Gewerbereinigung, Praxisreinigung und Fensterreinigung sind direkt erreichbar. Zusätzliche Stadtteilseiten werden nicht künstlich vervielfacht.",
+    q: "Kann ich zuerst telefonisch klären, welche Reinigung passt?",
+    a: `Ja. Sie erreichen FLOXANT Düsseldorf unter ${duesseldorfCompany.phone}. Alternativ können Sie die Eckdaten über das Kontaktformular senden.`,
   },
   {
-    q: "Können englischsprachige Kunden anfragen?",
-    a: "Ja. Eine Anfrage kann auf Englisch starten, wenn Service, Ort, Umfang, Fotos, Termin und bevorzugter Kontaktweg klar genannt werden.",
+    q: "Ist eine Anfrage bereits verbindlich?",
+    a: "Nein. Wir prüfen zuerst Umfang, Zugang und Termin. Die konkrete Abstimmung erfolgt anschließend über den von Ihnen gewählten Kontaktweg.",
   },
 ];
 
@@ -92,13 +70,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Düsseldorf | Reinigung für Büro, Praxis & Objekt",
   description:
-    "FLOXANT Düsseldorf für Reinigung von Wohnung, Büro, Praxis, Gewerbe und Glas. Fläche, Turnus, Zugang, Termin oder vorhandenes Angebot senden.",
+    "Reinigungsservice in Düsseldorf für Büro, Praxis, Gewerbe, Fenster, Grund-, Unterhalts- und Baureinigung. Leistung auswählen und Eckdaten senden.",
   alternates: {
     canonical,
-    languages: {
-      "de-DE": path,
-      "x-default": path,
-    },
+    languages: { "de-DE": path, "x-default": path },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: path,
+    title: "FLOXANT Düsseldorf für passende Reinigungsleistungen",
+    description: "Reinigungsleistung auswählen, Eckdaten senden und den weiteren Ablauf abstimmen.",
   },
 };
 
@@ -108,25 +90,10 @@ function JsonLd() {
     "@graph": [
       buildWebPageJsonLd({
         name: "FLOXANT Düsseldorf",
-        description:
-          "Düsseldorfer Übersicht für Reinigung von Wohnung, Büro, Praxis, Gewerbe und Glas sowie die Prüfung vorhandener Reinigungsangebote.",
+        description: "Düsseldorfer Standortseite für klar getrennte Reinigungsleistungen und Kontaktwege.",
         path,
-        about: [
-          "FLOXANT Düsseldorf",
-          "Angebot prüfen Düsseldorf",
-          "Reinigung Düsseldorf",
-          "Büroreinigung Düsseldorf",
-          "Gewerbereinigung Düsseldorf",
-          "Praxisreinigung Düsseldorf",
-          "Fensterreinigung Düsseldorf",
-          "Düsseldorf 50 km Servicegebiet",
-        ],
-        potentialActions: [
-          { name: "Angebot prüfen", target: offerHref, type: "ContactAction" },
-          { name: "Reinigung Düsseldorf anfragen", target: "/duesseldorf/reinigung", type: "Action" },
-          { name: "Büroreinigung Düsseldorf anfragen", target: "/duesseldorf/bueroreinigung", type: "Action" },
-          { name: "Reinigung Düsseldorf anfragen", target: cleaningHref, type: "ContactAction" },
-        ],
+        about: ["FLOXANT Düsseldorf", "Reinigungsservice Düsseldorf", "Gebäudereinigung Düsseldorf"],
+        potentialActions: [{ name: "Reinigung anfragen", target: contactHref, type: "ContactAction" }],
       }),
       {
         "@type": "LocalBusiness",
@@ -142,7 +109,7 @@ function JsonLd() {
           addressLocality: duesseldorfCompany.city,
           addressCountry: duesseldorfCompany.countryCode,
         },
-        areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Krefeld", "Mettmann"],
+        areaServed: "Düsseldorf",
       },
       buildFaqJsonLd(faqItems),
     ],
@@ -156,107 +123,91 @@ export default function DuesseldorfHubPage() {
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
-      <section className="relative isolate bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
-        <Image
-          src="/assets/floxant-hero-neu-gedacht.webp"
-          alt="FLOXANT Düsseldorf Servicehub"
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover opacity-45"
-        />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.96)_0%,rgba(15,23,42,0.84)_58%,rgba(15,23,42,0.42)_100%)]" />
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+      <section className="relative isolate bg-slate-950 px-5 pb-16 pt-28 text-white sm:px-8 lg:px-10 lg:pt-32">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_15%,rgba(37,99,235,0.28),transparent_36%),linear-gradient(135deg,#020617_0%,#0f172a_62%,#164e63_100%)]" />
+        <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[1fr_0.72fr] lg:items-center">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm font-black text-cyan-100 backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm font-black text-cyan-100">
               <Building2 className="h-4 w-4" aria-hidden="true" />
               FLOXANT Düsseldorf
             </p>
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              FLOXANT Düsseldorf für Reinigung von Büro, Praxis und Objekt.
+            <h1 className="mt-6 max-w-5xl text-4xl font-black leading-tight tracking-normal sm:text-5xl lg:text-6xl">
+              Reinigungsservice in Düsseldorf – klar zur passenden Leistung.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-              Wählen Sie die passende Reinigungsleistung und senden Sie Stadtteil, Objektart, Fläche,
-              Turnus, Zugang, Termin und bei Bedarf Fotos oder ein vorhandenes Angebot.
+            <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-slate-100 sm:text-lg">
+              Wählen Sie die Reinigung, die zu Ihrem Objekt passt. Mit Fläche, gewünschtem Umfang und Termin können wir Ihre Anfrage gezielt einordnen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href={cleaningHref}
+                href={contactHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
                 data-event="seo_cta_click"
-                data-region="duesseldorf"
                 data-service="reinigung"
                 data-city="duesseldorf"
                 data-page-intent="reinigung-duesseldorf"
-                data-priority="p0"
-                data-cta-label="Reinigung anfragen"
-                data-destination={cleaningHref}
+                data-destination={contactHref}
               >
                 Reinigung anfragen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
-                href={offerHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white backdrop-blur transition hover:bg-white/15"
+                href="/angebot-guenstiger-pruefen"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
                 data-event="seo_cta_click"
-                data-region="duesseldorf"
                 data-service="angebot-pruefen"
                 data-city="duesseldorf"
-                data-page-intent="angebot-vergleichen-duesseldorf"
-                data-priority="p0"
-                data-cta-label="Angebot prüfen"
-                data-destination={offerHref}
+                data-page-intent="angebot-pruefen-duesseldorf"
+                data-destination="/angebot-guenstiger-pruefen"
               >
                 Angebot prüfen
               </Link>
             </div>
           </div>
 
-          <div className="grid gap-3">
-            {[
-              "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Glas klar auswählen.",
-              "Grund-, Bauend-, Unterhalts- und Treppenhausreinigung im Reinigungsbereich einordnen.",
-              "Stadtteil, Fläche, Turnus, Zugang, Termin und Fotos reduzieren Rückfragen.",
-              "Vorhandene Reinigungsangebote anhand von Umfang und offenen Positionen prüfen.",
-            ].map((item) => (
-              <div key={item} className="flex gap-3 rounded-lg border border-white/15 bg-slate-950/70 p-4 text-sm font-semibold leading-6 text-slate-100 backdrop-blur">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" aria-hidden="true" />
-                {item}
-              </div>
-            ))}
-          </div>
+          <aside className="rounded-lg border border-white/15 bg-white p-5 text-slate-950 shadow-2xl shadow-slate-950/30">
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
+              <MapPin className="h-4 w-4" aria-hidden="true" />
+              Standort
+            </p>
+            <p className="mt-4 text-xl font-black">{duesseldorfCompany.name}</p>
+            <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">
+              {duesseldorfCompany.streetAddress}<br />
+              {duesseldorfCompany.postalCode} {duesseldorfCompany.city}
+            </p>
+            <a
+              href={`tel:${duesseldorfCompany.phoneRaw}`}
+              className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              {duesseldorfCompany.phone}
+            </a>
+          </aside>
         </div>
       </section>
 
       <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 max-w-3xl">
-            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
-              <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Reinigung Düsseldorf
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Reinigungsleistungen im direkten Überblick.
-            </h2>
-            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-              Die Reinigungsthemen sind auf wenige klare Zielseiten verteilt. Jede Seite führt zu einer Anfrage mit Stadtparameter und zur Angebotsprüfung, ohne Preis-, Termin- oder Verfügbarkeitsgarantie.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {duesseldorfCleaningLinks.map((item) => (
+          <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            Reinigung in Düsseldorf
+          </p>
+          <h2 className="mt-3 max-w-4xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+            Welche Reinigung benötigen Sie?
+          </h2>
+          <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+            Die sieben Leistungen sind getrennt beschrieben, damit Umfang, benötigte Angaben und Aufwand nachvollziehbar bleiben.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {cleaningServices.map((service) => (
               <Link
-                key={item.href}
-                href={item.href}
-                className="group flex min-h-[13rem] flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-sm"
-                data-event="service_card_click"
-                data-city="duesseldorf"
-                data-source="duesseldorf_hub_cleaning_cluster"
-                data-destination={item.href}
+                key={service.href}
+                href={service.href}
+                className="group flex min-h-48 flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
               >
-                <h3 className="text-xl font-black text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+                <h3 className="text-xl font-black text-slate-950">{service.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{service.text}</p>
                 <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-black text-blue-700">
-                  {item.cta}
+                  Mehr erfahren
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
                 </span>
               </Link>
@@ -265,94 +216,63 @@ export default function DuesseldorfHubPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.84fr_1.16fr]">
-          <div>
-            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-              50-km-Umgebung
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Umgebung als Einsatzgebiet, nicht als neue Niederlassung.
-            </h2>
-            <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              FLOXANT kann Orte im Düsseldorfer Umkreis prüfen, wenn Service, Strecke, Umfang,
-              Fotos, Termin und Kapazität zusammenpassen. Eine eigene Ortsseite entsteht erst,
-              wenn echter Nutzen und echte Abdeckung belegt sind.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {["Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Krefeld", "Mettmann", "Duisburg"].map((city) => (
-              <div key={city} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-                <div className="text-sm font-black text-slate-950">{city}</div>
-                <div className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                  Einsatz je nach Auftrag, Umfang und Termin prüfen.
-                </div>
+      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-black uppercase tracking-normal text-blue-700">Ablauf</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">In drei Schritten zur Rückmeldung.</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              "Passende Reinigungsleistung auswählen.",
+              "Objekt, Fläche, Umfang und Termin beschreiben.",
+              "Wir prüfen die Angaben und melden uns zum weiteren Ablauf.",
+            ].map((step, index) => (
+              <div key={step} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-950 text-sm font-black text-white">{index + 1}</span>
+                <p className="mt-4 text-sm font-bold leading-7 text-slate-700">{step}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+      <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
-            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
-              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-              Sichere Anfrage
-            </p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
-              Angebot, Fotos oder kurze Beschreibung reichen für den ersten Schritt.
-            </h2>
-            <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
-              FLOXANT verspricht keine festen Preise oder Sofortverfügbarkeit ohne Prüfung Ihrer Angaben.
-              Für den ersten Schritt reichen Leistung, Ort, Umfang und gewünschter Termin.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <Link
-              href={cleaningHref}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
-              data-event="seo_cta_click"
-              data-region="duesseldorf"
-              data-service="reinigung"
-              data-city="duesseldorf"
-              data-page-intent="reinigung-duesseldorf"
-              data-priority="p0"
-              data-cta-label="Reinigung anfragen"
-              data-destination={cleaningHref}
-            >
-              Reinigung anfragen
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/en"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-black text-white transition hover:bg-white/10"
-            >
-              Services in English
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <ToolJourneyPanel intent="cleaning" region="duesseldorf" />
-
-      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.78fr_1.22fr]">
-          <div>
-            <p className="text-sm font-black uppercase tracking-normal text-blue-700">FAQ</p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Düsseldorf bleibt klar und vorsichtig erklärt.
-            </h2>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">Häufige Fragen</p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Kurz erklärt für Düsseldorf.</h2>
           </div>
           <div className="grid gap-3">
-            {faqItems.map((item) => (
-              <details key={item.q} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+            {faqItems.map((item, index) => (
+              <details key={item.q} open={index === 0} className="rounded-lg border border-slate-200 bg-white p-5">
                 <summary className="cursor-pointer text-base font-black text-slate-950">{item.q}</summary>
                 <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.a}</p>
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-cyan-200">Ihre Anfrage</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">Objekt und gewünschte Reinigung kurz beschreiben.</h2>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
+              Eine Anfrage ist noch keine Buchung. Wir stimmen Umfang und Termin nach Prüfung Ihrer Angaben mit Ihnen ab.
+            </p>
+          </div>
+          <Link
+            href={contactHref}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
+            data-event="seo_cta_click"
+            data-service="reinigung"
+            data-city="duesseldorf"
+            data-page-intent="reinigung-duesseldorf"
+            data-destination={contactHref}
+          >
+            Reinigung anfragen
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </main>
