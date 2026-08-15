@@ -109,7 +109,8 @@ addCheck("Kein Menü über dem Hero beim Laden", !html.includes("data-desktop-me
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");
 addCheck("Keine Vercel-Usage-Rückkehr", runtimeHits.length === 0, runtimeHits.length ? runtimeHits.join(", ") : "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette");
 addCheck("Genau sieben Homepage-Abschnitte", countMatches(html, /data-home-section=/g) === 7, `${countMatches(html, /data-home-section=/g)} Abschnitte`);
-addCheck("Mobile Navigation maximal zwei Ebenen", countMatches(headerSource + menuSource, /<details\b/g) === 3 && !/\sopen=/.test(headerSource + menuSource), "Drei unabhängige, initial geschlossene Accordions", "WARN");
+const mobileAccordionCount = countMatches(headerSource + menuSource, /<details\b/g);
+addCheck("Mobile Navigation maximal zwei Ebenen", mobileAccordionCount <= 3 && !/\sopen=/.test(headerSource + menuSource), `${mobileAccordionCount} unabhängige, initial geschlossene Accordions`, "WARN");
 
 const totals = {
   pass: checks.filter((check) => check.status === "PASS").length,

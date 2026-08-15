@@ -31,6 +31,11 @@ const criticalScripts = [
 
 const requiredBuildScripts = ["lint", "typecheck", "build"];
 
+const staticOutputGateScripts = [
+  "audit:customer-language",
+  "audit:content-overlap",
+];
+
 const predeployExtraScripts = [
   "service-router:health",
   "contact-flow:health",
@@ -131,6 +136,8 @@ function writeDashboard({ generatedAt, baseUrl, status, results, serverMode }) {
     `- SEO-Status: ${reportStatusLine("qa-seo-report.json")}`,
     `- Content-Safety-Status: ${reportStatusLine("qa-content-safety-report.json")}`,
     `- Vercel-Safety-Status: ${reportStatusLine("qa-vercel-safety-report.json")}`,
+    `- Sichtbare Kundensprache: ${results.find((item) => item.path === "audit:customer-language")?.status || "nicht im Lauf enthalten"}`,
+    `- Content-Overlap: ${results.find((item) => item.path === "audit:content-overlap")?.status || "nicht im Lauf enthalten"}`,
     `- Build/Lint/Typecheck: ${results.filter((item) => ["build", "lint", "typecheck"].includes(item.path)).map((item) => `${item.path}=${item.status}`).join(", ") || "nicht im Lauf enthalten"}`,
     "",
     "## RED-Blocker",
@@ -250,6 +257,10 @@ async function main() {
       const result = npmCommand(script, {}, { tailLines: 80 });
       addCommandResult(results, script, result, true);
     }
+
+    // Both audits consume the production static export and are hard release
+    // gates in critical as well as full predeploy mode.
+    runScriptList(results, staticOutputGateScripts, {}, true);
 
     if (mode === "predeploy") {
       runScriptList(results, predeployExtraScripts, env, false);

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const assert = require("node:assert/strict");
 const path = require("node:path");
 
 const {
@@ -16,6 +17,41 @@ const {
   walk,
   writeReport,
 } = require("./qa-shared.cjs");
+
+function verifyClaimNegationFixtures() {
+  const fixtures = [
+    {
+      text: "Die Prüfung ist weder eine Preis- noch eine Ersparnisgarantie.",
+      expectedRules: [],
+    },
+    {
+      text: "Ersetzt die Prüfung eine Rechtsberatung? Nein. Verträge werden nicht bewertet.",
+      expectedRules: [],
+    },
+    {
+      text: "Wir geben eine Ersparnisgarantie.",
+      expectedRules: ["savings-guarantee"],
+    },
+    {
+      text: "Unsere Prüfung ersetzt eine Rechtsberatung.",
+      expectedRules: ["legal-advice"],
+    },
+    {
+      text: "Ersetzt die Prüfung eine Rechtsberatung? Ja.",
+      expectedRules: ["legal-advice"],
+    },
+  ];
+
+  for (const fixture of fixtures) {
+    assert.deepEqual(
+      findRiskClaims(fixture.text).map((finding) => finding.rule),
+      fixture.expectedRules,
+      `Unexpected claim classification for fixture: ${fixture.text}`,
+    );
+  }
+
+  return fixtures.length;
+}
 
 const centralFiles = [
   "lib/company.ts",
@@ -88,6 +124,7 @@ function scanCentralFiles(results) {
 }
 
 async function main() {
+  const claimNegationFixtures = verifyClaimNegationFixtures();
   const { baseUrl, explicit } = reportBaseUrl();
   const results = [];
   const routes = criticalRoutes.filter((route) => route.priority === "P0" && !route.nonHtml);
@@ -106,6 +143,7 @@ async function main() {
       baseUrlWasExplicit: explicit,
       p0RoutesScanned: routes.length,
       centralFilesScanned: centralFiles.length,
+      claimNegationFixtures,
       piiPolicy: "No submitted lead data is read or written by this script.",
     },
     results,

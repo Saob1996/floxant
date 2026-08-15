@@ -9,6 +9,7 @@ const EXCLUDED_PARTS = [
   `${path.sep}app${path.sep}api${path.sep}`,
   `${path.sep}app${path.sep}admin${path.sep}`,
   `${path.sep}app${path.sep}dashboard${path.sep}`,
+  `${path.sep}components${path.sep}admin-dashboard${path.sep}`,
   `${path.sep}components${path.sep}dashboard${path.sep}`,
 ];
 
@@ -386,7 +387,7 @@ function scanEntry(entry, context) {
         if (group.category === "unzulässiges Versprechen" || group.category === "unbelegte Preis-, Zeit- oder Leistungsangabe") {
           const before = entry.text.slice(Math.max(0, match.index - 60), match.index).toLowerCase();
           const after = entry.text.slice(match.index, Math.min(entry.text.length, match.index + 100)).toLowerCase();
-          if (/\b(?:kein(?:e|en|er|es)?|nicht|nie|niemals|niemand|ohne|statt)\b/.test(before) || /\b(?:kein(?:e|en|er|es)?|nicht|nie|niemals)\b/.test(after) || entry.text.trim().endsWith("?")) continue;
+          if (/\b(?:kein(?:e|en|er|es)?|nicht|nie|niemals|niemand|ohne|statt|weder)\b/.test(before) || /\b(?:kein(?:e|en|er|es)?|nicht|nie|niemals)\b/.test(after) || entry.text.trim().endsWith("?")) continue;
         }
         const findingKey = `${group.category}:${match.index}:${match[0].toLowerCase()}`;
         if (seen.has(findingKey)) continue;

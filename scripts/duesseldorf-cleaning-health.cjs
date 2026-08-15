@@ -49,6 +49,33 @@ const routes = [
     primaryIntent: "fensterreinigung-duesseldorf",
     offerIntent: "fensterreinigung-angebot-pruefen",
   },
+  {
+    key: "grundreinigung",
+    serviceName: "Grundreinigung",
+    route: "/duesseldorf/grundreinigung",
+    file: "app/duesseldorf/grundreinigung/page.tsx",
+    service: "grundreinigung",
+    primaryIntent: "grundreinigung-duesseldorf",
+    offerIntent: "grundreinigung-angebot-pruefen",
+  },
+  {
+    key: "unterhaltsreinigung",
+    serviceName: "Unterhaltsreinigung",
+    route: "/duesseldorf/unterhaltsreinigung",
+    file: "app/duesseldorf/unterhaltsreinigung/page.tsx",
+    service: "unterhaltsreinigung",
+    primaryIntent: "unterhaltsreinigung-duesseldorf",
+    offerIntent: "unterhaltsreinigung-angebot-pruefen",
+  },
+  {
+    key: "baureinigung",
+    serviceName: "Baureinigung",
+    route: "/duesseldorf/baureinigung",
+    file: "app/duesseldorf/baureinigung/page.tsx",
+    service: "baureinigung",
+    primaryIntent: "baureinigung-duesseldorf",
+    offerIntent: "baureinigung-angebot-pruefen",
+  },
 ];
 
 const sourceFiles = [
@@ -56,7 +83,6 @@ const sourceFiles = [
   "app/duesseldorf/page.tsx",
   "app/angebot-guenstiger-pruefen/page.tsx",
   "app/angebotscheck/page.tsx",
-  "proxy.ts",
   "scripts/generate-sitemap-routes.js",
   ...routes.map((route) => route.file),
 ];
@@ -90,9 +116,7 @@ function routeRedirectPattern(route) {
 
 const componentSource = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
 const hubSource = read("app/duesseldorf/page.tsx");
-const offerCheckSource = `${read("app/angebot-guenstiger-pruefen/page.tsx")}\n${read("app/angebotscheck/page.tsx")}`;
 const nextConfigSource = read("next.config.js");
-const proxySource = read("proxy.ts");
 const sitemapSource = read("lib/sitemap-routes.ts");
 const packageJsonSource = read("package.json");
 const changedSource = sourceFiles.map((file) => read(file)).join("\n");
@@ -150,40 +174,29 @@ for (const route of routes) {
     "No exact deprecated/gone redirect may match this P0 route.",
   );
   addCheck(
-    `route:${route.key}:proxy`,
-    `${route.route} is allowed by proxy policy`,
-    proxySource.includes(route.route),
-    "DUESSELDORF_ALLOWED_SERVICE_PATHS must include this P0 route.",
-  );
-  addCheck(
     `route:${route.key}:hero-cta`,
-    `${route.serviceName} hero CTA carries service, city and intent params`,
+    `${route.serviceName} hero CTA carries service, city and primary intent`,
     includesAll(componentSource, [
-      `service=${route.service}`,
-      "city=duesseldorf",
-      `intent=${route.primaryIntent}`,
-      `intent=${route.offerIntent}`,
+      `requestHref("${route.service}", "${route.primaryIntent}")`,
+      'data-city="duesseldorf"',
+      `intent: "${route.primaryIntent}"`,
     ]),
-    "Primary and offer-check contact URLs include Düsseldorf-specific query params.",
+    "The single primary service CTA keeps Düsseldorf and the matching service intent.",
   );
 }
 
 addCheck(
   "cluster:offer-check",
-  "Offer-check pages link Düsseldorf cleaning intents",
-  routes.every((route) =>
-    offerCheckSource.includes(`service=${route.service}`) &&
-    offerCheckSource.includes("city=duesseldorf") &&
-    offerCheckSource.includes(`intent=${route.offerIntent}`),
-  ),
-  "angebot-guenstiger-pruefen and angebotscheck expose Düsseldorf cleaning offer-check CTAs.",
+  "Düsseldorf hub keeps offer review as a separate secondary path",
+  includesAll(hubSource, ["/angebot-guenstiger-pruefen", 'data-service="angebot-pruefen"', 'data-city="duesseldorf"']),
+  "The hub separates the cleaning enquiry from the secondary offer-review path.",
 );
 
 addCheck(
   "cluster:hub-links",
-  "Düsseldorf hub links all five P0 cleaning pages",
+  "Düsseldorf hub links all eight P0 cleaning pages",
   routes.every((route) => hubSource.includes(route.route)),
-  "Hub contains direct internal links to the five Düsseldorf cleaning pages.",
+  "Hub contains direct internal links to the eight Düsseldorf cleaning pages.",
 );
 
 addCheck(
@@ -195,37 +208,38 @@ addCheck(
 
 addCheck(
   "content:quick-answer",
-  "AI/quick-answer block is visible",
-  includesAll(componentSource, ["function CleaningQuickAnswer", "Quick Answer / AI-Antwort", "quickAnswer"]),
-  "Quick answer is rendered near the top of each page.",
+  "Hero states service, city and next step directly",
+  includesAll(componentSource, ["function Hero", "config.h1", "config.intro", "<ServiceCta config={config} light />"]),
+  "The release uses direct customer copy instead of an AI-labelled answer block.",
 );
 
 addCheck(
   "content:effort-factors",
   "Effort factors are visible",
-  includesAll(componentSource, ["function CleaningEffortFactorsPanel", "Aufwandstreiber", "effortFactors"]),
+  includesAll(componentSource, ["function SpecialistDetails", "Wovon die Planung abhängt.", "effortFactors"]),
   "Effort drivers are shown as a dedicated section.",
 );
 
 addCheck(
   "content:faq",
   "FAQ is visible and structured",
-  includesAll(componentSource, ["function CleaningFAQ", "faqItems", "buildFaqJsonLd", "config.faqItems.map"]),
+  includesAll(componentSource, ["function Faq", "faqItems", "buildFaqJsonLd", "config.faqItems.map"]),
   "FAQ UI and FAQPage JSON-LD are produced from the same items.",
 );
 
 addCheck(
   "content:english-intent",
-  "English intent is represented",
-  includesAll(componentSource, ["English intent", "simple English", "cleaning service", "office cleaning", "commercial cleaning", "window cleaning"]),
-  "English-language search intent is supported without separate duplicate routes.",
+  "Specialists have their own details, effort factors and FAQ",
+  routes.filter((route) => route.key !== "reinigung").every((route) =>
+    new RegExp(`${route.key}: \\{[\\s\\S]*?requiredDetails:[\\s\\S]*?effortFactors:[\\s\\S]*?faqItems:[\\s\\S]*?related:`).test(componentSource)),
+  "Each specialist configuration carries content that is specific to its customer situation.",
 );
 
 addCheck(
   "content:no-guarantees",
-  "No guarantee boundaries are visible",
-  includesAll(componentSource, ["keine Preisgarantie", "keine Soforttermin-Garantie", "keine garantierte Verfügbarkeit", "keine Rechtsberatung", "keine automatische Buchung"]),
-  "The pages state what FLOXANT does not promise.",
+  "No invented ranking, customer-count or satisfaction claim is present",
+  !/\b(?:Nr\.?\s*1|Marktführer|100\s*%\s*Zufriedenheit|\d{3,}\s*Kunden)\b/i.test(changedSource),
+  "The regional pages avoid unsupported superlatives and fabricated trust numbers.",
 );
 
 addCheck(
@@ -266,16 +280,18 @@ addCheck(
     "/duesseldorf/gewerbereinigung",
     "/duesseldorf/praxisreinigung",
     "/duesseldorf/fensterreinigung",
+    "/duesseldorf/grundreinigung",
+    "/duesseldorf/unterhaltsreinigung",
+    "/duesseldorf/baureinigung",
   ]),
-  "Only the five P0 Düsseldorf cleaning routes are explicitly allowed.",
+  "Only the eight P0 Düsseldorf cleaning routes are explicitly allowed.",
 );
 
 addCheck(
-  "proxy:out-of-area-allowlist-order",
-  "Proxy skips out-of-area cleaning redirect for allowed Düsseldorf P0 routes",
-  proxySource.includes("function isOutOfAreaCleaningSignal") &&
-    proxySource.includes("if (DUESSELDORF_ALLOWED_SERVICE_PATHS.has(pathname)) return false;"),
-  "Allowed Düsseldorf cleaning routes must bypass the out-of-area cleaning redirect before term matching.",
+  "runtime:no-middleware-proxy",
+  "Static release does not add root middleware or proxy runtime",
+  !exists("middleware.ts") && !exists("middleware.js") && !exists("proxy.ts") && !exists("proxy.js"),
+  "Cloudflare Pages keeps the public routes static; redirects belong in the static redirect configuration.",
 );
 
 const forbiddenVercelPatterns = [

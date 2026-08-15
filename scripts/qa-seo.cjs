@@ -18,6 +18,10 @@ const {
 } = require("./qa-shared.cjs");
 
 function routeCanonicalPath(route) {
+  return normalizePath(route.expectedCanonicalPath || route.expectedRedirectPath || route.path);
+}
+
+function routeFetchPath(route) {
   return normalizePath(route.expectedRedirectPath || route.path);
 }
 
@@ -39,7 +43,7 @@ function robotsBlocksP0(robotsText, routePath) {
 
 async function checkP0Page(baseUrl, route, results) {
   if (route.nonHtml || route.optional) return;
-  const targetPath = route.expectedRedirectPath || route.path;
+  const targetPath = routeFetchPath(route);
   const response = await fetchPath(baseUrl, targetPath, { redirect: "manual" });
   if (!response.ok || response.status >= 400) {
     addResult(results, "FAIL", "seo-page", route.path, response.error || `HTTP ${response.status}`, "P0 page must be reachable for SEO checks.", { priority: route.priority });
@@ -54,12 +58,14 @@ async function checkP0Page(baseUrl, route, results) {
     } else {
       const canonicalPath = normalizePath(canonical);
       const expectedPath = routeCanonicalPath(route);
-      const status = canonicalPath === expectedPath || route.allowRedirect ? "PASS" : "WARN";
+      const status = canonicalPath === expectedPath ? "PASS" : route.expectedCanonicalPath ? "FAIL" : route.allowRedirect ? "PASS" : "WARN";
       addResult(results, status, "canonical", route.path, `Canonical ${canonicalPath}; expected ${expectedPath}.`, status === "PASS" ? "No action." : "Confirm canonical target manually.", { priority: route.priority });
     }
   }
 
-  if (route.mustNotHaveNoindex) {
+  if (route.expectedNoindex) {
+    addResult(results, hasNoindex(html) ? "PASS" : "FAIL", "noindex", route.path, hasNoindex(html) ? "Intentional noindex found." : "Required noindex missing.", hasNoindex(html) ? "No action." : "Add noindex to this non-organic route.", { priority: route.priority });
+  } else if (route.mustNotHaveNoindex) {
     addResult(results, hasNoindex(html) ? "FAIL" : "PASS", "noindex", route.path, hasNoindex(html) ? "P0 page has noindex." : "No noindex on P0 page.", hasNoindex(html) ? "Remove noindex or update matrix intentionally." : "No action.", { priority: route.priority });
   }
 
@@ -117,6 +123,11 @@ async function main() {
 
   const forbidden = locs.filter((loc) => /\/(api|admin|dashboard|login)(\/|$)/i.test(normalizePath(loc)));
   addResult(results, forbidden.length ? "FAIL" : "PASS", "sitemap", "forbidden-routes", forbidden.length ? `${forbidden.length} forbidden sitemap URLs.` : "No API/admin/dashboard/login routes in sitemap.", forbidden.length ? "Remove forbidden URLs." : "No action.", { priority: "P0", samples: forbidden.slice(0, 10) });
+
+  for (const route of criticalRoutes.filter((item) => item.excludeFromSitemap)) {
+    const present = locs.some((loc) => normalizePath(loc) === normalizePath(route.path));
+    addResult(results, present ? "FAIL" : "PASS", "sitemap-exclusion", route.path, present ? "Non-organic route is present in sitemap." : "Non-organic route is absent from sitemap.", present ? "Remove this route from sitemap." : "No action.", { priority: route.priority });
+  }
 
   for (const route of criticalRoutes.filter((item) => item.priority === "P0" && !item.nonHtml && !item.contactPage)) {
     const present = sitemapHasRoute(locs, route);

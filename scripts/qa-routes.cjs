@@ -103,12 +103,21 @@ function checkHtml(route, finalPath, html, results) {
       addResult(results, "FAIL", "metadata", route.path, "Canonical missing.", "Add canonical metadata.", { priority: route.priority });
     } else {
       const canonicalPath = normalizePath(canonical);
-      const status = route.allowRedirect || route.optional || canonicalPath === normalizePath(finalPath) ? "PASS" : "WARN";
-      addResult(results, status, "metadata", route.path, `Canonical ${canonicalPath}`, status === "PASS" ? "No action." : "Canonical should usually point at the final rendered route.", { priority: route.priority, canonicalPath });
+      const expectedCanonicalPath = normalizePath(route.expectedCanonicalPath || finalPath);
+      const status = canonicalPath === expectedCanonicalPath
+        ? "PASS"
+        : route.expectedCanonicalPath
+          ? "FAIL"
+          : route.allowRedirect || route.optional
+            ? "PASS"
+            : "WARN";
+      addResult(results, status, "metadata", route.path, `Canonical ${canonicalPath}; expected ${expectedCanonicalPath}`, status === "PASS" ? "No action." : "Set the intended canonical target.", { priority: route.priority, canonicalPath, expectedCanonicalPath });
     }
   }
 
-  if (route.mustNotHaveNoindex) {
+  if (route.expectedNoindex) {
+    addResult(results, hasNoindex(html) ? "PASS" : "FAIL", "robots", route.path, hasNoindex(html) ? "Intentional noindex found." : "Required noindex missing.", hasNoindex(html) ? "No action." : "Add noindex to the non-organic route.", { priority: route.priority });
+  } else if (route.mustNotHaveNoindex) {
     addResult(results, hasNoindex(html) ? "FAIL" : "PASS", "robots", route.path, hasNoindex(html) ? "Money page has noindex." : "No noindex on money page.", hasNoindex(html) ? "Remove noindex or update matrix if intentionally blocked." : "No action.", { priority: route.priority });
   }
 

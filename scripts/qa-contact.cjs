@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const fs = require("node:fs");
+const path = require("node:path");
+
 const {
   addResult,
   collectForms,
@@ -27,6 +30,130 @@ function getPrimaryForm(html) {
   return forms.find((form) => /direktanfrage|seo_lead|lead|kontakt|anfrage/i.test(`${form.html} ${JSON.stringify(form.attrs)}`)) || forms[0] || null;
 }
 
+function readContractSource(relativePath) {
+  try {
+    return fs.readFileSync(path.join(__dirname, "..", relativePath), "utf8");
+  } catch {
+    return "";
+  }
+}
+
+function hasEvery(source, patterns) {
+  return patterns.every((pattern) => pattern.test(source));
+}
+
+function professionalRequestFlowContract() {
+  const formSource = readContractSource("components/ProfessionalRequestForm.tsx");
+  const personalizationSource = readContractSource("components/ContactQueryPersonalization.tsx");
+  const contactPageSource = readContractSource("app/kontakt/page.tsx");
+
+  const core = {
+    clientComponent: /^\s*["']use client["'];/m.test(formSource),
+    threeStepState: hasEvery(formSource, [
+      /type\s+RequestStep\s*=\s*1\s*\|\s*2\s*\|\s*3\s*;/,
+      /step\s*===\s*1/,
+      /step\s*===\s*2/,
+      /step\s*===\s*3/,
+      /setStep\s*\(\s*2\s*\)/,
+      /setStep\s*\(\s*3\s*\)/,
+    ]),
+    formSubmission: hasEvery(formSource, [
+      /data-professional-request-form/,
+      /<form\b/,
+      /onSubmit=\{handleSubmit\}/,
+    ]),
+    contactWiring: hasEvery(personalizationSource, [
+      /import\s+\{\s*ProfessionalRequestForm\s*\}/,
+      /<ProfessionalRequestForm\b/,
+      /id=["']direktanfrage["']/,
+    ]) && /<ContactLeadForm\b/.test(contactPageSource),
+  };
+
+  const fields = {
+    name: /name=["']name["']/.test(formSource),
+    contact: hasEvery(formSource, [
+      /name=["']contactMethod["']/,
+      /name=["']email["']/,
+      /name=["']phone["']/,
+    ]),
+    service: hasEvery(`${formSource}\n${personalizationSource}`, [
+      /id=["']request-service-choice["']/,
+      /params\.set\(["']service["'],\s*service\.key\)/,
+      /service:\s*context\.serviceKey/,
+    ]),
+    city: hasEvery(formSource, [
+      /name=["']cityOrZip["']/,
+      /name=["']startLocation["']/,
+      /name=["']destinationLocation["']/,
+    ]),
+    message: hasEvery(formSource, [
+      /name=["']scope["']/,
+      /name=["']message["']/,
+    ]),
+    privacy: hasEvery(formSource, [
+      /name=["']privacyConsent["']/,
+      /href=["']\/datenschutz["']/,
+    ]),
+    submit: /type=["']submit["']/.test(formSource),
+  };
+
+  const missing = [
+    ...Object.entries(core).filter(([, present]) => !present).map(([key]) => `core:${key}`),
+    ...Object.entries(fields).filter(([, present]) => !present).map(([key]) => `field:${key}`),
+  ];
+
+  return {
+    valid: missing.length === 0,
+    fields,
+    missing,
+  };
+}
+
+function staticStepOneContract(html, form) {
+  const renderedHtml = String(html || "")
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, "");
+  const evidence = {
+    professionalForm: /<section\b[^>]*data-professional-request-form(?:=["'][^"']*["'])?[^>]*>/i.test(renderedHtml),
+    progress: /<ol\b[^>]*aria-label=["']Schritt 1 von 3["'][^>]*>/i.test(renderedHtml),
+    selector: /<section\b[^>]*data-request-context-selector(?:=["'][^"']*["'])?[^>]*>/i.test(renderedHtml),
+    serviceChoice: /<select\b[^>]*id=["']request-service-choice["'][^>]*>/i.test(renderedHtml),
+    form: Boolean(form) && /aria-label=["']FLOXANT Anfrage["']/i.test(form.html),
+  };
+  const missing = Object.entries(evidence)
+    .filter(([, present]) => !present)
+    .map(([key]) => key);
+  return { valid: missing.length === 0, missing };
+}
+
+function addProgressiveFieldResult({
+  results,
+  scenario,
+  initialPresent,
+  initialContract,
+  flowContract,
+  field,
+  detail,
+  action,
+}) {
+  const verifiedLaterStep = initialContract.valid && flowContract.valid && flowContract.fields[field];
+  const status = initialPresent ? "PASS" : verifiedLaterStep ? "WARN" : "FAIL";
+  const resultDetail = initialPresent
+    ? `${detail} Present in initial HTML.`
+    : verifiedLaterStep
+      ? `${detail} Not present in static step 1; the wired three-step client source contains the required later-step control.`
+      : `${detail} Missing from initial HTML without a complete three-step source/markup contract (${[
+        ...initialContract.missing.map((item) => `initial:${item}`),
+        ...flowContract.missing,
+      ].join(", ") || `field:${field}`}).`;
+  const resultAction = initialPresent
+    ? "No action."
+    : verifiedLaterStep
+      ? "Verify the later step in the browser-hydrated contact flow before production."
+      : action;
+  addResult(results, status, "contact-fields", scenario.path, resultDetail, resultAction, { priority: "P0" });
+}
+
 function checkNoFalseSuccess(html, scenario, results) {
   const text = stripTags(html).toLowerCase();
   const forbidden = [
@@ -49,6 +176,7 @@ function checkNoFalseSuccess(html, scenario, results) {
 async function main() {
   const { baseUrl, explicit } = reportBaseUrl();
   const results = [];
+  const flowContract = professionalRequestFlowContract();
 
   for (const scenario of contactScenarios) {
     const response = await fetchPath(baseUrl, scenario.path, { redirect: "manual" });
@@ -60,18 +188,29 @@ async function main() {
     addResult(results, "PASS", "contact-route", scenario.path, "HTTP 200.", "No action.", { priority: "P0" });
     const html = response.body || "";
     const form = getPrimaryForm(html);
+    const initialContract = staticStepOneContract(html, form);
 
-    addResult(results, form ? "PASS" : "FAIL", "contact-form", scenario.path, form ? "Lead/contact form found." : "No form found.", form ? "No action." : "Render the contact form on /kontakt.", { priority: "P0" });
+    addResult(
+      results,
+      initialContract.valid ? "PASS" : "FAIL",
+      "contact-form",
+      scenario.path,
+      initialContract.valid
+        ? "Professional request form and complete static step-1 selection contract found."
+        : `Static step-1 form contract is incomplete: ${initialContract.missing.join(", ") || "form"}.`,
+      initialContract.valid ? "No action." : "Restore the professional form, three-step progress, location/service selector, and form shell on /kontakt.",
+      { priority: "P0" },
+    );
     if (!form) continue;
 
     const formHtml = form.html;
-    addResult(results, formContains(formHtml, [/name=["']name["']/i, /id=["']seo-lead-name["']/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Name field check.", "Add/restore name input.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']email["']/i, /name=["']phone["']/i, /kontaktweg|contactMethod/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Contact method/email/phone field check.", "Add at least one contact method field.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']servicePreset["']/i, /name=["']service["']/i, /data-service=/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Service field/value check.", "Preserve service field or hidden service value.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']city["']/i, /name=["']cityOrZip["']/i, /ort|stadt/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "City/location field check.", "Preserve city/location field.", { priority: "P0" });
-    addResult(results, formContains(formHtml, [/name=["']message["']/i, /name=["']scope["']/i, /nachricht|umfang/i]) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Message/scope field check.", "Preserve message/scope field.", { priority: "P0" });
-    addResult(results, /datenschutz|privacy|privacyConsent/i.test(formHtml) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Privacy notice/consent check.", "Add Datenschutz/consent text and field.", { priority: "P0" });
-    addResult(results, /type=["']submit["']|<button\b[^>]*>[\s\S]*?(senden|anfrage|submit)/i.test(formHtml) ? "PASS" : "FAIL", "contact-fields", scenario.path, "Submit button check.", "Add visible submit button.", { priority: "P0" });
+    addProgressiveFieldResult({ results, scenario, initialPresent: formContains(formHtml, [/name=["']name["']/i, /id=["']seo-lead-name["']/i]), initialContract, flowContract, field: "name", detail: "Name field check.", action: "Add/restore name input." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: formContains(formHtml, [/name=["']email["']/i, /name=["']phone["']/i, /kontaktweg|contactMethod/i]), initialContract, flowContract, field: "contact", detail: "Contact method/email/phone field check.", action: "Add at least one contact method field." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: formContains(formHtml, [/name=["']servicePreset["']/i, /name=["']service["']/i, /data-service=/i]), initialContract, flowContract, field: "service", detail: "Service field/value check.", action: "Preserve service field or selected service value." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: formContains(formHtml, [/name=["']city["']/i, /name=["']cityOrZip["']/i, /ort|stadt/i]), initialContract, flowContract, field: "city", detail: "City/location field check.", action: "Preserve city/location fields for every service group." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: formContains(formHtml, [/name=["']message["']/i, /name=["']scope["']/i, /nachricht|umfang/i]), initialContract, flowContract, field: "message", detail: "Message/scope field check.", action: "Preserve message/scope fields." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: /datenschutz|privacy|privacyConsent/i.test(formHtml), initialContract, flowContract, field: "privacy", detail: "Privacy notice/consent check.", action: "Add Datenschutz notice and consent field." });
+    addProgressiveFieldResult({ results, scenario, initialPresent: /type=["']submit["']|<button\b[^>]*>[\s\S]*?(senden|anfrage|submit)/i.test(formHtml), initialContract, flowContract, field: "submit", detail: "Submit button check.", action: "Add visible submit button." });
 
     const attrsText = JSON.stringify(form.attrs);
     const htmlAndAttrs = `${formHtml} ${attrsText}`;
@@ -101,6 +240,8 @@ async function main() {
       baseUrlWasExplicit: explicit,
       scenarioCount: contactScenarios.length,
       productionSubmit: "No submit is performed by qa:contact.",
+      professionalRequestFlowContract: flowContract.valid,
+      professionalRequestFlowContractMissing: flowContract.missing,
     },
     results,
     extraMarkdown: [
@@ -108,6 +249,8 @@ async function main() {
       "",
       "- This script never submits a lead.",
       "- Query parameters are checked only for service/city/intent/source propagation.",
+      "- The initial static HTML must expose the professional three-step form shell, progress, and location/service selector.",
+      "- Controls intentionally rendered only in steps 2 or 3 are WARN only when the wired client source positively proves the complete three-step form, required controls, consent, and submit contract.",
       "- Browser-only validation remains manual unless a browser test runner is added later.",
     ],
   });
