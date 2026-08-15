@@ -10,30 +10,21 @@ type FloxServicesMegaMenuProps = {
 
 const serviceGroups = [
   {
-    title: "Umzug & Transport",
+    title: "Düsseldorf · Reinigung",
+    links: [
+      { label: "Reinigung", href: "/duesseldorf/reinigung" },
+      { label: "Büroreinigung", href: "/duesseldorf/bueroreinigung" },
+      { label: "Praxisreinigung", href: "/duesseldorf/praxisreinigung" },
+      { label: "Fensterreinigung", href: "/duesseldorf/fensterreinigung" },
+    ],
+  },
+  {
+    title: "Regensburg · Umzug & Räumung",
     links: [
       { label: "Umzug", href: "/regensburg/umzug" },
-      { label: "Seniorenumzug", href: "/seniorenumzug-bayern" },
-      { label: "Klaviertransport", href: "/klaviertransport-regensburg" },
-      { label: "Möbeltransport", href: "/kleintransport-regensburg" },
-    ],
-  },
-  {
-    title: "Reinigung",
-    links: [
-      { label: "Reinigung", href: "/regensburg/reinigung" },
-      { label: "Büroreinigung", href: "/regensburg/bueroreinigung" },
-      { label: "Gewerbereinigung", href: "/regensburg/gewerbereinigung" },
-      { label: "Fensterreinigung", href: "/fensterreinigung-regensburg" },
-    ],
-  },
-  {
-    title: "Entrümpelung & Auflösung",
-    links: [
       { label: "Entrümpelung", href: "/regensburg/entruempelung" },
       { label: "Wohnungsauflösung", href: "/regensburg/wohnungsaufloesung" },
-      { label: "Haushaltsauflösung", href: "/regensburg/haushaltsaufloesung" },
-      { label: "Reinigung nach Umzug", href: "/regensburg/reinigung-nach-umzug" },
+      { label: "Klaviertransport", href: "/klaviertransport-regensburg" },
     ],
   },
 ] as const;
@@ -84,9 +75,8 @@ export function FloxServicesMegaMenu({
   return (
     <div
       id="services-mega-menu"
-      role="menu"
       data-desktop-mega-menu
-      className="grid w-[min(48rem,calc(100vw-2rem))] grid-cols-3 gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.18)]"
+      className="grid w-[min(40rem,calc(100vw-2rem))] grid-cols-2 gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.18)]"
     >
       {serviceGroups.map((group) => (
         <section key={group.title} aria-labelledby={`menu-${group.title.replace(/\W+/g, "-")}`}>
@@ -102,7 +92,6 @@ export function FloxServicesMegaMenu({
                 key={item.href}
                 href={item.href}
                 prefetch={false}
-                role="menuitem"
                 onClick={onNavigate}
                 className="flex min-h-10 items-center rounded-md px-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               >
@@ -114,9 +103,8 @@ export function FloxServicesMegaMenu({
       ))}
       <Link
         href="/leistungen"
-        role="menuitem"
         onClick={onNavigate}
-        className="col-span-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
       >
         Alle Leistungen ansehen
         <ArrowRight className="h-4 w-4" aria-hidden="true" />

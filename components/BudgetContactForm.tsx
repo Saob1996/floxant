@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import {
   AlertCircle,
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 interface BudgetContactFormProps {
   className?: string;
@@ -25,6 +26,9 @@ interface BudgetContactFormProps {
 export function BudgetContactForm({ className }: BudgetContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorDetails, setErrorDetails] = useState<string | null>(null);
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+  const startedAtRef = useRef(Date.now());
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,7 +44,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    setStatus("loading");
+    if (submitLockRef.current || status === "loading") return;
     setErrorDetails(null);
 
     const email = formData.email.trim();
@@ -66,6 +70,12 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
       setStatus("error");
       return;
     }
+
+    submitLockRef.current = true;
+    const attemptKey = idempotencyKeyRef.current
+      ?? `budget_contact:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+    setStatus("loading");
 
     try {
       const fd = new FormData();
@@ -101,22 +111,31 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           .join("\n"),
       );
       fd.append("timestamp", new Date().toISOString());
+      fd.append("formStartedAt", String(startedAtRef.current));
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: fd,
+        headers: { "Idempotency-Key": attemptKey },
       });
+      const data = await response.json().catch(() => ({}));
+      if (idempotencyKeyRef.current !== attemptKey) return;
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.message || data.error || "Unbekannter Serverfehler");
+      if (response.status !== 201 || data.ok !== true || !data.requestId || !data.bookingId) {
+        const firstFieldError = Object.values(bookingFieldErrors(data)).find(Boolean);
+        const reference = data.requestId ? ` Referenz: ${data.requestId}` : "";
+        throw new Error(`${firstFieldError || data.message || data.error || "Unbekannter Serverfehler"}${reference}`);
       }
 
+      idempotencyKeyRef.current = null;
+      startedAtRef.current = Date.now();
       setStatus("success");
     } catch (error: any) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       setErrorDetails(error?.message || "Übertragung fehlgeschlagen");
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 6000);
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
@@ -138,7 +157,11 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           gleicht Preisvorstellung, Umfang, Termin und Verfügbarkeit miteinander ab.
         </p>
         <button
-          onClick={() => setStatus("idle")}
+          onClick={() => {
+            idempotencyKeyRef.current = null;
+            setErrorDetails(null);
+            setStatus("idle");
+          }}
           className="mt-10 rounded-xl border border-slate-200 bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 transition-all hover:bg-blue-50 hover:text-slate-950 active:scale-95"
         >
           Neue Anfrage erstellen
@@ -154,7 +177,16 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         className
       )}
     >
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form
+        data-booking-field-errors="managed"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setErrorDetails(null);
+          if (status === "error") setStatus("idle");
+        }}
+        className="space-y-6"
+      >
         <div className="mb-2">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
             Unverbindliche Budget-Anfrage
@@ -181,7 +213,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
                 aria-label="Name"
                 required
                 type="text"
-                placeholder="Max Mustermann"
+                placeholder="Vor- und Nachname"
                 value={formData.name}
                 onChange={(event) => setFormData({ ...formData, name: event.target.value })}
                 className="w-full rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 placeholder:text-slate-400 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"

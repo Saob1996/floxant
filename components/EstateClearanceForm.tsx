@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -12,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -136,7 +139,9 @@ export function EstateClearanceForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte eine Nachlass-/Wohnungsraeumung anfragen. Es geht um ein Objekt in [Ort]. Benoetigt werden Raeumung/Entsorgung/Reinigung nach Absprache. Fotos, Zugang und Zeitraum kann ich senden. Bitte um diskrete Rueckmeldung.",
+        germanizeText(
+          "Hallo FLOXANT, ich moechte eine Nachlass-/Wohnungsraeumung anfragen. Es geht um ein Objekt in [Ort]. Benoetigt werden Raeumung/Entsorgung/Reinigung nach Absprache. Fotos, Zugang und Zeitraum kann ich senden. Bitte um diskrete Rueckmeldung.",
+        ),
       ),
     [],
   );
@@ -228,7 +233,7 @@ export function EstateClearanceForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -257,9 +262,9 @@ export function EstateClearanceForm() {
     <div id="nachlass-form" className="rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10 sm:p-7">
       <div>
         <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Objektstatus-Terminal</div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">Was muss ruhig geklaert werden?</h2>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">Was muss ruhig geklärt werden?</h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Waehlen Sie die naechstliegende Lage. FLOXANT nutzt diese Angabe nur zur praktischen Vorpruefung und ersetzt keine rechtliche Nachlassklaerung.
+          Wählen Sie die nächstliegende Lage. FLOXANT nutzt diese Angabe nur zur praktischen Vorprüfung und ersetzt keine rechtliche Nachlassklärung.
         </p>
       </div>
 
@@ -279,10 +284,10 @@ export function EstateClearanceForm() {
                   : "border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-400"
               }`}
             >
-              <span className="block text-sm font-black">{item.title}</span>
-              <span className={`mt-2 block text-xs leading-5 ${active ? "text-stone-200" : "text-stone-600"}`}>{item.text}</span>
+              <span className="block text-sm font-black">{germanizeText(item.title)}</span>
+              <span className={`mt-2 block text-xs leading-5 ${active ? "text-stone-200" : "text-stone-600"}`}>{germanizeText(item.text)}</span>
               <span className={`mt-3 inline-flex rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em] ${active ? "bg-white/10 text-stone-100" : "bg-white text-stone-700"}`}>
-                {item.services}
+                {germanizeText(item.services)}
               </span>
             </button>
           );
@@ -305,13 +310,13 @@ export function EstateClearanceForm() {
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {roleOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="fuer diskreten Rueckruf" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="für diskreten Rückruf" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             E-Mail
@@ -331,26 +336,26 @@ export function EstateClearanceForm() {
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {objectTypeOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Gewuenschter Zeitraum*
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. flexibel, naechste Woche, vor Uebergabe" />
+            Gewünschter Zeitraum*
+            <input name="desiredDate" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. flexibel, nächste Woche, vor Übergabe" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Dringlichkeit
             <select name="urgency" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600">
               {urgencyOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
         </div>
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
-          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprueft werden?</div>
+          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -364,7 +369,7 @@ export function EstateClearanceForm() {
                     active ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
                   }`}
                 >
-                  {service}
+                  {germanizeText(service)}
                 </button>
               );
             })}
@@ -373,15 +378,15 @@ export function EstateClearanceForm() {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaM2" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. 80 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Raeume
+            Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="z. B. 3" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Nebenraeume
+            Nebenräume
             <input name="additionalSpaces" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="Keller, Garage, Dachboden" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -401,10 +406,10 @@ export function EstateClearanceForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Berechtigung / Freigabe geklaert
+            Berechtigung / Freigabe geklärt
             <select name="legalClearanceStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600">
               {clearanceOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -412,7 +417,7 @@ export function EstateClearanceForm() {
             Beteiligte
             <select name="involvedParties" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600">
               {involvedPartiesOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -420,13 +425,13 @@ export function EstateClearanceForm() {
             Problematische Stoffe
             <select name="hazardousMaterialsStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600">
               {hazardOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Zugang / Schluesselstatus
-            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="Schluessel bei Erbe, Verwaltung, Makler..." />
+            Zugang / Schlüsselstatus
+            <input name="keyStatus" className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600" placeholder="Schlüssel bei Erbe, Verwaltung, Makler..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Budget / Preisrahmen optional
@@ -437,18 +442,18 @@ export function EstateClearanceForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Zugang / Hinweise
-            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Parken, Trageweg, Kellerzugang, Schluessel, Ansprechpartner vor Ort" />
+            <textarea name="accessNotes" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Parken, Trageweg, Kellerzugang, Schlüssel, Ansprechpartner vor Ort" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Kurze Beschreibung*
-            <textarea name="message" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Welche Raeume, Gegenstaende, Nebenbereiche oder Termine sollen geklaert werden?" />
+            <textarea name="message" rows={4} className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600" placeholder="Welche Räume, Gegenstände, Nebenbereiche oder Termine sollen geklärt werden?" />
           </label>
         </div>
 
         <div className="rounded-[1.75rem] border border-stone-200 bg-gradient-to-br from-stone-50 via-white to-slate-50 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Raeume, Moebel, Keller, Garage, Dachboden oder Zugang."
+            description="Räume, Möbel, Keller, Garage, Dachboden oder Zugang."
             helper="Bitte keine sensiblen Familien- oder Nachlassdetails in Dateinamen oder Anhängen."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -460,28 +465,28 @@ export function EstateClearanceForm() {
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Diskreter Rueckruf gewuenscht.
+            Diskreter Rückruf gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            WhatsApp fuer Rueckfragen bevorzugt.
+            WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
-            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen vorab durch Erben, Bevollmaechtigte oder Eigentuemer geklaert sein muessen.
+            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass rechtliche Fragen, Eigentumsfreigaben und Nachlassentscheidungen vorab durch Erben, Bevollmächtigte oder Eigentümer geklärt sein müssen.
           </span>
         </label>
 
         {errorMessage ? (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div>
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{germanizeText(errorMessage)}</div>
         ) : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage ist eingegangen. FLOXANT prueft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Objektart, Ort, Umfang, Fotos, Zugang, Freigabe und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -509,7 +514,7 @@ export function EstateClearanceForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />
-            Rueckruf
+            Rückruf
           </a>
           <a href={`mailto:${EMAIL}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-5 text-sm font-black text-stone-800 transition hover:bg-stone-50">
             <Mail className="h-4 w-4" />
@@ -519,7 +524,7 @@ export function EstateClearanceForm() {
 
         <div className="flex flex-wrap gap-2 text-xs font-bold text-stone-600">
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><ShieldCheck className="h-3 w-3" /> Keine Rechts- oder Erbberatung</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschaetzung</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen bei der Einschätzung</span>
           <span className="inline-flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1"><Phone className="h-3 w-3" /> {PHONE_DISPLAY}</span>
         </div>
       </form>

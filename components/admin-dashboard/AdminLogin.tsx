@@ -124,7 +124,7 @@ export function AdminLogin() {
             Geschützter Zugang
           </p>
           <h1 className="mt-4 text-4xl font-black leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-            Anfragen sicher im Blick behalten.
+            Anfragen im Dashboard sicher im Blick behalten.
           </h1>
           <p className="mt-6 max-w-lg text-base font-semibold leading-8 text-slate-300 sm:text-lg">
             Anmeldung ausschließlich für freigeschaltete Betreiberkonten. Kundendaten werden erst nach erfolgreicher
@@ -144,17 +144,13 @@ export function AdminLogin() {
             </span>
             <div>
               <h2 className="text-2xl font-black tracking-tight">Anmelden</h2>
-              <p className="mt-1 text-sm font-semibold text-slate-400">Mit Supabase Auth</p>
+              <p className="mt-1 text-sm font-semibold text-slate-400">Geschützter Teamzugang</p>
             </div>
           </div>
 
           {!dashboardSupabaseConfig.isConfigured ? (
             <div className="mt-7 rounded-xl border border-amber-300/30 bg-amber-300/10 p-4 text-sm font-semibold leading-6 text-amber-100" role="alert">
-              Das Dashboard ist noch nicht konfiguriert. Für den Build müssen die öffentlichen Variablen
-              <code className="mx-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_URL</code>
-              und
-              <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5 text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
-              gesetzt werden.
+              Der Teamzugang ist vorübergehend nicht verfügbar. Bitte wenden Sie sich an die zuständige Administration.
             </div>
           ) : null}
 

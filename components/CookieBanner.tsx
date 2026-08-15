@@ -64,8 +64,8 @@ export function CookieBanner({ dic }: { dic?: any }) {
   // Default preferences
   const [preferences, setPreferences] = useState<ConsentState>({
     necessary: true, // Always true
-    analytics: true,
-    marketing: true,
+    analytics: false,
+    marketing: false,
   });
 
   useEffect(() => {
@@ -222,7 +222,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                         <p className="text-xs text-slate-300">{cookie.analyticsDesc}</p>
                       </button>
                       <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-2">
-                        <input type="checkbox" checked={preferences.analytics} onChange={(e) => setPreferences(p => ({ ...p, analytics: e.target.checked }))} className="sr-only peer" />
+                        <input type="checkbox" aria-label={cookie.analytics} checked={preferences.analytics} onChange={(e) => setPreferences(p => ({ ...p, analytics: e.target.checked }))} className="sr-only peer" />
                         <div className="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                       </label>
                     </div>
@@ -238,7 +238,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                         <p className="text-xs text-slate-300">{cookie.marketingDesc}</p>
                       </button>
                       <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-2">
-                        <input type="checkbox" checked={preferences.marketing} onChange={(e) => setPreferences(p => ({ ...p, marketing: e.target.checked }))} className="sr-only peer" />
+                        <input type="checkbox" aria-label={cookie.marketing} checked={preferences.marketing} onChange={(e) => setPreferences(p => ({ ...p, marketing: e.target.checked }))} className="sr-only peer" />
                         <div className="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                       </label>
                     </div>

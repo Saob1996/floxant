@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ChevronDown, FileSearch, FileText, Menu, X } from "lucide-react";
+import { ChevronDown, FileText, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -13,19 +13,17 @@ import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-conte
 import { cn } from "@/lib/utils";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
-type DesktopMenu = "services" | "locations" | "special" | null;
+type DesktopMenu = "services" | "locations" | null;
 
 const requestHref = buildGlobalRequestHref("global_header");
 const mobileRequestHref = buildGlobalRequestHref("global_mobile_header");
-const headerOfferHref = buildGlobalRequestHref("global_header");
-const headerBudgetHref = "/anfrage-mit-preisrahmen";
 const headerWhatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich möchte eine Anfrage stellen.")}`;
 
 const locationLinks = [
   {
     label: "Düsseldorf",
     href: "/duesseldorf",
-    text: "Reinigung, Büro und Gewerbe, Umzug und Entrümpelung",
+    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Fenster",
   },
   {
     label: "Regensburg",
@@ -34,15 +32,16 @@ const locationLinks = [
   },
 ] as const;
 
-const specialLinks = [
-  { label: "Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
-  { label: "Diskret-Service", href: "/diskret-service" },
-  { label: "Plan-B-Service", href: "/plan-b-service" },
-  { label: "Objektbrief", href: "/objektbrief" },
-] as const;
-
 function isActive(pathname: string, href: string) {
   return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+}
+
+function isCalculatorActive(pathname: string) {
+  return (
+    isActive(pathname, "/rechner") ||
+    pathname === "/umzug-kosten-rechner" ||
+    pathname === "/reinigung-preis-rechner"
+  );
 }
 
 export function PublicHeader({
@@ -185,6 +184,7 @@ export function PublicHeader({
             onClick={() => closeDesktopMenu()}
             className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:max-w-[12rem] xl:max-w-[14rem]"
             aria-label="FLOXANT Startseite"
+            aria-current={pathname === "/" ? "page" : undefined}
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950 text-white">
               <BrandLogo size={26} />
@@ -203,7 +203,6 @@ export function PublicHeader({
                 className={menuButtonClass(openMenu === "services" || isActive(pathname, "/leistungen"))}
                 aria-expanded={openMenu === "services"}
                 aria-controls="services-mega-menu"
-                aria-haspopup="menu"
                 data-menu-trigger="services"
               >
                 Leistungen
@@ -223,17 +222,16 @@ export function PublicHeader({
                 className={menuButtonClass(openMenu === "locations" || isActive(pathname, "/duesseldorf") || isActive(pathname, "/regensburg"))}
                 aria-expanded={openMenu === "locations"}
                 aria-controls="locations-menu"
-                aria-haspopup="menu"
                 data-menu-trigger="locations"
               >
                 Standorte
                 <ChevronDown className={cn("h-4 w-4 transition", openMenu === "locations" && "rotate-180")} aria-hidden="true" />
               </button>
               {openMenu === "locations" ? (
-                <div id="locations-menu" role="menu" className="absolute left-1/2 top-full w-[31rem] -translate-x-1/2 pt-3" data-desktop-mega-menu>
+                <div id="locations-menu" className="absolute left-1/2 top-full w-[31rem] -translate-x-1/2 pt-3" data-desktop-mega-menu>
                   <div className="grid grid-cols-2 gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
                     {locationLinks.map((item) => (
-                      <Link key={item.href} href={item.href} prefetch={false} role="menuitem" onClick={() => closeDesktopMenu()} className="rounded-lg border border-slate-200 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                      <Link key={item.href} href={item.href} prefetch={false} aria-current={isActive(pathname, item.href) ? "page" : undefined} onClick={() => closeDesktopMenu()} className="rounded-lg border border-slate-200 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
                         <span className="block font-black text-slate-950">{item.label}</span>
                         <span className="mt-2 block text-xs font-semibold leading-5 text-slate-600">{item.text}</span>
                       </Link>
@@ -244,37 +242,19 @@ export function PublicHeader({
               ) : null}
             </div>
 
-            <Link href="/angebot-guenstiger-pruefen" onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/angebot-guenstiger-pruefen"))}>
+            <Link href="/angebot-guenstiger-pruefen" aria-current={isActive(pathname, "/angebot-guenstiger-pruefen") ? "page" : undefined} onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/angebot-guenstiger-pruefen"))}>
               Angebot prüfen
             </Link>
 
-            <div className="relative">
-              <button
-                type="button"
-                onClick={(event) => toggleDesktopMenu("special", event.currentTarget)}
-                className={menuButtonClass(openMenu === "special" || isActive(pathname, "/signature-services"))}
-                aria-expanded={openMenu === "special"}
-                aria-controls="special-menu"
-                aria-haspopup="menu"
-                data-menu-trigger="special"
-              >
-                Besondere Lösungen
-                <ChevronDown className={cn("h-4 w-4 transition", openMenu === "special" && "rotate-180")} aria-hidden="true" />
-              </button>
-              {openMenu === "special" ? (
-                <div id="special-menu" role="menu" className="absolute right-0 top-full w-72 pt-3" data-desktop-mega-menu>
-                  <div className="grid gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
-                    {specialLinks.map((item) => (
-                      <Link key={item.href} href={item.href} prefetch={false} role="menuitem" onClick={() => closeDesktopMenu()} className="flex min-h-11 items-center rounded-md px-3 text-sm font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
+            <Link href="/rechner" aria-current={isCalculatorActive(pathname) ? "page" : undefined} onClick={() => closeDesktopMenu()} className={menuButtonClass(isCalculatorActive(pathname))}>
+              Rechner
+            </Link>
 
-            <Link href="/kontakt" onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/kontakt"))}>
+            <Link href="/anfrage-mit-preisrahmen" aria-current={isActive(pathname, "/anfrage-mit-preisrahmen") ? "page" : undefined} onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/anfrage-mit-preisrahmen"))}>
+              Budget
+            </Link>
+
+            <Link href="/kontakt" aria-current={isActive(pathname, "/kontakt") ? "page" : undefined} onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/kontakt"))}>
               Kontakt
             </Link>
           </nav>
@@ -286,53 +266,13 @@ export function PublicHeader({
             data-source="global_header"
             data-page-intent="neutrale-anfrage"
             data-priority="p1"
-            data-cta-label="Anfrage senden"
+            data-cta-label="Angebot anfragen"
             data-destination={requestHref}
-            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:inline-flex xl:hidden"
+            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:inline-flex"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
-            Anfrage senden
+            Angebot anfragen
           </Link>
-
-          <div className="hidden shrink-0 items-center gap-2 xl:flex">
-            <Link
-              href={headerBudgetHref}
-              data-event="service_card_click"
-              data-source="header"
-              data-page-intent="preisrahmen"
-              data-destination={headerBudgetHref}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-950 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <BadgeEuro className="h-4 w-4" aria-hidden="true" />
-              Budget nennen
-            </Link>
-            <Link
-              href={headerOfferHref}
-              onClick={resetNeutralRequestState}
-              data-event="seo_cta_click"
-              data-source="global_header"
-              data-page-intent="neutrale-anfrage"
-              data-priority="p1"
-              data-cta-label="Angebot anfragen"
-              data-destination={headerOfferHref}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-black text-slate-950 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Angebot anfragen
-            </Link>
-            <a
-              href={headerWhatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-event="whatsapp_click"
-              data-source="header"
-              data-destination={headerWhatsappHref}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-500 px-3 text-sm font-black text-white transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-            >
-              <WhatsAppMark className="h-4 w-4" aria-hidden="true" />
-              WhatsApp
-            </a>
-          </div>
 
           <button
             ref={mobileTriggerRef}
@@ -365,26 +305,33 @@ export function PublicHeader({
                   <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-base font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Standorte <span aria-hidden="true">+</span></summary>
                   <div className="grid gap-1 pb-3 pl-3">
                     {locationLinks.map((item) => (
-                      <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeMobileMenu()} className="flex min-h-11 items-center rounded-md px-2 text-sm font-bold text-slate-700 hover:bg-slate-100">{item.label}</Link>
+                      <Link key={item.href} href={item.href} prefetch={false} aria-current={isActive(pathname, item.href) ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-11 items-center rounded-md px-2 text-sm font-bold text-slate-700 hover:bg-slate-100">{item.label}</Link>
                     ))}
                   </div>
                 </details>
-                <Link href="/angebot-guenstiger-pruefen" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Angebot prüfen</Link>
-                <details className="border-b border-slate-200" data-mobile-nav-group>
-                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-base font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Besondere Lösungen <span aria-hidden="true">+</span></summary>
-                  <div className="grid gap-1 pb-3 pl-3">
-                    {specialLinks.map((item) => (
-                      <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeMobileMenu()} className="flex min-h-11 items-center rounded-md px-2 text-sm font-bold text-slate-700 hover:bg-slate-100">{item.label}</Link>
-                    ))}
-                  </div>
-                </details>
-                <Link href="/kontakt" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Kontakt</Link>
+                <Link href="/angebot-guenstiger-pruefen" aria-current={isActive(pathname, "/angebot-guenstiger-pruefen") ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Angebot prüfen</Link>
+                <Link href="/rechner" aria-current={isCalculatorActive(pathname) ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Rechner</Link>
+                <Link href="/anfrage-mit-preisrahmen" aria-current={isActive(pathname, "/anfrage-mit-preisrahmen") ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Budget nennen</Link>
+                <Link href="/fragen" aria-current={isActive(pathname, "/fragen") ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Häufige Fragen</Link>
+                <Link href="/kontakt" aria-current={isActive(pathname, "/kontakt") ? "page" : undefined} onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Kontakt</Link>
               </nav>
 
               <Link href={mobileRequestHref} onClick={() => { resetNeutralRequestState(); closeMobileMenu(); }} data-event="seo_cta_click" data-source="global_mobile_header" data-page-intent="neutrale-anfrage" data-priority="p1" data-cta-label="Angebot anfragen" data-destination={mobileRequestHref} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
                 Angebot anfragen
                 <FileText className="h-4 w-4" aria-hidden="true" />
               </Link>
+              <a
+                href={headerWhatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="whatsapp_click"
+                data-source="global_mobile_header"
+                data-destination={headerWhatsappHref}
+                className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 px-5 text-sm font-black text-slate-800"
+              >
+                <WhatsAppMark className="h-4 w-4" aria-hidden="true" />
+                WhatsApp
+              </a>
             </div>
           </div>
         </div>

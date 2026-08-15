@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 
 import {
@@ -521,6 +523,8 @@ export function SeoLeadForm({
   const [startedAt] = useState(() => Date.now());
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
 
   useEffect(() => {
     if (initialMessage) setMessage((current) => current || initialMessage);
@@ -625,12 +629,17 @@ export function SeoLeadForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "submitting") return;
+    if (submitLockRef.current || status === "submitting") return;
     if (!validate()) {
       dispatchSeoConversionEvent("seo_lead_submit_error", lead, "Validierung fehlgeschlagen");
       setStatus("error");
       return;
     }
+
+    submitLockRef.current = true;
+    const attemptKey = idempotencyKeyRef.current
+      ?? `website_request:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
 
     setStatus("submitting");
     setErrors({});
@@ -1119,9 +1128,10 @@ export function SeoLeadForm({
     appendConversionJourneyToFormData(payload);
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: payload,
+        headers: { "Idempotency-Key": attemptKey },
       });
 
       let responsePayload: any = null;
@@ -1130,19 +1140,43 @@ export function SeoLeadForm({
       } catch {
         responsePayload = null;
       }
+      if (idempotencyKeyRef.current !== attemptKey) return;
 
-      if (!response.ok || responsePayload?.success === false) {
-        throw new Error(responsePayload?.message || responsePayload?.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (
+        response.status !== 201
+        || responsePayload?.ok !== true
+        || !responsePayload?.requestId
+        || !responsePayload?.bookingId
+      ) {
+        const serverFields = bookingFieldErrors(responsePayload);
+        const mappedErrors: FormErrors = {};
+        if (serverFields.name) mappedErrors.name = serverFields.name;
+        if (serverFields.email) mappedErrors.email = serverFields.email;
+        if (serverFields.phone || serverFields.contact) mappedErrors.contact = serverFields.phone || serverFields.contact;
+        if (serverFields.service || serverFields.serviceId) mappedErrors.service = serverFields.service || serverFields.serviceId;
+        if (serverFields.city || serverFields.location || serverFields.cityOrZip) mappedErrors.city = serverFields.city || serverFields.location || serverFields.cityOrZip;
+        if (serverFields.message || serverFields.scope) mappedErrors.message = serverFields.message || serverFields.scope;
+        if (serverFields.privacyConsent) mappedErrors.privacy = serverFields.privacyConsent;
+        if (serverFields.form) mappedErrors.form = serverFields.form;
+        mappedErrors.form ||= responsePayload?.message || responsePayload?.error || "Die Anfrage konnte nicht gesendet werden.";
+        setErrors(mappedErrors);
+        dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
+        setStatus("error");
+        return;
       }
 
+      idempotencyKeyRef.current = null;
       dispatchSeoConversionEvent("seo_lead_submit_success", lead, "SEO-Anfrage erfolgreich gesendet");
       setStatus("success");
     } catch {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
       setErrors({
         form: getCustomerFacingErrorMessage("submit-error"),
       });
       setStatus("error");
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
@@ -1191,6 +1225,8 @@ export function SeoLeadForm({
         <button
           type="button"
           onClick={() => {
+            idempotencyKeyRef.current = null;
+            submitLockRef.current = false;
             setStatus("idle");
             setMessage("");
             setScope("");
@@ -1213,8 +1249,14 @@ export function SeoLeadForm({
       data-priority={lead.priority}
     >
       <form
+        data-booking-field-errors="managed"
         id="direktanfrage"
         onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setErrors({});
+          if (status === "error") setStatus("idle");
+        }}
         className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 text-slate-950 shadow-sm shadow-slate-950/5 sm:p-6"
         data-event="seo_lead_submit_attempt"
         data-source="seo_contact_form"

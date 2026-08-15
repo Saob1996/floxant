@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Camera,
@@ -14,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -141,11 +144,19 @@ export function DiscreetMoveForm() {
   const [photos, setPhotos] = useState<File[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [requestType, safeContactMethod, selectedServices, contactRestrictions, photos]);
 
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte eine diskrete Anfrage stellen. Es geht um einen Auszug / Transport / Reinigung in [Ort]. Ich moechte Details ruhig abstimmen. Rueckruf oder WhatsApp ist moeglich.",
+        germanizeText(
+          "Hallo FLOXANT, ich moechte eine diskrete Anfrage stellen. Es geht um einen Auszug / Transport / Reinigung in [Ort]. Ich moechte Details ruhig abstimmen. Rueckruf oder WhatsApp ist moeglich.",
+        ),
       ),
     [],
   );
@@ -170,6 +181,7 @@ export function DiscreetMoveForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current || submitState === "submitting") return;
     setErrorMessage("");
 
     const form = event.currentTarget;
@@ -227,6 +239,13 @@ export function DiscreetMoveForm() {
       return;
     }
 
+    submitLockRef.current = true;
+    const preferredContactMethod = safeContactMethod === "E-Mail"
+      ? "email"
+      : safeContactMethod === "WhatsApp"
+        ? "whatsapp"
+        : "telefon";
+
     formData.set("type", "discreet_move");
     formData.set("lead_type", "diskreter_trennungsumzug");
     formData.set("leadSubtype", "trennung_scheidung");
@@ -235,8 +254,8 @@ export function DiscreetMoveForm() {
     formData.set("intent", "diskret");
     formData.set("requestType", requestType);
     formData.set("safeContactMethod", safeContactMethod);
-    formData.set("contactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
-    formData.set("preferredContactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : safeContactMethod.toLowerCase().includes("mail") ? "email" : "phone");
+    formData.set("contactMethod", preferredContactMethod);
+    formData.set("preferredContactMethod", preferredContactMethod);
     formData.set("isSensitiveCase", "true");
     formData.set("contactRestrictions", JSON.stringify(contactRestrictions));
     formData.set("selectedServices", JSON.stringify(selectedServices));
@@ -255,9 +274,8 @@ export function DiscreetMoveForm() {
       "landingPage",
       typeof window === "undefined"
         ? "/diskreter-umzug-trennung-scheidung"
-        : `${window.location.pathname}${window.location.search}`,
+        : window.location.pathname,
     );
-    formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
     formData.set("utmSource", getUtmValue("utm_source"));
     formData.set("utmMedium", getUtmValue("utm_medium"));
     formData.set("utmCampaign", getUtmValue("utm_campaign"));
@@ -266,19 +284,29 @@ export function DiscreetMoveForm() {
     formData.set("partnerCode", getUtmValue("ref") || getUtmValue("partner_code") || getUtmValue("referral_code"));
     photos.forEach((file) => formData.append("discreetMovePhoto", file));
 
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `discreet_move:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
+        headers: { "Idempotency-Key": attemptKey },
       });
       const result = await response.json().catch(() => ({}));
+      if (idempotencyKeyRef.current !== attemptKey) return;
 
-      if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || result.ok !== true) {
+        const firstFieldError = Object.values(bookingFieldErrors(result)).find(Boolean);
+        const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+        throw new Error(`${firstFieldError || result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
+      idempotencyKeyRef.current = null;
       form.reset();
       setRequestType("diskreter_auszug");
       setSafeContactMethod("Telefon");
@@ -287,8 +315,11 @@ export function DiscreetMoveForm() {
       setPhotos([]);
       setSubmitState("success");
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
@@ -300,13 +331,13 @@ export function DiscreetMoveForm() {
       className="rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10 sm:p-7"
     >
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Rueckruf-First</div>
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Rückruf-First</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-stone-950">
-          Sie muessen nicht alles schriftlich erklaeren
+          Sie müssen nicht alles schriftlich erklären
         </h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Fuer die erste Anfrage reichen Ort, Zeitraum, Anfrageart und sicherer Kontaktweg. Private Details koennen
-          spaeter ruhig telefonisch geklaert werden.
+          Für die erste Anfrage reichen Ort, Zeitraum, Anfrageart und sicherer Kontaktweg. Private Details können
+          später ruhig telefonisch geklärt werden.
         </p>
       </div>
 
@@ -326,16 +357,26 @@ export function DiscreetMoveForm() {
                   : "border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-400"
               }`}
             >
-              <span className="block text-sm font-black">{item.title}</span>
+              <span className="block text-sm font-black">{germanizeText(item.title)}</span>
               <span className={`mt-2 block text-xs leading-5 ${active ? "text-stone-200" : "text-stone-600"}`}>
-                {item.text}
+                {germanizeText(item.text)}
               </span>
             </button>
           );
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        data-booking-field-errors="managed"
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Name oder Ansprechpartner*
@@ -355,7 +396,7 @@ export function DiscreetMoveForm() {
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {safeContactMethods.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -365,7 +406,7 @@ export function DiscreetMoveForm() {
               name="phone"
               type="tel"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="fuer Rueckruf"
+              placeholder="für Rückruf"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -382,11 +423,11 @@ export function DiscreetMoveForm() {
             <input
               name="cityOrZip"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="Regensburg, Landkreis, Bayern nach Verfuegbarkeit"
+              placeholder="Regensburg, Landkreis, Bayern nach Verfügbarkeit"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Gewuenschter Zeitraum*
+            Gewünschter Zeitraum*
             <input
               name="desiredDate"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
@@ -394,7 +435,7 @@ export function DiscreetMoveForm() {
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Rueckrufzeitfenster
+            Rückrufzeitfenster
             <input
               name="callbackTimeWindow"
               data-event="hero_cta_click"
@@ -428,7 +469,7 @@ export function DiscreetMoveForm() {
                       : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
                   }`}
                 >
-                  {item}
+                  {germanizeText(item)}
                 </button>
               );
             })}
@@ -436,7 +477,7 @@ export function DiscreetMoveForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
-          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprueft werden?</div>
+          <div className="text-sm font-black text-stone-950">Welche Bausteine sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -451,7 +492,7 @@ export function DiscreetMoveForm() {
                       : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
                   }`}
                 >
-                  {service}
+                  {germanizeText(service)}
                 </button>
               );
             })}
@@ -464,7 +505,7 @@ export function DiscreetMoveForm() {
             <input
               name="startLocation"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
-              placeholder="nur grob, keine Details noetig"
+              placeholder="nur grob, keine Details nötig"
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -476,7 +517,7 @@ export function DiscreetMoveForm() {
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Uebergabetermin optional
+            Übergabetermin optional
             <input
               name="handoverDate"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
@@ -504,7 +545,7 @@ export function DiscreetMoveForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Schluesselstatus
+            Schlüsselstatus
             <input
               name="keyStatus"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
@@ -515,12 +556,12 @@ export function DiscreetMoveForm() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
-            Umfang / Gegenstaende optional
+            Umfang / Gegenstände optional
             <textarea
               name="itemDescription"
               rows={4}
               className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600"
-              placeholder="z. B. Kartons, Kleidung, Bett, Sofa, wenige Moebel. Keine sensiblen privaten Details noetig."
+              placeholder="z. B. Kartons, Kleidung, Bett, Sofa, wenige Möbel. Keine sensiblen privaten Details nötig."
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-stone-800">
@@ -529,7 +570,7 @@ export function DiscreetMoveForm() {
               name="message"
               rows={4}
               className="rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-stone-600"
-              placeholder="Was soll praktisch geklaert werden? Details koennen telefonisch folgen."
+              placeholder="Was soll praktisch geklärt werden? Details können telefonisch folgen."
             />
           </label>
         </div>
@@ -537,7 +578,7 @@ export function DiscreetMoveForm() {
         <div className="rounded-[1.75rem] border border-stone-200 bg-gradient-to-br from-stone-50 via-white to-slate-50 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Gegenstaende, Zugang oder Raeume fuer die Einschaetzung."
+            description="Gegenstände, Zugang oder Räume für die Einschätzung."
             helper="Bitte keine sensiblen privaten Details in Dateinamen oder Fotobeschreibungen übermitteln."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -549,22 +590,22 @@ export function DiscreetMoveForm() {
         <div className="grid gap-3 md:grid-cols-3">
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="cleaningRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Reinigung nach Auszug gewuenscht.
+            Reinigung nach Auszug gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="disposalRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Entruempelung / Entsorgung nach Absprache.
+            Entrümpelung / Entsorgung nach Absprache.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm leading-6 text-stone-700">
             <input name="handoverFileRequested" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
-            Uebergabeakte gewuenscht.
+            Übergabeakte gewünscht.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700">
           <input name="authorizationConfirmed" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
-            Ich bestaetige, dass ich berechtigt bin, die angefragten Gegenstaende / Leistungen zu beauftragen.
+            Ich bestätige, dass ich berechtigt bin, die angefragten Gegenstände / Leistungen zu beauftragen.
           </span>
         </label>
 
@@ -572,20 +613,20 @@ export function DiscreetMoveForm() {
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-stone-300 text-stone-800" />
           <span>
             Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist bewusst, dass
-            FLOXANT keine Rechtsberatung, Sicherheitsdienstleistung, Mediation oder Konfliktloesung uebernimmt.
+            FLOXANT keine Rechtsberatung, Sicherheitsdienstleistung, Mediation oder Konfliktlösung übernimmt.
           </span>
         </label>
 
         {errorMessage ? (
           <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">
-            {errorMessage}
+            {germanizeText(errorMessage)}
           </div>
         ) : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre diskrete Anfrage ist eingegangen. FLOXANT prueft Ort, Zeitraum, Umfang und gewuenschte
-            Kontaktmethode. Falls Angaben fehlen, melden wir uns ueber den von Ihnen gewuenschten sicheren Kontaktweg.
+            Danke. Ihre diskrete Anfrage ist eingegangen. FLOXANT prüft Ort, Zeitraum, Umfang und gewünschte
+            Kontaktmethode. Falls Angaben fehlen, melden wir uns über den von Ihnen gewünschten sicheren Kontaktweg.
           </div>
         ) : null}
 
@@ -613,7 +654,7 @@ export function DiscreetMoveForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />
-            Rueckruf
+            Rückruf
           </a>
           <a
             href={`mailto:${EMAIL}`}
@@ -645,10 +686,10 @@ export function DiscreetMoveForm() {
             onClick={() => document.getElementById("diskret-form")?.scrollIntoView({ behavior: "smooth", block: "start" })}
             className="rounded-[1.25rem] border border-stone-200 bg-stone-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-stone-400 hover:bg-white"
           >
-            <span className="block text-sm font-black text-stone-950">{item.title}</span>
-            <span className="mt-2 block text-xs leading-5 text-stone-600">{item.text}</span>
+            <span className="block text-sm font-black text-stone-950">{germanizeText(item.title)}</span>
+            <span className="mt-2 block text-xs leading-5 text-stone-600">{germanizeText(item.text)}</span>
             <span className="mt-3 inline-flex rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-stone-700">
-              {item.cta}
+              {germanizeText(item.cta)}
             </span>
           </button>
         ))}

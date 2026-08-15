@@ -1,5 +1,7 @@
 import { Mail, MessageCircle, Phone } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
+
 const methods = [
   { title: "Rueckruf", text: "Wenn Details besser muendlich und ruhig geklaert werden.", Icon: Phone },
   { title: "WhatsApp", text: "Wenn Fotos oder kurze Abstimmung hilfreich sind. Bitte keine Zugangscodes senden.", Icon: MessageCircle },
@@ -8,7 +10,8 @@ const methods = [
 
 export function PreferredContactMethodPanel() {
   return (
-    <section className="px-4 py-12 sm:px-6" data-component="PreferredContactMethodPanel">
+    <GermanCustomerCopy>
+      <section className="px-4 py-12 sm:px-6" data-component="PreferredContactMethodPanel">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <div className="text-xs font-black uppercase tracking-normal text-stone-600">Bevorzugter Kontaktweg</div>
@@ -26,6 +29,7 @@ export function PreferredContactMethodPanel() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    </GermanCustomerCopy>
   );
 }

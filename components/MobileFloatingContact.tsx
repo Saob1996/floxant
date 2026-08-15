@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
+import { ClipboardCheck, FileSearch } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
@@ -24,7 +24,6 @@ export default function MobileFloatingContact() {
       : "deutschland";
   const requestHref = buildGlobalRequestHref("global_floating");
   const offerHref = "/angebot-guenstiger-pruefen";
-  const budgetHref = "/anfrage-mit-preisrahmen";
   const whatsappText = city === "duesseldorf"
     ? "Hallo FLOXANT, ich möchte eine Anfrage in Düsseldorf stellen."
     : city === "regensburg"
@@ -33,25 +32,25 @@ export default function MobileFloatingContact() {
   const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
-    <div className="flox-mobile-action-wrap flox-universal-action-wrap" aria-label="FLOXANT Schnellkontakt">
+    <nav className="flox-mobile-action-wrap flox-universal-action-wrap flox-compact-action-wrap" aria-label="FLOXANT Schnellkontakt">
       <div className="flox-mobile-action-shell safe-area-bottom">
         <div className="flox-mobile-action-grid">
           <Link
             href={requestHref}
             onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
             className="flox-mobile-action flox-mobile-action-primary"
-            aria-label="Anfrage an FLOXANT senden"
+            aria-label="Angebot bei FLOXANT anfragen"
             data-event="seo_cta_click"
             data-source="global_floating"
             data-page-intent="neutrale-anfrage"
             data-priority="p1"
-            data-cta-label="Anfrage"
+            data-cta-label="Angebot anfragen"
             data-destination={requestHref}
           >
             <ClipboardCheck aria-hidden="true" />
             <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anfrage</span>
-              <span className="flox-mobile-action-note">Fall schildern</span>
+              <span className="flox-mobile-action-label">Angebot anfragen</span>
+              <span className="flox-mobile-action-note">Eckdaten senden</span>
             </span>
           </Link>
 
@@ -59,7 +58,7 @@ export default function MobileFloatingContact() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="flox-mobile-action flox-mobile-action-whatsapp"
+            className="flox-mobile-action flox-mobile-action-light"
             aria-label="FLOXANT per WhatsApp schreiben"
             data-event="whatsapp_click"
             data-source="floating_contact"
@@ -69,20 +68,6 @@ export default function MobileFloatingContact() {
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">WhatsApp</span>
               <span className="flox-mobile-action-note">Fotos senden</span>
-            </span>
-          </a>
-
-          <a
-            href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
-            className="flox-mobile-action flox-mobile-action-light"
-            aria-label="FLOXANT anrufen"
-            data-event="seo_phone_click"
-            data-source="floating_contact"
-          >
-            <Phone aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anrufen</span>
-              <span className="flox-mobile-action-note">Kurz klären</span>
             </span>
           </a>
 
@@ -98,28 +83,13 @@ export default function MobileFloatingContact() {
           >
             <FileSearch aria-hidden="true" />
             <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Angebot</span>
-              <span className="flox-mobile-action-note">Prüfen lassen</span>
+              <span className="flox-mobile-action-label">Angebot prüfen</span>
+              <span className="flox-mobile-action-note">Vorhandenes Angebot</span>
             </span>
           </Link>
 
-          <Link
-            href={budgetHref}
-            className="flox-mobile-action flox-mobile-action-dark"
-            aria-label="Budget oder Preisrahmen nennen"
-            data-event="service_card_click"
-            data-source="floating_contact"
-            data-page-intent="preisrahmen"
-            data-destination={budgetHref}
-          >
-            <BadgeEuro aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Budget</span>
-              <span className="flox-mobile-action-note">Nennen</span>
-            </span>
-          </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

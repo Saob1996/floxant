@@ -3645,6 +3645,10 @@ input[type="file"]:hover {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.flox-compact-action-wrap .flox-mobile-action-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flox-mobile-action {
   display: flex;
   min-width: 0;
@@ -3862,6 +3866,10 @@ input[type="file"]:hover {
   .flox-regensburg-action-wrap .flox-mobile-action-grid,
   .flox-universal-action-wrap .flox-mobile-action-grid {
     grid-template-columns: 0.95fr 1.05fr 0.82fr 0.95fr 0.88fr;
+  }
+
+  .flox-compact-action-wrap .flox-mobile-action-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action,

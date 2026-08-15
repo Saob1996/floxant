@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { m, AnimatePresence } from "framer-motion";
 import { AlertCircle, MessageSquare, X, Send, User, Mail, Phone, Banknote, ShieldCheck } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -118,9 +121,10 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
       }),
     );
     submitData.append("timestamp", new Date().toISOString());
+    submitData.append("privacyConsent", "true");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -300,6 +304,8 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                       className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-all focus:border-blue-500/50 focus:bg-white/10 focus:ring-4 focus:ring-blue-500/5"
                     />
                   </label>
+
+                  <PrivacyConsentField inverted />
 
                   {errorMessage ? (
                     <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">

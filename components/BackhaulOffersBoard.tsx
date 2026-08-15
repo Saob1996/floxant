@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, Calendar, CheckCircle2, Loader2, MapPin, PackageOpen, Route, Send, Truck } from "lucide-react";
@@ -220,11 +223,12 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
     submitData.append("phone", form.phone.trim());
     submitData.append("budget", form.budget.trim());
     submitData.append("message", form.message.trim());
+    submitData.append("privacyConsent", "true");
     submitData.append("details", JSON.stringify(details));
     submitData.append("timestamp", new Date().toISOString());
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -427,6 +431,8 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
               <Textarea label="Was soll mit?" value={form.items} onChange={(value) => updateField("items", value)} required placeholder="Büroinventar, Möbel, Kartons, Paletten, Maschine, Einzelstück..." />
               <Input label="Preisvorstellung optional" value={form.budget} onChange={(value) => updateField("budget", value)} placeholder="z. B. 250 EUR" />
               <Textarea label="Hinweis optional" value={form.message} onChange={(value) => updateField("message", value)} placeholder="Etage, Aufzug, Ladezeiten, Fotos vorhanden..." />
+
+              <PrivacyConsentField />
 
               {submitError ? (
                 <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">

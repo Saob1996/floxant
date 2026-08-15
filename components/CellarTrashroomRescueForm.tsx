@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -15,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -119,7 +122,9 @@ export function CellarTrashroomRescueForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte eine Keller-/Muellraum-Raeumung anfragen. Es geht um [Keller/Muellraum/Garage/Nebenflaeche] in [Ort]. Fotos, Zugang und Umfang kann ich senden. Bitte pruefen, ob Raeumung/Entsorgung/Reinigung moeglich ist.",
+        germanizeText(
+          "Hallo FLOXANT, ich moechte eine Keller-/Muellraum-Raeumung anfragen. Es geht um [Keller/Muellraum/Garage/Nebenflaeche] in [Ort]. Fotos, Zugang und Umfang kann ich senden. Bitte pruefen, ob Raeumung/Entsorgung/Reinigung moeglich ist.",
+        ),
       ),
     [],
   );
@@ -208,7 +213,7 @@ export function CellarTrashroomRescueForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -239,10 +244,10 @@ export function CellarTrashroomRescueForm() {
   return (
     <div id="keller-muellraum-form" className="rounded-[2rem] border border-amber-200 bg-white p-5 shadow-2xl shadow-amber-950/10 sm:p-7">
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Objektflaechen-Check</div>
-        <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Welche Flaeche ist betroffen?</h3>
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Objektflächen-Check</div>
+        <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Welche Fläche ist betroffen?</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Fotos, Zugang, Freigabe und Materialart entscheiden, ob FLOXANT Raeumung, Entsorgung und Reinigung sinnvoll pruefen kann.
+          Fotos, Zugang, Freigabe und Materialart entscheiden, ob FLOXANT Räumung, Entsorgung und Reinigung sinnvoll prüfen kann.
         </p>
       </div>
 
@@ -262,9 +267,9 @@ export function CellarTrashroomRescueForm() {
               }`}
             >
               <Icon className="h-5 w-5 text-amber-700" />
-              <div className="mt-3 text-sm font-black text-slate-950">{item.title}</div>
-              <p className="mt-2 text-xs leading-5 text-slate-600">{item.text}</p>
-              <div className="mt-3 rounded-xl bg-slate-950 px-3 py-2 text-[11px] font-black text-white">{item.recommendation}</div>
+              <div className="mt-3 text-sm font-black text-slate-950">{germanizeText(item.title)}</div>
+              <p className="mt-2 text-xs leading-5 text-slate-600">{germanizeText(item.text)}</p>
+              <div className="mt-3 rounded-xl bg-slate-950 px-3 py-2 text-[11px] font-black text-white">{germanizeText(item.recommendation)}</div>
             </button>
           );
         })}
@@ -303,12 +308,12 @@ export function CellarTrashroomRescueForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               {roleOptions.map((option) => (
-                <option key={option}>{option}</option>
+                <option key={option} value={option}>{germanizeText(option)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-700">
-            Betroffene Flaeche *
+            Betroffene Fläche *
             <select
               name="areaType"
               value={areaType}
@@ -317,7 +322,7 @@ export function CellarTrashroomRescueForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               {areaOptions.map((option) => (
-                <option key={option}>{option}</option>
+                <option key={option} value={option}>{germanizeText(option)}</option>
               ))}
             </select>
           </label>
@@ -330,13 +335,13 @@ export function CellarTrashroomRescueForm() {
         <div className="grid gap-4 sm:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-700">
             Zeitraum / Deadline *
-            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500" placeholder="z. B. diese Woche, vor Uebergabe" />
+            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500" placeholder="z. B. diese Woche, vor Übergabe" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-700">
             Dringlichkeit
             <select name="urgency" value={urgency} onChange={(event) => setUrgency(event.target.value)} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500">
               {urgencyOptions.map((option) => (
-                <option key={option}>{option}</option>
+                <option key={option} value={option}>{germanizeText(option)}</option>
               ))}
             </select>
           </label>
@@ -347,7 +352,7 @@ export function CellarTrashroomRescueForm() {
         </div>
 
         <div>
-          <div className="text-sm font-black text-slate-800">Welche Leistungen sollen geprueft werden?</div>
+          <div className="text-sm font-black text-slate-800">Welche Leistungen sollen geprüft werden?</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -360,7 +365,7 @@ export function CellarTrashroomRescueForm() {
                     active ? "border-amber-600 bg-amber-50 text-amber-900" : "border-slate-200 bg-white text-slate-600 hover:border-amber-200"
                   }`}
                 >
-                  {service}
+                  {germanizeText(service)}
                 </button>
               );
             })}
@@ -381,7 +386,7 @@ export function CellarTrashroomRescueForm() {
                     active ? "border-slate-950 bg-slate-950 text-white" : "border-slate-200 bg-white text-slate-600 hover:border-amber-200"
                   }`}
                 >
-                  {item}
+                  {germanizeText(item)}
                 </button>
               );
             })}
@@ -404,7 +409,7 @@ export function CellarTrashroomRescueForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-700">
-            Freigabe / Eigentumsfrage geklaert?
+            Freigabe / Eigentumsfrage geklärt?
             <select
               name="legalClearanceStatus"
               value={clearanceStatus}
@@ -421,7 +426,7 @@ export function CellarTrashroomRescueForm() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-700">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaSize" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500" placeholder="z. B. 15 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-700">
@@ -440,8 +445,8 @@ export function CellarTrashroomRescueForm() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-700">
-            Zugang / Schluesselstatus
-            <input name="keyStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500" placeholder="Zugang frei, Schluessel bei Verwaltung..." />
+            Zugang / Schlüsselstatus
+            <input name="keyStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500" placeholder="Zugang frei, Schlüssel bei Verwaltung..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-700">
             Trageweg / Zugang
@@ -451,13 +456,13 @@ export function CellarTrashroomRescueForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-700">
           Kurze Beschreibung *
-          <textarea name="message" rows={5} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-amber-500" placeholder="Was steht dort? Wer beauftragt? Ist Freigabe geklaert? Gibt es Fotos oder eine Deadline?" />
+          <textarea name="message" rows={5} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-amber-500" placeholder="Was steht dort? Wer beauftragt? Ist Freigabe geklärt? Gibt es Fotos oder eine Deadline?" />
         </label>
 
         <div className="rounded-[1.75rem] border border-amber-100 bg-gradient-to-br from-amber-50 via-white to-orange-50/70 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Keller, Muellraum, Zugang, Restmenge oder Materialart."
+            description="Keller, Müllraum, Zugang, Restmenge oder Materialart."
             helper="JPG, PNG oder WebP. Keine sensiblen Kundendaten in Dateinamen verwenden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -468,7 +473,7 @@ export function CellarTrashroomRescueForm() {
 
         <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
           <input name="callbackWanted" type="checkbox" value="true" className="mt-1" />
-          <span>Rueckruf erwuenscht, wenn Rueckfragen zu Freigabe, Zugang, Umfang oder Materialart bestehen.</span>
+          <span>Rückruf erwünscht, wenn Rückfragen zu Freigabe, Zugang, Umfang oder Materialart bestehen.</span>
         </label>
 
         <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
@@ -479,12 +484,12 @@ export function CellarTrashroomRescueForm() {
         </label>
 
         {errorMessage ? (
-          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700">{errorMessage}</div>
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-bold text-red-700">{germanizeText(errorMessage)}</div>
         ) : null}
 
         {submitState === "success" ? (
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold leading-6 text-emerald-800">
-            Danke. Ihre Anfrage zur Keller-/Muellraum-Rettung ist eingegangen. FLOXANT prueft Ort, Umfang, Fotos, Zugang, Freigabe und gewuenschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage zur Keller-/Müllraum-Rettung ist eingegangen. FLOXANT prüft Ort, Umfang, Fotos, Zugang, Freigabe und gewünschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -496,7 +501,7 @@ export function CellarTrashroomRescueForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Objektflaeche pruefen lassen
+            Objektfläche prüfen lassen
           </button>
           <a href={`https://wa.me/4915771105087?text=${whatsappText}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
             <Phone className="h-4 w-4" />
@@ -512,13 +517,13 @@ export function CellarTrashroomRescueForm() {
       <div className="mt-5 flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs leading-5 text-amber-950">
         <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
         <p>
-          FLOXANT prueft keine Eigentumsfragen und bietet keine Gefahrstoff-, Asbest-, Chemie-, Oel-, Farben- oder Schaedelingsbekaempfung an. Freigabe und problematische Stoffe muessen vor der Umsetzung geklaert sein.
+          FLOXANT prüft keine Eigentumsfragen und bietet keine Gefahrstoff-, Asbest-, Chemie-, Öl-, Farben- oder Schädlingsbekämpfung an. Freigabe und problematische Stoffe müssen vor der Umsetzung geklärt sein.
         </p>
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
         <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1"><Camera className="h-3 w-3" /> Fotos helfen</span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1"><CheckCircle2 className="h-3 w-3" /> Freigabe klaeren</span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1"><CheckCircle2 className="h-3 w-3" /> Freigabe klären</span>
         <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1"><Trash2 className="h-3 w-3" /> Materialart nennen</span>
       </div>
     </div>

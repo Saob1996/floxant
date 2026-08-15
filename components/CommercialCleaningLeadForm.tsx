@@ -1,10 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Loader2, MessageCircle, Send, ShieldCheck } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 
 type CleaningServiceContext = {
  label: string;
@@ -135,6 +137,9 @@ export function CommercialCleaningLeadForm() {
  const [form, setForm] = useState(initialForm);
  const [submitting, setSubmitting] = useState(false);
  const [state, setState] = useState<"idle" | "success" | "error">("idle");
+ const [errorMessage, setErrorMessage] = useState("");
+ const startedAtRef = useRef(Date.now());
+ const submissionAttemptKeyRef = useRef("");
 
  const whatsappUrl = useMemo(() => {
   const text = `Hallo FLOXANT, ich möchte ${serviceContext.label} anfragen.`;
@@ -143,17 +148,42 @@ export function CommercialCleaningLeadForm() {
 
  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
+  if (submitting) return;
+  const submittedForm = new FormData(event.currentTarget);
+  if (submittedForm.get("privacyConsent") !== "true") {
+   setErrorMessage("Bitte bestätigen Sie den Datenschutz-Hinweis.");
+   setState("error");
+   return;
+  }
   setSubmitting(true);
   setState("idle");
+  setErrorMessage("");
+
+  const attemptKey = submissionAttemptKeyRef.current
+   || `commercial_cleaning:${Date.now()}:${crypto.randomUUID()}`;
+  submissionAttemptKeyRef.current = attemptKey;
 
   const budgetValue = parseBudget(form.budget);
   const topDrivers = [serviceContext.label, form.propertyType, form.spaceRange, form.cadence, form.location].filter(Boolean);
 
   const payload = {
+   privacyConsent: true,
    name: form.name,
    email: form.email,
    phone: form.phone,
+   contactMethod: "email",
+   preferredContactMethod: "email",
    service: serviceContext.serviceType,
+   type: "commercial_cleaning_request",
+   lead_type: "commercial_cleaning_request",
+   serviceCategory: "reinigung",
+   leadSource: serviceContext.source,
+   source: serviceContext.source,
+   sourcePage: serviceContext.entryPoint,
+   landingPage: serviceContext.entryPoint,
+   timestamp: new Date().toISOString(),
+   formStartedAt: startedAtRef.current,
+   companyWebsite: String(submittedForm.get("companyWebsite") || ""),
    upgrades: [],
    details: {
     contact: {
@@ -238,17 +268,34 @@ export function CommercialCleaningLeadForm() {
   };
 
   try {
-   const response = await fetch("/api/bookings", {
+   const response = await bookingFetch("/api/bookings", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+     "Content-Type": "application/json",
+     "Idempotency-Key": attemptKey,
+    },
     body: JSON.stringify(payload),
    });
 
-   if (!response.ok) throw new Error("submit_failed");
+   const result = await response.json().catch(() => ({})) as {
+    ok?: boolean;
+    requestId?: string;
+    error?: string;
+   };
+   if (submissionAttemptKeyRef.current !== attemptKey) return;
+   if (response.status !== 201 || result.ok !== true) {
+    const firstFieldError = Object.values(bookingFieldErrors(result)).find(Boolean);
+    const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+    throw new Error(`${firstFieldError || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
+   }
 
+   submissionAttemptKeyRef.current = "";
    setState("success");
    setForm(initialForm);
-  } catch {
+   startedAtRef.current = Date.now();
+  } catch (error) {
+   if (submissionAttemptKeyRef.current !== attemptKey) return;
+   setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
    setState("error");
   } finally {
    setSubmitting(false);
@@ -256,18 +303,32 @@ export function CommercialCleaningLeadForm() {
  }
 
  function updateField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
+  submissionAttemptKeyRef.current = "";
+  setErrorMessage("");
+  if (state === "error") setState("idle");
   setForm((current) => ({ ...current, [key]: value }));
  }
 
  return (
   <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
    <form
+    data-booking-field-errors="managed"
     onSubmit={handleSubmit}
+    onChange={(event) => {
+     if (!(event.target instanceof HTMLInputElement) || event.target.name !== "privacyConsent") return;
+     submissionAttemptKeyRef.current = "";
+     setErrorMessage("");
+     if (state === "error") setState("idle");
+    }}
     data-event="form_submit"
     data-region="regensburg"
     data-source={serviceContext.source}
     className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
    >
+    <label className="sr-only" aria-hidden="true">
+     Website
+     <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
+    </label>
     <div className="mb-6 flex items-start justify-between gap-4">
      <div>
       <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
@@ -407,6 +468,10 @@ export function CommercialCleaningLeadForm() {
      </label>
     </div>
 
+    <div className="mt-5">
+     <PrivacyConsentField />
+    </div>
+
     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
      <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
       <ShieldCheck className="h-4 w-4 text-emerald-600" />
@@ -434,7 +499,7 @@ export function CommercialCleaningLeadForm() {
 
     {state === "error" ? (
      <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
-      Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.
+      {errorMessage || "Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp."}
      </div>
     ) : null}
    </form>

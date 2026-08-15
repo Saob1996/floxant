@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -24,6 +25,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LegacyBookingContextRedirect } from "@/components/ContactQueryPersonalization";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
@@ -245,72 +247,84 @@ const signatureServices = [
     title: "Schlüsselübergabe",
     text: "Anwesenheit und Abstimmung, wenn Sie nicht selbst vor Ort sein können.",
     href: "/schluesseluebergabe",
+    requestHref: "/buchung?service=uebergabeakte&entry=schluesseluebergabe#buchungssystem",
     Icon: KeyRound,
   },
   {
     title: "FLOXANT Übergabeakte",
     text: "Dokumentation, Fotos, Schlüsselstatus und Hinweise nach Absprache.",
     href: "/uebergabeakte",
+    requestHref: "/buchung?service=uebergabeakte&entry=uebergabeakte#buchungssystem",
     Icon: FileCheck2,
   },
   {
     title: "Wohnung wieder vermietbar",
     text: "Objekt nach Auszug, Leerstand oder Mieterwechsel nutzbarer vorbereiten.",
     href: "/wohnung-wieder-vermietbar",
+    requestHref: "/buchung?service=objektbrief&entry=vermietbar#buchungssystem",
     Icon: Home,
   },
   {
     title: "Immobilie verkaufsbereit",
     text: "Objekt vor Verkauf, Besichtigung oder Exposé mit Fotos, Räumung und Reinigung prüfen.",
     href: "/immobilie-verkaufsbereit-machen",
+    requestHref: "/buchung?service=objektbrief&entry=verkaufsbereit#buchungssystem",
     Icon: FileCheck2,
   },
   {
     title: "Nachlassräumung",
     text: "Wohnung, Haus, Keller oder Garage nach Erbfall diskret mit Fotos, Freigabe und Rückruf klären.",
     href: "/nachlass-raeumung-regensburg",
+    requestHref: "/buchung?service=nachlassaufloesung&entry=nachlass#buchungssystem",
     Icon: FileCheck2,
   },
   {
     title: "Diskreter Auszug",
     text: "Sensible private Auszugssituation mit Rückruf, sicherer Kontaktmethode, Transport, Reinigung und Übergabe klären.",
     href: "/diskreter-umzug-trennung-scheidung",
+    requestHref: "/buchung?service=diskret-service&entry=diskret#buchungssystem",
     Icon: ShieldCheck,
   },
   {
     title: "Umzug + Endreinigung",
     text: "Transport, Reinigung und Übergabe gemeinsam vorbereiten.",
     href: "/umzug-mit-reinigung",
+    requestHref: "/buchung?service=umzug-mit-reinigung&entry=kombination#buchungssystem",
     Icon: Sparkles,
   },
   {
     title: "Entrümpelung + Reinigung",
     text: "Räume leeren und auf Wunsch sauberer übergabebereit machen.",
     href: "/regensburg/entruempelung",
+    requestHref: "/buchung?service=entruempelung&entry=raeumung-reinigung#buchungssystem",
     Icon: PackageCheck,
   },
   {
     title: "Leerfahrt / Rückfahrt",
     text: "Freie Kapazitäten nutzen, wenn Strecke, Datum und Umfang passen.",
     href: "/leerfahrt-rueckfahrt",
+    requestHref: "/buchung?service=beiladung-rueckfahrt&entry=rueckfahrt#buchungssystem",
     Icon: Route,
   },
   {
     title: "Foto-Prüfung",
     text: "Fotos von Zugang, Umfang oder Zustand direkt für bessere Einschätzung senden.",
     href: "#buchungssystem",
+    requestHref: "/buchung?service=objektbrief&entry=fotos#buchungssystem",
     Icon: ClipboardCheck,
   },
   {
     title: "Kostenrahmen",
     text: "Budget offen nennen und realistisch einordnen lassen.",
     href: "/anfrage-mit-preisrahmen",
+    requestHref: "/buchung?entry=budget#buchungssystem",
     Icon: Banknote,
   },
   {
     title: "Express-Check",
     text: "Kurzer Weg für Zeitdruck, Zugang und schnelle Rückmeldung.",
     href: "/express-anfrage",
+    requestHref: "/buchung?entry=express&urgency=express#buchungssystem",
     Icon: Zap,
   },
 ] as const;
@@ -478,6 +492,9 @@ export default async function BuchungPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#f3f7fb_42%,#eef4f8_100%)] pb-28 text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Suspense fallback={null}>
+        <LegacyBookingContextRedirect />
+      </Suspense>
       <Breadcrumbs items={[{ label: "Anfrage starten" }]} />
 
       <section id="ueberblick" className="relative px-4 pb-10 pt-8 sm:px-6 lg:pb-14">
@@ -595,7 +612,7 @@ export default async function BuchungPage() {
                           <h4 className="mt-4 text-base font-bold tracking-tight text-slate-950">{item.title}</h4>
                           <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
                           <Link
-                            href={getSignatureActionHref(item.title)}
+                            href={item.requestHref}
                             className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-3 text-xs font-black uppercase tracking-[0.12em] text-blue-700 transition hover:bg-blue-50"
                             data-event="hero_cta_click"
                             data-source="booking_signature_service"
@@ -905,35 +922,6 @@ function DecisionPathCard({
       {content}
     </Link>
   );
-}
-
-function getSignatureActionHref(title: string) {
-  const normalized = title
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-  if (normalized.includes("reinigung") || normalized.includes("vermietbar") || normalized.includes("verkaufsbereit")) {
-    return "/buchung?service=reinigung&entry=zusatzservice#buchungssystem";
-  }
-
-  if (normalized.includes("entruempel") || normalized.includes("nachlass")) {
-    return "/buchung?service=entsorgung&entry=zusatzservice#buchungssystem";
-  }
-
-  if (normalized.includes("leerfahrt") || normalized.includes("ruckfahrt") || normalized.includes("rueckfahrt")) {
-    return "/buchung?service=leerfahrt&entry=rueckfahrt#buchungssystem";
-  }
-
-  if (normalized.includes("budget") || normalized.includes("kostenrahmen")) {
-    return "/buchung?entry=budget#buchungssystem";
-  }
-
-  if (normalized.includes("express")) {
-    return "/buchung?entry=express&urgency=express#buchungssystem";
-  }
-
-  return "/buchung?service=umzug&entry=zusatzservice#buchungssystem";
 }
 
 function BookingWizardSection({

@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -17,6 +19,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -122,7 +125,9 @@ export function RealtorLandlordLinkForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte einen Objektfall als Makler/Vermieter/Eigentuemer senden. Es geht um ein Objekt in [Ort]. Benoetigt werden Raeumung/Reinigung/Entsorgung/Uebergabevorbereitung nach Absprache. Fotos und Termin kann ich senden.",
+        germanizeText(
+          "Hallo FLOXANT, ich moechte einen Objektfall als Makler/Vermieter/Eigentuemer senden. Es geht um ein Objekt in [Ort]. Benoetigt werden Raeumung/Reinigung/Entsorgung/Uebergabevorbereitung nach Absprache. Fotos und Termin kann ich senden.",
+        ),
       ),
     [],
   );
@@ -212,7 +217,7 @@ export function RealtorLandlordLinkForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -242,7 +247,7 @@ export function RealtorLandlordLinkForm() {
         <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Objektfall-Schnelllink</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Welcher Objektfall liegt vor?</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Dieser Startpunkt ist kurz gehalten: Rolle, Objekt, Zustand, Termin, Fotos und Rueckmeldung reichen fuer die erste Pruefung.
+          Dieser Startpunkt ist kurz gehalten: Rolle, Objekt, Zustand, Termin, Fotos und Rückmeldung reichen für die erste Prüfung.
         </p>
       </div>
 
@@ -262,10 +267,10 @@ export function RealtorLandlordLinkForm() {
               }`}
             >
               <Icon className={`h-5 w-5 ${active ? "text-amber-200" : "text-slate-700"}`} />
-              <span className="mt-3 block text-sm font-black">{item.title}</span>
-              <span className={`mt-2 block text-xs leading-5 ${active ? "text-slate-200" : "text-slate-600"}`}>{item.text}</span>
+              <span className="mt-3 block text-sm font-black">{germanizeText(item.title)}</span>
+              <span className={`mt-2 block text-xs leading-5 ${active ? "text-slate-200" : "text-slate-600"}`}>{germanizeText(item.text)}</span>
               <span className={`mt-3 block rounded-xl px-3 py-2 text-[11px] font-black ${active ? "bg-white/10 text-amber-100" : "bg-white text-slate-700"}`}>
-                {item.services}
+                {germanizeText(item.services)}
               </span>
             </button>
           );
@@ -280,7 +285,7 @@ export function RealtorLandlordLinkForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Firma / Organisation optional
-            <input name="companyName" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="Maklerbuero, Hausverwaltung, Eigentuemer..." />
+            <input name="companyName" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="Maklerbüro, Hausverwaltung, Eigentümer..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Rolle*
@@ -292,7 +297,7 @@ export function RealtorLandlordLinkForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950"
             >
               {roleOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -300,13 +305,13 @@ export function RealtorLandlordLinkForm() {
             Objektart*
             <select name="objectType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950">
               {objectTypeOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
@@ -326,20 +331,20 @@ export function RealtorLandlordLinkForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950"
             >
               {objectCaseOptions.map((item) => (
-                <option key={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Gewuenschter Zeitraum*
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="z. B. vor Besichtigung, naechste Woche" />
+            Gewünschter Zeitraum*
+            <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="z. B. vor Besichtigung, nächste Woche" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Besichtigungstermin optional
             <input name="viewingDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="falls bekannt" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Uebergabetermin optional
+            Übergabetermin optional
             <input name="handoverDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="falls bekannt" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -349,7 +354,7 @@ export function RealtorLandlordLinkForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
-          <div className="text-sm font-black text-slate-950">Gewuenschte Leistungen</div>
+          <div className="text-sm font-black text-slate-950">Gewünschte Leistungen</div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {serviceOptions.map((service) => {
               const active = selectedServices.includes(service);
@@ -362,7 +367,7 @@ export function RealtorLandlordLinkForm() {
                     active ? "border-slate-950 bg-slate-950 text-white" : "border-slate-200 bg-white text-slate-700 hover:border-slate-400"
                   }`}
                 >
-                  {service}
+                  {germanizeText(service)}
                 </button>
               );
             })}
@@ -371,8 +376,8 @@ export function RealtorLandlordLinkForm() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Zugang / Schluesselstatus
-            <textarea name="accessNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-slate-950" placeholder="Wer hat Schluessel? Zugang moeglich? Etage, Aufzug, Parken?" />
+            Zugang / Schlüsselstatus
+            <textarea name="accessNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-slate-950" placeholder="Wer hat Schlüssel? Zugang möglich? Etage, Aufzug, Parken?" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Budget / Preisrahmen optional
@@ -382,11 +387,11 @@ export function RealtorLandlordLinkForm() {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaM2" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="z. B. 72 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Raeume
+            Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950" placeholder="z. B. 3" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -407,7 +412,7 @@ export function RealtorLandlordLinkForm() {
         <div className="rounded-[1.75rem] border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-blue-50/50 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Wohnung, Keller, Moebel, Reinigung, Zugang oder Nebenflaechen."
+            description="Wohnung, Keller, Möbel, Reinigung, Zugang oder Nebenflächen."
             helper="Keine personenbezogenen Daten in Dateinamen verwenden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -418,32 +423,32 @@ export function RealtorLandlordLinkForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-slate-950" placeholder="Was ist offen? Was soll vorbereitet werden? Gibt es Besichtigung, Uebergabe, Leerstand oder Mieterwechsel?" />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-slate-950" placeholder="Was ist offen? Was soll vorbereitet werden? Gibt es Besichtigung, Übergabe, Leerstand oder Mieterwechsel?" />
         </label>
 
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-slate-950" />
-            Rueckruf zum Objektfall gewuenscht.
+            Rückruf zum Objektfall gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-slate-950" />
-            WhatsApp fuer Rueckfragen bevorzugt.
+            WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-slate-950" />
-          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. FLOXANT bietet praktische und organisatorische Unterstuetzung, keine Maklerleistung, keine Rechtsberatung und keine Vermietungsgarantie.
+          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. FLOXANT bietet praktische und organisatorische Unterstützung, keine Maklerleistung, keine Rechtsberatung und keine Vermietungsgarantie.
         </label>
 
         {errorMessage ? (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div>
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{germanizeText(errorMessage)}</div>
         ) : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihr Objektfall ist eingegangen. FLOXANT prueft Ort, Zustand, Termin, Fotos und gewuenschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihr Objektfall ist eingegangen. FLOXANT prüft Ort, Zustand, Termin, Fotos und gewünschte Leistungen. Falls Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 

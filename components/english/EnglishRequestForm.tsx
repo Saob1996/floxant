@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
 type SubmitState = "idle" | "sending" | "success" | "error";
 
 type EnglishRequestFormProps = {
@@ -23,6 +25,7 @@ export function EnglishRequestForm({
 }: EnglishRequestFormProps) {
   const [state, setState] = useState<SubmitState>("idle");
   const [details, setDetails] = useState(initialDetails);
+  const [errorMessage, setErrorMessage] = useState("");
   const formStartedAt = useRef(Date.now());
 
   useEffect(() => {
@@ -31,7 +34,9 @@ export function EnglishRequestForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (state === "sending") return;
     setState("sending");
+    setErrorMessage("");
 
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -45,12 +50,22 @@ export function EnglishRequestForm({
     data.set("formStartedAt", String(formStartedAt.current));
 
     try {
-      const response = await fetch("/api/bookings", { method: "POST", body: data });
-      if (!response.ok) throw new Error("Request could not be submitted");
+      const response = await bookingFetch("/api/bookings", { method: "POST", body: data });
+      const payload = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (response.status !== 201 || payload.ok !== true) {
+        const fieldErrors = bookingFieldErrors(payload);
+        const firstFieldError = Object.values(fieldErrors).find(Boolean);
+        throw new Error(firstFieldError || payload.error || "Request could not be submitted.");
+      }
       form.reset();
       setDetails("");
+      formStartedAt.current = Date.now();
       setState("success");
-    } catch {
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Request could not be submitted.");
       setState("error");
     }
   }
@@ -68,7 +83,16 @@ export function EnglishRequestForm({
   }
 
   return (
-    <form id={formId} onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
+    <form
+      id={formId}
+      onSubmit={handleSubmit}
+      onChange={() => {
+        setErrorMessage("");
+        if (state === "error") setState("idle");
+      }}
+      className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+      aria-label="English FLOXANT request form"
+    >
       <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
         <label>
           Company website
@@ -136,7 +160,7 @@ export function EnglishRequestForm({
       </label>
       {state === "error" ? (
         <p className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm font-bold text-rose-800" role="alert">
-          The request could not be sent. Please try again or use the phone or email shown in the footer.
+          {errorMessage || "The request could not be sent. Please try again or use the phone or email shown in the footer."}
         </p>
       ) : null}
       <button type="submit" disabled={state === "sending"} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white disabled:opacity-60">

@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
@@ -446,6 +449,12 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   const [detailsExpanded, setDetailsExpanded] = useState(false);
   const [contactExpanded, setContactExpanded] = useState(() => isDetailedFlow || isUploadFlow);
   const [todayInputValue, setTodayInputValue] = useState("");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [state.service, state.details, state.upgrades, formData, files]);
 
   useEffect(() => {
     setTodayInputValue(new Date().toISOString().split("T")[0]);
@@ -803,6 +812,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   };
 
   const resetWizard = () => {
+    idempotencyKeyRef.current = null;
+    submitLockRef.current = false;
     setState({
       step: 1,
       service: null,
@@ -895,12 +906,24 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (submitLockRef.current || isSubmitting) return;
 
     if (!state.service || !isStepTwoValid || !isContactValid) {
       setSubmitError(t?.error?.generic || "Bitte prüfen Sie die Angaben und ergänzen Sie Name und Telefon.");
       return;
     }
+
+    const privacyConsent = new FormData(e.currentTarget as HTMLFormElement).get("privacyConsent") === "true";
+    if (!privacyConsent) {
+      setSubmitError("Bitte bestätigen Sie den Datenschutz-Hinweis.");
+      return;
+    }
+
+    submitLockRef.current = true;
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `booking_wizard:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
 
     setSubmitError("");
     setIsSubmitting(true);
@@ -1101,6 +1124,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     submitData.append("name", formData.name.trim());
     submitData.append("email", formData.email.trim());
     submitData.append("phone", formData.phone.trim());
+    submitData.append("privacyConsent", "true");
     submitData.append("timestamp", createdAt);
     if (state.details.budget.trim()) {
       submitData.append("budget", state.details.budget.trim());
@@ -1138,24 +1162,31 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         }
       }
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
+        headers: {
+          "Idempotency-Key": attemptKey,
+        },
       });
+      const responsePayload = await response.json().catch(() => ({}));
+      if (idempotencyKeyRef.current !== attemptKey) return;
 
-      if (!response.ok) {
-        let errorMessage = t?.error?.submit || "Die Anfrage konnte nicht gesendet werden.";
-        try {
-          const payload = await response.json();
-          errorMessage = payload?.message || payload?.error || errorMessage;
-        } catch {
-          // Keep the user-facing fallback when the server response is not JSON.
-        }
-        throw new Error(errorMessage);
+      if (
+        response.status !== 201
+        || responsePayload?.ok !== true
+        || !responsePayload?.requestId
+        || !responsePayload?.bookingId
+      ) {
+        const firstFieldError = Object.values(bookingFieldErrors(responsePayload)).find(Boolean);
+        const reference = responsePayload?.requestId ? ` Referenz: ${responsePayload.requestId}` : "";
+        throw new Error(`${firstFieldError || responsePayload?.message || responsePayload?.error || t?.error?.submit || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
+      idempotencyKeyRef.current = null;
       setIsSuccess(true);
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       console.error("Submission error:", error);
       setSubmitError(
         error instanceof Error
@@ -1163,6 +1194,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           : t?.error?.generic || "Die Anfrage konnte nicht gesendet werden."
       );
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   };
@@ -1849,8 +1881,13 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         </div>
 
         <form
+          data-booking-field-errors="managed"
           className="space-y-4"
           onSubmit={handleSubmit}
+          onChange={() => {
+            idempotencyKeyRef.current = null;
+            setSubmitError("");
+          }}
           data-event="form_submit"
           data-service={state.service || "unknown"}
           data-source={queryUtmSource || "booking_wizard"}
@@ -1982,6 +2019,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </div>
             </div>
           )}
+
+          <PrivacyConsentField id="booking-contact-privacy-consent" />
 
           {submitError ? (
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">

@@ -2,12 +2,9 @@ export type BookingSubmissionFields = Record<string, string>;
 
 type BookingResponsePayload = {
   ok?: boolean;
-  success?: boolean;
   code?: string;
   requestId?: string;
   bookingId?: string;
-  id?: string;
-  error?: string;
   fields?: BookingSubmissionFields;
 };
 
@@ -454,7 +451,6 @@ function fallbackMessage(locale: "de" | "en") {
 function clientMessage(payload: BookingResponsePayload, locale: "de" | "en") {
   const firstFieldError = payload.fields && Object.values(payload.fields).find(Boolean);
   if (firstFieldError) return firstFieldError;
-  if (typeof payload.error === "string" && payload.error.trim()) return payload.error.trim();
   return fallbackMessage(locale);
 }
 
@@ -478,30 +474,16 @@ async function executeRequest(input: RequestInfo | URL, init?: RequestInit): Pro
     payload = {};
   }
 
-  const isCanonicalSuccess = response.status === 201
+  const isConfirmedSuccess = response.status === 201
     && payload.ok === true
     && typeof payload.requestId === "string"
     && typeof payload.bookingId === "string";
-  const isLegacySuccess = response.status === 200
-    && response.ok
-    && payload.success === true
-    && typeof payload.id === "string"
-    && Boolean(payload.id.trim());
-  const isConfirmedSuccess = isCanonicalSuccess || isLegacySuccess;
-  const confirmedPayload: BookingResponsePayload = isLegacySuccess
-    ? {
-        ...payload,
-        ok: true,
-        requestId: payload.requestId?.trim() || payload.id?.trim(),
-        bookingId: payload.id?.trim(),
-      }
-    : payload;
 
   return {
     status: isConfirmedSuccess ? 201 : (response.ok ? 500 : response.status),
     headers: new Headers(response.headers),
     payload: isConfirmedSuccess
-      ? confirmedPayload
+      ? payload
       : { ...payload, ok: false, code: payload.code || "SUBMISSION_FAILED" },
   };
 }

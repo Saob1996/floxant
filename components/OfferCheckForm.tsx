@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, FileText, Loader2, Mail, Phone, UploadCloud } from "lucide-react";
 
@@ -11,12 +13,12 @@ const PHONE_TEL = "+4915771105087";
 const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
-const allServiceOptions = [
+const regensburgServiceOptions = [
   { value: "umzug", label: "Umzug" },
   { value: "reinigung", label: "Reinigung" },
-  { value: "bueroreinigung", label: "Bueroreinigung" },
+  { value: "bueroreinigung", label: "Büroreinigung" },
   { value: "gewerbereinigung", label: "Gewerbereinigung" },
-  { value: "haushaltsaufloesung", label: "Haushaltsaufloesung" },
+  { value: "haushaltsaufloesung", label: "Haushaltsauflösung" },
   { value: "solarreinigung", label: "Solarreinigung" },
   { value: "pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
   { value: "fensterreinigung", label: "Glas- / Fensterreinigung" },
@@ -29,11 +31,17 @@ const allServiceOptions = [
 ];
 
 const duesseldorfServiceOptions = [
-  { value: "reinigung", label: "Reinigung Regensburg" },
-  { value: "entsorgung", label: "Entsorgung Düsseldorf" },
+  { value: "reinigung", label: "Reinigung" },
+  { value: "bueroreinigung", label: "Büroreinigung" },
+  { value: "gewerbereinigung", label: "Gewerbereinigung" },
+  { value: "praxisreinigung", label: "Praxisreinigung" },
+  { value: "fensterreinigung", label: "Fensterreinigung" },
+  { value: "grundreinigung", label: "Grundreinigung" },
+  { value: "unterhaltsreinigung", label: "Unterhaltsreinigung" },
+  { value: "baureinigung", label: "Bau- und Bauendreinigung" },
 ];
 
-const addonOptions = [
+const regensburgAddonOptions = [
   "Reinigung",
   "Entrümpelung",
   "Entsorgung",
@@ -43,9 +51,18 @@ const addonOptions = [
   "Diskrete Abstimmung",
 ];
 
+const duesseldorfAddonOptions = [
+  "Fenster- und Glasflächen",
+  "Grundreinigung",
+  "Sanitärbereiche",
+  "Treppenhaus",
+  "Bauendreinigung",
+  "Zugang / Parken",
+];
+
 const offerStatusOptions = [
   { value: "written_offer", label: "Schriftliches Angebot liegt vor" },
-  { value: "verbal_offer", label: "Nur muendliche Preisnennung" },
+  { value: "verbal_offer", label: "Nur mündliche Preisnennung" },
   { value: "multiple_offers", label: "Mehrere Angebote vergleichen" },
   { value: "no_offer_yet", label: "Noch kein Angebot" },
 ] as const;
@@ -61,7 +78,7 @@ const offerConcernOptions = [
   { value: "addons_unclear", label: "Zusatzleistungen oder Nebenkosten unklar" },
   { value: "deadline", label: "Termin oder Deadline kritisch" },
   { value: "alternative_needed", label: "Alternative zu bestehendem Angebot gesucht" },
-  { value: "general_second_opinion", label: "Zweite Einschaetzung gewuenscht" },
+  { value: "general_second_opinion", label: "Zweite Einschätzung gewünscht" },
   { value: "other", label: "Anderes" },
 ] as const;
 
@@ -69,7 +86,7 @@ const deadlineOptions = [
   { value: "", label: "Wie Termin / Zeitraum" },
   { value: "today_or_tomorrow", label: "Heute oder morgen" },
   { value: "this_week", label: "Diese Woche" },
-  { value: "fixed_handover", label: "Feste Uebergabe / Deadline" },
+  { value: "fixed_handover", label: "Feste Übergabe / Deadline" },
   { value: "flexible", label: "Flexibel" },
 ] as const;
 
@@ -94,28 +111,41 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
   const [entryMode, setEntryMode] = useState<EntryMode>("upload");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [region, setRegion] = useState("regensburg");
-  const [service, setService] = useState("umzug");
+  const [region, setRegion] = useState("");
+  const [service, setService] = useState("");
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [photoFiles, setPhotoFiles] = useState<File[]>([]);
 
   const hasRedFlagResult = Boolean(redFlagResult?.completed);
-  const serviceOptions = region === "duesseldorf" ? duesseldorfServiceOptions : allServiceOptions;
+  const serviceOptions = region === "duesseldorf"
+    ? duesseldorfServiceOptions
+    : region === "regensburg"
+      ? regensburgServiceOptions
+      : [];
+  const addonOptions = region === "duesseldorf"
+    ? duesseldorfAddonOptions
+    : region === "regensburg"
+      ? regensburgAddonOptions
+      : [];
+  const regionLabel = region === "duesseldorf"
+    ? "Düsseldorf"
+    : region === "regensburg"
+      ? "Regensburg"
+      : "Düsseldorf oder Regensburg";
 
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        `Hallo FLOXANT, ich habe bereits ein Angebot erhalten und möchte eine zweite Einschätzung. Es geht um ${serviceOptions.find((item) => item.value === service)?.label || "einen Service"} in ${region === "duesseldorf" ? "Düsseldorf" : "Regensburg/Umgebung"}. Ich kann Angebot/Fotos senden.`,
+        `Hallo FLOXANT, ich habe bereits ein Angebot erhalten und möchte eine zweite Einschätzung. Es geht um ${serviceOptions.find((item) => item.value === service)?.label || "eine Leistung"} in ${regionLabel}. Ich kann Angebot und Fotos senden.`,
       ),
-    [region, service, serviceOptions],
+    [regionLabel, service, serviceOptions],
   );
 
   function updateRegion(nextRegion: string) {
     setRegion(nextRegion);
-    if (nextRegion === "regensburg" && !["reinigung", "entsorgung"].includes(service)) {
-      setService("reinigung");
-    }
+    setService(nextRegion === "duesseldorf" ? "reinigung" : nextRegion === "regensburg" ? "umzug" : "");
+    setSelectedAddons([]);
   }
 
   function toggleAddon(addon: string) {
@@ -150,6 +180,14 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
     }
     if (phone && phone.length < 6) {
       setErrorMessage("Bitte prüfen Sie die Telefonnummer.");
+      return;
+    }
+    if (!region) {
+      setErrorMessage("Bitte wählen Sie Düsseldorf oder Regensburg.");
+      return;
+    }
+    if (!service) {
+      setErrorMessage("Bitte wählen Sie eine Leistung.");
       return;
     }
     if (!cityOrZip) {
@@ -207,9 +245,16 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
     formData.set("privacyConsent", "true");
     formData.set("pageType", "offer_check");
     formData.set("funnelStage", "offer_check");
-    formData.set("ctaLabel", "Angebot pruefen lassen");
-    formData.set("sourcePage", hasRedFlagResult ? "/angebotscheck#red-flag-scanner" : "/angebotscheck");
-    formData.set("landingPage", typeof window === "undefined" ? "/angebotscheck" : `${window.location.pathname}${window.location.search}`);
+    formData.set("ctaLabel", "Angebot prüfen lassen");
+    formData.set(
+      "sourcePage",
+      typeof window === "undefined"
+        ? hasRedFlagResult
+          ? "/angebotscheck#red-flag-scanner"
+          : "/angebot-guenstiger-pruefen"
+        : `${window.location.pathname}${hasRedFlagResult ? "#red-flag-scanner" : ""}`,
+    );
+    formData.set("landingPage", typeof window === "undefined" ? "/angebot-guenstiger-pruefen" : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
     formData.set("utmSource", getUtmValue("utm_source"));
     formData.set("utmMedium", getUtmValue("utm_medium"));
@@ -224,7 +269,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -303,16 +348,16 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Region*
-            <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" data-event="region_select" data-region={region} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+            <select required value={region} onChange={(event) => updateRegion(event.target.value)} name="region" data-event="region_select" data-region={region} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              <option value="" disabled>Standort wählen</option>
+              <option value="duesseldorf">Düsseldorf</option>
               <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
-              <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Service-Art*
-            <select value={service} onChange={(event) => setService(event.target.value)} name="service" data-source="offer_check_service_select" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+            <select required disabled={!region} value={service} onChange={(event) => setService(event.target.value)} name="service" data-source="offer_check_service_select" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500 disabled:cursor-not-allowed disabled:bg-slate-100">
+              <option value="" disabled>Leistung wählen</option>
               {serviceOptions.map((item) => (
                 <option key={item.value} value={item.value}>
                   {item.label}
@@ -322,7 +367,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
+            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Düsseldorf, 40213" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Termin / Zeitraum*
@@ -343,7 +388,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Wichtigster Pruefgrund
+            Wichtigster Prüfgrund
             <select name="offerConcern" defaultValue="price_unclear" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               {offerConcernOptions.map((item) => (
                 <option key={item.value} value={item.value}>
@@ -389,7 +434,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
                 Angebot und Fotos sind getrennt, damit Umfang und offene Punkte sauber geprüft werden können.
               </p>
               <p className="mt-1 text-xs leading-5 text-slate-600">
-                FLOXANT ordnet Angaben, Leistungsumfang und naechste sinnvolle Schritte ein; keine Rechtsberatung und keine Preisgarantie.
+                FLOXANT ordnet Angaben, Leistungsumfang und nächste sinnvolle Schritte ein; keine Rechtsberatung und keine Preisgarantie.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -426,17 +471,19 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
           <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was soll geprüft werden? Umfang, Etage, Zugang, Termin, offene Punkte oder Zusatzleistungen." />
         </label>
 
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm font-black text-slate-900">Zusatzleistungen, die im Angebot fehlen könnten</p>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2">
-            {addonOptions.map((addon) => (
-              <label key={addon} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
-                <input type="checkbox" checked={selectedAddons.includes(addon)} onChange={() => toggleAddon(addon)} className="h-4 w-4 rounded border-slate-300 text-blue-600" />
-                {addon}
-              </label>
-            ))}
+        {region ? (
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
+            <p className="text-sm font-black text-slate-900">Zusatzleistungen, die im Angebot fehlen könnten</p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {addonOptions.map((addon) => (
+                <label key={addon} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
+                  <input type="checkbox" checked={selectedAddons.includes(addon)} onChange={() => toggleAddon(addon)} className="h-4 w-4 rounded border-slate-300 text-blue-600" />
+                  {addon}
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
@@ -455,8 +502,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: Clari
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
             {hasRedFlagResult
-              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir pruefen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Keine Rechtsberatung und keine Preisgarantie."
-              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. FLOXANT prueft Umfang, Termin, Ort, vorhandenes Angebot und offene Punkte organisatorisch und praktisch. Wenn Angaben fehlen, melden wir uns mit Rueckfragen. Eine Anfrage ist noch keine Buchung."}
+              ? "Danke. Ihr Red-Flag-Ergebnis wurde an FLOXANT gesendet. Wir prüfen Angebot, offene Punkte, Ort, Termin und Umfang. Wenn Angaben fehlen, melden wir uns mit Rückfragen. Keine Rechtsberatung und keine Preisgarantie."
+              : "Danke. Ihre Anfrage zum Angebotscheck ist eingegangen. FLOXANT prüft Umfang, Termin, Ort, vorhandenes Angebot und offene Punkte organisatorisch und praktisch. Wenn Angaben fehlen, melden wir uns mit Rückfragen. Eine Anfrage ist noch keine Buchung."}
           </div>
         ) : null}
 

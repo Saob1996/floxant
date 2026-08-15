@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
 import { AnimatePresence, m } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, ExternalLink, MessageCircle, X } from "lucide-react";
 import Link from "next/link";
@@ -233,11 +235,14 @@ export function InquiryIntentModal({
 
   function update(name: string, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
+    setErrorMessage("");
+    if (submitState === "error") setSubmitState("idle");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!config) return;
+    if (submitState === "submitting") return;
 
     const missingField = config.fields.find((field) => field.required && !values[field.name]?.trim());
     if (missingField) {
@@ -288,14 +293,20 @@ export function InquiryIntentModal({
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
+      const result = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
-        const result = await response.json().catch(() => null);
-        throw new Error(result?.message || result?.error || "Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || result.ok !== true) {
+        const fields = bookingFieldErrors(result);
+        if (response.status === 400 && Object.keys(fields).length > 0) {
+          setSubmitState("error");
+          setErrorMessage(result.error || "Bitte korrigieren Sie die markierten Angaben.");
+          return;
+        }
+        throw new Error(result.error || result.message || "Anfrage konnte nicht gesendet werden.");
       }
 
       setSubmitState("success");
@@ -401,7 +412,14 @@ export function InquiryIntentModal({
                   </a>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid gap-4">
+                <form
+                  onSubmit={handleSubmit}
+                  onChange={() => {
+                    setErrorMessage("");
+                    if (submitState === "error") setSubmitState("idle");
+                  }}
+                  className="grid gap-4"
+                >
                   {showCleaningRegions ? (
                     <div>
                       <label className="text-sm font-black text-slate-950">Einsatzgebiet</label>

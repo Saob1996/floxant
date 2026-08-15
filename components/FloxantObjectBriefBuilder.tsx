@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { germanizeText } from "@/lib/german-text";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 type RegionKey = "duesseldorf" | "regensburg";
@@ -328,8 +329,8 @@ export function FloxantObjectBriefBuilder() {
                         data-region={key}
                         data-source="object_brief_builder"
                       >
-                        <span className="block text-base font-black">{option.label}</span>
-                        <span className="mt-2 block text-sm font-semibold leading-6">{option.text}</span>
+                        <span className="block text-base font-black">{germanizeText(option.label)}</span>
+                        <span className="mt-2 block text-sm font-semibold leading-6">{germanizeText(option.text)}</span>
                       </button>
                     );
                   })}
@@ -361,7 +362,7 @@ export function FloxantObjectBriefBuilder() {
                         data-region={region}
                         data-source="object_brief_goal"
                       >
-                        {item}
+                        {germanizeText(item)}
                       </button>
                     );
                   })}
@@ -380,7 +381,7 @@ export function FloxantObjectBriefBuilder() {
                     className="min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                   >
                     {selectedRegion.services.map((item) => (
-                      <option key={item}>{item}</option>
+                      <option key={item} value={item}>{germanizeText(item)}</option>
                     ))}
                   </select>
                 </label>
@@ -409,7 +410,7 @@ export function FloxantObjectBriefBuilder() {
                     className="min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                   >
                     {urgencyOptions.map((item) => (
-                      <option key={item}>{item}</option>
+                      <option key={item} value={item}>{germanizeText(item)}</option>
                     ))}
                   </select>
                 </label>
@@ -425,7 +426,7 @@ export function FloxantObjectBriefBuilder() {
                     className="min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                   >
                     {accessOptions.map((item) => (
-                      <option key={item}>{item}</option>
+                      <option key={item} value={item}>{germanizeText(item)}</option>
                     ))}
                   </select>
                 </label>
@@ -543,8 +544,8 @@ export function FloxantObjectBriefBuilder() {
                 <Target className="h-4 w-4" aria-hidden="true" />
                 Empfohlener nächster Schritt
               </div>
-              <h4 className="mt-3 text-xl font-black text-white">{nextAction.label}</h4>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-200">{nextAction.text}</p>
+              <h4 className="mt-3 text-xl font-black text-white">{germanizeText(nextAction.label)}</h4>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-200">{germanizeText(nextAction.text)}</p>
             </div>
 
             <div className="mt-5 rounded-lg border border-white/10 bg-white/8 p-4">
@@ -554,7 +555,7 @@ export function FloxantObjectBriefBuilder() {
                     <ListChecks className="h-4 w-4" aria-hidden="true" />
                     Startklarheit
                   </div>
-                  <p className="mt-2 text-lg font-black text-white">{readinessLabel}</p>
+              <p className="mt-2 text-lg font-black text-white">{germanizeText(readinessLabel)}</p>
                 </div>
                 <div className="rounded-lg border border-cyan-200/20 bg-cyan-300/10 px-3 py-2 text-2xl font-black text-cyan-50">
                   {readinessScore}%
@@ -566,7 +567,7 @@ export function FloxantObjectBriefBuilder() {
                   style={{ width: `${readinessScore}%` }}
                 />
               </div>
-              <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">{nextAdvice}</p>
+              <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">{germanizeText(nextAdvice)}</p>
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
                 {readinessChecks.map((item) => (
                   <div
@@ -581,13 +582,13 @@ export function FloxantObjectBriefBuilder() {
                       className={`h-3.5 w-3.5 ${item.done ? "text-emerald-300" : "text-slate-500"}`}
                       aria-hidden="true"
                     />
-                    {item.label}
+                    {germanizeText(item.label)}
                   </div>
                 ))}
               </div>
               {missingHints.length ? (
                 <p className="mt-3 text-xs font-semibold leading-6 text-slate-400">
-                  Noch offen: {missingHints.join(", ")}.
+                  Noch offen: {germanizeText(missingHints.join(", "))}.
                 </p>
               ) : null}
             </div>

@@ -1,9 +1,12 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { type Dispatch, FormEvent, type SetStateAction, useMemo, useState } from "react";
 import { ArrowRight, Camera, CheckCircle2, FileText, KeyRound, Loader2, Mail, Phone } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -90,7 +93,9 @@ export function HandoverFileForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte eine Uebergabeakte anfragen. Es geht um ein Objekt in [Ort]. Gewuenscht sind Dokumentation, Fotos/Schluesselstatus/Endreinigung/Uebergabevorbereitung nach Absprache. Termin und Details kann ich senden.",
+        germanizeText(
+          "Hallo FLOXANT, ich moechte eine Uebergabeakte anfragen. Es geht um ein Objekt in [Ort]. Gewuenscht sind Dokumentation, Fotos/Schluesselstatus/Endreinigung/Uebergabevorbereitung nach Absprache. Termin und Details kann ich senden.",
+        ),
       ),
     [],
   );
@@ -193,7 +198,7 @@ export function HandoverFileForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
@@ -237,8 +242,8 @@ export function HandoverFileForm() {
               }`}
             >
               <Icon className="h-5 w-5" />
-              <span className="mt-3 block text-sm font-black">{item.title}</span>
-              <span className="mt-1 block text-xs leading-5">{item.text}</span>
+              <span className="mt-3 block text-sm font-black">{germanizeText(item.title)}</span>
+              <span className="mt-1 block text-xs leading-5">{germanizeText(item.text)}</span>
             </button>
           );
         })}
@@ -252,7 +257,7 @@ export function HandoverFileForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
@@ -263,7 +268,7 @@ export function HandoverFileForm() {
             <select name="roleType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               {roleTypeOptions.map((item) => (
                 <option key={item} value={item}>
-                  {item}
+                  {germanizeText(item)}
                 </option>
               ))}
             </select>
@@ -281,31 +286,31 @@ export function HandoverFileForm() {
             <select name="objectType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               {objectTypeOptions.map((item) => (
                 <option key={item} value={item}>
-                  {item}
+                  {germanizeText(item)}
                 </option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Zeitraum / Uebergabetermin*
+            Zeitraum / Übergabetermin*
             <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. vor 15.06. oder diese Woche" />
           </label>
         </div>
 
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm font-black text-slate-950">Gewuenschte Leistung*</p>
+          <p className="text-sm font-black text-slate-950">Gewünschte Leistung*</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {serviceOptions.map((service) => (
               <label key={service} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
                 <input type="checkbox" checked={selectedServices.includes(service)} onChange={() => toggleService(service)} data-event="service_card_click" className="h-4 w-4 rounded border-slate-300 text-amber-600" />
-                {service}
+                {germanizeText(service)}
               </label>
             ))}
           </div>
         </div>
 
         <div className="rounded-[1.5rem] border border-amber-100 bg-amber-50/70 p-4">
-          <p className="text-sm font-black text-amber-950">Gewuenschte Bestandteile der Akte</p>
+          <p className="text-sm font-black text-amber-950">Gewünschte Bestandteile der Akte</p>
           <p className="mt-1 text-xs leading-5 text-amber-800">Auswahl dient der Vorbereitung. Der genaue Umfang wird vor Auftragserteilung abgestimmt.</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {documentationScopeOptions.map((scope) => (
@@ -317,7 +322,7 @@ export function HandoverFileForm() {
                   data-event="service_card_click"
                   className="h-4 w-4 rounded border-slate-300 text-amber-600"
                 />
-                {scope}
+                {germanizeText(scope)}
               </label>
             ))}
           </div>
@@ -325,7 +330,7 @@ export function HandoverFileForm() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Anzahl Raeume
+            Anzahl Räume
             <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 3" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -333,20 +338,20 @@ export function HandoverFileForm() {
             <input name="floor" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 2. OG, Aufzug ja/nein" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesselstatus
+            Schlüsselstatus
             <select name="keyStatus" data-event="service_card_click" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               <option value="nicht_relevant">Nicht relevant</option>
-              <option value="schluessel_beim_kunden">Schluessel bei Kunde</option>
-              <option value="bei_floxant_uebernommen">Bei FLOXANT uebernommen</option>
-              <option value="schluessel_beim_vermieter">Schluessel bei Vermieter/Hausverwaltung</option>
-              <option value="uebergeben_an_empfaenger">Uebergeben an Vermieter/Hausverwaltung/Makler</option>
-              <option value="uebergabe_geplant">Uebergabe geplant</option>
-              <option value="schluesseluebergabe_gewuenscht">Schluesseluebergabe gewuenscht</option>
+              <option value="schluessel_beim_kunden">Schlüssel bei Kunde</option>
+              <option value="bei_floxant_uebernommen">Bei FLOXANT übernommen</option>
+              <option value="schluessel_beim_vermieter">Schlüssel bei Vermieter/Hausverwaltung</option>
+              <option value="uebergeben_an_empfaenger">Übergeben an Vermieter/Hausverwaltung/Makler</option>
+              <option value="uebergabe_geplant">Übergabe geplant</option>
+              <option value="schluesseluebergabe_gewuenscht">Schlüsselübergabe gewünscht</option>
               <option value="unklar">Unklar</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Empfaenger der Akte
+            Empfänger der Akte
             <select name="recipientType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               <option value="kunde">Nur Kunde</option>
               <option value="vermieter">Vermieter</option>
@@ -359,11 +364,11 @@ export function HandoverFileForm() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesseltermin optional
+            Schlüsseltermin optional
             <input name="keyHandoverDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. 14.06., 10 Uhr" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluessel-Empfaenger optional
+            Schlüssel-Empfänger optional
             <input name="keyHandoverRecipient" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="z. B. Hausverwaltung / Makler" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -373,12 +378,12 @@ export function HandoverFileForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm font-black text-slate-950">Nebenraeume optional</p>
+          <p className="text-sm font-black text-slate-950">Nebenräume optional</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
             {additionalSpaceOptions.map((space) => (
               <label key={space} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
                 <input type="checkbox" checked={additionalSpaces.includes(space)} onChange={() => toggleAdditionalSpace(space)} className="h-4 w-4 rounded border-slate-300 text-amber-600" />
-                {space}
+                {germanizeText(space)}
               </label>
             ))}
           </div>
@@ -391,7 +396,7 @@ export function HandoverFileForm() {
               {photoSectionOptions.map((section) => (
                 <label key={section} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
                   <input type="checkbox" checked={photoSections.includes(section)} onChange={() => toggleValue(section, setPhotoSections)} className="h-4 w-4 rounded border-slate-300 text-amber-600" />
-                  {section}
+                  {germanizeText(section)}
                 </label>
               ))}
             </div>
@@ -402,7 +407,7 @@ export function HandoverFileForm() {
               {openItemOptions.map((item) => (
                 <label key={item} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
                   <input type="checkbox" checked={openItems.includes(item)} onChange={() => toggleValue(item, setOpenItems)} className="h-4 w-4 rounded border-slate-300 text-amber-600" />
-                  {item}
+                  {germanizeText(item)}
                 </label>
               ))}
             </div>
@@ -419,19 +424,19 @@ export function HandoverFileForm() {
             <textarea name="specialNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Zugang, Ansprechpartner, offene Punkte, sensible Abstimmung." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Schluesselnotiz optional
-            <textarea name="keyNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll zum Schluesselstatus abgestimmt werden?" />
+            Schlüsselnotiz optional
+            <textarea name="keyNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll zum Schlüsselstatus abgestimmt werden?" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Gewuenschte Zusammenfassung optional
-            <textarea name="publicSummary" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Welche Punkte sollen spaeter in der Akte sichtbar zusammengefasst werden?" />
+            Gewünschte Zusammenfassung optional
+            <textarea name="publicSummary" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Welche Punkte sollen später in der Akte sichtbar zusammengefasst werden?" />
           </label>
         </div>
 
         <div className="rounded-[1.75rem] border border-amber-100 bg-gradient-to-br from-amber-50 via-white to-yellow-50/70 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Raeume, Nebenraeume, Schluesselstatus oder sichtbare Punkte."
+            description="Räume, Nebenräume, Schlüsselstatus oder sichtbare Punkte."
             helper="Fotos helfen bei der Dokumentationsabstimmung, wenn sie nach Absprache genutzt werden sollen."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -442,26 +447,26 @@ export function HandoverFileForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll dokumentiert werden? Welche Leistungen sollen mit der Uebergabeakte kombiniert werden?" />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-amber-500" placeholder="Was soll dokumentiert werden? Welche Leistungen sollen mit der Übergabeakte kombiniert werden?" />
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-amber-600" />
-          Rueckruf zur Abstimmung der Uebergabeakte gewuenscht.
+          Rückruf zur Abstimmung der Übergabeakte gewünscht.
         </label>
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-amber-600" />
-          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Die Uebergabeakte ist eine organisatorische Dokumentation und ersetzt keine rechtliche Pruefung.
+          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Die Übergabeakte ist eine organisatorische Dokumentation und ersetzt keine rechtliche Prüfung.
         </label>
 
         {errorMessage ? (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">{errorMessage}</div>
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">{germanizeText(errorMessage)}</div>
         ) : null}
 
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage zur FLOXANT Uebergabeakte ist eingegangen. Wir pruefen Objektart, Termin, gewuenschte Leistungen und Dokumentationsumfang. Wenn Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage zur FLOXANT Übergabeakte ist eingegangen. Wir prüfen Objektart, Termin, gewünschte Leistungen und Dokumentationsumfang. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -473,14 +478,14 @@ export function HandoverFileForm() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Uebergabeakte anfragen
+            Übergabeakte anfragen
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
             data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
-            Uebergabeakte per WhatsApp anfragen
+            Übergabeakte per WhatsApp anfragen
           </a>
         </div>
 

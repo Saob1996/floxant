@@ -25,6 +25,15 @@ import {
   validateRequestContact,
 } from "@/lib/booking/request-service-policy.js";
 import { appendBookingPayloadToFormData } from "@/lib/booking/request-schema.js";
+import {
+  clearCalculatorEnquiryTransfer,
+  loadCalculatorEnquiryTransfer,
+} from "@/lib/calculator/transfer";
+import type {
+  CalculatorEnquiryTransfer,
+  CalculatorType,
+} from "@/lib/calculator/types";
+import { trackGenerateLead } from "@/lib/analytics/google-tag";
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import { getBookingServiceForLead } from "@/lib/lead-intents";
 import type { RequestContext } from "@/lib/lead-intents/resolve-request-context";
@@ -79,6 +88,39 @@ const answerLabels: Record<string, string> = {
   ja: "Ja",
   nein: "Nein",
   unklar: "Noch unklar",
+};
+
+const calculatorEffortLabels: Record<CalculatorEnquiryTransfer["result"]["effortBand"], string> = {
+  small: "kleiner Aufwand",
+  medium: "mittlerer Aufwand",
+  large: "größerer Aufwand",
+  manual_review: "individuelle Prüfung erforderlich",
+};
+
+const calculatorConfidenceLabels: Record<CalculatorEnquiryTransfer["result"]["confidence"], string> = {
+  high: "gute Datengrundlage",
+  medium: "teilweise offene Angaben",
+  low: "mehrere offene Angaben",
+};
+
+const calculatorObjectTypes: Record<string, string> = {
+  Wohnung: "wohnung",
+  Büro: "buero",
+  Praxis: "praxis",
+  Gewerbefläche: "gewerbe",
+  Treppenhaus: "treppenhaus",
+  "Anderes Objekt": "sonstiges",
+};
+
+const calculatorUpgradeAliases: Record<string, string> = {
+  Demontage: "Möbeldemontage",
+  Montage: "Möbelmontage",
+  Verpackung: "Verpackung",
+  Entrümpelung: "Entrümpelung",
+  Reinigung: "Reinigung",
+  Fenster: "Fenster- und Glasflächen",
+  Küche: "Küche",
+  Sanitär: "Sanitärbereiche",
 };
 
 function customerValue(value: string, labels: Record<string, string>) {
@@ -186,6 +228,74 @@ function toggleValue(values: string[], value: string) {
     : [...values, value];
 }
 
+function calculatorSummaryValue(
+  transfer: CalculatorEnquiryTransfer,
+  label: string,
+): string {
+  const value = transfer.inputSummary.find((item) => item.label === label)?.value.trim() || "";
+  return /^(?:noch offen|noch unbekannt|noch unsicher)$/i.test(value) ? "" : value;
+}
+
+function calculatorAnswerValue(value: string): string {
+  if (/^ja$/i.test(value)) return "ja";
+  if (/^nein$/i.test(value)) return "nein";
+  if (value) return "unklar";
+  return "";
+}
+
+function CalculatorTransferPanel({
+  transfer,
+  id,
+}: {
+  transfer: CalculatorEnquiryTransfer;
+  id: string;
+}) {
+  return (
+    <section className="rounded-lg border border-cyan-200 bg-cyan-50 p-5" aria-labelledby={id}>
+      <h3 id={id} className="text-lg font-black text-slate-950">
+        Rechner-Ergebnis übernommen
+      </h3>
+      <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+        Ihre Angaben aus dem {transfer.calculatorType === "moving" ? "Umzugsrechner" : "Reinigungsrechner"} sind bereits Teil dieser Anfrage.
+      </p>
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+        <div>
+          <dt className="text-xs font-black uppercase tracking-wide text-slate-500">Ergebnisrahmen</dt>
+          <dd className="mt-1 font-semibold text-slate-900">{calculatorEffortLabels[transfer.result.effortBand]}</dd>
+        </div>
+        <div>
+          <dt className="text-xs font-black uppercase tracking-wide text-slate-500">Einordnung</dt>
+          <dd className="mt-1 font-semibold text-slate-900">{calculatorConfidenceLabels[transfer.result.confidence]}</dd>
+        </div>
+        {transfer.inputSummary.map((item) => (
+          <div key={`${item.label}:${item.value}`}>
+            <dt className="text-xs font-black uppercase tracking-wide text-slate-500">{item.label}</dt>
+            <dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      {transfer.selectedAdditionalServices.length ? (
+        <div className="mt-4">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500">Gewünschte Ergänzungen</p>
+          <ul className="mt-2 list-inside list-disc text-sm font-semibold text-slate-900">
+            {transfer.selectedAdditionalServices.map((service) => <li key={service}>{service}</li>)}
+          </ul>
+        </div>
+      ) : null}
+      {transfer.assumptions.length ? (
+        <p className="mt-4 text-sm font-semibold leading-6 text-slate-700">
+          <span className="font-black">Annahmen:</span> {transfer.assumptions.join(" · ")}
+        </p>
+      ) : null}
+      {transfer.missingInformation.length ? (
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
+          <span className="font-black">Noch zu klären:</span> {transfer.missingInformation.join(" · ")}
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
 export function ProfessionalRequestForm({
   context,
   selection,
@@ -241,6 +351,7 @@ export function ProfessionalRequestForm({
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [submissionIssue, setSubmissionIssue] = useState<SubmissionIssue | null>(null);
+  const [calculatorTransfer, setCalculatorTransfer] = useState<CalculatorEnquiryTransfer | null>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle",
   );
@@ -384,6 +495,54 @@ export function ProfessionalRequestForm({
     context.valid,
     group,
   ]);
+
+  useEffect(() => {
+    if (
+      context.sourceLabel !== "calculator"
+      || !context.valid
+      || (group !== "moving" && group !== "cleaning")
+    ) {
+      setCalculatorTransfer(null);
+      return;
+    }
+
+    const transfer = loadCalculatorEnquiryTransfer(group as CalculatorType);
+    setCalculatorTransfer(transfer);
+    if (!transfer) return;
+
+    const selectedUpgrades = transfer.selectedAdditionalServices
+      .map((item) => calculatorUpgradeAliases[item] || item)
+      .filter((item) => context.allowedUpgrades.includes(item));
+    setExtras(selectedUpgrades);
+    if (transfer.enquiryNote) setMessage(transfer.enquiryNote);
+    setOptionalOpen(Boolean(selectedUpgrades.length || transfer.enquiryNote));
+
+    if (transfer.calculatorType === "moving") {
+      setStartLocation(calculatorSummaryValue(transfer, "Start"));
+      setDestinationLocation(calculatorSummaryValue(transfer, "Ziel"));
+      setDesiredDate(calculatorSummaryValue(transfer, "Termin"));
+      setScope(calculatorSummaryValue(transfer, "Umfang"));
+      setStartFloor(calculatorSummaryValue(transfer, "Startetage"));
+      setDestinationFloor(calculatorSummaryValue(transfer, "Zieletage"));
+      setStartElevator(calculatorAnswerValue(calculatorSummaryValue(transfer, "Aufzug am Start")));
+      setDestinationElevator(calculatorAnswerValue(calculatorSummaryValue(transfer, "Aufzug am Ziel")));
+    } else {
+      setCityOrZip(calculatorSummaryValue(transfer, "Standort"));
+      setObjectType(calculatorObjectTypes[calculatorSummaryValue(transfer, "Objekt")] || "");
+      setAreaSize(calculatorSummaryValue(transfer, "Fläche"));
+      setScope(calculatorSummaryValue(transfer, "Reinigungsart"));
+      setDesiredDate(calculatorSummaryValue(transfer, "Termin"));
+      setCondition(calculatorSummaryValue(transfer, "Zustand"));
+      const cadence = calculatorSummaryValue(transfer, "Turnus");
+      setFrequency(
+        cadence === "wöchentlich"
+          ? "woechentlich"
+          : cadence === "monatlich"
+            ? "monatlich"
+            : "",
+      );
+    }
+  }, [context.allowedUpgrades, context.sourceLabel, context.valid, group]);
 
   function detailErrors() {
     const next: FormErrors = {};
@@ -832,14 +991,10 @@ export function ProfessionalRequestForm({
         city: cityOrZip.trim(),
         objectType,
         areaSize: areaSize.trim(),
-        area: areaSize.trim(),
-        rooms: group === "moving" ? scope.trim() : "",
         cleaningFrequency: frequency,
         condition: condition.trim(),
         windowCount: windowCount.trim(),
         desiredDate,
-        preferredDate: desiredDate,
-        timeframe: desiredDate,
         startLocation: startLocation.trim(),
         destinationLocation: destinationLocation.trim(),
         startFloor: startFloor.trim(),
@@ -861,6 +1016,7 @@ export function ProfessionalRequestForm({
         selectedAddons: extras,
         selectedServices: extras,
         cleaningRequested: group === "clearance" ? cleaningRequested : undefined,
+        calculatorTransfer: calculatorTransfer || undefined,
         message: message.trim(),
         preferredContactMethod: contactMethod,
         privacyConsent: true,
@@ -1042,7 +1198,20 @@ export function ProfessionalRequestForm({
         return;
       }
 
+      trackGenerateLead(
+        {
+          form_name: "central_professional_request",
+          service_type: context.analyticsServiceType,
+          location: context.location || "unsicher",
+          lead_source: context.sourceLabel,
+        },
+        attemptKey,
+      );
       setStatus("success");
+      if (calculatorTransfer) {
+        clearCalculatorEnquiryTransfer();
+        setCalculatorTransfer(null);
+      }
       window.dispatchEvent(
         new CustomEvent("floxant:conversion-event", {
           detail: {
@@ -1323,6 +1492,13 @@ export function ProfessionalRequestForm({
               ? routeCoreFields
               : locationCoreFields}
 
+            {calculatorTransfer ? (
+              <CalculatorTransferPanel
+                transfer={calculatorTransfer}
+                id="request-calculator-transfer-details"
+              />
+            ) : null}
+
             <section className="rounded-lg border border-slate-200 bg-slate-50">
               <button
                 type="button"
@@ -1424,6 +1600,13 @@ export function ProfessionalRequestForm({
                   ))}
                 </dl>
               </section>
+
+              {calculatorTransfer ? (
+                <CalculatorTransferPanel
+                  transfer={calculatorTransfer}
+                  id="request-calculator-transfer-summary"
+                />
+              ) : null}
 
               <section className="rounded-lg border border-blue-100 bg-white p-4" aria-labelledby="request-summary-additions">
                 <div className="flex flex-wrap items-center justify-between gap-3">

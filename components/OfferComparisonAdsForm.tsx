@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
 import {
   type ChangeEvent,
   type DragEvent,
@@ -7,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   ArrowRight,
@@ -86,7 +87,7 @@ const propertyTypeOptions = [
   { value: "unklar", label: "Noch unklar" },
 ] as const;
 
-type SubmitState = "idle" | "submitting" | "error";
+type SubmitState = "idle" | "submitting" | "success" | "error";
 
 type OfferComparisonAdsFormProps = {
   whatsappHref: string;
@@ -122,18 +123,26 @@ function formatFileSize(size: number) {
 
 function getUtmValue(key: string) {
   if (typeof window === "undefined") return "";
-  return new URLSearchParams(window.location.search).get(key) || "";
+  const value = new URLSearchParams(window.location.search).get(key) || "";
+  const normalized = value.normalize("NFKC").trim().slice(0, 160);
+  if (
+    /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/i.test(normalized)
+    || /(?:\+?\d[\s()./-]*){7,}/.test(normalized)
+  ) return "";
+  return normalized.replace(/[^\p{L}\p{N}._~-]+/gu, "-").replace(/^-+|-+$/g, "");
 }
 
 export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormProps) {
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const startedAtRef = useRef(Date.now());
+  const submissionAttemptKeyRef = useRef("");
+  const submitLockRef = useRef(false);
   const [files, setFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [uploadStarted, setUploadStarted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successReference, setSuccessReference] = useState("");
 
   function markUploadStarted(source: "click" | "drop") {
     if (uploadStarted) return;
@@ -160,6 +169,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     }
 
     setErrorMessage("");
+    submissionAttemptKeyRef.current = "";
     setFiles(merged);
 
     if (merged.length) {
@@ -185,11 +195,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   }
 
   function removeFile(fileToRemove: File) {
+    submissionAttemptKeyRef.current = "";
     setFiles((current) => current.filter((file) => file !== fileToRemove));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current) return;
     setErrorMessage("");
 
     const form = event.currentTarget;
@@ -270,19 +282,24 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       .filter(Boolean)
       .join("\n");
 
-    formData.set("type", "offer_check");
-    formData.set("lead_type", "angebotspruefung");
+    formData.set("type", "professional_request");
+    formData.set("lead_type", "professional_request");
     formData.set("leadSubtype", "floxant_angebotspruefung_product");
     formData.set("leadSource", "offer_check_product");
     formData.set("source", "offer_check_product");
     formData.set("sourceComponent", "offer_comparison_ads_form");
-    formData.set("service", requestedService || "reinigung");
-    formData.set("serviceCategory", "angebot_pruefen");
+    formData.set("service", "angebot-pruefen");
+    formData.set("serviceId", "angebotscheck");
+    formData.set("serviceLabel", "FLOXANT Angebotscheck");
+    formData.set("serviceCategory", "angebotscheck");
     formData.set("intent", "angebot_pruefen");
     formData.set("region", region || "duesseldorf");
     formData.set("regionPreset", region || "duesseldorf");
-    formData.set("entryPoint", "/angebot-vergleichen-regensburg");
-    formData.set("sourcePage", "/angebot-vergleichen-regensburg");
+    formData.set("location", region || "duesseldorf");
+    formData.set("locationLabel", selectedRegionLabel);
+    formData.set("cityOrZip", cityOrZip || selectedRegionLabel);
+    formData.set("entryPoint", window.location.pathname);
+    formData.set("sourcePage", window.location.pathname);
     formData.set("offerStatus", offerStatus || "details");
     formData.set("existingOffer", offerStatus && offerStatus !== "no_offer" ? "true" : "false");
     formData.set("offerConcern", offerConcern || "general_second_opinion");
@@ -295,14 +312,15 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("propertyType", propertyType || "unklar");
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
+    formData.set("scope", composedMessage);
     formData.set("deadline", desiredDate || urgency);
     formData.set("privacyConsent", "true");
     formData.set("pageType", "offer_check");
     formData.set("funnelStage", "offer_check");
     formData.set("ctaLabel", "Prüfung anfordern");
     formData.set("timestamp", new Date().toISOString());
-    formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
-    formData.set("referrer", document.referrer);
+    formData.set("formStartedAt", String(startedAtRef.current));
+    formData.set("landingPage", window.location.pathname);
     formData.set("utmSource", getUtmValue("utm_source"));
     formData.set("utmMedium", getUtmValue("utm_medium"));
     formData.set("utmCampaign", getUtmValue("utm_campaign"));
@@ -311,6 +329,11 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("formDurationMs", String(Date.now() - startedAtRef.current));
     files.forEach((file) => formData.append("offerFile", file));
     appendConversionJourneyToFormData(formData);
+
+    const attemptKey = submissionAttemptKeyRef.current
+      || `offer_check:${Date.now()}:${crypto.randomUUID()}`;
+    submissionAttemptKeyRef.current = attemptKey;
+    submitLockRef.current = true;
 
     reportOfferComparisonAdsEvent("offer_check_started", {
       channel: "form",
@@ -324,14 +347,24 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
+        headers: { "Idempotency-Key": attemptKey },
         body: formData,
       });
-      const result = await response.json().catch(() => ({}));
+      const result = await response.json().catch(() => ({})) as {
+        ok?: boolean;
+        requestId?: string;
+        bookingId?: string;
+        error?: string;
+        message?: string;
+      };
+      if (submissionAttemptKeyRef.current !== attemptKey) return;
 
-      if (!response.ok) {
-        throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || result.ok !== true || !result.requestId || !result.bookingId) {
+        const firstFieldError = Object.values(bookingFieldErrors(result)).find(Boolean);
+        const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+        throw new Error(`${firstFieldError || result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
       }
 
       reportOfferComparisonAdsEvent("form_submit_success", {
@@ -350,9 +383,12 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       });
 
       form.reset();
+      submissionAttemptKeyRef.current = "";
       setFiles([]);
-      router.push("/angebot-vergleichen-regensburg");
+      setSuccessReference(result.requestId);
+      setSubmitState("success");
     } catch (error) {
+      if (submissionAttemptKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
       reportOfferComparisonAdsEvent("form_submit_error", {
@@ -360,16 +396,38 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         label: error instanceof Error ? error.message : "Formularfehler",
         priority: "warm",
       });
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
   const isSubmitting = submitState === "submitting";
 
+  if (submitState === "success") {
+    return (
+      <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950" aria-live="polite">
+        <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
+        <h2 className="mt-4 text-2xl font-black">Ihre Angebotsprüfung ist angekommen.</h2>
+        <p className="mt-2 text-sm font-semibold leading-6">
+          FLOXANT prüft die übermittelten Angaben persönlich. Eine Zusage oder Preisgarantie entsteht dadurch nicht.
+        </p>
+        {successReference ? <p className="mt-4 text-xs font-bold">Referenz: {successReference}</p> : null}
+      </section>
+    );
+  }
+
   return (
     <form
+      data-booking-field-errors="managed"
       id="angebot-pruefen"
       className="grid w-full max-w-full min-w-0 scroll-mt-32 gap-6 overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] [&_input]:min-w-0 [&_input]:w-full [&_label]:min-w-0 [&_select]:min-w-0 [&_select]:w-full [&_textarea]:min-w-0 [&_textarea]:w-full sm:p-6 lg:p-8"
       onSubmit={handleSubmit}
+      onChange={(event) => {
+        if (event.target instanceof HTMLInputElement && event.target.type === "file") return;
+        submissionAttemptKeyRef.current = "";
+        setErrorMessage("");
+        if (submitState === "error") setSubmitState("idle");
+      }}
       data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
       aria-label="Angebotsprüfung anfordern"

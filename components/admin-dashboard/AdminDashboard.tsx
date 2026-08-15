@@ -40,6 +40,10 @@ import {
   type BookingRecord,
 } from "@/lib/admin-dashboard/bookings";
 import {
+  getAdminCalculatorDetail,
+  type AdminCalculatorDetail,
+} from "@/lib/admin-dashboard/booking-details";
+import {
   evaluateLeadCompleteness,
   getLeadCompletenessLabel,
   type LeadCompletenessResult,
@@ -154,7 +158,7 @@ export function AdminDashboard() {
     if (queryError) {
       setError(queryError.code === "42501"
         ? "Der Datenbankzugriff wurde abgelehnt. Admin-Rolle und RLS-Migration prüfen."
-        : "Die Anfragen konnten nicht geladen werden. Bitte Verbindung und Supabase-Konfiguration prüfen.");
+        : "Die Anfragen konnten nicht geladen werden. Bitte Verbindung und Zugangskonfiguration prüfen.");
       setBookings([]);
       setLoading(false);
       return;
@@ -323,7 +327,7 @@ export function AdminDashboard() {
           <ShieldCheck className="h-8 w-8 text-amber-100" aria-hidden="true" />
           <h1 className="mt-5 text-3xl font-black">Dashboard noch nicht konfiguriert</h1>
           <p className="mt-4 font-semibold leading-7 text-amber-50/90">
-            Die Website bleibt funktionsfähig. Für das Dashboard müssen beim nächsten Cloudflare-Build die öffentlichen Supabase-URL- und Anon-Key-Variablen gesetzt sein.
+            Die Website bleibt funktionsfähig. Der Teamzugang ist vorübergehend nicht verfügbar; die zuständige Administration wurde informiert.
           </p>
         </section>
       </main>
@@ -457,6 +461,7 @@ type EditableMetaDraft = {
 
 function LeadDetail({ booking, meta, completeness, operationsEnabled, saving, onClose, onSave }: { booking: BookingRecord; meta: BookingAdminMeta | null; completeness: LeadCompletenessResult; operationsEnabled: boolean; saving: boolean; onClose: () => void; onSave: (draft: EditableMetaDraft) => void }) {
   const summary = getBookingSummary(booking);
+  const calculatorDetail = getAdminCalculatorDetail(booking);
   const locale = getLeadLocale(booking);
   const defaultStage = meta?.stage || getDefaultLeadStage(booking);
   const [stage, setStage] = useState<LeadStage>(defaultStage);
@@ -515,6 +520,8 @@ function LeadDetail({ booking, meta, completeness, operationsEnabled, saving, on
           </div>
           <p className="mt-4 whitespace-pre-wrap text-sm font-semibold leading-7 text-slate-300">{summary.message || "Keine Nachricht gespeichert."}</p>
         </section>
+
+        {calculatorDetail ? <CalculatorDetailPanel detail={calculatorDetail} /> : null}
 
         <section className="mt-6 rounded-2xl border border-amber-200/15 bg-amber-200/[0.05] p-5">
           <h3 className={`text-sm font-black ${completenessTone(completeness.status)}`}>{getLeadCompletenessLabel(completeness.status)}</h3>
@@ -579,6 +586,51 @@ function LabeledSelect({ label, value, onChange, options, disabled }: { label: s
 
 function DetailField({ icon, label, value }: { icon: React.ReactElement; label: string; value: string }) {
   return <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"><div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.1em] text-slate-600"><span className="text-cyan-200 [&>svg]:h-4 [&>svg]:w-4">{icon}</span>{label}</div><p className="mt-3 break-words text-sm font-bold leading-6 text-slate-200">{value}</p></div>;
+}
+
+function CalculatorDetailPanel({ detail }: { detail: AdminCalculatorDetail }) {
+  const calculatedAt = detail.createdAt ? formatBookingDate(detail.createdAt) : "Nicht angegeben";
+  return (
+    <section className="mt-6 rounded-2xl border border-emerald-200/15 bg-emerald-200/[0.05] p-5">
+      <h3 className="text-sm font-black text-emerald-50">Rechner-Ergebnis</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-400">Übernommene, unverbindliche Aufwandseinschätzung aus der Kundenanfrage. Kein Preisangebot.</p>
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <CalculatorDetailField label="Rechner" value={detail.calculatorLabel} />
+        {detail.calculatorVersion ? <CalculatorDetailField label="Version" value={detail.calculatorVersion} /> : null}
+        <CalculatorDetailField label="Berechnet am" value={calculatedAt} />
+        <CalculatorDetailField label="Ergebnis" value={detail.effortLabel} />
+        <CalculatorDetailField label="Datengrundlage" value={detail.confidenceLabel} />
+      </dl>
+
+      {detail.inputSummary.length ? (
+        <div className="mt-4 rounded-xl border border-white/[0.08] bg-black/15 p-4">
+          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">Eingaben</p>
+          <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+            {detail.inputSummary.map((item, index) => (
+              <div key={`${item.label}-${index}`} className="min-w-0">
+                <dt className="text-xs font-black text-slate-400">{item.label}</dt>
+                <dd className="mt-1 whitespace-pre-wrap break-words text-sm font-semibold text-slate-200">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ) : null}
+
+      {detail.calculationSummary ? <CalculatorTextBlock label="Ergebnis-Erläuterung" value={detail.calculationSummary} /> : null}
+      {detail.assumptions.length ? <CalculatorTextBlock label="Annahmen" value={detail.assumptions.join(" · ")} /> : null}
+      {detail.missingInformation.length ? <CalculatorTextBlock label="Fehlende Informationen" value={detail.missingInformation.join(" · ")} /> : null}
+      {detail.selectedAdditionalServices.length ? <CalculatorTextBlock label="Zusatzleistungen" value={detail.selectedAdditionalServices.join(" · ")} /> : null}
+      {detail.enquiryNote ? <CalculatorTextBlock label="Hinweis aus dem Rechner" value={detail.enquiryNote} /> : null}
+    </section>
+  );
+}
+
+function CalculatorDetailField({ label, value }: { label: string; value: string }) {
+  return <div className="min-w-0 rounded-xl border border-white/[0.08] bg-black/15 p-4"><dt className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">{label}</dt><dd className="mt-2 break-words text-sm font-semibold text-slate-200">{value}</dd></div>;
+}
+
+function CalculatorTextBlock({ label, value }: { label: string; value: string }) {
+  return <div className="mt-3 rounded-xl border border-white/[0.08] bg-black/15 p-4"><p className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">{label}</p><p className="mt-2 whitespace-pre-wrap break-words text-sm font-semibold leading-6 text-slate-200">{value}</p></div>;
 }
 
 function ListBlock({ title, items, positive = false }: { title: string; items: string[]; positive?: boolean }) {

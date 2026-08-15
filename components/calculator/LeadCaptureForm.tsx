@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { useEffect, useMemo, useState } from "react";
 import { m } from "framer-motion";
 import { useCalculatorStore } from "@/store/calculatorStore";
@@ -174,9 +177,10 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
    formData.append("email", leadDetails.customerEmail.trim());
    formData.append("phone", leadDetails.customerPhone.trim());
    formData.append("timestamp", new Date().toISOString());
+   formData.append("privacyConsent", "true");
    appendConversionJourneyToFormData(formData);
 
-   const res = await fetch("/api/bookings", {
+   const res = await bookingFetch("/api/bookings", {
     method: "POST",
     body: formData,
    });
@@ -411,6 +415,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       {dic?.calculator?.price_disclaimer || ""}
      </p>
     </div>
+
+    <PrivacyConsentField id="calculator-lead-privacy" inverted />
 
     <div className="flex flex-col items-center justify-between gap-4 pt-2 md:flex-row">
      <button

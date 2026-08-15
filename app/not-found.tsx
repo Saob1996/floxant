@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Header } from "@/components/Header";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ArrowLeft, ClipboardCheck, Home, MapPin, MessageCircle } from "lucide-react";
 import de from "@/dictionaries/de.json";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 
 const helpfulLinks = [
   { href: "/", label: "Startseite", Icon: Home },
-  { href: "/kontakt", label: "Kontakt", Icon: MessageCircle },
+  { href: buildGlobalRequestHref("global_404"), label: "Anfrage stellen", Icon: MessageCircle },
   { href: "/leistungen", label: "Leistungen", Icon: ClipboardCheck },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen", Icon: ClipboardCheck },
   { href: "/duesseldorf", label: "Duesseldorf", Icon: MapPin },
@@ -14,7 +16,8 @@ const helpfulLinks = [
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <GermanCustomerCopy>
+      <main className="min-h-screen bg-background text-foreground">
       <Header dic={de as any} />
       <section className="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col justify-center px-5 py-14 sm:px-8">
         <p className="text-sm font-bold uppercase tracking-normal text-primary">404</p>
@@ -47,6 +50,7 @@ export default function NotFound() {
           Zur Startseite
         </Link>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

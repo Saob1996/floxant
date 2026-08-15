@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -12,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
+import { germanizeText } from "@/lib/german-text";
 
 const PHONE_DISPLAY = "01577 1105087";
 const PHONE_TEL = "+4915771105087";
@@ -130,13 +133,19 @@ export function PlanBServiceForm() {
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const idempotencyKeyRef = useRef<string | null>(null);
+  const submitLockRef = useRef(false);
+
+  useEffect(() => {
+    idempotencyKeyRef.current = null;
+  }, [riskLevel, uncertainArea, desiredPackage, selectedOpenItems, photos, offerFiles]);
 
   const whatsappHref = useMemo(() => {
     const text =
       uncertainArea.includes("Duesseldorf") || uncertainArea.includes("Düsseldorf")
         ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
         : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entruempelung/Uebergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
-    return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(germanizeText(text))}`;
   }, [uncertainArea]);
 
   function toggleItem(value: string) {
@@ -145,6 +154,7 @@ export function PlanBServiceForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current || submitState === "submitting") return;
     setErrorMessage("");
 
     const form = event.currentTarget;
@@ -192,6 +202,8 @@ export function PlanBServiceForm() {
       return;
     }
 
+    submitLockRef.current = true;
+
     formData.set("type", "plan_b_service");
     formData.set("lead_type", "plan_b_service");
     formData.set("service", "plan_b_service");
@@ -226,13 +238,28 @@ export function PlanBServiceForm() {
     photos.forEach((file) => formData.append("planBPhoto", file));
     offerFiles.forEach((file) => formData.append("planBOfferFile", file));
 
+    const attemptKey =
+      idempotencyKeyRef.current ??
+      `plan_b_service:${Date.now()}:${globalThis.crypto.randomUUID()}`;
+    idempotencyKeyRef.current = attemptKey;
+
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", { method: "POST", body: formData });
+      const response = await bookingFetch("/api/bookings", {
+        method: "POST",
+        body: formData,
+        headers: { "Idempotency-Key": attemptKey },
+      });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (idempotencyKeyRef.current !== attemptKey) return;
+      if (response.status !== 201 || result.ok !== true) {
+        const firstFieldError = Object.values(bookingFieldErrors(result)).find(Boolean);
+        const reference = result.requestId ? ` Referenz: ${result.requestId}` : "";
+        throw new Error(`${firstFieldError || result.message || result.error || "Die Anfrage konnte nicht gesendet werden."}${reference}`);
+      }
 
+      idempotencyKeyRef.current = null;
       form.reset();
       setRiskLevel("absichern");
       setUncertainArea("mehrere Punkte");
@@ -242,8 +269,11 @@ export function PlanBServiceForm() {
       setOfferFiles([]);
       setSubmitState("success");
     } catch (error) {
+      if (idempotencyKeyRef.current !== attemptKey) return;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
+    } finally {
+      submitLockRef.current = false;
     }
   }
 
@@ -255,12 +285,12 @@ export function PlanBServiceForm() {
         <ShieldCheck className="h-4 w-4" />
         Backup-Control
       </div>
-      <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B pruefen lassen</h2>
+      <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B prüfen lassen</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">
-        Kurze Angaben reichen fuer den Start. FLOXANT prueft nach Verfuegbarkeit, ob ein Ersatz- oder Ergaenzungsplan realistisch ist.
+        Kurze Angaben reichen für den Start. FLOXANT prüft nach Verfügbarkeit, ob ein Ersatz- oder Ergänzungsplan realistisch ist.
       </p>
       <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
-        Anfrage auf Deutsch oder Englisch moeglich: moving help, cleaning service, quote check
+        Anfrage auf Deutsch oder Englisch möglich: moving help, cleaning service, quote check
         oder house clearance reichen als Stichwort.
       </p>
 
@@ -278,15 +308,25 @@ export function PlanBServiceForm() {
                 active ? "border-blue-600 bg-blue-50 text-blue-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-200"
               }`}
             >
-              <span className="block text-sm font-black">{level.title}</span>
-              <span className="mt-1 block text-xs leading-5">{level.text}</span>
-              <span className="mt-3 block text-[10px] font-black uppercase tracking-[0.12em] text-blue-700">{level.cta}</span>
+              <span className="block text-sm font-black">{germanizeText(level.title)}</span>
+              <span className="mt-1 block text-xs leading-5">{germanizeText(level.text)}</span>
+              <span className="mt-3 block text-[10px] font-black uppercase tracking-[0.12em] text-blue-700">{germanizeText(level.cta)}</span>
             </button>
           );
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
+      <form
+        data-booking-field-errors="managed"
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        onChange={() => {
+          idempotencyKeyRef.current = null;
+          setErrorMessage("");
+          if (submitState === "error") setSubmitState("idle");
+        }}
+        data-event="form_submit"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -294,7 +334,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="fuer schnelle Rueckfragen" />
+            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="für schnelle Rückfragen" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             E-Mail
@@ -302,7 +342,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Duesseldorf..." />
+            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Regensburg, Kelheim, Düsseldorf..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Was ist unsicher?*
@@ -314,16 +354,16 @@ export function PlanBServiceForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500"
             >
               {uncertainOptions.map((item) => (
-                <option key={item} value={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Deadline / Termin*
-            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. diese Woche, Uebergabe am..." />
+            <input name="deadline" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. diese Woche, Übergabe am..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Gewuenschtes Plan-B-Paket
+            Gewünschtes Plan-B-Paket
             <select
               name="desiredPlanBPackage"
               value={desiredPackage}
@@ -332,7 +372,7 @@ export function PlanBServiceForm() {
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500"
             >
               {packageOptions.map((item) => (
-                <option key={item} value={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -340,7 +380,7 @@ export function PlanBServiceForm() {
             Bisherige Organisation optional
             <select name="previousOfferSource" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               {previousSourceOptions.map((item) => (
-                <option key={item} value={item}>{item}</option>
+                <option key={item} value={item}>{germanizeText(item)}</option>
               ))}
             </select>
           </label>
@@ -359,7 +399,7 @@ export function PlanBServiceForm() {
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Aufzug
             <select name="elevator" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              <option value="">Bitte waehlen</option>
+              <option value="">Bitte wählen</option>
               <option value="ja">Ja</option>
               <option value="nein">Nein</option>
               <option value="unklar">Unklar</option>
@@ -389,7 +429,7 @@ export function PlanBServiceForm() {
                   onChange={() => toggleItem(item)}
                   className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600"
                 />
-                <span>{item}</span>
+                <span>{germanizeText(item)}</span>
               </label>
             ))}
           </div>
@@ -398,7 +438,7 @@ export function PlanBServiceForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Zugang / Trageweg / Besonderheiten
-            <textarea name="accessNotes" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Parken, Hausflur, Etage, Schluessel, Zugang..." />
+            <textarea name="accessNotes" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Parken, Hausflur, Etage, Schlüssel, Zugang..." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Kurze Beschreibung*
@@ -408,9 +448,9 @@ export function PlanBServiceForm() {
 
         <div className="rounded-[1.75rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
-            <p className="text-sm font-black text-slate-950">Dateien fuer den Plan-B-Check</p>
+            <p className="text-sm font-black text-slate-950">Dateien für den Plan-B-Check</p>
             <p className="mt-1 text-xs leading-5 text-slate-600">
-              Fotos und vorhandene Angebote bleiben getrennt. So sieht FLOXANT schnell, ob Umfang, Zustand oder Angebot geprueft werden soll.
+              Fotos und vorhandene Angebote bleiben getrennt. So sieht FLOXANT schnell, ob Umfang, Zustand oder Angebot geprüft werden soll.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -443,7 +483,7 @@ export function PlanBServiceForm() {
           </label>
           <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
-            <span>Rueckruf gewuenscht</span>
+            <span>Rückruf gewünscht</span>
           </label>
         </div>
 
@@ -452,17 +492,17 @@ export function PlanBServiceForm() {
           <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.</span>
         </label>
 
-        {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
+        {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{germanizeText(errorMessage)}</div> : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">
-            Danke. Ihre Plan-B-Anfrage ist eingegangen. FLOXANT prueft Ort, Termin, offene Punkte, Fotos und Verfuegbarkeit. Wenn ein Ersatz- oder Ergaenzungsplan moeglich ist oder Rueckfragen noetig sind, melden wir uns.
+            Danke. Ihre Plan-B-Anfrage ist eingegangen. FLOXANT prüft Ort, Termin, offene Punkte, Fotos und Verfügbarkeit. Wenn ein Ersatz- oder Ergänzungsplan möglich ist oder Rückfragen nötig sind, melden wir uns.
           </div>
         ) : null}
 
         <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto] sm:items-center">
           <button type="submit" disabled={isSubmitting} data-event="form_submit" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:opacity-60">
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Plan B pruefen lassen
+            Plan B prüfen lassen
           </button>
           <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
             <MessageCircle className="h-4 w-4" />
@@ -475,7 +515,7 @@ export function PlanBServiceForm() {
         </div>
 
         <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
-          Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit haengt von Ort, Termin, Umfang und Kapazitaet ab. Direktkontakt:{" "}
+          Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit hängt von Ort, Termin, Umfang und Kapazität ab. Direktkontakt:{" "}
           <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a>
           {" "}- {EMAIL}
         </div>
