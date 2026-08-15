@@ -12,6 +12,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
+
 import { company } from "@/lib/company";
 import {
   buildBreadcrumbJsonLd,
@@ -128,7 +130,8 @@ export default function BueroreinigungPage() {
   };
 
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
@@ -310,6 +313,7 @@ export default function BueroreinigungPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

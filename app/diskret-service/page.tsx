@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ServiceFinder } from "@/components/ContactPathChooser";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
@@ -88,10 +89,10 @@ const neededItems = [
 ] as const;
 
 const notNeededItems = [
-  "keine ausfuehrlichen privaten Details im ersten Schritt",
-  "keine vollstaendige Adresse im ersten Kontakt, wenn nicht noetig",
+  "keine ausführlichen privaten Details im ersten Schritt",
+  "keine vollständige Adresse im ersten Kontakt, wenn nicht nötig",
   "keine Rechtfertigung",
-  "keine Scham-Erklaerung",
+  "keine Scham-Erklärung",
 ] as const;
 
 const boundaries = [
@@ -101,7 +102,7 @@ const boundaries = [
   "keine psychologische Beratung",
   "keine Preisgarantie",
   "keine Soforttermin-Garantie",
-  "keine garantierte Verfuegbarkeit",
+  "keine garantierte Verfügbarkeit",
   "keine automatische Buchung durch Anfrage",
 ] as const;
 
@@ -283,7 +284,8 @@ function TrackingLink({
 
 export default function DiskretServicePage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f7f5f1] text-slate-950">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-[#f7f5f1] text-slate-950">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={[{ label: "Diskret-Service" }]} />
 
@@ -322,10 +324,10 @@ export default function DiskretServicePage() {
               </TrackingLink>
               <TrackingLink
                 href={offerHref}
-                label="Angebot diskret pruefen lassen"
+                label="Angebot diskret prüfen lassen"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-900 transition hover:bg-emerald-100"
               >
-                Angebot diskret pruefen lassen
+                Angebot diskret prüfen lassen
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
               </TrackingLink>
             </div>
@@ -343,7 +345,7 @@ export default function DiskretServicePage() {
             <div className="relative overflow-hidden rounded-[1.6rem] border border-white bg-white shadow-2xl shadow-slate-950/10">
               <Image
                 src="/assets/diskret-service-hero.webp"
-                alt="Neutrale Unterlagen, Schluessel und Kartons fuer eine diskrete Serviceanfrage"
+                alt="Neutrale Unterlagen, Schlüssel und Kartons für eine diskrete Serviceanfrage"
                 width={1536}
                 height={1024}
                 priority
@@ -448,7 +450,7 @@ export default function DiskretServicePage() {
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
           <InfoList title="Was FLOXANT braucht" items={neededItems} tone="white" />
-          <InfoList title="Was nicht noetig ist" items={notNeededItems} tone="white" />
+          <InfoList title="Was nicht nötig ist" items={notNeededItems} tone="white" />
           <InfoList title="Was nicht versprochen wird" items={boundaries} tone="amber" />
         </div>
       </section>
@@ -509,10 +511,10 @@ export default function DiskretServicePage() {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <TrackingLink
                   href={offerHref}
-                  label="Diskretes Angebot pruefen lassen"
+                  label="Diskretes Angebot prüfen lassen"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-900 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
                 >
-                  Diskretes Angebot pruefen lassen
+                  Diskretes Angebot prüfen lassen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </TrackingLink>
                 <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-white px-5 text-sm font-black text-emerald-950 transition hover:bg-emerald-100">
@@ -612,7 +614,7 @@ export default function DiskretServicePage() {
         <div className="mx-auto max-w-7xl rounded-lg bg-slate-950 p-6 text-white lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <div className="text-xs font-black uppercase tracking-normal text-slate-300">Naechster Schritt</div>
+              <div className="text-xs font-black uppercase tracking-normal text-slate-300">Nächster Schritt</div>
               <h2 className="mt-3 text-3xl font-black tracking-normal">Sensible Anfrage ruhig starten</h2>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">
                 Senden Sie nur die Angaben, die fuer die erste Einordnung noetig sind. FLOXANT meldet sich
@@ -636,7 +638,8 @@ export default function DiskretServicePage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }
 

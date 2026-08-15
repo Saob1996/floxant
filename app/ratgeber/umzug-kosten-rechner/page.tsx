@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-kosten-rechner',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzugskosten-Rechner: Aufwand vorab einschätzen | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzugskosten realistisch einordnen",
   });
 }

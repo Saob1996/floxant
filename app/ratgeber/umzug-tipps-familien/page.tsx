@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-tipps-familien',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzug mit Familie: Planung und praktische Tipps | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug mit Familie vorbereiten",
   });
 }

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { HandoverFileForm } from "@/components/HandoverFileForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { HandoverDossierDemo } from "@/components/HandoverDossierDemo";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
@@ -253,7 +254,8 @@ const jsonLd = {
 
 export default function UebergabeaktePage() {
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fde68a_0,transparent_30rem),linear-gradient(180deg,#fff7ed_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
@@ -511,6 +513,7 @@ export default function UebergabeaktePage() {
           </div>
         </div>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

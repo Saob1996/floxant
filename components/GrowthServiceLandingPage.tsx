@@ -23,6 +23,7 @@ import {
   TrustProofSection,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company, duesseldorfCompany } from "@/lib/company";
@@ -376,7 +377,8 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
   const requestBriefServiceKey = showSolarPvAuthority ? "solar-pv" : config.slug;
 
   return (
-    <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
       <JsonLd config={config} whatsappHref={whatsappHref} />
 
       <section className="relative isolate overflow-hidden bg-slate-950 pt-28 text-white sm:pt-32 lg:pt-36">
@@ -608,7 +610,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
       />
 
       <OfferCheckCTA
-        title="Vorhandenes Angebot zu diesem Service pruefen?"
+        title="Vorhandenes Angebot zu diesem Service prüfen?"
         text="Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, Fotos, Zugang, Termin, Zusatzpositionen und Preislogik sachlich einordnen. Es gibt keine Preisgarantie und keine Abwertung anderer Anbieter."
       />
 
@@ -682,6 +684,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -16,6 +16,7 @@ import {
   Trash2,
 } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -150,7 +151,8 @@ export default function ReinigungNachVeranstaltungPage() {
   ];
 
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f2fbf7_45%,#eef5ff_100%)] pb-24 text-slate-950">
         <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
@@ -320,7 +322,7 @@ export default function ReinigungNachVeranstaltungPage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <SectionTitle label="Haeufige Fragen" title="Was Kunden vor der Anfrage wissen sollten" />
+          <SectionTitle label="Häufige Fragen" title="Was Kunden vor der Anfrage wissen sollten" />
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {faqItems.map((item) => (
               <article key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -356,6 +358,7 @@ export default function ReinigungNachVeranstaltungPage() {
           </div>
         </section>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

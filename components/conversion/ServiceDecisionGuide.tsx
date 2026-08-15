@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Compass, type LucideIcon } from "lucide-react";
 
+import { germanizeText } from "@/lib/german-text";
+
 export type ServiceDecisionGuideItem = {
   title: string;
   text: string;
@@ -42,11 +44,11 @@ export function ServiceDecisionGuide({
           <div>
             <p className={`inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal ${accentText}`}>
               <Compass className="h-4 w-4" aria-hidden="true" />
-              {eyebrow}
+              {germanizeText(eyebrow)}
             </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanizeText(title)}</h2>
           </div>
-          {intro ? <p className={`max-w-3xl text-base font-semibold leading-8 lg:text-right ${mutedText}`}>{intro}</p> : null}
+          {intro ? <p className={`max-w-3xl text-base font-semibold leading-8 lg:text-right ${mutedText}`}>{germanizeText(intro)}</p> : null}
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -57,14 +59,14 @@ export function ServiceDecisionGuide({
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     {Icon ? <Icon className={`h-5 w-5 ${accentText}`} aria-hidden="true" /> : null}
-                    <h3 className="mt-3 text-lg font-black leading-snug">{item.title}</h3>
+                    <h3 className="mt-3 text-lg font-black leading-snug">{germanizeText(item.title)}</h3>
                   </div>
                   {item.href ? <ArrowRight className={`h-4 w-4 shrink-0 ${accentText}`} aria-hidden="true" /> : null}
                 </div>
-                <p className={`mt-3 text-sm font-semibold leading-7 ${mutedText}`}>{item.text}</p>
+                <p className={`mt-3 text-sm font-semibold leading-7 ${mutedText}`}>{germanizeText(item.text)}</p>
                 {item.cta ? (
                   <span className={`mt-5 inline-flex items-center gap-2 text-sm font-black ${accentText}`}>
-                    {item.cta}
+                    {germanizeText(item.cta)}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </span>
                 ) : null}

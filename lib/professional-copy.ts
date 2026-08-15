@@ -57,7 +57,7 @@ export const providerComparisonClarityItems = [
     text: "Ein niedriger Preis kann passen, kann aber auch offene Leistungen, Wartezeiten oder Zusatzpositionen verdecken.",
   },
   {
-    title: "Naechster Schritt",
+    title: "Nächster Schritt",
     text: "FLOXANT hilft, offene Fragen zu sortieren und eine konkrete Anfrage mit Ort, Umfang und Termin vorzubereiten.",
   },
   {

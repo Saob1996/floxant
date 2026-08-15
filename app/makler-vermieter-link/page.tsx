@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import { RealtorLandlordLinkForm } from "@/components/RealtorLandlordLinkForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -61,7 +62,7 @@ const objectCases = [
     title: "Keller / Garage voll",
     text: "Nebenflaechen, Muellraum oder Garage mit Fotos, Zugang und Freigabe pruefen.",
     link: "/keller-muellraum-rettung-regensburg",
-    cta: "Keller/Muellraum pruefen",
+    cta: "Keller/Müllraum prüfen",
     Icon: Trash2,
   },
   {
@@ -166,7 +167,7 @@ const faqItems = [
     a: "Ja. Die FLOXANT Uebergabeakte kann nach Absprache Fotos, erledigte Leistungen, Schluesselstatus und Hinweise dokumentieren.",
   },
   {
-    q: "Unterstuetzt FLOXANT Hausverwaltungen?",
+    q: "Unterstützt FLOXANT Hausverwaltungen?",
     a: "Ja. Fuer wiederkehrende Objektfaelle ist der Mieterwechsel-Service passender, dieser Link kann aber als schneller Startpunkt genutzt werden.",
   },
   {
@@ -225,7 +226,8 @@ const jsonLd = {
 
 export default function MaklerVermieterLinkPage() {
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="overflow-hidden bg-[radial-gradient(circle_at_10%_0%,#dbeafe_0,transparent_33rem),radial-gradient(circle_at_90%_8%,#fef3c7_0,transparent_30rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
@@ -487,6 +489,7 @@ export default function MaklerVermieterLinkPage() {
           </div>
         </div>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

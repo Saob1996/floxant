@@ -189,9 +189,9 @@ export default function ReinigungsfirmaAngebotPage() {
               </p>
               <div className="mt-7 grid gap-3 xl:grid-cols-3">
                 {[
-                  { value: "01", label: "Daten senden", text: "Ort, Objekt, Flaeche und Zielzustand." },
-                  { value: "02", label: "Einordnung", text: "Leistung, Umfang und offene Punkte klaeren." },
-                  { value: "03", label: "Naechster Schritt", text: "Rueckfrage, WhatsApp oder Anfrageformular." },
+                  { value: "01", label: "Daten senden", text: "Ort, Objekt, Fläche und Zielzustand." },
+                  { value: "02", label: "Einordnung", text: "Leistung, Umfang und offene Punkte klären." },
+                  { value: "03", label: "Nächster Schritt", text: "Rückfrage, WhatsApp oder Anfrageformular." },
                 ].map((item) => (
                   <div key={item.value} className="rounded-lg border border-white/12 bg-white/[0.07] p-4 shadow-sm">
                     <div className="text-xs font-black uppercase tracking-normal text-cyan-100">{item.value}</div>
@@ -206,7 +206,7 @@ export default function ReinigungsfirmaAngebotPage() {
                   <ClipboardCheck className="mt-1 h-5 w-5 shrink-0 text-cyan-100" aria-hidden="true" />
                   <div>
                     <h2 className="text-xl font-black tracking-normal text-white">
-                      Was FLOXANT fuer die Vorpruefung braucht
+                      Was FLOXANT für die Vorprüfung braucht
                     </h2>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {requestFacts.slice(0, 4).map((item) => (

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/wann-lohnt-sich-umzugsfirma',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Wann lohnt sich eine Umzugsfirma? | FLOXANT Ratgeber",
     description: dict.seo?.dynamic_city_desc || "Wann eine Umzugsfirma sinnvoll ist",
   });
 }

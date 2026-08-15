@@ -11,6 +11,11 @@ const contactHref = "/kontakt?service=reinigung&city=duesseldorf&intent=reinigun
 
 const cleaningServices = [
   {
+    title: "Reinigung",
+    text: "Wohnung, Büro, Praxis oder Gewerbe nach Objektart, Fläche, Umfang und Termin einordnen.",
+    href: "/duesseldorf/reinigung",
+  },
+  {
     title: "Büroreinigung",
     text: "Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche mit passendem Turnus.",
     href: "/duesseldorf/bueroreinigung",
@@ -90,7 +95,7 @@ function JsonLd() {
     "@graph": [
       buildWebPageJsonLd({
         name: "FLOXANT Düsseldorf",
-        description: "Düsseldorfer Standortseite für klar getrennte Reinigungsleistungen und Kontaktwege.",
+        description: "Reinigungsleistungen in Düsseldorf für Wohnung, Büro, Praxis und Gewerbe mit direktem Anfrageweg.",
         path,
         about: ["FLOXANT Düsseldorf", "Reinigungsservice Düsseldorf", "Gebäudereinigung Düsseldorf"],
         potentialActions: [{ name: "Reinigung anfragen", target: contactHref, type: "ContactAction" }],
@@ -195,7 +200,7 @@ export default function DuesseldorfHubPage() {
             Welche Reinigung benötigen Sie?
           </h2>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Die sieben Leistungen sind getrennt beschrieben, damit Umfang, benötigte Angaben und Aufwand nachvollziehbar bleiben.
+            Wählen Sie die passende Reinigungsart und erfahren Sie, welche Angaben für eine erste Einschätzung hilfreich sind.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {cleaningServices.map((service) => (

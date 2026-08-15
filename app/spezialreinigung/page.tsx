@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Camera, CheckCircle2, ShieldCheck } from "lucide-react";
 
 import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ChecklistBlock, ComparisonAnswerTable } from "@/components/ai-answer";
 import {
   LocalServiceBridge,
@@ -128,7 +129,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "Spezialreinigung mit Fotos, Zugang und Ziel klären",
   description:
-    "FLOXANT ordnet Spezialreinigung fuer PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe nach Fotos, Zugang und Risiko ein.",
+    "FLOXANT ordnet Spezialreinigung für PV, Glas, Fassade, Event, Büro, Praxis und Übergabe nach Fotos, Zugang und Risiko ein.",
   alternates: { canonical },
   openGraph: {
     type: "website",
@@ -137,7 +138,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "Spezialreinigung mit Fotos und klarer Machbarkeitspruefung",
     description:
-      "PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe sinnvoll einordnen, ohne falsche Garantien.",
+      "PV, Glas, Fassade, Event, Büro, Praxis und Übergabe sinnvoll einordnen, ohne falsche Garantien.",
   },
 };
 
@@ -184,7 +185,8 @@ function JsonLd() {
 
 export default function SpezialreinigungPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
       <section className="bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
@@ -249,9 +251,9 @@ export default function SpezialreinigungPage() {
 
       <AiAnswerCard
         title="Spezialreinigung beginnt mit Zugang, Fotos und Zielzustand."
-        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotsprüfung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Uebergabe nicht als pauschaler Standardfall behandelt werden."
+        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotsprüfung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Übergabe nicht als pauschaler Standardfall behandelt werden."
         points={cleaningAnswerPoints}
-        nextStep="Naechster Schritt: Fotos, Objektart, Ort, Termin und vorhandenes Angebot mitsenden."
+        nextStep="Nächster Schritt: Fotos, Objektart, Ort, Termin und vorhandenes Angebot mitsenden."
       />
 
       <ComparisonAnswerTable
@@ -343,6 +345,7 @@ export default function SpezialreinigungPage() {
         intro="Spezialreinigung wird oft falsch verglichen, wenn Zugang, Material, Zeitfenster oder Zusatzleistungen fehlen."
         links={offerCheckLinks}
       />
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

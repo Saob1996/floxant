@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, KeyRound, ShieldCheck, Sparkles, Truck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
@@ -79,7 +80,8 @@ export default async function UmzugMitReinigungPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#07111f] text-white">
+    <GermanCustomerCopy>
+      <main className="min-h-screen bg-[#07111f] text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs lang="de" items={[{ label: "Home", href: "/" }, { label: "Umzug mit Reinigung" }]} />
 
@@ -227,6 +229,7 @@ export default async function UmzugMitReinigungPage() {
           ))}
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

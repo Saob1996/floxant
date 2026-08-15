@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
+
 const discreetSituations = [
   "diskreter Umzug",
   "diskrete Entruempelung",
@@ -14,7 +16,8 @@ export function DiscreetRequestPanel() {
   const href = "/kontakt?service=diskret-service&city=deutschland&intent=diskret-service&source=discreet";
 
   return (
-    <section className="px-4 py-12 sm:px-6" data-component="DiscreetRequestPanel">
+    <GermanCustomerCopy>
+      <section className="px-4 py-12 sm:px-6" data-component="DiscreetRequestPanel">
       <div className="mx-auto grid max-w-7xl gap-7 rounded-lg border border-stone-200 bg-white p-6 shadow-sm shadow-stone-950/5 md:p-8 lg:grid-cols-[0.84fr_1.16fr]">
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-normal text-stone-600">
@@ -50,6 +53,7 @@ export function DiscreetRequestPanel() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    </GermanCustomerCopy>
   );
 }

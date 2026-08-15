@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { HumanReadableFAQ, QuickDecisionBox } from "@/components/ai-answer";
 import {
   ProblemBasedServiceLinks,
@@ -171,7 +172,8 @@ function JsonLd() {
 
 export default function SignatureServicesPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
       <section className="relative isolate min-h-[78svh] overflow-hidden bg-slate-950 px-5 pb-14 pt-32 text-white sm:px-8 lg:px-10">
@@ -233,9 +235,9 @@ export default function SignatureServicesPage() {
 
       <AiAnswerCard
         title="Signature Services sind Entscheidungswege, keine leeren Markenbegriffe."
-        answer="FLOXANT nutzt Signature Services, wenn vor einer Anfrage zuerst Angebot, Objekt, Uebergabe, Frist, Route oder Diskretion geordnet werden muessen. Der Service fuehrt zu einem konkreten Kontaktweg mit passenden Angaben."
+        answer="FLOXANT nutzt Signature Services, wenn vor einer Anfrage zuerst Angebot, Objekt, Übergabe, Frist, Route oder Diskretion geordnet werden müssen. Der Service führt zu einem konkreten Kontaktweg mit passenden Angaben."
         points={signatureAnswerPoints}
-        nextStep="Naechster Schritt: den Service waehlen, der zur Lage passt, und Ort, Ziel, Kontaktweg sowie vorhandene Unterlagen mitsenden."
+        nextStep="Nächster Schritt: den Service wählen, der zur Lage passt, und Ort, Ziel, Kontaktweg sowie vorhandene Unterlagen mitsenden."
       />
 
       <QuickDecisionBox
@@ -345,6 +347,7 @@ export default function SignatureServicesPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

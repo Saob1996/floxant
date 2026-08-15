@@ -179,6 +179,8 @@ export function isCleaningRouteAllowed(path: string): boolean {
   if (!isCleaningRoutePath(path)) return true;
 
   const normalizedPath = path.replace(/^\/+|\/+$/g, "").toLowerCase();
+  if (genericRegensburgCleaningRouteSlugs.has(normalizedPath)) return true;
+
   if (normalizedPath.startsWith("blog/")) {
     return (
       normalizedPath.includes("regensburg") ||

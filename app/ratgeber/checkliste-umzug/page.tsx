@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/checkliste-umzug',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzug planen: Checkliste von Kündigung bis Übergabe | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug vorbereiten",
   });
 }

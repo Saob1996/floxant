@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-erste-wohnung',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Erste Wohnung: Den Umzug richtig planen | FLOXANT Ratgeber",
     description: dict.seo?.dynamic_city_desc || "Umzug in die erste Wohnung",
   });
 }

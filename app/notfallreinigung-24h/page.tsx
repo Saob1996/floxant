@@ -16,6 +16,7 @@ import {
   Trash2,
 } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -150,7 +151,8 @@ export default function Notfallreinigung24hPage() {
   ];
 
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#eef7f4_46%,#ffffff_100%)] pb-24 text-slate-950">
         <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
@@ -218,7 +220,7 @@ export default function Notfallreinigung24hPage() {
           <SectionTitle
             label="Wann diese Seite passt"
             title="Notfall heisst: zuerst sauber sortieren, dann schnell entscheiden"
-            text="Eine dringende Reinigung ist selten nur eine Frage von mehr Personal. Entscheidend ist, ob die Flaeche erreichbar ist, welche Verschmutzung vorliegt, ob Entsorgung noetig ist, wie hart die Deadline ist und welches Ergebnis wirklich gebraucht wird. Genau dafuer ist diese Seite aufgebaut."
+            text="Eine dringende Reinigung ist selten nur eine Frage von mehr Personal. Entscheidend ist, ob die Fläche erreichbar ist, welche Verschmutzung vorliegt, ob Entsorgung nötig ist, wie hart die Deadline ist und welches Ergebnis wirklich gebraucht wird. Genau dafür ist diese Seite aufgebaut."
           />
           <div className="mt-9 grid gap-5 md:grid-cols-2">
             {urgentCases.map((item) => {
@@ -238,8 +240,8 @@ export default function Notfallreinigung24hPage() {
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <SectionTitle
               label="Anfahrts- und Preislogik"
-              title="Schnelle Reinigung wird nach Aufwand, Zugang und Zeitfenster geprueft"
-              text="Der Preis entsteht nicht aus einem starren Notfallwort, sondern aus der Kombination von Flaeche, Zustand, Uhrzeit, Entfernung, Material, Personalbedarf, Parkmoeglichkeit und Ziel. Eine kleine Flaeche mit gutem Zugang kann schneller pruefbar sein als eine grosse Flaeche mit unklarem Schluessel, fehlenden Fotos oder blockierten Wegen."
+              title="Schnelle Reinigung wird nach Aufwand, Zugang und Zeitfenster geprüft"
+              text="Der Preis entsteht nicht aus einem starren Notfallwort, sondern aus der Kombination von Fläche, Zustand, Uhrzeit, Entfernung, Material, Personalbedarf, Parkmöglichkeit und Ziel. Eine kleine Fläche mit gutem Zugang kann schneller prüfbar sein als eine große Fläche mit unklarem Schlüssel, fehlenden Fotos oder blockierten Wegen."
             />
             <div className="grid gap-4">
               {[
@@ -298,7 +300,7 @@ export default function Notfallreinigung24hPage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <SectionTitle label="Haeufige Fragen" title="Klare Antworten vor der Anfrage" />
+          <SectionTitle label="Häufige Fragen" title="Klare Antworten vor der Anfrage" />
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {faqItems.map((item) => (
               <article key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -336,6 +338,7 @@ export default function Notfallreinigung24hPage() {
           </div>
         </section>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

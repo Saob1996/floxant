@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, ClipboardCheck, Home } from "lucide-react";
 
 import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ChecklistBlock, QuickDecisionBox } from "@/components/ai-answer";
 import {
   LocalServiceBridge,
@@ -95,24 +96,24 @@ const clearanceSignatureServices = signatureServiceLinks.filter((item) =>
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Spezialentruempelung | Keller, Nachlass, Uebergabe | FLOXANT",
+  title: "Spezialentrümpelung | Keller, Nachlass, Übergabe | FLOXANT",
   description:
-    "Spezialentruempelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsaufloesung und Uebergabe mit Fotos und Freigabe klaeren.",
+    "Spezialentrümpelung mit FLOXANT: Keller, Garage, Dachboden, Lager, Nachlass, Wohnungsauflösung und Übergabe mit Fotos und Freigabe klären.",
   alternates: { canonical },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "Spezialentruempelung mit wuerdevoller Machbarkeitspruefung",
+    title: "Spezialentrümpelung mit würdevoller Machbarkeitsprüfung",
     description:
-      "Keller, Lager, Nachlass, Wohnungsaufloesung und Raeumung vor Uebergabe anhand von Fotos, Freigabe und Zielzustand einordnen.",
+      "Keller, Lager, Nachlass, Wohnungsauflösung und Räumung vor Übergabe anhand von Fotos, Freigabe und Zielzustand einordnen.",
     images: [
       {
         url: "/assets/service-clearance.png",
         width: 1200,
         height: 630,
-        alt: "FLOXANT Spezialentruempelung und Raeumung",
+        alt: "FLOXANT Spezialentrümpelung und Räumung",
       },
     ],
   },
@@ -161,13 +162,14 @@ function JsonLd() {
 
 export default function SpezialentruempelungPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
       <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <Image
           src="/assets/service-clearance.webp"
-          alt="FLOXANT Spezialentruempelung mit sortierter Raeumung"
+          alt="FLOXANT Spezialentrümpelung mit sortierter Räumung"
           fill
           priority
           sizes="100vw"
@@ -224,10 +226,10 @@ export default function SpezialentruempelungPage() {
       />
 
       <AiAnswerCard
-        title="Spezialentruempelung braucht Freigabe, Fotos und Zielzustand."
-        answer="FLOXANT trennt Raeumung, Entsorgung, Reinigung, Uebergabe und sensible Kommunikation, damit Nachlass, Keller, Lager oder belastete Raeume nicht pauschal behandelt werden."
+        title="Spezialentrümpelung braucht Freigabe, Fotos und Zielzustand."
+        answer="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und sensible Kommunikation, damit Nachlass, Keller, Lager oder belastete Räume nicht pauschal behandelt werden."
         points={clearanceAnswerPoints}
-        nextStep="Naechster Schritt: Fotos, Ort, Freigabe, Menge, Zugang und Zielzustand mitsenden."
+        nextStep="Nächster Schritt: Fotos, Ort, Freigabe, Menge, Zugang und Zielzustand mitsenden."
       />
 
       <QuickDecisionBox
@@ -283,9 +285,9 @@ export default function SpezialentruempelungPage() {
       </section>
 
       <ServiceClusterLinks
-        eyebrow="Grenzen und Wuerde"
+        eyebrow="Grenzen und Würde"
         title="Was bei Spezialentruempelung nicht pauschal versprochen wird."
-        intro="FLOXANT trennt Raeumung, Entsorgung, Reinigung, Uebergabe und rechtliche Fragen. Sensible Situationen werden sachlich und respektvoll beschrieben."
+        intro="FLOXANT trennt Räumung, Entsorgung, Reinigung, Übergabe und rechtliche Fragen. Sensible Situationen werden sachlich und respektvoll beschrieben."
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Umfang, Zielzustand und Verantwortung nicht geraten werden.",
@@ -307,7 +309,7 @@ export default function SpezialentruempelungPage() {
       />
 
       <OfferCheckCTA
-        title="Liegt schon ein Raeumungs- oder Aufloesungsangebot vor?"
+        title="Liegt schon ein Räumungs- oder Auflösungsangebot vor?"
         text="FLOXANT kann Umfang, Zusatzpositionen, Entsorgung, Zugang, Fotos, Zielzustand und Preisrahmen sachlich einordnen. Keine Preisgarantie, keine Abwertung anderer Anbieter."
       />
 
@@ -327,6 +329,7 @@ export default function SpezialentruempelungPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/gute-umzugsfirma-finden',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Gute Umzugsfirma finden: Darauf kommt es an | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzugsfirma finden",
   });
 }

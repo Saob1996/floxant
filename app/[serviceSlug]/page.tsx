@@ -542,6 +542,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
     city: route.city,
   });
   const resolvedCity = germanizeText(city);
+  const resolvedServiceLabel = germanizeText(route.label);
   const gscOpportunity = renderLocalGscOpportunity(route, resolvedCity);
 
   return (
@@ -550,7 +551,7 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
       dict={localeDict}
       city={resolvedCity}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, resolvedCity, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, resolvedCity, "de")}
+      heroTitle={`${resolvedServiceLabel} in ${resolvedCity}`}
       heroText={resolveField(content.hero_p, fallback.hero_p, resolvedCity, "de")}
       ctaText={resolveField(content.cta, fallback.cta, resolvedCity, "de")}
       breadcrumbs={getLocalSeoBreadcrumbs(route)}

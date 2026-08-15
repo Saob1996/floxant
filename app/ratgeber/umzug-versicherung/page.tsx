@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-versicherung',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Versicherung beim Umzug: Schäden richtig einordnen | FLOXANT",
     description: dict.seo?.dynamic_city_desc || "Umzug und Versicherung",
   });
 }

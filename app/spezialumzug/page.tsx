@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, PackageCheck, Route } from "lucide-react";
 
 import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ChecklistBlock, QuickDecisionBox } from "@/components/ai-answer";
 import {
   LocalServiceBridge,
@@ -94,7 +95,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "Spezialumzug | Mini-Umzug, Express, Transport & Plan B | FLOXANT",
   description:
-    "Spezialumzug mit FLOXANT: Mini-Umzug, Express-Umzug, Moebeltransport, Klaviertransport, Beiladung, Rueckfahrt und Plan B realistisch pruefen.",
+    "Spezialumzug mit FLOXANT: Mini-Umzug, Express-Umzug, Möbeltransport, Klaviertransport, Beiladung, Rückfahrt und Plan B realistisch prüfen.",
   alternates: { canonical },
   openGraph: {
     type: "website",
@@ -103,7 +104,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "Spezialumzug mit klarer Machbarkeitspruefung",
     description:
-      "Mini-Umzug, Express, Transport, Klaviertransport, Beiladung und Rueckfahrt anhand von Route, Volumen, Zugang und Zeitfenster einordnen.",
+      "Mini-Umzug, Express, Transport, Klaviertransport, Beiladung und Rückfahrt anhand von Route, Volumen, Zugang und Zeitfenster einordnen.",
     images: [
       {
         url: "/assets/service-moving.png",
@@ -158,7 +159,8 @@ function JsonLd() {
 
 export default function SpezialumzugPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
       <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
@@ -221,10 +223,10 @@ export default function SpezialumzugPage() {
       />
 
       <AiAnswerCard
-        title="Spezialumzug heisst: Route, Volumen und Risiko zuerst klaeren."
-        answer="FLOXANT unterscheidet kleinen Umzug, Moebeltransport, Klaviertransport, Rueckfahrt, Beiladung und Plan B, damit aus Zeitdruck keine falsche Sofortzusage entsteht."
+        title="Spezialumzug heißt: Route, Volumen und Risiko zuerst klären."
+        answer="FLOXANT unterscheidet kleinen Umzug, Möbeltransport, Klaviertransport, Rückfahrt, Beiladung und Plan B, damit aus Zeitdruck keine falsche Sofortzusage entsteht."
         points={movingAnswerPoints}
-        nextStep="Naechster Schritt: Start, Ziel, Umfang, Fotos, Zugang und Terminfenster mitsenden."
+        nextStep="Nächster Schritt: Start, Ziel, Umfang, Fotos, Zugang und Terminfenster mitsenden."
       />
 
       <QuickDecisionBox
@@ -282,7 +284,7 @@ export default function SpezialumzugPage() {
       <ServiceClusterLinks
         eyebrow="Grenzen und Machbarkeit"
         title="Was bei Spezialumzug nicht pauschal versprochen wird."
-        intro="Klare Grenzen schuetzen Erwartung und Ablauf. FLOXANT trennt Anfrage, Machbarkeit, Rueckfragen und verbindliche Zusage."
+        intro="Klare Grenzen schützen Erwartung und Ablauf. FLOXANT trennt Anfrage, Machbarkeit, Rückfragen und verbindliche Zusage."
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit Route, Aufwand und Termin nicht geraten werden.",
@@ -324,6 +326,7 @@ export default function SpezialumzugPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

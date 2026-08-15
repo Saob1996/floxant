@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import { DiscreetMoveForm } from "@/components/DiscreetMoveForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { DiscreetRequestPanel } from "@/components/DiscreetRequestPanel";
 import { DiscreetTrustPanel } from "@/components/DiscreetTrustPanel";
 import { LeadCta } from "@/components/LeadCta";
@@ -323,7 +324,8 @@ const jsonLd = {
 
 export default function DiskreterUmzugTrennungScheidungPage() {
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main
         className="overflow-hidden bg-[radial-gradient(circle_at_16%_2%,#f5f5f4_0,transparent_30rem),radial-gradient(circle_at_86%_0%,#e7e5e4_0,transparent_28rem),linear-gradient(180deg,#fafaf9_0%,#ffffff_48%,#f5f5f4_100%)] text-stone-950"
@@ -800,6 +802,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
           </div>
         </div>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

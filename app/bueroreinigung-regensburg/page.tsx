@@ -184,7 +184,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "bueroreinigung-regensburg",
     title: "Büroreinigung Regensburg mit Raumliste und Angebot",
     description:
-      "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden.",
+      "Büroreinigung Regensburg anfragen: Raumliste, Fläche, Turnus, Zeitfenster, Fotos und Ansprechpartner für ein klares Angebot senden.",
   });
 }
 
@@ -275,14 +275,14 @@ export default function BueroreinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[17ch] text-[clamp(2.1rem,4.3vw,4rem)] font-black leading-[0.98] text-slate-950">
-                Bueroreinigung Regensburg mit Raumliste, Turnus und Randzeit klaeren.
+                Büroreinigung Regensburg mit Raumliste, Turnus und Randzeit klären.
               </h1>
 
               <p className="mt-5 max-w-[60ch] text-base leading-8 text-slate-700">
-                FLOXANT prueft Bueroreinigung in Regensburg nach Bueroflaeche,
-                Raumliste, Turnus, Kueche, Sanitaer, Boden, Randzeit, Zugang,
-                Schluesselweg und Fotos. So wird sichtbar, ob laufende Reinigung,
-                Grundreinigung oder ein Angebotscheck der passende naechste Schritt ist.
+                FLOXANT prüft Büroreinigung in Regensburg nach Bürofläche,
+                Raumliste, Turnus, Küche, Sanitär, Boden, Randzeit, Zugang,
+                Schlüsselweg und Fotos. So wird sichtbar, ob laufende Reinigung,
+                Grundreinigung oder ein Angebotscheck der passende nächste Schritt ist.
               </p>
 
               <nav
@@ -369,7 +369,7 @@ export default function BueroreinigungRegensburgPage() {
       <RequestBriefChecklistBlock
         serviceKey="bueroreinigung"
         ctaHref={`${pagePath}#kontaktformular`}
-        ctaLabel="Buerodaten als Anfragebrief vorbereiten"
+        ctaLabel="Bürodaten als Anfragebrief vorbereiten"
         compact
       />
       <PhotoGuidanceBlock serviceKey="bueroreinigung" compact />
@@ -532,9 +532,9 @@ export default function BueroreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten fuer eine bessere Anfrage.
+              Kurze Antworten für eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

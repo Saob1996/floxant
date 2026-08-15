@@ -35,14 +35,10 @@ export function CleaningServiceArea({
   intro = "FLOXANT fokussiert Reinigungsservices auf Regensburg und den Umkreis bis 50 km. So bleiben Anfahrt, Besichtigung, Fotos und Angebot realistisch planbar.",
 }: CleaningServiceAreaProps) {
   const places = getVisibleCleaningAreaPlaces();
-  const highlightedMunicipalities = priorityMunicipalities.filter((place) =>
-    places.municipalities.includes(place),
-  );
-  const remainingMunicipalities = places.municipalities.filter(
-    (place) => !highlightedMunicipalities.includes(place),
-  );
-  const visibleDistricts = compact ? places.districts.slice(0, 10) : places.districts.slice(0, 14);
-  const remainingDistricts = places.districts.slice(visibleDistricts.length);
+  const highlightedMunicipalities = priorityMunicipalities
+    .filter((place) => places.municipalities.includes(place))
+    .slice(0, compact ? 4 : 6);
+  const visibleDistricts = places.districts.slice(0, compact ? 4 : 6);
 
   return (
     <section
@@ -83,12 +79,9 @@ export function CleaningServiceArea({
               </li>
             ))}
           </ul>
-          {remainingDistricts.length > 0 ? (
-            <details className="mt-3 text-sm text-slate-700">
-              <summary className="cursor-pointer font-semibold text-emerald-800">Weitere Stadtteile anzeigen</summary>
-              <p className="mt-2 leading-relaxed">{remainingDistricts.join(", ")}</p>
-            </details>
-          ) : null}
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Ihren genauen Stadtteil geben Sie einfach in der Anfrage an.
+          </p>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
@@ -103,12 +96,9 @@ export function CleaningServiceArea({
               </li>
             ))}
           </ul>
-          {remainingMunicipalities.length > 0 ? (
-            <details className="mt-3 text-sm text-slate-700">
-              <summary className="cursor-pointer font-semibold text-emerald-800">Weitere Orte im Radius anzeigen</summary>
-              <p className="mt-2 leading-relaxed">{remainingMunicipalities.join(", ")}</p>
-            </details>
-          ) : null}
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Für weitere Orte prüfen wir die Anfahrt anhand Ihrer Angaben.
+          </p>
         </div>
       </div>
     </section>

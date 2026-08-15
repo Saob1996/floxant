@@ -1,141 +1,125 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, FileSearch, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileSearch, MapPin, Sparkles, Truck } from "lucide-react";
 
-import {
-  OfferCheckCTA,
-  ProblemBasedServiceLinks,
-  RelatedSpecialServices,
-  ServiceClusterLinks,
-  ServiceDecisionGuide,
-  SignatureServicesGrid,
-  TrustProofSection,
-} from "@/components/conversion";
-import { ServiceFinder } from "@/components/ContactPathChooser";
-import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
-import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
-import { ServiceNavigationOverview } from "@/components/ServiceNavigationOverview";
-import { FloxServiceCard } from "@/components/FloxServiceCard";
-import { LocationClarityPanel } from "@/components/LocationClarityPanel";
-import { LocalProofPanel } from "@/components/LocalProofPanel";
-import { ProcessProofSteps } from "@/components/ProcessProofSteps";
-import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
-import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarityGrid";
-import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
-import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
-import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
-import {
-  floxantCategoryDescriptions,
-  floxantCategoryLabels,
-  floxantCategoryOrder,
-  floxantRegions,
-  floxantServices,
-  getServicesByRegionAndCategory,
-  type FloxantRegion,
-} from "@/lib/floxant-services";
-import { locationClarityItems, signatureServiceClarityItems } from "@/lib/professional-copy";
-import { regensburgCleaningReviewRoutes } from "@/lib/regional-route-policy";
-import {
-  offerCheckLinks,
-  specialCleaningLinks,
-  specialClearanceLinks,
-  specialMovingLinks,
-} from "@/lib/signature-special-services";
-import {
-  buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
-  buildWebPageJsonLd,
-} from "@/lib/structured-data";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/leistungen";
 const canonical = `${company.url}${path}`;
-const regionOrder: FloxantRegion[] = ["regensburg"];
+const requestHref = buildGlobalRequestHref("services_overview");
+
+const duesseldorfServices = [
+  {
+    title: "Reinigung",
+    text: "Für Wohnung, Büro, Praxis oder Gewerbe mit Angaben zu Objekt, Fläche und Termin.",
+    href: "/duesseldorf/reinigung",
+  },
+  {
+    title: "Büroreinigung",
+    text: "Arbeitsplätze, Besprechungsräume, Küche, Sanitär, Böden und gewünschter Turnus.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Praxisreinigung",
+    text: "Empfang, Wartebereiche, Behandlungsräume, Sanitär und passende Zeitfenster.",
+    href: "/duesseldorf/praxisreinigung",
+  },
+  {
+    title: "Fensterreinigung",
+    text: "Fensterzahl, Glasflächen, Innen- oder Außenseite, Rahmen, Höhe und Zugang.",
+    href: "/duesseldorf/fensterreinigung",
+  },
+  {
+    title: "Grundreinigung",
+    text: "Einmalige intensive Reinigung nach Zustand, Böden, Küche und Sanitärbereichen.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
+    title: "Unterhaltsreinigung",
+    text: "Wiederkehrende Reinigung mit Turnus, Zeitfenster, Objektart und Ansprechpartner.",
+    href: "/duesseldorf/unterhaltsreinigung",
+  },
+  {
+    title: "Bauendreinigung",
+    text: "Baustaub und Rückstände vor Abnahme oder Übergabe mit Angaben zur Bauphase.",
+    href: "/duesseldorf/baureinigung",
+  },
+  {
+    title: "Gewerbereinigung",
+    text: "Laden, Studio oder Gewerbefläche nach Nutzung, Größe, Zugang und Zeitfenster.",
+    href: "/duesseldorf/gewerbereinigung",
+  },
+] as const;
+
+const regensburgServices = [
+  {
+    title: "Umzug",
+    text: "Start, Ziel, Umfang, Etagen, Zugang, Termin und gewünschte Zusatzleistungen.",
+    href: "/regensburg/umzug",
+  },
+  {
+    title: "Entrümpelung",
+    text: "Einzelne Räume, Keller, Garage, Möbel oder Restmengen mit Zugang und Fotos.",
+    href: "/regensburg/entruempelung",
+  },
+  {
+    title: "Wohnungsauflösung",
+    text: "Komplette Haushalte, mehrere Räume, Freigabe, Zeitrahmen und persönliche Abstimmung.",
+    href: "/regensburg/wohnungsaufloesung",
+  },
+  {
+    title: "Möbeltransport",
+    text: "Einzelne Möbel oder kleinere Transporte mit Strecke, Maßen, Etage und Zugang.",
+    href: "/kleintransport-regensburg",
+  },
+  {
+    title: "Klaviertransport",
+    text: "Instrument, Maße, Gewicht, Treppen, Engstellen, Aufzug und Fotos beschreiben.",
+    href: "/klaviertransport-regensburg",
+  },
+  {
+    title: "Reinigung",
+    text: "Reinigung in Regensburg, wenn Objektart, Fläche, Umfang und Termin zusammenpassen.",
+    href: "/regensburg/reinigung",
+  },
+] as const;
 
 const faqItems = [
   {
-    q: "Wo ist Reinigung bei FLOXANT verfügbar?",
-    a: "Düsseldorf ist der Schwerpunkt für Reinigung. In Regensburg stehen Umzug, Räumung und Transport im Mittelpunkt. Ob ein weiterer Einsatz passt, klären wir anhand Ihrer Orts- und Leistungsangaben.",
+    q: "Welche Leistungen bietet FLOXANT in Düsseldorf an?",
+    a: "In Düsseldorf liegt der Schwerpunkt auf Reinigung für Wohnung, Büro, Praxis und Gewerbe. Dazu gehören Fenster-, Grund-, Unterhalts- und Bauendreinigung.",
   },
   {
-    q: "Kann ich ein bestehendes Angebot prüfen lassen?",
-    a: "Ja. Sie können ein vorhandenes Angebot oder die wichtigsten Eckdaten senden. FLOXANT prüft, ob eine passende und wirtschaftlich interessante Alternative möglich ist. Die Prüfung ist kostenlos und unverbindlich.",
+    q: "Welche Leistungen bietet FLOXANT in Regensburg an?",
+    a: "In Regensburg stehen Umzug, Entrümpelung, Wohnungsauflösung, Möbel- und Klaviertransport im Mittelpunkt. Reinigung kann ebenfalls angefragt werden.",
   },
   {
-    q: "Sind alle Services sofort buchbar?",
-    a: "Nein. Jede Anfrage wird nach Region, Objekt, Umfang, Termin und Machbarkeit geprüft. Danach erhalten Sie eine klare Rückmeldung zum sinnvollen nächsten Schritt.",
+    q: "Welche Angaben sollte ich zuerst senden?",
+    a: "Standort, gewünschte Leistung, Umfang und Termin reichen für den Einstieg. Je nach Aufgabe helfen Fläche, Räume, Etagen, Zugang, Start und Ziel oder freiwillige Fotos.",
   },
   {
-    q: "Warum sind nicht alle Ideen eigene Seiten?",
-    a: "FLOXANT zeigt eine eigene Seite, wenn die Leistung einen klaren Nutzen und genügend konkrete Informationen bietet. Weitere Themen bleiben als Leistungskarte oder häufige Frage sichtbar.",
-  },
-];
-
-const serviceClusterGuide = [
-  {
-    title: "Reinigung, Solar und Außenflächen",
-    text: "Für Büro, Praxis, Gewerbe, Glas, Fassade, Solar/PV und Endreinigung. Wichtig sind Objektart, Fläche, Fotos, Zugang und Zeitfenster.",
-    href: "/regensburg/reinigung",
-    cta: "Reinigungswege öffnen",
-  },
-  {
-    title: "Umzug und Transport",
-    text: "Für Wohnungswechsel, Mini-Umzug, Möbeltransport, Express-Umzug oder Rückfahrt. Entscheidend sind Route, Volumen, Etage und Termin.",
-    href: "/regensburg/umzug",
-    cta: "Umzug/Transport wählen",
-  },
-  {
-    title: "Räumung und Auflösung",
-    text: "Für Entrümpelung, Keller, Lager, Nachlass und Haushaltsauflösung. Fotos, Menge, Material, Zugang und gewünschter Endzustand helfen.",
-    href: "/regensburg/entruempelung",
-    cta: "Räumung einordnen",
-  },
-  {
-    title: "Angebot, Fairpreis und Vergleich",
-    text: "Wenn bereits ein Angebot, Preis oder Screenshot vorliegt: Umfang, Zusatzkosten, Termin und Alternative sachlich prüfen lassen.",
-    href: "/angebot-guenstiger-pruefen",
-    cta: "Angebot prüfen",
-  },
-  {
-    title: "Besondere FLOXANT-Leistungen",
-    text: "Für Objektbrief, Fairpreis-Check, Übergabe-Sprint, Plan-B-Service, Rückfahrt-Radar und PV-Sichtklar.",
-    href: "/signature-services",
-    cta: "Besondere Leistungen ansehen",
+    q: "Ist eine Anfrage bereits eine Buchung?",
+    a: "Nein. FLOXANT prüft zunächst die Angaben und klärt offene Punkte. Ein Auftrag entsteht erst nach einer ausdrücklichen Vereinbarung.",
   },
 ] as const;
 
-const serviceTrustProofs = [
-  "Jede Anfrage beginnt mit Ort, Leistung, kurzer Beschreibung und einem Kontaktweg.",
-  "Fotos, vorhandene Angebote, Budget, Termin oder Dringlichkeit bleiben optional, aber hilfreich.",
-  "Die Leistungsseite führt zu echten Kontaktwegen statt zu dünnen Einzelideen.",
-  "Düsseldorf und Regensburg haben getrennte Leistungsbereiche, damit Anfrage und Erwartung zusammenpassen.",
-] as const;
+const allServices = [...duesseldorfServices, ...regensburgServices];
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Leistungen: Reinigung, Umzug und mehr anfragen",
+  title: "FLOXANT Leistungen | Düsseldorf & Regensburg",
   description:
-    "Wählen Sie Region und Aufgabe: Reinigung, Umzug, Räumung, Angebotsprüfung oder diskrete Hilfe direkt anfragen.",
-  alternates: {
-    canonical,
-  },
+    "Reinigung in Düsseldorf sowie Umzug, Räumung, Transport und Reinigung in Regensburg. Leistung wählen und Eckdaten direkt an FLOXANT senden.",
+  alternates: { canonical },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
-    siteName: "FLOXANT",
-    title: "FLOXANT Leistungen nach Region und Aufgabe",
-    description:
-      "Leistung und Standort wählen und die wichtigsten Eckdaten direkt an FLOXANT senden.",
-    images: [
-      {
-        url: "/assets/floxant-hero-neu-gedacht.png",
-        width: 1200,
-        height: 630,
-        alt: "FLOXANT Leistungen nach Region",
-      },
-    ],
+    siteName: company.name,
+    title: "FLOXANT Leistungen in Düsseldorf und Regensburg",
+    description: "Leistung und Standort wählen und die wichtigsten Eckdaten direkt senden.",
   },
 };
 
@@ -144,24 +128,11 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "FLOXANT Leistungen",
+        name: "FLOXANT Leistungen in Düsseldorf und Regensburg",
         description:
-          "Leistungsübersicht für Reinigung in Düsseldorf sowie Umzug, Transport, Entrümpelung und Wohnungsauflösung in Regensburg.",
+          "Reinigung in Düsseldorf sowie Umzug, Räumung, Transport und Reinigung in Regensburg.",
         path,
-        about: [
-          "Gewerbereinigung Düsseldorf",
-          "Büroreinigung Düsseldorf",
-          "Praxisreinigung Düsseldorf",
-          "Reinigung Düsseldorf",
-          "Glasreinigung",
-          "Fassadenreinigung",
-          "Umzug Regensburg",
-          "Mini-Umzug",
-          "Möbeltransport",
-          "Entrümpelung Regensburg",
-          "Haushaltsauflösung Regensburg",
-          "Angebot prüfen lassen",
-        ],
+        about: ["Reinigung Düsseldorf", "Umzug Regensburg", "Entrümpelung Regensburg"],
       }),
       buildBreadcrumbJsonLd([
         { name: "Startseite", item: "/" },
@@ -169,18 +140,15 @@ function JsonLd() {
       ]),
       {
         "@type": "ItemList",
-        "@id": `${canonical}#services`,
         name: "FLOXANT Leistungen",
-        itemListElement: floxantServices.map((service, index) => ({
+        itemListElement: allServices.map((service, index) => ({
           "@type": "ListItem",
           position: index + 1,
           item: {
-            "@type": service.schemaType,
+            "@type": "Service",
             name: service.title,
-            description: service.shortDescription,
+            description: service.text,
             url: `${company.url}${service.href}`,
-            areaServed: floxantRegions[service.region].city,
-            serviceType: floxantCategoryLabels[service.category],
           },
         })),
       },
@@ -196,331 +164,154 @@ function JsonLd() {
   );
 }
 
+function ServiceList({
+  services,
+  region,
+}: {
+  services: typeof duesseldorfServices | typeof regensburgServices;
+  region: "Düsseldorf" | "Regensburg";
+}) {
+  return (
+    <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      {services.map((service) => (
+        <Link
+          key={service.href}
+          href={service.href}
+          className="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        >
+          <h3 className="text-lg font-black text-slate-950">{service.title}</h3>
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{service.text}</p>
+          <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-800">
+            {service.title} in {region}
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export default function LeistungenPage() {
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
-      <section className="relative isolate bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
-        <Image
-          src="/assets/floxant-hero-neu-gedacht.webp"
-          alt="FLOXANT Leistungen nach Region"
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover opacity-45"
-        />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.94)_0%,rgba(15,23,42,0.82)_58%,rgba(15,23,42,0.54)_100%)]" />
+      <section className="bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <p className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm font-black text-cyan-100 backdrop-blur">
+          <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
             <MapPin className="h-4 w-4" aria-hidden="true" />
-            Erst Region wählen, dann passende Leistung anfragen
+            Düsseldorf und Regensburg
           </p>
-          <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl lg:text-6xl">
-            Reinigung, Umzug, Räumung und weitere FLOXANT-Leistungen.
+          <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-normal sm:text-6xl">
+            Leistungen nach Standort und Aufgabe wählen.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
-            Düsseldorf bündelt Reinigungsleistungen. Regensburg bündelt Umzug, Transport,
-            Räumung und Wohnungsauflösung. Wenn bereits ein Angebot vorliegt,
-            können Sie es getrennt prüfen lassen.
+          <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
+            In Düsseldorf liegt der Schwerpunkt auf Reinigung. In Regensburg stehen Umzug, Räumung und Transport im Mittelpunkt.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            {regionOrder.map((regionId) => {
-              const region = floxantRegions[regionId];
-              return (
-                <Link
-                  key={regionId}
-                  href={`#${regionId}`}
-                  data-event="region_select"
-                  data-region={regionId}
-                  data-source="leistungen_hero"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-cyan-200"
-                >
-                  {region.city} ansehen
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              );
-            })}
-            <Link
-              href="/angebot-vergleichen-regensburg"
-              data-event="hero_cta_click"
-              data-source="leistungen_hero"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200/50 bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-            >
-              <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Angebot prüfen lassen
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <LocationClarityPanel locations={locationClarityItems} />
-
-      <ServiceNavigationOverview
-        title="Die wichtigsten Leistungen ohne Suchschleife."
-        intro="Reinigung, Umzug, Räumung, Angebotsprüfung und besondere Leistungen sind nach typischen Kundensituationen geordnet."
-      />
-
-      <DecisionCompassPanel />
-
-      <SignatureServiceClarityGrid
-        title="Zusätzliche Hilfe für besondere Situationen."
-        intro="Wenn Angebot, Objekt, Übergabe oder Plan B unklar sind, hilft eine passende Vorprüfung. So können Sie Ihre Situation verständlich beschreiben und die nötigen Angaben vorbereiten."
-        services={signatureServiceClarityItems}
-      />
-
-      <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            "Düsseldorf: Reinigung für Wohnung, Büro, Praxis und Gewerbe",
-            "Regensburg: Umzug, Transport, Räumung und Wohnungsauflösung",
-            "Besondere Hilfe für diskrete oder abstimmungsintensive Situationen",
-            "Angebotsprüfung, wenn bereits ein Preis oder Angebot vorliegt",
-          ].map((item) => (
-            <div key={item} className="flex min-w-0 gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
-              <p className="text-sm font-bold leading-6 text-slate-700">{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <ServiceDecisionGuide
-        eyebrow="Leistungen im Überblick"
-        title="Erst die Situation wählen, dann die passende Leistung öffnen."
-        intro="Manche Anfragen betreffen mehrere Aufgaben. Diese Übersicht führt Sie zum passenden Formular."
-        items={serviceClusterGuide}
-      />
-
-      <ServicePackageDecisionExperience
-        variant="default"
-        limitPerGroup={2}
-        heading="Einzelne oder verbundene Leistungen auswählen."
-        intro="Die Übersicht trennt einzelne Leistungen, kombinierte Aufgaben und die Angebotsprüfung. So finden Sie schneller die passende Anfrage."
-      />
-
-      <ServiceFinder
-        compact
-        currentCity="regensburg"
-        title="Welche Leistung möchten Sie anfragen?"
-        intro="Wählen Sie eine Leistung und ergänzen Sie anschließend Ort, Umfang und Termin im Formular."
-        source="leistungen-service-finder"
-      />
-
-      <SignatureServicesGrid
-        title="Zusätzliche Hilfe verbindet mehrere Aufgaben."
-        intro="Angebotsprüfung, Objektbrief, Übergabe, Plan B, Rückfahrt und PV-Reinigung helfen, wenn eine normale Einzelanfrage nicht ausreicht."
-        limit={6}
-      />
-
-      <ProblemBasedServiceLinks limit={6} />
-
-      <ServiceClusterLinks
-        eyebrow="Besondere Leistungen"
-        title="Zusätzliche Hilfe für besondere Situationen"
-        intro="Wählen Sie die passende Unterstützung für Reinigung, Angebot, Übergabe oder dringende Fälle."
-        links={[
-          ...specialCleaningLinks.slice(0, 4),
-          ...specialMovingLinks.slice(0, 3),
-          ...specialClearanceLinks.slice(0, 3),
-        ]}
-      />
-
-      <RelatedSpecialServices
-        kind="offer"
-        title="Angebotsprüfung als eigene Leistung."
-        intro="Wenn Preis, Umfang oder Anbieterwahl schon im Raum stehen, fuehren diese Einstiege zur sachlichen Pruefung statt zu einem weiteren Vergleichsportal."
-        services={offerCheckLinks}
-        limit={3}
-      />
-
-      <OfferCheckCTA />
-
-      <TrustProofSection
-        eyebrow="Diese Angaben helfen"
-        title="Wenige Pflichtangaben, bessere Rückmeldung."
-        intro="FLOXANT fragt nur ab, was für den Start wichtig ist. Alles Weitere verbessert die Einschätzung, bleibt aber freiwillig."
-        proofs={serviceTrustProofs}
-      />
-
-      <TrustProofPanel
-        allowedPage="/leistungen"
-        serviceKey="reinigung"
-        title="Service-Trust bleibt an Angaben gebunden."
-        intro="Die Leistungsübersicht zeigt, welche Belege eine Anfrage verbessern, und welche Aussagen FLOXANT bewusst nicht als unbelegte Garantie nutzt."
-      />
-
-      <ServiceProofChecklist
-        serviceKey="reinigung"
-        title="Welche Angaben bei Reinigung, Umzug und besonderen Situationen helfen"
-        intro="Die Checkliste startet mit Reinigung, gilt als Muster für alle Leistungen: Objekt, Zugang, Fotos, Termin und Ziel müssen zusammenpassen."
-      />
-
-      <ProcessProofSteps />
-
-      <ProjectStoryGrid
-        title="Typische Ausgangslagen statt erfundener Case Studies."
-        intro="Die Übersicht nutzt nur abstrakte, klar gekennzeichnete Situationen. Echte Projektstorys bleiben verborgen, bis Einwilligung und Privacy-Check vorliegen."
-      />
-
-      <ServiceVisualProofGrid
-        title="Anschauliche Beispiele mit Schutz privater Daten."
-        intro="Sichtbare Visuals sind neutral. Echte Vorher-Nachher-Fotos oder Objektbilder werden erst nach Freigabe und Anonymisierung genutzt."
-      />
-
-      <LocalProofPanel location="regensburg" className="bg-slate-900" />
-
-      {regionOrder.map((regionId) => {
-        const region = floxantRegions[regionId];
-
-        return (
-          <section
-            key={regionId}
-            id={regionId}
-            className="scroll-mt-28 border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10"
+          <Link
+            href={requestHref}
+            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
           >
-            <div className="mx-auto max-w-7xl">
-              <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-                <div>
-                  <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-                    {region.city}
-                  </p>
-                  <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-                    {region.label}
-                  </h2>
-                  <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-                    {region.description}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                  <Link
-                    href={region.href}
-                    data-event="region_select"
-                    data-region={regionId}
-                    data-source="leistungen_region_head"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    {region.city} Bereich öffnen
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
+            Leistung anfragen
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
 
-              <div className="mt-10 grid gap-10">
-                {floxantCategoryOrder.map((category) => {
-                  const services = getServicesByRegionAndCategory(regionId, category);
-                  if (!services.length) return null;
-
-                  return (
-                    <section
-                      key={`${regionId}-${category}`}
-                      id={`${regionId}-${category}`}
-                      className="scroll-mt-28"
-                    >
-                      <div className="mb-5 flex flex-col gap-3 border-b border-slate-200 pb-4 lg:flex-row lg:items-end lg:justify-between">
-                        <div>
-                          <p className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-black uppercase tracking-normal text-slate-700 shadow-sm ring-1 ring-slate-200">
-                            <Sparkles className="h-4 w-4 text-blue-700" aria-hidden="true" />
-                            {floxantCategoryLabels[category]}
-                          </p>
-                          <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
-                            {floxantCategoryDescriptions[category]}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                        {services.map((service) => (
-                          <FloxServiceCard
-                            key={service.id}
-                            service={service}
-                            source={`leistungen_${regionId}_${category}`}
-                          />
-                        ))}
-                      </div>
-                    </section>
-                  );
-                })}
-              </div>
-
-              {regionId === "regensburg" ? (
-                <section
-                  id="regensburg-reinigung-nach-pruefung"
-                  className="mt-10 scroll-mt-28 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
-                >
-                  <div className="flex flex-col gap-3 border-b border-slate-200 pb-4 lg:flex-row lg:items-end lg:justify-between">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-normal text-blue-700">
-                        Regensburg sauber eingeordnet
-                      </p>
-                      <h3 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-                        Weitere Reinigungsseiten nach Prüfung
-                      </h3>
-                    </div>
-                    <p className="max-w-2xl text-sm font-semibold leading-7 text-slate-600">
-                      Wenn Sie nach Reinigung in Regensburg gesucht haben, führen wir Sie zu den
-                      passenden Regensburger Leistungen. Entscheidend sind Objekt, Fotos, Umfang
-                      und das Ziel der Übergabe.
-                    </p>
-                  </div>
-
-                  <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                    {regensburgCleaningReviewRoutes.map((route) => (
-                      <Link
-                        key={route.path}
-                        href={route.targetHref}
-                        data-event="service_card_click"
-                        data-region="regensburg"
-                        data-category="special"
-                        data-source="leistungen_regensburg_review_routes"
-                        className="group flex min-h-[11rem] flex-col rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md"
-                      >
-                        <p className="text-xs font-black uppercase tracking-normal text-blue-700">
-                          Passend einordnen
-                        </p>
-                        <h4 className="mt-3 text-lg font-black leading-snug text-slate-950">
-                          {route.shortLabel}
-                        </h4>
-                        <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-                          {route.customerNeed}
-                        </p>
-                        <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-black text-blue-700">
-                          {route.targetLabel}
-                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              ) : null}
-            </div>
-          </section>
-        );
-      })}
-
-      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Häufige Fragen
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Die Übersicht soll schnell zur richtigen Anfrage führen.
-            </h2>
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center gap-3 text-blue-800">
+            <Sparkles className="h-6 w-6" aria-hidden="true" />
+            <p className="text-sm font-black uppercase tracking-normal">Düsseldorf</p>
           </div>
-          <div className="grid gap-3">
-            {faqItems.map((item) => (
-              <details key={item.q} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-                <summary className="cursor-pointer text-base font-black text-slate-950">
-                  {item.q}
-                </summary>
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">
-                  {item.a}
-                </p>
-              </details>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Reinigung in Düsseldorf</h2>
+          <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+            Wählen Sie die passende Reinigungsart. Auf der jeweiligen Seite sehen Sie, welche Angaben für eine erste Einschätzung helfen.
+          </p>
+          <ServiceList services={duesseldorfServices} region="Düsseldorf" />
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center gap-3 text-blue-800">
+            <Truck className="h-6 w-6" aria-hidden="true" />
+            <p className="text-sm font-black uppercase tracking-normal">Regensburg</p>
+          </div>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Umzug und Services in Regensburg</h2>
+          <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+            Beschreiben Sie Start, Ziel, Räume, Gegenstände oder den gewünschten Service. FLOXANT meldet sich, wenn noch Angaben fehlen.
+          </p>
+          <ServiceList services={regensburgServices} region="Regensburg" />
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black tracking-normal sm:text-5xl">In drei Schritten zur Anfrage</h2>
+          <ol className="mt-8 grid gap-5 md:grid-cols-3">
+            {[
+              ["1", "Leistung wählen", "Standort und passenden Leistungsbereich öffnen."],
+              ["2", "Eckdaten senden", "Umfang, Termin und hilfreiche Zusatzangaben eintragen."],
+              ["3", "Rückmeldung erhalten", "FLOXANT prüft die Angaben und meldet sich zum nächsten Schritt."],
+            ].map(([number, title, text]) => (
+              <li key={number} className="rounded-lg border border-slate-200 p-5">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-950 text-sm font-black text-white">{number}</span>
+                <h3 className="mt-4 text-xl font-black">{title}</h3>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{text}</p>
+              </li>
             ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="bg-cyan-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <FileSearch className="h-7 w-7 text-blue-800" aria-hidden="true" />
+            <h2 className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">Schon ein Angebot erhalten?</h2>
+            <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-700">
+              Senden Sie das vorhandene Angebot, wenn Leistungsumfang, Preispositionen oder mögliche Zusatzkosten unklar sind.
+            </p>
           </div>
+          <Link
+            href="/angebot-guenstiger-pruefen"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-sm font-black text-slate-950"
+          >
+            Angebot prüfen
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-cyan-200">Häufige Fragen</p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Kurz erklärt</h2>
+            <div className="mt-7 divide-y divide-white/15 border-y border-white/15">
+              {faqItems.map((item) => (
+                <details key={item.q} className="py-4">
+                  <summary className="cursor-pointer font-black">{item.q}</summary>
+                  <p className="mt-3 pr-6 text-sm font-semibold leading-7 text-slate-300">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+          <aside className="self-start rounded-lg bg-white p-7 text-slate-950">
+            <CheckCircle2 className="h-7 w-7 text-blue-800" aria-hidden="true" />
+            <h2 className="mt-4 text-3xl font-black tracking-normal">Passende Leistung gefunden?</h2>
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">
+              Senden Sie Standort, Leistung und die wichtigsten Eckdaten über das Anfrageformular.
+            </p>
+            <Link
+              href={requestHref}
+              className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
+            >
+              Leistung anfragen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </aside>
         </div>
       </section>
     </main>

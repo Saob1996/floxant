@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { ServiceFitGuide } from "@/components/ServiceFitGuide";
@@ -106,13 +107,14 @@ export default async function ReinigungPillarPage() {
   };
 
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PillarServicePage
         dict={dict}
         breadcrumbs={breadcrumbs}
         heroBadge="Reinigung in Regensburg und Umgebung bis 50 km"
-        heroTitle="Gebäudereinigung in Regensburg und Umgebung"
+        heroTitle="Gebäudereinigung im Raum Regensburg bis 50 Kilometer"
         heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für Regensburg, alle Stadtteile und Orte im 50-km-Umkreis. Der Fokus liegt nicht auf einer vagen Oberflächenreinigung, sondern auf einem Ergebnis, das vor Schlüsselübergabe, Wohnungsabnahme oder Neuvermietung planbar ist."
         heroImageSrc="/assets/service-cleaning.webp"
         heroImageAlt="FLOXANT Reinigung in Regensburg und Umgebung bis 50 km"
@@ -178,7 +180,7 @@ export default async function ReinigungPillarPage() {
           { href: "/objekt-springer", label: "Objektvertretung bei Personalausfall" },
           { href: "/airbnb-turnover-express", label: "Gästewechsel-Service für Gästewechsel" },
           { href: "/leerstandsmanagement", label: "Leerstandsmanagement mit Kontrollfotos" },
-          { href: "/property-operations", label: "Immobilienbetreuung fuer Objektaufgaben" },
+          { href: "/property-operations", label: "Immobilienbetreuung für Objektaufgaben" },
           { href: "/reinigung-nach-veranstaltung", label: "Reinigung nach Veranstaltung oder Party" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/express-anfrage", label: "Kurzfristige Reinigung anfragen" },
@@ -204,7 +206,7 @@ export default async function ReinigungPillarPage() {
       <ServiceFitGuide
         group="reinigung"
         title="Welche Reinigungsanfrage passt zu Ihrem Fall?"
-        intro="Einmalig, regelmaessig, Uebergabe, Gewerbe oder Sonderfall: Die Auswahl bestimmt, welche Angaben FLOXANT zuerst braucht."
+        intro="Einmalig, regelmäßig, Übergabe, Gewerbe oder Sonderfall: Die Auswahl bestimmt, welche Angaben FLOXANT zuerst braucht."
       />
       <PsychologicalCleaningInternalLinks
         title="Problemnahe Reinigung in Regensburg"
@@ -218,6 +220,7 @@ export default async function ReinigungPillarPage() {
           "baustaub-ende",
         ]}
       />
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { germanizeDeep, germanizeText } from "@/lib/german-text";
+
 type LocalSearchService =
   | "umzug"
   | "reinigung"
@@ -403,7 +405,8 @@ export function LocalSeoSearchIntentBridge({
   city: string;
   currentHref: string;
 }) {
-  const intents = localSearchIntents({ service, city, currentHref });
+  const intents = germanizeDeep(localSearchIntents({ service, city, currentHref }));
+  const visibleCity = germanizeText(city);
 
   return (
     <section className="flox-section px-6 py-14">
@@ -413,7 +416,7 @@ export function LocalSeoSearchIntentBridge({
             Passenden Fall wählen
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 md:text-4xl">
-            Kurz schildern, was in {city} erledigt werden soll
+            Kurz schildern, was in {visibleCity} erledigt werden soll
           </h2>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             Sie müssen die Leistung nicht perfekt benennen. Ort, Objekt, Termin, Fotos,

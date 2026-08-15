@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { Einsatzradar } from "@/components/Einsatzradar";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
@@ -244,7 +245,8 @@ export default async function RegensburgServiceArea200KmPage() {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={[{ label: "Servicegebiet Regensburg und Umgebung" }]} />
 
@@ -485,6 +487,7 @@ export default async function RegensburgServiceArea200KmPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -29,13 +29,13 @@ export function OfferCheckConversionFlow() {
       <section className="px-4 py-12 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
-            <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Zweite Einschaetzung</div>
+            <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Zweite Einschätzung</div>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
               Scanner-Ergebnis, Angebot oder Fotos an FLOXANT senden
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Nutzen Sie den Scanner ohne Upload oder senden Sie direkt PDF, Screenshot, Angebotstext und Fotos.
-              FLOXANT prueft organisatorisch und praktisch, welche Punkte vor einer Zusage geklaert sein sollten.
+              FLOXANT prüft organisatorisch und praktisch, welche Punkte vor einer Zusage geklärt sein sollten.
             </p>
             {scannerResult?.completed ? (
               <div className="mt-6 rounded-[1.5rem] border border-blue-200 bg-blue-50 p-5 text-sm leading-7 text-blue-950">

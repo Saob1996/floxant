@@ -28,6 +28,7 @@ import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklis
 import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
@@ -165,7 +166,7 @@ function JsonLd({
   const contact = getContact(config);
   const isRegensburgCleaningPage = config.cityKey === "regensburg" && config.schemaType === "CleaningService";
   const areaServed = isRegensburgCleaningPage
-    ? buildRegensburgCleaningAreaServedJsonLd()
+    ? buildRegensburgCleaningAreaServedJsonLd().slice(0, 2)
     : [
         {
           "@type": "City",
@@ -177,7 +178,7 @@ function JsonLd({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": config.schemaType,
+        "@type": "LocalBusiness",
         "@id": `${canonical}#localbusiness`,
         name: contact.name,
         url: canonical,
@@ -221,7 +222,7 @@ function JsonLd({
         name: config.headline,
         description: config.metaDescription,
         path: config.path,
-        about: [config.mainKeyword, ...config.secondaryKeywords.slice(0, 8)],
+        about: [config.serviceType, config.cityName],
         potentialActions: [
           { name: config.primaryCta, target: bookingHref, type: "ContactAction" },
           { name: "Fotos per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
@@ -285,7 +286,8 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
     config.cityKey === "regensburg" ? "/angebot-vergleichen-regensburg" : "/angebot-vergleichen-regensburg";
 
   return (
-    <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
       <JsonLd config={config} whatsappHref={whatsappHref} bookingHref={bookingHref} />
 
       <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white sm:pt-28 lg:pt-32">
@@ -762,6 +764,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </Link>
         </div>
       ) : null}
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

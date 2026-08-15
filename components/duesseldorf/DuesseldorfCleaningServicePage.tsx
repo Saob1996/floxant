@@ -10,7 +10,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
+import { germanizeDeep } from "@/lib/german-text";
 import { searchAuthorityPages } from "@/lib/search-authority";
 import {
   buildBreadcrumbJsonLd,
@@ -59,7 +60,7 @@ const requestHref = (service: string, intent: string) =>
 
 const authority = searchAuthorityPages;
 
-export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageConfig> = {
+export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageConfig> = germanizeDeep({
   reinigung: {
     key: "reinigung",
     path: "/duesseldorf/reinigung",
@@ -266,9 +267,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Grundreinigung eignet sich für haftende Rückstände und stark beanspruchte Flächen. Beläge, Materialverträglichkeit, Möblierung und gewünschter Zielzustand bestimmen den Ablauf.",
     serviceType: "Grundreinigung in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "grundreinigung-duesseldorf"),
+      href: requestHref("grundreinigung", "grundreinigung-duesseldorf"),
       label: "Grundreinigung anfragen",
-      service: "reinigung",
+      service: "grundreinigung",
       intent: "grundreinigung-duesseldorf",
     },
     fitTitle: "Intensive Reinigung für einen klaren Neustart",
@@ -334,9 +335,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Für Baureinigung zählen Bauphase, Fläche, abgeschlossene Gewerke, vorhandene Rückstände und Übergabetermin. Gefährliche Stoffe oder nicht klar zuordenbare Abfälle gehören nicht automatisch zum Umfang.",
     serviceType: "Bau- und Bauendreinigung in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "baureinigung-duesseldorf"),
+      href: requestHref("baureinigung", "baureinigung-duesseldorf"),
       label: "Baureinigung anfragen",
-      service: "reinigung",
+      service: "baureinigung",
       intent: "baureinigung-duesseldorf",
     },
     fitTitle: "Reinigung passend zum Stand der Arbeiten",
@@ -354,7 +355,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     related: ["grundreinigung", "fensterreinigung", "gewerbereinigung"],
     about: ["Baureinigung Düsseldorf", "Bauendreinigung Düsseldorf", "Bauzwischenreinigung Düsseldorf"],
   },
-};
+});
 
 export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPageKey): Metadata {
   const config = duesseldorfCleaningPages[pageKey];
@@ -395,6 +396,18 @@ function JsonLd({ config }: { config: PageConfig }) {
         serviceType: config.serviceType,
         areaServed: ["Düsseldorf"],
         availableLanguage: ["de"],
+        provider: {
+          id: `${duesseldorfCompany.url}#localbusiness`,
+          name: duesseldorfCompany.name,
+          url: duesseldorfCompany.url,
+          phoneRaw: duesseldorfCompany.phoneRaw,
+          address: {
+            streetAddress: duesseldorfCompany.streetAddress,
+            city: duesseldorfCompany.city,
+            postalCode: duesseldorfCompany.postalCode,
+            countryCode: duesseldorfCompany.countryCode,
+          },
+        },
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },

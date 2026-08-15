@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Crown, Gem, Home, KeyRound, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 
 import { PrivateClientInquiryForm } from "@/components/PrivateClientInquiryForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
 import { buildLeadHref } from "@/lib/lead-intents";
@@ -159,7 +160,8 @@ export default function PrivateClientServicePage() {
   ]);
 
   return (
-    <main className="private-client min-h-screen overflow-hidden bg-[#040302] text-[#F6EBDD]">
+    <GermanCustomerCopy>
+      <main className="private-client min-h-screen overflow-hidden bg-[#040302] text-[#F6EBDD]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <style
         dangerouslySetInnerHTML={{
@@ -266,7 +268,7 @@ export default function PrivateClientServicePage() {
                 <div>
                   <div className="private-copy text-[10px] uppercase tracking-[0.28em] text-[#D8B76E]">Persoenliche Planung</div>
                   <p className="mt-6 text-4xl font-medium leading-tight text-[#F6EBDD] md:text-5xl">
-                    Anfrage fuehren. Kontaktweg klaeren. Naechste Schritte strukturieren.
+                    Anfrage führen. Kontaktweg klären. Nächste Schritte strukturieren.
                   </p>
                 </div>
                 <div className="grid gap-3 private-copy">
@@ -566,6 +568,7 @@ export default function PrivateClientServicePage() {
           </div>
         </div>
       </footer>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

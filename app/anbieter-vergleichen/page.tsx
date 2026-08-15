@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import {
  ServiceClusterLinks,
@@ -158,7 +159,8 @@ export default function AnbieterVergleichenPage() {
  };
 
  return (
-  <main className="min-h-screen overflow-hidden bg-background text-foreground">
+  <GermanCustomerCopy>
+   <main className="min-h-screen overflow-hidden bg-background text-foreground">
    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
    <Breadcrumbs items={[{ label: "Anbieter vergleichen" }]} />
 
@@ -166,12 +168,12 @@ export default function AnbieterVergleichenPage() {
     eyebrow="Vergleich mit klaren Kriterien"
     title="Anbieter vergleichen, ohne nur auf den Preis zu schauen."
     intro="Ein sinnvoller Vergleich beginnt mit gleichem Umfang: Ort, Leistung, Zugang, Fotos, Termin und Zusatzpunkte. FLOXANT hilft, Angebote und offene Fragen sachlich zu vergleichen."
-    primaryCta={{ href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" }}
+    primaryCta={{ href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" }}
     secondaryCta={{ href: "/leistungen-vergleichen", label: "Leistungen vergleichbar machen" }}
     trustItems={[
      "keine pauschale Rangliste und keine Abwertung",
      "Umfang, Zugang und Termin vor Preis vergleichen",
-     "Regensburg, Duesseldorf und Bayern sauber trennen",
+     "Regensburg, Düsseldorf und Bayern sauber trennen",
     ]}
    />
 
@@ -307,6 +309,7 @@ export default function AnbieterVergleichenPage() {
      </div>
     </div>
    </section>
-  </main>
+   </main>
+  </GermanCustomerCopy>
  );
 }

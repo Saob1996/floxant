@@ -1,9 +1,11 @@
-const suspiciousMojibakePattern = /[\u00c2\u00c3\u00e2\u00ef\ufffd]/;
 const machineValueKeys = new Set([
   "@id",
   "id",
   "key",
   "slug",
+  "articleSlug",
+  "relatedSlugs",
+  "related",
   "cityKey",
   "serviceKey",
   "serviceKeys",
@@ -89,6 +91,8 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bbueroflaeche/g, "b\u00fcrofl\u00e4che"],
   [/\bBueroflaechen/g, "B\u00fcrofl\u00e4chen"],
   [/\bbueroflaechen/g, "b\u00fcrofl\u00e4chen"],
+  [/\bGebaeude/g, "Geb\u00e4ude"],
+  [/\bgebaeude/g, "geb\u00e4ude"],
   [/\bBueroumzug\b/g, "B\u00fcroumzug"],
   [/\bbueroumzug\b/g, "b\u00fcroumzug"],
   [/\bBueroentsorgung\b/g, "B\u00fcroentsorgung"],
@@ -135,6 +139,10 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bmietvertraege\b/g, "mietvertr\u00e4ge"],
   [/\bKueche\b/g, "K\u00fcche"],
   [/\bkueche\b/g, "k\u00fcche"],
+  [/\bTueren\b/g, "T\u00fcren"],
+  [/\btueren\b/g, "t\u00fcren"],
+  [/\bOberflaeche/g, "Oberfl\u00e4che"],
+  [/\boberflaeche/g, "oberfl\u00e4che"],
   [/\bGewerbeflaeche/g, "Gewerbefl\u00e4che"],
   [/\bgewerbeflaeche/g, "gewerbefl\u00e4che"],
   [/\bPraxisflaeche/g, "Praxisfl\u00e4che"],
@@ -212,8 +220,15 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\beinschaetz/g, "einsch\u00e4tz"],
   [/\bWaehlen\b/g, "W\u00e4hlen"],
   [/\bwaehlen\b/g, "w\u00e4hlen"],
+  [/\bWaehrend\b/g, "W\u00e4hrend"],
+  [/\bwaehrend\b/g, "w\u00e4hrend"],
   [/\bgewaehlt\b/g, "gew\u00e4hlt"],
-  [/\bgewuenscht\b/g, "gew\u00fcnscht"],
+  [/\bGewuenscht/g, "Gew\u00fcnscht"],
+  [/\bgewuenscht/g, "gew\u00fcnscht"],
+  [/\bPersoen/g, "Pers\u00f6n"],
+  [/\bpersoen/g, "pers\u00f6n"],
+  [/\bZugaeng/g, "Zug\u00e4ng"],
+  [/\bzugaeng/g, "zug\u00e4ng"],
   [/\bnoetig\b/g, "n\u00f6tig"],
   [/\bNoetig\b/g, "N\u00f6tig"],
   [/\bFuehrt\b/g, "F\u00fchrt"],
@@ -236,12 +251,12 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bhaende\b/g, "h\u00e4nde"],
   [/\bHaeuser\b/g, "H\u00e4user"],
   [/\bhaeuser\b/g, "h\u00e4user"],
-  [/\bHaeufige\b/g, "H\u00e4ufige"],
-  [/\bhaeufige\b/g, "h\u00e4ufige"],
+  [/\bHaeufig/g, "H\u00e4ufig"],
+  [/\bhaeufig/g, "h\u00e4ufig"],
   [/\bmoechte\b/g, "m\u00f6chte"],
   [/\bmoechten\b/g, "m\u00f6chten"],
-  [/\bMoeglich\b/g, "M\u00f6glich"],
-  [/\bmoeglich\b/g, "m\u00f6glich"],
+  [/\bMoeglich/g, "M\u00f6glich"],
+  [/\bmoeglich/g, "m\u00f6glich"],
   [/\bKontaktmoeglichkeit/g, "Kontaktm\u00f6glichkeit"],
   [/\bkontaktmoeglichkeit/g, "kontaktm\u00f6glichkeit"],
   [/\bOeffentlich/g, "\u00d6ffentlich"],
@@ -267,11 +282,16 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bausserhalb/g, "au\u00dferhalb"],
   [/\bAusserhalb/g, "Au\u00dferhalb"],
   [/\banschliess/g, "anschlie\u00df"],
+  [/\bschliess/g, "schlie\u00df"],
+  [/\bSchliess/g, "Schlie\u00df"],
   [/\bvollstaendig/g, "vollst\u00e4ndig"],
   [/\bVollstaendig/g, "Vollst\u00e4ndig"],
   [/\baufgeloest/g, "aufgel\u00f6st"],
   [/\bAufgeloest/g, "Aufgel\u00f6st"],
-  [/\bgroessere\b/g, "gr\u00f6\u00dfere"],
+  [/\bGroesse\b/g, "Gr\u00f6\u00dfe"],
+  [/\bgroesse\b/g, "gr\u00f6\u00dfe"],
+  [/\bGroesser/g, "Gr\u00f6\u00dfer"],
+  [/\bgroesser/g, "gr\u00f6\u00dfer"],
   [/\bgroesst/g, "gr\u00f6\u00dft"],
   [/\bzusaetzlich/g, "zus\u00e4tzlich"],
   [/\bnaechst/g, "n\u00e4chst"],
@@ -282,6 +302,20 @@ const transliterationReplacements: Array<[RegExp, string]> = [
   [/\bverlaesslich/g, "verl\u00e4sslich"],
   [/\bVerfuegbarkeit\b/g, "Verf\u00fcgbarkeit"],
   [/\bverfuegbarkeit\b/g, "verf\u00fcgbarkeit"],
+  [/\bVerfuegbar/g, "Verf\u00fcgbar"],
+  [/\bverfuegbar/g, "verf\u00fcgbar"],
+  [/\bZuverlaessig/g, "Zuverl\u00e4ssig"],
+  [/\bzuverlaessig/g, "zuverl\u00e4ssig"],
+  [/\bFrueh/g, "Fr\u00fch"],
+  [/\bfrueh/g, "fr\u00fch"],
+  [/\bZunaechst/g, "Zun\u00e4chst"],
+  [/\bzunaechst/g, "zun\u00e4chst"],
+  [/\bSelbststaendig/g, "Selbstst\u00e4ndig"],
+  [/\bselbststaendig/g, "selbstst\u00e4ndig"],
+  [/\bUnabhaengig/g, "Unabh\u00e4ngig"],
+  [/\bunabhaengig/g, "unabh\u00e4ngig"],
+  [/\bMassgeblich/g, "Ma\u00dfgeblich"],
+  [/\bmassgeblich/g, "ma\u00dfgeblich"],
   [/\bNachlassaufloes/g, "Nachlassaufl\u00f6s"],
   [/\bnachlassaufloes/g, "nachlassaufl\u00f6s"],
   [/\bLageraufloes/g, "Lageraufl\u00f6s"],
@@ -383,36 +417,38 @@ const brokenWordReplacements: Array<[RegExp, string]> = [
   [/l\?uft's/g, "l\u00e4uft's"],
 ];
 
-function decodeMojibake(value: string): string {
-  if (!suspiciousMojibakePattern.test(value)) return value;
+const germanCopyReplacements: ReadonlyArray<readonly [RegExp, string]> = [
+  ...brokenWordReplacements,
+  ...transliterationReplacements,
+];
+const germanCopyCache = new Map<string, string>();
 
-  let current = value;
-  for (let index = 0; index < 3; index += 1) {
-    if (!suspiciousMojibakePattern.test(current)) break;
-    const decoder = new TextDecoder("utf-8");
-    const bytes = Uint8Array.from(Array.from(current).map((char) => char.charCodeAt(0) & 0xff));
-    const decoded = decoder.decode(bytes);
-    if (decoded === current) break;
-    current = decoded;
+function normalizeGermanCopy(value: string) {
+  const cached = germanCopyCache.get(value);
+  if (cached !== undefined) return cached;
+
+  let normalized = value;
+  for (const [pattern, replacement] of directSequenceReplacements) {
+    normalized = normalized.split(pattern).join(replacement);
   }
 
-  return current;
+  normalized = germanCopyReplacements.reduce(
+    (text, [pattern, replacement]) => text.replace(pattern, replacement),
+    normalized,
+  );
+
+  germanCopyCache.set(value, normalized);
+  return normalized;
 }
 
 export function germanizeText(value?: string | null) {
   if (!value) return "";
 
-  let normalized = decodeMojibake(value);
-  for (const [pattern, replacement] of directSequenceReplacements) {
-    normalized = normalized.split(pattern).join(replacement);
-  }
+  return normalizeGermanCopy(value).replace(/\s+/g, " ").trim();
+}
 
-  normalized = [...brokenWordReplacements, ...transliterationReplacements].reduce(
-    (text, [pattern, replacement]) => text.replace(pattern, replacement),
-    normalized,
-  );
-
-  return normalized.replace(/\s+/g, " ").trim();
+export function germanizeTextNode(value: string) {
+  return value ? normalizeGermanCopy(value) : value;
 }
 
 export function germanText(value: string | null | undefined, fallback: string) {

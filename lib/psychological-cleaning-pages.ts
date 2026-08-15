@@ -1,4 +1,5 @@
 import type { StrategicBlogArticle } from "@/lib/strategic-blog-articles";
+import { germanizeDeep } from "@/lib/german-text";
 
 export type PsychologicalCleaningFaq = {
   q: string;
@@ -258,7 +259,7 @@ const urgentArticles: PsychologicalCleaningArticleSeed[] = [
     articleSlug: "kurzfristige-reinigung-regensburg-24h-realistisch",
     category: "Express",
     title: "Kurzfristige Reinigung in Regensburg: Was realistisch ist",
-    metaTitle: "Kurzfristige Reinigung Regensburg prüfen | FLOXANT",
+    metaTitle: "Reinigung in 24 Stunden: Was realistisch ist | FLOXANT",
     description:
       "Was bei kurzfristiger Reinigung bis morgen wirklich machbar ist und welche Angaben FLOXANT fuer eine schnelle Pruefung braucht.",
     intro:
@@ -847,7 +848,7 @@ const constructionDustArticles: PsychologicalCleaningArticleSeed[] = [
   },
 ];
 
-export const psychologicalCleaningLandingPages = [
+export const psychologicalCleaningLandingPages = germanizeDeep([
   {
     slug: "sichtbar-sauber-protokoll",
     serviceName: "Sichtbar-Sauber-Protokoll",
@@ -987,7 +988,7 @@ export const psychologicalCleaningLandingPages = [
       "Keine falsche Kautionsgarantie",
       "Saubere Vorabklaerung per Foto und Rueckfrage",
       "Erfahrung mit Uebergaben, Vermieterterminen und Regensburger Objektlagen",
-      "Bewertungs-Hinweis: Verlaesslichkeit und ehrliche Grenzen sind wichtiger als grosse Versprechen",
+      "Bewertungs-Hinweis: Verlässlichkeit und ehrliche Grenzen sind wichtiger als große Versprechen",
     ],
     guarantees: [
       "Klarer Blick auf sichtbare Uebergabepunkte",
@@ -1892,7 +1893,7 @@ export const psychologicalCleaningLandingPages = [
     searchIntents: ["Baustaub entfernen", "Baufeinreinigung Regensburg", "Reinigung nach Renovierung"],
     supportingArticles: constructionDustArticles,
   },
-] as const satisfies readonly PsychologicalCleaningLandingPage[];
+] as const satisfies readonly PsychologicalCleaningLandingPage[]);
 
 export type PsychologicalCleaningLandingSlug =
   (typeof psychologicalCleaningLandingPages)[number]["slug"];

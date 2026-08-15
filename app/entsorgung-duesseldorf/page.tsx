@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
@@ -216,7 +217,8 @@ export default function EntsorgungDuesseldorfPage() {
   const faqJsonLd = buildFaqJsonLd(faqs);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fffaf4_0%,#f8fbff_42%,#edf4f8_100%)] text-foreground">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fffaf4_0%,#f8fbff_42%,#edf4f8_100%)] text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Breadcrumbs items={[{ label: "Entsorgung Düsseldorf" }]} />
@@ -613,7 +615,8 @@ export default function EntsorgungDuesseldorfPage() {
           </div>
         </div>
       </div>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }
 

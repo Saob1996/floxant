@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `beiladung-regensburg`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
+    title: "Beiladung Regensburg | Freien Laderaum prüfen | FLOXANT",
     description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
   });
 }

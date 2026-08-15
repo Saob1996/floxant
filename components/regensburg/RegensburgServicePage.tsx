@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { SeoLeadForm } from "@/components/SeoLeadForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
@@ -153,7 +154,7 @@ function JsonLd({
   const canonical = `${company.url}${config.path}`;
   const isCleaningServicePage = isRegensburgCleaningServiceSlug(config.slug);
   const localAreaServed = isCleaningServicePage
-    ? buildRegensburgCleaningAreaServedJsonLd()
+    ? buildRegensburgCleaningAreaServedJsonLd().slice(0, 2)
     : ["Regensburg", "Landkreis Regensburg", "Oberpfalz", "Bayern"].map((name) => ({
         "@type": "AdministrativeArea",
         name,
@@ -175,7 +176,7 @@ function JsonLd({
         "@type": "LocalBusiness",
         "@id": `${company.url}/regensburg#localbusiness`,
         name: company.name,
-        url: canonical,
+        url: `${company.url}/regensburg`,
         telephone: company.phoneRaw,
         email: company.email,
         address: {
@@ -211,7 +212,7 @@ function JsonLd({
         { name: "Regensburg", item: "/regensburg" },
         { name: config.serviceType, item: config.path },
       ]),
-      buildFaqJsonLd(config.faq),
+      buildFaqJsonLd(config.faq.slice(0, 6)),
     ],
   };
 
@@ -250,7 +251,8 @@ export function RegensburgServicePage({ config: rawConfig }: RegensburgServicePa
   const angle = getServiceAngle(config);
 
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd config={config} whatsappHref={whatsappHref} />
 
       <section className="relative isolate bg-slate-950 pt-24 text-white sm:pt-28 lg:pt-32">
@@ -473,6 +475,7 @@ export function RegensburgServicePage({ config: rawConfig }: RegensburgServicePa
           )}
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

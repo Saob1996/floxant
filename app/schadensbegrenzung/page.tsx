@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { DamageControlForm } from "@/components/DamageControlForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -196,7 +197,8 @@ const jsonLd = {
 
 export default function SchadensbegrenzungPage() {
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fecaca_0,transparent_34rem),linear-gradient(180deg,#fff1f2_0%,#ffffff_42%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
@@ -483,6 +485,7 @@ export default function SchadensbegrenzungPage() {
           </div>
         </div>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

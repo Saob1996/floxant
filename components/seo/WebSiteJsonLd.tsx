@@ -1,135 +1,42 @@
 import { company } from "@/lib/company";
-import { getSchemaKnowAboutAliases } from "@/lib/search-intent-aliases";
+
+const publicSections = [
+  { name: "Leistungen", path: "/leistungen" },
+  { name: "Reinigung in Düsseldorf", path: "/duesseldorf" },
+  { name: "Umzug und Services in Regensburg", path: "/regensburg" },
+  { name: "Häufige Fragen", path: "/fragen" },
+  { name: "Rechner", path: "/rechner" },
+  { name: "Kontakt", path: "/kontakt" },
+] as const;
 
 export function WebSiteJsonLd() {
-  const multilingualAliases = getSchemaKnowAboutAliases(36);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${company.url}/#website`,
     url: company.url,
     name: company.name,
-    alternateName: "FLOXANT Regensburg",
     inLanguage: "de-DE",
-    keywords: multilingualAliases.join(", "),
     publisher: {
       "@type": "Organization",
       "@id": `${company.url}/#organization`,
     },
-    about: [...company.coreServices, ...multilingualAliases].map((service) => ({
-      "@type": "Thing",
-      name: service,
+    hasPart: publicSections.map((section) => ({
+      "@type": "WebPage",
+      name: section.name,
+      url: `${company.url}${section.path}`,
     })),
-    hasPart: [
-      {
-        "@type": "WebPage",
-        name: "Buchung",
-        url: company.bookingUrl,
-      },
-      {
-        "@type": "WebPage",
-        name: "Kontakt",
-        url: company.contactUrl,
-      },
-      {
-        "@type": "WebPage",
-        name: "Standorte",
-        url: company.locationsUrl,
-      },
-      {
-        "@type": "WebPage",
-        name: "Regensburg",
-        url: company.serviceAreaUrl,
-      },
-      {
-        "@type": "WebPage",
-        name: "Umzug Regensburg",
-        url: `${company.url}/regensburg/umzug`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Reinigung Regensburg",
-        url: `${company.url}/regensburg/reinigung`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Büroreinigung Regensburg",
-        url: `${company.url}/regensburg/bueroreinigung`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Praxisreinigung Regensburg",
-        url: `${company.url}/praxisreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Hotelreinigung Regensburg",
-        url: `${company.url}/hotelreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Fensterreinigung Regensburg",
-        url: `${company.url}/fensterreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Baureinigung Regensburg",
-        url: `${company.url}/baureinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Teppichreinigung Regensburg",
-        url: `${company.url}/teppichreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Treppenhausreinigung Regensburg",
-        url: `${company.url}/treppenhausreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Unterhaltsreinigung Regensburg",
-        url: `${company.url}/unterhaltsreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Grundreinigung Regensburg",
-        url: `${company.url}/grundreinigung-regensburg`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Entrümpelung Regensburg",
-        url: `${company.url}/regensburg/entruempelung`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Schlüsselübergabe",
-        url: `${company.url}/schluesseluebergabe`,
-      },
-      {
-        "@type": "WebPage",
-        name: "Übergabeakte",
-        url: `${company.url}/uebergabeakte`,
-      },
-    ],
-    potentialAction: [
-      {
-        "@type": "CommunicateAction",
-        name: "Kontakt aufnehmen",
-        target: company.contactUrl,
-      },
-      {
-        "@type": "ReserveAction",
-        name: "Buchung oder Anfrage starten",
-        target: company.bookingUrl,
-      },
-    ],
+    potentialAction: {
+      "@type": "CommunicateAction",
+      name: "Leistung anfragen",
+      target: company.contactUrl,
+    },
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
     />
   );
 }

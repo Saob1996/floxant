@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `einlagerung`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
+    title: "Einlagerung Bayern | Möbel und Hausrat lagern | FLOXANT",
     description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
   });
 }

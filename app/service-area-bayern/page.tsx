@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
@@ -241,7 +242,8 @@ export default async function ServiceAreaBayern() {
   ];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-start">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-background text-start">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -649,6 +651,7 @@ export default async function ServiceAreaBayern() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -43,7 +43,7 @@ export default async function EntrümpelungBayernPage({ params }: PageProps) {
         dict={localeDict}
         city={city}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-        heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+        heroTitle="Entrümpelung in Bayern"
         heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
         breadcrumbs={[

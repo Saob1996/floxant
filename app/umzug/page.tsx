@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { ServiceFitGuide } from "@/components/ServiceFitGuide";
@@ -89,7 +90,8 @@ export default async function UmzugPillarPage() {
   };
 
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PillarServicePage
         dict={dict}
@@ -160,8 +162,8 @@ export default async function UmzugPillarPage() {
           { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/urlaubsretter", label: "Urlaubsretter vor Reise oder Übergabe" },
-          { href: "/business-errand-service", label: "Erledigungsservice fuer Schluessel und Dokumente" },
-          { href: "/property-operations", label: "Immobilienbetreuung mit Uebergaben und Objektstatus" },
+          { href: "/business-errand-service", label: "Erledigungsservice für Schlüssel und Dokumente" },
+          { href: "/property-operations", label: "Immobilienbetreuung mit Übergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
           { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
@@ -195,6 +197,7 @@ export default async function UmzugPillarPage() {
           "reset-reinigung",
         ]}
       />
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

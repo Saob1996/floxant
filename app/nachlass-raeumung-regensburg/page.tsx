@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { EstateClearanceForm } from "@/components/EstateClearanceForm";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -280,7 +281,8 @@ const jsonLd = {
 
 export default function NachlassRaeumungRegensburgPage() {
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="overflow-hidden bg-[radial-gradient(circle_at_16%_2%,#f5f5f4_0,transparent_30rem),radial-gradient(circle_at_86%_0%,#e7e5e4_0,transparent_28rem),linear-gradient(180deg,#fafaf9_0%,#ffffff_46%,#f5f5f4_100%)] text-stone-950">
         <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
@@ -587,6 +589,7 @@ export default function NachlassRaeumungRegensburgPage() {
           </div>
         </div>
       </main>
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

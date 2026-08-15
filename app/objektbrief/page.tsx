@@ -93,7 +93,7 @@ export default function ObjektbriefPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-black tracking-tight">Was der Anfragebrief leistet</h2>
           <p className="mt-4 text-base leading-8 text-slate-700">
-            Der Anfragebrief strukturiert Ihre eigenen Angaben. Er berechnet keinen Preis, reserviert keinen Termin und ist noch keine Beauftragung. Erst wenn Sie den Text bewusst in das bestehende Kontaktformular übernehmen und dieses absenden, werden Daten übertragen.
+            Der Anfragebrief bündelt Ihre Angaben zu Leistung, Ort, Umfang, Zugang und Termin. Er berechnet keinen Preis, reserviert keinen Termin und ist noch keine Beauftragung. Erst wenn Sie den Text bewusst in das bestehende Kontaktformular übernehmen und dieses absenden, werden Daten übertragen.
           </p>
         </div>
       </section>

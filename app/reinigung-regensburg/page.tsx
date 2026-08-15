@@ -307,8 +307,8 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     allowedPage="/regensburg/reinigung"
                     serviceKey="reinigung"
                     locationKey="regensburg"
-                    title="Reinigung Regensburg mit sichtbarer Proof-Logik."
-                    intro="Fläche, Zustand, Fotos, Zugang, Turnus und Zielzustand machen die R?ckmeldung belastbarer. Bewertungen, Sterne und Ergebnisse werden nicht erfunden."
+                    title="Reinigung in Regensburg nachvollziehbar einordnen."
+                    intro="Fläche, Zustand, Fotos, Zugang, Turnus und Zielzustand machen die Rückmeldung belastbarer. Bewertungen, Sterne und Ergebnisse werden nicht erfunden."
                 />
                 <ServiceProofChecklist serviceKey="reinigung" />
                 <RequestBriefChecklistBlock

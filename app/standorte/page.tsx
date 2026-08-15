@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import {
   BAVARIA_DIRECT_DEMAND_LINKS,
@@ -167,7 +168,8 @@ export default function StandortePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_12%_0%,rgba(59,130,246,0.1),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
+    <GermanCustomerCopy>
+      <main className="min-h-screen bg-[radial-gradient(circle_at_12%_0%,rgba(59,130,246,0.1),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -595,6 +597,7 @@ export default function StandortePage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

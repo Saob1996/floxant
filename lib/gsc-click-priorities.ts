@@ -238,7 +238,7 @@ export const gscClickPriorities = {
       "Sensible Anfrage zu Umzug, Entruempelung, Aufloesung, Nachlass, Reinigung oder Angebot mit bevorzugtem Kontaktweg einordnen.",
     openGraphTitle: "FLOXANT Diskret-Service",
     openGraphDescription:
-      "Diskrete Faelle ruhig beschreiben und naechste Schritte ohne unnoetige Details klaeren.",
+      "Diskrete Fälle ruhig beschreiben und nächste Schritte ohne unnötige Details klären.",
     h1: "Diskret-Service fuer sensible Anfragen - Umzug, Entruempelung und Aufloesung zurueckhaltend klaeren",
     pageIntent: "Diskrete Anfrage mit bevorzugtem Kontaktweg fuer Umzug, Entruempelung, Aufloesung und Angebot",
     primaryKeyword: "diskreter service",
@@ -261,7 +261,7 @@ export const gscClickPriorities = {
       "Private Client Service fuer individuelle private Anfragen: Umzug, Reinigung, Raeumung, Uebergabe oder Angebotspruefung mit persoenlicher Koordination.",
     openGraphTitle: "FLOXANT Private Client Service",
     openGraphDescription:
-      "Individuelle private Serviceanfragen mit den wichtigsten Angaben vorbereiten und mit bevorzugtem Kontaktweg klaeren.",
+      "Individuelle private Serviceanfragen mit den wichtigsten Angaben vorbereiten und mit bevorzugtem Kontaktweg klären.",
     h1: "Private Client Service fuer sensible private Servicekoordination",
     pageIntent: "Private Client Anfrage fuer persoenlich koordinierte private Services stellen",
     primaryKeyword: "private client service",
@@ -306,7 +306,7 @@ export const gscClickPriorities = {
       "Fensterreinigung Regensburg anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos, Zeitfenster und Angebot klaeren.",
     openGraphTitle: "Fensterreinigung Regensburg anfragen",
     openGraphDescription:
-      "Glas, Rahmen, Etage, Zugang und Zeitfenster fuer Fensterreinigung in Regensburg übersichtlich senden.",
+      "Glas, Rahmen, Etage, Zugang und Zeitfenster für Fensterreinigung in Regensburg übersichtlich senden.",
     h1: "Fensterreinigung Regensburg mit Glas, Rahmen und Zugang",
     pageIntent: "Fensterreinigung in Regensburg mit Fotos, Zugang und Angebot anfragen",
     primaryKeyword: "fensterreinigung regensburg",

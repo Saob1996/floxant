@@ -27,11 +27,11 @@ function regensburgDistrict(slug: string, displayName: string, nearby: readonly 
     relevantServices: ["reinigung", "reinigung-nach-umzug", "wohnungsreinigung"],
     specialCases: ["Auszug", "Uebergabe", "Treppenhaus", "Reinigung nach Umzug"],
     localIntro:
-      `Die Regensburger Stadtteilseite fuer ${displayName} ist vorbereitet und bleibt noindex, bis sie mehr bietet als eine generische Reinigungsseite.`,
+      `Für eine Reinigung in ${displayName} zählen vor allem Objektart, Fläche, Zustand, Zugang und der gewünschte Termin.`,
     localProofNotes: [
-      "M0-Seite ist nicht in der Sitemap.",
-      "Keine kuenstliche Stadtteil-Linkfarm.",
-      "Indexierung erst nach individueller FAQ und Kundensituationen.",
+      "Anfragen werden dem passenden Regensburger Einsatzgebiet zugeordnet.",
+      "Jede Anfrage wird anhand von Objekt, Umfang und Termin eingeordnet.",
+      "Fotos und konkrete Kundensituationen helfen bei der ersten Rückmeldung.",
     ],
     maturity: preparedM0,
   };

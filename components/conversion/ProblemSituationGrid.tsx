@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 
+import { germanizeText } from "@/lib/german-text";
+
 type ProblemSituationGridItem = {
   title: string;
   text: string;
@@ -33,14 +35,14 @@ export function ProblemSituationGrid({
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
-            <p className="text-sm font-black uppercase tracking-normal text-blue-700">{eyebrow}</p>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">{germanizeText(eyebrow)}</p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              {title}
+              {germanizeText(title)}
             </h2>
           </div>
           {intro ? (
             <p className="max-w-3xl text-base font-semibold leading-8 text-slate-600 lg:text-right">
-              {intro}
+              {germanizeText(intro)}
             </p>
           ) : null}
         </div>
@@ -49,8 +51,8 @@ export function ProblemSituationGrid({
           {items.map((item) => (
             <article key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
               <Icon className={`h-5 w-5 ${iconColor}`} aria-hidden="true" />
-              <h3 className="mt-4 text-lg font-black leading-snug text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+              <h3 className="mt-4 text-lg font-black leading-snug text-slate-950">{germanizeText(item.title)}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{germanizeText(item.text)}</p>
             </article>
           ))}
         </div>

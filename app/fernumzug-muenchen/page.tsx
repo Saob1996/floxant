@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -142,7 +143,8 @@ function JsonLd() {
 
 export default function FernumzugMuenchenPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
         <JsonLd />
 
         <section className="relative isolate bg-slate-950 px-5 pb-14 pt-28 text-white sm:px-8 lg:px-10 lg:pt-32">
@@ -346,6 +348,7 @@ export default function FernumzugMuenchenPage() {
             </div>
           </div>
         </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

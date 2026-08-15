@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Camera, CheckCircle2, ClipboardCheck, KeyRound, MessageCircle, Sparkles } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
 import { company } from "@/lib/company";
@@ -107,7 +108,8 @@ export default async function SchluesseluebergabePage() {
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <GermanCustomerCopy>
+      <main className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs lang="de" items={[{ label: "Services", href: "/#services" }, { label: "Schluesseluebergabe" }]} />
 
@@ -242,6 +244,7 @@ export default async function SchluesseluebergabePage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -7,31 +7,33 @@ import {
   Building2,
   Check,
   FileSearch,
-  KeyRound,
-  Languages,
   MapPin,
+  MessageCircle,
   PackageOpen,
-  ShieldCheck,
+  Phone,
   Sparkles,
   Truck,
 } from "lucide-react";
 
-import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
-import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { generatePageSEO } from "@/lib/seo";
-import { searchAuthorityPages } from "@/lib/search-authority";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
 const requestHref = buildGlobalRequestHref("global_homepage");
 const offerHref = "/angebot-guenstiger-pruefen";
+const whatsappHref = buildWhatsAppHref(
+  company.phoneRaw,
+  "Hallo FLOXANT, ich möchte eine Leistung in Düsseldorf oder Regensburg anfragen.",
+);
 
-const homepageAuthority = searchAuthorityPages["/"];
-const homepageTitle = homepageAuthority.seoTitle;
-const homepageDescription = homepageAuthority.description;
+const homepageHeadline = "Umzug, Reinigung und Entrümpelung in Düsseldorf und Regensburg";
+const homepageTitle = "FLOXANT | Reinigung Düsseldorf & Umzug Regensburg";
+const homepageDescription =
+  "Reinigung in Düsseldorf sowie Umzug, Räumung und Transport in Regensburg. Standort und Leistung wählen und die wichtigsten Eckdaten direkt an FLOXANT senden.";
 
 const mainServices = [
   {
@@ -62,20 +64,6 @@ const mainServices = [
     href: "/duesseldorf/bueroreinigung",
     icon: BriefcaseBusiness,
   },
-  {
-    title: "Angebot prüfen",
-    text: "Vorhandenes Angebot prüfen lassen, wenn Preis, Leistungsumfang oder mögliche Zusatzkosten unklar sind.",
-    cta: "Angebot prüfen lassen",
-    href: offerHref,
-    icon: FileSearch,
-  },
-  {
-    title: "Besondere Situationen",
-    text: "Diskrete Fälle, kurzfristiger Plan B, Übergabe oder Objektbrief passend zur Situation anfragen.",
-    cta: "Besondere Lösungen ansehen",
-    href: "/signature-services",
-    icon: ShieldCheck,
-  },
 ] as const;
 
 const locations = [
@@ -90,29 +78,6 @@ const locations = [
     text: "Umzug, Reinigung, Entrümpelung, Klaviertransport, Seniorenumzug und Wohnungsauflösung.",
     cta: "Leistungen in Regensburg",
     href: "/regensburg",
-  },
-] as const;
-
-const specialSolutions = [
-  {
-    title: "Diskret-Service",
-    text: "Für sensible Anfragen mit zurückhaltender Kommunikation.",
-    href: "/diskret-service",
-  },
-  {
-    title: "Plan-B-Service",
-    text: "Wenn ein Anbieter absagt oder ein Termin kurzfristig neu abgestimmt werden muss.",
-    href: "/plan-b-service",
-  },
-  {
-    title: "Objektbrief",
-    text: "Objekt, Fotos, Umfang und Termin für eine klare Anfrage zusammenfassen.",
-    href: "/objektbrief",
-  },
-  {
-    title: "Übergabehilfe",
-    text: "Reinigung, Entrümpelung und offene Punkte vor einer Übergabe abstimmen.",
-    href: "/uebergabeakte",
   },
 ] as const;
 
@@ -181,7 +146,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: homepageAuthority.headline,
+        name: homepageHeadline,
         description: homepageDescription,
         path,
         about: ["Umzug", "Reinigung", "Entrümpelung", "Angebotsprüfung"],
@@ -191,12 +156,34 @@ function JsonLd() {
         ],
       }),
       buildServiceJsonLd({
-        name: "FLOXANT Dienstleistungen",
-        description: homepageDescription,
-        path,
-        serviceType: "Umzug, Reinigung und Entrümpelung",
-        areaServed: ["Düsseldorf", "Regensburg"],
-        availableLanguage: ["de", "en"],
+        name: "Reinigung in Düsseldorf",
+        description:
+          "Reinigung in Düsseldorf für Wohnung, Büro, Praxis, Gewerbe und Fenster.",
+        path: "/duesseldorf/reinigung",
+        serviceType: "Reinigungsservice",
+        areaServed: ["Düsseldorf"],
+        availableLanguage: ["de"],
+        provider: {
+          id: `${duesseldorfCompany.url}#localbusiness`,
+          name: duesseldorfCompany.name,
+          url: duesseldorfCompany.url,
+          phoneRaw: duesseldorfCompany.phoneRaw,
+          address: {
+            streetAddress: duesseldorfCompany.streetAddress,
+            city: duesseldorfCompany.city,
+            postalCode: duesseldorfCompany.postalCode,
+            countryCode: duesseldorfCompany.countryCode,
+          },
+        },
+      }),
+      buildServiceJsonLd({
+        name: "Umzug, Räumung und Transport in Regensburg",
+        description:
+          "Umzug, Räumung und Transport in Regensburg mit Angaben zu Umfang, Zugang, Strecke und Termin.",
+        path: "/regensburg",
+        serviceType: "Umzug, Räumung und Transport",
+        areaServed: ["Regensburg", "Landkreis Regensburg"],
+        availableLanguage: ["de"],
       }),
       {
         "@type": "Organization",
@@ -228,7 +215,6 @@ export default function HomePage() {
   return (
     <main className="overflow-x-clip bg-white text-slate-950">
       <JsonLd />
-      <LocalBusinessJsonLd />
 
       <section data-home-section="hero" className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
@@ -248,12 +234,12 @@ export default function HomePage() {
               Düsseldorf und Regensburg
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              {homepageAuthority.headline}
+              {homepageHeadline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben Sie kurz Ihren Auftrag oder senden Sie ein vorhandenes Angebot zur Prüfung.
+              Wählen Sie Standort und Leistung und senden Sie die wichtigsten Eckdaten direkt an FLOXANT.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={requestHref}
                 data-home-hero-primary
@@ -262,17 +248,25 @@ export default function HomePage() {
                 data-service="sonstiges"
                 data-page-intent="homepage-anfrage"
                 data-priority="p1"
-                data-cta-label="Anfrage senden"
+                data-cta-label="Leistung anfragen"
                 data-destination={requestHref}
                 className={primaryButton}
               >
-                Anfrage senden
+                Leistung anfragen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href={offerHref} data-home-offer-cta data-event="service_card_click" data-source="homepage_hero" className={secondaryButton}>
                 Angebot prüfen
                 <FileSearch className="h-4 w-4" aria-hidden="true" />
               </Link>
+              <a
+                href={whatsappHref}
+                data-event="whatsapp_click"
+                className="inline-flex min-h-12 items-center justify-center gap-2 px-3 text-sm font-black text-cyan-100 underline decoration-white/40 underline-offset-4 transition hover:text-white"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                WhatsApp
+              </a>
             </div>
             <ul className="mt-8 grid max-w-2xl gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3" aria-label="Hinweise zur Anfrage">
               {["Fotos sind optional", "Termine nach Verfügbarkeit", "Anfrage ist noch keine Buchung"].map((item) => (
@@ -293,7 +287,7 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Wobei können wir Sie unterstützen?</h2>
             <p className="mt-4 text-base font-semibold leading-7 text-slate-600">Wählen Sie einen passenden Bereich. Weitere Details finden Sie auf den jeweiligen Leistungsseiten.</p>
           </div>
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {mainServices.map((service) => {
               const Icon = service.icon;
               return (
@@ -352,25 +346,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section data-home-section="special-solutions" className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-blue-700">Besondere Situationen</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Wenn ein Standardauftrag nicht ausreicht</h2>
-          </div>
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {specialSolutions.map((solution) => (
-              <Link key={solution.href} href={solution.href} data-home-card data-home-special={solution.title} className="group flex min-h-56 flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
-                <KeyRound className="h-5 w-5 text-blue-800" aria-hidden="true" />
-                <h3 className="mt-5 text-xl font-black">{solution.title}</h3>
-                <p className="mt-3 flex-1 text-sm font-semibold leading-7 text-slate-600">{solution.text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-800">Mehr erfahren<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section data-home-section="process" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
@@ -393,33 +368,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section data-home-section="language" className="border-t border-slate-200 bg-cyan-50 px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="max-w-3xl">
-            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-blue-800">
-              <Languages className="h-4 w-4" aria-hidden="true" />
-              Deutsch or English
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              Service information is also available in English.
-            </h2>
-            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-              English-speaking customers can choose localized information for cleaning in Düsseldorf and for moving,
-              clearance or cleaning in Regensburg. Services are provided in Germany.
-            </p>
-          </div>
-          <Link
-            href="/en"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-          >
-            View services in English
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
-
-      <ToolJourneyPanel intent="overview" region="both" />
-
       <section data-home-section="faq-final" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">
           <div>
@@ -437,13 +385,35 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <aside className="self-start rounded-2xl bg-white p-7 text-slate-950 sm:p-9">
-            <h2 className="text-3xl font-black tracking-tight">Bereit für Ihre Anfrage?</h2>
+          <aside
+            data-home-section="contact"
+            aria-labelledby="home-contact-title"
+            className="self-start rounded-2xl bg-white p-7 text-slate-950 sm:p-9"
+          >
+            <h2 id="home-contact-title" className="text-3xl font-black tracking-tight">Bereit für Ihre Anfrage?</h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">Nennen Sie Leistung, Einsatzort und Terminwunsch. Weitere Angaben können Sie später ergänzen.</p>
             <Link href={requestHref} data-home-final-cta className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
-              Anfrage senden
+              Leistung anfragen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
+            <div className="mt-4 grid gap-2 text-sm font-black sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <a
+                href={`tel:${company.phoneRaw}`}
+                data-event="phone_click"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-slate-800 transition hover:border-blue-300"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                Anrufen
+              </a>
+              <a
+                href={whatsappHref}
+                data-event="whatsapp_click"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-slate-800 transition hover:border-emerald-300"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                WhatsApp
+              </a>
+            </div>
           </aside>
         </div>
       </section>

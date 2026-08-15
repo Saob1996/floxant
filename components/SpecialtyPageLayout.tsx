@@ -25,6 +25,7 @@ import { CityServiceCluster } from "@/components/CityServiceCluster";
 import DualCalculator from "@/components/calculator/DualCalculator";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { company } from "@/lib/company";
 import {
@@ -102,7 +103,10 @@ function resolveVisibleHeroTitle(heroTitle: string, city: string, serviceName: s
 
   if (!title) return `${serviceName} in ${safeCity}`;
   if (/\bin\s*$/i.test(title)) return `${title} ${safeCity}`.replace(/\s+/g, " ").trim();
-  return title;
+  if (title.toLocaleLowerCase("de-DE").includes(safeCity.toLocaleLowerCase("de-DE"))) {
+    return title;
+  }
+  return `${title} in ${safeCity}`;
 }
 
 function slugify(value: string) {
@@ -866,7 +870,8 @@ export function SpecialtyPageLayout({
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background">
+    <GermanCustomerCopy>
+      <main className="relative min-h-screen overflow-hidden bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={localizedBreadcrumbs} />
 
@@ -1692,6 +1697,7 @@ export function SpecialtyPageLayout({
       <AuthorityMagnet city={city} region={geo?.region} dic={dict} showNAP />
 
       <CityServiceCluster locale="de" city={city} citySlug={citySlug} />
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

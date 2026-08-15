@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import {
   buildBreadcrumbJsonLd,
@@ -46,14 +47,14 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
     return {
       localChecked: "Locally checked",
       whatsappWithPhotos: "WhatsApp with photos",
-      localCheckLabel: "Local check",
+      localCheckLabel: "Area check",
       firstFeedbackTitle: "What matters for the first reply",
       firstFeedbackItems: ["city/district", "photos", "timing", "scope", "existing quote"],
-      localEntryLabel: "Local context",
+      localEntryLabel: "Service area",
       localEntryHeading: `${page.city.displayName} service area and practical details`,
       scopeHeading: "Service scope and customer value",
       scopeText:
-        "This page focuses on concrete services, local context, typical customer situations and the right next step: direct request, WhatsApp with photos or a clear quote review.",
+        "This page focuses on concrete services, service-area details, typical customer situations and the right next step: direct request, WhatsApp with photos or a clear quote review.",
       processLabel: "Process",
       processHeading: "First facts, then a clear next step.",
       offerCheckLabel: "Quote review",
@@ -211,7 +212,8 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
         : "cleaning";
 
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <GermanCustomerCopy>
+      <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd page={page} whatsappHref={whatsappHref} />
 
       <section className="relative isolate bg-slate-950 px-5 pb-16 pt-28 text-white sm:px-8 lg:px-10 lg:pt-32">
@@ -525,6 +527,7 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

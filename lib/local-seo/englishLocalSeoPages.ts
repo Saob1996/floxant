@@ -19,7 +19,7 @@ const indexableEnglish: LocalSeoMaturitySnapshot = {
   maturityLevel: "M2",
   passedChecks: [
     "real English content",
-    "local intent",
+    "regional intent",
     "service scope",
     "customer situations",
     "quote review CTA",
@@ -73,7 +73,7 @@ function buildEnglishLocalProofNotes(input: EnglishPageInput, city: LocalSeoCity
   if (localSeoServices[input.serviceKey].category === "cleaning") {
     return [
       `${city.displayName} cleaning is kept separate from moving pages.`,
-      `Districts such as ${city.districts.slice(0, 4).join(", ")} are used as real local context.`,
+      `Districts such as ${city.districts.slice(0, 4).join(", ")} show the practical differences in access and timing.`,
       "The English information describes the real service and the details customers need to provide.",
     ];
   }
@@ -100,7 +100,7 @@ function buildEnglishFaq(input: EnglishPageInput, city: LocalSeoCityRecord): Loc
       a: "Yes. FLOXANT can check whether scope, price, timing, access, extra line items and assumptions are clear. This is not a promise to underbid another provider.",
     },
     {
-      q: `Which local areas around ${city.displayName} are relevant?`,
+      q: `Which nearby areas around ${city.displayName} are relevant?`,
       a: `The first focus is ${city.displayName}. Nearby areas such as ${city.nearbyCities.slice(0, 4).join(", ")} can be checked depending on scope and timing.`,
     },
     {
@@ -361,7 +361,7 @@ const allEnglishLocalSeoPages = [
     typicalCases: ["move-out cleaning", "office before Monday", "practice rooms", "existing cleaning quote"],
     sections: [
       section(
-        "Cleaning in Regensburg with clear local context",
+        "Cleaning in Regensburg with district-specific details",
         "Regensburg cleaning requests often differ by district, access, parking, property type and timing. A flat in Altstadt is not the same as an office near Galgenberg or a practice in Westenviertel.",
         "FLOXANT starts with facts: photos, scope, timing, access and, if available, an existing quote.",
       ),
@@ -437,8 +437,8 @@ const allEnglishLocalSeoPages = [
         "The important details are room count, kitchen and bathroom condition, floor type, remaining items, access, key handover and photos.",
       ),
       section(
-        "Regensburg local fit",
-        "Altstadt, Westenviertel, Galgenberg, Kumpfm?hl and Burgweinting often have different parking, access and timing constraints.",
+        "Regensburg access and timing",
+        "Altstadt, Westenviertel, Galgenberg, Kumpfmühl and Burgweinting often have different parking, access and timing constraints.",
       ),
       section(
         "Move-out clarity",
@@ -542,8 +542,8 @@ const allEnglishLocalSeoPages = [
         "Floors, entrance area, hallway, railings, mailboxes, access, frequency and house rules determine the service scope.",
       ),
       section(
-        "Useful local details",
-        "Altstadt, Westenviertel, Galgenberg, Kumpfm?hl and Burgweinting can differ by parking, access and building type.",
+        "Useful area details",
+        "Altstadt, Westenviertel, Galgenberg, Kumpfmühl and Burgweinting can differ by parking, access and building type.",
       ),
       section(
         "For property management",
@@ -616,7 +616,7 @@ const allEnglishLocalSeoPages = [
         "If cleaning, disposal or apartment clearance is part of the situation, FLOXANT separates these topics before one price becomes misleading.",
       ),
       section(
-        "Local Regensburg context",
+        "Regensburg access and parking",
         "Altstadt, Westenviertel, Kumpfmühl, Prüfening and Burgweinting can create different access, parking and timing constraints.",
       ),
     ],
@@ -791,7 +791,7 @@ const allEnglishLocalSeoPages = [
         "If the apartment should be cleaned after clearance, FLOXANT checks that as a separate scope so expectations and costs stay understandable.",
       ),
       section(
-        "Regensburg local context",
+        "Regensburg access and handover details",
         "Altstadt, Westenviertel, Kumpfmühl, Prüfening and Burgweinting can differ by access, parking and handover timing.",
       ),
     ],

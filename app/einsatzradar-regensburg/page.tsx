@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Radar, ShieldCheck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { Einsatzradar } from "@/components/Einsatzradar";
 import { company } from "@/lib/company";
 import {
@@ -88,7 +89,8 @@ export default function EinsatzradarRegensburgPage() {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_46%,#eef6ff_100%)] text-slate-950">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_46%,#eef6ff_100%)] text-slate-950">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={[{ label: "Einsatzradar Regensburg" }]} />
 
@@ -168,7 +170,7 @@ export default function EinsatzradarRegensburgPage() {
           <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Warum anonymisiert?</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Lokaler Proof ohne Kundendaten-Leck</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Einsatzgebiete zeigen, persönliche Daten schützen</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
                 FLOXANT zeigt hier typische Einsatzarten statt exakter Einsatzdaten. Echte Fälle dürfen
                 später nur anonymisiert, grob regional und mit Freigabe veröffentlicht werden.
@@ -271,6 +273,7 @@ export default function EinsatzradarRegensburgPage() {
           </div>
         </div>
       </div>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

@@ -2,6 +2,7 @@ import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { Clock, CalendarDays, UserCircle, Scale, Building2, Coins, ArrowRight } from "lucide-react";
 export async function generateMetadata(): Promise<Metadata> {
   const dict = (await getDictionary("de")) as any;
@@ -9,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale,
     path: 'blog/wohnungsaufloesung-was-tun',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Wohnungsauflösung im Todesfall | FLOXANT Ratgeber",
     description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung im Todesfall",
   });
 }
@@ -30,7 +31,8 @@ export default async function BlogWohnungsaufloesungTodesfall() {
     { label: "Wohnungsauflösung Todesfall", href: `/blog/wohnungsaufloesung-was-tun` }
   ];
   return (
-    <main className="min-h-screen bg-white">
+    <GermanCustomerCopy>
+      <main className="min-h-screen bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
         <div className="mb-8"><Breadcrumbs lang="de" items={breadcrumbs} /></div>
@@ -149,6 +151,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
           </div>
         </div>
       </div>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

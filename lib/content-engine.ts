@@ -1,5 +1,7 @@
 // Phase 5: Autonomous Content Generation Engine
 
+import { getPublicCityLabel, getPublicServiceLabel } from "@/lib/public-city-label";
+
 export interface GeneratedContent {
  title: string;
  slug: string;
@@ -12,11 +14,13 @@ export interface GeneratedContent {
  * Triggers the automated writing of hyper-localized SEO content.
  * MOCKED: In production, this pings an LLM (e.g. OpenAI GPT-4) using heavily structured prompt templates.
  */
-export async function generateCityContent(city: string, service: string): Promise<GeneratedContent> {
+export async function generateCityContent(cityKey: string, service: string): Promise<GeneratedContent> {
+ const normalizedCityKey = cityKey.trim().toLowerCase().replace(/\s+/g, "-");
+ const city = getPublicCityLabel(normalizedCityKey);
  const normalizedService = service.replace(/-/g, " ");
- const serviceCap = normalizedService.charAt(0).toUpperCase() + normalizedService.slice(1);
+ const serviceCap = getPublicServiceLabel(normalizedService);
  const title = `Alles über ${serviceCap} in ${city} - Kosten, Ablauf und Hinweise`;
- const slug = `${service}-${city.toLowerCase().replace(/ /g, '-')}`;
+ const slug = `${service}-${normalizedCityKey}`;
 
  const htmlBlob = `
   <article class="prose prose-invert max-w-none text-white/70">
@@ -43,6 +47,11 @@ export async function generateCityContent(city: string, service: string): Promis
   slug,
   category: 'city_guide',
   htmlBlob,
-  metadata: { city, service, target_keywords: [`${normalizedService} ${city} kosten`, `${normalizedService} ${city} preis`] }
+  metadata: {
+   city: normalizedCityKey,
+   cityLabel: city,
+   service,
+   target_keywords: [`${normalizedService} ${city} kosten`, `${normalizedService} ${city} preis`],
+  }
  };
 }

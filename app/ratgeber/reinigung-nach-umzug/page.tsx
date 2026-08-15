@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/reinigung-nach-umzug',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Reinigung nach Umzug und vor Übergabe | FLOXANT Ratgeber",
     description: dict.seo?.dynamic_city_desc || "Reinigung nach dem Umzug",
   });
 }

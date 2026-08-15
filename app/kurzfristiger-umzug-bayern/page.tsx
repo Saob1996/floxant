@@ -40,7 +40,7 @@ export default async function KurzfristigerUmzugBayern() {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Manchmal bleibt keine Zeit für wochenlange Planung. FLOXANT organisiert Ihren
-            kurzfristigen Umzug in ganz Bayern – sauber abgesprochen, versichert und auch unter
+            kurzfristigen Umzug in ganz Bayern – sauber abgesprochen und auch unter
             Zeitdruck mit einem klaren Ablauf.
           </p>
         </div>

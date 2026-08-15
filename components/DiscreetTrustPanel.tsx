@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, ShieldAlert } from "lucide-react";
 
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
+
 export function DiscreetTrustPanel({ className = "" }: { className?: string }) {
   return (
-    <section className={`bg-amber-50 px-5 py-14 text-amber-950 sm:px-8 lg:px-10 ${className}`} data-component="DiscreetTrustPanel">
+    <GermanCustomerCopy>
+      <section className={`bg-amber-50 px-5 py-14 text-amber-950 sm:px-8 lg:px-10 ${className}`} data-component="DiscreetTrustPanel">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.86fr_1.14fr]">
         <div>
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-amber-900">
@@ -29,6 +32,7 @@ export function DiscreetTrustPanel({ className = "" }: { className?: string }) {
           </Link>
         </div>
       </div>
-    </section>
+      </section>
+    </GermanCustomerCopy>
   );
 }

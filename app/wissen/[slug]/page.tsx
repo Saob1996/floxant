@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { AuthorBox } from "@/components/AuthorBox";
 import { generateCityContent } from "@/lib/content-engine";
 import { generateSemanticLinks } from "@/lib/internal-linking";
+import { getPublicCityLabel, getPublicServiceLabel } from "@/lib/public-city-label";
 import { generatePageSEO } from "@/lib/seo";
 
 const STATIC_KNOWLEDGE_SERVICES = ["umzug", "reinigung", "entruempelung"] as const;
@@ -23,12 +24,8 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const parts = slug.split("-");
-  const service = parts[0]
-    ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1)
-    : "Umzug";
-  const city = parts[1]
-    ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
-    : "Ihrer Region";
+  const service = getPublicServiceLabel(parts[0] || "umzug", "Umzug");
+  const city = getPublicCityLabel(parts[1] || "", "Ihrer Region");
 
   return generatePageSEO({
     lang: "de",
@@ -46,11 +43,10 @@ export default async function KnowledgeHubPage({
   const { slug } = await params;
   const parts = slug.split("-");
   const service = parts[0] || "umzug";
-  const city = parts[1]
-    ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
-    : "Ihrer Stadt";
+  const cityKey = parts[1] || "regensburg";
+  const city = getPublicCityLabel(cityKey);
 
-  const article = await generateCityContent(city, service);
+  const article = await generateCityContent(cityKey, service);
   const semanticLinks = generateSemanticLinks(city, article.category);
 
   return (

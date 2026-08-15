@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { germanText } from "@/lib/german-text";
+import { germanText, germanizeText } from "@/lib/german-text";
 import {
   AlertTriangle,
   ArrowRight,
@@ -457,8 +457,9 @@ export function PublicAuthorityModules({
           <div className="flex gap-3">
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
             <p>
-              Jede Anfrage bleibt unverbindlich. FLOXANT prüft Umfang, Ort, Termin,
-              Zugang, Fotos und gewünschtes Ergebnis, bevor ein verbindlicher Auftrag entsteht.
+              {germanizeText(
+                "Jede Anfrage bleibt unverbindlich. FLOXANT prueft Umfang, Ort, Termin, Zugang, Fotos und gewuenschtes Ergebnis, bevor ein verbindlicher Auftrag entsteht.",
+              )}
             </p>
           </div>
         </div>

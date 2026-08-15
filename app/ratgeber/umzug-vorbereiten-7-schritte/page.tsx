@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-vorbereiten-7-schritte',
-    title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+    title: "Umzug vorbereiten in 7 Schritten | FLOXANT Ratgeber",
     description: dict.seo?.dynamic_city_desc || "Umzug in 7 Schritten vorbereiten",
   });
 }

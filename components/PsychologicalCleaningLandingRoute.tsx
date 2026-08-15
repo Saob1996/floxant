@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { company } from "@/lib/company";
 import {
   getPsychologicalCleaningPage,
@@ -138,7 +139,8 @@ export function PsychologicalCleaningLandingRoute({
   const whatsappHref = whatsappUrl(page);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_46%,#f7fafc_100%)] text-slate-950">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_46%,#f7fafc_100%)] text-slate-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd(page)) }}
@@ -413,7 +415,8 @@ export function PsychologicalCleaningLandingRoute({
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }
 
@@ -458,7 +461,8 @@ export function PsychologicalCleaningInternalLinks({
     .slice(0, limit);
 
   return (
-    <section className="px-4 py-12 sm:px-6">
+    <GermanCustomerCopy>
+      <section className="px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
@@ -492,6 +496,7 @@ export function PsychologicalCleaningInternalLinks({
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    </GermanCustomerCopy>
   );
 }

@@ -135,7 +135,7 @@ export const searchAuthorityPages = {
   "/angebotscheck": {
     seoTitle: "Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
     shortTitle: "FLOXANT Klarheitscheck",
-    headline: "Zwölf Punkte eines Angebots strukturiert klären",
+    headline: "Angebotscheck: Zwölf Punkte zu Umfang, Ablauf und Preis klären",
     description:
       "Vorhandenes Angebot für Reinigung, Umzug oder Räumung clientseitig prüfen: 12 Bereiche markieren, Rückfragen erstellen und Ergebnis übernehmen.",
     ogTitle: "FLOXANT Klarheitscheck für vorhandene Angebote",
@@ -149,9 +149,9 @@ export const searchAuthorityPages = {
   "/objektbrief": {
     seoTitle: "Anfragebrief für Reinigung, Umzug oder Räumung | FLOXANT",
     shortTitle: "FLOXANT Anfragebrief",
-    headline: "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
+    headline: "Objektbrief: Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
     description:
-      "Erstellen Sie clientseitig einen strukturierten Anfragebrief für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
+      "Bündeln Sie Angaben zu Leistung, Ort und Umfang für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
     ogTitle: "FLOXANT Anfragebrief für klare Leistungsanfragen",
     ogDescription:
       "Leistung, Ort, Umfang, Zugang und Termin geordnet vorbereiten und offene Angaben erkennen.",

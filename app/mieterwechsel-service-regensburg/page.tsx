@@ -276,11 +276,11 @@ export default function MieterwechselServiceRegensburgPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/makler-vermieter-link" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
-                  Direktlink fuer Makler und Vermieter nutzen
+                  Direktlink für Makler und Vermieter nutzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/keller-muellraum-rettung-regensburg" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
-                  Keller oder Muellraum als Objektflaeche pruefen
+                  Keller oder Müllraum als Objektfläche prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/schadensbegrenzung" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-red-700 transition hover:text-red-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">

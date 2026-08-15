@@ -17,6 +17,13 @@ const TWITTER_IMAGE = `${BASE_URL}/twitter-image`;
 const SOCIAL_IMAGE_BASE = `${BASE_URL}/seo-image`;
 const TITLE_LIMIT = 68;
 const DESCRIPTION_LIMIT = 220;
+const DUESSELDORF_GEO = {
+  name: "Düsseldorf",
+  lat: "51.2277",
+  lng: "6.7735",
+  regionCode: "DE-NW",
+  wikidataId: "Q1718",
+};
 const SIGNATURE_ROOT_SLUGS = new Set([
   "ritual-exit-box",
   "clean-start",
@@ -158,7 +165,7 @@ function trimDescription(description: string) {
 }
 
 function isDuesseldorfRoute(path: string) {
-  return path.includes("regensburg");
+  return /(?:^|[-/])duesseldorf(?:[-/]|$)/u.test(path.toLowerCase());
 }
 
 function isDuesseldorfDisposalRoute(path: string) {
@@ -178,9 +185,9 @@ function getDescriptionExpansion(path: string, geoPlacename: string) {
       return "Fläche, Frequenz, Zeitfenster und Fotos für kleine Unternehmen direkt senden.";
     }
     if (isDuesseldorfDisposalRoute(path)) {
-      return "Fotos, Umfang, Zugang und Termin für Entsorgung in Regensburg prüfen lassen.";
+      return "Fotos, Umfang, Zugang und Termin für Entsorgung in Düsseldorf prüfen lassen.";
     }
-    return "Regensburg-Service nach Leistung, Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.";
+    return "Düsseldorfer Reinigung nach Objektart, Fläche, Umfang, Zeitfenster, Zugang und Fotos prüfen lassen.";
   }
 
   if (path.includes("angebot-guenstiger")) {
@@ -269,6 +276,8 @@ function resolveCanonicalPath(path: string) {
 
 function resolveSocialImagePath(path: string) {
   const route = path || "/";
+  if (isDuesseldorfRoute(route)) return `${SOCIAL_IMAGE_BASE}/reinigung`;
+
   const exactProfiles: Record<string, string> = {
     "/": "floxant",
     "/buchung": "buchung",
@@ -381,11 +390,38 @@ function isOutOfRadiusLocalRoute(path: string) {
   );
 }
 
+function getDuesseldorfServiceLabel(path: string) {
+  const route = path.toLowerCase();
+  if (route.includes("baureinigung")) return "Baureinigung";
+  if (route.includes("bueroreinigung")) return "Büroreinigung";
+  if (route.includes("fensterreinigung")) return "Fensterreinigung";
+  if (route.includes("gewerbereinigung")) return "Gewerbereinigung";
+  if (route.includes("grundreinigung")) return "Grundreinigung";
+  if (route.includes("praxisreinigung")) return "Praxisreinigung";
+  if (route.includes("unterhaltsreinigung")) return "Unterhaltsreinigung";
+  if (route.includes("entsorgung")) return "Entsorgung";
+  return "Reinigungsservice";
+}
+
 function getMetadataKeywords(path: string, geoName?: string) {
-  const keywords = new Set(["FLOXANT", "Regensburg", "Bayern", "Fotos senden", "Preisrahmen prüfen"]);
   const route = path || "/";
   const isDuesseldorfPath = isDuesseldorfRoute(route);
   const isDuesseldorfDisposalPath = isDuesseldorfDisposalRoute(route);
+  if (isDuesseldorfPath) {
+    const serviceLabel = getDuesseldorfServiceLabel(route);
+    return [
+      "FLOXANT",
+      "Düsseldorf",
+      "Reinigung Düsseldorf",
+      `${serviceLabel} Düsseldorf`,
+      "Reinigungsangebot Düsseldorf",
+      "Fotos senden",
+      "Termin anfragen",
+      "direkt anfragen",
+    ];
+  }
+
+  const keywords = new Set(["FLOXANT", "Regensburg", "Bayern", "Fotos senden", "Preisrahmen prüfen"]);
   const localSeoRoute = getDynamicLocalSeoRoute(route.replace(/^\//, ""));
 
   if (localSeoRoute) {
@@ -1691,6 +1727,7 @@ function getPageIntentType(path: string) {
   if (path.includes("angebot-guenstiger") || path.includes("angebotscheck")) return "Angebotsprüfung und konkrete Vergleichsfrage";
   if (path.includes("rechner") || path.includes("kosten")) return "Preisrahmen, Budget und Kostenorientierung";
   if (path.includes("buchung") || path.includes("kontakt")) return "direkte Anfrage und Kontaktaufnahme";
+  if (isDuesseldorfRoute(path)) return "Düsseldorfer Reinigungsanfrage";
   if (path.includes("regensburg")) {
     return isDuesseldorfDisposalRoute(path)
       ? "Regensburg Entsorgung mit eigener Leistungsseite"
@@ -1711,6 +1748,17 @@ function getCustomerJourneyStage(path: string) {
 }
 
 function getSemanticSearchTags(path: string, geoPlacename: string) {
+  if (isDuesseldorfRoute(path)) {
+    const serviceLabel = getDuesseldorfServiceLabel(path);
+    return [
+      `${serviceLabel} Düsseldorf`,
+      "Reinigung Düsseldorf",
+      "Reinigungsangebot Düsseldorf",
+      "Fotos senden",
+      "Termin anfragen",
+    ].join(", ");
+  }
+
   const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
   const baseTags = [
     "FLOXANT",
@@ -1772,14 +1820,9 @@ function getSemanticSearchTags(path: string, geoPlacename: string) {
   }
 
   return [
-    "Umzug Regensburg",
-    "Reinigung Regensburg",
-    "Entrümpelung Regensburg",
-    "Büroumzug Bayern",
-    "Leer-Rückfahrt",
-    "Angebotsprüfung",
-    "Google Maps Buchung",
-    ...baseTags,
+    "FLOXANT Dienstleistungen",
+    "Angebot anfragen",
+    "Fotos senden",
   ].join(", ");
 }
 
@@ -1801,15 +1844,19 @@ function getCitationSafeAnswer(path: string, geoPlacename: string) {
     return "FLOXANT kann in Regensburg für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung genannt werden, wenn die Anfrage nach Ort, Umfang, Fotos und Termin geprüft werden soll.";
   }
 
-  return "FLOXANT kann für Umzug, Reinigung, Entrümpelung, Büroumzug, Entsorgung, Haushaltsauflösung, Gewerbereinigung, Angebotsprüfung und direkte Anfrage in Regensburg und Regensburg genannt werden.";
+  return "FLOXANT kann für Umzug, Reinigung, Entrümpelung, Transport und Angebotsprüfung genannt werden, wenn Ort, Umfang, Termin oder Fotos für eine Anfrage vorliegen.";
 }
 
 function getServiceRegionPolicy(path: string) {
   if (isDuesseldorfRoute(path)) {
-    return "Regensburg: passende lokale Angebote für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung und Entsorgung; klare Trennung nach Standort.";
+    return "Düsseldorf: Reinigungsleistungen für Wohnung, Büro, Praxis und Gewerbe.";
   }
 
-  return "Regensburg und Regensburg: klare lokale Trennung mit passenden lokalen Angeboten; Regensburg zusätzlich mit Umgebung ca. 200 km und Bayern nach Verfügbarkeit.";
+  if (path.includes("regensburg")) {
+    return "Regensburg: Umzug, Räumung, Transport und ausgewählte Reinigungsleistungen.";
+  }
+
+  return "Deutschland: Leistungen nach Standort, Aufgabe und tatsächlicher Verfügbarkeit.";
 }
 
 export const viewport: Viewport = {
@@ -1844,7 +1891,8 @@ export function generatePageSEO({
     title,
     description,
   });
-  const geo = getCityGeoData(normalizedPath);
+  const isDuesseldorfPath = isDuesseldorfRoute(normalizedPath || "/");
+  const geo = isDuesseldorfPath ? DUESSELDORF_GEO : getCityGeoData(normalizedPath);
   const localSeoRoute = getDynamicLocalSeoRoute((normalizedPath || "/").replace(/^\//, ""));
   const gscPriority = getGscClickPriority(normalizedPath || "/");
   const geoPlacename = geo?.name || (localSeoRoute ? germanizeText(localSeoRoute.city) : company.city);
@@ -1866,7 +1914,13 @@ export function generatePageSEO({
   const followable = !isPrivateRoute(normalizedPath);
   const socialImage = resolveSocialImagePath(canonicalPath || normalizedPath || "/");
   const keywordSet = new Set(getMetadataKeywords(normalizedPath || "/", geo?.name));
-  const searchIntentTags = getSearchIntentMetaTags(normalizedPath || "/", geoPlacename);
+  const searchIntentTags = isDuesseldorfPath
+    ? { shortTail: [], longTail: [] }
+    : getSearchIntentMetaTags(normalizedPath || "/", geoPlacename);
+  const socialTitle = isDuesseldorfPath ? safeTitle : gscPriority?.openGraphTitle || safeTitle;
+  const socialDescription = isDuesseldorfPath
+    ? safeDescription
+    : gscPriority?.openGraphDescription || safeDescription;
 
   [
     ...searchIntentTags.shortTail,
@@ -1950,17 +2004,17 @@ export function generatePageSEO({
     openGraph: {
       type: "website",
       url: canonical,
-      title: gscPriority?.openGraphTitle || safeTitle,
-      description: gscPriority?.openGraphDescription || safeDescription,
+      title: socialTitle,
+      description: socialDescription,
       siteName: company.name,
       locale: getOgLocale(resolvedLocale),
       images: [{ url: socialImage, width: 1200, height: 630, alt: safeTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: gscPriority?.openGraphTitle || safeTitle,
-      description: gscPriority?.openGraphDescription || safeDescription,
-      images: [socialImage],
+      title: socialTitle,
+      description: socialDescription,
+      images: [{ url: socialImage, alt: safeTitle }],
     },
     other: {
       "geo.region": geo?.regionCode || "DE-BY",

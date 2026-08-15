@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
@@ -90,7 +91,8 @@ export default async function EntruempelungPillarPage() {
   };
 
   return (
-    <>
+    <GermanCustomerCopy>
+      <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PillarServicePage
         dict={dict}
@@ -181,8 +183,8 @@ export default async function EntruempelungPillarPage() {
       <EffortFactorsPanel group="entruempelung" />
       <ServiceFitGuide
         group="entruempelung"
-        title="Welche Raeumung passt zum Zielzustand?"
-        intro="Keller, Wohnung, Nachlass, Buero oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
+        title="Welche Räumung passt zum Zielzustand?"
+        intro="Keller, Wohnung, Nachlass, Büro oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
       />
       <GscOpportunitySection
         eyebrow="Entrümpelung verständlich anfragen"
@@ -279,6 +281,7 @@ export default async function EntruempelungPillarPage() {
           "baustaub-ende",
         ]}
       />
-    </>
+      </>
+    </GermanCustomerCopy>
   );
 }

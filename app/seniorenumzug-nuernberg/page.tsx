@@ -84,7 +84,7 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
-                <LocalSeniorMoveSupport city="Nuernberg" route="nuernberg" />
+                <LocalSeniorMoveSupport city="Nürnberg" route="nuernberg" />
                 <SeniorMoveOfferCheckCTA compact />
                 <GscOpportunitySection
                     eyebrow="Seniorenumzug Nürnberg"

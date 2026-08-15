@@ -9,6 +9,7 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import { GermanCustomerCopy } from "@/components/GermanCustomerCopy";
 import {
   BlogLocalLinks,
   BlogOfferCheckCTA,
@@ -117,7 +118,8 @@ export function BlogArticlePage({
   const storyVariant = resolveStoryVariant(title, intro);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
+    <GermanCustomerCopy>
+      <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
       <div className="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24 pt-10">
         <div className="mb-8">
           <Breadcrumbs items={normalizedBreadcrumbs} />
@@ -381,6 +383,7 @@ export function BlogArticlePage({
           </div>
         </article>
       </div>
-    </main>
+      </main>
+    </GermanCustomerCopy>
   );
 }

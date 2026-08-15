@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, FileSearch } from "lucide-react";
 
 import { resolveCtaConfig } from "@/lib/cta-config";
+import { germanizeText } from "@/lib/german-text";
 
 type OfferCheckCTAProps = {
   title?: string;
@@ -45,8 +46,8 @@ export function OfferCheckCTA({
             <FileSearch className="h-4 w-4" aria-hidden="true" />
             Angebotsprüfung
           </p>
-          <h2 className="mt-2 text-2xl font-black tracking-normal">{title}</h2>
-          <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-300">{text}</p>
+          <h2 className="mt-2 text-2xl font-black tracking-normal">{germanizeText(title)}</h2>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-300">{germanizeText(text)}</p>
         </div>
         <Link
           href={cta.href}
@@ -60,7 +61,7 @@ export function OfferCheckCTA({
           data-destination={cta.dataAttributes.destination}
           className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
         >
-          {cta.label}
+          {germanizeText(cta.label)}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>

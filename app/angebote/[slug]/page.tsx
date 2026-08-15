@@ -4,6 +4,7 @@ import { MapPin } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
+import { getPublicCityLabel } from "@/lib/public-city-label";
 
 const STATIC_OFFER_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
 const STATIC_OFFER_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
  const parts = slug.split('-');
  const service = parts[0]; 
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '';
+ const city = getPublicCityLabel(parts[1] || "", "Ihrer Region");
  return generatePageSEO({
   pageLocale: "de" as Locale,
   path: `angebote/${slug}`,
@@ -34,7 +35,8 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
   const content = (dict as any)?.pages?.service_umzug || {};
  const parts = slug.split('-');
  const serviceRaw = parts[0]?.toLowerCase(); 
- const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';
+ const cityKey = parts[1]?.toLowerCase() || "";
+ const city = getPublicCityLabel(cityKey);
  let serviceType: 'umzug' | 'reinigung' | 'entsorgung' = 'umzug';
  if (serviceRaw === 'reinigung' || serviceRaw === 'entsorgung') {
   serviceType = serviceRaw;
@@ -126,13 +128,13 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
     <section className="mt-24 border-t border-white/10 pt-16">
      <h3 className="text-sm uppercase tracking-widest text-white/40 mb-6 text-center">In der Nähe berechnen</h3>
      <div className="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
-      {['München', 'Augsburg', 'Ingolstadt', 'Regensburg', 'Nürnberg'].filter(c => c !== city).map(c => (
+      {["muenchen", "regensburg", "nuernberg"].filter((candidate) => candidate !== cityKey).map((candidate) => (
        <a 
-        key={c} 
-        href={`/angebote/${serviceType}-${c.toLowerCase()}-kosten`}
+        key={candidate}
+        href={`/angebote/${serviceType}-${candidate}-kosten`}
         className="px-5 py-2.5 rounded-full border border-white/10 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/30 transition-all text-sm"
        >
-        {serviceType} in {c}
+        {serviceType} in {getPublicCityLabel(candidate)}
        </a>
       ))}
      </div>
