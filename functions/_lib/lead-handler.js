@@ -5,6 +5,7 @@ import {
 } from "./lead-payload.js";
 import { normalizeCleaningRequest } from "./cleaning-request.js";
 import { normalizeServiceRequest } from "./service-request.js";
+import { buildSupabaseServiceHeaders } from "./supabase-headers.js";
 import {
   REQUEST_ATTACHMENT_RULES,
   REQUEST_LOCATION_OPTIONS,
@@ -999,12 +1000,10 @@ async function uploadFiles(files, configuration, requestId, allowExisting = fals
     try {
       response = await fetch(uploadUrl, {
         method: "POST",
-        headers: {
-          apikey: configuration.serviceRoleKey,
-          Authorization: `Bearer ${configuration.serviceRoleKey}`,
+        headers: buildSupabaseServiceHeaders(configuration.serviceRoleKey, {
           "Content-Type": file.type,
           "x-upsert": "false",
-        },
+        }),
         body: file,
       });
     } catch {
@@ -1050,11 +1049,9 @@ async function readBookingById(bookingId, configuration) {
     const query = `id=eq.${encodeURIComponent(bookingId)}&select=id%2Cdetails&limit=1`;
     response = await fetch(`${configuration.supabaseUrl}/rest/v1/bookings?${query}`, {
       method: "GET",
-      headers: {
-        apikey: configuration.serviceRoleKey,
-        Authorization: `Bearer ${configuration.serviceRoleKey}`,
+      headers: buildSupabaseServiceHeaders(configuration.serviceRoleKey, {
         Accept: "application/json",
-      },
+      }),
     });
   } catch {
     throw new SubmissionFailure("DATABASE_REQUEST_FAILED");
@@ -1074,12 +1071,10 @@ async function insertBooking(booking, configuration, identity = null) {
   try {
     response = await fetch(`${configuration.supabaseUrl}/rest/v1/bookings?select=id`, {
       method: "POST",
-      headers: {
-        apikey: configuration.serviceRoleKey,
-        Authorization: `Bearer ${configuration.serviceRoleKey}`,
+      headers: buildSupabaseServiceHeaders(configuration.serviceRoleKey, {
         "Content-Type": "application/json",
         Prefer: "return=representation",
-      },
+      }),
       body: JSON.stringify([booking]),
     });
   } catch {

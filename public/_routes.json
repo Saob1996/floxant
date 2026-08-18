@@ -3,6 +3,7 @@
   "include": [
     "/api/bookings",
     "/api/intake",
+    "/api/admin/bookings/*",
     "/seo-gone",
     "/umzug-regensburg",
     "/umzug-duesseldorf",

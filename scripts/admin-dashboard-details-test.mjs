@@ -328,6 +328,65 @@ const cases = [
     expected: ["google_ads", "/duesseldorf/reinigung/anfrage", "synthetic-cleaning-gclid"],
   },
   {
+    label: "kanonische Serviceanfrage",
+    record: booking({
+      service: "entruempelung",
+      details: {
+        configuration: {
+          serviceRequest: {
+            source: "website",
+            entryPage: "/regensburg/entruempelung",
+            locale: "de",
+            postalCode: "93047",
+            frequency: "einmalig",
+            size: "72 m²",
+            remainingItems: "Kellerregal",
+            object: { floor: "4", elevator: false },
+            campaign: {
+              utmSource: "google",
+              utmMedium: "cpc",
+              utmCampaign: "synthetic-clearance",
+              gclid: "synthetic-service-gclid",
+            },
+          },
+          rawFields: {
+            source: "website",
+            entryPage: "/regensburg/entruempelung",
+            utmSource: "google",
+          },
+        },
+      },
+    }),
+    expected: [
+      "93047",
+      "72 m²",
+      "Kellerregal",
+      "synthetic-clearance",
+      "synthetic-service-gclid",
+      "/regensburg/entruempelung",
+    ],
+  },
+  {
+    label: "Gespeichertes Rechner-Intervall",
+    record: booking({
+      service: "umzug",
+      details: {
+        configuration: {
+          calculatorTransfer: {
+            calculatorType: "moving",
+            result: {
+              estimateType: "fixed_range",
+              minimum: 1200,
+              maximum: 1800,
+              currency: "EUR",
+            },
+          },
+        },
+      },
+    }),
+    expected: ["Ergebnisart", "fixed_range", "Gespeicherter Mindestwert", "1200", "Gespeicherter Höchstwert", "1800", "Währung", "EUR"],
+  },
+  {
     label: "details als Text",
     record: booking({ details: "Ältere frei formulierte Anfrage mit Übergabetermin." }),
     expected: ["Ältere frei formulierte Anfrage", "Ältere Beschreibung"],
@@ -383,6 +442,23 @@ for (const testCase of cases) {
   const view = buildAdminBookingDetailView(testCase.record);
   assert.ok(view.sections.length >= 1, `${testCase.label}: no sections`);
   for (const expected of testCase.expected) assertContains(view, expected, testCase.label);
+}
+
+{
+  const clearanceView = buildAdminBookingDetailView(booking({
+    service: "entruempelung",
+    details: {
+      configuration: {
+        serviceRequest: {
+          group: "clearance",
+          object: { floor: "4", elevator: false },
+        },
+      },
+    },
+  }));
+  const locationItems = clearanceView.sections.find((section) => section.id === "location")?.items || [];
+  assert.equal(locationItems.find((item) => item.path.endsWith("object.floor"))?.label, "Etage");
+  assert.equal(locationItems.find((item) => item.path.endsWith("object.elevator"))?.label, "Aufzug");
 }
 
 const movingServiceVariants = [
@@ -487,10 +563,23 @@ const securityView = buildAdminBookingDetailView(booking({
       rawFields: {
         access_token: "SECRET-ACCESS-TOKEN",
         service_role: "SECRET-SERVICE-ROLE",
+        authToken: "SECRET-AUTH-TOKEN",
+        clientSecret: "SECRET-CLIENT-SECRET",
+        privateKey: "SECRET-PRIVATE-KEY",
+        serviceRoleKey: "SECRET-SERVICE-ROLE-KEY",
+        supabaseServiceRoleKey: "SECRET-SUPABASE-SERVICE-ROLE-KEY",
+        "x-api-key": "SECRET-X-API-KEY",
+        "x-supabase-api-key": "SECRET-X-SUPABASE-API-KEY",
+        passwordHash: "SECRET-PASSWORD-HASH",
+        client_secret_value: "SECRET-CLIENT-SECRET-VALUE",
+        jwt: "SECRET-JWT",
+        signature: "SECRET-SIGNATURE",
+        securityHeaders: "SECRET-SECURITY-HEADERS",
         safeCustomerNote: "sichtbar",
       },
       uploadMetadata: [
         { publicUrl: "https://example.supabase.co/storage/v1/object/sign/private/file.jpg?token=SECRET-FILE-TOKEN" },
+        { publicUrl: "https://www.floxant.de/private.pdf?X-Amz-Signature=SECRET-AMZ-SIGNATURE&X-Amz-Credential=SECRET-AMZ-CREDENTIAL" },
       ],
     },
   },
@@ -569,6 +658,60 @@ assert.equal(englishDraft.template.locale, "en");
 assert.match(englishDraft.body, /approximate area/i);
 assert.doesNotMatch(englishDraft.body, /€|EUR|price confirmation/i);
 
+const dashboardSource = fs.readFileSync(
+  path.join(root, "components", "admin-dashboard", "AdminDashboard.tsx"),
+  "utf8",
+);
+const whatsappHelperSource = dashboardSource.match(
+  /function whatsappHref\(phone: string\): string \{[\s\S]*?\n\}/,
+)?.[0];
+assert.ok(whatsappHelperSource, "WhatsApp helper must remain testable");
+const whatsappHelperModule = { exports: {} };
+vm.runInNewContext(
+  ts.transpileModule(`${whatsappHelperSource}\nmodule.exports = whatsappHref;`, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText,
+  { module: whatsappHelperModule, exports: whatsappHelperModule.exports },
+);
+const dashboardWhatsAppHref = whatsappHelperModule.exports;
+assert.equal(dashboardWhatsAppHref("0176 12345678"), "https://wa.me/4917612345678");
+assert.equal(dashboardWhatsAppHref("+49 (0) 176 12345678"), "https://wa.me/4917612345678");
+assert.equal(dashboardWhatsAppHref("0049 (0) 176 12345678"), "https://wa.me/4917612345678");
+assert.equal(dashboardWhatsAppHref("+43 664 123456"), "https://wa.me/43664123456");
+assert.match(dashboardSource, /supabase\.auth\.getSession\(\)/);
+assert.match(dashboardSource, /fetch\(`\/api\/admin\/bookings\/\$\{encodeURIComponent\(booking\.id\)\}`/);
+assert.match(dashboardSource, /Authorization: `Bearer \$\{accessToken\}`/);
+assert.match(dashboardSource, /dashboardSupabaseConfig\.adminDeleteEnabled/);
+assert.match(dashboardSource, /Diese Anfrage dauerhaft löschen\?/);
+assert.match(dashboardSource, /Kundenname/);
+assert.match(dashboardSource, /Anfrage-ID/);
+assert.match(dashboardSource, /Dauerhaft löschen/);
+assert.match(dashboardSource, /Weitere gespeicherte Angaben/);
+assert.match(dashboardSource, /Technische Anfrageinformationen/);
+assert.match(dashboardSource, /<th[^>]*>E-Mail<\/th>/);
+assert.match(dashboardSource, /WhatsApp/);
+assert.match(dashboardSource, /function getLocationFilterValues/);
+assert.match(dashboardSource, /matches\.push\("duesseldorf"\)/);
+assert.match(dashboardSource, /matches\.push\("regensburg"\)/);
+assert.match(dashboardSource, /getLocationFilterValues\(booking\)\.includes\(locationFilter\)/);
+assert.match(dashboardSource, /digits\.startsWith\("00"\) \? digits\.slice\(2\) : digits/);
+assert.match(dashboardSource, /withoutInternationalPrefix\.startsWith\("490"\)[\s\S]*?`49\$\{withoutInternationalPrefix\.slice\(3\)\}`/);
+assert.match(dashboardSource, /withoutInternationalPrefix\.startsWith\("0"\)[\s\S]*?`49\$\{withoutInternationalPrefix\.slice\(1\)\}`/);
+assert.doesNotMatch(dashboardSource, /Anfrage-Vollständigkeit/);
+assert.doesNotMatch(dashboardSource, /Bearbeitbarer Antwortentwurf/);
+
+const deleteMigration = fs.readFileSync(
+  path.join(root, "supabase", "migrations", "20260815090000_bookings_admin_delete.sql"),
+  "utf8",
+);
+assert.match(deleteMigration, /REVOKE DELETE ON TABLE public\.bookings FROM PUBLIC, anon;/);
+assert.match(deleteMigration, /GRANT DELETE ON TABLE public\.bookings TO authenticated;/);
+assert.match(deleteMigration, /FOR DELETE\s+TO authenticated/);
+assert.match(deleteMigration, /auth\.jwt\(\)[\s\S]*?'app_metadata'[\s\S]*?'role'[\s\S]*?= 'admin'/);
+assert.match(deleteMigration, /cmd = 'ALL'/);
+assert.match(deleteMigration, /FORCE ROW LEVEL SECURITY/);
+assert.doesNotMatch(deleteMigration, /service_role/);
+
 console.log(JSON.stringify({
   passed: true,
   cases: cases.map((testCase) => testCase.label),
@@ -582,4 +725,5 @@ console.log(JSON.stringify({
     "not_assessable",
   ],
   replyTemplates: { de: 10, en: 10, automaticSend: false },
+  adminDelete: "feature-gated UI contract and fail-closed RLS migration verified statically",
 }, null, 2));

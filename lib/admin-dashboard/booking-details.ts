@@ -38,16 +38,6 @@ export type AdminBookingDetailView = {
 
 type UnknownRecord = Record<string, unknown>;
 
-const SENSITIVE_FILE_QUERY_KEYS = new Set([
-  "access_token",
-  "apikey",
-  "authorization",
-  "key",
-  "secret",
-  "signature",
-  "token",
-]);
-
 function asRecord(value: unknown): UnknownRecord {
   return value && typeof value === "object" && !Array.isArray(value)
     ? (value as UnknownRecord)
@@ -123,6 +113,14 @@ function firstValue(
     const displayValue = toDisplayValue(valueAt(details, path));
     if (displayValue !== null) {
       consumed.add(path);
+      const serializedValue = JSON.stringify(displayValue);
+      for (const aliasPath of paths) {
+        if (aliasPath === path) continue;
+        const aliasValue = toDisplayValue(valueAt(details, aliasPath));
+        if (aliasValue !== null && JSON.stringify(aliasValue) === serializedValue) {
+          consumed.add(aliasPath);
+        }
+      }
       return { path, value: displayValue };
     }
   }
@@ -237,9 +235,9 @@ function safePublicFileUrl(value: string): string {
   try {
     const url = new URL(value);
     if (url.protocol !== "https:" || url.username || url.password) return "";
-    if ([...url.searchParams.keys()].some((key) => SENSITIVE_FILE_QUERY_KEYS.has(key.toLowerCase()))) {
-      return "";
-    }
+    // Stored public upload URLs never need query credentials. Reject every query
+    // or fragment so AWS/Supabase signatures cannot reach the dashboard DOM.
+    if (url.search || url.hash) return "";
 
     const hostname = url.hostname.toLowerCase();
     if (hostname === "floxant.de" || hostname === "www.floxant.de") return url.toString();
@@ -316,12 +314,12 @@ export function buildAdminBookingDetailView(
   const { record: details, legacyText } = normalizeDetails(booking.details);
   const consumed = new Set<string>();
   const upgrades = toDisplayValue(parseJson(booking.upgrades));
+  const serviceContext = `${booking.service || ""} ${String(
+    valueAt(details, "configuration.serviceRequest.group") || "",
+  )}`.toLowerCase();
+  const isClearanceRequest = /(clearance|entruempel|auflösung|aufloesung)/.test(serviceContext);
   for (const path of [
     "configuration.calculatorTransfer.schemaVersion",
-    "configuration.calculatorTransfer.result.estimateType",
-    "configuration.calculatorTransfer.result.minimum",
-    "configuration.calculatorTransfer.result.maximum",
-    "configuration.calculatorTransfer.result.currency",
   ]) {
     consumed.add(path);
   }
@@ -339,6 +337,7 @@ export function buildAdminBookingDetailView(
           "Sprache",
           details,
           [
+            "configuration.serviceRequest.locale",
             "configuration.cleaningRequest.locale",
             "metadata.locale",
             "metadata.clientContext.locale",
@@ -353,6 +352,7 @@ export function buildAdminBookingDetailView(
           "Quelle",
           details,
           [
+            "configuration.serviceRequest.source",
             "configuration.cleaningRequest.source",
             "service.source",
             "metadata.source",
@@ -382,6 +382,7 @@ export function buildAdminBookingDetailView(
           "Einstiegsseite",
           details,
           [
+            "configuration.serviceRequest.entryPage",
             "configuration.cleaningRequest.entryPage",
             "service.entryPoint",
             "configuration.landingPage",
@@ -401,6 +402,7 @@ export function buildAdminBookingDetailView(
           "Kampagne",
           details,
           [
+            "configuration.serviceRequest.campaign.utmCampaign",
             "metadata.clientContext.campaign",
             "configuration.campaign",
             "configuration.googleAdsCampaign",
@@ -504,6 +506,7 @@ export function buildAdminBookingDetailView(
           "PLZ",
           details,
           [
+            "configuration.serviceRequest.postalCode",
             "configuration.cleaningRequest.postalCode",
             "configuration.postalCode",
             "configuration.zip",
@@ -522,10 +525,27 @@ export function buildAdminBookingDetailView(
           ],
           consumed,
         ),
+        isClearanceRequest
+          ? item(
+              "Etage",
+              details,
+              ["configuration.serviceRequest.object.floor"],
+              consumed,
+            )
+          : null,
+        isClearanceRequest
+          ? item(
+              "Aufzug",
+              details,
+              ["configuration.serviceRequest.object.elevator"],
+              consumed,
+            )
+          : null,
         item(
           "Start-PLZ",
           details,
           [
+            "configuration.serviceRequest.route.startPostalCode",
             "configuration.startPostalCode",
             "configuration.rawFields.startPostalCode",
             "configuration.rawFields.startZip",
@@ -536,6 +556,7 @@ export function buildAdminBookingDetailView(
           "Ziel-PLZ",
           details,
           [
+            "configuration.serviceRequest.route.destinationPostalCode",
             "configuration.destinationPostalCode",
             "configuration.rawFields.destinationPostalCode",
             "configuration.rawFields.destinationZip",
@@ -649,6 +670,7 @@ export function buildAdminBookingDetailView(
           [
             "configuration.serviceRequest.object.area",
             "configuration.serviceRequest.object.size",
+            "configuration.serviceRequest.size",
             "configuration.cleaningRequest.area",
             "configuration.areaM2",
             "configuration.areaSize",
@@ -665,6 +687,7 @@ export function buildAdminBookingDetailView(
           "Räume",
           details,
           [
+            "configuration.serviceRequest.object.rooms",
             "configuration.cleaningRequest.rooms",
             "configuration.roomsCount",
             "configuration.rooms",
@@ -723,6 +746,7 @@ export function buildAdminBookingDetailView(
           "Turnus",
           details,
           [
+            "configuration.serviceRequest.frequency",
             "configuration.cleaningRequest.frequency",
             "configuration.recurringFrequency",
             "configuration.cleaningFrequency",
@@ -756,6 +780,7 @@ export function buildAdminBookingDetailView(
           "Unterleistung",
           details,
           [
+            "configuration.serviceRequest.subservice",
             "configuration.serviceScope",
             "configuration.rawFields.serviceScope",
             "configuration.rawFields.cleaningType",
@@ -880,6 +905,8 @@ export function buildAdminBookingDetailView(
           "Restgegenstände",
           details,
           [
+            "configuration.serviceRequest.remainingItems",
+            "configuration.serviceRequest.object.remainingItems",
             "configuration.remainingItems",
             "configuration.openItems",
             "configuration.rawFields.remainingItems",
@@ -995,6 +1022,30 @@ export function buildAdminBookingDetailView(
             manual_review: "Individuelle Prüfung erforderlich",
           },
         ),
+        item(
+          "Ergebnisart",
+          details,
+          ["configuration.calculatorTransfer.result.estimateType"],
+          consumed,
+        ),
+        item(
+          "Gespeicherter Mindestwert",
+          details,
+          ["configuration.calculatorTransfer.result.minimum"],
+          consumed,
+        ),
+        item(
+          "Gespeicherter Höchstwert",
+          details,
+          ["configuration.calculatorTransfer.result.maximum"],
+          consumed,
+        ),
+        item(
+          "Währung",
+          details,
+          ["configuration.calculatorTransfer.result.currency"],
+          consumed,
+        ),
         mappedItem(
           "Datengrundlage",
           details,
@@ -1102,6 +1153,7 @@ export function buildAdminBookingDetailView(
           "UTM Source",
           details,
           [
+            "configuration.serviceRequest.campaign.utmSource",
             "configuration.cleaningRequest.campaign.utmSource",
             "configuration.attribution.utm_source",
             "metadata.attribution.utm_source",
@@ -1116,6 +1168,7 @@ export function buildAdminBookingDetailView(
           "UTM Medium",
           details,
           [
+            "configuration.serviceRequest.campaign.utmMedium",
             "configuration.cleaningRequest.campaign.utmMedium",
             "configuration.attribution.utm_medium",
             "metadata.attribution.utm_medium",
@@ -1130,6 +1183,7 @@ export function buildAdminBookingDetailView(
           "UTM Campaign",
           details,
           [
+            "configuration.serviceRequest.campaign.utmCampaign",
             "configuration.cleaningRequest.campaign.utmCampaign",
             "configuration.attribution.utm_campaign",
             "metadata.attribution.utm_campaign",
@@ -1144,6 +1198,7 @@ export function buildAdminBookingDetailView(
           "UTM Term",
           details,
           [
+            "configuration.serviceRequest.campaign.utmTerm",
             "configuration.cleaningRequest.campaign.utmTerm",
             "configuration.attribution.utm_term",
             "metadata.attribution.utm_term",
@@ -1157,6 +1212,7 @@ export function buildAdminBookingDetailView(
           "UTM Content",
           details,
           [
+            "configuration.serviceRequest.campaign.utmContent",
             "configuration.cleaningRequest.campaign.utmContent",
             "configuration.attribution.utm_content",
             "metadata.attribution.utm_content",
@@ -1171,6 +1227,7 @@ export function buildAdminBookingDetailView(
           "GCLID",
           details,
           [
+            "configuration.serviceRequest.campaign.gclid",
             "configuration.cleaningRequest.campaign.gclid",
             "configuration.attribution.gclid",
             "metadata.attribution.gclid",
@@ -1183,6 +1240,7 @@ export function buildAdminBookingDetailView(
           "GBRAID",
           details,
           [
+            "configuration.serviceRequest.campaign.gbraid",
             "configuration.cleaningRequest.campaign.gbraid",
             "configuration.attribution.gbraid",
             "metadata.attribution.gbraid",
@@ -1195,6 +1253,7 @@ export function buildAdminBookingDetailView(
           "WBRAID",
           details,
           [
+            "configuration.serviceRequest.campaign.wbraid",
             "configuration.cleaningRequest.campaign.wbraid",
             "configuration.attribution.wbraid",
             "metadata.attribution.wbraid",

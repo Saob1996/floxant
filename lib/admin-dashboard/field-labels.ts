@@ -163,10 +163,46 @@ export function getAdminFieldLabel(path: string): string {
 export function isSensitiveAdminField(path: string): boolean {
   return path
     .split(".")
-    .some((segment) =>
-      /^(authorization|cookie|password|secret|service[_-]?role|session|token|api[_-]?key|refresh[_-]?token|access[_-]?token)$/i.test(
-        segment,
-      ),
-    );
+    .some((segment) => {
+      const words = segment
+        .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+        .split(/[^a-z0-9]+/i)
+        .filter(Boolean)
+        .map((word) => word.toLowerCase());
+      const normalized = segment.replace(/[^a-z0-9]/gi, "").toLowerCase();
+      if (
+        words.some((word) => [
+          "authorization",
+          "bearer",
+          "cookie",
+          "credential",
+          "credentials",
+          "jwt",
+          "password",
+          "passwd",
+          "secret",
+          "session",
+          "signature",
+          "token",
+        ].includes(word)) ||
+        [
+          "authorizationheader",
+          "securityheader",
+          "securityheaders",
+          "servicerole",
+          "sessionid",
+        ].includes(normalized)
+      ) {
+        return true;
+      }
+
+      if (words.includes("api") && words.includes("key")) return true;
+      if (words.includes("service") && words.includes("role") && words.includes("key")) return true;
+      if (words.includes("private") && words.includes("key")) return true;
+
+      return /^(?:x|supabase|xsupabase)?api(?:key|token)(?:value|hash)?$/.test(normalized) ||
+        /^(?:supabase)?servicerole(?:key|secret|token)(?:value|hash)?$/.test(normalized) ||
+        /^(?:api|auth|client|private|service|access|refresh)(?:key|secret|token)(?:value|hash)?$/.test(normalized);
+    });
 }
 

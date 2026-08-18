@@ -92,6 +92,7 @@ test("Kontaktseite bleibt formularzentriert", () => {
 test("Dashboard behält bekannte und unbekannte Angaben", () => {
   assert.match(dashboard, /additionalItems/);
   assert.match(dashboardUi, /Weitere gespeicherte Angaben/);
+  assert.match(dashboardUi, /Technische Anfrageinformationen/);
   assert.match(form, /selectedServices/);
   assert.match(form, /preferredDate/);
 });
