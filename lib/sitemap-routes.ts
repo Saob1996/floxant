@@ -389,8 +389,6 @@ export const sitemapRoutes = [
   "/rueckfahrt-radar",
   "/schadensbegrenzung",
   "/schluesseluebergabe",
-  "/seniorenumzug-bayern",
-  "/seniorenumzug-landshut",
   "/service-finder",
   "/signature-services",
   "/solarreinigung",

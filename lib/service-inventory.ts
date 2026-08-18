@@ -372,7 +372,7 @@ export const serviceInventory: readonly ServiceInventoryItem[] = [
     customerProblem: "Neben Transport sind Auswahl, Kommunikation, Tempo und Übergabe wichtig.",
     suitableFor: ["Umzug im Alter", "Angehörige", "Pflegeheimwechsel", "Verkleinerung"],
     relatedServices: ["umzug", "haushaltsaufloesung", "diskret-service"],
-    dusseldorfAvailability: "needs_manual_confirmation",
+    dusseldorfAvailability: "not_offered",
     regensburgAvailability: "available",
     recommendedRoute: "/regensburg/seniorenumzug",
     priority: "P1",

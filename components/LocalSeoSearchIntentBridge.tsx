@@ -241,8 +241,8 @@ function localSearchIntents({
         {
           title: "Starnberg, Germering, Bamberg und Bayern",
           text: "Für Seniorenumzüge in Regensburg werden Ort, Entfernung, Etage, Packhilfe, Angehörige, Übergabe, Reinigung und Rückrufwunsch ruhig zusammen aufgenommen.",
-          href: "/seniorenumzug-bayern",
-          label: "Bayern-Anfrage starten",
+          href: "/regensburg/seniorenumzug",
+          label: "Seniorenumzug Regensburg anfragen",
         },
         {
           title: "Weniger Hektik für Angehörige",
@@ -330,7 +330,7 @@ function localSearchIntents({
         {
           title: "Umzug im Alter ruhig vorbereiten",
           text: "Für Senioren, Angehörige und Betreuer zählen Rückruf, Packhilfe, Freigabe, ruhige Terminplanung, Reinigung und Übergabe mehr als ein schneller Pauschalpreis.",
-          href: "/seniorenumzug-bayern",
+          href: "/regensburg/seniorenumzug",
           label: "Seniorenumzug ansehen",
         },
         {

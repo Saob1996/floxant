@@ -1612,8 +1612,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
-      { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
-      { href: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=website", label: "Angehoerigenanfrage senden" },
+      { href: "/kontakt?location=regensburg&service=seniorenumzug&intent=seniorenumzug-anfragen&source=website", label: "Angehörigenanfrage senden" },
     ],
     faqTitle: "FAQ zum Seniorenumzug",
     faqItems: [

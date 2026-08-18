@@ -32,11 +32,11 @@ const cleaningClusterAnchors = [
 ] as const;
 
 const seniorMoveAnchors = [
-  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
-  { href: "/seniorenumzug-erlangen", label: "Seniorenumzug Erlangen" },
-  { href: "/seniorenumzug-bamberg", label: "Seniorenumzug Bamberg" },
-  { href: "/umzug-muenchen", label: "Umzug München" },
-  { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
+  { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
+  { href: "/blog/seniorenumzug-fuer-angehoerige", label: "Hinweise für Angehörige" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/angebot-guenstiger-pruefen", label: "Vorhandenes Angebot prüfen" },
 ] as const;
 
 const regensburgCleaningAnchors = [
@@ -475,30 +475,30 @@ export const gscClickPriorities = {
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: cleaningClusterAnchors,
   },
-  "/seniorenumzug-bayern": {
+  "/regensburg/seniorenumzug": {
     priority: "P0",
-    path: "/seniorenumzug-bayern",
-    canonical: "/seniorenumzug-bayern",
-    title: "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären",
+    path: "/regensburg/seniorenumzug",
+    canonical: "/regensburg/seniorenumzug",
+    title: "Seniorenumzug Regensburg | Ruhig und persönlich planen",
     description:
-      "Seniorenumzug geplant? Start, Ziel, Umfang, Termin und Zusatzleistungen wie Entrümpelung oder Reinigung beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten.",
-    openGraphTitle: "Seniorenumzug Bayern mit konkreten Eckdaten anfragen",
+      "Seniorenumzug in Regensburg für Seniorinnen, Senioren und Angehörige: Transport, Packhilfe, Räumung, Reinigung und Übergabe abgestimmt anfragen.",
+    openGraphTitle: "Seniorenumzug Regensburg ruhig planen",
     openGraphDescription:
-      "Seniorenumzug und Umzug im Alter mit Angehörigen, Entrümpelung, Reinigung, Übergabe und Angebotsprüfung ruhig einordnen.",
-    h1: "Seniorenumzug mit konkreten Eckdaten anfragen - mit Angehörigen, Umfang und Terminwunsch",
-    pageIntent: "Seniorenumzug und Umzug im Alter in Bayern anfragen",
-    primaryKeyword: "seniorenumzug bayern",
+      "Seniorenumzug in Regensburg mit Angehörigen, Transport und möglichen Folgearbeiten persönlich abstimmen.",
+    h1: "Seniorenumzug in Regensburg ruhig und klar planen.",
+    pageIntent: "Seniorenumzug und Umzug im Alter in Regensburg anfragen",
+    primaryKeyword: "seniorenumzug regensburg",
     secondaryKeywords: [
       "seniorenumzug",
       "umzug im alter",
-      "umzug im alter bayern",
-      "seniorenumzug bayern",
-      "umzugshelfer senioren bayern",
-      "umzugshelfer für senioren bayern",
-      "umzug für senioren bayern",
-      "senioren umzug bayern",
+      "umzug im alter regensburg",
+      "seniorenumzug für angehörige regensburg",
+      "umzugshelfer senioren regensburg",
+      "umzugshelfer für senioren regensburg",
+      "umzug für senioren regensburg",
+      "senioren umzug regensburg",
     ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
+    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList"],
     internalLinkAnchors: seniorMoveAnchors,
   },
   "/seniorenumzug-erlangen": {
@@ -571,7 +571,7 @@ export const gscClickPriorities = {
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
       { href: "/regensburg/reinigung", label: "Reinigung nach Umzug Regensburg" },
       { href: "/bueroumzug-muenchen", label: "Büroumzug München" },
-      { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
     ],
   },
   "/entruempelung-nuernberg": {
@@ -891,7 +891,7 @@ export const gscClickPriorities = {
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot München prüfen" },
       { href: "/regensburg/reinigung", label: "Reinigung nach Umzug Regensburg" },
       { href: "/bueroumzug-muenchen", label: "Büroumzug München" },
-      { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
     ],
   },
   "/regensburg/reinigung": {
@@ -942,7 +942,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: [
       { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug-kosten", label: "Umzugskosten Regensburg" },
-      { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
     ],
   },

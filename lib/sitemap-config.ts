@@ -186,9 +186,6 @@ export const SERVICE_CITY_PAGES = [
   "entruempelung-augsburg",
   "entruempelung-passau",
   "entruempelung-landshut",
-  "seniorenumzug-regensburg",
-  "seniorenumzug-nuernberg",
-  "seniorenumzug-muenchen",
   "klaviertransport-passau",
   "klaviertransport-straubing",
   "klaviertransport-rosenheim",
@@ -201,10 +198,6 @@ export const SERVICE_CITY_PAGES = [
   "bueroumzug-augsburg",
   "bueroumzug-ingolstadt",
   "bueroumzug-landshut",
-  "seniorenumzug-augsburg",
-  "seniorenumzug-landshut",
-  "seniorenumzug-passau",
-  "seniorenumzug-ingolstadt",
   "entruempelung-rosenheim",
   "entruempelung-wuerzburg",
   "entruempelung-deggendorf",
@@ -234,7 +227,6 @@ export const BAVARIA_AUTHORITY_PAGES = [
 export const SIGNATURE_SEO_PAGES = [
   "24h-umzug-bayern",
   "familienumzug-bayern",
-  "seniorenumzug-bayern",
   "kurzfristiger-umzug-bayern",
   "notfall-umzug-bayern",
 ] as const;

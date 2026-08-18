@@ -276,6 +276,7 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  if (normalizedRoute.startsWith("seniorenumzug-")) return true;
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
   if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(normalizedRoute)) return false;
   if (VERIFIED_REGIONAL_CLEANING_ROUTES.has(normalizedRoute)) return false;
@@ -295,10 +296,6 @@ function shouldSkipSitemapRoute(route: string): boolean {
 
 function isBroadRootCityServiceRoute(route: string): boolean {
   const normalizedRoute = route.toLowerCase();
-
-  if (normalizedRoute === "seniorenumzug-landshut") {
-    return false;
-  }
 
   if (normalizedRoute.startsWith("reinigung-") && isCleaningRouteAllowed(normalizedRoute)) {
     return false;

@@ -1915,7 +1915,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Seniorenumzug für Angehörige ist sinnvoll zu planen, wenn Transport, Entscheidungen, Entrümpelung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Düsseldorf und Regensburg helfen, indem einzelne Schritte ruhig vorbereitet und je nach Auftrag kombiniert werden. Besonders sinnvoll ist das für Familien, die Verantwortung tragen, aber nicht jede Aufgabe selbst koordinieren können.",
+          "Ein Seniorenumzug für Angehörige ist sinnvoll zu planen, wenn Transport, Entscheidungen, Entrümpelung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Regensburg helfen, indem einzelne Schritte ruhig vorbereitet und je nach Auftrag kombiniert werden. Besonders sinnvoll ist das für Familien, die Verantwortung tragen, aber nicht jede Aufgabe selbst koordinieren können.",
         ],
       },
       {
@@ -1993,10 +1993,10 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       "FLOXANT kann Umzug, Restarbeiten und Übergabe nach Bedarf verbinden.",
     ],
     ctas: [
-      { href: "/seniorenumzug", label: "Seniorenumzug ansehen" },
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg ansehen" },
       { href: "/entruempelung", label: "Entrümpelung prüfen" },
       { href: "/blog/wohnungsuebergabe-komplettpaket", label: "Übergabe-Komplettpaket lesen" },
-      { href: "/kontakt?mode=neutral&source=website", label: "Familiensituation schildern" },
+      { href: "/kontakt?location=regensburg&service=seniorenumzug&intent=seniorenumzug-anfragen&source=website", label: "Familiensituation schildern" },
     ],
     faqTitle: "FAQ zum Seniorenumzug für Angehörige",
     faqItems: [
@@ -3360,9 +3360,9 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Orte in Bayern realistisch prüfen",
+        title: "Einsatzort im Raum Regensburg realistisch prüfen",
         paragraphs: [
-          "FLOXANT ist in Regensburg verankert und prüft Einsätze in Bayern nach Verfügbarkeit. Für Erlangen, Bamberg, Fürth, Forchheim, Friedberg oder Roth zählen Strecke, Umfang, Termin und Kapazität besonders stark.",
+          "FLOXANT ist in Regensburg verankert. Bei einem Einsatz im näheren Umfeld zählen Strecke, Umfang, Termin und verfügbare Kapazität besonders stark. Nennen Sie deshalb Start und Ziel direkt in der Anfrage.",
         ],
       },
       {
@@ -3379,9 +3379,9 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       "Reinigung, Entsorgung und Übergabe können früh mitgedacht werden.",
     ],
     ctas: [
-      { href: "/seniorenumzug-erlangen", label: "Seniorenumzug Erlangen" },
-      { href: "/seniorenumzug-bamberg", label: "Umzug im Alter Bamberg" },
-      { href: "/seniorenumzug-fuerth", label: "Seniorenumzug Fürth" },
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
+      { href: "/blog/seniorenumzug-fuer-angehoerige", label: "Hinweise für Angehörige" },
+      { href: "/kontakt?location=regensburg&service=seniorenumzug&intent=seniorenumzug-anfragen&source=website", label: "Seniorenumzug anfragen" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
     ],
     faqTitle: "FAQ zum Umzug im Alter",

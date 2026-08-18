@@ -76,7 +76,7 @@ const relatedLinks = [
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen", text: "Vorhandenes Angebot mit Strecke, Volumen und Zusatzpositionen einordnen." },
   { href: "/regensburg/reinigung", label: "Reinigung im Raum Regensburg nach Umzug", text: "Wenn Auszug, Endreinigung und Übergabe zusammenhängen." },
   { href: "/bueroumzug-muenchen", label: "Büroumzug München", text: "Für Büro, Praxis, kleine Firma und planbare Randzeiten." },
-  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern", text: "Wenn Rückruf, Angehörige, Packhilfe und Übergabe wichtig sind." },
+  { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg", text: "Wenn Rückruf, Angehörige, Packhilfe und Übergabe wichtig sind." },
   { href: "/blog/fernumzug-bayern-nrw-tipps", label: "Ratgeber Fernumzug", text: "Zusätzliche Hinweise zu Strecke, Rückfahrt und Vorbereitung." },
 ] as const;
 

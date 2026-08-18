@@ -67,7 +67,7 @@ const relatedLinks = [
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
   { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
+  { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
 ];
 
 export default function UmzugsunternehmenRegensburgPage() {

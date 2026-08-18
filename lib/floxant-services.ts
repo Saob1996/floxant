@@ -253,10 +253,10 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
       "Umzug im Alter mit Angehörigen, Reduzierung, Entrümpelung, Reinigung und Übergabe ruhig vorbereiten.",
     region: "regensburg",
     category: "normal",
-    href: "/seniorenumzug-bayern",
+    href: "/regensburg/seniorenumzug",
     ctaLabel: "Seniorenumzug anfragen",
     keywords: [
-      "Seniorenumzug Bayern",
+      "Seniorenumzug Regensburg",
       "Umzug im Alter",
       "Umzugshilfe für Senioren",
       "Seniorenumzug mit Entrümpelung",

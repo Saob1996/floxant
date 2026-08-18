@@ -96,8 +96,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
   if (service.includes("seniorenumzug") || service.includes("umzug-im-alter") || service.includes("senior")) {
     return localize([
       ...baseLinks,
-      { url: "/seniorenumzug-bayern", anchorText: "Seniorenumzug anfragen", relevanceScore: 99 },
-      { url: "/regensburg/seniorenumzug", anchorText: `Seniorenumzug in ${city} lokal einordnen`, relevanceScore: 94 },
+      { url: "/regensburg/seniorenumzug", anchorText: "Seniorenumzug Regensburg anfragen", relevanceScore: 99 },
       { url: "/angebot-guenstiger-pruefen", anchorText: "Seniorenumzug-Angebot pruefen lassen", relevanceScore: 93 },
       { url: "/regensburg/entruempelung", anchorText: "Seniorenumzug mit Entruempelung kombinieren", relevanceScore: 90 },
       { url: "/regensburg/reinigung", anchorText: "Reinigung nach Umzug im Alter vorbereiten", relevanceScore: 88 },

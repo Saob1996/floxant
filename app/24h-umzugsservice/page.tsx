@@ -53,7 +53,7 @@ const urgentMoveCards = [
     Icon: ShieldCheck,
     title: "Umzug im Alter ruhig abstimmen",
     text: "Für Familien und Angehörige, wenn Rückruf, Freigabe, Fotos, Möbel, Reinigung und Übergabe ohne Druck sortiert werden sollen.",
-    href: "/seniorenumzug-bayern",
+    href: "/regensburg/seniorenumzug",
     cta: "Ruhig planen",
   },
   {

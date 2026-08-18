@@ -14,7 +14,7 @@ const serviceGroups = [
     region: "Regensburg",
     links: [
       { label: "Umzug", href: "/regensburg/umzug" },
-      { label: "Seniorenumzug", href: "/seniorenumzug-bayern" },
+      { label: "Seniorenumzug", href: "/regensburg/seniorenumzug" },
       { label: "Klaviertransport", href: "/klaviertransport-regensburg" },
       { label: "Möbeltransport", href: "/kleintransport-regensburg" },
     ],

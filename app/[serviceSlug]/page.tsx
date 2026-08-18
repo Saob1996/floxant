@@ -67,6 +67,7 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return [
     ...dynamicLocalSeoRoutes
+      .filter((entry) => entry.service !== "seniorenumzug")
       .map((entry) => entry.route.replace(/^\//, ""))
       .filter((serviceSlug) => !LEGACY_REDIRECT_SERVICE_SLUGS.has(serviceSlug))
       .map((serviceSlug) => ({ serviceSlug })),

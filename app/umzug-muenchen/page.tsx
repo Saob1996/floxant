@@ -57,7 +57,7 @@ const munichCustomerIntents = [
         Icon: Shield,
         title: "Seniorenumzug mit ruhiger Abstimmung",
         text: "Wenn Angehörige mitorganisieren, zählen Rückruf, Packhilfe, klare Freigabe, Reinigung, Übergabe und ein Ansprechpartner, der den Ablauf ruhig hält.",
-        href: "/seniorenumzug-bayern",
+        href: "/regensburg/seniorenumzug",
         cta: "Ruhig planen",
     },
     {

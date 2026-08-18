@@ -423,10 +423,10 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "seniorenumzug",
     path: "/regensburg/seniorenumzug",
-    metaTitle: "Seniorenumzug Regensburg | Ruhig mit Angehoerigen planen",
+    metaTitle: "Seniorenumzug Regensburg | Ruhig und persönlich planen",
     metaDescription:
-      "Seniorenumzug Regensburg mit Angehoerigen, Packhilfe, Uebergabe, Wohnungsaufloesung und Reinigung nach Auszug ruhig pruefen.",
-    h1: "Seniorenumzug Regensburg ruhig mit Angehoerigen und Uebergabe planen",
+      "Seniorenumzug in Regensburg für Seniorinnen, Senioren und Angehörige: Transport, Packhilfe, Räumung, Reinigung und Übergabe abgestimmt anfragen.",
+    h1: "Seniorenumzug in Regensburg ruhig und klar planen.",
     maturity: indexableM2,
   }),
   createPage({

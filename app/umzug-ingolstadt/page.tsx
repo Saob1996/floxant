@@ -136,7 +136,7 @@ export default async function UmzugIngolstadtPage({ params }: PageProps) {
                         {
                             title: "Seniorenumzug",
                             text: "Für Angehörige mit ruhiger Abstimmung, Packhilfe und klarer Freigabe.",
-                            href: "/seniorenumzug-bayern",
+                            href: "/regensburg/seniorenumzug",
                         },
                         {
                             title: "Budget nennen",

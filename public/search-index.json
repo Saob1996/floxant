@@ -931,26 +931,6 @@
       ]
     },
     {
-      "title": "Seniorenumzug",
-      "description": "Umzug im Alter mit Angehörigen, Verkleinerung, Sortierung und ruhiger Abstimmung.",
-      "url": "/seniorenumzug-bayern",
-      "locale": "de",
-      "type": "Leistung",
-      "regions": [
-        "Regensburg"
-      ]
-    },
-    {
-      "title": "Seniorenumzug",
-      "description": "Umzug im Alter mit Angehörigen, Verkleinerung, Sortierung und ruhiger Abstimmung.",
-      "url": "/seniorenumzug",
-      "locale": "de",
-      "type": "Leistung",
-      "regions": [
-        "Regensburg"
-      ]
-    },
-    {
       "title": "Spezialentruempelung, Nachlass und Keller",
       "description": "Keller, Nachlass, Lager, Restmengen und Übergabevorbereitung diskret, fotobasiert und realistisch anfragen.",
       "url": "/spezial-entruempelung",
