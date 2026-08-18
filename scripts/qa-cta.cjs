@@ -54,6 +54,10 @@ function hasExpectedParam(cta, key, value) {
   const attrKey = `data-${key}`;
   const fromData = cta.attrs[attrKey] || "";
   if (fromHref === value || fromData === value) return true;
+  if (key === "city") {
+    return queryParam(cta.href, "location") === value ||
+      cta.attrs["data-location"] === value;
+  }
   if (key === "intent" && (fromHref || fromData)) return true;
   if (key === "service" && (fromHref || fromData)) return true;
   if (key === "service" && value === "angebot-pruefen") return ["angebot_pruefen", "offer-check"].includes(fromHref) || ["angebot_pruefen", "offer-check"].includes(fromData);
@@ -131,8 +135,11 @@ async function main() {
       const serviceContextOk = !expected.service || hasDataService || Boolean(queryParam(cta.href, "service"));
       addResult(results, serviceContextOk ? "PASS" : "WARN", "cta-data", route.path, hasDataService ? "data-service present." : expected.service ? "Service query parameter present." : "No service parameter required for this route.", serviceContextOk ? "No action." : "Add service context to the primary contact CTA.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
       if (route.expectedCity && !["deutschland", "bayern"].includes(route.expectedCity)) {
-        const hasCity = Boolean(attrs["data-city"]) || queryParam(cta.href, "city") === route.expectedCity;
-        addResult(results, hasCity ? "PASS" : "WARN", "cta-data", route.path, hasCity ? "data-city/city param present." : "Local route CTA missing city.", hasCity ? "No action." : "Add data-city or city query parameter.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
+        const hasCity = Boolean(attrs["data-city"]) ||
+          Boolean(attrs["data-location"]) ||
+          queryParam(cta.href, "city") === route.expectedCity ||
+          queryParam(cta.href, "location") === route.expectedCity;
+        addResult(results, hasCity ? "PASS" : "WARN", "cta-data", route.path, hasCity ? "city/location context present." : "Local route CTA missing city/location.", hasCity ? "No action." : "Add a city/location query or data parameter.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });
       }
       const intentContextOk = !expected.intent || hasDataIntent || Boolean(queryParam(cta.href, "intent"));
       addResult(results, intentContextOk ? "PASS" : "WARN", "cta-data", route.path, hasDataIntent ? "Public request context present." : expected.intent ? "Intent query parameter present." : "No intent parameter required for this route.", intentContextOk ? "No action." : "Add intent context to the primary contact CTA URL.", { priority: route.priority, ctaText: cta.text, ctaHref: cta.href });

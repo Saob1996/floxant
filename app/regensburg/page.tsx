@@ -22,7 +22,7 @@ import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/regensburg";
 const canonical = `${company.url}${path}`;
-const contactHref = "/kontakt?city=regensburg&source=regensburg";
+const contactHref = "/kontakt?location=regensburg&intent=regensburg&source=website";
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [

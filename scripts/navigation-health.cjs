@@ -144,8 +144,8 @@ function checkTaxonomy(results) {
 function checkHubs(results) {
   const checks = [
     { file: "app/leistungen/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel"] },
-    { file: "app/duesseldorf/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"duesseldorf\""] },
-    { file: "app/regensburg/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"regensburg\""] },
+    { file: "app/duesseldorf/page.tsx", tokens: ["Reinigungsservice in Düsseldorf", "Reinigung anfragen", "Kurz erklärt für Düsseldorf."] },
+    { file: "app/regensburg/page.tsx", tokens: ["Umzug, Räumung und Reinigung in Regensburg.", "Diese Angaben helfen uns weiter.", "Kurz erklärt für Regensburg."] },
     { file: "app/kontakt/page.tsx", tokens: ["ContactLeadForm", "ContactHeroCopy", "contact-alternatives"] },
     { file: "components/ContactQueryPersonalization.tsx", tokens: ["RequestContextSelector", "context.availableServices", "ContactLeadForm"] },
     { file: "components/ContactPathChooser.tsx", tokens: ["ServiceGroupSelector", "LocationSelector", "RequestReasonSelector", "ContactFormIntro", "WhatHappensNext"] },

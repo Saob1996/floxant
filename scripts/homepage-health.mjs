@@ -75,7 +75,36 @@ const deferredGlobalFloatingRequestIsNeutral =
   && /export function buildGlobalRequestHref[\s\S]*?return `\/kontakt\?mode=neutral&source=\$\{source\}`;/u.test(requestContextSource);
 
 const mainServices = attributeValues("data-home-main-service");
-const specialServices = attributeValues("data-home-special");
+const homeSections = attributeValues("data-home-section");
+const expectedHomeSections = [
+  "hero",
+  "main-services",
+  "locations",
+  "about",
+  "offer-check",
+  "process",
+  "faq",
+  "contact",
+];
+const homeSectionMarkup = (section) =>
+  renderedMarkup.match(
+    new RegExp(`<section\\b[^>]*data-home-section="${section}"[^>]*>([\\s\\S]*?)<\\/section>`, "i"),
+  )?.[1] || "";
+const visibleSectionText = (section) => decodeEntities(
+  homeSectionMarkup(section)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim(),
+);
+const faqMarkup = homeSectionMarkup("faq");
+const faqQuestionCount = countMatches(faqMarkup, /<summary\b/gi);
+const aboutText = visibleSectionText("about");
+const contactMarkup = homeSectionMarkup("contact");
+const contactText = visibleSectionText("contact");
+const contactHrefs = [...contactMarkup.matchAll(/\shref="([^"]+)"/g)]
+  .map((match) => decodeEntities(match[1]));
+const hasRenderedPhoneCta = contactHrefs.some((href) => href.startsWith("tel:"));
+const hasRenderedWhatsAppCta = contactHrefs.some((href) => /^https:\/\/wa\.me\//i.test(href));
 const forbiddenTerms = [
   "Visual Proof",
   "Projektlogik",
@@ -110,16 +139,35 @@ const addCheck = (name, pass, detail, severity = "FAIL") => {
 addCheck("Startseite Status 200", statusCode === 200, statusCode ? `HTTP ${statusCode}` : `Nicht erreichbar: ${fetchError}`);
 addCheck("Genau eine H1", countMatches(html, /<h1\b/gi) === 1, `${countMatches(html, /<h1\b/gi)} H1`);
 addCheck("Hero-CTA vorhanden", html.includes("data-home-hero-primary"), "Anfrage senden im Hero");
-addCheck("Angebot-prüfen-CTA vorhanden", html.includes("data-home-offer-cta"), "Angebotsprüfung im Hero und eigener Sektion");
+addCheck("Angebot-prüfen-CTA vorhanden", html.includes("data-home-offer-cta"), "Angebotsprüfung in eigener Sektion");
 addCheck("Navigation initial geschlossen", !renderedMarkup.includes("data-desktop-mega-menu"), "Kein Desktopmenü im initialen HTML");
 addCheck("Kein automatisch geöffnetes Standortmenü", !renderedMarkup.includes('id="locations-menu"'), "Standortmenü wird nur nach Klick gerendert");
 addCheck("Keine interne Desktop-Menü-Scrollfläche", !/overflow-y-auto|max-h-\[calc\(100vh/.test(menuSource), "Kompaktes Menü ohne max-height/overflow-y-auto");
 addCheck("Maximal 12 Startseitenkarten", homeCardCount <= 12, `${homeCardCount} Karten`);
-addCheck("Maximal 6 Hauptservicekarten", mainServices.length <= 6, `${mainServices.length} Hauptservicekarten`);
-addCheck("Maximal 4 besondere Lösungen", specialServices.length <= 4, `${specialServices.length} besondere Lösungen`);
+addCheck("Genau 4 regionale Hauptservicekarten", mainServices.length === 4, `${mainServices.length} Hauptservicekarten`);
 addCheck("Keine doppelten Hauptservicekarten", new Set(mainServices).size === mainServices.length, mainServices.join(", "));
+addCheck(
+  "Menschlicher Über-FLOXANT-Bereich vorhanden",
+  aboutText.includes("FLOXANT – persönlich erreichbar, wenn etwas erledigt werden muss"),
+  "Persönliche Erreichbarkeit und Auftragsklärung werden sichtbar erklärt",
+);
+addCheck(
+  "Direkter Telefon- und WhatsApp-Kontakt vorhanden",
+  contactText.includes("Lieber kurz klären? Rufen Sie uns an.")
+    && contactText.includes("Jetzt anrufen")
+    && contactText.includes("WhatsApp öffnen")
+    && hasRenderedPhoneCta
+    && hasRenderedWhatsAppCta,
+  "Gerenderter Kontaktbereich enthält Telefon- und WhatsApp-Aktion",
+);
+addCheck("FAQ auf 4 bis 6 Kundenfragen begrenzt", faqQuestionCount >= 4 && faqQuestionCount <= 6, `${faqQuestionCount} FAQ`);
+addCheck("Kein HomepageRequestPlanner", !pageSource.includes("HomepageRequestPlanner"), "Keine interne Anfrageplaner-Logik auf der Startseite");
 addCheck("Kein wiederholtes Rubriklabel", countMatches(visibleText, /Häufig angefragte Leistungen/gi) <= 1, `${countMatches(visibleText, /Häufig angefragte Leistungen/gi)} Vorkommen`);
-addCheck("Kein sichtbares Verfügbarkeitslabel", !/\bverfügbar\b/i.test(visibleText), "Kein Statuslabel ‚verfügbar‘");
+addCheck(
+  "Ehrlicher Verfügbarkeitshinweis",
+  visibleText.includes("Termine nach Verfügbarkeit") && !/\b(?:sofort|heute|jetzt)\s+verfügbar\b/i.test(visibleText),
+  "Termine werden nicht als sofort verfügbar dargestellt",
+);
 addCheck("Kein sichtbares ‚2 Wege‘", !/\b2 Wege\b/i.test(visibleText), "Kein Paket-/Variantenlabel");
 addCheck("Keine sichtbaren internen Begriffe", visibleForbidden.length === 0, visibleForbidden.length ? visibleForbidden.join(", ") : "Keine Treffer");
 addCheck("Kein sichtbarer Debug-Text", !/\b(?:TODO|DEBUG|undefined|NaN)\b/i.test(visibleText), "Keine Debug-Platzhalter");
@@ -137,7 +185,12 @@ addCheck(
 addCheck("Kein Menü über dem Hero beim Laden", !renderedMarkup.includes("data-desktop-mega-menu"), "Hero startet frei");
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");
 addCheck("Keine Vercel-Usage-Rückkehr", runtimeHits.length === 0, runtimeHits.length ? runtimeHits.join(", ") : "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette");
-addCheck("Genau sieben Homepage-Abschnitte", countMatches(html, /data-home-section=/g) === 7, `${countMatches(html, /data-home-section=/g)} Abschnitte`);
+addCheck(
+  "Genau acht fokussierte Homepage-Abschnitte",
+  homeSections.length === expectedHomeSections.length
+    && expectedHomeSections.every((section) => homeSections.includes(section)),
+  homeSections.join(", "),
+);
 addCheck("Mobile Navigation maximal zwei Ebenen", countMatches(headerSource + menuSource, /<details\b/g) === 3 && !/\sopen=/.test(headerSource + menuSource), "Drei unabhängige, initial geschlossene Accordions", "WARN");
 
 const totals = {
@@ -157,7 +210,7 @@ const result = {
     sections: countMatches(html, /data-home-section=/g),
     cards: homeCardCount,
     mainServiceCards: mainServices.length,
-    specialSolutionCards: specialServices.length,
+    faqQuestions: faqQuestionCount,
     visibleWords: visibleText ? visibleText.split(/\s+/).length : 0,
   },
   checks,
@@ -177,7 +230,7 @@ Prüfziel: \`${baseUrl}/\`
 - Homepage-Abschnitte: ${result.metrics.sections}
 - gezählte Karten: ${result.metrics.cards}
 - Hauptservicekarten: ${result.metrics.mainServiceCards}
-- besondere Lösungen: ${result.metrics.specialSolutionCards}
+- Kunden-FAQ: ${result.metrics.faqQuestions}
 - sichtbare Wörter im Server-HTML: ${result.metrics.visibleWords}
 
 ## Prüfungen

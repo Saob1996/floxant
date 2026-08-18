@@ -110,8 +110,8 @@ const p0Pages = [
   ["app/kontakt/page.tsx", "ContactLeadForm"],
   ["app/objektbrief/page.tsx", "ObjectBriefPreview"],
   ["app/angebot-guenstiger-pruefen/page.tsx", "serviceKey=\"angebot-pruefen\""],
-  ["components/duesseldorf/DuesseldorfCleaningServicePage.tsx", "RequestBriefChecklistBlock"],
-  ["app/regensburg/umzug/page.tsx", "serviceKey=\"umzug\""],
+  ["components/duesseldorf/DuesseldorfCleaningServicePage.tsx", ["RequestBriefChecklistBlock", "config.requiredDetails"]],
+  ["app/regensburg/umzug/page.tsx", ["serviceKey=\"umzug\"", "neededDetails"]],
   ["app/klaviertransport-regensburg/page.tsx", "serviceKey=\"klaviertransport\""],
   ["app/entruempelung-regensburg/page.tsx", "serviceKey=\"entruempelung\""],
   ["app/wohnungsaufloesung-regensburg/page.tsx", "serviceKey=\"wohnungsaufloesung\""],
@@ -119,17 +119,22 @@ const p0Pages = [
   ["app/bueroreinigung-regensburg/page.tsx", "serviceKey=\"bueroreinigung\""],
   ["app/gewerbereinigung-regensburg/page.tsx", "serviceKey=\"gewerbereinigung\""],
   ["app/diskret-service/page.tsx", "serviceKey=\"diskret-service\""],
-  ["app/seniorenumzug-bayern/page.tsx", "serviceKey=\"seniorenumzug\""],
+  ["app/regensburg/seniorenumzug/page.tsx", "neededDetails"],
   ["components/GrowthServiceLandingPage.tsx", "requestBriefServiceKey"],
 ];
 const missingP0 = p0Pages
-  .filter(([file, needle]) => !read(path.join(ROOT, file)).includes(needle))
+  .filter(([file, needle]) => {
+    const source = read(path.join(ROOT, file));
+    return Array.isArray(needle)
+      ? !needle.some((candidate) => source.includes(candidate))
+      : !source.includes(needle);
+  })
   .map(([file]) => file);
 add(
   "p0:integration",
   missingP0.length ? "FAIL" : "PASS",
-  "P0 pages/templates include request checklist integration",
-  missingP0.length ? `Missing integration in: ${missingP0.join(", ")}` : "P0 pages and shared templates include request checklist blocks.",
+  "P0 pages/templates include request checklist integration or concise inline required details",
+  missingP0.length ? `Missing integration in: ${missingP0.join(", ")}` : "P0 pages and shared templates expose request checklists or concise required details.",
   p0Pages.map(([file]) => file),
 );
 

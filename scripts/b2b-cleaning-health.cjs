@@ -7,6 +7,7 @@ const ts = require("typescript");
 const root = process.cwd();
 const policyPath = path.join(root, "lib/booking/request-service-policy.js");
 const registryPath = path.join(root, "lib/services/service-registry.ts");
+const leadIntentsPath = path.join(root, "lib/lead-intents.ts");
 const resolverPath = path.join(root, "lib/lead-intents/resolve-request-context.ts");
 const b2bServiceIds = [
   "bueroreinigung",
@@ -73,6 +74,7 @@ const {
   isAllowedRequestCombination,
 } = require(policyPath);
 const { serviceRegistry } = require(registryPath);
+const { buildLeadHref } = require(leadIntentsPath);
 const { resolveRequestContext } = require(resolverPath);
 
 const results = [];
@@ -157,13 +159,12 @@ check(
 
 check(
   "cta:rendered-static",
-  "Statische B2B-Kontakt-CTAs sind gültig oder bewusst neutral",
+  "Statische und zentral konfigurierte B2B-Kontakt-CTAs sind gültig oder bewusst neutral",
   () => {
     const files = [
       "app/bueroreinigung/page.tsx",
       "app/gewerbereinigung/page.tsx",
       "components/B2BRequestPanel.tsx",
-      "components/duesseldorf/DuesseldorfCleaningServicePage.tsx",
     ];
     let checked = 0;
     for (const file of files) {
@@ -176,6 +177,15 @@ check(
           checked += 1;
         }
       }
+    }
+    const clusterSource = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
+    assert.match(clusterSource, /import \{ buildLeadHref \} from "@\/lib\/lead-intents"/);
+    for (const match of clusterSource.matchAll(/href:\s*requestHref\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)/g)) {
+      const service = match[1];
+      if (!b2bServiceIds.includes(service)) continue;
+      const href = buildLeadHref({ service, city: "duesseldorf", intent: match[2] });
+      assertContactHref(href, `DuesseldorfCleaningServicePage:${checked + 1}`);
+      checked += 1;
     }
     assert.ok(checked >= 8, "zu wenige B2B-Kontakt-CTAs gefunden");
   },

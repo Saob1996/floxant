@@ -217,13 +217,15 @@ test("Kontextseiten setzen Standort und kanonische Registry-Service-ID", () => {
     }
   }
 
-  assert.match(duesseldorfCleaningPages, /service=grundreinigung&city=duesseldorf/);
-  assert.match(duesseldorfCleaningPages, /service=baureinigung&city=duesseldorf/);
-  assert.match(duesseldorfCleaningPages, /service=treppenhausreinigung&city=duesseldorf&intent=hausverwaltung/);
-  assert.match(duesseldorfCleaningPages, /service=gewerbereinigung&city=duesseldorf&intent=objektreinigung/);
+  assert.match(duesseldorfCleaningPages, /import \{ buildLeadHref \} from "@\/lib\/lead-intents"/);
+  assert.match(duesseldorfCleaningPages, /buildLeadHref\(\{ service, city: "duesseldorf", intent \}\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("reinigung", "grundreinigung-duesseldorf"\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("reinigung", "bauendreinigung-duesseldorf"\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("treppenhausreinigung", "treppenhausreinigung-duesseldorf"\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("gewerbereinigung", "gewerbereinigung-duesseldorf"\)/);
   assert.doesNotMatch(
     duesseldorfCleaningPages,
-    /service=(?:solarreinigung|hausverwaltung-reinigung|gebaeudereinigung)&city=duesseldorf/,
+    /requestHref\("(?:solarreinigung|hausverwaltung-reinigung|gebaeudereinigung)"/,
   );
 });
 

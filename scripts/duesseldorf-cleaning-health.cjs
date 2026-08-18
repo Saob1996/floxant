@@ -7,6 +7,7 @@ const ts = require("typescript");
 const root = process.cwd();
 const policyPath = path.join(root, "lib/booking/request-service-policy.js");
 const registryPath = path.join(root, "lib/services/service-registry.ts");
+const leadIntentsPath = path.join(root, "lib/lead-intents.ts");
 const resolverPath = path.join(root, "lib/lead-intents/resolve-request-context.ts");
 
 function read(relativePath) {
@@ -67,6 +68,7 @@ const {
   isAllowedRequestCombination,
 } = require(policyPath);
 const { serviceRegistry } = require(registryPath);
+const { buildLeadHref } = require(leadIntentsPath);
 const { resolveRequestContext } = require(resolverPath);
 
 const results = [];
@@ -165,12 +167,17 @@ check(
 
 check(
   "cta:duesseldorf-component",
-  "Statische Kontakt-CTAs des Düsseldorfer Reinigungsclusters sind gültig oder bewusst neutral",
+  "Konfigurierte Kontakt-CTAs des Düsseldorfer Reinigungsclusters nutzen den zentralen Builder und gültige Kontexte",
   () => {
     const source = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
-    const hrefs = [...source.matchAll(/["'](\/kontakt\?[^"']+)["']/g)].map((match) => match[1]);
-    assert.ok(hrefs.length >= 10, "zu wenige zentrale Kontakt-CTAs gefunden");
-    hrefs.forEach((href, index) => assertValidServiceHref(href, `CTA ${index + 1}`, "duesseldorf"));
+    assert.match(source, /import \{ buildLeadHref \} from "@\/lib\/lead-intents"/);
+    assert.match(source, /buildLeadHref\(\{ service, city: "duesseldorf", intent \}\)/);
+    const configuredCtas = [...source.matchAll(/href:\s*requestHref\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)/g)];
+    assert.equal(configuredCtas.length, 9, "nicht alle neun Reinigungsseiten haben einen konfigurierten CTA");
+    configuredCtas.forEach((match, index) => {
+      const href = buildLeadHref({ service: match[1], city: "duesseldorf", intent: match[2] });
+      assertValidServiceHref(href, `CTA ${index + 1}`, "duesseldorf");
+    });
   },
 );
 
