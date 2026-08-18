@@ -13,7 +13,6 @@ import {
 } from "@/lib/floxant-services";
 import { germanText } from "@/lib/german-text";
 import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
-import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
@@ -30,15 +29,35 @@ const authorityLinks = [
   { href: "/duesseldorf", label: "Düsseldorf" },
   { href: "/regensburg", label: "Regensburg" },
   { href: "/leistungen", label: "Leistungen" },
-  { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
   { href: "/kontakt", label: "Kontakt" },
-  { href: "/signature-services", label: "Besondere Leistungen" },
   { href: "/fragen", label: "Fragen und Antworten" },
-  { href: "/service-finder", label: "Service Finder" },
-  { href: "/suche", label: "Suche" },
-  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-  { href: "/reinigungsfirma-angebot", label: "Reinigungsangebot" },
+] as const;
+
+const footerNavigationGroups = [
+  {
+    title: "Leistungen",
+    links: [
+      { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
+      { label: "Umzug Regensburg", href: "/regensburg/umzug" },
+      { label: "Seniorenumzug", href: "/regensburg/seniorenumzug" },
+      { label: "Entrümpelung", href: "/regensburg/entruempelung" },
+      { label: "Wohnungsauflösung", href: "/regensburg/wohnungsaufloesung" },
+    ],
+  },
+  {
+    title: "Standorte",
+    links: [
+      { label: "Düsseldorf", href: "/duesseldorf" },
+      { label: "Regensburg", href: "/regensburg" },
+    ],
+  },
+  {
+    title: "Kontakt",
+    links: [
+      { label: "Anfrage senden", href: "/kontakt?mode=neutral&source=website" },
+      { label: "Vorhandenes Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
+    ],
+  },
 ] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {
@@ -73,14 +92,14 @@ export function Footer({ dic }: { dic?: any } = {}) {
       : ["duesseldorf", "regensburg"];
   const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
   const footerIntro = isDuesseldorfContext
-    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
+    ? "In Düsseldorf liegt der Schwerpunkt auf Reinigung für Wohnung, Büro, Praxis und Gewerbe."
     : isRegensburgContext
-      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
+      ? "In Regensburg können Sie Umzug, Transport, Entrümpelung, Wohnungsauflösung und ergänzende Reinigung anfragen."
       : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
   const footerContactHref = buildGlobalRequestHref("global_footer");
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
+    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-28 pt-14 text-white sm:px-8 md:pb-12 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
@@ -119,11 +138,11 @@ export function Footer({ dic }: { dic?: any } = {}) {
               onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
               data-event="request_cta_click"
               data-source="global_footer"
-              data-cta-label="Angebot anfragen"
+              data-cta-label="Anfrage senden"
               data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
-              Angebot anfragen
+              Anfrage senden
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

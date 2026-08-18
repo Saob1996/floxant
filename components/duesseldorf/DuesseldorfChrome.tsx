@@ -1,111 +1,80 @@
 import type { ReactNode } from "react";
-import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
-import { ArrowRight, MapPin, MessageCircle, Phone } from "lucide-react";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
 
-import { FloxServiceCard } from "@/components/FloxServiceCard";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { duesseldorfCompany } from "@/lib/company";
-import {
-  floxantCategoryDescriptions,
-  floxantCategoryLabels,
-  floxantCategoryOrder,
-  getServicesByRegionAndCategory,
-} from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+
+const coreLinks = [
+  { href: "/duesseldorf", label: "Düsseldorf im Überblick" },
+  { href: "/duesseldorf/reinigung", label: "Reinigung" },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
+  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung" },
+  { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung" },
+  { href: "/duesseldorf/grundreinigung", label: "Grundreinigung" },
+] as const;
 
 export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   const whatsappHref = buildWhatsAppHref(
     duesseldorfCompany.phoneRaw,
-    [
-      "Hallo FLOXANT Düsseldorf,",
-      "ich möchte eine Anfrage in Düsseldorf stellen.",
-      "Service, Ort, Umfang, Termin und Fotos kann ich senden.",
-    ].join("\n"),
+    "Hallo FLOXANT Düsseldorf, ich möchte eine Reinigungsleistung anfragen.",
   );
 
   return (
     <div className="min-h-screen overflow-x-clip bg-white pt-24 lg:pt-28">
       {children}
 
-      <footer className="border-t border-slate-200 bg-white px-5 pb-32 pt-14 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <footer className="border-t border-slate-200 bg-white px-5 pb-28 pt-12 sm:px-8 md:pb-14 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
               FLOXANT Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Düsseldorf-Anfragen klar aufstellen.
+              Reinigung persönlich abstimmen.
             </h2>
-            <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-              In Düsseldorf können Sie Reinigung, Angebotsprüfung und weitere passende Leistungen anfragen. Ort, Umfang, Zugang und Termin werden vor einer Zusage geprüft.
+            <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
+              Nennen Sie Objekt, Fläche, gewünschten Umfang und Termin. Offene Fragen lassen sich auch telefonisch oder per WhatsApp klären.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
-                <MapPin className="mb-2 h-5 w-5 text-blue-700" />
-                {duesseldorfCompany.streetAddress}, {duesseldorfCompany.postalCode}{" "}
-                {duesseldorfCompany.city}
-              </div>
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
-                <a href={`tel:${duesseldorfCompany.phoneRaw}`} className="flex items-center gap-2 hover:text-blue-700">
-                  <Phone className="h-5 w-5 text-blue-700" />
-                  {duesseldorfCompany.phone}
-                </a>
-                <a href={whatsappHref} className="mt-3 flex items-center gap-2 hover:text-emerald-700" data-event="whatsapp_click">
-                  <MessageCircle className="h-5 w-5 text-emerald-600" />
-                  WhatsApp schreiben
-                </a>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                href="/duesseldorf"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
+            <div className="mt-6 flex flex-col gap-3 text-sm font-bold text-slate-700 sm:flex-row sm:flex-wrap sm:gap-5">
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-blue-700" aria-hidden="true" />
+                {duesseldorfCompany.streetAddress}, {duesseldorfCompany.postalCode} {duesseldorfCompany.city}
+              </span>
+              <a href={`tel:${duesseldorfCompany.phoneRaw}`} className="inline-flex items-center gap-2 hover:text-blue-700">
+                <Phone className="h-5 w-5 text-blue-700" aria-hidden="true" />
+                {duesseldorfCompany.phone}
+              </a>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-emerald-700"
+                data-event="whatsapp_click"
               >
-                Leistungen in Düsseldorf ansehen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 text-sm font-black text-slate-800"
-              >
-                Angebot prüfen lassen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                <MessageCircle className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+                WhatsApp
+              </a>
             </div>
           </div>
 
-          <div>
+          <nav aria-label="Wichtige Leistungen in Düsseldorf">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Direkte Services
+              Wichtige Leistungen
             </p>
-            <div className="mt-4 grid gap-4">
-              {floxantCategoryOrder.map((category) => {
-                const services = getServicesByRegionAndCategory("duesseldorf", category);
-                if (!services.length) return null;
-
-                return (
-                  <section key={category} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                    <h3 className="text-xs font-black uppercase tracking-normal text-slate-800">
-                      {floxantCategoryLabels[category]}
-                    </h3>
-                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                      {floxantCategoryDescriptions[category]}
-                    </p>
-                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {services.slice(0, 6).map((service) => (
-                        <FloxServiceCard
-                          key={service.id}
-                          service={service}
-                          compact
-                          source={`duesseldorf_footer_${category}`}
-                          className="shadow-none"
-                        />
-                      ))}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-          </div>
+            <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+              {coreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="inline-flex min-h-11 items-center text-sm font-black text-slate-800 hover:text-blue-700"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </footer>
     </div>
