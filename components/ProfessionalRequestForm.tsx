@@ -357,6 +357,7 @@ export function ProfessionalRequestForm({
   );
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
+  const hasMountedStepRef = useRef(false);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
   const pendingErrorFocusRef = useRef("");
   const submitLockRef = useRef(false);
@@ -370,6 +371,10 @@ export function ProfessionalRequestForm({
   });
 
   useEffect(() => {
+    if (!hasMountedStepRef.current) {
+      hasMountedStepRef.current = true;
+      return;
+    }
     stepHeadingRef.current?.focus();
   }, [step]);
 
