@@ -59,8 +59,11 @@ function isAdmin(appMetadata: Record<string, unknown> | undefined): boolean {
 
 function statusTone(status: string): string {
   if (status === "new") return "border-cyan-200/25 bg-cyan-200/10 text-cyan-100";
-  if (status === "in_bearbeitung") return "border-amber-200/25 bg-amber-200/10 text-amber-100";
-  if (status === "erledigt") return "border-emerald-200/25 bg-emerald-200/10 text-emerald-100";
+  if (["in_progress", "contacted", "quote_sent", "appointment_scheduled", "in_bearbeitung"].includes(status)) {
+    return "border-amber-200/25 bg-amber-200/10 text-amber-100";
+  }
+  if (["won", "completed", "erledigt"].includes(status)) return "border-emerald-200/25 bg-emerald-200/10 text-emerald-100";
+  if (status === "lost") return "border-rose-200/25 bg-rose-200/10 text-rose-100";
   return "border-white/10 bg-white/[0.06] text-slate-300";
 }
 
@@ -269,8 +272,8 @@ export function AdminDashboard() {
     : null;
   const counts = {
     new: bookings.filter((booking) => (booking.status || "new") === "new").length,
-    inProgress: bookings.filter((booking) => booking.status === "in_bearbeitung").length,
-    done: bookings.filter((booking) => booking.status === "erledigt").length,
+    inProgress: bookings.filter((booking) => ["in_progress", "contacted", "quote_sent", "appointment_scheduled", "in_bearbeitung"].includes(booking.status || "")).length,
+    done: bookings.filter((booking) => ["completed", "erledigt"].includes(booking.status || "")).length,
   };
 
   async function updateStatus(bookingId: string, status: EditableBookingStatus) {
@@ -280,18 +283,36 @@ export function AdminDashboard() {
     setUpdatingId(bookingId);
     setError("");
 
-    const { data, error: updateError } = await supabase
-      .from("bookings")
-      .update({ status })
-      .eq("id", bookingId)
-      .select("id,status")
-      .single();
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    const accessToken = sessionData.session?.access_token;
+    if (sessionError || !accessToken) {
+      setError("Die Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.");
+      setUpdatingId(null);
+      return;
+    }
 
-    if (updateError || !data) {
+    let result: { bookingId?: string; status?: string } | null = null;
+    let response: Response | null = null;
+    try {
+      response = await fetch(`/api/admin/bookings/${encodeURIComponent(bookingId)}`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      });
+      result = await response.json().catch(() => null) as { bookingId?: string; status?: string } | null;
+    } catch {
+      response = null;
+    }
+
+    if (!response?.ok || result?.bookingId !== bookingId || result.status !== status) {
       setError("Der Status konnte nicht aktualisiert werden. Bitte prüfen Sie Ihre Berechtigung und versuchen Sie es erneut.");
     } else {
       setBookings((current) =>
-        current.map((booking) => (booking.id === bookingId ? { ...booking, status: data.status } : booking)),
+        current.map((booking) => (booking.id === bookingId ? { ...booking, status: result?.status || status } : booking)),
       );
     }
 
@@ -513,7 +534,7 @@ export function AdminDashboard() {
           ) : (
             <>
               <div className="hidden overflow-x-auto lg:block">
-                <table className="w-full min-w-[1380px] border-collapse text-left">
+                <table className="w-full min-w-[1500px] border-collapse text-left">
                   <thead>
                     <tr className="border-b border-white/10 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
                       <th className="px-5 py-4">Name</th>
@@ -522,6 +543,7 @@ export function AdminDashboard() {
                       <th className="px-5 py-4">Standort</th>
                       <th className="px-5 py-4">Telefon</th>
                       <th className="px-5 py-4">E-Mail</th>
+                      <th className="px-5 py-4">Quelle</th>
                       <th className="px-5 py-4">Status</th>
                       <th className="px-5 py-4 text-right">Schnellaktionen</th>
                     </tr>
@@ -547,6 +569,9 @@ export function AdminDashboard() {
                           </td>
                           <td className="px-5 py-5 text-sm font-bold text-slate-300">
                             {summary.email ? <a href={`mailto:${summary.email}`} className="block max-w-56 truncate text-cyan-100 hover:text-white">{summary.email}</a> : "Nicht angegeben"}
+                          </td>
+                          <td className="px-5 py-5 text-sm font-bold text-slate-300">
+                            <p className="max-w-48 truncate">{summary.source || "Nicht angegeben"}</p>
                           </td>
                           <td className="px-5 py-5">
                             <select
@@ -593,6 +618,7 @@ export function AdminDashboard() {
                         <p className="flex items-start gap-2 text-slate-400"><Clock3 className="mt-0.5 h-4 w-4 shrink-0" />{formatBookingDate(summary.date)}</p>
                         <p className="flex items-start gap-2 text-slate-400"><Phone className="mt-0.5 h-4 w-4 shrink-0" />{summary.phone || "Telefon nicht angegeben"}</p>
                         <p className="flex items-start gap-2 text-slate-400"><Mail className="mt-0.5 h-4 w-4 shrink-0" />{summary.email || "E-Mail nicht angegeben"}</p>
+                        <p className="flex items-start gap-2 text-slate-400"><Megaphone className="mt-0.5 h-4 w-4 shrink-0" />{summary.source || "Quelle nicht angegeben"}</p>
                       </div>
                       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                         {summary.phone ? <a href={phoneHref(summary.phone)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-3 text-xs font-black text-cyan-100"><Phone className="h-4 w-4" />Anrufen</a> : null}

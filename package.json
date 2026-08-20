@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node scripts/request-service-policy-test.cjs && node scripts/request-payload-contract-test.mjs && node scripts/contact-cta-policy-test.mjs && node scripts/customer-experience-test.mjs && node scripts/cloudflare-functions-test.mjs && node scripts/admin-booking-delete-test.mjs && node scripts/google-tag-consent-test.mjs && node scripts/admin-dashboard-details-test.mjs && node scripts/global-request-routing-test.mjs && node scripts/professional-conversion-release-test.mjs && node scripts/public-content-boundary-test.mjs && npm run test:structured-data && npm run test:calculator",
+    "test": "node scripts/request-service-policy-test.cjs && node scripts/request-payload-contract-test.mjs && node scripts/contact-cta-policy-test.mjs && node scripts/customer-experience-test.mjs && node scripts/cloudflare-functions-test.mjs && node scripts/admin-booking-status-test.mjs && node scripts/admin-booking-delete-test.mjs && node scripts/google-tag-consent-test.mjs && node scripts/admin-dashboard-details-test.mjs && node scripts/google-business-booking-test.mjs && node scripts/global-request-routing-test.mjs && node scripts/professional-conversion-release-test.mjs && node scripts/public-content-boundary-test.mjs && npm run test:structured-data && npm run test:calculator",
     "test:structured-data": "node scripts/structured-data-policy-test.cjs",
     "test:calculator": "node scripts/run-calculator-tests.mjs",
     "typecheck:calculator": "tsc --noEmit -p tsconfig.calculator.json",

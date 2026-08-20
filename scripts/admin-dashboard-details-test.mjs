@@ -445,6 +445,40 @@ for (const testCase of cases) {
 }
 
 {
+  const gbpBooking = booking({
+    service: "reinigung",
+    details: {
+      service: {
+        source: "google_maps",
+        entryPoint: "/duesseldorf/buchen",
+        regionPreset: "duesseldorf",
+      },
+      configuration: {
+        city: "Düsseldorf",
+        sourcePage: "/duesseldorf/buchen",
+        landingPage: "/duesseldorf/buchen",
+      },
+      metadata: {
+        clientContext: {
+          utmSource: "google",
+          utmMedium: "organic",
+          utmCampaign: "gbp_duesseldorf",
+          utmContent: "booking",
+        },
+      },
+    },
+  });
+  const summary = getBookingSummary(gbpBooking);
+  assert.equal(summary.source, "Google-Unternehmensprofil");
+  assert.equal(summary.location, "Düsseldorf");
+  assert.equal(summary.entryPoint, "/duesseldorf/buchen");
+  const detailView = buildAdminBookingDetailView(gbpBooking);
+  assertContains(detailView, "Google-Unternehmensprofil", "GBP-Quelle");
+  assertContains(detailView, "/duesseldorf/buchen", "GBP-Einstieg");
+  assertContains(detailView, "Düsseldorf", "GBP-Standort");
+}
+
+{
   const clearanceView = buildAdminBookingDetailView(booking({
     service: "entruempelung",
     details: {
@@ -459,6 +493,33 @@ for (const testCase of cases) {
   const locationItems = clearanceView.sections.find((section) => section.id === "location")?.items || [];
   assert.equal(locationItems.find((item) => item.path.endsWith("object.floor"))?.label, "Etage");
   assert.equal(locationItems.find((item) => item.path.endsWith("object.elevator"))?.label, "Aufzug");
+}
+
+{
+  const movingView = buildAdminBookingDetailView(booking({
+    details: {
+      configuration: {
+        rawFields: {
+          volumeM3: 0,
+          distanceKm: "128 km",
+          packingService: false,
+          unpackingService: true,
+          kitchenAssembly: "angefragt",
+          noParkingZoneFrom: true,
+          noParkingZoneTo: false,
+        },
+      },
+    },
+  }));
+  const serviceItems = movingView.sections.find((section) => section.id === "service")?.items || [];
+  const values = Object.fromEntries(serviceItems.map((item) => [item.label, item.value]));
+  assert.equal(values["Geschätztes Volumen"], 0);
+  assert.equal(values.Entfernung, "128 km");
+  assert.equal(values.Verpackung, false);
+  assert.equal(values.Auspackservice, true);
+  assert.equal(values.Küchenmontage, "angefragt");
+  assert.equal(values["Halteverbotszone am Startort"], true);
+  assert.equal(values["Halteverbotszone am Zielort"], false);
 }
 
 const movingServiceVariants = [

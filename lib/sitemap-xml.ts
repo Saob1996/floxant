@@ -122,6 +122,8 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "agb",
   "widerruf",
   "buchungsbedingungen",
+  "regensburg/buchen",
+  "duesseldorf/buchen",
   "angebot-vergleichen-duesseldorf/danke",
   "umzug-regensburg/anfrage",
   "regensburg/reinigung/datenschutz",

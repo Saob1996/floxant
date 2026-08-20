@@ -64,7 +64,20 @@ function isEmpty(value: unknown): boolean {
 function toDisplayValue(value: unknown): AdminDisplayValue | null {
   const parsed = parseJson(value);
   if (isEmpty(parsed)) return null;
-  if (typeof parsed === "string" || typeof parsed === "number" || typeof parsed === "boolean") {
+  if (typeof parsed === "string") {
+    const normalized = parsed.trim().toLowerCase().replace(/[ -]+/g, "_");
+    if (["google_maps", "google_business_profile", "gbp"].includes(normalized)) {
+      return "Google-Unternehmensprofil";
+    }
+    const serviceLabels: Record<string, string> = {
+      moebelmontage: "Möbelmontage",
+      umzugsreinigung: "Umzugsreinigung",
+      bauendreinigung: "Bauendreinigung",
+    };
+    if (serviceLabels[normalized]) return serviceLabels[normalized];
+    return parsed;
+  }
+  if (typeof parsed === "number" || typeof parsed === "boolean") {
     return parsed;
   }
   if (Array.isArray(parsed)) {
@@ -825,6 +838,32 @@ export function buildAdminBookingDetailView(
           consumed,
         ),
         item(
+          "Geschätztes Volumen",
+          details,
+          [
+            "configuration.estimatedVolume",
+            "configuration.volumeEstimate",
+            "configuration.volumeM3",
+            "configuration.calculatorInputs.umzug.volumeM3",
+            "valuation.pricingSignals.volumeM3",
+            "configuration.rawFields.estimatedVolume",
+            "configuration.rawFields.volumeEstimate",
+            "configuration.rawFields.volumeM3",
+          ],
+          consumed,
+        ),
+        item(
+          "Entfernung",
+          details,
+          [
+            "configuration.distanceKm",
+            "configuration.calculatorInputs.umzug.distanceKm",
+            "valuation.pricingSignals.distanceKm",
+            "configuration.rawFields.distanceKm",
+          ],
+          consumed,
+        ),
+        item(
           "Möbel und Gegenstände",
           details,
           [
@@ -922,6 +961,7 @@ export function buildAdminBookingDetailView(
             "configuration.disassemblyService",
             "configuration.disassemblyRequired",
             "configuration.rawFields.disassembly",
+            "configuration.rawFields.disassemblyService",
           ],
           consumed,
         ),
@@ -940,7 +980,32 @@ export function buildAdminBookingDetailView(
           [
             "configuration.packingService",
             "configuration.rawFields.packing",
+            "configuration.rawFields.packingService",
           ],
+          consumed,
+        ),
+        item(
+          "Auspackservice",
+          details,
+          ["configuration.unpackingService", "configuration.rawFields.unpackingService"],
+          consumed,
+        ),
+        item(
+          "Küchenmontage",
+          details,
+          ["configuration.kitchenAssembly", "configuration.rawFields.kitchenAssembly"],
+          consumed,
+        ),
+        item(
+          "Halteverbotszone am Startort",
+          details,
+          ["configuration.noParkingZoneFrom", "configuration.rawFields.noParkingZoneFrom"],
+          consumed,
+        ),
+        item(
+          "Halteverbotszone am Zielort",
+          details,
+          ["configuration.noParkingZoneTo", "configuration.rawFields.noParkingZoneTo"],
           consumed,
         ),
         item(

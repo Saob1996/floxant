@@ -32,14 +32,26 @@ export const BOOKING_SELECT = [
 
 export const EDITABLE_STATUSES = [
   { value: "new", label: "Neu" },
-  { value: "in_bearbeitung", label: "In Bearbeitung" },
-  { value: "erledigt", label: "Erledigt" },
+  { value: "in_progress", label: "In Bearbeitung" },
+  { value: "contacted", label: "Kontaktiert" },
+  { value: "quote_sent", label: "Angebot gesendet" },
+  { value: "appointment_scheduled", label: "Termin vereinbart" },
+  { value: "won", label: "Auftrag gewonnen" },
+  { value: "lost", label: "Auftrag verloren" },
+  { value: "completed", label: "Erledigt" },
 ] as const;
 
 export type EditableBookingStatus = (typeof EDITABLE_STATUSES)[number]["value"];
 
 const STATUS_LABELS: Record<string, string> = {
   new: "Neu",
+  in_progress: "In Bearbeitung",
+  contacted: "Kontaktiert",
+  quote_sent: "Angebot gesendet",
+  appointment_scheduled: "Termin vereinbart",
+  won: "Auftrag gewonnen",
+  lost: "Auftrag verloren",
+  completed: "Erledigt",
   in_bearbeitung: "In Bearbeitung",
   erledigt: "Erledigt",
   deleted: "Gelöscht (Altbestand)",
@@ -76,6 +88,14 @@ function firstText(source: unknown, paths: string[]): string {
 
 function normalizedTopLevel(value: string | null | undefined): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+export function getLeadSourceLabel(source: string | null | undefined): string {
+  const normalized = normalizedTopLevel(source).toLowerCase().replace(/[ -]+/g, "_");
+  if (["google_maps", "google_business_profile", "gbp"].includes(normalized)) {
+    return "Google-Unternehmensprofil";
+  }
+  return normalizedTopLevel(source);
 }
 
 export function getStatusLabel(status: string | null | undefined): string {
@@ -179,14 +199,14 @@ export function getBookingSummary(booking: BookingRecord) {
       "configuration.rawFields.notes",
       "valuation.pricingSignals.customerMessage",
     ]) || legacyDetails,
-    source: firstText(details, [
+    source: getLeadSourceLabel(firstText(details, [
       "service.source",
       "metadata.source",
       "configuration.leadSource",
       "configuration.rawFields.leadSource",
       "configuration.rawFields.source",
       "source",
-    ]),
+    ])),
     entryPoint: firstText(details, [
       "service.entryPoint",
       "configuration.entryPoint",

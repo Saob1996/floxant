@@ -99,6 +99,8 @@ export const ALLOWED_NESTED_FIELDS = new Set([
 export const ALLOWED_FILE_FIELDS = new Set(FILE_FIELD_NAMES);
 
 const OMIT = Symbol("omit-empty-payload-value");
+const BLOCKED_PAYLOAD_KEYS = new Set(["__proto__", "prototype", "constructor"]);
+const SAFE_PAYLOAD_KEY = /^[A-Za-z][A-Za-z0-9_-]{0,79}$/;
 
 export class PayloadValidationError extends Error {
   constructor(fields, code = "VALIDATION_ERROR", unsupportedFields = []) {
@@ -151,6 +153,25 @@ function assertRawShape(value, request, depth = 0, counter = { fields: 0 }) {
   }
 }
 
+function assertSafePayloadKeys(value, request, path = "") {
+  if (!value || typeof value !== "object") return;
+  if (Array.isArray(value)) {
+    for (const childValue of value) assertSafePayloadKeys(childValue, request, path);
+    return;
+  }
+  for (const [key, childValue] of Object.entries(value)) {
+    const safePath = path ? `${path}.${key}` : key;
+    if (!SAFE_PAYLOAD_KEY.test(key) || BLOCKED_PAYLOAD_KEYS.has(key)) {
+      throw new PayloadValidationError(
+        { form: unsupportedFields(request) },
+        "UNSUPPORTED_FIELDS",
+        [safePath],
+      );
+    }
+    assertSafePayloadKeys(childValue, request, safePath);
+  }
+}
+
 function normalizeValue(value, request, depth = 0, root = false, path = "") {
   if (depth > MAX_PAYLOAD_DEPTH) {
     throw new PayloadValidationError({ form: "Die Anfrage enthält zu viele verschachtelte Angaben." });
@@ -177,10 +198,12 @@ function normalizeValue(value, request, depth = 0, root = false, path = "") {
   if (root && entries.length > MAX_TOP_LEVEL_FIELDS) {
     throw new PayloadValidationError({ form: tooManyFields(request) });
   }
-  const allowedFields = root ? ALLOWED_TOP_LEVEL_FIELDS : ALLOWED_NESTED_FIELDS;
   const normalized = {};
   for (const [key, childValue] of entries) {
-    if (!allowedFields.has(key) || (root && ALLOWED_FILE_FIELDS.has(key))) {
+    // Keep future form fields instead of silently dropping them. Structural
+    // limits above still cap depth, field count and array size; unsafe object
+    // keys and multipart file fields remain rejected explicitly.
+    if (!SAFE_PAYLOAD_KEY.test(key) || BLOCKED_PAYLOAD_KEYS.has(key) || (root && ALLOWED_FILE_FIELDS.has(key))) {
       const safePath = path ? `${path}.${key}` : key;
       throw new PayloadValidationError(
         { form: unsupportedFields(request) },
@@ -227,6 +250,7 @@ export function normalizeLeadPayload(payload, request) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     throw new PayloadValidationError({ form: "Das Anfrageformat ist ungültig." });
   }
+  assertSafePayloadKeys(payload, request);
   const aliasedPayload = normalizeRequestAliases(payload);
   if (Object.keys(aliasedPayload).length > MAX_TOP_LEVEL_FIELDS) {
     throw new PayloadValidationError({ form: tooManyFields(request) });

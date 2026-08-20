@@ -935,6 +935,11 @@ export function ProfessionalRequestForm({
       entryPage = landingPage;
     }
     const query = new URLSearchParams(window.location.search);
+    const requestedServiceParam = attributionValue(query.get("service"), 80);
+    const requestedService =
+      context.valid && /^[a-z0-9-]{1,80}$/.test(requestedServiceParam)
+        ? requestedServiceParam
+        : context.serviceKey;
     const bookingService = getBookingServiceForLead(context.service || "sonstiges");
     const attribution = {
       utmSource: attributionValue(query.get("utm_source")),
@@ -968,6 +973,7 @@ export function ProfessionalRequestForm({
         entryPage,
         campaign: context.campaign,
         serviceId: context.serviceKey,
+        requestedService,
         serviceLabel: context.leadIntent.serviceLabel,
         dashboardLabel: context.leadIntent.serviceLabel,
         formProfile: context.formVariant,
@@ -1072,6 +1078,7 @@ export function ProfessionalRequestForm({
       landingPage,
       service: bookingService,
       serviceId: context.serviceKey,
+      requestedService,
       serviceLabel: context.leadIntent.serviceLabel,
       serviceCategory: context.serviceKey,
       location: context.location,

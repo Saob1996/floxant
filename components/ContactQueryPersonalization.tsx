@@ -42,6 +42,11 @@ function useCurrentQuery() {
 
 function resolveQueryContext(query: string, fallback: RequestContextInput = {}) {
   const params = new URLSearchParams(query);
+  const utmSource = params.get("utm_source")?.trim().toLowerCase() || "";
+  const utmCampaign = params.get("utm_campaign")?.trim().toLowerCase() || "";
+  const isGoogleBusinessProfile =
+    ["google", "gbp", "google_business_profile", "google-business-profile"].includes(utmSource) &&
+    /(?:^|[_-])gbp(?:[_-]|$)/.test(utmCampaign);
   return resolveRequestContext({
     mode: params.get("mode"),
     location: params.get("location") || params.get("region") || fallback.location,
@@ -49,7 +54,7 @@ function resolveQueryContext(query: string, fallback: RequestContextInput = {}) 
     service: params.get("service") || fallback.service,
     intent: params.get("intent"),
     priority: params.get("priority"),
-    source: params.get("source") || fallback.source,
+    source: params.get("source") || (isGoogleBusinessProfile ? "google_maps" : fallback.source),
     entryPage: params.get("entryPage") || fallback.entryPage,
     campaign: params.get("campaign") || params.get("utm_campaign"),
     locale: params.get("locale"),
@@ -218,7 +223,10 @@ export function ContactLeadForm({
     () => ({
       location: defaultLocation,
       service: defaultService,
-      source: sourcePage === "/buchung" ? "buchung" : "kontakt",
+      source:
+        sourcePage === "/buchung" || sourcePage.endsWith("/buchen")
+          ? "buchung"
+          : "kontakt",
       entryPage: sourcePage,
     }),
     [defaultLocation, defaultService, sourcePage],

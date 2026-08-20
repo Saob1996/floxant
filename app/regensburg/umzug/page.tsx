@@ -24,8 +24,8 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const canonicalPath = "/regensburg/umzug";
-const moveContactHref =
-  "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website";
+const moveContactHref = "/regensburg/buchen?service=umzug";
+const furnitureAssemblyHref = "/regensburg/buchen?service=moebelmontage";
 const offerCheckHref =
   "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
 const pageMeta = getPrioritySeoMeta(canonicalPath);
@@ -95,17 +95,21 @@ const moveTypes = [
 ] as const;
 
 const serviceScope = [
-  "vereinbarte Möbel und Kartons transportieren",
-  "Tragewege an Start und Ziel berücksichtigen",
-  "Demontage oder Montage nach Absprache einplanen",
-  "Packhilfe, Räumung oder Reinigung getrennt ergänzen",
+  "kompletter Umzug mit Möbeln und Kartons",
+  "reine Tragehilfe mit klar beschriebenem Umfang",
+  "Möbeltransport oder Transport einzelner Gegenstände",
+  "Möbelabbau und Möbelaufbau nach Absprache",
+  "Einpackservice als eigener Leistungspunkt",
+  "Reinigung oder Entrümpelung getrennt ergänzen",
 ] as const;
 
 const neededDetails = [
-  "vollständiger Start- und Zielort",
+  "vollständige Start- und Zieladresse mit Postleitzahl",
   "Etage und Aufzug an beiden Adressen",
-  "Möbelmenge, Kartons und große Einzelstücke",
+  "Zimmerzahl, Wohnfläche, Möbelmenge und Kartons",
+  "besondere Gegenstände und gewünschte Zusatzleistungen",
   "Treppen, Laufwege und mögliche Ladeplätze",
+  "Fotos von Möbeln, Zugängen und Engstellen",
   "Terminwunsch oder verfügbares Zeitfenster",
   "Montage, Packhilfe oder Reinigung als getrennte Wünsche",
 ] as const;
@@ -282,15 +286,15 @@ export default function RegensburgUmzugPage() {
             </nav>
             <p className="mt-7 flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
               <MapPin className="h-4 w-4" aria-hidden="true" />
-              Umzug in Regensburg
+              Umzugshilfe Regensburg
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-              Umzug in Regensburg klar vorbereiten.
+              {pageMeta.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-              Senden Sie Start, Ziel, Etagen, Möbelumfang und Terminwunsch. Wir
-              klären Zugänge, gewünschte Leistungen und den passenden Ablauf
-              mit Ihnen.
+              Ob kompletter Umzug, Tragehilfe, Möbeltransport oder Montage: Senden Sie
+              Start, Ziel, Etagen, Aufzug, Zimmer, Wohnfläche, Möbel, Kartons, Fotos und
+              Terminwunsch. FLOXANT prüft Umfang und mögliche Zusatzleistungen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -300,7 +304,7 @@ export default function RegensburgUmzugPage() {
                 data-service="umzug"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
               >
-                Umzug anfragen
+                Umzug in Regensburg anfragen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <a
@@ -308,14 +312,14 @@ export default function RegensburgUmzugPage() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Fotos per WhatsApp senden
+                Fotos für eine Einschätzung senden
               </a>
               <a
                 href={`tel:${company.phoneRaw}`}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                {company.phone}
+                Umzug telefonisch besprechen
               </a>
             </div>
           </div>
@@ -340,6 +344,24 @@ export default function RegensburgUmzugPage() {
               ))}
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-cyan-50 px-5 py-12 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-2">
+          <article className="rounded-lg border border-cyan-100 bg-white p-6">
+            <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Direkt beantwortet</p>
+            <h2 className="mt-3 text-2xl font-black">Was kostet eine Umzugshilfe in Regensburg?</h2>
+            <p className="mt-4 font-semibold leading-8 text-slate-700">Ohne Umfang und Zugänge lässt sich kein belastbarer Preis nennen. Entscheidend sind Möbel und Kartons, Strecke, Etagen, Aufzüge, Laufwege, Park- oder Halteverbotszone, gewünschte Trage-, Pack- oder Montagearbeiten und der Termin. Fotos und eine kurze Inventarliste helfen bei der Prüfung.</p>
+          </article>
+          <article id="moebelmontage" className="scroll-mt-28 rounded-lg border border-cyan-100 bg-white p-6">
+            <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Möbelmontage beim Umzug in Regensburg</p>
+            <h2 className="mt-3 text-2xl font-black">Kann FLOXANT Möbel abbauen und wieder aufbauen?</h2>
+            <p className="mt-4 font-semibold leading-8 text-slate-700">Möbelabbau vor dem Transport und Wiederaufbau am Ziel können angefragt werden. Nennen Sie die betroffenen Schränke, Betten oder Tische, Maße, Besonderheiten und vorhandene Anleitungen; Fotos zeigen Verbindungen und Zustand. Anschlüsse oder Arbeiten außerhalb der vereinbarten Möbelmontage sind nicht automatisch enthalten.</p>
+            <Link href={furnitureAssemblyHref} className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
+              Möbelmontage anfragen <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </article>
         </div>
       </section>
 

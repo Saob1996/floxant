@@ -1064,18 +1064,35 @@ try {
     assert(result.body.fields?.form === "The request could not be processed because too many individual fields were submitted.", "English over-limit message must be exact");
   });
 
-  await test("unknown-top-level-field-400", async () => {
-    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
-    const result = await submit(validPayload({ unexpectedInternalState: "synthetic" }));
-    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "unknown top-level field must return 400");
-    assert(result.body.unsupportedFields?.[0] === "unexpectedInternalState", "response must expose only the safe unsupported field path");
-    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "unknown field must not reach Supabase");
+  await test("future-safe-fields-are-retained-201", async () => {
+    const callsBefore = calls.length;
+    const result = await submit(validPayload({
+      futureServiceDetail: { count: 0, requested: false, notes: ["synthetic"] },
+      details: { configuration: { futureNestedDetail: { count: 0, requested: false } } },
+    }));
+    assert(result.response.status === 201 && result.body.ok === true, "future safe fields must remain forward-compatible");
+    const insert = calls.slice(callsBefore).find((call) => call.url.includes("/rest/v1/bookings") && String(call.method).toUpperCase() === "POST");
+    const inserted = JSON.parse(String(insert?.body || "[]"))[0];
+    assert(inserted.details.configuration.rawFields.futureServiceDetail.count === 0, "unknown top-level object must be stored in rawFields");
+    assert(inserted.details.configuration.rawFields.futureServiceDetail.requested === false, "false must not be treated as empty");
+    assert(inserted.details.configuration.futureNestedDetail.count === 0, "unknown nested values must remain in details");
+    assert(inserted.details.configuration.futureNestedDetail.requested === false, "unknown nested false must remain in details");
   });
 
-  await test("unknown-nested-field-400", async () => {
-    const result = await submit(validPayload({ details: { configuration: { unexpectedNestedState: true } } }));
-    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "unknown nested field must return 400");
-    assert(result.body.unsupportedFields?.[0] === "details.configuration.unexpectedNestedState", "nested unknown path must be safe and precise");
+  await test("unsafe-field-name-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const result = await submit(validPayload({ "unsafe.field": "synthetic" }));
+    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "unsafe field names must remain rejected");
+    assert(result.body.unsupportedFields?.[0] === "unsafe.field", "response must expose only the safe rejected field path");
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "unsafe field must not reach Supabase");
+  });
+
+  await test("prototype-pollution-field-400", async () => {
+    const insertCallsBefore = calls.filter((call) => call.url.includes("/rest/v1/bookings")).length;
+    const result = await submit(validPayload(JSON.parse('{"__proto__":"synthetic"}')));
+    assert(result.response.status === 400 && result.body.code === "UNSUPPORTED_FIELDS", "prototype keys must remain rejected before alias normalization");
+    assert(result.body.unsupportedFields?.[0] === "__proto__", "prototype key path must be reported safely");
+    assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "prototype key must not reach Supabase");
   });
 
   await test("regensburg-moving-context-formdata-201", async () => {

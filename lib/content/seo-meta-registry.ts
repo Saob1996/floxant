@@ -41,7 +41,7 @@ export const prioritySeoMetaRegistry = {
   "/duesseldorf/reinigung": defineMeta({
     route: "/duesseldorf/reinigung",
     shortTitle: "Reinigung Düsseldorf",
-    headline: "Reinigung in Düsseldorf – persönlich, verständlich und passend zu Ihrem Objekt",
+    headline: "Reinigungsdienst Düsseldorf: passende Reinigung direkt anfragen",
     ogTitle: "Reinigung in Düsseldorf passend zu Objekt und Umfang anfragen",
     ogDescription:
       "Reinigung für Wohnung, Büro, Praxis und Gewerbe in Düsseldorf mit Objektart, Fläche, Turnus und Termin anfragen.",
@@ -70,16 +70,16 @@ export const prioritySeoMetaRegistry = {
           "Finden Sie die passende Reinigung in Düsseldorf: von Büro und Praxis bis Fenster, Grund- und Unterhaltsreinigung. Eckdaten einfach senden.",
       },
       conversion: {
-        title: "Reinigung Düsseldorf anfragen | FLOXANT",
+        title: "Reinigungsdienst Düsseldorf | Reinigung anfragen | FLOXANT",
         description:
-          "Wohnung, Büro, Praxis oder Gewerbefläche reinigen lassen? Senden Sie Fläche, Zustand, Turnus, Fotos und Terminwunsch an FLOXANT.",
+          "Reinigungsdienst in Düsseldorf anfragen: Art der Reinigung, Fläche, Räume, Zustand, Turnus, Fotos und Wunschtermin senden. FLOXANT prüft den Umfang.",
       },
     },
   }),
   "/duesseldorf/bueroreinigung": defineMeta({
     route: "/duesseldorf/bueroreinigung",
     shortTitle: "Büroreinigung Düsseldorf",
-    headline: "Büroreinigung in Düsseldorf für Firmen klar anfragen",
+    headline: "Büroreinigung Düsseldorf für Firmen konkret anfragen",
     ogTitle: "Büroreinigung Düsseldorf mit Fläche, Turnus und Zeiten anfragen",
     ogDescription:
       "Bürofläche, Räume, Sanitär, Küche, Turnus, Zugang und Reinigungszeiten für eine klare Anfrage beschreiben.",
@@ -93,9 +93,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Büroreinigung Düsseldorf | Fläche, Turnus & Zeiten",
+        title: "Büroreinigung Düsseldorf | Angebot anfragen | FLOXANT",
         description:
-          "Büroreinigung in Düsseldorf anfragen: Fläche, Räume, Sanitär, Küche, Turnus, Zugang und Reinigungszeiten verständlich beschreiben.",
+          "Büroreinigung in Düsseldorf anfragen: Fläche, Räume, Sanitär, Küche, Turnus, Zugang und Reinigungszeiten senden. FLOXANT prüft den Umfang.",
       },
       benefit: {
         title: "Büroreinigung Düsseldorf klar nach Umfang planen",
@@ -145,7 +145,7 @@ export const prioritySeoMetaRegistry = {
   "/duesseldorf/praxisreinigung": defineMeta({
     route: "/duesseldorf/praxisreinigung",
     shortTitle: "Praxisreinigung Düsseldorf",
-    headline: "Praxisreinigung in Düsseldorf klar und mit konkreten Eckdaten anfragen",
+    headline: "Praxisreinigung Düsseldorf für Räume und Zeitfenster anfragen",
     ogTitle: "Praxisreinigung Düsseldorf nach Räumen und Zeitfenstern anfragen",
     ogDescription:
       "Empfang, Wartebereich, Behandlungsräume, Sanitär, sensible Bereiche und Reinigungszeiten sachlich beschreiben.",
@@ -159,9 +159,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Praxisreinigung Düsseldorf | Räume & Zeiten klären",
+        title: "Praxisreinigung Düsseldorf | Angebot anfragen | FLOXANT",
         description:
-          "Praxisreinigung in Düsseldorf anfragen: Empfang, Wartebereich, Behandlungsräume, Sanitär, sensible Bereiche und Zeitfenster beschreiben.",
+          "Praxisreinigung Düsseldorf für Empfang, Warte-, Behandlungs- und Sanitärräume anfragen. Räume, Turnus, Vorgaben und Zeitfenster senden.",
       },
       benefit: {
         title: "Praxisreinigung Düsseldorf passend zum Praxisablauf",
@@ -225,9 +225,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Grundreinigung Düsseldorf | Fläche & Zustand klären",
+        title: "Grundreinigung Düsseldorf für Wohnung & Haus | FLOXANT",
         description:
-          "Grundreinigung in Düsseldorf für Wohnung, Haus oder Gewerbe. Fläche, Zustand, Böden, Küche, Sanitär und Schwerpunkte beschreiben.",
+          "Grundreinigung in Düsseldorf für Wohnung oder Haus anfragen. Fläche, Zustand, Böden, Küche, Sanitär, Fotos und Wunschtermin senden.",
       },
       benefit: {
         title: "Grundreinigung Düsseldorf gründlich vorbereiten",
@@ -291,9 +291,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Bauendreinigung Düsseldorf | Bauphase & Abnahme",
+        title: "Bauendreinigung Düsseldorf | Angebot anfragen | FLOXANT",
         description:
-          "Bauendreinigung in Düsseldorf mit Bauphase, Fläche, Rückständen, Restarbeiten, Fotos und Abnahmetermin konkret anfragen.",
+          "Bauendreinigung in Düsseldorf anfragen: Objektart, Fläche, Bauphase, Verschmutzung, Termin und Fotos senden. FLOXANT prüft Umfang und benötigte Arbeiten.",
       },
       benefit: {
         title: "Bauendreinigung Düsseldorf für Abnahme & Einzug",
@@ -310,7 +310,7 @@ export const prioritySeoMetaRegistry = {
   "/regensburg/umzug": defineMeta({
     route: "/regensburg/umzug",
     shortTitle: "Umzug Regensburg",
-    headline: "Umzug in Regensburg – persönlich geplant und passend zu Ihrem Umfang",
+    headline: "Umzugshilfe Regensburg für Transport, Tragen und Möbelmontage",
     ogTitle: "Umzug Regensburg mit Start, Ziel und Umfang anfragen",
     ogDescription:
       "Start, Ziel, Etagen, Aufzug, Möbelmenge, Zugang und Termin für einen Umzug in Regensburg beschreiben.",
@@ -324,9 +324,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Umzug Regensburg | Start, Ziel & Umfang anfragen",
+        title: "Umzugshilfe Regensburg | Umzug anfragen | FLOXANT",
         description:
-          "Umzug in Regensburg anfragen: Start, Ziel, Etagen, Aufzug, Möbelmenge, Zugang und Termin verständlich beschreiben.",
+          "Umzugshilfe in Regensburg anfragen: Start, Ziel, Etagen, Aufzug, Möbel, Fotos und Wunschtermin senden. Auch Möbelmontage und Einpackservice möglich.",
       },
       benefit: {
         title: "Umzug Regensburg passend zum Umfang planen",
@@ -423,9 +423,9 @@ export const prioritySeoMetaRegistry = {
     activeVariant: "direct",
     variants: {
       direct: {
-        title: "Klaviertransport Regensburg – Etage, Zugang und Termin klären",
+        title: "Klaviertransport Regensburg | Angebot anfragen | FLOXANT",
         description:
-          "Klaviertransport in Regensburg mit Instrumentart, Maßen, Etagen, Treppen, Aufzug, Zugangsbreite, Fotos und Termin anfragen.",
+          "Klaviertransport in Regensburg anfragen: Start, Ziel, Etagen, Aufzug, Zugänge und Fotos senden. FLOXANT prüft Aufwand, Termin und Transportweg.",
       },
       benefit: {
         title: "Klaviertransport Regensburg sorgfältig vorbereiten",

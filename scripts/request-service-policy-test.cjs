@@ -278,6 +278,21 @@ test("Englische Service-Aliase normalisieren auf aktive Registry-IDs", () => {
   }
 });
 
+test("Lokale Buchungs-Aliase lösen nur auf freigegebene Registry-Services auf", () => {
+  const aliases = [
+    ["moebelmontage", "moebeltransport", "regensburg"],
+    ["umzugsreinigung", "reinigung", "duesseldorf"],
+    ["bauendreinigung", "baureinigung", "duesseldorf"],
+  ];
+
+  for (const [alias, expectedService, location] of aliases) {
+    const context = resolveRequestContext({ location, service: alias, source: "website" });
+    assert.equal(context.valid, true, alias);
+    assert.equal(context.serviceKey, expectedService, alias);
+    assert.equal(context.location, location, alias);
+  }
+});
+
 test("Manifest-inaktive Legacy-Services werden auf benannte aktive Ziele korrigiert", () => {
   const corrections = [
     ["hausverwaltung-reinigung", "treppenhausreinigung"],

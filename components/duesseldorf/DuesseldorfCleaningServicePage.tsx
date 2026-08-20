@@ -47,6 +47,8 @@ type PageConfig = {
   h1: string;
   intro: string;
   summary: string;
+  directQuestion?: string;
+  directAnswer?: string;
   serviceType: string;
   cta: { href: string; label: string; service: string; intent: string };
   fitTitle: string;
@@ -60,8 +62,14 @@ type PageConfig = {
   about: string[];
 };
 
-const requestHref = (service: string, intent: string) =>
-  buildLeadHref({ service, city: "duesseldorf", intent });
+const localBookingServices = new Set(["reinigung", "bueroreinigung", "praxisreinigung", "grundreinigung", "baureinigung"]);
+
+const requestHref = (service: string, intent: string) => {
+  const contactHref = buildLeadHref({ service, city: "duesseldorf", intent });
+  return localBookingServices.has(service)
+    ? contactHref.replace(/^\/kontakt\?/, "/duesseldorf/buchen?")
+    : contactHref;
+};
 
 const authority = searchAuthorityPages;
 
@@ -78,6 +86,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Hier finden Sie den passenden Reinigungsservice für Ihr Objekt in Düsseldorf. Wählen Sie die Leistung, die zu Fläche, Nutzung und gewünschtem Ergebnis passt.",
     summary:
       "Für eine erste Einschätzung reichen Objektart, ungefährer Umfang, gewünschte Leistung und Termin. Bei regelmäßiger Reinigung helfen zusätzlich Turnus und mögliche Zeitfenster.",
+    directQuestion: "Was kostet ein Reinigungsdienst in Düsseldorf?",
+    directAnswer:
+      "Die Kosten eines Reinigungsdienstes in Düsseldorf hängen von Fläche, Reinigungsart, Zustand, Raumzahl, Sanitär- und Küchenbereichen, einmaligem oder regelmäßigem Turnus, Reinigungszeit, Zugang und Zusatzleistungen ab. Deshalb ist eine kurze Objektbeschreibung aussagekräftiger als ein pauschaler Stundenpreis. Senden Sie Räume, Fläche, Zustand, gewünschte Leistung, Turnus, Fotos und Wunschtermin; FLOXANT prüft den benötigten Umfang.",
     serviceType: "Reinigungsservice in Düsseldorf",
     cta: {
       href: requestHref("reinigung", "reinigung-duesseldorf"),
@@ -134,6 +145,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Für gepflegte Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche entwickeln wir einen Ablauf, der zu Ihrem Büroalltag passt.",
     summary:
       "Büroreinigung wird über Raumliste, Nutzung, Turnus und Reinigungszeiten geplant. So bleibt klar, welche Bereiche regelmäßig oder nur bei Bedarf gereinigt werden sollen.",
+    directQuestion: "Was kostet eine Büroreinigung in Düsseldorf?",
+    directAnswer:
+      "Die Kosten einer Büroreinigung in Düsseldorf hängen vor allem von Fläche, Raumaufteilung, Nutzung, Sanitär- und Küchenbereichen, gewünschtem Turnus sowie Reinigungszeiten und Zugang ab. Ein Büro mit täglichem Publikumsverkehr benötigt einen anderen Leistungsplan als eine kleine, selten genutzte Einheit. Senden Sie Raumliste, Fläche, Wunschrhythmus und mögliche Zeitfenster; FLOXANT prüft die Angaben und klärt den passenden Umfang persönlich.",
     serviceType: "Büroreinigung in Düsseldorf",
     cta: {
       href: requestHref("bueroreinigung", "bueroreinigung-duesseldorf"),
@@ -148,6 +162,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     effortFactors: ["Belegung und Raumaufteilung", "Küche und Sanitärumfang", "Reinigungshäufigkeit", "Randzeiten und Zugang", "Bodenbeläge und Zusatzbereiche"],
     process: ["Räume und gewünschten Turnus nennen.", "Reinigungszeiten und Zugang abstimmen.", "Leistungsumfang vor dem Start gemeinsam festhalten."],
     faqItems: [
+      { q: "Was kostet eine Büroreinigung in Düsseldorf?", a: "Der Preis richtet sich nach Fläche, Raumaufteilung, Nutzung, Sanitär- und Küchenbereichen, Turnus, Reinigungszeiten und Zugang. Mit einer Raumliste und den gewünschten Zeitfenstern kann FLOXANT den Umfang gezielt prüfen." },
       { q: "Welche Bereiche gehören zur Büroreinigung?", a: "Typisch sind Arbeitsplätze, Besprechungsräume, Empfang, Laufwege, Küche und Sanitärbereiche. Der genaue Umfang wird für Ihr Büro festgelegt." },
       { q: "Ist Büroreinigung auch am frühen Morgen oder Abend möglich?", a: "Nennen Sie Ihre möglichen Zeitfenster. Wir prüfen, welcher Ablauf mit Zugang, Gebäudenutzung und verfügbarem Team vereinbar ist." },
       { q: "Wie oft sollte ein Büro gereinigt werden?", a: "Das hängt von Belegung, Publikumsverkehr, Küche, Sanitärbereichen und gewünschtem Standard ab. Aus diesen Angaben ergibt sich ein passender Turnus." },
@@ -168,6 +183,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Praxisräume erfordern klar getrennte Bereiche, passende Zeitfenster und eine genaue Abstimmung Ihrer Vorgaben. Wir planen Empfang, Wartezimmer, Behandlungs- und Nebenräume einzeln.",
     summary:
       "Für die Planung zählen Raumarten, Öffnungszeiten, interne Vorgaben und sensible Bereiche. Medizinische Spezialaufgaben oder Entsorgungswege werden nur übernommen, wenn sie ausdrücklich vereinbart und fachlich möglich sind.",
+    directQuestion: "Was wird bei einer Praxisreinigung gereinigt?",
+    directAnswer:
+      "Eine Praxisreinigung in Düsseldorf kann Empfang, Wartezimmer, Behandlungs- und Funktionsräume, Sanitär- und Personalbereiche sowie vereinbarte Kontaktflächen umfassen. Welche Aufgaben tatsächlich dazugehören, richtet sich nach Raumliste, Praxisart, internen Vorgaben und den verfügbaren Zeitfenstern. Medizinische Spezialaufgaben und besondere Abfälle sind nicht automatisch enthalten. Senden Sie Räume, Fläche, Turnus, sensible Bereiche und Zugangsregelung für eine konkrete Prüfung.",
     serviceType: "Praxisreinigung in Düsseldorf",
     cta: {
       href: requestHref("praxisreinigung", "praxisreinigung-duesseldorf"),
@@ -270,9 +288,12 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Wenn die laufende Reinigung nicht mehr ausreicht, wird der tatsächliche Zustand Raum für Raum betrachtet. Ziel ist ein klar abgegrenzter, einmaliger Intensivumfang.",
     summary:
       "Grundreinigung eignet sich für haftende Rückstände und stark beanspruchte Flächen. Beläge, Materialverträglichkeit, Möblierung und gewünschter Zielzustand bestimmen den Ablauf.",
+    directQuestion: "Was beeinflusst den Preis einer Grundreinigung in Düsseldorf?",
+    directAnswer:
+      "Der Preis einer Grundreinigung in Düsseldorf wird durch Fläche, Anzahl und Nutzung der Räume, Boden- und Oberflächenarten, Verschmutzungsgrad, Möblierung, Zugänglichkeit und gewünschten Zielzustand beeinflusst. Bei Wohnung oder Haus zählen außerdem intensive Bereiche wie Küche und Sanitär. Fotos helfen bei der ersten Einordnung, ersetzen aber nicht immer eine Prüfung vor Ort. Senden Sie Fläche, Räume, Materialhinweise, Zustand und Wunschtermin für eine konkrete Anfrage.",
     serviceType: "Grundreinigung in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "grundreinigung-duesseldorf"),
+      href: requestHref("grundreinigung", "grundreinigung-duesseldorf"),
       label: "Grundreinigung anfragen",
       service: "reinigung",
       intent: "grundreinigung-duesseldorf",
@@ -284,6 +305,7 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     effortFactors: ["Material und Empfindlichkeit", "Verschmutzungsgrad", "Möblierung und freie Arbeitsfläche", "Anzahl intensiver Einzelbereiche", "notwendige Einwirk- und Trocknungszeiten"],
     process: ["Betroffene Flächen und Rückstände beschreiben.", "Materialien und gewünschten Zielzustand prüfen.", "Intensivumfang und Termin eindeutig abgrenzen."],
     faqItems: [
+      { q: "Was beeinflusst den Preis einer Grundreinigung in Düsseldorf?", a: "Entscheidend sind Fläche, Räume, Materialien, Verschmutzungsgrad, Möblierung, Zugänglichkeit, intensive Einzelbereiche und der gewünschte Zielzustand. Fotos und eine kurze Beschreibung helfen bei der ersten Prüfung." },
       { q: "Wann ist eine Grundreinigung sinnvoll?", a: "Wenn haftende oder länger aufgebaute Rückstände mit einer normalen laufenden Reinigung nicht ausreichend entfernt werden können." },
       { q: "Müssen die Räume leer sein?", a: "Nicht immer. Eine freie Fläche erleichtert die Arbeit jedoch. Beschreiben Sie vorhandene Möbel, Einbauten und welche Bereiche zugänglich sind." },
       { q: "Sind alle Flecken vollständig entfernbar?", a: "Das lässt sich ohne Prüfung von Material und Rückstand nicht zusagen. Wir klären vorab den realistischen Zielzustand und mögliche Grenzen." },
@@ -340,9 +362,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Für Baureinigung zählen Bauphase, Fläche, abgeschlossene Gewerke, vorhandene Rückstände und Übergabetermin. Gefährliche Stoffe oder nicht klar zuordenbare Abfälle gehören nicht automatisch zum Umfang.",
     serviceType: "Bau- und Bauendreinigung in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "bauendreinigung-duesseldorf"),
-      label: "Baureinigung anfragen",
-      service: "reinigung",
+      href: "/duesseldorf/buchen?service=bauendreinigung",
+      label: "Bauendreinigung anfragen",
+      service: "bauendreinigung",
       intent: "bauendreinigung-duesseldorf",
     },
     fitTitle: "Reinigung passend zum Stand der Arbeiten",
@@ -577,16 +599,40 @@ function ServiceChooser({ keys }: { keys: DuesseldorfCleaningPageKey[] }) {
           {keys.map((key) => {
             const item = duesseldorfCleaningPages[key];
             return (
-              <Link key={item.path} href={item.path} className="group flex min-h-52 flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md">
-                <h3 className="text-xl font-black text-slate-950">{item.eyebrow}</h3>
+              <article key={item.path} className="flex min-h-52 flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md">
+                <h3 className="text-xl font-black text-slate-950">
+                  <Link href={item.path} className="hover:text-cyan-800">{item.eyebrow}</Link>
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.summary}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-black text-cyan-800">
-                  Leistung ansehen<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
-                </span>
-              </Link>
+                <div className="mt-auto flex flex-wrap gap-4 pt-5 text-sm font-black">
+                  <Link href={item.path} className="inline-flex items-center gap-2 text-cyan-800">
+                    Leistung ansehen<ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link href={item.cta.href} className="text-slate-950 underline decoration-cyan-300 decoration-2 underline-offset-4">
+                    Direkt anfragen
+                  </Link>
+                </div>
+              </article>
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function MoveOutCleaningCallout() {
+  return (
+    <section id="umzugsreinigung" className="scroll-mt-28 border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-5 rounded-lg border border-cyan-100 bg-cyan-50 p-6 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Umzugsreinigung Düsseldorf</p>
+          <h2 className="mt-3 text-3xl font-black">Endreinigung nach Auszug oder vor Einzug anfragen</h2>
+          <p className="mt-4 max-w-3xl font-semibold leading-8 text-slate-700">Für eine Umzugsreinigung zählen Wohnfläche, Räume, Zustand, Küche, Sanitärbereiche, gewünschter Zielzustand, Übergabetermin und Fotos. Umzug oder Entrümpelung werden nur als getrennte Zusatzleistungen abgestimmt; eine Abnahme oder vollständige Fleckenentfernung wird nicht garantiert. Anfragen aus Düsseldorf-Oberkassel werden wie andere Düsseldorfer Einsatzorte anhand der Eckdaten geprüft.</p>
+        </div>
+        <Link href="/duesseldorf/buchen?service=umzugsreinigung" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white">
+          Umzugsreinigung anfragen <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );
@@ -721,10 +767,21 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <section className="border-b border-slate-200 bg-white px-5 py-10 sm:px-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl gap-4 rounded-lg border border-cyan-100 bg-cyan-50 p-5">
           <BadgeCheck className="mt-1 h-5 w-5 shrink-0 text-cyan-800" aria-hidden="true" />
-          <p className="text-base font-semibold leading-8 text-slate-800">{config.summary}</p>
+          <div>
+            {config.directAnswer ? (
+              <>
+                <p className="text-sm font-black uppercase tracking-wide text-cyan-900">Direkt beantwortet</p>
+                <h2 className="mt-2 text-xl font-black text-slate-950">{config.directQuestion}</h2>
+                <p className="mt-3 text-base font-semibold leading-8 text-slate-800">{config.directAnswer}</p>
+              </>
+            ) : (
+              <p className="text-base font-semibold leading-8 text-slate-800">{config.summary}</p>
+            )}
+          </div>
         </div>
       </section>
       {isHub ? <ServiceChooser keys={config.related} /> : <SpecialistDetails config={config} />}
+      {isHub ? <MoveOutCleaningCallout /> : null}
       <Process config={config} />
       {isHub ? null : <ServiceChooser keys={config.related} />}
       <Faq config={config} />

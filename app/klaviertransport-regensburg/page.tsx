@@ -15,6 +15,7 @@ import {
   MessageCircle,
   PackageOpen,
   Piano,
+  Phone,
   Route,
   Ruler,
   ShieldCheck,
@@ -45,12 +46,7 @@ const pageMeta = getPrioritySeoMeta(path);
 const title = pageMeta.seoTitle;
 const description = pageMeta.description;
 
-const leadHref = buildLeadHref({
-  service: "klaviertransport",
-  city: "regensburg",
-  intent: "klaviertransport-regensburg",
-  priority: "p0",
-});
+const leadHref = "/regensburg/buchen?service=klaviertransport";
 
 const offerCheckHref = buildLeadHref({
   service: "klaviertransport",
@@ -209,46 +205,13 @@ const comparisonCards = [
 ] as const;
 
 const faqItems = [
-  {
-    q: "Was braucht FLOXANT für einen Klaviertransport in Regensburg?",
-    a: "Hilfreich sind Instrumentart, Start, Ziel, Etagen, Aufzug, Treppenhaus, Laufweg, Haltemöglichkeit, Terminwunsch und optional Fotos von Instrument und Zugängen.",
-  },
-  {
-    q: "Kann ich zuerst Fotos per WhatsApp senden?",
-    a: "Ja. Fotos von Klavier, Eingang, Treppenhaus, Türrahmen, Aufzug und Zielraum helfen, den Fall schneller einzuordnen.",
-  },
-  {
-    q: "Was ist bei Treppen wichtig?",
-    a: "Wichtig sind Etage, Treppenhausbreite, Kurven, Podeste, Geländer, Türen, Bodenbeläge und der Weg vom Haltepunkt bis zum Instrument. Fotos helfen besonders.",
-  },
-  {
-    q: "Kann ein E-Piano transportiert werden?",
-    a: "Ein E-Piano oder schweres Einzelstück kann angefragt werden. Entscheidend sind Gewicht, Abmessungen, Verpackung, Zugang, Etage und Zielort.",
-  },
-  {
-    q: "Transportiert FLOXANT auch Flügel?",
-    a: "Flügel werden nur nach konkreter Prüfung eingeordnet. Je nach Gewicht, Zugang, Strecke und Situation kann eine Rückfrage oder externe Spezialabstimmung nötig sein.",
-  },
-  {
-    q: "Ist Klaviertransport mit Umzug kombinierbar?",
-    a: "Ja, wenn Umfang, Termin und Zugang zusammenpassen. Dafür sind Fotos und eine klare Beschreibung des Gesamtumzugs wichtig.",
-  },
-  {
-    q: "Kann ich ein Klaviertransport-Angebot prüfen lassen?",
-    a: "Ja. Senden Sie vorhandenes Angebot, Instrumentart, Start, Ziel, Etage, Zugang, Fotos und Termin. FLOXANT ordnet offene Punkte ein, ohne Preis- oder Ersparnisgarantie.",
-  },
-  {
-    q: "Wann kann Rückfahrt oder Beiladung sinnvoll sein?",
-    a: "Wenn Termin und Strecke flexibel sind und Transportgut, Zugang und Umfang zur Route passen könnten. Das wird als Option geprüft, nicht garantiert.",
-  },
-  {
-    q: "Was passiert nach dem Absenden?",
-    a: "Die Anfrage ist noch keine Buchung. FLOXANT prüft die Angaben, fragt bei Bedarf nach und meldet sich über den gewählten Kontaktweg.",
-  },
-  {
-    q: "Can I ask in English?",
-    a: "Yes. International customers can describe piano transport in Regensburg in simple English with instrument type, start, destination, floor, stairs or elevator, access, preferred date and optional photos.",
-  },
+  { q: "Was kostet ein Klaviertransport in Regensburg?", a: "Der Preis hängt von Instrumentart, Maßen und Gewicht, Start und Ziel, Etagen, Treppen, Aufzug, Laufweg, Parkmöglichkeit und Termin ab. Senden Sie diese Eckdaten und Fotos, damit FLOXANT den Aufwand prüfen kann." },
+  { q: "Welche Fotos benötigt FLOXANT für eine Einschätzung?", a: "Hilfreich sind Fotos des Instruments, beider Gebäudeeingänge, Türen, Treppen, Kurven, Aufzug und Zielraum. Bilder des Weges zwischen Fahrzeug und Gebäude zeigen zusätzliche Engstellen." },
+  { q: "Welche Angaben zu Treppen und Aufzug werden benötigt?", a: "Nennen Sie Etagen, Treppenbreite, Kurven, Podeste, Geländer, Türbreiten und Engstellen. Beim Aufzug helfen Innenmaße, Türbreite und Traglast, soweit bekannt." },
+  { q: "Kann ein Klavier über mehrere Etagen transportiert werden?", a: "Ein Transport über mehrere Etagen kann angefragt werden. FLOXANT prüft Instrument, Treppenverlauf, Engstellen, Laufweg und Fotos, bevor Aufwand oder Termin abgestimmt werden." },
+  { q: "Sind Transporte von oder nach Regensburg möglich?", a: "Ja, Start oder Ziel können in Regensburg oder im bedienten Umland liegen. Für die Prüfung werden vollständige Adressen, Strecke, Zugänge und der gewünschte Termin benötigt." },
+  { q: "Kann der Klaviertransport mit einem Umzug kombiniert werden?", a: "Ja, wenn Umfang, Zugang und Termin zusammenpassen. Beschreiben Sie zusätzlich Möbel, Kartons, Montagewünsche und weitere Transportgegenstände." },
+  { q: "Wie wird ein Wunschtermin angefragt?", a: "Wählen Sie Klaviertransport auf der Regensburger Buchungsseite und senden Sie Datum oder Zeitfenster mit den Eckdaten. Die Anfrage ist noch keine feste Buchung; FLOXANT prüft sie und meldet sich." },
 ] as const;
 
 export const metadata: Metadata = generatePageSEO({
@@ -391,24 +354,20 @@ export default function KlaviertransportRegensburgPage() {
               </h1>
 
               <p className="mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slate-700 sm:max-w-3xl sm:text-lg">
-                Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler
+                Ein Klaviertransport in Regensburg und Umgebung braucht mehr Vorbereitung als ein normaler
                 Möbeltransport. Entscheidend sind Instrumentart, Etage, Treppenhaus, Aufzug,
                 Trageweg, Zugang und Terminwunsch. FLOXANT prüft die Anfrage anhand der genannten Eckdaten
                 und hilft, den passenden nächsten Schritt zu klären.
               </p>
 
               <div className="mt-7 flex max-w-[22rem] flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-start">
-                <LeadCta
-                  service="klaviertransport"
-                  city="regensburg"
-                  intent="klaviertransport-regensburg"
-                  priority="p0"
-                  label="Klaviertransport anfragen"
+                <Link
+                  href={leadHref}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white shadow-[0_16px_40px_rgba(15,23,42,0.22)] transition hover:bg-cyan-800 sm:w-auto"
                 >
                   Klaviertransport anfragen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </LeadCta>
+                </Link>
                 <a
                   href={whatsappHref}
                   target="_blank"
@@ -416,25 +375,21 @@ export default function KlaviertransportRegensburgPage() {
                   data-event="request_cta_click"
                   data-service="klaviertransport"
                   data-city="regensburg"
-                  data-cta-label="Fotos per WhatsApp senden"
+                  data-cta-label="Fotos und Eckdaten senden"
                   data-destination={whatsappHref}
                   data-contact-channel="whatsapp"
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 text-sm font-black text-white shadow-[0_16px_40px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600 sm:w-auto"
                 >
                   <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                  Fotos per WhatsApp senden
+                  Fotos und Eckdaten senden
                 </a>
-                <Link
-                  href={offerCheckHref}
-                  data-event="request_cta_click"
-                  data-service="klaviertransport"
-                  data-city="regensburg"
-                  data-cta-label="Klaviertransport-Angebot prüfen lassen"
-                  data-destination={offerCheckHref}
+                <a
+                  href={`tel:${company.phoneRaw}`}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:text-cyan-800 sm:w-auto"
                 >
-                  Klaviertransport-Angebot prüfen
-                </Link>
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  Anrufen
+                </a>
               </div>
 
               <div className="mt-8 grid max-w-[22rem] gap-3 sm:max-w-none sm:grid-cols-3">
@@ -688,12 +643,13 @@ export default function KlaviertransportRegensburgPage() {
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Kosten und Angebot</p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Ein seriöser Preis braucht zuerst einen seriösen Fallcheck.
+              Was kostet ein Klaviertransport in Regensburg?
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              Beim Klaviertransport hängt der Aufwand nicht nur von Kilometern ab. Treppenhaus,
-              Aufzug, Türbreiten, Laufweg, Gewicht, Schutzbedarf und Termin entscheiden mit. Deshalb
-              ist ein kurzer Foto- und Zugangsscheck besser als ein schneller Blindpreis.
+              Einen festen Preis gibt es ohne geprüfte Eckdaten nicht. Die Kosten hängen von
+              Instrumentart, Maßen und Gewicht, Start und Ziel, Etagen, Treppenhaus, Aufzug,
+              Türbreiten, Laufweg, Park- und Zugangssituation sowie dem Wunschtermin ab. Fotos von
+              Instrument und Transportweg helfen, Rückfragen vor der Angebotserstellung zu klären.
             </p>
           </article>
 
