@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardCheck, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
@@ -19,6 +19,8 @@ export default function MobileFloatingContact() {
   if (isPrivatePath) return null;
 
   const requestHref = buildGlobalRequestHref("global_floating");
+  const offerHref = "/angebot-guenstiger-pruefen";
+  const budgetHref = "/anfrage-mit-preisrahmen";
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,
     "Hallo FLOXANT, ich möchte eine Anfrage stellen.",
@@ -40,21 +42,9 @@ export default function MobileFloatingContact() {
             <ClipboardCheck aria-hidden="true" />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anfrage</span>
+              <span className="flox-mobile-action-note">Fall schildern</span>
             </span>
           </Link>
-
-          <a
-            href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
-            className="flox-mobile-action flox-mobile-action-light"
-            aria-label="FLOXANT anrufen"
-            data-event="phone_click"
-            data-source="floating_contact"
-          >
-            <Phone aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anrufen</span>
-            </span>
-          </a>
 
           <a
             href={whatsappHref}
@@ -69,8 +59,69 @@ export default function MobileFloatingContact() {
             <WhatsAppMark aria-hidden="true" />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">WhatsApp</span>
+              <span className="flox-mobile-action-note">Fotos senden</span>
             </span>
           </a>
+
+          <a
+            href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
+            className="flox-mobile-action flox-mobile-action-light"
+            aria-label="FLOXANT anrufen"
+            data-event="phone_click"
+            data-source="floating_contact"
+          >
+            <Phone aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Anrufen</span>
+              <span className="flox-mobile-action-note">Kurz klären</span>
+            </span>
+          </a>
+
+          <a
+            href={`mailto:${company.email}`}
+            className="flox-mobile-action flox-mobile-action-email"
+            aria-label={`FLOXANT per E-Mail an ${company.email} schreiben`}
+            data-event="email_click"
+            data-source="floating_contact"
+            data-contact-channel="email"
+            data-destination={`mailto:${company.email}`}
+          >
+            <Mail aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">E-Mail</span>
+              <span className="flox-mobile-action-note">{company.email}</span>
+            </span>
+          </a>
+
+          <Link
+            href={offerHref}
+            className="flox-mobile-action flox-mobile-action-offer"
+            aria-label="Vorhandenes Angebot prüfen lassen"
+            data-event="service_card_click"
+            data-source="floating_contact"
+            data-destination={offerHref}
+          >
+            <FileSearch aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Angebot</span>
+              <span className="flox-mobile-action-note">Prüfen lassen</span>
+            </span>
+          </Link>
+
+          <Link
+            href={budgetHref}
+            className="flox-mobile-action flox-mobile-action-dark"
+            aria-label="Budget oder Preisrahmen nennen"
+            data-event="service_card_click"
+            data-source="floating_contact"
+            data-destination={budgetHref}
+          >
+            <BadgeEuro aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Budget</span>
+              <span className="flox-mobile-action-note">Nennen</span>
+            </span>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardCheck, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
@@ -38,21 +38,9 @@ export function DuesseldorfStickyActions() {
             <ClipboardCheck aria-hidden="true" />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anfrage</span>
+              <span className="flox-mobile-action-note">Fall senden</span>
             </span>
           </Link>
-
-          <a
-            href={`tel:${duesseldorfCompany.phoneRaw}`}
-            className="flox-mobile-action flox-mobile-action-light"
-            aria-label="FLOXANT Düsseldorf anrufen"
-            data-event="phone_click"
-            data-contact-channel="phone"
-          >
-            <Phone aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anrufen</span>
-            </span>
-          </a>
 
           <a
             href={whatsappHref}
@@ -66,8 +54,66 @@ export function DuesseldorfStickyActions() {
             <WhatsAppMark aria-hidden="true" />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">WhatsApp</span>
+              <span className="flox-mobile-action-note">Fotos senden</span>
             </span>
           </a>
+
+          <a
+            href={`tel:${duesseldorfCompany.phoneRaw}`}
+            className="flox-mobile-action flox-mobile-action-light"
+            aria-label="FLOXANT Düsseldorf anrufen"
+            data-event="phone_click"
+            data-contact-channel="phone"
+          >
+            <Phone aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Anrufen</span>
+              <span className="flox-mobile-action-note">Kurz klären</span>
+            </span>
+          </a>
+
+          <a
+            href={`mailto:${duesseldorfCompany.email}`}
+            className="flox-mobile-action flox-mobile-action-email"
+            aria-label={`FLOXANT Düsseldorf per E-Mail an ${duesseldorfCompany.email} schreiben`}
+            data-event="email_click"
+            data-contact-channel="email"
+            data-destination={`mailto:${duesseldorfCompany.email}`}
+          >
+            <Mail aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">E-Mail</span>
+              <span className="flox-mobile-action-note">{duesseldorfCompany.email}</span>
+            </span>
+          </a>
+
+          <Link
+            href="/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
+            className="flox-mobile-action flox-mobile-action-offer"
+            aria-label="Bestehendes Angebot prüfen lassen"
+            data-event="hero_cta_click"
+            data-contact-channel="offer_check"
+          >
+            <FileSearch aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Angebot</span>
+              <span className="flox-mobile-action-note">Prüfen</span>
+            </span>
+          </Link>
+
+          <Link
+            href="/anfrage-mit-preisrahmen?city=duesseldorf&intent=duesseldorf-budget"
+            className="flox-mobile-action flox-mobile-action-dark"
+            aria-label="Budget oder Preisrahmen nennen"
+            data-event="hero_cta_click"
+            data-contact-channel="budget_check"
+          >
+            <BadgeEuro aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Budget</span>
+              <span className="flox-mobile-action-note">Nennen</span>
+            </span>
+          </Link>
         </div>
       </div>
     </div>
