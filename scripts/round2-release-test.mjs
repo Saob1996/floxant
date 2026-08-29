@@ -8,10 +8,13 @@ const root = process.cwd();
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
 const redirects = read("public/_redirects");
+const routesConfig = read("public/_routes.json");
+const redirectMiddleware = read("functions/_middleware.js");
 const requiredRedirects = [
   "/regensburg/reinigungsfirma /regensburg/reinigung 301",
   "/regensburg/umzugsservice /regensburg/umzug 301",
   "/regensburg/umzugsunternehmen /regensburg/umzug 301",
+  "/en/regensburg/moving-company /en/regensburg/moving 301",
   "/regensburg/uebergabereinigung /regensburg/reinigung-nach-umzug 301",
   "/regensburg/endreinigung /regensburg/reinigung-nach-umzug 301",
   "/regensburg/besenreine-uebergabe /regensburg/reinigung-nach-umzug 301",
@@ -26,7 +29,15 @@ const requiredRedirects = [
   "/angebotscheck /angebot-guenstiger-pruefen 301",
   "/fairpreis-check /angebot-guenstiger-pruefen 301",
 ];
-for (const rule of requiredRedirects) assert.ok(redirects.includes(rule), `missing redirect: ${rule}`);
+for (const rule of requiredRedirects) {
+  const [source, destination] = rule.split(" ");
+  assert.ok(redirects.includes(rule), `missing redirect: ${rule}`);
+  assert.ok(routesConfig.includes(`"${source}"`), `missing Pages Functions route: ${source}`);
+  assert.ok(
+    redirectMiddleware.includes(`["${source}", "${destination}"]`),
+    `missing live middleware redirect: ${source} -> ${destination}`,
+  );
+}
 assert.doesNotMatch(redirects, /^\/en\/duesseldorf\/\*/m, "English Düsseldorf pages must not be redirected to the German hub");
 assert.doesNotMatch(
   redirects,
