@@ -55,7 +55,7 @@ export function BudgetOperatingCta({ className }: { className?: string }) {
         </div>
 
         <Link
-          href="/anfrage-mit-preisrahmen"
+          href="/umzug-mit-preisvorstellung"
           aria-label="Eigenes Budget einschätzen lassen"
           onMouseEnter={() => setActive(true)}
           onMouseLeave={() => setActive(false)}

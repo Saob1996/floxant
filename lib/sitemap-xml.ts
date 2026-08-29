@@ -12,6 +12,8 @@ import {
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
 import { dominanceEnglishArticles } from "./content/dominance-articles";
+import { roundThreeEnglishBlogArticles, roundThreeGermanBlogArticles } from "./round3/blog-articles";
+import { roundThreeServiceMatrix } from "./round3/service-matrix";
 import { growthServicePathSet, growthServicePaths } from "./growth-service-pages";
 import {
   getLocalSeoPageByPath,
@@ -46,6 +48,7 @@ interface SitemapUrl {
 const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"] as const;
 
 const LEGACY_REDIRECT_ROUTES = new Set([
+  "anfrage-mit-preisrahmen",
   "partnercode",
   "airbnb-reinigung-duesseldorf",
   "airbnb-reinigung-regensburg",
@@ -85,6 +88,13 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "fairpreis-check",
   "en/regensburg/moving-company",
 ]);
+
+const ROUND_THREE_SERVICE_ROUTES = new Set(
+  Object.values(roundThreeServiceMatrix).flatMap((service) => [
+    service.path.de.replace(/^\/+|\/+$/g, ""),
+    service.path.en.replace(/^\/+|\/+$/g, ""),
+  ]),
+);
 
 const CANONICAL_ALIAS_ROUTES = new Set([
   "duesseldorf/entsorgung",
@@ -299,6 +309,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   if (normalizedRoute.startsWith("seniorenumzug-")) return true;
   if (LEGACY_REDIRECT_ROUTES.has(normalizedRoute)) return true;
+  if (ROUND_THREE_SERVICE_ROUTES.has(normalizedRoute)) return false;
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
   if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(normalizedRoute)) return false;
   if (VERIFIED_REGIONAL_CLEANING_ROUTES.has(normalizedRoute)) return false;
@@ -433,6 +444,9 @@ function lastmodForRoute(route: string): string {
     return lastmodForSource("lib/local-seo-routes.ts");
   }
   if (route.startsWith("blog/")) {
+    if (roundThreeGermanBlogArticles.some((article) => route === `blog/${article.slug}`)) {
+      return lastmodForSource("lib/round3/blog-articles.ts");
+    }
     return lastmodForSource("lib/blog-posts.ts");
   }
   return lastmodForSource("lib/sitemap-config.ts");
@@ -614,6 +628,19 @@ function addEntries(
 }
 
 function addBlogEntries(urls: SitemapUrl[]): void {
+  for (const post of roundThreeGermanBlogArticles) {
+    const route = `blog/${post.slug}`;
+    if (shouldSkipSitemapRoute(route)) continue;
+
+    urls.push({
+      pagePath: route,
+      loc: buildAbsoluteUrl(route),
+      lastmod: post.reviewedAt,
+      changefreq: "monthly",
+      priority: "0.72",
+    });
+  }
+
   for (const post of blogPosts) {
     const route = `blog/${post.slug}`;
     if (shouldSkipSitemapRoute(route)) continue;
@@ -637,6 +664,19 @@ function addBlogEntries(urls: SitemapUrl[]): void {
       lastmod: post.reviewedAt,
       changefreq: "monthly",
       priority: "0.64",
+    });
+  }
+
+  for (const post of roundThreeEnglishBlogArticles) {
+    const route = `en/blog/${post.slug}`;
+    if (shouldSkipSitemapRoute(route)) continue;
+
+    urls.push({
+      pagePath: route,
+      loc: buildAbsoluteUrl(route),
+      lastmod: post.reviewedAt,
+      changefreq: "monthly",
+      priority: "0.68",
     });
   }
 }

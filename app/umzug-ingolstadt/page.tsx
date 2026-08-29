@@ -141,12 +141,12 @@ export default async function UmzugIngolstadtPage({ params }: PageProps) {
                         {
                             title: "Budget nennen",
                             text: "Wenn ein Preisrahmen wichtig ist, helfen Fotos und ehrliche Eckdaten.",
-                            href: "/anfrage-mit-preisrahmen",
+                            href: "/umzug-mit-preisvorstellung",
                         },
                     ]}
                     primaryHref="/buchung?service=umzug&city=ingolstadt#buchungssystem"
                     primaryLabel="Umzug Ingolstadt anfragen"
-                    secondaryHref="/anfrage-mit-preisrahmen"
+                    secondaryHref="/umzug-mit-preisvorstellung"
                     secondaryLabel="Budget nennen"
                 />
                 <LocalSeoSearchIntentBridge

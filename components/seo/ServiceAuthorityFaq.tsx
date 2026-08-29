@@ -146,7 +146,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
    },
   ],
   links: [
-   { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+   { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
    { href: "/express-anfrage", label: "Express-Check mit wenigen Angaben" },
    { href: "/blog/preisrahmen-vorpruefung-statt-festpreis", label: "Preisrahmen verstehen" },
    { href: "/qualitaet-ablauf", label: "Warum Einschätzung wichtig ist" },

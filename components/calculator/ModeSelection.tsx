@@ -53,7 +53,7 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
    color: "blue",
    features: ["Zielbudget optional", "Systemrahmen bleibt getrennt", "Bessere Einordnung"],
    isLink: true,
-   href: "/anfrage-mit-preisrahmen"
+   href: "/umzug-mit-preisvorstellung"
   },
  ];
 

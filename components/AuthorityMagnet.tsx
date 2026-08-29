@@ -85,7 +85,7 @@ export function AuthorityMagnet({
     {
       title: "Preisrahmen nennen",
       desc: "Für Projekte, bei denen Budget und Machbarkeit gemeinsam eingeordnet werden sollen.",
-      href: "/anfrage-mit-preisrahmen",
+      href: "/umzug-mit-preisvorstellung",
       icon: Banknote,
       tone: "bg-emerald-50 text-emerald-700",
     },

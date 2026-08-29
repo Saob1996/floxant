@@ -1,6 +1,6 @@
 export const PAGES_WITH_OWN_MOBILE_CTA = new Set([
   "/angebot-guenstiger-pruefen",
-  "/anfrage-mit-preisrahmen",
+  "/umzug-mit-preisvorstellung",
   "/buchung",
   "/diskreter-umzug-trennung-scheidung",
   "/einsatzradar-regensburg",

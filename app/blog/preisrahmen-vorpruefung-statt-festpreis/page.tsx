@@ -106,7 +106,7 @@ export default function PreisrahmenVorpruefungBlogPage() {
     ]}
     ctas={[
      { href: "/rechner", label: "Rechner starten" },
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
      { href: "/blog/preisvorstellung-umzug-anfrage", label: "Budget richtig nutzen" },
     ]}
     faqTitle="FAQ zu Preisrahmen und Vorprüfung"

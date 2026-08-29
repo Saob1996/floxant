@@ -6,6 +6,25 @@ export const ADMIN_BOOKING_STATUSES = Object.freeze([
   "contacted",
   "quote_sent",
   "appointment_scheduled",
+  "details_missing",
+  "under_review",
+  "budget_feasible",
+  "reduced_scope_proposed",
+  "counter_offer_sent",
+  "not_feasible",
+  "customer_confirmed",
+  "declined",
+  "expired",
+  "order_created",
+  "not_applied",
+  "cost_estimate_created",
+  "submitted_to_payer",
+  "payer_question",
+  "partially_approved",
+  "fully_approved",
+  "rejected",
+  "billing_open",
+  "paid",
   "backhaul_matching",
   "backhaul_notified",
   "backhaul_accepted",
@@ -107,9 +126,51 @@ export async function handleAdminBookingStatusUpdate(context, fetchImpl = fetch)
     return json(400, { ok: false, code: "INVALID_STATUS" });
   }
 
+  let currentResponse;
+  try {
+    const currentQuery = `id=eq.${encodeURIComponent(bookingId)}&select=id%2Cstatus%2Cdetails`;
+    currentResponse = await fetchImpl(`${configuration.supabaseUrl}/rest/v1/bookings?${currentQuery}`, {
+      headers: {
+        apikey: configuration.publishableKey,
+        Authorization: authorization,
+        Accept: "application/json",
+      },
+    });
+  } catch {
+    return json(502, { ok: false, code: "BOOKING_STATUS_READ_FAILED" });
+  }
+  const currentRows = await responseJson(currentResponse);
+  if (!currentResponse.ok || !Array.isArray(currentRows) || currentRows.length !== 1) {
+    return json(403, { ok: false, code: "BOOKING_STATUS_READ_FORBIDDEN" });
+  }
+  const currentDetails = record(currentRows[0]?.details);
+  const currentConfiguration = record(currentDetails.configuration);
+  const currentWorkflow = record(currentConfiguration.round3Workflow);
+  const statusHistory = Array.isArray(currentWorkflow.statusHistory)
+    ? currentWorkflow.statusHistory.filter((entry) => entry && typeof entry === "object").slice(-99)
+    : [];
+  const details = {
+    ...currentDetails,
+    configuration: {
+      ...currentConfiguration,
+      round3Workflow: {
+        ...currentWorkflow,
+        statusHistory: [
+          ...statusHistory,
+          {
+            status,
+            previousStatus: text(currentRows[0]?.status) || "new",
+            at: new Date().toISOString(),
+            source: "admin_dashboard",
+          },
+        ],
+      },
+    },
+  };
+
   let updateResponse;
   try {
-    const query = `id=eq.${encodeURIComponent(bookingId)}&select=id%2Cstatus`;
+    const query = `id=eq.${encodeURIComponent(bookingId)}&select=id%2Cstatus%2Cdetails`;
     updateResponse = await fetchImpl(`${configuration.supabaseUrl}/rest/v1/bookings?${query}`, {
       method: "PATCH",
       headers: {
@@ -119,7 +180,7 @@ export async function handleAdminBookingStatusUpdate(context, fetchImpl = fetch)
         "Content-Type": "application/json",
         Prefer: "return=representation",
       },
-      body: JSON.stringify({ status }),
+      body: JSON.stringify({ status, details }),
     });
   } catch {
     return json(502, { ok: false, code: "BOOKING_STATUS_UPDATE_FAILED" });
@@ -133,5 +194,5 @@ export async function handleAdminBookingStatusUpdate(context, fetchImpl = fetch)
     return json(409, { ok: false, code: "BOOKING_STATUS_NOT_CONFIRMED" });
   }
 
-  return json(200, { ok: true, bookingId, status: updatedRows[0].status });
+  return json(200, { ok: true, bookingId, status: updatedRows[0].status, details: updatedRows[0].details });
 }

@@ -110,7 +110,7 @@ export default function BlogPost() {
     ctas={[
      { href: "/rechner", label: "Vorprüfung starten" },
      { href: "/umzug", label: "Umzugsservice ansehen" },
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
     ]}
     faqTitle="FAQ zur Auswahl eines Umzugsunternehmens"
     faqItems={faqItems}

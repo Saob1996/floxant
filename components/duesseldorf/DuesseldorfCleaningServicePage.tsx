@@ -63,7 +63,19 @@ type PageConfig = {
   about: string[];
 };
 
+const localBookingServices = new Set([
+  "reinigung",
+  "bueroreinigung",
+  "praxisreinigung",
+  "grundreinigung",
+  "baureinigung",
+]);
+
 const requestHref = (service: string, intent: string) => {
+  if (localBookingServices.has(service)) {
+    const params = new URLSearchParams({ service, intent, source: "website" });
+    return `/duesseldorf/buchen?${params.toString()}`;
+  }
   return buildLeadHref({ service, city: "duesseldorf", intent });
 };
 
@@ -358,9 +370,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Für Baureinigung zählen Bauphase, Fläche, abgeschlossene Gewerke, vorhandene Rückstände und Übergabetermin. Gefährliche Stoffe oder nicht klar zuordenbare Abfälle gehören nicht automatisch zum Umfang.",
     serviceType: "Bau- und Bauendreinigung in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "bauendreinigung-duesseldorf"),
+      href: "/duesseldorf/buchen?service=bauendreinigung&intent=bauendreinigung-duesseldorf&source=website",
       label: "Bauendreinigung anfragen",
-      service: "reinigung",
+      service: "bauendreinigung",
       intent: "bauendreinigung-duesseldorf",
     },
     fitTitle: "Reinigung passend zum Stand der Arbeiten",

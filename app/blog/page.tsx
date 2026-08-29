@@ -13,6 +13,7 @@ import {
 import { blogPosts } from "@/lib/blog-posts";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { roundThreeGermanBlogArticles } from "@/lib/round3/blog-articles";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -26,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function BlogHubPage() {
   const normalizedBlogPosts = germanizeDeep(blogPosts);
+  const allHubArticles = [...roundThreeGermanBlogArticles, ...normalizedBlogPosts];
   const featuredPosts = normalizedBlogPosts.filter((post) => post.featured);
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
   const topicRoutes = [
@@ -179,7 +181,7 @@ export default function BlogHubPage() {
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: "FLOXANT Blogartikel",
-        itemListElement: normalizedBlogPosts.map((post, index) => ({
+        itemListElement: allHubArticles.map((post, index) => ({
           "@type": "ListItem",
           position: index + 1,
           url: `https://www.floxant.de/blog/${post.slug}`,
@@ -610,7 +612,7 @@ export default function BlogHubPage() {
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {normalizedBlogPosts.map((article) => (
+            {allHubArticles.map((article) => (
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}

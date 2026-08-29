@@ -98,7 +98,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       {
         title: "Budget nennen",
         text: "Wenn ein gewünschter Rahmen vorhanden ist und eingeordnet werden soll.",
-        href: "/anfrage-mit-preisrahmen",
+        href: "/umzug-mit-preisvorstellung",
         label: "Budget senden",
         Icon: Banknote,
       },

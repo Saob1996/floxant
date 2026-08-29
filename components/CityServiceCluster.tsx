@@ -105,7 +105,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
     {
       title: "Preisrahmen nennen",
       text: "Wenn Budget oder Zielgröße vorliegt und realistisch gespiegelt werden soll.",
-      href: "/anfrage-mit-preisrahmen",
+      href: "/umzug-mit-preisvorstellung",
       icon: Banknote,
       tone: "bg-emerald-50 text-emerald-700",
     },

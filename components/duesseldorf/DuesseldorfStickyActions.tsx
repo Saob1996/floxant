@@ -102,7 +102,7 @@ export function DuesseldorfStickyActions() {
           </Link>
 
           <Link
-            href="/anfrage-mit-preisrahmen?city=duesseldorf&intent=duesseldorf-budget"
+            href="/umzug-mit-preisvorstellung?city=duesseldorf&intent=duesseldorf-budget"
             className="flox-mobile-action flox-mobile-action-dark"
             aria-label="Budget oder Preisrahmen nennen"
             data-event="hero_cta_click"

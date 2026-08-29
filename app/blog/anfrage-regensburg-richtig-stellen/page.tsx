@@ -118,7 +118,7 @@ export default function BlogAnfrageRegensburgRichtigStellenPage() {
         ctas={[
           { href: "/buchung", label: "Buchung direkt starten" },
           { href: "/express-anfrage", label: "Express-Check öffnen" },
-          { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+          { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
         ]}
         faqTitle="FAQ zur klaren Anfrage"
         faqItems={faqItems}

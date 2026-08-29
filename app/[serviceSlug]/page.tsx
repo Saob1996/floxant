@@ -411,7 +411,7 @@ function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
           {
             title: `${serviceLabel} + Preisrahmen`,
             text: "Budget oder vorhandenes Angebot direkt mitschicken, damit Rückfragen konkreter werden.",
-            href: "/anfrage-mit-preisrahmen",
+            href: "/umzug-mit-preisvorstellung",
           },
           {
             title: `${serviceLabel} + Reinigung`,

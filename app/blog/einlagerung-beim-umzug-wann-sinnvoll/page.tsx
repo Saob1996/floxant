@@ -104,7 +104,7 @@ export default function BlogEinlagerungPage() {
     ctas={[
      { href: "/einlagerung", label: "Einlagerung ansehen" },
      { href: "/rechner", label: "Umzug vorprüfen" },
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
     ]}
     faqTitle="FAQ zur Einlagerung"
     faqItems={faqItems}

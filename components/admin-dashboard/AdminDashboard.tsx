@@ -291,7 +291,7 @@ export function AdminDashboard() {
       return;
     }
 
-    let result: { bookingId?: string; status?: string } | null = null;
+    let result: { bookingId?: string; status?: string; details?: unknown } | null = null;
     let response: Response | null = null;
     try {
       response = await fetch(`/api/admin/bookings/${encodeURIComponent(bookingId)}`, {
@@ -303,7 +303,7 @@ export function AdminDashboard() {
         },
         body: JSON.stringify({ status }),
       });
-      result = await response.json().catch(() => null) as { bookingId?: string; status?: string } | null;
+      result = await response.json().catch(() => null) as { bookingId?: string; status?: string; details?: unknown } | null;
     } catch {
       response = null;
     }
@@ -312,7 +312,7 @@ export function AdminDashboard() {
       setError("Der Status konnte nicht aktualisiert werden. Bitte prüfen Sie Ihre Berechtigung und versuchen Sie es erneut.");
     } else {
       setBookings((current) =>
-        current.map((booking) => (booking.id === bookingId ? { ...booking, status: result?.status || status } : booking)),
+        current.map((booking) => (booking.id === bookingId ? { ...booking, status: result?.status || status, details: result?.details ?? booking.details } : booking)),
       );
     }
 
@@ -729,7 +729,7 @@ function BookingDetail({
   const summary = getBookingSummary(booking);
   const currentEditableStatus = EDITABLE_STATUSES.some((item) => item.value === summary.status) ? summary.status : "";
   const detailView = buildAdminBookingDetailView(booking);
-  const sectionOrder = ["contact", "service", "calculator", "location", "schedule", "description"];
+  const sectionOrder = ["contact", "round-three-workflow", "service", "calculator", "location", "schedule", "description"];
   const customerSections = sectionOrder
     .map((sectionId) => detailView.sections.find((section) => section.id === sectionId))
     .filter((section): section is AdminDetailSection => Boolean(section?.items.length));

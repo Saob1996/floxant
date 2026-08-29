@@ -62,7 +62,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
       text: "Wenn Leistung, Ort und Termin schon grob klar sind.",
     },
     {
-      href: "/anfrage-mit-preisrahmen",
+      href: "/umzug-mit-preisvorstellung",
       title: "Preisrahmen nennen",
       text: "Wenn Budget und Machbarkeit gemeinsam geprüft werden sollen.",
     },

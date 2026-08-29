@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 
 import { company } from "@/lib/company";
 import { dominanceEnglishArticles } from "@/lib/content/dominance-articles";
+import { roundThreeEnglishBlogArticles } from "@/lib/round3/blog-articles";
 
 const path = "/en/blog";
 
@@ -57,6 +58,12 @@ const guides = [
     topic: "Moving quote",
   },
   ...dominanceEnglishArticles.map((article) => ({
+    href: `/en/blog/${article.slug}`,
+    title: article.title,
+    description: article.description,
+    topic: article.category,
+  })),
+  ...roundThreeEnglishBlogArticles.map((article) => ({
     href: `/en/blog/${article.slug}`,
     title: article.title,
     description: article.description,

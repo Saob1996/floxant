@@ -338,7 +338,7 @@ function resolveSocialImagePath(path: string) {
     "/grundreinigung-regensburg": "reinigung",
     "/treppenhausreinigung-regensburg": "reinigung",
     "/regensburg/reinigung": "reinigung",
-    "/anfrage-mit-preisrahmen": "anfrage-mit-preisrahmen",
+    "/umzug-mit-preisvorstellung": "anfrage-mit-preisrahmen",
     "/angebotscheck": "anfrage-mit-preisrahmen",
     "/makler-vermieter-link": "gewerbereinigung-regensburg",
     "/mieterwechsel-service-regensburg": "gewerbereinigung-regensburg",

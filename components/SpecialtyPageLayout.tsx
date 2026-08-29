@@ -782,7 +782,7 @@ export function SpecialtyPageLayout({
       text: "Wenn zuerst Volumen, Preisrahmen oder Aufwand für den Standort besser eingeordnet werden sollen.",
     },
     {
-      href: "/anfrage-mit-preisrahmen",
+      href: "/umzug-mit-preisvorstellung",
       title: "Budget direkt nennen",
       text: "Wenn schon eine Zielgröße da ist und FLOXANT den passenden Rahmen daran spiegeln soll.",
     },
@@ -887,7 +887,7 @@ export function SpecialtyPageLayout({
               ) : null}
               <TrustBadge type="expert" />
               <Link
-                href="/anfrage-mit-preisrahmen"
+                href="/umzug-mit-preisvorstellung"
                 className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5"
               >
                 <Banknote className="h-4 w-4" />
@@ -924,7 +924,7 @@ export function SpecialtyPageLayout({
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
-                href="/anfrage-mit-preisrahmen"
+                href="/umzug-mit-preisvorstellung"
                 className="flox-button-secondary min-h-[3.65rem] px-8"
                 data-event="form_submit"
                 data-service={serviceContext.name.toLowerCase()}
@@ -943,7 +943,7 @@ export function SpecialtyPageLayout({
                   { href: "#service-klarheit", label: "Leistung verstehen" },
                   { href: "#wizard", label: "Anfrage starten" },
                   { href: serviceContext.calculatorHref, label: "Rechner öffnen" },
-                  { href: "/anfrage-mit-preisrahmen", label: "Budget nennen" },
+                  { href: "/umzug-mit-preisvorstellung", label: "Budget nennen" },
                 ].map((item) => (
                   <a
                     key={item.href}
@@ -1136,7 +1136,7 @@ export function SpecialtyPageLayout({
                 Sie möchten nicht erst lange rechnen, sondern haben schon einen Zielrahmen für Ihr Projekt in {germanText(city, city)}? Ihre Preisvorstellung ergänzt die Vorprüfung und hilft, Leistung, Umfang und nächste Schritte realistischer einzuordnen.
               </p>
               <Link
-                href="/anfrage-mit-preisrahmen"
+                href="/umzug-mit-preisvorstellung"
                 className="flox-button-secondary mt-7 min-h-[3.2rem] px-5"
               >
                 Projekt mit Preisrahmen anfragen
@@ -1338,7 +1338,7 @@ export function SpecialtyPageLayout({
                       Anfrage mit Fotos starten
                     </a>
                     <Link
-                      href="/anfrage-mit-preisrahmen"
+                      href="/umzug-mit-preisvorstellung"
                       className="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/8 px-4 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-white/12"
                       data-event="form_submit"
                       data-service={serviceContext.name.toLowerCase()}

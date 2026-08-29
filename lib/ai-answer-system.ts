@@ -14,7 +14,11 @@ export type AiAnswerKey =
   | "uebergabe-sprint"
   | "duesseldorf"
   | "regensburg"
-  | "english-request";
+  | "english-request"
+  | "europa-umzug"
+  | "budget-umzug"
+  | "schwierige-lebenssituation"
+  | "kostenuebernahme";
 
 export type AiAnswerEntry = {
   key: AiAnswerKey;
@@ -36,7 +40,63 @@ export type AiAnswerEntry = {
 
 const reviewed = "2026-07-08";
 
+import {
+  EUROPE_MOVE_QUESTIONS,
+  MANDATORY_BUDGET_RESPONSE,
+  MANDATORY_COST_COVERAGE_RESPONSE,
+  MANDATORY_DIFFICULT_SITUATION_RESPONSE,
+} from "@/lib/round3/ai-knowledge";
+import { roundThreeServiceMatrix } from "@/lib/round3/service-matrix";
+
 export const aiAnswerEntries: AiAnswerEntry[] = [
+  {
+    key: "europa-umzug",
+    route: roundThreeServiceMatrix.europeMove.path.de,
+    title: "Europa-Umzug beginnt mit einer geprüften Route.",
+    directAnswer: "FLOXANT prüft Europa-Umzüge ausschließlich mit Start in Deutschland. Route, Umfang, Termin, Kapazität und mögliche Grenz- oder Transitvorgaben werden vor einem verbindlichen Angebot geprüft.",
+    usefulWhen: ["Start in Deutschland", "Ziel in Europa", "Route oder Grenzklasse offen"],
+    neededInfo: [...EUROPE_MOVE_QUESTIONS],
+    notPromised: ["keine Zollberatung", "keine garantierte Route", "keine automatische Buchung"],
+    nextStep: "Start, Ziel, Haushaltsgröße und Zeitraum im vorausgewählten Formular senden.",
+    cta: { href: "/europa-umzug-ab-deutschland#anfrage", label: "Europa-Umzug anfragen" },
+    serviceKeys: ["EUROPE_MOVE"], intentKeys: ["europa", "ausland", "international"], lastReviewed: "2026-08-29",
+  },
+  {
+    key: "budget-umzug",
+    route: roundThreeServiceMatrix.budgetMove.path.de,
+    title: "Preisvorstellung und Leistungsumfang gemeinsam prüfen.",
+    directAnswer: MANDATORY_BUDGET_RESPONSE,
+    usefulWhen: ["Bruttobudget steht fest", "Umfang ist teilweise flexibel", "Gegenvorschlag ist möglich"],
+    neededInfo: ["Start und Ziel", "Umfang und Termin", "Bruttopreisvorstellung inklusive 19 % MwSt."],
+    notPromised: ["keine automatische Budgetannahme", "kein garantierter Rabatt", "kein Auftrag durch Eingabe"],
+    nextStep: "Bruttopreisvorstellung, unverzichtbare und flexible Leistungen senden.",
+    cta: { href: "/umzug-mit-preisvorstellung#anfrage", label: "Budget-Umzug prüfen lassen" },
+    serviceKeys: ["BUDGET_MOVE"], intentKeys: ["budget", "preisvorstellung", "preisrahmen"], lastReviewed: "2026-08-29",
+  },
+  {
+    key: "schwierige-lebenssituation",
+    route: roundThreeServiceMatrix.difficultSituation.path.de,
+    title: "Praktische Hilfe ohne unnötige private Angaben.",
+    directAnswer: MANDATORY_DIFFICULT_SITUATION_RESPONSE,
+    usefulWhen: ["praktische Aufgabe belastet", "diskreter Kontakt wichtig", "Termin oder Zugang schwierig"],
+    neededInfo: ["benötigte praktische Leistung", "Ort und Termin", "praktische Einschränkungen"],
+    notPromised: ["keine medizinische Beratung", "keine Krisenintervention", "keine automatische Zusage"],
+    nextStep: "Nur Aufgabe, Ort, Termin und Kontaktweg beschreiben.",
+    cta: { href: "/hilfe-in-schwierigen-lebenssituationen#anfrage", label: "Praktische Hilfe anfragen" },
+    serviceKeys: ["DIFFICULT_SITUATION"], intentKeys: ["schwierig", "todesfall", "trennung"], lastReviewed: "2026-08-29",
+  },
+  {
+    key: "kostenuebernahme",
+    route: roundThreeServiceMatrix.costCoverage.path.de,
+    title: "Kostenvoranschlag ist noch keine Bewilligung.",
+    directAnswer: MANDATORY_COST_COVERAGE_RESPONSE,
+    usefulWhen: ["möglicher Kostenträger", "Kostenvoranschlag wird verlangt", "schriftliche Freigabe ist offen"],
+    neededInfo: ["praktische Leistung", "möglicher Kostenträger", "Antrags- oder Freigabestatus"],
+    notPromised: ["keine Kostenübernahmegarantie", "keine Rechtsberatung", "keine Anbieteranerkennung erfinden"],
+    nextStep: "Leistung, Kostenträger und schriftliche Vorgaben ohne Diagnose senden.",
+    cta: { href: "/kostenuebernahme-fuer-umzug-und-haushaltshilfe#anfrage", label: "Kostenvoranschlag vorbereiten" },
+    serviceKeys: ["COST_COVERAGE_REQUEST"], intentKeys: ["jobcenter", "krankenkasse", "arbeitgeber", "kostenuebernahme"], lastReviewed: "2026-08-29",
+  },
   {
     key: "angebot-pruefen",
     route: "/angebot-guenstiger-pruefen",
@@ -265,16 +325,22 @@ export const aiAnswerEntries: AiAnswerEntry[] = [
 ];
 
 export function getAiAnswerByKey(key: AiAnswerKey) {
-  return aiAnswerEntries.find((entry) => entry.key === key);
+  const entry = aiAnswerEntries.find((item) => item.key === key);
+  return entry ? { ...entry, neededInfo: entry.neededInfo.slice(0, 3) } : undefined;
 }
 
 export function getAiAnswerForRoute(route: string) {
   const cleanRoute = route.split("?")[0].split("#")[0].replace(/\/+$/, "") || "/";
-  return aiAnswerEntries.find((entry) => entry.route === cleanRoute);
+  const entry = aiAnswerEntries.find((item) => item.route === cleanRoute);
+  return entry ? { ...entry, neededInfo: entry.neededInfo.slice(0, 3) } : undefined;
 }
 
 export function resolveAiAnswerKey(pathOrSignal: string): AiAnswerKey {
   const signal = pathOrSignal.toLowerCase();
+  if (signal.includes("europa") || signal.includes("ausland") || signal.includes("international") || signal.includes("moving-from-germany")) return "europa-umzug";
+  if (signal.includes("preisvorstellung") || signal.includes("preisrahmen") || signal.includes("budget")) return "budget-umzug";
+  if (signal.includes("jobcenter") || signal.includes("krankenkasse") || signal.includes("pflegekasse") || signal.includes("sozialamt") || signal.includes("arbeitgeber") || signal.includes("kostenuebernahme") || signal.includes("cost-coverage")) return "kostenuebernahme";
+  if (signal.includes("schwierig") || signal.includes("todesfall") || signal.includes("hardship") || signal.includes("difficult-situation")) return "schwierige-lebenssituation";
   if (signal.includes("angebot")) return "angebot-pruefen";
   if (signal.includes("bueroreinigung")) return "duesseldorf-bueroreinigung";
   if (signal.includes("gewerbereinigung")) return "duesseldorf-gewerbereinigung";

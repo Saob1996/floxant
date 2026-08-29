@@ -124,7 +124,7 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
   budget_check: {
     title: "Budget- und Preisrahmen-Prüfung",
     desc: "Wenn ein Zielbudget existiert, prüft FLOXANT ehrlich, welcher Umfang realistisch ist und wo Grenzen liegen.",
-    href: "/anfrage-mit-preisrahmen",
+    href: "/umzug-mit-preisvorstellung",
     label: "Budget nennen",
     eyebrow: "Preisrahmen",
     icon: Banknote,

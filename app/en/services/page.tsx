@@ -202,6 +202,22 @@ export default function EnglishServicesPage() {
 
       <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
+          <div className="mb-12 grid gap-5 md:grid-cols-2">
+            {[
+              ["Move from Germany to Europe", "Route, volume, access and possible border requirements in one structured request.", "/en/moving-from-germany-to-europe"],
+              ["Moving with a budget", "Compare a gross budget including 19% VAT with the essential and flexible scope.", "/en/moving-with-a-budget"],
+              ["Help in difficult situations", "Request practical moving, clearance, transport or cleaning help without sharing a diagnosis.", "/en/help-in-difficult-situations"],
+              ["Possible cost coverage", "Keep the cost estimate, application, written approval and order clearly separate.", "/en/cost-coverage-for-moving-and-household-help"],
+            ].map(([title, description, href]) => (
+              <article key={href} className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <h2 className="text-xl font-black">{title}</h2>
+                <p className="mt-3 leading-7 text-slate-700">{description}</p>
+                <Link href={href} className="mt-5 inline-flex min-h-11 items-center gap-2 font-black text-cyan-900 underline decoration-cyan-300 underline-offset-4">
+                  Open service page<ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
           <ServiceCatalog services={englishServices} locale="en" />
 
           <div className="mt-12 rounded-3xl bg-cyan-50 p-6 sm:p-8">

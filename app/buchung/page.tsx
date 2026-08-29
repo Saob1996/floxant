@@ -361,7 +361,7 @@ const signatureServices = [
   {
     title: "Kostenrahmen",
     text: "Budget offen nennen und realistisch einordnen lassen.",
-    href: "/anfrage-mit-preisrahmen",
+    href: "/umzug-mit-preisvorstellung",
     requestHref: "/buchung?entry=budget#buchungssystem",
     Icon: Banknote,
   },

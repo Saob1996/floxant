@@ -151,7 +151,7 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
         ]}
         primaryHref="/buchung?service=wohnungsaufloesung#buchungssystem"
         primaryLabel="Wohnungsauflösung anfragen"
-        secondaryHref="/anfrage-mit-preisrahmen"
+        secondaryHref="/umzug-mit-preisvorstellung"
         secondaryLabel="Budget nennen"
       />
       <LocalSeoSearchIntentBridge

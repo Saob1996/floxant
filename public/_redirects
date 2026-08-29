@@ -2,6 +2,8 @@
 # The apex host redirect is a Cloudflare zone rule because Pages _redirects has no domain matching.
 # Static rules must precede dynamic rules on Cloudflare Pages.
 
+/anfrage-mit-preisrahmen /umzug-mit-preisvorstellung 301
+
 /villenservice /private-client-service 308
 /partnercode /empfehlen 308
 /airbnb-reinigung-duesseldorf /reinigung-moeblierte-wohnung-duesseldorf 308

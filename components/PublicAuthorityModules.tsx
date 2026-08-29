@@ -112,7 +112,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Preisrahmen nennen, ohne Druck",
     text:
       "Ein Budget ist kein Festpreisversprechen. Es hilft, Machbarkeit, Umfang und Alternativen ehrlich einzuordnen, bevor falsche Erwartungen entstehen.",
-    href: "/anfrage-mit-preisrahmen",
+    href: "/umzug-mit-preisvorstellung",
     cta: "Budget pruefen lassen",
     Icon: Banknote,
     event: "submit_budget_request",

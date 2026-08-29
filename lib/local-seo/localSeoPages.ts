@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { germanizeDeep } from "@/lib/german-text";
+import { buildServiceContactHref } from "@/lib/service-routing";
 
 import { localSeoCities } from "./cities";
 import { localSeoDistricts } from "./districts";
@@ -71,7 +72,13 @@ function getBookingHref(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKe
           ? "angebot-pruefen"
           : "reinigung";
 
-  return `/kontakt?service=${serviceParam}&city=${region}&intent=${serviceKey}-${region}&source=website`;
+  return buildServiceContactHref({
+    service: serviceParam,
+    city: region,
+    intent: `${serviceKey}-${region}`,
+    source: "website",
+    anchor: "",
+  });
 }
 
 function getProcess(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKey): string[] {

@@ -1359,6 +1359,37 @@ export function buildAdminBookingDetailView(
     },
   ].filter((section) => section.items.length > 0);
 
+  const roundThreeSection: AdminDetailSection = {
+    id: "round-three-workflow",
+    title: "Spezial-Anfrage und Bearbeitungsstatus",
+    items: compactItems([
+      item("Anfragetyp", details, ["configuration.round3Workflow.requestType", "configuration.rawFields.requestType"], consumed),
+      item("Service-ID", details, ["configuration.round3Workflow.serviceId"], consumed),
+      item("Startland", details, ["configuration.round3Workflow.originCountry", "configuration.rawFields.originCountry"], consumed),
+      item("Zielland", details, ["configuration.round3Workflow.destinationCountry", "configuration.rawFields.destinationCountry"], consumed),
+      item("Grenzklasse", details, ["configuration.round3Workflow.borderClassification"], consumed),
+      item("Bruttopreisvorstellung", details, ["configuration.round3Workflow.grossBudget", "configuration.rawFields.grossBudget"], consumed),
+      item("Möglicher Kostenträger", details, ["configuration.round3Workflow.payer", "configuration.rawFields.payer"], consumed),
+      item("Antragsstand", details, ["configuration.round3Workflow.payerApplicationStatus", "configuration.rawFields.payerApplicationStatus"], consumed),
+      item("Bewilligter Bruttobetrag", details, ["configuration.round3Workflow.approvedGrossAmount"], consumed),
+      item("Bewilligte Leistungspositionen", details, ["configuration.round3Workflow.approvedServiceItems"], consumed),
+      item("Möglicher Eigenanteil", details, ["configuration.round3Workflow.possibleCopay"], consumed),
+      item("Gegenangebot", details, ["configuration.round3Workflow.counterOffer"], consumed),
+      item("Zuständiger Mitarbeiter", details, ["configuration.round3Workflow.assignedEmployee"], consumed),
+      item("Kalkulationsstatus", details, ["configuration.round3Workflow.calculationStatus"], consumed),
+      item("Angebotsstatus", details, ["configuration.round3Workflow.offerStatus"], consumed),
+      item("Auftragsstatus", details, ["configuration.round3Workflow.orderStatus"], consumed),
+      item("Kostenübernahmestatus", details, ["configuration.round3Workflow.coverageStatus"], consumed),
+      item("Mögliche Rückfahrt", details, ["configuration.round3Workflow.possibleBackhaul"], consumed),
+      item("Enthalten", details, ["configuration.round3Workflow.includedItems"], consumed),
+      item("Ausgeschlossen", details, ["configuration.round3Workflow.excludedItems"], consumed),
+      item("Kundenantworten", details, ["configuration.round3Workflow.customerReplies"], consumed),
+      item("Interne Notizen", details, ["configuration.round3Workflow.internalNotes"], consumed),
+      item("Statushistorie", details, ["configuration.round3Workflow.statusHistory"], consumed),
+    ]),
+  };
+  if (roundThreeSection.items.length) sections.splice(1, 0, roundThreeSection);
+
   const additionalItems: AdminDetailItem[] = [];
   flattenUnknown(details, "", consumed, additionalItems);
   if (upgrades !== null) consumed.add("upgrades");

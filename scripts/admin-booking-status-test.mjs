@@ -21,6 +21,25 @@ assert.deepEqual(ADMIN_BOOKING_STATUSES, [
   "contacted",
   "quote_sent",
   "appointment_scheduled",
+  "details_missing",
+  "under_review",
+  "budget_feasible",
+  "reduced_scope_proposed",
+  "counter_offer_sent",
+  "not_feasible",
+  "customer_confirmed",
+  "declined",
+  "expired",
+  "order_created",
+  "not_applied",
+  "cost_estimate_created",
+  "submitted_to_payer",
+  "payer_question",
+  "partially_approved",
+  "fully_approved",
+  "rejected",
+  "billing_open",
+  "paid",
   "backhaul_matching",
   "backhaul_notified",
   "backhaul_accepted",
@@ -112,24 +131,36 @@ function jsonResponse(body, status = 200) {
     const method = String(init.method || "GET").toUpperCase();
     calls.push({ target, method, init });
     if (target.endsWith("/auth/v1/user")) return jsonResponse({ app_metadata: { role: "admin" } });
+    if (target.includes("/rest/v1/bookings") && method === "GET") {
+      return jsonResponse([{ id: bookingId, status: storedStatus, details: { configuration: { round3Workflow: { statusHistory: [] } } } }]);
+    }
     if (target.includes("/rest/v1/bookings") && method === "PATCH") {
-      storedStatus = JSON.parse(String(init.body)).status;
-      return jsonResponse([{ id: bookingId, status: storedStatus }]);
+      const update = JSON.parse(String(init.body));
+      storedStatus = update.status;
+      return jsonResponse([{ id: bookingId, status: storedStatus, details: update.details }]);
     }
     throw new Error(`Unexpected request: ${method} ${target}`);
   });
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { ok: true, bookingId, status: "quote_sent" });
+  const result = await response.json();
+  assert.equal(result.ok, true);
+  assert.equal(result.bookingId, bookingId);
+  assert.equal(result.status, "quote_sent");
+  assert.equal(result.details.configuration.round3Workflow.statusHistory.length, 1);
+  assert.equal(result.details.configuration.round3Workflow.statusHistory[0].previousStatus, "new");
   assert.equal(storedStatus, "quote_sent", "status must be durably written before the response");
-  assert.deepEqual(calls.map((call) => call.method), ["GET", "PATCH"]);
-  assert.equal(calls[1].init.headers.Authorization, authorization, "the admin JWT must exercise bookings RLS");
-  assert.equal(calls[1].init.headers.apikey, env.SUPABASE_PUBLISHABLE_KEY);
-  assert.equal(calls[1].init.headers.Prefer, "return=representation");
+  assert.deepEqual(calls.map((call) => call.method), ["GET", "GET", "PATCH"]);
+  assert.equal(calls[2].init.headers.Authorization, authorization, "the admin JWT must exercise bookings RLS");
+  assert.equal(calls[2].init.headers.apikey, env.SUPABASE_PUBLISHABLE_KEY);
+  assert.equal(calls[2].init.headers.Prefer, "return=representation");
 }
 
 {
   const response = await handleAdminBookingStatusUpdate(context(), async (url, init = {}) => {
     if (String(url).endsWith("/auth/v1/user")) return jsonResponse({ app_metadata: { role: "admin" } });
+    if (String(init.method || "GET").toUpperCase() === "GET") {
+      return jsonResponse([{ id: bookingId, status: "new", details: {} }]);
+    }
     return jsonResponse([]);
   });
   assert.equal(response.status, 409, "an empty RLS update result must never be reported as success");

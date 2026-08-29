@@ -122,7 +122,7 @@ test("15. Angebotscheck ist im zentralen Anfrageprozess verfügbar", () => {
 });
 
 test("16. Budget nennen bleibt eine getrennte Route", () => {
-  assert.match(navigation, /headerBudgetHref = "\/anfrage-mit-preisrahmen"/);
+  assert.match(navigation, /headerBudgetHref = "\/umzug-mit-preisvorstellung"/);
   assert.match(navigation, /href=\{headerBudgetHref\}/);
 });
 

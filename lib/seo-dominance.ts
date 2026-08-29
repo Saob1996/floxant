@@ -170,7 +170,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/seniorenumzug-bamberg",
  "/umzug-mit-reinigung",
  "/express-anfrage",
- "/anfrage-mit-preisrahmen",
+ "/umzug-mit-preisvorstellung",
  "/kleinmengen-entsorgung",
  "/entruempelung-nuernberg",
  "/entruempelung-bayern",
@@ -582,7 +582,7 @@ const moneySnippets: Record<string, Snippet> = {
   cluster: "conversion",
   intent: "Schnelle Anfrage mit wenigen Angaben starten",
  },
- "/anfrage-mit-preisrahmen": {
+ "/umzug-mit-preisvorstellung": {
   title: "Preisvorschlag senden | FLOXANT Anfrage mit Budget",
   description:
    "Eigenes Zielbudget nennen und trotzdem ehrlich prüfen lassen: Kundenwunsch und FLOXANT Orientierungsrahmen bleiben getrennt.",

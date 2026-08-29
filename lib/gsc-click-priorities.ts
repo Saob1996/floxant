@@ -96,7 +96,7 @@ const privateClientAnchors = [
   { href: "/diskreter-umzug-trennung-scheidung", label: "Diskreter Umzug" },
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung" },
   { href: "/kontakt?mode=neutral&source=website", label: "Diskret Kontakt aufnehmen" },
-  { href: "/anfrage-mit-preisrahmen", label: "Preisrahmen vertraulich nennen" },
+  { href: "/umzug-mit-preisvorstellung", label: "Preisrahmen vertraulich nennen" },
 ] as const;
 
 const diskretServiceAnchors = [
@@ -1056,7 +1056,7 @@ const monitoredMoneyPageContext = {
     service: "reinigung",
     city: "regensburg",
     intent: "Reinigung in Regensburg nach Umzug, vor Uebergabe oder fuer Wohnung",
-    expectedRelatedLinks: ["/regensburg/umzug", "/reinigungsfirma-angebot", "/anfrage-mit-preisrahmen"],
+    expectedRelatedLinks: ["/regensburg/umzug", "/reinigungsfirma-angebot", "/umzug-mit-preisvorstellung"],
   },
   "/diskret-service": {
     service: "diskret-service",

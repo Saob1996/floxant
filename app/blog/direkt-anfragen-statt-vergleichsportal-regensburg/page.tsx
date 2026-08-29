@@ -106,7 +106,7 @@ export default function BlogDirektAnfragenPage() {
     ctas={[
      { href: "/buchung", label: "Buchungsseite öffnen" },
      { href: "/rechner", label: "Preisrahmen prüfen" },
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
     ]}
     faqTitle="FAQ zu direkter Anfrage statt Vergleichsportal"
     faqItems={faqItems}

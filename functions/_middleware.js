@@ -1,4 +1,5 @@
 const PERMANENT_REDIRECTS = new Map([
+  ["/anfrage-mit-preisrahmen", "/umzug-mit-preisvorstellung"],
   ["/regensburg/reinigungsfirma", "/regensburg/reinigung"],
   ["/regensburg/umzugsservice", "/regensburg/umzug"],
   ["/regensburg/umzugsunternehmen", "/regensburg/umzug"],

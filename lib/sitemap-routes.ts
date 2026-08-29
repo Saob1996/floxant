@@ -7,7 +7,7 @@ export const sitemapRoutes = [
   "/akteneinlagerung-regensburg",
   "/alternativen",
   "/anbieter-vergleichen",
-  "/anfrage-mit-preisrahmen",
+  "/umzug-mit-preisvorstellung",
   "/angebot-guenstiger-pruefen",
   "/angebot-pruefen",
   "/angebot-vergleichen-duesseldorf",

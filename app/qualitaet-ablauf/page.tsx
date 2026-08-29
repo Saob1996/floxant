@@ -143,7 +143,7 @@ export default function QualityProcessPage() {
        <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
-       href="/anfrage-mit-preisrahmen"
+       href="/umzug-mit-preisvorstellung"
        className="inline-flex items-center gap-2 rounded-2xl border border-foreground/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-foreground/82 transition hover:bg-white/[0.08]"
       >
        Preisvorstellung senden

@@ -25,8 +25,8 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const canonicalPath = "/regensburg/umzug";
-const moveContactHref = "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website";
-const furnitureAssemblyHref = "/kontakt?service=umzug&city=regensburg&intent=moebelmontage-regensburg&source=website";
+const moveContactHref = "/regensburg/buchen?service=umzug&intent=umzug-regensburg&source=website";
+const furnitureAssemblyHref = "/regensburg/buchen?service=moebelmontage&intent=moebelmontage-regensburg&source=website";
 const offerCheckHref =
   "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
 const pageMeta = getPrioritySeoMeta(canonicalPath);

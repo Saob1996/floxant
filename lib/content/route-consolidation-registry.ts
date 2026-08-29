@@ -234,6 +234,23 @@ export const routeConsolidationRegistry = [
     ],
     unresolvedChecks: ["Query-Zuordnung nach 28 Tagen prüfen; die vorhandenen Daten sind Seitenaggregate"],
   },
+  {
+    cluster: "moving-budget",
+    service: "Umzug mit Preisvorstellung",
+    location: "Überregional",
+    primaryRoute: "/umzug-mit-preisvorstellung",
+    primaryDecision: "STRENGTHEN",
+    legacyRoutes: [
+      { route: "/anfrage-mit-preisrahmen", decision: "REDIRECT_CANDIDATE", existingRedirect: "/umzug-mit-preisvorstellung" },
+    ],
+    confidence: "confirmed",
+    evidence: [
+      "Für /anfrage-mit-preisrahmen liegt weder im 28-Tage-Seitenexport noch in der aggregierten Lead-Auswertung ein Signal vor.",
+      "Beide Routen bedienen denselben Budget-/Umfangsabgleich; die neue Primärroute benennt die Suchintention eindeutig.",
+      "Eine permanente Weiterleitung erhält unbekannte externe Signale, statt die alte Route ersatzlos zu entfernen.",
+    ],
+    unresolvedChecks: ["Redirect und Indexkonsolidierung nach 7, 14 und 28 Tagen prüfen"],
+  },
 ] as const satisfies readonly RouteConsolidationEntry[];
 
 export function getRouteConsolidationEntry(route: string) {

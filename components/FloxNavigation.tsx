@@ -18,7 +18,7 @@ type DesktopMenu = "services" | "locations" | "special" | "knowledge" | null;
 
 const headerOfferHref = buildGlobalRequestHref("global_header");
 const mobileOfferHref = buildGlobalRequestHref("global_mobile_header");
-const headerBudgetHref = "/anfrage-mit-preisrahmen";
+const headerBudgetHref = "/umzug-mit-preisvorstellung";
 const headerWhatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich möchte eine Anfrage stellen.")}`;
 
 const locationLinks = [

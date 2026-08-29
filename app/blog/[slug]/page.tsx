@@ -12,6 +12,7 @@ import {
 import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 import { generatePageSEO } from "@/lib/seo";
 import { getStrategicBlogArticle, strategicBlogArticles } from "@/lib/strategic-blog-articles";
+import { getRoundThreeBlogArticle, roundThreeGermanBlogArticles } from "@/lib/round3/blog-articles";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -24,6 +25,7 @@ function getArticle(slug: string) {
 
   return (
     aiRecommendationBlogArticles.find((article) => article.slug === slug) ||
+    getRoundThreeBlogArticle(slug, "de") ||
     getDominanceArticle(slug, "de") ||
     getOfferCheckBlogArticle(slug) ||
     getPsychologicalCleaningBlogArticle(slug) ||
@@ -34,6 +36,7 @@ function getArticle(slug: string) {
 export function generateStaticParams() {
   const slugs = new Set([
     ...aiRecommendationBlogArticles.map((article) => article.slug),
+    ...roundThreeGermanBlogArticles.map((article) => article.slug),
     ...dominanceGermanArticles.map((article) => article.slug),
     ...offerCheckBlogArticles.map((article) => article.slug),
     ...strategicBlogArticles.map((article) => article.slug),

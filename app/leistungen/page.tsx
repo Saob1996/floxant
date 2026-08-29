@@ -95,6 +95,30 @@ const serviceClusterGuide = [
     cta: "Umzug/Transport wählen",
   },
   {
+    title: "Europa-Umzug ab Deutschland",
+    text: "Für Umzüge mit festem Startland Deutschland und Ziel in Europa: Route, Volumen, Zugang sowie mögliche Grenz- und Transitfragen getrennt prüfen.",
+    href: "/europa-umzug-ab-deutschland",
+    cta: "Europa-Umzug anfragen",
+  },
+  {
+    title: "Umzug mit Preisvorstellung",
+    text: "Bruttopreisvorstellung inklusive 19 % MwSt., unverzichtbare Leistungen und flexible Bestandteile transparent abgleichen lassen.",
+    href: "/umzug-mit-preisvorstellung",
+    cta: "Budget und Umfang prüfen",
+  },
+  {
+    title: "Hilfe in schwierigen Lebenssituationen",
+    text: "Praktische Hilfe für Umzug, Räumung, Transport oder Reinigung diskret anfragen – ohne Diagnose oder intime Lebensgeschichte.",
+    href: "/hilfe-in-schwierigen-lebenssituationen",
+    cta: "Praktische Hilfe anfragen",
+  },
+  {
+    title: "Mögliche Kostenübernahme",
+    text: "Kostenvoranschlag, Antrag, schriftliche Freigabe und Auftrag sauber trennen. FLOXANT gibt keine Zusage eines Kostenträgers.",
+    href: "/kostenuebernahme-fuer-umzug-und-haushaltshilfe",
+    cta: "Kostenübernahme vorbereiten",
+  },
+  {
     title: "Räumung und Auflösung",
     text: "Für Entrümpelung, Keller, Lager, Nachlass und Haushaltsauflösung. Fotos, Menge, Material, Zugang und gewünschter Endzustand helfen.",
     href: "/regensburg/entruempelung",

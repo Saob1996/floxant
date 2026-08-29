@@ -300,7 +300,7 @@ export const offerCheckLinks: readonly SignatureSpecialLink[] = germanizeDeep([
   {
     title: "Preisrahmen-Anfrage",
     text: "Wenn noch kein Angebot vorliegt, aber Ort, Leistung, Fotos und Budgetrahmen grob eingeordnet werden sollen.",
-    href: "/anfrage-mit-preisrahmen",
+    href: "/umzug-mit-preisvorstellung",
     cta: "Preisrahmen nennen",
     type: "Ergaenzungsservice",
     priority: "B",

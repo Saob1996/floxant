@@ -31,7 +31,7 @@ const clusters = [
    { href: "/buchung-ablauf", label: "Buchung und Ablauf" },
    { href: "/leistungen-vergleichen", label: "Leistungen vergleichen" },
    { href: "/anbieter-vergleichen", label: "Anbieter fair vergleichen" },
-   { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+   { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
    { href: "/kostenfaktoren", label: "Kostenfaktoren verstehen" },
    { href: "/qualitaet-ablauf", label: "Qualität und Ablauf prüfen" },
    { href: "/praxisfaelle", label: "Praxisfälle vergleichen" },

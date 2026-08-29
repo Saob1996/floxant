@@ -179,7 +179,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         query: "Ich habe ein festes Budget.",
         answer:
           "Dann kann FLOXANT prüfen, welcher Leistungsumfang innerhalb dieses Rahmens realistisch ist.",
-        href: "/anfrage-mit-preisrahmen",
+        href: "/umzug-mit-preisvorstellung",
         label: "Budget nennen",
         Icon: CheckCircle2,
       },

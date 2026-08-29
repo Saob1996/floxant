@@ -47,7 +47,7 @@ const serviceSwitchLinks: Array<{ href: string; label: string }> = [
 const conversionLinks = [
   { href: "/buchung", label: "Direkt anfragen" },
   { href: "/express-anfrage", label: "Express-Check" },
-  { href: "/anfrage-mit-preisrahmen", label: "Budget mitsenden" },
+  { href: "/umzug-mit-preisvorstellung", label: "Budget mitsenden" },
 ];
 
 const defaultStepGuidance = [

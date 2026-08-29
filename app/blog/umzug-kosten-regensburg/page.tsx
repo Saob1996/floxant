@@ -104,7 +104,7 @@ export default function BlogUmzugKosten() {
     ]}
     ctas={[
      { href: "/rechner", label: "Zum Rechner" },
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
      { href: "/umzug", label: "Umzug ansehen" },
     ]}
     faqTitle="FAQ zu Umzugskosten in Regensburg"

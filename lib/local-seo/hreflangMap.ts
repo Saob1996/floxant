@@ -36,6 +36,10 @@ const allLocalSeoHreflangPairs = [
   { de: "/regensburg/reinigung-nach-umzug", en: "/en/regensburg/cleaning-after-moving" },
   { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/moving-quote-review" },
   { de: "/signature-services", en: "/en/signature-services" },
+  { de: "/europa-umzug-ab-deutschland", en: "/en/moving-from-germany-to-europe" },
+  { de: "/umzug-mit-preisvorstellung", en: "/en/moving-with-a-budget" },
+  { de: "/hilfe-in-schwierigen-lebenssituationen", en: "/en/help-in-difficult-situations" },
+  { de: "/kostenuebernahme-fuer-umzug-und-haushaltshilfe", en: "/en/cost-coverage-for-moving-and-household-help" },
   { de: "/kontakt", en: "/en/contact" },
 ] as const satisfies readonly HreflangPair[];
 
@@ -43,7 +47,11 @@ export const localSeoHreflangPairs = allLocalSeoHreflangPairs.filter(
   (pair) =>
     pair.de.includes("regensburg") ||
     pair.de.includes("duesseldorf") ||
-    pair.de === "/angebot-vergleichen-regensburg",
+    pair.de === "/angebot-vergleichen-regensburg" ||
+    pair.de.startsWith("/europa-umzug") ||
+    pair.de.startsWith("/umzug-mit-preisvorstellung") ||
+    pair.de.startsWith("/hilfe-in-schwierigen") ||
+    pair.de.startsWith("/kostenuebernahme-fuer-umzug"),
 ) as readonly HreflangPair[];
 
 const pairByPath = new Map<string, HreflangPair>();

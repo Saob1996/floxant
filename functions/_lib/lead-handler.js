@@ -818,6 +818,58 @@ function validateSubmission(payload) {
   return contact;
 }
 
+const ROUND_THREE_REQUEST_TYPES = new Set([
+  "EUROPE_MOVE",
+  "BUDGET_MOVE",
+  "DIFFICULT_SITUATION",
+  "COST_COVERAGE_REQUEST",
+]);
+
+function validateRoundThreeRequest(payload) {
+  const requestType = text(payload.requestType);
+  if (!requestType) return;
+  if (!ROUND_THREE_REQUEST_TYPES.has(requestType)) {
+    throw new ValidationFailure({ requestType: "Der Anfrageweg ist ungültig." });
+  }
+
+  const workflow = record(payload.details?.configuration?.round3Workflow);
+  if (text(workflow.requestType) !== requestType) {
+    throw new ValidationFailure({ requestType: "Der Anfrageweg ist nicht eindeutig." });
+  }
+
+  const required = {};
+  if (requestType === "EUROPE_MOVE") {
+    if (text(payload.originCountry) !== "DE" || text(workflow.originCountry) !== "DE") {
+      required.originCountry = "Dieser Anfrageweg ist nur für einen Start in Deutschland verfügbar.";
+    }
+    if (!text(payload.startLocation)) required.startLocation = "Bitte geben Sie den Startort in Deutschland an.";
+    if (!text(payload.destinationCountry)) required.destinationCountry = "Bitte wählen Sie das Zielland.";
+    if (!text(payload.destinationLocation)) required.destinationLocation = "Bitte geben Sie den Zielort an.";
+  }
+  if (requestType === "BUDGET_MOVE") {
+    const grossBudget = Number(text(payload.grossBudget).replace(",", "."));
+    if (!Number.isFinite(grossBudget) || grossBudget <= 0) {
+      required.grossBudget = "Bitte geben Sie eine Bruttopreisvorstellung inklusive 19 % MwSt. an.";
+    }
+    if (!text(payload.startLocation)) required.startLocation = "Bitte geben Sie den Startort an.";
+    if (!text(payload.destinationLocation)) required.destinationLocation = "Bitte geben Sie den Zielort an.";
+  }
+  if (requestType === "DIFFICULT_SITUATION") {
+    if (!text(payload.primaryService)) required.primaryService = "Bitte wählen Sie die praktische Aufgabe.";
+    if (!text(payload.location)) required.location = "Bitte geben Sie den Leistungsort an.";
+    if (!text(payload.taskDescription)) required.taskDescription = "Bitte beschreiben Sie die praktische Aufgabe.";
+  }
+  if (requestType === "COST_COVERAGE_REQUEST") {
+    if (!text(payload.primaryService)) required.primaryService = "Bitte wählen Sie die benötigte Leistung.";
+    if (!text(payload.payer)) required.payer = "Bitte wählen Sie den möglichen Kostenträger.";
+    if (!text(payload.payerApplicationStatus)) required.payerApplicationStatus = "Bitte geben Sie den Stand der Anfrage an.";
+  }
+  if (!text(payload.desiredPeriod) && requestType !== "COST_COVERAGE_REQUEST") {
+    required.desiredPeriod = "Bitte geben Sie einen Termin oder Zeitraum an.";
+  }
+  if (Object.keys(required).length) throw new ValidationFailure(required);
+}
+
 function validateProfessionalContact(payload, contact) {
   const existingContact = payload.details?.contact || payload.contact || {};
   const submittedMethods = [
@@ -1276,6 +1328,7 @@ async function handleLeadSubmissionUncached(context, idempotencyKey = "") {
 
     const { payload: rawPayload, files } = await parsePayload(context.request);
     const payload = normalizeLeadPayload(rawPayload, context.request);
+    validateRoundThreeRequest(payload);
     let contact = validateSubmission(payload);
     const professionalContext = validateProfessionalRequestContext(payload);
     if (professionalContext) contact = validateProfessionalContact(payload, contact);

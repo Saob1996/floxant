@@ -20,7 +20,7 @@ export default function MobileFloatingContact() {
 
   const requestHref = buildGlobalRequestHref("global_floating");
   const offerHref = "/angebot-guenstiger-pruefen";
-  const budgetHref = "/anfrage-mit-preisrahmen";
+  const budgetHref = "/umzug-mit-preisvorstellung";
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,
     "Hallo FLOXANT, ich möchte eine Anfrage stellen.",

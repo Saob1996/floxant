@@ -163,7 +163,7 @@ export default async function UmzugPillarPage() {
           { href: "/business-errand-service", label: "Erledigungsservice für Schlüssel und Dokumente" },
           { href: "/property-operations", label: "Immobilienbetreuung mit Übergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
-          { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
+          { href: "/umzug-mit-preisvorstellung", label: "Umzug mit Preisrahmen planen" },
           { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
         ]}
         cityLinksTitle="Umzug lokal in wichtigen Regionen"

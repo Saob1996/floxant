@@ -35,7 +35,7 @@ const scenarios = [
   title: "Budget nennen und Aufwand einordnen",
   text: "Ein Budget hilft, wenn gleichzeitig Umfang, Zugang, Termin und Fotos bekannt sind. So entsteht eine ehrliche Rückmeldung statt einer leeren Zahl.",
   facts: ["Rechner", "Einschätzung", "Preisvorstellung"],
-  href: "/anfrage-mit-preisrahmen",
+  href: "/umzug-mit-preisvorstellung",
   action: "Budget nennen",
  },
 ];

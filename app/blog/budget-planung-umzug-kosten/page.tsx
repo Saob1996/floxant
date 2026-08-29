@@ -104,7 +104,7 @@ export default function BudgetPlanungUmzugKostenPage() {
      "Gute Budgetangaben helfen, Leistungen zu priorisieren.",
     ]}
     ctas={[
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
      { href: "/rechner", label: "Rechner starten" },
      { href: "/blog/preisrahmen-vorpruefung-statt-festpreis", label: "Preisrahmen verstehen" },
     ]}

@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-08-29T06:22:56.438Z",
+  "lighthouseVersion": "12.8.2",
+  "baseUrl": "http://127.0.0.1:4173",
+  "methodology": "One release-candidate lab run per route and device profile with Lighthouse simulated throttling.",
+  "results": [
+    {
+      "route": "/europa-umzug-ab-deutschland",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/europa-umzug-ab-deutschland",
+      "scores": {
+        "performance": 84,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 1507.5675,
+        "largestContentfulPaintMs": 3918.9187500000007,
+        "totalBlockingTimeMs": 227,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/europa-umzug-ab-deutschland",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/europa-umzug-ab-deutschland",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 325.47800000000007,
+        "largestContentfulPaintMs": 725.4780000000001,
+        "totalBlockingTimeMs": 17.999999999999886,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/umzug-mit-preisvorstellung",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/umzug-mit-preisvorstellung",
+      "scores": {
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 1358.2033000000001,
+        "largestContentfulPaintMs": 3769.703300000001,
+        "totalBlockingTimeMs": 331,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/umzug-mit-preisvorstellung",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/umzug-mit-preisvorstellung",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 324.88599999999997,
+        "largestContentfulPaintMs": 740.386,
+        "totalBlockingTimeMs": 16.999999999999943,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/hilfe-in-schwierigen-lebenssituationen",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/hilfe-in-schwierigen-lebenssituationen",
+      "scores": {
+        "performance": 77,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 1358.6005,
+        "largestContentfulPaintMs": 3692.6005000000014,
+        "totalBlockingTimeMs": 487.5000000000009,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/hilfe-in-schwierigen-lebenssituationen",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/hilfe-in-schwierigen-lebenssituationen",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 327.55410000000006,
+        "largestContentfulPaintMs": 730.5541000000001,
+        "totalBlockingTimeMs": 19.999999999999886,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/kostenuebernahme-fuer-umzug-und-haushaltshilfe",
+      "mode": "mobile",
+      "finalUrl": "http://127.0.0.1:4173/kostenuebernahme-fuer-umzug-und-haushaltshilfe",
+      "scores": {
+        "performance": 83,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 1507.855,
+        "largestContentfulPaintMs": 3735.3549999999987,
+        "totalBlockingTimeMs": 298.00000000000045,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "route": "/kostenuebernahme-fuer-umzug-und-haushaltshilfe",
+      "mode": "desktop",
+      "finalUrl": "http://127.0.0.1:4173/kostenuebernahme-fuer-umzug-und-haushaltshilfe",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 326.4425,
+        "largestContentfulPaintMs": 745.9424999999997,
+        "totalBlockingTimeMs": 18.999999999999773,
+        "cumulativeLayoutShift": 0
+      }
+    }
+  ]
+}

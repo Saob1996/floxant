@@ -4,6 +4,7 @@
     "/api/bookings",
     "/api/intake",
     "/api/admin/bookings/*",
+    "/anfrage-mit-preisrahmen",
     "/seo-gone",
     "/umzug-regensburg",
     "/umzug-duesseldorf",

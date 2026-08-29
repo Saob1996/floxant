@@ -34,7 +34,7 @@ const canonicalPages = [
   text: "Kombinierter Ablauf, wenn Transport und Übergabereinigung zusammen geplant werden.",
  },
  {
-  href: "/anfrage-mit-preisrahmen",
+  href: "/umzug-mit-preisvorstellung",
   title: "Preisvorstellung",
   text: "Kundenbudget als hilfreiche Zusatzangabe neben der ersten Orientierung.",
  },

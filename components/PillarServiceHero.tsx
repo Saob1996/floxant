@@ -41,7 +41,7 @@ export function PillarServiceHero({
   imageAlt,
   primaryHref = "/rechner",
   primaryLabel = "Preisrahmen berechnen",
-  secondaryHref = "/anfrage-mit-preisrahmen",
+  secondaryHref = "/umzug-mit-preisvorstellung",
   secondaryLabel = "Budget nennen",
   cards = [],
   visualVariant = "moving",

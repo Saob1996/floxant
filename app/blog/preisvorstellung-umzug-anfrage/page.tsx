@@ -103,7 +103,7 @@ export default function BlogPreisvorstellungPage() {
      "Die beste Wirkung hat eine Preisvorstellung zusammen mit klaren Projektdaten.",
     ]}
     ctas={[
-     { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
+     { href: "/umzug-mit-preisvorstellung", label: "Preisvorstellung senden" },
      { href: "/rechner", label: "Orientierungsrahmen berechnen" },
      { href: "/umzug", label: "Umzug ansehen" },
     ]}

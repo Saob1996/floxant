@@ -120,6 +120,38 @@ const validPayload = (overrides = {}) => ({
   ...overrides,
 });
 
+const roundThreePayload = (requestType, overrides = {}) => {
+  const common = {
+    requestType,
+    service: "umzug",
+    desiredPeriod: "September 2026",
+    originCountry: requestType === "EUROPE_MOVE" ? "DE" : "",
+    startLocation: requestType === "EUROPE_MOVE" || requestType === "BUDGET_MOVE" ? "93047 Regensburg" : "",
+    destinationCountry: requestType === "EUROPE_MOVE" ? "FR" : "",
+    destinationLocation: requestType === "EUROPE_MOVE" || requestType === "BUDGET_MOVE" ? "Paris" : "",
+    grossBudget: requestType === "BUDGET_MOVE" ? "3500" : "",
+    primaryService: requestType === "DIFFICULT_SITUATION" || requestType === "COST_COVERAGE_REQUEST" ? "umzug" : "",
+    location: requestType === "DIFFICULT_SITUATION" ? "93047 Regensburg" : "",
+    taskDescription: requestType === "DIFFICULT_SITUATION" ? "Umzug praktisch organisieren" : "",
+    payer: requestType === "COST_COVERAGE_REQUEST" ? "Jobcenter" : "",
+    payerApplicationStatus: requestType === "COST_COVERAGE_REQUEST" ? "not_applied" : "",
+  };
+  return validPayload({
+    ...common,
+    ...overrides,
+    details: {
+      configuration: {
+        round3Workflow: {
+          ...common,
+          ...overrides,
+          requestType,
+          statusHistory: [{ status: "new", at: "2026-08-29T00:00:00.000Z", source: "request" }],
+        },
+      },
+    },
+  });
+};
+
 const activeClientFiles = [
   "components/BackhaulOffersBoard.tsx", "components/BudgetContactForm.tsx", "components/BusinessDisposalForm.tsx",
   "components/CellarTrashroomRescueForm.tsx", "components/CheaperAlternativeForm.tsx", "components/CommercialCleaningLeadForm.tsx",
@@ -1475,6 +1507,27 @@ try {
     assert(result.response.status === 201, "valid JSON must return 201");
     assert(result.body.ok === true && result.body.bookingId === "mock-booking-id" && result.body.requestId, "success response contract");
     assert(Object.keys(result.body).sort().join(",") === "bookingId,ok,requestId", "success response must contain only public fields");
+  });
+
+  for (const requestType of ["EUROPE_MOVE", "BUDGET_MOVE", "DIFFICULT_SITUATION", "COST_COVERAGE_REQUEST"]) {
+    await test(`round-three-${requestType.toLowerCase()}-201-and-workflow-retained`, async () => {
+      const result = await submit(roundThreePayload(requestType));
+      assert(result.response.status === 201 && result.body.ok === true, `${requestType} must return 201`);
+      const lastInsert = [...calls].reverse().find((call) => call.url.includes("/rest/v1/bookings") && String(call.method).toUpperCase() === "POST");
+      const storedWorkflow = JSON.parse(lastInsert.body)[0].details.configuration.round3Workflow;
+      assert(storedWorkflow.requestType === requestType, `${requestType} workflow must remain structured`);
+      assert(Array.isArray(storedWorkflow.statusHistory) && storedWorkflow.statusHistory.length === 1, `${requestType} status history must remain structured`);
+    });
+  }
+
+  await test("round-three-europe-origin-outside-germany-400", async () => {
+    const result = await submit(roundThreePayload("EUROPE_MOVE", { originCountry: "AT" }));
+    assert(result.response.status === 400 && result.body.fields?.originCountry, "Europe moves must start in Germany");
+  });
+
+  await test("round-three-budget-requires-positive-gross-budget-400", async () => {
+    const result = await submit(roundThreePayload("BUDGET_MOVE", { grossBudget: "0" }));
+    assert(result.response.status === 400 && result.body.fields?.grossBudget, "Budget moves require a positive gross budget");
   });
 
   for (const fixture of [

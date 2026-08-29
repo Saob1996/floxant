@@ -38,7 +38,7 @@ export const bookingActionCards = [
   icon: Banknote,
   title: "Preisvorstellung senden",
   text: "Eigenes Zielbudget ergänzen, ohne dass es die spätere Prüfung ersetzt.",
-  href: "/anfrage-mit-preisrahmen",
+  href: "/umzug-mit-preisvorstellung",
   action: "Preisrahmen anfragen",
  },
 ];

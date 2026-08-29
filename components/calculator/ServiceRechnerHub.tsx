@@ -115,7 +115,7 @@ const quickLinks = [
     tone: "text-blue-700 bg-blue-50 border-blue-200",
   },
   {
-    href: "/anfrage-mit-preisrahmen",
+    href: "/umzug-mit-preisvorstellung",
     eyebrow: "Budget zuerst",
     label: "Preisvorstellung",
     text: "Wenn Ihr Budget von Anfang an mitgedacht werden soll.",
@@ -932,7 +932,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                         Express-Check
                       </Link>
                       <Link
-                        href="/anfrage-mit-preisrahmen"
+                        href="/umzug-mit-preisvorstellung"
                         className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-semibold text-emerald-800 transition hover:bg-emerald-100"
                         data-event="form_submit"
                         data-source="rechner_active_service"

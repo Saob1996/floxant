@@ -18,6 +18,8 @@ function run(command, args) {
   });
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
+  if (result.error) process.stderr.write(`Failed to start ${path.basename(command)}: ${result.error.message}\n`);
+  if (result.signal) process.stderr.write(`${path.basename(command)} terminated by signal ${result.signal}\n`);
   if (result.status !== 0) process.exitCode = result.status || 1;
   return result.status === 0;
 }

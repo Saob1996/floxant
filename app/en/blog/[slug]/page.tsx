@@ -4,18 +4,19 @@ import { notFound } from "next/navigation";
 import { EnglishGuidanceArticlePage } from "@/components/blog/EnglishGuidanceArticlePage";
 import { dominanceEnglishArticles, getDominanceArticle } from "@/lib/content/dominance-articles";
 import { company } from "@/lib/company";
+import { getRoundThreeBlogArticle, roundThreeEnglishBlogArticles } from "@/lib/round3/blog-articles";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return dominanceEnglishArticles.map((article) => ({ slug: article.slug }));
+  return [...dominanceEnglishArticles, ...roundThreeEnglishBlogArticles].map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getDominanceArticle(slug, "en");
+  const article = getRoundThreeBlogArticle(slug, "en") || getDominanceArticle(slug, "en");
   if (!article) return {};
   const path = `/en/blog/${article.slug}`;
   return {
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function EnglishGuidanceRoute({ params }: Props) {
   const { slug } = await params;
-  const article = getDominanceArticle(slug, "en");
+  const article = getRoundThreeBlogArticle(slug, "en") || getDominanceArticle(slug, "en");
   if (!article) notFound();
   return <EnglishGuidanceArticlePage article={article} />;
 }

@@ -89,7 +89,7 @@ export default function BlogArticle() {
                 Preisrahmen prüfen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/anfrage-mit-preisrahmen" className="flox-button-secondary px-6">
+              <Link href="/umzug-mit-preisvorstellung" className="flox-button-secondary px-6">
                 Budget nennen
               </Link>
             </div>

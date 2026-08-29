@@ -141,7 +141,7 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
                         {
                             title: "Preisrahmen nennen",
                             text: "Budget und vorhandene Angebote helfen, eine realistische Richtung zu prüfen.",
-                            href: "/anfrage-mit-preisrahmen",
+                            href: "/umzug-mit-preisvorstellung",
                         },
                     ]}
                     primaryHref="/buchung?service=wohnungsaufloesung&city=nuernberg#buchungssystem"

@@ -1502,7 +1502,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             </p>
           </div>
           <Link
-            href="/anfrage-mit-preisrahmen"
+            href="/umzug-mit-preisvorstellung"
             className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
             data-event="form_submit"
             data-source="booking_wizard"
