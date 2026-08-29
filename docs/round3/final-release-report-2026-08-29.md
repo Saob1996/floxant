@@ -93,6 +93,7 @@ Vorherige Produktions-Baseline vom 2026-08-28: mobile Performance-Median 44, Des
 - Preview-Deployment: `81f6bfe7-d1f1-4553-b4b8-8a7495deeb4b`, Source `2679d4b`; acht Hubs, DE/EN-Artikel und Sitemap 200, Browserkonsole ohne Fehler.
 - Produktions-Smoke: `https://www.floxant.de`; acht Hubs, DE/EN-Artikel und Sitemap 200, korrekte Title/H1/Canonical/Hreflang, drei Formularschritte und Browserkonsole ohne Fehler.
 - Redirect-Smoke: `/anfrage-mit-preisrahmen` liefert 301 auf `https://www.floxant.de/umzug-mit-preisvorstellung`; neue URL in Sitemap, alte URL nicht enthalten.
+- Functions-Smoke: `OPTIONS /api/bookings` liefert 204 mit dem Live-Origin; eine absichtlich leere und nicht speicherbare Anfrage liefert 400 mit Feldvalidierung, ohne Test-Lead anzulegen.
 - Vorheriges Produktions-Deployment: `4ede9633-eab0-4e87-a04b-a4505e0c4359` (`https://4ede9633.floxant.pages.dev`, Source `75d0ace`).
 - Rollback-Basis davor: `2d6e1142-3e74-402a-8ea5-6c71a157fc0e` (`https://2d6e1142.floxant.pages.dev`, Source `7edb0be`).
 - Rollback: in Cloudflare Pages das zuletzt stabile Deployment erneut als Produktion bereitstellen; danach Canonicals, Form-Endpoint und `/anfrage-mit-preisrahmen` nochmals live prüfen.
