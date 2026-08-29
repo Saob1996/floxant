@@ -1,0 +1,4 @@
+device,clicks,impressions,ctr,position,ctrGapToBest,manualReview
+Computer,17,8593,0.001978,23.10,0.022118,true
+Mobil,34,3486,0.009753,20.43,0.014343,true
+Tablet,2,83,0.024096,29.80,0.000000,false

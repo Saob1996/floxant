@@ -13,7 +13,7 @@ type ProjectStoryGridProps = {
 export function ProjectStoryGrid({
   serviceKey,
   locationKey,
-  title = "Typische Situationen klar erklärt",
+  title = "Typische Ausgangslagen verständlich erklärt",
   intro = "Ohne echte freigegebene Daten zeigt FLOXANT typische Ausgangslagen. Sie sind Entscheidungshilfen, keine behaupteten Kundenfälle.",
   className = "",
 }: ProjectStoryGridProps) {
@@ -24,7 +24,7 @@ export function ProjectStoryGrid({
     <section className={`bg-slate-50 px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`} data-component="ProjectStoryGrid">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-normal text-blue-700">Beispielsituationen</p>
+          <p className="text-sm font-black uppercase tracking-normal text-blue-700">Beispielhafte Situationen</p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>

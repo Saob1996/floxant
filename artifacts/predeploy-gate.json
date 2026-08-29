@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-07-18T02:45:14.795Z",
+  "branch": "feat/authority-revenue-operations-2026",
+  "sourceBranch": "feat/market-moat-conversion-2026",
+  "status": "PASS",
+  "counts": {
+    "changedFiles": 40,
+    "stagedFiles": 9,
+    "sitemapUrls": 394,
+    "staticRoutes": 1584,
+    "isrRoutes": 0,
+    "nextServerlessFunctions": 0,
+    "cloudflarePagesFunctions": 7,
+    "middleware": 0,
+    "browserSecretMatches": 0,
+    "newMigrationFiles": 1,
+    "executedMigrations": 0,
+    "brokenLinks": 0,
+    "missingImages": 0,
+    "redirectChains": 0,
+    "outputFiles": 13199,
+    "outputBytes": 4360297025
+  },
+  "failures": [],
+  "notes": [
+    "Das Gate führt keinen Deploy und keine Migration aus.",
+    "SQL-Dateien werden nur gezählt; ausgeführte Migrationen sind in dieser Arbeitsphase 0.",
+    "Private Search-Console-Rohdaten und lokale .env-Dateien werden nicht in den Branch-Diff aufgenommen."
+  ]
+}

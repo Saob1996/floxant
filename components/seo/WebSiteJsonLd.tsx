@@ -8,8 +8,7 @@ export function WebSiteJsonLd() {
     "@type": "WebSite",
     "@id": `${company.url}/#website`,
     url: company.url,
-    name: company.name,
-    alternateName: "FLOXANT Regensburg",
+    name: "FLOXANT",
     inLanguage: "de-DE",
     keywords: multilingualAliases.join(", "),
     publisher: {
@@ -40,6 +39,26 @@ export function WebSiteJsonLd() {
         "@type": "WebPage",
         name: "Regensburg",
         url: company.serviceAreaUrl,
+      },
+      {
+        "@type": "WebPage",
+        name: "Düsseldorf",
+        url: `${company.url}/duesseldorf`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Reinigung Düsseldorf",
+        url: `${company.url}/duesseldorf/reinigung`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Büroreinigung Düsseldorf",
+        url: `${company.url}/duesseldorf/bueroreinigung`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Praxisreinigung Düsseldorf",
+        url: `${company.url}/duesseldorf/praxisreinigung`,
       },
       {
         "@type": "WebPage",

@@ -3,24 +3,22 @@ import { CheckCircle2 } from "lucide-react";
 import { germanText, germanizeDeep } from "@/lib/german-text";
 import type { VisualProofItem } from "@/lib/visual-proof";
 
-function ProofShape({
-  shape,
-  locationKey,
-}: {
-  shape: VisualProofItem["fallbackShape"];
-  locationKey: VisualProofItem["locationKey"];
-}) {
+const typeLabels: Record<VisualProofItem["type"], string> = {
+  process: "Ablauf",
+  checklist: "Benötigte Angaben",
+  "offer-check": "Angebotsprüfung",
+  "neutral-before-after": "Vorher und nachher",
+  local: "Standorte",
+  material: "Material und Flächen",
+};
+
+function ProofShape({ shape }: { shape: VisualProofItem["fallbackShape"] }) {
   const labels: Record<VisualProofItem["fallbackShape"], string[]> = {
     process: ["Senden", "Sortieren", "Prüfen", "Antwort"],
     checklist: ["Ort", "Fotos", "Umfang", "Termin"],
     offer: ["Preis", "Umfang", "Offen", "Nächster Schritt"],
     "before-after": ["Vorher neutral", "Nachher neutral"],
-    local:
-      locationKey === "duesseldorf"
-        ? ["Düsseldorf", "Kontakt", "Service"]
-        : locationKey === "regensburg"
-          ? ["Regensburg", "Kontakt", "Service"]
-          : ["Düsseldorf", "Regensburg", "Kontakt", "Service"],
+    local: ["Düsseldorf", "Regensburg", "Kontakt", "Service"],
   };
 
   return (
@@ -40,10 +38,10 @@ export function VisualProofCard({ item }: { item: VisualProofItem }) {
 
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm" data-component="VisualProofCard" data-real-photo={visibleItem.isRealPhoto ? "true" : "false"}>
-      <p className="text-xs font-black uppercase tracking-normal text-blue-700">{visibleItem.type}</p>
+      <p className="text-xs font-black uppercase tracking-normal text-blue-700">{typeLabels[visibleItem.type]}</p>
       <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(visibleItem.title, visibleItem.title)}</h3>
       <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(visibleItem.description, visibleItem.description)}</p>
-      <ProofShape shape={visibleItem.fallbackShape} locationKey={visibleItem.locationKey} />
+      <ProofShape shape={visibleItem.fallbackShape} />
       <div className="mt-4 flex gap-2 text-xs font-bold leading-5 text-slate-600">
         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" aria-hidden="true" />
         <span>{germanText(visibleItem.alt, visibleItem.alt)}</span>

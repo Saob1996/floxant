@@ -206,6 +206,17 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     );
    }
 
+   window.dispatchEvent(
+    new CustomEvent("floxant:conversion-event", {
+     detail: {
+      event: "calculator_lead_submit_success",
+      source: "calculator_lead",
+      channel: "form",
+      label: "Rechner-Anfrage erfolgreich gesendet",
+      dataset: { service: serviceType, intent: "calculator_lead", priority: "hot" },
+     },
+    })
+   );
    setIsSuccess(true);
   } catch (err) {
    console.error("Submit error:", err);

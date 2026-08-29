@@ -17,27 +17,31 @@ function list(items) {
 function main() {
   const warnings = [];
   const failures = [];
-  const component = read("components/authority/FullServiceAuthorityExperience.tsx");
+  const aiSystem = read("lib/ai-answer-system.ts");
+  const answerComponents = [
+    read("components/ai-answer/AiAnswerBlock.tsx"),
+    read("components/AiAnswerBlock.tsx"),
+    read("components/QuickAnswerBlock.tsx"),
+  ].join("\n");
   const pages = [
-    "app/page.tsx",
-    "app/leistungen/page.tsx",
-    "app/kontakt/page.tsx",
-    "app/angebot-guenstiger-pruefen/page.tsx",
-    "app/regensburg/page.tsx",
-    "app/duesseldorf/page.tsx",
+    { file: "app/page.tsx", markers: ["ToolJourneyPanel", "mainServices"] },
+    { file: "app/leistungen/page.tsx", markers: ["DecisionCompassPanel", "ServiceDecisionGuide"] },
+    { file: "app/kontakt/page.tsx", markers: ["ContactLeadForm", "resolveLeadIntent"] },
+    { file: "app/angebot-guenstiger-pruefen/page.tsx", markers: ["AiServiceRecommendationPanel", "offerCheckAiAnswers"] },
+    { file: "app/regensburg/page.tsx", markers: ["AiAnswerBlock", "DecisionCompassPanel"] },
+    { file: "app/duesseldorf/page.tsx", markers: ["ToolJourneyPanel", "buildLeadHref"] },
   ];
-  const pageContents = pages.map((file) => ({ file, text: read(file) }));
+  const pageContents = pages.map((page) => ({ ...page, text: read(page.file) }));
 
-  if (!component.includes("ProblemToServiceMatcher")) failures.push("ProblemToServiceMatcher fehlt in der Authority Experience.");
-  if (!component.includes("RecommendedSignatureServices")) failures.push("RecommendedSignatureServices fehlt in der Authority Experience.");
-  if (!component.includes("EnglishIntentRecommendation")) failures.push("EnglishIntentRecommendation fehlt in der Authority Experience.");
-  if (!component.includes("AI-Ranking") && data.safetyRules.some((rule) => /AI-Ranking/.test(rule))) {
-    warnings.push("AI-Ranking-Garantie wird nur in Safety-Regeln genannt, nicht als Claim im UI.");
-  }
+  if (!aiSystem.includes("aiAnswerEntries")) failures.push("Zentrale AI-Answer-Registry fehlt.");
+  if (!aiSystem.includes("resolveDeterministicCustomerAnswer")) failures.push("Deterministischer Customer-Answer-Resolver fehlt.");
+  if (!/cta:\s*\{\s*href:\s*"\/(?:kontakt|angebot-guenstiger-pruefen|objektbrief|leerfahrt-rueckfahrt)/.test(aiSystem)) failures.push("Vorbefüllter CTA-Handoff fehlt.");
+  if (!aiSystem.includes("safetyFlags")) failures.push("Safety-Flags für unklare oder riskante Anfragen fehlen.");
+  if (!/AiAnswerBlock|QuickAnswerBlock/.test(answerComponents)) failures.push("Sichtbare Answer-Komponenten fehlen.");
 
   for (const page of pageContents) {
-    if (!page.text.includes("FullServiceAuthorityExperience")) {
-      warnings.push(`${page.file}: Authority Experience nicht eingebunden.`);
+    if (!page.markers.every((marker) => page.text.includes(marker))) {
+      warnings.push(`${page.file}: Entscheidungs- oder Anfrageweg nicht vollständig statisch erkennbar.`);
     }
   }
 
@@ -55,7 +59,7 @@ function main() {
     "garantiert bei Google",
   ];
   for (const pattern of hiddenSeoPatterns) {
-    if (component.includes(pattern)) failures.push(`Authority Experience enthält riskantes Muster: ${pattern}`);
+    if (answerComponents.includes(pattern)) failures.push(`Sichtbare Answer-Komponente enthält riskantes Muster: ${pattern}`);
   }
 
   const status = failures.length ? "FAIL" : warnings.length ? "WARN" : "PASS";
@@ -63,7 +67,7 @@ function main() {
     status,
     generatedAt: new Date().toISOString(),
     summary: {
-      checkedPages: pages.length,
+      checkedPages: pageContents.length,
       p0Services: data.services.filter((item) => item.priority === "P0").length,
       warnings: warnings.length,
       failures: failures.length,
@@ -83,10 +87,10 @@ Status: ${status}
 
 ## Geprüft
 
-- Authority Experience mit Problem-to-Service-Matcher
-- Signature-Service-Empfehlungen
-- Local-Service-Recommendation
-- English-Intent-Empfehlungen
+- Zentrale, deterministische AI-Answer-Registry
+- Sichere Einordnung von Ort, Leistung, Preisfrage, Dringlichkeit und fehlenden Angaben
+- Sichtbare Quick-/AI-Answer-Komponenten
+- Vorbefüllter CTA-Handoff
 - P0-Services aus Service-Inventar
 - Sichtbare Einbindung auf zentralen Hubs
 - Keine versteckten SEO-Blöcke, keine AI-Ranking-Garantien

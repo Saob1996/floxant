@@ -1,6 +1,6 @@
 "use client";
 
-import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
+import Link from "next/link";
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -13,6 +13,7 @@ import {
 } from "@/lib/floxant-services";
 import { germanText } from "@/lib/german-text";
 import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
@@ -20,44 +21,17 @@ const legalLinks = [
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
   { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
-  { href: "/redaktion", label: "Redaktion" },
-  { href: "/methodik", label: "Methodik" },
-  { href: "/korrekturen", label: "Korrekturen" },
 ] as const;
 
 const authorityLinks = [
   { href: "/duesseldorf", label: "Düsseldorf" },
   { href: "/regensburg", label: "Regensburg" },
   { href: "/leistungen", label: "Leistungen" },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
   { href: "/kontakt", label: "Kontakt" },
-  { href: "/fragen", label: "Fragen und Antworten" },
-] as const;
-
-const footerNavigationGroups = [
-  {
-    title: "Leistungen",
-    links: [
-      { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
-      { label: "Umzug Regensburg", href: "/regensburg/umzug" },
-      { label: "Seniorenumzug", href: "/regensburg/seniorenumzug" },
-      { label: "Entrümpelung", href: "/regensburg/entruempelung" },
-      { label: "Wohnungsauflösung", href: "/regensburg/wohnungsaufloesung" },
-    ],
-  },
-  {
-    title: "Standorte",
-    links: [
-      { label: "Düsseldorf", href: "/duesseldorf" },
-      { label: "Regensburg", href: "/regensburg" },
-    ],
-  },
-  {
-    title: "Kontakt",
-    links: [
-      { label: "Anfrage senden", href: "/kontakt?mode=neutral&source=website" },
-      { label: "Vorhandenes Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
-    ],
-  },
+  { href: "/signature-services", label: "Besondere Leistungen" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
 ] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {
@@ -92,14 +66,14 @@ export function Footer({ dic }: { dic?: any } = {}) {
       : ["duesseldorf", "regensburg"];
   const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
   const footerIntro = isDuesseldorfContext
-    ? "In Düsseldorf liegt der Schwerpunkt auf Reinigung für Wohnung, Büro, Praxis und Gewerbe."
+    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
     : isRegensburgContext
-      ? "In Regensburg können Sie Umzug, Transport, Entrümpelung, Wohnungsauflösung und ergänzende Reinigung anfragen."
+      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
       : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
   const footerContactHref = buildGlobalRequestHref("global_footer");
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-28 pt-14 text-white sm:px-8 md:pb-12 lg:px-10">
+    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
@@ -136,13 +110,13 @@ export function Footer({ dic }: { dic?: any } = {}) {
             <Link
               href={footerContactHref}
               onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
-              data-event="request_cta_click"
+              data-event="seo_cta_click"
               data-source="global_footer"
-              data-cta-label="Anfrage senden"
+              data-cta-label="Kontakt oeffnen"
               data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
-              Anfrage senden
+              Kontakt öffnen
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -154,11 +128,11 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </Link>
             <div className="mt-5 grid gap-3 text-sm font-semibold leading-7 text-slate-300">
-              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="email_click">
+              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="seo_email_click">
                 <Mail className="h-4 w-4 text-cyan-200" />
                 {company.email}
               </a>
-              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="phone_click">
+              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="seo_phone_click">
                 <Phone className="h-4 w-4 text-cyan-200" />
                 {company.phone}
               </a>

@@ -1,0 +1,409 @@
+{
+  "generatedAt": "2026-08-28T23:14:28.578Z",
+  "overallStatus": "PASS",
+  "totals": {
+    "pass": 61,
+    "warn": 0,
+    "fail": 0
+  },
+  "routes": [
+    {
+      "key": "reinigung",
+      "serviceName": "Reinigung",
+      "route": "/duesseldorf/reinigung",
+      "file": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "key": "bueroreinigung",
+      "serviceName": "Büroreinigung",
+      "route": "/duesseldorf/bueroreinigung",
+      "file": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "key": "gewerbereinigung",
+      "serviceName": "Gewerbereinigung",
+      "route": "/duesseldorf/gewerbereinigung",
+      "file": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "key": "praxisreinigung",
+      "serviceName": "Praxisreinigung",
+      "route": "/duesseldorf/praxisreinigung",
+      "file": "app/duesseldorf/praxisreinigung/page.tsx"
+    },
+    {
+      "key": "fensterreinigung",
+      "serviceName": "Fensterreinigung",
+      "route": "/duesseldorf/fensterreinigung",
+      "file": "app/duesseldorf/fensterreinigung/page.tsx"
+    }
+  ],
+  "results": [
+    {
+      "id": "route:reinigung:file",
+      "label": "/duesseldorf/reinigung page file exists",
+      "status": "PASS",
+      "details": "app/duesseldorf/reinigung/page.tsx"
+    },
+    {
+      "id": "route:reinigung:metadata",
+      "label": "Reinigung metadata helper is wired",
+      "status": "PASS",
+      "details": "Uses buildDuesseldorfCleaningMetadata with the matching page key."
+    },
+    {
+      "id": "route:reinigung:component",
+      "label": "Reinigung page renders shared service component",
+      "status": "PASS",
+      "details": "Static App Router page delegates to the Düsseldorf cleaning component."
+    },
+    {
+      "id": "route:reinigung:h1",
+      "label": "Reinigung and Düsseldorf are present in H1 copy",
+      "status": "PASS",
+      "details": "Source contains service-specific H1 configuration with Düsseldorf."
+    },
+    {
+      "id": "route:reinigung:canonical",
+      "label": "/duesseldorf/reinigung canonical metadata is present",
+      "status": "PASS",
+      "details": "Metadata builder uses the route path as canonical."
+    },
+    {
+      "id": "route:reinigung:sitemap",
+      "label": "/duesseldorf/reinigung is in generated sitemap routes",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap before this check if it fails."
+    },
+    {
+      "id": "route:reinigung:redirect",
+      "label": "/duesseldorf/reinigung is not in next.config redirect sources",
+      "status": "PASS",
+      "details": "No exact deprecated/gone redirect may match this P0 route."
+    },
+    {
+      "id": "route:reinigung:proxy",
+      "label": "/duesseldorf/reinigung is allowed by proxy policy",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; route availability is covered by build, sitemap and link checks."
+    },
+    {
+      "id": "route:reinigung:hero-cta",
+      "label": "Reinigung hero CTA carries service, city and intent params",
+      "status": "PASS",
+      "details": "Primary and offer-check contact URLs include Düsseldorf-specific query params."
+    },
+    {
+      "id": "route:bueroreinigung:file",
+      "label": "/duesseldorf/bueroreinigung page file exists",
+      "status": "PASS",
+      "details": "app/duesseldorf/bueroreinigung/page.tsx"
+    },
+    {
+      "id": "route:bueroreinigung:metadata",
+      "label": "Büroreinigung metadata helper is wired",
+      "status": "PASS",
+      "details": "Uses buildDuesseldorfCleaningMetadata with the matching page key."
+    },
+    {
+      "id": "route:bueroreinigung:component",
+      "label": "Büroreinigung page renders shared service component",
+      "status": "PASS",
+      "details": "Static App Router page delegates to the Düsseldorf cleaning component."
+    },
+    {
+      "id": "route:bueroreinigung:h1",
+      "label": "Büroreinigung and Düsseldorf are present in H1 copy",
+      "status": "PASS",
+      "details": "Source contains service-specific H1 configuration with Düsseldorf."
+    },
+    {
+      "id": "route:bueroreinigung:canonical",
+      "label": "/duesseldorf/bueroreinigung canonical metadata is present",
+      "status": "PASS",
+      "details": "Metadata builder uses the route path as canonical."
+    },
+    {
+      "id": "route:bueroreinigung:sitemap",
+      "label": "/duesseldorf/bueroreinigung is in generated sitemap routes",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap before this check if it fails."
+    },
+    {
+      "id": "route:bueroreinigung:redirect",
+      "label": "/duesseldorf/bueroreinigung is not in next.config redirect sources",
+      "status": "PASS",
+      "details": "No exact deprecated/gone redirect may match this P0 route."
+    },
+    {
+      "id": "route:bueroreinigung:proxy",
+      "label": "/duesseldorf/bueroreinigung is allowed by proxy policy",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; route availability is covered by build, sitemap and link checks."
+    },
+    {
+      "id": "route:bueroreinigung:hero-cta",
+      "label": "Büroreinigung hero CTA carries service, city and intent params",
+      "status": "PASS",
+      "details": "Primary and offer-check contact URLs include Düsseldorf-specific query params."
+    },
+    {
+      "id": "route:gewerbereinigung:file",
+      "label": "/duesseldorf/gewerbereinigung page file exists",
+      "status": "PASS",
+      "details": "app/duesseldorf/gewerbereinigung/page.tsx"
+    },
+    {
+      "id": "route:gewerbereinigung:metadata",
+      "label": "Gewerbereinigung metadata helper is wired",
+      "status": "PASS",
+      "details": "Uses buildDuesseldorfCleaningMetadata with the matching page key."
+    },
+    {
+      "id": "route:gewerbereinigung:component",
+      "label": "Gewerbereinigung page renders shared service component",
+      "status": "PASS",
+      "details": "Static App Router page delegates to the Düsseldorf cleaning component."
+    },
+    {
+      "id": "route:gewerbereinigung:h1",
+      "label": "Gewerbereinigung and Düsseldorf are present in H1 copy",
+      "status": "PASS",
+      "details": "Source contains service-specific H1 configuration with Düsseldorf."
+    },
+    {
+      "id": "route:gewerbereinigung:canonical",
+      "label": "/duesseldorf/gewerbereinigung canonical metadata is present",
+      "status": "PASS",
+      "details": "Metadata builder uses the route path as canonical."
+    },
+    {
+      "id": "route:gewerbereinigung:sitemap",
+      "label": "/duesseldorf/gewerbereinigung is in generated sitemap routes",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap before this check if it fails."
+    },
+    {
+      "id": "route:gewerbereinigung:redirect",
+      "label": "/duesseldorf/gewerbereinigung is not in next.config redirect sources",
+      "status": "PASS",
+      "details": "No exact deprecated/gone redirect may match this P0 route."
+    },
+    {
+      "id": "route:gewerbereinigung:proxy",
+      "label": "/duesseldorf/gewerbereinigung is allowed by proxy policy",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; route availability is covered by build, sitemap and link checks."
+    },
+    {
+      "id": "route:gewerbereinigung:hero-cta",
+      "label": "Gewerbereinigung hero CTA carries service, city and intent params",
+      "status": "PASS",
+      "details": "Primary and offer-check contact URLs include Düsseldorf-specific query params."
+    },
+    {
+      "id": "route:praxisreinigung:file",
+      "label": "/duesseldorf/praxisreinigung page file exists",
+      "status": "PASS",
+      "details": "app/duesseldorf/praxisreinigung/page.tsx"
+    },
+    {
+      "id": "route:praxisreinigung:metadata",
+      "label": "Praxisreinigung metadata helper is wired",
+      "status": "PASS",
+      "details": "Uses buildDuesseldorfCleaningMetadata with the matching page key."
+    },
+    {
+      "id": "route:praxisreinigung:component",
+      "label": "Praxisreinigung page renders shared service component",
+      "status": "PASS",
+      "details": "Static App Router page delegates to the Düsseldorf cleaning component."
+    },
+    {
+      "id": "route:praxisreinigung:h1",
+      "label": "Praxisreinigung and Düsseldorf are present in H1 copy",
+      "status": "PASS",
+      "details": "Source contains service-specific H1 configuration with Düsseldorf."
+    },
+    {
+      "id": "route:praxisreinigung:canonical",
+      "label": "/duesseldorf/praxisreinigung canonical metadata is present",
+      "status": "PASS",
+      "details": "Metadata builder uses the route path as canonical."
+    },
+    {
+      "id": "route:praxisreinigung:sitemap",
+      "label": "/duesseldorf/praxisreinigung is in generated sitemap routes",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap before this check if it fails."
+    },
+    {
+      "id": "route:praxisreinigung:redirect",
+      "label": "/duesseldorf/praxisreinigung is not in next.config redirect sources",
+      "status": "PASS",
+      "details": "No exact deprecated/gone redirect may match this P0 route."
+    },
+    {
+      "id": "route:praxisreinigung:proxy",
+      "label": "/duesseldorf/praxisreinigung is allowed by proxy policy",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; route availability is covered by build, sitemap and link checks."
+    },
+    {
+      "id": "route:praxisreinigung:hero-cta",
+      "label": "Praxisreinigung hero CTA carries service, city and intent params",
+      "status": "PASS",
+      "details": "Primary and offer-check contact URLs include Düsseldorf-specific query params."
+    },
+    {
+      "id": "route:fensterreinigung:file",
+      "label": "/duesseldorf/fensterreinigung page file exists",
+      "status": "PASS",
+      "details": "app/duesseldorf/fensterreinigung/page.tsx"
+    },
+    {
+      "id": "route:fensterreinigung:metadata",
+      "label": "Fensterreinigung metadata helper is wired",
+      "status": "PASS",
+      "details": "Uses buildDuesseldorfCleaningMetadata with the matching page key."
+    },
+    {
+      "id": "route:fensterreinigung:component",
+      "label": "Fensterreinigung page renders shared service component",
+      "status": "PASS",
+      "details": "Static App Router page delegates to the Düsseldorf cleaning component."
+    },
+    {
+      "id": "route:fensterreinigung:h1",
+      "label": "Fensterreinigung and Düsseldorf are present in H1 copy",
+      "status": "PASS",
+      "details": "Source contains service-specific H1 configuration with Düsseldorf."
+    },
+    {
+      "id": "route:fensterreinigung:canonical",
+      "label": "/duesseldorf/fensterreinigung canonical metadata is present",
+      "status": "PASS",
+      "details": "Metadata builder uses the route path as canonical."
+    },
+    {
+      "id": "route:fensterreinigung:sitemap",
+      "label": "/duesseldorf/fensterreinigung is in generated sitemap routes",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap before this check if it fails."
+    },
+    {
+      "id": "route:fensterreinigung:redirect",
+      "label": "/duesseldorf/fensterreinigung is not in next.config redirect sources",
+      "status": "PASS",
+      "details": "No exact deprecated/gone redirect may match this P0 route."
+    },
+    {
+      "id": "route:fensterreinigung:proxy",
+      "label": "/duesseldorf/fensterreinigung is allowed by proxy policy",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; route availability is covered by build, sitemap and link checks."
+    },
+    {
+      "id": "route:fensterreinigung:hero-cta",
+      "label": "Fensterreinigung hero CTA carries service, city and intent params",
+      "status": "PASS",
+      "details": "Primary and offer-check contact URLs include Düsseldorf-specific query params."
+    },
+    {
+      "id": "cluster:offer-check",
+      "label": "Offer-check pages link Düsseldorf cleaning intents",
+      "status": "PASS",
+      "details": "angebot-guenstiger-pruefen and angebotscheck expose Düsseldorf cleaning offer-check CTAs."
+    },
+    {
+      "id": "cluster:hub-links",
+      "label": "Düsseldorf hub links all five P0 cleaning pages",
+      "status": "PASS",
+      "details": "Hub contains direct internal links to the five Düsseldorf cleaning pages."
+    },
+    {
+      "id": "cluster:service-links",
+      "label": "Cleaning pages cross-link the P0 service cluster",
+      "status": "PASS",
+      "details": "Shared component contains service-card links for the Düsseldorf cleaning cluster."
+    },
+    {
+      "id": "content:quick-answer",
+      "label": "AI/quick-answer block is visible",
+      "status": "PASS",
+      "details": "Quick answer is rendered near the top of each page."
+    },
+    {
+      "id": "content:effort-factors",
+      "label": "Effort factors are visible",
+      "status": "PASS",
+      "details": "Effort drivers are shown as a dedicated section."
+    },
+    {
+      "id": "content:faq",
+      "label": "FAQ is visible and structured",
+      "status": "PASS",
+      "details": "FAQ UI and FAQPage JSON-LD are produced from the same items."
+    },
+    {
+      "id": "content:english-intent",
+      "label": "English intent is represented",
+      "status": "PASS",
+      "details": "English-language search intent is supported without separate duplicate routes."
+    },
+    {
+      "id": "content:no-guarantees",
+      "label": "No guarantee boundaries are visible",
+      "status": "PASS",
+      "details": "The pages state what FLOXANT does not promise."
+    },
+    {
+      "id": "content:no-keyword-cloud",
+      "label": "No keyword cloud pattern found",
+      "status": "PASS",
+      "details": "No hidden keyword list or keyword-cloud UI was added."
+    },
+    {
+      "id": "schema:web-service-breadcrumb-faq",
+      "label": "Schema covers WebPage, Service, BreadcrumbList and FAQPage",
+      "status": "PASS",
+      "details": "Structured data is built with existing helpers."
+    },
+    {
+      "id": "schema:no-fake-proof",
+      "label": "No fake review/rating/certification schema added",
+      "status": "PASS",
+      "details": "No rating, review or formal certification schema claim appears in the sprint files."
+    },
+    {
+      "id": "schema:no-fake-localbusiness",
+      "label": "Cleaning pages do not add fake Düsseldorf LocalBusiness addresses",
+      "status": "PASS",
+      "details": "The cleaning pages use organization/service schema instead of a fabricated local address."
+    },
+    {
+      "id": "sitemap:allowlist",
+      "label": "Sitemap generator has a narrow Düsseldorf cleaning allowlist",
+      "status": "PASS",
+      "details": "Only the five P0 Düsseldorf cleaning routes are explicitly allowed."
+    },
+    {
+      "id": "proxy:out-of-area-allowlist-order",
+      "label": "Proxy skips out-of-area cleaning redirect for allowed Düsseldorf P0 routes",
+      "status": "PASS",
+      "details": "Static export has no active root proxy; no proxy redirect can intercept these routes."
+    },
+    {
+      "id": "vercel:safety",
+      "label": "No Vercel-sensitive runtime/API/storage usage added",
+      "status": "PASS",
+      "details": "Scanned for: runtime = \"nodejs\", runtime = 'nodejs', force-dynamic, revalidate =, /api/vitals, /api/conversion-events, fetch('/api, fetch(\"/api, sendBeacon, supabase, resend, sharp"
+    },
+    {
+      "id": "package:script",
+      "label": "package script duesseldorf-cleaning:health is registered",
+      "status": "PASS",
+      "details": "npm run duesseldorf-cleaning:health is available."
+    }
+  ]
+}

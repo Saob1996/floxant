@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
+import Link from "next/link";
 import {
   ArrowRight,
   Building2,
@@ -11,11 +11,12 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { SeoLeadForm } from "@/components/SeoLeadForm";
 import { company } from "@/lib/company";
-import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
+import { searchAuthorityPages } from "@/lib/search-authority";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -25,9 +26,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/reinigungsfirma-angebot";
-const pageMeta = getPrioritySeoMeta(path);
-const title = pageMeta.seoTitle;
-const description = pageMeta.description;
+const pageMetadata = searchAuthorityPages[path];
+const title = pageMetadata.seoTitle;
+const description = pageMetadata.description;
 const leadIntent = resolveLeadIntent({
   path,
   service: "reinigung",
@@ -35,7 +36,6 @@ const leadIntent = resolveLeadIntent({
   priority: "p1",
 });
 const leadHref = buildLeadHref(leadIntent);
-const existingOfferHref = "/angebotscheck";
 
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
@@ -48,7 +48,7 @@ const whatsappHref = buildWhatsAppHref(
 
 const faqItems = [
   {
-    q: "Welche Angaben braucht ein neues Reinigungsangebot?",
+    q: "Was braucht FLOXANT für ein Reinigungsfirma-Angebot?",
     a: "Hilfreich sind Ort, Objektart, Fläche, gewünschte Leistung, Turnus oder Einmaltermin, Fotos vom Zustand, Zugang und ein Terminwunsch.",
   },
   {
@@ -56,43 +56,76 @@ const faqItems = [
     a: "Nein. Ein belastbarer Preis hängt von Fläche, Zustand, Zugang, Zeitfenster und Leistungsumfang ab. FLOXANT prüft die Eckdaten zuerst sachlich.",
   },
   {
-    q: "Wo lasse ich ein bereits vorhandenes Reinigungsangebot prüfen?",
-    a: "Nutzen Sie dafür den getrennten Angebotscheck. Diese Seite ist für eine neue Reinigungsanfrage gedacht; der Angebotscheck ordnet ein vorhandenes Dokument, dessen Umfang und offene Positionen ein.",
+    q: "Kann ich auch ein vorhandenes Reinigungsangebot prüfen lassen?",
+    a: "Ja. Ein vorhandenes Angebot kann mit Fotos, Umfang, Termin und offenen Positionen eingeordnet werden. Es gibt keine Preisgarantie und keine Abwertung anderer Anbieter.",
   },
   {
     q: "Für welche Reinigungsarten passt die Anfrage?",
     a: "Die Seite passt für Büroreinigung, Praxisreinigung, Grundreinigung, Wohnungsreinigung, Treppenhausreinigung und gewerbliche Objekte.",
   },
+  {
+    q: "Muss ich für die erste Anfrage alle Details kennen?",
+    a: "Nein. Ort, Objektart, grobe Fläche, Zielzustand und Termin reichen für den Einstieg. FLOXANT nennt anschließend die noch benötigten Angaben.",
+  },
+  {
+    q: "Wann sind Fotos besonders hilfreich?",
+    a: "Fotos helfen bei starker oder ungleichmäßiger Verschmutzung, schwer zugänglichen Bereichen, empfindlichen Materialien und wenn der Zielzustand sonst missverständlich wäre.",
+  },
+  {
+    q: "Ist eine regelmäßige Reinigung direkt zugesagt?",
+    a: "Nein. Bei einem Turnus werden Objekt, Aufgaben, Häufigkeit, Zugangsweg, Zeitfenster und regionale Machbarkeit zuerst geprüft.",
+  },
+  {
+    q: "Welche Angaben sollte ein vorhandenes Angebot zeigen?",
+    a: "Hilfreich sind enthaltene Flächen und Tätigkeiten, Turnus oder Einmaltermin, Zusatzpositionen, Laufzeit, Kündigungsbedingungen und offene Annahmen. FLOXANT ersetzt dabei keine Rechtsprüfung.",
+  },
 ] as const;
 
 const cleaningLinks = [
-  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf", text: "Reinigungsart für Wohnung, Büro, Praxis, Glas oder Objekt auswählen." },
-  { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Reinigung für Wohnung, Büro, Praxis oder Objekt in Regensburg einordnen." },
-  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf", text: "Arbeitsplätze, Räume, Turnus, Zeitfenster und Zugang beschreiben." },
-  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg", text: "Büro, Kanzlei oder Agentur mit Fläche und Leistungsplan anfragen." },
-  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf", text: "Empfang, Warte- und Behandlungsräume sowie Zeitfenster klären." },
-  { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg", text: "Praxisräume und sensible Bereiche in Regensburg beschreiben." },
+  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf", text: "Für Wohnung, Büro, Praxis, Gewerbe und weitere Objekte in Düsseldorf." },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf", text: "Für Arbeitsplätze, Raumliste, Turnus, Zeitfenster und Zugang." },
+  { href: "/angebot-vergleichen-duesseldorf", label: "Angebote Düsseldorf vergleichen", text: "Für ein bereits vorhandenes Reinigungsangebot mit offenen Positionen." },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Zentraler Einstieg für Wohnung, Büro, Praxis und Objekt." },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg", text: "Für Büro, Kanzlei, Agentur und Gewerbefläche." },
+  { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg", text: "Für Auszug, Einzug, starke Verschmutzung oder Objektstart." },
 ] as const;
 
 const requestFacts = [
-  "Ort oder Stadtteil und Objektart",
-  "Fläche, Räume oder grober Umfang",
-  "Einmalige Reinigung oder regelmäßiger Turnus",
-  "Fotos von Zustand, Zugang und besonderen Stellen",
-  "Terminwunsch, Zeitfenster und Ansprechpartner",
-  "Gewünschter Leistungsumfang und wichtige Prioritäten",
+  { title: "Ort oder Postleitzahl", question: "Wo liegt das Objekt?", why: "Anfahrt und zuständiger Standort müssen zum Auftrag passen.", risk: "Ohne Ort ist keine belastbare Machbarkeitsprüfung möglich.", provide: "Stadt, Stadtteil oder PLZ.", check: "Eine Besichtigung ist dafür nicht nötig." },
+  { title: "Objektart und Nutzung", question: "Handelt es sich um Wohnung, Büro, Praxis, Laden oder Gemeinschaftsfläche?", why: "Nutzung und Abläufe verändern den benötigten Leistungsumfang.", risk: "Eine falsche Objektannahme führt zu fehlenden Positionen.", provide: "Objektart, Nutzung und besondere Bereiche.", check: "Fotos helfen bei gemischten oder ungewöhnlichen Flächen." },
+  { title: "Fläche und Räume", question: "Wie groß ist das Objekt und welche Räume gehören dazu?", why: "Fläche und Raumarten machen Mengen und Wege nachvollziehbar.", risk: "Fehlende Räume können Aufwand und Angebot verzerren.", provide: "Quadratmeter, Raumzahl sowie Küche, Sanitär und Nebenflächen.", check: "Grundriss oder Besichtigung helfen bei komplexen Objekten." },
+  { title: "Gewünschte Leistung", question: "Was soll gereinigt werden und welcher Zustand wird erwartet?", why: "Normale Reinigung, Grundreinigung und Übergabe haben andere Ziele.", risk: "Ein unklarer Zielzustand erzeugt unterschiedliche Erwartungen.", provide: "Flächen, Tätigkeiten, Ausschlüsse und gewünschtes Ergebnis.", check: "Fotos sind bei starker Verschmutzung oder empfindlichen Materialien sinnvoll." },
+  { title: "Einmalig oder Turnus", question: "Ist die Reinigung einmalig oder regelmäßig?", why: "Ein Turnus bestimmt Ablauf, Zeitfenster und wiederkehrende Aufgaben.", risk: "Ohne Rhythmus lassen sich Leistungen nicht sauber vergleichen.", provide: "Einmaltermin oder Häufigkeit, Wochentage und bevorzugte Zeiten.", check: "Eine Besichtigung ist bei großen regelmäßigen Objekten sinnvoll." },
+  { title: "Zugang und Besonderheiten", question: "Wie gelangt das Team zu allen Bereichen?", why: "Etage, Aufzug, Schlüsselweg und sensible Flächen beeinflussen die Durchführung.", risk: "Ungeklärter Zugang kann einen Termin verhindern oder Zusatzaufwand erzeugen.", provide: "Etage, Aufzug, Parken, Schlüsselübergabe und Ansprechpartner – keine Zugangscodes im Formular.", check: "Fotos von Zugängen oder schwer erreichbaren Stellen helfen." },
+  { title: "Termin und Frist", question: "Wann soll die Leistung stattfinden?", why: "Wunschtermin, Übergabe und Zeitfenster bestimmen, was realistisch planbar ist.", risk: "Eine unbekannte Frist kann zu falschen Verfügbarkeitsannahmen führen.", provide: "Wunschtermin, alternatives Zeitfenster und feste Übergabefrist.", check: "Bei engem Zeitfenster sollten Fotos oder Besichtigung früh geklärt werden." },
 ] as const;
 
-export const metadata: Metadata = generatePageSEO({
-  path,
+export const metadata: Metadata = {
+  ...generatePageSEO({
+    path,
+    title,
+    description,
+    keywords: [
+      "reinigungsfirma angebot",
+      "angebot reinigung",
+      "angebot für reinigungsarbeiten",
+      "reinigungsangebot prüfen",
+    ],
+  }),
   title,
   description,
-  keywords: [
-    "reinigungsfirma angebot",
-    "angebot reinigung",
-    "angebot für reinigungsarbeiten",
-  ],
-});
+  alternates: {
+    canonical: path,
+    languages: { "de-DE": path, "x-default": path },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: path,
+    title: pageMetadata.ogTitle,
+    description: pageMetadata.ogDescription,
+  },
+};
 
 function JsonLd() {
   const graph = {
@@ -103,33 +136,33 @@ function JsonLd() {
         description,
         path,
         about: [
-          "Reinigungsangebot anfragen",
-          "Angebot für Reinigungsarbeiten",
+          "Reinigungsfirma Angebot",
+          "Angebot Reinigung",
           "Büroreinigung",
           "Praxisreinigung",
           "Grundreinigung",
           "Wohnungsreinigung",
-          "Unterhaltsreinigung",
-          "Düsseldorf",
+          "Treppenhausreinigung",
           "Regensburg",
+          "Reinigung Regensburg 50 km",
         ],
         potentialActions: [
           { name: "Reinigungsangebot anfragen", target: leadHref, type: "ContactAction" },
-          { name: "Neue Reinigungsanfrage per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
+          { name: "WhatsApp mit Fotos senden", target: whatsappHref, type: "ContactAction" },
         ],
       }),
       buildServiceJsonLd({
         name: "Reinigungsfirma Angebot anfragen",
         description,
         path,
-        serviceType: "Anfrage für ein neues Reinigungsangebot",
-        areaServed: ["Düsseldorf", "Regensburg"],
+        serviceType: "Reinigung und Reinigungsangebot",
+        areaServed: ["Düsseldorf", "Regensburg", "Landkreis Regensburg"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Reinigungsangebot anfragen", item: path },
+        { name: "Reinigungsfirma Angebot", item: path },
       ]),
       buildFaqJsonLd(faqItems),
     ],
@@ -155,7 +188,7 @@ export default function ReinigungsfirmaAngebotPage() {
               <Breadcrumbs
                 items={[
                   { label: "Reinigung", href: "/reinigung" },
-                  { label: "Reinigungsangebot anfragen" },
+                  { label: "Reinigungsfirma Angebot" },
                 ]}
               />
               <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-cyan-100/20 bg-cyan-100/12 px-3 py-2 text-sm font-black text-cyan-100">
@@ -163,19 +196,18 @@ export default function ReinigungsfirmaAngebotPage() {
                 Angebot Reinigung
               </div>
               <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl xl:text-6xl">
-                {pageMeta.headline}
+                {pageMetadata.headline}
               </h1>
               <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100">
-                Sie möchten ein neues Reinigungsangebot erhalten? Senden Sie Ort, Objekt, Fläche,
-                Zustand, gewünschten Turnus und Termin. FLOXANT ordnet die neue Anfrage ein und
-                führt Sie zur passenden Reinigungsleistung. Ein bereits vorliegendes Angebot
-                gehört in den getrennten Angebotscheck.
+                Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare
+                Eckdaten: Ort, Objekt, Fläche, Zustand, Turnus, Fotos und Termin. FLOXANT ordnet
+                die Anfrage ein und führt Sie zur passenden Reinigungsseite.
               </p>
               <div className="mt-7 grid gap-3 xl:grid-cols-3">
                 {[
-                  { value: "01", label: "Daten senden", text: "Ort, Objekt, Fläche und Zielzustand." },
-                  { value: "02", label: "Einordnung", text: "Leistung, Umfang und offene Punkte klären." },
-                  { value: "03", label: "Naechster Schritt", text: "Rückfrage, WhatsApp oder Anfrageformular." },
+                  { value: "01", label: "Daten senden", text: "Ort, Objekt, Flaeche und Zielzustand." },
+                  { value: "02", label: "Einordnung", text: "Leistung, Umfang und offene Punkte klaeren." },
+                  { value: "03", label: "Naechster Schritt", text: "Rueckfrage, WhatsApp oder Anfrageformular." },
                 ].map((item) => (
                   <div key={item.value} className="rounded-lg border border-white/12 bg-white/[0.07] p-4 shadow-sm">
                     <div className="text-xs font-black uppercase tracking-normal text-cyan-100">{item.value}</div>
@@ -190,13 +222,13 @@ export default function ReinigungsfirmaAngebotPage() {
                   <ClipboardCheck className="mt-1 h-5 w-5 shrink-0 text-cyan-100" aria-hidden="true" />
                   <div>
                     <h2 className="text-xl font-black tracking-normal text-white">
-                      Was FLOXANT für die neue Anfrage braucht
+                      Was FLOXANT fuer die Vorpruefung braucht
                     </h2>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {requestFacts.slice(0, 4).map((item) => (
-                        <div key={item} className="flex gap-2 text-sm font-semibold leading-6 text-slate-200">
+                        <div key={item.title} className="flex gap-2 text-sm font-semibold leading-6 text-slate-200">
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-                          {item}
+                          {item.title}
                         </div>
                       ))}
                     </div>
@@ -207,7 +239,7 @@ export default function ReinigungsfirmaAngebotPage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={leadHref}
-                  data-event="request_cta_click"
+                  data-event="seo_cta_click"
                   data-service="reinigung"
                   data-city="deutschland"
                   data-cta-label="Angebot vorbereiten"
@@ -221,7 +253,7 @@ export default function ReinigungsfirmaAngebotPage() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-event="request_cta_click"
+                  data-event="seo_cta_click"
                   data-service="reinigung"
                   data-city="deutschland"
                   data-cta-label="WhatsApp mit Eckdaten"
@@ -233,14 +265,14 @@ export default function ReinigungsfirmaAngebotPage() {
                   WhatsApp mit Fotos
                 </a>
                 <Link
-                  href="/leistungen"
+                  href="/regensburg/reinigung"
                   data-event="service_card_click"
                   data-service="reinigung"
-                  data-city="standortauswahl"
-                  data-cta-label="Reinigungsarten auswählen"
+                  data-city="regensburg"
+                  data-cta-label="Reinigung Regensburg"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
                 >
-                  Reinigungsarten auswählen
+                  Reinigung Regensburg
                 </Link>
               </div>
             </div>
@@ -259,33 +291,11 @@ export default function ReinigungsfirmaAngebotPage() {
           </div>
         </section>
 
-        <section className="border-b border-slate-200 bg-cyan-50 px-5 py-10 sm:px-8 lg:px-10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5 rounded-xl border border-cyan-200 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Bereits ein Angebot erhalten?</p>
-              <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-                Vorhandenes Reinigungsangebot getrennt prüfen lassen
-              </h2>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
-                Der Angebotscheck betrachtet ein bestehendes Dokument, enthaltene Leistungen und offene Positionen.
-                Er ist bewusst von der neuen Angebotsanfrage auf dieser Seite getrennt.
-              </p>
-            </div>
-            <Link
-              href={existingOfferHref}
-              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-cyan-800"
-            >
-              Vorhandenes Angebot prüfen
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </section>
-
         <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
             <article>
               <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-                Was die Anfrage beschleunigt
+                Was die Prüfung beschleunigt
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
                 Gute Angaben machen das Reinigungsangebot belastbarer.
@@ -296,14 +306,20 @@ export default function ReinigungsfirmaAngebotPage() {
                 Grundreinigung, Wohnungsreinigung oder Treppenhausreinigung der passende Weg ist.
               </p>
             </article>
-            <div className="grid gap-3 md:grid-cols-2">
-              {requestFacts.map((item) => (
-                <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
-                  {item}
-                </div>
+            <ol className="grid gap-3 md:grid-cols-2">
+              {requestFacts.map((item, index) => (
+                <li key={item.title} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-700 text-xs font-black text-white">{index + 1}</span>
+                  <span>
+                    <strong className="block text-slate-950">{item.title}: {item.question}</strong>
+                    <span className="mt-2 block"><strong>Warum:</strong> {item.why}</span>
+                    <span className="mt-1 block"><strong>Risiko:</strong> {item.risk}</span>
+                    <span className="mt-1 block"><strong>Ihre Angabe:</strong> {item.provide}</span>
+                    <span className="mt-1 block"><strong>Fotos/Besichtigung:</strong> {item.check}</span>
+                  </span>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
@@ -355,8 +371,8 @@ export default function ReinigungsfirmaAngebotPage() {
               },
               {
                 Icon: FileSearch,
-                title: "Leistungsumfang abgrenzen",
-                text: "Fenster, Geräte innen, Verbrauchsmaterial oder andere Zusatzarbeiten werden ausdrücklich benannt.",
+                title: "Angebot einordnen",
+                text: "Ein vorhandenes Angebot kann sachlich mit Umfang, Termin und Leistungsgrenzen geprüft werden.",
               },
             ].map(({ Icon, title: cardTitle, text }) => (
               <article key={cardTitle} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
@@ -367,6 +383,8 @@ export default function ReinigungsfirmaAngebotPage() {
             ))}
           </div>
         </section>
+
+        <ToolJourneyPanel intent="quote" region="both" />
 
         <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">

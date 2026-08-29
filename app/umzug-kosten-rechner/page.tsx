@@ -1,114 +1,51 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-
-import MovingCalculator from "@/components/calculator/moving/MovingCalculator";
+import { getDictionary } from "@/get-dictionary";
+import React from 'react';
+import DualCalculator from '@/components/calculator/DualCalculator';
 import { generatePageSEO } from "@/lib/seo";
 
-export const dynamic = "force-static";
-
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata() {
+  const pageLocale = "de";
+  const dict = (await getDictionary(pageLocale as any)) as any;
   return generatePageSEO({
-    lang: "de",
-    path: "umzug-kosten-rechner",
-    title: "Umzugskosten unverbindlich einschätzen | FLOXANT",
-    description:
-      "Umzugsaufwand in drei kurzen Schritten einordnen: Route, Umfang, Zugang und Zusatzleistungen. Ergebnis ohne Kontaktdaten und ohne unbestätigte Preisangabe.",
+    pageLocale,
+    path: "/umzug-kosten-rechner",
+    title: dict.pages?.calc_umzug?.meta_title || "Umzugsaufwand einschätzen | FLOXANT",
+    description: dict.pages?.calc_umzug?.meta_desc || "Start, Ziel, Wohnfläche, Etagen und gewünschte Hilfe eingeben und eine unverbindliche Umzugseinschätzung vorbereiten.",
   });
 }
-
-const explanationCards = [
-  {
-    title: "Was berücksichtigt wird",
-    text: "Wohnfläche oder Zimmerzahl, Etagen, Aufzüge, Trageweg, grobe Möbelmenge und gewählte Zusatzleistungen.",
-  },
-  {
-    title: "Was noch geprüft wird",
-    text: "Exakte Route, Fahrzeit, Parkmöglichkeit, Fahrzeug, Team, Termin und Besonderheiten vor Ort.",
-  },
-  {
-    title: "Warum Ergebnisse variieren",
-    text: "Gleiche Wohnflächen können durch Zugang, Möbelmenge, Entfernung oder Spezialstücke sehr unterschiedlichen Aufwand verursachen.",
-  },
-  {
-    title: "Wie es weitergeht",
-    text: "Nach der Einschätzung können Sie das Ergebnis in eine unverbindliche Anfrage übernehmen und offene Punkte ergänzen.",
-  },
-] as const;
-
-const movingQuestions = [
-  {
-    question: "Brauche ich eine genaue Adresse für die Einschätzung?",
-    answer: "Nein. Start- und Zielort oder die jeweilige Postleitzahl reichen für die erste Einordnung. Genaue Adressen können Sie später in der Anfrage ergänzen.",
-  },
-  {
-    question: "Was kann ich angeben, wenn der Umzugsumfang noch unklar ist?",
-    answer: "Wählen Sie „Ich weiß es nicht genau“. Das Ergebnis nennt die fehlende Information und bleibt eine Aufwandseinschätzung statt einen ungenauen Preis vorzutäuschen.",
-  },
-  {
-    question: "Werden Etagen und Aufzüge berücksichtigt?",
-    answer: "Ja. Etagen, vorhandene Aufzüge und ein längerer Trageweg beeinflussen die Einordnung, weil sie den Zugang am Start oder Ziel verändern können.",
-  },
-  {
-    question: "Kann ich das Ergebnis für eine Anfrage übernehmen?",
-    answer: "Ja. Nach dem Ergebnis können Sie die Zusammenfassung ohne erneute Eingabe in das Anfrageformular übernehmen und dort offene Angaben ergänzen.",
-  },
-] as const;
-
-export default function MovingCalculatorPage() {
-  return (
-    <main className="min-h-screen overflow-x-clip bg-slate-50 pb-20 text-slate-950">
-      <section className="border-b border-blue-100 bg-gradient-to-b from-blue-50 to-slate-50 px-4 pb-10 pt-12 sm:px-6 sm:pb-14 sm:pt-16">
-        <div className="mx-auto max-w-4xl text-center">
-          <Link href="/rechner" className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-black text-blue-800 underline decoration-2 underline-offset-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200">
-            Zur Rechnerauswahl
-          </Link>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
-            Umzugsaufwand in wenigen Schritten einschätzen
-          </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            Nennen Sie Start, Ziel, Zeitraum, groben Umfang und Zugang. Daraus entsteht eine
-            unverbindliche Aufwandseinstufung, die Sie vor jeder Eingabe von Kontaktdaten sehen.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 sm:px-6 sm:py-14" aria-label="Umzugsrechner">
-        <MovingCalculator />
-      </section>
-
-      <section className="px-4 sm:px-6" aria-labelledby="moving-calculator-explained">
-        <div className="mx-auto max-w-5xl">
-          <h2 id="moving-calculator-explained" className="text-center text-3xl font-black tracking-tight">
-            Eine Orientierung, kein automatisch erzeugter Festpreis
-          </h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
-            {explanationCards.map((card) => (
-              <article key={card.title} className="rounded-2xl border border-slate-200 bg-white p-5">
-                <h3 className="font-black text-slate-950">{card.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 pt-12 sm:px-6 sm:pt-16" aria-labelledby="moving-calculator-questions">
-        <div className="mx-auto max-w-4xl">
-          <h2 id="moving-calculator-questions" className="text-center text-3xl font-black tracking-tight">
-            Fragen zur Umzugseinschätzung
-          </h2>
-          <div className="mt-7 space-y-3">
-            {movingQuestions.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-slate-200 bg-white p-5 open:border-blue-200">
-                <summary className="cursor-pointer font-black text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-200">
-                  {item.question}
-                </summary>
-                <p className="mt-3 leading-7 text-slate-600">{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+export default async function UmzugKostenRechnerPage() {
+  var dict = await getDictionary("de");
+ return (
+  <main className="min-h-screen bg-[#05050A] text-white pt-32 pb-24">
+   <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <header className="text-center mb-16 max-w-3xl mx-auto">
+     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">
+      <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+      Angaben für die Einschätzung
+     </div>
+     <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
+      {(dict as any).pages?.calc_umzug?.h1_pre} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">{(dict as any).pages?.calc_umzug?.h1_hi}</span>
+     </h1>
+     <p className="text-white/60 text-lg">
+      {(dict as any).pages?.calc_umzug?.subtitle}
+     </p>
+    </header>
+    {/* Start Calculator in Umzug Mode */}
+    <DualCalculator initialService="umzug" />
+    {/* Calculator context */}
+    <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
+     <h2 className="text-3xl font-light">{(dict as any).pages?.calc_umzug?.h2}</h2>
+     <p className="text-white/70">
+      Das Werkzeug liefert eine unverbindliche Orientierung. Preis, Termin und Durchführbarkeit stehen erst nach Prüfung der vollständigen Eckdaten fest. Wichtig sind vor allem:
+     </p>
+     <ul className="text-white/60">
+      <li><strong>Die Wohnfläche und Anzahl der Zimmer:</strong> Hiermit ermitteln wir das ungefähre Volumen an Umzugsgut.</li>
+      <li><strong>Die Distanz:</strong> Die Entfernung zwischen Auszug und Einzug.</li>
+      <li><strong>Stockwerke und Aufzug:</strong> Erschwernisse wie höhere Stockwerke ohne Aufzug wirken sich auf den Preis aus.</li>
+      <li><strong>Zusatzleistungen:</strong> Benötigen Sie De- und Montage oder einen Einpackservice?</li>
+     </ul>
+    </section>
+   </div>
+  </main>
+ );
 }

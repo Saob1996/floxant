@@ -46,7 +46,7 @@ export default async function EntsorgungPage() {
     },
     {
       q: "Bieten Sie den Service in ganz Bayern an?",
-      a: "Ja, nach Prüfung. Entscheidend sind Abholort, Menge, Material, Termin und passende Tour. Regensburg bleibt die Basis.",
+      a: "Eine überregionale Abholung ist nicht pauschal zugesagt. Entscheidend sind Abholort, Menge, Material, Termin, sichere Handhabung und eine passende Tour ab dem bestätigten Einsatzgebiet.",
     },
     {
       q: "Wie läuft die Anfrage für die Entsorgung ab?",
@@ -99,7 +99,7 @@ export default async function EntsorgungPage() {
             Kleinmengen-Entsorgung in Regensburg & Bayern
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/50">
-            FLOXANT hilft, wenn es für den Hausmüll zu viel und für einen Großcontainer zu klein ist. Wir entsorgen Renovierungsreste, Bauschutt-Teilmengen und Sperrmüll fachgerecht, schnell und transparent in ganz Bayern, mit Regensburg als Ausgangspunkt.
+            Die Seite hilft, wenn es für den Hausmüll zu viel und für einen Großcontainer zu klein erscheint. FLOXANT prüft Fotos, Material, Menge, Zugang, Abholort und einen geeigneten Entsorgungsweg. Gefährliche oder unklare Stoffe werden nicht als Standardauftrag zugesagt.
           </p>
         </div>
       </section>
@@ -145,6 +145,9 @@ export default async function EntsorgungPage() {
             <p className="mt-4 text-white/50">
               Geben Sie Materialart, Menge und Abholort an. FLOXANT prüft, ob der Service für Ihre Situation passt.
             </p>
+            <Link href="/kontakt?service=entruempelung&city=regensburg&intent=abholung-pruefen" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 font-black text-slate-950">
+              Abholung prüfen lassen
+            </Link>
           </div>
           <div className="rounded-3xl border border-white/5 bg-black/40 p-4 shadow-2xl backdrop-blur-xl">
             <SmartBookingWizard

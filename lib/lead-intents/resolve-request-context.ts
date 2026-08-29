@@ -23,6 +23,7 @@ export {
   type RequestServiceOption,
 } from "@/lib/lead-intents/request-location-policy";
 export type GlobalRequestSource =
+  | "global_homepage"
   | "global_header"
   | "global_mobile_header"
   | "global_floating"

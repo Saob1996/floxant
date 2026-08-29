@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Languages, MapPin } from "lucide-react";
 
-import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
 import { englishLocalSeoPages } from "@/lib/local-seo/englishLocalSeoPages";
 import type { LocalSeoPageConfig } from "@/lib/local-seo/types";
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/en",
     languages: {
-      "de-DE": "/",
       en: "/en",
       "x-default": "/",
     },
@@ -68,11 +67,7 @@ export default function EnglishHubPage() {
           <ServiceGroup title="Regensburg services" pages={regensburgPages} />
         </div>
       </section>
-      <PriorityFaqSection
-        route="/en"
-        locale="en"
-        className="border-t border-slate-200 bg-slate-50"
-      />
+      <ToolJourneyPanel locale="en" intent="overview" region="both" />
     </main>
   );
 }

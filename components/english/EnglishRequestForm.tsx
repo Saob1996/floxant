@@ -11,6 +11,14 @@ import { REQUEST_ATTACHMENT_RULES } from "@/lib/booking/request-service-policy.j
 type SubmitState = "idle" | "sending" | "success" | "error";
 type Step = 1 | 2 | 3;
 
+type EnglishRequestFormProps = {
+  initialDetails?: string;
+  source?: string;
+  intent?: string;
+  defaultService?: string;
+  formId?: string;
+};
+
 const servicesByRegion = {
   "": [],
   duesseldorf: [
@@ -92,7 +100,13 @@ function Progress({ step }: { step: Step }) {
   );
 }
 
-export function EnglishRequestForm() {
+export function EnglishRequestForm({
+  initialDetails = "",
+  source = "/en/contact",
+  intent = "english-contact",
+  defaultService = "",
+  formId = "english-service-request-form",
+}: EnglishRequestFormProps = {}) {
   const [step, setStep] = useState<Step>(1);
   const [state, setState] = useState<SubmitState>("idle");
   const [region, setRegion] = useState<Region>("");
@@ -105,7 +119,7 @@ export function EnglishRequestForm() {
   const [estimatedVolume, setEstimatedVolume] = useState("");
   const [offerConcern, setOfferConcern] = useState("");
   const [desiredDate, setDesiredDate] = useState("");
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState(initialDetails);
   const [files, setFiles] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -119,7 +133,7 @@ export function EnglishRequestForm() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const requestedService = normalizeRequestedService(params.get("service"));
+    const requestedService = normalizeRequestedService(params.get("service") || defaultService);
     const requestedRegion = params.get("city");
     let nextRegion: Region = isServiceRegion(requestedRegion) ? requestedRegion : "";
 
@@ -134,7 +148,11 @@ export function EnglishRequestForm() {
       setRegion(nextRegion);
       if (hasService(nextRegion, requestedService)) setService(requestedService);
     }
-  }, []);
+  }, [defaultService]);
+
+  useEffect(() => {
+    if (initialDetails) setDetails(initialDetails);
+  }, [initialDetails]);
 
   const serviceLabel = useMemo(
     () => servicesByRegion[region].find((option) => option.value === service)?.label || "Not selected",
@@ -228,12 +246,12 @@ export function EnglishRequestForm() {
     const fields: Record<string, string> = {
       type: "booking_request",
       lead_type: "english-service-request",
-      leadSource: "english-service-request",
-      source: "english-service-request",
+      leadSource: source,
+      source,
       sourceComponent: "EnglishRequestForm",
-      sourcePage: "/en/contact",
+      sourcePage: source,
       landingPage: `${window.location.pathname}${window.location.search}`,
-      intent: query.get("intent") || "english-contact",
+      intent: query.get("intent") || intent,
       locale: responseLanguage,
       timestamp: new Date().toISOString(),
       formStartedAt: String(startedAtRef.current),
@@ -309,6 +327,7 @@ export function EnglishRequestForm() {
       ) : null}
 
       <form
+        id={formId}
         onSubmit={handleSubmit}
         onChange={() => {
           setErrorMessage("");

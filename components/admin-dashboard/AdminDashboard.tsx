@@ -52,6 +52,7 @@ import {
   dashboardSupabaseConfig,
   getDashboardSupabaseClient,
 } from "@/lib/admin-dashboard/supabase-browser";
+import { AdminBackhaulPanel } from "@/components/admin-dashboard/AdminBackhaulPanel";
 
 function isAdmin(appMetadata: Record<string, unknown> | undefined): boolean {
   return appMetadata?.role === "admin";
@@ -447,6 +448,19 @@ export function AdminDashboard() {
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} aria-hidden="true" />
             Aktualisieren
           </button>
+        </section>
+
+        <section id="leerrueckfahrten-verwalten" className="mt-8 scroll-mt-6" aria-labelledby="leerrueckfahrten-heading">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Touren und freie Kapazitäten</p>
+              <h2 id="leerrueckfahrten-heading" className="mt-2 text-2xl font-black tracking-[-0.02em]">Leerrückfahrten veröffentlichen und verwalten</h2>
+            </div>
+            <p className="max-w-xl text-sm font-semibold leading-6 text-slate-400">
+              Reale Touren anlegen, veröffentlichen, reservieren, pausieren, abschließen oder archivieren. Veröffentlichte und noch gültige Fahrten erscheinen automatisch auf der Kundenseite.
+            </p>
+          </div>
+          <AdminBackhaulPanel />
         </section>
 
         <section className="mt-8 grid gap-3 sm:grid-cols-3">

@@ -152,6 +152,14 @@ export const regensburgServicePages = {
         q: "Kann FLOXANT ein Entrümpelungsangebot prüfen?",
         a: "Ja. Senden Sie Angebot, Fotos, Menge, Zugang, Etage, Entsorgungsanteil und Zielzustand für eine sachliche Einordnung.",
       },
+      {
+        q: "Muss ich bei der Entrümpelung vor Ort sein?",
+        a: "Nicht zwingend. Wenn Berechtigung, Schlüsselübergabe, Freigaben, Ansprechpartner und gewünschter Endzustand vorab eindeutig geklärt sind, kann der Ablauf auch ohne dauernde Anwesenheit geprüft werden.",
+      },
+      {
+        q: "Was muss in einem konkreten Angebot stehen?",
+        a: "Räume, Menge, Materialarten, Tragewege, Etage, Anfahrt, Entsorgungsanteil, mögliche Zusatzleistungen und Umsatzsteuer sollten nachvollziehbar ausgewiesen sein. FLOXANT bestätigt diese Punkte erst nach Prüfung des Falls.",
+      },
     ],
     related: commonRelated,
   },
@@ -563,6 +571,14 @@ export const regensburgServicePages = {
       {
         q: "Werden Gefahrstoffe entsorgt?",
         a: "Gefahrstoffe, Asbest, Chemikalien, kontaminierte Materialien oder unklare Spezialfälle werden nicht pauschal zugesagt.",
+      },
+      {
+        q: "Wie werden persönliche Unterlagen und Erinnerungsstücke behandelt?",
+        a: "Vor Beginn muss geklärt sein, was sicher bleibt, wer Entscheidungen treffen darf und wie Fundstücke übergeben werden. Eine pauschale Freigabe wird bei sensiblen Gegenständen nicht vorausgesetzt.",
+      },
+      {
+        q: "Welche Preisbestandteile sollten im Angebot erkennbar sein?",
+        a: "Arbeitsumfang, Transport, Laufwege, Entsorgungsanteil, Reinigung, Anfahrt und Umsatzsteuer sollten im konkreten Angebot klar getrennt sein. Ein verbindlicher Preis entsteht erst nach Prüfung dieser Angaben.",
       },
     ],
     related: [

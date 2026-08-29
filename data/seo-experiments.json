@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-18",
+  "experiments": [
+    {
+      "id": "seo-2026-07-duesseldorf-reinigung-title",
+      "route": "/duesseldorf/reinigung",
+      "locale": "de-DE",
+      "element": "Title",
+      "previousValue": "Reinigung Düsseldorf | Büro, Praxis & Wohnung",
+      "testValue": "Reinigung Düsseldorf anfragen | Objekt, Fläche & Termin",
+      "titleCandidates": {
+        "direct": "Reinigung Düsseldorf für Büro, Praxis & Objekt | FLOXANT",
+        "benefit": "Reinigung Düsseldorf: Leistung und Turnus klar anfragen",
+        "conversion": "Reinigung Düsseldorf anfragen | Objekt, Fläche & Termin"
+      },
+      "selectedCandidate": "conversion",
+      "selectionReason": "Der reale GSC-Seitenexport zeigt 3.143 Impressionen bei 3 Klicks und Position 11,15. Die gewählte Variante behält die Hauptquery am Anfang und beschreibt die konkrete Anfragehandlung, ohne H1, Hero oder Description gleichzeitig zu verändern.",
+      "hypothesis": "Eine handlungsorientierte, sachliche Title-Formulierung macht den Anfragezweck bei bestehenden Impressionen klarer und kann die organische CTR verbessern.",
+      "primaryMetric": "GSC CTR der URL",
+      "secondaryMetrics": [
+        "GSC Klicks der URL",
+        "GSC Impressionen der URL",
+        "durchschnittliche Position der URL",
+        "datenschutzkonform vorhandene Formularstarts"
+      ],
+      "baseline": {
+        "source": "artifacts/gsc-page-opportunities.csv",
+        "clicks": 3,
+        "impressions": 3143,
+        "ctr": 0.000955,
+        "position": 11.15
+      },
+      "startedAt": "2026-07-18",
+      "minimumEvaluationDays": 28,
+      "status": "active",
+      "result": null,
+      "decision": "pending",
+      "rollbackValue": "Reinigung Düsseldorf | Büro, Praxis & Wohnung"
+    }
+  ]
+}

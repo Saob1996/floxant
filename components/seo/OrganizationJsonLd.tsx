@@ -10,7 +10,6 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     "@id": `${company.url}/#organization`,
     name: company.name,
-    alternateName: ["FLOXANT Service Regensburg"],
     url: company.url,
     logo: `${company.url}/logo_v10.png`,
     email: company.email,
@@ -51,8 +50,8 @@ export function OrganizationJsonLd() {
       },
     ],
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung, Angebotsprüfung und diskrete Abstimmungen mit Schwerpunkt Regensburg. Reinigung ist auf Regensburg und den 50-km-Umkreis begrenzt.",
-    areaServed: company.primaryServiceAreas.map((area) => ({
+      "FLOXANT organisiert Reinigung in Düsseldorf sowie Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Angebotsprüfung in Regensburg. Einsatzradius und Machbarkeit werden je Leistung geprüft.",
+    areaServed: [...company.primaryServiceAreas, "Düsseldorf", "Neuss", "Ratingen", "Meerbusch"].map((area) => ({
       "@type":
         area === "Bayern"
           ? "State"
@@ -71,10 +70,10 @@ export function OrganizationJsonLd() {
       "Büroumzug",
       "Firmenentsorgung",
       "Gewerbereinigung",
-      "Umzug Düsseldorf",
-      "Entrümpelung Düsseldorf",
-      "Haushaltsauflösung Düsseldorf",
-      "Wohnungsauflösung Düsseldorf",
+      "Reinigungsfirma Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "Praxisreinigung Düsseldorf",
+      "Grundreinigung Düsseldorf",
       "Büroreinigung Regensburg",
       "Büroreinigung Regensburg Angebot",
       "Büroreinigung Kosten Regensburg",

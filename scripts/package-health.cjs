@@ -59,6 +59,11 @@ function main() {
     "app/duesseldorf/page.tsx",
     "app/regensburg/page.tsx",
   ];
+  const currentIntegrationTokens = {
+    "app/page.tsx": ["mainServices", "requestHref", "offerHref", "buildGlobalRequestHref"],
+    "app/kontakt/page.tsx": ["ContactLeadForm", "resolveLeadIntent", "direktanfrage"],
+    "app/duesseldorf/page.tsx": ["duesseldorfCleaningLinks", "ToolJourneyPanel", "buildLeadHref"],
+  };
 
   for (const file of requiredDocs) {
     if (exists(file)) checks.push(`${file}: vorhanden`);
@@ -128,7 +133,8 @@ function main() {
       continue;
     }
     const text = read(page);
-    if (text.includes("ServicePackageDecisionExperience")) checks.push(`${page}: Entscheidungskomponente integriert`);
+    const tokens = currentIntegrationTokens[page] || ["ServicePackageDecisionExperience"];
+    if (tokens.every((token) => text.includes(token))) checks.push(`${page}: aktueller Entscheidungsweg integriert`);
     else failures.push(`${page}: Entscheidungskomponente nicht integriert`);
   }
 

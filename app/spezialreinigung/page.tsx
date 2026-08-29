@@ -31,31 +31,31 @@ const path = "/spezialreinigung";
 const canonical = `${company.url}${path}`;
 
 const situations = [
-  "PV-Anlage, Glas, Fassade oder Außenflaeche ist sichtbar verschmutzt, aber Zugang und Risiko sind unklar.",
-  "Vor Übergabe, Besichtigung, Gewerbestart oder Veranstaltung muss Reinigung priorisiert werden.",
-  "Ein vorhandenes Reinigungsangebot wirkt teuer, lückenhaft oder schwer vergleichbar.",
-  "Büros, Praxen, Hausverwaltungen oder Hotels brauchen keine Keywordliste, sondern eine klare Objektbeschreibung.",
+  "PV-Anlage, Glas, Fassade oder Aussenflaeche ist sichtbar verschmutzt, aber Zugang und Risiko sind unklar.",
+  "Vor Uebergabe, Besichtigung, Gewerbestart oder Veranstaltung muss Reinigung priorisiert werden.",
+  "Ein vorhandenes Reinigungsangebot wirkt teuer, lueckenhaft oder schwer vergleichbar.",
+  "Bueros, Praxen, Hausverwaltungen oder Hotels brauchen keine Keywordliste, sondern eine klare Objektbeschreibung.",
 ] as const;
 
 const process = [
-  "Ort, Objektart, Fläche oder Modul-/Glasfläche nennen.",
-  "Fotos von Verschmutzung, Zugang, Höhe und besonderen Risiken senden.",
-  "Zeitfenster, Übergabeziel oder vorhandenes Angebot ergaenzen.",
-  "FLOXANT trennt machbare Reinigung, offene Rückfragen und klare Grenzen.",
+  "Ort, Objektart, Flaeche oder Modul-/Glasflaeche nennen.",
+  "Fotos von Verschmutzung, Zugang, Hoehe und besonderen Risiken senden.",
+  "Zeitfenster, Uebergabeziel oder vorhandenes Angebot ergaenzen.",
+  "FLOXANT trennt machbare Reinigung, offene Rueckfragen und klare Grenzen.",
 ] as const;
 
 const specialCleaningClarityItems = [
   {
     title: "Was der Service ist",
-    text: "Spezialreinigung ist ein Prüfweg für PV, Glas, Fassade, Event, Büro, Praxis oder Übergabe, wenn Zugang, Material oder Zielzustand genauer beschrieben werden müssen.",
+    text: "Spezialreinigung ist ein Pruefweg fuer PV, Glas, Fassade, Event, Buero, Praxis oder Uebergabe, wenn Zugang, Material oder Zielzustand genauer beschrieben werden muessen.",
   },
   {
     title: "Wann er passt",
-    text: "Wenn Fotos, Ort, Fläche, Höhe, Zugang, Wasseranschluss, Zeitfenster oder ein vorhandenes Angebot vorliegen.",
+    text: "Wenn Fotos, Ort, Flaeche, Hoehe, Zugang, Wasseranschluss, Zeitfenster oder ein vorhandenes Angebot vorliegen.",
   },
   {
     title: "Wann ein anderer Weg besser ist",
-    text: "Wenn es um normale Unterhaltsreinigung, Umzug, Räumung oder reine Angebotsprüfung geht, führt FLOXANT auf die passende Seite.",
+    text: "Wenn es um normale Unterhaltsreinigung, Umzug, Raeumung oder reine Angebotsprüfung geht, fuehrt FLOXANT auf die passende Seite.",
   },
   {
     title: "Was FLOXANT braucht",
@@ -71,15 +71,15 @@ const boundaries = [
 ] as const;
 
 const cleaningAnswerPoints = [
-  "Spezialreinigung passt, wenn Zugang, Material, Höhe, Fotos oder Zielzustand vor der Zusage geklaert werden müssen.",
-  "Normale Reinigung passt eher, wenn Fläche, Räume, Zustand und Termin ohne besondere Risiken beschreibbar sind.",
-  "Angebot prüfen passt, wenn schon Preis, PDF, Screenshot oder Leistungsumfang vorliegt.",
+  "Spezialreinigung passt, wenn Zugang, Material, Hoehe, Fotos oder Zielzustand vor der Zusage geklaert werden muessen.",
+  "Normale Reinigung passt eher, wenn Flaeche, Raeume, Zustand und Termin ohne besondere Risiken beschreibbar sind.",
+  "Angebot pruefen passt, wenn schon Preis, PDF, Screenshot oder Leistungsumfang vorliegt.",
 ] as const;
 
 const cleaningChecklist = [
   "Objektart und Ort nennen.",
-  "Fotos von Zugang, Verschmutzung, Glas, PV, Fassade oder Übergabeziel senden.",
-  "Fläche, Höhe, Etage, Wasseranschluss und Zeitfenster beschreiben.",
+  "Fotos von Zugang, Verschmutzung, Glas, PV, Fassade oder Uebergabeziel senden.",
+  "Flaeche, Hoehe, Etage, Wasseranschluss und Zeitfenster beschreiben.",
   "Vorhandenes Angebot oder Preisrahmen separat markieren.",
   "Keine Ertrags-, Dach-, Elektro- oder Abnahmegarantie erwarten.",
 ] as const;
@@ -87,15 +87,15 @@ const cleaningChecklist = [
 const cleaningComparisonRows = [
   {
     topic: "Standardfall",
-    left: "Normale Reinigung mit Räumen, Fläche und Termin.",
-    right: "Spezialreinigung mit Zugang, Material, Höhe oder Sicherheitsgrenze.",
+    left: "Normale Reinigung mit Raeumen, Flaeche und Termin.",
+    right: "Spezialreinigung mit Zugang, Material, Hoehe oder Sicherheitsgrenze.",
     decision: "Bei unsicherem Zugang oder Spezialmaterial zuerst Spezialreinigung anfragen.",
   },
   {
     topic: "Vorhandenes Angebot",
     left: "Direkte Anfrage, wenn noch kein Preis oder Anbieter vorliegt.",
     right: "Angebotsprüfung, wenn PDF, Screenshot, Preis oder Leistungsumfang vorhanden ist.",
-    decision: "Mit Angebot immer den Prüfpfad nutzen.",
+    decision: "Mit Angebot immer den Pruefpfad nutzen.",
   },
   {
     topic: "PV/Solar",
@@ -107,20 +107,20 @@ const cleaningComparisonRows = [
 
 const faqItems = [
   {
-    q: "Was zählt bei FLOXANT als Spezialreinigung?",
-    a: "Spezialreinigung sind Reinigungsfaelle mit besonderem Zugang, Material, Zeitdruck, Objektbezug oder Risiko: Solar/PV, Glas, Fassade, Event, Bauendreinigung light, Praxis, Hotel, Hausverwaltung oder Reinigung vor Übergabe.",
+    q: "Was zaehlt bei FLOXANT als Spezialreinigung?",
+    a: "Spezialreinigung sind Reinigungsfaelle mit besonderem Zugang, Material, Zeitdruck, Objektbezug oder Risiko: Solar/PV, Glas, Fassade, Event, Bauendreinigung light, Praxis, Hotel, Hausverwaltung oder Reinigung vor Uebergabe.",
   },
   {
-    q: "Wie finde ich die passende Spezialreinigung?",
-    a: "Beschreiben Sie Objekt, Fläche, Material, Zustand, Zugang und Termin. FLOXANT ordnet die Anfrage der passenden Reinigungsart zu und klärt offene Punkte direkt mit Ihnen.",
+    q: "Warum gibt es nicht fuer jede Reinigungsart eine eigene lokale Seite?",
+    a: "FLOXANT erstellt nur eigene Seiten, wenn Kundennutzen und Inhalt genug Substanz haben. Sonst wird der Service als Abschnitt, häufige Frage oder passende Weiterleitung erklärt.",
   },
   {
-    q: "Kann ich ein vorhandenes Reinigungsangebot prüfen lassen?",
-    a: "Ja. Umfang, Fläche, Turnus, Zusatzpositionen, Fotos, Zugang und Termin können sachlich eingeordnet werden. FLOXANT verspricht dabei keinen besseren Preis.",
+    q: "Kann ich ein vorhandenes Reinigungsangebot pruefen lassen?",
+    a: "Ja. Umfang, Flaeche, Turnus, Zusatzpositionen, Fotos, Zugang und Termin koennen sachlich eingeordnet werden. FLOXANT verspricht dabei keinen besseren Preis.",
   },
   {
-    q: "Welche Angaben helfen für Spezialreinigung?",
-    a: "Objektart, Adresse oder Stadt, Fläche, Verschmutzung, Fotos, Zugang, Höhe, Wasseranschluss, Terminfenster, Übergabeziel und ein Kontaktweg reichen für den Start.",
+    q: "Welche Angaben helfen fuer Spezialreinigung?",
+    a: "Objektart, Adresse oder Stadt, Flaeche, Verschmutzung, Fotos, Zugang, Hoehe, Wasseranschluss, Terminfenster, Uebergabeziel und ein Kontaktweg reichen fuer den Start.",
   },
 ] as const;
 
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "Spezialreinigung mit Fotos, Zugang und Ziel klären",
   description:
-    "FLOXANT ordnet Spezialreinigung für PV, Glas, Fassade, Event, Büro, Praxis und Übergabe nach Fotos, Zugang und Risiko ein.",
+    "FLOXANT ordnet Spezialreinigung fuer PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe nach Fotos, Zugang und Risiko ein.",
   alternates: { canonical },
   openGraph: {
     type: "website",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "Spezialreinigung mit Fotos und klarer Machbarkeitspruefung",
     description:
-      "PV, Glas, Fassade, Event, Büro, Praxis und Übergabe sinnvoll einordnen, ohne falsche Garantien.",
+      "PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe sinnvoll einordnen, ohne falsche Garantien.",
   },
 };
 
@@ -148,7 +148,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "Spezialreinigung",
         description:
-          "FLOXANT Spezialreinigung für PV, Glas, Fassade, Event, Bauendreinigung light, Praxis, Hotel, Hausverwaltung und Reinigung vor Übergabe.",
+          "FLOXANT Spezialreinigung fuer PV, Glas, Fassade, Event, Bauendreinigung light, Praxis, Hotel, Hausverwaltung und Reinigung vor Uebergabe.",
         path,
         about: specialCleaningLinks.map((item) => item.title),
         potentialActions: [
@@ -159,7 +159,7 @@ function JsonLd() {
       buildServiceJsonLd({
         name: "Spezialreinigung",
         description:
-          "Praktische Machbarkeitspruefung für Spezialreinigung mit Fotos, Zugang, Material, Termin und klaren Grenzen.",
+          "Praktische Machbarkeitspruefung fuer Spezialreinigung mit Fotos, Zugang, Material, Termin und klaren Grenzen.",
         path,
         serviceType: "Spezialreinigung",
         areaServed: buildRegensburgCleaningAreaServedJsonLd(),
@@ -198,7 +198,7 @@ export default function SpezialreinigungPage() {
               Spezialreinigung mit Fotos, Zugang und Ziel klar einordnen.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-              Spezialreinigung braucht mehr als ein Stichwort. FLOXANT prüft Fotos,
+              Spezialreinigung braucht mehr als ein Stichwort. FLOXANT prueft Fotos,
               Zugang, Material, Zeitfenster, Risiko und Zielzustand, bevor aus einer
               Anfrage eine realistische Leistung wird.
             </p>
@@ -214,7 +214,7 @@ export default function SpezialreinigungPage() {
                 href="/angebot-guenstiger-pruefen#guenstiger-form"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white"
               >
-                Angebot prüfen lassen
+                Angebot pruefen lassen
               </Link>
             </div>
           </div>
@@ -231,7 +231,7 @@ export default function SpezialreinigungPage() {
 
       <ServiceClarityPanel
         title="Spezialreinigung braucht erst Machbarkeit, dann Zusage."
-        intro="PV, Glas, Fassade, Event, Praxis, Hotel oder Übergabe können sehr unterschiedliche Anforderungen haben. FLOXANT trennt deshalb normale Reinigung, Spezialfall und Angebotsprüfung sauber."
+        intro="PV, Glas, Fassade, Event, Praxis, Hotel oder Uebergabe koennen sehr unterschiedliche Anforderungen haben. FLOXANT trennt deshalb normale Reinigung, Spezialfall und Angebotsprüfung sauber."
         items={specialCleaningClarityItems}
       />
 
@@ -249,7 +249,7 @@ export default function SpezialreinigungPage() {
 
       <AiAnswerCard
         title="Spezialreinigung beginnt mit Zugang, Fotos und Zielzustand."
-        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotsprüfung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Übergabe nicht als pauschaler Standardfall behandelt werden."
+        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotsprüfung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Uebergabe nicht als pauschaler Standardfall behandelt werden."
         points={cleaningAnswerPoints}
         nextStep="Naechster Schritt: Fotos, Objektart, Ort, Termin und vorhandenes Angebot mitsenden."
       />
@@ -263,8 +263,8 @@ export default function SpezialreinigungPage() {
       />
 
       <ChecklistBlock
-        title="Checkliste für Spezialreinigung"
-        intro="Diese Angaben reichen für eine serioese Vorprüfung, ohne Preise oder Verfügbarkeit zu erfinden."
+        title="Checkliste fuer Spezialreinigung"
+        intro="Diese Angaben reichen fuer eine serioese Vorpruefung, ohne Preise oder Verfuegbarkeit zu erfinden."
         items={cleaningChecklist}
         columns={3}
       />
@@ -277,7 +277,7 @@ export default function SpezialreinigungPage() {
               Anfragefuehrung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-              Was FLOXANT für eine serioese Einschätzung braucht.
+              Was FLOXANT fuer eine serioese Einschaetzung braucht.
             </h2>
           </article>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -301,13 +301,13 @@ export default function SpezialreinigungPage() {
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit aus der Anfrage kein falsches Versprechen wird.",
           href: "/kontakt#direktanfrage",
-          cta: "Fall klären",
+          cta: "Fall klaeren",
         }))}
       />
 
       <SignatureServicesGrid
         title="Welche Signature Services zu Spezialreinigung passen."
-        intro="Angebot, Objektbrief, Plan B, PV-Sichtklar und Übergabe-Sprint helfen, wenn die Reinigung Teil einer größeren Entscheidung ist."
+        intro="Angebot, Objektbrief, Plan B, PV-Sichtklar und Uebergabe-Sprint helfen, wenn die Reinigung Teil einer groesseren Entscheidung ist."
         services={signatureServiceLinks.filter((item) =>
           ["FLOXANT Fairpreis-Check", "FLOXANT Objektbrief", "FLOXANT Uebergabe-Sprint", "FLOXANT Plan-B-Service", "FLOXANT PV-Sichtklar-Service"].includes(item.title),
         )}
@@ -324,7 +324,7 @@ export default function SpezialreinigungPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">FAQ</p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal">Häufige Fragen zur Spezialreinigung.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal">Haeufige Fragen zur Spezialreinigung.</h2>
           </article>
           <div className="grid gap-3">
             {faqItems.map((item, index) => (

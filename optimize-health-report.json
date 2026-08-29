@@ -1,0 +1,173 @@
+{
+  "status": "FAIL",
+  "generatedAt": "2026-08-28T23:19:03.893Z",
+  "summary": {
+    "scripts": 16,
+    "pass": 0,
+    "warn": 7,
+    "fail": 9,
+    "criticalFailures": 9
+  },
+  "results": [
+    {
+      "script": "gsc:import",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 3,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "optimize:score",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "seo:conversion",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "lead:health",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "site:qa",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "vercel:usage-safety",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "snippet:health",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "search:coverage",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "content:quality",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "copy:quality",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "seo:dedupe-risk",
+      "status": "WARN",
+      "critical": false,
+      "exitCode": 1,
+      "durationMs": 2,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "seo:sitemap",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "seo:health",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "lint",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 1,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "typecheck",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 2,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "script": "build",
+      "status": "FAIL",
+      "critical": true,
+      "exitCode": 1,
+      "durationMs": 0,
+      "summary": "spawnSync C:\\WINDOWS\\system32\\cmd.exe EPERM",
+      "stdoutTail": "",
+      "stderrTail": ""
+    }
+  ]
+}

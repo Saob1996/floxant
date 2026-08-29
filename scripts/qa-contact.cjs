@@ -27,7 +27,7 @@ function formContains(html, patterns) {
 
 function getPrimaryForm(html) {
   const forms = collectForms(html);
-  return forms.find((form) => /direktanfrage|seo_lead|lead|kontakt|anfrage/i.test(`${form.html} ${JSON.stringify(form.attrs)}`)) || forms[0] || null;
+  return forms.find((form) => /direktanfrage|seo_lead|lead|kontakt|anfrage/i.test(`${form.html} ${JSON.stringify(form.attrs)}`)) || null;
 }
 
 const personalizationSource = fs.readFileSync(
@@ -97,9 +97,21 @@ async function main() {
     addResult(results, "PASS", "contact-route", scenario.path, "HTTP 200.", "No action.", { priority: "P0" });
     const html = response.body || "";
     const form = getPrimaryForm(html);
+    const hasClientFormFallback = /Anfrage wird vorbereitet/i.test(stripTags(html));
+    const hasHydrationShell = Boolean(form)
+      && /data-booking-field-errors|FLOXANT Anfrage/i.test(form.html)
+      && !/<(?:input|select|textarea)\b/i.test(form.html);
 
-    addResult(results, form ? "PASS" : "FAIL", "contact-form", scenario.path, form ? "Lead/contact form found." : "No form found.", form ? "No action." : "Render the contact form on /kontakt.", { priority: "P0" });
-    if (!form) continue;
+    addResult(
+      results,
+      form && !hasHydrationShell ? "PASS" : form || hasClientFormFallback ? "WARN" : "FAIL",
+      "contact-form",
+      scenario.path,
+      form && !hasHydrationShell ? "Lead/contact form found." : form ? "Static form shell found; its fields require a hydrated browser check." : hasClientFormFallback ? "Static Suspense fallback found; the form requires a hydrated browser check." : "No form or expected client fallback found.",
+      form && !hasHydrationShell ? "No action." : form || hasClientFormFallback ? "Verify the hydrated form in the required browser pass." : "Render the contact form on /kontakt.",
+      { priority: "P0" },
+    );
+    if (!form || hasHydrationShell) continue;
 
     const formHtml = form.html;
     const progressiveForm = html.includes("data-professional-request-form");

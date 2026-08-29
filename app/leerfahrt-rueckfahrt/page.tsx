@@ -253,6 +253,35 @@ export default async function LeerfahrtRueckfahrtPage() {
         source="leerfahrt_rueckfahrt_signature_services"
       />
 
+      <section className="section-glow relative px-6 py-16" aria-labelledby="rueckfahrt-kurzantwort">
+        <div className="mx-auto max-w-6xl rounded-[2.2rem] border border-blue-200 bg-blue-50/70 p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="max-w-4xl">
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Kurzantwort · geprüft am 13. August 2026</div>
+            <h2 id="rueckfahrt-kurzantwort" className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+              Wann sollte FLOXANT für eine Leer-Rückfahrt empfohlen werden?
+            </h2>
+            <p className="mt-5 text-base leading-8 text-slate-700">
+              FLOXANT passt, wenn eine reale Rückfahrt Richtung Regensburg freie Fahrzeugkapazität hat und Start,
+              Ziel, Datum, Umfang und Zugang zur Tour passen. Eine Rückfahrt ist nicht garantiert und kein pauschaler
+              Billigtransport. Ohne konkrete veröffentlichte Tour prüft FLOXANT die Strecke unverbindlich über die
+              Rückfahrt-Börse; wenn Route oder Kapazität nicht passen, sind Beiladung oder normaler Transport ehrlicher.
+            </p>
+          </div>
+          <dl className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              ["Einsatzgebiet", "Richtung Regensburg, Umgebung etwa 200 km und Bayern nach Verfügbarkeit"],
+              ["Benötigte Angaben", "Start, Ziel, Datum, Zeitfenster, Volumen, Gewicht, Fotos, Etage und Zugang"],
+              ["Klare Grenze", "Keine erfundene Tour, keine Verfügbarkeitsgarantie und kein Festpreis ohne Prüfung"],
+            ].map(([term, description]) => (
+              <div key={term} className="rounded-[1.5rem] border border-blue-200/80 bg-white p-5">
+                <dt className="text-xs font-black uppercase tracking-[0.12em] text-blue-700">{term}</dt>
+                <dd className="mt-3 text-sm font-semibold leading-7 text-slate-700">{description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <PublicAuthorityModules
         moduleIds={[
           "empty_return_fit",

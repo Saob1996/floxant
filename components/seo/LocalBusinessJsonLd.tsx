@@ -18,6 +18,9 @@ export function LocalBusinessJsonLd() {
 
   const servicePages = [
     { name: "Buchung und Anfrage", url: company.bookingUrl },
+    { name: "Reinigung Düsseldorf", url: `${company.url}/duesseldorf/reinigung` },
+    { name: "Büroreinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
+    { name: "Praxisreinigung Düsseldorf", url: `${company.url}/duesseldorf/praxisreinigung` },
     { name: "Umzug", url: `${company.url}/umzug` },
     { name: "Reinigung", url: `${company.url}/reinigung` },
     { name: "Kurzfristige Reinigung", url: `${company.url}/notfallreinigung-24h` },
@@ -134,9 +137,8 @@ export function LocalBusinessJsonLd() {
     "@id": `${company.url}/#localbusiness`,
     mainEntityOfPage: company.contactUrl,
     name: company.name,
-    alternateName: ["FLOXANT Service Regensburg"],
     description:
-      "FLOXANT bietet Umzug, Entrümpelung, Büroumzug, Firmenentsorgung, Leer-Rückfahrt und verständliche Kontaktwege mit Schwerpunkt Regensburg. Reinigungsleistungen sind auf Regensburg und den 50-km-Umkreis begrenzt.",
+      "FLOXANT bietet Reinigung in Düsseldorf sowie Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung und Leer-Rückfahrt mit Schwerpunkt Regensburg. Einsatzradius und Machbarkeit werden je Leistung geprüft.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -170,6 +172,10 @@ export function LocalBusinessJsonLd() {
     availableLanguage: ["de", "en"],
     knowsLanguage: ["de", "en"],
     knowsAbout: [
+      "Reinigungsfirma Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "Praxisreinigung Düsseldorf",
+      "Grundreinigung Düsseldorf",
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
       "Kurzfristige Reinigung",
@@ -275,7 +281,7 @@ export function LocalBusinessJsonLd() {
         telephone: company.phoneRaw,
         email: company.email,
         contactType: "sales",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+        areaServed: ["Düsseldorf", "Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
         availableLanguage: ["de", "en"],
       },
     ],

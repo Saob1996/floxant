@@ -90,7 +90,6 @@
     "Großprüfening-Dechbetten-Königswiesen",
     "Westenviertel",
     "Ober- und Niederwinzer-Kager",
-    "Oberisling-Graß",
     "Oberisling-Leoprechting-Graß",
     "Burgweinting-Harting"
   ],
@@ -179,7 +178,7 @@
     "Unterhaltsreinigung": ["Unterhalt Reinigung", "regelmäßige Reinigung", "regelmaessige Reinigung"],
     "Kumpfmühl-Ziegetsdorf-Neuprüll": ["Kumpfmuehl-Ziegetsdorf-Neupruell", "Kumpfmühl", "Kumpfmuehl", "Neuprüll", "Neupruell"],
     "Großprüfening-Dechbetten-Königswiesen": ["Grosspruefening-Dechbetten-Koenigswiesen", "Großprüfening", "Grosspruefening", "Königswiesen", "Koenigswiesen"],
-    "Oberisling-Graß": ["Oberisling-Grass", "Oberisling-Leoprechting-Grass", "Graß", "Grass"],
+    "Oberisling-Leoprechting-Graß": ["Oberisling-Grass", "Oberisling-Leoprechting-Grass", "Graß", "Grass"],
     "Kallmünz": ["Kallmuenz"],
     "Köfering": ["Koefering"],
     "Mötzing": ["Moetzing"],

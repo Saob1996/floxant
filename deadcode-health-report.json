@@ -1,0 +1,294 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:10:30.809Z",
+  "totals": {
+    "pass": 0,
+    "warn": 47,
+    "fail": 0
+  },
+  "unreferencedComponentCount": 31,
+  "findings": [
+    {
+      "status": "WARN",
+      "check": "duplicate-component-name",
+      "detail": "AiAnswerBlock existiert mehrfach: components/ai-answer/AiAnswerBlock.tsx, components/AiAnswerBlock.tsx",
+      "file": "components/ai-answer/AiAnswerBlock.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "duplicate-component-name",
+      "detail": "RequestChecklistBlock existiert mehrfach: components/cleaning-seo/RequestChecklistBlock.tsx, components/RequestChecklistBlock.tsx",
+      "file": "components/cleaning-seo/RequestChecklistBlock.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "duplicate-component-name",
+      "detail": "Magnetic existiert mehrfach: components/Magnetic.tsx, components/ui/Magnetic.tsx",
+      "file": "components/Magnetic.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/BeforeAfterProof.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/BeforeAfterProof.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/BetterEstimateHint.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/BetterEstimateHint.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/BookingForm.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/BookingForm.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/calculator/elite/DisposalEliteCalculator.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/calculator/elite/DisposalEliteCalculator.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/calculator/LeadCaptureForm.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/calculator/LeadCaptureForm.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/AdminHealthControl.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/AdminHealthControl.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/BookingDetailView.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/BookingDetailView.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/CostCalculator.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/CostCalculator.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/CustomerInbox.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/CustomerInbox.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/documents/DocumentSystemClient.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/documents/DocumentSystemClient.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/IncomeExpenseTracker.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/IncomeExpenseTracker.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/dashboard/InternalPricingWorkbench.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/dashboard/InternalPricingWorkbench.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/DecisionAnswerBlock.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/DecisionAnswerBlock.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/FloxantObjectBriefBuilder.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/FloxantObjectBriefBuilder.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/GalleryModal.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/GalleryModal.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/HeroQuickstart.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/HeroQuickstart.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/navigation/CustomerJourneyNav.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/navigation/CustomerJourneyNav.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/NotSureWhatYouNeed.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/NotSureWhatYouNeed.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/OfferRedFlagScanner.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/OfferRedFlagScanner.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/PlanGekipptTrigger.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/PlanGekipptTrigger.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/RegionalDominanceGrid.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/RegionalDominanceGrid.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/RegionSelector.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/RegionSelector.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/seo/DecisionProofGrid.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/seo/DecisionProofGrid.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/seo/DominanceLinkMap.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/seo/DominanceLinkMap.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/seo/ServiceConfidencePanel.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/seo/ServiceConfidencePanel.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/ServiceRequestCompass.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/ServiceRequestCompass.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/ServiceScopePanel.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/ServiceScopePanel.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/session-provider.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/session-provider.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/SignatureServiceFaq.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/SignatureServiceFaq.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/TrustStack.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/TrustStack.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "manual-review-unreferenced-component",
+      "detail": "components/WhatsAppButton.tsx hat keinen direkten statischen Importtreffer. Nicht automatisch loeschen.",
+      "file": "components/WhatsAppButton.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "overlapping-source-review",
+      "detail": "FAQ data hat mehrere Quellen und sollte nur ueber dokumentierte Adapter genutzt werden: lib/faqs.ts, lib/service-faqs.ts, lib/local-faqs.ts, lib/local-seo/localFaqs.ts",
+      "file": "lib/faqs.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "overlapping-source-review",
+      "detail": "AI answer data hat mehrere Quellen und sollte nur ueber dokumentierte Adapter genutzt werden: lib/ai-answer-system.ts, components/ai-answer/AiAnswerBlock.tsx, components/AiAnswerBlock.tsx",
+      "file": "lib/ai-answer-system.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "overlapping-source-review",
+      "detail": "CTA components hat mehrere Quellen und sollte nur ueber dokumentierte Adapter genutzt werden: components/LeadCta.tsx, components/conversion/OfferCheckCTA.tsx, components/OfferCheckInlineCTA.tsx, components/MobileFloatingContact.tsx",
+      "file": "components/LeadCta.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "overlapping-source-review",
+      "detail": "Service data hat mehrere Quellen und sollte nur ueber dokumentierte Adapter genutzt werden: lib/service-routing.ts, lib/service-inventory.ts, lib/service-products.ts, lib/floxant-services.ts, lib/local-seo/services.ts",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "script-overlap-review",
+      "detail": "56 Health-/Quality-/SEO-nahe Scripts gefunden; Ueberschneidungen sind dokumentationspflichtig.",
+      "file": "scripts"
+    },
+    {
+      "status": "WARN",
+      "check": "docs-report-volume",
+      "detail": "94 Report-/Audit-/Plan-Dokumente in docs/ gefunden; Index/Archive-Review noetig.",
+      "file": "docs"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "components/CopyRequestSummaryButton.tsx wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "components/CopyRequestSummaryButton.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "lib/admin-dashboard/reply-templates.ts wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "lib/admin-dashboard/reply-templates.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "lib/lead-reply-templates.ts wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "lib/lead-reply-templates.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "lib/professional-copy.ts wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "lib/professional-copy.ts"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "scripts/copy-quality.cjs wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "scripts/copy-quality.cjs"
+    },
+    {
+      "status": "WARN",
+      "check": "legacy-helper-review",
+      "detail": "scripts/public-rendered-copy-audit.mjs wirkt nach Name wie Alt-/Temp-/Legacy-Datei.",
+      "file": "scripts/public-rendered-copy-audit.mjs"
+    },
+    {
+      "status": "WARN",
+      "check": "api-fetch-scan",
+      "detail": "Direkte fetch('/api...') Treffer vorhanden; Submit-only manuell pruefen.",
+      "file": ""
+    }
+  ]
+}

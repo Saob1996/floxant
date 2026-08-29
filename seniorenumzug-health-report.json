@@ -1,0 +1,279 @@
+{
+  "generatedAt": "2026-08-28T23:26:10.390Z",
+  "overallStatus": "PASS",
+  "totals": {
+    "pass": 43,
+    "warn": 0,
+    "fail": 0
+  },
+  "docs": [
+    "docs/SENIORENUMZUG_ROUTE_ARCHITECTURE.md",
+    "docs/SENIORENUMZUG_KEYWORD_INTENT_MAP.md",
+    "docs/SENIORENUMZUG_UMZUG_IM_ALTER_DIFFERENTIATION.md",
+    "docs/SENIORENUMZUG_LOCAL_PAGE_REVIEW.md",
+    "docs/SENIORENUMZUG_COMBINED_SERVICES_REPORT.md",
+    "docs/SENIORENUMZUG_METADATA_SCHEMA_REPORT.md",
+    "docs/SENIORENUMZUG_INTERNAL_LINKING_REPORT.md",
+    "docs/SENIORENUMZUG_CONTENT_CLEANUP_REPORT.md"
+  ],
+  "checks": [
+    {
+      "id": "route:primary",
+      "label": "Primary Seniorenumzug page exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "route:umzug-im-alter-alias",
+      "label": "Umzug-im-Alter aliases redirect to Seniorenumzug routes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "h1:primary",
+      "label": "H1 contains Seniorenumzug and structured request intent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "metadata:title-description",
+      "label": "Title and description are present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "canonical:hub",
+      "label": "/seniorenumzug canonicalizes to /seniorenumzug-bayern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:primary",
+      "label": "Sitemap contains primary Seniorenumzug hub",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:no-umzug-im-alter",
+      "label": "Sitemap does not list Umzug-im-Alter aliases",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:seniorenumzug-support",
+      "label": "/seniorenumzug is not treated as a second primary route",
+      "status": "PASS",
+      "details": "If present, it is documented as canonical support risk."
+    },
+    {
+      "id": "cta:primary",
+      "label": "Hero CTA points to Seniorenumzug contact flow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "cta:offer-check",
+      "label": "Seniorenumzug offer-check CTA is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "cta:discreet",
+      "label": "Discreet Seniorenumzug CTA is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:quick-answer",
+      "label": "Quick Answer is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:situations",
+      "label": "Customer situations are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:effort-factors",
+      "label": "Effort factors are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:needed-data",
+      "label": "What FLOXANT needs is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:no-promises",
+      "label": "Visible boundary section is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "faq:visible",
+      "label": "Seniorenumzug FAQ is visible and schema source exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "ai:answer",
+      "label": "Direct answer block is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "links:combined-services",
+      "label": "Entruempelung, Reinigung, Diskret-Service, Objektbrief and Uebergabe links are present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "links:navigation",
+      "label": "Navigation and footer expose Seniorenumzug without link spam",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "local:reviewed-pages",
+      "label": "Existing physical local pages received support blocks",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:optional-fields",
+      "label": "Seniorenumzug optional fields exist in contact form",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:success-copy",
+      "label": "Seniorenumzug success copy is specific",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "english:intent",
+      "label": "English senior moving intent is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "schema:no-fake-rating",
+      "label": "No fake rating or review schema in Seniorenumzug sources",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-price-guarantee",
+      "label": "No positive price guarantee",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-care-promise",
+      "label": "No care or medical service promise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-legal-advice",
+      "label": "No legal advice promise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-keyword-cloud",
+      "label": "No visible keyword cloud",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-doorway-created",
+      "label": "No new Umzug-im-Alter physical pages were created",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-runtime-nodejs",
+      "label": "No runtime=nodejs on Seniorenumzug public pages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-force-dynamic",
+      "label": "No force-dynamic on Seniorenumzug public pages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-revalidate",
+      "label": "No ISR revalidate on Seniorenumzug public pages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-auto-api",
+      "label": "No automatic API fetch or beacon patterns added",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_ROUTE_ARCHITECTURE.md",
+      "label": "docs/SENIORENUMZUG_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_KEYWORD_INTENT_MAP.md",
+      "label": "docs/SENIORENUMZUG_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_UMZUG_IM_ALTER_DIFFERENTIATION.md",
+      "label": "docs/SENIORENUMZUG_UMZUG_IM_ALTER_DIFFERENTIATION.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_LOCAL_PAGE_REVIEW.md",
+      "label": "docs/SENIORENUMZUG_LOCAL_PAGE_REVIEW.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_COMBINED_SERVICES_REPORT.md",
+      "label": "docs/SENIORENUMZUG_COMBINED_SERVICES_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/SENIORENUMZUG_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/SENIORENUMZUG_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SENIORENUMZUG_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/SENIORENUMZUG_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "package:script",
+      "label": "npm script seniorenumzug:health exists",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

@@ -6,10 +6,9 @@ export function NoFakeClaimsNotice({ className = "" }: { className?: string }) {
       <div className="flex gap-3">
         <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
         <div>
-          <h3 className="text-lg font-black text-slate-950">Ehrlich und nachvollziehbar</h3>
+          <h3 className="text-lg font-black text-slate-950">Nur bestätigte Angaben</h3>
           <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">
-            FLOXANT zeigt keine erfundenen Bewertungen, Kundenlogos oder Fallbeispiele. Termine, Preise und
-            Alternativen hängen von Ort, Umfang, Zugang und freien Kapazitäten ab.
+            FLOXANT zeigt keine erfundenen Sterne, Kundenlogos oder Garantien. Termine, Preise und Alternativen bleiben von Ort, Umfang, Zugang und Verfügbarkeit abhängig.
           </p>
         </div>
       </div>

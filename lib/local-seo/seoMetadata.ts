@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 
 import { company } from "@/lib/company";
 import { germanizeText } from "@/lib/german-text";
+import { sitemapRoutes } from "@/lib/sitemap-routes";
 import type { LocalSeoPageConfig } from "./types";
 
-export function isIndexableLocalSeoPage(page: Pick<LocalSeoPageConfig, "maturity">) {
-  return page.maturity.indexStatus === "index" && page.maturity.maturityLevel !== "M0";
+const INDEXABLE_LOCAL_ROUTE_SET = new Set<string>(sitemapRoutes);
+
+export function isIndexableLocalSeoPage(page: Pick<LocalSeoPageConfig, "maturity" | "path">) {
+  return (
+    page.maturity.indexStatus === "index" &&
+    page.maturity.maturityLevel !== "M0" &&
+    INDEXABLE_LOCAL_ROUTE_SET.has(page.path)
+  );
 }
 
 export function buildLocalSeoCanonical(path: string) {

@@ -6,7 +6,7 @@ import { company } from "@/lib/company";
 
 const contactNotes = [
   { Icon: ClipboardCheck, text: "Include property type, size or volume, date and access." },
-  { Icon: ShieldCheck, text: "Photos and an existing quote are optional; do not send passwords, access codes or unnecessary personal documents." },
+  { Icon: ShieldCheck, text: "Photos and an existing quote are optional and reviewed confidentially." },
 ] as const;
 
 export const metadata: Metadata = {

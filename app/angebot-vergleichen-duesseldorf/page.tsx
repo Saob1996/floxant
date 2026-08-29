@@ -16,6 +16,7 @@ import { OfferComparisonAdsForm } from "@/components/OfferComparisonAdsForm";
 import { OfferCheckAuthoritySections, OfferCheckFormIntro } from "@/components/offer-check";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { getServiceVisual } from "@/lib/service-visuals";
+import { searchAuthorityPages } from "@/lib/search-authority";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   buildBreadcrumbJsonLd,
@@ -25,9 +26,9 @@ import {
 
 const path = "/angebot-vergleichen-duesseldorf";
 const canonical = `${company.url}${path}`;
-const title = "Reinigungsangebot prüfen Düsseldorf | Angebot Reinigung vergleichen | FLOXANT";
-const description =
-  "Angebot für Reinigungsarbeiten in Düsseldorf prüfen: Reinigungsfirma Angebote, Putzfirma Angebot und Gebäudereinigung sachlich vergleichen.";
+const pageMetadata = searchAuthorityPages[path];
+const title = pageMetadata.seoTitle;
+const description = pageMetadata.description;
 const heroVisual = getServiceVisual({
   region: "duesseldorf",
   slug: "angebot-vergleichen",
@@ -115,15 +116,16 @@ const offerAreas = [
 ] as const;
 
 const checkedPoints = [
-  "Leistungsumfang",
-  "Objektart",
-  "Fläche",
-  "Termin und Dringlichkeit",
-  "Zusatzleistungen",
-  "Zugang und Schlüsselweg",
-  "Reinigungsintervall",
-  "Stadtteil oder PLZ",
-  "Fotos und vorhandener Preisrahmen",
+  { title: "Leistungsumfang", question: "Welche Arbeiten sind enthalten oder ausgeschlossen?", why: "Nur gleiche Leistungen sind fair vergleichbar.", risk: "Unklare Ausschlüsse werden später zu offenen Erwartungen.", provide: "Raum- und Tätigkeitsliste beider Angebote.", check: "Fotos helfen, wenn Zielzustand oder Sonderflächen unklar sind." },
+  { title: "Objektart und Nutzung", question: "Gehen beide Angebote vom selben Objekt aus?", why: "Büro, Praxis, Wohnung und Laden haben andere Abläufe.", risk: "Eine falsche Nutzung führt zu ungeeigneten Annahmen.", provide: "Objektart, Öffnungszeiten und sensible Bereiche.", check: "Eine Besichtigung ist bei gemischter Nutzung sinnvoll." },
+  { title: "Fläche und Räume", question: "Sind Quadratmeter, Räume und Mengen vollständig?", why: "Die Bezugsgröße bestimmt den Umfang.", risk: "Fehlende Nebenräume verfälschen den Vergleich.", provide: "Fläche, Raumzahl, Sanitär, Küche und Nebenflächen.", check: "Grundriss oder Vor-Ort-Prüfung helfen bei komplexem Zuschnitt." },
+  { title: "Turnus und Zeiten", question: "Sind Häufigkeit, Wochentage und Zeitfenster gleich?", why: "Der Rhythmus verändert Personal- und Ablaufplanung.", risk: "Unterschiedliche Frequenzen wirken im Endpreis irreführend.", provide: "Turnus, Wochentage und akzeptable Reinigungszeiten.", check: "Fotos sind dafür meist nicht nötig." },
+  { title: "Zugang", question: "Sind Etage, Aufzug, Schlüssel und Parken berücksichtigt?", why: "Zugangswege beeinflussen die Durchführung.", risk: "Ungeklärter Zugang kann Verzögerungen oder Mehrarbeit verursachen.", provide: "Etage, Aufzug, Schlüsselprozess und Ansprechpartner.", check: "Fotos von schwierigen Zugängen sind hilfreich." },
+  { title: "Material und Geräte", question: "Wer stellt Reinigungsmittel, Geräte und Verbrauchsmittel?", why: "Material kann enthalten, ausgeschlossen oder separat berechnet sein.", risk: "Sonst entstehen nicht vergleichbare Zusatzkosten.", provide: "Materialwunsch, vorhandene Geräte und empfindliche Oberflächen.", check: "Materialfotos helfen bei unbekannten Oberflächen." },
+  { title: "Zusatzleistungen", question: "Welche Sonderflächen oder Einmalleistungen sind enthalten?", why: "Glas, Grundreinigung und Sonderbereiche gehören nicht automatisch zum Turnus.", risk: "Pauschale Formulierungen verdecken spätere Zusatzpositionen.", provide: "Gewünschte Zusatzleistungen und Häufigkeit.", check: "Fotos oder Besichtigung sind bei starker Verschmutzung sinnvoll." },
+  { title: "Start, Laufzeit und Kündigung", question: "Wann beginnt die Leistung und wie lange gilt die Vereinbarung?", why: "Vertragsdauer und Start bestimmen die praktische Bindung.", risk: "Unklare Laufzeiten erschweren die Entscheidung.", provide: "Wunschstart und offene Fragen zu Laufzeit oder Kündigung.", check: "Keine Fotoprüfung erforderlich; Vertragsfragen schriftlich klären." },
+  { title: "Zuschläge und Zusatzkosten", question: "Sind Anfahrt, Wochenenden und mögliche Zuschläge genannt?", why: "Der Endpreis muss dieselben Kostenarten enthalten.", risk: "Ein niedriger Ausgangspreis kann durch offene Zuschläge steigen.", provide: "Alle Preiszeilen und Annahmen beider Angebote.", check: "Das vollständige Dokument ist wichtiger als Fotos." },
+  { title: "Abnahme und Ansprechpartner", question: "Wie werden Rückfragen, Dokumentation und Abnahme geregelt?", why: "Klare Zuständigkeit hilft bei laufender Qualitätssicherung.", risk: "Ohne Ansprechpartner bleiben Abweichungen ungeklärt.", provide: "Kontaktperson, gewünschte Dokumentation und Abnahmeweg.", check: "Beispielfotos können für eine dokumentierte Abnahme vereinbart werden." },
 ] as const;
 
 const answerBlocks = [
@@ -165,8 +167,8 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title,
-    description,
+    title: pageMetadata.ogTitle,
+    description: pageMetadata.ogDescription,
     images: [
       {
         url: heroImage,
@@ -277,7 +279,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
               FLOXANT Angebotsprüfung
             </p>
             <h1 className="mt-6 max-w-full min-w-0 break-words text-4xl font-black leading-[1.04] tracking-normal [overflow-wrap:anywhere] sm:text-5xl lg:max-w-4xl lg:text-[3.55rem]">
-              Reinigungsangebot aus Düsseldorf sachlich prüfen lassen.
+              {pageMetadata.headline}
             </h1>
             <p className="mt-6 max-w-full min-w-0 break-words text-lg leading-8 text-slate-100 [overflow-wrap:anywhere] lg:max-w-2xl">
               Senden Sie uns Ihr bestehendes Reinigungsangebot oder die wichtigsten Eckdaten.
@@ -407,14 +409,20 @@ export default function AngebotVergleichenDuesseldorfPage() {
               Zustand und Zusatzpunkte nachvollziehbar sind.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {checkedPoints.map((item) => (
-              <div key={item} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
-                {item}
-              </div>
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {checkedPoints.map((item, index) => (
+              <li key={item.title} className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-700">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-emerald-700 text-xs font-black text-white">{index + 1}</span>
+                <span>
+                  <strong className="block text-slate-950">{item.title}: {item.question}</strong>
+                  <span className="mt-2 block"><strong>Warum:</strong> {item.why}</span>
+                  <span className="mt-1 block"><strong>Risiko:</strong> {item.risk}</span>
+                  <span className="mt-1 block"><strong>Ihre Angabe:</strong> {item.provide}</span>
+                  <span className="mt-1 block"><strong>Fotos/Besichtigung:</strong> {item.check}</span>
+                </span>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

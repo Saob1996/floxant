@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Footer } from "@/components/Footer";
 import { PublicHeader } from "@/components/PublicHeader";
 import { RegionalRouteNotice } from "@/components/RegionalRouteNotice";
+import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
 import { EnglishFooter } from "@/components/english/EnglishFooter";
@@ -48,6 +49,7 @@ export function SiteChrome({
         {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
       </a>
       {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
+      {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
       {isAdsLanding ? (
         <AdsLandingHeader kind={adsLandingKind} />
       ) : isEnglishSection ? (

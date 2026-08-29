@@ -46,8 +46,8 @@ export default async function Article() {
             <p className="text-muted-foreground leading-relaxed">Eine Allgefahrenversicherung (auch Vollwert-Deckung) deckt den vollen Neuwert oder Zeitwert Ihres Inventars ab. Kostet ca. 1–2% des Inventarwerts.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">FLOXANT Versicherung</h2>
-            <p className="text-muted-foreground leading-relaxed">FLOXANT ist betriebshaftpflichtversichert und bietet optionale Vollwertversicherung an. Schäden werden schnell und unbürokratisch reguliert.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Versicherungsumfang vor dem Auftrag klären</h2>
+            <p className="text-muted-foreground leading-relaxed">Fragen Sie vor der Beauftragung nach dem konkret geltenden Versicherungsumfang, möglichen Ausschlüssen und den benötigten Nachweisen. Eine pauschale öffentliche Versicherungszusage ersetzt diese Prüfung nicht.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>

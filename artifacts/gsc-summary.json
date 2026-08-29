@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-07-18T01:05:39.398Z",
+  "inputs": [
+    "gsc"
+  ],
+  "importedFiles": [
+    {
+      "name": "Darstellung in der Suche.csv",
+      "type": "appearance",
+      "rows": 0
+    },
+    {
+      "name": "Diagramm.csv",
+      "type": "date",
+      "rows": 28
+    },
+    {
+      "name": "Geräte.csv",
+      "type": "device",
+      "rows": 3
+    },
+    {
+      "name": "Länder.csv",
+      "type": "country",
+      "rows": 81
+    },
+    {
+      "name": "Seiten.csv",
+      "type": "page",
+      "rows": 739
+    },
+    {
+      "name": "Suchanfragen.csv",
+      "type": "query",
+      "rows": 812
+    }
+  ],
+  "skippedFiles": [
+    {
+      "name": "Filter.csv",
+      "reason": "unbekannter Datentyp oder fehlende Metrikspalten"
+    }
+  ],
+  "privacy": {
+    "rawRowsCommitted": false,
+    "artifactsAggregated": true,
+    "queryPageJoinAvailable": false,
+    "note": "Standard-GSC-Tabellenexporte enthalten getrennte Query- und Page-Tabellen. Query-URL-Zuordnung wird daher semantisch markiert und bleibt manuell zu prüfen."
+  },
+  "totals": {
+    "queries": 812,
+    "queryClicks": 6,
+    "queryImpressions": 9097,
+    "pages": 739,
+    "pageClicks": 55,
+    "pageImpressions": 14410,
+    "devices": 3,
+    "languages": 2,
+    "dates": 28
+  },
+  "trend": {
+    "periodDays": 7,
+    "firstClicks": 9,
+    "lastClicks": 10,
+    "classification": "growing"
+  },
+  "analysis": {
+    "generatedAt": "2026-07-18T01:05:42.984Z",
+    "opportunities": 812,
+    "priorityCounts": {
+      "P0": 4,
+      "P1": 53,
+      "P2": 362,
+      "P3": 393
+    },
+    "possibleCannibalizationQueries": 3,
+    "existingMetadataCannibalizationGroups": 10,
+    "queryUrlMappingsRequiringManualReview": 691,
+    "rankingGuarantee": false
+  }
+}

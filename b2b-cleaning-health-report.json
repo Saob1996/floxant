@@ -1,0 +1,240 @@
+{
+  "generatedAt": "2026-08-28T23:13:08.612Z",
+  "overallStatus": "PASS",
+  "totals": {
+    "pass": 30,
+    "warn": 0,
+    "fail": 0
+  },
+  "routes": [
+    {
+      "id": "b2b-office-primary",
+      "route": "/regensburg/bueroreinigung",
+      "label": "Primary B2B Bueroreinigung",
+      "files": [
+        "app/regensburg/bueroreinigung/page.tsx",
+        "lib/regensburg-service-pages.ts",
+        "components/regensburg/RegensburgServicePage.tsx"
+      ]
+    },
+    {
+      "id": "duesseldorf-office",
+      "route": "/duesseldorf/bueroreinigung",
+      "label": "Bueroreinigung Duesseldorf",
+      "files": [
+        "app/duesseldorf/bueroreinigung/page.tsx",
+        "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"
+      ]
+    },
+    {
+      "id": "duesseldorf-commercial",
+      "route": "/duesseldorf/gewerbereinigung",
+      "label": "Gewerbereinigung Duesseldorf",
+      "files": [
+        "app/duesseldorf/gewerbereinigung/page.tsx",
+        "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"
+      ]
+    },
+    {
+      "id": "regensburg-commercial",
+      "route": "/regensburg/gewerbereinigung",
+      "label": "Gewerbereinigung Regensburg",
+      "files": [
+        "app/regensburg/gewerbereinigung/page.tsx",
+        "lib/local-service-seo-pages.ts",
+        "components/LocalServiceSeoPage.tsx"
+      ]
+    }
+  ],
+  "docs": [
+    "docs/B2B_CLEANING_ROUTE_ARCHITECTURE.md",
+    "docs/B2B_CLEANING_KEYWORD_INTENT_MAP.md",
+    "docs/BUEROREINIGUNG_GEWERBEREINIGUNG_DIFFERENTIATION.md",
+    "docs/B2B_CLEANING_LOCAL_RELEVANCE_REPORT.md",
+    "docs/B2B_CLEANING_METADATA_SCHEMA_REPORT.md",
+    "docs/B2B_CLEANING_INTERNAL_LINKING_REPORT.md",
+    "docs/B2B_CLEANING_CONTENT_CLEANUP_REPORT.md"
+  ],
+  "results": [
+    {
+      "id": "b2b-office-primary:files",
+      "label": "Primary B2B Bueroreinigung source files exist",
+      "status": "PASS",
+      "details": "app/regensburg/bueroreinigung/page.tsx, lib/regensburg-service-pages.ts, components/regensburg/RegensburgServicePage.tsx"
+    },
+    {
+      "id": "b2b-office-primary:content",
+      "label": "Primary B2B Bueroreinigung contains required B2B intent markers",
+      "status": "PASS",
+      "details": "Büroreinigung Regensburg für Firmen mit konkreten Eckdaten anfragen, Fläche, Turnus, Reinigungszeiten, vorhandenes Angebot, Can I request office cleaning in English?"
+    },
+    {
+      "id": "duesseldorf-office:files",
+      "label": "Bueroreinigung Duesseldorf source files exist",
+      "status": "PASS",
+      "details": "app/duesseldorf/bueroreinigung/page.tsx, components/duesseldorf/DuesseldorfCleaningServicePage.tsx"
+    },
+    {
+      "id": "duesseldorf-office:content",
+      "label": "Bueroreinigung Duesseldorf contains required B2B intent markers",
+      "status": "PASS",
+      "details": "Büroreinigung Düsseldorf für Firmen, Fläche, Turnus, Reinigungszeiten, service=bueroreinigung, city=duesseldorf, intent=bueroreinigung-duesseldorf, intent=bueroreinigung-angebot-pruefen"
+    },
+    {
+      "id": "duesseldorf-commercial:files",
+      "label": "Gewerbereinigung Duesseldorf source files exist",
+      "status": "PASS",
+      "details": "app/duesseldorf/gewerbereinigung/page.tsx, components/duesseldorf/DuesseldorfCleaningServicePage.tsx"
+    },
+    {
+      "id": "duesseldorf-commercial:content",
+      "label": "Gewerbereinigung Duesseldorf contains required B2B intent markers",
+      "status": "PASS",
+      "details": "Gewerbereinigung Düsseldorf, Objektart, Fläche, Reinigungszeiten, Leistungsumfang, service=gewerbereinigung, city=duesseldorf, intent=gewerbereinigung-duesseldorf, intent=gewerbereinigung-angebot-pruefen"
+    },
+    {
+      "id": "regensburg-commercial:files",
+      "label": "Gewerbereinigung Regensburg source files exist",
+      "status": "PASS",
+      "details": "app/regensburg/gewerbereinigung/page.tsx, lib/local-service-seo-pages.ts, components/LocalServiceSeoPage.tsx"
+    },
+    {
+      "id": "regensburg-commercial:content",
+      "label": "Gewerbereinigung Regensburg contains required B2B intent markers",
+      "status": "PASS",
+      "details": "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen, Objektart, Leistungsumfang, vorhandene Angebote, Firmen"
+    },
+    {
+      "id": "architecture:b2b-alias",
+      "label": "/b2b-bueroreinigung redirects to the canonical B2B office page",
+      "status": "PASS",
+      "details": "Alias is not a competing indexable page."
+    },
+    {
+      "id": "architecture:legacy-regensburg-office",
+      "label": "/bueroreinigung-regensburg redirects to /regensburg/bueroreinigung",
+      "status": "PASS",
+      "details": "Legacy root route remains consolidated."
+    },
+    {
+      "id": "architecture:legacy-regensburg-commercial",
+      "label": "/gewerbereinigung-regensburg redirects to /regensburg/gewerbereinigung",
+      "status": "PASS",
+      "details": "Legacy root route remains consolidated."
+    },
+    {
+      "id": "differentiation:visible-comparison",
+      "label": "Bueroreinigung/Gewerbereinigung comparison is visible",
+      "status": "PASS",
+      "details": "Shared Duesseldorf component renders the comparison section."
+    },
+    {
+      "id": "form:b2b-fields",
+      "label": "B2B cleaning request fields are visible",
+      "status": "PASS",
+      "details": "Object, area, turnus, timeframe, condition and special access fields are represented in the current form."
+    },
+    {
+      "id": "form:b2b-success",
+      "label": "Honest request success state is present",
+      "status": "PASS",
+      "details": "Success copy confirms receipt without a booking, date or availability promise."
+    },
+    {
+      "id": "form:no-load-api",
+      "label": "Lead API remains submit-only",
+      "status": "PASS",
+      "details": "No automatic client fetch to /api is used when the public page loads."
+    },
+    {
+      "id": "doc:B2B_CLEANING_ROUTE_ARCHITECTURE.md",
+      "label": "docs/B2B_CLEANING_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_ROUTE_ARCHITECTURE.md"
+    },
+    {
+      "id": "doc:B2B_CLEANING_KEYWORD_INTENT_MAP.md",
+      "label": "docs/B2B_CLEANING_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_KEYWORD_INTENT_MAP.md"
+    },
+    {
+      "id": "doc:BUEROREINIGUNG_GEWERBEREINIGUNG_DIFFERENTIATION.md",
+      "label": "docs/BUEROREINIGUNG_GEWERBEREINIGUNG_DIFFERENTIATION.md exists",
+      "status": "PASS",
+      "details": "docs/BUEROREINIGUNG_GEWERBEREINIGUNG_DIFFERENTIATION.md"
+    },
+    {
+      "id": "doc:B2B_CLEANING_LOCAL_RELEVANCE_REPORT.md",
+      "label": "docs/B2B_CLEANING_LOCAL_RELEVANCE_REPORT.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_LOCAL_RELEVANCE_REPORT.md"
+    },
+    {
+      "id": "doc:B2B_CLEANING_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/B2B_CLEANING_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_METADATA_SCHEMA_REPORT.md"
+    },
+    {
+      "id": "doc:B2B_CLEANING_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/B2B_CLEANING_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_INTERNAL_LINKING_REPORT.md"
+    },
+    {
+      "id": "doc:B2B_CLEANING_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/B2B_CLEANING_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": "docs/B2B_CLEANING_CONTENT_CLEANUP_REPORT.md"
+    },
+    {
+      "id": "package:script",
+      "label": "npm script b2b-cleaning:health exists",
+      "status": "PASS",
+      "details": "package.json script registration."
+    },
+    {
+      "id": "sitemap:canonical-routes",
+      "label": "Sitemap contains canonical B2B cleaning routes",
+      "status": "PASS",
+      "details": "Canonical pages should be included in lib/sitemap-routes.ts."
+    },
+    {
+      "id": "sitemap:no-duplicate-aliases",
+      "label": "Sitemap excludes B2B/legacy duplicate aliases",
+      "status": "PASS",
+      "details": "Aliases/support pages should not compete in sitemap.xml."
+    },
+    {
+      "id": "metadata:schema-visible-faq",
+      "label": "FAQ schema is only used where visible FAQ exists",
+      "status": "PASS",
+      "details": "FAQPage helpers are paired with visible FAQ arrays; no aggregate rating."
+    },
+    {
+      "id": "english:intent",
+      "label": "English office/commercial cleaning intent is present",
+      "status": "PASS",
+      "details": "English intent is represented as supporting copy, not duplicate routes."
+    },
+    {
+      "id": "vercel:safety",
+      "label": "No Vercel-sensitive public-page patterns added in sprint files",
+      "status": "PASS",
+      "details": "Scanned: runtime = \"nodejs\", runtime = 'nodejs', force-dynamic, revalidate =, /api/vitals, /api/conversion-events, sendBeacon, supabase, resend, sharp"
+    },
+    {
+      "id": "content:no-fake-claims",
+      "label": "No fake ratings, reviews, certificates or guarantees in sprint files",
+      "status": "PASS",
+      "details": "Boundaries like keine Preisgarantie are allowed and expected."
+    },
+    {
+      "id": "content:no-keyword-cloud",
+      "label": "No keyword cloud or hidden keyword pattern found",
+      "status": "PASS",
+      "details": "Visible copy uses natural sections and FAQs."
+    }
+  ]
+}

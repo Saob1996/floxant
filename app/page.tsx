@@ -1,112 +1,153 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
+import Link from "next/link";
 import {
   ArrowRight,
   BriefcaseBusiness,
   Building2,
   Check,
   FileSearch,
+  KeyRound,
+  Languages,
   MapPin,
-  MessageCircle,
   PackageOpen,
-  Phone,
+  ShieldCheck,
   Sparkles,
   Truck,
 } from "lucide-react";
 
+import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
-import { buildLeadHref } from "@/lib/lead-intents";
+import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { generatePageSEO } from "@/lib/seo";
-import { buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { searchAuthorityPages } from "@/lib/search-authority";
+import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
-const requestHref = buildLeadHref({
-  path,
-  service: "sonstiges",
-  intent: "homepage-anfrage",
-  priority: "p1",
-});
+const requestHref = buildGlobalRequestHref("global_homepage");
 const offerHref = "/angebot-guenstiger-pruefen";
-const whatsappHref = buildWhatsAppHref(
-  company.phoneRaw,
-  "Hallo FLOXANT, ich möchte einen Auftrag in Düsseldorf oder Regensburg kurz besprechen.",
-);
 
-const homepageHeadline =
-  "Reinigung in Düsseldorf. Umzug und Entrümpelung in Regensburg.";
-const homepageTitle = "FLOXANT | Reinigung Düsseldorf & Umzug Regensburg";
-const homepageDescription =
-  "FLOXANT für Reinigung in Düsseldorf sowie Umzug, Transport, Entrümpelung und Wohnungsauflösung in Regensburg. Online, telefonisch oder per WhatsApp anfragen.";
+const homepageAuthority = searchAuthorityPages["/"];
+const homepageTitle = homepageAuthority.seoTitle;
+const homepageDescription = homepageAuthority.description;
 
 const mainServices = [
   {
-    title: "Reinigung in Düsseldorf",
-    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe, Fenster oder Grundreinigung – einmalig oder regelmäßig.",
-    cta: "Reinigung in Düsseldorf ansehen",
-    href: "/duesseldorf/reinigung",
-    icon: Sparkles,
-  },
-  {
-    title: "Büro & Praxis in Düsseldorf",
-    text: "Reinigung für Büros, Praxen und Gewerbeflächen nach Fläche, Räumen, Turnus und möglichen Zeitfenstern.",
-    cta: "Büroreinigung ansehen",
-    href: "/duesseldorf/bueroreinigung",
-    icon: BriefcaseBusiness,
-  },
-  {
-    title: "Umzug & Transport in Regensburg",
-    text: "Privatumzug, Möbeltransport, Seniorenumzug oder Klaviertransport mit Angaben zu Strecke, Etagen und Termin.",
+    title: "Umzug in Regensburg",
+    text: "Privat-, Senioren-, Möbel- und Klaviertransporte mit klaren Angaben zu Strecke, Etage, Zugang und Termin.",
     cta: "Umzug in Regensburg ansehen",
     href: "/regensburg/umzug",
     icon: Truck,
   },
   {
-    title: "Entrümpelung & Auflösung in Regensburg",
-    text: "Keller, Wohnung, Haushalt oder Gewerbefläche räumen und eine Wohnungsauflösung übersichtlich abstimmen.",
-    cta: "Entrümpelung ansehen",
+    title: "Reinigung in Düsseldorf",
+    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe oder Fenster – mit Fläche, Turnus und Terminwunsch.",
+    cta: "Reinigung in Düsseldorf ansehen",
+    href: "/duesseldorf/reinigung",
+    icon: Sparkles,
+  },
+  {
+    title: "Räumung in Regensburg",
+    text: "Keller, Wohnung, Haushalt oder Gewerbefläche räumen – auf Wunsch mit anschließender Reinigung.",
+    cta: "Räumung in Regensburg ansehen",
     href: "/regensburg/entruempelung",
     icon: PackageOpen,
+  },
+  {
+    title: "Büro & Gewerbe in Düsseldorf",
+    text: "Büro-, Gewerbe- und Praxisreinigung nach Fläche, Raumliste, Turnus, Zugang und Zeitfenster.",
+    cta: "Reinigung für Unternehmen ansehen",
+    href: "/duesseldorf/bueroreinigung",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Angebot prüfen",
+    text: "Vorhandenes Angebot prüfen lassen, wenn Preis, Leistungsumfang oder mögliche Zusatzkosten unklar sind.",
+    cta: "Angebot prüfen lassen",
+    href: offerHref,
+    icon: FileSearch,
+  },
+  {
+    title: "Besondere Situationen",
+    text: "Diskrete Fälle, kurzfristiger Plan B, Übergabe oder Objektbrief passend zur Situation anfragen.",
+    cta: "Besondere Lösungen ansehen",
+    href: "/signature-services",
+    icon: ShieldCheck,
   },
 ] as const;
 
 const locations = [
   {
     title: "Düsseldorf",
-    text: "Reinigung für Wohnungen, Büros, Praxen, Gewerbeflächen und Fenster sowie Grundreinigung.",
+    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Fenster sowie Prüfung vorhandener Reinigungsangebote.",
     cta: "Leistungen in Düsseldorf",
     href: "/duesseldorf",
   },
   {
     title: "Regensburg",
-    text: "Umzug, Transport, Entrümpelung, Wohnungsauflösung, Seniorenumzug und Klaviertransport.",
+    text: "Umzug, Reinigung, Entrümpelung, Klaviertransport, Seniorenumzug und Wohnungsauflösung.",
     cta: "Leistungen in Regensburg",
     href: "/regensburg",
   },
 ] as const;
 
-const faqItems = [
+const specialSolutions = [
   {
-    q: "Welche Leistungen kann ich bei FLOXANT anfragen?",
-    a: "In Düsseldorf liegt der Schwerpunkt auf Reinigung für private und gewerbliche Räume. In Regensburg können Sie vor allem Umzug, Transport, Entrümpelung und Wohnungsauflösung anfragen.",
+    title: "Diskret-Service",
+    text: "Für sensible Anfragen mit zurückhaltender Kommunikation.",
+    href: "/diskret-service",
   },
   {
-    q: "Welche Angaben helfen für eine erste Einschätzung?",
-    a: "Hilfreich sind Leistung, Einsatzort, gewünschter Zeitraum und ein kurzer Überblick zum Umfang. Bei Reinigung helfen Fläche, Räume und Turnus; bei Umzügen Start, Ziel, Etagen, Aufzug sowie Möbel und Kartons.",
+    title: "Plan-B-Service",
+    text: "Wenn ein Anbieter absagt oder ein Termin kurzfristig neu abgestimmt werden muss.",
+    href: "/plan-b-service",
+  },
+  {
+    title: "Objektbrief",
+    text: "Objekt, Fotos, Umfang und Termin für eine klare Anfrage zusammenfassen.",
+    href: "/objektbrief",
+  },
+  {
+    title: "Übergabehilfe",
+    text: "Reinigung, Entrümpelung und offene Punkte vor einer Übergabe abstimmen.",
+    href: "/uebergabeakte",
+  },
+] as const;
+
+const faqItems = [
+  {
+    q: "Welche Leistungen bietet FLOXANT an?",
+    a: "Zu den Hauptleistungen gehören Umzug und Transport, Reinigung, Entrümpelung und Auflösung. Für Unternehmen sowie besondere oder sensible Situationen gibt es passende Kontaktwege.",
+  },
+  {
+    q: "Arbeitet FLOXANT in Düsseldorf und Regensburg?",
+    a: "Ja, FLOXANT nimmt Anfragen für Düsseldorf und Regensburg an. Liegt Ihr Einsatzort im Umfeld, nennen Sie ihn einfach im Formular.",
   },
   {
     q: "Kann ich Fotos mitsenden?",
-    a: "Ja. Fotos sind optional und können helfen, Räume, Möbel, Zugänge oder den Umfang besser einzuordnen.",
+    a: "Ja. Fotos sind optional, helfen aber oft dabei, Umfang und Zugang besser einzuschätzen.",
   },
   {
-    q: "Ist einmalige und regelmäßige Reinigung möglich?",
-    a: "Beides kann angefragt werden. Nennen Sie dafür die Räume, die ungefähre Fläche und den gewünschten Turnus.",
+    q: "Kann ich ein vorhandenes Angebot prüfen lassen?",
+    a: "Ja. Sie können ein Angebot, einen Screenshot oder die wichtigsten Angaben senden. FLOXANT betrachtet Leistungsumfang, Preispositionen und mögliche Zusatzkosten.",
   },
   {
     q: "Ist meine Anfrage bereits eine Buchung?",
-    a: "Nein. Eine Anfrage ist noch keine Buchung. Umfang, Termin und offene Punkte werden zuerst mit Ihnen geklärt.",
+    a: "Nein. Ihre Anfrage ist unverbindlich und noch keine Buchung. Ein Auftrag entsteht erst nach einer ausdrücklichen Vereinbarung.",
+  },
+  {
+    q: "Was passiert nach dem Absenden?",
+    a: "Wir sehen uns Ihre Angaben an und melden uns über den gewählten Kontaktweg. Falls Informationen fehlen, fragen wir gezielt nach.",
+  },
+  {
+    q: "Welche Angaben beeinflussen einen Preis?",
+    a: "Je nach Leistung zählen Fläche oder Volumen, Zustand, Etage, Laufweg, Strecke, Material, Zugang, Termin und Zusatzleistungen. Einen konkreten Preis nennt FLOXANT erst nach Prüfung des tatsächlichen Umfangs.",
+  },
+  {
+    q: "Ist eine dringende Anfrage automatisch verfügbar?",
+    a: "Nein. Ort, Leistung, Umfang, Zugang und Frist werden zuerst geprüft. Ein kurzfristiger oder 24-Stunden-Termin gilt erst nach ausdrücklicher Bestätigung.",
   },
 ] as const;
 
@@ -131,7 +172,7 @@ export const metadata: Metadata = {
         url: "/assets/floxant-hero-neu-gedacht.png",
         width: 1200,
         height: 630,
-        alt: "FLOXANT Dienstleistungen für Reinigung, Umzug und Entrümpelung",
+        alt: "FLOXANT Dienstleistungen für Umzug, Reinigung und Entrümpelung",
       },
     ],
   },
@@ -148,23 +189,33 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: homepageHeadline,
+        name: homepageAuthority.headline,
         description: homepageDescription,
         path,
-        about: ["Reinigung", "Umzug", "Transport", "Entrümpelung", "Wohnungsauflösung"],
+        about: ["Umzug", "Reinigung", "Entrümpelung", "Angebotsprüfung"],
         potentialActions: [
           { name: "Anfrage senden", target: requestHref, type: "ContactAction" },
           { name: "Angebot prüfen", target: offerHref, type: "Action" },
         ],
       }),
       buildServiceJsonLd({
-        name: "FLOXANT Dienstleistungen in Düsseldorf und Regensburg",
+        name: "FLOXANT Dienstleistungen",
         description: homepageDescription,
         path,
-        serviceType: "Reinigung, Umzug, Transport, Entrümpelung und Wohnungsauflösung",
+        serviceType: "Umzug, Reinigung und Entrümpelung",
         areaServed: ["Düsseldorf", "Regensburg"],
         availableLanguage: ["de", "en"],
       }),
+      {
+        "@type": "Organization",
+        "@id": `${company.url}/#organization`,
+        name: company.name,
+        url: company.url,
+        email: company.email,
+        telephone: company.phoneRaw,
+        sameAs: company.sameAs,
+      },
+      buildFaqJsonLd(faqItems),
     ],
   };
 
@@ -185,11 +236,9 @@ export default function HomePage() {
   return (
     <main className="overflow-x-clip bg-white text-slate-950">
       <JsonLd />
+      <LocalBusinessJsonLd />
 
-      <section
-        data-home-section="hero"
-        className="relative isolate overflow-hidden bg-slate-950 text-white"
-      >
+      <section data-home-section="hero" className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
           src="/assets/floxant-hero-neu-gedacht.webp"
           alt="FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
@@ -207,17 +256,16 @@ export default function HomePage() {
               Düsseldorf und Regensburg
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              {homepageHeadline}
+              {homepageAuthority.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben
-              Sie kurz, was erledigt werden soll – oder rufen Sie direkt an.
+              FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben Sie kurz Ihren Auftrag oder senden Sie ein vorhandenes Angebot zur Prüfung.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href={requestHref}
                 data-home-hero-primary
-                data-event="request_cta_click"
+                data-event="seo_cta_click"
                 data-source="homepage_hero"
                 data-service="sonstiges"
                 data-cta-label="Anfrage senden"
@@ -227,53 +275,31 @@ export default function HomePage() {
                 Anfrage senden
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <a
-                href={`tel:${company.phoneRaw}`}
-                data-event="phone_click"
-                data-source="homepage_hero"
-                className={secondaryButton}
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Jetzt anrufen
-              </a>
+              <Link href={offerHref} data-home-offer-cta data-event="service_card_click" data-source="homepage_hero" className={secondaryButton}>
+                Angebot prüfen
+                <FileSearch className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
-            <ul
-              className="mt-8 grid max-w-2xl gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3"
-              aria-label="Hinweise zur Anfrage"
-            >
-              {["Fotos sind optional", "Termine nach Verfügbarkeit", "Anfrage ist noch keine Buchung"].map(
-                (item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200"
-                      aria-hidden="true"
-                    />
-                    {item}
-                  </li>
-                ),
-              )}
+            <ul className="mt-8 grid max-w-2xl gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3" aria-label="Hinweise zur Anfrage">
+              {["Fotos sind optional", "Termine nach Verfügbarkeit", "Anfrage ist noch keine Buchung"].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
 
-      <section
-        data-home-section="main-services"
-        className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10"
-      >
+      <section data-home-section="main-services" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-blue-700">
-              Hauptleistungen
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              Wobei können wir Sie unterstützen?
-            </h2>
-            <p className="mt-4 text-base font-semibold leading-7 text-slate-600">
-              Wählen Sie den Standort und die Leistung, die zu Ihrem Auftrag passen.
-            </p>
+            <p className="text-sm font-black uppercase tracking-wider text-blue-700">Hauptleistungen</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Wobei können wir Sie unterstützen?</h2>
+            <p className="mt-4 text-base font-semibold leading-7 text-slate-600">Wählen Sie einen passenden Bereich. Weitere Details finden Sie auf den jeweiligen Leistungsseiten.</p>
           </div>
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {mainServices.map((service) => {
               const Icon = service.icon;
               return (
@@ -286,20 +312,10 @@ export default function HomePage() {
                   data-source="homepage_main_services"
                   className="group flex min-h-64 flex-col rounded-xl border border-slate-200 bg-slate-50 p-6 transition hover:border-blue-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                 >
-                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-cyan-200">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-cyan-200"><Icon className="h-5 w-5" aria-hidden="true" /></span>
                   <h3 className="mt-5 text-xl font-black">{service.title}</h3>
-                  <p className="mt-3 flex-1 text-sm font-semibold leading-7 text-slate-600">
-                    {service.text}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-800">
-                    {service.cta}
-                    <ArrowRight
-                      className="h-4 w-4 transition group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
+                  <p className="mt-3 flex-1 text-sm font-semibold leading-7 text-slate-600">{service.text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-800">{service.cta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
                 </Link>
               );
             })}
@@ -307,247 +323,134 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        data-home-section="locations"
-        className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10"
-      >
+      <section data-home-section="locations" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-cyan-200">
-              Standorte
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              FLOXANT in Düsseldorf und Regensburg
-            </h2>
+            <p className="text-sm font-black uppercase tracking-wider text-cyan-200">Standorte</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">FLOXANT in Düsseldorf und Regensburg</h2>
           </div>
           <div className="mt-9 grid gap-4 md:grid-cols-2">
             {locations.map((location) => (
-              <Link
-                key={location.href}
-                href={location.href}
-                data-home-card
-                data-home-location={location.title}
-                className="group rounded-xl border border-white/15 bg-white/10 p-6 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:p-8"
-              >
+              <Link key={location.href} href={location.href} data-home-card data-home-location={location.title} className="group rounded-xl border border-white/15 bg-white/10 p-6 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:p-8">
                 <Building2 className="h-6 w-6 text-cyan-200" aria-hidden="true" />
                 <h3 className="mt-5 text-2xl font-black">{location.title}</h3>
-                <p className="mt-3 max-w-xl text-sm font-semibold leading-7 text-slate-200">
-                  {location.text}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-200">
-                  {location.cta}
-                  <ArrowRight
-                    className="h-4 w-4 transition group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
+                <p className="mt-3 max-w-xl text-sm font-semibold leading-7 text-slate-200">{location.text}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-200">{location.cta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-300">
-            Liegt der Einsatzort im Umfeld? Nennen Sie den Ort in Ihrer Anfrage. Wir prüfen,
-            ob die gewünschte Leistung dort möglich ist.
-          </p>
+          <p className="mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-300">Liegt der Einsatzort im Umfeld? Geben Sie den Ort im Anfrageformular an. Wir sehen nach, ob die Leistung dort möglich ist.</p>
         </div>
       </section>
 
-      <section
-        data-home-section="about"
-        className="bg-cyan-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-10"
-      >
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-blue-700">
-              Über FLOXANT
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              FLOXANT – persönlich erreichbar, wenn etwas erledigt werden muss
-            </h2>
-            <p className="mt-6 text-lg font-semibold leading-8 text-slate-700">
-              FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen in Düsseldorf
-              und Regensburg. Sie können Ihren Auftrag kurz beschreiben, Fotos ergänzen oder
-              direkt anrufen. Danach klären wir Umfang, Termin und offene Punkte persönlich mit
-              Ihnen.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-cyan-100 bg-white p-7 shadow-sm">
-            <h3 className="text-xl font-black text-slate-950">So erreichen Sie FLOXANT</h3>
-            <ul className="mt-5 space-y-4 text-sm font-semibold leading-7 text-slate-600">
-              {[
-                "Auftrag online kurz beschreiben",
-                "Fotos oder vorhandenes Angebot ergänzen",
-                `Telefonisch unter ${company.phone}`,
-                "Per WhatsApp schreiben",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 shrink-0 text-blue-700" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section
-        data-home-section="offer-check"
-        className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10"
-      >
-        <div className="mx-auto grid max-w-7xl gap-8 rounded-2xl border border-slate-200 bg-slate-50 p-7 md:grid-cols-[1fr_auto] md:items-center md:p-10">
+      <section data-home-section="offer-check" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 rounded-2xl bg-cyan-50 p-7 md:grid-cols-[1fr_auto] md:items-center md:p-10">
           <div className="max-w-3xl">
             <FileSearch className="h-7 w-7 text-blue-800" aria-hidden="true" />
-            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
-              Schon ein Angebot erhalten?
-            </h2>
-            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-              Wenn Leistungsumfang, Preispositionen oder mögliche Zusatzkosten unklar sind,
-              können Sie das Angebot, einen Screenshot oder die wichtigsten Angaben senden.
-            </p>
-            <p className="mt-3 text-sm font-bold text-slate-600">
-              Keine Rechtsberatung und keine Ersparnisgarantie.
-            </p>
+            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Schon ein Angebot erhalten?</h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">Wir sehen uns an, ob Leistungsumfang, Preispositionen und mögliche Zusatzkosten verständlich beschrieben sind. Sie können ein Angebot, einen Screenshot oder die wichtigsten Angaben senden.</p>
+            <p className="mt-3 text-sm font-bold text-slate-600">Keine Rechtsberatung und keine Ersparnisgarantie.</p>
           </div>
-          <Link
-            href={`${offerHref}#guenstiger-form`}
-            data-home-offer-cta
-            data-event="service_card_click"
-            data-source="homepage_offer_check"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-          >
-            Angebot prüfen lassen
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <div className="grid gap-3 md:min-w-64">
+            <Link href={`${offerHref}#guenstiger-form`} data-home-offer-cta className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Angebot prüfen lassen<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link href={offerHref} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-5 text-sm font-black text-slate-950 hover:border-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Mehr über die Angebotsprüfung</Link>
+          </div>
         </div>
       </section>
 
-      <section
-        data-home-section="process"
-        className="border-t border-slate-100 px-5 py-16 sm:px-8 sm:py-20 lg:px-10"
-      >
+      <section data-home-section="special-solutions" className="bg-slate-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-blue-700">
-              So funktioniert es
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-              In drei Schritten zur geklärten Anfrage
-            </h2>
+            <p className="text-sm font-black uppercase tracking-wider text-blue-700">Besondere Situationen</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Wenn ein Standardauftrag nicht ausreicht</h2>
+          </div>
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {specialSolutions.map((solution) => (
+              <Link key={solution.href} href={solution.href} data-home-card data-home-special={solution.title} className="group flex min-h-56 flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                <KeyRound className="h-5 w-5 text-blue-800" aria-hidden="true" />
+                <h3 className="mt-5 text-xl font-black">{solution.title}</h3>
+                <p className="mt-3 flex-1 text-sm font-semibold leading-7 text-slate-600">{solution.text}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-800">Mehr erfahren<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section data-home-section="process" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-wider text-blue-700">So funktioniert es</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">So stellen Sie Ihre Anfrage</h2>
           </div>
           <ol className="mt-10 grid gap-8 md:grid-cols-3">
             {[
-              {
-                title: "Leistung und Ort nennen",
-                text: "Wählen Sie den passenden Bereich und sagen Sie uns, wo der Auftrag ausgeführt werden soll.",
-              },
-              {
-                title: "Auftrag kurz beschreiben",
-                text: "Nennen Sie Umfang und Terminwunsch. Fotos oder ein vorhandenes Angebot sind optional.",
-              },
-              {
-                title: "Offene Punkte klären",
-                text: "Danach stimmen wir mit Ihnen ab, was dazugehört und welche Angaben noch fehlen.",
-              },
+              { title: "Leistung und Ort wählen", text: "Starten Sie mit dem Bereich, der am besten zu Ihrem Auftrag passt." },
+              { title: "Auftrag kurz beschreiben", text: "Fotos oder ein vorhandenes Angebot können Sie optional ergänzen." },
+              { title: "Rückmeldung erhalten", text: "Wir sehen uns Ihre Angaben an und melden uns über den gewählten Kontaktweg." },
             ].map((step, index) => (
               <li key={step.title} className="border-t-2 border-slate-950 pt-5">
                 <span className="text-sm font-black text-blue-800">0{index + 1}</span>
                 <h3 className="mt-3 text-xl font-black">{step.title}</h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">
-                  {step.text}
-                </p>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{step.text}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section
-        data-home-section="faq"
-        className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10"
-      >
-        <div className="mx-auto max-w-5xl">
-          <p className="text-sm font-black uppercase tracking-wider text-cyan-200">
-            Häufige Fragen
-          </p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
-            Kurz und konkret beantwortet
-          </h2>
-          <div className="mt-8 divide-y divide-white/15 border-y border-white/15">
-            {faqItems.map((item) => (
-              <details key={item.q} className="group py-1">
-                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200">
-                  {item.q}
-                  <span
-                    className="text-cyan-200 transition group-open:rotate-45"
-                    aria-hidden="true"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="pb-5 pr-8 text-sm font-semibold leading-7 text-slate-300">
-                  {item.a}
-                </p>
-              </details>
-            ))}
+      <section data-home-section="language" className="border-t border-slate-200 bg-cyan-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-blue-800">
+              <Languages className="h-4 w-4" aria-hidden="true" />
+              Deutsch or English
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
+              Service information is also available in English.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
+              English-speaking customers can choose localized information for cleaning in Düsseldorf and for moving,
+              clearance or cleaning in Regensburg. Services are provided in Germany.
+            </p>
           </div>
+          <Link
+            href="/en"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          >
+            View services in English
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
-      <section
-        data-home-section="contact"
-        aria-labelledby="home-contact-title"
-        className="bg-cyan-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-10"
-      >
-        <div className="mx-auto grid max-w-7xl gap-8 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-cyan-100 lg:grid-cols-[1fr_auto] lg:items-center sm:p-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wider text-blue-700">
-              Direkter Kontakt
-            </p>
-            <h2
-              id="home-contact-title"
-              className="mt-3 text-3xl font-black tracking-tight sm:text-5xl"
-            >
-              Lieber kurz klären? Rufen Sie uns an.
-            </h2>
-            <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              Wenn sich Ihr Auftrag schwer in wenigen Feldern beschreiben lässt, müssen Sie
-              kein langes Formular ausfüllen. Rufen Sie FLOXANT an oder schreiben Sie per
-              WhatsApp. Für eine schriftliche Anfrage bleibt der Anfrageweg verfügbar.
-            </p>
-            <p className="mt-3 text-lg font-black text-slate-950">{company.phone}</p>
+      <ToolJourneyPanel intent="overview" region="both" />
+
+      <section data-home-section="faq-final" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-wider text-cyan-200">Häufige Fragen</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Kurz erklärt</h2>
+            <div className="mt-8 divide-y divide-white/15 border-y border-white/15">
+              {faqItems.map((item) => (
+                <details key={item.q} className="group py-1">
+                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200">
+                    {item.q}
+                    <span className="text-cyan-200 transition group-open:rotate-45" aria-hidden="true">+</span>
+                  </summary>
+                  <p className="pb-5 pr-8 text-sm font-semibold leading-7 text-slate-300">{item.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[38rem]">
-            <a
-              href={`tel:${company.phoneRaw}`}
-              data-event="phone_click"
-              data-source="homepage_contact"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              Jetzt anrufen
-            </a>
-            <a
-              href={whatsappHref}
-              data-event="whatsapp_click"
-              data-source="homepage_contact"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-900 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-            >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              WhatsApp öffnen
-            </a>
-            <Link
-              href={requestHref}
-              data-home-final-cta
-              data-event="request_cta_click"
-              data-source="homepage_contact"
-              data-service="sonstiges"
-              data-cta-label="Anfrage senden"
-              data-destination={requestHref}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-sm font-black text-slate-950 transition hover:border-blue-300 hover:text-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
+          <aside className="self-start rounded-2xl bg-white p-7 text-slate-950 sm:p-9">
+            <h2 className="text-3xl font-black tracking-tight">Bereit für Ihre Anfrage?</h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">Nennen Sie Leistung, Einsatzort und Terminwunsch. Weitere Angaben können Sie später ergänzen.</p>
+            <Link href={requestHref} data-home-final-cta className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
               Anfrage senden
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-          </div>
+          </aside>
         </div>
       </section>
     </main>

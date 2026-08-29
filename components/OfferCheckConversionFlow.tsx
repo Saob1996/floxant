@@ -4,19 +4,25 @@ import { useCallback, useState } from "react";
 import { Scale, UploadCloud } from "lucide-react";
 
 import { OfferCheckForm } from "@/components/OfferCheckForm";
-import { OfferRedFlagScanner, type RedFlagScannerResult } from "@/components/OfferRedFlagScanner";
+import { ClarityCheckTool } from "@/components/tools/ClarityCheckTool";
+import type { ClarityCheckResult } from "@/lib/clarity-check";
 
 export function OfferCheckConversionFlow() {
-  const [scannerResult, setScannerResult] = useState<RedFlagScannerResult | null>(null);
-  const handleResultChange = useCallback((result: RedFlagScannerResult) => {
+  const [scannerResult, setScannerResult] = useState<ClarityCheckResult | null>(null);
+  const handleResultChange = useCallback((result: ClarityCheckResult) => {
     setScannerResult(result);
   }, []);
 
   return (
     <>
-      <section id="red-flag-scanner" className="px-4 py-12 sm:px-6">
+      <section id="klarheitscheck" className="px-4 py-12 sm:px-6">
         <div className="mx-auto max-w-7xl">
-          <OfferRedFlagScanner onResultChange={handleResultChange} />
+          <ClarityCheckTool
+            locale="de"
+            contactHref="/kontakt?mode=neutral&intent=klarheitscheck&source=klarheitscheck"
+            formTargetId="angebotscheck-form"
+            onResultChange={handleResultChange}
+          />
         </div>
       </section>
 
@@ -35,8 +41,7 @@ export function OfferCheckConversionFlow() {
               <div className="mt-6 rounded-[1.5rem] border border-blue-200 bg-blue-50 p-5 text-sm leading-7 text-blue-950">
                 <p className="font-black">Uebernommenes Scanner-Ergebnis</p>
                 <p className="mt-2">
-                  {scannerResult.scoreLabel} mit {scannerResult.scoreValue} markierten Punkt(en). Dieses Ergebnis wird
-                  beim Absenden als Red-Flag-Scanner-Subtyp im Angebotscheck gespeichert.
+                  {scannerResult.scoreLabel}. Dieses Ergebnis wird beim ausdrücklichen Absenden als Klarheitscheck-Zusammenfassung in der bestehenden Angebotsanfrage gespeichert.
                 </p>
               </div>
             ) : null}

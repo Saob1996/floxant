@@ -132,6 +132,48 @@ export const searchAuthorityPages = {
     searchIntent: "Vorhandene Reinigungsangebote vergleichen und offene Punkte erkennen",
     locale: "de-DE",
   },
+  "/angebotscheck": {
+    seoTitle: "Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
+    shortTitle: "FLOXANT Klarheitscheck",
+    headline: "Zwölf Punkte eines Angebots einzeln klären",
+    description:
+      "Vorhandenes Angebot für Reinigung, Umzug oder Räumung clientseitig prüfen: 12 Bereiche markieren, Rückfragen erstellen und Ergebnis übernehmen.",
+    ogTitle: "FLOXANT Klarheitscheck für vorhandene Angebote",
+    ogDescription:
+      "Zwölf Bereiche zu Umfang, Ablauf und Preisstruktur ohne Upload und ohne Rechtsbewertung prüfen.",
+    primaryQuery: "angebotscheck dienstleistung",
+    secondaryQueries: ["reinigungsangebot prüfen", "umzugsangebot prüfen", "angebot leistungsumfang prüfen"],
+    searchIntent: "Vorhandenes Dienstleistungsangebot auf offene Angaben prüfen",
+    locale: "de-DE",
+  },
+  "/objektbrief": {
+    seoTitle: "Anfragebrief für Reinigung, Umzug oder Räumung | FLOXANT",
+    shortTitle: "FLOXANT Anfragebrief",
+    headline: "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
+    description:
+      "Erstellen Sie direkt im Browser einen Anfragebrief mit Leistung, Ort, Umfang, Zugang und Termin für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
+    ogTitle: "FLOXANT Anfragebrief für klare Leistungsanfragen",
+    ogDescription:
+      "Leistung, Ort, Umfang, Zugang und Termin geordnet vorbereiten und offene Angaben erkennen.",
+    primaryQuery: "dienstleistungsanfrage vorbereiten",
+    secondaryQueries: ["reinigungsanfrage erstellen", "umzugsanfrage vorbereiten", "räumungsanfrage schreiben"],
+    searchIntent: "Leistungsanfrage mit den nötigen Angaben vorbereiten",
+    locale: "de-DE",
+  },
+  "/leistungsfinder": {
+    seoTitle: "Leistungsfinder: Reinigung, Umzug oder Räumung | FLOXANT",
+    shortTitle: "FLOXANT Leistungsfinder",
+    headline: "Die passende FLOXANT-Leistung nach Region und Aufgabe finden",
+    description:
+      "Ordnen Sie Ihr Anliegen clientseitig ein: Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – mit passenden Angaben und nächstem Schritt.",
+    ogTitle: "FLOXANT Leistungsfinder für Düsseldorf und Regensburg",
+    ogDescription:
+      "Region, Aufgabenart und Auftragssituation auswählen und zur passenden vorhandenen Leistungsseite gelangen.",
+    primaryQuery: "FLOXANT Leistungsfinder",
+    secondaryQueries: ["welche Reinigungsleistung", "Umzug oder Räumung Regensburg", "Reinigungsservice Düsseldorf finden"],
+    searchIntent: "Passende vorhandene FLOXANT-Leistung bestimmen",
+    locale: "de-DE",
+  },
   "/en": {
     seoTitle: "FLOXANT Services in English | Düsseldorf & Regensburg",
     shortTitle: "Services in English",
@@ -184,6 +226,45 @@ export const searchAuthorityPages = {
     searchIntent: "English commercial-cleaning request",
     locale: "en",
   },
+  "/en/duesseldorf/apartment-cleaning": {
+    seoTitle: "Apartment Cleaning Düsseldorf | English Request | FLOXANT",
+    shortTitle: "Apartment Cleaning Düsseldorf",
+    headline: "Apartment cleaning in Düsseldorf for occupied or empty homes",
+    description:
+      "Apartment cleaning in Düsseldorf for occupied homes, empty flats and handovers. Send rooms, condition, access, timing and photos in English.",
+    ogTitle: "Apartment cleaning in Düsseldorf",
+    ogDescription: "English apartment-cleaning requests with rooms, condition, timing and access.",
+    primaryQuery: "apartment cleaning düsseldorf",
+    secondaryQueries: ["flat cleaning düsseldorf", "home cleaner düsseldorf"],
+    searchIntent: "English apartment-cleaning request",
+    locale: "en",
+  },
+  "/en/duesseldorf/deep-cleaning": {
+    seoTitle: "Deep Cleaning Düsseldorf | Condition & Scope | FLOXANT",
+    shortTitle: "Deep Cleaning Düsseldorf",
+    headline: "Deep cleaning in Düsseldorf after renovation or heavy use",
+    description:
+      "Deep cleaning in Düsseldorf after renovation, vacancy or heavy use. Send rooms, surfaces, condition, access, desired result and photos in English.",
+    ogTitle: "Deep cleaning in Düsseldorf",
+    ogDescription: "Rooms, materials, condition and desired result checked before any quote or promise.",
+    primaryQuery: "deep cleaning düsseldorf",
+    secondaryQueries: ["intensive cleaning düsseldorf", "deep cleaner düsseldorf"],
+    searchIntent: "English deep-cleaning request",
+    locale: "en",
+  },
+  "/en/duesseldorf/move-out-cleaning": {
+    seoTitle: "Move-Out Cleaning Düsseldorf | Handover | FLOXANT",
+    shortTitle: "Move-Out Cleaning Düsseldorf",
+    headline: "Move-out cleaning in Düsseldorf before the apartment handover",
+    description:
+      "Move-out cleaning in Düsseldorf before key return or handover. Send rooms, kitchen and bathroom condition, remaining items, access, date and photos.",
+    ogTitle: "Move-out cleaning Düsseldorf",
+    ogDescription: "English handover-cleaning requests with date, rooms, condition, access and photos.",
+    primaryQuery: "move-out cleaning düsseldorf",
+    secondaryQueries: ["end of tenancy cleaning düsseldorf", "handover cleaning düsseldorf"],
+    searchIntent: "English move-out and handover cleaning request",
+    locale: "en",
+  },
   "/en/duesseldorf/practice-cleaning": {
     seoTitle: "Practice Cleaning Düsseldorf | Scope & Access | FLOXANT",
     shortTitle: "Practice Cleaning Düsseldorf",
@@ -221,6 +302,47 @@ export const searchAuthorityPages = {
     primaryQuery: "cleaning quote review düsseldorf",
     secondaryQueries: ["cleaning quote düsseldorf", "compare cleaning offers düsseldorf"],
     searchIntent: "English review of an existing cleaning quote",
+    locale: "en",
+  },
+  "/en/quote-check": {
+    seoTitle: "Quote Scope Check: 12 Details to Clarify | FLOXANT",
+    shortTitle: "FLOXANT Scope Check",
+    headline: "Clarify twelve scope details before accepting a service quote",
+    description:
+      "Use the client-side FLOXANT Scope Check for a cleaning, moving or clearance quote in Germany. Mark open details and create clear follow-up questions.",
+    ogTitle: "FLOXANT Scope Check for service quotes",
+    ogDescription: "Check twelve scope areas without uploading or transmitting quote data.",
+    primaryQuery: "service quote scope check",
+    secondaryQueries: ["cleaning quote review", "moving quote review", "quote checklist Germany"],
+    searchIntent: "English review of scope details in an existing service quote",
+    locale: "en",
+  },
+  "/en/create-request": {
+    seoTitle: "Create a Cleaning or Moving Request Brief | FLOXANT",
+    shortTitle: "Create a Request",
+    headline: "Prepare a clear service request before contacting FLOXANT",
+    description:
+      "Create a structured request brief in English for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg. No price or appointment is calculated.",
+    ogTitle: "Create a structured FLOXANT request brief",
+    ogDescription:
+      "Organise the service, location, scope, access and timing before you send an English request.",
+    primaryQuery: "create service request Germany",
+    secondaryQueries: ["cleaning request Düsseldorf", "moving request Regensburg", "service request brief"],
+    searchIntent: "English preparation of a structured local service request",
+    locale: "en",
+  },
+  "/en/service-finder": {
+    seoTitle: "Service Finder for Düsseldorf & Regensburg | FLOXANT",
+    shortTitle: "Service Finder",
+    headline: "Find the relevant FLOXANT service for your region and task",
+    description:
+      "Use the client-side service finder for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg, Germany, with clear next steps in English.",
+    ogTitle: "FLOXANT Service Finder in English",
+    ogDescription:
+      "Match the region, type of work and request situation to an existing FLOXANT service page.",
+    primaryQuery: "FLOXANT service finder English",
+    secondaryQueries: ["cleaning service Düsseldorf", "moving service Regensburg", "house clearance Regensburg"],
+    searchIntent: "English selection of an existing local FLOXANT service",
     locale: "en",
   },
 } as const satisfies Record<string, SearchAuthorityMetadata>;

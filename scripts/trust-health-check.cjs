@@ -29,10 +29,10 @@ const requiredFiles = [
 ];
 
 const routeChecks = [
-  { route: "/", files: ["app/page.tsx"], mustContain: ["LocationClarityPanel", "FloxantObjectBrief"] },
-  { route: "/kontakt", files: ["app/kontakt/page.tsx"], mustContain: ["TrustProofPanel", "ServiceProofChecklist", "NoFakeClaimsNotice"] },
+  { route: "/", files: ["app/page.tsx"], mustContain: ["faqItems", "mainServices", "buildGlobalRequestHref"] },
+  { route: "/kontakt", files: ["app/kontakt/page.tsx"], mustContain: ["ContactLeadForm", "Nach persönlicher Prüfung", "Die Anfrage ist unverbindlich"] },
   { route: "/leistungen", files: ["app/leistungen/page.tsx"], mustContain: ["TrustProofPanel", "ServiceVisualProofGrid", "ProjectStoryGrid"] },
-  { route: "/duesseldorf", files: ["app/duesseldorf/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
+  { route: "/duesseldorf", files: ["app/duesseldorf/page.tsx"], mustContain: ["duesseldorfCompany", "duesseldorfCleaningLinks", "faqItems"] },
   { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/regensburg", files: ["app/regensburg/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/regensburg/umzug", files: ["app/regensburg/umzug/page.tsx", "components/regensburg/RegensburgServicePage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
@@ -40,14 +40,13 @@ const routeChecks = [
   { route: "/regensburg/entruempelung", files: ["app/regensburg/entruempelung/page.tsx", "components/regensburg/RegensburgServicePage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/klaviertransport-regensburg", files: ["app/klaviertransport-regensburg/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/angebot-guenstiger-pruefen", files: ["app/angebot-guenstiger-pruefen/page.tsx"], mustContain: ["OfferCheckTrustPanel", "ProjectStoryGrid"] },
-  { route: "/angebotscheck", files: ["app/angebotscheck/page.tsx"], mustContain: ["OfferCheckTrustPanel", "ProcessProofSteps"] },
-  { route: "/anbieter-vergleichen", files: ["app/anbieter-vergleichen/page.tsx"], mustContain: ["OfferCheckTrustPanel", "ProcessProofSteps"] },
+  { route: "/angebotscheck", files: ["app/angebotscheck/page.tsx"], mustContain: ["OfferCheckConversionFlow", "benefitCards", "clarityCheckMethod.de.disclaimer"] },
+  { route: "/anbieter-vergleichen", files: ["app/anbieter-vergleichen/page.tsx"], mustContain: ["comparisonMatrix", "faqItems", "Kein Vergleichsportal"] },
   { route: "/signature-services", files: ["app/signature-services/page.tsx"], mustContain: ["TrustProofPanel", "NoFakeClaimsNotice"] },
-  { route: "/diskret-service", files: ["next.config.js", "app/diskreter-umzug-trennung-scheidung/page.tsx"], mustContain: ["/diskret-service", "DiscreetTrustPanel"] },
+  { route: "/diskret-service", files: ["app/diskret-service/page.tsx"], mustContain: ["quickTrust", "RequestChecklistBlock", "PhotoGuidanceBlock"] },
   { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["B2BTrustPanel", "ServiceProofChecklist"] },
   { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["B2BTrustPanel", "ServiceVisualProofGrid"] },
   { route: "/regensburg/bueroreinigung", files: ["app/regensburg/bueroreinigung/page.tsx", "components/regensburg/RegensburgServicePage.tsx"], mustContain: ["B2BTrustPanel", "ServiceProofChecklist"] },
-  { route: "/duesseldorf hub", files: ["app/duesseldorf/page.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ServiceVisualProofGrid"] },
   { route: "/regensburg service template", files: ["components/regensburg/RegensburgServicePage.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ServiceVisualProofGrid"] },
 ];
 

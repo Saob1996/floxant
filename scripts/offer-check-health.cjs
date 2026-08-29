@@ -66,7 +66,8 @@ add(
   "metadata-present",
   primaryPage.includes("Angebot prüfen lassen - Preis, Umfang und offene Punkte klären") &&
     primaryPage.includes("Ohne Rechtsberatung") &&
-    supportPage.includes("Angebotscheck fuer Reinigung, Umzug und Entruempelung") &&
+    supportPage.includes("title: pageMeta.seoTitle") &&
+    supportPage.includes("description: pageMeta.description") &&
     comparisonPage.includes("Anbieter vergleichen - Leistung, Umfang und Risiko einordnen")
     ? "PASS"
     : "FAIL",
@@ -105,7 +106,7 @@ add(
 add(
   checks,
   "ai-answer-blocks",
-  primaryPage.includes("Ablauf und AI Answer") && primaryPage.includes("Was tun, wenn ein Angebot zu teuer wirkt?") ? "PASS" : "FAIL",
+  primaryPage.includes("Ablauf kurz erklärt") && primaryPage.includes("offerCheckAiAnswers") && primaryPage.includes("Was tun, wenn ein Angebot zu teuer wirkt?") ? "PASS" : "FAIL",
   "AI-answer style questions are present.",
 );
 add(
@@ -187,9 +188,9 @@ add(
 add(
   checks,
   "english-intent",
-  /offer check germany/i.test(primaryPage) &&
-    contactPage.includes("english-offer-check") &&
-    leadIntents.includes("offer-check")
+  primaryPage.includes("Can I ask in English?") &&
+    primaryPage.includes("english-offer-check") &&
+    leadIntents.includes('"offer-check"')
     ? "PASS"
     : "FAIL",
   "English intent is visible and mapped through lead-intents.",

@@ -11,4 +11,9 @@ out
 data/private/search-console/
 data/bookings.json
 public/uploads
+data/private/search-console/
 *.log
+artifacts/lighthouse-production-2026-08-28/
+artifacts/lighthouse-production-2026-08-29/
+artifacts/lighthouse-production-2026-08-29-final/*-run-*.json
+127.0.0.1_*.report.html

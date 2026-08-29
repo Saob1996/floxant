@@ -5,7 +5,7 @@ import { bookingFetch } from "@/lib/booking-submission-client";
 import { FormEvent, useMemo, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, FileText, Loader2, Mail, Phone, UploadCloud } from "lucide-react";
 
-import type { RedFlagScannerResult } from "@/components/OfferRedFlagScanner";
+import type { ClarityCheckResult } from "@/lib/clarity-check";
 import { UploadDropCard } from "@/components/UploadDropCard";
 
 const PHONE_DISPLAY = "01577 1105087";
@@ -91,7 +91,7 @@ function validateFiles(files: File[], allowedTypes: string[]) {
   return "";
 }
 
-export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFlagScannerResult | null }) {
+export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: ClarityCheckResult | null }) {
   const startedAtRef = useRef(Date.now());
   const [entryMode, setEntryMode] = useState<EntryMode>("upload");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");

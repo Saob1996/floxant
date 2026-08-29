@@ -1,0 +1,260 @@
+{
+  "status": "PASS",
+  "summary": {
+    "generatedAt": "2026-08-28T23:34:30.398Z",
+    "checks": 31,
+    "pass": 31,
+    "warn": 0,
+    "fail": 0
+  },
+  "results": [
+    {
+      "id": "primary-route-exists",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Primary route /regensburg/umzug exists.",
+      "recommendation": "No action."
+    },
+    {
+      "id": "h1-intent",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "H1 should contain Umzug and Regensburg.",
+      "recommendation": "Keep the H1 focused on the local moving intent."
+    },
+    {
+      "id": "metadata",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Title, description and canonical path are present in route metadata.",
+      "recommendation": "No action."
+    },
+    {
+      "id": "support-route-redirect",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/umzug-regensburg/page.tsx",
+      "detail": "Support route source redirect: false; next.config redirect: false; static host redirect: true.",
+      "recommendation": "Keep /umzug-regensburg as redirect/support route, not as competing page."
+    },
+    {
+      "id": "sitemap-primary",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "lib/sitemap-routes.ts",
+      "detail": "Sitemap contains /regensburg/umzug.",
+      "recommendation": "Run npm run seo:sitemap after route changes."
+    },
+    {
+      "id": "sitemap-duplicate",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "lib/sitemap-routes.ts",
+      "detail": "Sitemap excludes /umzug-regensburg.",
+      "recommendation": "Only the canonical moving page should be listed."
+    },
+    {
+      "id": "hero-contact-cta",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Primary moving CTA should include service=umzug, city=regensburg and intent=umzug-regensburg.",
+      "recommendation": "Use the canonical contact query for moving leads."
+    },
+    {
+      "id": "offer-check-cta",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Offer-check CTA should be visible and use intent=umzugsangebot-pruefen.",
+      "recommendation": "Keep the Umzugsangebot CTA visible above FAQ."
+    },
+    {
+      "id": "quick-answer-ai",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: MovingQuickAnswer, id=\"ai-answer\", Kurz erklärt",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "faq-visible",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: faqItems, /H(?:ae|ä)ufige Fragen zum Umzug in Regensburg/",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "authority-signals",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: Authority und Entscheidung, Anfragequalität, Schneller Kontaktfluss",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "effort-factors",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: Wovon der Aufwand abhängt, Etage, Trageweg, Terminfenster",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "piano-link",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: /klaviertransport-regensburg, Klaviertransport",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "senior-link",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: Seniorenumzug, /regensburg/seniorenumzug",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "backhaul-link",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: Beiladung, /beiladung-regensburg, /leerfahrt-rueckfahrt",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "english-intent",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: moving company, moving help, simple English",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "local-relevance",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required content signals: Regensburg als Hauptort, Servicegebiet auf Anfrage",
+      "recommendation": "Keep this content visible on /regensburg/umzug."
+    },
+    {
+      "id": "visible-no-guarantees",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "Required no-guarantee disclaimers are visible.",
+      "recommendation": "Keep no-price, no-instant-date and no-auto-booking language visible."
+    },
+    {
+      "id": "fake-claim-scan",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "No fake ratings, ranking guarantees or positive guarantee claims found.",
+      "recommendation": "Remove fake claims and never add AggregateRating/Review without real data."
+    },
+    {
+      "id": "keyword-cloud-scan",
+      "status": "PASS",
+      "priority": "P1",
+      "file": "app/regensburg/umzug/page.tsx",
+      "detail": "No visible keyword-cloud structures should be present on the page.",
+      "recommendation": "Keep keyword work in docs, not visible page copy."
+    },
+    {
+      "id": "vercel-runtime-nodejs",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No runtime-nodejs pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-force-dynamic",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No force-dynamic pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-revalidate",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No revalidate pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-vitals-api",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No vitals-api pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-conversion-api",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No conversion-api pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-auto-api-fetch",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No auto-api-fetch pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-send-beacon",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No send-beacon pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-supabase",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No supabase pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-resend",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No resend pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "vercel-sharp",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "",
+      "detail": "No sharp pattern found in checked public route files.",
+      "recommendation": "Keep public page visits static and free of automatic server/API work."
+    },
+    {
+      "id": "npm-script",
+      "status": "PASS",
+      "priority": "P0",
+      "file": "package.json",
+      "detail": "npm run umzug-regensburg:health should be registered.",
+      "recommendation": "No action."
+    }
+  ]
+}

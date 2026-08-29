@@ -1,13 +1,13 @@
 # Index Quality Report
 
-Geprüfte Routen: 1682
+Geprüfte Routen: 519
 
 | Grade | Anzahl |
 | --- | --- |
-| A | 19 |
-| B | 1649 |
-| C | 8 |
-| D | 6 |
+| A | 14 |
+| B | 379 |
+| C | 20 |
+| D | 106 |
 
 ## High-Risk Findings
 

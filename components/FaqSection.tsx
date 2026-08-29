@@ -18,7 +18,7 @@ export function FaqSection({
   intro = "Kurze Antworten, die vor einer Anfrage helfen.",
   items,
   includeJsonLd = false,
-  maxItems = 6,
+  maxItems = 8,
   className = "",
 }: FaqSectionProps) {
   const visibleItems = germanizeDeep(items.slice(0, Math.max(1, Math.min(maxItems, 8))));

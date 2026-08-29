@@ -3,19 +3,16 @@ import { getDictionary } from "@/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
-import { notFound } from "next/navigation";
-import { Calculator, CheckCircle2, ArrowRight } from "lucide-react";
+import { Calculator, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 export async function generateMetadata(): Promise<Metadata> {
   const pageLocale = "de";
-  const dict = await getDictionary("de");
-  const content = dict.pages?.umzugskosten_bayern || {};
   return generatePageSEO({
     pageLocale: pageLocale as any,
     path: "umzugskosten-bayern",
-    title: "Umzugskosten Bayern | Preisrahmen & Faktoren | FLOXANT",
-    description: content.meta_desc || "Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München.",
+    title: "Umzugskosten Bayern: Aufwand mit Eckdaten einschätzen",
+    description: "Welche Angaben den Umzugsaufwand beeinflussen: Volumen, Strecke, Etagen, Laufwege, Termin und Zusatzleistungen. Rechnerwert bleibt unverbindlich.",
   });
 }
 export default async function UmzugskostenBayern() {
@@ -31,10 +28,16 @@ export default async function UmzugskostenBayern() {
       .replace(/Festpreise/g, "Preisrahmen")
       .replace(/Festpreis/g, "Preisrahmen")
       .replace(/verbindliche Preisrahmen/g, "konkrete Angebote");
-  const faqItems = (content.faqs || []).map((item: { q: string; a: string }) => ({
-    q: normalizePriceCopy(item.q),
-    a: normalizePriceCopy(item.a),
-  }));
+  const faqItems = [
+    ...(content.faqs || []).map((item: { q: string; a: string }) => ({
+      q: normalizePriceCopy(item.q),
+      a: normalizePriceCopy(item.a),
+    })),
+    {
+      q: "Ist die erste Kosteneinschätzung bereits verbindlich?",
+      a: "Nein. Ein Rechnerwert oder Preisrahmen dient der Orientierung. Ein konkretes Angebot entsteht erst nach Prüfung von Umfang, Start, Ziel, Zugängen, Termin und gewünschten Zusatzleistungen.",
+    },
+  ];
   const faqJsonLd = faqItems.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -64,7 +67,9 @@ export default async function UmzugskostenBayern() {
             Umzugskosten in <span className="text-primary">Bayern</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Nachvollziehbare Preisrahmen statt böser Überraschungen. FLOXANT kalkuliert fair, transparent und auf Basis Ihrer konkreten Angaben.
+            Eine brauchbare Einschätzung braucht mehr als die Wohnfläche. FLOXANT ordnet Volumen,
+            Strecke, Etagen, Laufwege, Termin und gewünschte Zusatzleistungen ein. Rechnerwerte
+            bleiben unverbindlich, bis alle relevanten Angaben geprüft sind.
           </p>
         </div>
       </section>
@@ -117,6 +122,10 @@ export default async function UmzugskostenBayern() {
               <p className="text-xs text-muted-foreground mt-4 italic">
                 Einen konkreten Preis nennt FLOXANT erst nach Prüfung der für Ihren Umzug relevanten Angaben.
               </p>
+              <Link href="/umzug-kosten-rechner" className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 font-black text-white">
+                Eckdaten im Rechner erfassen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
           {faqItems.length > 0 && (

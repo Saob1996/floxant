@@ -4537,7 +4537,7 @@
         "title": "Transport",
         "l1": "Sicher",
         "l2": "Schnell",
-        "l3": "Vollversichert",
+        "l3": "Sorgfältig abgestimmt",
         "l4": "Möbelaufbau"
       },
       "section2_h2": "Ihr Familienumzug in {city}",
@@ -4650,7 +4650,7 @@
       },
       "section2_h2": "Firmenumzug in {city}",
       "section2_p1": "Wir planen exakt.",
-      "section2_p2": "Vollversichert.",
+      "section2_p2": "Versicherungsumfang vor dem Auftrag klären.",
       "wizard_badge": "Business",
       "wizard_h2": "Büroumzug {city}",
       "wizard_p": "Details angeben.",

@@ -3,11 +3,20 @@
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
 import { PrivacyConsentField } from "@/components/PrivacyConsentField";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, Calendar, CheckCircle2, Loader2, MapPin, PackageOpen, Route, Send, Truck } from "lucide-react";
 
-import type { BackhaulOffer } from "@/lib/backhaul-offers";
+import {
+  LEGACY_PUBLIC_BACKHAUL_OFFER_SELECT,
+  mapBackhaulOfferRow,
+  mapLegacyBackhaulOfferRow,
+  PUBLIC_BACKHAUL_OFFER_SELECT,
+  type BackhaulOffer,
+  type BackhaulOfferRow,
+  type LegacyBackhaulOfferRow,
+} from "@/lib/backhaul-offers";
+import { getPublicSupabaseClient } from "@/lib/public-supabase-browser";
 
 type InquiryState = {
   offerId: string;
@@ -30,7 +39,7 @@ const emptyInquiry: InquiryState = {
   email: "",
   phone: "",
   pickupLocation: "",
-  deliveryLocation: "Regensburg / ca. 150 km Umkreis",
+  deliveryLocation: "Regensburg / ca. 200 km Umkreis",
   dateFlexibility: "",
   items: "",
   budget: "",
@@ -74,7 +83,8 @@ function formatDate(date: string) {
 }
 
 export function BackhaulOffersBoard({ initialOffers }: { initialOffers: BackhaulOffer[] }) {
-  const offers = initialOffers;
+  const [offers, setOffers] = useState(initialOffers);
+  const [loadingOffers, setLoadingOffers] = useState(true);
   const [selectedOffer, setSelectedOffer] = useState<BackhaulOffer | null>(initialOffers[0] || null);
   const [form, setForm] = useState<InquiryState>({
     ...emptyInquiry,
@@ -82,7 +92,57 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submissionReference, setSubmissionReference] = useState("");
   const [submitError, setSubmitError] = useState("");
+
+  useEffect(() => {
+    const supabase = getPublicSupabaseClient();
+    if (!supabase) {
+      setLoadingOffers(false);
+      return;
+    }
+    const client = supabase;
+    let active = true;
+
+    async function loadActiveOffers() {
+      const today = new Date().toISOString().slice(0, 10);
+      const { data, error } = await client
+        .from("backhaul_offers")
+        .select(PUBLIC_BACKHAUL_OFFER_SELECT)
+        .eq("status", "active")
+        .eq("publication_status", "published")
+        .gte("date_end", today)
+        .order("departure_date", { ascending: true });
+
+      if (!active) return;
+      if (error?.code === "42703") {
+        const { data: legacyData, error: legacyError } = await client
+          .from("backhaul_offers")
+          .select(LEGACY_PUBLIC_BACKHAUL_OFFER_SELECT)
+          .eq("status", "active")
+          .gte("departure_date", today)
+          .order("departure_date", { ascending: true });
+        if (!active) return;
+        if (!legacyError && Array.isArray(legacyData)) {
+          const nextOffers = (legacyData as unknown as LegacyBackhaulOfferRow[]).map(mapLegacyBackhaulOfferRow);
+          setOffers(nextOffers);
+          setSelectedOffer(nextOffers[0] || null);
+          setForm((current) => ({ ...current, offerId: nextOffers[0]?.id || "" }));
+        }
+      } else if (!error && Array.isArray(data)) {
+        const nextOffers = (data as unknown as BackhaulOfferRow[]).map(mapBackhaulOfferRow);
+        setOffers(nextOffers);
+        setSelectedOffer(nextOffers[0] || null);
+        setForm((current) => ({ ...current, offerId: nextOffers[0]?.id || "" }));
+      }
+      setLoadingOffers(false);
+    }
+
+    void loadActiveOffers();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const activeOffer = useMemo(
     () => offers.find((offer) => offer.id === form.offerId) || selectedOffer || offers[0],
@@ -204,6 +264,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         throw new Error("Submit failed");
       }
 
+      setSubmissionReference(String(result?.id || result?.requestId || ""));
       setIsSuccess(true);
       setForm({
         ...emptyInquiry,
@@ -219,7 +280,14 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   return (
     <div className="grid gap-8 lg:grid-cols-[1.03fr_0.97fr]">
       <div className="space-y-4">
-        {offers.length === 0 ? (
+        {loadingOffers ? (
+          <div className="flex min-h-40 items-center justify-center gap-3 rounded-[2rem] border border-slate-200 bg-white p-6 text-sm font-bold text-slate-600" role="status">
+            <Loader2 className="h-5 w-5 animate-spin text-emerald-600" aria-hidden="true" />
+            Aktuelle Rückfahrten werden geladen …
+          </div>
+        ) : null}
+
+        {!loadingOffers && offers.length === 0 ? (
           <div className="rounded-[2rem] border border-dashed border-emerald-300 bg-emerald-50/70 p-6">
             <Truck className="mb-4 h-7 w-7 text-emerald-700" />
             <h3 className="text-2xl font-bold tracking-tight text-slate-950">
@@ -327,6 +395,11 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 FLOXANT prüft jetzt, ob Ihre Sendung zur Rückfahrt passt und meldet sich mit
                 einer fairen Einordnung.
               </p>
+              {submissionReference ? (
+                <p className="mx-auto mt-4 w-fit rounded-full bg-slate-100 px-4 py-2 text-xs font-black text-slate-700">
+                  Referenz: {submissionReference}
+                </p>
+              ) : null}
             </m.div>
           ) : (
             <m.form

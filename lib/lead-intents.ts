@@ -1131,6 +1131,20 @@ export function buildLeadHref(input: LeadIntentInput = {}, destination = "/konta
   }
 
   const params = new URLSearchParams();
+  const hasSupportedContactCity = ["duesseldorf", "dusseldorf", "regensburg", "regensburg-bayern"].includes(
+    lead.city,
+  );
+  const hasNamedOtherCity = Boolean(
+    lead.city && lead.city !== "deutschland" && !hasSupportedContactCity,
+  );
+
+  if (destination === "/kontakt") {
+    if (hasNamedOtherCity) {
+      params.set("location", "unsicher");
+    } else if (!hasSupportedContactCity) {
+      params.set("mode", "neutral");
+    }
+  }
 
   params.set("service", requestService.id);
   params.set("city", location);
