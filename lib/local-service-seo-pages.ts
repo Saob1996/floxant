@@ -78,7 +78,7 @@ const duesseldorfServiceLinks = [
     text: "Wenn nach Umzug, Räumung oder Übergabe eine saubere Fläche gebraucht wird.",
   },
   {
-    href: "/regensburg/endreinigung",
+    href: "/regensburg/reinigung-nach-umzug",
     label: "Endreinigung Regensburg prüfen",
     text: "Für Auszug, Rückgabe, Nachmietertermin oder Übergabe mit Fotos und Deadline.",
   },
@@ -88,7 +88,7 @@ const duesseldorfServiceLinks = [
     text: "Für Keller, Wohnung, Nebenräume, Sperrgut und Restmengen vor dem nächsten Schritt.",
   },
   {
-    href: "/regensburg/haushaltsaufloesung",
+    href: "/regensburg/wohnungsaufloesung",
     label: "Haushaltsauflösung Regensburg klären",
     text: "Für Wohnung, Haus, Nachlass oder Wohnungsauflösung mit ruhiger Vorprüfung.",
   },
@@ -106,7 +106,7 @@ const regensburgServiceLinks = [
     text: "Für Räume, Keller, Restmengen, Zugang und Entsorgung nach Fotoprüfung.",
   },
   {
-    href: "/regensburg/endreinigung",
+    href: "/regensburg/reinigung-nach-umzug",
     label: "Endreinigung Regensburg vorbereiten",
     text: "Für Auszug, Übergabe, Nachnutzung und Reinigung nach Räumung oder Umzug.",
   },
@@ -457,7 +457,7 @@ export const localServiceSeoPages = {
     proofItems: [
       "Wohnung, Treppenhaus, Endreinigung oder Reinigung nach Umzug in Regensburg.",
       "Fotos, Fläche und Zielzustand machen die Einschätzung schneller.",
-      "Büroreinigung und Gewerbereinigung werden klar verlinkt, damit der Hub nicht kannibalisiert.",
+      "Büro- und Gewerbereinigung sind als eigene Leistungswege mit passendem Umfang verlinkt.",
     ],
     problemTitle: "Wenn Reinigung nicht nur Putzen heißt",
     problemText: [

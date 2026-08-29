@@ -227,7 +227,7 @@ function SolarPvDifferentiation() {
               Der breitere Einstieg, wenn Solarmodule sichtbar verschmutzt sind oder eine Reinigung grundsätzlich geprüft
               werden soll. Wichtig sind Standort, Dachart, Zugang, Verschmutzung und Fotos.
             </p>
-            <Link href="/solarreinigung" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+            <Link href="/pv-anlagen-reinigung" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
               Solarreinigung ansehen <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </article>

@@ -20,6 +20,7 @@ import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarit
 import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { GermanSignatureServicesHub } from "@/components/services/GermanSignatureServicesHub";
 import { company } from "@/lib/company";
+import { getCentralSeoEntry } from "@/lib/content/seo-matrix";
 import { signatureServiceClarityItems } from "@/lib/professional-copy";
 import { signatureServiceLinks } from "@/lib/signature-special-services";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
@@ -32,6 +33,7 @@ import {
 
 const path = "/signature-services";
 const canonical = `${company.url}${path}`;
+const seo = getCentralSeoEntry(path);
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -115,20 +117,23 @@ const signatureDecisionFaq = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Signature Services und Speziallösungen",
-  description:
-    "Geprüfte Anfragewege für Angebotsprüfung, Objektangaben, Übergabe, Plan B, Spezialreinigung, Spezialumzug, Spezialentrümpelung und diskrete Situationen.",
+  title: seo.activeTitle,
+  description: seo.metaDescription,
   alternates: {
     canonical,
+    languages: {
+      "de-DE": path,
+      en: "/en/signature-services",
+      "x-default": path,
+    },
   },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "FLOXANT Signature Services",
-    description:
-      "Öffentlich freigegebene Signature Services, Spezialreinigung, Spezialumzug und Spezialentrümpelung mit Funktion, Angaben, Ergebnis und klaren Grenzen.",
+    title: seo.ogTitle,
+    description: seo.ogDescription,
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",

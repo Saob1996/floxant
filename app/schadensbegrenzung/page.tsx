@@ -339,7 +339,7 @@ export default function SchadensbegrenzungPage() {
                 Bilder von Restmoebeln, Keller, Bad, Küche, Böden, Zugang, Etage, Fahrzeugbedarf oder vorhandenen Angeboten helfen, die Lage schneller einzuordnen. Persönliche Dokumente und Zugangsdaten bitte nicht mitsenden.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link href="/angebotscheck" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="hero_cta_click">
+                <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="hero_cta_click">
                   Angebot prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>

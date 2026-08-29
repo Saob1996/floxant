@@ -96,6 +96,7 @@ export const duesseldorfCompany = {
   streetAddress: "Breite Str. 22",
   postalCode: "40213",
   city: "Düsseldorf",
+  state: "Nordrhein-Westfalen",
   country: "Deutschland",
   countryCode: "DE",
   url: "https://www.floxant.de/duesseldorf",

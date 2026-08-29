@@ -3743,7 +3743,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot günstiger prüfen" },
       { href: "/angebot-vergleichen-regensburg", label: "Reinigung Regensburg prüfen" },
-      { href: "/angebotscheck", label: "Angebotscheck starten" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck starten" },
       { href: "/buchung", label: "Direkt anfragen" },
     ],
     faqTitle: "FAQ zum besseren oder günstigeren Angebot",
@@ -4113,7 +4113,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-      { href: "/regensburg/reinigungsfirma", label: "Putzfirma Regensburg" },
+      { href: "/regensburg/reinigung", label: "Putzfirma Regensburg" },
       { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
       { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot prüfen" },
     ],

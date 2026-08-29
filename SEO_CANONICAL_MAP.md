@@ -1,6 +1,6 @@
 # SEO Canonical Map
 
-Stand: 2026-07-26T11:16:24.285Z
+Stand: 2026-08-29T03:09:07.650Z
 
 ## Düsseldorf
 
@@ -15,7 +15,7 @@ Stand: 2026-07-26T11:16:24.285Z
 ## Regensburg
 
 - Kanonische Haupt-URL: /regensburg/wohnungsaufloesung
-- Unterstützende URLs: /regensburg/reinigung, /regensburg/endreinigung, /regensburg/bueroreinigung, /regensburg/gewerbereinigung, /regensburg/umzug, /regensburg/entruempelung, /regensburg/wohnungsaufloesung, /kontakt
+- Unterstützende URLs: /regensburg/reinigung, /regensburg/reinigung-nach-umzug, /regensburg/bueroreinigung, /regensburg/gewerbereinigung, /regensburg/umzug, /regensburg/entruempelung, /regensburg/wohnungsaufloesung, /kontakt
 - Duplicate-/Varianten-URLs: /de/regensburg/umzug, /de/umzug-regensburg, /de/regensburg/entruempelung, /de/entruempelung-regensburg, /de/wohnungsaufloesung-regensburg, /de/regensburg/wohnungsaufloesung
 - Redirect-Kandidaten: klare Locale- und Legacy-Varianten mit gleichem Intent.
 - Canonical-Kandidaten: nur Varianten mit separatem Suchintent behalten.

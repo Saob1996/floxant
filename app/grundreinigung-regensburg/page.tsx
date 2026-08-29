@@ -171,7 +171,7 @@ const relatedLinks = [
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
   { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
   { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },

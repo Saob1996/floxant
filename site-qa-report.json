@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-26T11:16:31.336Z",
+  "generatedAt": "2026-08-29T03:30:58.055Z",
   "status": "WARN",
   "summary": {
     "PASS": 132,
-    "WARN": 4
+    "WARN": 5
   },
   "criticalRoutes": [
     {
@@ -27,7 +27,7 @@
       "city": "regensburg",
       "priority": "P0",
       "structuredData": true,
-      "form": "SeoLeadForm",
+      "form": "WebsiteRequestForm",
       "contactTarget": "/kontakt?city=regensburg&intent=contact&source=seo",
       "canonical": "https://www.floxant.de/kontakt"
     },
@@ -823,6 +823,17 @@
       "manualReview": false
     },
     {
+      "status": "WARN",
+      "category": "SEO",
+      "file": "lib/sitemap-routes.ts",
+      "route": "/seniorenumzug-landshut",
+      "problem": "Kritische Public Page fehlt in der Sitemap.",
+      "priority": "P1",
+      "recommendedFix": "npm run seo:sitemap ausfuehren oder Route-Aufnahme pruefen.",
+      "autoFixed": false,
+      "manualReview": true
+    },
+    {
       "status": "PASS",
       "category": "Routing",
       "file": "next.config.js",
@@ -1285,15 +1296,15 @@
       "manualReview": false
     },
     {
-      "status": "WARN",
+      "status": "PASS",
       "category": "CTA",
       "file": "app/reinigung/page.tsx",
       "route": "/reinigung",
-      "problem": "CTA vorhanden, aber Tracking-/Intent-Attribute statisch nicht klar nachweisbar.",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
-      "recommendedFix": "data-service, data-city, data-page-intent, data-priority manuell pruefen.",
+      "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
-      "manualReview": true
+      "manualReview": false
     },
     {
       "status": "PASS",
@@ -1351,12 +1362,34 @@
       "manualReview": false
     },
     {
-      "status": "PASS",
+      "status": "WARN",
       "category": "CTA",
       "file": "app/duesseldorf/page.tsx",
       "route": "/duesseldorf",
+      "problem": "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.",
+      "priority": "P1",
+      "recommendedFix": "Hero- und Content-CTA manuell pruefen.",
+      "autoFixed": false,
+      "manualReview": true
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1389,28 +1422,6 @@
       "file": "app/regensburg/reinigung/page.tsx",
       "route": "/regensburg/reinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/regensburg/reinigung/page.tsx",
-      "route": "/regensburg/reinigung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/regensburg/reinigung/page.tsx",
-      "route": "/regensburg/reinigung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -1428,23 +1439,56 @@
       "manualReview": false
     },
     {
-      "status": "WARN",
+      "status": "PASS",
       "category": "CTA",
       "file": "app/duesseldorf/reinigung/page.tsx",
       "route": "/duesseldorf/reinigung",
-      "problem": "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P0",
-      "recommendedFix": "Hero- und Content-CTA manuell pruefen.",
+      "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
-      "manualReview": true
+      "manualReview": false
     },
     {
-      "status": "WARN",
+      "status": "PASS",
       "category": "CTA",
       "file": "app/duesseldorf/bueroreinigung/page.tsx",
       "route": "/duesseldorf/bueroreinigung",
-      "problem": "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/duesseldorf/grundreinigung/page.tsx",
+      "route": "/duesseldorf/grundreinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "WARN",
+      "category": "CTA",
+      "file": "app/regensburg/page.tsx",
+      "route": "/regensburg",
+      "problem": "CTA vorhanden, aber öffentliche Tracking-Attribute statisch nicht klar nachweisbar.",
+      "priority": "P1",
+      "recommendedFix": "data-service, data-city und sichtbares CTA-Label manuell prüfen.",
+      "autoFixed": false,
+      "manualReview": true
+    },
+    {
+      "status": "WARN",
+      "category": "CTA",
+      "file": "app/regensburg/umzug/page.tsx",
+      "route": "/regensburg/umzug",
+      "problem": "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.",
+      "priority": "P2",
       "recommendedFix": "Hero- und Content-CTA manuell pruefen.",
       "autoFixed": false,
       "manualReview": true
@@ -1452,46 +1496,13 @@
     {
       "status": "WARN",
       "category": "CTA",
-      "file": "app/duesseldorf/grundreinigung/page.tsx",
-      "route": "/duesseldorf/grundreinigung",
+      "file": "app/regensburg/umzug/page.tsx",
+      "route": "/regensburg/umzug",
       "problem": "Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar.",
-      "priority": "P1",
+      "priority": "P0",
       "recommendedFix": "Hero- und Content-CTA manuell pruefen.",
       "autoFixed": false,
       "manualReview": true
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/regensburg/page.tsx",
-      "route": "/regensburg",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/regensburg/umzug/page.tsx",
-      "route": "/regensburg/umzug",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P2",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/regensburg/umzug/page.tsx",
-      "route": "/regensburg/umzug",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
     },
     {
       "status": "PASS",

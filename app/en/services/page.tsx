@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Services in English",
   description:
-    "Browse publicly reviewed FLOXANT services with English pages for cleaning, moving, clearance and quote checks in Düsseldorf and Regensburg.",
+    "Browse FLOXANT services with English pages for cleaning, moving, clearance and quote checks in Düsseldorf and Regensburg.",
   alternates: {
     canonical: path,
     languages: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: path,
     title: "FLOXANT Services in English",
-    description: "Filter reviewed services by region, audience, service type and frequency.",
+    description: "Filter available service information by region, audience, service type and frequency.",
   },
   robots: { index: true, follow: true },
 };

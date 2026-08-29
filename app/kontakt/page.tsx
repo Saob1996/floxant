@@ -25,12 +25,8 @@ const requestProcess = [
     text: "Wir prüfen Ihre Anfrage und melden uns bei Rückfragen oder wenn eine Besichtigung sinnvoll ist.",
   },
   {
-    title: "Angebot erhalten",
-    text: "Auf Grundlage der abgestimmten Angaben erhalten Sie ein persönliches Angebot.",
-  },
-  {
-    title: "Termin abstimmen",
-    text: "Erst danach werden Durchführung und Termin gemeinsam abgestimmt.",
+    title: "Angebot und Termin abstimmen",
+    text: "Auf Grundlage der abgestimmten Angaben erhalten Sie ein persönliches Angebot; erst danach wird ein Termin gemeinsam festgelegt.",
   },
 ] as const;
 
@@ -51,6 +47,11 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       ...metadata.alternates,
       canonical: `${company.url}/kontakt`,
+      languages: {
+        "de-DE": `${company.url}/kontakt`,
+        en: `${company.url}/en/contact`,
+        "x-default": `${company.url}/kontakt`,
+      },
     },
   };
 }

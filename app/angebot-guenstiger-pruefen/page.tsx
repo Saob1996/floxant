@@ -1097,7 +1097,7 @@ export default function AngebotGuenstigerPruefenPage() {
           </div>
         </section>
 
-        <section className="px-4 py-14 sm:px-6">
+        <section id="red-flag-scanner" className="scroll-mt-24 px-4 py-14 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-700 shadow-sm">
@@ -1423,7 +1423,7 @@ export default function AngebotGuenstigerPruefenPage() {
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <Link
-                  href="/angebotscheck"
+                  href="/angebot-guenstiger-pruefen#red-flag-scanner"
                   className="rounded-[1.1rem] border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-black text-blue-800 transition hover:bg-blue-100"
                 >
                   Nur Angebot prüfen?

@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     canonical: canonicalPath,
     languages: {
       "de-DE": canonicalPath,
+      en: "/en/regensburg/senior-moving",
       "x-default": canonicalPath,
     },
   },

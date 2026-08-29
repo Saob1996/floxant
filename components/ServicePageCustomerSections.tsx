@@ -50,7 +50,7 @@ const combinedByRegion = {
     {
       title: "Haushaltsauflösung + Übergabe",
       text: "Wenn Räumung, Fotos, Restpunkte und Übergabetermin ruhig abgestimmt werden sollen.",
-      href: "/regensburg/haushaltsaufloesung",
+      href: "/regensburg/wohnungsaufloesung",
     },
   ],
 } as const;

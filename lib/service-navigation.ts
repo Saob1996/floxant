@@ -320,11 +320,11 @@ export const footerNavigationGroups = [
   {
     title: "Besondere Lösungen",
     links: [
-      { label: "Angebotscheck", href: "/angebotscheck" },
+      { label: "Angebotscheck", href: "/angebot-guenstiger-pruefen" },
       { label: "Plan-B-Service", href: "/plan-b-service" },
       { label: "Diskret-Service", href: "/diskreter-umzug-trennung-scheidung" },
       { label: "Objektbrief", href: "/objektbrief" },
-      { label: "Rückfahrt-Radar", href: "/rueckfahrt-boerse" },
+      { label: "Leerfahrt und Rückfahrt", href: "/leerfahrt-rueckfahrt" },
     ],
   },
   {
@@ -332,7 +332,7 @@ export const footerNavigationGroups = [
     links: [
       { label: "Kontaktseite", href: "/kontakt" },
       { label: "Anfrage stellen", href: "/kontakt?mode=neutral&source=footer" },
-      { label: "Angebot prüfen", href: "/angebotscheck" },
+      { label: "Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
     ],
   },
 ] as const;

@@ -211,7 +211,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
     difference: `Im Unterschied zu improvisierten Einzeltransporten erhalten Sie eine abgestimmte Einsatzplanung mit festen Leistungen und klarer regionaler Verfügbarkeit.`,
     relatedLinks: [
       { href: "/umzug", label: "Umzug im Überblick" },
-      { href: "/beiladung", label: "Beiladung für einzelne Möbel prüfen" },
+      { href: "/leerfahrt-rueckfahrt", label: "Beiladung für einzelne Möbel prüfen" },
       { href: "/rechner", label: "Umzug direkt kalkulieren" },
       { href: "/standorte", label: `Standorte und Verfügbarkeit für ${region}` },
     ],
@@ -721,7 +721,7 @@ export function SpecialtyPageLayout({
     ...serviceContext.relatedLinks,
     { href: "/angebot-guenstiger-pruefen", label: `Angebot für ${city} günstiger oder passender prüfen` },
     { href: getOfferCheckBlogHref(serviceContext.name), label: `${serviceContext.name}-Angebot richtig prüfen` },
-    { href: "/angebotscheck", label: `Angebot für ${city} vor Zusage prüfen` },
+    { href: "/angebot-guenstiger-pruefen", label: `Angebot für ${city} vor Zusage prüfen` },
     { href: "/standorte", label: "Alle Standorte und Einsatzgebiete" },
     { href: serviceContext.primaryPath, label: `${serviceContext.name} als Hauptservice` },
     { href: serviceContext.calculatorHref, label: `${serviceContext.name} im Rechner anfragen` },
@@ -806,7 +806,7 @@ export function SpecialtyPageLayout({
       Icon: BadgeEuro,
     },
     {
-      href: "/angebotscheck",
+      href: "/angebot-guenstiger-pruefen",
       title: "Lücken im Angebot erkennen",
       text: "Etage, Laufweg, Reinigung, Entsorgung, Zeitfenster oder Zusatzkosten vor Zusage einordnen.",
       Icon: ClipboardCheck,

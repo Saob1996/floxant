@@ -71,7 +71,7 @@ function getBookingHref(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKe
           ? "angebot-pruefen"
           : "reinigung";
 
-  return `/buchung?region=${region}&service=${serviceParam}#buchungssystem`;
+  return `/kontakt?service=${serviceParam}&city=${region}&intent=${serviceKey}-${region}&source=website`;
 }
 
 function getProcess(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKey): string[] {
@@ -439,6 +439,13 @@ const centerServicePages = [
     metaDescription:
       "Reinigung nach Umzug in Regensburg fuer Auszug, Endreinigung, Uebergabe, Restpunkte und Fotos unverbindlich pruefen.",
     h1: "Reinigung nach Umzug Regensburg fuer Auszug, Endreinigung und Uebergabe",
+    internalLinks: [
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Zum zentralen Reinigungsangebot für Wohnung, Büro und Objekt." },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung vor der Reinigung", text: "Restmengen und Räumung getrennt vom Reinigungsumfang klären." },
+      { href: "/objektbrief", label: "Objektbrief", text: "Fotos, Zugang, Zielzustand und offene Punkte strukturiert zusammenstellen." },
+      { href: "/uebergabeakte", label: "Übergabeakte", text: "Termin, Schlüsselstatus, Fotos und Restpunkte für die Übergabe ordnen." },
+      { href: "/angebot-guenstiger-pruefen", label: "Vorhandenes Angebot prüfen", text: "Umfang, Annahmen und Zusatzpositionen sachlich einordnen." },
+    ],
     maturity: indexableM2,
   }),
   createPage({

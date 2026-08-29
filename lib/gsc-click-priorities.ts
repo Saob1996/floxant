@@ -49,8 +49,8 @@ const regensburgCleaningAnchors = [
 ] as const;
 
 const endCleaningRegensburgAnchors = [
-  { href: "/regensburg/endreinigung", label: "Endreinigung vor Übergabe Regensburg" },
-  { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung Regensburg" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung vor Übergabe Regensburg" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Übergabereinigung Regensburg" },
   { href: "/regensburg/entruempelung", label: "Entrümpelung vor Endreinigung" },
   { href: "/objektbrief", label: "Objektbrief für Übergabe" },
   { href: "/uebergabeakte", label: "Übergabeakte vorbereiten" },
@@ -76,7 +76,7 @@ const bavariaMoveAnchors = [
 
 const regensburgMoveAnchors = [
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-  { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzugsunternehmen Regensburg" },
   { href: "/regensburg/umzug-reinigung", label: "Umzug mit Reinigung Regensburg" },
   { href: "/regensburg/entruempelung", label: "Entrümpelung vor Umzug Regensburg" },
   { href: "/angebot-vergleichen-regensburg", label: "Umzugsangebot Regensburg prüfen" },
@@ -86,7 +86,7 @@ const regensburgClearanceAnchors = [
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg Einstieg" },
-  { href: "/regensburg/endreinigung", label: "Endreinigung nach Räumung" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung nach Räumung" },
   { href: "/angebot-vergleichen-regensburg", label: "Räumungsangebot prüfen" },
 ] as const;
 
@@ -140,10 +140,10 @@ export const gscClickPriorities = {
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: regensburgCleaningAnchors,
   },
-  "/regensburg/endreinigung": {
+  "/regensburg/reinigung-nach-umzug": {
     priority: "P0",
-    path: "/regensburg/endreinigung",
-    canonical: "/regensburg/endreinigung",
+    path: "/regensburg/reinigung-nach-umzug",
+    canonical: "/regensburg/reinigung-nach-umzug",
     title: "Endreinigung Regensburg | Übergabe & Auszug vorbereiten",
     description:
       "Endreinigung in Regensburg vor Übergabe, nach Auszug oder Entrümpelung: Fotos, Fläche, Zustand, Frist und Restmengen prüfen lassen.",
@@ -359,7 +359,7 @@ export const gscClickPriorities = {
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: [
       { href: "/regensburg/reinigung", label: "Reinigung nach Entrümpelung Regensburg" },
-      { href: "/regensburg/haushaltsaufloesung", label: "Haushaltsauflösung Regensburg" },
+      { href: "/regensburg/wohnungsaufloesung", label: "Haushaltsauflösung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
       { href: "/kontakt?service=entruempelung&city=regensburg&intent=entruempelungsangebot-pruefen&source=website", label: "Räumungsangebot einordnen" },
     ],
@@ -424,7 +424,7 @@ export const gscClickPriorities = {
     secondaryKeywords: ["photovoltaik reinigung", "pv module reinigen", "pv reinigung angebot"],
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: [
-      { href: "/solarreinigung", label: "Solarreinigung" },
+      { href: "/pv-anlagen-reinigung", label: "Solarreinigung" },
       { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot prüfen" },
       { href: "/kontakt?mode=neutral&source=website", label: "PV-Reinigung anfragen" },
     ],
@@ -968,7 +968,7 @@ export type SeoMoneyPage = {
 
 const monitoredMoneyPageTargets = [
   { path: "/regensburg/reinigung", priorityPath: "/regensburg/reinigung" },
-  { path: "/regensburg/endreinigung", priorityPath: "/regensburg/endreinigung" },
+  { path: "/regensburg/reinigung-nach-umzug", priorityPath: "/regensburg/reinigung-nach-umzug" },
   { path: "/entruempelung-landshut", priorityPath: "/entruempelung-landshut" },
   { path: "/umzug-vohenstrauss", priorityPath: "/umzug-vohenstrauss" },
   { path: "/umzug-neustadt-an-der-waldnaab", priorityPath: "/umzug-neustadt-an-der-waldnaab" },
@@ -992,11 +992,11 @@ const monitoredMoneyPageContext = {
     intent: "lokale Reinigungsanfrage mit Fotos, Termin und Zielzustand",
     expectedRelatedLinks: ["/entruempelung-regensburg", "/reinigungsfirma-angebot", "/kontakt"],
   },
-  "/regensburg/endreinigung": {
+  "/regensburg/reinigung-nach-umzug": {
     service: "reinigung",
     city: "regensburg",
     intent: "Endreinigung vor Uebergabe, Reinigung nach Entruempelung und Vermieter-Ready-Service",
-    expectedRelatedLinks: ["/regensburg/uebergabereinigung", "/objektbrief", "/uebergabeakte", "/angebot-guenstiger-pruefen"],
+    expectedRelatedLinks: ["/regensburg/entruempelung", "/objektbrief", "/uebergabeakte", "/angebot-guenstiger-pruefen"],
   },
   "/entruempelung-landshut": {
     service: "entruempelung",

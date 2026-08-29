@@ -65,7 +65,7 @@ const platformSituations = [
     title: "Preis oder Leistung unklar",
     text: "Vor Zusage sollten enthaltene Leistungen, Ausschlüsse, Mehrwertsteuer und Zusatzkosten klar sein.",
     action: "Red Flags checken",
-    href: "/angebotscheck#red-flag-scanner",
+    href: "/angebot-guenstiger-pruefen#red-flag-scanner",
     Icon: Scale,
   },
   {
@@ -113,7 +113,7 @@ const ways = [
     title: "2. Red Flags selbst checken",
     text: "Wenn Sie zuerst Orientierung wollen, nutzen Sie den Red-Flag-Scanner für offene Punkte vor der Zusage.",
     cta: "Red-Flag-Check starten",
-    href: "/angebotscheck#red-flag-scanner",
+    href: "/angebot-guenstiger-pruefen#red-flag-scanner",
     Icon: BadgeCheck,
   },
   {
@@ -297,7 +297,7 @@ export default function PlattformAuftragPruefenPage() {
                 Rechtsberatung und keine Plattformbewertung.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/angebotscheck#red-flag-scanner" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
+                <Link href="/angebot-guenstiger-pruefen#red-flag-scanner" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                   Red-Flag-Check starten
                   <ArrowRight className="h-4 w-4" />
                 </Link>

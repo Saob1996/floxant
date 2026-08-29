@@ -72,16 +72,16 @@ function buildEnglishLocalIntro(input: EnglishPageInput, city: LocalSeoCityRecor
 function buildEnglishLocalProofNotes(input: EnglishPageInput, city: LocalSeoCityRecord) {
   if (localSeoServices[input.serviceKey].category === "cleaning") {
     return [
-      `${city.displayName} cleaning is kept separate from moving pages.`,
-      `Districts such as ${city.districts.slice(0, 4).join(", ")} are used as real local context.`,
-      "The English information describes the real service and the details customers need to provide.",
+      `Requests are assessed from the property type, scope, access, timing and photos provided.`,
+      `Districts such as ${city.districts.slice(0, 4).join(", ")} can affect access and scheduling.`,
+      "Availability, final scope and price are confirmed only after the request details have been checked.",
     ];
   }
 
   return [
-    `${city.displayName} is the relevant service region for this request.`,
-    "Moving, clearance and cleaning after moving are separated before pricing.",
-    "The English information describes the real service and links to the matching request.",
+    `Requests for ${city.displayName} are assessed from route, volume, access, timing and photos.`,
+    "Moving, clearance and cleaning after moving are itemised before pricing.",
+    "Availability, final scope and price are confirmed only after the details have been checked.",
   ];
 }
 
@@ -105,7 +105,7 @@ function buildEnglishFaq(input: EnglishPageInput, city: LocalSeoCityRecord): Loc
     },
     {
       q: "Can I use this page to contact FLOXANT in English?",
-      a: "Yes. This page explains the service in English and links to the matching German information when it is available.",
+      a: "Yes. Use the English request form and choose English as your response language. You can describe the full request and upload supporting files there.",
     },
   ];
 }
@@ -176,11 +176,15 @@ function createEnglishPage(input: EnglishPageInput): LocalSeoPageConfig {
     internalLinks: input.internalLinks,
     primaryCta: {
       label: input.serviceKey === "angebot-vergleichen" ? "Review quote" : `Request ${input.serviceName}`,
-      href: input.primaryCtaHref,
+      href: input.primaryCtaHref.startsWith("/en/")
+        ? input.primaryCtaHref
+        : `/en/contact?city=${input.region}&service=${input.serviceKey}&intent=${encodeURIComponent(input.key)}`,
     },
     secondaryCta: {
       label: "Open quote review",
-      href: input.secondaryCtaHref,
+      href: input.secondaryCtaHref.startsWith("/en/")
+        ? input.secondaryCtaHref
+        : `/en/contact?city=${input.region}&service=angebot-vergleichen&intent=quote-review`,
     },
     whatsappMessage: input.whatsappMessage,
     seo: getSeoIntentCluster(input.path, {
@@ -203,8 +207,11 @@ const regensburgCleaningLinks: readonly LocalSeoLink[] = [
   { href: "/en/regensburg/apartment-cleaning", label: "Apartment cleaning Regensburg" },
   { href: "/en/regensburg/deep-cleaning", label: "Deep cleaning Regensburg" },
   { href: "/en/regensburg/stairwell-cleaning", label: "Stairwell cleaning Regensburg" },
+  { href: "/en/regensburg/commercial-cleaning", label: "Commercial cleaning Regensburg" },
+  { href: "/en/regensburg/practice-cleaning", label: "Practice cleaning Regensburg" },
+  { href: "/en/regensburg/window-cleaning", label: "Window cleaning Regensburg" },
+  { href: "/en/regensburg/post-construction-cleaning", label: "Post-construction cleaning Regensburg" },
   { href: "/en/regensburg/cleaning-quote-review", label: "Cleaning quote review" },
-  { href: "/regensburg/reinigung", label: "German cleaning page" },
 ];
 
 const regensburgMovingLinks: readonly LocalSeoLink[] = [
@@ -213,11 +220,14 @@ const regensburgMovingLinks: readonly LocalSeoLink[] = [
   { href: "/en/regensburg/moving-costs", label: "Moving costs Regensburg" },
   { href: "/en/regensburg/transport-service", label: "Transport service Regensburg" },
   { href: "/en/regensburg/furniture-transport", label: "Furniture transport Regensburg" },
+  { href: "/en/regensburg/piano-transport", label: "Piano transport Regensburg" },
+  { href: "/en/regensburg/moving-help", label: "Moving help Regensburg" },
+  { href: "/en/regensburg/furniture-assembly", label: "Furniture assembly Regensburg" },
+  { href: "/en/regensburg/senior-moving", label: "Senior moving Regensburg" },
   { href: "/en/regensburg/house-clearance", label: "House clearance Regensburg" },
   { href: "/en/regensburg/apartment-clearance", label: "Apartment clearance Regensburg" },
   { href: "/en/regensburg/cleaning-after-moving", label: "Cleaning after moving" },
   { href: "/en/regensburg/moving-quote-review", label: "Moving quote review" },
-  { href: "/regensburg/angebot-vergleichen", label: "German quote review page" },
 ];
 
 const duesseldorfCleaningLinks: readonly LocalSeoLink[] = [
@@ -226,8 +236,12 @@ const duesseldorfCleaningLinks: readonly LocalSeoLink[] = [
   { href: "/en/duesseldorf/commercial-cleaning", label: "Commercial cleaning Düsseldorf" },
   { href: "/en/duesseldorf/practice-cleaning", label: "Practice cleaning Düsseldorf" },
   { href: "/en/duesseldorf/window-cleaning", label: "Window cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/deep-cleaning", label: "Deep cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/move-out-cleaning", label: "Move-out cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/post-construction-cleaning", label: "Post-construction cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/maintenance-cleaning", label: "Maintenance cleaning Düsseldorf" },
+  { href: "/en/duesseldorf/stairwell-cleaning", label: "Stairwell cleaning Düsseldorf" },
   { href: "/en/duesseldorf/cleaning-quote-review", label: "Cleaning quote review" },
-  { href: "/duesseldorf/reinigung", label: "German cleaning page" },
 ] as const;
 
 const duesseldorfEnglishSpecs = [
@@ -279,6 +293,46 @@ const duesseldorfEnglishSpecs = [
     customerTypes: ["households", "office managers", "practice teams", "property managers"],
     typicalCases: ["two different quotes", "unclear extras", "missing room list", "unclear frequency"],
   },
+  {
+    path: "/en/duesseldorf/deep-cleaning",
+    serviceKey: "grundreinigung",
+    serviceName: "Deep cleaning",
+    scope: ["kitchens", "bathrooms", "floors", "built-in surfaces", "heavier soiling"],
+    customerTypes: ["households", "landlords", "offices", "property managers"],
+    typicalCases: ["heavy use", "renovation residue", "empty property", "one-time reset"],
+  },
+  {
+    path: "/en/duesseldorf/move-out-cleaning",
+    serviceKey: "reinigung-nach-umzug",
+    serviceName: "Move-out cleaning",
+    scope: ["empty rooms", "kitchen", "bathroom", "floors", "handover preparation"],
+    customerTypes: ["tenants", "landlords", "relocation customers", "property managers"],
+    typicalCases: ["key return", "end of tenancy", "empty flat", "fixed handover date"],
+  },
+  {
+    path: "/en/duesseldorf/post-construction-cleaning",
+    serviceKey: "grundreinigung",
+    serviceName: "Post-construction cleaning",
+    scope: ["construction dust", "floors", "fixtures", "accessible surfaces", "handover areas"],
+    customerTypes: ["property owners", "contractors", "offices", "property managers"],
+    typicalCases: ["after renovation", "tenant fit-out", "before handover", "dust-sensitive surfaces"],
+  },
+  {
+    path: "/en/duesseldorf/maintenance-cleaning",
+    serviceKey: "gewerbereinigung",
+    serviceName: "Maintenance cleaning",
+    scope: ["recurring tasks", "room schedules", "sanitary areas", "floors", "agreed time windows"],
+    customerTypes: ["offices", "practices", "shops", "property managers"],
+    typicalCases: ["weekly schedule", "multiple zones", "key access", "service-plan review"],
+  },
+  {
+    path: "/en/duesseldorf/stairwell-cleaning",
+    serviceKey: "treppenhausreinigung",
+    serviceName: "Stairwell cleaning",
+    scope: ["entrances", "stairs", "landings", "handrails", "agreed shared areas"],
+    customerTypes: ["property managers", "landlords", "owners' associations", "commercial tenants"],
+    typicalCases: ["recurring schedule", "multi-storey building", "shared entrance", "access coordination"],
+  },
 ] as const satisfies readonly {
   path: string;
   serviceKey: LocalSeoServiceKey;
@@ -289,8 +343,12 @@ const duesseldorfEnglishSpecs = [
 }[];
 
 const duesseldorfEnglishPages = duesseldorfEnglishSpecs.map((spec) => {
-  const metadata = getSearchAuthorityMetadata(spec.path);
-  if (!metadata) throw new Error(`Missing search authority metadata for ${spec.path}`);
+  const metadata = getSearchAuthorityMetadata(spec.path) ?? {
+    seoTitle: `${spec.serviceName} Düsseldorf | English Request | FLOXANT`,
+    description: `${spec.serviceName} in Düsseldorf: send property, scope, access, timing and photos in English for a realistic assessment.`,
+    headline: `${spec.serviceName} in Düsseldorf with a clear scope`,
+    ogDescription: `Request ${spec.serviceName.toLowerCase()} in Düsseldorf with the facts needed to assess scope, access and timing.`,
+  };
 
   return createEnglishPage({
     key: spec.path.replace(/^\//, "").replace(/\//g, "-"),
@@ -326,6 +384,121 @@ const duesseldorfEnglishPages = duesseldorfEnglishSpecs.map((spec) => {
     whatsappMessage: `Hello FLOXANT, I need ${spec.serviceName.toLowerCase()} in Düsseldorf. I can send property type, district, size, photos, access and timing.`,
   });
 });
+
+const regensburgExpansionSpecs = [
+  {
+    path: "/en/regensburg/piano-transport",
+    serviceKey: "umzug",
+    serviceName: "Piano transport",
+    scope: ["instrument type", "dimensions", "stairs and lift", "carrying distance", "pickup and destination"],
+    customerTypes: ["private customers", "music schools", "landlords", "relocation customers"],
+    typicalCases: ["upright piano", "stairs", "narrow access", "fixed delivery window"],
+  },
+  {
+    path: "/en/regensburg/moving-help",
+    serviceKey: "umzugsservice",
+    serviceName: "Moving help",
+    scope: ["carrying", "loading", "unloading", "boxes and furniture", "agreed support tasks"],
+    customerTypes: ["tenants", "families", "students", "relocation customers"],
+    typicalCases: ["help without a full move", "loading support", "stairs", "short local move"],
+  },
+  {
+    path: "/en/regensburg/furniture-assembly",
+    serviceKey: "umzugsservice",
+    serviceName: "Furniture assembly",
+    scope: ["furniture list", "manufacturer details", "dismantling", "assembly", "available instructions"],
+    customerTypes: ["private customers", "offices", "landlords", "relocation customers"],
+    typicalCases: ["assembly after moving", "wardrobes", "office furniture", "missing instructions"],
+  },
+  {
+    path: "/en/regensburg/commercial-cleaning",
+    serviceKey: "gewerbereinigung",
+    serviceName: "Commercial cleaning",
+    scope: ["business areas", "floors", "sanitary rooms", "customer areas", "service frequency"],
+    customerTypes: ["shops", "studios", "offices", "property managers"],
+    typicalCases: ["recurring cleaning", "outside opening hours", "mixed surfaces", "scope review"],
+  },
+  {
+    path: "/en/regensburg/practice-cleaning",
+    serviceKey: "praxisreinigung",
+    serviceName: "Practice cleaning",
+    scope: ["reception", "waiting rooms", "treatment rooms", "sanitary rooms", "agreed ancillary areas"],
+    customerTypes: ["practice managers", "therapy practices", "medical office teams", "facility contacts"],
+    typicalCases: ["recurring schedule", "room list", "access planning", "existing quote"],
+  },
+  {
+    path: "/en/regensburg/window-cleaning",
+    serviceKey: "fensterreinigung",
+    serviceName: "Window cleaning",
+    scope: ["glass areas", "inside and outside", "frames", "shop windows", "access assessment"],
+    customerTypes: ["households", "offices", "shops", "property managers"],
+    typicalCases: ["one-time cleaning", "regular glass cleaning", "upper floors", "frame cleaning"],
+  },
+  {
+    path: "/en/regensburg/post-construction-cleaning",
+    serviceKey: "grundreinigung",
+    serviceName: "Post-construction cleaning",
+    scope: ["construction dust", "floors", "fixtures", "accessible surfaces", "handover areas"],
+    customerTypes: ["property owners", "contractors", "offices", "property managers"],
+    typicalCases: ["after renovation", "tenant fit-out", "before handover", "dust-sensitive surfaces"],
+  },
+  {
+    path: "/en/regensburg/senior-moving",
+    serviceKey: "seniorenumzug",
+    serviceName: "Senior moving",
+    scope: ["moving plan", "packing support", "furniture", "handover tasks", "family coordination"],
+    customerTypes: ["older customers", "families", "legal representatives", "care coordinators"],
+    typicalCases: ["smaller new home", "family coordination", "clearance after moving", "handover cleaning"],
+  },
+] as const satisfies readonly {
+  path: string;
+  serviceKey: LocalSeoServiceKey;
+  serviceName: string;
+  scope: readonly string[];
+  customerTypes: readonly string[];
+  typicalCases: readonly string[];
+}[];
+
+const regensburgExpansionEnglishPages = regensburgExpansionSpecs.map((spec) =>
+  createEnglishPage({
+    key: spec.path.replace(/^\//, "").replace(/\//g, "-"),
+    path: spec.path,
+    region: "regensburg",
+    serviceKey: spec.serviceKey,
+    serviceName: spec.serviceName,
+    metaTitle: `${spec.serviceName} Regensburg | English Request | FLOXANT`,
+    metaDescription: `${spec.serviceName} in Regensburg: send scope, access, timing and photos in English for a realistic assessment.`,
+    h1: `${spec.serviceName} in Regensburg with clear request details`,
+    heroText: `Describe ${spec.scope.slice(0, 4).join(", ")} in English. FLOXANT checks the known facts before confirming scope, price or availability.`,
+    scope: spec.scope,
+    customerTypes: spec.customerTypes,
+    typicalCases: spec.typicalCases,
+    sections: [
+      section(
+        `${spec.serviceName} with a defined scope`,
+        `A useful first request covers ${spec.scope.join(", ")}. Photos and measurements help where the condition or access affects the work.`,
+      ),
+      section(
+        "What to include",
+        "Send the location, preferred date, access details, relevant quantities or dimensions, photos and the result you need. Mention a fixed handover or deadline explicitly.",
+      ),
+      section(
+        "Assessment before confirmation",
+        `Typical situations include ${spec.typicalCases.join(", ")}. FLOXANT identifies missing details and confirms the next realistic step without promising price or availability in advance.`,
+      ),
+    ],
+    internalLinks:
+      localSeoServices[spec.serviceKey].category === "cleaning"
+        ? regensburgCleaningLinks
+        : regensburgMovingLinks,
+    primaryCtaHref: `/en/contact?city=regensburg&service=${spec.serviceKey}`,
+    secondaryCtaHref:
+      localSeoServices[spec.serviceKey].category === "cleaning"
+        ? "/en/regensburg/cleaning-quote-review"
+        : "/en/regensburg/moving-quote-review",
+    whatsappMessage: `Hello FLOXANT, I need ${spec.serviceName.toLowerCase()} in Regensburg. I can send location, scope, photos, access and timing.`,
+  }),
+);
 
 const allEnglishLocalSeoPages = [
   createEnglishPage({
@@ -890,6 +1063,7 @@ const allEnglishLocalSeoPages = [
     whatsappMessage:
       "Hello FLOXANT, I want to review a moving quote in Regensburg. I can send the quote, photos, start, destination, access and timing.",
   }),
+  ...regensburgExpansionEnglishPages,
   ...duesseldorfEnglishPages,
 ] as const;
 
@@ -897,6 +1071,17 @@ export const englishLocalSeoPages = allEnglishLocalSeoPages as readonly LocalSeo
 
 export const englishLocalSeoPaths = englishLocalSeoPages.map((page) => page.path) as readonly string[];
 export const englishLocalSeoIndexablePathSet = new Set(englishLocalSeoPaths);
+
+export const englishLocalSeoSeoMatrix = englishLocalSeoPages.map((page) => ({
+  route: page.path,
+  shortTitle: page.serviceName,
+  longTitle: page.metaTitle,
+  activeTitle: page.metaTitle,
+  metaDescription: page.metaDescription,
+  h1: page.h1,
+  ogTitle: page.metaTitle,
+  ogDescription: page.heroText,
+}));
 
 export function getEnglishLocalSeoPageByPath(path: string): LocalSeoPageConfig | undefined {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;

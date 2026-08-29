@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { company } from "@/lib/company";
 import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import {
@@ -24,8 +25,8 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const canonicalPath = "/regensburg/umzug";
-const moveContactHref = "/regensburg/buchen?service=umzug";
-const furnitureAssemblyHref = "/regensburg/buchen?service=moebelmontage";
+const moveContactHref = "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=website";
+const furnitureAssemblyHref = "/kontakt?service=umzug&city=regensburg&intent=moebelmontage-regensburg&source=website";
 const offerCheckHref =
   "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
 const pageMeta = getPrioritySeoMeta(canonicalPath);
@@ -347,12 +348,19 @@ export default function RegensburgUmzugPage() {
         </div>
       </section>
 
+      <EffortFactorsPanel
+        group="umzug"
+        title="Diese Angaben bestimmen den Aufwand Ihres Umzugs"
+        intro="Strecke, Volumen, Zugänge und Zusatzarbeiten werden vor einer Termin- oder Preiseinordnung gemeinsam geprüft."
+        limit={6}
+      />
+
       <section className="border-b border-slate-200 bg-cyan-50 px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-2">
           <article className="rounded-lg border border-cyan-100 bg-white p-6">
             <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Direkt beantwortet</p>
             <h2 className="mt-3 text-2xl font-black">Was kostet eine Umzugshilfe in Regensburg?</h2>
-            <p className="mt-4 font-semibold leading-8 text-slate-700">Ohne Umfang und Zugänge lässt sich kein belastbarer Preis nennen. Entscheidend sind Möbel und Kartons, Strecke, Etagen, Aufzüge, Laufwege, Park- oder Halteverbotszone, gewünschte Trage-, Pack- oder Montagearbeiten und der Termin. Fotos und eine kurze Inventarliste helfen bei der Prüfung.</p>
+            <p className="mt-4 font-semibold leading-8 text-slate-700">Ohne Umfang und Zugänge lässt sich kein belastbarer Preis nennen. Entscheidend sind Möbel und Kartons, Strecke, Etagen, Aufzüge, Laufwege, die Parksituation, gewünschte Trage-, Pack- oder Montagearbeiten und der Termin. Fotos und eine kurze Inventarliste helfen bei der Prüfung.</p>
           </article>
           <article id="moebelmontage" className="scroll-mt-28 rounded-lg border border-cyan-100 bg-white p-6">
             <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Möbelmontage beim Umzug in Regensburg</p>

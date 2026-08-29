@@ -134,7 +134,7 @@ const useCases = [
   {
     title: "Regensburg: Wechsel und Übergabe vorbereiten",
     text: "Für Umzug, Entrümpelung, Haushaltsauflösung oder Endreinigung vor Übergabe hilft ein klares Bild aus Ort, Termin, Umfang, Zugang und Fotos.",
-    href: "/regensburg/endreinigung",
+    href: "/regensburg/reinigung-nach-umzug",
     cta: "Endreinigung öffnen",
     Icon: ClipboardCheck,
   },

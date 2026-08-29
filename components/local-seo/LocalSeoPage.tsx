@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
@@ -27,16 +27,17 @@ type LocalSeoPageProps = {
 };
 
 function getProvider(page: LocalSeoPageConfig) {
+  const provider = page.region === "duesseldorf" ? duesseldorfCompany : company;
   return {
-    name: company.name,
-    phone: company.phone,
-    phoneRaw: company.phoneRaw,
-    email: company.email,
-    streetAddress: company.streetAddress,
-    postalCode: company.postalCode,
-    city: company.city,
-    state: company.state,
-    countryCode: company.countryCode,
+    name: provider.name,
+    phone: provider.phone,
+    phoneRaw: provider.phoneRaw,
+    email: provider.email,
+    streetAddress: provider.streetAddress,
+    postalCode: provider.postalCode,
+    city: provider.city,
+    state: provider.state,
+    countryCode: provider.countryCode,
     url: company.url,
   };
 }
@@ -44,9 +45,9 @@ function getProvider(page: LocalSeoPageConfig) {
 function getLocalizedCopy(page: LocalSeoPageConfig) {
   if (page.locale === "en") {
     return {
-      localChecked: "Locally checked",
+      localChecked: "Request details",
       whatsappWithPhotos: "WhatsApp with photos",
-      localCheckLabel: "Local check",
+      localCheckLabel: "Service area",
       firstFeedbackTitle: "What matters for the first reply",
       firstFeedbackItems: ["city/district", "photos", "timing", "scope", "existing quote"],
       localEntryLabel: "Local context",
@@ -74,9 +75,9 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
   }
 
   return {
-    localChecked: "Lokal geprüft",
+    localChecked: "Anfrage mit Ortsangabe",
     whatsappWithPhotos: "WhatsApp mit Fotos",
-    localCheckLabel: "Lokale Prüfung",
+    localCheckLabel: "Einsatzgebiet",
     firstFeedbackTitle: "Was für die erste Rückmeldung zählt",
     firstFeedbackItems: ["Ort/PLZ", "Fotos", "Termin", "Umfang", "vorhandenes Angebot"],
     localEntryLabel: "Lokaler Einstieg",

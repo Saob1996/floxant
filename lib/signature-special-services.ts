@@ -27,7 +27,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeD
   {
     title: "FLOXANT Fairpreis-Check",
     text: "Prueft vorhandene Angebote fuer Reinigung, Umzug, Entruempelung, Solarreinigung oder Spezialreinigung nach Umfang, Luecken, Zusatzkosten und realistischem Aufwand.",
-    href: "/fairpreis-check",
+    href: "/angebot-guenstiger-pruefen",
     cta: "Fairpreis pruefen",
     type: "Signature Service",
     priority: "A",
@@ -36,7 +36,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeD
   {
     title: "FLOXANT Angebotscheck",
     text: "Prüft Leistungsumfang, mögliche Zusatzkosten, fehlende Positionen und auffällige Preisunterschiede sachlich.",
-    href: "/angebotscheck",
+    href: "/angebot-guenstiger-pruefen",
     cta: "Angebot einordnen",
     type: "Signature Service",
     priority: "A",
@@ -90,7 +90,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = germanizeD
   {
     title: "FLOXANT Rueckfahrt-Radar",
     text: "Prueft Beiladung, Rueckfahrt und flexible Transportstrecken nach Route, Zeitfenster, Transportgut, Zugang und Kapazitaet.",
-    href: "/rueckfahrt-radar",
+    href: "/leerfahrt-rueckfahrt",
     cta: "Rueckfahrt pruefen",
     type: "Signature Service",
     priority: "A",
@@ -138,7 +138,7 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = germanizeDe
   {
     title: "Solarreinigung",
     text: "PV-Anlage, Dachzugang, Verschmutzung, Wasseranschluss und Sicherheitsgrenzen vor einer Zusage klaeren.",
-    href: "/solarreinigung",
+    href: "/pv-anlagen-reinigung",
     cta: "Solarreinigung pruefen",
     type: "Spezialservice",
     priority: "A",
@@ -240,7 +240,7 @@ export const specialMovingLinks: readonly SignatureSpecialLink[] = germanizeDeep
   {
     title: "Rueckfahrt und Beiladung",
     text: "Wenn Strecke, Termin und Transportgut flexibel sind, kann eine Rueckfahrt oder Beiladung geprueft werden.",
-    href: "/rueckfahrt-boerse",
+    href: "/leerfahrt-rueckfahrt",
     cta: "Strecke eintragen",
     type: "Spezialservice",
     priority: "A",

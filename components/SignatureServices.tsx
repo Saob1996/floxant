@@ -151,7 +151,7 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
   estate_clearance: {
     title: "Nachlass-Räumung diskret",
     desc: "Für Angehörige, Erben und Eigentümer, wenn Wohnung, Haus, Keller oder Garage nach Erbfall ruhig geräumt, entsorgt oder gereinigt werden sollen.",
-    href: "/regensburg/haushaltsaufloesung",
+    href: "/regensburg/wohnungsaufloesung",
     label: "Nachlass-Fall senden",
     eyebrow: "Diskret",
     icon: Shield,

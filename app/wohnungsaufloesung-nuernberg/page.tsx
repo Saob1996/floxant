@@ -126,7 +126,7 @@ export default async function WohnungsaufloesungNuernbergPage({ params }: PagePr
                         {
                             title: "Räumung + Endreinigung",
                             text: "Für Übergabe, Verkauf oder Neuvermietung nach der Haushaltsauflösung.",
-                            href: "/regensburg/endreinigung",
+                            href: "/regensburg/reinigung-nach-umzug",
                         },
                         {
                             title: "Keller + Wohnung",

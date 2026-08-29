@@ -364,7 +364,7 @@ export default function PlanBServicePage() {
                 <Link href="/schadensbegrenzung" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
                   Plan schon gekippt? Zur Schadensbegrenzung wechseln.
                 </Link>
-                <Link href="/angebotscheck#red-flag-scanner" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
+                <Link href="/angebot-guenstiger-pruefen#red-flag-scanner" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">
                   Angebot unklar? Red-Flag-Scanner nutzen.
                 </Link>
                 <Link href="/plattform-auftrag-pruefen" className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-7 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50">

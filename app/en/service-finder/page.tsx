@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Service Finder in English",
   description:
-    "Local, non-binding guidance for publicly reviewed FLOXANT services with English information, without storing or transmitting your answers.",
+    "Local, non-binding guidance for FLOXANT services with English information, without storing or transmitting your answers.",
   alternates: {
     canonical: path,
     languages: { de: "/service-finder", en: path, "x-default": "/service-finder" },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: path,
     title: "FLOXANT Service Finder in English",
-    description: "Match a situation to a reviewed service using a local, rule-based guide.",
+    description: "Match a situation to a service using a local, rule-based guide.",
   },
   robots: { index: true, follow: true },
 };
@@ -128,7 +128,7 @@ export default function EnglishServiceFinderPage() {
             Non-binding guidance
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] sm:text-5xl lg:text-6xl">
-            Which publicly reviewed service fits your situation?
+            Which service fits your situation?
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
             A few short steps provide a rule-based match. The result is not a booking, price quote

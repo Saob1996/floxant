@@ -513,7 +513,7 @@ export function SeniorMoveOfferCheckCTA({ compact = false }: { compact?: boolean
             <Link href="/angebot-guenstiger-pruefen" className="rounded-lg border border-blue-100 bg-white px-4 py-3 text-sm font-black text-blue-800">
               Angebot günstiger prüfen
             </Link>
-            <Link href="/angebotscheck" className="rounded-lg border border-blue-100 bg-white px-4 py-3 text-sm font-black text-blue-800">
+            <Link href="/angebot-guenstiger-pruefen" className="rounded-lg border border-blue-100 bg-white px-4 py-3 text-sm font-black text-blue-800">
               Angebotscheck
             </Link>
             <Link href="/anbieter-vergleichen" className="rounded-lg border border-blue-100 bg-white px-4 py-3 text-sm font-black text-blue-800">
@@ -580,7 +580,6 @@ export function EnglishSeniorMoveHint() {
 
 export function RelatedSeniorMoveServices() {
   const links = [
-    { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
     { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
     { href: "/seniorenumzug-landshut", label: "Seniorenumzug Landshut" },
     { href: "/regensburg/umzug", label: "Umzug Regensburg" },
@@ -644,7 +643,7 @@ export function LocalSeniorMoveSupport({ city, route }: { city: string; route: s
             </h2>
             <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
               Diese lokale Seite soll konkrete Eckdaten für {city} klären: Start, Ziel, Etage, Umfang, Frist, Angehörige,
-              Entrümpelung, Reinigung und Übergabe. Für allgemeine Fragen bleibt `/seniorenumzug-bayern` die Hub-Seite.
+              Entrümpelung, Reinigung und Übergabe. Allgemeine Fragen bündelt die zentrale Seniorenumzug-Seite.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -656,8 +655,8 @@ export function LocalSeniorMoveSupport({ city, route }: { city: string; route: s
               Angebot prüfen
               <FileSearch className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <Link href="/seniorenumzug-bayern" className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
-              Hub: Seniorenumzug Bayern
+            <Link href="/regensburg/seniorenumzug" className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
+              Seniorenumzug im Raum Regensburg
             </Link>
             <Link href="/objektbrief" className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
               Objektbrief vorbereiten

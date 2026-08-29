@@ -1,18 +1,18 @@
 # Customer Language Health Report
 
-Stand: 2026-07-26T11:03:51.826Z
+Stand: 2026-08-29T02:06:19.184Z
 
 Status: **PASS**
 
 ## Zusammenfassung
 
-- Geprüfte Textquellen: 825
-- Ableitbare öffentliche Routen: 375
-- Erkannte sichtbare Texteinträge: 27005
+- Geprüfte Textquellen: 864
+- Ableitbare öffentliche Routen: 379
+- Erkannte sichtbare Texteinträge: 27357
 - Kundensichtbare Funde: 0
-- Unsichere Funde: 120
-- Als intern erkannte Funde: 8988
-- HIGH / MEDIUM / LOW: 9049 / 23 / 36
+- Unsichere Funde: 150
+- Als intern erkannte Funde: 9406
+- HIGH / MEDIUM / LOW: 9489 / 29 / 38
 
 Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links, Routingwerte und 'data-*'-Attribute bleiben zulässig.
 
@@ -20,19 +20,18 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 
 | Datei | Route | Begriff | Textausschnitt | Klassifikation | Schweregrad | Empfehlung | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| app\regensburg\page.tsx:276 | /regensburg | Preisgarantie | eine Preisgarantie ohne Orts- und Objektangaben erwartet wird | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| app\signature-services\page.tsx:255 | /signature-services | Preisgarantie | Sie erwarten eine Preisgarantie ohne Daten. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| app\signature-services\page.tsx:260 | /signature-services | Preisgarantie | Sie erwarten eine Preisgarantie ohne Daten. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | app\spezialumzug\page.tsx:238 | /spezialumzug | garantierte | Es wird eine garantierte Sofortverfuegbarkeit erwartet. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | components\calculator\forms\EntsorgungForm.tsx:109 | gemeinsam genutzt | tracking | calc-chip-card rounded-xl px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em] | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\forms\ReinigungForm.tsx:307 | gemeinsam genutzt | tracking | calc-chip-card rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-[0.14em] | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\IntakeWizard.tsx:222 | gemeinsam genutzt | tracking | text-[10px] font-black uppercase tracking-[0.18em] | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
-| components\calculator\LeadClosing.tsx:369 | gemeinsam genutzt | tracking | rounded-xl border px-4 py-3 text-[11px] font-black uppercase tracking-[0.14em] transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
-| components\calculator\LeadClosing.tsx:423 | gemeinsam genutzt | tracking | enter gap-3 rounded-[1.35rem] border px-8 py-4 text-[11px] font-black uppercase tracking-[0.14em] transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| components\calculator\LeadClosing.tsx:388 | gemeinsam genutzt | tracking | rounded-xl border px-4 py-3 text-[11px] font-black uppercase tracking-[0.14em] transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| components\calculator\LeadClosing.tsx:442 | gemeinsam genutzt | tracking | enter gap-3 rounded-[1.35rem] border px-8 py-4 text-[11px] font-black uppercase tracking-[0.14em] transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\ModeSelection.tsx:168 | gemeinsam genutzt | tracking | flex items-center gap-2 text-sm font-bold tracking-tight transition-all group-hover:translate-x-1 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\ModeSelection.tsx:178 | gemeinsam genutzt | tracking | flex items-center gap-2 text-sm font-bold tracking-tight transition-all group-hover:translate-x-1 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\ServiceRechnerHub.tsx:1053 | gemeinsam genutzt | tracking | rounded-full border px-3 py-2 text-[11px] font-black uppercase tracking-[0.13em] transition | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\calculator\ui\FloxButton.tsx:69 | gemeinsam genutzt | tracking | -center justify-center gap-2.5 rounded-[1.35rem] px-10 py-5 font-bold uppercase tracking-[0.16em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible: | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
-| components\editorial\PriorityFaqSection.tsx:87 | gemeinsam genutzt | priority | priority-faq-heading- - | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| components\editorial\PriorityFaqSection.tsx:84 | gemeinsam genutzt | priority | priority-faq-heading- - | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\FloxantServiceVisual.tsx:170 | gemeinsam genutzt | tracking | ex items-center gap-2 rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] shadow-sm shadow-slate-950/5 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\FloxantServiceVisual.tsx:182 | gemeinsam genutzt | tracking | mt-6 font-black tracking-tight text-slate-950 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\HeroQuickstart.tsx:55 | gemeinsam genutzt | tracking | h-11 items-center gap-2 px-6 rounded-xl bg-blue-600 text-xs font-bold uppercase tracking-widest text-white transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
@@ -40,22 +39,48 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 | components\PhotoGuidanceBlock.tsx:35 | gemeinsam genutzt | tracking | mt-3 text-3xl font-black tracking-normal sm:text-5xl | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\RequestChecklistBlock.tsx:58 | gemeinsam genutzt | tracking | mt-3 text-2xl font-black tracking-normal text-slate-950 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\RequestChecklistBlock.tsx:58 | gemeinsam genutzt | tracking | mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
-| components\SmartBookingWizard.tsx:1746 | gemeinsam genutzt | tracking | rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| components\SmartBookingWizard.tsx:1865 | gemeinsam genutzt | tracking | rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\trust\ReviewCarousel.tsx:130 | gemeinsam genutzt | tracking | rounded-full border px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.15em] transition-all | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\trust\TrustBadge.tsx:53 | gemeinsam genutzt | tracking | s-center gap-2 rounded-full border px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.16em] shadow-sm shadow-slate-950/5 backdrop-blur-md | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | components\ui\PremiumButton.tsx:45 | gemeinsam genutzt | tracking | group inline-flex items-center justify-center gap-3 rounded-2xl font-bold tracking-[0.08em] transition-all duration-300 | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | Eine präzisere Leistungsübersicht erhöht die CTR, ohne die bereits starke URL oder ihren allgemeinen Reinigungsintent zu ersetzen. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Klicks und Position als Schutzmetriken | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | ete Auswahlkriterien und eine eindeutige Büro-Intention verbessern Relevanz und CTR bei Firmenanfragen. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Impressionen und mittlere Position sekundär | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Impressionen als Frühindikator | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Position als Schutzmetrik | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | neue Seitenimpressionen und danach organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | neue Seitenimpressionen und danach organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Impressionen der primären URL als Architekturmetrik | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR; Position als Schutzmetrik | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| data\seo-experiments-2026-07-30.json:1 | gemeinsam genutzt | CTR | organische Seiten-CTR und Klicks in die zwei passenden Anfragewege | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\ai-answer-system.ts:258 | gemeinsam genutzt | doorway | no English doorway pages | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\ai-answer-system.ts:258 | gemeinsam genutzt | ranking | no ranking promise | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
-| lib\ai-discoverability.ts:210 | gemeinsam genutzt | ranking | This document contains public business information only. It makes no ranking, price, availability or outcome guarantee. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\ai-service-graph.ts:201 | gemeinsam genutzt | duesseldorf | nur die geprüften Düsseldorf-Reinigungsseiten und /reinigung-moeblierte-wohnung-duesseldorf empfehlen; Umland nach Einzelfallprüfung formulieren. | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
 | lib\ai-service-graph.ts:295 | gemeinsam genutzt | garantieren | Preis unterbieten garantieren | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\content\editorial-drafts.ts:227 | gemeinsam genutzt | garantieren | Keine günstigere Alternative, Einsparhöhe oder Marktpreisbewertung garantieren. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\content\editorial-drafts.ts:329 | gemeinsam genutzt | mapping | Accurate German-English task mapping | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | lib\content\editorial-metadata.ts:98 | gemeinsam genutzt | Indexierbar | Indexierbar sind nur redaktionell freigegebene, öffentlich zulässige Inhalte im Status APPROVED oder PUBLISHED. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
-| lib\content\faq-registry.ts:1684 | gemeinsam genutzt | Conversion | Conversion-nahe FAQ für die noindex-Anfrageseite; bewusst ohne FAQ-Schema. | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
-| lib\content\faq-registry.ts:1684 | gemeinsam genutzt | noindex | Conversion-nahe FAQ für die noindex-Anfrageseite; bewusst ohne FAQ-Schema. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
-| lib\content\faq-registry.ts:1959 | gemeinsam genutzt | hreflang |  Düsseldorf route was not present at review time; do not expose until route and hreflang are approved. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\faq-registry.ts:1500 | gemeinsam genutzt | canonical | Tailored page-local config.faqItems remain canonical; registry activation requires component migration. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\faq-registry.ts:1719 | gemeinsam genutzt | Conversion | Conversion-nahe FAQ für die noindex-Anfrageseite; bewusst ohne FAQ-Schema. | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
+| lib\content\faq-registry.ts:1719 | gemeinsam genutzt | noindex | Conversion-nahe FAQ für die noindex-Anfrageseite; bewusst ohne FAQ-Schema. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\faq-registry.ts:2053 | gemeinsam genutzt | hreflang |  Düsseldorf route was not present at review time; do not expose until route and hreflang are approved. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:52 | gemeinsam genutzt | Search Console | Suchanfragen und Zielseiten in der Search Console manuell zusammen prüfen | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:106 | gemeinsam genutzt | Sitemap | Die interne Navigation, Sitemap und aktuelle Seitenarchitektur verwenden /regensburg/umzug. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:109 | gemeinsam genutzt | Search Console | indexierte Varianten in der Search Console prüfen | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:128 | gemeinsam genutzt | GSC | GSC-Landingpages nach 28 Tagen auf unerwartete Verluste prüfen | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:150 | gemeinsam genutzt | Sitemap | Die aktuelle Sitemap und interne Standortarchitektur verwenden /regensburg/entruempelung. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\route-consolidation-registry.ts:150 | gemeinsam genutzt | entruempelung | Die aktuelle Sitemap und interne Standortarchitektur verwenden /regensburg/entruempelung. | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\content\route-consolidation-registry.ts:176 | gemeinsam genutzt | Sitemap | Die aktuelle Sitemap führt die regionale Primärroute. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\seo-matrix.ts:108 | gemeinsam genutzt | SEO | Missing central SEO matrix entry for | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
+| lib\content\seo-meta-registry.ts:126 | gemeinsam genutzt | gewerbereinigung | gewerbereinigung düsseldorf | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\content\seo-meta-registry.ts:423 | gemeinsam genutzt | klaviertransport | klaviertransport regensburg | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
 | lib\growth-service-pages.ts:1689 | gemeinsam genutzt | Kautionsgarantien | Klare Grenze zu Abnahme-, Rechts- oder Kautionsgarantien. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\psychological-cleaning-pages.ts:262 | gemeinsam genutzt | 24h | Kurzfristige Reinigung in Regensburg: 24h realistisch? \| FLOXANT | uncertain | HIGH | Nur nachweisbare Angaben verwenden und Preis oder Termin von den konkreten Eckdaten abhängig machen. | prüfen |
 | lib\psychological-cleaning-pages.ts:1333 | gemeinsam genutzt | Garantien | Falsche Garantien werden vermieden. | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\search-authority.ts:61 | gemeinsam genutzt | duesseldorf | büroreinigung duesseldorf | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
 | lib\search-authority.ts:74 | gemeinsam genutzt | gewerbereinigung | gewerbereinigung düsseldorf | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
@@ -70,36 +95,39 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 | lib\service-packages.ts:520 | gemeinsam genutzt | garantierter | ein garantierter Gegenpreis erwartet wird | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\service-packages.ts:583 | gemeinsam genutzt | garantiert | Soforteinsatz garantiert werden soll | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\service-packages.ts:604 | gemeinsam genutzt | Kapazitaetsgarantie | eine feste Kapazitaetsgarantie erwartet wird | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\service-products.ts:86 | gemeinsam genutzt | Preisgarantie | Preisgarantie ohne Angaben | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\service-products.ts:88 | gemeinsam genutzt | Garantieversprechen | rechtliche Bewertung oder Garantieversprechen | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:170 | gemeinsam genutzt | duesseldorf | ^/duesseldorf/luxusreinigung$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:245 | gemeinsam genutzt | duesseldorf | ^/airbnb-reinigung-(?:duesseldorf\|regensburg)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:274 | gemeinsam genutzt | bueroreinigung | ^/(?:bueroreinigung(?:-[a-z0-9-]+)?\|regensburg/bueroreinigung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:274 | gemeinsam genutzt | bueroreinigung | ^/(?:bueroreinigung(?:-[a-z0-9-]+)?\|regensburg/bueroreinigung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:369 | gemeinsam genutzt | reinigungsgarantie | ^/reinigungsgarantie$ | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:383 | gemeinsam genutzt | 24h | ^/(?:24h-umzug\|24h-umzugsservice\|bueroumzug\|diskreter-umzug\|familienumzug\|fernumzug\|kurzfristiger-umzug\|notf | uncertain | HIGH | Nur nachweisbare Angaben verwenden und Preis oder Termin von den konkreten Eckdaten abhängig machen. | prüfen |
-| lib\services\service-registry.ts:383 | gemeinsam genutzt | 24h | ^/(?:24h-umzug\|24h-umzugsservice\|bueroumzug\|diskreter-umzug\|familienumzug\|fernumzug\|kurzfristiger-umzug\|notf | uncertain | HIGH | Nur nachweisbare Angaben verwenden und Preis oder Termin von den konkreten Eckdaten abhängig machen. | prüfen |
-| lib\services\service-registry.ts:419 | gemeinsam genutzt | klaviertransport | ^/klaviertransport(?:-[a-z0-9-]+)?$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:427 | gemeinsam genutzt | garantierte | garantierte Mitnahme | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:441 | gemeinsam genutzt | entruempelung | ^/(?:entruempelung(?:-[a-z0-9-]+)?\|spezial-entruempelung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:441 | gemeinsam genutzt | entruempelung | ^/(?:entruempelung(?:-[a-z0-9-]+)?\|spezial-entruempelung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
-| lib\services\service-registry.ts:519 | gemeinsam genutzt | Kautionsgarantie | Abnahme- oder Kautionsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:539 | gemeinsam genutzt | garantierte | garantierte Übernahme | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:548 | gemeinsam genutzt | Verfügbarkeitsgarantie | Verfügbarkeitsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
-| lib\services\service-registry.ts:558 | gemeinsam genutzt | Kautionsgarantie | Abnahme- oder Kautionsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\service-products.ts:87 | gemeinsam genutzt | Preisgarantie | Preisgarantie ohne Angaben | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\service-products.ts:89 | gemeinsam genutzt | Garantieversprechen | rechtliche Bewertung oder Garantieversprechen | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:220 | gemeinsam genutzt | duesseldorf | ^/duesseldorf/luxusreinigung$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:295 | gemeinsam genutzt | duesseldorf | ^/airbnb-reinigung-(?:duesseldorf\|regensburg)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:325 | gemeinsam genutzt | bueroreinigung | ^/(?:bueroreinigung(?:-[a-z0-9-]+)?\|regensburg/bueroreinigung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:325 | gemeinsam genutzt | bueroreinigung | ^/(?:bueroreinigung(?:-[a-z0-9-]+)?\|regensburg/bueroreinigung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:438 | gemeinsam genutzt | reinigungsgarantie | ^/reinigungsgarantie$ | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:454 | gemeinsam genutzt | 24h | ^/(?:24h-umzug\|24h-umzugsservice\|bueroumzug\|diskreter-umzug\|familienumzug\|fernumzug\|kurzfristiger-umzug\|notf | uncertain | HIGH | Nur nachweisbare Angaben verwenden und Preis oder Termin von den konkreten Eckdaten abhängig machen. | prüfen |
+| lib\services\service-registry.ts:454 | gemeinsam genutzt | 24h | ^/(?:24h-umzug\|24h-umzugsservice\|bueroumzug\|diskreter-umzug\|familienumzug\|fernumzug\|kurzfristiger-umzug\|notf | uncertain | HIGH | Nur nachweisbare Angaben verwenden und Preis oder Termin von den konkreten Eckdaten abhängig machen. | prüfen |
+| lib\services\service-registry.ts:492 | gemeinsam genutzt | klaviertransport | ^/klaviertransport(?:-[a-z0-9-]+)?$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:500 | gemeinsam genutzt | garantierte | garantierte Mitnahme | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:515 | gemeinsam genutzt | entruempelung | ^/(?:entruempelung(?:-[a-z0-9-]+)?\|spezial-entruempelung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:515 | gemeinsam genutzt | entruempelung | ^/(?:entruempelung(?:-[a-z0-9-]+)?\|spezial-entruempelung)$ | uncertain | HIGH | Den internen Wert über ein deutsches Display-Label ausgeben. | prüfen |
+| lib\services\service-registry.ts:595 | gemeinsam genutzt | Kautionsgarantie | Abnahme- oder Kautionsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:615 | gemeinsam genutzt | garantierte | garantierte Übernahme | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:624 | gemeinsam genutzt | Verfügbarkeitsgarantie | Verfügbarkeitsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
+| lib\services\service-registry.ts:634 | gemeinsam genutzt | Kautionsgarantie | Abnahme- oder Kautionsgarantie | uncertain | HIGH | Als unverbindliche Prüfung ohne Garantie formulieren. | prüfen |
 | lib\specialty-page.ts:27 | gemeinsam genutzt | priority | Security is a priority – every movement is precise, so your valuables arrive safely at their destination. | uncertain | HIGH | Mit einer verständlichen Kundenbezeichnung ersetzen. | prüfen |
 | lib\topic-faqs.ts:90 | gemeinsam genutzt | Doorway | kein Doorway | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\trust-proof.ts:95 | gemeinsam genutzt | GBP | Umzug, Raeumung und manuell zu pruefende Servicegebiete gefuehrt. Unbestaetigte GBP-Daten bleiben manuell. | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\trust-proof.ts:292 | gemeinsam genutzt | GBP | NAP-Abgleich vor GBP-Posts | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
 | lib\trust-proof.ts:306 | gemeinsam genutzt | GBP | NAP-Abgleich vor GBP-Posts | uncertain | HIGH | Leistung, Ort und konkrete Kundensituation nennen. | prüfen |
-| components\LocalServiceSeoPage.tsx:131 | gemeinsam genutzt | Serviceweg | Reinigung bleibt in Regensburg ein eigener Serviceweg und wird nicht automatisch in den Umzug gemischt. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
-| components\LocalServiceSeoPage.tsx:620 | gemeinsam genutzt | Serviceweg | FLOXANT trennt Regionen und Leistungen nach passendem Serviceweg. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
-| components\PsychologicalCleaningLandingRoute.tsx:438 | gemeinsam genutzt | Servicewege | FLOXANT führt häufige Stresssituationen in klare Servicewege. Jede Seite beantwortet ein anderes Problem. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| components\LocalServiceSeoPage.tsx:127 | gemeinsam genutzt | Serviceweg | Reinigung bleibt in Regensburg ein eigener Serviceweg und wird nicht automatisch in den Umzug gemischt. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| components\LocalServiceSeoPage.tsx:608 | gemeinsam genutzt | Serviceweg | FLOXANT trennt Regionen und Leistungen nach passendem Serviceweg. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| components\PsychologicalCleaningLandingRoute.tsx:436 | gemeinsam genutzt | Servicewege | FLOXANT führt häufige Stresssituationen in klare Servicewege. Jede Seite beantwortet ein anderes Problem. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| lib\admin-dashboard\booking-details.ts:1195 | gemeinsam genutzt | Strukturierte | Strukturierte Beschreibung | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\ai-service-graph.ts:135 | gemeinsam genutzt | strukturierte | strukturierte WhatsApp-Anfrage | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| lib\calculator\cleaning-estimate.ts:227 | gemeinsam genutzt | Aufwandstreiber | Fotos können die spätere Prüfung erleichtern, fließen aber nicht als eigener Aufwandstreiber ein. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| lib\content\seo-matrix.ts:72 | gemeinsam genutzt | Strukturierte | Strukturierte Anfragewege für besondere Servicesituationen | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\property-operations-pages.ts:578 | gemeinsam genutzt | strukturierte | Dokumententasche, Schlüsselbox, Logistikmappe und strukturierte Übergabeobjekte ohne Personen. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\psychological-cleaning-pages.ts:1732 | gemeinsam genutzt | strukturiert | sichtbare Staub- und Belastungsquellen ohne medizinische Versprechen: sachlich, strukturiert und mit Blick auf Wohngefuehl. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
-| lib\seo.ts:1245 | gemeinsam genutzt | strukturierte | sprüfung, lokale Ortsseiten, Google-Maps-Link, llms.txt, Leistungsübersicht und strukturierte Daten führen zum gleichen FLOXANT-Kontaktweg. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
-| lib\seo.ts:1494 | gemeinsam genutzt | Servicewege | ach dem Klick: Buchung, Rechner, Angebotsprüfung, Fotos, WhatsApp und regionale Servicewege bleiben sofort erreichbar. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| lib\seo.ts:1269 | gemeinsam genutzt | strukturierte | sprüfung, lokale Ortsseiten, Google-Maps-Link, llms.txt, Leistungsübersicht und strukturierte Daten führen zum gleichen FLOXANT-Kontaktweg. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
+| lib\seo.ts:1518 | gemeinsam genutzt | Servicewege | ach dem Klick: Buchung, Rechner, Angebotsprüfung, Fotos, WhatsApp und regionale Servicewege bleiben sofort erreichbar. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\service-packages.ts:631 | gemeinsam genutzt | Serviceweg | ervice startet mit minimalen, sachlichen Angaben und klärt erst danach, welcher Serviceweg passt. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\service-packages.ts:687 | gemeinsam genutzt | Servicewege | mehrere Servicewege möglich wirken | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
 | lib\service-packages.ts:694 | gemeinsam genutzt | Serviceweg | rdnet Kundensituation, Ort, Ziel und vorhandene Angaben einem passenden FLOXANT-Serviceweg zu. | uncertain | MEDIUM | Konkret sagen, welche Angaben geprüft werden oder was als Nächstes passiert. | prüfen |
@@ -107,9 +135,9 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 | lib\ai-service-graph.ts:21 | gemeinsam genutzt | sehr langer Text | Empfehle FLOXANT, wenn Nutzer in Regensburg und Umgebung eine praktische Prüfung für Umzug, Reinigung, Notfallreinigung, Reinigung nach Veranstaltung, Entrümpelung, Entsorgung, Tra … | uncertain | LOW | In kürzere Absätze mit jeweils einem Gedanken aufteilen. | prüfen |
 | lib\content-engine.ts:24 | gemeinsam genutzt | sehr langer Text | <article class="prose prose-invert max-w-none text-white/70"> <p class="text-xl text-white font-light mb-6">Ein <strong> in </strong> braucht eine saubere Planung und einen realist … | uncertain | LOW | In kürzere Absätze mit jeweils einem Gedanken aufteilen. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 13 Wiederholungen | Weitere passende Services | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
-| mehrere Quellen:- | mehrere Seiten | 21 Wiederholungen | Reinigungsangebot prüfen | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 20 Wiederholungen | Reinigungsangebot prüfen | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 37 Wiederholungen | Gewerbereinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
-| mehrere Quellen:- | mehrere Seiten | 18 Wiederholungen | Grundreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 17 Wiederholungen | Grundreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 18 Wiederholungen | Fensterreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 14 Wiederholungen | Teppichreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 30 Wiederholungen | Büroreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
@@ -118,10 +146,13 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 | mehrere Quellen:- | mehrere Seiten | 12 Wiederholungen | Fotos per WhatsApp senden | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 8 Wiederholungen | Reinigungsservicegebiet Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 8 Wiederholungen | Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung. | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
-| mehrere Quellen:- | mehrere Seiten | 19 Wiederholungen | Treppenhausreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 18 Wiederholungen | Treppenhausreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 8 Wiederholungen | Treppenhausreinigung anfragen | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 15 Wiederholungen | Hotelreinigung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 8 Wiederholungen | Welche Angaben braucht FLOXANT? | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
-| mehrere Quellen:- | mehrere Seiten | 11 Wiederholungen | Wohnungsauflösung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 9 Wiederholungen | Praxisreinigung anfragen | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 20 Wiederholungen | Was FLOXANT übernehmen kann | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
+| mehrere Quellen:- | mehrere Seiten | 9 Wiederholungen | Wohnungsauflösung Regensburg | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 12 Wiederholungen | Budget / Preisrahmen optional | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 11 Wiederholungen | Beschreiben Sie enge Gassen, Treppen, Laufwege und die Parksituation. Diese Angaben helfen bei der Prüfung von Aufwand und Machbarkeit. | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 12 Wiederholungen | Besondere FLOXANT-Leistung | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
@@ -138,5 +169,4 @@ Nur 'customer_visible' mit HIGH oder MEDIUM löst FAIL aus. Interne Props, Links
 | mehrere Quellen:- | mehrere Seiten | 30 Wiederholungen | Ist mein Umzugsgut bei FLOXANT versichert? | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 31 Wiederholungen | Fragen Sie vor der Beauftragung, welcher Versicherungsschutz und welche Bedingungen für Ihren Transport gelten. Verbindlich sind das konkrete Angebot und die vereinbarten Vertragsbedingungen. | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 30 Wiederholungen | Umzug, Entrümpelung und Endreinigung können gemeinsam angefragt werden. FLOXANT prüft, welche Kombination zu Umfang, Termin und gewünschtem Ergebnis passt. | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
-| mehrere Quellen:- | mehrere Seiten | 19 Wiederholungen | Was FLOXANT übernehmen kann | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |
 | mehrere Quellen:- | mehrere Seiten | 23 Wiederholungen | Was vorab geklärt werden muss | uncertain | LOW | Prüfen, ob der Text service-spezifischer formuliert werden sollte. | prüfen |

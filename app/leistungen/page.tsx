@@ -85,7 +85,7 @@ const serviceClusterGuide = [
   {
     title: "Solar- und PV-Anlagen",
     text: "Dachart, Modulfläche, Zugang, sichtbare Verschmutzung und Fotos zunächst ohne Verfügbarkeitszusage einordnen.",
-    href: "/solarreinigung",
+    href: "/pv-anlagen-reinigung",
     cta: "Solar/PV neutral prüfen",
   },
   {

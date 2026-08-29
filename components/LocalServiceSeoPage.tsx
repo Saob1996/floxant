@@ -21,10 +21,7 @@ import {
   SignatureServicesGrid,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
-import { B2BTrustPanel } from "@/components/B2BTrustPanel";
-import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
 import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
-import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
@@ -145,7 +142,7 @@ function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
     localLogic: [
       config.localText,
       config.cityKey === "regensburg"
-        ? "Regensburg wird zuerst lokal geprüft. Weitere Orte gehören in die Angebotsprüfung, wenn Route, Termin oder Kombination den Auftrag realistisch machen."
+        ? "Für Regensburg werden Ort, Termin, Umfang und Zugang gemeinsam eingeordnet. Anfragen aus weiteren Orten lassen sich anhand von Route und Leistungsumfang klären."
         : "Regensburg wird als eigener Reinigungsbereich behandelt. Randlagen werden nach Objekt, Zugang und Zeitfenster eingeordnet.",
     ],
   };
@@ -385,16 +382,16 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         </div>
       </section>
 
-      <InternationalCustomerHint
+      {isRegensburgCleaningPage ? null : <InternationalCustomerHint
         cityLabel={config.cityName}
         serviceLabel={config.serviceName}
         tags={internationalTags}
         primaryHref={config.bookingHref}
         photoHref={config.bookingHref}
         offerHref={offerCheckHref}
-      />
+      />}
 
-      <LocalConversionDecisionBox
+      {isRegensburgCleaningPage ? null : <LocalConversionDecisionBox
         cityName={config.cityName}
         serviceName={config.serviceName}
         region={config.cityKey}
@@ -407,7 +404,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         decisionItems={config.scopeItems.slice(0, 4)}
         localLogic={decisionCopy.localLogic}
         trustItems={config.trustItems.slice(0, 3)}
-      />
+      />}
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -483,17 +480,15 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             title={`${config.serviceName} in Regensburg und Umgebung`}
             intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
           />
-          <LocalTrustBlock ctaHref={bookingHref} ctaLabel={config.primaryCta} />
-          <RequestChecklistBlock ctaHref={bookingHref} ctaLabel="Reinigungsanfrage vorbereiten" />
           <RelatedServicesBlock
             currentHref={config.path}
             title={`Passende Reinigungsseiten zu ${config.serviceName} in Regensburg`}
-            intro="Der Hub verweist bewusst auf speziellere Seiten, damit Büro, Gewerbe, Unterhalt, Praxis, Treppenhaus, Grundreinigung und Angebotsprüfung sauber getrennt bleiben."
+            intro="Wählen Sie die Leistung, die zu Objekt, Turnus und gewünschtem Ergebnis passt: Büro, Gewerbe, Unterhalt, Praxis, Treppenhaus, Grundreinigung oder Angebotsprüfung."
           />
         </>
       ) : null}
 
-      <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+      {isRegensburgCleaningPage ? null : <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.86fr_1.14fr]">
           <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-amber-100 text-amber-800">
@@ -516,7 +511,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -567,6 +562,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         </div>
       </section>
 
+      {isRegensburgCleaningPage ? null : <>
       <TrustProofPanel
         allowedPage={config.path}
         serviceKey={proofServiceKey}
@@ -589,8 +585,6 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
       />
 
       <PhotoGuidanceBlock serviceKey={proofServiceKey} compact />
-
-      {isRegensburgCleaningPage ? <B2BTrustPanel /> : null}
 
       <LocalProofPanel location={config.cityKey} />
 
@@ -630,6 +624,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         intro="Angebotscheck, Objektbrief, Übergabe, Plan B oder Rückfahrt können helfen, wenn die lokale Anfrage noch unsicher ist."
         limit={4}
       />
+      </>}
 
       <OfferCheckCTA
         title={`Angebot für ${config.serviceName} schon vorhanden?`}

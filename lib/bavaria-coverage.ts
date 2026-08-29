@@ -288,7 +288,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = germanizeDeep([
       { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
       { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
       { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
-      { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+      { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung Regensburg" },
     ],
   },
   {
@@ -326,7 +326,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = germanizeDeep([
       "Direkte Wege fuer Einzelstuecke, flexible Mitnahme, kleine Transporte und praktische Zusatzfahrten.",
     primary: { href: "/kleintransporte", label: "Kleintransporte" },
     supporting: [
-      { href: "/beiladung", label: "Beiladung" },
+      { href: "/leerfahrt-rueckfahrt", label: "Beiladung" },
       { href: "/leerfahrt-rueckfahrt", label: "Leer-Rueckfahrt" },
       { href: "/rechner?service=umzug", label: "Transport im Rechner" },
     ],

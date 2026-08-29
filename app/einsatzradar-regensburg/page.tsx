@@ -218,11 +218,11 @@ export default function EinsatzradarRegensburgPage() {
           <div className="grid gap-3 sm:grid-cols-2">
             {[
               { label: "Übergabeakte", href: "/uebergabeakte" },
-              { label: "Rückfahrt-Boerse", href: "/rueckfahrt-boerse" },
+              { label: "Rückfahrt-Börse", href: "/leerfahrt-rueckfahrt" },
               { label: "Mieterwechsel", href: "/mieterwechsel-service-regensburg" },
               { label: "Keller-/Müllraum", href: "/keller-muellraum-rettung-regensburg" },
               { label: "Wohnung wieder vermietbar", href: "/wohnung-wieder-vermietbar" },
-              { label: "Angebotscheck", href: "/angebotscheck" },
+              { label: "Angebotscheck", href: "/angebot-guenstiger-pruefen" },
             ].map((item) => (
               <Link key={item.href} href={item.href} className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-black text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700">
                 {item.label}

@@ -288,7 +288,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     </p>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                         <a
-                            href="/regensburg/solarreinigung"
+                            href="/pv-anlagen-reinigung"
                             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
                         >
                             Solarreinigung Regensburg ansehen

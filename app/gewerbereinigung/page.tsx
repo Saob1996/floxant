@@ -186,7 +186,7 @@ const relatedLinks = [
   { label: "Treppenhausreinigung Regensburg", href: "/treppenhausreinigung-regensburg" },
   { label: "Reinigungsfirma Angebot", href: "/reinigungsfirma-angebot" },
   { label: "Kurzfristige Reinigung", href: "/regensburg/reinigung" },
-  { label: "Schlüsselübergabe Reinigung", href: "/regensburg/uebergabereinigung" },
+  { label: "Schlüsselübergabe Reinigung", href: "/regensburg/reinigung-nach-umzug" },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {

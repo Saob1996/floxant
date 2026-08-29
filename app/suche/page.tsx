@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     canonical: `${company.url}${path}`,
     languages: { "de-DE": `${company.url}${path}`, "en-DE": `${company.url}/en/search`, "x-default": `${company.url}${path}` },
   },
+  robots: { index: false, follow: true },
 };
 
 const fallbackLinks = [

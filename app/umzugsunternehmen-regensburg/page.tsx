@@ -65,7 +65,7 @@ const relatedLinks = [
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
-  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
   { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
 ];

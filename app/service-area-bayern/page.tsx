@@ -218,7 +218,7 @@ export default async function ServiceAreaBayern() {
     {
       title: "Rückfahrt-Börse für flexible Strecken",
       text: "Für Kunden mit Start, Ziel, Datum und Umfang, die eine Leerfahrt oder Rückfahrt nach Verfügbarkeit prüfen lassen wollen.",
-      href: "/rueckfahrt-boerse",
+      href: "/leerfahrt-rueckfahrt",
       cta: "Strecke prüfen",
     },
     {
@@ -236,7 +236,7 @@ export default async function ServiceAreaBayern() {
     { href: "/bueroumzug-bayern", label: "Büroumzug Bayern" },
     { href: "/standorte", label: "Standorte in Bayern" },
     { href: "/einsatzgebiet-regensburg-200km", label: "200-km-Einsatzgebiet" },
-    { href: "/rueckfahrt-boerse", label: "Rückfahrt-Börse" },
+    { href: "/leerfahrt-rueckfahrt", label: "Rückfahrt-Börse" },
     { href: "/rechner", label: "Zum FLOXANT Rechner" },
   ];
 

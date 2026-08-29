@@ -107,7 +107,7 @@ const quickLinks = [
     tone: "text-amber-700 bg-amber-50 border-amber-200",
   },
   {
-    href: "/beiladung",
+    href: "/leerfahrt-rueckfahrt",
     eyebrow: "Flexible Mitnahme",
     label: "Beiladung",
     text: "Für Teilmengen, Einzelstücke und flexible Mitnahme ohne Vollumzug.",

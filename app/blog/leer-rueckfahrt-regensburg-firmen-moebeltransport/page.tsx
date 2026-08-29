@@ -106,7 +106,7 @@ export default function LeerRueckfahrtRegensburgBlogPage() {
     ]}
     ctas={[
      { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt ansehen" },
-     { href: "/beiladung", label: "Beiladung vergleichen" },
+     { href: "/leerfahrt-rueckfahrt", label: "Beiladung vergleichen" },
      { href: "/rechner?service=umzug", label: "Transport einordnen" },
     ]}
     faqTitle="FAQ zur Leer-Rückfahrt"

@@ -140,7 +140,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Entrümpelung vor Übergabe",
                             text: "Wenn Vermieter, Käufer oder Verwaltung einen Termin gesetzt haben, werden Räumung, Reinigung und Schlüsselweg gemeinsam sortiert.",
-                            href: "/regensburg/uebergabereinigung",
+                            href: "/regensburg/reinigung-nach-umzug",
                             cta: "Übergabe mitdenken",
                         },
                         {
@@ -162,7 +162,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Entrümpelung + Endreinigung",
                             text: "Nach dem Räumen werden Küche, Bad, Böden und Laufwege oft erst richtig sichtbar.",
-                            href: "/regensburg/endreinigung",
+                            href: "/regensburg/reinigung-nach-umzug",
                         },
                         {
                             title: "Haushaltsauflösung + Übergabe",

@@ -157,7 +157,7 @@ export default async function UmzugPillarPage() {
         serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um den Umzug"
         serviceLinks={[
           { href: "/rechner", label: "Umzug direkt kalkulieren" },
-          { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
+          { href: "/leerfahrt-rueckfahrt", label: "Beiladung für Einzelmöbel prüfen" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/urlaubsretter", label: "Urlaubsretter vor Reise oder Übergabe" },
           { href: "/business-errand-service", label: "Erledigungsservice für Schlüssel und Dokumente" },

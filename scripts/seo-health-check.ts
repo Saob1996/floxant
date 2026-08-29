@@ -229,6 +229,15 @@ async function probeBaseUrl(baseUrl) {
   }
 }
 
+function usesStaticExport() {
+  return ["next.config.js", "next.config.mjs", "next.config.ts"]
+    .map((file) => {
+      const filePath = path.join(ROOT, file);
+      return fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+    })
+    .some((source) => /\boutput\s*:\s*["']export["']/.test(source));
+}
+
 async function startNextServerIfNeeded() {
   const baseUrl = EXPLICIT_BASE_URL || DEFAULT_BASE_URL;
   if (await probeBaseUrl(baseUrl)) {
@@ -239,12 +248,23 @@ async function startNextServerIfNeeded() {
     throw new Error(`SEO_HEALTH_BASE_URL nicht erreichbar: ${EXPLICIT_BASE_URL}`);
   }
 
+  const staticExport = usesStaticExport();
+  const staticPreview = path.join(ROOT, "scripts", "serve-static-export.mjs");
   const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  if (!fs.existsSync(nextBin)) {
-    throw new Error("Next.js Binary nicht gefunden. Bitte npm install ausfuehren.");
+  const executable = staticExport ? staticPreview : nextBin;
+  const args = staticExport ? [staticPreview] : [nextBin, "start", "--port", String(PORT)];
+  const serverLabel = staticExport ? "preview:static" : "next start";
+
+  if (!fs.existsSync(executable)) {
+    throw new Error(staticExport
+      ? "Static-Preview-Script fehlt: scripts/serve-static-export.mjs"
+      : "Next.js Binary nicht gefunden. Bitte npm install ausfuehren.");
+  }
+  if (staticExport && !fs.existsSync(path.join(ROOT, "out", "index.html"))) {
+    throw new Error("out/ fehlt. Fuer output: export bitte zuerst npm run build ausfuehren.");
   }
 
-  const child = spawn(process.execPath, [nextBin, "start", "--port", String(PORT)], {
+  const child = spawn(process.execPath, args, {
     cwd: ROOT,
     env: { ...process.env, PORT: String(PORT) },
     stdio: ["ignore", "pipe", "pipe"],
@@ -261,7 +281,7 @@ async function startNextServerIfNeeded() {
   const startedAt = Date.now();
   while (Date.now() - startedAt < START_TIMEOUT_MS) {
     if (child.exitCode !== null) {
-      throw new Error(`next start wurde beendet, bevor der Health-Check starten konnte:\n${output}`);
+      throw new Error(`${serverLabel} wurde beendet, bevor der Health-Check starten konnte:\n${output}`);
     }
     if (await probeBaseUrl(baseUrl)) {
       return { baseUrl, child, started: true };
@@ -270,7 +290,7 @@ async function startNextServerIfNeeded() {
   }
 
   child.kill();
-  throw new Error(`next start auf ${baseUrl} nicht rechtzeitig erreichbar:\n${output}`);
+  throw new Error(`${serverLabel} auf ${baseUrl} nicht rechtzeitig erreichbar:\n${output}`);
 }
 
 async function stopNextServer(child) {

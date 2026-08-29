@@ -133,7 +133,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       {
         title: "Unklare Punkte finden",
         text: "Etage, Laufweg, MwSt., Zusatzkosten und Termin sauber klären.",
-        href: "/angebotscheck#red-flag-scanner",
+        href: "/angebot-guenstiger-pruefen#red-flag-scanner",
         label: "Check starten",
         Icon: FileSearch,
       },

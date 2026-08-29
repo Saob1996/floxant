@@ -134,7 +134,7 @@ export const signatureServiceClarityItems = [
   {
     title: "PV-Sichtklar",
     text: "PV- oder Solarreinigung nur mit Fotos, Zugang, Dachlage, Risiko und Terminfenster einordnen.",
-    href: "/solarreinigung",
+    href: "/pv-anlagen-reinigung",
     cta: "PV-Fall prüfen",
   },
 ] as const;

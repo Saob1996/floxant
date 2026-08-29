@@ -192,7 +192,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Vorhandenes Angebot vor Zusage prüfen",
     text:
       "Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, Zugang, Termin, Fotos, Zusatzleistungen und Preisrahmen sachlich einordnen, bevor Sie endgültig zusagen.",
-    href: "/angebotscheck",
+    href: "/angebot-guenstiger-pruefen",
     cta: "Angebot prüfen lassen",
     Icon: FileSearch,
     event: "start_offer_check",
@@ -287,7 +287,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Rückfahrt-Börse: Strecke eintragen",
     text:
       "Start, Ziel, Datum, Umfang und Flexibilität eintragen. FLOXANT prüft, ob die Strecke zu einer Rückfahrt, Leerfahrt oder flexiblen Transportlösung passt.",
-    href: "/rueckfahrt-boerse",
+    href: "/leerfahrt-rueckfahrt",
     cta: "Rückfahrt-Börse öffnen",
     Icon: Route,
     event: "start_route_check",

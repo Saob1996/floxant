@@ -706,9 +706,9 @@ assert.equal(
 const generalRequest = booking({ service: "sonstiges", details: {} });
 assert.equal(evaluateLeadCompleteness(generalRequest).status, "not_assessable");
 
-assert.equal(adminReplyTemplates.length, 20, "exactly 20 reply drafts are required");
-assert.equal(getReplyTemplates("de").length, 10, "ten German drafts are required");
-assert.equal(getReplyTemplates("en").length, 10, "ten English drafts are required");
+assert.equal(adminReplyTemplates.length, 24, "exactly 24 reply drafts are required");
+assert.equal(getReplyTemplates("de").length, 12, "twelve German drafts are required");
+assert.equal(getReplyTemplates("en").length, 12, "twelve English drafts are required");
 assert.equal(getReplyLocale(incompleteCleaning), "en");
 const englishDraft = renderReplyTemplate(
   incompleteCleaning,

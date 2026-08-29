@@ -79,7 +79,7 @@
     {
       "title": "Beiladung und Rückfahrt",
       "description": "Flexible Transportmöglichkeit, wenn Strecke, Zeitfenster und Volumen zu einer vorhandenen Fahrt passen.",
-      "url": "/rueckfahrt-boerse",
+      "url": "/leerfahrt-rueckfahrt",
       "locale": "de",
       "type": "Leistung",
       "regions": [
@@ -100,16 +100,6 @@
       "title": "Beiladung und Rückfahrt",
       "description": "Flexible Transportmöglichkeit, wenn Strecke, Zeitfenster und Volumen zu einer vorhandenen Fahrt passen.",
       "url": "/beiladung-regensburg",
-      "locale": "de",
-      "type": "Leistung",
-      "regions": [
-        "Regensburg"
-      ]
-    },
-    {
-      "title": "Beiladung und Rückfahrt",
-      "description": "Flexible Transportmöglichkeit, wenn Strecke, Zeitfenster und Volumen zu einer vorhandenen Fahrt passen.",
-      "url": "/leerfahrt-rueckfahrt",
       "locale": "de",
       "type": "Leistung",
       "regions": [
@@ -218,7 +208,7 @@
     {
       "title": "Endreinigung",
       "description": "Reinigung nach Auszug, Umzug oder Räumung vor Rückgabe, Übergabe oder Nachnutzung.",
-      "url": "/regensburg/endreinigung",
+      "url": "/regensburg/reinigung-nach-umzug",
       "locale": "de",
       "type": "Leistung",
       "regions": [
@@ -238,7 +228,27 @@
     {
       "title": "Endreinigung",
       "description": "Reinigung nach Auszug, Umzug oder Räumung vor Rückgabe, Übergabe oder Nachnutzung.",
+      "url": "/regensburg/endreinigung",
+      "locale": "de",
+      "type": "Leistung",
+      "regions": [
+        "Regensburg"
+      ]
+    },
+    {
+      "title": "Endreinigung",
+      "description": "Reinigung nach Auszug, Umzug oder Räumung vor Rückgabe, Übergabe oder Nachnutzung.",
       "url": "/regensburg/uebergabereinigung",
+      "locale": "de",
+      "type": "Leistung",
+      "regions": [
+        "Regensburg"
+      ]
+    },
+    {
+      "title": "Endreinigung",
+      "description": "Reinigung nach Auszug, Umzug oder Räumung vor Rückgabe, Übergabe oder Nachnutzung.",
+      "url": "/regensburg/besenreine-uebergabe",
       "locale": "de",
       "type": "Leistung",
       "regions": [
@@ -422,7 +432,7 @@
     {
       "title": "FLOXANT Angebotscheck",
       "description": "Vorhandene Angebote anhand von Leistungsumfang, Zugang, Termin, Zusatzpositionen und offenen Angaben einordnen.",
-      "url": "/angebotscheck",
+      "url": "/angebot-guenstiger-pruefen",
       "locale": "de",
       "type": "Besondere Leistung",
       "regions": [
@@ -433,7 +443,7 @@
     {
       "title": "FLOXANT Angebotscheck",
       "description": "Vorhandene Angebote anhand von Leistungsumfang, Zugang, Termin, Zusatzpositionen und offenen Angaben einordnen.",
-      "url": "/angebot-guenstiger-pruefen",
+      "url": "/angebotscheck",
       "locale": "de",
       "type": "Besondere Leistung",
       "regions": [
@@ -662,6 +672,16 @@
       "type": "Ratgeber",
       "regions": [
         "Düsseldorf"
+      ]
+    },
+    {
+      "title": "Haushaltsauflösung",
+      "description": "Auflösung eines Haushalts nach Auszug, Veränderung oder Erbfall mit Freigabe und Zielzustand.",
+      "url": "/regensburg/wohnungsaufloesung",
+      "locale": "de",
+      "type": "Leistung",
+      "regions": [
+        "Regensburg"
       ]
     },
     {
@@ -1238,16 +1258,6 @@
       "type": "Frage",
       "regions": [
         "Deutschland"
-      ]
-    },
-    {
-      "title": "Wohnungsauflösung",
-      "description": "Auflösung einer Wohnung nach Auszug, Nachlass oder Leerstand mit Freigabe und vereinbartem Zielzustand.",
-      "url": "/regensburg/wohnungsaufloesung",
-      "locale": "de",
-      "type": "Leistung",
-      "regions": [
-        "Regensburg"
       ]
     },
     {

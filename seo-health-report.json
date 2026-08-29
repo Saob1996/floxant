@@ -1,12 +1,12 @@
 {
   "summary": {
-    "generatedAt": "2026-07-26T11:16:24.285Z",
-    "baseUrl": "http://127.0.0.1:3000",
+    "generatedAt": "2026-08-29T03:09:07.650Z",
+    "baseUrl": "http://127.0.0.1:3211",
     "checkedUrls": 16,
-    "pass": 1,
-    "warn": 15,
+    "pass": 0,
+    "warn": 16,
     "fail": 0,
-    "startedServer": false
+    "startedServer": true
   },
   "pages": [
     {
@@ -40,7 +40,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/umzug",
         "/reinigungsfirma-angebot",
@@ -50,13 +50,13 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/reinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/reinigung",
       "finalPath": "/regensburg/reinigung",
       "status": 200,
-      "title": "Gebäudereinigung Regensburg | Floxant",
-      "titleLength": 37,
-      "description": "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
-      "descriptionLength": 127,
+      "title": "Reinigung Regensburg | Objekt & Umfang anfragen | FLOXANT",
+      "titleLength": 57,
+      "description": "Reinigung in Regensburg für Wohnung, Büro, Praxis, Treppenhaus oder Übergabe anfragen. Objektart, Fläche, Zustand, Zugang und Termin senden.",
+      "descriptionLength": 140,
       "h1": [
         "Gebäudereinigung in Regensburg und Umgebung"
       ],
@@ -71,6 +71,11 @@
           "path": "/regensburg/reinigung"
         },
         {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/regensburg/cleaning",
+          "path": "/en/regensburg/cleaning"
+        },
+        {
           "hreflang": "x-default",
           "href": "https://www.floxant.de/regensburg/reinigung",
           "path": "/regensburg/reinigung"
@@ -78,42 +83,39 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "CleaningService",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 51,
+      "internalLinksCount": 37,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
         "/regensburg/gewerbereinigung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /reinigungsfirma-angebot"
       ],
       "redirectChain": [],
       "result": "WARN"
     },
     {
-      "path": "/regensburg/endreinigung",
-      "canonicalPath": "/regensburg/endreinigung",
+      "path": "/regensburg/reinigung-nach-umzug",
+      "canonicalPath": "/regensburg/reinigung-nach-umzug",
       "service": "reinigung",
       "city": "regensburg",
       "intent": "Endreinigung vor Uebergabe, Reinigung nach Entruempelung und Vermieter-Ready-Service",
@@ -144,9 +146,9 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
-        "/regensburg/uebergabereinigung",
+        "/regensburg/entruempelung",
         "/objektbrief",
         "/uebergabeakte",
         "/angebot-guenstiger-pruefen"
@@ -154,42 +156,53 @@
       "language": "de",
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
-      "url": "/regensburg/endreinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/endreinigung",
-      "finalPath": "/regensburg/endreinigung",
+      "url": "/regensburg/reinigung-nach-umzug",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/reinigung-nach-umzug",
+      "finalPath": "/regensburg/reinigung-nach-umzug",
       "status": 200,
-      "title": "Endreinigung Regensburg | Übergabe & Auszug vorbereiten",
-      "titleLength": 55,
-      "description": "Endreinigung in Regensburg vor Übergabe, nach Auszug oder Entrümpelung: Fotos, Fläche, Zustand, Frist und Restmengen prüfen lassen.",
-      "descriptionLength": 131,
+      "title": "Reinigung nach Umzug Regensburg | Übergabe vorbereiten",
+      "titleLength": 54,
+      "description": "Reinigung nach Umzug in Regensburg für Auszug, Endreinigung, Übergabe, Restpunkte und Fotos unverbindlich prüfen.",
+      "descriptionLength": 113,
       "h1": [
-        "Endreinigung vor Übergabe in Regensburg - Wohnung, Zustand und Frist klären"
+        "Reinigung nach Umzug Regensburg für Auszug, Endreinigung und Übergabe"
       ],
-      "canonical": "https://www.floxant.de/regensburg/endreinigung",
-      "expectedCanonical": "https://www.floxant.de/regensburg/endreinigung",
+      "canonical": "https://www.floxant.de/regensburg/reinigung-nach-umzug",
+      "expectedCanonical": "https://www.floxant.de/regensburg/reinigung-nach-umzug",
       "indexable": true,
-      "hreflangStatus": "missing",
-      "hreflangs": [],
+      "hreflangStatus": "ok",
+      "hreflangs": [
+        {
+          "hreflang": "de-DE",
+          "href": "https://www.floxant.de/regensburg/reinigung-nach-umzug",
+          "path": "/regensburg/reinigung-nach-umzug"
+        },
+        {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/regensburg/cleaning-after-moving",
+          "path": "/en/regensburg/cleaning-after-moving"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://www.floxant.de/regensburg/reinigung-nach-umzug",
+          "path": "/regensburg/reinigung-nach-umzug"
+        }
+      ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "LocalBusiness",
+        "ProfessionalService",
         "Service",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 53,
+      "internalLinksCount": 25,
       "moneyPageLinks": [
         "/kontakt",
-        "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
-        "/regensburg/gewerbereinigung",
         "/regensburg/reinigung",
         "/regensburg/umzug",
         "/regensburg/wohnungsaufloesung"
@@ -198,11 +211,9 @@
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "hreflang fehlt",
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-service, data-city, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label"
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
+        "SEO-CTA ohne data-cta-label"
       ],
       "redirectChain": [],
       "result": "WARN"
@@ -240,7 +251,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/reinigung",
         "/wohnungsaufloesung-regensburg",
@@ -250,7 +261,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/entruempelung-landshut",
-      "finalUrl": "http://127.0.0.1:3000/entruempelung-landshut",
+      "finalUrl": "http://127.0.0.1:3211/entruempelung-landshut",
       "finalPath": "/entruempelung-landshut",
       "status": 200,
       "title": "Entrümpelung Landshut mit Reinigung danach",
@@ -258,7 +269,7 @@
       "description": "Entrümpelung Landshut anfragen: Räume, Menge, Zugang, Fotos, Termin, Zielzustand und Reinigung danach sachlich klären. Entrümpelung, Fotos, Termin, Zugang, vorhandenes Angebot und Preisrahmen für Landshut...",
       "descriptionLength": 207,
       "h1": [
-        "Entrümpelung"
+        "Entrümpelung in Landshut anfragen"
       ],
       "canonical": "https://www.floxant.de/entruempelung-landshut",
       "expectedCanonical": "https://www.floxant.de/entruempelung-landshut",
@@ -278,29 +289,28 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 46,
+      "internalLinksCount": 39,
       "moneyPageLinks": [
         "/entruempelung-landshut",
         "/kontakt",
         "/regensburg/entruempelung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /wohnungsaufloesung-regensburg"
       ],
       "redirectChain": [],
@@ -338,7 +348,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/umzug-neustadt-an-der-waldnaab",
         "/umzug",
@@ -348,7 +358,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/umzug-vohenstrauss",
-      "finalUrl": "http://127.0.0.1:3000/umzug-vohenstrauss",
+      "finalUrl": "http://127.0.0.1:3211/umzug-vohenstrauss",
       "finalPath": "/umzug-vohenstrauss",
       "status": 200,
       "title": "Umzug Vohenstrauß | kleiner Umzug & Angebot",
@@ -376,29 +386,27 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 43,
+      "internalLinksCount": 36,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/entruempelung",
-        "/regensburg/reinigung",
         "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung",
         "/umzug-vohenstrauss"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /umzug-neustadt-an-der-waldnaab"
       ],
       "redirectChain": [],
@@ -435,7 +443,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/umzug-vohenstrauss",
         "/umzug",
@@ -445,7 +453,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/umzug-neustadt-an-der-waldnaab",
-      "finalUrl": "http://127.0.0.1:3000/umzug-neustadt-an-der-waldnaab",
+      "finalUrl": "http://127.0.0.1:3211/umzug-neustadt-an-der-waldnaab",
       "finalPath": "/umzug-neustadt-an-der-waldnaab",
       "status": 200,
       "title": "Umzug Neustadt a.d. Waldnaab | Angebot prüfen",
@@ -473,29 +481,27 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 43,
+      "internalLinksCount": 36,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/entruempelung",
-        "/regensburg/reinigung",
         "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung",
         "/umzug-neustadt-an-der-waldnaab"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /umzug-vohenstrauss"
       ],
       "redirectChain": [],
@@ -532,7 +538,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/umzug",
         "/reinigungsfirma-angebot",
@@ -542,13 +548,13 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/reinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/reinigung",
       "finalPath": "/regensburg/reinigung",
       "status": 200,
-      "title": "Gebäudereinigung Regensburg | Floxant",
-      "titleLength": 37,
-      "description": "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
-      "descriptionLength": 127,
+      "title": "Reinigung Regensburg | Objekt & Umfang anfragen | FLOXANT",
+      "titleLength": 57,
+      "description": "Reinigung in Regensburg für Wohnung, Büro, Praxis, Treppenhaus oder Übergabe anfragen. Objektart, Fläche, Zustand, Zugang und Termin senden.",
+      "descriptionLength": 140,
       "h1": [
         "Gebäudereinigung in Regensburg und Umgebung"
       ],
@@ -563,6 +569,11 @@
           "path": "/regensburg/reinigung"
         },
         {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/regensburg/cleaning",
+          "path": "/en/regensburg/cleaning"
+        },
+        {
           "hreflang": "x-default",
           "href": "https://www.floxant.de/regensburg/reinigung",
           "path": "/regensburg/reinigung"
@@ -570,34 +581,31 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "CleaningService",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 51,
+      "internalLinksCount": 37,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
         "/regensburg/gewerbereinigung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /reinigungsfirma-angebot"
       ],
       "redirectChain": [],
@@ -636,7 +644,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/reinigung",
         "/regensburg/gewerbereinigung",
@@ -646,7 +654,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/bueroreinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/bueroreinigung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/bueroreinigung",
       "finalPath": "/regensburg/bueroreinigung",
       "status": 200,
       "title": "Büroreinigung Regensburg für Firmen anfragen",
@@ -674,34 +682,30 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "LocalBusiness",
         "Service",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 50,
+      "internalLinksCount": 24,
       "moneyPageLinks": [
         "/kontakt",
-        "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
         "/regensburg/gewerbereinigung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /reinigungsfirma-angebot"
       ],
       "redirectChain": [],
@@ -738,7 +742,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/reinigung",
         "/regensburg/bueroreinigung",
@@ -748,7 +752,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/gewerbereinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/gewerbereinigung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/gewerbereinigung",
       "finalPath": "/regensburg/gewerbereinigung",
       "status": 200,
       "title": "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
@@ -769,6 +773,11 @@
           "path": "/regensburg/gewerbereinigung"
         },
         {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/regensburg/commercial-cleaning",
+          "path": "/en/regensburg/commercial-cleaning"
+        },
+        {
           "hreflang": "x-default",
           "href": "https://www.floxant.de/regensburg/gewerbereinigung",
           "path": "/regensburg/gewerbereinigung"
@@ -776,33 +785,30 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "CleaningService",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 48,
+      "internalLinksCount": 35,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label"
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city"
       ],
       "redirectChain": [],
       "result": "WARN"
@@ -839,7 +845,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/entruempelung",
         "/regensburg/wohnungsaufloesung",
@@ -849,15 +855,15 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/umzug",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/umzug",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/umzug",
       "finalPath": "/regensburg/umzug",
       "status": 200,
-      "title": "Umzug Regensburg anfragen - Start, Ziel und Termin klären",
-      "titleLength": 57,
-      "description": "Umzug in Regensburg geplant? Start, Ziel, Etage, Umfang und Termin beschreiben. FLOXANT prüft Anfrage oder Umzugsangebot anhand der genannten Eckdaten.",
-      "descriptionLength": 151,
+      "title": "Umzugshilfe Regensburg | Umzug anfragen | FLOXANT",
+      "titleLength": 49,
+      "description": "Umzugshilfe in Regensburg anfragen: Start, Ziel, Etagen, Aufzug, Möbel, Fotos und Wunschtermin senden. Auch Möbelmontage und Einpackservice möglich.",
+      "descriptionLength": 148,
       "h1": [
-        "Umzug in Regensburg klar anfragen - mit Start, Ziel und Terminwunsch"
+        "Umzugshilfe Regensburg für Transport, Tragen und Möbelmontage"
       ],
       "canonical": "https://www.floxant.de/regensburg/umzug",
       "expectedCanonical": "https://www.floxant.de/regensburg/umzug",
@@ -877,30 +883,27 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "Service",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 35,
+      "internalLinksCount": 22,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/entruempelung",
-        "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
-        "erwarteter interner Link fehlt: /regensburg/wohnungsaufloesung",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /angebot-vergleichen-regensburg"
       ],
       "redirectChain": [],
@@ -938,7 +941,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/wohnungsaufloesung",
         "/regensburg/umzug",
@@ -948,13 +951,13 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/entruempelung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/entruempelung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/entruempelung",
       "finalPath": "/regensburg/entruempelung",
       "status": 200,
-      "title": "Entrümpelung Regensburg | Wohnung, Keller, Nachlass",
-      "titleLength": 51,
-      "description": "Entrümpelung in Regensburg mit klarer Abstimmung zu Räumen, Menge, Zugang und Termin. Anfrage mit Fotos oder Objektangaben senden.",
-      "descriptionLength": 130,
+      "title": "Entrümpelung Regensburg | Räume, Menge & Zugang",
+      "titleLength": 47,
+      "description": "Entrümpelung in Regensburg anfragen: Räume, Restmengen, Fotos, Etagen, Zugang, Freigabe und gewünschten Endzustand beschreiben.",
+      "descriptionLength": 127,
       "h1": [
         "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass"
       ],
@@ -976,24 +979,19 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "LocalBusiness",
         "Service",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 45,
+      "internalLinksCount": 22,
       "moneyPageLinks": [
         "/kontakt",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
-        "/regensburg/gewerbereinigung",
-        "/regensburg/reinigung",
+        "/regensburg/reinigung-nach-umzug",
         "/regensburg/umzug",
         "/regensburg/wohnungsaufloesung"
       ],
@@ -1001,8 +999,9 @@
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label"
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
+        "erwarteter interner Link fehlt: /angebot-vergleichen-regensburg"
       ],
       "redirectChain": [],
       "result": "WARN"
@@ -1039,7 +1038,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/entruempelung",
         "/regensburg/umzug",
@@ -1049,15 +1048,15 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/wohnungsaufloesung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/wohnungsaufloesung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/wohnungsaufloesung",
       "finalPath": "/regensburg/wohnungsaufloesung",
       "status": 200,
-      "title": "Wohnungsauflösung Regensburg | Nachlass ruhig klären",
-      "titleLength": 52,
-      "description": "Wohnungsauflösung Regensburg bei Nachlass, Auszug oder Pflegeheimwechsel: Fotos, Freigabe, Räume, Zielzustand und Übergabe ruhig klären.",
-      "descriptionLength": 136,
+      "title": "Wohnungsauflösung Regensburg | Räume & Freigabe",
+      "titleLength": 47,
+      "description": "Wohnungsauflösung in Regensburg mit Räumen, Restgegenständen, Freigaben, Fotos, Etagen, Zugang und Zeitraum anfragen.",
+      "descriptionLength": 117,
       "h1": [
-        "Wohnungsauflösung Regensburg bei Nachlass, Auszug und Übergabe"
+        "Wohnungsauflösung Regensburg ruhig nach Räumen und Freigabe klären"
       ],
       "canonical": "https://www.floxant.de/regensburg/wohnungsaufloesung",
       "expectedCanonical": "https://www.floxant.de/regensburg/wohnungsaufloesung",
@@ -1077,24 +1076,19 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "LocalBusiness",
         "Service",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 43,
+      "internalLinksCount": 22,
       "moneyPageLinks": [
         "/kontakt",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
-        "/regensburg/gewerbereinigung",
-        "/regensburg/reinigung",
+        "/regensburg/reinigung-nach-umzug",
         "/regensburg/umzug",
         "/regensburg/wohnungsaufloesung"
       ],
@@ -1102,8 +1096,9 @@
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label"
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
+        "erwarteter interner Link fehlt: /angebot-vergleichen-regensburg"
       ],
       "redirectChain": [],
       "result": "WARN"
@@ -1139,7 +1134,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/umzug",
         "/reinigungsfirma-angebot",
@@ -1149,13 +1144,13 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/regensburg/reinigung",
-      "finalUrl": "http://127.0.0.1:3000/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:3211/regensburg/reinigung",
       "finalPath": "/regensburg/reinigung",
       "status": 200,
-      "title": "Gebäudereinigung Regensburg | Floxant",
-      "titleLength": 37,
-      "description": "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
-      "descriptionLength": 127,
+      "title": "Reinigung Regensburg | Objekt & Umfang anfragen | FLOXANT",
+      "titleLength": 57,
+      "description": "Reinigung in Regensburg für Wohnung, Büro, Praxis, Treppenhaus oder Übergabe anfragen. Objektart, Fläche, Zustand, Zugang und Termin senden.",
+      "descriptionLength": 140,
       "h1": [
         "Gebäudereinigung in Regensburg und Umgebung"
       ],
@@ -1170,6 +1165,11 @@
           "path": "/regensburg/reinigung"
         },
         {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/regensburg/cleaning",
+          "path": "/en/regensburg/cleaning"
+        },
+        {
           "hreflang": "x-default",
           "href": "https://www.floxant.de/regensburg/reinigung",
           "path": "/regensburg/reinigung"
@@ -1177,34 +1177,31 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "CleaningService",
         "Service",
         "WebPage",
-        "BreadcrumbList",
-        "FAQPage"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 51,
+      "internalLinksCount": 37,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/bueroreinigung",
-        "/regensburg/endreinigung",
         "/regensburg/entruempelung",
         "/regensburg/gewerbereinigung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/reinigung-nach-umzug",
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /reinigungsfirma-angebot"
       ],
       "redirectChain": [],
@@ -1242,7 +1239,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/private-client-service",
         "/diskreter-umzug-trennung-scheidung",
@@ -1252,7 +1249,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/diskret-service",
-      "finalUrl": "http://127.0.0.1:3000/diskret-service",
+      "finalUrl": "http://127.0.0.1:3211/diskret-service",
       "finalPath": "/diskret-service",
       "status": 200,
       "title": "Diskret-Service für sensible Anfragen",
@@ -1280,8 +1277,6 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "BreadcrumbList",
         "WebPage",
         "Service",
@@ -1290,7 +1285,7 @@
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 33,
+      "internalLinksCount": 27,
       "moneyPageLinks": [
         "/kontakt",
         "/private-client-service",
@@ -1303,8 +1298,8 @@
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label"
+        "SEO-CTA ohne data-service, data-city",
+        "SEO-CTA ohne data-city, data-cta-label"
       ],
       "redirectChain": [],
       "result": "WARN"
@@ -1342,7 +1337,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/diskret-service",
         "/diskreter-umzug-trennung-scheidung",
@@ -1353,7 +1348,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/private-client-service",
-      "finalUrl": "http://127.0.0.1:3000/private-client-service",
+      "finalUrl": "http://127.0.0.1:3211/private-client-service",
       "finalPath": "/private-client-service",
       "status": 200,
       "title": "Private Client Service - sensible private Anfragen klar abstimmen",
@@ -1381,8 +1376,6 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "BreadcrumbList",
         "WebPage",
         "Service",
@@ -1391,7 +1384,7 @@
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 8,
+      "internalLinksCount": 10,
       "moneyPageLinks": [
         "/diskret-service",
         "/kontakt"
@@ -1399,9 +1392,11 @@
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
-      "warnings": [],
+      "warnings": [
+        "SEO-CTA ohne data-service, data-city"
+      ],
       "redirectChain": [],
-      "result": "PASS"
+      "result": "WARN"
     },
     {
       "path": "/kontakt",
@@ -1435,7 +1430,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/buchung",
         "/rechner",
@@ -1446,15 +1441,15 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/kontakt",
-      "finalUrl": "http://127.0.0.1:3000/kontakt",
+      "finalUrl": "http://127.0.0.1:3211/kontakt",
       "finalPath": "/kontakt",
       "status": 200,
-      "title": "Kontakt | FLOXANT Anfrage stellen",
-      "titleLength": 33,
-      "description": "FLOXANT kontaktieren und Anfrage für Reinigung, Umzug oder Entrümpelung stellen. Bedarf beschreiben und Rückmeldung erhalten. Fotos, Termin, Umfang und Preisrahmen direkt senden und Machbarkeit prüfen lassen.",
-      "descriptionLength": 208,
+      "title": "Leistung unverbindlich anfragen | FLOXANT",
+      "titleLength": 41,
+      "description": "Wählen Sie Standort und Leistung und senden Sie die wichtigsten Eckdaten direkt an FLOXANT.",
+      "descriptionLength": 91,
       "h1": [
-        "Beschreiben Sie kurz, wobei Sie Hilfe brauchen"
+        "Leistung unverbindlich anfragen"
       ],
       "canonical": "https://www.floxant.de/kontakt",
       "expectedCanonical": "https://www.floxant.de/kontakt",
@@ -1467,6 +1462,11 @@
           "path": "/kontakt"
         },
         {
+          "hreflang": "en",
+          "href": "https://www.floxant.de/en/contact",
+          "path": "/en/contact"
+        },
+        {
           "hreflang": "x-default",
           "href": "https://www.floxant.de/kontakt",
           "path": "/kontakt"
@@ -1474,33 +1474,30 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
-        "ContactPage",
-        "BreadcrumbList",
-        "FAQPage",
-        "ItemList"
+        "BreadcrumbList"
       ],
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 49,
+      "internalLinksCount": 20,
       "moneyPageLinks": [
-        "/diskret-service",
         "/kontakt",
         "/regensburg/entruempelung",
-        "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
-        "SEO-CTA ohne data-city, data-priority, data-cta-label",
-        "SEO-CTA ohne data-service, data-city, data-page-intent, data-priority",
-        "SEO-CTA ohne data-city, data-cta-label",
+        "Meta-Description-Laenge 91",
+        "Schema ContactPage nicht gefunden",
+        "Schema FAQPage nicht gefunden",
+        "SEO-CTA ohne data-service, data-city",
+        "erwarteter interner Link fehlt: /buchung",
+        "erwarteter interner Link fehlt: /rechner",
+        "erwarteter interner Link fehlt: /diskret-service",
         "erwarteter interner Link fehlt: /private-client-service"
       ],
       "redirectChain": [],
@@ -1538,7 +1535,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "expectedCtaEvent": "seo_cta_click",
+      "expectedCtaEvent": "request_cta_click",
       "expectedRelatedLinks": [
         "/regensburg/reinigung",
         "/regensburg/gewerbereinigung",
@@ -1548,7 +1545,7 @@
       "shouldBeInSitemap": true,
       "shouldBeIndexable": true,
       "url": "/reinigungsfirma-angebot",
-      "finalUrl": "http://127.0.0.1:3000/reinigungsfirma-angebot",
+      "finalUrl": "http://127.0.0.1:3211/reinigungsfirma-angebot",
       "finalPath": "/reinigungsfirma-angebot",
       "status": 200,
       "title": "Reinigungsfirma Angebot mit Objekt und Turnus klären",
@@ -1556,7 +1553,7 @@
       "description": "Reinigungsfirma Angebot vorbereiten: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden, damit offene Punkte vor Zusage klar sind.",
       "descriptionLength": 136,
       "h1": [
-        "Reinigungsfirma Angebot anfragen: Objekt, Fläche und Termin klar senden"
+        "Neues Reinigungsangebot mit klaren Eckdaten anfragen"
       ],
       "canonical": "https://www.floxant.de/reinigungsfirma-angebot",
       "expectedCanonical": "https://www.floxant.de/reinigungsfirma-angebot",
@@ -1576,8 +1573,6 @@
       ],
       "jsonLdTypes": [
         "Organization",
-        "Dataset",
-        "WebSite",
         "WebPage",
         "Service",
         "BreadcrumbList",
@@ -1586,19 +1581,20 @@
       "jsonLdValid": true,
       "ctaFound": true,
       "seoCtaEventFound": true,
-      "internalLinksCount": 32,
+      "internalLinksCount": 27,
       "moneyPageLinks": [
         "/kontakt",
         "/regensburg/bueroreinigung",
         "/regensburg/entruempelung",
         "/regensburg/reinigung",
-        "/regensburg/umzug"
+        "/regensburg/umzug",
+        "/regensburg/wohnungsaufloesung"
       ],
       "sitemapIncluded": true,
       "duplicateSitemapIncluded": false,
       "issues": [],
       "warnings": [
-        "SEO-CTA ohne data-city",
+        "SEO-CTA ohne data-service, data-city",
         "erwarteter interner Link fehlt: /regensburg/gewerbereinigung"
       ],
       "redirectChain": [],

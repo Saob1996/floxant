@@ -29,7 +29,7 @@ const localizedCopy = {
     eyebrow: "Frequently asked questions",
     title: "Answers for the next step",
     intro:
-      "The most important questions about scope, process and enquiries – publicly reviewed and readable directly on this page.",
+      "The most important questions about scope, process and enquiries, answered directly on this page.",
     linkLabel: "View all questions",
     allQuestionsHref: "/en/questions",
   },

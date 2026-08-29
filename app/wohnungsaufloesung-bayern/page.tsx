@@ -131,7 +131,7 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
           {
             title: "Wohnungsauflösung + Endreinigung",
             text: "Sinnvoll, wenn danach Übergabe, Verkauf oder Neuvermietung ansteht.",
-            href: "/regensburg/endreinigung",
+            href: "/regensburg/reinigung-nach-umzug",
           },
           {
             title: "Haushaltsauflösung + Entsorgung",

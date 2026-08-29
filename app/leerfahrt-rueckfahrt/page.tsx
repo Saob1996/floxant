@@ -143,13 +143,13 @@ export default async function LeerfahrtRueckfahrtPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/beiladung"
+                href="#leerfahrt-anfrage"
                 className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50"
               >
                 Beiladung vergleichen
               </Link>
               <Link
-                href="/rueckfahrt-boerse#rueckfahrt-form"
+                href="#leerfahrt-anfrage"
                 className="inline-flex items-center justify-center rounded-2xl border border-emerald-200 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-emerald-800 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:bg-emerald-50"
                 data-event="region_select"
                 data-service="leerfahrt"
@@ -321,7 +321,7 @@ export default async function LeerfahrtRueckfahrtPage() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                href: "/beiladung",
+                href: "/leerfahrt-rueckfahrt#leerfahrt-anfrage",
                 label: "Beiladung für Einzelstücke",
                 text: "Wenn keine konkrete Rückfahrt veröffentlicht ist, aber flexible Mitnahme trotzdem sinnvoll bleibt.",
               },

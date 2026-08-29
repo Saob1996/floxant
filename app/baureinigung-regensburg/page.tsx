@@ -175,7 +175,7 @@ const relatedLinks = [
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung Regensburg" },
   { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },

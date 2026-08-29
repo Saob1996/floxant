@@ -22,7 +22,7 @@ const redirectRules = readFileSync(path.join(root, "_redirects"), "utf8")
     const [source, destination, status = "302"] = line.split(/\s+/);
     const names = [];
     let pattern = source.replace(/[.+?^${}()|[\]\\]/g, "\\$&");
-    pattern = pattern.replace(/\\\*/g, "(.*)");
+    pattern = pattern.replace(/\*/g, "(.*)");
     pattern = pattern.replace(/:([A-Za-z][A-Za-z0-9_]*)/g, (_, name) => {
       names.push(name);
       return "([^/]+)";
@@ -57,8 +57,10 @@ const compressibleExtensions = new Set([
 ]);
 
 function redirectFor(pathname, search) {
+  let decodedPathname = pathname;
+  try { decodedPathname = decodeURIComponent(pathname); } catch { /* Keep the encoded request path. */ }
   for (const rule of redirectRules) {
-    const match = pathname.match(rule.regex);
+    const match = pathname.match(rule.regex) || decodedPathname.match(rule.regex);
     if (!match) continue;
     let destination = rule.destination;
     const captures = match.slice(1);

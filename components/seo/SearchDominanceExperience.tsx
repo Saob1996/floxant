@@ -228,7 +228,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       {
         label: "Offene Punkte prüfen",
         text: "Etage, Laufweg, Zusatzkosten und Umfang besser erkennen.",
-        href: "/angebotscheck#red-flag-scanner",
+        href: "/angebot-guenstiger-pruefen#red-flag-scanner",
         Icon: ShieldCheck,
       },
       {

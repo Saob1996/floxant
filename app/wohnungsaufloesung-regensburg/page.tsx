@@ -111,7 +111,7 @@ const localSignals = [
 const relatedLinks = [
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung Regensburg" },
-  { href: "/regensburg/endreinigung", label: "Endreinigung nach Räumung" },
+  { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung nach Räumung" },
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Räumungsangebot prüfen" },
 ] as const;

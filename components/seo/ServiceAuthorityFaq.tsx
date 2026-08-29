@@ -44,7 +44,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   links: [
    { href: "/rechner", label: "Umzug im Rechner einordnen" },
    { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
-   { href: "/beiladung", label: "Beiladung für kleinere Mengen prüfen" },
+   { href: "/leerfahrt-rueckfahrt", label: "Beiladung für kleinere Mengen prüfen" },
    { href: "/qualitaet-ablauf", label: "Qualität und Ablauf verstehen" },
   ],
  },

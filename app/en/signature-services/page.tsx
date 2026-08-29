@@ -3,15 +3,16 @@ import Link from "next/link";
 import { ArrowRight, Check, ShieldCheck, Sparkles } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { getCentralSeoEntry } from "@/lib/content/seo-matrix";
 import { publicSignatureSolutions } from "@/lib/services/signature-solutions";
 
 const path = "/en/signature-services";
+const seo = getCentralSeoEntry(path);
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Signature and Special Solutions",
-  description:
-    "Reviewed FLOXANT solutions for quote checks, property briefs, handovers, backup planning, discreet enquiries and combined moving and cleaning.",
+  title: seo.activeTitle,
+  description: seo.metaDescription,
   alternates: {
     canonical: path,
     languages: {
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: path,
-    title: "FLOXANT Signature and Special Solutions",
-    description: "Publicly reviewed request paths for situations that need structured clarification.",
+    title: seo.ogTitle,
+    description: seo.ogDescription,
   },
   robots: { index: true, follow: true },
 };
@@ -86,6 +87,76 @@ const englishSolutions = publicSignatureSolutions
   .filter((solution) => Boolean(englishCopy[solution.id]))
   .map((solution) => ({ solution, copy: englishCopy[solution.id] }));
 
+function getOperationalDetails(solutionId: string) {
+  if (solutionId === "angebotscheck" || solutionId === "anbieter-vergleichen") {
+    return {
+      scope: ["existing quote", "included work", "assumptions", "extra line items", "open questions"],
+      boundaries: "The review explains the information provided. It is not legal advice, a quality certification or a promise to find a lower price.",
+      priceFactors: ["document length", "number of quotes", "missing project details", "complexity of scope"],
+      requiredDetails: ["quote or screenshots", "location", "requested service", "timing", "main concern"],
+      steps: ["Upload the quote and project facts", "FLOXANT checks comparable criteria", "Receive open points and a practical next step"],
+      faq: {
+        q: "Will the review guarantee a cheaper quote?",
+        a: "No. It makes scope, assumptions and open points easier to compare; it does not promise a saving or favour a provider.",
+      },
+    };
+  }
+
+  if (solutionId === "objektbrief" || solutionId === "uebergabeakte") {
+    return {
+      scope: ["property facts", "photos", "access", "known tasks", "contacts and timing"],
+      boundaries: "The file organises the details supplied by the customer. It is not a survey, valuation, legal record or acceptance guarantee.",
+      priceFactors: ["property size", "number of areas", "documentation volume", "required coordination"],
+      requiredDetails: ["property location", "property type", "photos", "target result", "deadline or handover date"],
+      steps: ["Send known facts and files", "FLOXANT structures tasks and gaps", "Confirm the brief before any separate service is planned"],
+      faq: {
+        q: "Does the file replace a formal handover report?",
+        a: "No. It is an organised request and working overview based on the information provided, not a legal handover record.",
+      },
+    };
+  }
+
+  if (solutionId === "plan-b-service") {
+    return {
+      scope: ["deadline", "failed or uncertain arrangement", "minimum required result", "location", "available alternatives"],
+      boundaries: "FLOXANT checks feasibility but does not promise emergency availability or a completed service before the facts are confirmed.",
+      priceFactors: ["notice period", "scope", "access", "travel", "resources required"],
+      requiredDetails: ["location", "deadline", "what has changed", "minimum required scope", "photos or prior quote"],
+      steps: ["Describe the failed plan and deadline", "FLOXANT checks feasible options", "Agree a next step only if scope and timing can be confirmed"],
+      faq: {
+        q: "Is last-minute availability guaranteed?",
+        a: "No. Availability is checked after location, scope, access and deadline are known.",
+      },
+    };
+  }
+
+  if (solutionId === "diskret-service") {
+    return {
+      scope: ["data-minimising contact", "preferred contact channel", "essential service facts", "sensitive timing", "restricted access"],
+      boundaries: "Only necessary service information should be sent. This route is not anonymous, legal or crisis advice.",
+      priceFactors: ["requested service", "scope", "access", "timing", "coordination needs"],
+      requiredDetails: ["preferred contact method", "region", "service category", "timing", "only the essential context"],
+      steps: ["Choose a discreet contact method", "Share the minimum useful facts", "Clarify scope and next steps directly"],
+      faq: {
+        q: "Do I need to explain private background details?",
+        a: "No. Start with only the service facts needed to understand location, scope, timing and the preferred contact method.",
+      },
+    };
+  }
+
+  return {
+    scope: ["move details", "remaining items", "cleaning scope", "handover date", "dependencies"],
+    boundaries: "Moving, clearance and cleaning are assessed as separate work packages. One request does not automatically confirm every part.",
+    priceFactors: ["volume", "route", "floors and access", "cleaning condition", "additional tasks"],
+    requiredDetails: ["start and destination", "volume or photos", "access", "cleaning areas", "handover date"],
+    steps: ["Send one combined brief", "FLOXANT separates tasks and dependencies", "Confirm feasible work packages and timing"],
+    faq: {
+      q: "Will moving and cleaning appear as one unclear total?",
+      a: "No. The request separates the known work packages so scope, assumptions and optional tasks remain visible.",
+    },
+  };
+}
+
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -111,7 +182,7 @@ export default function EnglishSignatureServicesPage() {
         <div className="mx-auto max-w-7xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100">
             <Sparkles className="h-4 w-4" aria-hidden="true" />
-            Publicly reviewed solutions
+            Structured service requests
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] sm:text-5xl lg:text-6xl">
             Structured request paths for situations beyond a standard service form
@@ -126,7 +197,9 @@ export default function EnglishSignatureServicesPage() {
       <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {englishSolutions.map(({ solution, copy }) => (
+            {englishSolutions.map(({ solution, copy }) => {
+              const details = getOperationalDetails(solution.id);
+              return (
               <article
                 id={`solution-${solution.id}`}
                 key={solution.id}
@@ -150,21 +223,46 @@ export default function EnglishSignatureServicesPage() {
                     <dd className="mt-1 font-medium leading-6 text-slate-700">{copy.result}</dd>
                   </div>
                   <div>
-                    <dt className="font-black text-slate-950">Reviewed regions</dt>
+                    <dt className="font-black text-slate-950">Service regions</dt>
                     <dd className="mt-1 font-medium leading-6 text-slate-700">
                       {solution.regions.join(" · ")}
                     </dd>
                   </div>
+                  <div>
+                    <dt className="font-black text-slate-950">Scope</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.scope.join(" · ")}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black text-slate-950">Required details</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.requiredDetails.join(" · ")}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black text-slate-950">What can affect a separate service price</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.priceFactors.join(" · ")}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black text-slate-950">Process</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.steps.join(" → ")}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black text-slate-950">Boundary</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.boundaries}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black text-slate-950">{details.faq.q}</dt>
+                    <dd className="mt-1 font-medium leading-6 text-slate-700">{details.faq.a}</dd>
+                  </div>
                 </dl>
                 <Link
-                  href={solution.canonicalRoute}
+                  href={`/en/contact?service=${encodeURIComponent(solution.id)}&intent=signature-service`}
                   className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-black text-blue-800 outline-none hover:text-blue-950 focus-visible:ring-2 focus-visible:ring-cyan-600"
                 >
-                  Open service details in German
+                  Start this request in English
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </article>
-            ))}
+              );
+            })}
           </div>
 
           <aside className="mt-12 rounded-3xl bg-slate-950 p-6 text-white sm:p-8">

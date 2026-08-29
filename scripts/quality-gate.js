@@ -12,6 +12,7 @@ const CLOUDFLARE_REDIRECTS_PATH = path.join(ROOT, "public", "_redirects");
 const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
 const DYNAMIC_BLOG_SOURCE_FILES = [
   path.join(ROOT, "lib", "ai-recommendation-blog-articles.ts"),
+  path.join(ROOT, "lib", "content", "dominance-articles.ts"),
   path.join(ROOT, "lib", "offer-check-blog-articles.ts"),
   path.join(ROOT, "lib", "strategic-blog-articles.ts"),
 ];
@@ -151,7 +152,7 @@ const IMPORTANT_ROUTES = [
 const REDIRECT_EXPECTATIONS = [
   ["/partnercode", "/empfehlen"],
   ["/airbnb-reinigung-regensburg", "/reinigung-moeblierte-wohnung-regensburg"],
-  ["/angebot-red-flag-scanner", "/angebotscheck#red-flag-scanner"],
+  ["/angebot-red-flag-scanner", "/angebot-guenstiger-pruefen#red-flag-scanner"],
   ["/guenstigeres-angebot-pruefen", "/angebot-guenstiger-pruefen"],
   ["/de", "/"],
   ["/de/umzug", "/umzug"],
@@ -170,10 +171,10 @@ const REDIRECT_EXPECTATIONS = [
   ["/gewerbereinigung-regensburg", "/regensburg/gewerbereinigung"],
   ["/bueroreinigung-regensburg", "/regensburg/bueroreinigung"],
   ["/wohnungsaufloesung-regensburg", "/regensburg/wohnungsaufloesung"],
-  ["/umzugsunternehmen-regensburg", "/regensburg/umzugsunternehmen"],
+  ["/umzugsunternehmen-regensburg", "/regensburg/umzug"],
   ["/seniorenumzug-regensburg", "/regensburg/seniorenumzug"],
   ["/umzug-reinigung-regensburg", "/regensburg/umzug-reinigung"],
-  ["/endreinigung-regensburg", "/regensburg/endreinigung"],
+  ["/endreinigung-regensburg", "/regensburg/reinigung-nach-umzug"],
   ["/einsatzgebiet-regensburg-200km", "/regensburg"],
   ["/service-area-bayern", "/regensburg"],
   ["/umzug-n%C3%BCrnberg", "/umzug-nuernberg"],
@@ -188,10 +189,10 @@ const REDIRECT_EXPECTATIONS = [
 
 const GONE_EXPECTATIONS = [
   "/umzug-duesseldorf",
-  "/en/umzug-duesseldorf",
-  "/halteverbotszone-duesseldorf",
-  "/transport-duesseldorf",
-  "/entruempelung-duesseldorf",
+  "/duesseldorf/umzug",
+  "/duesseldorf/entruempelung",
+  "/duesseldorf/haushaltsaufloesung",
+  "/seo-gone",
 ];
 
 function isRouteGroup(segment) {
@@ -855,12 +856,27 @@ async function waitForServer(baseUrl, child) {
 }
 
 async function runHttpCheck() {
-  const routes = [...discoverRoutes()].sort();
   const port = await findAvailablePort(DEFAULT_PORT);
   const baseUrl = `http://127.0.0.1:${port}`;
+  const staticExport = ["next.config.js", "next.config.mjs", "next.config.ts"]
+    .map((file) => {
+      const filePath = path.join(ROOT, file);
+      return fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+    })
+    .some((source) => /\boutput\s*:\s*["']export["']/.test(source));
+  const exportedSitemap = path.join(ROOT, "out", "sitemap.xml");
+  const routes = staticExport && fs.existsSync(exportedSitemap)
+    ? [...fs.readFileSync(exportedSitemap, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)]
+      .map((match) => new URL(match[1]).pathname)
+      .sort()
+    : [...discoverRoutes()].sort();
+  const staticPreview = path.join(ROOT, "scripts", "serve-static-export.mjs");
   const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  const child = spawn(process.execPath, [nextBin, "start", "-p", String(port)], {
+  const executable = staticExport ? staticPreview : nextBin;
+  const args = staticExport ? [staticPreview] : [nextBin, "start", "-p", String(port)];
+  const child = spawn(process.execPath, args, {
     cwd: ROOT,
+    env: { ...process.env, PORT: String(port) },
     stdio: ["ignore", "pipe", "pipe"],
     windowsHide: true,
   });

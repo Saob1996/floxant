@@ -138,7 +138,7 @@ function getServiceContent(config: RegensburgServicePageConfig): ServiceContent 
           label: "Wohnungsauflösung",
         },
         {
-          href: "/regensburg/endreinigung",
+          href: "/regensburg/reinigung-nach-umzug",
           label: "Endreinigung nach der Räumung",
         },
         {
@@ -195,11 +195,11 @@ function getServiceContent(config: RegensburgServicePageConfig): ServiceContent 
           label: "Entrümpelung einzelner Räume",
         },
         {
-          href: "/regensburg/endreinigung",
+          href: "/regensburg/reinigung-nach-umzug",
           label: "Endreinigung",
         },
         {
-          href: "/regensburg/uebergabereinigung",
+          href: "/regensburg/reinigung-nach-umzug",
           label: "Übergabereinigung",
         },
         {

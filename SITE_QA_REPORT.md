@@ -1,10 +1,10 @@
 # FLOXANT Site QA Report
 
-Generated: 2026-07-26T11:16:31.336Z
+Generated: 2026-08-29T03:30:58.055Z
 
 Overall status: WARN
 
-Summary: 132 PASS, 4 WARN, 0 FAIL
+Summary: 132 PASS, 5 WARN, 0 FAIL
 
 ## Scope
 
@@ -48,6 +48,7 @@ Summary: 132 PASS, 4 WARN, 0 FAIL
 | PASS | Routing | app/diskret-service/page.tsx | /diskret-service | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/diskreter-umzug-trennung-scheidung/page.tsx | /diskreter-umzug-trennung-scheidung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/seniorenumzug-landshut/page.tsx | /seniorenumzug-landshut | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| WARN | SEO | lib/sitemap-routes.ts | /seniorenumzug-landshut | P1 | Kritische Public Page fehlt in der Sitemap. | npm run seo:sitemap ausfuehren oder Route-Aufnahme pruefen. | no | yes |
 | PASS | Routing | next.config.js | /umzug-im-alter-bayern | P1 | Alias redirectet kanonisch nach /seniorenumzug-bayern. | Keine Aktion. | no | no |
 | PASS | Routing | next.config.js | /reinigung-nach-entruempelung-regensburg | P1 | Alias redirectet kanonisch nach /regensburg/reinigung. | Keine Aktion. | no | no |
 | PASS | Routing | app/fensterreinigung-regensburg/page.tsx | /fensterreinigung-regensburg | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
@@ -90,25 +91,25 @@ Summary: 132 PASS, 4 WARN, 0 FAIL
 | PASS | CTA | app/page.tsx | / | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/kontakt/page.tsx | /kontakt | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/leistungen/page.tsx | /leistungen | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| WARN | CTA | app/reinigung/page.tsx | /reinigung | P1 | CTA vorhanden, aber Tracking-/Intent-Attribute statisch nicht klar nachweisbar. | data-service, data-city, data-page-intent, data-priority manuell pruefen. | no | yes |
+| PASS | CTA | app/reinigung/page.tsx | /reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/umzug/page.tsx | /umzug | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/entruempelung/page.tsx | /entruempelung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/angebot-guenstiger-pruefen/page.tsx | /angebot-guenstiger-pruefen | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/angebotscheck/page.tsx | /angebotscheck | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/anbieter-vergleichen/page.tsx | /anbieter-vergleichen | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/page.tsx | /duesseldorf | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| WARN | CTA | app/duesseldorf/page.tsx | /duesseldorf | P1 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| WARN | CTA | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P0 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
-| WARN | CTA | app/duesseldorf/bueroreinigung/page.tsx | /duesseldorf/bueroreinigung | P1 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
-| WARN | CTA | app/duesseldorf/grundreinigung/page.tsx | /duesseldorf/grundreinigung | P1 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
-| PASS | CTA | app/regensburg/page.tsx | /regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P2 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/duesseldorf/bueroreinigung/page.tsx | /duesseldorf/bueroreinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/duesseldorf/grundreinigung/page.tsx | /duesseldorf/grundreinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| WARN | CTA | app/regensburg/page.tsx | /regensburg | P1 | CTA vorhanden, aber öffentliche Tracking-Attribute statisch nicht klar nachweisbar. | data-service, data-city und sichtbares CTA-Label manuell prüfen. | no | yes |
+| WARN | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P2 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
+| WARN | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P0 | Kein expliziter SEO-CTA/LeadCta im Page-Source erkennbar. | Hero- und Content-CTA manuell pruefen. | no | yes |
 | PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/entruempelung/page.tsx | /regensburg/entruempelung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/gewerbereinigung/page.tsx | /regensburg/gewerbereinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |

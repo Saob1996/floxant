@@ -116,13 +116,13 @@ const warningSigns = germanizeDeep([
 
 const internalLinks = germanizeDeep([
   { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen", text: "zentrale Seite fuer vorhandene Angebote" },
-  { href: "/angebotscheck", label: "Angebotscheck", text: "Red-Flag-Scanner und Uploadpfad" },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck", text: "Red-Flag-Scanner und Uploadpfad" },
   { href: "/anbieter-vergleichen", label: "Anbieter vergleichen", text: "Portal, Direktanbieter und Leistungsumfang trennen" },
   { href: "/kontakt", label: "Kontakt", text: "Anfrage mit Ort, Termin und Fotos senden" },
   { href: "/reinigung", label: "Reinigung", text: "Reinigung und Uebergabe richtig beschreiben" },
   { href: "/umzug", label: "Umzug", text: "Volumen, Strecke und Zusatzleistungen einordnen" },
   { href: "/entruempelung", label: "Entruempelung", text: "Menge, Material und Zugang klaeren" },
-  { href: "/solarreinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
+  { href: "/pv-anlagen-reinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
   { href: "/duesseldorf", label: "Düsseldorf", text: "lokale Reinigung und weitere Leistungen" },
   { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Umgebung nach Machbarkeit" },
   { href: "/signature-services", label: "Signature Services", text: "Fairpreis, Objektbrief, Plan B und Rueckfahrt" },
@@ -198,7 +198,7 @@ const localLinks = germanizeDeep([
     text: "FLOXANT Schwerpunkt für Umzug, Reinigung, Entrümpelung und Umgebung nach Machbarkeit.",
   },
   {
-    href: "/regensburg/solarreinigung",
+    href: "/pv-anlagen-reinigung",
     title: "Solarreinigung Regensburg",
     text: "PV-Anlage, Dachzugang, Wasser und Sicherheit ohne Ertragsversprechen pruefen.",
   },

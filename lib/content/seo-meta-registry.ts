@@ -8,6 +8,8 @@ export type SeoSnippetVariant = {
 export type SeoMetaModel = {
   route: string;
   shortTitle: string;
+  longTitle: string;
+  activeTitle: string;
   seoTitle: string;
   headline: string;
   description: string;
@@ -25,12 +27,17 @@ export type SeoMetaModel = {
   variants: Record<SeoSnippetVariantName, SeoSnippetVariant>;
 };
 
-type SeoMetaSeed = Omit<SeoMetaModel, "seoTitle" | "description" | "rollbackValue">;
+type SeoMetaSeed = Omit<
+  SeoMetaModel,
+  "longTitle" | "activeTitle" | "seoTitle" | "description" | "rollbackValue"
+>;
 
 function defineMeta(seed: SeoMetaSeed): SeoMetaModel {
   const active = seed.variants[seed.activeVariant];
   return {
     ...seed,
+    longTitle: seed.variants.benefit.title,
+    activeTitle: active.title,
     seoTitle: active.title,
     description: active.description,
     rollbackValue: { ...seed.variants.direct },
@@ -479,3 +486,20 @@ export type PrioritySeoRoute = keyof typeof prioritySeoMetaRegistry;
 export function getPrioritySeoMeta(route: PrioritySeoRoute): SeoMetaModel {
   return prioritySeoMetaRegistry[route];
 }
+
+/**
+ * Central, exportable snippet matrix for the routes controlled by this registry.
+ * `activeTitle` is the title currently shipped; `longTitle` is the descriptive
+ * alternative retained for a measured snippet experiment.
+ */
+export const prioritySeoMatrix = Object.values(prioritySeoMetaRegistry).map((entry) => ({
+  route: entry.route,
+  shortTitle: entry.shortTitle,
+  longTitle: entry.longTitle,
+  activeTitle: entry.activeTitle,
+  metaDescription: entry.description,
+  h1: entry.headline,
+  ogTitle: entry.ogTitle,
+  ogDescription: entry.ogDescription,
+  activeVariant: entry.activeVariant,
+}));

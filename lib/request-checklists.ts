@@ -327,7 +327,7 @@ export const requestChecklistDefinitions: Record<RequestChecklistKey, RequestChe
       ...defaultRelatedSignatureServices,
       {
         label: "Rückfahrt-Radar",
-        href: "/beiladung-regensburg",
+        href: "/leerfahrt-rueckfahrt",
         reason: "Wenn Strecke, Zeitfenster und Transportgut flexibel sind.",
       },
     ],

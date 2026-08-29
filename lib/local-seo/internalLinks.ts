@@ -15,7 +15,7 @@ const regensburgServiceLinks: LocalSeoLink[] = [
   { href: "/regensburg/umzug", label: "Umzug Regensburg", text: "Umzug getrennt von Reinigung einordnen." },
   { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg", text: "Raeumung und Entsorgung separat klaeren." },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg", text: "Aufloesung, Restmengen und Uebergabe planen." },
-  { href: "/angebot-pruefen", label: "Allgemeine Angebotsprüfung", text: "Wenn erst die Angebotslogik geklaert werden soll." },
+  { href: "/angebot-guenstiger-pruefen", label: "Allgemeine Angebotsprüfung", text: "Wenn erst die Angebotslogik geklaert werden soll." },
 ];
 
 export function getRegionalHubLinks(_region: LocalSeoRegionKey): LocalSeoLink[] {

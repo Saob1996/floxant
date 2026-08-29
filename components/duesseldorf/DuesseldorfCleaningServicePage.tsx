@@ -18,6 +18,7 @@ import {
 } from "@/lib/content/seo-meta-registry";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { searchAuthorityPages } from "@/lib/search-authority";
+import { getLanguageAlternatesForPath } from "@/lib/local-seo/hreflangMap";
 import {
   buildBreadcrumbJsonLd,
   buildServiceJsonLd,
@@ -62,13 +63,8 @@ type PageConfig = {
   about: string[];
 };
 
-const localBookingServices = new Set(["reinigung", "bueroreinigung", "praxisreinigung", "grundreinigung", "baureinigung"]);
-
 const requestHref = (service: string, intent: string) => {
-  const contactHref = buildLeadHref({ service, city: "duesseldorf", intent });
-  return localBookingServices.has(service)
-    ? contactHref.replace(/^\/kontakt\?/, "/duesseldorf/buchen?")
-    : contactHref;
+  return buildLeadHref({ service, city: "duesseldorf", intent });
 };
 
 const authority = searchAuthorityPages;
@@ -362,9 +358,9 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
       "Für Baureinigung zählen Bauphase, Fläche, abgeschlossene Gewerke, vorhandene Rückstände und Übergabetermin. Gefährliche Stoffe oder nicht klar zuordenbare Abfälle gehören nicht automatisch zum Umfang.",
     serviceType: "Bau- und Bauendreinigung in Düsseldorf",
     cta: {
-      href: "/duesseldorf/buchen?service=bauendreinigung",
+      href: requestHref("reinigung", "bauendreinigung-duesseldorf"),
       label: "Bauendreinigung anfragen",
-      service: "bauendreinigung",
+      service: "reinigung",
       intent: "bauendreinigung-duesseldorf",
     },
     fitTitle: "Reinigung passend zum Stand der Arbeiten",
@@ -470,13 +466,16 @@ function resolveSeoMetadata(config: PageConfig) {
 export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPageKey): Metadata {
   const config = duesseldorfCleaningPages[pageKey];
   const seo = resolveSeoMetadata(config);
+  const languages = Object.fromEntries(
+    getLanguageAlternatesForPath(config.path).map((alternate) => [alternate.hreflang, alternate.path]),
+  );
   return {
     metadataBase: new URL(company.url),
     title: seo.title,
     description: seo.description,
     alternates: {
       canonical: config.path,
-      languages: { "de-DE": config.path, "x-default": config.path },
+      languages,
     },
     openGraph: {
       type: "website",
@@ -638,6 +637,32 @@ function MoveOutCleaningCallout() {
   );
 }
 
+function HubDecisionDetails({ config }: { config: PageConfig }) {
+  return (
+    <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
+        <article className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Privat</p>
+          <h2 className="mt-3 text-2xl font-black">Wohnung, Grund- oder Auszugsreinigung</h2>
+          <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">Objektart, Räume, Fläche, Zustand, gewünschtes Ergebnis und Termin zeigen, welche Reinigungsart passt.</p>
+        </article>
+        <article className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Gewerblich</p>
+          <h2 className="mt-3 text-2xl font-black">Büro, Praxis oder Gewerbefläche</h2>
+          <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">Raumliste, Nutzung, Turnus, Zeitfenster, Ansprechpartner und Zugang gehören in eine belastbare gewerbliche Anfrage.</p>
+        </article>
+        <article className="rounded-lg bg-slate-950 p-6 text-white">
+          <p className="text-sm font-black uppercase tracking-wide text-cyan-200">Preisfaktoren</p>
+          <h2 className="mt-3 text-2xl font-black">Umfang vor Preisversprechen</h2>
+          <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6 text-slate-200">
+            {config.effortFactors.slice(0, 4).map((factor) => <li key={factor}>• {factor}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 function SpecialistDetails({ config }: { config: PageConfig }) {
   return (
     <>
@@ -781,6 +806,7 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
         </div>
       </section>
       {isHub ? <ServiceChooser keys={config.related} /> : <SpecialistDetails config={config} />}
+      {isHub ? <HubDecisionDetails config={config} /> : null}
       {isHub ? <MoveOutCleaningCallout /> : null}
       <Process config={config} />
       {isHub ? null : <ServiceChooser keys={config.related} />}

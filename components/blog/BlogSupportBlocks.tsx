@@ -34,7 +34,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
   if (signal.includes("umzug") || signal.includes("transport") || signal.includes("moebel")) {
     links.push(
       { href: "/umzug", title: "Umzug", text: "Volumen, Etage, Laufweg, Strecke und Zusatzleistungen klaeren." },
-      { href: "/rueckfahrt-boerse", title: "Rueckfahrt/Beiladung", text: "Strecken und freie Ladeflaeche praktisch pruefen lassen." },
+      { href: "/leerfahrt-rueckfahrt", title: "Rueckfahrt/Beiladung", text: "Strecken und freie Ladeflaeche praktisch pruefen lassen." },
     );
   }
 
@@ -47,7 +47,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
 
   if (signal.includes("solar") || signal.includes("pv") || signal.includes("photovoltaik")) {
     links.push(
-      { href: "/solarreinigung", title: "Solarreinigung", text: "PV-Anlage, Dachzugang, Wasser und Sicherheit einordnen." },
+      { href: "/pv-anlagen-reinigung", title: "Solarreinigung", text: "PV-Anlage, Dachzugang, Wasser und Sicherheit einordnen." },
       { href: "/pv-anlagen-reinigung", title: "PV-Anlagen-Reinigung", text: "Module und Zugang ohne Pauschalversprechen pruefen." },
     );
   }

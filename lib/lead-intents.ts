@@ -306,6 +306,13 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     priority: "p0",
     ctaLabel: "Reinigung in Regensburg anfragen",
   },
+  "/regensburg/reinigung-nach-umzug": {
+    service: "reinigung",
+    city: "regensburg",
+    intent: "reinigung-nach-umzug-regensburg",
+    priority: "p0",
+    ctaLabel: "Reinigung nach Umzug anfragen",
+  },
   "/regensburg/endreinigung": {
     service: "reinigung",
     city: "regensburg",
@@ -1149,8 +1156,7 @@ export const leadConversionTargets = [
   { path: "/treppenhausreinigung-regensburg", priorityPath: "/treppenhausreinigung-regensburg" },
   { path: "/unterhaltsreinigung-regensburg", priorityPath: "/unterhaltsreinigung-regensburg" },
   { path: "/regensburg/reinigung", priorityPath: "/regensburg/reinigung" },
-  { path: "/regensburg/endreinigung", priorityPath: "/regensburg/endreinigung" },
-  { path: "/regensburg/uebergabereinigung", priorityPath: "/regensburg/uebergabereinigung" },
+  { path: "/regensburg/reinigung-nach-umzug", priorityPath: "/regensburg/reinigung-nach-umzug" },
   { path: "/vermieter-ready-service", priorityPath: "/vermieter-ready-service" },
   { path: "/uebergabe-sprint", priorityPath: "/uebergabe-sprint" },
   { path: "/uebergabeakte", priorityPath: "/uebergabeakte" },

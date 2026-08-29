@@ -1,6 +1,5 @@
 import {
   BASE_URL,
-  LASTMOD,
   CORE_SERVICES,
   CITY_PAGES,
   SERVICE_CITY_PAGES,
@@ -28,6 +27,7 @@ import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-rout
 import { isCleaningRouteAllowed } from "./regensburg-cleaning-service-area";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
+import { execFileSync } from "child_process";
 
 /**
  * Sitemap Architecture:
@@ -67,6 +67,23 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "seo-gone",
   "duesseldorf/angebot-vergleichen",
   "duesseldorf/umzug",
+  "regensburg/reinigungsfirma",
+  "regensburg/umzugsservice",
+  "regensburg/umzugsunternehmen",
+  "regensburg/uebergabereinigung",
+  "regensburg/endreinigung",
+  "regensburg/besenreine-uebergabe",
+  "regensburg/haushaltsaufloesung",
+  "solarreinigung",
+  "regensburg/solarreinigung",
+  "rueckfahrt-boerse",
+  "rueckfahrt-radar",
+  "beiladung",
+  "beiladung-regensburg",
+  "angebot-pruefen",
+  "angebotscheck",
+  "fairpreis-check",
+  "en/regensburg/moving-company",
 ]);
 
 const CANONICAL_ALIAS_ROUTES = new Set([
@@ -128,6 +145,8 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "umzug-regensburg/anfrage",
   "regensburg/reinigung/datenschutz",
   "regensburg/reinigung/agb",
+  "suche",
+  "en/search",
 ]);
 
 const CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES = new Set([
@@ -279,12 +298,12 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   if (normalizedRoute.startsWith("seniorenumzug-")) return true;
+  if (LEGACY_REDIRECT_ROUTES.has(normalizedRoute)) return true;
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
   if (VERIFIED_APARTMENT_CLEANING_ROUTES.has(normalizedRoute)) return false;
   if (VERIFIED_REGIONAL_CLEANING_ROUTES.has(normalizedRoute)) return false;
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
-    LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
     CANONICAL_ALIAS_ROUTES.has(normalizedRoute) ||
     CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.has(normalizedRoute) ||
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
@@ -367,6 +386,29 @@ function discoverStaticAppRoutes(): string[] {
   return Array.from(routes).sort();
 }
 
+const lastmodCache = new Map<string, string>();
+
+function lastmodForSource(sourcePath: string): string {
+  const cached = lastmodCache.get(sourcePath);
+  if (cached) return cached;
+
+  let date = "";
+  try {
+    date = execFileSync("git", ["log", "-1", "--format=%cs", "--", sourcePath], {
+      cwd: process.cwd(),
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    const absolutePath = join(process.cwd(), ...sourcePath.split("/"));
+    if (existsSync(absolutePath)) date = statSync(absolutePath).mtime.toISOString().split("T")[0];
+  }
+
+  const result = /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : "";
+  lastmodCache.set(sourcePath, result);
+  return result;
+}
+
 function lastmodForRoute(route: string): string {
   const routeSegments = route ? route.split("/") : [];
   const appRouteDir = join(process.cwd(), "app", ...routeSegments);
@@ -374,11 +416,26 @@ function lastmodForRoute(route: string): string {
   for (const fileName of APP_PAGE_CANDIDATES) {
     const candidate = join(appRouteDir, fileName);
     if (existsSync(candidate)) {
-      return statSync(candidate).mtime.toISOString().split("T")[0];
+      return lastmodForSource(["app", ...routeSegments, fileName].join("/"));
     }
   }
 
-  return LASTMOD;
+  if (englishLocalSeoIndexablePathSet.has(`/${route}`)) {
+    return lastmodForSource("lib/local-seo/englishLocalSeoPages.ts");
+  }
+  if (localSeoIndexablePathSet.has(`/${route}`)) {
+    return lastmodForSource("lib/local-seo/localSeoPages.ts");
+  }
+  if (growthServicePathSet.has(`/${route}`)) {
+    return lastmodForSource("lib/growth-service-pages.ts");
+  }
+  if (dynamicLocalSeoRouteSet.has(`/${route}`)) {
+    return lastmodForSource("lib/local-seo-routes.ts");
+  }
+  if (route.startsWith("blog/")) {
+    return lastmodForSource("lib/blog-posts.ts");
+  }
+  return lastmodForSource("lib/sitemap-config.ts");
 }
 
 function appRouteExists(route: string): boolean {
@@ -564,7 +621,7 @@ function addBlogEntries(urls: SitemapUrl[]): void {
     urls.push({
       pagePath: route,
       loc: buildAbsoluteUrl(route),
-      lastmod: LASTMOD,
+      lastmod: lastmodForRoute(route),
       changefreq: "weekly",
       priority: "0.68",
     });
@@ -704,8 +761,7 @@ ${uniqueUrls
   .map(
     (url) => ` <url>
   <loc>${escapeXml(url.loc)}</loc>
-  <lastmod>${url.lastmod}</lastmod>
-  <changefreq>${url.changefreq}</changefreq>
+${url.lastmod ? `  <lastmod>${url.lastmod}</lastmod>\n` : ""}  <changefreq>${url.changefreq}</changefreq>
   <priority>${url.priority}</priority>
  </url>`
   )

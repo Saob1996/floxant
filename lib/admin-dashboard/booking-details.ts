@@ -331,6 +331,7 @@ export function buildAdminBookingDetailView(
     valueAt(details, "configuration.serviceRequest.group") || "",
   )}`.toLowerCase();
   const isClearanceRequest = /(clearance|entruempel|auflösung|aufloesung)/.test(serviceContext);
+  const isBackhaulRequest = /(backhaul|leerfahrt|rueckfahrt|rückfahrt|beiladung)/.test(serviceContext);
   for (const path of [
     "configuration.calculatorTransfer.schemaVersion",
   ]) {
@@ -476,6 +477,7 @@ export function buildAdminBookingDetailView(
             "configuration.details.startLocation",
             "configuration.rawFields.startLocation",
             "configuration.rawFields.startAddress",
+            "configuration.pickupLocation",
             "valuation.pricingSignals.startAddress",
             "calculator_inputs.umzug.fromAddressDetailed",
           ],
@@ -492,6 +494,7 @@ export function buildAdminBookingDetailView(
             "configuration.rawFields.destinationLocation",
             "configuration.rawFields.destination",
             "configuration.rawFields.endAddress",
+            "configuration.deliveryLocation",
             "valuation.pricingSignals.endAddress",
             "calculator_inputs.umzug.toAddressDetailed",
           ],
@@ -1049,6 +1052,21 @@ export function buildAdminBookingDetailView(
           ],
           consumed,
         ),
+      ]),
+    },
+    {
+      id: "backhaul",
+      title: "Rückfahrt-Status und Zuordnung",
+      items: compactItems([
+        isBackhaulRequest ? staticItem("Rückfahrtstatus", "backhaulStatus", booking.status || "new") : null,
+        isBackhaulRequest ? item("Zugeordnete Rückfahrt", details, ["configuration.selectedOffer.title", "valuation.pricingSignals.selectedOfferTitle"], consumed) : null,
+        isBackhaulRequest ? item("Rückfahrt-ID", details, ["configuration.selectedOffer.id", "valuation.pricingSignals.selectedOfferId"], consumed) : null,
+        isBackhaulRequest ? item("Richtung und Radius", details, ["configuration.selectedOffer.destinationRadius", "valuation.pricingSignals.destinationRadius"], consumed) : null,
+        isBackhaulRequest ? item("Streckengebiete", details, ["configuration.selectedOffer.routeAreas", "valuation.pricingSignals.routeAreas"], consumed) : null,
+        isBackhaulRequest ? item("Transportgut", details, ["configuration.items", "configuration.rawFields.items"], consumed) : null,
+        isBackhaulRequest ? item("Terminflexibilität", details, ["configuration.dateFlexibility", "configuration.rawFields.dateFlexibility"], consumed) : null,
+        isBackhaulRequest ? item("Budgetangabe", details, ["valuation.customerBudget", "valuation.pricingSignals.customerBudget", "configuration.rawFields.budget"], consumed) : null,
+        isBackhaulRequest ? item("Benachrichtigung über", details, ["contact.callbackPreference", "configuration.preferredContactMethod", "configuration.rawFields.preferredContactMethod"], consumed) : null,
       ]),
     },
     {

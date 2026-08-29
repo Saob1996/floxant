@@ -77,7 +77,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot günstiger oder passender prüfen" },
-      { href: "/angebotscheck", label: "Angebotscheck öffnen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck öffnen" },
       { href: "/buchung", label: "Direkt anfragen" },
     ],
     faqTitle: "FAQ zur Angebotsprüfung",
@@ -158,7 +158,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen lassen" },
       { href: "/regensburg/umzug", label: "Umzug Regensburg ansehen" },
-      { href: "/rueckfahrt-boerse", label: "Rückfahrt prüfen" },
+      { href: "/leerfahrt-rueckfahrt", label: "Rückfahrt prüfen" },
     ],
     faqTitle: "FAQ zum Umzugsangebot",
     faqItems: [
@@ -668,7 +668,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Gewerbereinigungsangebot pruefen" },
-      { href: "/angebotscheck", label: "Angebotscheck ansehen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck ansehen" },
       { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
     ],
     faqTitle: "FAQ zum Gewerbereinigungsangebot",
@@ -826,7 +826,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       "Sicherheitsfragen nicht in einem Pauschalpreis verstecken.",
     ],
     ctas: [
-      { href: "/solarreinigung", label: "Solarreinigung ansehen" },
+      { href: "/pv-anlagen-reinigung", label: "Solarreinigung ansehen" },
       { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung pruefen" },
       { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot pruefen lassen" },
     ],
@@ -906,7 +906,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       "Mit Fotos und Eckdaten die bessere Angebotsform finden.",
     ],
     ctas: [
-      { href: "/angebotscheck", label: "Preislogik im Angebotscheck pruefen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Preislogik im Angebotscheck pruefen" },
       { href: "/anbieter-vergleichen", label: "Anbieter und Angebote vergleichen" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot einordnen lassen" },
     ],
@@ -1304,7 +1304,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
-      { href: "/angebotscheck", label: "Angebotscheck starten" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck starten" },
       { href: "/kontakt?mode=neutral&source=website", label: "Offene Punkte senden" },
     ],
     faqTitle: "FAQ zu teuren Angeboten",

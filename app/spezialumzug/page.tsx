@@ -194,7 +194,7 @@ export default function SpezialumzugPage() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
-                href="/rueckfahrt-boerse"
+                href="/leerfahrt-rueckfahrt"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white"
               >
                 Rückfahrt prüfen

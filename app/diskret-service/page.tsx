@@ -121,7 +121,7 @@ const serviceLinks = [
   {
     title: "Haushaltsauflösung",
     text: "Haushalt, Haus oder Wohnung mit Freigabe, Nachlass und Zielzustand sortieren.",
-    href: "/regensburg/haushaltsaufloesung",
+    href: "/regensburg/wohnungsaufloesung",
     Icon: Home,
   },
   {

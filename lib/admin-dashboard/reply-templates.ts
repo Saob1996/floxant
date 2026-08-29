@@ -11,6 +11,8 @@ export type ReplyTemplateKey =
   | "suggest_callback"
   | "quote_preparation"
   | "outside_service_area"
+  | "backhaul_available"
+  | "backhaul_unavailable"
   | "follow_up";
 
 export type ReplyLocale = "de" | "en";
@@ -34,6 +36,8 @@ const germanTemplates: ReplyTemplate[] = [
   { id: "de-suggest_callback", key: "suggest_callback", locale: "de", label: "Rückruf vorschlagen", subject: "Rückruf zu Ihrer FLOXANT-Anfrage", body: "{{greeting}},\n\ngern klären wir die offenen Punkte telefonisch. Bitte nennen Sie ein oder zwei passende Zeitfenster. Ein Rückrufzeitpunkt gilt erst nach Bestätigung.\n\nFreundliche Grüße\nFLOXANT" },
   { id: "de-quote_preparation", key: "quote_preparation", locale: "de", label: "Angebot wird vorbereitet", subject: "Prüfung Ihrer FLOXANT-Anfrage", body: "{{greeting}},\n\ndie Angaben zu {{service}} werden für die weitere Prüfung aufbereitet. Falls noch Informationen fehlen, melden wir uns mit einer konkreten Rückfrage. Diese Nachricht ist noch kein Angebot.\n\nFreundliche Grüße\nFLOXANT" },
   { id: "de-outside_service_area", key: "outside_service_area", locale: "de", label: "Außerhalb des Servicegebiets", subject: "Rückmeldung zum angefragten Servicegebiet", body: "{{greeting}},\n\nnach den vorliegenden Angaben liegt {{location}} außerhalb des aktuell bestätigten Servicegebiets. Deshalb können wir für diesen Ort keine Verfügbarkeits- oder Terminzusage geben.\n\nFreundliche Grüße\nFLOXANT" },
+  { id: "de-backhaul_available", key: "backhaul_available", locale: "de", label: "Rückfahrt grundsätzlich passend", subject: "Rückmeldung zu Ihrer Rückfahrt-Anfrage", body: "{{greeting}},\n\ndie Angaben zu {{service}} passen grundsätzlich zu einer prüfbaren Rückfahrt. Bitte beachten Sie: Eine verbindliche Zusage entsteht erst, wenn Route, Transportgut, Ladezugang, Zeitfenster und Preis gemeinsam bestätigt sind.\n\nFreundliche Grüße\nFLOXANT" },
+  { id: "de-backhaul_unavailable", key: "backhaul_unavailable", locale: "de", label: "Rückfahrt derzeit nicht passend", subject: "Rückmeldung zu Ihrer Rückfahrt-Anfrage", body: "{{greeting}},\n\ndie aktuell geprüfte Rückfahrt passt nach den vorliegenden Angaben leider nicht zu Route, Umfang oder Zeitfenster Ihrer Anfrage. Dadurch entsteht keine Buchung. Wenn Sie flexibel sind, können Sie uns ein alternatives Zeitfenster nennen.\n\nFreundliche Grüße\nFLOXANT" },
   { id: "de-follow_up", key: "follow_up", locale: "de", label: "Nachfassnachricht", subject: "Kurze Rückfrage zu Ihrer FLOXANT-Anfrage", body: "{{greeting}},\n\nist Ihre Anfrage zu {{service}} weiterhin aktuell, oder haben sich Umfang, Ort oder Zeitraum geändert? Es erfolgt keine automatische Buchung.\n\nFreundliche Grüße\nFLOXANT" },
 ];
 
@@ -47,6 +51,8 @@ const englishTemplates: ReplyTemplate[] = [
   { id: "en-suggest_callback", key: "suggest_callback", locale: "en", label: "Suggest callback", subject: "Callback regarding your FLOXANT request", body: "{{greeting}},\n\nwe can clarify the open points by phone. Please provide one or two suitable time windows. A callback time is only fixed after confirmation.\n\nKind regards\nFLOXANT" },
   { id: "en-quote_preparation", key: "quote_preparation", locale: "en", label: "Quote is being prepared", subject: "Review of your FLOXANT request", body: "{{greeting}},\n\nthe details for {{service}} are being prepared for further review. We will ask a specific question if information is missing. This message is not yet a quote.\n\nKind regards\nFLOXANT" },
   { id: "en-outside_service_area", key: "outside_service_area", locale: "en", label: "Outside service area", subject: "Service-area information for your request", body: "{{greeting}},\n\nbased on the current details, {{location}} is outside the confirmed service area. We therefore cannot promise availability or an appointment for this location.\n\nKind regards\nFLOXANT" },
+  { id: "en-backhaul_available", key: "backhaul_available", locale: "en", label: "Backhaul may fit", subject: "Update on your backhaul request", body: "{{greeting}},\n\nthe details for {{service}} may fit a backhaul route. A booking is only confirmed after route, items, loading access, time window and price have been agreed together.\n\nKind regards\nFLOXANT" },
+  { id: "en-backhaul_unavailable", key: "backhaul_unavailable", locale: "en", label: "Backhaul does not currently fit", subject: "Update on your backhaul request", body: "{{greeting}},\n\nthe route currently checked does not fit the route, scope or time window in your request. No booking has been made. If you are flexible, you can send an alternative time window.\n\nKind regards\nFLOXANT" },
   { id: "en-follow_up", key: "follow_up", locale: "en", label: "Follow-up", subject: "Follow-up on your FLOXANT request", body: "{{greeting}},\n\nis your request regarding {{service}} still current, or has the scope, location or timing changed? No booking is made automatically.\n\nKind regards\nFLOXANT" },
 ];
 

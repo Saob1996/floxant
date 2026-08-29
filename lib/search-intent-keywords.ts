@@ -434,7 +434,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen#guenstiger-form", label: "Angebot hochladen" },
-        { href: "/angebotscheck", label: "Angebotscheck" },
+        { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck" },
         { href: "/angebot-vergleichen-regensburg", label: "Reinigung Regensburg prüfen" },
         { href: "/buchung", label: "Direkt anfragen" },
       ],
@@ -504,7 +504,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Ein Klick zu Buchung, Rechner oder Angebotsprüfung soll die Entscheidung einfacher machen.",
       ],
       links: [
-        { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen Regensburg" },
+        { href: "/regensburg/umzug", label: "Umzugsunternehmen Regensburg" },
         { href: "/buchung", label: "Umzug direkt anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },

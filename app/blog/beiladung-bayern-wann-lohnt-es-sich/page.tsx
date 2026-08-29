@@ -106,7 +106,7 @@ export default function BlogBeiladungBayernPage() {
      "Der Rechner hilft dabei, Beiladung gegen einen eigenen Einsatz sauber abzugrenzen.",
     ]}
     ctas={[
-     { href: "/beiladung", label: "Beiladung ansehen" },
+     { href: "/leerfahrt-rueckfahrt", label: "Beiladung ansehen" },
      { href: "/umzug", label: "Umzugsservice" },
      { href: "/rechner?service=umzug", label: "Transport vorprüfen" },
     ]}

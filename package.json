@@ -75,6 +75,8 @@
     "audit:content-overlap": "node scripts/audit-content-overlap.mjs",
     "inventory:page-routes": "node scripts/generate-page-route-inventory.mjs",
     "inventory:page-routes:check": "node scripts/generate-page-route-inventory.mjs --check",
+    "round2:inventory": "node scripts/round2-live-inventory.mjs",
+    "round2:test": "node scripts/round2-release-test.mjs",
     "audit:page-intent-registry": "node scripts/audit-page-intent-registry.mjs",
     "audit:growth": "node scripts/audit-gsc-opportunities.js && node scripts/audit-query-cannibalization.js && node scripts/audit-page-intent-alignment.js && node scripts/audit-location-separation.js && node scripts/audit-meta-uniqueness.js && node scripts/audit-service-visibility.js && node scripts/audit-faq-quality.js && node scripts/audit-public-copy.js && node scripts/audit-public-claims.js && node scripts/audit-structured-data.js && node scripts/audit-content-uniqueness.js && node scripts/audit-internal-links.js && node scripts/audit-lighthouse-budgets.js",
     "risk:closure": "node scripts/risk-closure.cjs",

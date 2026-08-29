@@ -23,7 +23,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       relevanceScore: 98,
     },
     {
-      url: "/angebotscheck",
+      url: "/angebot-guenstiger-pruefen",
       anchorText: `Angebot für ${city} vor Zusage auf Lücken prüfen`,
       relevanceScore: 94,
     },
@@ -78,7 +78,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       ...baseLinks,
       { url: "/leerfahrt-rueckfahrt", anchorText: "Leer-Rückfahrt Richtung Regensburg prüfen", relevanceScore: 96 },
       { url: "/firmenentsorgung", anchorText: "Büroinventar auf Rückfahrt oder Tour prüfen", relevanceScore: 86 },
-      { url: "/beiladung", anchorText: "Beiladung für Einzelstücke vergleichen", relevanceScore: 88 },
+      { url: "/leerfahrt-rueckfahrt", anchorText: "Beiladung für Einzelstücke vergleichen", relevanceScore: 88 },
       { url: "/kleinmengen-entsorgung", anchorText: "Kleinmengen auf Rückfahrt prüfen", relevanceScore: 78 },
     ]);
   }
@@ -119,7 +119,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
     ...baseLinks,
     { url: "/umzug", anchorText: "Umzug in Bayern erklärt", relevanceScore: 95 },
     { url: "/blog/umzugsangebot-pruefen-regensburg-bayern", anchorText: `Umzugsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
-    { url: "/beiladung", anchorText: "Beiladung für Einzelstücke prüfen", relevanceScore: 82 },
+    { url: "/leerfahrt-rueckfahrt", anchorText: "Beiladung für Einzelstücke prüfen", relevanceScore: 82 },
     { url: "/regensburg/umzug", anchorText: "Umzug Regensburg", relevanceScore: 78 },
   ]);
 }

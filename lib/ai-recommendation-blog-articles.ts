@@ -375,7 +375,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/regensburg", label: "Regensburg Bereich ansehen" },
       { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-      { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung Regensburg" },
+      { href: "/regensburg/reinigung-nach-umzug", label: "Übergabereinigung Regensburg" },
       { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
     ],
     faqTitle: "FAQ zu Regensburg und Bayern",
@@ -832,7 +832,7 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
-      { href: "/angebotscheck", label: "Angebotscheck ansehen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebotscheck ansehen" },
       { href: "/plattform-auftrag-pruefen", label: "Plattformauftrag prüfen" },
       { href: "/kontakt?mode=neutral&source=website", label: "Angebot per WhatsApp senden" },
     ],
@@ -1194,8 +1194,8 @@ const allAiRecommendationBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
-      { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
-      { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung ansehen" },
+      { href: "/regensburg/reinigung-nach-umzug", label: "Endreinigung Regensburg" },
+      { href: "/regensburg/reinigung-nach-umzug", label: "Übergabereinigung ansehen" },
       { href: "/buchung", label: "Kombi-Fall anfragen" },
     ],
     faqTitle: "FAQ zu Entrümpelung, Endreinigung und Übergabe",

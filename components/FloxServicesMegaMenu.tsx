@@ -35,7 +35,7 @@ const serviceGroups = [
     links: [
       { label: "Entrümpelung", href: "/regensburg/entruempelung" },
       { label: "Wohnungsauflösung", href: "/regensburg/wohnungsaufloesung" },
-      { label: "Haushaltsauflösung", href: "/regensburg/haushaltsaufloesung" },
+      { label: "Haushaltsauflösung", href: "/regensburg/wohnungsaufloesung" },
       { label: "Reinigung nach Umzug", href: "/regensburg/reinigung-nach-umzug" },
     ],
   },

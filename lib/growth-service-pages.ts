@@ -83,7 +83,7 @@ const movingRelated = [
     text: "Für kleine Firmenumzüge und internes Umstellen nach Ablaufplan.",
   },
   {
-    href: "/rueckfahrt-boerse",
+    href: "/leerfahrt-rueckfahrt",
     label: "Rückfahrt / Beiladung",
     text: "Für flexible Transporte mit Strecke, Volumen und Zeitfenster.",
   },
@@ -101,7 +101,7 @@ const clearanceRelated = [
     text: "Für Wohnung, Keller, Nebenräume, Fotos und Entsorgung nach Prüfung.",
   },
   {
-    href: "/regensburg/haushaltsaufloesung",
+    href: "/regensburg/wohnungsaufloesung",
     label: "Haushaltsauflösung Regensburg",
     text: "Für Haushalt, Freigabe, Nachlass und Reinigung nach Räumung.",
   },
@@ -232,7 +232,7 @@ const growthServicePageSeeds = [
         text: "Regensburger Reinigungshub mit Solar-/PV-Verknüpfung.",
       },
       {
-        href: "/regensburg/solarreinigung",
+        href: "/pv-anlagen-reinigung",
         label: "Solarreinigung Regensburg",
         text: "Lokaler Einstieg für Regensburg und Umgebung.",
       },
@@ -342,7 +342,7 @@ const growthServicePageSeeds = [
     ],
     relatedLinks: [
       {
-        href: "/solarreinigung",
+        href: "/pv-anlagen-reinigung",
         label: "Solarreinigung",
         text: "Breiter Einstieg für Solar- und PV-Reinigungsanfragen.",
       },
@@ -458,7 +458,7 @@ const growthServicePageSeeds = [
     ],
     relatedLinks: [
       {
-        href: "/solarreinigung",
+        href: "/pv-anlagen-reinigung",
         label: "Solarreinigung",
         text: "Allgemeiner Einstieg mit PV-Sichtklar-Service.",
       },
@@ -565,7 +565,7 @@ const growthServicePageSeeds = [
     ],
     relatedLinks: [
       {
-        href: "/solarreinigung",
+        href: "/pv-anlagen-reinigung",
         label: "Solarreinigung",
         text: "Allgemeiner PV-Sichtklar-Service.",
       },
@@ -776,7 +776,7 @@ const growthServicePageSeeds = [
         text: "Wenn Fenster, Glasfronten oder Wintergarten dazugehören.",
       },
       {
-        href: "/solarreinigung",
+        href: "/pv-anlagen-reinigung",
         label: "Solarreinigung",
         text: "Wenn Außenflächen und PV-Anlage zusammen geprüft werden sollen.",
       },
@@ -2001,7 +2001,7 @@ const growthServicePageSeeds = [
     ],
     relatedLinks: [
       {
-        href: "/rueckfahrt-boerse",
+        href: "/leerfahrt-rueckfahrt",
         label: "Rückfahrt-Börse",
         text: "Bestehende Seite für Leerfahrt und Beiladung.",
       },

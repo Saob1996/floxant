@@ -1,13 +1,13 @@
 # GSC Indexing Actions
 
-Stand: 2026-07-26T11:16:24.285Z
+Stand: 2026-08-29T03:09:07.650Z
 
 ## Sofort prüfen/einreichen
 
 | GSC-URL | Erwarteter Canonical | Status | Sitemap | Sprache | Zielquery | Grund | Priorität |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | /regensburg/reinigung | /regensburg/reinigung | 200 final | canonical enthalten | de-DE | reinigung Regensburg | Money-Page überwachen | P1 |
-| /regensburg/endreinigung | /regensburg/endreinigung | 200 final | canonical enthalten | de-DE | endreinigung regensburg | Money-Page überwachen | P0 |
+| /regensburg/reinigung-nach-umzug | /regensburg/reinigung-nach-umzug | 200 final | canonical enthalten | de-DE | endreinigung regensburg | Money-Page überwachen | P0 |
 | /entruempelung-landshut | /entruempelung-landshut | 200 final | canonical enthalten | de-DE | reinigung nach entrümpelung landshut | Money-Page überwachen | P0 |
 | /umzug-vohenstrauss | /umzug-vohenstrauss | 200 final | canonical enthalten | de-DE | umzug vohenstrauß | Money-Page überwachen | P0 |
 | /umzug-neustadt-an-der-waldnaab | /umzug-neustadt-an-der-waldnaab | 200 final | canonical enthalten | de-DE | umzug neustadt an der waldnaab | Money-Page überwachen | P0 |

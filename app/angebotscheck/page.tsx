@@ -423,7 +423,7 @@ export default function AngebotscheckPage() {
                 <ShieldCheck className="mb-3 h-6 w-6 text-blue-700" />
                 Besonders relevant ist der Angebotscheck für Regensburg, den Raum Regensburg; für Reinigung gilt maximal der 50-km-Umkreis. Andere Leistungen werden nach Ort und Verfügbarkeit geprüft.
                 <div className="mt-4">
-                  <Link href="/rueckfahrt-boerse" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="region_select" data-source="offer_check_internal_link">
+                  <Link href="/leerfahrt-rueckfahrt" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="region_select" data-source="offer_check_internal_link">
                     Flexible Transportstrecke über die Rückfahrt-Börse prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>

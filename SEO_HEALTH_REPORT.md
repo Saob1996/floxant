@@ -1,29 +1,29 @@
 # SEO Health Report
 
-Zeitpunkt: 2026-07-26T11:16:24.285Z
-Getestete Base-URL: http://127.0.0.1:3000
+Zeitpunkt: 2026-08-29T03:09:07.650Z
+Getestete Base-URL: http://127.0.0.1:3211
 Gesamtstatus: WARN
 
 ## Money-Page-Tabelle
 
 | URL | Status | Title | Desc | H1 | Canonical | Index | Hreflang | JSON-LD | CTA | Sitemap | Ergebnis |
 | --- | ---: | ---: | ---: | ---: | --- | --- | --- | --- | --- | --- | --- |
-| /regensburg/reinigung | 200 | 37 | 127 | 1 | ok | index | ok | Organization, Dataset, WebSite, CleaningService, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/endreinigung | 200 | 55 | 131 | 1 | ok | index | missing | Organization, Dataset, WebSite, WebPage, LocalBusiness, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /entruempelung-landshut | 200 | 42 | 207 | 1 | ok | index | ok | Organization, Dataset, WebSite, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /umzug-vohenstrauss | 200 | 43 | 214 | 1 | ok | index | ok | Organization, Dataset, WebSite, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /umzug-neustadt-an-der-waldnaab | 200 | 45 | 212 | 1 | ok | index | ok | Organization, Dataset, WebSite, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/reinigung | 200 | 37 | 127 | 1 | ok | index | ok | Organization, Dataset, WebSite, CleaningService, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/bueroreinigung | 200 | 44 | 132 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, LocalBusiness, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/gewerbereinigung | 200 | 59 | 123 | 1 | ok | index | ok | Organization, Dataset, WebSite, CleaningService, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/umzug | 200 | 57 | 151 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/entruempelung | 200 | 51 | 130 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, LocalBusiness, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/wohnungsaufloesung | 200 | 52 | 136 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, LocalBusiness, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /regensburg/reinigung | 200 | 37 | 127 | 1 | ok | index | ok | Organization, Dataset, WebSite, CleaningService, Service, WebPage, BreadcrumbList, FAQPage | ok | ok | WARN |
-| /diskret-service | 200 | 37 | 205 | 1 | ok | index | ok | Organization, Dataset, WebSite, BreadcrumbList, WebPage, Service, FAQPage | ok | ok | WARN |
-| /private-client-service | 200 | 65 | 145 | 1 | ok | index | ok | Organization, Dataset, WebSite, BreadcrumbList, WebPage, Service, FAQPage | ok | ok | PASS |
-| /kontakt | 200 | 33 | 208 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, ContactPage, BreadcrumbList, FAQPage, ItemList | ok | ok | WARN |
-| /reinigungsfirma-angebot | 200 | 52 | 136 | 1 | ok | index | ok | Organization, Dataset, WebSite, WebPage, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
+| /regensburg/reinigung | 200 | 57 | 140 | 1 | ok | index | ok | Organization, CleaningService, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /regensburg/reinigung-nach-umzug | 200 | 54 | 113 | 1 | ok | index | ok | Organization, WebPage, LocalBusiness, ProfessionalService, Service, BreadcrumbList | ok | ok | WARN |
+| /entruempelung-landshut | 200 | 42 | 207 | 1 | ok | index | ok | Organization, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /umzug-vohenstrauss | 200 | 43 | 214 | 1 | ok | index | ok | Organization, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /umzug-neustadt-an-der-waldnaab | 200 | 45 | 212 | 1 | ok | index | ok | Organization, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /regensburg/reinigung | 200 | 57 | 140 | 1 | ok | index | ok | Organization, CleaningService, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /regensburg/bueroreinigung | 200 | 44 | 132 | 1 | ok | index | ok | Organization, WebPage, LocalBusiness, Service, BreadcrumbList | ok | ok | WARN |
+| /regensburg/gewerbereinigung | 200 | 59 | 123 | 1 | ok | index | ok | Organization, CleaningService, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /regensburg/umzug | 200 | 49 | 148 | 1 | ok | index | ok | Organization, WebPage, Service, BreadcrumbList | ok | ok | WARN |
+| /regensburg/entruempelung | 200 | 47 | 127 | 1 | ok | index | ok | Organization, WebPage, LocalBusiness, Service, BreadcrumbList | ok | ok | WARN |
+| /regensburg/wohnungsaufloesung | 200 | 47 | 117 | 1 | ok | index | ok | Organization, WebPage, LocalBusiness, Service, BreadcrumbList | ok | ok | WARN |
+| /regensburg/reinigung | 200 | 57 | 140 | 1 | ok | index | ok | Organization, CleaningService, Service, WebPage, BreadcrumbList | ok | ok | WARN |
+| /diskret-service | 200 | 37 | 205 | 1 | ok | index | ok | Organization, BreadcrumbList, WebPage, Service, FAQPage | ok | ok | WARN |
+| /private-client-service | 200 | 65 | 145 | 1 | ok | index | ok | Organization, BreadcrumbList, WebPage, Service, FAQPage | ok | ok | WARN |
+| /kontakt | 200 | 41 | 91 | 1 | ok | index | ok | Organization, WebPage, BreadcrumbList | ok | ok | WARN |
+| /reinigungsfirma-angebot | 200 | 52 | 136 | 1 | ok | index | ok | Organization, WebPage, Service, BreadcrumbList, FAQPage | ok | ok | WARN |
 
 ## Konkrete Fehler
 
@@ -31,52 +31,53 @@ Gesamtstatus: WARN
 
 ## Konkrete Warnungen
 
-- /regensburg/reinigung: SEO-CTA ohne data-city
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
+- /regensburg/reinigung: Schema FAQPage nicht gefunden
+- /regensburg/reinigung: SEO-CTA ohne data-service, data-city
 - /regensburg/reinigung: erwarteter interner Link fehlt: /reinigungsfirma-angebot
-- /regensburg/endreinigung: hreflang fehlt
-- /regensburg/endreinigung: SEO-CTA ohne data-city
-- /regensburg/endreinigung: SEO-CTA ohne data-service, data-city, data-priority, data-cta-label
-- /regensburg/endreinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/endreinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /entruempelung-landshut: SEO-CTA ohne data-city
+- /regensburg/reinigung-nach-umzug: Schema FAQPage nicht gefunden
+- /regensburg/reinigung-nach-umzug: SEO-CTA ohne data-service, data-city
+- /regensburg/reinigung-nach-umzug: SEO-CTA ohne data-cta-label
+- /entruempelung-landshut: Schema FAQPage nicht gefunden
+- /entruempelung-landshut: SEO-CTA ohne data-service, data-city
 - /entruempelung-landshut: erwarteter interner Link fehlt: /wohnungsaufloesung-regensburg
-- /umzug-vohenstrauss: SEO-CTA ohne data-city
+- /umzug-vohenstrauss: Schema FAQPage nicht gefunden
+- /umzug-vohenstrauss: SEO-CTA ohne data-service, data-city
 - /umzug-vohenstrauss: erwarteter interner Link fehlt: /umzug-neustadt-an-der-waldnaab
-- /umzug-neustadt-an-der-waldnaab: SEO-CTA ohne data-city
+- /umzug-neustadt-an-der-waldnaab: Schema FAQPage nicht gefunden
+- /umzug-neustadt-an-der-waldnaab: SEO-CTA ohne data-service, data-city
 - /umzug-neustadt-an-der-waldnaab: erwarteter interner Link fehlt: /umzug-vohenstrauss
-- /regensburg/reinigung: SEO-CTA ohne data-city
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
+- /regensburg/reinigung: Schema FAQPage nicht gefunden
+- /regensburg/reinigung: SEO-CTA ohne data-service, data-city
 - /regensburg/reinigung: erwarteter interner Link fehlt: /reinigungsfirma-angebot
-- /regensburg/bueroreinigung: SEO-CTA ohne data-city
-- /regensburg/bueroreinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/bueroreinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
+- /regensburg/bueroreinigung: Schema FAQPage nicht gefunden
+- /regensburg/bueroreinigung: SEO-CTA ohne data-service, data-city
 - /regensburg/bueroreinigung: erwarteter interner Link fehlt: /reinigungsfirma-angebot
-- /regensburg/gewerbereinigung: SEO-CTA ohne data-city
-- /regensburg/gewerbereinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/gewerbereinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /regensburg/umzug: SEO-CTA ohne data-city
-- /regensburg/umzug: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /regensburg/umzug: erwarteter interner Link fehlt: /regensburg/wohnungsaufloesung
+- /regensburg/gewerbereinigung: Schema FAQPage nicht gefunden
+- /regensburg/gewerbereinigung: SEO-CTA ohne data-service, data-city
+- /regensburg/umzug: Schema FAQPage nicht gefunden
+- /regensburg/umzug: SEO-CTA ohne data-service, data-city
 - /regensburg/umzug: erwarteter interner Link fehlt: /angebot-vergleichen-regensburg
-- /regensburg/entruempelung: SEO-CTA ohne data-city
-- /regensburg/entruempelung: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /regensburg/wohnungsaufloesung: SEO-CTA ohne data-city
-- /regensburg/wohnungsaufloesung: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /regensburg/reinigung: SEO-CTA ohne data-city
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-page-intent, data-priority, data-cta-label
-- /regensburg/reinigung: SEO-CTA ohne data-city, data-priority, data-cta-label
+- /regensburg/entruempelung: Schema FAQPage nicht gefunden
+- /regensburg/entruempelung: SEO-CTA ohne data-service, data-city
+- /regensburg/entruempelung: erwarteter interner Link fehlt: /angebot-vergleichen-regensburg
+- /regensburg/wohnungsaufloesung: Schema FAQPage nicht gefunden
+- /regensburg/wohnungsaufloesung: SEO-CTA ohne data-service, data-city
+- /regensburg/wohnungsaufloesung: erwarteter interner Link fehlt: /angebot-vergleichen-regensburg
+- /regensburg/reinigung: Schema FAQPage nicht gefunden
+- /regensburg/reinigung: SEO-CTA ohne data-service, data-city
 - /regensburg/reinigung: erwarteter interner Link fehlt: /reinigungsfirma-angebot
-- /diskret-service: SEO-CTA ohne data-city
-- /diskret-service: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /kontakt: SEO-CTA ohne data-city
-- /kontakt: SEO-CTA ohne data-city, data-priority, data-cta-label
-- /kontakt: SEO-CTA ohne data-service, data-city, data-page-intent, data-priority
-- /kontakt: SEO-CTA ohne data-city, data-cta-label
+- /diskret-service: SEO-CTA ohne data-service, data-city
+- /diskret-service: SEO-CTA ohne data-city, data-cta-label
+- /private-client-service: SEO-CTA ohne data-service, data-city
+- /kontakt: Meta-Description-Laenge 91
+- /kontakt: Schema ContactPage nicht gefunden
+- /kontakt: Schema FAQPage nicht gefunden
+- /kontakt: SEO-CTA ohne data-service, data-city
+- /kontakt: erwarteter interner Link fehlt: /buchung
+- /kontakt: erwarteter interner Link fehlt: /rechner
+- /kontakt: erwarteter interner Link fehlt: /diskret-service
 - /kontakt: erwarteter interner Link fehlt: /private-client-service
-- /reinigungsfirma-angebot: SEO-CTA ohne data-city
+- /reinigungsfirma-angebot: SEO-CTA ohne data-service, data-city
 - /reinigungsfirma-angebot: erwarteter interner Link fehlt: /regensburg/gewerbereinigung
 
 ## Empfohlene manuelle Prüfung

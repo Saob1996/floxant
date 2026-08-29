@@ -236,7 +236,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     signature_services: ["Rueckfahrt-Boerse", "Budgetpruefung"],
     customer_type: "Privatkunden, kleine Firmen",
     cta_label: "Strecke pruefen lassen",
-    target_url: "/rueckfahrt-boerse",
+    target_url: "/leerfahrt-rueckfahrt",
     is_real_case: false,
     is_anonymized: true,
     has_customer_permission_for_media: false,
