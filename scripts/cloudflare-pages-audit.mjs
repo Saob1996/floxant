@@ -60,14 +60,20 @@ const requiredFiles = ["robots.txt", "sitemap.xml", "_redirects", "_headers", "_
 const missingRequired = requiredFiles.filter((file) => !fileSet.has(file));
 
 const redirects = parseRedirects(await readFile(path.join(root, "_redirects"), "utf8"));
-const exactRedirects = new Map(redirects.filter((rule) => !/[\*:]/.test(rule.source)).map((rule) => [rule.source, rule]));
-const redirectChains = redirects.filter((rule) => {
+const proxyRules = redirects.filter((rule) => rule.status === 200);
+const redirectRules = redirects.filter((rule) => rule.status !== 200);
+const missingProxyTargets = proxyRules.filter((rule) => {
+  if (!rule.destination.startsWith("/")) return true;
+  return !existsInExport(rule.destination.split(/[?#]/, 1)[0], fileSet);
+});
+const exactRedirects = new Map(redirectRules.filter((rule) => !/[\*:]/.test(rule.source)).map((rule) => [rule.source, rule]));
+const redirectChains = redirectRules.filter((rule) => {
   if (!rule.destination.startsWith("/")) return false;
   const destinationPath = rule.destination.split(/[?#]/, 1)[0];
   return exactRedirects.has(destinationPath);
 });
-const redirectLoops = redirects.filter((rule) => rule.source === rule.destination.split(/[?#]/, 1)[0]);
-const invalidRedirectStatuses = redirects.filter((rule) => ![301, 302, 303, 307, 308].includes(rule.status));
+const redirectLoops = redirectRules.filter((rule) => rule.source === rule.destination.split(/[?#]/, 1)[0]);
+const invalidRedirectStatuses = redirects.filter((rule) => ![200, 301, 302, 303, 307, 308].includes(rule.status));
 
 const sitemapXml = await readFile(path.join(root, "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemapXml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)].map((match) => decodeEntities(match[1].trim()));
@@ -152,10 +158,12 @@ const report = {
     htmlFiles: htmlFiles.length,
     sitemapUrls: sitemapUrls.length,
     redirects: redirects.length,
+    proxies: proxyRules.length,
     brokenLinks: brokenLinks.length,
     missingImages: missingImages.length,
     noindexSitemapPages: noindexSitemapPages.length,
     redirectChains: redirectChains.length,
+    missingProxyTargets: missingProxyTargets.length,
   },
   failures: {
     fileCountExceeded: fileStats.length >= maxFiles,
@@ -168,13 +176,14 @@ const report = {
     redirectChains,
     redirectLoops,
     invalidRedirectStatuses,
+    missingProxyTargets,
   },
 };
 
 const failureCount = Number(report.failures.fileCountExceeded)
   + tooLarge.length + missingRequired.length + sitemapIssues.length + brokenLinks.length
   + missingImages.length + noindexSitemapPages.length + redirectChains.length
-  + redirectLoops.length + invalidRedirectStatuses.length;
+  + redirectLoops.length + invalidRedirectStatuses.length + missingProxyTargets.length;
 
 await mkdir(path.dirname(reportPath), { recursive: true });
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");

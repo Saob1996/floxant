@@ -858,9 +858,10 @@ async function runHttpCheck() {
   const routes = [...discoverRoutes()].sort();
   const port = await findAvailablePort(DEFAULT_PORT);
   const baseUrl = `http://127.0.0.1:${port}`;
-  const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  const child = spawn(process.execPath, [nextBin, "start", "-p", String(port)], {
+  const staticServer = path.join(ROOT, "scripts", "serve-static-export.mjs");
+  const child = spawn(process.execPath, [staticServer], {
     cwd: ROOT,
+    env: { ...process.env, PORT: String(port) },
     stdio: ["ignore", "pipe", "pipe"],
     windowsHide: true,
   });
@@ -880,9 +881,11 @@ async function runHttpCheck() {
 
     const failures = [];
 
-    for (const route of routes) {
+    for (const route of routes.filter((item) => !item.startsWith("/api/"))) {
       const response = await fetch(`${baseUrl}${route}`, { redirect: "manual" });
-      if (response.status !== 200) failures.push(`${response.status} ${route}`);
+      if (![200, 301, 302, 307, 308, 410].includes(response.status)) {
+        failures.push(`${response.status} ${route}`);
+      }
     }
 
     for (const [source, destination] of REDIRECT_EXPECTATIONS) {

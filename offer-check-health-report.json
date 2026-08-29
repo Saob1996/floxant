@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-08-28T23:21:28.816Z",
+  "status": "PASS",
+  "counts": {
+    "PASS": 22,
+    "WARN": 0,
+    "FAIL": 0
+  },
+  "checks": [
+    {
+      "id": "primary-page-exists",
+      "status": "PASS",
+      "details": "Primary offer-check page is present."
+    },
+    {
+      "id": "clear-h1",
+      "status": "PASS",
+      "details": "Primary page keeps the requested clear H1."
+    },
+    {
+      "id": "metadata-present",
+      "status": "PASS",
+      "details": "Offer-check, support and comparison metadata are differentiated."
+    },
+    {
+      "id": "no-guarantee-claims",
+      "status": "PASS",
+      "details": "No wording promises a cheaper result or guaranteed savings."
+    },
+    {
+      "id": "legal-boundary-visible",
+      "status": "PASS",
+      "details": "Legal boundary is visible on page and forms."
+    },
+    {
+      "id": "savings-boundary-visible",
+      "status": "PASS",
+      "details": "Savings boundary is visible on page and forms."
+    },
+    {
+      "id": "visible-faq",
+      "status": "PASS",
+      "details": "FAQ and expandable answer blocks are visible in source."
+    },
+    {
+      "id": "ai-answer-blocks",
+      "status": "PASS",
+      "details": "AI-answer style questions are present."
+    },
+    {
+      "id": "service-matrix",
+      "status": "PASS",
+      "details": "Service-specific matrix covers core offer-check services."
+    },
+    {
+      "id": "warning-signs",
+      "status": "PASS",
+      "details": "Warning signs are visible."
+    },
+    {
+      "id": "scope-boundary",
+      "status": "PASS",
+      "details": "Scope boundary is visible."
+    },
+    {
+      "id": "cta-present",
+      "status": "PASS",
+      "details": "Primary CTAs include form anchor and clean contact parameters."
+    },
+    {
+      "id": "service-contact-params",
+      "status": "PASS",
+      "details": "Service-specific contact intents are present."
+    },
+    {
+      "id": "form-recognizes-offer-check",
+      "status": "PASS",
+      "details": "CheaperAlternativeForm sends offer-check intent, category, status and urgency."
+    },
+    {
+      "id": "honest-success-state",
+      "status": "PASS",
+      "details": "Success states are honest and bounded."
+    },
+    {
+      "id": "internal-links",
+      "status": "PASS",
+      "details": "Offer-check links exist in key hubs/service pages; some deleted Düsseldorf pages require manual follow-up."
+    },
+    {
+      "id": "english-intent",
+      "status": "PASS",
+      "details": "English intent is visible and mapped through lead-intents."
+    },
+    {
+      "id": "no-keyword-cloud",
+      "status": "PASS",
+      "details": "No repeated keyword-cloud block detected."
+    },
+    {
+      "id": "no-new-doorway-pages",
+      "status": "PASS",
+      "details": "Sprint did not create mass service-specific doorway pages."
+    },
+    {
+      "id": "sitemap-canonical-clean",
+      "status": "PASS",
+      "details": "Primary/support/comparison pages are in sitemap routes; deleted local routes are documented separately."
+    },
+    {
+      "id": "required-docs",
+      "status": "PASS",
+      "details": "Required docs present: 6/6."
+    },
+    {
+      "id": "npm-script",
+      "status": "PASS",
+      "details": "npm script offer-check:health is registered."
+    }
+  ]
+}

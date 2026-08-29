@@ -1,0 +1,301 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:33:26.955Z",
+  "summary": {
+    "routesChecked": 20,
+    "warnings": 29,
+    "failures": 0
+  },
+  "rows": [
+    {
+      "severity": "WARN",
+      "route": "/kontakt",
+      "file": "app/kontakt/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/kontakt",
+      "file": "app/kontakt/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/leistungen",
+      "file": "app/leistungen/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/angebot-guenstiger-pruefen",
+      "file": "app/angebot-guenstiger-pruefen/page.tsx",
+      "section": "Layout",
+      "problemType": "visual_noise",
+      "recommendation": "shorten",
+      "reason": "Viele Sektionen/Cards erkannt (18 Sections, 41 Card-Stile).",
+      "implemented": "teilweise"
+    },
+    {
+      "severity": "WARN",
+      "route": "/angebotscheck",
+      "file": "app/angebotscheck/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/angebotscheck",
+      "file": "app/angebotscheck/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/anbieter-vergleichen",
+      "file": "app/anbieter-vergleichen/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg",
+      "file": "app/regensburg/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/duesseldorf/umzug",
+      "file": "app/duesseldorf/umzug/page.tsx",
+      "section": "route",
+      "problemType": "missing_or_redirect",
+      "recommendation": "manual_review",
+      "reason": "Page source fehlt oder ist durch vorherige Worktree-Aenderung geloescht.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/duesseldorf/entruempelung",
+      "file": "app/duesseldorf/entruempelung/page.tsx",
+      "section": "route",
+      "problemType": "missing_or_redirect",
+      "recommendation": "manual_review",
+      "reason": "Page source fehlt oder ist durch vorherige Worktree-Aenderung geloescht.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/duesseldorf/haushaltsaufloesung",
+      "file": "app/duesseldorf/haushaltsaufloesung/page.tsx",
+      "section": "route",
+      "problemType": "missing_or_redirect",
+      "recommendation": "manual_review",
+      "reason": "Page source fehlt oder ist durch vorherige Worktree-Aenderung geloescht.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/reinigung",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/reinigung",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/reinigung",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "section": "Content",
+      "problemType": "low_value",
+      "recommendation": "rewrite",
+      "reason": "Sehr kurzer Page-Source fuer P0/P1-Kontext.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/entruempelung",
+      "file": "app/regensburg/entruempelung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/entruempelung",
+      "file": "app/regensburg/entruempelung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/gewerbereinigung",
+      "file": "app/regensburg/gewerbereinigung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/gewerbereinigung",
+      "file": "app/regensburg/gewerbereinigung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/gewerbereinigung",
+      "file": "app/regensburg/gewerbereinigung/page.tsx",
+      "section": "Content",
+      "problemType": "low_value",
+      "recommendation": "rewrite",
+      "reason": "Sehr kurzer Page-Source fuer P0/P1-Kontext.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/bueroreinigung",
+      "file": "app/regensburg/bueroreinigung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/bueroreinigung",
+      "file": "app/regensburg/bueroreinigung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/regensburg/bueroreinigung",
+      "file": "app/regensburg/bueroreinigung/page.tsx",
+      "section": "Content",
+      "problemType": "low_value",
+      "recommendation": "rewrite",
+      "reason": "Sehr kurzer Page-Source fuer P0/P1-Kontext.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/signature-services",
+      "file": "app/signature-services/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/solarreinigung",
+      "file": "app/solarreinigung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/solarreinigung",
+      "file": "app/solarreinigung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/solarreinigung",
+      "file": "app/solarreinigung/page.tsx",
+      "section": "Content",
+      "problemType": "low_value",
+      "recommendation": "rewrite",
+      "reason": "Sehr kurzer Page-Source fuer P0/P1-Kontext.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/pv-anlagen-reinigung",
+      "file": "app/pv-anlagen-reinigung/page.tsx",
+      "section": "CTA",
+      "problemType": "unclear_cta",
+      "recommendation": "add_clear_cta",
+      "reason": "Kein klarer Kontakt-CTA im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/pv-anlagen-reinigung",
+      "file": "app/pv-anlagen-reinigung/page.tsx",
+      "section": "FAQ",
+      "problemType": "weak_faq",
+      "recommendation": "move_to_faq",
+      "reason": "Keine klare FAQ-Struktur im Source erkennbar.",
+      "implemented": "nein"
+    },
+    {
+      "severity": "WARN",
+      "route": "/pv-anlagen-reinigung",
+      "file": "app/pv-anlagen-reinigung/page.tsx",
+      "section": "Content",
+      "problemType": "low_value",
+      "recommendation": "rewrite",
+      "reason": "Sehr kurzer Page-Source fuer P0/P1-Kontext.",
+      "implemented": "nein"
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "generatedAt": "2026-08-28T23:18:30.935Z",
+  "overallStatus": "PASS",
+  "totals": {
+    "pass": 33,
+    "fail": 0
+  },
+  "docs": [
+    "docs/KLAVIERTRANSPORT_REGENSBURG_ROUTE_ARCHITECTURE.md",
+    "docs/KLAVIERTRANSPORT_REGENSBURG_KEYWORD_INTENT_MAP.md",
+    "docs/KLAVIERTRANSPORT_MOEBELTRANSPORT_UMZUG_DIFFERENTIATION.md",
+    "docs/KLAVIERTRANSPORT_RUECKFAHRT_BEILADUNG_REPORT.md",
+    "docs/KLAVIERTRANSPORT_REGENSBURG_LOCAL_RELEVANCE_REPORT.md",
+    "docs/KLAVIERTRANSPORT_REGENSBURG_METADATA_SCHEMA_REPORT.md",
+    "docs/KLAVIERTRANSPORT_REGENSBURG_INTERNAL_LINKING_REPORT.md",
+    "docs/KLAVIERTRANSPORT_REGENSBURG_CONTENT_CLEANUP_REPORT.md"
+  ],
+  "checks": [
+    {
+      "id": "route:primary",
+      "label": "/klaviertransport-regensburg route exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:h1",
+      "label": "H1 contains Klaviertransport and Regensburg",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "metadata:title-description",
+      "label": "Title and description are present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "canonical:path",
+      "label": "Canonical path constant is primary route",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:primary",
+      "label": "Sitemap contains primary route",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:no-moebel-regensburg-duplicate",
+      "label": "No competing /moebeltransport-regensburg sitemap route",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "cta:primary",
+      "label": "Hero CTA points to klaviertransport Regensburg contact flow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "cta:offer-check",
+      "label": "Klaviertransport offer-check CTA is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "faq:visible",
+      "label": "FAQ is visible and expanded",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "ai:quick-answer",
+      "label": "Quick Answer block is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:effort-factors",
+      "label": "Effort factors are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:instrument-access",
+      "label": "Instrument, floor and access are explained",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "link:umzug",
+      "label": "Umzug Regensburg link present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "link:backhaul",
+      "label": "Rueckfahrt/Beiladung link or section present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:piano-fields",
+      "label": "Piano optional form fields are present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:piano-success",
+      "label": "Honest request success copy is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:moebeltransport",
+      "label": "Moebeltransport contact service is normalized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_ROUTE_ARCHITECTURE.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_KEYWORD_INTENT_MAP.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_MOEBELTRANSPORT_UMZUG_DIFFERENTIATION.md",
+      "label": "docs/KLAVIERTRANSPORT_MOEBELTRANSPORT_UMZUG_DIFFERENTIATION.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_RUECKFAHRT_BEILADUNG_REPORT.md",
+      "label": "docs/KLAVIERTRANSPORT_RUECKFAHRT_BEILADUNG_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_LOCAL_RELEVANCE_REPORT.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_LOCAL_RELEVANCE_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:KLAVIERTRANSPORT_REGENSBURG_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/KLAVIERTRANSPORT_REGENSBURG_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "package:script",
+      "label": "npm script klaviertransport-regensburg:health exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "english:intent",
+      "label": "English piano transport intent is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-price-guarantee",
+      "label": "No positive price guarantee claim",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-sofort-guarantee",
+      "label": "No positive immediate appointment guarantee",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-damage-guarantee",
+      "label": "No positive damage-free guarantee",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-fake-claims",
+      "label": "No fake ratings or invented specialist equipment markers",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "safety:no-keyword-cloud",
+      "label": "No keyword cloud or hidden keyword pattern",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:safety",
+      "label": "No Vercel-sensitive public-page patterns added in sprint source",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

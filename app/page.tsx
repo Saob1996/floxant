@@ -141,6 +141,14 @@ const faqItems = [
     q: "Was passiert nach dem Absenden?",
     a: "Wir sehen uns Ihre Angaben an und melden uns über den gewählten Kontaktweg. Falls Informationen fehlen, fragen wir gezielt nach.",
   },
+  {
+    q: "Welche Angaben beeinflussen einen Preis?",
+    a: "Je nach Leistung zählen Fläche oder Volumen, Zustand, Etage, Laufweg, Strecke, Material, Zugang, Termin und Zusatzleistungen. Einen konkreten Preis nennt FLOXANT erst nach Prüfung des tatsächlichen Umfangs.",
+  },
+  {
+    q: "Ist eine dringende Anfrage automatisch verfügbar?",
+    a: "Nein. Ort, Leistung, Umfang, Zugang und Frist werden zuerst geprüft. Ein kurzfristiger oder 24-Stunden-Termin gilt erst nach ausdrücklicher Bestätigung.",
+  },
 ] as const;
 
 export const metadata: Metadata = {

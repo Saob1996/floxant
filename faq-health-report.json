@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:51:43.148Z",
+  "summary": {
+    "questions": 11,
+    "answers": 11,
+    "findings": 14,
+    "warnings": 0,
+    "failures": 0
+  },
+  "findings": [
+    {
+      "status": "PASS",
+      "id": "file-exists",
+      "detail": "lib/faq-system.ts vorhanden",
+      "file": "lib/faq-system.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "file-exists",
+      "detail": "lib/service-faqs.ts vorhanden",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "file-exists",
+      "detail": "lib/topic-faqs.ts vorhanden",
+      "file": "lib/topic-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "file-exists",
+      "detail": "lib/local-faqs.ts vorhanden",
+      "file": "lib/local-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "file-exists",
+      "detail": "lib/faq-schema.ts vorhanden",
+      "file": "lib/faq-schema.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "faq-structure",
+      "detail": "FAQ-Datenstruktur enthaelt alle geforderten Felder.",
+      "file": "lib/faq-system.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "faq-data",
+      "detail": "11 strukturierte FAQ-Fragen gefunden.",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "duplicate-faq",
+      "detail": "Keine doppelten strukturierten FAQ-Fragen erkannt.",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "answer-length",
+      "detail": "FAQ-Antworten bleiben bei 1-4 Saetzen und unter 520 Zeichen.",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "risky-claim",
+      "detail": "Keine positiven Garantie-/Fake-Claims in strukturierten FAQ erkannt.",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "schema-visible",
+      "detail": "Schema-Eligibility ist an sichtbare FAQ und Risk-Filter gebunden.",
+      "file": "lib/faq-schema.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "faq-groups",
+      "detail": "Alle geforderten P0-FAQ-Gruppen sind vorhanden.",
+      "file": "lib/service-faqs.ts"
+    },
+    {
+      "status": "PASS",
+      "id": "grouping",
+      "detail": "FAQ sind nach Service, Intent, Topic und Local-Key gruppierbar.",
+      "file": ""
+    },
+    {
+      "status": "PASS",
+      "id": "keyword-cloud",
+      "detail": "Keine Keyword-Wolken in strukturierten FAQ erkannt.",
+      "file": "lib/service-faqs.ts"
+    }
+  ],
+  "warnings": [],
+  "failures": []
+}

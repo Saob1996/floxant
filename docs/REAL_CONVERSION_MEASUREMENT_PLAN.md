@@ -1,6 +1,6 @@
 # Real Conversion Measurement Plan
 
-Stand: 2026-06-20T03:41:48.141Z
+Stand: 2026-08-28T23:26:50.711Z
 
 ## 1. Aktuell messbar
 

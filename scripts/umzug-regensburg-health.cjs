@@ -10,6 +10,7 @@ const files = {
   primaryPage: path.join(root, "app", "regensburg", "umzug", "page.tsx"),
   supportPage: path.join(root, "app", "umzug-regensburg", "page.tsx"),
   nextConfig: path.join(root, "next.config.js"),
+  redirects: path.join(root, "public", "_redirects"),
   sitemapRoutes: path.join(root, "lib", "sitemap-routes.ts"),
   packageJson: path.join(root, "package.json"),
 };
@@ -82,19 +83,21 @@ function checkPrimaryRoute(results, primarySource) {
   );
 }
 
-function checkSupportRoute(results, supportSource, nextConfigSource) {
+function checkSupportRoute(results, supportSource, nextConfigSource, redirectsSource) {
   const sourceRedirect = /permanentRedirect\(["']\/regensburg\/umzug["']\)/.test(supportSource);
   const configRedirect =
     nextConfigSource.includes("['/umzug-regensburg', '/regensburg/umzug']") ||
     nextConfigSource.includes('["/umzug-regensburg", "/regensburg/umzug"]');
+  const staticRedirect = /^\/umzug-regensburg\s+\/regensburg\/umzug\s+(?:301|308)$/m.test(redirectsSource);
+  const hasCanonicalRedirect = sourceRedirect || configRedirect || staticRedirect;
 
   add(
     results,
     "support-route-redirect",
-    sourceRedirect && configRedirect ? "PASS" : sourceRedirect || configRedirect ? "WARN" : "FAIL",
+    hasCanonicalRedirect ? "PASS" : "FAIL",
     "P0",
     files.supportPage,
-    `Support route source redirect: ${sourceRedirect}; next.config redirect: ${configRedirect}.`,
+    `Support route source redirect: ${sourceRedirect}; next.config redirect: ${configRedirect}; static host redirect: ${staticRedirect}.`,
     "Keep /umzug-regensburg as redirect/support route, not as competing page."
   );
 }
@@ -147,10 +150,10 @@ function checkConversion(results, primarySource) {
 
 function checkContent(results, primarySource) {
   const required = [
-    ["quick-answer-ai", ["Quick Answer", "AI-Antwort"]],
+    ["quick-answer-ai", ["MovingQuickAnswer", 'id="ai-answer"', "Kurz erklärt"]],
     ["faq-visible", ["faqItems", /H(?:ae|ä)ufige Fragen zum Umzug in Regensburg/]],
-    ["authority-signals", ["Authority und Entscheidung", "Anfragequalität", "Kontaktfluss ohne Umwege"]],
-    ["effort-factors", ["Aufwandstreiber", "Etage", "Trageweg", "Terminfenster"]],
+    ["authority-signals", ["Authority und Entscheidung", "Anfragequalität", "Schneller Kontaktfluss"]],
+    ["effort-factors", ["Wovon der Aufwand abhängt", "Etage", "Trageweg", "Terminfenster"]],
     ["piano-link", ["/klaviertransport-regensburg", "Klaviertransport"]],
     ["senior-link", ["Seniorenumzug", "/regensburg/seniorenumzug"]],
     ["backhaul-link", ["Beiladung", "/beiladung-regensburg", "/leerfahrt-rueckfahrt"]],
@@ -307,12 +310,13 @@ function main() {
   const primarySource = read(files.primaryPage);
   const supportSource = read(files.supportPage);
   const nextConfigSource = read(files.nextConfig);
+  const redirectsSource = read(files.redirects);
   const sitemapSource = read(files.sitemapRoutes);
   const packageSource = read(files.packageJson);
   const results = [];
 
   checkPrimaryRoute(results, primarySource);
-  checkSupportRoute(results, supportSource, nextConfigSource);
+  checkSupportRoute(results, supportSource, nextConfigSource, redirectsSource);
   checkSitemap(results, sitemapSource);
   checkConversion(results, primarySource);
   checkContent(results, primarySource);

@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-08-28T23:18:30.738Z",
+  "status": "PASS",
+  "totals": {
+    "pass": 45,
+    "warn": 0,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "id": "route:primary",
+      "label": "Primary /diskret-service page exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "asset:hero",
+      "label": "Neutral Diskret-Service hero asset exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "metadata:primary",
+      "label": "Metadata title and description target Diskret-Service intent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "h1:intent",
+      "label": "H1 targets sensible Diskret-Service request",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:quick-answer",
+      "label": "Quick Answer block is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:situations",
+      "label": "Sensitive case situations are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:preferred-contact",
+      "label": "Preferred contact path is explicit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:minimal-details",
+      "label": "Minimal first-step detail policy is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:offer-check",
+      "label": "Offer-check CTA and text are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:boundaries",
+      "label": "No-false-promise boundary section is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:service-links",
+      "label": "Related services are linked from the page",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:local",
+      "label": "Regensburg and Duesseldorf local starts are present without doorway pages",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:english",
+      "label": "English intent block is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "faq:visible-schema",
+      "label": "FAQ is visible and backed by FAQ schema",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "image:next-unoptimized",
+      "label": "Hero uses next/image without image optimization requirement",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:path-mapping",
+      "label": "Lead intent maps /diskret-service directly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:conversion-target",
+      "label": "Lead conversion target includes /diskret-service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "contact:entry",
+      "label": "Contact page exposes Diskret-Service path and FAQ clarification",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "seo:gsc-entry",
+      "label": "GSC click priorities include /diskret-service as P0",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "seo:private-client-separated",
+      "label": "Private Client priority is no longer the primary Diskret-Service target",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "inventory:route",
+      "label": "Service inventory points Diskret-Service to /diskret-service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "signature:route",
+      "label": "Signature services point Diskret-Service to /diskret-service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:config",
+      "label": "Sitemap config includes diskret-service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:generated",
+      "label": "Generated sitemap route list includes /diskret-service after seo:sitemap",
+      "status": "PASS",
+      "details": "Run npm run seo:sitemap if this is WARN."
+    },
+    {
+      "id": "redirect:no-primary-redirect",
+      "label": "/diskret-service is not redirected away",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "redirect:alias",
+      "label": "/diskreter-service redirects to /diskret-service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "private-client:positioning",
+      "label": "Private Client page links to Diskret-Service and states separation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "private-client:no-luxury-keywords",
+      "label": "Private Client page no longer carries luxury/residence keyword set",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-runtime-nodejs",
+      "label": "No runtime=nodejs on Diskret-Service public page",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-force-dynamic",
+      "label": "No force-dynamic on Diskret-Service public page",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-revalidate",
+      "label": "No ISR revalidate on Diskret-Service public page",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-api-fetch",
+      "label": "No automatic API fetch on Diskret-Service public page",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-fake-review",
+      "label": "No fake rating or review schema in Diskret-Service sources",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-guarantee",
+      "label": "No positive guarantee language in Diskret-Service public copy",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-medical-legal",
+      "label": "No medical, care or legal advice promise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-keyword-stuffing",
+      "label": "No visible keyword-cloud or doorway language",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_ROUTE_ARCHITECTURE.md",
+      "label": "docs/DISKRET_SERVICE_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_KEYWORD_INTENT_MAP.md",
+      "label": "docs/DISKRET_SERVICE_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:PRIVATE_CLIENT_SERVICE_POSITIONING_REPORT.md",
+      "label": "docs/PRIVATE_CLIENT_SERVICE_POSITIONING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_CLUSTER_DIFFERENTIATION.md",
+      "label": "docs/DISKRET_SERVICE_CLUSTER_DIFFERENTIATION.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_LOCAL_INTEGRATION_REPORT.md",
+      "label": "docs/DISKRET_SERVICE_LOCAL_INTEGRATION_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/DISKRET_SERVICE_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/DISKRET_SERVICE_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:DISKRET_SERVICE_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/DISKRET_SERVICE_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "package:script",
+      "label": "npm script diskret-service:health exists",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

@@ -99,10 +99,20 @@ function nonEmpty(values: Array<string | undefined | null>) {
 function resolveVisibleHeroTitle(heroTitle: string, city: string, serviceName: string) {
   const safeCity = germanText(city, city);
   const title = germanText(heroTitle, "");
+  const normalizedTitle = title
+    .replace(new RegExp(`\\s+in\\s+${safeCity.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\$&")}$`, "i"), "")
+    .trim()
+    .toLocaleLowerCase("de-DE");
+  const normalizedService = serviceName.trim().toLocaleLowerCase("de-DE");
+  const genericTitles = new Set(["umzug", "reinigung", "entrümpelung", "entruempelung", "transport", "service"]);
 
   if (!title) return `${serviceName} in ${safeCity}`;
+  if (genericTitles.has(normalizedTitle) && normalizedTitle !== normalizedService) {
+    return `${serviceName} in ${safeCity}`;
+  }
   if (/\bin\s*$/i.test(title)) return `${title} ${safeCity}`.replace(/\s+/g, " ").trim();
-  return title;
+  if (title.toLocaleLowerCase("de-DE").includes(safeCity.toLocaleLowerCase("de-DE"))) return title;
+  return `${title} in ${safeCity}`;
 }
 
 function slugify(value: string) {

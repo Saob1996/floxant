@@ -56,9 +56,11 @@ const legacyRedirectRoutes = new Set([
   "/einsatzgebiet-regensburg-200km",
   "/service-area-bayern",
   "/villenservice",
+  "/bueroreinigung",
   "/umzug-duesseldorf",
   "/duesseldorf/angebot-vergleichen",
   "/duesseldorf/umzug",
+  "/duesseldorf/entsorgung",
   "/umzug-regensburg",
   "/reinigung-regensburg",
   "/entruempelung-regensburg",
@@ -70,6 +72,7 @@ const legacyRedirectRoutes = new Set([
   "/umzug-reinigung-regensburg",
   "/endreinigung-regensburg",
   "/seo-gone",
+  "/seniorenumzug",
 ]);
 const allowedDuesseldorfCleaningRoutes = new Set([
   "/duesseldorf/reinigung",
@@ -95,6 +98,9 @@ const gscValidatedRootCityServiceRoutes = new Set([
   "/entruempelung-landshut",
   "/umzug-neustadt-an-der-waldnaab",
   "/umzug-vohenstrauss",
+]);
+const indexableUtilityRoutes = new Set([
+  "/umzug-kosten-rechner",
 ]);
 const deprioritizedCitySlugs = new Set([
   "forchheim",
@@ -218,6 +224,7 @@ function isIndexableRoute(route) {
   if (!isCleaningRouteAllowed(route)) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
   if (isDeprioritizedCityRoute(route)) return false;
+  if (indexableUtilityRoutes.has(route)) return true;
   if (isBroadRootCityServiceRoute(route)) return false;
   if (/^\/alternativen\/[^/]+$/.test(route)) return false;
   if (/^\/signature\/[^/]+$/.test(route)) return false;
@@ -238,15 +245,14 @@ function isCleaningRoute(route) {
 
 function extractCleaningPlaceSlug(route) {
   const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
-  if (normalizedRoute.startsWith("reinigung-")) return normalizedRoute.replace(/^reinigung-/, "");
-  if (normalizedRoute.endsWith("-reinigung")) return normalizedRoute.replace(/-reinigung$/, "");
+  const parts = normalizedRoute.split("/");
+
   if (normalizedRoute.startsWith("en/")) {
-    const parts = normalizedRoute.split("/");
     if (parts.length >= 3 && (parts[2].includes("cleaning") || parts[2].includes("quote-review"))) return parts[1];
   }
-
-  const parts = normalizedRoute.split("/");
   if (parts[0] === "regensburg") return "regensburg";
+  if (normalizedRoute.startsWith("reinigung-")) return normalizedRoute.replace(/^reinigung-/, "");
+  if (normalizedRoute.endsWith("-reinigung")) return normalizedRoute.replace(/-reinigung$/, "");
   if (parts.length >= 2 && isCleaningRoute(parts.slice(1).join("/"))) return parts[0];
 
   return null;
@@ -257,6 +263,7 @@ function isCleaningRouteAllowed(route) {
 
   const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
   if (allowedDuesseldorfCleaningRoutes.has(`/${normalizedRoute}`)) return true;
+  if (normalizedRoute.startsWith("en/duesseldorf/")) return true;
 
   if (normalizedRoute.startsWith("blog/")) {
     return (

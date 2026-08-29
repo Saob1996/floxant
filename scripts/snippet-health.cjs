@@ -7,6 +7,7 @@ const jsonPath = path.join(root, "snippet-health-report.json");
 const priorityPath = path.join(root, "lib", "gsc-click-priorities.ts");
 const localServiceSeoPagesPath = path.join(root, "lib", "local-service-seo-pages.ts");
 const regensburgServicePagesPath = path.join(root, "lib", "regensburg-service-pages.ts");
+const searchAuthorityPath = path.join(root, "lib", "search-authority.ts");
 
 const centralSnippetSources = {
   "/regensburg/reinigung": {
@@ -35,8 +36,9 @@ const targets = [
   { route: "/regensburg/reinigung", service: "gewerbereinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "praxisreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "fensterreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
-  { route: "/duesseldorf/umzug", service: "umzug", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/duesseldorf/entruempelung", service: "entruempelung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
+  { route: "/duesseldorf/reinigung", service: "reinigung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
+  { route: "/duesseldorf/bueroreinigung", service: "bueroreinigung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
+  { route: "/duesseldorf/gewerbereinigung", service: "gewerbereinigung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/regensburg", service: "service", city: "regensburg", offer: false, cta: ["/regensburg/umzug", "/kontakt"] },
   { route: "/regensburg/umzug", service: "umzug", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
   { route: "/regensburg/reinigung", service: "reinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
@@ -131,6 +133,19 @@ function readCentralSnippet(route) {
   return { title: unquote(title), description: unquote(description), h1: "", source: "central-config" };
 }
 
+function readSearchAuthoritySnippet(route) {
+  if (!fs.existsSync(searchAuthorityPath)) return null;
+  const text = fs.readFileSync(searchAuthorityPath, "utf8");
+  const index = text.indexOf(`"${route}":`);
+  if (index === -1) return null;
+  const block = text.slice(index, index + 5000);
+  const title = block.match(/seoTitle:\s*"([^"]+)"/)?.[1] || "";
+  const description = block.match(/description:\s*"([^"]+)"/)?.[1] || "";
+  const h1 = block.match(/headline:\s*"([^"]+)"/)?.[1] || "";
+  if (!title && !description) return null;
+  return { title: unquote(title), description: unquote(description), h1: unquote(h1), source: "search-authority" };
+}
+
 function hasKeywordChain(title) {
   const normalized = normalize(title);
   const separators = (title.match(/[|,]/g) || []).length;
@@ -199,7 +214,7 @@ function checkTarget(target, priorityText) {
       ],
     };
   }
-  const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
+  const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readSearchAuthoritySnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
   const priorityContext = expandPriorityContext(readPriorityBlock(target.route, priorityText));
   const checks = [];
   const title = snippet.title || "";

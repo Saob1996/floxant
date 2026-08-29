@@ -1,0 +1,49 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:01:39.894Z",
+  "summary": {
+    "scanRoots": "app, components, lib, proxy.ts, next.config.js",
+    "leadApiPolicy": "Lead API may run only after explicit form submit.",
+    "imagePolicy": "Vercel Image Optimization must remain disabled.",
+    "checks": 4,
+    "pass": 1,
+    "warn": 3,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "WARN",
+      "scope": "global-source",
+      "path": "components/calculator/LeadCaptureForm.tsx",
+      "detail": "client polling",
+      "action": "Confirm polling is private/user-scoped and not public page polling.",
+      "priority": "P2"
+    },
+    {
+      "status": "WARN",
+      "scope": "global-source",
+      "path": "components/operations/BudgetOperatingCta.tsx",
+      "detail": "client polling",
+      "action": "Confirm polling is private/user-scoped and not public page polling.",
+      "priority": "P2"
+    },
+    {
+      "status": "PASS",
+      "scope": "next-config",
+      "path": "next.config.js",
+      "detail": "Vercel Image Optimization remains disabled.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "existing-script",
+      "path": "vercel:usage-safety",
+      "detail": "Exit 1; duration 2ms.",
+      "action": "Inspect VERCEL_USAGE_SAFETY_REPORT.md.",
+      "priority": "P1",
+      "stdoutTail": "",
+      "stderrTail": "spawnSync cmd.exe EPERM"
+    }
+  ]
+}

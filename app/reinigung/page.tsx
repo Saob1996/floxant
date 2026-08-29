@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "reinigung",
-    title: "Reinigung in Regensburg | Floxant",
+    title: "Reinigungsarten Regensburg: Objekt und Umfang klären",
     description:
       "Professionelle Reinigung in Regensburg, allen Stadtteilen und im 50-km-Umkreis. Für Büros, Praxen, Gewerbe und Immobilien.",
   });
@@ -112,7 +112,7 @@ export default async function ReinigungPillarPage() {
         dict={dict}
         breadcrumbs={breadcrumbs}
         heroBadge="Reinigung in Regensburg und Umgebung bis 50 km"
-        heroTitle="Gebäudereinigung in Regensburg und Umgebung"
+        heroTitle="Reinigungsarten für Regensburg und den 50-km-Umkreis"
         heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für Regensburg, alle Stadtteile und Orte im 50-km-Umkreis. Der Fokus liegt nicht auf einer vagen Oberflächenreinigung, sondern auf einem Ergebnis, das vor Schlüsselübergabe, Wohnungsabnahme oder Neuvermietung planbar ist."
         heroImageSrc="/assets/service-cleaning.webp"
         heroImageAlt="FLOXANT Reinigung in Regensburg und Umgebung bis 50 km"

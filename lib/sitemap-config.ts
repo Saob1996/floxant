@@ -263,7 +263,6 @@ export const HUB_PAGES = [
   "uebergabeakte",
   "kontakt",
   "entsorgung-duesseldorf",
-  "duesseldorf/entsorgung",
   "regensburg/bueroreinigung",
   "regensburg/wohnungsaufloesung",
   "regensburg/umzugsunternehmen",

@@ -42,7 +42,12 @@ try {
     headers: { "Content-Type": "application/json", Origin: "https://www.floxant.de" },
     body: JSON.stringify({ name: "Funktion Test", email: "test@example.com", service: "umzug", message: "Testanfrage" }),
   }));
-  if (!valid.response.ok || !valid.body.success || valid.body.id !== "cf-test-booking" || valid.body.mailStatus !== "sent") {
+  if (
+    !valid.response.ok ||
+    !valid.body.success ||
+    valid.body.id !== "cf-test-booking" ||
+    !calls.some((call) => call.url.includes("api.resend.com"))
+  ) {
     throw new Error(`JSON-Lead fehlgeschlagen: ${JSON.stringify(valid.body)}`);
   }
 
@@ -51,7 +56,7 @@ try {
   formData.set("phone", "+49123456789");
   formData.set("service", "angebot_pruefen");
   formData.set("details", JSON.stringify({ service: { type: "angebot_pruefen" }, contact: { fullName: "Upload Test" } }));
-  formData.set("offerFile", new File(["test"], "angebot.pdf", { type: "application/pdf" }));
+  formData.set("offerFile", new File(["%PDF-1.4\n% FLOXANT test fixture\n%%EOF"], "angebot.pdf", { type: "application/pdf" }));
   const upload = await responseBody(new Request("https://www.floxant.de/api/intake", {
     method: "POST",
     headers: { Origin: "https://www.floxant.de" },

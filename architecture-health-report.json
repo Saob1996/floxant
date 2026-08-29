@@ -1,0 +1,323 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:10:21.098Z",
+  "totals": {
+    "pass": 44,
+    "warn": 8,
+    "fail": 0
+  },
+  "findings": [
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/SOURCE_OF_TRUTH_ARCHITECTURE.md fehlt oder wird noch erstellt.",
+      "file": "docs/SOURCE_OF_TRUTH_ARCHITECTURE.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/CTA_COMPONENT_CONSOLIDATION_REPORT.md fehlt oder wird noch erstellt.",
+      "file": "docs/CTA_COMPONENT_CONSOLIDATION_REPORT.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/COMPONENT_CONSOLIDATION_REPORT.md fehlt oder wird noch erstellt.",
+      "file": "docs/COMPONENT_CONSOLIDATION_REPORT.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/FAQ_AI_CHECKLIST_DATA_CONSOLIDATION_REPORT.md fehlt oder wird noch erstellt.",
+      "file": "docs/FAQ_AI_CHECKLIST_DATA_CONSOLIDATION_REPORT.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/SEO_DATA_ARCHITECTURE_CONSOLIDATION_REPORT.md fehlt oder wird noch erstellt.",
+      "file": "docs/SEO_DATA_ARCHITECTURE_CONSOLIDATION_REPORT.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/NAMING_IMPORT_CLEANUP_REPORT.md fehlt oder wird noch erstellt.",
+      "file": "docs/NAMING_IMPORT_CLEANUP_REPORT.md"
+    },
+    {
+      "status": "WARN",
+      "check": "required-doc",
+      "detail": "docs/DOCUMENTATION_INDEX.md fehlt oder wird noch erstellt.",
+      "file": "docs/DOCUMENTATION_INDEX.md"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "reinigung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "bueroreinigung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "gewerbereinigung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "umzug ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "klaviertransport ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "entruempelung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "wohnungsaufloesung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "angebot-pruefen ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "diskret-service ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "solarreinigung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-service-normalized",
+      "detail": "pv-anlagen-reinigung ist in service-routing erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "duesseldorf ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "regensburg ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "neuss ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "ratingen ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "meerbusch ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "hilden ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "erkrath ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "krefeld ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "mettmann ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "neutraubling ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "lappersdorf ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "regenstauf ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "wenzenbach ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "bad-abbach ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "kelheim ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "nittendorf ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "hemau ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "burglengenfeld ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "p0-city-normalized",
+      "detail": "schwandorf ist in der Normalisierung erkennbar.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "cleaning ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "office-cleaning ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "commercial-cleaning ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "moving ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "house-clearance ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "piano-transport ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "offer-check ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "english-alias-normalized",
+      "detail": "solar-panel-cleaning ist normalisiert.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "positive-claim-review",
+      "detail": "Keine positiven Garantieclaims in zentraler Datei erkannt.",
+      "file": "lib/source-of-truth.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "positive-claim-review",
+      "detail": "Keine positiven Garantieclaims in zentraler Datei erkannt.",
+      "file": "lib/cta-config.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "positive-claim-review",
+      "detail": "Keine positiven Garantieclaims in zentraler Datei erkannt.",
+      "file": "lib/service-routing.ts"
+    },
+    {
+      "status": "PASS",
+      "check": "cta-central-logic",
+      "detail": "components/LeadCta.tsx nutzt zentrale CTA-Logik oder ist selbst die CTA-Basis.",
+      "file": "components/LeadCta.tsx"
+    },
+    {
+      "status": "PASS",
+      "check": "cta-central-logic",
+      "detail": "components/conversion/OfferCheckCTA.tsx nutzt zentrale CTA-Logik oder ist selbst die CTA-Basis.",
+      "file": "components/conversion/OfferCheckCTA.tsx"
+    },
+    {
+      "status": "PASS",
+      "check": "cta-central-logic",
+      "detail": "components/OfferCheckInlineCTA.tsx nutzt zentrale CTA-Logik oder ist selbst die CTA-Basis.",
+      "file": "components/OfferCheckInlineCTA.tsx"
+    },
+    {
+      "status": "WARN",
+      "check": "cta-central-logic",
+      "detail": "components/MobileFloatingContact.tsx nutzt noch keine zentrale CTA-Logik.",
+      "file": "components/MobileFloatingContact.tsx"
+    }
+  ]
+}

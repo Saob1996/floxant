@@ -12,6 +12,7 @@ import {
   HUB_PAGES,
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
+import { sitemapRoutes } from "./sitemap-routes";
 import { growthServicePathSet, growthServicePaths } from "./growth-service-pages";
 import {
   getLocalSeoPageByPath,
@@ -666,7 +667,24 @@ export function generateSitemapResponse(): Response {
     });
   }
 
-  const uniqueUrls = Array.from(uniqueUrlMap.values());
+  for (const configuredPath of sitemapRoutes) {
+    const pagePath = configuredPath === "/" ? "" : configuredPath.replace(/^\/+|\/+$/g, "");
+    const loc = buildAbsoluteUrl(pagePath);
+    if (uniqueUrlMap.has(loc)) continue;
+    uniqueUrlMap.set(loc, {
+      pagePath,
+      loc,
+      lastmod: lastmodForRoute(pagePath),
+      changefreq: changefreqForRoute(pagePath),
+      priority: priorityForRoute(pagePath),
+    });
+  }
+
+  const approvedSitemapRoutes = new Set(sitemapRoutes.map((route) => route === "/" ? "/" : `/${route.replace(/^\/+|\/+$/g, "")}`));
+  const uniqueUrls = Array.from(uniqueUrlMap.values()).filter((url) => {
+    const route = url.pagePath ? `/${url.pagePath.replace(/^\/+|\/+$/g, "")}` : "/";
+    return approvedSitemapRoutes.has(route);
+  });
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

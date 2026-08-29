@@ -1,0 +1,212 @@
+{
+  "status": "GREEN",
+  "generatedAt": "2026-08-28T23:09:27.669Z",
+  "summary": {
+    "checks": 40,
+    "passed": 40,
+    "failed": 0,
+    "routeCount": 25
+  },
+  "checks": [
+    {
+      "name": "routing contains reinigung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains bueroreinigung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains hausverwaltung-reinigung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains treppenhausreinigung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains unterhaltsreinigung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains umzug",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains seniorenumzug",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains klaviertransport",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains entruempelung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains wohnungsaufloesung",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains angebot-pruefen",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains plan-b-service",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains diskret-service",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains english-contact",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "routing contains sonstiges",
+      "pass": true,
+      "detail": "Service key must be in serviceRoutingMatrix."
+    },
+    {
+      "name": "alias maps cleaning",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "alias maps office-cleaning",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "alias maps house-clearance",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "alias maps offer-check",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "alias maps piano-transport",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "alias maps discreet-service",
+      "pass": true,
+      "detail": "English/legacy alias should normalize to a canonical route."
+    },
+    {
+      "name": "routing matrix exported",
+      "pass": true,
+      "detail": "lib/service-routing.ts exposes the matrix."
+    },
+    {
+      "name": "alias map exported",
+      "pass": true,
+      "detail": "Aliases are auditable."
+    },
+    {
+      "name": "href builder exported",
+      "pass": true,
+      "detail": "Central contact href builder exists."
+    },
+    {
+      "name": "route resolver exported",
+      "pass": true,
+      "detail": "Central resolver exists."
+    },
+    {
+      "name": "dynamic contact heading helper exported",
+      "pass": true,
+      "detail": "Contact page can derive service/city heading."
+    },
+    {
+      "name": "all selections marked noApiOnSelect",
+      "pass": true,
+      "detail": "Matrix records that selection is link-only."
+    },
+    {
+      "name": "ServiceFinder component exists",
+      "pass": true,
+      "detail": "ContactPathChooser exports the central ServiceFinder."
+    },
+    {
+      "name": "ContactPathChooser remains compatible",
+      "pass": true,
+      "detail": "Existing import path remains stable."
+    },
+    {
+      "name": "Finder has CTA data attributes",
+      "pass": true,
+      "detail": "Finder links expose conversion-safe attributes."
+    },
+    {
+      "name": "Finder has no fetch",
+      "pass": true,
+      "detail": "Selecting a service must not call an API."
+    },
+    {
+      "name": "Finder has no bookings API",
+      "pass": true,
+      "detail": "Bookings API only belongs to submit flow."
+    },
+    {
+      "name": "Image optimization remains disabled",
+      "pass": true,
+      "detail": "next.config.js keeps images.unoptimized=true."
+    },
+    {
+      "name": "npm script service-router:health exists",
+      "pass": true,
+      "detail": "package.json exposes the health command."
+    },
+    {
+      "name": "routing matrix has broad coverage",
+      "pass": true,
+      "detail": "Found 25 service route entries."
+    },
+    {
+      "name": "doc exists docs/SERVICE_ROUTING_MATRIX.md",
+      "pass": true,
+      "detail": "Required sprint documentation should be present."
+    },
+    {
+      "name": "doc exists docs/SERVICE_FINDER_IMPLEMENTATION_REPORT.md",
+      "pass": true,
+      "detail": "Required sprint documentation should be present."
+    },
+    {
+      "name": "doc exists docs/CTA_ROUTING_SITEWIDE_REPORT.md",
+      "pass": true,
+      "detail": "Required sprint documentation should be present."
+    },
+    {
+      "name": "doc exists docs/ENGLISH_CONTACT_ROUTING_REPORT.md",
+      "pass": true,
+      "detail": "Required sprint documentation should be present."
+    },
+    {
+      "name": "doc exists docs/LEAD_ROUTING_PRIORITY_REPORT.md",
+      "pass": true,
+      "detail": "Required sprint documentation should be present."
+    }
+  ]
+}

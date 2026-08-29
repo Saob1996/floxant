@@ -15,6 +15,18 @@ export interface CityGeoData {
 }
 
 export const BAVARIAN_CITIES_GEO: Record<string, CityGeoData> = {
+  // --- NORTH RHINE-WESTPHALIA (CLEANING HUB) ---
+  duesseldorf: {
+    name: "Düsseldorf",
+    lat: "51.2277",
+    lng: "6.7735",
+    zipCode: "40213",
+    neighborhoods: ["Altstadt", "Stadtmitte", "Pempelfort", "Bilk", "Oberkassel"],
+    regionCode: "DE-NW",
+    wikidataId: "Q1718",
+    region: "Nordrhein-Westfalen"
+  },
+
   // --- OBERPFALZ (CORE) ---
   regensburg: {
     name: "Regensburg",

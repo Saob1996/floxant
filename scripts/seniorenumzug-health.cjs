@@ -39,7 +39,7 @@ const sources = {
   form: read("components/SeoLeadForm.tsx"),
   seo: read("lib/seo.ts"),
   sitemap: read("lib/sitemap-routes.ts"),
-  nextConfig: read("next.config.js"),
+  redirects: read("public/_redirects"),
   navigation: `${read("lib/service-navigation.ts")}\n${read("lib/floxant-services.ts")}\n${read("components/ContactPathChooser.tsx")}`,
   offerCheck: `${read("app/angebot-guenstiger-pruefen/page.tsx")}\n${read("app/angebotscheck/page.tsx")}`,
   localPages: `${read("app/seniorenumzug-regensburg/page.tsx")}\n${read("app/seniorenumzug-landshut/page.tsx")}\n${read("app/seniorenumzug-nuernberg/page.tsx")}`,
@@ -69,13 +69,13 @@ function warn(id, label, condition, details = "") {
 }
 
 pass("route:primary", "Primary Seniorenumzug page exists", exists("app/seniorenumzug-bayern/page.tsx"));
-pass("route:umzug-im-alter-alias", "Umzug-im-Alter aliases redirect to Seniorenumzug routes", includesAll(sources.nextConfig, [
-  "['/umzug-im-alter-bayern', '/seniorenumzug-bayern']",
-  "['/umzug-im-alter-erlangen', '/seniorenumzug-erlangen']",
-  "['/umzug-im-alter-bamberg', '/seniorenumzug-bamberg']",
-  "['/umzug-im-alter-wuerzburg', '/seniorenumzug-wuerzburg']",
+pass("route:umzug-im-alter-alias", "Umzug-im-Alter aliases redirect to Seniorenumzug routes", includesAll(sources.redirects, [
+  "/umzug-im-alter-bayern /seniorenumzug-bayern 308",
+  "/umzug-im-alter-erlangen /seniorenumzug-erlangen 308",
+  "/umzug-im-alter-bamberg /seniorenumzug-bamberg 308",
+  "/umzug-im-alter-wuerzburg /seniorenumzug-bayern 308",
 ]));
-pass("h1:primary", "H1 contains Seniorenumzug and structured request intent", sources.components.includes("Seniorenumzug strukturiert anfragen - mit Angehörigen"));
+pass("h1:primary", "H1 contains Seniorenumzug and structured request intent", sources.components.includes("Seniorenumzug mit konkreten Eckdaten anfragen - mit Angehörigen"));
 pass("metadata:title-description", "Title and description are present", includesAll(sources.primaryPage, [
   "Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären",
   "Seniorenumzug geplant? Start, Ziel, Umfang, Termin",
@@ -87,7 +87,7 @@ warn("sitemap:seniorenumzug-support", "/seniorenumzug is not treated as a second
 pass("cta:primary", "Hero CTA points to Seniorenumzug contact flow", sources.components.includes("/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo"));
 pass("cta:offer-check", "Seniorenumzug offer-check CTA is present", sources.components.includes("seniorenumzug-angebot-pruefen") && sources.offerCheck.includes("Seniorenumzug"));
 pass("cta:discreet", "Discreet Seniorenumzug CTA is present", sources.components.includes("seniorenumzug-diskret") && sources.components.includes("diskret-service"));
-pass("content:quick-answer", "Quick Answer is visible", includesAll(sources.components, ["Quick Answer", "Eine Anfrage ist noch keine Buchung"]));
+pass("content:quick-answer", "Quick Answer is visible", includesAll(sources.components, ["Kurz erklärt", "Eine Anfrage ist noch keine Buchung"]));
 pass("content:situations", "Customer situations are visible", includesAll(sources.components, [
   "Umzug in kleinere Wohnung",
   "Angehörige organisieren mit",
@@ -95,7 +95,7 @@ pass("content:situations", "Customer situations are visible", includesAll(source
   "Wohnung danach räumen",
 ]));
 pass("content:effort-factors", "Effort factors are visible", includesAll(sources.components, [
-  "Aufwandstreiber",
+  "Wovon der Aufwand abhängt",
   "Etage, Aufzug und Laufweg",
   "Angehörigenkoordination",
   "Terminwunsch, Frist und Flexibilität",
@@ -115,7 +115,7 @@ pass("content:no-promises", "Visible boundary section is present", includesAll(s
   "keine automatische Buchung durch Anfrage",
 ]));
 pass("faq:visible", "Seniorenumzug FAQ is visible and schema source exists", sources.components.includes("SeniorMoveFAQ") && sources.primaryPage.includes("buildFaqJsonLd(seniorMoveFaqItems)"));
-pass("ai:answer", "AI Answer block is present", includesAll(sources.components, ["AI Answer", "Was gehört in eine gute Anfrage für Seniorenumzug"]));
+pass("ai:answer", "Direct answer block is present", includesAll(sources.components, ["Die wichtigste Antwort", "Was gehört in eine gute Anfrage für Seniorenumzug"]));
 pass("links:combined-services", "Entruempelung, Reinigung, Diskret-Service, Objektbrief and Uebergabe links are present", includesAll(sources.components, [
   "/regensburg/entruempelung",
   "/regensburg/reinigung",

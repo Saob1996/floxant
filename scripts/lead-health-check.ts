@@ -120,19 +120,25 @@ function checkForms() {
 }
 
 function checkApi() {
-  const file = path.join(ROOT, "app/api/bookings/route.ts");
-  const source = read(file);
+  const files = [
+    path.join(ROOT, "functions/_lib/lead-handler.js"),
+    path.join(ROOT, "lib/booking-submission-client.ts"),
+  ];
+  const source = files.map(read).join("\n");
   const required = [
-    "normalizeLeadSubmission",
-    "validateLeadSubmission",
-    "calculateLeadPriority",
-    "attachLeadQuality",
+    "normalizeRequestInit",
+    "withAutomaticIdempotency",
+    "buildDetails",
+    "rawFields",
+    "insertBooking",
+    "sendNotification",
+    "companyWebsite",
     "requestId",
-    "Speichern fehlgeschlagen",
+    "Bitte pruefen Sie Ihre Angaben kurz und senden Sie erneut.",
   ];
   return hasAll(source, required)
-    ? result("booking-api", "PASS", "Booking API stores lead quality and returns generic server errors with requestId.", [rel(file)])
-    : result("booking-api", "FAIL", "Booking API lead-quality integration is incomplete.", [rel(file)]);
+    ? result("booking-api", "PASS", "Cloudflare booking handler validates and stores complete requests; the client normalizes payloads and returns request IDs.", files.map(rel))
+    : result("booking-api", "FAIL", "Cloudflare booking handler or submission client integration is incomplete.", files.map(rel));
 }
 
 function checkDocs() {

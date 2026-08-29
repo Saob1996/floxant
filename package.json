@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "build": "next build --webpack && node scripts/generate-rsc-proxy-rules.mjs",
     "build:turbo": "next build --turbopack",
     "typecheck": "tsc --noEmit",
     "start": "node scripts/serve-static-export.mjs",
@@ -72,6 +72,7 @@
     "packages:health": "node scripts/package-health.cjs",
     "service-fit:health": "node scripts/service-fit-health.cjs",
     "ai:answer-health": "node scripts/ai-answer-health.cjs",
+    "ai:answer-regression": "node --experimental-strip-types scripts/ai-answer-regression.mjs",
     "english:intent-health": "node scripts/english-intent-health.cjs",
     "content-authority:health": "node scripts/content-authority-health.cjs",
     "faq:health": "node scripts/faq-health.cjs",
@@ -90,8 +91,10 @@
     "b2b-cleaning:health": "node scripts/b2b-cleaning-health.cjs",
     "hausverwaltung-cleaning:health": "node scripts/hausverwaltung-cleaning-health.cjs",
     "solar-pv:health": "node scripts/solar-pv-health.cjs",
-    "content:quality": "npm run editorial:quality",
-    "homepage:health": "node scripts/homepage-health.mjs"
+    "content:inventory": "node scripts/content-inventory-audit.mjs",
+    "content:quality": "npm run content:inventory",
+    "homepage:health": "node scripts/homepage-health.mjs",
+    "service-area:health": "node scripts/service-area-registry-health.mjs"
   },
   "keywords": [],
   "author": "",

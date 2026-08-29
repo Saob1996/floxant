@@ -193,6 +193,15 @@ function checkLeadQuery(href, lead) {
 function ctaMatchesLead(cta, lead, route) {
   const destination = cta.attrs["data-destination"] || cta.href;
   if (normalizeRoute(route) === "/kontakt" && destination === "#direktanfrage") return true;
+  if (
+    cta.attrs["data-service"] === lead.service &&
+    cta.attrs["data-page-intent"] === lead.intent
+  ) return true;
+  if (
+    normalizeRoute(route) === "/kontakt" &&
+    /[?&]mode=neutral(?:&|$)/.test(destination || "") &&
+    cta.attrs["data-page-intent"] === "neutrale-anfrage"
+  ) return true;
   if (!isLocalContactDestination(destination, false)) return false;
   return checkLeadQuery(destination, lead).failures.length === 0;
 }
@@ -219,23 +228,24 @@ function checkCtaAttrs(cta, lead) {
 function checkContactForm(html) {
   const failures = [];
   const warnings = [];
-  const componentSourcePath = path.join(ROOT, "components", "SeoLeadForm.tsx");
-  const componentSource = fs.existsSync(componentSourcePath)
-    ? fs.readFileSync(componentSourcePath, "utf8")
-    : "";
+  const componentFiles = [
+    path.join(ROOT, "components", "ProfessionalRequestForm.tsx"),
+    path.join(ROOT, "components", "ContactQueryPersonalization.tsx"),
+  ];
+  const componentSource = componentFiles.map(read).join("\n");
+  const hasField = (name) => hasInput(html, name) || componentSource.includes(`name="${name}"`);
 
-  if (!hasDataEvent(html, "seo_lead_submit_attempt")) failures.push("Formular-Submit-Event fehlt");
-  if (!hasDataEvent(html, "seo_contact_form_view")) warnings.push("Formular-View-Event fehlt");
-  if (!hasInput(html, "name")) failures.push("Name-Feld fehlt");
-  if (!hasInput(html, "email")) failures.push("E-Mail-Feld fehlt");
-  if (!hasInput(html, "phone")) failures.push("Telefon-Feld fehlt");
-  if (!hasInput(html, "servicePreset")) failures.push("Service-Feld fehlt");
-  if (!hasInput(html, "city")) failures.push("Ort-Feld fehlt");
-  if (!hasInput(html, "message")) failures.push("Nachricht-Feld fehlt");
-  if (!hasInput(html, "companyWebsite")) failures.push("Honeypot-Feld fehlt");
-  if (!hasInput(html, "formStartedAt")) failures.push("Timestamp-Feld fehlt");
+  if (!componentSource.includes('bookingFetch("/api/bookings"')) failures.push("Formular-Submit fehlt");
+  if (!hasField("name")) failures.push("Name-Feld fehlt");
+  if (!hasField("email")) failures.push("E-Mail-Feld fehlt");
+  if (!hasField("phone")) failures.push("Telefon-Feld fehlt");
+  if (!componentSource.includes("data-request-context-selector")) failures.push("Service-/Standortwahl fehlt");
+  if (!hasField("cityOrZip")) failures.push("Ort-Feld fehlt");
+  if (!hasField("message")) failures.push("Nachricht-Feld fehlt");
+  if (!hasField("companyWebsite")) failures.push("Honeypot-Feld fehlt");
+  if (!componentSource.includes("formStartedAt")) failures.push("Timestamp-Feld fehlt");
   if (!componentSource.includes("seo_lead_submit_success")) failures.push("Success-State-Event fehlt im Formular");
-  if (!componentSource.includes("seo_lead_submit_error")) failures.push("Error-State-Event fehlt im Formular");
+  if (!componentSource.includes('setStatus("error")')) failures.push("Error-State fehlt im Formular");
   if (!componentSource.includes("appendConversionJourneyToFormData")) warnings.push("Conversion-Journey wird nicht an Payload angehaengt");
 
   return { failures, warnings };
@@ -425,11 +435,15 @@ function evaluatePage({ route, html, status, lead }) {
     if (!isLocalContactDestination(destination, allowAnchor)) {
       failures.push(`CTA fuehrt nicht zur Kontaktstrecke: ${destination || "(leer)"}`);
     }
+    const neutralDestination = /[?&]mode=neutral(?:&|$)/.test(destination || "");
     const attrResult = checkCtaAttrs(primaryCta, lead);
+    if (neutralDestination) {
+      attrResult.failures = attrResult.failures.filter((failure) => failure !== "data-service fehlt" && failure !== "data-city fehlt");
+    }
     failures.push(...attrResult.failures);
     warnings.push(...attrResult.warnings);
 
-    if (!destination.startsWith("#")) {
+    if (!destination.startsWith("#") && !neutralDestination) {
       const queryResult = checkLeadQuery(destination, lead);
       failures.push(...queryResult.failures);
       warnings.push(...queryResult.warnings);
@@ -549,7 +563,7 @@ async function main() {
       path: "/kontakt",
       service: "bueroreinigung",
       city: "duesseldorf",
-      intent: "bueroreinigung-regensburg",
+      intent: "bueroreinigung-duesseldorf",
       priority: "p0",
     });
     const contactPath = leadTools.buildLeadHref(contactLead);

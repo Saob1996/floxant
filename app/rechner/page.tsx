@@ -42,9 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "rechner",
-    title: "FLOXANT Kostenrechner Regensburg & Regensburg | Umzug, Reinigung, Entrümpelung",
+    title: "FLOXANT Kostenrechner Düsseldorf & Regensburg | Umzug, Reinigung, Entrümpelung",
     description:
-      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Regensburg und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
+      "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Düsseldorf und Regensburg einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
   });
 }
 
@@ -572,7 +572,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#lokale-tags",
         name: "FLOXANT lokale Such-Tags",
         description:
-          "Passende lokale Startpunkte für Regensburg, Regensburg, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
+          "Passende lokale Startpunkte für Düsseldorf, Regensburg, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
         itemListElement: localSeoTags.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,

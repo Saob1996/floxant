@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "generatedAt": "2026-06-20T03:42:07.267Z",
-  "pages": 420,
+  "generatedAt": "2026-08-28T23:33:40.803Z",
+  "pages": 360,
   "h1Duplicates": [],
   "titleDuplicates": [
     {
@@ -17,7 +17,7 @@
     {
       "cluster": "angebot-pruefen",
       "status": "PASS",
-      "pages": 16,
+      "pages": 12,
       "recommendation": "keep_as_is"
     },
     {
@@ -35,13 +35,13 @@
     {
       "cluster": "reinigungsfirma-angebot",
       "status": "PASS",
-      "pages": 4,
+      "pages": 3,
       "recommendation": "keep_as_is"
     },
     {
       "cluster": "bueroreinigung",
       "status": "PASS",
-      "pages": 4,
+      "pages": 5,
       "recommendation": "keep_as_is"
     },
     {
@@ -51,22 +51,22 @@
       "recommendation": "keep_as_is"
     },
     {
-      "cluster": "duesseldorf-reinigung",
+      "cluster": "regensburg-reinigung",
       "status": "WARN",
-      "pages": 54,
+      "pages": 81,
       "recommendation": "needs_manual_review"
     },
     {
       "cluster": "regensburg-umzug",
       "status": "WARN",
-      "pages": 83,
+      "pages": 81,
       "recommendation": "needs_manual_review"
     },
     {
       "cluster": "duesseldorf-regensburg",
-      "status": "WARN",
-      "pages": 54,
-      "recommendation": "needs_manual_review"
+      "status": "PASS",
+      "pages": 10,
+      "recommendation": "keep_as_is"
     },
     {
       "cluster": "seniorenumzug",
@@ -77,7 +77,7 @@
     {
       "cluster": "umzug-im-alter",
       "status": "WARN",
-      "pages": 120,
+      "pages": 115,
       "recommendation": "needs_manual_review"
     },
     {
@@ -89,19 +89,19 @@
     {
       "cluster": "b2b-bueroreinigung",
       "status": "PASS",
-      "pages": 2,
+      "pages": 1,
       "recommendation": "keep_as_is"
     },
     {
       "cluster": "diskret-service",
       "status": "PASS",
-      "pages": 4,
+      "pages": 5,
       "recommendation": "keep_as_is"
     },
     {
       "cluster": "solarreinigung",
       "status": "PASS",
-      "pages": 3,
+      "pages": 2,
       "recommendation": "keep_as_is"
     },
     {
@@ -113,19 +113,19 @@
     {
       "cluster": "landshut-muenchen-bayern",
       "status": "PASS",
-      "pages": 5,
+      "pages": 4,
       "recommendation": "keep_as_is"
     },
     {
       "cluster": "de-routen",
       "status": "PASS",
-      "pages": 23,
+      "pages": 19,
       "recommendation": "keep_as_is"
     },
     {
       "cluster": "stadt-longtail",
       "status": "PASS",
-      "pages": 6,
+      "pages": 4,
       "recommendation": "keep_as_is"
     }
   ],

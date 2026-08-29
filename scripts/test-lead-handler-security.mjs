@@ -62,6 +62,8 @@ try {
     locale: "en",
     language: "en",
     details: "Mock scope without customer data",
+    futureUnknownField: "must survive",
+    authToken: "must-never-survive",
     formStartedAt: Date.now() - 5000,
   };
   const accepted = await handleLeadSubmission({ request: jsonRequest(validPayload), env });
@@ -73,6 +75,11 @@ try {
   assert.ok(bookingCall, "mock booking insert must be called");
   const booking = JSON.parse(bookingCall.init.body)[0];
   assert.equal(booking.details.metadata.locale, "en", "English locale must be preserved in structured details");
+  assert.equal(booking.details.configuration.rawFields.futureUnknownField, "must survive", "unknown fields must remain available to operations");
+  assert.equal(booking.details.configuration.originalPayload.version, "2026-08-28", "original payload must be explicitly versioned");
+  assert.equal(booking.details.configuration.originalPayload.fields.futureUnknownField, "must survive", "versioned original payload must preserve unknown fields");
+  assert.equal(booking.details.configuration.originalPayload.fields.authToken, undefined, "security-sensitive fields must be removed from the stored payload");
+  assert.equal(booking.details.metadata.fieldSources.futureUnknownField, "submitted-form", "field source must be recorded");
 
   const emailCall = fetchCalls.find((call) => call.url.includes("api.resend.com"));
   assert.ok(emailCall, "mock Resend call must be called");

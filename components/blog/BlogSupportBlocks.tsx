@@ -56,7 +56,6 @@ function getRelatedServices(signal: string): RelatedLink[] {
     signal.includes("diskret") ||
     signal.includes("nachlass") ||
     signal.includes("uebergabe") ||
-    signal.includes("Ã¼bergabe") ||
     signal.includes("objekt") ||
     signal.includes("fotos")
   ) {

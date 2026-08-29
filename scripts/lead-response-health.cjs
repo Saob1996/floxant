@@ -189,33 +189,33 @@ add(
   ["lib/mail/notifications.ts"],
 );
 
-const successCheck = includesAll("components/SeoLeadForm.tsx", [
-  "getLeadReplyTemplateForServiceKey",
-  "getMissingInfoQuestionsForServiceKey",
-  "Was FLOXANT als Nächstes prüft",
-  "Diese Bestätigung ist keine Buchung",
-  "responseTemplateKey",
+const successCheck = includesAll("components/ProfessionalRequestForm.tsx", [
+  "Ihre Anfrage ist eingegangen",
+  "prüfen den gewünschten Umfang",
+  "kein Auftrag",
+  "kein automatisch bestätigter Termin",
 ]);
 add(
   "success-state:customer",
   successCheck.ok ? "PASS" : "FAIL",
-  "Customer success state is service-specific and honest",
-  successCheck.ok ? "Success state includes next-step and no-booking/no-guarantee copy." : `Missing: ${successCheck.missing.join(", ")}`,
-  ["components/SeoLeadForm.tsx"],
+  "Customer success state is explicit and honest",
+  successCheck.ok ? "The current form confirms receipt, explains the next review step and avoids booking or date promises." : `Missing: ${successCheck.missing.join(", ")}`,
+  ["components/ProfessionalRequestForm.tsx"],
 );
 
-const apiCheck = includesAll("app/api/bookings/route.ts", [
-  "responseTemplateKey",
-  "recommendedNextStep",
-  "missingInfoQuestions",
-  "sendInternalIntakeNotification",
+const apiCheck = includesAll("functions/_lib/lead-handler.js", [
+  "buildDetails",
+  "rawFields",
+  "insertBooking",
+  "sendNotification",
+  "Strukturierte Angaben",
 ]);
 add(
   "api:submit-only-fields",
   apiCheck.ok ? "PASS" : "FAIL",
-  "Booking API accepts lead-response fields",
-  apiCheck.ok ? "Lead-response fields are parsed on explicit submit." : `Missing: ${apiCheck.missing.join(", ")}`,
-  ["app/api/bookings/route.ts"],
+  "Cloudflare booking API preserves the operational response context",
+  apiCheck.ok ? "The production handler persists structured fields and includes them in the internal notification for dashboard follow-up." : `Missing: ${apiCheck.missing.join(", ")}`,
+  ["functions/_lib/lead-handler.js", "functions/api/bookings.js"],
 );
 
 const forbiddenClaims = [
@@ -280,7 +280,7 @@ add(
   piiReportFiles,
 );
 
-const publicSafetyFiles = ["components/SeoLeadForm.tsx", "app/kontakt/page.tsx"];
+const publicSafetyFiles = ["components/ProfessionalRequestForm.tsx", "app/kontakt/page.tsx"];
 const publicForbidden = [
   "runtime = \"nodejs\"",
   "force-dynamic",
@@ -310,15 +310,15 @@ add(
 );
 
 const submitOnlyCheck =
-  read(path.join(ROOT, "components/SeoLeadForm.tsx")).includes('onSubmit={handleSubmit}') &&
-  read(path.join(ROOT, "components/SeoLeadForm.tsx")).includes('fetch("/api/bookings"') &&
-  !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(read(path.join(ROOT, "components/SeoLeadForm.tsx")));
+  read(path.join(ROOT, "components/ProfessionalRequestForm.tsx")).includes('onSubmit={handleSubmit}') &&
+  read(path.join(ROOT, "components/ProfessionalRequestForm.tsx")).includes('bookingFetch("/api/bookings"') &&
+  !/useEffect\s*\([^)]*(?:bookingFetch|fetch)\(["']\/api/s.test(read(path.join(ROOT, "components/ProfessionalRequestForm.tsx")));
 add(
   "api:submit-only",
   submitOnlyCheck ? "PASS" : "FAIL",
   "Lead API is submit-only",
-  submitOnlyCheck ? "SeoLeadForm fetches /api/bookings only from submit handler." : "Review SeoLeadForm for automatic API calls.",
-  ["components/SeoLeadForm.tsx"],
+  submitOnlyCheck ? "ProfessionalRequestForm calls /api/bookings only from the explicit submit handler." : "Review ProfessionalRequestForm for automatic API calls.",
+  ["components/ProfessionalRequestForm.tsx"],
 );
 
 const failCount = checks.filter((check) => check.status === "FAIL").length;

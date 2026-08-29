@@ -118,23 +118,35 @@ export const clearanceFaqItems: FloxantFaqItem[] = [
 export const duesseldorfFaqItems: FloxantFaqItem[] = [
   {
     q: "Welche Services bietet FLOXANT in Duesseldorf?",
-    a: "Regensburg ist bei FLOXANT besonders stark fuer Reinigung, Buero-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen.",
+    a: "Düsseldorf ist bei FLOXANT auf Reinigung sowie Büro-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen ausgerichtet.",
   },
   {
-    q: "Wie frage ich Reinigung in Regensburg und Umgebung an?",
+    q: "Wie frage ich Reinigung in Düsseldorf und Umgebung an?",
     a: "Nennen Sie Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und gewuenschtes Ergebnis.",
   },
   {
-    q: "Wie frage ich Buero- oder Gewerbereinigung in Regensburg an?",
+    q: "Wie frage ich Büro- oder Gewerbereinigung in Düsseldorf an?",
     a: "Hilfreich sind Raumliste, Flaeche, Turnus, Zeitfenster, Ansprechpartner, Schluesselweg, Sanitaer, Kueche und Fotos.",
   },
   {
-    q: "Kann ich ein Reinigungsangebot in Regensburg pruefen lassen?",
+    q: "Kann ich ein Reinigungsangebot in Düsseldorf prüfen lassen?",
     a: "Ja. FLOXANT prueft Umfang, Turnus, Objektart, Fotos, Zusatzpunkte und Preisrahmen ohne Preisgarantie.",
   },
   {
     q: "Welche Angaben helfen fuer eine schnelle Einschaetzung?",
     a: "PLZ oder Stadtteil, Objektart, Flaeche, Fotos, Termin, Zugang, Angebot oder Preisrahmen und die offene Frage.",
+  },
+  {
+    q: "Sind Orte im Düsseldorfer Umkreis eigene Niederlassungen?",
+    a: "Nein. Genannte Orte im Umkreis sind mögliche Einsatzorte nach Prüfung und keine zusätzlichen FLOXANT-Niederlassungen.",
+  },
+  {
+    q: "Werden Sonderreinigungen automatisch zugesagt?",
+    a: "Nein. Gefahrstoffe, medizinische Desinfektion, Fassaden- oder andere qualifizierte Sonderarbeiten werden nur nach persönlicher Prüfung eingeordnet.",
+  },
+  {
+    q: "Wann ist ein Termin verbindlich?",
+    a: "Erst wenn Einsatzort, Umfang, Zugang, Zeitfenster und Leistung geprüft und von beiden Seiten ausdrücklich bestätigt wurden.",
   },
 ];
 
@@ -158,6 +170,18 @@ export const regensburgFaqItems: FloxantFaqItem[] = [
   {
     q: "Kann ich ein Angebot in Regensburg pruefen lassen?",
     a: "Ja. FLOXANT prueft Angebote fuer Umzug, Reinigung, Entruempelung und verwandte Leistungen praktisch und ohne Preisgarantie.",
+  },
+  {
+    q: "Welche Angaben braucht eine Reinigungsanfrage in Regensburg?",
+    a: "Nennen Sie Objektart, Fläche, Zustand, Fotos, Zielzustand, Termin oder Turnus sowie Zugang und Schlüsselweg.",
+  },
+  {
+    q: "Ist eine kurzfristige Anfrage automatisch verfügbar?",
+    a: "Nein. Ort, Leistung, Umfang, Zugang und Frist werden zuerst geprüft. Ein Sofort- oder 24-Stunden-Termin entsteht nur nach ausdrücklicher Bestätigung.",
+  },
+  {
+    q: "Wie geht FLOXANT mit Gefahrstoffen oder Spezialfällen um?",
+    a: "Asbest, Chemikalien, kontaminierte Materialien und qualifizierte Sonderleistungen werden nicht pauschal zugesagt, sondern persönlich geprüft und gegebenenfalls abgelehnt.",
   },
 ];
 

@@ -38,25 +38,12 @@ const routeMatrix = [
     label: "Primary B2B Bueroreinigung",
     files: ["app/regensburg/bueroreinigung/page.tsx", "lib/regensburg-service-pages.ts", "components/regensburg/RegensburgServicePage.tsx"],
     mustContain: [
-      "Büroreinigung Regensburg für Firmen strukturiert anfragen",
+      "Büroreinigung Regensburg für Firmen mit konkreten Eckdaten anfragen",
       "Fläche",
       "Turnus",
       "Reinigungszeiten",
       "vorhandenes Angebot",
-      "office cleaning",
-    ],
-  },
-  {
-    id: "office-support-root",
-    route: "/bueroreinigung",
-    label: "Support Bueroreinigung",
-    files: ["app/bueroreinigung/page.tsx"],
-    mustContain: [
-      "Büroreinigung für Firmen strukturiert anfragen",
-      "canonicalPath",
-      "/regensburg/bueroreinigung",
-      "Büroreinigung-Angebot prüfen lassen",
-      "office cleaning",
+      "Can I request office cleaning in English?",
     ],
   },
   {
@@ -65,7 +52,8 @@ const routeMatrix = [
     label: "Bueroreinigung Duesseldorf",
     files: ["app/duesseldorf/bueroreinigung/page.tsx", "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"],
     mustContain: [
-      "Büroreinigung in Düsseldorf für Firmen klar anfragen",
+      "Büroreinigung Düsseldorf für Firmen",
+      "Fläche, Turnus, Reinigungszeiten",
       "service=bueroreinigung",
       "city=duesseldorf",
       "intent=bueroreinigung-duesseldorf",
@@ -78,7 +66,8 @@ const routeMatrix = [
     label: "Gewerbereinigung Duesseldorf",
     files: ["app/duesseldorf/gewerbereinigung/page.tsx", "components/duesseldorf/DuesseldorfCleaningServicePage.tsx"],
     mustContain: [
-      "Gewerbereinigung in Düsseldorf strukturiert anfragen",
+      "Gewerbereinigung Düsseldorf",
+      "Objektart, Fläche, Reinigungszeiten, Leistungsumfang",
       "service=gewerbereinigung",
       "city=duesseldorf",
       "intent=gewerbereinigung-duesseldorf",
@@ -91,28 +80,29 @@ const routeMatrix = [
     label: "Gewerbereinigung Regensburg",
     files: ["app/regensburg/gewerbereinigung/page.tsx", "lib/local-service-seo-pages.ts", "components/LocalServiceSeoPage.tsx"],
     mustContain: [
-      "Gewerbereinigung Regensburg strukturiert anfragen",
+      "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
       "Objektart",
       "Leistungsumfang",
-      "Gewerbereinigungsangebot vergleichen",
-      "commercial cleaning",
+      "vorhandene Angebote",
+      "Firmen",
     ],
   },
 ];
 
 const sourceFiles = Array.from(new Set(routeMatrix.flatMap((route) => route.files))).concat([
-  "components/SeoLeadForm.tsx",
+  "components/ProfessionalRequestForm.tsx",
   "lib/lead-intents.ts",
   "lib/sitemap-routes.ts",
   "scripts/generate-sitemap-routes.js",
+  "public/_redirects",
 ]);
 
 const sources = Object.fromEntries(sourceFiles.map((file) => [file, read(file)]));
 const combinedSource = Object.values(sources).join("\n");
 const sitemapSource = read("lib/sitemap-routes.ts");
-const nextConfigSource = read("next.config.js");
+const redirectsSource = read("public/_redirects");
 const packageJsonSource = read("package.json");
-const formSource = read("components/SeoLeadForm.tsx");
+const formSource = read("components/ProfessionalRequestForm.tsx");
 const duesseldorfSource = read("components/duesseldorf/DuesseldorfCleaningServicePage.tsx");
 
 const results = [];
@@ -146,21 +136,21 @@ for (const route of routeMatrix) {
 addCheck(
   "architecture:b2b-alias",
   "/b2b-bueroreinigung redirects to the canonical B2B office page",
-  nextConfigSource.includes("['/b2b-bueroreinigung', '/regensburg/bueroreinigung']"),
+  redirectsSource.includes("/b2b-bueroreinigung /regensburg/bueroreinigung 308"),
   "Alias is not a competing indexable page.",
 );
 
 addCheck(
   "architecture:legacy-regensburg-office",
   "/bueroreinigung-regensburg redirects to /regensburg/bueroreinigung",
-  nextConfigSource.includes("['/bueroreinigung-regensburg', '/regensburg/bueroreinigung']"),
+  redirectsSource.includes("/bueroreinigung-regensburg /regensburg/bueroreinigung 308"),
   "Legacy root route remains consolidated.",
 );
 
 addCheck(
   "architecture:legacy-regensburg-commercial",
   "/gewerbereinigung-regensburg redirects to /regensburg/gewerbereinigung",
-  nextConfigSource.includes("['/gewerbereinigung-regensburg', '/regensburg/gewerbereinigung']"),
+  redirectsSource.includes("/gewerbereinigung-regensburg /regensburg/gewerbereinigung 308"),
   "Legacy root route remains consolidated.",
 );
 
@@ -178,33 +168,31 @@ addCheck(
 
 addCheck(
   "form:b2b-fields",
-  "B2B optional form fields are visible",
+  "B2B cleaning request fields are visible",
   includesAll(formSource, [
-    "existingCleaningOffer",
-    "specialAreas",
-    "b2bSpecialAreaOptions",
-    "Firma",
+    "Objektart",
+    "Ungefähr zu bearbeitende Fläche",
     "Turnus",
-    "Gewünschte Zeit",
-    "Vorhandenes Angebot",
-    "Besondere Bereiche",
+    "Termin oder Zeitraum",
+    "Aktueller Zustand",
+    "Zugang oder besondere Bereiche",
   ]),
-  "Company, object details, offer status and special areas are present without becoming required.",
+  "Object, area, turnus, timeframe, condition and special access fields are represented in the current form.",
 );
 
 addCheck(
   "form:b2b-success",
-  "B2B-specific success state is present",
-  formSource.includes("Ihre Anfrage zur Büro-/Gewerbereinigung wurde gesendet"),
-  "Success copy references Flaeche, Turnus, Reinigungszeiten and Leistungsumfang.",
+  "Honest request success state is present",
+  includesAll(formSource, ["Ihre Anfrage ist eingegangen", "prüfen den gewünschten Umfang", "kein Auftrag", "kein automatisch bestätigter Termin"]),
+  "Success copy confirms receipt without a booking, date or availability promise.",
 );
 
 addCheck(
   "form:no-load-api",
   "Lead API remains submit-only",
   formSource.includes('onSubmit={handleSubmit}') &&
-    formSource.includes('await fetch("/api/bookings"') &&
-    !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(formSource),
+    formSource.includes('bookingFetch("/api/bookings"') &&
+    !/useEffect\s*\([^)]*(?:bookingFetch|fetch)\(["']\/api/s.test(formSource),
   "No automatic client fetch to /api is used when the public page loads.",
 );
 

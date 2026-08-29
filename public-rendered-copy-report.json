@@ -1,0 +1,13 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:10:23.861Z",
+  "baseUrl": "http://localhost:3000",
+  "summary": {
+    "scannedPages": 0,
+    "findings": 0,
+    "fetchWarnings": 1
+  },
+  "pages": [],
+  "findings": [],
+  "warning": "Sitemap konnte nicht gelesen werden: fetch failed"
+}

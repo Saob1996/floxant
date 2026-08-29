@@ -95,8 +95,8 @@ add(
 );
 
 const p0Pages = [
-  ["app/kontakt/page.tsx", "RequestChecklistBlock"],
-  ["app/objektbrief/page.tsx", "ObjectBriefPreview"],
+  ["app/kontakt/page.tsx", "ContactLeadForm"],
+  ["app/objektbrief/page.tsx", "RequestBriefBuilder"],
   ["app/angebot-guenstiger-pruefen/page.tsx", "serviceKey=\"angebot-pruefen\""],
   ["components/duesseldorf/DuesseldorfCleaningServicePage.tsx", "RequestBriefChecklistBlock"],
   ["app/regensburg/umzug/page.tsx", "serviceKey=\"umzug\""],
@@ -138,38 +138,36 @@ add(
 );
 
 const formNeedles = [
-  "buildRequestSummaryPayload",
-  "requestSummary",
-  "missingInfoFlags",
-  "hasPhotos",
-  "hasOffer",
-  "signatureServiceHint",
-  "leadPriority",
-  'fetch("/api/bookings"',
+  "appendBookingPayloadToFormData",
+  "ProfessionalRequestForm",
+  "rawFields",
+  "selectedAddons",
+  "details",
+  'bookingFetch("/api/bookings"',
 ];
-const formCheck = includesAll("components/SeoLeadForm.tsx", formNeedles);
+const formCheck = includesAll("components/ProfessionalRequestForm.tsx", formNeedles);
 add(
   "payload:form",
   formCheck.ok ? "PASS" : "FAIL",
-  "SeoLeadForm submits request-summary signals only on submit",
-  formCheck.ok ? "Summary fields are built in handleSubmit and posted with the lead payload." : `Missing: ${formCheck.missing.join(", ")}`,
-  ["components/SeoLeadForm.tsx"],
+  "ProfessionalRequestForm submits structured request details only on submit",
+  formCheck.ok ? "The current three-step form builds structured details and posts them through the guarded booking client." : `Missing: ${formCheck.missing.join(", ")}`,
+  ["components/ProfessionalRequestForm.tsx"],
 );
 
-const apiCheck = includesAll("app/api/bookings/route.ts", [
-  "requestSummary",
-  "missingInfoFlags",
-  "hasPhotos",
-  "hasOffer",
-  "signatureServiceHint",
-  "leadPriority",
+const apiCheck = includesAll("functions/_lib/lead-handler.js", [
+  "buildDetails",
+  "rawFields",
+  "sanitizeOriginalPayload",
+  "insertBooking",
+  "sendNotification",
+  "requestId",
 ]);
 add(
   "payload:api",
   apiCheck.ok ? "PASS" : "FAIL",
-  "Booking API accepts request-summary fields",
-  apiCheck.ok ? "Flat form fields are parsed alongside existing details JSON." : `Missing: ${apiCheck.missing.join(", ")}`,
-  ["app/api/bookings/route.ts"],
+  "Cloudflare booking API preserves structured request details",
+  apiCheck.ok ? "The production handler merges details, keeps sanitized raw fields, persists the booking and sends the internal notification." : `Missing: ${apiCheck.missing.join(", ")}`,
+  ["functions/_lib/lead-handler.js", "functions/api/bookings.js"],
 );
 
 const staticPublicFiles = [

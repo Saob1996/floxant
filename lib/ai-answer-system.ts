@@ -3,10 +3,17 @@ export type AiAnswerKey =
   | "duesseldorf-reinigung"
   | "duesseldorf-bueroreinigung"
   | "duesseldorf-gewerbereinigung"
+  | "duesseldorf-praxisreinigung"
   | "umzug-regensburg"
+  | "regensburg-bueroreinigung"
+  | "regensburg-gewerbereinigung"
   | "klaviertransport-regensburg"
   | "entruempelung-regensburg"
   | "reinigung-regensburg"
+  | "grundreinigung"
+  | "leerfahrt-rueckfahrt"
+  | "dringende-anfrage"
+  | "nachlassaufloesung"
   | "diskret-service"
   | "seniorenumzug"
   | "solar-pv"
@@ -113,6 +120,51 @@ export const aiAnswerEntries: AiAnswerEntry[] = [
     lastReviewed: reviewed,
   },
   {
+    key: "duesseldorf-praxisreinigung",
+    route: "/duesseldorf/praxisreinigung",
+    title: "Praxisreinigung nach Räumen, Nutzung und Zeitfenstern klären.",
+    directAnswer:
+      "Für eine Praxisreinigung in Düsseldorf müssen Raumarten, Flächen, Nutzungszeiten, sensible Bereiche, gewünschter Turnus und Zugang bekannt sein. Medizinische Desinfektion oder andere qualifizierte Sonderleistungen werden nicht ohne gesonderte Prüfung zugesagt.",
+    usefulWhen: ["Praxisräume regelmäßig gereinigt werden sollen", "Randzeiten wichtig sind", "Leistungsgrenzen geklärt werden müssen"],
+    neededInfo: ["Praxisart und Raumliste", "Fläche und Turnus", "Zeitfenster und Zugang", "besondere Anforderungen"],
+    notPromised: ["keine medizinische Desinfektionszusage", "keine Hygienegarantie", "keine Termin- oder Preisgarantie"],
+    nextStep: "Raumliste, Turnus und besondere Anforderungen senden.",
+    cta: { href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo", label: "Praxisreinigung anfragen" },
+    serviceKeys: ["praxisreinigung"],
+    intentKeys: ["b2b", "praxis"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "regensburg-bueroreinigung",
+    route: "/regensburg/bueroreinigung",
+    title: "Büroreinigung in Regensburg nach Raumliste und Turnus prüfen.",
+    directAnswer:
+      "Für Büroreinigung in Regensburg zählen Fläche, Raumliste, Arbeitsplätze, Sanitär, Küche, Bodenarten, Turnus, Randzeiten und Schlüsselweg. Erst diese Angaben erlauben eine belastbare Leistungs- und Terminprüfung.",
+    usefulWhen: ["laufende Büroreinigung gesucht wird", "ein Angebot unklare Positionen enthält", "Zugang außerhalb der Arbeitszeit geplant wird"],
+    neededInfo: ["Firma und Ansprechpartner", "Fläche und Raumliste", "Turnus und Zeitfenster", "Zugang und Fotos"],
+    notPromised: ["keine automatische Verfügbarkeit", "keine Schlüsselübernahme ohne Vereinbarung", "keine Preisgarantie"],
+    nextStep: "Raumliste, Turnus, Zeitfenster und Zugang senden.",
+    cta: { href: "/kontakt?service=bueroreinigung&city=regensburg&intent=bueroreinigung-regensburg&source=seo", label: "Büroreinigung anfragen" },
+    serviceKeys: ["bueroreinigung"],
+    intentKeys: ["b2b", "turnus", "regensburg"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "regensburg-gewerbereinigung",
+    route: "/regensburg/gewerbereinigung",
+    title: "Gewerbereinigung in Regensburg nach Nutzung und Flächen klären.",
+    directAnswer:
+      "Gewerbereinigung in Regensburg wird nach Objektart, Nutzung, Fläche, Bodenarten, Reinigungsziel, Turnus, Zeitfenster und Zugang geprüft. Branchen- oder Spezialanforderungen müssen vor einer Zusage ausdrücklich benannt werden.",
+    usefulWhen: ["Gewerbeflächen regelmäßig betreut werden sollen", "Sonderflächen vorhanden sind", "Leistungspositionen verglichen werden"],
+    neededInfo: ["Objektart und Nutzung", "Fläche und Raumliste", "Turnus und Zeitfenster", "Sonderflächen und Zugang"],
+    notPromised: ["keine Branchenfreigabe ohne Prüfung", "keine Sonderleistung ohne Bestätigung", "keine Termin- oder Preisgarantie"],
+    nextStep: "Objektart, Nutzung, Fläche und gewünschtes Zeitfenster senden.",
+    cta: { href: "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo", label: "Gewerbereinigung anfragen" },
+    serviceKeys: ["gewerbereinigung"],
+    intentKeys: ["b2b", "regensburg"],
+    lastReviewed: reviewed,
+  },
+  {
     key: "klaviertransport-regensburg",
     route: "/klaviertransport-regensburg",
     title: "Klaviertransport zuerst nach Zugang pruefen.",
@@ -170,6 +222,81 @@ export const aiAnswerEntries: AiAnswerEntry[] = [
     cta: { href: "/kontakt?service=diskret-service&intent=diskret-service&source=seo", label: "Diskreten Fall beschreiben" },
     serviceKeys: ["diskret-service"],
     intentKeys: ["diskret", "private-client"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "seniorenumzug",
+    route: "/seniorenumzug-bayern",
+    title: "Seniorenumzug mit Zuständigkeit, Zugang und Unterstützung klären.",
+    directAnswer:
+      "Ein Seniorenumzug wird wie ein Umzug mit zusätzlichen Abstimmungspunkten geprüft: Start, Ziel, Umfang, Zugang, Ansprechpartner, gewünschte Hilfe und Umgang mit persönlichen Gegenständen. FLOXANT ersetzt keine Pflege-, Rechts- oder medizinische Beratung.",
+    usefulWhen: ["Angehörige koordinieren", "mehr Zeit für Entscheidungen nötig ist", "Räumung oder Reinigung dazugehören kann"],
+    neededInfo: ["Start und Ziel", "Umfang und Zugang", "Ansprechpartner und Berechtigung", "gewünschte Unterstützung"],
+    notPromised: ["keine Pflegeleistung", "keine Rechts- oder Medizinberatung", "keine Termin- oder Preisgarantie"],
+    nextStep: "Ort, Umfang, Ansprechpartner und gewünschte Unterstützung nennen.",
+    cta: { href: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=seo", label: "Seniorenumzug anfragen" },
+    serviceKeys: ["seniorenumzug"],
+    intentKeys: ["senior", "diskret"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "nachlassaufloesung",
+    route: "/nachlass-raeumung-regensburg",
+    title: "Nachlassauflösung mit Freigaben und klaren Grenzen starten.",
+    directAnswer:
+      "Bei einer Nachlassauflösung müssen Berechtigung, Ansprechpartner, Räume, persönliche Gegenstände, Freigaben, Zugang und Zielzustand geklärt sein. Räumung, Entsorgung und Reinigung werden getrennt geprüft; Bewertung und Rechtsberatung gehören nicht zur Leistung.",
+    usefulWhen: ["eine Nachlasswohnung geordnet werden muss", "mehrere Angehörige beteiligt sind", "Übergabe oder Reinigung folgt"],
+    neededInfo: ["Berechtigung und Ansprechpartner", "Ort, Räume und Fotos", "Freigaben", "Zielzustand und Termin"],
+    notPromised: ["keine Nachlassbewertung", "keine Rechtsberatung", "keine Gefahrstoffzusage"],
+    nextStep: "Berechtigung, Ort, Umfang, Freigaben und Zielzustand senden.",
+    cta: { href: "/kontakt?service=entruempelung&city=regensburg&intent=nachlassaufloesung&source=seo", label: "Nachlassfall beschreiben" },
+    serviceKeys: ["nachlassaufloesung", "wohnungsaufloesung"],
+    intentKeys: ["nachlass", "diskret"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "grundreinigung",
+    route: "/grundreinigung-regensburg",
+    title: "Grundreinigung nach Fläche, Belägen und Zielzustand prüfen.",
+    directAnswer:
+      "Für eine Grundreinigung müssen Objektart, Fläche, Boden- und Oberflächenarten, aktueller Zustand, gewünschtes Ergebnis, Zugang, Fotos und Termin bekannt sein. Maschinen-, Fassaden- oder Gefahrstoffarbeiten werden nicht automatisch mit zugesagt.",
+    usefulWhen: ["eine intensivere Reinigung als die laufende Pflege nötig ist", "Beläge und Zustand dokumentiert werden können", "ein Übergabetermin ansteht"],
+    neededInfo: ["Ort und Objektart", "Fläche und Beläge", "Zustand und Fotos", "Zielzustand und Termin"],
+    notPromised: ["keine Abnahmegarantie", "keine Spezialtechnik ohne Prüfung", "keine Termin- oder Preisgarantie"],
+    nextStep: "Flächen, Beläge, Zustand und Ziel mit Fotos senden.",
+    cta: { href: "/kontakt?service=grundreinigung&city=regensburg&intent=grundreinigung-regensburg&source=seo", label: "Grundreinigung anfragen" },
+    serviceKeys: ["grundreinigung"],
+    intentKeys: ["reinigung", "grundreinigung"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "leerfahrt-rueckfahrt",
+    route: "/leerfahrt-rueckfahrt",
+    title: "Beiladung oder Rückfahrt nur passend zur echten Route prüfen.",
+    directAnswer:
+      "Eine Leer- oder Rückfahrt eignet sich nur, wenn Strecke, Datum, Ladepunkte, Gegenstände, Maße, Gewicht und freie Kapazität zu einer tatsächlich veröffentlichten Tour passen. Eine Anfrage reserviert keinen Platz und erzeugt keinen Pauschalpreis.",
+    usefulWhen: ["Route und Datum flexibel sind", "eine Teilmenge transportiert werden soll", "Maße und Fotos vorliegen"],
+    neededInfo: ["Start, Ziel und Datum", "Gegenstände, Maße und Gewicht", "Zugang und Etage", "Fotos und Kontaktweg"],
+    notPromised: ["keine erfundene Tour", "keine Kapazitätsgarantie", "kein Preis ohne Routenprüfung"],
+    nextStep: "Route, Datum, Maße, Gewicht und Fotos an die passende Tour senden.",
+    cta: { href: "/leerfahrt-rueckfahrt#rueckfahrten", label: "Rückfahrten prüfen" },
+    serviceKeys: ["leerfahrt", "rueckfahrt", "beiladung"],
+    intentKeys: ["transport", "route"],
+    lastReviewed: reviewed,
+  },
+  {
+    key: "dringende-anfrage",
+    route: "/plan-b-service",
+    title: "Dringende Anfrage ohne Sofortzusage prüfen.",
+    directAnswer:
+      "Bei einer dringenden Anfrage prüft FLOXANT zuerst Ort, Service, Frist, Umfang, Zugang und vorhandene Alternativen. Eine 24-Stunden-, Soforttermin- oder Verfügbarkeitszusage entsteht erst nach ausdrücklicher manueller Bestätigung.",
+    usefulWhen: ["ein Anbieter abgesagt hat", "eine Übergabe oder Frist naht", "ein Plan B benötigt wird"],
+    neededInfo: ["Ort und Service", "genaue Frist", "Umfang und Fotos", "bisheriger Stand"],
+    notPromised: ["keine 24-Stunden-Garantie", "keine automatische Verfügbarkeit", "keine Preisgarantie"],
+    nextStep: "Ort, Leistung, Frist, Umfang und bisherigen Stand senden.",
+    cta: { href: "/kontakt?service=plan-b&intent=dringende-anfrage&source=seo", label: "Dringenden Fall prüfen lassen" },
+    serviceKeys: ["plan-b", "notfallumzug"],
+    intentKeys: ["dringend", "sofort", "24h"],
     lastReviewed: reviewed,
   },
   {
@@ -276,17 +403,116 @@ export function getAiAnswerForRoute(route: string) {
 export function resolveAiAnswerKey(pathOrSignal: string): AiAnswerKey {
   const signal = pathOrSignal.toLowerCase();
   if (signal.includes("angebot")) return "angebot-pruefen";
-  if (signal.includes("bueroreinigung")) return "duesseldorf-bueroreinigung";
-  if (signal.includes("gewerbereinigung")) return "duesseldorf-gewerbereinigung";
+  if (signal.includes("english")) return "english-request";
+  if (signal.includes("leerfahrt") || signal.includes("rueckfahrt") || signal.includes("beiladung")) return "leerfahrt-rueckfahrt";
   if (signal.includes("klavier")) return "klaviertransport-regensburg";
+  if (signal.includes("senior")) return "seniorenumzug";
+  if (signal.includes("nachlass") || signal.includes("wohnungsaufloesung") || signal.includes("haushaltsaufloesung")) return "nachlassaufloesung";
   if (signal.includes("entruempel")) return "entruempelung-regensburg";
   if (signal.includes("diskret") || signal.includes("private")) return "diskret-service";
-  if (signal.includes("senior")) return "seniorenumzug";
   if (signal.includes("solar") || signal.includes("pv")) return "solar-pv";
+  if (signal.includes("notfall") || signal.includes("dringend") || signal.includes("sofort") || signal.includes("24h") || signal.includes("plan-b")) return "dringende-anfrage";
+  if (signal.includes("grundreinigung") || signal.includes("baureinigung")) return "grundreinigung";
+  if (signal.includes("praxisreinigung")) return "duesseldorf-praxisreinigung";
+  if (signal.includes("hotelreinigung")) return "regensburg-gewerbereinigung";
+  if (signal.includes("unterhaltsreinigung") || signal.includes("treppenhausreinigung")) return "regensburg-bueroreinigung";
+  if (signal.includes("fernumzug") || signal.includes("bueroumzug") || signal.includes("kleintransport")) return "umzug-regensburg";
+  if (signal.includes("keller") || signal.includes("muellraum")) return "entruempelung-regensburg";
+  if (signal.includes("regensburg") && signal.includes("bueroreinigung")) return "regensburg-bueroreinigung";
+  if (signal.includes("regensburg") && signal.includes("gewerbereinigung")) return "regensburg-gewerbereinigung";
+  if (signal.includes("bueroreinigung")) return "duesseldorf-bueroreinigung";
+  if (signal.includes("gewerbereinigung")) return "duesseldorf-gewerbereinigung";
   if (signal.includes("regensburg") && signal.includes("umzug")) return "umzug-regensburg";
+  if (signal.includes("regensburg") && signal.includes("reinigung")) return "reinigung-regensburg";
   if (signal.includes("duesseldorf") && signal.includes("reinigung")) return "duesseldorf-reinigung";
-  if (signal.includes("english")) return "english-request";
   if (signal.includes("regensburg")) return "regensburg";
   if (signal.includes("duesseldorf")) return "duesseldorf";
   return "angebot-pruefen";
+}
+
+export type DeterministicCustomerAnswer = {
+  status: "matched" | "needs-clarification" | "manual-review";
+  answer: string;
+  neededInfo: string[];
+  nextStep: string;
+  cta: AiAnswerEntry["cta"];
+  answerKey?: AiAnswerKey;
+  safetyFlags: string[];
+};
+
+function normalizeSignal(value: string) {
+  return value
+    .toLocaleLowerCase("de-DE")
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss");
+}
+
+export function resolveDeterministicCustomerAnswer(input: {
+  question: string;
+  service?: string;
+  location?: string;
+}): DeterministicCustomerAnswer {
+  const signal = normalizeSignal([input.question, input.service, input.location].filter(Boolean).join(" "));
+  const hasDuesseldorf = signal.includes("duesseldorf");
+  const hasRegensburg = signal.includes("regensburg");
+
+  if (hasDuesseldorf && hasRegensburg) {
+    return {
+      status: "needs-clarification",
+      answer: "Düsseldorf und Regensburg stehen beide in der Anfrage. Bitte nennen Sie eindeutig den Einsatzort; Leistungen und bestätigte Servicegebiete unterscheiden sich.",
+      neededInfo: ["eindeutiger Einsatzort oder Start und Ziel", "gewünschte Leistung", "Termin oder Frist"],
+      nextStep: "Einsatzort und Leistung im Kontaktformular eindeutig auswählen.",
+      cta: { href: "/kontakt?intent=ort-klaeren&source=antwortsystem", label: "Ort und Leistung klären" },
+      safetyFlags: ["conflicting-location"],
+    };
+  }
+
+  const specialTerms = ["asbest", "gefahrstoff", "chemikal", "kontamin", "tatort", "schimmel", "desinfektion", "fassadenreinigung", "lueftungsreinigung", "hausmeisterservice", "winterdienst", "rohrreinigung"];
+  const matchedSpecialTerm = specialTerms.find((term) => signal.includes(term));
+  if (matchedSpecialTerm) {
+    return {
+      status: "manual-review",
+      answer: "Diese Anfrage enthält eine Gefahrstoff-, Hygiene- oder qualifizierte Spezialleistung. FLOXANT sagt sie nicht als Standardleistung zu. Zuerst müssen Stoff, Zustand, Ort, Zugang, Fotos und erforderliche Qualifikation persönlich geprüft werden.",
+      neededInfo: ["genaue Art des Sonderfalls", "Ort und Objektart", "Fotos ohne unnötige persönliche Daten", "bekannte Gefahren- oder Stoffhinweise"],
+      nextStep: "Sonderfall ohne Ausführungs- oder Terminannahme zur persönlichen Prüfung senden.",
+      cta: { href: "/kontakt?service=spezialfall&intent=manuelle-pruefung&source=antwortsystem", label: "Sonderfall prüfen lassen" },
+      safetyFlags: ["qualified-service", matchedSpecialTerm],
+    };
+  }
+
+  if (input.location?.trim() && !hasDuesseldorf && !hasRegensburg) {
+    return {
+      status: "manual-review",
+      answer: "Der genannte Ort ist in dieser Anfrage keinem bestätigten Kerngebiet zugeordnet. Eine mögliche Anfahrt wird persönlich geprüft; daraus entsteht keine Gebiets-, Termin- oder Verfügbarkeitszusage.",
+      neededInfo: ["vollständiger Einsatzort oder PLZ", "gewünschte Leistung", "Umfang", "Termin oder Frist"],
+      nextStep: "Ort und Eckdaten zur persönlichen Gebietsprüfung senden.",
+      cta: { href: "/kontakt?intent=servicegebiet-pruefen&source=antwortsystem", label: "Servicegebiet prüfen lassen" },
+      safetyFlags: ["unconfirmed-location"],
+    };
+  }
+
+  const answerKey = resolveAiAnswerKey(signal);
+  const entry = getAiAnswerByKey(answerKey) || getAiAnswerByKey("angebot-pruefen")!;
+  const asksForPrice = /\b(preis|kosten|euro|eur|pauschal|guenstig|billig)\b/.test(signal);
+  const asksForUrgency = /\b(24h|sofort|heute|morgen|dringend|notfall)\b/.test(signal);
+  const safetyFlags = [
+    ...(asksForPrice ? ["price-needs-scope"] : []),
+    ...(asksForUrgency ? ["availability-needs-confirmation"] : []),
+  ];
+  const safeguards = [
+    asksForPrice ? "Ein konkreter Preis wird erst nach Prüfung des Leistungsumfangs genannt." : "",
+    asksForUrgency ? "Eine kurzfristige Verfügbarkeit oder ein 24-Stunden-Termin wird nicht automatisch bestätigt." : "",
+  ].filter(Boolean).join(" ");
+
+  return {
+    status: "matched",
+    answer: `${entry.directAnswer}${safeguards ? ` ${safeguards}` : ""}`,
+    neededInfo: [...entry.neededInfo],
+    nextStep: entry.nextStep,
+    cta: entry.cta,
+    answerKey: entry.key,
+    safetyFlags,
+  };
 }

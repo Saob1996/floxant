@@ -1,0 +1,256 @@
+{
+  "status": "PASS",
+  "summary": {
+    "generatedAt": "2026-08-28T23:22:37.131Z",
+    "baseUrl": "http://127.0.0.1:4173",
+    "checks": 27,
+    "pass": 27,
+    "warn": 0,
+    "fail": 0
+  },
+  "results": [
+    {
+      "scope": "sitemap",
+      "path": "/sitemap.xml",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 200,
+      "detail": "391 URLs found",
+      "action": "No action."
+    },
+    {
+      "scope": "sitemap",
+      "path": "forbidden routes",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 0,
+      "detail": "No API/admin/dashboard/login URLs found",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/de/umzug-duesseldorf",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /seo-gone",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/de/wissen/halteverbotszone-duesseldorf",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /seo-gone",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/umzug-regensburg",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/umzug",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/reinigung-regensburg",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/reinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/entruempelung-regensburg",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/entruempelung",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/gewerbereinigung-regensburg",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/gewerbereinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/bueroreinigung-regensburg",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/bueroreinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "legacy",
+      "path": "/b2b-bueroreinigung",
+      "status": "PASS",
+      "priority": "P0",
+      "httpStatus": 308,
+      "detail": "Redirect target: /regensburg/bueroreinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/kontakt",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /kontakt",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/angebot-guenstiger-pruefen",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /angebot-guenstiger-pruefen",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/angebotscheck",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /angebotscheck",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf/reinigung",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf/reinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf/bueroreinigung",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf/bueroreinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf/gewerbereinigung",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf/gewerbereinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf/praxisreinigung",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf/praxisreinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/duesseldorf/fensterreinigung",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /duesseldorf/fensterreinigung",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/regensburg",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /regensburg",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/klaviertransport-regensburg",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /klaviertransport-regensburg",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/diskret-service",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /diskret-service",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/impressum",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /impressum",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/datenschutz",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /datenschutz",
+      "action": "No action."
+    },
+    {
+      "scope": "canonical",
+      "path": "/agb",
+      "status": "PASS",
+      "priority": "P1",
+      "httpStatus": 200,
+      "detail": "Canonical /agb",
+      "action": "No action."
+    },
+    {
+      "scope": "internal-link",
+      "path": "sample",
+      "status": "PASS",
+      "priority": "P2",
+      "httpStatus": 0,
+      "detail": "98 internal links checked from 5 pages",
+      "action": "Increase INTERNAL_LINK_LIMIT for deeper checks."
+    }
+  ]
+}

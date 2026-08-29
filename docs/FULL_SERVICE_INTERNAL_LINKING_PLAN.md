@@ -1,0 +1,43 @@
+# Full Service Internal Linking Plan
+
+Stand: 2026-08-28T23:32:58.927Z
+
+| Service | Haupt-Hub | Düsseldorf-Link | Regensburg-Link | Angebotscheck | Kontakt | Signature | English |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Reinigung | /regensburg/reinigung | /duesseldorf | /regensburg/reinigung | /angebot-guenstiger-pruefen | /kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=seo | Entscheidungs-Kompass | cleaning service Regensburg, cleaning service Düsseldorf |
+| Büroreinigung | /regensburg/bueroreinigung | /duesseldorf | /regensburg/bueroreinigung | /angebot-guenstiger-pruefen | /kontakt?service=bueroreinigung&city=regensburg&intent=b2b-bueroreinigung-regensburg&source=seo | Büro-Startklar-Service | office cleaning Regensburg, office cleaning Düsseldorf |
+| Gewerbereinigung | /regensburg/gewerbereinigung | /duesseldorf | /regensburg/gewerbereinigung | /angebot-guenstiger-pruefen | /kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo | Büro-Startklar-Service | commercial cleaning Regensburg |
+| Praxisreinigung | /praxisreinigung-regensburg | /duesseldorf | /praxisreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo | Büro-Startklar-Service | medical office cleaning Germany |
+| Fensterreinigung und Glasreinigung | /fensterreinigung-regensburg | /duesseldorf | /fensterreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo | Entscheidungs-Kompass | window cleaning Regensburg, glass cleaning Düsseldorf |
+| Unterhaltsreinigung | /unterhaltsreinigung-regensburg | /duesseldorf | /unterhaltsreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=gewerbereinigung&city=regensburg&intent=unterhaltsreinigung-regensburg&source=seo | Büro-Startklar-Service | recurring office cleaning |
+| Endreinigung und Übergabereinigung | /regensburg/uebergabereinigung | /duesseldorf | /regensburg/uebergabereinigung | /angebot-guenstiger-pruefen | /kontakt?service=reinigung&city=regensburg&intent=uebergabereinigung-regensburg&source=seo | Übergabeakte, Übergabe-Sprint | end of tenancy cleaning Regensburg |
+| Grundreinigung und Bauendreinigung | /grundreinigung-regensburg | /duesseldorf | /grundreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=reinigung&city=regensburg&intent=grundreinigung-regensburg&source=seo | Objektbrief | deep cleaning Regensburg |
+| Hotelreinigung | /hotelreinigung-regensburg | /duesseldorf | /hotelreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=gewerbereinigung&city=regensburg&intent=hotelreinigung-regensburg&source=seo | Büro-Startklar-Service | hotel cleaning Regensburg |
+| Treppenhausreinigung | /treppenhausreinigung-regensburg | /duesseldorf | /treppenhausreinigung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=gewerbereinigung&city=regensburg&intent=treppenhausreinigung-regensburg&source=seo | Vermieter-Ready-Service | staircase cleaning property management |
+| Solarreinigung und PV-Anlagen-Reinigung | /regensburg/solarreinigung | /duesseldorf | /regensburg/solarreinigung | /angebot-guenstiger-pruefen | /kontakt?service=reinigung&city=regensburg&intent=pv-sichtklar-service&source=seo | PV-Sichtklar-Service | solar panel cleaning Germany |
+| Umzug | /regensburg/umzug | /duesseldorf/umzug | /regensburg/umzug | /angebot-guenstiger-pruefen | /kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo | Rückfahrt-Radar, Entscheidungs-Kompass | moving help Regensburg, moving help Düsseldorf |
+| Fernumzug | /fernumzug-muenchen | /duesseldorf | /regensburg/umzug | /angebot-guenstiger-pruefen | /kontakt?service=fernumzug&city=regensburg&intent=fernumzug-regensburg&source=seo | Rückfahrt-Radar | long distance moving Germany |
+| Büroumzug und Praxisumzug | /bueroumzug-regensburg | /duesseldorf | /bueroumzug-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=umzug&city=regensburg&intent=bueroumzug-regensburg&source=seo | Büro-Startklar-Service | office relocation Regensburg |
+| Seniorenumzug und Umzug im Alter | /regensburg/seniorenumzug | /duesseldorf | /regensburg/seniorenumzug | /angebot-guenstiger-pruefen | /kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=seo | Diskret-Service, Entscheidungs-Kompass | senior moving assistance Germany |
+| Klaviertransport | /klaviertransport-regensburg | /duesseldorf | /klaviertransport-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo | Objektbrief | piano transport Regensburg |
+| Beiladung und Rückfahrt | /beiladung-regensburg | /duesseldorf | /beiladung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=umzug&city=regensburg&intent=beiladung-regensburg&source=seo | Rückfahrt-Radar | shared load transport Germany |
+| Kleintransport und Möbeltransport | /kleintransport-regensburg | /duesseldorf | /kleintransport-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=umzug&city=regensburg&intent=kleintransport-regensburg&source=seo | Rückfahrt-Radar | small transport Regensburg |
+| Express-Umzug und Notfallumzug | /24h-umzugsservice | /duesseldorf | /24h-umzugsservice | /angebot-guenstiger-pruefen | /kontakt?service=umzug&city=regensburg&intent=notfallumzug-regensburg&source=seo | Plan-B-Service | urgent moving help Germany |
+| Entrümpelung | /regensburg/entruempelung | /duesseldorf/entruempelung | /regensburg/entruempelung | /angebot-guenstiger-pruefen | /kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo | Objektbrief, Diskret-Service | house clearance Regensburg |
+| Haushaltsauflösung und Wohnungsauflösung | /regensburg/haushaltsaufloesung | /duesseldorf/haushaltsaufloesung | /regensburg/wohnungsaufloesung | /angebot-guenstiger-pruefen | /kontakt?service=wohnungsaufloesung&city=regensburg&intent=wohnungsaufloesung-regensburg&source=seo | Vermieter-Ready-Service, Diskret-Service | apartment clearance Germany |
+| Nachlassauflösung und diskrete Entrümpelung | /nachlass-raeumung-regensburg | /duesseldorf | /nachlass-raeumung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=diskret-service&intent=diskret-service&source=seo | Diskret-Service | discreet house clearance Germany |
+| Keller-, Müllraum- und Restmengen-Rettung | /keller-muellraum-rettung-regensburg | /duesseldorf | /keller-muellraum-rettung-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=entruempelung&city=regensburg&intent=keller-muellraum-rettung-regensburg&source=seo | Plan-B-Service | basement clearance Regensburg |
+| Angebot prüfen und Anbieter vergleichen | /angebot-guenstiger-pruefen | /duesseldorf/angebot-vergleichen | /angebot-vergleichen-regensburg | /angebot-guenstiger-pruefen | /kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo | Angebotscheck, Fairpreis-Check | offer check Germany, quote review Germany |
+| Plan-B-Service bei Anbieterabsage | /plan-b-service | /duesseldorf | /plan-b-service | /angebot-guenstiger-pruefen | /kontakt?service=angebot-pruefen&intent=plan-b-service&source=seo | Plan-B-Service | service provider cancelled help Germany |
+| FLOXANT Objektbrief | /objektbrief | /duesseldorf | /objektbrief | /angebot-guenstiger-pruefen | /kontakt?service=angebot-pruefen&intent=objektbrief&source=seo | Objektbrief | property brief cleaning moving Germany |
+| FLOXANT Übergabeakte und Vermieter-Ready-Service | /uebergabeakte | /duesseldorf | /uebergabeakte | /angebot-guenstiger-pruefen | /kontakt?service=reinigung&intent=uebergabeakte&source=seo | Übergabeakte, Vermieter-Ready-Service | move out handover cleaning Germany |
+| FLOXANT Diskret-Service | /private-client-service | /duesseldorf | /private-client-service | /angebot-guenstiger-pruefen | /kontakt?service=diskret-service&intent=diskret-service&source=seo | Diskret-Service | discreet moving clearance Germany |
+| FLOXANT Entscheidungs-Kompass | /leistungen | /duesseldorf | /leistungen | /angebot-guenstiger-pruefen | /kontakt?service=kontakt&intent=entscheidungs-kompass&source=seo | Entscheidungs-Kompass | not sure which service Germany |
+
+## Regeln
+
+- Startseite und /leistungen verlinken kuratiert, nicht als Footer-Linkfarm.
+- Standortseiten zeigen Services, Grenzen und 50-km-Logik.
+- Angebotsprüfung bleibt Entscheidungsknoten.
+- Spezialservices verlinken zu Kontakt, Angebot prüfen und passendem Hub.
+- English Intent führt zu Kontakt oder starker bestehender Seite, nicht zu dünnen Doorway-Pages.

@@ -9,18 +9,12 @@ const acceptedRedirectStatuses = new Set([301, 302, 307, 308]);
 const legacyRoutes = [
   { path: "/de/umzug-duesseldorf", expected: "/seo-gone", strategy: "redirect" },
   { path: "/de/wissen/halteverbotszone-duesseldorf", expected: "/seo-gone", strategy: "redirect" },
-  { path: "/duesseldorf/reinigung", expected: "/duesseldorf", strategy: "redirect" },
-  { path: "/duesseldorf/bueroreinigung", expected: "/duesseldorf", strategy: "redirect" },
-  { path: "/duesseldorf/gewerbereinigung", expected: "/duesseldorf", strategy: "redirect" },
-  { path: "/duesseldorf/praxisreinigung", expected: "/duesseldorf", strategy: "redirect" },
-  { path: "/duesseldorf/fensterreinigung", expected: "/duesseldorf", strategy: "redirect" },
   { path: "/umzug-regensburg", expected: "/regensburg/umzug", strategy: "redirect" },
   { path: "/reinigung-regensburg", expected: "/regensburg/reinigung", strategy: "redirect" },
   { path: "/entruempelung-regensburg", expected: "/regensburg/entruempelung", strategy: "redirect" },
   { path: "/gewerbereinigung-regensburg", expected: "/regensburg/gewerbereinigung", strategy: "redirect" },
   { path: "/bueroreinigung-regensburg", expected: "/regensburg/bueroreinigung", strategy: "redirect" },
   { path: "/b2b-bueroreinigung", expected: "/regensburg/bueroreinigung", strategy: "redirect" },
-  { path: "/diskret-service", expected: "/diskreter-umzug-trennung-scheidung", strategy: "redirect" },
 ];
 
 const canonicalSample = [
@@ -29,8 +23,14 @@ const canonicalSample = [
   "/angebot-guenstiger-pruefen",
   "/angebotscheck",
   "/duesseldorf",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/bueroreinigung",
+  "/duesseldorf/gewerbereinigung",
+  "/duesseldorf/praxisreinigung",
+  "/duesseldorf/fensterreinigung",
   "/regensburg",
   "/klaviertransport-regensburg",
+  "/diskret-service",
   "/impressum",
   "/datenschutz",
   "/agb",

@@ -1,20 +1,22 @@
 {
-  "generatedAt": "2026-07-18T02:20:03.661Z",
+  "generatedAt": "2026-08-29T00:48:37.643Z",
   "limits": {
-    "fileCount": 13199,
+    "fileCount": 13202,
     "fileCountLimit": 20000,
-    "largestFileBytes": 1648826,
+    "largestFileBytes": 1649393,
     "fileSizeLimitBytes": 26214400,
-    "totalBytes": 4360297025
+    "totalBytes": 4360760020
   },
   "counts": {
     "htmlFiles": 1551,
-    "sitemapUrls": 394,
-    "redirects": 622,
+    "sitemapUrls": 391,
+    "redirects": 1016,
+    "proxies": 392,
     "brokenLinks": 0,
     "missingImages": 0,
     "noindexSitemapPages": 0,
-    "redirectChains": 0
+    "redirectChains": 0,
+    "missingProxyTargets": 0
   },
   "failures": {
     "fileCountExceeded": false,
@@ -26,6 +28,7 @@
     "noindexSitemapPages": [],
     "redirectChains": [],
     "redirectLoops": [],
-    "invalidRedirectStatuses": []
+    "invalidRedirectStatuses": [],
+    "missingProxyTargets": []
   }
 }

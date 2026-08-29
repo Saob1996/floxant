@@ -86,6 +86,22 @@ const faqItems = [
     q: "Können englischsprachige Kunden anfragen?",
     a: "Ja. Eine Anfrage kann auf Englisch starten, wenn Service, Ort, Umfang, Fotos, Termin und bevorzugter Kontaktweg klar genannt werden.",
   },
+  {
+    q: "Welche Angaben braucht eine Reinigungsanfrage in Düsseldorf?",
+    a: "Nennen Sie Stadtteil oder PLZ, Objektart, Fläche, gewünschten Umfang, aktuellen Zustand, Turnus oder Termin, Zugang und möglichst passende Fotos.",
+  },
+  {
+    q: "Kann FLOXANT ein vorhandenes Reinigungsangebot prüfen?",
+    a: "Ja. Senden Sie das Angebot zusammen mit Raumliste, Fläche, Turnus, Zeitfenster und offenen Fragen. Die Prüfung verspricht weder einen niedrigeren Preis noch einen Termin.",
+  },
+  {
+    q: "Sind Grundreinigung und Baureinigung eigene Düsseldorfer Seiten?",
+    a: "Nein. Diese Leistungen werden auf der Reinigungsseite als prüfbare Einsatzfälle erklärt, damit keine nahezu identischen Ortsseiten entstehen. Umfang, Zustand und Ziel müssen vor einer Zusage geklärt werden.",
+  },
+  {
+    q: "Wie entsteht ein verbindlicher Termin?",
+    a: "Erst nachdem Ort, Leistung, Umfang, Zugang und Zeitfenster geprüft und von beiden Seiten bestätigt wurden. Das Absenden einer Anfrage reserviert noch keinen Termin.",
+  },
 ];
 
 export const metadata: Metadata = {

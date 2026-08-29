@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
+const redirectsSource = fs.readFileSync(path.join(root, "public/_redirects"), "utf8");
 
 const requiredDocs = [
   "docs/SERVICE_NAVIGATION_TAXONOMY.md",
@@ -20,8 +21,8 @@ const requiredRoutes = [
   "/angebotscheck",
   "/duesseldorf",
   "/regensburg",
-  "/duesseldorf/umzug",
-  "/duesseldorf/entruempelung",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/bueroreinigung",
   "/regensburg/reinigung",
   "/regensburg/bueroreinigung",
   "/regensburg/gewerbereinigung",
@@ -76,7 +77,7 @@ function routeToFile(route) {
 function routeExists(route) {
   const clean = route.split("?")[0].split("#")[0];
   if (exists(routeToFile(clean))) return true;
-  return false;
+  return redirectsSource.split(/\r?\n/).some((line) => line.trim().startsWith(`${clean} `));
 }
 
 function push(results, status, name, detail, files = []) {
@@ -162,9 +163,9 @@ function checkTaxonomy(results) {
 function checkHubs(results) {
   const checks = [
     { file: "app/leistungen/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel"] },
-    { file: "app/duesseldorf/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"duesseldorf\""] },
+    { file: "app/duesseldorf/page.tsx", tokens: ["duesseldorfCleaningLinks", "ToolJourneyPanel", "buildLeadHref"] },
     { file: "app/regensburg/page.tsx", tokens: ["ServiceNavigationOverview", "DecisionCompassPanel", "location=\"regensburg\""] },
-    { file: "app/kontakt/page.tsx", tokens: ["ContactPathChooser", "DecisionCompassPanel", "InternationalCustomerHint"] },
+    { file: "app/kontakt/page.tsx", tokens: ["ContactLeadForm", "ContactHeroCopy", "Lieber direkt Kontakt aufnehmen?"] },
     { file: "components/ContactPathChooser.tsx", tokens: ["ServiceGroupSelector", "LocationSelector", "RequestReasonSelector", "ContactFormIntro", "WhatHappensNext"] },
   ];
   const failed = [];

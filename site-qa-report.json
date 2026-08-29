@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-20T03:42:00.964Z",
+  "generatedAt": "2026-08-28T23:38:17.064Z",
   "status": "PASS",
   "summary": {
-    "PASS": 134
+    "PASS": 136
   },
   "criticalRoutes": [
     {
@@ -11,10 +11,10 @@
       "intent": "Brand and service entry",
       "funnel": "Awareness/Lead",
       "service": "reinigung",
-      "city": "duesseldorf",
+      "city": "regensburg",
       "priority": "P1",
       "structuredData": true,
-      "contactTarget": "/kontakt?service=reinigung&city=duesseldorf&intent=brand-and-service-entry&source=seo",
+      "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=brand-and-service-entry&source=seo",
       "canonical": "https://www.floxant.de"
     },
     {
@@ -47,9 +47,9 @@
       "intent": "Cleaning",
       "funnel": "Consideration",
       "service": "reinigung",
-      "city": "bayern",
+      "city": "regensburg",
       "priority": "P1",
-      "contactTarget": "/kontakt?service=reinigung&city=bayern&intent=cleaning&source=seo",
+      "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=cleaning&source=seo",
       "canonical": "https://www.floxant.de/reinigung"
     },
     {
@@ -122,13 +122,85 @@
       "canonical": "https://www.floxant.de/duesseldorf"
     },
     {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg cleaning",
+      "intent": "Cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "reinigung",
+      "city": "regensburg",
+      "priority": "P1",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg office cleaning",
+      "intent": "Office cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "bueroreinigung",
+      "city": "regensburg",
+      "priority": "P0",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg commercial cleaning",
+      "intent": "Commercial cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "gewerbereinigung",
+      "city": "regensburg",
+      "priority": "P1",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg practice cleaning",
+      "intent": "Practice cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "praxisreinigung",
+      "city": "regensburg",
+      "priority": "P0",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=praxisreinigung&city=regensburg&intent=practice-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg window cleaning",
+      "intent": "Window cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "fensterreinigung",
+      "city": "regensburg",
+      "priority": "P0",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=fensterreinigung&city=regensburg&intent=window-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
+      "route": "/regensburg/reinigung",
+      "purpose": "Regensburg deep cleaning",
+      "intent": "Deep cleaning Regensburg",
+      "funnel": "Lead",
+      "service": "reinigung",
+      "city": "regensburg",
+      "priority": "P1",
+      "structuredData": true,
+      "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=deep-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
+    },
+    {
       "route": "/duesseldorf/reinigung",
       "purpose": "Dusseldorf cleaning",
       "intent": "Cleaning Dusseldorf",
       "funnel": "Lead",
       "service": "reinigung",
       "city": "duesseldorf",
-      "priority": "P1",
+      "priority": "P0",
       "structuredData": true,
       "contactTarget": "/kontakt?service=reinigung&city=duesseldorf&intent=cleaning-dusseldorf&source=seo",
       "canonical": "https://www.floxant.de/duesseldorf/reinigung"
@@ -152,82 +224,10 @@
       "funnel": "Lead",
       "service": "gewerbereinigung",
       "city": "duesseldorf",
-      "priority": "P1",
+      "priority": "P0",
       "structuredData": true,
       "contactTarget": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=commercial-cleaning-dusseldorf&source=seo",
       "canonical": "https://www.floxant.de/duesseldorf/gewerbereinigung"
-    },
-    {
-      "route": "/duesseldorf/praxisreinigung",
-      "purpose": "Dusseldorf practice cleaning",
-      "intent": "Practice cleaning Dusseldorf",
-      "funnel": "Lead",
-      "service": "praxisreinigung",
-      "city": "duesseldorf",
-      "priority": "P0",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=practice-cleaning-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/praxisreinigung"
-    },
-    {
-      "route": "/duesseldorf/fensterreinigung",
-      "purpose": "Dusseldorf window cleaning",
-      "intent": "Window cleaning Dusseldorf",
-      "funnel": "Lead",
-      "service": "fensterreinigung",
-      "city": "duesseldorf",
-      "priority": "P0",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=window-cleaning-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/fensterreinigung"
-    },
-    {
-      "route": "/duesseldorf/grundreinigung",
-      "purpose": "Dusseldorf deep cleaning",
-      "intent": "Deep cleaning Dusseldorf",
-      "funnel": "Lead",
-      "service": "reinigung",
-      "city": "duesseldorf",
-      "priority": "P1",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=reinigung&city=duesseldorf&intent=deep-cleaning-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/grundreinigung"
-    },
-    {
-      "route": "/duesseldorf/umzug",
-      "purpose": "Dusseldorf moving",
-      "intent": "Moving Dusseldorf",
-      "funnel": "Lead",
-      "service": "umzug",
-      "city": "duesseldorf",
-      "priority": "P1",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=umzug&city=duesseldorf&intent=moving-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/umzug"
-    },
-    {
-      "route": "/duesseldorf/entruempelung",
-      "purpose": "Dusseldorf clearance",
-      "intent": "Clearance Dusseldorf",
-      "funnel": "Lead",
-      "service": "entruempelung",
-      "city": "duesseldorf",
-      "priority": "P1",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=entruempelung&city=duesseldorf&intent=clearance-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/entruempelung"
-    },
-    {
-      "route": "/duesseldorf/haushaltsaufloesung",
-      "purpose": "Dusseldorf estate clearance",
-      "intent": "Household clearance Dusseldorf",
-      "funnel": "Lead",
-      "service": "wohnungsaufloesung",
-      "city": "duesseldorf",
-      "priority": "P1",
-      "structuredData": true,
-      "contactTarget": "/kontakt?service=wohnungsaufloesung&city=duesseldorf&intent=household-clearance-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/haushaltsaufloesung"
     },
     {
       "route": "/regensburg",
@@ -254,7 +254,7 @@
       "canonical": "https://www.floxant.de/regensburg/umzug"
     },
     {
-      "route": "/umzug-regensburg",
+      "route": "/regensburg/umzug",
       "purpose": "Regensburg moving money page",
       "intent": "Moving Regensburg",
       "funnel": "Lead",
@@ -263,10 +263,10 @@
       "priority": "P0",
       "structuredData": true,
       "contactTarget": "/kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/umzug-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/umzug"
     },
     {
-      "route": "/reinigung-regensburg",
+      "route": "/regensburg/reinigung",
       "purpose": "Regensburg cleaning money page",
       "intent": "Cleaning Regensburg",
       "funnel": "Lead",
@@ -275,10 +275,10 @@
       "priority": "P1",
       "structuredData": true,
       "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/reinigung-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
     },
     {
-      "route": "/entruempelung-regensburg",
+      "route": "/regensburg/entruempelung",
       "purpose": "Regensburg clearance money page",
       "intent": "Clearance Regensburg",
       "funnel": "Lead",
@@ -287,10 +287,10 @@
       "priority": "P1",
       "structuredData": true,
       "contactTarget": "/kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/entruempelung-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/entruempelung"
     },
     {
-      "route": "/gewerbereinigung-regensburg",
+      "route": "/regensburg/gewerbereinigung",
       "purpose": "Regensburg commercial cleaning",
       "intent": "Commercial cleaning Regensburg",
       "funnel": "Lead",
@@ -299,10 +299,10 @@
       "priority": "P1",
       "structuredData": true,
       "contactTarget": "/kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/gewerbereinigung-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/gewerbereinigung"
     },
     {
-      "route": "/bueroreinigung-regensburg",
+      "route": "/regensburg/bueroreinigung",
       "purpose": "Regensburg office cleaning",
       "intent": "Office cleaning Regensburg",
       "funnel": "Lead",
@@ -311,7 +311,7 @@
       "priority": "P1",
       "structuredData": true,
       "contactTarget": "/kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/bueroreinigung-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/bueroreinigung"
     },
     {
       "route": "/klaviertransport-regensburg",
@@ -326,7 +326,7 @@
       "canonical": "https://www.floxant.de/klaviertransport-regensburg"
     },
     {
-      "route": "/wohnungsaufloesung-regensburg",
+      "route": "/regensburg/wohnungsaufloesung",
       "purpose": "Regensburg estate clearance",
       "intent": "Estate clearance Regensburg",
       "funnel": "Lead",
@@ -335,31 +335,31 @@
       "priority": "P1",
       "structuredData": true,
       "contactTarget": "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo",
-      "canonical": "https://www.floxant.de/wohnungsaufloesung-regensburg"
+      "canonical": "https://www.floxant.de/regensburg/wohnungsaufloesung"
     },
     {
       "route": "/b2b-bueroreinigung",
-      "purpose": "GSC alias for Dusseldorf office cleaning",
+      "purpose": "GSC alias for Regensburg office cleaning",
       "intent": "B2B office cleaning",
       "funnel": "Lead",
       "service": "bueroreinigung",
-      "city": "duesseldorf",
+      "city": "regensburg",
       "priority": "P0",
-      "aliasOf": "/duesseldorf/bueroreinigung",
-      "contactTarget": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=b2b-office-cleaning&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/bueroreinigung"
+      "aliasOf": "/regensburg/bueroreinigung",
+      "contactTarget": "/kontakt?service=bueroreinigung&city=regensburg&intent=b2b-office-cleaning&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/bueroreinigung"
     },
     {
       "route": "/diskret-service",
-      "purpose": "GSC alias for discreet service",
+      "purpose": "Primary discreet-service entry",
       "intent": "Discreet service",
       "funnel": "Lead",
       "service": "diskret-service",
       "city": "deutschland",
       "priority": "P0",
-      "aliasOf": "/diskreter-umzug-trennung-scheidung",
+      "structuredData": true,
       "contactTarget": "/kontakt?service=diskret-service&intent=discreet-service&source=seo",
-      "canonical": "https://www.floxant.de/diskreter-umzug-trennung-scheidung"
+      "canonical": "https://www.floxant.de/diskret-service"
     },
     {
       "route": "/diskreter-umzug-trennung-scheidung",
@@ -399,28 +399,28 @@
       "canonical": "https://www.floxant.de/seniorenumzug-bayern"
     },
     {
-      "route": "/reinigung-nach-entruempelung-landshut",
-      "purpose": "GSC alias for Landshut cleaning after clearance",
-      "intent": "Cleaning after clearance Landshut",
+      "route": "/reinigung-nach-entruempelung-regensburg",
+      "purpose": "GSC alias for Regensburg cleaning after clearance",
+      "intent": "Cleaning after clearance Regensburg",
       "funnel": "Lead",
       "service": "reinigung",
-      "city": "landshut",
+      "city": "regensburg",
       "priority": "P1",
-      "aliasOf": "/reinigung-landshut",
-      "contactTarget": "/kontakt?service=reinigung&city=landshut&intent=cleaning-after-clearance-landshut&source=seo",
-      "canonical": "https://www.floxant.de/reinigung-landshut"
+      "aliasOf": "/regensburg/reinigung",
+      "contactTarget": "/kontakt?service=reinigung&city=regensburg&intent=cleaning-after-clearance-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
     },
     {
-      "route": "/fensterreinigung-duesseldorf",
-      "purpose": "GSC alias for Dusseldorf window cleaning",
-      "intent": "Window cleaning Dusseldorf",
+      "route": "/fensterreinigung-regensburg",
+      "purpose": "GSC alias for Regensburg window cleaning",
+      "intent": "Window cleaning Regensburg",
       "funnel": "Lead",
       "service": "fensterreinigung",
-      "city": "duesseldorf",
+      "city": "regensburg",
       "priority": "P0",
-      "aliasOf": "/duesseldorf/fensterreinigung",
-      "contactTarget": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=window-cleaning-dusseldorf&source=seo",
-      "canonical": "https://www.floxant.de/duesseldorf/fensterreinigung"
+      "aliasOf": "/regensburg/reinigung",
+      "contactTarget": "/kontakt?service=fensterreinigung&city=regensburg&intent=window-cleaning-regensburg&source=seo",
+      "canonical": "https://www.floxant.de/regensburg/reinigung"
     },
     {
       "route": "/fernumzug-muenchen",
@@ -582,10 +582,76 @@
     {
       "status": "PASS",
       "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "Kritische Route existiert als Page.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Routing",
       "file": "app/duesseldorf/reinigung/page.tsx",
       "route": "/duesseldorf/reinigung",
       "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -607,73 +673,7 @@
       "file": "app/duesseldorf/gewerbereinigung/page.tsx",
       "route": "/duesseldorf/gewerbereinigung",
       "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/praxisreinigung/page.tsx",
-      "route": "/duesseldorf/praxisreinigung",
-      "problem": "Kritische Route existiert als Page.",
       "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/fensterreinigung/page.tsx",
-      "route": "/duesseldorf/fensterreinigung",
-      "problem": "Kritische Route existiert als Page.",
-      "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/grundreinigung/page.tsx",
-      "route": "/duesseldorf/grundreinigung",
-      "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/umzug/page.tsx",
-      "route": "/duesseldorf/umzug",
-      "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/entruempelung/page.tsx",
-      "route": "/duesseldorf/entruempelung",
-      "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Routing",
-      "file": "app/duesseldorf/haushaltsaufloesung/page.tsx",
-      "route": "/duesseldorf/haushaltsaufloesung",
-      "problem": "Kritische Route existiert als Page.",
-      "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -703,8 +703,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/umzug-regensburg/page.tsx",
-      "route": "/umzug-regensburg",
+      "file": "app/regensburg/umzug/page.tsx",
+      "route": "/regensburg/umzug",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
@@ -714,8 +714,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/reinigung-regensburg/page.tsx",
-      "route": "/reinigung-regensburg",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -725,8 +725,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/entruempelung-regensburg/page.tsx",
-      "route": "/entruempelung-regensburg",
+      "file": "app/regensburg/entruempelung/page.tsx",
+      "route": "/regensburg/entruempelung",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -736,8 +736,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/gewerbereinigung-regensburg/page.tsx",
-      "route": "/gewerbereinigung-regensburg",
+      "file": "app/regensburg/gewerbereinigung/page.tsx",
+      "route": "/regensburg/gewerbereinigung",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -747,8 +747,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/bueroreinigung-regensburg/page.tsx",
-      "route": "/bueroreinigung-regensburg",
+      "file": "app/regensburg/bueroreinigung/page.tsx",
+      "route": "/regensburg/bueroreinigung",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -769,8 +769,8 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "app/wohnungsaufloesung-regensburg/page.tsx",
-      "route": "/wohnungsaufloesung-regensburg",
+      "file": "app/regensburg/wohnungsaufloesung/page.tsx",
+      "route": "/regensburg/wohnungsaufloesung",
       "problem": "Kritische Route existiert als Page.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -782,7 +782,7 @@
       "category": "Routing",
       "file": "next.config.js",
       "route": "/b2b-bueroreinigung",
-      "problem": "Alias redirectet kanonisch nach /duesseldorf/bueroreinigung.",
+      "problem": "Alias redirectet kanonisch nach /regensburg/bueroreinigung.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -791,9 +791,9 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "next.config.js",
+      "file": "app/diskret-service/page.tsx",
       "route": "/diskret-service",
-      "problem": "Alias redirectet kanonisch nach /diskreter-umzug-trennung-scheidung.",
+      "problem": "Kritische Route existiert als Page.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -836,8 +836,8 @@
       "status": "PASS",
       "category": "Routing",
       "file": "next.config.js",
-      "route": "/reinigung-nach-entruempelung-landshut",
-      "problem": "Alias redirectet kanonisch nach /reinigung-landshut.",
+      "route": "/reinigung-nach-entruempelung-regensburg",
+      "problem": "Alias redirectet kanonisch nach /regensburg/reinigung.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -846,9 +846,9 @@
     {
       "status": "PASS",
       "category": "Routing",
-      "file": "next.config.js",
-      "route": "/fensterreinigung-duesseldorf",
-      "problem": "Alias redirectet kanonisch nach /duesseldorf/fensterreinigung.",
+      "file": "app/fensterreinigung-regensburg/page.tsx",
+      "route": "/fensterreinigung-regensburg",
+      "problem": "Kritische Route existiert als Page.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -903,7 +903,7 @@
       "category": "Kontaktparameter",
       "file": "",
       "route": "/",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=brand-and-service-entry&source=seo.",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=brand-and-service-entry&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -936,7 +936,7 @@
       "category": "Kontaktparameter",
       "file": "",
       "route": "/reinigung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=bayern&intent=cleaning&source=seo.",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
@@ -1012,9 +1012,75 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=praxisreinigung&city=regensburg&intent=practice-cleaning-regensburg&source=seo.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=fensterreinigung&city=regensburg&intent=window-cleaning-regensburg&source=seo.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/regensburg/reinigung",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=deep-cleaning-regensburg&source=seo.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
       "route": "/duesseldorf/reinigung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=cleaning-dusseldorf&source=seo.",
-      "priority": "P1",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1036,73 +1102,7 @@
       "file": "",
       "route": "/duesseldorf/gewerbereinigung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=duesseldorf&intent=commercial-cleaning-dusseldorf&source=seo.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/praxisreinigung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=praxisreinigung&city=duesseldorf&intent=practice-cleaning-dusseldorf&source=seo.",
       "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/fensterreinigung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=fensterreinigung&city=duesseldorf&intent=window-cleaning-dusseldorf&source=seo.",
-      "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/grundreinigung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=deep-cleaning-dusseldorf&source=seo.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/umzug",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=umzug&city=duesseldorf&intent=moving-dusseldorf&source=seo.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/entruempelung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=duesseldorf&intent=clearance-dusseldorf&source=seo.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "Kontaktparameter",
-      "file": "",
-      "route": "/duesseldorf/haushaltsaufloesung",
-      "problem": "Kontaktziel ist PII-frei: /kontakt?service=wohnungsaufloesung&city=duesseldorf&intent=household-clearance-dusseldorf&source=seo.",
-      "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1133,7 +1133,7 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/umzug-regensburg",
+      "route": "/regensburg/umzug",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
@@ -1144,7 +1144,7 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/reinigung-regensburg",
+      "route": "/regensburg/reinigung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1155,7 +1155,7 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/entruempelung-regensburg",
+      "route": "/regensburg/entruempelung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1166,7 +1166,7 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/gewerbereinigung-regensburg",
+      "route": "/regensburg/gewerbereinigung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1177,7 +1177,7 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/bueroreinigung-regensburg",
+      "route": "/regensburg/bueroreinigung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1199,9 +1199,20 @@
       "status": "PASS",
       "category": "Kontaktparameter",
       "file": "",
-      "route": "/wohnungsaufloesung-regensburg",
+      "route": "/regensburg/wohnungsaufloesung",
       "problem": "Kontaktziel ist PII-frei: /kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo.",
       "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "Kontaktparameter",
+      "file": "",
+      "route": "/diskret-service",
+      "problem": "Kontaktziel ist PII-frei: /kontakt?service=diskret-service&intent=discreet-service&source=seo.",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1352,10 +1363,76 @@
     {
       "status": "PASS",
       "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P0",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
       "file": "app/duesseldorf/reinigung/page.tsx",
       "route": "/duesseldorf/reinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1377,73 +1454,7 @@
       "file": "app/duesseldorf/gewerbereinigung/page.tsx",
       "route": "/duesseldorf/gewerbereinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/praxisreinigung/page.tsx",
-      "route": "/duesseldorf/praxisreinigung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/fensterreinigung/page.tsx",
-      "route": "/duesseldorf/fensterreinigung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P0",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/grundreinigung/page.tsx",
-      "route": "/duesseldorf/grundreinigung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/umzug/page.tsx",
-      "route": "/duesseldorf/umzug",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/entruempelung/page.tsx",
-      "route": "/duesseldorf/entruempelung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
-      "recommendedFix": "Keine Aktion.",
-      "autoFixed": false,
-      "manualReview": false
-    },
-    {
-      "status": "PASS",
-      "category": "CTA",
-      "file": "app/duesseldorf/haushaltsaufloesung/page.tsx",
-      "route": "/duesseldorf/haushaltsaufloesung",
-      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
-      "priority": "P1",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1473,8 +1484,8 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/umzug-regensburg/page.tsx",
-      "route": "/umzug-regensburg",
+      "file": "app/regensburg/umzug/page.tsx",
+      "route": "/regensburg/umzug",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P0",
       "recommendedFix": "Keine Aktion.",
@@ -1484,8 +1495,8 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/reinigung-regensburg/page.tsx",
-      "route": "/reinigung-regensburg",
+      "file": "app/regensburg/reinigung/page.tsx",
+      "route": "/regensburg/reinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1495,8 +1506,8 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/entruempelung-regensburg/page.tsx",
-      "route": "/entruempelung-regensburg",
+      "file": "app/regensburg/entruempelung/page.tsx",
+      "route": "/regensburg/entruempelung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1506,8 +1517,8 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/gewerbereinigung-regensburg/page.tsx",
-      "route": "/gewerbereinigung-regensburg",
+      "file": "app/regensburg/gewerbereinigung/page.tsx",
+      "route": "/regensburg/gewerbereinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1517,8 +1528,8 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/bueroreinigung-regensburg/page.tsx",
-      "route": "/bueroreinigung-regensburg",
+      "file": "app/regensburg/bueroreinigung/page.tsx",
+      "route": "/regensburg/bueroreinigung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
       "recommendedFix": "Keine Aktion.",
@@ -1539,10 +1550,21 @@
     {
       "status": "PASS",
       "category": "CTA",
-      "file": "app/wohnungsaufloesung-regensburg/page.tsx",
-      "route": "/wohnungsaufloesung-regensburg",
+      "file": "app/regensburg/wohnungsaufloesung/page.tsx",
+      "route": "/regensburg/wohnungsaufloesung",
       "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
       "priority": "P1",
+      "recommendedFix": "Keine Aktion.",
+      "autoFixed": false,
+      "manualReview": false
+    },
+    {
+      "status": "PASS",
+      "category": "CTA",
+      "file": "app/diskret-service/page.tsx",
+      "route": "/diskret-service",
+      "problem": "CTA/Lead-Intent-Signale und echte href-Struktur vorhanden.",
+      "priority": "P0",
       "recommendedFix": "Keine Aktion.",
       "autoFixed": false,
       "manualReview": false
@@ -1583,7 +1605,7 @@
     {
       "status": "PASS",
       "category": "Lead-Formular",
-      "file": "components/SeoLeadForm.tsx",
+      "file": "components/ProfessionalRequestForm.tsx",
       "route": "/kontakt",
       "problem": "Name, Kontaktwege, Service, Ort, Nachricht, Datenschutz, Honeypot, Success- und Error-State vorhanden.",
       "priority": "P0",
@@ -1594,7 +1616,7 @@
     {
       "status": "PASS",
       "category": "Lead-API",
-      "file": "app/api/bookings/route.ts",
+      "file": "functions/_lib/lead-handler.js",
       "route": "/api/bookings",
       "problem": "Lead-API verarbeitet Normalisierung, Datenschutz, Honeypot und Offer-Signale.",
       "priority": "P0",

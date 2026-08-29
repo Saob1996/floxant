@@ -777,6 +777,13 @@ export function buildDuesseldorfCleaningMetadata(pageKey: DuesseldorfCleaningPag
       title: config.title,
       description: config.description,
     },
+    other: {
+      "geo.region": "DE-NW",
+      "geo.placename": "Düsseldorf",
+      "geo.position": "51.2277;6.7735",
+      "dc.subject": `${config.serviceType}, Düsseldorf, Reinigungsanfrage, Objekt, Fläche, Turnus, Termin`,
+      "dc.coverage": "Düsseldorf; Umland nur nach Entfernung, Leistung und Machbarkeit",
+    },
   };
 }
 

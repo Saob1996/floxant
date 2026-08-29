@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "floxant-fakten",
   title: "FLOXANT Fakten | Umzug, Reinigung & Entrümpelung Regensburg",
   description:
-   "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Regensburg und Regensburg.",
+   "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Düsseldorf und Regensburg.",
  });
 }
 

@@ -1,59 +1,235 @@
 {
-  "generatedAt": "2026-06-20T03:41:58.767Z",
-  "baseUrl": "http://127.0.0.1:3213",
+  "generatedAt": "2026-08-28T23:38:53.435Z",
+  "baseUrl": "http://127.0.0.1:4173",
   "status": "PASS",
   "pages": [
     {
       "path": "/",
-      "finalUrl": "http://127.0.0.1:3213/",
+      "finalUrl": "http://127.0.0.1:4173/",
       "lead": {
-        "service": "reinigung",
-        "city": "duesseldorf",
+        "service": "sonstiges",
+        "city": "deutschland",
         "intent": "homepage-anfrage",
         "priority": "p1"
       },
       "status": "PASS",
-      "h1": "Reinigung, Umzug und Angebote klar anfragen",
-      "ctaCount": 6,
-      "contactCta": "/kontakt?service=reinigung&city=duesseldorf&intent=homepage-anfrage&source=seo",
+      "h1": "Reinigung in Düsseldorf. Umzug und Service in Regensburg.",
+      "ctaCount": 4,
+      "contactCta": "/kontakt?mode=neutral&source=global_homepage",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/kontakt",
-      "finalUrl": "http://127.0.0.1:3213/kontakt",
+      "finalUrl": "http://127.0.0.1:4173/kontakt",
       "lead": {
         "service": "kontakt",
-        "city": "regensburg",
-        "intent": "kontakt-anfrage",
+        "city": "deutschland",
+        "intent": "neutrale-anfrage",
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "FLOXANT Kontakt: Anfrage mit Ort, Service und offener Frage senden",
-      "ctaCount": 46,
-      "contactCta": "/",
+      "h1": "Leistung unverbindlich anfragen",
+      "ctaCount": 3,
+      "contactCta": "/kontakt?mode=neutral&source=global_header",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/reinigung-landshut",
-      "finalUrl": "http://127.0.0.1:3213/reinigung-landshut",
+      "path": "/duesseldorf/reinigung",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/reinigung",
       "lead": {
-        "service": "reinigung",
-        "city": "landshut",
-        "intent": "reinigung-landshut",
+        "service": "hausverwaltung-reinigung",
+        "city": "duesseldorf",
+        "intent": "hausverwaltung-reinigung-duesseldorf",
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Endreinigung",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=reinigung&city=landshut&intent=reinigung-landshut&source=seo",
+      "h1": "Reinigungsfirma in Düsseldorf für Wohnung, Büro und Objekt",
+      "ctaCount": 17,
+      "contactCta": "/kontakt?service=hausverwaltung-reinigung&city=duesseldorf&intent=hausverwaltung-reinigung-duesseldorf&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/duesseldorf/gewerbereinigung",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/gewerbereinigung",
+      "lead": {
+        "service": "gewerbereinigung",
+        "city": "duesseldorf",
+        "intent": "gewerbereinigung-duesseldorf",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Gewerbereinigung in Düsseldorf nach Objekt und Nutzung planen",
+      "ctaCount": 17,
+      "contactCta": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/duesseldorf/bueroreinigung",
+      "finalUrl": "http://127.0.0.1:4173/duesseldorf/bueroreinigung",
+      "lead": {
+        "service": "bueroreinigung",
+        "city": "duesseldorf",
+        "intent": "bueroreinigung-duesseldorf",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Büroreinigung in Düsseldorf planbar und klar anfragen",
+      "ctaCount": 17,
+      "contactCta": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/treppenhausreinigung-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/treppenhausreinigung-regensburg",
+      "lead": {
+        "service": "treppenhausreinigung",
+        "city": "regensburg",
+        "intent": "treppenhausreinigung-regensburg",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Saubere Eingänge, klare Turnusse, weniger Rückfragen.",
+      "ctaCount": 6,
+      "contactCta": "/kontakt?service=treppenhausreinigung&city=regensburg&intent=treppenhausreinigung-regensburg&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/unterhaltsreinigung-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/unterhaltsreinigung-regensburg",
+      "lead": {
+        "service": "unterhaltsreinigung",
+        "city": "regensburg",
+        "intent": "unterhaltsreinigung-regensburg",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Büro, Praxis und Objekt regelmäßig sauber halten.",
+      "ctaCount": 6,
+      "contactCta": "/kontakt?service=unterhaltsreinigung&city=regensburg&intent=unterhaltsreinigung-regensburg&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/reinigung",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "reinigung-regensburg",
+        "priority": "p1"
+      },
+      "status": "PASS",
+      "h1": "Gebäudereinigung in Regensburg und Umgebung",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/regensburg/endreinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/endreinigung",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "endreinigung-wohnungsuebergabe",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Endreinigung vor Übergabe in Regensburg - Wohnung, Zustand und Frist klären",
+      "ctaCount": 13,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=endreinigung-wohnungsuebergabe&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/regensburg/uebergabereinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/uebergabereinigung",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "uebergabereinigung-regensburg",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Übergabereinigung in Regensburg vor Rückgabe oder Nachnutzung",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=uebergabereinigung-regensburg&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/vermieter-ready-service",
+      "finalUrl": "http://127.0.0.1:4173/vermieter-ready-service",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "vermieter-ready-service",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "FLOXANT Vermieter-Ready-Service für Wohnungen vor Rückgabe oder Neuvermietung",
+      "ctaCount": 7,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=vermieter-ready-service&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/uebergabe-sprint",
+      "finalUrl": "http://127.0.0.1:4173/uebergabe-sprint",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "uebergabe-sprint",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "FLOXANT Übergabe-Sprint, wenn der Übergabetermin näher rückt",
+      "ctaCount": 7,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=uebergabe-sprint&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/uebergabeakte",
+      "finalUrl": "http://127.0.0.1:4173/uebergabeakte",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "uebergabeakte",
+        "priority": "p1"
+      },
+      "status": "PASS",
+      "h1": "FLOXANT Übergabeakte: Auszug, Reinigung und Schlüsselstatus dokumentieren",
+      "ctaCount": 4,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=uebergabeakte&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/objektbrief",
+      "finalUrl": "http://127.0.0.1:4173/objektbrief",
+      "lead": {
+        "service": "reinigung",
+        "city": "regensburg",
+        "intent": "objektbrief-uebergabe",
+        "priority": "p1"
+      },
+      "status": "PASS",
+      "h1": "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
+      "ctaCount": 3,
+      "contactCta": "/kontakt?mode=neutral&source=global_header",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/entruempelung-landshut",
-      "finalUrl": "http://127.0.0.1:3213/entruempelung-landshut",
+      "finalUrl": "http://127.0.0.1:4173/entruempelung-landshut",
       "lead": {
         "service": "entruempelung",
         "city": "landshut",
@@ -61,15 +237,15 @@
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Entrümpelung",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=entruempelung&city=landshut&intent=entruempelung-landshut&source=seo",
+      "h1": "Entrümpelung in Landshut",
+      "ctaCount": 8,
+      "contactCta": "/kontakt?service=entruempelung&city=landshut&intent=entruempelung-landshut&priority=p0&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/klaviertransport-regensburg",
-      "finalUrl": "http://127.0.0.1:3213/klaviertransport-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/klaviertransport-regensburg",
       "lead": {
         "service": "klaviertransport",
         "city": "regensburg",
@@ -77,15 +253,15 @@
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Klaviertransport Regensburg mit Etage, Zugang und Fotos klären",
-      "ctaCount": 4,
-      "contactCta": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "h1": "Klaviertransport in Regensburg anfragen - Etage, Zugang und Termin klären.",
+      "ctaCount": 10,
+      "contactCta": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&priority=p0&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/umzug-vohenstrauss",
-      "finalUrl": "http://127.0.0.1:3213/umzug-vohenstrauss",
+      "finalUrl": "http://127.0.0.1:4173/umzug-vohenstrauss",
       "lead": {
         "service": "umzug",
         "city": "vohenstrauss",
@@ -94,14 +270,14 @@
       },
       "status": "PASS",
       "h1": "Umzug Vohenstrauss",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=umzug&city=vohenstrauss&intent=umzug-vohenstrauss&source=seo",
+      "ctaCount": 8,
+      "contactCta": "/kontakt?service=umzug&city=vohenstrauss&intent=umzug-vohenstrauss&priority=p0&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/umzug-neustadt-an-der-waldnaab",
-      "finalUrl": "http://127.0.0.1:3213/umzug-neustadt-an-der-waldnaab",
+      "finalUrl": "http://127.0.0.1:4173/umzug-neustadt-an-der-waldnaab",
       "lead": {
         "service": "umzug",
         "city": "neustadt-an-der-waldnaab",
@@ -110,158 +286,126 @@
       },
       "status": "PASS",
       "h1": "Umzug Neustadt an der Waldnaab",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=umzug&city=neustadt-an-der-waldnaab&intent=umzug-neustadt-an-der-waldnaab&source=seo",
+      "ctaCount": 8,
+      "contactCta": "/kontakt?service=umzug&city=neustadt-an-der-waldnaab&intent=umzug-neustadt-an-der-waldnaab&priority=p0&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/duesseldorf/reinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/reinigung",
+      "path": "/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/reinigung",
       "lead": {
         "service": "reinigung",
-        "city": "duesseldorf",
-        "intent": "reinigung-duesseldorf",
+        "city": "regensburg",
+        "intent": "reinigung-regensburg",
         "priority": "p1"
       },
       "status": "PASS",
-      "h1": "Reinigung Düsseldorf mit Objekt, Fläche und Terminwunsch",
-      "ctaCount": 8,
-      "contactCta": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "h1": "Gebäudereinigung in Regensburg und Umgebung",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/duesseldorf/bueroreinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/bueroreinigung",
+      "path": "/regensburg/bueroreinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/bueroreinigung",
       "lead": {
         "service": "bueroreinigung",
-        "city": "duesseldorf",
-        "intent": "bueroreinigung-duesseldorf",
+        "city": "regensburg",
+        "intent": "b2b-bueroreinigung-regensburg",
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Bueroreinigung Duesseldorf mit Raumliste, Turnus und Randzeit",
-      "ctaCount": 7,
-      "contactCta": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "h1": "Büroreinigung Regensburg für Firmen mit konkreten Eckdaten anfragen",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=bueroreinigung&city=regensburg&intent=b2b-bueroreinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/duesseldorf/b2b-reinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/b2b-reinigung",
-      "lead": {
-        "service": "bueroreinigung",
-        "city": "duesseldorf",
-        "intent": "b2b-bueroreinigung-duesseldorf",
-        "priority": "p0"
-      },
-      "status": "PASS",
-      "h1": "Firmenreinigung in Düsseldorf",
-      "ctaCount": 3,
-      "contactCta": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=b2b-bueroreinigung-duesseldorf&source=seo",
-      "failures": [],
-      "warnings": []
-    },
-    {
-      "path": "/duesseldorf/gewerbereinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/gewerbereinigung",
+      "path": "/regensburg/gewerbereinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/gewerbereinigung",
       "lead": {
         "service": "gewerbereinigung",
-        "city": "duesseldorf",
-        "intent": "gewerbereinigung-duesseldorf",
+        "city": "regensburg",
+        "intent": "gewerbereinigung-regensburg",
         "priority": "p1"
       },
       "status": "PASS",
-      "h1": "Gewerbereinigung Düsseldorf nach Objekt, Nutzung und Turnus klaeren",
-      "ctaCount": 7,
-      "contactCta": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "h1": "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/duesseldorf/praxisreinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/praxisreinigung",
+      "path": "/praxisreinigung-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/praxisreinigung-regensburg",
       "lead": {
         "service": "praxisreinigung",
-        "city": "duesseldorf",
-        "intent": "praxisreinigung-duesseldorf",
+        "city": "regensburg",
+        "intent": "praxisreinigung-regensburg",
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Praxisreinigung in Düsseldorf mit Raumliste, Zugang und Zeitfenster",
-      "ctaCount": 3,
-      "contactCta": "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo",
+      "h1": "Saubere Praxisflächen, klare Zeiten, ruhiger Ablauf.",
+      "ctaCount": 6,
+      "contactCta": "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/duesseldorf/fensterreinigung",
-      "finalUrl": "http://127.0.0.1:3213/duesseldorf/fensterreinigung",
+      "path": "/fensterreinigung-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/fensterreinigung-regensburg",
       "lead": {
         "service": "fensterreinigung",
-        "city": "duesseldorf",
-        "intent": "fensterreinigung-duesseldorf",
+        "city": "regensburg",
+        "intent": "fensterreinigung-regensburg",
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Fensterreinigung Düsseldorf mit Glas, Rahmen und Zugang",
-      "ctaCount": 3,
-      "contactCta": "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo",
+      "h1": "Klare Fenster, saubere Glasflächen, weniger Rückfragen.",
+      "ctaCount": 6,
+      "contactCta": "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/regensburg/umzug",
-      "finalUrl": "http://127.0.0.1:3213/regensburg/umzug",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/umzug",
       "lead": {
         "service": "umzug",
         "city": "regensburg",
         "intent": "umzug-regensburg",
-        "priority": "p3"
+        "priority": "p2"
       },
       "status": "PASS",
-      "h1": "Umzug in Regensburg mit klarer Planung und Angebot nach Prüfung",
-      "ctaCount": 8,
+      "h1": "Umzug in Regensburg klar anfragen - mit Start, Ziel und Terminwunsch",
+      "ctaCount": 12,
       "contactCta": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/regensburg/entruempelung",
-      "finalUrl": "http://127.0.0.1:3213/regensburg/entruempelung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/entruempelung",
       "lead": {
         "service": "entruempelung",
         "city": "regensburg",
         "intent": "entruempelung-regensburg",
-        "priority": "p3"
+        "priority": "p2"
       },
       "status": "PASS",
-      "h1": "Entrümpelung in Regensburg für Wohnung, Keller und Objekt",
-      "ctaCount": 8,
+      "h1": "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass",
+      "ctaCount": 11,
       "contactCta": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/regensburg/wohnungsaufloesung",
-      "finalUrl": "http://127.0.0.1:3213/regensburg/wohnungsaufloesung",
-      "lead": {
-        "service": "wohnungsaufloesung",
-        "city": "regensburg",
-        "intent": "wohnungsaufloesung-regensburg",
-        "priority": "p3"
-      },
-      "status": "PASS",
-      "h1": "Wohnungsauflösung in Regensburg ruhig mit Räumung, Entsorgung und Reinigung klären",
-      "ctaCount": 8,
-      "contactCta": "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=wohnungsaufloesung-regensburg&source=seo",
-      "failures": [],
-      "warnings": []
-    },
-    {
-      "path": "/wohnungsaufloesung-regensburg",
-      "finalUrl": "http://127.0.0.1:3213/wohnungsaufloesung-regensburg",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/wohnungsaufloesung",
       "lead": {
         "service": "wohnungsaufloesung",
         "city": "regensburg",
@@ -269,31 +413,31 @@
         "priority": "p2"
       },
       "status": "PASS",
-      "h1": "Wohnungsauflösung Regensburg ruhig und prüfbar planen",
-      "ctaCount": 5,
+      "h1": "Wohnungsauflösung Regensburg bei Nachlass, Auszug und Übergabe",
+      "ctaCount": 11,
       "contactCta": "/kontakt?service=wohnungsaufloesung&city=regensburg&intent=wohnungsaufloesung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
-      "path": "/reinigung-muenchen",
-      "finalUrl": "http://127.0.0.1:3213/reinigung-muenchen",
+      "path": "/regensburg/reinigung",
+      "finalUrl": "http://127.0.0.1:4173/regensburg/reinigung",
       "lead": {
         "service": "reinigung",
-        "city": "muenchen",
-        "intent": "reinigung-muenchen",
+        "city": "regensburg",
+        "intent": "reinigung-regensburg",
         "priority": "p1"
       },
       "status": "PASS",
-      "h1": "Endreinigung",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=reinigung&city=muenchen&intent=reinigung-muenchen&source=seo",
+      "h1": "Gebäudereinigung in Regensburg und Umgebung",
+      "ctaCount": 11,
+      "contactCta": "/kontakt?service=reinigung&city=regensburg&intent=reinigung-regensburg&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/fernumzug-muenchen",
-      "finalUrl": "http://127.0.0.1:3213/fernumzug-muenchen",
+      "finalUrl": "http://127.0.0.1:4173/fernumzug-muenchen",
       "lead": {
         "service": "fernumzug",
         "city": "muenchen",
@@ -302,14 +446,14 @@
       },
       "status": "PASS",
       "h1": "Fernumzug München: Strecke, Volumen und Termin sauber anfragen",
-      "ctaCount": 5,
-      "contactCta": "/kontakt?service=fernumzug&city=muenchen&intent=fernumzug-muenchen&source=seo",
+      "ctaCount": 6,
+      "contactCta": "/kontakt?location=unsicher&service=fernumzug&city=muenchen&intent=fernumzug-muenchen&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/reinigungsfirma-angebot",
-      "finalUrl": "http://127.0.0.1:3213/reinigungsfirma-angebot",
+      "finalUrl": "http://127.0.0.1:4173/reinigungsfirma-angebot",
       "lead": {
         "service": "reinigung",
         "city": "deutschland",
@@ -317,15 +461,31 @@
         "priority": "p1"
       },
       "status": "PASS",
-      "h1": "Reinigungsfirma Angebot anfragen: Objekt, Fläche und Termin klar senden",
-      "ctaCount": 4,
-      "contactCta": "/kontakt?service=reinigung&intent=reinigungsfirma-angebot&source=seo",
+      "h1": "7 Angaben für ein nachvollziehbares Reinigungsangebot",
+      "ctaCount": 5,
+      "contactCta": "/kontakt?mode=neutral&service=reinigung&intent=reinigungsfirma-angebot&source=seo",
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "path": "/diskret-service",
+      "finalUrl": "http://127.0.0.1:4173/diskret-service",
+      "lead": {
+        "service": "diskret-service",
+        "city": "deutschland",
+        "intent": "diskret-service",
+        "priority": "p0"
+      },
+      "status": "PASS",
+      "h1": "Diskret-Service für sensible Anfragen – Umzug, Entrümpelung und Auflösung zurückhaltend klären",
+      "ctaCount": 18,
+      "contactCta": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/private-client-service",
-      "finalUrl": "http://127.0.0.1:3213/private-client-service",
+      "finalUrl": "http://127.0.0.1:4173/private-client-service",
       "lead": {
         "service": "private-client",
         "city": "bayern",
@@ -333,15 +493,15 @@
         "priority": "p0"
       },
       "status": "PASS",
-      "h1": "Diskreter Private Client Service für Residenzen und Anwesen",
+      "h1": "Private Client Service für sensible private Anfragen",
       "ctaCount": 2,
-      "contactCta": "/kontakt?service=private-client&city=bayern&intent=private-client-service&source=seo",
+      "contactCta": "/kontakt?location=unsicher&service=private-client&city=bayern&intent=private-client-service&source=seo",
       "failures": [],
       "warnings": []
     },
     {
       "path": "/diskreter-umzug-trennung-scheidung",
-      "finalUrl": "http://127.0.0.1:3213/diskreter-umzug-trennung-scheidung",
+      "finalUrl": "http://127.0.0.1:4173/diskreter-umzug-trennung-scheidung",
       "lead": {
         "service": "diskret-service",
         "city": "deutschland",
@@ -350,8 +510,8 @@
       },
       "status": "PASS",
       "h1": "Diskreter Service fuer Auszug, Reinigung und Uebergabe",
-      "ctaCount": 4,
-      "contactCta": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "ctaCount": 5,
+      "contactCta": "/kontakt?service=diskret-service&intent=diskret-service&priority=p0&source=seo",
       "failures": [],
       "warnings": []
     }
@@ -359,7 +519,7 @@
   "contact": {
     "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
     "status": "PASS",
-    "h1": "FLOXANT Kontakt: Anfrage mit Ort, Service und offener Frage senden",
+    "h1": "Leistung unverbindlich anfragen",
     "failures": [],
     "warnings": []
   },

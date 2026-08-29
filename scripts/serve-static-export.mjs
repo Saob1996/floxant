@@ -70,6 +70,24 @@ function assetPath(pathname) {
     ? [relative, `${relative}.html`, path.join(relative, "index.html")]
     : ["index.html"];
 
+  // Next's static export flattens the requested RSC prefetch filename, while
+  // the actual __PAGE__.txt payload is stored in a nested directory. Mirror
+  // the Cloudflare Pages proxy rules locally so Lighthouse/browser checks see
+  // the same successful response as production.
+  const rscMatch = relative.match(/^(.*)\/__next\.([^.\/]+(?:\.[^.\/]+)*)\.__PAGE__\.txt$/);
+  if (rscMatch) {
+    const routeDirectory = rscMatch[1];
+    const routeSegments = rscMatch[2].split(".");
+    candidates.unshift(
+      path.join(
+        routeDirectory,
+        `__next.${routeSegments[0]}`,
+        ...routeSegments.slice(1),
+        "__PAGE__.txt",
+      ),
+    );
+  }
+
   for (const candidate of candidates) {
     const absolute = path.resolve(root, candidate);
     if (!absolute.startsWith(`${root}${path.sep}`) && absolute !== root) continue;
@@ -89,25 +107,29 @@ const gonePaths = new Set([
 const server = createServer((request, response) => {
   const url = new URL(request.url || "/", `http://${request.headers.host || `${host}:${port}`}`);
   const redirect = redirectFor(url.pathname, url.search);
-  if (redirect) {
+  if (redirect && redirect.status !== 200) {
     response.writeHead(redirect.status, { Location: redirect.destination, "Cache-Control": "no-store" });
     response.end();
     return;
   }
 
-  if (gonePaths.has(url.pathname)) {
+  const effectivePathname = redirect?.status === 200
+    ? new URL(redirect.destination, url).pathname
+    : url.pathname;
+
+  if (gonePaths.has(effectivePathname)) {
     response.writeHead(410, { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex, nofollow" });
     response.end("Diese URL ist nicht mehr verfuegbar.");
     return;
   }
 
-  if (url.pathname === "/api/bookings" || url.pathname === "/api/intake") {
+  if (effectivePathname === "/api/bookings" || effectivePathname === "/api/intake") {
     response.writeHead(501, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
     response.end(JSON.stringify({ success: false, error: "Pages Functions werden mit Wrangler oder im direkten Funktionstest geprueft." }));
     return;
   }
 
-  const file = assetPath(url.pathname);
+  const file = assetPath(effectivePathname);
   if (!file) {
     const notFound = path.join(root, "404.html");
     response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });

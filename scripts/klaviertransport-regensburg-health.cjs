@@ -40,7 +40,7 @@ function add(id, label, passed, details = "") {
 const page = read("app/klaviertransport-regensburg/page.tsx");
 const generalPage = read("app/klaviertransport/page.tsx");
 const moveHub = read("app/regensburg/umzug/page.tsx");
-const form = read("components/SeoLeadForm.tsx");
+const form = read("components/ProfessionalRequestForm.tsx");
 const leadIntents = read("lib/lead-intents.ts");
 const sitemap = read("lib/sitemap-routes.ts");
 const packageJson = read("package.json");
@@ -79,11 +79,11 @@ add(
   page.includes("klaviertransport-angebot-pruefen") && offerCheck.includes("klaviertransport-angebot-pruefen"),
 );
 add("faq:visible", "FAQ is visible and expanded", page.includes("Häufige Fragen zum Klaviertransport in Regensburg") && page.includes("Can I ask in English?"));
-add("ai:quick-answer", "Quick Answer block is present", page.includes("Quick Answer") && page.includes("Eine Anfrage ist noch keine Buchung"));
+add("ai:quick-answer", "Quick Answer block is present", page.includes("quickAnswerItems") && page.includes("Eine Anfrage ist noch keine Buchung"));
 add(
   "content:effort-factors",
   "Effort factors are visible",
-  includesAll(page, ["Aufwandstreiber", "Instrumentart und Bauform", "Etage an Start und Ziel", "Treppenhausbreite"]),
+  includesAll(page, ["Wovon der Aufwand abhängt", "Instrumentart und Bauform", "Etage an Start und Ziel", "Treppenhausbreite"]),
 );
 add(
   "content:instrument-access",
@@ -100,22 +100,22 @@ add(
   "form:piano-fields",
   "Piano optional form fields are present",
   includesAll(form, [
-    "isPianoTransport",
-    "pianoInstrumentType",
-    "pianoStartLocation",
-    "pianoDestination",
-    "pianoStartFloor",
-    "pianoDestinationFloor",
-    "pianoElevator",
-    "pianoNarrowStairs",
-    "pianoExistingOffer",
-    "pianoConcern",
+    "instrumentType",
+    "startLocation",
+    "destinationLocation",
+    "startFloor",
+    "destinationFloor",
+    "startElevator",
+    "destinationElevator",
+    "stairs",
+    "accessWidth",
+    "weight",
   ]),
 );
 add(
   "form:piano-success",
-  "Piano success copy is present",
-  form.includes("Ihre Anfrage zum Klaviertransport wurde gesendet"),
+  "Honest request success copy is present",
+  includesAll(form, ["Ihre Anfrage ist eingegangen", "kein Auftrag", "kein automatisch bestätigter Termin"]),
 );
 add(
   "lead:moebeltransport",
@@ -143,7 +143,7 @@ add(
 add(
   "safety:no-sofort-guarantee",
   "No positive immediate appointment guarantee",
-  !/soforttermin[^.\n]*(garantiert|sicher)|garantierte sofort/i.test(source),
+  !/soforttermin\s+(?:ist\s+)?garantiert|garantierte\s+sofort/i.test(source),
 );
 add(
   "safety:no-damage-guarantee",

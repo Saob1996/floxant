@@ -43,9 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "umzug-mit-reinigung",
-    title: "Umzug mit Endreinigung Regensburg & Regensburg | FLOXANT",
+    title: "Umzug mit Endreinigung Düsseldorf & Regensburg | FLOXANT",
     description:
-      "Umzug mit Endreinigung in Regensburg und Regensburg nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
+      "Umzug mit Endreinigung in Düsseldorf und Regensburg nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
   });
 }
 
@@ -60,7 +60,7 @@ export default async function UmzugMitReinigungPage() {
         { name: "Umzug mit Reinigung", item: pagePath },
       ]),
       buildServiceJsonLd({
-        name: "Umzug mit Endreinigung in Regensburg und Regensburg",
+        name: "Umzug mit Endreinigung in Düsseldorf und Regensburg",
         description:
           "Abgestimmte Kombination aus Umzug, Endreinigung, Fotos, Schluesselthemen und Uebergabevorbereitung.",
         path: pagePath,
@@ -70,7 +70,7 @@ export default async function UmzugMitReinigungPage() {
       buildWebPageJsonLd({
         name: "Umzug mit Reinigung | FLOXANT",
         description:
-          "Definition, Ablauf und Anfrage fuer die Kombination aus Umzug und Reinigung in Regensburg und Regensburg.",
+          "Definition, Ablauf und Anfrage fuer die Kombination aus Umzug und Reinigung in Düsseldorf und Regensburg.",
         path: pagePath,
         about: ["Umzug", "Endreinigung", "Wohnungsuebergabe", "Regensburg", "Regensburg", "Fotos", "Budget"],
       }),
@@ -91,7 +91,7 @@ export default async function UmzugMitReinigungPage() {
             Kombi-Service fuer Auszug und Uebergabe
           </div>
           <h1 className="mb-8 text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Umzug mit Endreinigung in Regensburg und Regensburg
+            Umzug mit Endreinigung in Düsseldorf und Regensburg
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/62">
             FLOXANT verbindet Umzug, Endreinigung und Uebergabevorbereitung, wenn Auszug und

@@ -7,7 +7,7 @@ const clusters = [
   intro: "Direkte Kontaktwege für die häufigsten Anfragen.",
   links: [
    { href: "/umzug", label: "Umzug Regensburg & Bayern" },
-   { href: "/reinigung", label: "Reinigung Regensburg & Regensburg" },
+   { href: "/reinigung", label: "Reinigung Düsseldorf & Regensburg" },
    { href: "/entruempelung", label: "Entrümpelung Regensburg & Bayern" },
    { href: "/bueroumzug", label: "Büroumzug & Firmenumzug" },
   ],

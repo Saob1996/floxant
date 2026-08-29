@@ -1,0 +1,232 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:14:18.278Z",
+  "summary": {
+    "baseUrl": "http://127.0.0.1:4173",
+    "baseUrlWasExplicit": true,
+    "scenarioCount": 13,
+    "productionSubmit": "No submit is performed by qa:contact.",
+    "checks": 27,
+    "pass": 14,
+    "warn": 13,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=bueroreinigung&city=duesseldorf&intent=bueroreinigung-duesseldorf&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=gewerbereinigung&city=duesseldorf&intent=gewerbereinigung-duesseldorf&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=entruempelung&city=regensburg&intent=entruempelung-regensburg&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=diskret-service&intent=diskret-service&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=seniorenumzug&intent=seniorenumzug-anfragen&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=cleaning&city=duesseldorf&intent=english-cleaning-duesseldorf&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=moving&city=regensburg&intent=english-moving-regensburg&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-route",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "HTTP 200.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "WARN",
+      "scope": "contact-form",
+      "path": "/kontakt?service=offer-check&intent=english-offer-check&source=seo",
+      "detail": "Static form shell found; its fields require a hydrated browser check.",
+      "action": "Verify the hydrated form in the required browser pass.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "browser-interaction",
+      "path": "contact-scenarios",
+      "detail": "No Playwright/Cypress dependency configured; HTTP/SSR form regression ran without adding a browser dependency.",
+      "action": "Optional manual browser check remains required before production.",
+      "priority": "P2"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "generatedAt": "2026-08-28T23:34:30.280Z",
+  "status": "PASS",
+  "totals": {
+    "pass": 39,
+    "warn": 0,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "id": "route:primary",
+      "label": "Primary /regensburg/endreinigung app route exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "route:static-wrapper",
+      "label": "Endreinigung route uses static Regensburg service wrapper",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "metadata:intent",
+      "label": "Metadata targets end cleaning and handover intent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:vermieter-ready",
+      "label": "Vermieter-Ready positioning is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:handover-sprint",
+      "label": "Uebergabe-Sprint is integrated",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:objektbrief-akte",
+      "label": "Objektbrief and Uebergabeakte are linked",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:post-clearance",
+      "label": "Reinigung nach Entruempelung is explicitly covered",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:effort-factors",
+      "label": "Effort factors are present for handover cleaning",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:legal-boundaries",
+      "label": "No-false-promise boundaries are visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:english-intent",
+      "label": "English end-of-tenancy intent is visible",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:offer-check",
+      "label": "Offer-check CTA and intent are wired",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:path-mapping",
+      "label": "Lead intent maps handover/end-cleaning routes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:form-copy",
+      "label": "Lead form has handover-specific title, intro and placeholder",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:optional-fields",
+      "label": "SeoLeadForm exposes optional handover fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:payload",
+      "label": "SeoLeadForm sends optional handover fields in payload and details",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "lead:conversion-target",
+      "label": "Lead conversion targets include endreinigung and signature support routes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "seo:gsc-entry",
+      "label": "GSC click priorities include /regensburg/endreinigung as P0",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "seo:gsc-money-page",
+      "label": "SEO money page monitoring includes /regensburg/endreinigung",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "inventory:signature",
+      "label": "Service inventory and signature services know Vermieter-Ready and Uebergabe-Sprint",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:source",
+      "label": "Sitemap sources include endreinigung and signature support routes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-runtime-nodejs",
+      "label": "No runtime=nodejs on edited public route/component/form",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-force-dynamic",
+      "label": "No force-dynamic on edited public route/component/form",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-revalidate",
+      "label": "No ISR revalidate on edited public route/component/form",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:no-api-page-load",
+      "label": "No automatic API fetch added to edited public page/component",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-fake-review",
+      "label": "No fake rating or review schema in edited sources",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-positive-guarantee",
+      "label": "No positive guarantee language for acceptance, deposit, price or instant dates",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-legal-advice-promise",
+      "label": "No legal advice promise",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "claims:no-doorway",
+      "label": "No doorway/keyword-stuffing markers",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_ROUTE_ARCHITECTURE.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_KEYWORD_INTENT_MAP.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:REINIGUNG_NACH_ENTRUEMPELUNG_STRATEGY.md",
+      "label": "docs/REINIGUNG_NACH_ENTRUEMPELUNG_STRATEGY.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:VERMIETER_READY_POSITIONING_REPORT.md",
+      "label": "docs/VERMIETER_READY_POSITIONING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_SIGNATURE_SERVICES_REPORT.md",
+      "label": "docs/UEBERGABE_SIGNATURE_SERVICES_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_LOCAL_INTEGRATION_REPORT.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_LOCAL_INTEGRATION_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:UEBERGABE_ENDREINIGUNG_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/UEBERGABE_ENDREINIGUNG_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "package:script",
+      "label": "npm script uebergabe:health exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "worktree:docs-static",
+      "label": "Healthcheck is static and does not verify visual layout",
+      "status": "PASS",
+      "details": "Browser and build checks remain separate."
+    }
+  ]
+}

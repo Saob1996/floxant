@@ -227,11 +227,32 @@ async function parsePayload(request) {
   return { payload, files };
 }
 
+const SENSITIVE_FIELD_PATTERN =
+  /(?:password|passwort|token|csrf|authorization|auth|secret|api.?key|captcha|honeypot|companywebsite|^website$|^url$)/i;
+
+function sanitizeOriginalPayload(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => sanitizeOriginalPayload(item));
+  }
+
+  if (!value || typeof value !== "object") return value;
+
+  return Object.fromEntries(
+    Object.entries(value)
+      .filter(([key]) => !SENSITIVE_FIELD_PATTERN.test(key))
+      .map(([key, nestedValue]) => [key, sanitizeOriginalPayload(nestedValue)]),
+  );
+}
+
 function buildDetails(payload, contact, service, uploadedFiles) {
   const existing = payload.details && typeof payload.details === "object" ? payload.details : {};
   const now = new Date().toISOString();
+  const originalPayload = sanitizeOriginalPayload(payload);
   const rawFields = Object.fromEntries(
-    Object.entries(payload).filter(([key]) => key !== "details" && key !== "companyWebsite"),
+    Object.entries(originalPayload).filter(([key]) => key !== "details"),
+  );
+  const fieldSources = Object.fromEntries(
+    Object.keys(rawFields).map((key) => [key, "submitted-form"]),
   );
 
   return {
@@ -254,11 +275,30 @@ function buildDetails(payload, contact, service, uploadedFiles) {
       cloudflarePagesSubmission: true,
       rawFields,
       uploadMetadata: uploadedFiles,
+      originalPayload: {
+        version: "2026-08-28",
+        receivedAt: now,
+        fields: originalPayload,
+      },
     },
     metadata: {
       ...(existing.metadata || {}),
       createdAt: firstText(existing.metadata?.createdAt, payload.timestamp, now),
-      intakeVersion: firstText(existing.metadata?.intakeVersion, "cloudflare-pages-v1"),
+      intakeVersion: firstText(existing.metadata?.intakeVersion, "cloudflare-pages-v2"),
+      formVersion: firstText(payload.formVersion, existing.metadata?.formVersion, existing.metadata?.intakeVersion, "unknown"),
+      originalPayloadVersion: "2026-08-28",
+      fieldSources: {
+        ...(existing.metadata?.fieldSources || {}),
+        ...fieldSources,
+        "contact.fullName": firstText(payload.name, payload.fullName, payload.contactName)
+          ? "submitted-form"
+          : "details.contact",
+        "contact.email": payload.email ? "submitted-form" : "details.contact",
+        "contact.phone": payload.phone ? "submitted-form" : "details.contact",
+        "service.type": firstText(payload.service, payload.type, payload.lead_type)
+          ? "submitted-form"
+          : "details.service",
+      },
       locale: firstText(existing.metadata?.locale, payload.locale, payload.language, "unknown").toLowerCase(),
     },
   };

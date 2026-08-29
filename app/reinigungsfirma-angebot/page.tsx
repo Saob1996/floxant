@@ -63,6 +63,22 @@ const faqItems = [
     q: "Für welche Reinigungsarten passt die Anfrage?",
     a: "Die Seite passt für Büroreinigung, Praxisreinigung, Grundreinigung, Wohnungsreinigung, Treppenhausreinigung und gewerbliche Objekte.",
   },
+  {
+    q: "Muss ich für die erste Anfrage alle Details kennen?",
+    a: "Nein. Ort, Objektart, grobe Fläche, Zielzustand und Termin reichen für den Einstieg. FLOXANT nennt anschließend die noch benötigten Angaben.",
+  },
+  {
+    q: "Wann sind Fotos besonders hilfreich?",
+    a: "Fotos helfen bei starker oder ungleichmäßiger Verschmutzung, schwer zugänglichen Bereichen, empfindlichen Materialien und wenn der Zielzustand sonst missverständlich wäre.",
+  },
+  {
+    q: "Ist eine regelmäßige Reinigung direkt zugesagt?",
+    a: "Nein. Bei einem Turnus werden Objekt, Aufgaben, Häufigkeit, Zugangsweg, Zeitfenster und regionale Machbarkeit zuerst geprüft.",
+  },
+  {
+    q: "Welche Angaben sollte ein vorhandenes Angebot zeigen?",
+    a: "Hilfreich sind enthaltene Flächen und Tätigkeiten, Turnus oder Einmaltermin, Zusatzpositionen, Laufzeit, Kündigungsbedingungen und offene Annahmen. FLOXANT ersetzt dabei keine Rechtsprüfung.",
+  },
 ] as const;
 
 const cleaningLinks = [

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:33:03.958Z",
+  "summary": {
+    "checkedPages": 6,
+    "p0Services": 21,
+    "warnings": 0,
+    "failures": 0
+  },
+  "warnings": [],
+  "failures": []
+}

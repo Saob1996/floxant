@@ -152,8 +152,10 @@ for (const route of routes) {
   addCheck(
     `route:${route.key}:proxy`,
     `${route.route} is allowed by proxy policy`,
-    proxySource.includes(route.route),
-    "DUESSELDORF_ALLOWED_SERVICE_PATHS must include this P0 route.",
+    !proxySource || proxySource.includes(route.route),
+    proxySource
+      ? "DUESSELDORF_ALLOWED_SERVICE_PATHS must include this P0 route."
+      : "Static export has no active root proxy; route availability is covered by build, sitemap and link checks.",
   );
   addCheck(
     `route:${route.key}:hero-cta`,
@@ -196,14 +198,14 @@ addCheck(
 addCheck(
   "content:quick-answer",
   "AI/quick-answer block is visible",
-  includesAll(componentSource, ["function CleaningQuickAnswer", "Quick Answer / AI-Antwort", "quickAnswer"]),
+  includesAll(componentSource, ["function CleaningQuickAnswer", "Kurz erklärt", "config.quickAnswer"]),
   "Quick answer is rendered near the top of each page.",
 );
 
 addCheck(
   "content:effort-factors",
   "Effort factors are visible",
-  includesAll(componentSource, ["function CleaningEffortFactorsPanel", "Aufwandstreiber", "effortFactors"]),
+  includesAll(componentSource, ["Wovon der Aufwand abhängt", "config.effortFactors.map"]),
   "Effort drivers are shown as a dedicated section.",
 );
 
@@ -217,7 +219,7 @@ addCheck(
 addCheck(
   "content:english-intent",
   "English intent is represented",
-  includesAll(componentSource, ["English intent", "simple English", "cleaning service", "office cleaning", "commercial cleaning", "window cleaning"]),
+  includesAll(componentSource, ["Information in English", "simple English", "cleaning service", "office cleaning", "commercial cleaning", "window cleaning"]),
   "English-language search intent is supported without separate duplicate routes.",
 );
 
@@ -273,9 +275,13 @@ addCheck(
 addCheck(
   "proxy:out-of-area-allowlist-order",
   "Proxy skips out-of-area cleaning redirect for allowed Düsseldorf P0 routes",
-  proxySource.includes("function isOutOfAreaCleaningSignal") &&
-    proxySource.includes("if (DUESSELDORF_ALLOWED_SERVICE_PATHS.has(pathname)) return false;"),
-  "Allowed Düsseldorf cleaning routes must bypass the out-of-area cleaning redirect before term matching.",
+  !proxySource || (
+    proxySource.includes("function isOutOfAreaCleaningSignal") &&
+    proxySource.includes("if (DUESSELDORF_ALLOWED_SERVICE_PATHS.has(pathname)) return false;")
+  ),
+  proxySource
+    ? "Allowed Düsseldorf cleaning routes must bypass the out-of-area cleaning redirect before term matching."
+    : "Static export has no active root proxy; no proxy redirect can intercept these routes.",
 );
 
 const forbiddenVercelPatterns = [

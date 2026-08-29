@@ -86,6 +86,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submissionReference, setSubmissionReference] = useState("");
   const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
@@ -103,7 +104,8 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         .from("backhaul_offers")
         .select(PUBLIC_BACKHAUL_OFFER_SELECT)
         .eq("status", "active")
-        .gte("departure_date", today)
+        .eq("publication_status", "published")
+        .gte("date_end", today)
         .order("departure_date", { ascending: true });
 
       if (!active) return;
@@ -231,6 +233,13 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
 
       if (!response.ok) throw new Error("Submit failed");
 
+      try {
+        const payload = await response.json();
+        setSubmissionReference(payload?.id || payload?.requestId || "");
+      } catch {
+        setSubmissionReference("");
+      }
+
       setIsSuccess(true);
       setForm({
         ...emptyInquiry,
@@ -302,11 +311,12 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                     freie Rückfahrt für Privat & Firma
                   </div>
                   <h3 className="text-2xl font-bold tracking-tight text-slate-950">{offer.title}</h3>
-                  <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{offer.fairPriceNote}</p>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{offer.publicDescription || offer.fairPriceNote}</p>
                 </div>
                 <div className="rounded-[1.4rem] border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm shadow-slate-950/5">
                   <Calendar className="mb-2 h-4 w-4 text-blue-600" />
                   {formatDate(offer.date)}
+                  {offer.dateEnd !== offer.date ? <div className="mt-1 text-xs text-slate-500">bis {formatDate(offer.dateEnd)}</div> : null}
                   <div className="mt-1 text-xs text-slate-500">{offer.timeWindow}</div>
                 </div>
               </div>
@@ -314,13 +324,13 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
               <div className="mt-6 grid gap-3 md:grid-cols-3">
                 <InfoPill icon={MapPin} label="Start" value={offer.origin} />
                 <InfoPill icon={Route} label="Richtung" value={`${offer.destination}, ${offer.destinationRadius}`} />
-                <InfoPill icon={PackageOpen} label="Kapazität" value={offer.availableCapacity} />
+                <InfoPill icon={PackageOpen} label="Kapazität" value={`${offer.availableCapacity}${offer.availableCubicMeters !== null ? ` · ${offer.availableCubicMeters} m³` : ""}`} />
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {offer.routeAreas.slice(0, 8).map((area) => (
+                {[...offer.intermediateStops, ...offer.routeAreas, ...offer.itemTypes].slice(0, 10).map((area, areaIndex) => (
                   <span
-                    key={area}
+                    key={`${area}-${areaIndex}`}
                     className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-600"
                   >
                     {area}
@@ -328,8 +338,10 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 ))}
               </div>
 
+              {offer.conditions ? <p className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-6 text-slate-600">Bedingungen: {offer.conditions}</p> : null}
+
               <div className="mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5">
-                <span className="text-sm font-bold text-blue-700">{offer.priceHint}</span>
+                <span className="text-sm font-bold text-blue-700">{offer.publicGrossPrice !== null ? `${offer.priceType === "from" ? "ab " : ""}${offer.publicGrossPrice.toLocaleString("de-DE")} € brutto` : offer.priceHint}</span>
                 <span className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
                   Anfrage vorbereiten
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -361,6 +373,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 FLOXANT prüft jetzt, ob Ihre Sendung zur Rückfahrt passt und meldet sich mit
                 einer fairen Einordnung.
               </p>
+              {submissionReference ? <p className="mx-auto mt-4 max-w-sm rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 font-mono text-sm font-bold text-emerald-900">Vorgangsnummer: {submissionReference}</p> : null}
             </m.div>
           ) : (
             <m.form
@@ -440,7 +453,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 className="group flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_18px_48px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_58px_rgba(37,99,235,0.3)] disabled:opacity-60"
               >
                 {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
-                Rückfahrt prüfen lassen
+                Rückfahrt anfragen / reservieren
               </button>
             </m.form>
           )}

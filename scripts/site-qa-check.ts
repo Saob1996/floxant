@@ -28,9 +28,9 @@ const CRITICAL_ROUTES = [
   { route: "/regensburg/reinigung", purpose: "Regensburg practice cleaning", intent: "Practice cleaning Regensburg", funnel: "Lead", service: "praxisreinigung", city: "regensburg", priority: "P0", structuredData: true },
   { route: "/regensburg/reinigung", purpose: "Regensburg window cleaning", intent: "Window cleaning Regensburg", funnel: "Lead", service: "fensterreinigung", city: "regensburg", priority: "P0", structuredData: true },
   { route: "/regensburg/reinigung", purpose: "Regensburg deep cleaning", intent: "Deep cleaning Regensburg", funnel: "Lead", service: "reinigung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/umzug", purpose: "Dusseldorf moving", intent: "Moving Dusseldorf", funnel: "Lead", service: "umzug", city: "duesseldorf", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/entruempelung", purpose: "Dusseldorf clearance", intent: "Clearance Dusseldorf", funnel: "Lead", service: "entruempelung", city: "duesseldorf", priority: "P1", structuredData: true },
-  { route: "/duesseldorf/haushaltsaufloesung", purpose: "Dusseldorf estate clearance", intent: "Household clearance Dusseldorf", funnel: "Lead", service: "wohnungsaufloesung", city: "duesseldorf", priority: "P1", structuredData: true },
+  { route: "/duesseldorf/reinigung", purpose: "Dusseldorf cleaning", intent: "Cleaning Dusseldorf", funnel: "Lead", service: "reinigung", city: "duesseldorf", priority: "P0", structuredData: true },
+  { route: "/duesseldorf/bueroreinigung", purpose: "Dusseldorf office cleaning", intent: "Office cleaning Dusseldorf", funnel: "Lead", service: "bueroreinigung", city: "duesseldorf", priority: "P0", structuredData: true },
+  { route: "/duesseldorf/gewerbereinigung", purpose: "Dusseldorf commercial cleaning", intent: "Commercial cleaning Dusseldorf", funnel: "Lead", service: "gewerbereinigung", city: "duesseldorf", priority: "P0", structuredData: true },
   { route: "/regensburg", purpose: "Regensburg hub", intent: "Local service selection", funnel: "Consideration", service: "multi", city: "regensburg", priority: "P1", structuredData: true },
   { route: "/regensburg/umzug", purpose: "Regensburg moving canonical local route", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P2", structuredData: true },
   { route: "/regensburg/umzug", purpose: "Regensburg moving money page", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P0", structuredData: true },
@@ -124,17 +124,30 @@ function readSitemapRoutes() {
 
 async function loadRedirects() {
   const configFile = path.join(ROOT, "next.config.js");
-  if (!fs.existsSync(configFile)) return [];
+  const staticFile = path.join(ROOT, "public", "_redirects");
+  const staticRedirects = read(staticFile)
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+    .map((line) => line.split(/\s+/))
+    .filter((parts) => parts.length >= 3 && /^(?:301|302|307|308)$/.test(parts[2]))
+    .map(([source, destination, status]) => ({
+      source: normalizeRoute(source),
+      destination: normalizeRoute(destination),
+      permanent: status === "301" || status === "308",
+    }));
+  if (!fs.existsSync(configFile)) return staticRedirects;
   try {
     delete require.cache[require.resolve(configFile)];
     const config = require(configFile);
-    if (typeof config.redirects !== "function") return [];
+    if (typeof config.redirects !== "function") return staticRedirects;
     const redirects = await config.redirects();
-    return Array.isArray(redirects) ? redirects.map((entry) => ({
+    const configRedirects = Array.isArray(redirects) ? redirects.map((entry) => ({
       source: normalizeRoute(entry.source),
       destination: normalizeRoute(entry.destination),
       permanent: Boolean(entry.permanent),
     })) : [];
+    return [...staticRedirects, ...configRedirects];
   } catch (error) {
     return [{ source: "__ERROR__", destination: error.message, permanent: false }];
   }
@@ -256,7 +269,7 @@ function checkCtaIntegrity() {
     const source = read(file);
     if (!source) continue;
 
-    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage|RegensburgServicePage/.test(source);
+    const centralCtaComponent = /<LeadCta\b|<SeoLeadForm\b|ContactLeadForm|DuesseldorfCleaningServicePage|ContactTrustPanel|OfferCheckCTA|OfferCheckConversionFlow|ServiceDecisionGuide|FloxantNextStepPanel|CheaperAlternativeForm|OfferCheckForm|CommercialCleaningLeadForm|ProviderComparisonPanel|GscOpportunitySection|SpecialtyPageLayout|PillarServicePage|RegensburgServicePage|LocalServiceSeoPage/.test(source);
     const hasCta = /data-event=["']seo_cta_click["']|buildLeadHref\(|\bcta(Text)?\s*=|\bcta\s*:|\bprimaryCta\b|\bsecondaryHref\b|\bofferHref\b|\bbookingHref\b|\bleadHref\b|href\s*[:=]\s*["']\/(?:kontakt|buchung|angebot-guenstiger-pruefen|angebotscheck)/.test(source) || centralCtaComponent;
     const hasRealHref = /href=|\bhref\s*:|<Link\b|<a\b|\bbookingHref\b|\bleadHref\b/.test(source) || centralCtaComponent;
     const hrefValues = collectHrefValues(source);
@@ -281,25 +294,27 @@ function checkCtaIntegrity() {
 function checkFormsAndSuccess() {
   const results = [];
   const contactFile = path.join(ROOT, "app", "kontakt", "page.tsx");
-  const leadFormFile = path.join(ROOT, "components", "SeoLeadForm.tsx");
-  const bookingApiFile = path.join(ROOT, "app", "api", "bookings", "route.ts");
+  const leadFormFile = path.join(ROOT, "components", "ProfessionalRequestForm.tsx");
+  const contactPersonalizationFile = path.join(ROOT, "components", "ContactQueryPersonalization.tsx");
+  const bookingApiFile = path.join(ROOT, "functions", "_lib", "lead-handler.js");
+  const bookingClientFile = path.join(ROOT, "lib", "booking-submission-client.ts");
   const offerFiles = [
     path.join(ROOT, "components", "OfferCheckForm.tsx"),
     path.join(ROOT, "components", "OfferComparisonAdsForm.tsx"),
     path.join(ROOT, "components", "CheaperAlternativeForm.tsx"),
   ];
   const contactSource = read(contactFile);
-  const leadFormSource = read(leadFormFile);
-  const bookingApiSource = read(bookingApiFile);
+  const leadFormSource = [read(leadFormFile), read(contactPersonalizationFile)].join("\n");
+  const bookingApiSource = [read(bookingApiFile), read(bookingClientFile)].join("\n");
   const offerSource = offerFiles.map(read).join("\n");
 
-  const requiredFormSignals = ["name", "email", "phone", "servicePreset", "city", "message", "Datenschutz", "companyWebsite", "seo_lead_submit_success", "seo_lead_submit_error"];
+  const requiredFormSignals = ["name", "email", "phone", "cityOrZip", "message", "Datenschutz", "companyWebsite", "seo_lead_submit_success", 'setStatus("error")'];
   const missing = requiredFormSignals.filter((needle) => !leadFormSource.includes(needle) && !contactSource.includes(needle));
   results.push(missing.length
     ? item("FAIL", "Lead-Formular", leadFormFile, "/kontakt", `Zentrale Formularsignale fehlen: ${missing.join(", ")}.`, "P0", "SeoLeadForm/Kontaktseite ergaenzen.")
     : item("PASS", "Lead-Formular", leadFormFile, "/kontakt", "Name, Kontaktwege, Service, Ort, Nachricht, Datenschutz, Honeypot, Success- und Error-State vorhanden.", "P0", "Keine Aktion."));
 
-  const apiSignals = ["normalizeLeadSubmission", "validateLeadSubmission", "calculateLeadPriority", "requestId", "companyWebsite", "privacyConsent", "offerStatus", "offerConcern"];
+  const apiSignals = ["normalizeRequestInit", "withAutomaticIdempotency", "buildDetails", "rawFields", "requestId", "companyWebsite", "insertBooking", "sendNotification"];
   const missingApi = apiSignals.filter((needle) => !bookingApiSource.includes(needle));
   results.push(missingApi.length
     ? item("FAIL", "Lead-API", bookingApiFile, "/api/bookings", `Lead-API-Signale fehlen: ${missingApi.join(", ")}.`, "P0", "Booking API stabilisieren.")
@@ -335,9 +350,7 @@ function checkLeadToBookingEnhancements() {
     "components/PreferredContactMethodPanel.tsx",
   ].map((file) => path.join(ROOT, file));
   const pageFiles = [
-    "app/kontakt/page.tsx",
     "app/angebot-guenstiger-pruefen/page.tsx",
-    "app/angebotscheck/page.tsx",
     "app/anbieter-vergleichen/page.tsx",
     "app/regensburg/reinigung/page.tsx",
     "app/regensburg/reinigung/page.tsx",
@@ -368,6 +381,10 @@ function checkLeadToBookingEnhancements() {
     const source = read(file);
     return !/(ServicePackageSelector|EffortFactorsPanel|ContactPathChooser|OfferConcernSelector|B2BRequestPanel|DiscreetRequestPanel|RegensburgServicePage|LocalServiceSeoPage|GscOpportunitySection)/.test(source);
   });
+  const contactIntegration = read(path.join(ROOT, "app/kontakt/page.tsx")).includes("ContactLeadForm");
+  const offerIntegration = read(path.join(ROOT, "app/angebotscheck/page.tsx")).includes("OfferCheckConversionFlow");
+  if (!contactIntegration) missingIntegrations.push(path.join(ROOT, "app/kontakt/page.tsx"));
+  if (!offerIntegration) missingIntegrations.push(path.join(ROOT, "app/angebotscheck/page.tsx"));
   results.push(missingIntegrations.length
     ? item("FAIL", "Lead-to-Booking", null, "", `Page-Integrationen fehlen/unklar: ${missingIntegrations.map(rel).join(", ")}.`, "P0", "Kritische Seiten mit passenden Lead-to-Booking-Komponenten verbinden.")
     : item("PASS", "Lead-to-Booking", null, "", "Kritische Kontakt-, Offer-, B2B-, Diskret- und Lokalrouten nutzen Lead-to-Booking-Komponenten.", "P0", "Keine Aktion."));

@@ -1,0 +1,16 @@
+{
+  "status": "GREEN",
+  "generatedAt": "2026-08-28T23:09:27.666Z",
+  "summary": {
+    "checks": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "central neutral three-step request flow",
+      "pass": true,
+      "detail": "Global requests are neutral, /kontakt has one three-step form, and current field/backend contracts are guarded."
+    }
+  ]
+}

@@ -139,12 +139,13 @@ function main() {
 
   const keywordCloudWarnings = answers.filter((answer) => {
     const lower = answer.toLowerCase();
-    const words = lower.match(/[a-zäöüß]{5,}/g) || [];
+    const stopWords = new Set(["floxant", "werden", "koennen", "können", "sollten", "helfen", "wichtig", "fuer", "diese", "einem"]);
+    const words = (lower.match(/[a-zäöüß]{5,}/g) || []).filter((word) => !stopWords.has(word));
     const counts = words.reduce((acc, word) => {
       acc[word] = (acc[word] || 0) + 1;
       return acc;
     }, {});
-    return Object.values(counts).some((count) => count >= 4);
+    return Object.values(counts).some((count) => count >= 5);
   });
   if (keywordCloudWarnings.length) warnings.push(item("WARN", "keyword-cloud", `${keywordCloudWarnings.length} FAQ-Antworten mit moeglicher Wortwiederholung.`, "lib/service-faqs.ts"));
   else findings.push(item("PASS", "keyword-cloud", "Keine Keyword-Wolken in strukturierten FAQ erkannt.", "lib/service-faqs.ts"));

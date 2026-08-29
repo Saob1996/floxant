@@ -67,10 +67,16 @@ function main() {
     else failures.push(`${token}: in Komponente fehlt`);
   }
 
+  const currentIntegrationTokens = {
+    [files.home]: ["mainServices", "requestHref", "offerHref"],
+    [files.contact]: ["ContactLeadForm", "resolveLeadIntent", "direktanfrage"],
+    [files.duesseldorf]: ["duesseldorfCleaningLinks", "ToolJourneyPanel", "buildLeadHref"],
+  };
   for (const page of [files.home, files.services, files.contact, files.offer, files.duesseldorf, files.regensburg]) {
     if (!exists(page)) continue;
     const text = read(page);
-    if (text.includes("ServicePackageDecisionExperience")) checks.push(`${page}: ServicePackageDecisionExperience integriert`);
+    const tokens = currentIntegrationTokens[page] || ["ServicePackageDecisionExperience"];
+    if (tokens.every((token) => text.includes(token))) checks.push(`${page}: aktueller Entscheidungsweg integriert`);
     else failures.push(`${page}: ServicePackageDecisionExperience fehlt`);
   }
 
@@ -105,8 +111,8 @@ function main() {
     else failures.push(`${file}: Dokumentation fehlt`);
   }
 
-  if (exists(files.contact) && read(files.contact).includes("SeoLeadForm")) checks.push("Kontaktformular bleibt vorhanden");
-  else failures.push("SeoLeadForm auf /kontakt nicht gefunden");
+  if (exists(files.contact) && read(files.contact).includes("ContactLeadForm")) checks.push("Aktuelles Kontaktformular bleibt vorhanden");
+  else failures.push("ContactLeadForm auf /kontakt nicht gefunden");
 
   if (component.includes("Regensburg plus 50 km") && component.includes("Duesseldorf")) {
     checks.push("D/R- und 50-km-Hinweise in Entscheidungskomponente sichtbar");

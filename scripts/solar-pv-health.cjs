@@ -38,7 +38,7 @@ function add(id, label, passed, details = "") {
 
 const growth = read("lib/growth-service-pages.ts");
 const renderer = read("components/GrowthServiceLandingPage.tsx");
-const form = read("components/SeoLeadForm.tsx");
+const form = read("components/ProfessionalRequestForm.tsx");
 const sitemap = read("lib/sitemap-routes.ts");
 const packageJson = read("package.json");
 const nextConfig = read("next.config.js");
@@ -79,7 +79,7 @@ add(
   "Solar/PV template renders quick answer, offer check and differentiation",
   includesAll(renderer, [
     "function SolarPvAuthorityPanel",
-    "Quick Answer",
+    "Kurz erklärt",
     "Solarreinigungsangebot prüfen lassen",
     "function SolarPvDifferentiation",
     "keine Ertragsgarantie",
@@ -89,27 +89,26 @@ add(
   "form:solar-fields",
   "Solar/PV optional form fields are present",
   includesAll(form, [
-    "isSolarPv",
-    "solarRoofType",
-    "solarAccess",
-    "solarModuleScope",
-    "solarVisibleDirt",
-    "solarExistingOffer",
-    "solarTimeframe",
-    "solarObjectType",
+    "objectType",
+    "areaSize",
+    "condition",
+    "accessPath",
+    "desiredDate",
+    "selectedAddons",
+    "message",
   ]),
 );
 add(
   "form:solar-success",
-  "Solar/PV success copy is present",
-  form.includes("Ihre Anfrage zur Solar-/PV-Reinigung wurde gesendet"),
+  "Honest request success copy is present",
+  includesAll(form, ["Ihre Anfrage ist eingegangen", "kein Auftrag", "kein automatisch bestätigter Termin"]),
 );
 add(
   "form:no-load-api",
   "Lead API remains submit-only",
   form.includes('onSubmit={handleSubmit}') &&
-    form.includes('await fetch("/api/bookings"') &&
-    !/useEffect\s*\([^)]*fetch\(["']\/api/s.test(form),
+    form.includes('bookingFetch("/api/bookings"') &&
+    !/useEffect\s*\([^)]*(?:bookingFetch|fetch)\(["']\/api/s.test(form),
 );
 for (const doc of docs) add(`doc:${path.basename(doc)}`, `${doc} exists`, exists(doc));
 add(

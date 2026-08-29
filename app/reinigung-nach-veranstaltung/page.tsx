@@ -338,7 +338,7 @@ export default function ReinigungNachVeranstaltungPage() {
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-200">Anlass sauber abschliessen</p>
                 <h2 className="mt-3 text-3xl font-black">Senden Sie Anlass, Ort, Fotos und nächste Nutzung. FLOXANT prüft die passende Reinigung.</h2>
                 <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-8 text-slate-200">
-                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Regensburg und Reinigung Regensburg nach Pruefung</span>
+                  <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Düsseldorf, Regensburg und Reinigung Regensburg nach Pruefung</span>
                   <span className="inline-flex items-center gap-2"><Trash2 className="h-4 w-4" /> Reinigung mit Restmengen möglich</span>
                 </p>
               </div>

@@ -70,6 +70,22 @@ const faqItems = [
     q: "Warum sind nicht alle Ideen eigene Seiten?",
     a: "FLOXANT zeigt eine eigene Seite, wenn die Leistung einen klaren Nutzen und genügend konkrete Informationen bietet. Weitere Themen bleiben als Leistungskarte oder häufige Frage sichtbar.",
   },
+  {
+    q: "Welche Angaben helfen bei einer ersten Einordnung?",
+    a: "Ort oder PLZ, gewünschte Leistung, kurze Beschreibung, Termin, Zugang und – falls vorhanden – Fotos oder ein bestehendes Angebot helfen. Sensible Zugangsdaten gehören nicht in das Formular.",
+  },
+  {
+    q: "Wie unterscheiden sich Düsseldorf und Regensburg?",
+    a: "In Düsseldorf liegt der bestätigte Schwerpunkt auf Reinigung. In Regensburg werden Reinigung, Umzug, Entrümpelung und weitere ausdrücklich beschriebene Leistungen getrennt geprüft.",
+  },
+  {
+    q: "Ist ein Rechnerwert bereits ein verbindliches Angebot?",
+    a: "Nein. Rechner und Auswahlhilfen liefern Orientierung. Preis, Leistungsumfang, Termin und Machbarkeit werden erst nach Prüfung der konkreten Anfrage bestätigt.",
+  },
+  {
+    q: "Was passiert nach dem Absenden einer Anfrage?",
+    a: "FLOXANT prüft Region, Aufgabe und vorhandene Angaben. Danach folgt je nach Fall eine Rückfrage, die Bitte um Fotos oder der nächste passende Kontaktweg; eine automatische Zusage entsteht nicht.",
+  },
 ];
 
 const serviceClusterGuide = [

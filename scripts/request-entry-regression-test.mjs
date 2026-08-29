@@ -14,6 +14,8 @@ function test(name, check) {
 const navigation = read("components/FloxNavigation.tsx");
 const footer = read("components/Footer.tsx");
 const floating = read("components/MobileFloatingContact.tsx");
+const duesseldorfFloating = read("components/duesseldorf/DuesseldorfStickyActions.tsx");
+const deferredWidgets = read("components/DeferredSiteWidgets.tsx");
 const homepage = read("app/page.tsx");
 const contactPage = read("app/kontakt/page.tsx");
 const contactEntry = read("components/ContactQueryPersonalization.tsx");
@@ -36,6 +38,17 @@ test("footer and floating requests are neutral", () => {
   assert.match(floating, /buildGlobalRequestHref\("global_floating"\)/);
   assert.match(floating, /const offerHref = "\/angebot-guenstiger-pruefen"/);
   assert.doesNotMatch(floating, /const requestHref = `\/kontakt\?service=/);
+});
+
+test("global quick contact is immediate and complete", () => {
+  for (const source of [floating, duesseldorfFloating]) {
+    assert.match(source, /mailto:/);
+    assert.match(source, /WhatsApp/);
+    assert.match(source, /Budget|Kosten/);
+    assert.match(source, /Anfrage/);
+  }
+  assert.doesNotMatch(deferredWidgets, /setTimeout|scroll|pointerdown|touchstart/);
+  assert.match(deferredWidgets, /showFloatingContact \? <MobileFloatingContact \/> : null/);
 });
 
 test("homepage and shared navigation requests are explicitly neutral", () => {

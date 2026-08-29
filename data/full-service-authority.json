@@ -251,7 +251,7 @@
       "aiAnswerPotential": "hoch",
       "englishIntentPotential": "deep cleaning Regensburg",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Mit Zustand, Fläche, Material, Zielzustand und Grenzen erklären.",
       "priority": "P0"
     },
@@ -338,7 +338,7 @@
       "aiAnswerPotential": "hoch",
       "englishIntentPotential": "solar panel cleaning Germany",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Keine Ertragsversprechen; Fotos, Dachart, Zugang und Sicherheit betonen.",
       "priority": "P0"
     },
@@ -454,7 +454,7 @@
       "aiAnswerPotential": "hoch",
       "englishIntentPotential": "senior moving assistance Germany",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Würdevoll erklären, Angehörige und Diskret-Service verlinken.",
       "priority": "P0"
     },
@@ -570,7 +570,7 @@
       "aiAnswerPotential": "mittel",
       "englishIntentPotential": "urgent moving help Germany",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Keine Sofortgarantie, aber Plan-B-Prüfung sichtbar machen.",
       "priority": "P0"
     },
@@ -657,7 +657,7 @@
       "aiAnswerPotential": "hoch",
       "englishIntentPotential": "discreet house clearance Germany",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Würdevolle Sprache, keine abwertenden Messie-Begriffe als Keywordwolke.",
       "priority": "P0"
     },
@@ -802,7 +802,7 @@
       "aiAnswerPotential": "hoch",
       "englishIntentPotential": "move out handover cleaning Germany",
       "faq": "yes",
-      "aiAnswer": "partial",
+      "aiAnswer": "yes",
       "action": "Mit Reinigung, Fotos, Restmengen, Schlüssel und Vermietertermin verbinden.",
       "priority": "P0"
     },

@@ -256,7 +256,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               </Link>
             ))}
           </div>
-          <p className="text-xs font-black uppercase tracking-normal text-slate-500">
+          <p className="text-xs font-black uppercase tracking-normal text-slate-400">
             © 2026 FLOXANT
           </p>
         </section>

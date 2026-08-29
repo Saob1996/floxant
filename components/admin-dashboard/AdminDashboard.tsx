@@ -33,6 +33,8 @@ import { AdminBackhaulPanel } from "@/components/admin-dashboard/AdminBackhaulPa
 import {
   BOOKING_SELECT,
   formatBookingDate,
+  getAdditionalBookingFields,
+  getBookingAttachmentUrls,
   getBookingSearchText,
   getBookingSummary,
   getServiceLabel,
@@ -323,7 +325,7 @@ export function AdminDashboard() {
           <ShieldCheck className="h-8 w-8 text-amber-100" aria-hidden="true" />
           <h1 className="mt-5 text-3xl font-black">Dashboard noch nicht konfiguriert</h1>
           <p className="mt-4 font-semibold leading-7 text-amber-50/90">
-            Die Website bleibt funktionsfähig. Für das Dashboard müssen beim nächsten Cloudflare-Build die öffentlichen Supabase-URL- und Anon-Key-Variablen gesetzt sein.
+            Die Website bleibt funktionsfähig. Für das Dashboard müssen beim nächsten Cloudflare-Build die öffentlichen Zugangsdaten für die Datenverbindung gesetzt sein.
           </p>
         </section>
       </main>
@@ -346,7 +348,7 @@ export function AdminDashboard() {
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-cyan-300 text-slate-950"><ShieldCheck className="h-5 w-5" aria-hidden="true" /></span>
-            <div className="min-w-0"><p className="truncate text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</p><p className="truncate text-xs font-semibold text-slate-400">Lead Operations</p></div>
+            <div className="min-w-0"><p className="truncate text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</p><p className="truncate text-xs font-semibold text-slate-400">Anfragenverwaltung</p></div>
           </div>
           <div className="flex items-center gap-2">
             <nav className="flex rounded-xl border border-white/10 bg-white/[0.04] p-1" aria-label="Dashboard-Bereiche">
@@ -370,8 +372,8 @@ export function AdminDashboard() {
 
         {metaState === "unavailable" ? (
           <div className="mt-6 rounded-2xl border border-amber-300/25 bg-amber-300/10 p-5 text-sm font-semibold leading-6 text-amber-50" role="status">
-            <p className="font-black">Lead-Operations-Migration noch nicht angewendet</p>
-            <p className="mt-2">Bestehende Anfragen bleiben lesbar. Interne Notizen, Pipeline und Follow-ups werden erst nach manueller Prüfung und Anwendung von <code>20260718090000_booking_admin_operations.sql</code> speicherbar.</p>
+            <p className="font-black">Datenbankänderung für die Anfragenverwaltung fehlt</p>
+            <p className="mt-2">Bestehende Anfragen bleiben lesbar. Interne Notizen, Bearbeitungsstufen und Wiedervorlagen werden erst nach manueller Prüfung und Anwendung von <code>20260718090000_booking_admin_operations.sql</code> speicherbar.</p>
           </div>
         ) : null}
 
@@ -471,6 +473,8 @@ function LeadDetail({ booking, meta, completeness, operationsEnabled, saving, on
   const [body, setBody] = useState(initialReply.body);
   const [copyState, setCopyState] = useState("");
   const responseDraft = buildLeadResponseDraft(booking, completeness, templateKey);
+  const additionalFields = useMemo(() => getAdditionalBookingFields(booking), [booking]);
+  const attachmentUrls = useMemo(() => getBookingAttachmentUrls(booking), [booking]);
 
   function changeTemplate(key: ReplyTemplateKey) {
     setTemplateKey(key);
@@ -514,6 +518,37 @@ function LeadDetail({ booking, meta, completeness, operationsEnabled, saving, on
             {summary.phone ? <a href={phoneHref(summary.phone)} className="flex min-h-11 items-center gap-3 rounded-xl border border-white/10 px-4 text-sm font-bold text-cyan-100"><Phone className="h-4 w-4" /><span className="truncate">{summary.phone}</span></a> : <p className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-500">Telefon fehlt</p>}
           </div>
           <p className="mt-4 whitespace-pre-wrap text-sm font-semibold leading-7 text-slate-300">{summary.message || "Keine Nachricht gespeichert."}</p>
+        </section>
+
+        <section className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="flex items-center gap-2 text-sm font-black"><FileQuestion className="h-4 w-4 text-cyan-200" />Weitere Angaben</h3>
+            <span className="text-xs font-bold text-slate-500">{additionalFields.length} gespeicherte Felder</span>
+          </div>
+          {additionalFields.length ? (
+            <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+              {additionalFields.map((field) => (
+                <div key={field.path} className="min-w-0 rounded-xl border border-white/[0.07] bg-black/10 p-3">
+                  <dt className="text-xs font-black text-slate-400">{field.label}</dt>
+                  <dd className="mt-1 break-words whitespace-pre-wrap text-sm leading-6 text-slate-200">{field.value}</dd>
+                  <p className="mt-2 break-all font-mono text-[10px] text-slate-600">{field.path}</p>
+                </div>
+              ))}
+            </dl>
+          ) : <p className="mt-3 text-sm text-slate-500">Keine zusätzlichen Formularfelder gespeichert.</p>}
+
+          <div className="mt-5 border-t border-white/[0.07] pt-4">
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-slate-500">Anhänge</p>
+            {attachmentUrls.length ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {attachmentUrls.map((url, index) => (
+                  <a key={url} href={url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-xl border border-white/10 px-4 text-xs font-black text-cyan-100">
+                    Anhang {index + 1} öffnen
+                  </a>
+                ))}
+              </div>
+            ) : <p className="mt-2 text-sm text-slate-500">Keine Anhänge gespeichert.</p>}
+          </div>
         </section>
 
         <section className="mt-6 rounded-2xl border border-amber-200/15 bg-amber-200/[0.05] p-5">

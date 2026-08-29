@@ -1,119 +1,168 @@
 {
-  "status": "WARN",
-  "generatedAt": "2026-06-20T03:44:32.465Z",
-  "mergeRecommendation": "YELLOW_WITH_MANUAL_STAGING",
+  "status": "FAIL",
+  "generatedAt": "2026-08-28T23:38:09.684Z",
+  "mergeRecommendation": "NO",
   "productionRecommendation": "NO_UNTIL_PREVIEW_AND_GBP_NAP_CHECK",
   "results": [
     {
-      "name": "npm run seo:health",
+      "name": "npm run build",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 6126,
-      "stderrTail": "(node:377960) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Admin/.gemini/antigravity/scratch/FLOXANTENDE/lib/gsc-click-priorities.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "durationMs": 366116,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run services:coverage",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 2205,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run packages:health",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1571,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run service-fit:health",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1710,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run ai:answer-health",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1737,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run english:intent-health",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1642,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run seo:health",
+      "status": "WARN",
+      "exitCode": 1,
+      "durationMs": 5263,
+      "stderrTail": "SEO_HEALTH_ERROR next start wurde beendet, bevor der Health-Check starten konnte:\n▲ Next.js 16.1.6\n- Local:         http://localhost:3211\n- Network:       http://192.168.178.27:3211\n\n✓ Starting...\nError: \"next start\" does not work with \"output: export\" configuration. Use \"npx serve@latest out\" instead.\n    at ignore-listed frames\n\n"
     },
     {
       "name": "npm run seo:conversion",
-      "status": "PASS",
-      "exitCode": 0,
-      "durationMs": 5058,
-      "stderrTail": "(node:385276) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Admin/.gemini/antigravity/scratch/FLOXANTENDE/lib/lead-intents.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+      "status": "WARN",
+      "exitCode": 1,
+      "durationMs": 3142,
+      "stderrTail": "- Local:         http://localhost:3213\n- Network:       http://192.168.178.27:3213\n\n✓ Starting...\nError: \"next start\" does not work with \"output: export\" configuration. Use \"npx serve@latest out\" instead.\n    at ignore-listed frames\n\n    at startServerIfNeeded (C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\scripts\\seo-conversion-check.ts:375:13)\n    at async main (C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\scripts\\seo-conversion-check.ts:522:18)\n"
     },
     {
       "name": "npm run lead:health",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 697,
+      "durationMs": 2120,
       "stderrTail": ""
     },
     {
       "name": "npm run site:qa",
-      "status": "PASS",
-      "exitCode": 0,
-      "durationMs": 980,
-      "stderrTail": ""
+      "status": "WARN",
+      "exitCode": 1,
+      "durationMs": 2834,
+      "stderrTail": "Error: UNKNOWN: unknown error, open 'C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\SITE_QA_REPORT.md'\n    at Object.writeFileSync (node:fs:2415:20)\n    at main (C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\FLOXANTENDE\\scripts\\site-qa-check.ts:609:6) {\n  errno: -4094,\n  code: 'UNKNOWN',\n  syscall: 'open',\n  path: 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\scratch\\\\FLOXANTENDE\\\\SITE_QA_REPORT.md'\n}\n"
     },
     {
       "name": "npm run trust:health",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 766,
+      "durationMs": 2085,
       "stderrTail": ""
     },
     {
       "name": "npm run copy:quality",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 714,
+      "durationMs": 2123,
       "stderrTail": ""
     },
     {
       "name": "npm run editorial:quality",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 847,
+      "durationMs": 2076,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run content:prune-health",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1676,
+      "stderrTail": ""
+    },
+    {
+      "name": "npm run lighthouse:local",
+      "status": "PASS",
+      "exitCode": 0,
+      "durationMs": 1671,
       "stderrTail": ""
     },
     {
       "name": "npm run snippet:health",
-      "status": "PASS",
-      "exitCode": 0,
-      "durationMs": 534,
-      "stderrTail": ""
+      "status": "WARN",
+      "exitCode": 1,
+      "durationMs": 1642,
+      "stderrTail": "    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -4094,\n  code: 'UNKNOWN',\n  syscall: 'open',\n  path: 'C:\\\\Users\\\\Admin\\\\.gemini\\\\antigravity\\\\scratch\\\\FLOXANTENDE\\\\snippet-health-report.json'\n}\n\nNode.js v24.11.1\n"
     },
     {
       "name": "npm run performance:health",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 834,
+      "durationMs": 2921,
       "stderrTail": ""
     },
     {
       "name": "npm run accessibility:health",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 610,
+      "durationMs": 2083,
       "stderrTail": ""
     },
     {
       "name": "npm run gsc:import",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 715,
+      "durationMs": 1696,
       "stderrTail": ""
     },
     {
       "name": "npm run text:encoding-check",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 651,
+      "durationMs": 2322,
       "stderrTail": ""
     },
     {
       "name": "npm run seo:dedupe-risk",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 619,
+      "durationMs": 1530,
       "stderrTail": ""
     },
     {
       "name": "npm run lint",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 31534,
+      "durationMs": 203560,
       "stderrTail": ""
     },
     {
       "name": "npm run typecheck",
       "status": "PASS",
       "exitCode": 0,
-      "durationMs": 4180,
-      "stderrTail": ""
-    },
-    {
-      "name": "npm run build",
-      "status": "PASS",
-      "exitCode": 0,
-      "durationMs": 109451,
+      "durationMs": 65210,
       "stderrTail": ""
     }
   ],
@@ -145,7 +194,7 @@
     },
     {
       "risk": "Performance",
-      "status": "WARN",
+      "status": "PASS",
       "note": "Client-JS, Assets und Vercel-sensitive Muster geprueft."
     },
     {
@@ -155,13 +204,23 @@
     },
     {
       "risk": "Snippet/CTR",
-      "status": "PASS",
+      "status": "FAIL",
       "note": "Priorisierte Title, Descriptions, lokale Signale und CTA-Ziele geprueft."
     },
     {
       "risk": "Editorial Quality",
       "status": "WARN",
       "note": "Inventar, Priorisierung, P0/P1-Briefs und Scoreboard geprueft."
+    },
+    {
+      "risk": "Service Packages",
+      "status": "PASS",
+      "note": "Paketmatrix, Signature-Gruppe, Kombi-Services und Seitenintegration geprueft."
+    },
+    {
+      "risk": "Service Fit",
+      "status": "PASS",
+      "note": "Entscheidungskomponente, Kombi-Strategie, English Intent und statische Umsetzung geprueft."
     },
     {
       "risk": "GBP/NAP",

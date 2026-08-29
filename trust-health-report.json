@@ -1,17 +1,23 @@
 {
   "status": "PASS",
-  "generatedAt": "2026-06-20T03:42:01.744Z",
+  "generatedAt": "2026-08-28T23:33:21.087Z",
   "checks": [
     {
       "status": "PASS",
       "name": "required trust files",
-      "detail": "19 required files present.",
+      "detail": "22 required files present.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "trust signal data gates",
+      "detail": "10 trust signals include visibility and risk gates.",
       "files": []
     },
     {
       "status": "PASS",
       "name": "prioritized route coverage",
-      "detail": "20 route/template trust checks passed.",
+      "detail": "19 route/template trust checks passed.",
       "files": []
     },
     {
@@ -41,7 +47,7 @@
     {
       "status": "PASS",
       "name": "local proof signals",
-      "detail": "Duesseldorf/Regensburg local proof and manual GBP boundaries are visible.",
+      "detail": "Düsseldorf and Regensburg show customer-facing location guidance without internal proof labels.",
       "files": []
     }
   ]

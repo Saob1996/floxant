@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:22:36.001Z",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "required navigation docs",
+      "detail": "6 navigation docs present.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "header navigation",
+      "detail": "Header uses compact primary links, visible offer-check/contact and mobile quick links.",
+      "files": [
+        "components/FloxNavigation.tsx"
+      ]
+    },
+    {
+      "status": "PASS",
+      "name": "footer cleanup",
+      "detail": "Footer uses short grouped links and disables dynamic service-card link block.",
+      "files": [
+        "components/Footer.tsx"
+      ]
+    },
+    {
+      "status": "PASS",
+      "name": "service navigation taxonomy",
+      "detail": "14 service/navigation entries with location, visibility and priority fields.",
+      "files": [
+        "lib/service-navigation.ts"
+      ]
+    },
+    {
+      "status": "PASS",
+      "name": "hub and contact guidance",
+      "detail": "Core hubs and contact page expose service overview, decision journey and contact navigator.",
+      "files": [
+        "app/leistungen/page.tsx",
+        "app/duesseldorf/page.tsx",
+        "app/regensburg/page.tsx",
+        "app/kontakt/page.tsx",
+        "components/ContactPathChooser.tsx"
+      ]
+    },
+    {
+      "status": "PASS",
+      "name": "navigation link targets",
+      "detail": "Required routes and taxonomy/header/footer link targets resolve to local app route files.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "vercel usage safety",
+      "detail": "No new public runtime, ISR, API fetch, sendBeacon, Supabase, Resend or sharp usage in navigation scope.",
+      "files": [
+        "components/FloxNavigation.tsx",
+        "components/FloxServicesMegaMenu.tsx",
+        "components/Footer.tsx",
+        "components/duesseldorf/DuesseldorfChrome.tsx",
+        "components/ContactPathChooser.tsx",
+        "components/DecisionCompassPanel.tsx",
+        "components/ServiceNavigationOverview.tsx",
+        "app/leistungen/page.tsx",
+        "app/duesseldorf/page.tsx",
+        "app/regensburg/page.tsx",
+        "app/kontakt/page.tsx",
+        "lib/service-navigation.ts",
+        "lib/floxant-services.ts"
+      ]
+    },
+    {
+      "status": "PASS",
+      "name": "ux seo safety",
+      "detail": "No keyword-cloud, linkfarm, fake guarantee or ranking-promise pattern in edited public navigation scope.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-08-28T23:26:10.452Z",
+  "overallStatus": "PASS",
+  "totals": {
+    "pass": 26,
+    "fail": 0
+  },
+  "docs": [
+    "docs/SOLARREINIGUNG_PV_ROUTE_ARCHITECTURE.md",
+    "docs/SOLARREINIGUNG_PV_KEYWORD_INTENT_MAP.md",
+    "docs/SOLARREINIGUNG_PV_DIFFERENTIATION_REPORT.md",
+    "docs/SOLARREINIGUNG_DUAL_LOCATION_REPORT.md",
+    "docs/SOLARREINIGUNG_PV_METADATA_SCHEMA_REPORT.md",
+    "docs/SOLARREINIGUNG_PV_INTERNAL_LINKING_REPORT.md",
+    "docs/SOLARREINIGUNG_PV_CONTENT_CLEANUP_REPORT.md"
+  ],
+  "checks": [
+    {
+      "id": "route:solarreinigung",
+      "label": "/solarreinigung route exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "route:pv",
+      "label": "/pv-anlagen-reinigung route exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "route:regensburg-solar",
+      "label": "/regensburg/solarreinigung route exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:solar",
+      "label": "Solarreinigung page has required authority markers",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:pv",
+      "label": "PV page has required authority markers",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "template:solar-modules",
+      "label": "Solar/PV template renders quick answer, offer check and differentiation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:solar-fields",
+      "label": "Solar/PV optional form fields are present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:solar-success",
+      "label": "Honest request success copy is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "form:no-load-api",
+      "label": "Lead API remains submit-only",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_ROUTE_ARCHITECTURE.md",
+      "label": "docs/SOLARREINIGUNG_PV_ROUTE_ARCHITECTURE.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_KEYWORD_INTENT_MAP.md",
+      "label": "docs/SOLARREINIGUNG_PV_KEYWORD_INTENT_MAP.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_DIFFERENTIATION_REPORT.md",
+      "label": "docs/SOLARREINIGUNG_PV_DIFFERENTIATION_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_DUAL_LOCATION_REPORT.md",
+      "label": "docs/SOLARREINIGUNG_DUAL_LOCATION_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_METADATA_SCHEMA_REPORT.md",
+      "label": "docs/SOLARREINIGUNG_PV_METADATA_SCHEMA_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_INTERNAL_LINKING_REPORT.md",
+      "label": "docs/SOLARREINIGUNG_PV_INTERNAL_LINKING_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "doc:SOLARREINIGUNG_PV_CONTENT_CLEANUP_REPORT.md",
+      "label": "docs/SOLARREINIGUNG_PV_CONTENT_CLEANUP_REPORT.md exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "package:script",
+      "label": "npm script solar-pv:health exists",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "sitemap:primary",
+      "label": "Sitemap contains primary solar/PV routes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "redirect:duesseldorf-solar",
+      "label": "/duesseldorf/solarreinigung is not a competing route",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "offer-check:solar",
+      "label": "Offer-check pages contain solar/PV offer-check intent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "local-hubs:solar",
+      "label": "Duesseldorf and Regensburg hubs expose solar/PV support",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "english:intent",
+      "label": "English solar panel cleaning intent is present",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "schema:no-fake-rating",
+      "label": "No fake rating/review schema markers in sprint source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:no-fake-claims",
+      "label": "No fake yield, price, certificate or safety guarantees in sprint source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "content:no-keyword-cloud",
+      "label": "No keyword cloud or hidden keyword pattern found",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vercel:safety",
+      "label": "No Vercel-sensitive public-page patterns added in solar/PV sprint files",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

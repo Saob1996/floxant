@@ -100,7 +100,11 @@ addCheck("Maximal 6 Hauptservicekarten", mainServices.length <= 6, `${mainServic
 addCheck("Maximal 4 besondere Lösungen", specialServices.length <= 4, `${specialServices.length} besondere Lösungen`);
 addCheck("Keine doppelten Hauptservicekarten", new Set(mainServices).size === mainServices.length, mainServices.join(", "));
 addCheck("Kein wiederholtes Rubriklabel", countMatches(visibleText, /Häufig angefragte Leistungen/gi) <= 1, `${countMatches(visibleText, /Häufig angefragte Leistungen/gi)} Vorkommen`);
-addCheck("Kein sichtbares Verfügbarkeitslabel", !/\bverfügbar\b/i.test(visibleText), "Kein Statuslabel ‚verfügbar‘");
+addCheck(
+  "Kein sichtbares Verfügbarkeitslabel",
+  !/(?:status\s*:\s*verfügbar|\b(?:jetzt|heute|sofort|24\s*\/\s*7)\s+verfügbar\b)/i.test(visibleText),
+  "Keine positive Status- oder Sofortverfügbarkeitszusage",
+);
 addCheck("Kein sichtbares ‚2 Wege‘", !/\b2 Wege\b/i.test(visibleText), "Kein Paket-/Variantenlabel");
 addCheck("Keine sichtbaren internen Begriffe", visibleForbidden.length === 0, visibleForbidden.length ? visibleForbidden.join(", ") : "Keine Treffer");
 addCheck("Kein sichtbarer Debug-Text", !/\b(?:TODO|DEBUG|undefined|NaN)\b/i.test(visibleText), "Keine Debug-Platzhalter");
@@ -108,7 +112,7 @@ addCheck("Keine sichtbaren Rohschlüssel", !/\b(?:serviceKey|intentKey)\b/.test(
 addCheck("Kein Menü über dem Hero beim Laden", !html.includes("data-desktop-mega-menu"), "Hero startet frei");
 addCheck("Horizontaler Overflow geschützt", pageSource.includes("overflow-x-clip"), "Homepage begrenzt horizontalen Überlauf");
 addCheck("Keine Vercel-Usage-Rückkehr", runtimeHits.length === 0, runtimeHits.length ? runtimeHits.join(", ") : "Keine dynamischen Laufzeit-/Besuchsaufrufe in der öffentlichen Renderkette");
-addCheck("Genau sieben Homepage-Abschnitte", countMatches(html, /data-home-section=/g) === 7, `${countMatches(html, /data-home-section=/g)} Abschnitte`);
+addCheck("Genau acht Homepage-Abschnitte", countMatches(html, /data-home-section=/g) === 8, `${countMatches(html, /data-home-section=/g)} Abschnitte`);
 addCheck("Mobile Navigation maximal zwei Ebenen", countMatches(headerSource + menuSource, /<details\b/g) === 3 && !/\sopen=/.test(headerSource + menuSource), "Drei unabhängige, initial geschlossene Accordions", "WARN");
 
 const totals = {

@@ -115,10 +115,12 @@ function main() {
     formsWithStatusSignals: 0,
   };
 
-  if (!/href="#main-content"/.test(layout) || !/skip-to-content/.test(layout)) {
+  const hasSkipLink = /href="#main-content"/.test(siteChrome) && /skip-to-content/.test(siteChrome);
+  const hasFocusableMain = /id="main-content"[\s\S]*tabIndex=\{-1\}|id="main-content"[\s\S]*tabIndex="-1"/.test(siteChrome);
+  if (!hasSkipLink) {
     findings.push(item("FAIL", "Skip link", "Root layout braucht Skip-Link zu #main-content.", "app/layout.tsx"));
   }
-  if (!/id="main-content"[\s\S]*tabIndex=\{-1\}|id="main-content"[\s\S]*tabIndex="-1"/.test(siteChrome)) {
+  if (!hasFocusableMain) {
     findings.push(item("FAIL", "Focusable main target", "#main-content muss fuer Skip-Link fokussierbar sein.", "components/layout/SiteChrome.tsx"));
   }
   if (!/\.flox-mobile-action:focus-visible/.test(css)) {
@@ -191,8 +193,8 @@ function main() {
 
   const status = findings.length ? "FAIL" : warnings.length ? "WARN" : "PASS";
   const checks = [
-    item("PASS", "Skip link present", "Skip-Link ist im Root Layout vorhanden.", "app/layout.tsx"),
-    item("PASS", "Main target focus", "#main-content ist fokussierbar.", "components/layout/SiteChrome.tsx"),
+    ...(hasSkipLink ? [item("PASS", "Skip link present", "Skip-Link ist in der zentralen SiteChrome vorhanden.", "components/layout/SiteChrome.tsx")] : []),
+    ...(hasFocusableMain ? [item("PASS", "Main target focus", "#main-content ist fokussierbar.", "components/layout/SiteChrome.tsx")] : []),
     ...warnings,
     ...findings,
   ];

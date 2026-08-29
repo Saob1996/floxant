@@ -40,8 +40,8 @@ const docs = [
 const sources = {
   page: read("app/diskret-service/page.tsx"),
   privateClient: read("app/private-client-service/page.tsx"),
-  contact: read("app/kontakt/page.tsx"),
-  nextConfig: read("next.config.js"),
+  contact: `${read("components/ContactQueryPersonalization.tsx")}\n${read("lib/booking/request-service-policy.js")}`,
+  redirects: read("public/_redirects"),
   sitemapConfig: read("lib/sitemap-config.ts"),
   sitemapRoutes: read("lib/sitemap-routes.ts"),
   serviceInventory: read("lib/service-inventory.ts"),
@@ -69,16 +69,16 @@ function warn(id, label, condition, details = "") {
 pass("route:primary", "Primary /diskret-service page exists", exists("app/diskret-service/page.tsx"));
 pass("asset:hero", "Neutral Diskret-Service hero asset exists", exists("public/assets/diskret-service-hero.png"));
 pass("metadata:primary", "Metadata title and description target Diskret-Service intent", includesAll(sources.page, [
-  "Diskret-Service fuer sensible Anfragen",
-  "Umzug, Entruempelung und Aufloesung",
+  "Diskret-Service für sensible Anfragen",
+  "Umzug, Entrümpelung und Auflösung",
   "Sensible Anfrage?",
 ]));
 pass("h1:intent", "H1 targets sensible Diskret-Service request", includesAll(sources.page, [
-  "Diskret-Service fuer sensible Anfragen",
-  "Umzug, Entruempelung und Aufloesung",
+  "Diskret-Service für sensible Anfragen",
+  "Umzug, Entrümpelung und Auflösung zurückhaltend klären",
 ]));
 pass("content:quick-answer", "Quick Answer block is visible", includesAll(sources.page, [
-  "Quick Answer",
+  "Kurz erklärt",
   "Der erste Schritt darf kurz bleiben.",
 ]));
 pass("content:situations", "Sensitive case situations are visible", includesAll(sources.page, [
@@ -119,7 +119,7 @@ pass("content:local", "Regensburg and Duesseldorf local starts are present witho
   "ohne Fake-Niederlassung",
 ]));
 pass("content:english", "English intent block is visible", includesAll(sources.page, [
-  "English Intent",
+  "Information in English",
   "Start discreet request in English",
 ]));
 pass("faq:visible-schema", "FAQ is visible and backed by FAQ schema", includesAll(sources.page, [
@@ -130,7 +130,7 @@ pass("faq:visible-schema", "FAQ is visible and backed by FAQ schema", includesAl
 pass("image:next-unoptimized", "Hero uses next/image without image optimization requirement", includesAll(sources.page, [
   "from \"next/image\"",
   "unoptimized",
-  "/assets/diskret-service-hero.png",
+  "/assets/diskret-service-hero.webp",
 ]));
 
 pass("lead:path-mapping", "Lead intent maps /diskret-service directly", includesAll(sources.leadIntents, [
@@ -140,9 +140,9 @@ pass("lead:path-mapping", "Lead intent maps /diskret-service directly", includes
 ]));
 pass("lead:conversion-target", "Lead conversion target includes /diskret-service", sources.leadIntents.includes('{ path: "/diskret-service", priorityPath: "/diskret-service" }'));
 pass("contact:entry", "Contact page exposes Diskret-Service path and FAQ clarification", includesAll(sources.contact, [
-  "Diskreten Fall beschreiben",
-  "/diskret-service",
-  "Sensible Fälle starten über den Diskret-Service",
+  'id: "diskret-service"',
+  'name: "FLOXANT Diskret-Service"',
+  'leadService: "diskret-service"',
 ]));
 
 pass("seo:gsc-entry", "GSC click priorities include /diskret-service as P0", includesAll(sources.gscPriorities, [
@@ -151,7 +151,7 @@ pass("seo:gsc-entry", "GSC click priorities include /diskret-service as P0", inc
   "internalLinkAnchors: diskretServiceAnchors",
 ]));
 pass("seo:private-client-separated", "Private Client priority is no longer the primary Diskret-Service target", includesAll(sources.gscPriorities, [
-  "Private Client Service - sensible Serviceanfragen strukturiert klaeren",
+  "Private Client Service - sensible private Anfragen klar abstimmen",
   "primaryKeyword: \"private client service\"",
 ]));
 pass("inventory:route", "Service inventory points Diskret-Service to /diskret-service", includesAll(sources.serviceInventory, [
@@ -166,11 +166,11 @@ pass("signature:route", "Signature services point Diskret-Service to /diskret-se
 ]));
 pass("sitemap:config", "Sitemap config includes diskret-service", sources.sitemapConfig.includes("\"diskret-service\""));
 warn("sitemap:generated", "Generated sitemap route list includes /diskret-service after seo:sitemap", sources.sitemapRoutes.includes("\"/diskret-service\""), "Run npm run seo:sitemap if this is WARN.");
-pass("redirect:no-primary-redirect", "/diskret-service is not redirected away", !/source:\s*['"]\/diskret-service['"][\s\S]*destination:\s*['"]\/private-client-service['"]/.test(sources.nextConfig));
-pass("redirect:alias", "/diskreter-service redirects to /diskret-service", sources.nextConfig.includes("['/diskreter-service', '/diskret-service']"));
+pass("redirect:no-primary-redirect", "/diskret-service is not redirected away", !/^\/diskret-service\s+/m.test(sources.redirects));
+pass("redirect:alias", "/diskreter-service redirects to /diskret-service", sources.redirects.includes("/diskreter-service /diskret-service 308"));
 
 pass("private-client:positioning", "Private Client page links to Diskret-Service and states separation", includesAll(sources.privateClient, [
-  "Private Client Service fuer sensible private Servicekoordination",
+  "Private Client Service für sensible private Anfragen",
   "/diskret-service",
   "separaten Diskret-Service",
 ]));

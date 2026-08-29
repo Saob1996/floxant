@@ -1,10 +1,10 @@
 # FLOXANT Site QA Report
 
-Generated: 2026-06-20T03:42:00.964Z
+Generated: 2026-08-28T23:38:17.064Z
 
 Overall status: PASS
 
-Summary: 134 PASS, 0 WARN, 0 FAIL
+Summary: 136 PASS, 0 WARN, 0 FAIL
 
 ## Scope
 
@@ -26,63 +26,64 @@ Summary: 134 PASS, 0 WARN, 0 FAIL
 | PASS | Routing | app/angebotscheck/page.tsx | /angebotscheck | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/anbieter-vergleichen/page.tsx | /anbieter-vergleichen | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/duesseldorf/page.tsx | /duesseldorf | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/duesseldorf/bueroreinigung/page.tsx | /duesseldorf/bueroreinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/gewerbereinigung/page.tsx | /duesseldorf/gewerbereinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/praxisreinigung/page.tsx | /duesseldorf/praxisreinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/fensterreinigung/page.tsx | /duesseldorf/fensterreinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/grundreinigung/page.tsx | /duesseldorf/grundreinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/umzug/page.tsx | /duesseldorf/umzug | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/entruempelung/page.tsx | /duesseldorf/entruempelung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/duesseldorf/haushaltsaufloesung/page.tsx | /duesseldorf/haushaltsaufloesung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/duesseldorf/gewerbereinigung/page.tsx | /duesseldorf/gewerbereinigung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/regensburg/page.tsx | /regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/regensburg/umzug/page.tsx | /regensburg/umzug | P2 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/umzug-regensburg/page.tsx | /umzug-regensburg | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/reinigung-regensburg/page.tsx | /reinigung-regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/entruempelung-regensburg/page.tsx | /entruempelung-regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/gewerbereinigung-regensburg/page.tsx | /gewerbereinigung-regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/bueroreinigung-regensburg/page.tsx | /bueroreinigung-regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/umzug/page.tsx | /regensburg/umzug | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/entruempelung/page.tsx | /regensburg/entruempelung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/gewerbereinigung/page.tsx | /regensburg/gewerbereinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/bueroreinigung/page.tsx | /regensburg/bueroreinigung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/klaviertransport-regensburg/page.tsx | /klaviertransport-regensburg | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | app/wohnungsaufloesung-regensburg/page.tsx | /wohnungsaufloesung-regensburg | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Routing | next.config.js | /b2b-bueroreinigung | P0 | Alias redirectet kanonisch nach /duesseldorf/bueroreinigung. | Keine Aktion. | no | no |
-| PASS | Routing | next.config.js | /diskret-service | P0 | Alias redirectet kanonisch nach /diskreter-umzug-trennung-scheidung. | Keine Aktion. | no | no |
+| PASS | Routing | app/regensburg/wohnungsaufloesung/page.tsx | /regensburg/wohnungsaufloesung | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
+| PASS | Routing | next.config.js | /b2b-bueroreinigung | P0 | Alias redirectet kanonisch nach /regensburg/bueroreinigung. | Keine Aktion. | no | no |
+| PASS | Routing | app/diskret-service/page.tsx | /diskret-service | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/diskreter-umzug-trennung-scheidung/page.tsx | /diskreter-umzug-trennung-scheidung | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/seniorenumzug-landshut/page.tsx | /seniorenumzug-landshut | P1 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | next.config.js | /umzug-im-alter-bayern | P1 | Alias redirectet kanonisch nach /seniorenumzug-bayern. | Keine Aktion. | no | no |
-| PASS | Routing | next.config.js | /reinigung-nach-entruempelung-landshut | P1 | Alias redirectet kanonisch nach /reinigung-landshut. | Keine Aktion. | no | no |
-| PASS | Routing | next.config.js | /fensterreinigung-duesseldorf | P0 | Alias redirectet kanonisch nach /duesseldorf/fensterreinigung. | Keine Aktion. | no | no |
+| PASS | Routing | next.config.js | /reinigung-nach-entruempelung-regensburg | P1 | Alias redirectet kanonisch nach /regensburg/reinigung. | Keine Aktion. | no | no |
+| PASS | Routing | app/fensterreinigung-regensburg/page.tsx | /fensterreinigung-regensburg | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/fernumzug-muenchen/page.tsx | /fernumzug-muenchen | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/impressum/page.tsx | /impressum | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/datenschutz/page.tsx | /datenschutz | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
 | PASS | Routing | app/agb/page.tsx | /agb | P0 | Kritische Route existiert als Page. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | / | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=brand-and-service-entry&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | / | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=brand-and-service-entry&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /kontakt | P0 | Kontaktziel ist PII-frei: /kontakt?city=regensburg&intent=contact&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /leistungen | P1 | Kontaktziel ist PII-frei: /kontakt?city=bayern&intent=service-selection&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=bayern&intent=cleaning&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /umzug | P1 | Kontaktziel ist PII-frei: /kontakt?service=umzug&city=bayern&intent=moving&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /entruempelung | P1 | Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=bayern&intent=clearance&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /angebot-guenstiger-pruefen | P0 | Kontaktziel ist PII-frei: /kontakt?service=angebot-pruefen&city=regensburg&intent=offer-check&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /angebotscheck | P0 | Kontaktziel ist PII-frei: /kontakt?service=angebot-pruefen&city=regensburg&intent=offer-check&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /anbieter-vergleichen | P1 | Kontaktziel ist PII-frei: /kontakt?service=angebot-pruefen&intent=provider-comparison&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /duesseldorf | P1 | Kontaktziel ist PII-frei: /kontakt?city=duesseldorf&intent=local-service-selection&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=praxisreinigung&city=regensburg&intent=practice-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=fensterreinigung&city=regensburg&intent=window-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=deep-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /duesseldorf/reinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /duesseldorf/bueroreinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=duesseldorf&intent=office-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/gewerbereinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=duesseldorf&intent=commercial-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/praxisreinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=praxisreinigung&city=duesseldorf&intent=practice-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/fensterreinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=fensterreinigung&city=duesseldorf&intent=window-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/grundreinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=duesseldorf&intent=deep-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/umzug | P1 | Kontaktziel ist PII-frei: /kontakt?service=umzug&city=duesseldorf&intent=moving-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/entruempelung | P1 | Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=duesseldorf&intent=clearance-dusseldorf&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /duesseldorf/haushaltsaufloesung | P1 | Kontaktziel ist PII-frei: /kontakt?service=wohnungsaufloesung&city=duesseldorf&intent=household-clearance-dusseldorf&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /duesseldorf/gewerbereinigung | P0 | Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=duesseldorf&intent=commercial-cleaning-dusseldorf&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?city=regensburg&intent=local-service-selection&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /regensburg/umzug | P2 | Kontaktziel ist PII-frei: /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /umzug-regensburg | P0 | Kontaktziel ist PII-frei: /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /reinigung-regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /entruempelung-regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /gewerbereinigung-regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /bueroreinigung-regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/umzug | P0 | Kontaktziel ist PII-frei: /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/reinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/entruempelung | P1 | Kontaktziel ist PII-frei: /kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/gewerbereinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/bueroreinigung | P1 | Kontaktziel ist PII-frei: /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /klaviertransport-regensburg | P0 | Kontaktziel ist PII-frei: /kontakt?service=klaviertransport&city=regensburg&intent=piano-transport-regensburg&source=seo. | Keine Aktion. | no | no |
-| PASS | Kontaktparameter | - | /wohnungsaufloesung-regensburg | P1 | Kontaktziel ist PII-frei: /kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /regensburg/wohnungsaufloesung | P1 | Kontaktziel ist PII-frei: /kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo. | Keine Aktion. | no | no |
+| PASS | Kontaktparameter | - | /diskret-service | P0 | Kontaktziel ist PII-frei: /kontakt?service=diskret-service&intent=discreet-service&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /diskreter-umzug-trennung-scheidung | P0 | Kontaktziel ist PII-frei: /kontakt?service=diskret-service&intent=discreet-move&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /seniorenumzug-landshut | P1 | Kontaktziel ist PII-frei: /kontakt?service=seniorenumzug&city=landshut&intent=senior-move-landshut&source=seo. | Keine Aktion. | no | no |
 | PASS | Kontaktparameter | - | /fernumzug-muenchen | P0 | Kontaktziel ist PII-frei: /kontakt?service=fernumzug&city=muenchen&intent=long-distance-move-munich&source=seo. | Keine Aktion. | no | no |
@@ -96,29 +97,30 @@ Summary: 134 PASS, 0 WARN, 0 FAIL
 | PASS | CTA | app/angebotscheck/page.tsx | /angebotscheck | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/anbieter-vergleichen/page.tsx | /anbieter-vergleichen | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/duesseldorf/page.tsx | /duesseldorf | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/duesseldorf/reinigung/page.tsx | /duesseldorf/reinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/duesseldorf/bueroreinigung/page.tsx | /duesseldorf/bueroreinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/gewerbereinigung/page.tsx | /duesseldorf/gewerbereinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/praxisreinigung/page.tsx | /duesseldorf/praxisreinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/fensterreinigung/page.tsx | /duesseldorf/fensterreinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/grundreinigung/page.tsx | /duesseldorf/grundreinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/umzug/page.tsx | /duesseldorf/umzug | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/entruempelung/page.tsx | /duesseldorf/entruempelung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/duesseldorf/haushaltsaufloesung/page.tsx | /duesseldorf/haushaltsaufloesung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/duesseldorf/gewerbereinigung/page.tsx | /duesseldorf/gewerbereinigung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/page.tsx | /regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P2 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/umzug-regensburg/page.tsx | /umzug-regensburg | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/reinigung-regensburg/page.tsx | /reinigung-regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/entruempelung-regensburg/page.tsx | /entruempelung-regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/gewerbereinigung-regensburg/page.tsx | /gewerbereinigung-regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/bueroreinigung-regensburg/page.tsx | /bueroreinigung-regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/umzug/page.tsx | /regensburg/umzug | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/reinigung/page.tsx | /regensburg/reinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/entruempelung/page.tsx | /regensburg/entruempelung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/gewerbereinigung/page.tsx | /regensburg/gewerbereinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/bueroreinigung/page.tsx | /regensburg/bueroreinigung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/klaviertransport-regensburg/page.tsx | /klaviertransport-regensburg | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | CTA | app/wohnungsaufloesung-regensburg/page.tsx | /wohnungsaufloesung-regensburg | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/regensburg/wohnungsaufloesung/page.tsx | /regensburg/wohnungsaufloesung | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
+| PASS | CTA | app/diskret-service/page.tsx | /diskret-service | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/diskreter-umzug-trennung-scheidung/page.tsx | /diskreter-umzug-trennung-scheidung | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/seniorenumzug-landshut/page.tsx | /seniorenumzug-landshut | P1 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
 | PASS | CTA | app/fernumzug-muenchen/page.tsx | /fernumzug-muenchen | P0 | CTA/Lead-Intent-Signale und echte href-Struktur vorhanden. | Keine Aktion. | no | no |
-| PASS | Lead-Formular | components/SeoLeadForm.tsx | /kontakt | P0 | Name, Kontaktwege, Service, Ort, Nachricht, Datenschutz, Honeypot, Success- und Error-State vorhanden. | Keine Aktion. | no | no |
-| PASS | Lead-API | app/api/bookings/route.ts | /api/bookings | P0 | Lead-API verarbeitet Normalisierung, Datenschutz, Honeypot und Offer-Signale. | Keine Aktion. | no | no |
+| PASS | Lead-Formular | components/ProfessionalRequestForm.tsx | /kontakt | P0 | Name, Kontaktwege, Service, Ort, Nachricht, Datenschutz, Honeypot, Success- und Error-State vorhanden. | Keine Aktion. | no | no |
+| PASS | Lead-API | functions/_lib/lead-handler.js | /api/bookings | P0 | Lead-API verarbeitet Normalisierung, Datenschutz, Honeypot und Offer-Signale. | Keine Aktion. | no | no |
 | PASS | Angebotscheck | - | /angebotscheck | P0 | OfferStatus, OfferConcern, Datenschutz, Success-State und Preisgarantie-Grenze sind vorhanden. | Keine Aktion. | no | no |
 | PASS | Lead-to-Booking | lib/service-packages.ts | - | P0 | Service-Pakete enthalten Fit, Grenzen, Pflichtangaben, optionale Angaben, Aufwandstreiber und Kontaktparameter. | Keine Aktion. | no | no |
 | PASS | Lead-to-Booking | lib/service-effort-factors.ts | - | P0 | Aufwandsfaktoren erklaeren Reinigungs-, B2B-, Umzugs-, Entruempelungs- und Angebotscheck-Kontexte. | Keine Aktion. | no | no |
@@ -155,34 +157,35 @@ Summary: 134 PASS, 0 WARN, 0 FAIL
 
 | Route | Contact target |
 | --- | --- |
-| / | /kontakt?service=reinigung&city=duesseldorf&intent=brand-and-service-entry&source=seo |
+| / | /kontakt?service=reinigung&city=regensburg&intent=brand-and-service-entry&source=seo |
 | /kontakt | /kontakt?city=regensburg&intent=contact&source=seo |
 | /leistungen | /kontakt?city=bayern&intent=service-selection&source=seo |
-| /reinigung | /kontakt?service=reinigung&city=bayern&intent=cleaning&source=seo |
+| /reinigung | /kontakt?service=reinigung&city=regensburg&intent=cleaning&source=seo |
 | /umzug | /kontakt?service=umzug&city=bayern&intent=moving&source=seo |
 | /entruempelung | /kontakt?service=entruempelung&city=bayern&intent=clearance&source=seo |
 | /angebot-guenstiger-pruefen | /kontakt?service=angebot-pruefen&city=regensburg&intent=offer-check&source=seo |
 | /angebotscheck | /kontakt?service=angebot-pruefen&city=regensburg&intent=offer-check&source=seo |
 | /anbieter-vergleichen | /kontakt?service=angebot-pruefen&intent=provider-comparison&source=seo |
 | /duesseldorf | /kontakt?city=duesseldorf&intent=local-service-selection&source=seo |
+| /regensburg/reinigung | /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=praxisreinigung&city=regensburg&intent=practice-cleaning-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=fensterreinigung&city=regensburg&intent=window-cleaning-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=reinigung&city=regensburg&intent=deep-cleaning-regensburg&source=seo |
 | /duesseldorf/reinigung | /kontakt?service=reinigung&city=duesseldorf&intent=cleaning-dusseldorf&source=seo |
 | /duesseldorf/bueroreinigung | /kontakt?service=bueroreinigung&city=duesseldorf&intent=office-cleaning-dusseldorf&source=seo |
 | /duesseldorf/gewerbereinigung | /kontakt?service=gewerbereinigung&city=duesseldorf&intent=commercial-cleaning-dusseldorf&source=seo |
-| /duesseldorf/praxisreinigung | /kontakt?service=praxisreinigung&city=duesseldorf&intent=practice-cleaning-dusseldorf&source=seo |
-| /duesseldorf/fensterreinigung | /kontakt?service=fensterreinigung&city=duesseldorf&intent=window-cleaning-dusseldorf&source=seo |
-| /duesseldorf/grundreinigung | /kontakt?service=reinigung&city=duesseldorf&intent=deep-cleaning-dusseldorf&source=seo |
-| /duesseldorf/umzug | /kontakt?service=umzug&city=duesseldorf&intent=moving-dusseldorf&source=seo |
-| /duesseldorf/entruempelung | /kontakt?service=entruempelung&city=duesseldorf&intent=clearance-dusseldorf&source=seo |
-| /duesseldorf/haushaltsaufloesung | /kontakt?service=wohnungsaufloesung&city=duesseldorf&intent=household-clearance-dusseldorf&source=seo |
 | /regensburg | /kontakt?city=regensburg&intent=local-service-selection&source=seo |
 | /regensburg/umzug | /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo |
-| /umzug-regensburg | /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo |
-| /reinigung-regensburg | /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo |
-| /entruempelung-regensburg | /kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo |
-| /gewerbereinigung-regensburg | /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo |
-| /bueroreinigung-regensburg | /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo |
+| /regensburg/umzug | /kontakt?service=umzug&city=regensburg&intent=moving-regensburg&source=seo |
+| /regensburg/reinigung | /kontakt?service=reinigung&city=regensburg&intent=cleaning-regensburg&source=seo |
+| /regensburg/entruempelung | /kontakt?service=entruempelung&city=regensburg&intent=clearance-regensburg&source=seo |
+| /regensburg/gewerbereinigung | /kontakt?service=gewerbereinigung&city=regensburg&intent=commercial-cleaning-regensburg&source=seo |
+| /regensburg/bueroreinigung | /kontakt?service=bueroreinigung&city=regensburg&intent=office-cleaning-regensburg&source=seo |
 | /klaviertransport-regensburg | /kontakt?service=klaviertransport&city=regensburg&intent=piano-transport-regensburg&source=seo |
-| /wohnungsaufloesung-regensburg | /kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo |
+| /regensburg/wohnungsaufloesung | /kontakt?service=wohnungsaufloesung&city=regensburg&intent=estate-clearance-regensburg&source=seo |
+| /diskret-service | /kontakt?service=diskret-service&intent=discreet-service&source=seo |
 | /diskreter-umzug-trennung-scheidung | /kontakt?service=diskret-service&intent=discreet-move&source=seo |
 | /seniorenumzug-landshut | /kontakt?service=seniorenumzug&city=landshut&intent=senior-move-landshut&source=seo |
 | /fernumzug-muenchen | /kontakt?service=fernumzug&city=muenchen&intent=long-distance-move-munich&source=seo |

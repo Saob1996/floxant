@@ -1,18 +1,15 @@
 {
-  "status": "WARN",
-  "generatedAt": "2026-06-20T03:42:04.671Z",
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:33:33.168Z",
   "summary": {
-    "sourceFiles": 821,
-    "clientFiles": 121,
+    "sourceFiles": 817,
+    "clientFiles": 128,
+    "internalClientFiles": 12,
+    "publicClientFiles": 116,
+    "goldenClientFiles": 44,
+    "goldenRoutesChecked": 20,
+    "removedClientFilesFromPublicPath": 0,
     "clientApiFetches": [
-      {
-        "file": "app/dashboard/DashboardClient.tsx",
-        "submitLikely": true
-      },
-      {
-        "file": "app/dashboard/documents/[id]/page.tsx",
-        "submitLikely": false
-      },
       {
         "file": "components/BackhaulOffersBoard.tsx",
         "submitLikely": true
@@ -70,19 +67,11 @@
         "submitLikely": true
       },
       {
-        "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
-        "submitLikely": true
-      },
-      {
-        "file": "components/duesseldorf/GewerbereinigungAdsForm.tsx",
-        "submitLikely": true
-      },
-      {
-        "file": "components/DuesseldorfApartmentCleaningForm.tsx",
-        "submitLikely": true
-      },
-      {
         "file": "components/DuesseldorfB2BCleaningForm.tsx",
+        "submitLikely": true
+      },
+      {
+        "file": "components/english/EnglishRequestForm.tsx",
         "submitLikely": true
       },
       {
@@ -138,6 +127,10 @@
         "submitLikely": true
       },
       {
+        "file": "components/RegensburgApartmentCleaningForm.tsx",
+        "submitLikely": true
+      },
+      {
         "file": "components/RentalReadyForm.tsx",
         "submitLikely": true
       },
@@ -160,23 +153,31 @@
     ],
     "browserApiHitsTop": [
       {
+        "file": "components/SeoLeadForm.tsx",
+        "hits": 79
+      },
+      {
+        "file": "components/ProfessionalRequestForm.tsx",
+        "hits": 59
+      },
+      {
         "file": "components/dashboard/documents/DocumentSystemClient.tsx",
         "hits": 55
       },
       {
-        "file": "app/dashboard/DashboardClient.tsx",
+        "file": "components/SmartBookingWizard.tsx",
         "hits": 45
       },
       {
         "file": "components/ConversionEventReporter.tsx",
-        "hits": 41
+        "hits": 42
       },
       {
-        "file": "components/SeoLeadForm.tsx",
-        "hits": 34
+        "file": "components/admin-dashboard/AdminDashboard.tsx",
+        "hits": 35
       },
       {
-        "file": "components/SmartBookingWizard.tsx",
+        "file": "components/FloxNavigation.tsx",
         "hits": 30
       },
       {
@@ -188,27 +189,23 @@
         "hits": 26
       },
       {
-        "file": "components/duesseldorf/DuesseldorfCleaningCalculator.tsx",
-        "hits": 25
-      },
-      {
         "file": "components/DamageControlForm.tsx",
         "hits": 23
+      },
+      {
+        "file": "components/tools/ClarityCheckTool.tsx",
+        "hits": 22
       },
       {
         "file": "components/calculator/ExitIntentModal.tsx",
         "hits": 20
       },
       {
-        "file": "components/DuesseldorfApartmentCleaningForm.tsx",
-        "hits": 20
-      },
-      {
-        "file": "components/FloxNavigation.tsx",
-        "hits": 19
-      },
-      {
         "file": "components/CellarTrashroomRescueForm.tsx",
+        "hits": 18
+      },
+      {
+        "file": "components/ContactQueryPersonalization.tsx",
         "hits": 18
       },
       {
@@ -240,6 +237,10 @@
         "hits": 16
       },
       {
+        "file": "components/OfferComparisonAdsTracker.tsx",
+        "hits": 16
+      },
+      {
         "file": "components/PlanBServiceForm.tsx",
         "hits": 16
       },
@@ -250,20 +251,12 @@
       {
         "file": "components/QuickExpressModal.tsx",
         "hits": 16
-      },
-      {
-        "file": "components/calculator/LeadCaptureForm.tsx",
-        "hits": 15
-      },
-      {
-        "file": "components/CheaperAlternativeForm.tsx",
-        "hits": 15
       }
     ],
-    "publicAssetTotalKb": 9142.4,
-    "publicAssetsOver512Kb": 8,
-    "publicAssetsOver1024Kb": 1,
-    "imageUsageCount": 31
+    "publicAssetTotalKb": 3454.7,
+    "publicAssetsOver512Kb": 0,
+    "publicAssetsOver1024Kb": 0,
+    "imageUsageCount": 33
   },
   "checks": [
     {
@@ -288,137 +281,207 @@
       "line": ""
     },
     {
-      "status": "WARN",
-      "label": "Client component budget",
-      "detail": "121 Client-Dateien gefunden.",
+      "status": "INFO",
+      "label": "Golden client budget",
+      "detail": "44 Client-Dateien im Golden-Set-Importgraph gefunden.",
       "file": "",
       "line": ""
     },
     {
-      "status": "WARN",
-      "label": "Large assets",
-      "detail": "8 Assets ueber 512 KB gefunden.",
+      "status": "INFO",
+      "label": "Repository client inventory",
+      "detail": "128 Client-Dateien repo-weit; 12 intern/admin, 116 public-path.",
       "file": "",
       "line": ""
     }
   ],
+  "clientInventory": {
+    "internalClientFiles": [
+      "components/dashboard/AdminHealthControl.tsx",
+      "components/dashboard/BookingDetailView.tsx",
+      "components/dashboard/CostCalculator.tsx",
+      "components/dashboard/CustomerInbox.tsx",
+      "components/dashboard/documents/DocumentA4Preview.tsx",
+      "components/dashboard/documents/DocumentChainTracker.tsx",
+      "components/dashboard/documents/DocumentManager.tsx",
+      "components/dashboard/documents/DocumentSystemClient.tsx",
+      "components/dashboard/documents/QuoteEditor.tsx",
+      "components/dashboard/IncomeExpenseTracker.tsx",
+      "components/dashboard/InternalPricingWorkbench.tsx",
+      "components/dashboard/OperationsControlPanel.tsx"
+    ],
+    "publicClientFiles": [
+      "app/error.tsx",
+      "app/feedback/page.tsx",
+      "app/global-error.tsx",
+      "components/admin-dashboard/AdminBackhaulPanel.tsx",
+      "components/admin-dashboard/AdminDashboard.tsx",
+      "components/admin-dashboard/AdminLogin.tsx",
+      "components/BackhaulOffersBoard.tsx",
+      "components/BookingForm.tsx",
+      "components/BudgetContactForm.tsx",
+      "components/BusinessDisposalForm.tsx",
+      "components/calculator/AdvancedCalculator.tsx",
+      "components/calculator/DualCalculator.tsx",
+      "components/calculator/elite/CleaningEliteCalculator.tsx",
+      "components/calculator/elite/DisposalEliteCalculator.tsx",
+      "components/calculator/elite/MovingEliteCalculator.tsx",
+      "components/calculator/ExitIntentModal.tsx",
+      "components/calculator/ExpertTooltip.tsx",
+      "components/calculator/ExpressCalculator.tsx",
+      "components/calculator/forms/ArchiveForm.tsx",
+      "components/calculator/forms/BueroumzugForm.tsx",
+      "components/calculator/forms/EntsorgungForm.tsx",
+      "components/calculator/forms/PaintingForm.tsx",
+      "components/calculator/forms/PianoForm.tsx",
+      "components/calculator/forms/ReinigungForm.tsx",
+      "components/calculator/forms/StorageForm.tsx",
+      "components/calculator/forms/UmzugForm.tsx",
+      "components/calculator/IntakeWizard.tsx",
+      "components/calculator/LeadCaptureForm.tsx",
+      "components/calculator/LeadClosing.tsx",
+      "components/calculator/ModeSelection.tsx",
+      "components/calculator/ServiceRechnerHub.tsx",
+      "components/calculator/standalone/FloxEntsorgungRechner.tsx",
+      "components/calculator/standalone/FloxReinigungRechner.tsx",
+      "components/calculator/standalone/FloxUmzugRechner.tsx",
+      "components/calculator/ui/ValuationSummary.tsx",
+      "components/calculator/VolumeIndicator.tsx",
+      "components/CellarTrashroomRescueForm.tsx",
+      "components/CheaperAlternativeForm.tsx",
+      "components/CommercialCleaningLeadForm.tsx",
+      "components/ContactQueryPersonalization.tsx",
+      "components/ConversionEventReporter.tsx",
+      "components/CookieBanner.tsx",
+      "components/CopyRequestSummaryButton.tsx",
+      "components/DamageControlForm.tsx",
+      "components/DeferredSiteWidgets.tsx",
+      "components/DiscreetMoveForm.tsx",
+      "components/duesseldorf/DuesseldorfStickyActions.tsx",
+      "components/DuesseldorfB2BCleaningForm.tsx",
+      "components/Einsatzradar.tsx",
+      "components/english/EnglishHeader.tsx",
+      "components/english/EnglishQuoteCheckExperience.tsx",
+      "components/english/EnglishRequestBriefExperience.tsx",
+      "components/english/EnglishRequestForm.tsx",
+      "components/EstateClearanceForm.tsx",
+      "components/FloxantObjectBriefBuilder.tsx",
+      "components/FloxNavigation.tsx",
+      "components/FloxServicesMegaMenu.tsx",
+      "components/Footer.tsx",
+      "components/GalleryModal.tsx",
+      "components/GlobalRequestCenter.tsx",
+      "components/GoogleAdsTag.tsx",
+      "components/HandoverDossierDemo.tsx",
+      "components/HandoverFileForm.tsx",
+      "components/HeroQuickstart.tsx",
+      "components/inquiry/InquiryIntentModal.tsx",
+      "components/layout/SiteChrome.tsx",
+      "components/Magnetic.tsx",
+      "components/MobileFloatingContact.tsx",
+      "components/MotionProvider.tsx",
+      "components/navigation/CustomerJourneyMobile.tsx",
+      "components/navigation/CustomerJourneyNav.tsx",
+      "components/OfferCheckConversionFlow.tsx",
+      "components/OfferCheckForm.tsx",
+      "components/OfferComparisonAdsForm.tsx",
+      "components/OfferComparisonAdsTracker.tsx",
+      "components/OfferRedFlagScanner.tsx",
+      "components/operations/BavariaRouteMap.tsx",
+      "components/operations/BudgetOperatingCta.tsx",
+      "components/operations/OperatingProofStrip.tsx",
+      "components/operations/OperatingStatusBar.tsx",
+      "components/operations/PlzOperationScanner.tsx",
+      "components/PlanBServiceForm.tsx",
+      "components/PlanGekipptTrigger.tsx",
+      "components/PlatformOrderCheckForm.tsx",
+      "components/PrivateClientInquiryForm.tsx",
+      "components/ProfessionalRequestForm.tsx",
+      "components/PropertyReadyForm.tsx",
+      "components/PublicHeader.tsx",
+      "components/QuickBudgetModal.tsx",
+      "components/QuickExpressModal.tsx",
+      "components/RealtorLandlordLinkForm.tsx",
+      "components/ReferralPartnerCodeForm.tsx",
+      "components/RegensburgApartmentCleaningForm.tsx",
+      "components/RegionalRouteNotice.tsx",
+      "components/RentalReadyForm.tsx",
+      "components/ReturnTripBoardForm.tsx",
+      "components/seo/DocumentLanguage.tsx",
+      "components/SeoLeadForm.tsx",
+      "components/ServiceSelector.tsx",
+      "components/session-provider.tsx",
+      "components/SmartBookingWizard.tsx",
+      "components/TenantTurnoverForm.tsx",
+      "components/tools/ClarityCheckTool.tsx",
+      "components/tools/RequestBriefBuilder.tsx",
+      "components/tools/ServiceFinderTool.tsx",
+      "components/trust/LiveActivityFeed.tsx",
+      "components/trust/ReviewCarousel.tsx",
+      "components/trust/TrustBadge.tsx",
+      "components/trust/TrustBlock.tsx",
+      "components/ui/Magnetic.tsx",
+      "components/ui/PremiumButton.tsx",
+      "components/ui/Reveal.tsx",
+      "components/UploadDropCard.tsx",
+      "components/UtmCapture.tsx",
+      "components/WebVitalsReporter.tsx",
+      "components/WhatsAppButton.tsx"
+    ],
+    "goldenClientFiles": [
+      "components/ContactQueryPersonalization.tsx",
+      "components/ConversionEventReporter.tsx",
+      "components/CookieBanner.tsx",
+      "components/DeferredSiteWidgets.tsx",
+      "components/FloxNavigation.tsx",
+      "components/FloxServicesMegaMenu.tsx",
+      "components/Footer.tsx",
+      "components/GlobalRequestCenter.tsx",
+      "components/GoogleAdsTag.tsx",
+      "components/MotionProvider.tsx",
+      "components/OfferComparisonAdsForm.tsx",
+      "components/OfferComparisonAdsTracker.tsx",
+      "components/ProfessionalRequestForm.tsx",
+      "components/PublicHeader.tsx",
+      "components/RegionalRouteNotice.tsx",
+      "components/SeoLeadForm.tsx",
+      "components/UtmCapture.tsx",
+      "components/calculator/AdvancedCalculator.tsx",
+      "components/calculator/DualCalculator.tsx",
+      "components/calculator/ExitIntentModal.tsx",
+      "components/calculator/ExpertTooltip.tsx",
+      "components/calculator/ExpressCalculator.tsx",
+      "components/calculator/LeadClosing.tsx",
+      "components/calculator/ModeSelection.tsx",
+      "components/calculator/VolumeIndicator.tsx",
+      "components/calculator/elite/CleaningEliteCalculator.tsx",
+      "components/calculator/elite/MovingEliteCalculator.tsx",
+      "components/calculator/forms/ArchiveForm.tsx",
+      "components/calculator/forms/BueroumzugForm.tsx",
+      "components/calculator/forms/EntsorgungForm.tsx",
+      "components/calculator/forms/PaintingForm.tsx",
+      "components/calculator/forms/PianoForm.tsx",
+      "components/calculator/forms/ReinigungForm.tsx",
+      "components/calculator/forms/StorageForm.tsx",
+      "components/calculator/forms/UmzugForm.tsx",
+      "components/calculator/standalone/FloxEntsorgungRechner.tsx",
+      "components/calculator/standalone/FloxReinigungRechner.tsx",
+      "components/calculator/standalone/FloxUmzugRechner.tsx",
+      "components/english/EnglishHeader.tsx",
+      "components/layout/SiteChrome.tsx",
+      "components/trust/LiveActivityFeed.tsx",
+      "components/trust/TrustBadge.tsx",
+      "components/trust/TrustBlock.tsx",
+      "components/ui/Magnetic.tsx"
+    ]
+  },
   "assets": {
-    "totalBytes": 9361861,
-    "totalKb": 9142.4,
-    "count": 29,
-    "over512Kb": [
-      {
-        "file": "public/assets/floxant-hero-neu-gedacht.png",
-        "bytes": 1868189,
-        "kb": 1824.4,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-clearance.png",
-        "bytes": 859667,
-        "kb": 839.5,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-moving.png",
-        "bytes": 710081,
-        "kb": 693.4,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-48h.png",
-        "bytes": 696500,
-        "kb": 680.2,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-clean.png",
-        "bytes": 643281,
-        "kb": 628.2,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-cleaning.png",
-        "bytes": 635973,
-        "kb": 621.1,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-kit.png",
-        "bytes": 621083,
-        "kb": 606.5,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-ritual.png",
-        "bytes": 606483,
-        "kb": 592.3,
-        "ext": ".png"
-      }
-    ],
-    "over1024Kb": [
-      {
-        "file": "public/assets/floxant-hero-neu-gedacht.png",
-        "bytes": 1868189,
-        "kb": 1824.4,
-        "ext": ".png"
-      }
-    ],
+    "totalBytes": 3537662,
+    "totalKb": 3454.7,
+    "count": 34,
+    "over512Kb": [],
+    "over1024Kb": [],
     "largest": [
-      {
-        "file": "public/assets/floxant-hero-neu-gedacht.png",
-        "bytes": 1868189,
-        "kb": 1824.4,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-clearance.png",
-        "bytes": 859667,
-        "kb": 839.5,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-moving.png",
-        "bytes": 710081,
-        "kb": 693.4,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-48h.png",
-        "bytes": 696500,
-        "kb": 680.2,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-clean.png",
-        "bytes": 643281,
-        "kb": 628.2,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/service-cleaning.png",
-        "bytes": 635973,
-        "kb": 621.1,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-kit.png",
-        "bytes": 621083,
-        "kb": 606.5,
-        "ext": ".png"
-      },
-      {
-        "file": "public/assets/sig-ritual.png",
-        "bytes": 606483,
-        "kb": 592.3,
-        "ext": ".png"
-      },
-      {
-        "file": "public/og.jpg",
-        "bytes": 422089,
-        "kb": 412.2,
-        "ext": ".jpg"
-      },
       {
         "file": "public/uploads/1770296622700_image006.png",
         "bytes": 341317,
@@ -432,15 +495,33 @@
         "ext": ".ico"
       },
       {
-        "file": "public/icon.png",
-        "bytes": 324068,
-        "kb": 316.5,
+        "file": "public/assets/floxant-hero-neu-gedacht.png",
+        "bytes": 298001,
+        "kb": 291,
         "ext": ".png"
       },
       {
-        "file": "public/logo_v10.png",
-        "bytes": 324068,
-        "kb": 316.5,
+        "file": "public/assets/service-clearance.png",
+        "bytes": 295172,
+        "kb": 288.3,
+        "ext": ".png"
+      },
+      {
+        "file": "public/assets/diskret-service-hero.png",
+        "bytes": 270250,
+        "kb": 263.9,
+        "ext": ".png"
+      },
+      {
+        "file": "public/assets/service-cleaning.png",
+        "bytes": 230200,
+        "kb": 224.8,
+        "ext": ".png"
+      },
+      {
+        "file": "public/assets/service-moving.png",
+        "bytes": 199056,
+        "kb": 194.4,
         "ext": ".png"
       },
       {
@@ -454,6 +535,18 @@
         "bytes": 130833,
         "kb": 127.8,
         "ext": ".png"
+      },
+      {
+        "file": "public/assets/service-clearance.webp",
+        "bytes": 125312,
+        "kb": 122.4,
+        "ext": ".webp"
+      },
+      {
+        "file": "public/assets/floxant-hero-neu-gedacht.webp",
+        "bytes": 120118,
+        "kb": 117.3,
+        "ext": ".webp"
       },
       {
         "file": "public/assets/property-operations/airbnb-turnover-express.png",
@@ -484,6 +577,30 @@
         "bytes": 85310,
         "kb": 83.3,
         "ext": ".png"
+      },
+      {
+        "file": "public/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp",
+        "bytes": 84338,
+        "kb": 82.4,
+        "ext": ".webp"
+      },
+      {
+        "file": "public/assets/service-moving.webp",
+        "bytes": 77928,
+        "kb": 76.1,
+        "ext": ".webp"
+      },
+      {
+        "file": "public/assets/gewerbereinigung/reinigungsanfrage-checkliste-regensburg.webp",
+        "bytes": 77002,
+        "kb": 75.2,
+        "ext": ".webp"
+      },
+      {
+        "file": "public/assets/gewerbereinigung/schluessel-treppenhausreinigung-regensburg.webp",
+        "bytes": 72466,
+        "kb": 70.8,
+        "ext": ".webp"
       }
     ]
   },
@@ -503,6 +620,13 @@
       "sizesCount": 1
     },
     {
+      "file": "app/bueroreinigung/page.tsx",
+      "nextImageCount": 1,
+      "rawImgCount": 0,
+      "priorityCount": 1,
+      "sizesCount": 1
+    },
+    {
       "file": "app/bueroreinigung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
@@ -510,11 +634,11 @@
       "sizesCount": 1
     },
     {
-      "file": "app/duesseldorf/gewerbereinigung/page.tsx",
+      "file": "app/diskret-service/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
       "priorityCount": 2,
-      "sizesCount": 1
+      "sizesCount": 0
     },
     {
       "file": "app/duesseldorf/luxusreinigung/page.tsx",
@@ -524,10 +648,17 @@
       "sizesCount": 1
     },
     {
+      "file": "app/duesseldorf/page.tsx",
+      "nextImageCount": 1,
+      "rawImgCount": 0,
+      "priorityCount": 4,
+      "sizesCount": 1
+    },
+    {
       "file": "app/fensterreinigung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 2,
       "sizesCount": 1
     },
     {
@@ -559,28 +690,28 @@
       "sizesCount": 1
     },
     {
-      "file": "app/objektbrief/page.tsx",
-      "nextImageCount": 1,
-      "rawImgCount": 0,
-      "priorityCount": 1,
-      "sizesCount": 1
-    },
-    {
       "file": "app/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 4,
+      "priorityCount": 2,
       "sizesCount": 1
     },
     {
       "file": "app/praxisreinigung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 2,
       "sizesCount": 1
     },
     {
       "file": "app/regensburg/page.tsx",
+      "nextImageCount": 1,
+      "rawImgCount": 0,
+      "priorityCount": 1,
+      "sizesCount": 1
+    },
+    {
+      "file": "app/reinigung-moeblierte-wohnung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
       "priorityCount": 1,
@@ -618,14 +749,14 @@
       "file": "app/treppenhausreinigung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 2,
       "sizesCount": 1
     },
     {
       "file": "app/unterhaltsreinigung-regensburg/page.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 2,
       "sizesCount": 1
     },
     {
@@ -653,14 +784,14 @@
       "file": "components/GrowthServiceLandingPage.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 3,
       "sizesCount": 1
     },
     {
       "file": "components/LocalServiceSeoPage.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 1,
+      "priorityCount": 5,
       "sizesCount": 1
     },
     {
@@ -702,7 +833,7 @@
       "file": "components/SpecialtyPageLayout.tsx",
       "nextImageCount": 1,
       "rawImgCount": 0,
-      "priorityCount": 2,
+      "priorityCount": 4,
       "sizesCount": 1
     }
   ]

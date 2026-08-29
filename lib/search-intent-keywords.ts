@@ -425,7 +425,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Entrümpelungsangebot prüfen mit Räumen, Fotos, Zugang, Entsorgung und Endzustand",
       ],
       localTriggers: [
-        "Regensburg und Regensburg werden breit für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport geprüft.",
+        "Düsseldorf und Regensburg werden breit für Umzug, Reinigung, Entrümpelung, Entsorgung und Transport geprüft.",
         "Regensburg bleibt bei Angebotsfragen auf Reinigung und getrennte Entsorgung begrenzt.",
       ],
       priceSignals: [

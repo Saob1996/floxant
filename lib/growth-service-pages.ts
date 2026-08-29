@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
 import { company } from "@/lib/company";
+import { sitemapRoutes } from "@/lib/sitemap-routes";
+
+const INDEXABLE_GROWTH_ROUTE_SET = new Set<string>(sitemapRoutes);
 
 export type GrowthServiceKind = "cleaning" | "moving" | "clearance" | "signature";
 export type GrowthServiceRegion = "duesseldorf" | "regensburg" | "bayern" | "deutschland";
@@ -2056,6 +2059,7 @@ export function getGrowthServicePageByPath(path: string): GrowthServicePageConfi
 
 export function buildGrowthServiceMetadata(config: GrowthServicePageConfig): Metadata {
   const canonical = `${company.url}${config.path}`;
+  const indexable = INDEXABLE_GROWTH_ROUTE_SET.has(config.path);
 
   return {
     metadataBase: new URL(company.url),
@@ -2063,6 +2067,11 @@ export function buildGrowthServiceMetadata(config: GrowthServicePageConfig): Met
     description: config.metaDescription,
     alternates: {
       canonical,
+    },
+    robots: {
+      index: indexable,
+      follow: true,
+      googleBot: { index: indexable, follow: true },
     },
     openGraph: {
       type: "website",

@@ -1,12 +1,12 @@
 # SEO Canonical Map
 
-Stand: 2026-06-20T03:41:48.959Z
+Stand: 2026-08-28T23:39:27.223Z
 
 ## Düsseldorf
 
-- Kanonische Haupt-URL: /duesseldorf/reinigung
+- Kanonische Haupt-URL: /regensburg/reinigung
 - Unterstützende URLs: siehe Varianten
-- Duplicate-/Varianten-URLs: /de/duesseldorf, /de/duesseldorf/reinigung, /de/duesseldorf/bueroreinigung, /de/duesseldorf/gewerbereinigung, /reinigung-duesseldorf
+- Duplicate-/Varianten-URLs: /de/regensburg, /de/regensburg/reinigung, /de/regensburg/reinigung, /de/regensburg/reinigung, /reinigung-regensburg
 - Redirect-Kandidaten: klare Locale- und Legacy-Varianten mit gleichem Intent.
 - Canonical-Kandidaten: nur Varianten mit separatem Suchintent behalten.
 - Interne Link-Regel: City-Hub und Service-Seiten getrennt halten; Root-Slugs auf City-first-Servicepfade führen.
@@ -15,21 +15,21 @@ Stand: 2026-06-20T03:41:48.959Z
 ## Regensburg
 
 - Kanonische Haupt-URL: /regensburg/wohnungsaufloesung
-- Unterstützende URLs: /regensburg/umzug, /regensburg/entruempelung, /regensburg/wohnungsaufloesung, /wohnungsaufloesung-regensburg, /kontakt
+- Unterstützende URLs: /regensburg/reinigung, /regensburg/endreinigung, /regensburg/bueroreinigung, /regensburg/gewerbereinigung, /regensburg/umzug, /regensburg/entruempelung, /regensburg/wohnungsaufloesung, /kontakt
 - Duplicate-/Varianten-URLs: /de/regensburg/umzug, /de/umzug-regensburg, /de/regensburg/entruempelung, /de/entruempelung-regensburg, /de/wohnungsaufloesung-regensburg, /de/regensburg/wohnungsaufloesung
 - Redirect-Kandidaten: klare Locale- und Legacy-Varianten mit gleichem Intent.
 - Canonical-Kandidaten: nur Varianten mit separatem Suchintent behalten.
 - Interne Link-Regel: City-first-Pfade stärken; klassische Root-Slugs nur behalten, wenn sie eigene GSC-Signale tragen.
 - Sitemap-Regel: nur indexierbare kanonische URLs aufnehmen, keine `/de/`- oder `/fa/`-Duplicates.
 
-## München
+## Regensburg Reinigung
 
-- Kanonische Haupt-URL: /reinigung-muenchen
+- Kanonische Haupt-URL: /regensburg/reinigung
 - Unterstützende URLs: siehe Varianten
-- Duplicate-/Varianten-URLs: /de/reinigung-muenchen, /fa/reinigung-muenchen, /de/umzug-muenchen, /de/fernumzug-muenchen, /de/reinigung-nach-umzug-muenchen
+- Duplicate-/Varianten-URLs: /de/regensburg/reinigung, /fa/regensburg/reinigung, /de/reinigung-regensburg, /de/reinigung-nach-umzug-regensburg
 - Redirect-Kandidaten: klare Locale- und Legacy-Varianten mit gleichem Intent.
 - Canonical-Kandidaten: nur Varianten mit separatem Suchintent behalten.
-- Interne Link-Regel: Locale-Varianten redirecten; Reinigungs- und Umzugsintent nicht vermischen.
+- Interne Link-Regel: Locale-Varianten redirecten; Reinigung bleibt auf Regensburg und den 50-km-Umkreis begrenzt.
 - Sitemap-Regel: nur indexierbare kanonische URLs aufnehmen, keine `/de/`- oder `/fa/`-Duplicates.
 
 ## Senioren

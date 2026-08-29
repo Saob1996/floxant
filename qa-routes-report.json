@@ -1,0 +1,2449 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:01:32.735Z",
+  "summary": {
+    "baseUrl": "http://127.0.0.1:4173",
+    "baseUrlWasExplicit": true,
+    "routeCount": 37,
+    "defaultBaseUrlNote": "BASE_URL was provided.",
+    "checks": 299,
+    "pass": 298,
+    "warn": 1,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/",
+      "detail": "Title found: FLOXANT | Reinigung Düsseldorf & Services Regensburg",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/",
+      "detail": "H1: Reinigung in Düsseldorf. Umzug und Service in Regensburg.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/",
+      "detail": "Canonical /",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/leistungen",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/leistungen",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leistungen",
+      "detail": "Title found: FLOXANT Leistungen: Reinigung, Umzug und mehr anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leistungen",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/leistungen",
+      "detail": "H1: Reinigung, Umzug, Räumung und weitere FLOXANT-Leistungen.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leistungen",
+      "detail": "Canonical /leistungen",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/leistungen"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/leistungen",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/leistungen",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/leistungen",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/kontakt",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/kontakt",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/kontakt",
+      "detail": "Title found: Leistung unverbindlich anfragen | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/kontakt",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/kontakt",
+      "detail": "H1: Leistung unverbindlich anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/kontakt",
+      "detail": "Canonical /kontakt",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/kontakt"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/kontakt",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/kontakt",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/kontakt",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "Title found: Angebot prüfen lassen | FLOXANT Zweitmeinung",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "H1: Angebot prüfen lassen, bevor Sie vorschnell zusagen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "Canonical /angebot-guenstiger-pruefen",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/angebot-guenstiger-pruefen"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/angebot-guenstiger-pruefen",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/angebotscheck",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/angebotscheck",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebotscheck",
+      "detail": "Title found: Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebotscheck",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/angebotscheck",
+      "detail": "H1: Zwölf Punkte eines Angebots einzeln klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/angebotscheck",
+      "detail": "Canonical /angebotscheck",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/angebotscheck"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/angebotscheck",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/angebotscheck",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/angebotscheck",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/anbieter-vergleichen",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/anbieter-vergleichen",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/anbieter-vergleichen",
+      "detail": "Title found: Anbieter und Angebote vergleichen | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/anbieter-vergleichen",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/anbieter-vergleichen",
+      "detail": "H1: Anbieter vergleichen, ohne nur auf den Preis zu schauen.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/anbieter-vergleichen",
+      "detail": "Canonical /anbieter-vergleichen",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/anbieter-vergleichen"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/anbieter-vergleichen",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/anbieter-vergleichen",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/anbieter-vergleichen",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf",
+      "detail": "Title found: FLOXANT Düsseldorf | Reinigung für Büro, Praxis & Objekt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf",
+      "detail": "H1: FLOXANT Düsseldorf für Reinigung von Büro, Praxis und Objekt.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf",
+      "detail": "Canonical /duesseldorf",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/reinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/reinigung",
+      "detail": "Title found: Reinigungsfirma Düsseldorf | Angebot anfragen | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/reinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/reinigung",
+      "detail": "H1: Reinigungsfirma in Düsseldorf für Wohnung, Büro und Objekt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/reinigung",
+      "detail": "Canonical /duesseldorf/reinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf/reinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/reinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/reinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/reinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "Title found: Büroreinigung Düsseldorf | Turnus planen | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "H1: Büroreinigung in Düsseldorf planbar und klar anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "Canonical /duesseldorf/bueroreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf/bueroreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/bueroreinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "Title found: Gewerbereinigung Düsseldorf: Objekt & Turnus | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "H1: Gewerbereinigung in Düsseldorf nach Objekt und Nutzung planen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "Canonical /duesseldorf/gewerbereinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf/gewerbereinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/gewerbereinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "Title found: Praxisreinigung Düsseldorf | Ablauf & Angebot | FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "H1: Praxisreinigung in Düsseldorf mit Räumen und Zeiten anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "Canonical /duesseldorf/praxisreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf/praxisreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/praxisreinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "Title found: Fensterreinigung Düsseldorf: Glasflächen & Angebot",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "H1: Fensterreinigung in Düsseldorf mit Glasflächen und Zugang anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "Canonical /duesseldorf/fensterreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/duesseldorf/fensterreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/fensterreinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/entruempelung",
+      "detail": "HTTP 410",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/haushaltsaufloesung",
+      "detail": "HTTP 410",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Redirects to /duesseldorf",
+      "action": "No action.",
+      "priority": "P1",
+      "redirectTarget": "/duesseldorf"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Title found: FLOXANT Düsseldorf | Reinigung für Büro, Praxis & Objekt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "H1: FLOXANT Düsseldorf für Reinigung von Büro, Praxis und Objekt.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Canonical /duesseldorf",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/duesseldorf"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/duesseldorf/hausverwaltung-reinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/regensburg",
+      "detail": "Title found: FLOXANT Regensburg: Umzug, Reinigung und Räumung anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/regensburg",
+      "detail": "H1: Umzug, Reinigung, Räumung und Übergabe in Regensburg anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/regensburg",
+      "detail": "Canonical /regensburg",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/umzug-regensburg",
+      "detail": "Redirects to /regensburg/umzug",
+      "action": "No action.",
+      "priority": "P0",
+      "redirectTarget": "/regensburg/umzug"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/umzug-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/umzug-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/umzug-regensburg",
+      "detail": "Title found: Umzug Regensburg anfragen - Start, Ziel und Termin klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/umzug-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/umzug-regensburg",
+      "detail": "H1: Umzug in Regensburg klar anfragen - mit Start, Ziel und Terminwunsch",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/umzug-regensburg",
+      "detail": "Canonical /regensburg/umzug",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg/umzug"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/umzug-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/umzug-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/umzug-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/reinigung-regensburg",
+      "detail": "Redirects to /regensburg/reinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "redirectTarget": "/regensburg/reinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/reinigung-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/reinigung-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/reinigung-regensburg",
+      "detail": "Title found: Gebäudereinigung Regensburg | Floxant",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/reinigung-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/reinigung-regensburg",
+      "detail": "H1: Gebäudereinigung in Regensburg und Umgebung",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/reinigung-regensburg",
+      "detail": "Canonical /regensburg/reinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg/reinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/reinigung-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/reinigung-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/reinigung-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/entruempelung-regensburg",
+      "detail": "Redirects to /regensburg/entruempelung",
+      "action": "No action.",
+      "priority": "P0",
+      "redirectTarget": "/regensburg/entruempelung"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/entruempelung-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/entruempelung-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/entruempelung-regensburg",
+      "detail": "Title found: Entrümpelung Regensburg | Wohnung, Keller, Nachlass",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/entruempelung-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/entruempelung-regensburg",
+      "detail": "H1: Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/entruempelung-regensburg",
+      "detail": "Canonical /regensburg/entruempelung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg/entruempelung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/entruempelung-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/entruempelung-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/entruempelung-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Redirects to /regensburg/gewerbereinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "redirectTarget": "/regensburg/gewerbereinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Title found: Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "H1: Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Canonical /regensburg/gewerbereinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg/gewerbereinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/gewerbereinigung-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Redirects to /regensburg/bueroreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "redirectTarget": "/regensburg/bueroreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Title found: Büroreinigung Regensburg für Firmen anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "H1: Büroreinigung Regensburg für Firmen mit konkreten Eckdaten anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Canonical /regensburg/bueroreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/regensburg/bueroreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/bueroreinigung-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/klaviertransport-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/klaviertransport-regensburg",
+      "detail": "Title found: Klaviertransport Regensburg mit Etage und Zugang klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/klaviertransport-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/klaviertransport-regensburg",
+      "detail": "H1: Klaviertransport in Regensburg anfragen - Etage, Zugang und Termin klären.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/klaviertransport-regensburg",
+      "detail": "Canonical /klaviertransport-regensburg",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/klaviertransport-regensburg"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/klaviertransport-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/klaviertransport-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/klaviertransport-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Redirects to /regensburg/wohnungsaufloesung",
+      "action": "No action.",
+      "priority": "P1",
+      "redirectTarget": "/regensburg/wohnungsaufloesung"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Title found: Wohnungsauflösung Regensburg | Nachlass ruhig klären",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "H1: Wohnungsauflösung Regensburg bei Nachlass, Auszug und Übergabe",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Canonical /regensburg/wohnungsaufloesung",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/regensburg/wohnungsaufloesung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/wohnungsaufloesung-regensburg",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/diskret-service",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/diskret-service",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/diskret-service",
+      "detail": "Title found: Diskret-Service für sensible Anfragen",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/diskret-service",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/diskret-service",
+      "detail": "H1: Diskret-Service für sensible Anfragen – Umzug, Entrümpelung und Auflösung zurückhaltend klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/diskret-service",
+      "detail": "Canonical /diskret-service",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/diskret-service"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/diskret-service",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/diskret-service",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/diskret-service",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/private-client-service",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/private-client-service",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/private-client-service",
+      "detail": "Title found: Private Client Service - sensible private Anfragen klar abstimmen",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/private-client-service",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/private-client-service",
+      "detail": "H1: Private Client Service für sensible private Anfragen",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/private-client-service",
+      "detail": "Canonical /private-client-service",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/private-client-service"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/private-client-service",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/private-client-service",
+      "detail": "CTA-like link found: mailto:info@floxant.de?subject=Private%20Client%20Anfrage",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/private-client-service",
+      "detail": "Contact link found: /kontakt?location=unsicher&service=private-client&city=bayern&intent=private-client-service&source=seo",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/seniorenumzug-bayern",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/seniorenumzug-bayern",
+      "detail": "Title found: Seniorenumzug anfragen - Umzug, Umfang und Übergabe klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/seniorenumzug-bayern",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/seniorenumzug-bayern",
+      "detail": "H1: Seniorenumzug mit konkreten Eckdaten anfragen - mit Angehörigen, Umfang und Terminwunsch",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/seniorenumzug-bayern",
+      "detail": "Canonical /seniorenumzug-bayern",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/seniorenumzug-bayern"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/seniorenumzug-bayern",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/seniorenumzug-bayern",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/seniorenumzug-bayern",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/solarreinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/solarreinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/solarreinigung",
+      "detail": "Title found: Solarreinigung anfragen - Dachart, Zugang und Zustand klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/solarreinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/solarreinigung",
+      "detail": "H1: Solarreinigung anfragen - Zugang, Dachart und Verschmutzung klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/solarreinigung",
+      "detail": "Canonical /solarreinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/solarreinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/solarreinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/solarreinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/solarreinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "Title found: PV-Anlagen-Reinigung - Modulfläche und Zugang klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "H1: PV-Anlagen-Reinigung anfragen - Modulfläche, Zugang und Zustand klären",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "Canonical /pv-anlagen-reinigung",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/pv-anlagen-reinigung"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/pv-anlagen-reinigung",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/objektbrief",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/objektbrief",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/objektbrief",
+      "detail": "Title found: Anfragebrief für Reinigung, Umzug oder Räumung | FLOXANT",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/objektbrief",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "WARN",
+      "scope": "html",
+      "path": "/objektbrief",
+      "detail": "H1: Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
+      "action": "Expected H1 to contain one of: Objektbrief",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/objektbrief",
+      "detail": "Canonical /objektbrief",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/objektbrief"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/objektbrief",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/objektbrief",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/objektbrief",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/uebergabe-sprint",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/uebergabe-sprint",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/uebergabe-sprint",
+      "detail": "Title found: Übergabe-Sprint | Wohnung vor Termin vorbereiten",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/uebergabe-sprint",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/uebergabe-sprint",
+      "detail": "H1: FLOXANT Übergabe-Sprint, wenn der Übergabetermin näher rückt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/uebergabe-sprint",
+      "detail": "Canonical /uebergabe-sprint",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/uebergabe-sprint"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/uebergabe-sprint",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/uebergabe-sprint",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/uebergabe-sprint",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/vermieter-ready-service",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/vermieter-ready-service",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/vermieter-ready-service",
+      "detail": "Title found: Vermieter-Ready-Service | Wohnung vorbereiten",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/vermieter-ready-service",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/vermieter-ready-service",
+      "detail": "H1: FLOXANT Vermieter-Ready-Service für Wohnungen vor Rückgabe oder Neuvermietung",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/vermieter-ready-service",
+      "detail": "Canonical /vermieter-ready-service",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/vermieter-ready-service"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/vermieter-ready-service",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/vermieter-ready-service",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/vermieter-ready-service",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "Title found: Leerfahrt & Rückfahrt anfragen | FLOXANT",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "Meta description found.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "H1: Leer-Rückfahrt Richtung Regensburg fair und flexibel nutzen",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "Canonical /leerfahrt-rueckfahrt",
+      "action": "No action.",
+      "priority": "P1",
+      "canonicalPath": "/leerfahrt-rueckfahrt"
+    },
+    {
+      "status": "PASS",
+      "scope": "robots",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "No noindex on money page.",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "cta-presence",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "CTA-like link found: /",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "contact-link",
+      "path": "/leerfahrt-rueckfahrt",
+      "detail": "Contact link found: /kontakt",
+      "action": "No action.",
+      "priority": "P1"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/impressum",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/impressum",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/impressum",
+      "detail": "Title found: Impressum – FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/impressum",
+      "detail": "H1: Impressum",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/impressum",
+      "detail": "Canonical /impressum",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/impressum"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/datenschutz",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/datenschutz",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/datenschutz",
+      "detail": "Title found: Datenschutz – FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/datenschutz",
+      "detail": "H1: Datenschutzerklärung",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/datenschutz",
+      "detail": "Canonical /datenschutz",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/datenschutz"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/agb",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/agb",
+      "detail": "No obvious application/hydration error marker.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/agb",
+      "detail": "Title found: AGB – FLOXANT",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "html",
+      "path": "/agb",
+      "detail": "H1: Allgemeine Geschäftsbedingungen (AGB)",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "metadata",
+      "path": "/agb",
+      "detail": "Canonical /agb",
+      "action": "No action.",
+      "priority": "P0",
+      "canonicalPath": "/agb"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/robots.txt",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "route",
+      "path": "/sitemap.xml",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "technical",
+      "path": "/robots.txt",
+      "detail": "HTTP 200",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "technical",
+      "path": "/sitemap.xml",
+      "detail": "391 sitemap URLs found.",
+      "action": "No action.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "sitemap",
+      "path": "forbidden-public-routes",
+      "detail": "No API/admin/dashboard/login sitemap URLs.",
+      "action": "No action.",
+      "priority": "P0",
+      "samples": []
+    }
+  ]
+}

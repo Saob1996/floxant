@@ -101,7 +101,7 @@ function list(items) {
 function lineHasPositiveRisk(line) {
   const value = line.toLowerCase();
   if (/\b(keine|kein|ohne|nicht|wird nicht|werden nicht|ersetzt keine)\b/.test(value)) return false;
-  if (/\.replace\(|forbiddenClaims|notPromised/.test(line)) return false;
+  if (/\.replace\(|forbiddenClaims|notPromised|\bq\s*:/.test(line)) return false;
   return [
     /garantiert\s+(guenstiger|günstiger|billiger|sofort|verfuegbar|verfügbar|abgenommen|uebergeben|übergeben)/,
     /\b100\s*%\s+(zufriedenheit|garantie|erfolg)/,
@@ -122,8 +122,11 @@ function scanRiskClaims() {
   ];
   const hits = [];
   for (const file of files) {
+    let inProhibitedClaims = false;
     read(file).split(/\r?\n/).forEach((line, index) => {
-      if (lineHasPositiveRisk(line)) hits.push(`${file}:${index + 1}`);
+      if (/prohibitedClaims\s*:\s*\[/.test(line)) inProhibitedClaims = true;
+      if (!inProhibitedClaims && lineHasPositiveRisk(line)) hits.push(`${file}:${index + 1}`);
+      if (inProhibitedClaims && /^\s*],?\s*$/.test(line)) inProhibitedClaims = false;
     });
   }
   return hits;
@@ -197,7 +200,7 @@ function main() {
     const source = sourceForRoute(route);
     const hasFaq = /buildFaqJsonLd|faqItems|config\.faq|seniorMoveFaqItems|RegensburgCleaningSnippetAnswers|FaqSection|authorityServiceFaqs/.test(source + "\n" + faqSystem);
     const hasAiAnswer = /AiAnswerBlock|Quick Answer|AI-Antwort|AI Answer|quickAnswer|offerCheckAiAnswers/.test(source) || aiSystem.includes(`route: "${route.canonical || route.route}"`) || aiSystem.includes(`route: "${route.route}"`);
-    const hasCta = /\/kontakt|\/buchung|angebot-guenstiger-pruefen|OfferCheckCTA|LeadCta|primaryHref|ctaHref|CheaperAlternativeForm/.test(source);
+    const hasCta = /\/kontakt|\/buchung|angebot-guenstiger-pruefen|OfferCheckCTA|LeadCta|primaryHref|ctaHref|offerHref|cleaningHref|requestHref|buildLeadHref|CheaperAlternativeForm/.test(source);
 
     if (!routeExists) failures.push(item("FAIL", "p0-route-missing", `${route.route} hat keine Page-/Template-Datei.`, route.files[0] || directPage));
     else findings.push(item("PASS", "p0-route", `${route.route} ist durch Page, Redirect oder dynamischen Service abgedeckt.`, route.files.find(exists) || directPage));

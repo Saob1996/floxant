@@ -1,13 +1,17 @@
 import { getDictionary } from "@/get-dictionary";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
-export async function generateMetadata({ params }: { params: Promise<{}> }) {
+import { generatePageSEO } from "@/lib/seo";
+
+export async function generateMetadata() {
   const pageLocale = "de";
   const dict = (await getDictionary(pageLocale as any)) as any;
-  return {
-    title: dict.pages?.calc_umzug?.meta_title || 'Calculate Moving Costs | FLOXANT',
-    description: dict.pages?.calc_umzug?.meta_desc || 'Calculate your moving costs.',
-  };
+  return generatePageSEO({
+    pageLocale,
+    path: "/umzug-kosten-rechner",
+    title: dict.pages?.calc_umzug?.meta_title || "Umzugsaufwand einschätzen | FLOXANT",
+    description: dict.pages?.calc_umzug?.meta_desc || "Start, Ziel, Wohnfläche, Etagen und gewünschte Hilfe eingeben und eine unverbindliche Umzugseinschätzung vorbereiten.",
+  });
 }
 export default async function UmzugKostenRechnerPage() {
   var dict = await getDictionary("de");
@@ -17,7 +21,7 @@ export default async function UmzugKostenRechnerPage() {
     <header className="text-center mb-16 max-w-3xl mx-auto">
      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">
       <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-      Live Preisberechnung
+      Angaben für die Einschätzung
      </div>
      <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
       {(dict as any).pages?.calc_umzug?.h1_pre} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">{(dict as any).pages?.calc_umzug?.h1_hi}</span>
@@ -32,7 +36,7 @@ export default async function UmzugKostenRechnerPage() {
     <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
      <h2 className="text-3xl font-light">{(dict as any).pages?.calc_umzug?.h2}</h2>
      <p className="text-white/70">
-      Die Einschätzung der Umzugskosten hängt von mehreren Faktoren ab. Wichtig sind vor allem:
+      Das Werkzeug liefert eine unverbindliche Orientierung. Preis, Termin und Durchführbarkeit stehen erst nach Prüfung der vollständigen Eckdaten fest. Wichtig sind vor allem:
      </p>
      <ul className="text-white/60">
       <li><strong>Die Wohnfläche und Anzahl der Zimmer:</strong> Hiermit ermitteln wir das ungefähre Volumen an Umzugsgut.</li>

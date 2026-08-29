@@ -26,6 +26,9 @@ import { UploadDropCard } from "@/components/UploadDropCard";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
+
+const BOOKING_DRAFT_KEY = "floxant:booking-draft:v1";
+const BOOKING_DRAFT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 import { useCalculatorStore } from "@/store/calculatorStore";
 
 type ServiceType =
@@ -442,6 +445,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   });
   const [files, setFiles] = useState<File[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submissionReference, setSubmissionReference] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [detailsExpanded, setDetailsExpanded] = useState(false);
   const [contactExpanded, setContactExpanded] = useState(() => isDetailedFlow || isUploadFlow);
@@ -449,6 +453,26 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
   useEffect(() => {
     setTodayInputValue(new Date().toISOString().split("T")[0]);
+  }, []);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(BOOKING_DRAFT_KEY);
+      if (!stored) return;
+      const draft = JSON.parse(stored) as {
+        savedAt?: number;
+        state?: BookingState;
+        formData?: typeof formData;
+      };
+      if (!draft.savedAt || Date.now() - draft.savedAt > BOOKING_DRAFT_TTL_MS) {
+        window.localStorage.removeItem(BOOKING_DRAFT_KEY);
+        return;
+      }
+      if (draft.state) setState(draft.state);
+      if (draft.formData) setFormData(draft.formData);
+    } catch {
+      window.localStorage.removeItem(BOOKING_DRAFT_KEY);
+    }
   }, []);
 
   useEffect(() => {
@@ -495,6 +519,14 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     storeLead,
     storeService,
   ]);
+
+  useEffect(() => {
+    if (!initialized || isSuccess) return;
+    window.localStorage.setItem(
+      BOOKING_DRAFT_KEY,
+      JSON.stringify({ savedAt: Date.now(), state, formData }),
+    );
+  }, [formData, initialized, isSuccess, state]);
 
   useEffect(() => {
     if (isDetailedFlow || isUploadFlow) {
@@ -824,11 +856,13 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     });
     setFiles([]);
     setIsSuccess(false);
+    setSubmissionReference("");
     setSubmitError("");
     setIsSubmitting(false);
     setDetailsExpanded(false);
     setContactExpanded(isDetailedFlow || isUploadFlow);
     setMode("selection");
+    window.localStorage.removeItem(BOOKING_DRAFT_KEY);
   };
 
   const compressImage = async (file: File): Promise<File> =>
@@ -1154,7 +1188,15 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         throw new Error(errorMessage);
       }
 
+      try {
+        const payload = await response.json();
+        setSubmissionReference(payload?.id || payload?.requestId || "");
+      } catch {
+        setSubmissionReference("");
+      }
+
       setIsSuccess(true);
+      window.localStorage.removeItem(BOOKING_DRAFT_KEY);
     } catch (error) {
       console.error("Submission error:", error);
       setSubmitError(
@@ -2041,6 +2083,11 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             ? successEmailTemplate.replace("{email}", formData.email)
             : "Wir melden uns telefonisch oder per WhatsApp passend zu Ihrer Anfrage."}
         </p>
+        {submissionReference ? (
+          <p className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 font-mono text-sm font-bold text-emerald-900">
+            Vorgangsnummer: {submissionReference}
+          </p>
+        ) : null}
         <PremiumButton type="button" onClick={resetWizard}>
           {t?.buttons?.new_request || "Neue Anfrage"}
         </PremiumButton>

@@ -1,6 +1,6 @@
 # Google Friendly Content Rules
 
-Stand: 2026-06-20T03:42:03.079Z
+Stand: 2026-08-28T23:33:24.780Z
 
 ## Helpful Content fuer FLOXANT
 
@@ -21,7 +21,7 @@ Eine gute Seite beantwortet eine echte Kundenfrage, erklaert Aufwandstreiber, ha
 
 Konkrete H1, kurze Intro, Kundensituationen, Ablauf, Aufwandstreiber, FAQ, CTA, interne Links, klare Grenzen und lokale Besonderheit, wenn die Seite lokal ist.
 
-## Angebotspruefung
+## Angebotsprüfung
 
 Als hilfreiche Option einbauen: Umfang, offene Punkte, Fotos, Termin und Preislogik einordnen. Keine Ersparnisgarantie, keine Rechtsberatung, kein Preisversprechen.
 

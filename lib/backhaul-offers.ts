@@ -1,18 +1,45 @@
 import type { IntakePayload } from "@/lib/types/intake";
 
-export type BackhaulOfferStatus = "active" | "paused" | "draft" | "archived";
+export type BackhaulOfferStatus =
+ | "active"
+ | "reserved"
+ | "completed"
+ | "inactive"
+ | "paused"
+ | "draft"
+ | "archived";
+export type BackhaulPublicationStatus = "published" | "unpublished";
+export type BackhaulCapacityMode = "shared-load" | "empty-return";
+export type BackhaulPriceType = "fixed" | "from" | "estimate" | "on-request";
 
 export interface BackhaulOffer {
  id: string;
+ routeId: string;
  title: string;
  date: string;
+ dateEnd: string;
  timeWindow: string;
  origin: string;
  destination: string;
+ intermediateStops: string[];
+ pickupRadiusKm: number | null;
  destinationRadius: string;
  routeAreas: string[];
  vehicleType: string;
  availableCapacity: string;
+ availableCubicMeters: number | null;
+ loadingArea: string;
+ weightLimitKg: number | null;
+ requiredHelpers: number | null;
+ itemTypes: string[];
+ capacityMode: BackhaulCapacityMode;
+ internalNetPrice: number | null;
+ publicGrossPrice: number | null;
+ vatRate: number;
+ priceType: BackhaulPriceType;
+ conditions: string;
+ publicDescription: string;
+ publicationStatus: BackhaulPublicationStatus;
  priceHint: string;
  fairPriceNote: string;
  status: BackhaulOfferStatus;
@@ -23,15 +50,32 @@ export interface BackhaulOffer {
 
 export interface BackhaulOfferRow {
  id: string;
+ route_id: string;
  title: string;
  departure_date: string;
+ date_end: string;
  time_window: string;
  origin: string;
  destination: string;
+ intermediate_stops: string[] | null;
+ pickup_radius_km: number | null;
  destination_radius: string;
  route_areas: string[] | null;
  vehicle_type: string;
  available_capacity: string;
+ available_cubic_meters: number | null;
+ loading_area: string;
+ weight_limit_kg: number | null;
+ required_helpers: number | null;
+ item_types: string[] | null;
+ capacity_mode: BackhaulCapacityMode;
+ internal_net_price?: number | null;
+ public_gross_price: number | null;
+ vat_rate: number;
+ price_type: BackhaulPriceType;
+ conditions: string;
+ public_description: string;
+ publication_status: BackhaulPublicationStatus;
  price_hint: string;
  fair_price_note: string;
  status: BackhaulOfferStatus;
@@ -42,15 +86,31 @@ export interface BackhaulOfferRow {
 
 export const PUBLIC_BACKHAUL_OFFER_SELECT = [
  "id",
+ "route_id",
  "title",
  "departure_date",
+ "date_end",
  "time_window",
  "origin",
  "destination",
+ "intermediate_stops",
+ "pickup_radius_km",
  "destination_radius",
  "route_areas",
  "vehicle_type",
  "available_capacity",
+ "available_cubic_meters",
+ "loading_area",
+ "weight_limit_kg",
+ "required_helpers",
+ "item_types",
+ "capacity_mode",
+ "public_gross_price",
+ "vat_rate",
+ "price_type",
+ "conditions",
+ "public_description",
+ "publication_status",
  "price_hint",
  "fair_price_note",
  "status",
@@ -58,20 +118,37 @@ export const PUBLIC_BACKHAUL_OFFER_SELECT = [
  "updated_at",
 ].join(",");
 
-export const ADMIN_BACKHAUL_OFFER_SELECT = `${PUBLIC_BACKHAUL_OFFER_SELECT},admin_note`;
+export const ADMIN_BACKHAUL_OFFER_SELECT = `${PUBLIC_BACKHAUL_OFFER_SELECT},internal_net_price,admin_note`;
 
 export function mapBackhaulOfferRow(row: BackhaulOfferRow): BackhaulOffer {
  return {
   id: row.id,
+  routeId: row.route_id,
   title: row.title,
   date: row.departure_date,
+  dateEnd: row.date_end || row.departure_date,
   timeWindow: row.time_window,
   origin: row.origin,
   destination: row.destination,
+  intermediateStops: Array.isArray(row.intermediate_stops) ? row.intermediate_stops : [],
+  pickupRadiusKm: row.pickup_radius_km,
   destinationRadius: row.destination_radius,
   routeAreas: Array.isArray(row.route_areas) ? row.route_areas : [],
   vehicleType: row.vehicle_type,
   availableCapacity: row.available_capacity,
+  availableCubicMeters: row.available_cubic_meters,
+  loadingArea: row.loading_area || "",
+  weightLimitKg: row.weight_limit_kg,
+  requiredHelpers: row.required_helpers,
+  itemTypes: Array.isArray(row.item_types) ? row.item_types : [],
+  capacityMode: row.capacity_mode || "empty-return",
+  internalNetPrice: row.internal_net_price ?? null,
+  publicGrossPrice: row.public_gross_price,
+  vatRate: row.vat_rate ?? 19,
+  priceType: row.price_type || "on-request",
+  conditions: row.conditions || "",
+  publicDescription: row.public_description || row.fair_price_note,
+  publicationStatus: row.publication_status || "unpublished",
   priceHint: row.price_hint,
   fairPriceNote: row.fair_price_note,
   status: row.status,
@@ -112,15 +189,32 @@ export function normalizeBackhaulOffer(record: any): BackhaulOffer {
 
  return {
   id: asString(record?.id || stored.id, crypto.randomUUID()),
+  routeId: asString(stored.routeId, `RF-${new Date().getFullYear()}`),
   title: asString(stored.title, "Leer-Rückfahrt für Firmen und Privatkunden Richtung Regensburg"),
   date: asString(stored.date),
+  dateEnd: asString(stored.dateEnd, stored.date),
   timeWindow: asString(stored.timeWindow, "nach Absprache"),
   origin: asString(stored.origin, "Deutschlandweit auf Anfrage"),
   destination: asString(stored.destination, "Regensburg"),
+  intermediateStops: asArray(stored.intermediateStops),
+  pickupRadiusKm: Number.isFinite(Number(stored.pickupRadiusKm)) ? Number(stored.pickupRadiusKm) : null,
   destinationRadius: normalizeDestinationRadius(stored.destinationRadius),
   routeAreas: asArray(stored.routeAreas),
   vehicleType: asString(stored.vehicleType, "Transporter oder LKW nach Tour"),
   availableCapacity: asString(stored.availableCapacity, "Büroinventar, Möbel, Kartons, Paletten, Einzelstücke"),
+  availableCubicMeters: Number.isFinite(Number(stored.availableCubicMeters)) ? Number(stored.availableCubicMeters) : null,
+  loadingArea: asString(stored.loadingArea),
+  weightLimitKg: Number.isFinite(Number(stored.weightLimitKg)) ? Number(stored.weightLimitKg) : null,
+  requiredHelpers: Number.isFinite(Number(stored.requiredHelpers)) ? Number(stored.requiredHelpers) : null,
+  itemTypes: asArray(stored.itemTypes),
+  capacityMode: asString(stored.capacityMode, "empty-return") as BackhaulCapacityMode,
+  internalNetPrice: Number.isFinite(Number(stored.internalNetPrice)) ? Number(stored.internalNetPrice) : null,
+  publicGrossPrice: Number.isFinite(Number(stored.publicGrossPrice)) ? Number(stored.publicGrossPrice) : null,
+  vatRate: Number.isFinite(Number(stored.vatRate)) ? Number(stored.vatRate) : 19,
+  priceType: asString(stored.priceType, "on-request") as BackhaulPriceType,
+  conditions: asString(stored.conditions),
+  publicDescription: asString(stored.publicDescription, stored.fairPriceNote),
+  publicationStatus: asString(stored.publicationStatus, "unpublished") as BackhaulPublicationStatus,
   priceHint: asString(stored.priceHint, "fairer Rückfahrt-Preis nach Route und Volumen"),
   fairPriceNote: asString(
    stored.fairPriceNote,

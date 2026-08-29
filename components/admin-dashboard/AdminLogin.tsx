@@ -144,7 +144,7 @@ export function AdminLogin() {
             </span>
             <div>
               <h2 className="text-2xl font-black tracking-tight">Anmelden</h2>
-              <p className="mt-1 text-sm font-semibold text-slate-400">Mit Supabase Auth</p>
+              <p className="mt-1 text-sm font-semibold text-slate-400">Geschützter interner Zugang</p>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 # GSC Export Instructions
 
-Stand: 2026-06-20T03:41:48.139Z
+Stand: 2026-08-28T23:26:50.709Z
 
 ## Ziel
 

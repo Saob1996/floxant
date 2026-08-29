@@ -472,7 +472,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
               data-city={bookingLead.trackingCity}
               data-page-intent={bookingLead.trackingIntent}
               data-priority={bookingLead.priority}
-              data-cta-label="Angebot prÃ¼fen lassen"
+              data-cta-label="Angebot prüfen lassen"
               data-destination={bookingHref}
             >
               Angebot prüfen lassen

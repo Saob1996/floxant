@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T03:41:59.993Z",
+  "generatedAt": "2026-08-28T23:34:35.443Z",
   "summary": {
     "PASS": 15
   },
@@ -38,9 +38,10 @@
     {
       "id": "booking-api",
       "status": "PASS",
-      "message": "Booking API stores lead quality and returns generic server errors with requestId.",
+      "message": "Cloudflare booking handler validates and stores complete requests; the client normalizes payloads and returns request IDs.",
       "files": [
-        "app/api/bookings/route.ts"
+        "functions/_lib/lead-handler.js",
+        "lib/booking-submission-client.ts"
       ]
     },
     {
@@ -70,7 +71,7 @@
       "message": "B2B leads capture optional company, area, frequency, timing, role and scope fields.",
       "files": [
         "components/SeoLeadForm.tsx",
-        "components/DuesseldorfB2BCleaningForm.tsx",
+        "components/RegensburgB2BCleaningForm.tsx",
         "lib/lead-normalization.ts",
         "lib/lead-validation.ts"
       ]

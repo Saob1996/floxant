@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ServiceFinderTool } from "@/components/tools/ServiceFinderTool";
 import { company } from "@/lib/company";
@@ -36,7 +37,16 @@ export default function EnglishServiceFinderPage() {
           <p className="mt-5 max-w-3xl text-sm font-semibold leading-7 text-cyan-100">The finder only matches services listed for Düsseldorf and Regensburg, Germany. It does not confirm availability, a price or an appointment.</p>
         </div>
       </section>
-      <section className="px-5 py-14 sm:px-8 lg:px-10"><div className="mx-auto max-w-7xl"><ServiceFinderTool locale="en" /></div></section>
+      <section className="px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <ServiceFinderTool locale="en" />
+          <div className="mt-8 text-center">
+            <Link href="/en/contact" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-slate-950 px-6 font-black text-white">
+              Send a request in English
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

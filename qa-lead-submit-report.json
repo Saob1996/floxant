@@ -1,0 +1,33 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-08-28T23:39:51.032Z",
+  "summary": {
+    "baseUrl": "http://localhost:3000",
+    "baseUrlWasExplicit": false,
+    "submitAttempted": false,
+    "guard": "WARN-only because TEST_LEAD_SUBMIT was not true.",
+    "piiPolicy": "Synthetic payload only; report stores no real customer data.",
+    "checks": 2,
+    "pass": 1,
+    "warn": 1,
+    "fail": 0
+  },
+  "results": [
+    {
+      "status": "WARN",
+      "scope": "lead-submit-guard",
+      "path": "/api/bookings",
+      "detail": "TEST_LEAD_SUBMIT is not true; no submit performed.",
+      "action": "Set TEST_LEAD_SUBMIT=true only for localhost or explicitly allowed preview.",
+      "priority": "P0"
+    },
+    {
+      "status": "PASS",
+      "scope": "lead-submit-pii",
+      "path": "/api/bookings",
+      "detail": "No PII-like query keys in endpoint.",
+      "action": "No action.",
+      "priority": "P0"
+    }
+  ]
+}

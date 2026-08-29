@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
@@ -71,8 +71,22 @@ export function DuesseldorfStickyActions() {
               <span className="flox-mobile-action-note">Kurz klären</span>
             </span>
           </a>
+          <a
+            href={`mailto:${duesseldorfCompany.email}`}
+            className="flox-mobile-action flox-mobile-action-email"
+            aria-label={`FLOXANT Düsseldorf per E-Mail an ${duesseldorfCompany.email} schreiben`}
+            data-event="email_click"
+            data-contact-channel="email"
+            data-destination={`mailto:${duesseldorfCompany.email}`}
+          >
+            <Mail aria-hidden="true" />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">E-Mail</span>
+              <span className="flox-mobile-action-note">{duesseldorfCompany.email}</span>
+            </span>
+          </a>
           <Link
-            href="/angebot-vergleichen-regensburg"
+            href="/angebot-guenstiger-pruefen?city=duesseldorf&intent=duesseldorf-angebot-pruefen"
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Bestehendes Angebot prüfen lassen"
             data-event="hero_cta_click"
@@ -85,7 +99,7 @@ export function DuesseldorfStickyActions() {
             </span>
           </Link>
           <Link
-            href="/angebot-vergleichen-regensburg"
+            href="/anfrage-mit-preisrahmen?city=duesseldorf&intent=duesseldorf-budget"
             className="flox-mobile-action flox-mobile-action-dark"
             aria-label="Budget oder Preisrahmen nennen"
             data-event="hero_cta_click"

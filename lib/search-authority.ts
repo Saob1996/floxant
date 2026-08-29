@@ -29,11 +29,11 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/reinigung": {
-    seoTitle: "Reinigung Düsseldorf anfragen | Objekt, Fläche & Termin",
+    seoTitle: "Reinigungsfirma Düsseldorf | Angebot anfragen | FLOXANT",
     shortTitle: "Reinigung Düsseldorf",
-    headline: "Reinigung in Düsseldorf für Wohnung, Büro und Objekt anfragen",
+    headline: "Reinigungsfirma in Düsseldorf für Wohnung, Büro und Objekt",
     description:
-      "Reinigung in Düsseldorf für Wohnung, Büro, Praxis oder Gewerbe anfragen. Objektart, Fläche, Turnus, Termin und Fotos senden und Angebot klären.",
+      "Reinigung in Düsseldorf für Wohnung, Büro, Praxis oder Gewerbe anfragen. Objektart, Fläche, Turnus, Termin und Fotos senden; Angebot klar prüfen.",
     ogTitle: "Reinigung in Düsseldorf für Wohnung, Büro und Objekt",
     ogDescription:
       "Reinigungsanfrage mit Objektart, Fläche, Turnus, Termin und Fotos verständlich vorbereiten.",
@@ -49,7 +49,7 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/bueroreinigung": {
-    seoTitle: "Büroreinigung Düsseldorf: Turnus & Angebot | FLOXANT",
+    seoTitle: "Büroreinigung Düsseldorf | Turnus planen | FLOXANT",
     shortTitle: "Büroreinigung Düsseldorf",
     headline: "Büroreinigung in Düsseldorf planbar und klar anfragen",
     description:
@@ -77,7 +77,7 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/praxisreinigung": {
-    seoTitle: "Praxisreinigung Düsseldorf: Räume & Turnus | FLOXANT",
+    seoTitle: "Praxisreinigung Düsseldorf | Ablauf & Angebot | FLOXANT",
     shortTitle: "Praxisreinigung Düsseldorf",
     headline: "Praxisreinigung in Düsseldorf mit Räumen und Zeiten anfragen",
     description:
@@ -135,7 +135,7 @@ export const searchAuthorityPages = {
   "/angebotscheck": {
     seoTitle: "Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
     shortTitle: "FLOXANT Klarheitscheck",
-    headline: "Zwölf Punkte eines Angebots strukturiert klären",
+    headline: "Zwölf Punkte eines Angebots einzeln klären",
     description:
       "Vorhandenes Angebot für Reinigung, Umzug oder Räumung clientseitig prüfen: 12 Bereiche markieren, Rückfragen erstellen und Ergebnis übernehmen.",
     ogTitle: "FLOXANT Klarheitscheck für vorhandene Angebote",
@@ -151,13 +151,13 @@ export const searchAuthorityPages = {
     shortTitle: "FLOXANT Anfragebrief",
     headline: "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
     description:
-      "Erstellen Sie clientseitig einen strukturierten Anfragebrief für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
+      "Erstellen Sie direkt im Browser einen Anfragebrief mit Leistung, Ort, Umfang, Zugang und Termin für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
     ogTitle: "FLOXANT Anfragebrief für klare Leistungsanfragen",
     ogDescription:
       "Leistung, Ort, Umfang, Zugang und Termin geordnet vorbereiten und offene Angaben erkennen.",
     primaryQuery: "dienstleistungsanfrage vorbereiten",
     secondaryQueries: ["reinigungsanfrage erstellen", "umzugsanfrage vorbereiten", "räumungsanfrage schreiben"],
-    searchIntent: "Leistungsanfrage strukturiert vorbereiten",
+    searchIntent: "Leistungsanfrage mit den nötigen Angaben vorbereiten",
     locale: "de-DE",
   },
   "/leistungsfinder": {

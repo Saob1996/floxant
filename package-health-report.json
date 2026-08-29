@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:33:00.548Z",
+  "summary": {
+    "packages": 38,
+    "p0Packages": 12,
+    "signaturePackages": 10,
+    "combinedServices": 8,
+    "warnings": 0,
+    "failures": 0
+  },
+  "groupCounts": [
+    {
+      "group": "reinigung",
+      "count": 7
+    },
+    {
+      "group": "umzug",
+      "count": 7
+    },
+    {
+      "group": "entruempelung",
+      "count": 7
+    },
+    {
+      "group": "angebot-pruefen",
+      "count": 7
+    },
+    {
+      "group": "signature",
+      "count": 10
+    }
+  ],
+  "checks": [
+    "docs/SERVICE_PACKAGE_MATRIX.md: vorhanden",
+    "docs/EFFORT_FACTORS_AND_PRICE_TRANSPARENCY.md: vorhanden",
+    "docs/COMBINED_SERVICES_STRATEGY.md: vorhanden",
+    "docs/DUAL_LOCATION_SERVICE_CLARITY_REPORT.md: vorhanden",
+    "ServicePackageGroup enthaelt signature",
+    "servicePackageGroups enthaelt signature",
+    "Signature-Pakete: 10",
+    "Kombi-Strategien: 8",
+    "reinigung: 7 Pakete",
+    "umzug: 7 Pakete",
+    "entruempelung: 7 Pakete",
+    "angebot-pruefen: 7 Pakete",
+    "signature: 10 Pakete",
+    "P0-Paketbloecke geprueft: 12",
+    "Komponententoken PackageComparisonGrid: vorhanden",
+    "Komponententoken CombinationServicePanel: vorhanden",
+    "Komponententoken SignatureServiceSuggestion: vorhanden",
+    "Komponententoken OfferCheckInlineBox: vorhanden",
+    "Komponententoken BetterServiceSuggestion: vorhanden",
+    "Komponententoken WhatWeNeedChecklist: vorhanden",
+    "app/page.tsx: aktueller Entscheidungsweg integriert",
+    "app/leistungen/page.tsx: aktueller Entscheidungsweg integriert",
+    "app/kontakt/page.tsx: aktueller Entscheidungsweg integriert",
+    "app/angebot-guenstiger-pruefen/page.tsx: aktueller Entscheidungsweg integriert",
+    "app/duesseldorf/page.tsx: aktueller Entscheidungsweg integriert",
+    "app/regensburg/page.tsx: aktueller Entscheidungsweg integriert",
+    "Komponente bleibt ohne fetch/API"
+  ],
+  "warnings": [],
+  "failures": []
+}

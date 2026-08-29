@@ -1,6 +1,6 @@
 # Customer Wording Playbook
 
-Stand: 2026-06-20T03:42:03.079Z
+Stand: 2026-08-28T23:33:24.780Z
 
 ## Reinigung
 
@@ -28,7 +28,7 @@ Kunden sagen: sensibler Fall, bevorzugter Kontaktweg, diskrete Anfrage, zurueckh
 
 ## Duesseldorf
 
-Kunden sagen: Reinigung in Duesseldorf anfragen, Bueroreinigung Duesseldorf, Praxisreinigung Duesseldorf, Fensterreinigung Duesseldorf, Umzug Duesseldorf, Entruempelung Duesseldorf.
+Kunden sagen: Reinigung in Regensburg und Umgebung anfragen, Bueroreinigung Regensburg, Praxisreinigung Regensburg, Fensterreinigung Regensburg, Umzug Regensburg, Entruempelung Regensburg.
 
 ## Regensburg
 

@@ -56,7 +56,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Kleinen Privatumzug realistisch planen</h2>
-            <p className="text-muted-foreground leading-relaxed">FLOXANT prüft auch kleine Umzüge in Regensburg und Regensburg nach Umfang, Zugang, Termin und Strecke. Wichtig ist eine ehrliche Einschätzung: wenige Möbel bedeuten oft weniger Volumen, aber nicht automatisch weniger Aufwand bei Treppenhaus, Parken oder Übergabe.</p>
+            <p className="text-muted-foreground leading-relaxed">FLOXANT prüft auch kleine Umzüge in Düsseldorf und Regensburg nach Umfang, Zugang, Termin und Strecke. Wichtig ist eine ehrliche Einschätzung: wenige Möbel bedeuten oft weniger Volumen, aber nicht automatisch weniger Aufwand bei Treppenhaus, Parken oder Übergabe.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>

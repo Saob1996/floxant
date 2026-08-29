@@ -1,6 +1,6 @@
 # FLOXANT Lead Health Report
 
-Generated: 2026-06-20T03:41:59.994Z
+Generated: 2026-08-28T23:34:35.444Z
 
 Summary: 15 PASS, 0 WARN, 0 FAIL
 
@@ -9,10 +9,10 @@ Summary: 15 PASS, 0 WARN, 0 FAIL
 | lead-model | PASS | P0-P3 normalization, validation and priority helpers exist. | lib/lead-types.ts<br>lib/lead-normalization.ts<br>lib/lead-validation.ts<br>lib/lead-priority.ts<br>lib/lead-operations.ts |
 | lead-intents | PASS | Offer-check is available as a first-class lead intent. | lib/lead-intents.ts |
 | lead-forms | PASS | Key forms send standardized lead-quality and offer-check fields. | components/SeoLeadForm.tsx<br>components/OfferCheckForm.tsx<br>components/OfferComparisonAdsForm.tsx<br>components/BudgetContactForm.tsx |
-| booking-api | PASS | Booking API stores lead quality and returns generic server errors with requestId. | app/api/bookings/route.ts |
+| booking-api | PASS | Cloudflare booking handler validates and stores complete requests; the client normalizes payloads and returns request IDs. | functions/_lib/lead-handler.js<br>lib/booking-submission-client.ts |
 | docs | PASS | Lead response and offer-check operations docs exist. | docs/LEAD_RESPONSE_PLAYBOOK.md<br>docs/OFFER_CHECK_OPERATIONS_FLOW.md<br>docs/LEAD_OPERATIONS_FLOW.md<br>docs/SALES_OPERATIONS_PLAYBOOK.md |
 | lead-operations | PASS | Lead operations snapshot covers signature services, lead kind, location and do-not-promise guardrails. | lib/lead-operations.ts<br>lib/lead-normalization.ts<br>lib/lead-priority.ts |
-| b2b-lead-fields | PASS | B2B leads capture optional company, area, frequency, timing, role and scope fields. | components/SeoLeadForm.tsx<br>components/DuesseldorfB2BCleaningForm.tsx<br>lib/lead-normalization.ts<br>lib/lead-validation.ts |
+| b2b-lead-fields | PASS | B2B leads capture optional company, area, frequency, timing, role and scope fields. | components/SeoLeadForm.tsx<br>components/RegensburgB2BCleaningForm.tsx<br>lib/lead-normalization.ts<br>lib/lead-validation.ts |
 | location-lead-mapping | PASS | Duesseldorf/Regensburg are mapped with unknown fallback and manual-location guardrails. | lib/floxant-locations.ts<br>lib/lead-normalization.ts<br>components/SeoLeadForm.tsx |
 | service-packages | PASS | Service packages define fit, boundaries, needed inputs, effort drivers and CTA parameters. | lib/service-packages.ts |
 | effort-factors | PASS | Effort factors explain scope drivers without prices, guarantees or automatic booking promises. | lib/service-effort-factors.ts |

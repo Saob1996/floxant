@@ -112,7 +112,7 @@ pass("content:legal-boundaries", "No-false-promise boundaries are visible", incl
   "keine Rechtsberatung",
 ]));
 pass("content:english-intent", "English end-of-tenancy intent is visible", includesAll(sources.component + sources.gscPriorities, [
-  "English intent",
+  "Information in English",
   "end of tenancy cleaning",
   "move-out cleaning",
 ]));

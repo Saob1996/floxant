@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-08-28T23:18:59.973Z",
+  "sources": {
+    "gsc": "gsc-import-report.json",
+    "seoConversion": "seo-conversion-report.json",
+    "leadHealth": "lead-health-report.json",
+    "siteQa": "site-qa-report.json",
+    "vercelUsage": "vercel-usage-safety-report.json",
+    "contentQuality": "editorial-quality-report.json",
+    "snippetHealth": "snippet-health-report.json"
+  },
+  "warnings": [
+    "No anonymized real lead feedback available; lead scores remain structural."
+  ],
+  "summary": {
+    "pageOpportunities": 0,
+    "queryOpportunities": 0,
+    "p0Pages": 0,
+    "p1Pages": 0,
+    "p0Queries": 0,
+    "p1Queries": 0,
+    "leadOpportunityStatus": "DATA_GAP"
+  },
+  "pageOpportunities": [],
+  "queryOpportunities": [],
+  "leadOpportunity": {
+    "status": "DATA_GAP",
+    "score": 0,
+    "priority": "P2",
+    "evidence": [
+      "lead:health PASS/WARN/FAIL 14/0/1",
+      "seo:conversion PASS/WARN/FAIL 22/0/0",
+      "Keine anonymisierte echte Lead-Qualitaet im Repo gefunden."
+    ],
+    "nextAction": "Lead Feedback Log manuell/anonymisiert fuehren; keine Conversion-Rates erfinden."
+  },
+  "topRecommendations": [],
+  "piiSafety": {
+    "status": "PASS",
+    "rule": "New optimization score outputs redact obvious email and phone patterns; no raw lead messages are read."
+  }
+}
