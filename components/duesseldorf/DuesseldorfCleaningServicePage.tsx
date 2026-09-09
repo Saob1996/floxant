@@ -6,12 +6,14 @@ import {
   CheckCircle2,
   ClipboardList,
   Clock3,
+  MessageCircle,
   MapPin,
   Phone,
   Sparkles,
 } from "lucide-react";
 
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   prioritySeoMetaRegistry,
   type PrioritySeoRoute,
@@ -34,6 +36,8 @@ export type DuesseldorfCleaningPageKey =
   | "grundreinigung"
   | "unterhaltsreinigung"
   | "baureinigung"
+  | "endreinigung"
+  | "hotelreinigung"
   | "treppenhausreinigung";
 
 type FaqItem = { q: string; a: string };
@@ -61,46 +65,91 @@ type PageConfig = {
   faqItems: FaqItem[];
   related: DuesseldorfCleaningPageKey[];
   about: string[];
+  optional?: string[];
 };
 
-const localBookingServices = new Set([
-  "reinigung",
-  "bueroreinigung",
-  "praxisreinigung",
-  "grundreinigung",
-  "baureinigung",
-]);
-
-const requestHref = (service: string, intent: string) => {
-  if (localBookingServices.has(service)) {
-    const params = new URLSearchParams({ service, intent, source: "website" });
-    return `/duesseldorf/buchen?${params.toString()}`;
-  }
-  return buildLeadHref({ service, city: "duesseldorf", intent });
+const requestHref = (service: string, intent: string, path: string) => {
+  return buildLeadHref({
+    path,
+    service,
+    city: "duesseldorf",
+    intent,
+    source: "service_page",
+    ctaComponent: "duesseldorf_service_page",
+    ctaPosition: "hero",
+  });
 };
 
 const authority = searchAuthorityPages;
 
 export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageConfig> = {
+  endreinigung: {
+    key: "endreinigung", path: "/duesseldorf/endreinigung",
+    title: "Endreinigung Düsseldorf vor der Wohnungsübergabe | FLOXANT",
+    description: "Wohnung nach dem Auszug reinigen lassen: Böden, Bad, Küche und vereinbarte Oberflächen. FLOXANT übernimmt Ihre Endreinigung in Düsseldorf und Umgebung.",
+    ogTitle: "Endreinigung in Düsseldorf mit FLOXANT", eyebrow: "Endreinigung Düsseldorf",
+    h1: "Endreinigung in Düsseldorf, damit Sie den Auszug abschließen können.",
+    intro: "Während Sie sich um Ihr neues Zuhause kümmern, reinigen wir Ihre bisherige Wohnung im vereinbarten Umfang. Böden, Bad, Küche und Oberflächen stimmen wir auf den Zustand und Ihren Übergabetermin ab.",
+    summary: "Einmalige Reinigung der möglichst leergeräumten Wohnung nach Auszug oder vor Einzug. Fenster, Einbauten und Geräteinnenräume können Sie ergänzen.",
+    serviceType: "Endreinigung und Wohnungsreinigung in Düsseldorf",
+    cta: { href: requestHref("reinigung", "endreinigung-duesseldorf", "/duesseldorf/endreinigung"), label: "Endreinigungsangebot anfragen", service: "reinigung", intent: "endreinigung-duesseldorf" },
+    fitTitle: "Eine saubere Wohnung für den nächsten Schritt", fitIntro: "Für Mieter, Eigentümer und Vermieter vor der Übergabe oder dem Einzug. Den gewünschten Reinigungsumfang halten wir vor dem Auftrag fest.",
+    fit: ["Böden und erreichbare Oberflächen", "Bad und Sanitärbereiche", "Küche nach vereinbartem Umfang", "Türen, Schalter und zugängliche Einbauten"],
+    optional: ["Fenster, Rahmen und Falze", "Schrank- und Geräteinnenräume, wenn leer und zugänglich", "Intensive Reinigung ausgewählter Rückstände", "Räumung verbliebener Gegenstände als gesonderter Auftrag"],
+    requiredDetails: ["Wohnfläche und Räume", "Zustand sowie leer oder möbliert", "gewünschte Aufgaben", "Termin und Zugang"],
+    effortFactors: ["Wohnfläche und Raumaufteilung", "Zustand von Küche, Bad und Böden", "Möblierung und Zugänglichkeit", "Fenster und zusätzliche Detailarbeiten", "Anfahrt und Termin"],
+    process: ["Sie nennen kurz Wohnung, gewünschte Reinigung und Übergabetermin. Fotos sind freiwillig.", "Wir vereinbaren Umfang, Preis, Zugang und Termin.", "Wir reinigen die vereinbarten Bereiche und besprechen anschließend das Ergebnis."],
+    faqItems: [
+      {q:"Muss die Wohnung bereits leer sein?",a:"Eine leere Wohnung erleichtert die Reinigung von Böden und Einbauten. Wenn Möbel verbleiben, sagen Sie uns kurz welche; wir stimmen die zugänglichen Bereiche ab."},
+      {q:"Sind Fenster und Backofen enthalten?",a:"Diese Aufgaben werden auf Wunsch ergänzt und im Angebot benannt. Eine kurze Angabe reicht für den Erstkontakt."},
+      {q:"Was kostet die Endreinigung?",a:"Maßgeblich sind Fläche, Zustand, Küche und Bad, Zugänglichkeit sowie zusätzliche Aufgaben. Aus einer kurzen Beschreibung erstellen wir ein individuelles Angebot; Fotos können die Einschätzung erleichtern."},
+      {q:"Garantiert die Reinigung eine Wohnungsabnahme?",a:"Wir übernehmen den vereinbarten Reinigungsumfang. Die Entscheidung über die Wohnungsabnahme liegt bei den Beteiligten; Schäden oder Abnutzung werden durch Reinigung nicht automatisch beseitigt."}
+    ],
+    related: ["reinigung", "grundreinigung", "fensterreinigung"], about: ["Endreinigung Düsseldorf", "Wohnungsreinigung", "Reinigung nach Auszug"],
+  },
+  hotelreinigung: {
+    key: "hotelreinigung", path: "/duesseldorf/hotelreinigung",
+    title: "Hotelreinigung Düsseldorf – gepflegte Objektflächen | FLOXANT",
+    description: "Allgemeine Reinigung von Hotel- und Apartmentflächen in Düsseldorf. Böden, Oberflächen und Sanitärbereiche mit FLOXANT nach Aufgabenliste vereinbaren.",
+    ogTitle: "Hotel- und Apartmentreinigung in Düsseldorf", eyebrow: "Hotelreinigung Düsseldorf",
+    h1: "Reinigung von Hotelflächen in Düsseldorf, passend zu Ihrem Betrieb.",
+    intro: "Wir übernehmen die allgemeine Reinigung vereinbarter Hotel- und Apartmentflächen. Böden, zugängliche Oberflächen und Sanitärbereiche erhalten eine abgestimmte Aufgabenliste, mit Zugang und Zeiten passend zu Ihrem Betrieb.",
+    summary: "Allgemeine Reinigung von vereinbarten Räumen und Gemeinschaftsflächen. Ein vollständiger Housekeeping- oder Wäscheservice ist nicht Bestandteil dieses Angebots.",
+    serviceType: "Hotelreinigung und Apartmentreinigung in Düsseldorf",
+    cta: { href: requestHref("reinigung", "hotelreinigung-duesseldorf", "/duesseldorf/hotelreinigung"), label: "Hotelreinigung anfragen", service: "reinigung", intent: "hotelreinigung-duesseldorf" },
+    fitTitle: "Gepflegte Räume und Gemeinschaftsflächen", fitIntro: "Für Hotels, Apartmentvermieter und Betreiber möblierter Unterkünfte, die die allgemeine Flächenreinigung abgeben möchten.",
+    fit: ["Böden und zugängliche Oberflächen in Gästezimmern", "Bäder und vereinbarte Sanitärbereiche", "Küchenbereiche in Apartments nach Aufgabenliste", "Vereinbarte Flure und Gemeinschaftsflächen"],
+    optional: ["Fenster und Rahmen nach separater Vereinbarung", "Intensive Reinigung ausgewählter Flächen", "Zusätzliche zugängliche Küchenbereiche nach Aufgabenliste"],
+    requiredDetails: ["Anzahl und Größe der Zimmer oder Apartments", "Aufgabenliste und gewünschter Rhythmus", "Zeiten zwischen Abreise und Anreise", "Zugang und Kontaktperson"],
+    effortFactors: ["Einheiten, Bäder und Küchenumfang", "Reinigungsrhythmus und Zustand", "Zusätzliche Fenster- oder Detailreinigung", "Entfernung zwischen Einheiten", "Zugang und vereinbartes Zeitfenster"],
+    process: ["Sie nennen Einheiten, Aufgaben und Wechselzeiten.", "Wir stimmen Reinigung, Material, Zugang, Preis und Rückmeldung ab.", "Unser Team reinigt nach Aufgabenliste; offene Punkte gehen an Ihre Kontaktperson."],
+    faqItems: [
+      {q:"Übernimmt FLOXANT auch Apartmentreinigung?",a:"Ja. Wir stimmen die Reinigung von Wohnbereich, Bad und gegebenenfalls Küche auf Ihr Apartment und den Gästewechsel ab."},
+      {q:"Gehören Wäsche und Verbrauchsmaterial dazu?",a:"Dieses Angebot betrifft die allgemeine Reinigung. Wäscheversorgung, Bettenservice, Inventarservice und Nachfüllen von Gästeartikeln sind nicht enthalten."},
+      {q:"Wie werden kurzfristige Änderungen besprochen?",a:"Eine benannte Kontaktperson meldet geänderte Abreisezeiten oder zusätzliche Einheiten. Termin und Umfang werden gemeinsam abgestimmt."},
+      {q:"Wie entsteht ein Angebot?",a:"Hilfreich sind Einheitenzahl, Größe, Bäder, Küchen, Aufgaben und Wechselrhythmus. Daraus ermitteln wir den Reinigungsaufwand und besprechen die benötigten Zeitfenster."}
+    ],
+    related: ["unterhaltsreinigung", "fensterreinigung", "grundreinigung"], about: ["Hotelreinigung Düsseldorf", "Apartmentreinigung", "Housekeeping"],
+  },
   reinigung: {
     key: "reinigung",
     path: "/duesseldorf/reinigung",
-    title: authority["/duesseldorf/reinigung"].seoTitle,
-    description: authority["/duesseldorf/reinigung"].description,
+    title: "Reinigung Düsseldorf für Wohnung & Büro | FLOXANT",
+    description: "FLOXANT reinigt Wohnungen, Büros, Praxen und Fenster in Düsseldorf und 75 km Umgebung. Umfang persönlich abstimmen und Reinigungsangebot anfragen.",
     ogTitle: authority["/duesseldorf/reinigung"].ogTitle,
     eyebrow: authority["/duesseldorf/reinigung"].shortTitle,
-    h1: authority["/duesseldorf/reinigung"].headline,
+    h1: "Reinigung in Düsseldorf, die Ihnen Arbeit abnimmt.",
     intro:
-      "Hier finden Sie den passenden Reinigungsservice für Ihr Objekt in Düsseldorf. Wählen Sie die Leistung, die zu Fläche, Nutzung und gewünschtem Ergebnis passt.",
+      "Ob Wohnung, Büro oder Fenster: Wir kümmern uns um die vereinbarte Reinigung. Sie gewinnen Zeit für Ihren Alltag und wissen vorher, welche Arbeiten wir übernehmen. Beschreiben Sie kurz Ihr Anliegen – wir erstellen ein persönliches Angebot.",
     summary:
-      "Für eine erste Einschätzung reichen Objektart, ungefährer Umfang, gewünschte Leistung und Termin. Bei regelmäßiger Reinigung helfen zusätzlich Turnus und mögliche Zeitfenster.",
+      "Einmalig gründlich reinigen oder regelmäßig für gepflegte Räume sorgen: Wählen Sie die Reinigung, die zu Ihrem Zuhause oder Betrieb passt.",
     directQuestion: "Was kostet ein Reinigungsdienst in Düsseldorf?",
     directAnswer:
       "Die Kosten eines Reinigungsdienstes in Düsseldorf hängen von Fläche, Reinigungsart, Zustand, Raumzahl, Sanitär- und Küchenbereichen, einmaligem oder regelmäßigem Turnus, Reinigungszeit, Zugang und Zusatzleistungen ab. Deshalb ist eine kurze Objektbeschreibung aussagekräftiger als ein pauschaler Stundenpreis. Senden Sie Räume, Fläche, Zustand, gewünschte Leistung, Turnus, Fotos und Wunschtermin; FLOXANT prüft den benötigten Umfang.",
     serviceType: "Reinigungsservice in Düsseldorf",
     cta: {
-      href: requestHref("reinigung", "reinigung-duesseldorf"),
-      label: "Reinigung anfragen",
+      href: requestHref("reinigung", "reinigung-duesseldorf", "/duesseldorf/reinigung"),
+      label: "Reinigungsangebot anfragen",
       service: "reinigung",
       intent: "reinigung-duesseldorf",
     },
@@ -116,10 +165,10 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
     requiredDetails: ["Objektart und Fläche", "gewünschte Leistung", "Zustand und Termin", "Turnus bei regelmäßiger Reinigung"],
     effortFactors: ["Fläche und Raumaufteilung", "Nutzung und Verschmutzung", "Zugang und Zeitfenster", "gewünschter Leistungsumfang"],
     process: [
-      "Passende Reinigungsart auswählen.",
-      "Objekt, Umfang und Termin kurz beschreiben.",
-      "Wir prüfen die Angaben und melden uns zum weiteren Ablauf.",
-    ],
+  "Sie beschreiben kurz Ihre Räume und den gewünschten Termin. Fotos sind freiwillig.",
+  "Wir stimmen Aufgaben, Preis, Zugang und Reinigungszeit mit Ihnen ab.",
+  "Unser Team übernimmt die vereinbarte Reinigung. Anschließend besprechen wir das Ergebnis."
+],
     faqItems: [
       {
         q: "Welche Reinigung passt zu meinem Objekt?",
@@ -138,27 +187,27 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
         a: "Nein. Wir prüfen zunächst Leistung, Umfang, Zugang und Termin. Erst danach stimmen wir die nächsten Schritte mit Ihnen ab.",
       },
     ],
-    related: ["bueroreinigung", "praxisreinigung", "fensterreinigung", "gewerbereinigung", "grundreinigung", "unterhaltsreinigung", "baureinigung", "treppenhausreinigung"],
+    related: ["bueroreinigung", "praxisreinigung", "fensterreinigung", "gewerbereinigung", "grundreinigung", "endreinigung", "unterhaltsreinigung", "hotelreinigung", "baureinigung", "treppenhausreinigung"],
     about: ["Reinigung Düsseldorf", "Reinigungsservice Düsseldorf", "Reinigungsarten Düsseldorf"],
   },
   bueroreinigung: {
     key: "bueroreinigung",
     path: "/duesseldorf/bueroreinigung",
-    title: authority["/duesseldorf/bueroreinigung"].seoTitle,
-    description: authority["/duesseldorf/bueroreinigung"].description,
+    title: "Büroreinigung Düsseldorf – passend zum Büroalltag | FLOXANT",
+    description: "Gepflegte Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche. FLOXANT stimmt Reinigungsumfang, Rhythmus und Zeiten mit Ihrem Büro ab.",
     ogTitle: authority["/duesseldorf/bueroreinigung"].ogTitle,
     eyebrow: authority["/duesseldorf/bueroreinigung"].shortTitle,
-    h1: authority["/duesseldorf/bueroreinigung"].headline,
+    h1: "Büroreinigung in Düsseldorf, passend zu Ihrem Arbeitsalltag.",
     intro:
-      "Für gepflegte Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche entwickeln wir einen Ablauf, der zu Ihrem Büroalltag passt.",
+      "Wir reinigen Ihre Büroräume, damit sich Ihr Team auf die Arbeit konzentrieren kann. Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche erhalten einen abgestimmten Reinigungsplan – mit Zeiten, die zu Ihrem Betrieb passen.",
     summary:
-      "Büroreinigung wird über Raumliste, Nutzung, Turnus und Reinigungszeiten geplant. So bleibt klar, welche Bereiche regelmäßig oder nur bei Bedarf gereinigt werden sollen.",
+      "Regelmäßige Reinigung für Arbeitsplätze und Gemeinschaftsbereiche. Fenster, intensive Bodenreinigung oder selten genutzte Nebenräume lassen sich separat einplanen.",
     directQuestion: "Was kostet eine Büroreinigung in Düsseldorf?",
     directAnswer:
       "Die Kosten einer Büroreinigung in Düsseldorf hängen vor allem von Fläche, Raumaufteilung, Nutzung, Sanitär- und Küchenbereichen, gewünschtem Turnus sowie Reinigungszeiten und Zugang ab. Ein Büro mit täglichem Publikumsverkehr benötigt einen anderen Leistungsplan als eine kleine, selten genutzte Einheit. Senden Sie Raumliste, Fläche, Wunschrhythmus und mögliche Zeitfenster; FLOXANT prüft die Angaben und klärt den passenden Umfang persönlich.",
     serviceType: "Büroreinigung in Düsseldorf",
     cta: {
-      href: requestHref("bueroreinigung", "bueroreinigung-duesseldorf"),
+      href: requestHref("bueroreinigung", "bueroreinigung-duesseldorf", "/duesseldorf/bueroreinigung"),
       label: "Büroreinigung anfragen",
       service: "bueroreinigung",
       intent: "bueroreinigung-duesseldorf",
@@ -182,21 +231,21 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   praxisreinigung: {
     key: "praxisreinigung",
     path: "/duesseldorf/praxisreinigung",
-    title: authority["/duesseldorf/praxisreinigung"].seoTitle,
-    description: authority["/duesseldorf/praxisreinigung"].description,
+    title: "Praxisreinigung Düsseldorf – nach Ihrem Ablauf | FLOXANT",
+    description: "FLOXANT reinigt Empfang, Warte-, Behandlungs- und Nebenräume nach vereinbartem Umfang. Turnus, Zeitfenster und Ihre Praxisvorgaben persönlich abstimmen.",
     ogTitle: authority["/duesseldorf/praxisreinigung"].ogTitle,
     eyebrow: authority["/duesseldorf/praxisreinigung"].shortTitle,
-    h1: authority["/duesseldorf/praxisreinigung"].headline,
+    h1: "Praxisreinigung in Düsseldorf mit klaren Abläufen.",
     intro:
-      "Praxisräume erfordern klar getrennte Bereiche, passende Zeitfenster und eine genaue Abstimmung Ihrer Vorgaben. Wir planen Empfang, Wartezimmer, Behandlungs- und Nebenräume einzeln.",
+      "Wir übernehmen die Reinigung Ihrer Praxisräume und stimmen die Aufgaben auf Ihren Tagesablauf ab. Empfang, Wartebereich, Behandlungs- und Nebenräume werden nach Raumliste und Ihren vereinbarten Vorgaben gereinigt.",
     summary:
-      "Für die Planung zählen Raumarten, Öffnungszeiten, interne Vorgaben und sensible Bereiche. Medizinische Spezialaufgaben oder Entsorgungswege werden nur übernommen, wenn sie ausdrücklich vereinbart und fachlich möglich sind.",
+      "Feste Aufgaben, abgestimmte Reinigungszeiten und eine klare Kontaktperson erleichtern die Zusammenarbeit. Besondere Anforderungen werden vor Beginn gemeinsam besprochen.",
     directQuestion: "Was wird bei einer Praxisreinigung gereinigt?",
     directAnswer:
       "Eine Praxisreinigung in Düsseldorf kann Empfang, Wartezimmer, Behandlungs- und Funktionsräume, Sanitär- und Personalbereiche sowie vereinbarte Kontaktflächen umfassen. Welche Aufgaben tatsächlich dazugehören, richtet sich nach Raumliste, Praxisart, internen Vorgaben und den verfügbaren Zeitfenstern. Medizinische Spezialaufgaben und besondere Abfälle sind nicht automatisch enthalten. Senden Sie Räume, Fläche, Turnus, sensible Bereiche und Zugangsregelung für eine konkrete Prüfung.",
     serviceType: "Praxisreinigung in Düsseldorf",
     cta: {
-      href: requestHref("praxisreinigung", "praxisreinigung-duesseldorf"),
+      href: requestHref("praxisreinigung", "praxisreinigung-duesseldorf", "/duesseldorf/praxisreinigung"),
       label: "Praxisreinigung anfragen",
       service: "praxisreinigung",
       intent: "praxisreinigung-duesseldorf",
@@ -219,18 +268,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   fensterreinigung: {
     key: "fensterreinigung",
     path: "/duesseldorf/fensterreinigung",
-    title: authority["/duesseldorf/fensterreinigung"].seoTitle,
-    description: authority["/duesseldorf/fensterreinigung"].description,
+    title: "Fensterreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
+    description: "Fenster und Glasflächen in Wohnung, Büro oder Laden reinigen lassen. Innen- und Außenseiten, Rahmen und Falze nach Wunsch vereinbaren.",
     ogTitle: authority["/duesseldorf/fensterreinigung"].ogTitle,
     eyebrow: authority["/duesseldorf/fensterreinigung"].shortTitle,
-    h1: authority["/duesseldorf/fensterreinigung"].headline,
+    h1: "Fensterreinigung in Düsseldorf für einen klaren Ausblick.",
     intro:
-      "Ob Wohnung, Büro oder Ladenfläche: Für eine passende Fensterreinigung sind Glasmenge, gewünschte Seiten und sichere Erreichbarkeit entscheidend.",
+      "Wir reinigen Fenster und Glasflächen in Ihrer Wohnung, im Büro oder in der Ladenfläche. Innen- und Außenseiten sowie Rahmen und Falze stimmen wir vorab ab, damit Sie genau die Reinigung erhalten, die Sie brauchen.",
     summary:
-      "Fensterreinigung wird nach Anzahl oder Glasfläche, Innen- und Außenseite, Rahmenwunsch, Höhe und Zugang eingeschätzt. Fotos helfen besonders bei großen oder schwer erreichbaren Flächen.",
+      "Glasflächen reinigen wir im vereinbarten Umfang. Rahmen, Falze und Fensterbänke können hinzukommen; bei höher gelegenen Fenstern klären wir die sichere Erreichbarkeit.",
     serviceType: "Fenster- und Glasreinigung in Düsseldorf",
     cta: {
-      href: requestHref("fensterreinigung", "fensterreinigung-duesseldorf"),
+      href: requestHref("fensterreinigung", "fensterreinigung-duesseldorf", "/duesseldorf/fensterreinigung"),
       label: "Fensterreinigung anfragen",
       service: "fensterreinigung",
       intent: "fensterreinigung-duesseldorf",
@@ -253,18 +302,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   gewerbereinigung: {
     key: "gewerbereinigung",
     path: "/duesseldorf/gewerbereinigung",
-    title: authority["/duesseldorf/gewerbereinigung"].seoTitle,
-    description: authority["/duesseldorf/gewerbereinigung"].description,
+    title: "Gewerbereinigung Düsseldorf für Ihren Betrieb | FLOXANT",
+    description: "Reinigung für Ladenflächen, Studios und gewerbliche Räume in Düsseldorf. Aufgaben und Zeiten auf Nutzung, Kundenverkehr und Bodenbeläge abstimmen.",
     ogTitle: authority["/duesseldorf/gewerbereinigung"].ogTitle,
     eyebrow: authority["/duesseldorf/gewerbereinigung"].shortTitle,
-    h1: authority["/duesseldorf/gewerbereinigung"].headline,
+    h1: "Gewerbereinigung in Düsseldorf, passend zu Ihrem Betrieb.",
     intro:
-      "Laden, Studio, Ausstellungsfläche oder gemischt genutztes Objekt: Die Reinigung richtet sich nach Nutzung, Publikumsverkehr und den tatsächlich vereinbarten Bereichen.",
+      "Gepflegte Räume gehören zum ersten Eindruck Ihres Betriebs. Wir reinigen Ihre vereinbarten Gewerbeflächen und stimmen Aufgaben, Turnus und Zugang auf Öffnungszeiten und Nutzung ab.",
     summary:
       "Gewerbereinigung beginnt mit Objektart, Nutzungszeiten und einer klaren Flächenliste. Maschinen, Produktionsbereiche oder besondere Stoffe gehören nur dann zum Umfang, wenn sie ausdrücklich geprüft wurden.",
     serviceType: "Gewerbereinigung in Düsseldorf",
     cta: {
-      href: requestHref("gewerbereinigung", "gewerbereinigung-duesseldorf"),
+      href: requestHref("gewerbereinigung", "gewerbereinigung-duesseldorf", "/duesseldorf/gewerbereinigung"),
       label: "Gewerbereinigung anfragen",
       service: "gewerbereinigung",
       intent: "gewerbereinigung-duesseldorf",
@@ -287,21 +336,21 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   grundreinigung: {
     key: "grundreinigung",
     path: "/duesseldorf/grundreinigung",
-    title: "Grundreinigung Düsseldorf | Flächen & Zustand klären",
-    description: "Grundreinigung in Düsseldorf für stark beanspruchte Räume und Flächen. Zustand, Beläge, Möblierung, gewünschtes Ergebnis und Termin angeben.",
+    title: "Grundreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
+    description: "Intensive Reinigung für Wohnung, Haus und Gewerberäume in Düsseldorf. Böden, Küche, Bad und schwer erreichbare Bereiche gezielt einplanen.",
     ogTitle: "Grundreinigung Düsseldorf für stark beanspruchte Flächen",
     eyebrow: "Grundreinigung Düsseldorf",
-    h1: "Grundreinigung in Düsseldorf nach Zustand und Oberfläche planen",
+    h1: "Grundreinigung in Düsseldorf, wenn es gründlicher sein soll.",
     intro:
-      "Wenn die laufende Reinigung nicht mehr ausreicht, wird der tatsächliche Zustand Raum für Raum betrachtet. Ziel ist ein klar abgegrenzter, einmaliger Intensivumfang.",
+      "Wenn die übliche Reinigung nicht mehr ausreicht, kümmern wir uns gezielt um stärkere Verschmutzungen und vernachlässigte Bereiche. Gemeinsam legen wir fest, welche Böden, Oberflächen, Küchen- oder Sanitärbereiche gründlich gereinigt werden sollen.",
     summary:
-      "Grundreinigung eignet sich für haftende Rückstände und stark beanspruchte Flächen. Beläge, Materialverträglichkeit, Möblierung und gewünschter Zielzustand bestimmen den Ablauf.",
+      "Eine einmalige intensive Reinigung für ausgewählte Bereiche, etwa vor Einzug, nach längerer Nutzung oder ergänzend zur regelmäßigen Pflege.",
     directQuestion: "Was beeinflusst den Preis einer Grundreinigung in Düsseldorf?",
     directAnswer:
       "Der Preis einer Grundreinigung in Düsseldorf wird durch Fläche, Anzahl und Nutzung der Räume, Boden- und Oberflächenarten, Verschmutzungsgrad, Möblierung, Zugänglichkeit und gewünschten Zielzustand beeinflusst. Bei Wohnung oder Haus zählen außerdem intensive Bereiche wie Küche und Sanitär. Fotos helfen bei der ersten Einordnung, ersetzen aber nicht immer eine Prüfung vor Ort. Senden Sie Fläche, Räume, Materialhinweise, Zustand und Wunschtermin für eine konkrete Anfrage.",
     serviceType: "Grundreinigung in Düsseldorf",
     cta: {
-      href: requestHref("grundreinigung", "grundreinigung-duesseldorf"),
+      href: requestHref("grundreinigung", "grundreinigung-duesseldorf", "/duesseldorf/grundreinigung"),
       label: "Grundreinigung anfragen",
       service: "reinigung",
       intent: "grundreinigung-duesseldorf",
@@ -325,18 +374,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   unterhaltsreinigung: {
     key: "unterhaltsreinigung",
     path: "/duesseldorf/unterhaltsreinigung",
-    title: "Unterhaltsreinigung Düsseldorf | Turnus & Raumplan",
-    description: "Unterhaltsreinigung in Düsseldorf regelmäßig planen. Räume, Aufgaben, Häufigkeit, Zeitfenster, Zugang und Ansprechpartner verständlich abstimmen.",
+    title: "Unterhaltsreinigung Düsseldorf – regelmäßig gepflegt | FLOXANT",
+    description: "Regelmäßige Reinigung von Büros, Gewerbe- und Gemeinschaftsflächen. Aufgaben, Turnus und Reinigungszeiten mit FLOXANT passend zum Objekt vereinbaren.",
     ogTitle: "Unterhaltsreinigung Düsseldorf mit klarem Turnus",
     eyebrow: "Unterhaltsreinigung Düsseldorf",
-    h1: "Unterhaltsreinigung in Düsseldorf mit Turnus und Raumplan abstimmen",
+    h1: "Unterhaltsreinigung in Düsseldorf für dauerhaft gepflegte Räume.",
     intro:
-      "Regelmäßige Reinigung funktioniert am besten mit einem verständlichen Raumplan: Was ist täglich, wöchentlich oder nur bei Bedarf zu erledigen?",
+      "Wir übernehmen wiederkehrende Reinigungsaufgaben, damit Ihre Räume im Alltag gepflegt bleiben. Böden, Oberflächen, Küchen und Sanitärbereiche bekommen den Rhythmus, den ihre Nutzung erfordert.",
     summary:
-      "Unterhaltsreinigung hält vereinbarte Bereiche in einem regelmäßigen Rhythmus sauber. Aufgaben, Häufigkeiten, Zeitfenster und Ansprechpartner werden vor dem Start festgelegt.",
+      "Ein abgestimmter Plan hält fest, was bei jedem Termin und was in größeren Abständen erledigt wird. So bleibt der Leistungsumfang verständlich.",
     serviceType: "Unterhaltsreinigung in Düsseldorf",
     cta: {
-      href: requestHref("unterhaltsreinigung", "unterhaltsreinigung-duesseldorf"),
+      href: requestHref("unterhaltsreinigung", "unterhaltsreinigung-duesseldorf", "/duesseldorf/unterhaltsreinigung"),
       label: "Unterhaltsreinigung anfragen",
       service: "unterhaltsreinigung",
       intent: "unterhaltsreinigung-duesseldorf",
@@ -359,13 +408,13 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   baureinigung: {
     key: "baureinigung",
     path: "/duesseldorf/baureinigung",
-    title: "Baureinigung Düsseldorf | Bauphase & Übergabe planen",
-    description: "Bau- und Bauendreinigung in Düsseldorf anfragen. Bauphase, Fläche, Gewerke, Rückstände, Oberflächen, Zugang und Übergabetermin angeben.",
+    title: "Baureinigung Düsseldorf nach Umbau & Renovierung | FLOXANT",
+    description: "Baustaub und vereinbarte Rückstände nach Renovierung entfernen lassen. FLOXANT stimmt Flächen, Materialien und Zeitpunkt der Reinigung mit Ihnen ab.",
     ogTitle: "Baureinigung Düsseldorf vor Abnahme und Übergabe",
     eyebrow: "Baureinigung Düsseldorf",
-    h1: "Baureinigung in Düsseldorf passend zu Bauphase und Übergabe planen",
+    h1: "Baureinigung in Düsseldorf für den nächsten Schritt nach dem Umbau.",
     intro:
-      "Nach Bau- oder Renovierungsarbeiten müssen Staub, Folien und typische Rückstände passend zum Projektstand entfernt werden. Bauzwischen- und Bauendreinigung werden dabei getrennt geplant.",
+      "Nach Umbau oder Renovierung übernehmen wir die vereinbarte Reinigung, damit Ihre Räume wieder genutzt werden können. Wir berücksichtigen den Stand der Arbeiten, Staub, Rückstände und empfindliche Oberflächen.",
     summary:
       "Für Baureinigung zählen Bauphase, Fläche, abgeschlossene Gewerke, vorhandene Rückstände und Übergabetermin. Gefährliche Stoffe oder nicht klar zuordenbare Abfälle gehören nicht automatisch zum Umfang.",
     serviceType: "Bau- und Bauendreinigung in Düsseldorf",
@@ -393,18 +442,18 @@ export const duesseldorfCleaningPages: Record<DuesseldorfCleaningPageKey, PageCo
   treppenhausreinigung: {
     key: "treppenhausreinigung",
     path: "/duesseldorf/treppenhausreinigung",
-    title: "Treppenhausreinigung Düsseldorf | Turnus & Bereiche",
-    description: "Treppenhausreinigung in Düsseldorf für Hausverwaltungen und Eigentümer. Etagen, Eingänge, Bereiche, Turnus, Zugang und Ansprechpartner angeben.",
+    title: "Treppenhausreinigung Düsseldorf für Ihr Objekt | FLOXANT",
+    description: "Eingang, Treppen, Podeste und Geländer regelmäßig reinigen lassen. FLOXANT vereinbart Bereiche und Turnus mit Eigentümern und Hausverwaltungen.",
     ogTitle: "Treppenhausreinigung Düsseldorf klar abstimmen",
     eyebrow: "Treppenhausreinigung Düsseldorf",
-    h1: "Treppenhausreinigung in Düsseldorf klar abstimmen",
+    h1: "Treppenhausreinigung in Düsseldorf für einen gepflegten Eingang.",
     intro:
-      "Für Eingänge, Treppen, Podeste und vereinbarte Gemeinschaftsflächen legen wir Bereiche, Turnus und Zugang vorab gemeinsam fest.",
+      "Wir reinigen Eingänge, Treppen, Podeste und vereinbarte Gemeinschaftsflächen. Ein fester Aufgabenplan sorgt dafür, dass Eigentümer, Verwaltung und Bewohner wissen, welche Bereiche gepflegt werden.",
     summary:
       "Für eine erste Einschätzung helfen Anzahl der Etagen und Eingänge, gewünschte Bereiche, Turnus, Zugangsregelung und ein fester Ansprechpartner.",
     serviceType: "Treppenhausreinigung in Düsseldorf",
     cta: {
-      href: requestHref("treppenhausreinigung", "treppenhausreinigung-duesseldorf"),
+      href: requestHref("treppenhausreinigung", "treppenhausreinigung-duesseldorf", "/duesseldorf/treppenhausreinigung"),
       label: "Treppenhausreinigung anfragen",
       service: "treppenhausreinigung",
       intent: "treppenhausreinigung-duesseldorf",
@@ -569,7 +618,7 @@ function Hero({ config }: { config: PageConfig }) {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ServiceCta config={config} light />
             <a
-              href={`tel:${company.phoneRaw}`}
+              href={`tel:${duesseldorfCompany.phoneRaw}`}
               data-event="phone_click"
               data-source="duesseldorf_cleaning_hero"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 px-6 text-sm font-black text-white transition hover:bg-white/10"
@@ -579,13 +628,13 @@ function Hero({ config }: { config: PageConfig }) {
             </a>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-300">
-            Ihre Anfrage ist unverbindlich. Umfang und Termin stimmen wir erst nach Prüfung der Angaben ab.
+            Eine kurze Nachricht genügt für den Anfang. Fotos können Sie freiwillig ergänzen.
           </p>
         </div>
         <aside className="rounded-lg border border-white/15 bg-white p-5 text-slate-950 shadow-2xl shadow-slate-950/30">
-          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Für die erste Einschätzung</p>
+          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Das übernehmen wir</p>
           <div className="mt-4 grid gap-3">
-            {config.requiredDetails.slice(0, 3).map((item) => (
+            {config.fit.slice(0, 3).map((item) => (
               <div key={item} className="flex gap-3 rounded-lg bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />{item}
               </div>
@@ -604,7 +653,7 @@ function ServiceChooser({ keys }: { keys: DuesseldorfCleaningPageKey[] }) {
         <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Reinigungsleistungen</p>
         <h2 className="mt-3 max-w-4xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">Direkt zur passenden Reinigung.</h2>
         <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-          Jede Leistung hat einen eigenen Umfang. So landen Ihre Angaben direkt bei der richtigen Anfrage.
+          Vom einzelnen Fenster bis zum regelmäßigen Reinigungsplan: Finden Sie die Unterstützung für Ihre Räume.
         </p>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {keys.map((key) => {
@@ -639,9 +688,9 @@ function MoveOutCleaningCallout() {
         <div>
           <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Umzugsreinigung Düsseldorf</p>
           <h2 className="mt-3 text-3xl font-black">Endreinigung nach Auszug oder vor Einzug anfragen</h2>
-          <p className="mt-4 max-w-3xl font-semibold leading-8 text-slate-700">Für eine Umzugsreinigung zählen Wohnfläche, Räume, Zustand, Küche, Sanitärbereiche, gewünschter Zielzustand, Übergabetermin und Fotos. Umzug oder Entrümpelung werden nur als getrennte Zusatzleistungen abgestimmt; eine Abnahme oder vollständige Fleckenentfernung wird nicht garantiert. Anfragen aus Düsseldorf-Oberkassel werden wie andere Düsseldorfer Einsatzorte anhand der Eckdaten geprüft.</p>
+          <p className="mt-4 max-w-3xl font-semibold leading-8 text-slate-700">Nach dem Auszug reinigen wir Ihre Wohnung im vereinbarten Umfang. Böden, Küche, Bad und zugängliche Oberflächen stimmen wir auf den Zustand ab; Fenster und Einbauten lassen sich ergänzen. So haben Sie mehr Zeit für Ihr neues Zuhause.</p>
         </div>
-        <Link href="/duesseldorf/buchen?service=umzugsreinigung" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white">
+        <Link href="/duesseldorf/endreinigung" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white">
           Umzugsreinigung anfragen <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
@@ -661,11 +710,11 @@ function HubDecisionDetails({ config }: { config: PageConfig }) {
         <article className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <p className="text-sm font-black uppercase tracking-wide text-cyan-800">Gewerblich</p>
           <h2 className="mt-3 text-2xl font-black">Büro, Praxis oder Gewerbefläche</h2>
-          <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">Raumliste, Nutzung, Turnus, Zeitfenster, Ansprechpartner und Zugang gehören in eine belastbare gewerbliche Anfrage.</p>
+          <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">Wir reinigen Arbeitsplätze, Gemeinschaftsflächen und vereinbarte Nebenräume. Aufgaben und Zeiten passen wir an Ihren Betrieb an.</p>
         </article>
         <article className="rounded-lg bg-slate-950 p-6 text-white">
           <p className="text-sm font-black uppercase tracking-wide text-cyan-200">Preisfaktoren</p>
-          <h2 className="mt-3 text-2xl font-black">Umfang vor Preisversprechen</h2>
+          <h2 className="mt-3 text-2xl font-black">So entsteht Ihr persönliches Angebot</h2>
           <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6 text-slate-200">
             {config.effortFactors.slice(0, 4).map((factor) => <li key={factor}>• {factor}</li>)}
           </ul>
@@ -690,6 +739,7 @@ function SpecialistDetails({ config }: { config: PageConfig }) {
               <div key={item} className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-7 text-slate-700">{item}</div>
             ))}
           </div>
+          {config.optional?.length ? <div className="mt-7"><h3 className="text-xl font-bold">Auf Wunsch zusätzlich</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-slate-700">{config.optional.map((item) => <li key={item}>{item}</li>)}</ul></div> : null}
         </div>
       </section>
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
@@ -698,7 +748,7 @@ function SpecialistDetails({ config }: { config: PageConfig }) {
             <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
               <ClipboardList className="h-4 w-4" aria-hidden="true" />Ihre Angaben
             </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Was wir für Ihre Anfrage brauchen.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Diese Angaben helfen bei Ihrem Angebot.</h2>
             <ul className="mt-6 grid gap-3">
               {config.requiredDetails.map((item) => (
                 <li key={item} className="flex gap-3 text-sm font-semibold leading-7 text-slate-700">
@@ -711,7 +761,8 @@ function SpecialistDetails({ config }: { config: PageConfig }) {
             <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
               <Clock3 className="h-4 w-4" aria-hidden="true" />Aufwand und Termin
             </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal">Wovon die Planung abhängt.</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-normal">Was den Preis beeinflusst.</h2>
+            <p className="mt-4 leading-7 text-slate-200">Wir erstellen ein persönliches Angebot aus dem gewünschten Umfang. Die konkrete Einsatzadresse und Anfahrt werden dabei berücksichtigt.</p>
             <ul className="mt-6 grid gap-3">
               {config.effortFactors.map((item) => (
                 <li key={item} className="rounded-lg border border-white/15 bg-white/[0.06] p-3 text-sm font-semibold leading-7 text-slate-100">{item}</li>
@@ -729,7 +780,7 @@ function Process({ config }: { config: PageConfig }) {
     <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <p className="text-sm font-black uppercase tracking-normal text-cyan-800">So geht es weiter</p>
-        <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">In drei Schritten zur geklärten Anfrage.</h2>
+        <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">In drei Schritten zur vereinbarten Reinigung.</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {config.process.map((step, index) => (
             <div key={step} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
@@ -774,7 +825,7 @@ function FinalCta({ config }: { config: PageConfig }) {
           </p>
           <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">Ihre Reinigung konkret anfragen.</h2>
           <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-cyan-50/85">
-            Senden Sie die wichtigsten Eckdaten. Wir prüfen Umfang und Termin und melden uns mit dem nächsten Schritt.
+            Wir reinigen in Düsseldorf und im Umkreis von 75 km Luftlinie. Schreiben Sie kurz, welche Arbeit Sie abgeben möchten. Umfang, Preis, Anfahrt und Termin stimmen wir persönlich mit Ihnen ab.
           </p>
         </div>
         <div className="flex flex-col gap-3">

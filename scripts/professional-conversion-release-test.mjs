@@ -27,13 +27,18 @@ function test(name, check) {
 }
 
 test("1 Desktop-Header neutral", () => {
-  assert.match(navigation, /buildGlobalRequestHref\("global_header"\)/);
+  assert.match(navigation, /buildRequestHref\(\{ source: "global_header", entryPage: pathname/);
 });
 test("2 Mobile-Header neutral", () => {
-  assert.match(navigation, /buildGlobalRequestHref\("global_mobile_header"\)/);
+  assert.match(navigation, /buildRequestHref\(\{ source: "global_mobile_header", entryPage: pathname/);
 });
-test("3 Footer neutral", () => {
-  assert.match(footer, /buildGlobalRequestHref\("global_footer"\)/);
+test("3 Footer übernimmt nur den vorhandenen Seitenkontext", () => {
+  assert.match(footer, /getPublicRouteContext\(pathname\)/);
+  const footerRequest = footer.match(/buildRequestHref\(\{[^}]+source: "global_footer"[^}]*\}\)/)?.[0] || "";
+  assert.match(footerRequest, /location: routeContext\.location/);
+  assert.match(footerRequest, /service: routeContext\.service/);
+  assert.match(footerRequest, /intent: routeContext\.intent/);
+  assert.match(footerRequest, /source: "global_footer"/);
 });
 test("4 keine Standortvorauswahl", () => {
   assert.match(resolver, /location: RequestLocation \| "" = ""/);

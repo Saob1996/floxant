@@ -93,7 +93,7 @@ export function PriorityFaqSection({
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
-              <p className={`text-xs font-black uppercase tracking-[0.18em] ${isDark ? "text-cyan-200" : "text-primary"}`}>
+              <p className={`text-xs font-black uppercase tracking-[0.18em] ${isDark ? "text-cyan-200" : "text-blue-800"}`}>
                 {copy.eyebrow}
               </p>
               <h2

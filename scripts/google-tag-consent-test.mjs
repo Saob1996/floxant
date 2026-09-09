@@ -736,4 +736,18 @@ assert.equal((googleTagComponent.match(/gtag\/js/g) || []).length, 1);
 assert.match(googleTagComponent, /strategy="afterInteractive"/);
 assert.match(googleTagComponent, /pathname\.startsWith\("\/dashboard"\)/);
 
-console.log("Google Tag Consent Mode, Lead-Tracking und Journey-Persistenz: 18 Prüfgruppen bestanden.");
+{
+  const denied = createHarness();
+  assert.equal(denied.analytics.trackRequestStart("cleaning", "duesseldorf"), false);
+  assert.equal(denied.window.dataLayer, undefined, "form start must not initialize analytics without consent");
+  const allowed = createHarness(JSON.stringify({ analytics: true, marketing: false }));
+  assert.equal(allowed.analytics.trackRequestStart("cleaning", "duesseldorf"), true);
+  const start = commands(allowed.window, "event").find((entry) => entry[1] === "form_start");
+  assert.deepEqual(JSON.parse(JSON.stringify(start[2])), {
+    form_name: "central_professional_request", service_type: "cleaning", location: "duesseldorf",
+  });
+  allowed.analytics.trackRequestStart("person@example.com", "private street 12");
+  assert.doesNotMatch(JSON.stringify(allowed.window.dataLayer), /person@example\.com|private street/);
+}
+
+console.log("Google Tag Consent Mode, Lead-Tracking und Journey-Persistenz: 19 Prüfgruppen bestanden.");

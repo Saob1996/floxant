@@ -310,7 +310,9 @@ export function AdminBackhaulPanel() {
 
     const mutation = editingId
       ? supabase.from("backhaul_offers").update(schemaMode === "operations" ? payload : legacyPayload).eq("id", editingId)
-      : supabase.from("backhaul_offers").insert(schemaMode === "operations" ? payload : legacyPayload);
+      : schemaMode === "operations"
+        ? supabase.from("backhaul_offers").insert(payload)
+        : supabase.from("backhaul_offers").insert(legacyPayload);
     const { error: saveError } = await mutation;
     if (saveError) {
       setError("Rückfahrt konnte nicht gespeichert werden. Eingaben, Migration und Admin-Rolle prüfen.");

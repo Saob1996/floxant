@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight, Crown, Gem, Home, KeyRound, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 
 import { PrivateClientInquiryForm } from "@/components/PrivateClientInquiryForm";
+import { GoogleReviews } from "@/components/GoogleReviews";
+import { SocialLinks } from "@/components/SocialLinks";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
 import { buildLeadHref } from "@/lib/lead-intents";
@@ -530,6 +532,7 @@ export default function PrivateClientServicePage() {
         </div>
       </section>
 
+      <GoogleReviews />
       <footer className="border-t border-[#D8B76E]/10 px-6 py-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
@@ -546,6 +549,7 @@ export default function PrivateClientServicePage() {
             <Link href="/datenschutz" className="hover:text-[#D8B76E]">Datenschutz</Link>
           </div>
         </div>
+        <div className="mx-auto max-w-7xl"><SocialLinks /></div>
       </footer>
     </main>
   );

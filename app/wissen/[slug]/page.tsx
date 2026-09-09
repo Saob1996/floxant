@@ -5,6 +5,7 @@ import { generateCityContent } from "@/lib/content-engine";
 import { generateSemanticLinks } from "@/lib/internal-linking";
 import { generatePageSEO } from "@/lib/seo";
 import { germanizeText } from "@/lib/german-text";
+import { company } from "@/lib/company";
 
 const STATIC_KNOWLEDGE_SERVICES = ["umzug", "reinigung", "entruempelung"] as const;
 const STATIC_KNOWLEDGE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
@@ -34,8 +35,8 @@ export async function generateMetadata({
   return generatePageSEO({
     lang: "de",
     path: `/wissen/${slug}`,
-    title: `Die besten Tipps für Ihren ${service} in ${city} | FLOXANT Wissen`,
-    description: `Alles, was Sie über Kosten, Planung und Ablauf eines ${service}s in ${city} wissen müssen. Plus: lokale Tipps.`,
+    title: `Tipps zu ${service} in ${city} | FLOXANT Wissen`,
+    description: `${service} in ${city}: Hinweise zu Kosten, Vorbereitung und Ablauf. Ein Ratgeber zur Planung und zur Abstimmung mit dem ausführenden Betrieb.`,
   });
 }
 
@@ -58,7 +59,7 @@ export default async function KnowledgeHubPage({
     <main className="min-h-screen bg-[#05050A] pb-24 pt-32 text-white">
       <div className="mx-auto max-w-6xl px-4 md:px-8">
         <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1.5 text-xs font-medium text-blue-400">
-          <BookOpen size={14} /> FLOXANT Wissen ({article.category})
+          <BookOpen size={14} /> FLOXANT Wissen – Ratgeber
         </div>
 
         <h1 className="mb-12 max-w-3xl text-4xl font-light leading-tight md:text-5xl">
@@ -73,9 +74,9 @@ export default async function KnowledgeHubPage({
             />
 
             <AuthorBox
-              name="Alexander Florax"
-              role="Senior Logistik-Experte & Gründer"
-              description="Mit über 15 Jahren Erfahrung in der bayerischen Umzugsbranche ist Alexander Florax Ihr Ansprechpartner für komplexe Logistikprojekte. Er steht für die FLOXANT-Qualitätsversprechen und sorgt für reibungslose Abläufe von Regensburg bis München."
+              name={company.name}
+              role="Redaktion"
+              description="FLOXANT stellt hier praktische Hinweise zur Vorbereitung von Umzug, Reinigung und Räumung zusammen. Die Ratgeber ersetzen keine individuelle Abstimmung von Umfang, Einsatzadresse und Termin."
             />
           </div>
 
@@ -97,7 +98,7 @@ export default async function KnowledgeHubPage({
                       <span className="text-sm font-medium leading-snug">
                         {link.anchorText}
                       </span>
-                      <span className="mt-1 flex items-center gap-1 text-xs text-blue-500/50">
+                      <span className="mt-1 flex items-center gap-1 text-xs text-blue-200">
                         Zum Artikel
                         <ArrowRight
                           size={10}

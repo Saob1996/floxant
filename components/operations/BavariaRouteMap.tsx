@@ -32,12 +32,12 @@ export function BavariaRouteMap() {
             Region im Blick
           </div>
           <h3 className="mt-1 text-xl font-bold tracking-[-0.02em] text-slate-950">
-            Regensburg als Hub, Bayern als Einsatzraum.
+            Umzugsstrecken mit Bezug zu Regensburg.
           </h3>
         </div>
         <p className="max-w-xl text-xs leading-5 text-slate-600">
-          Regensburg ist der Startpunkt. Ob Ihr Ort passt, klärt FLOXANT nach Strecke,
-          Termin und Verfügbarkeit.
+          Lokale Leistungen bieten wir in Regensburg und 75 km Umgebung an. Für weiter
+          entfernte Umzugsziele stimmen wir Strecke, Termin und Unterstützung gesondert ab.
         </p>
       </div>
 

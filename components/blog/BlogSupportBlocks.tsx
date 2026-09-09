@@ -92,7 +92,7 @@ function getLocalLinks(signal: string): RelatedLink[] {
 
   if (signal.includes("regensburg") || signal.includes("bayern")) {
     links.push(
-      { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung im 50-km-Umkreis und Entruempelung." },
+      { href: "/regensburg", title: "Regensburg", text: "Umzug, Reinigung und Entrümpelung in Regensburg und 75 km Umgebung." },
       { href: "/kontakt?mode=neutral&source=website", title: "Kontakt", text: "Ort, Termin, Fotos und kurze Beschreibung direkt senden." },
     );
   }

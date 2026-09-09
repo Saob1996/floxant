@@ -22,6 +22,14 @@ const dynamicCtaExceptions = new Map([
     "lib/content/faq-registry.ts",
     "FAQ seed URLs are normalized by buildFaqPair and evaluated below.",
   ],
+  [
+    "lib/lead-intents/resolve-request-context.ts",
+    "Request CTA builders are evaluated below for every active registry combination.",
+  ],
+  [
+    "lib/regional-route-policy.ts",
+    "Every regional route policy CTA is evaluated below.",
+  ],
 ]);
 
 function resolveProjectModule(specifier, parentFile) {
@@ -67,7 +75,7 @@ function loadProjectModule(file) {
   return loadedModule.exports;
 }
 
-const { resolveRequestContext } = loadProjectModule("lib/lead-intents/resolve-request-context.ts");
+const { resolveRequestContext, buildRequestHref, buildGlobalRequestHref } = loadProjectModule("lib/lead-intents/resolve-request-context.ts");
 
 function normalizeFile(file) {
   return path.relative(root, file).replaceAll("\\", "/");
@@ -261,6 +269,7 @@ const { serviceProducts } = loadProjectModule("lib/service-products.ts");
 const { floxantLocationList, getLocationContactHref } = loadProjectModule("lib/floxant-locations.ts");
 const { publicServices } = loadProjectModule("lib/services/service-registry.ts");
 const { faqRegistry } = loadProjectModule("lib/content/faq-registry.ts");
+const { getRegionalRoutePolicy, regensburgCleaningReviewRoutes } = loadProjectModule("lib/regional-route-policy.ts");
 
 const generated = [];
 function generatedHref(href, label) {
@@ -333,6 +342,20 @@ for (const location of floxantLocationList) {
   }
 }
 for (const service of publicServices) generatedHref(service.cta.href, `service-registry:${service.id}`);
+for (const service of publicServices) {
+  const context = resolveRequestContext(Object.fromEntries(new URL(service.cta.href, "https://www.floxant.de").searchParams));
+  generatedHref(buildRequestHref({ location: context.location, service: context.serviceKey }), `request-builder:${service.id}`);
+}
+for (const source of ["global_homepage", "global_header", "global_mobile_header", "global_floating", "global_footer", "global_404"]) {
+  generatedHref(buildGlobalRequestHref(source), `global-request-builder:${source}`);
+  generatedHref(buildRequestHref({ source }), `request-builder:neutral:${source}`);
+}
+for (const input of [{}, { mode: "neutral", location: "regensburg", service: "umzug" }, { location: "muenchen", service: "umzug" }, { location: "duesseldorf", service: "umzug" }, { location: "regensburg", service: "unknown-service" }]) {
+  generatedHref(buildRequestHref(input), `request-builder:fallback:${JSON.stringify(input)}`);
+}
+for (const route of regensburgCleaningReviewRoutes) {
+  generatedHref(getRegionalRoutePolicy(route.path).targetHref, `regional-route:${route.path}`);
+}
 for (const faq of faqRegistry) {
   if (faq.CTA.href.startsWith("/kontakt")) generatedHref(faq.CTA.href, `faq-registry:${faq.id}`);
 }
@@ -343,7 +366,8 @@ const legacyRedirectSource = fs.readFileSync(
 );
 assert.match(legacyRedirectSource, /const next = new URLSearchParams\(\);/);
 assert.doesNotMatch(legacyRedirectSource, /const next = new URLSearchParams\(query\);/);
-assert.match(legacyRedirectSource, /\["service", "intent", "source", "priority", "mode", "locale"\]/);
+// Preserve only service context and non-personal CTA provenance in legacy redirects.
+assert.match(legacyRedirectSource, /\["service", "intent", "source", "priority", "mode", "locale", "entryPage", "ctaComponent", "ctaPosition"\]/);
 for (const piiKey of ["name", "email", "phone", "scope", "message"]) {
   assert.doesNotMatch(
     legacyRedirectSource,

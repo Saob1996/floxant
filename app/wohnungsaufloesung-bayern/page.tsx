@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `wohnungsaufloesung-bayern`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    title: "Wohnungsauflösung in Bayern: Raum Regensburg | FLOXANT",
+    description: "Einen Haushalt im Raum Regensburg geordnet auflösen. Unser lokales Einsatzgebiet reicht bis 75 km: Besitz, Freigaben, Räumung und Übergabe vorab abstimmen.",
   });
 }
 export default async function WohnungsaufloesungBayernPage({ params }: PageProps) {
@@ -45,8 +45,8 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
       dict={localeDict}
       city={city}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle="Wohnungsauflösung in Bayern ruhig und klar vorbereiten"
-      heroText="Beschreiben Sie Ort, Räume, Freigaben, Zugang, Fotos und den gewünschten Endzustand. FLOXANT prüft von Regensburg aus, ob Strecke, Umfang und Zeitraum umsetzbar sind."
+      heroTitle="Wohnungsauflösung im Raum Regensburg vorbereiten"
+      heroText="Unser lokales Einsatzgebiet reicht bis 75 km Luftlinie um Regensburg. Beschreiben Sie Ort, Räume, Freigaben, Zugang und den gewünschten Endzustand; daraus stimmen wir die Räumung mit Ihnen ab."
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
       breadcrumbs={[
         { label: "Home", href: "/" },

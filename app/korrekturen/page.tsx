@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "So können inhaltliche Fehler gemeldet werden und so prüft und dokumentiert FLOXANT Korrekturen.",
   alternates: {
     canonical: `${company.url}/korrekturen`,
-    languages: { "de-DE": `${company.url}/korrekturen`, "en-DE": `${company.url}/en/corrections`, "x-default": `${company.url}/korrekturen` },
+    languages: { "de-DE": `${company.url}/korrekturen`, en: `${company.url}/en/corrections`, "x-default": `${company.url}/korrekturen` },
   },
 };
 

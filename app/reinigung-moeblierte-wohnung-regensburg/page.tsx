@@ -56,7 +56,7 @@ function buildRegensburgCleaningMetadata(): Metadata {
     path: "reinigung-moeblierte-wohnung-regensburg",
     title: "Ferienwohnung-Reinigung Regensburg | Gästewechsel",
     description:
-      "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Wäschewunsch und Fotos im 50-km-Umkreis klären.",
+      "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Wäschewunsch und Fotos im 75-km-Umkreis klären.",
   });
 }
 
@@ -93,7 +93,7 @@ function JsonLd() {
           "Reinigung vor Check-in",
           "Reinigung nach Checkout",
           "plattformunabhängige Reinigung für Kurzzeitvermietung",
-          "Reinigung Regensburg plus 50 km",
+          "Reinigung Regensburg plus 75 km",
         ],
         potentialActions: [
           { name: "Apartment-Reinigung anfragen", target: `${pagePath}#anfrage`, type: "ContactAction" },
@@ -144,7 +144,7 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
               FLOXANT prüft Ferienwohnungen und möblierte Apartments nach Objektart, Zustand, Checkout, nächstem
               Check-in, Zugang und vereinbartem Umfang. Reinigungsanfragen bleiben auf Regensburg und den Umkreis
-              bis 50 km begrenzt.
+              bis 75 km begrenzt.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -199,7 +199,7 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
           </QuickAnswer>
           <KeyFacts
             items={[
-              { label: "Region", value: "Regensburg und Umkreis bis 50 km" },
+              { label: "Region", value: "Regensburg und Umkreis bis 75 km" },
               { label: "Geeignet für", value: "Ferienwohnung, möblierte Wohnung, Apartment" },
               { label: "Wichtig", value: "Checkout, Check-in, Zugang und Fotos" },
               { label: "Nicht automatisch", value: "Wäsche, Schlüssel, Inventar und Gästesupport" },
@@ -210,7 +210,7 @@ export default function CleaningFurnishedApartmentRegensburgPage() {
 
       <ServiceAreaBlock
         title="Reinigungsgebiet für möblierte Wohnungen"
-        intro="FLOXANT prüft Ferienwohnungen, möblierte Wohnungen und Apartments in Regensburg und im Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
+        intro="FLOXANT prüft Ferienwohnungen, möblierte Wohnungen und Apartments in Regensburg und im Umkreis bis 75 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
       />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">

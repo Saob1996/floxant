@@ -58,6 +58,8 @@ function resolveQueryContext(query: string, fallback: RequestContextInput = {}) 
     entryPage: params.get("entryPage") || fallback.entryPage,
     campaign: params.get("campaign") || params.get("utm_campaign"),
     locale: params.get("locale"),
+    ctaComponent: params.get("ctaComponent") || fallback.ctaComponent,
+    ctaPosition: params.get("ctaPosition") || fallback.ctaPosition,
   });
 }
 
@@ -279,9 +281,12 @@ export function LegacyBookingContextRedirect() {
   useEffect(() => {
     if (!redirectsToContact) return;
     const next = new URLSearchParams();
-    for (const key of ["service", "intent", "source", "priority", "mode", "locale"]) {
+    for (const key of ["service", "intent", "source", "priority", "mode", "locale", "entryPage", "ctaComponent", "ctaPosition"]) {
       const value = searchParams.get(key)?.trim() || "";
-      if (value && /^[\p{L}\p{N} _-]{1,80}$/u.test(value)) next.set(key, value);
+      const valid = key === "entryPage"
+        ? /^\/(?!\/)[\p{L}\p{N}/_-]{0,180}$/u.test(value)
+        : /^[\p{L}\p{N} _-]{1,80}$/u.test(value);
+      if (value && valid) next.set(key, value);
     }
     next.set("location", "duesseldorf");
     if (!next.get("source")) next.set("source", "buchung");

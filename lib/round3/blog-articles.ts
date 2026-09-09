@@ -51,7 +51,7 @@ function build(seed: Seed): DominanceArticle {
         paragraphs: [en ? "This guide helps with preparation but is not legal, tax, medical or customs advice. The responsible authority's current written information is decisive." : "Dieser Ratgeber hilft bei der Vorbereitung, ist aber keine Rechts-, Steuer-, Medizin- oder Zollberatung. Maßgeblich ist die aktuelle schriftliche Auskunft der zuständigen Stelle."],
         bullets: [...seed.boundaries],
       },
-      { title: en ? "Next practical step" : "Der nächste praktische Schritt", paragraphs: [en ? "Once route, scope and open questions are separated, the service hub captures the details for a personal feasibility review. Submission is not an automatic booking." : "Sobald Route, Umfang und offene Fragen getrennt sind, erfasst der Service-Hub die Angaben für eine persönliche Machbarkeitsprüfung. Das Absenden ist keine automatische Buchung."] },
+      { title: en ? "Next practical step" : "Der nächste praktische Schritt", paragraphs: [en ? "Tell us where you need help, which tasks you would like us to handle and what is still unclear. We will discuss the scope and timing with you. Sending an enquiry does not book a service." : "Beschreiben Sie, wo Sie Unterstützung brauchen, welche Arbeiten Sie abgeben möchten und was noch offen ist. Wir stimmen Umfang und Termin persönlich mit Ihnen ab. Mit der Anfrage buchen Sie noch keine Leistung."] },
     ],
     highlightTitle: en ? "Prepare these points first" : "Diese Punkte zuerst vorbereiten",
     highlightPoints: [...seed.checklist.slice(0, 4)],

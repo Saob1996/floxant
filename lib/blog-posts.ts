@@ -5,6 +5,7 @@ import { psychologicalCleaningBlogArticles } from "@/lib/psychological-cleaning-
 import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 import { dominanceGermanArticles } from "@/lib/content/dominance-articles";
+import { practicalGuides } from "@/lib/practical-guides";
 
 export type BlogPostMeta = {
  slug: string;
@@ -492,4 +493,6 @@ export const blogPosts = germanizeDeep([
  ...psychologicalCleaningBlogPostMetas,
  ...dominanceBlogPostMetas,
  ...strategicBlogPostMetas,
-].filter(isBlogPostAllowedForCleaningArea)) as BlogPostMeta[];
+].filter((post) => !practicalGuides.some((guide) => guide.slug === post.slug))
+ .concat(practicalGuides.map((guide) => ({slug: guide.slug, category: guide.region === "duesseldorf" ? "Reinigung Düsseldorf" : "Regensburg", readTime: "5 Min.", title: guide.title, description: guide.description, featured: true})))
+ .filter(isBlogPostAllowedForCleaningArea)) as BlogPostMeta[];

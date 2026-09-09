@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -19,14 +19,14 @@ import {
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
-import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { generatePageSEO } from "@/lib/seo";
 import { searchAuthorityPages } from "@/lib/search-authority";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
-const requestHref = buildGlobalRequestHref("global_homepage");
+const requestHref = buildRequestHref({ source: "global_homepage", entryPage: path, ctaComponent: "homepage", ctaPosition: "hero" });
 const offerHref = "/angebot-guenstiger-pruefen";
 
 const homepageAuthority = searchAuthorityPages["/"];
@@ -206,15 +206,6 @@ function JsonLd() {
         areaServed: ["Düsseldorf", "Regensburg"],
         availableLanguage: ["de", "en"],
       }),
-      {
-        "@type": "Organization",
-        "@id": `${company.url}/#organization`,
-        name: company.name,
-        url: company.url,
-        email: company.email,
-        telephone: company.phoneRaw,
-        sameAs: company.sameAs,
-      },
       buildFaqJsonLd(faqItems),
     ],
   };
@@ -239,15 +230,21 @@ export default function HomePage() {
       <LocalBusinessJsonLd />
 
       <section data-home-section="hero" className="relative isolate overflow-hidden bg-slate-950 text-white">
-        <Image
-          src="/assets/floxant-hero-neu-gedacht.webp"
-          alt="FLOXANT Fahrzeug bei einem regionalen Dienstleistungseinsatz"
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55"
-        />
+        <picture>
+          <source media="(max-width: 639px)" type="image/avif" srcSet="/assets/home-hero/mobile-480.avif 480w, /assets/home-hero/mobile-800.avif 800w" sizes="100vw" />
+          <source media="(max-width: 639px)" type="image/webp" srcSet="/assets/home-hero/mobile-480.webp 480w, /assets/home-hero/mobile-800.webp 800w" sizes="100vw" />
+          <source type="image/avif" srcSet="/assets/home-hero/wide-960.avif 960w, /assets/home-hero/wide-1280.avif 1280w, /assets/home-hero/wide-1672.avif 1672w" sizes="100vw" />
+          <source type="image/webp" srcSet="/assets/home-hero/wide-960.webp 960w, /assets/home-hero/wide-1280.webp 1280w, /assets/floxant-hero-neu-gedacht.webp 1672w" sizes="100vw" />
+          <Image
+            src="/assets/floxant-hero-neu-gedacht.webp"
+            alt="Transporter mit Umzugskartons"
+            fill
+            loading="eager"
+            fetchPriority="high"
+            sizes="100vw"
+            className="absolute inset-0 -z-20 object-cover object-[68%_center] opacity-55"
+          />
+        </picture>
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.97)_0%,rgba(15,23,42,0.9)_48%,rgba(15,23,42,0.28)_100%)]" />
         <div className="mx-auto grid min-h-[min(47rem,100svh)] max-w-7xl items-center px-5 pb-14 pt-32 sm:px-8 lg:px-10">
           <div className="max-w-3xl">
@@ -281,7 +278,7 @@ export default function HomePage() {
               </Link>
             </div>
             <ul className="mt-8 grid max-w-2xl gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3" aria-label="Hinweise zur Anfrage">
-              {["Fotos sind optional", "Termine nach Verfügbarkeit", "Anfrage ist noch keine Buchung"].map((item) => (
+              {["Leistung passend vorausgewählt", "Standortbezogene Bearbeitung", "Direkter persönlicher Kontakt"].map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" aria-hidden="true" />
                   {item}

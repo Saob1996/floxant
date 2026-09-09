@@ -311,6 +311,12 @@
     text-wrap: pretty;
   }
 
+  @media (max-width: 639px) {
+    h1, h2, h3, h4, h5, h6, p {
+      text-wrap-style: auto;
+    }
+  }
+
   a,
   button,
   input,
@@ -3652,7 +3658,7 @@ input[type="file"]:hover {
 .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
 .flox-regensburg-action-wrap .flox-mobile-action-grid,
 .flox-universal-action-wrap .flox-mobile-action-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .flox-mobile-action {
@@ -3880,7 +3886,7 @@ input[type="file"]:hover {
   .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
   .flox-regensburg-action-wrap .flox-mobile-action-grid,
   .flox-universal-action-wrap .flox-mobile-action-grid {
-    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.82fr 0.95fr 0.88fr;
+    grid-template-columns: 1.05fr 0.95fr 1.05fr 0.85fr 0.95fr;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action,
@@ -3963,6 +3969,26 @@ input[type="file"]:hover {
   .flox-regensburg-action-wrap .flox-mobile-action-note,
   .flox-universal-action-wrap .flox-mobile-action-note {
     display: block;
+  }
+}
+
+/* Contact remains visible regardless of optional cookie consent. */
+
+@media (max-width: 1023px) {
+  body:has(.flox-mobile-action-wrap) {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 1024px) {
+  body:has(.flox-mobile-action-wrap) {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 1600px) {
+  body:has(.flox-mobile-action-wrap) {
+    padding-bottom: 0;
   }
 }
 
@@ -6396,3 +6422,49 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
   outline: none;
   box-shadow: var(--flox-focus-ring);
 }
+
+/* Essential contact: immediate, three usable links at every viewport width. */
+.flox-universal-action-wrap {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 80;
+  width: 100%;
+  transform: none;
+}
+.flox-universal-action-wrap .flox-mobile-action-shell {
+  width: 100%;
+  border-radius: 0;
+  padding: .5rem max(.5rem, env(safe-area-inset-right)) calc(.5rem + env(safe-area-inset-bottom)) max(.5rem, env(safe-area-inset-left));
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 -3px 16px rgb(15 23 42 / .10);
+}
+.flox-universal-action-wrap .flox-mobile-action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+.flox-universal-action-wrap .flox-mobile-action {
+  min-height: 3rem;
+  padding: .5rem .25rem;
+  flex-direction: row;
+  justify-content: center;
+  gap: .35rem;
+  font-size: .8rem;
+  white-space: normal;
+  text-align: center;
+}
+.flox-universal-action-wrap .flox-mobile-action svg { width: 1rem; height: 1rem; }
+.flox-universal-action-wrap .flox-mobile-action-whatsapp::before { display: none; }
+.flox-universal-action-wrap .flox-mobile-action-whatsapp > svg { display: block; }
+body:has(.flox-universal-action-wrap) { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+body:has(.flox-universal-action-wrap) .flox-cookie-banner { bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+.flox-cookie-banner > div { max-height: calc(100dvh - 11rem); }
+:where(input, textarea, select, button, a, [tabindex]) { scroll-margin-block: 7rem; }
+@media (min-width: 768px) {
+  .flox-universal-action-wrap { left: 50%; right: auto; bottom: .6rem; width: min(33rem, calc(100vw - 2rem)); transform: translateX(-50%); }
+  .flox-universal-action-wrap .flox-mobile-action-shell { border-radius: .75rem; }
+  .flox-universal-action-wrap .flox-mobile-action { font-size: .9rem; }
+  body:has(.flox-universal-action-wrap) .flox-cookie-banner { bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
+@media (max-height: 480px) {
+  /* Keep focused form controls clear of browser keyboards and short landscape views. */
+  body:has(input:focus, textarea:focus, select:focus) .flox-universal-action-wrap { position: static; width: 100%; transform: none; }
+}
+@media print { .flox-mobile-action-wrap, .flox-cookie-banner { display: none; } }

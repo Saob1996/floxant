@@ -21,7 +21,7 @@ const defaultServiceLinks: readonly RelatedLink[] = [
   {
     href: "/regensburg/reinigung",
     label: "Gebäudereinigung Regensburg",
-    text: "Zentraler Hub für Reinigung nach Objekt, Zustand, Fotos, Ziel und Regensburger Servicegebiet.",
+    text: "Reinigung für Wohnung, Büro und Gewerbe in Regensburg und 75 km Umgebung, einmalig oder regelmäßig.",
   },
   {
     href: "/regensburg/gewerbereinigung",
@@ -134,7 +134,7 @@ export function RelatedServicesBlock({
             data-source="related_services_block_hub"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
           >
-            Reinigungshub öffnen
+            Reinigungsleistungen ansehen
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>

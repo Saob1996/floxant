@@ -4,6 +4,8 @@ import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { duesseldorfCompany } from "@/lib/company";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { GoogleReviews } from "@/components/GoogleReviews";
+import { SocialLinks } from "@/components/SocialLinks";
 
 const coreLinks = [
   { href: "/duesseldorf", label: "Düsseldorf im Überblick" },
@@ -23,8 +25,8 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen overflow-x-clip bg-white pt-24 lg:pt-28">
       {children}
-
-      <footer className="border-t border-slate-200 bg-white px-5 pb-28 pt-12 sm:px-8 md:pb-14 lg:px-10">
+      <GoogleReviews location="duesseldorf" />
+      <footer data-nosnippet className="border-t border-slate-200 bg-white px-5 pb-28 pt-12 sm:px-8 md:pb-14 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
@@ -56,6 +58,13 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 WhatsApp
               </a>
             </div>
+            <SocialLinks location="duesseldorf" light />
+            <nav aria-label="Rechtliche Hinweise" className="mt-6 flex flex-wrap gap-5 text-sm font-semibold text-slate-600">
+              <Link href="/impressum" className="inline-flex min-h-11 items-center">Impressum</Link>
+              <Link href="/datenschutz" className="inline-flex min-h-11 items-center">Datenschutz</Link>
+              <Link href="/agb" className="inline-flex min-h-11 items-center">AGB</Link>
+              <Link href="/buchungsbedingungen" className="inline-flex min-h-11 items-center">Buchungsbedingungen</Link>
+            </nav>
           </div>
 
           <nav aria-label="Wichtige Leistungen in Düsseldorf">

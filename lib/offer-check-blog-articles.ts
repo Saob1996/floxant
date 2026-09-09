@@ -37,7 +37,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung im Raum Regensburg, im 200-km-Nahbereich und in Regensburg nach Verfügbarkeit.",
+          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung in Düsseldorf und Regensburg, jeweils mit einem lokalen Einsatzgebiet von 75 km Luftlinie. Weitere Umzugsstrecken werden separat vereinbart.",
           "Wichtig: Das ist keine Rechtsberatung und keine Preisgarantie. FLOXANT bewertet nicht andere Firmen, sondern prüft Auftrag, Umfang, Termin und Machbarkeit.",
         ],
       },
@@ -247,7 +247,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das auch außerhalb von Regensburg?",
-        a: "Für Reinigungsservices gilt Regensburg und der 50-km-Umkreis. Andere Leistungen werden separat über die passende lokale Seite geprüft.",
+        a: "Für Reinigungsservices gilt Regensburg und der 75-km-Umkreis. Andere Leistungen werden separat über die passende lokale Seite geprüft.",
       },
       {
         q: "Welche Fotos helfen?",
@@ -355,7 +355,7 @@ const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
     title: "Büro- und Praxisreinigung in Regensburg: welches Angebot wirklich passt",
     metaTitle: "Büro- und Praxisreinigung Regensburg Angebot | FLOXANT",
     description:
-      "Büroreinigung, Büro putzen und Praxisreinigung in Regensburg oder Regensburg: FLOXANT hilft, Angebot, Turnus, Fläche, Zugang und Leistungsumfang richtig einzuordnen.",
+      "Büroreinigung und Praxisreinigung in Regensburg: FLOXANT hilft, Angebot, Turnus, Fläche, Zugang und Leistungsumfang richtig einzuordnen.",
     intro:
       "Wenn ein Büro, eine Kanzlei oder eine Praxis sauber bleiben soll, reicht ein einzelner Preis selten aus. Entscheidend sind Turnus, Raumliste, Sanitär, Küche, Empfang, Zeitfenster, Schlüsselweg und ein verlässlicher Ansprechpartner.",
     about: [

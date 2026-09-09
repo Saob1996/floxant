@@ -22,7 +22,6 @@ import {
   SignatureServicesGrid,
   TrustProofSection,
 } from "@/components/conversion";
-import { AiAnswerBlock } from "@/components/ai-answer";
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company, duesseldorfCompany } from "@/lib/company";
@@ -295,8 +294,6 @@ function JsonLd({
   config: GrowthServicePageConfig;
   whatsappHref: string;
 }) {
-  const canonical = `${company.url}${config.path}`;
-  const contact = getContact(config);
   const areaServed = [
     config.cityLabel,
     config.region === "duesseldorf" ? "Düsseldorf" : "",
@@ -306,22 +303,6 @@ function JsonLd({
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": `${canonical}#localbusiness`,
-        name: contact.name,
-        url: canonical,
-        telephone: contact.phoneRaw,
-        email: contact.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: contact.streetAddress,
-          postalCode: contact.postalCode,
-          addressLocality: contact.city,
-          addressCountry: contact.countryCode,
-        },
-        sameAs: company.sameAs,
-      },
       buildServiceJsonLd({
         name: config.serviceName,
         description: config.metaDescription,
@@ -535,35 +516,13 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
       ) : null}
 
       <TrustProofSection
-        title="Was FLOXANT bei dieser Anfrage prüft."
-        intro="Entscheidend sind nicht nur Quadratmeter, Kilometer oder ein Stichwort. FLOXANT prüft Zustand, Zugang, Termin, Material, Fotos und sinnvolle Grenzen vor einer Zusage."
+        title="Was wir für Sie übernehmen."
+        intro="Wir stimmen die gewünschten Aufgaben mit Ihnen ab. Das Angebot benennt den Umfang, mögliche Ergänzungen und den Termin."
         proofs={config.included}
         boundaries={config.boundaries}
       />
 
-      <AiAnswerBlock
-        eyebrow="Direkte Antwort"
-        title={`${config.serviceName}: wann ist eine Anfrage sinnvoll?`}
-        answer={`FLOXANT prueft ${config.serviceName}, wenn Ort, Termin, Umfang, Zugang und Zielzustand so beschrieben sind, dass daraus eine belastbare Einschaetzung entstehen kann.`}
-        points={[
-          "Fotos helfen bei Aufwand, Zustand und Zugang.",
-          "Ein Preisrahmen ersetzt keine Pruefung, macht Rueckfragen aber konkreter.",
-          "Bei vorhandenen Angeboten kann FLOXANT offene Punkte sichtbar machen.",
-          "Duesseldorf und Regensburg werden nach passendem lokalen Kontaktweg getrennt.",
-        ]}
-        usefulWhen={[
-          "Termin, Ort und Leistung grob klar sind",
-          "Fotos oder Beschreibung vorliegen",
-          "ein Angebot oder Preis verglichen werden soll",
-        ]}
-        notUsefulWhen={[
-          "eine Rechtsberatung erwartet wird",
-          "ohne Angaben ein verbindlicher Festpreis erwartet wird",
-        ]}
-        neededInfo={["Ort/PLZ", "Terminfenster", "Fotos oder kurze Beschreibung", "Serviceziel"]}
-        ctaHref="/angebot-guenstiger-pruefen#guenstiger-form"
-        ctaLabel="Angebot oder Situation pruefen"
-      />
+
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
@@ -572,7 +531,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
               Ablauf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              So wird aus einer unsicheren Anfrage ein klarer nächster Schritt.
+              So läuft Ihr Auftrag ab.
             </h2>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -591,9 +550,9 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
       <PriceDriverPanel drivers={config.costFactors} />
 
       <LocalIntentBlock
-        regionLabel="Lokale Relevanz"
+        regionLabel="Einsatzgebiet"
         title={config.cityLabel}
-        intro="Lokale Anfragen werden besser, wenn Stadtteil, Objektart, Zugang, Terminfenster und Ansprechpartner direkt sichtbar sind."
+        intro="Unsere Standorte sind Düsseldorf und Regensburg, jeweils mit 75 km lokalem Einsatzgebiet als Luftlinie. Konkrete Anfahrt und weitere Umzugsstrecken werden im Angebot vereinbart."
         signals={config.localSignals}
       />
 
@@ -659,8 +618,8 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
         </div>
         <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 rounded-lg border border-slate-200 bg-slate-950 p-5 text-white sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-semibold leading-7 text-slate-200">
-            Senden Sie Ort, Fotos, Termin, Budget oder ein vorhandenes Angebot. FLOXANT prüft die
-            Anfrage sachlich, kostenlos und ohne erfundene Zusagen.
+            Schreiben Sie kurz, welche Unterstützung Sie brauchen. Wir stimmen den Umfang und ein
+            persönliches Angebot mit Ihnen ab. Fotos sind freiwillig.
           </p>
           <Link
             href={config.bookingHref}

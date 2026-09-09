@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/entruempelung-kosten-pro-m3',
     title: "Entrümpelungskosten pro m³ erklärt | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Entruempelung Kosten einordnen",
+    description: "Entrümpelungskosten pro m³ einordnen: Warum Menge, Materialart, Etage, Zugang und Entsorgungsaufwand zählen und welche Vorbereitung Kosten beeinflusst.",
   });
 }
 export default async function Article() {

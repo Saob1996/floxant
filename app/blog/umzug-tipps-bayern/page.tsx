@@ -10,8 +10,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale,
     path: 'blog/umzug-tipps-bayern',
-    title: "12 Umzugs-Tipps aus der Praxis in Bayern | FLOXANT",
-    description: "Konkrete Umzugs-Tipps aus dem Alltag: Zugang, Kartons, Parken, Laufwege und Vorbereitung in Bayern besser planen.",
+    title: "3 Tipps zum Einpacken vor dem Umzug | FLOXANT",
+    description: "Teller polstern, Kartons nach Zimmern markieren und Kleidung am Bügel transportieren: drei praktische Tipps zum Einpacken vor Ihrem Umzug.",
   });
 }
 
@@ -32,22 +32,22 @@ export default async function BlogUmzugTippsBayern() {
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
               <span className="flex items-center gap-1"><CalendarDays className="w-4 h-4" /> 28. März 2024</span>
-              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> 12 Min. Lesezeit</span>
+              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> 1 Min. Lesezeit</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
-              Die 12 effektivsten Umzug-Tipps aus dem Praxisalltag
+              Drei praktische Tipps zum Einpacken vor dem Umzug
             </h1>
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none">
             <p>Aus vielen Umzügen in Bayern wissen wir: Meist entscheidet nicht der große Trick, sondern die Vorbereitung. Kartons, Zugang, Parken, Laufwege und Reihenfolge müssen vorher klar sein.</p>
             
-            <h3>Tipp 1: Teller hochkant einpacken</h3>
+            <h2>Tipp 1: Teller hochkant einpacken</h2>
             <p>Stellen Sie Teller immer hochkant in den gut ausgepolsterten Karton, um Glasbruch zu vermeiden.</p>
 
-            <h3>Tipp 2: Der Zimmer-Farbcode</h3>
+            <h2>Tipp 2: Der Zimmer-Farbcode</h2>
             <p>Nutzen Sie bunte Klebepunkte für jedes Zimmer. So wissen die Helfer sofort, wo welcher Karton hinmuss.</p>
 
-            <h3>Tipp 3: Kleidung am Bügel belassen</h3>
+            <h2>Tipp 3: Kleidung am Bügel belassen</h2>
             <p>Nutzen Sie Müllsäcke oder Kleiderboxen, um Hängekleidung direkt mit dem Bügel zu transportieren.</p>
             
             <div className="bg-blue-50 p-8 rounded-3xl border border-blue-100 my-12">

@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { ArrowLeft, ClipboardCheck, Home, MapPin, MessageCircle } from "lucide-react";
-import de from "@/dictionaries/de.json";
-import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 
 const helpfulLinks = [
   { href: "/", label: "Startseite", Icon: Home },
-  { href: buildGlobalRequestHref("global_404"), label: "Anfrage stellen", Icon: MessageCircle },
+  { href: buildRequestHref({ source: "global_404", entryPage: "/404", ctaComponent: "not_found", ctaPosition: "content" }), label: "Anfrage stellen", Icon: MessageCircle },
   { href: "/leistungen", label: "Leistungen", Icon: ClipboardCheck },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen", Icon: ClipboardCheck },
   { href: "/duesseldorf", label: "Düsseldorf", Icon: MapPin },
@@ -16,7 +14,6 @@ const helpfulLinks = [
 export default function NotFound() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Header dic={de as any} />
       <section className="mx-auto flex min-h-[72vh] w-full max-w-5xl flex-col justify-center px-5 py-14 sm:px-8">
         <p className="text-sm font-bold uppercase tracking-normal text-primary">404</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-normal text-foreground sm:text-5xl">

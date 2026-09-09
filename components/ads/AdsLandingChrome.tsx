@@ -4,6 +4,7 @@ import { MessageCircle, Phone } from "lucide-react";
 import { FloxBrandUI } from "@/components/FloxBrandUI";
 import { company } from "@/lib/company";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { SocialLinks } from "@/components/SocialLinks";
 
 type AdsLandingKind = "cleaning-duesseldorf" | "moving-regensburg";
 
@@ -35,6 +36,7 @@ export function AdsLandingHeader({ kind }: { kind: AdsLandingKind }) {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${company.phoneRaw}`}
+            aria-label="FLOXANT anrufen"
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-3 text-sm font-black text-slate-950 outline-none hover:border-cyan-500 focus-visible:ring-2 focus-visible:ring-blue-600 sm:px-4"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
@@ -42,6 +44,9 @@ export function AdsLandingHeader({ kind }: { kind: AdsLandingKind }) {
           </a>
           <a
             href={whatsappHref}
+            aria-label="FLOXANT per WhatsApp schreiben"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 text-sm font-black text-white outline-none hover:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500 sm:px-4"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -64,6 +69,7 @@ export function AdsLandingFooter() {
           <Link href="/kontakt" className="hover:text-slate-950">Kontakt</Link>
         </nav>
       </div>
+      <div className="mx-auto max-w-7xl"><SocialLinks location="regensburg" light /></div>
     </footer>
   );
 }

@@ -130,7 +130,7 @@ export const localSeoCities = {
       "Angebotsprüfung",
     ],
     localIntro:
-      "Regensburg ist der feste lokale Schwerpunkt. Reinigungsservices werden nur fuer Regensburg, Stadtteile, Landkreisgemeinden und Orte im 50-km-Umkreis eingeordnet.",
+      "Regensburg ist der feste lokale Schwerpunkt. Reinigungsservices werden nur fuer Regensburg, Stadtteile, Landkreisgemeinden und Orte im 75-km-Umkreis eingeordnet.",
     localProofNotes: [
       "FLOXANT behauptet keine zusaetzlichen lokalen Bueros in Umlandorten.",
       "Reinigung wird getrennt von ueberregionalen Umzugs- und Entruempelungsleistungen gefuehrt.",

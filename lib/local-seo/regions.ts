@@ -1,4 +1,5 @@
 import type { LocalSeoRegionKey } from "./types";
+import { LOCAL_SERVICE_RADIUS_KM } from "@/lib/service-area-policy";
 
 export type LocalSeoRegionRecord = {
   key: LocalSeoRegionKey;
@@ -17,7 +18,7 @@ export const localSeoRegions = {
     displayName: "Region Regensburg",
     path: "/region-regensburg",
     centerCity: "Regensburg",
-    radiusKm: 50,
+    radiusKm: LOCAL_SERVICE_RADIUS_KM,
     primaryFocus: [
       "Reinigung",
       "Bueroreinigung",
@@ -39,6 +40,6 @@ export const localSeoRegions = {
       "Straubing",
     ],
     positioning:
-      "Regensburg bleibt der lokale Schwerpunkt fuer Reinigung. Umlandorte werden nur im 50-km-Umkreis und ohne Standortbehauptung eingeordnet.",
+      "Regensburg bleibt der lokale Schwerpunkt fuer Reinigung. Umlandorte werden nur im 75-km-Umkreis und ohne Standortbehauptung eingeordnet.",
   },
 } as const satisfies Partial<Record<LocalSeoRegionKey, LocalSeoRegionRecord>>;

@@ -2,7 +2,7 @@
 
 import { bookingFetch } from "@/lib/booking-submission-client";
 
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, Mail, Phone, ShieldCheck } from "lucide-react";
 
 import { UploadDropCard } from "@/components/UploadDropCard";
@@ -33,12 +33,11 @@ const duesseldorfServices = [
   { value: "reinigung", label: "Reinigung Düsseldorf" },
   { value: "bueroreinigung", label: "Büroreinigung Düsseldorf" },
   { value: "gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
-  { value: "umzug", label: "Umzug Düsseldorf" },
-  { value: "entruempelung", label: "Entrümpelung Düsseldorf" },
-  { value: "haushaltsaufloesung", label: "Haushaltsauflösung Düsseldorf" },
-  { value: "solarreinigung", label: "Solarreinigung Düsseldorf" },
-  { value: "klaviertransport", label: "Klaviertransport Düsseldorf" },
-  { value: "sonstiges", label: "Sonstiges Düsseldorf" },
+  { value: "praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+  { value: "fensterreinigung", label: "Fensterreinigung Düsseldorf" },
+  { value: "grundreinigung", label: "Grundreinigung Düsseldorf" },
+  { value: "unterhaltsreinigung", label: "Unterhaltsreinigung Düsseldorf" },
+  { value: "baureinigung", label: "Bauendreinigung Düsseldorf" },
 ];
 
 const offerStatusOptions = [
@@ -112,11 +111,13 @@ export function CheaperAlternativeForm({
 }: CheaperAlternativeFormProps = {}) {
   const [region, setRegion] = useState(defaultRegion);
   const [service, setService] = useState(defaultService);
+  const [cityOrZipValue, setCityOrZipValue] = useState(defaultCityOrZip);
   const [selectedConcerns, setSelectedConcerns] = useState<string[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [photoFiles, setPhotoFiles] = useState<File[]>([]);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const submitLockRef = useRef(false);
 
   const serviceOptions = region === "duesseldorf" ? duesseldorfServices : standardServices;
   const selectedServiceLabel = serviceOptions.find((item) => item.value === service)?.label || "einen Auftrag";
@@ -129,10 +130,32 @@ export function CheaperAlternativeForm({
     [region, selectedServiceLabel],
   );
 
-  function updateRegion(nextRegion: string) {
-    setRegion(nextRegion);
-    if (nextRegion === "duesseldorf" && !duesseldorfServices.some((item) => item.value === service)) {
-      setService("reinigung");
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedLocation = (params.get("location") || params.get("city") || "").toLowerCase();
+    const requestedService = (params.get("service") || "").toLowerCase();
+    if (requestedLocation.includes("duesseldorf") || requestedLocation.includes("düsseldorf")) {
+      setRegion("duesseldorf");
+      setCityOrZipValue("Düsseldorf");
+    } else if (requestedLocation.includes("regensburg")) {
+      setRegion("regensburg");
+      setCityOrZipValue("Regensburg");
+    }
+    const available = (requestedLocation.includes("duesseldorf") || requestedLocation.includes("düsseldorf"))
+      ? duesseldorfServices
+      : standardServices;
+    if (available.some((item) => item.value === requestedService)) setService(requestedService);
+    else if (available === duesseldorfServices) setService("reinigung");
+  }, []);
+
+  function updateCity(nextCity: string) {
+    setCityOrZipValue(nextCity);
+    const normalizedCity = nextCity.trim().toLocaleLowerCase("de-DE");
+    if (normalizedCity.includes("düsseldorf") || normalizedCity.includes("duesseldorf")) {
+      setRegion("duesseldorf");
+      if (!duesseldorfServices.some((item) => item.value === service)) setService("reinigung");
+    } else if (normalizedCity.includes("regensburg")) {
+      setRegion("regensburg");
     }
   }
 
@@ -144,6 +167,7 @@ export function CheaperAlternativeForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitLockRef.current || submitState === "submitting" || submitState === "success") return;
     setErrorMessage("");
 
     const form = event.currentTarget;
@@ -152,7 +176,8 @@ export function CheaperAlternativeForm({
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
-    const message = String(formData.get("message") || "").trim();
+    const message = String(formData.get("message") || "").trim()
+      || `Bitte das vorhandene Angebot für ${service} in ${cityOrZip} praktisch einordnen.`;
     const offerStatus = String(formData.get("offerStatus") || "").trim();
     const urgency = String(formData.get("urgency") || "").trim();
 
@@ -166,10 +191,6 @@ export function CheaperAlternativeForm({
     }
     if (!cityOrZip) {
       setErrorMessage("Bitte Ort oder PLZ angeben.");
-      return;
-    }
-    if (message.length < 10) {
-      setErrorMessage("Bitte kurz beschreiben, was am vorhandenen Angebot oder Preisrahmen geprüft werden soll.");
       return;
     }
     if (formData.get("privacy") !== "on") {
@@ -190,6 +211,8 @@ export function CheaperAlternativeForm({
     formData.set("leadSource", "cheaper_alternative");
     formData.set("source", "cheaper_alternative");
     formData.set("sourceComponent", sourceComponent);
+    formData.set("ctaComponent", getUtmValue("ctaComponent") || sourceComponent);
+    formData.set("ctaPosition", getUtmValue("ctaPosition") || "offer_check_form");
     formData.set("intent", "angebot-pruefen");
     formData.set("sourceContext", "angebot-guenstiger-pruefen");
     formData.set("serviceCategory", "angebot_pruefen");
@@ -197,6 +220,7 @@ export function CheaperAlternativeForm({
     formData.set("affectedService", service);
     formData.set("service", service);
     formData.set("region", region);
+    formData.set("message", message);
     formData.set("selectedAddons", JSON.stringify(selectedConcerns));
     formData.set("platformSituation", "Angebot Punkt für Punkt prüfen");
     formData.set("offerCheckIntent", String(formData.get("offerCheckGoal") || "guenstiger_pruefen"));
@@ -212,10 +236,12 @@ export function CheaperAlternativeForm({
     formData.set("utmMedium", getUtmValue("utm_medium"));
     formData.set("utmCampaign", getUtmValue("utm_campaign"));
     formData.set("utmContent", getUtmValue("utm_content"));
+    formData.set("gclid", getUtmValue("gclid"));
 
     offerFiles.forEach((file) => formData.append("offerFile", file));
     photoFiles.forEach((file) => formData.append("photo", file));
 
+    submitLockRef.current = true;
     setSubmitState("submitting");
 
     try {
@@ -235,6 +261,7 @@ export function CheaperAlternativeForm({
       setSelectedConcerns([]);
       setSubmitState("success");
     } catch (error) {
+      submitLockRef.current = false;
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
     }
@@ -275,103 +302,45 @@ export function CheaperAlternativeForm({
       </div>
 
       <form className="mt-6 grid gap-4" onSubmit={handleSubmit} onChange={() => { setErrorMessage(""); if (submitState === "error") setSubmitState("idle"); }} data-event="form_submit">
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2 text-sm font-bold text-slate-800 md:col-span-2">
-            Was ist Ihr Ziel?
-            <select name="offerCheckGoal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              {goalOptions.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className="grid gap-5">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Angebotsstatus
-            <select name="offerStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              {offerStatusOptions.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Dringlichkeit
-            <select name="urgency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              {urgencyOptions.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Name*
-            <input name="name" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Ihr Name" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Für schnelle Rückfragen" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            E-Mail
-            <input name="email" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder={EMAIL} />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Region*
-            <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Regensburg plus ca. 50 km</option>
-              <option value="bayern">Weitere Strecke nach Machbarkeit</option>
-              <option value="duesseldorf">Düsseldorf und Umgebung</option>
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Service*
+            1. Leistung*
             <select value={service} onChange={(event) => setService(event.target.value)} name="service" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              {serviceOptions.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
+              {serviceOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Ort / PLZ*
-            <input name="cityOrZip" defaultValue={defaultCityOrZip} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
+            2. Stadt oder PLZ*
+            <input name="cityOrZip" value={cityOrZipValue} onChange={(event) => updateCity(event.target.value)} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Termin / Zeitraum
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. nächste Woche oder 15.06." />
+            3. Vorhandenes Angebot oder Preis
+            <input name="quotedPrice" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. 950 EUR oder noch kein Preis" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Vorhandener Angebotspreis
-            <input name="quotedPrice" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="falls bekannt, z. B. 950 EUR" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Wunschbudget / Zielrahmen
-            <input name="budget" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. bis 800 EUR, falls realistisch" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Woher kommt das Angebot?
-            <select name="offerSourceType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
-              <option value="">Bitte wählen</option>
-              <option value="plattform">Online-Plattform</option>
-              <option value="lokaler_anbieter">Lokaler Anbieter</option>
-              <option value="anderes_unternehmen">Anderes Unternehmen</option>
-              <option value="nicht_angeben">Möchte ich nicht angeben</option>
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Objektart / Fläche
-            <input name="objectScope" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Büro 280 m², Wohnung 72 m²" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Turnus / Zeitfenster
-            <input name="cleaningFrequency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. 2x pro Woche, nach Feierabend" />
-          </label>
+          <fieldset className="grid gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <legend className="px-1 text-sm font-bold text-slate-800">4. Kontakt*</legend>
+            <input name="name" aria-label="Name" className="min-h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Ihr Name" />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <input name="phone" type="tel" aria-label="Telefonnummer" className="min-h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Telefonnummer" />
+              <input name="email" type="email" aria-label="E-Mail-Adresse" className="min-h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder={EMAIL} />
+            </div>
+            <p className="text-xs leading-5 text-slate-600">Telefon oder E-Mail genügt.</p>
+          </fieldset>
+          <input type="hidden" name="region" value={region} />
         </div>
+
+        <details className="rounded-xl border border-slate-200 bg-slate-50">
+          <summary className="flex min-h-12 cursor-pointer list-none items-center px-4 text-sm font-black text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Angebot, Fotos und weitere Angaben ergänzen <span className="ml-auto text-xs font-semibold text-slate-500">optional</span></summary>
+          <div className="grid gap-4 border-t border-slate-200 p-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              <label className="grid gap-2 text-sm font-bold text-slate-800 md:col-span-2">Was ist Ihr Ziel?<select name="offerCheckGoal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium">{goalOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Angebotsstatus<select name="offerStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium">{offerStatusOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Dringlichkeit<select name="urgency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium">{urgencyOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Termin / Zeitraum<input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium" /></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Wunschbudget<input name="budget" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium" /></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Objektart / Fläche<input name="objectScope" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium" /></label>
+              <label className="grid gap-2 text-sm font-bold text-slate-800">Turnus / Zeitfenster<input name="cleaningFrequency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium" /></label>
+            </div>
 
         <div className="rounded-[0.95rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
@@ -435,6 +404,8 @@ export function CheaperAlternativeForm({
             Rückruf gewünscht, wenn eine Alternative realistisch wirkt.
           </label>
         </div>
+          </div>
+        </details>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />

@@ -12,15 +12,15 @@ type LocalTrustBlockProps = {
 const trustSignals = [
   {
     title: "Regensburg als Mittelpunkt",
-    text: "Adresse, Telefon, E-Mail und Servicegebiet kommen aus den zentralen FLOXANT-Unternehmensdaten.",
+    text: "Kontaktieren Sie FLOXANT in Regensburg telefonisch, per E-Mail oder mit Ihrer Reinigungsanfrage.",
   },
   {
-    title: "Reinigung im 50-km-Radius",
+    title: "Reinigung im 75-km-Radius",
     text: "Reinigungsanfragen werden nach Objekt, Route, Zugang und Termin im Regensburger Umfeld eingeordnet.",
   },
   {
-    title: "Keine erfundenen Belege",
-    text: "Keine Sterne, Referenzen, Siegel oder Logos erscheinen ohne realen Nachweis und Freigabe.",
+    title: "Umfang gemeinsam klären",
+    text: "Wir stimmen die gewünschten Räume, Arbeiten und den Zugang mit Ihnen ab.",
   },
   {
     title: "Klare Anfrage statt Blindpreis",
@@ -42,12 +42,11 @@ export function LocalTrustBlock({
             Lokale Vertrauensbasis
           </p>
           <h2 id="local-trust-title" className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-4xl">
-            Reinigungsanfragen bleiben auf Regensburg, Objekt und Nachweisbarkeit fokussiert.
+            Ihr Kontakt für Reinigung in Regensburg und Umgebung.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-            FLOXANT baut lokale Autorität über klare Kontaktdaten, nachvollziehbare Einsatzgrenzen und konkrete
-            Anfrageinformationen auf. Es werden keine Sterne, Kundenreferenzen oder Zertifizierungen behauptet, die
-            nicht als echte Geschäftsdaten vorliegen.
+            Beschreiben Sie kurz das Objekt, die gewünschten Arbeiten und Ihren Terminwunsch.
+            Wir prüfen den Umfang und klären mit Ihnen, welche Angaben für ein persönliches Angebot noch fehlen.
           </p>
 
           <div className="mt-6 grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-5 text-sm font-semibold leading-7 text-slate-700">

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { company, duesseldorfCompany } from "@/lib/company";
+import { floxantLocations } from "@/lib/floxant-locations";
 import {
   InternationalCustomerHint,
   OfferCheckCTA,
@@ -78,7 +79,7 @@ function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
   if (config.cityKey === "regensburg" && service.includes("gewerbe")) {
     return {
       intro:
-        "Gewerbereinigung wird belastbar, wenn Objektart, Raumliste, Turnus, Randzeit und Zugang klar sind. Senden Sie lieber wenige konkrete Eckdaten als eine allgemeine Bitte um Reinigung.",
+        "Wir übernehmen die Reinigung Ihrer gewerblichen Räume nach einer vereinbarten Aufgabenliste. Für den Anfang genügen eine kurze Beschreibung, der Einsatzort und Ihr Terminwunsch.",
       offerLabel: "Gewerbereinigungsangebot vergleichen",
       checklist: [
         "Objektart: Büro, Kanzlei, Praxisfläche, Studio, Laden oder Hausverwaltung",
@@ -96,7 +97,7 @@ function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
   if (config.cityKey === "regensburg" && service.includes("reinigung")) {
     return {
       intro:
-        "Diese Reinigungsseite ist der Regensburger Einstieg für Wohnung, Übergabe und allgemeine Objektfälle. Für Büro oder Gewerbe führen die Links bewusst auf die spezielleren Seiten.",
+        "Wir reinigen Ihre Wohnung und vereinbarte Objektflächen einmalig oder regelmäßig. Für Büro und Gewerbe stimmen wir einen Aufgabenplan auf Ihren Betrieb ab.",
       offerLabel: "Reinigungsangebot Regensburg vergleichen",
       checklist: [
         "Objektart: Wohnung, Übergabe, Treppenhaus, Büro oder Gewerbefläche",
@@ -106,7 +107,7 @@ function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
       ],
       localLogic: [
         "In Altstadt und Stadtamhof sind Zugang und Zeitfenster oft entscheidend; in Kumpfmühl, Prüfening oder Galgenberg hilft eine klare Raumliste.",
-        "Wenn es um laufende Büro- oder Gewerbereinigung geht, ist die spezialisierte B2B-Seite meist der bessere nächste Schritt.",
+        "Für laufende Büro- und Gewerbereinigung vereinbaren wir einen Plan mit festen Aufgaben und passenden Zeiten.",
       ],
     };
   }
@@ -173,7 +174,7 @@ function JsonLd({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": config.schemaType,
+        "@type": "LocalBusiness",
         "@id": `${canonical}#localbusiness`,
         name: contact.name,
         url: canonical,
@@ -187,7 +188,7 @@ function JsonLd({
           addressCountry: contact.countryCode,
         },
         areaServed,
-        sameAs: company.sameAs,
+        sameAs: floxantLocations[config.cityKey].sameAs,
       },
       {
         "@type": "Service",
@@ -416,8 +417,8 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
               {config.scopeTitle}
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Jede Anfrage wird nach Service, Stadtteil, Umfang, Zugang, Zeitfenster und Zielzustand
-              eingeordnet. So bleibt der Leistungsumfang konkret und vergleichbar.
+              Wir übernehmen die vereinbarten Arbeiten und besprechen zusätzliche Wünsche vor Beginn.
+              So wissen Sie, welche Aufgaben in Ihrem Angebot enthalten sind.
             </p>
           </article>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -453,8 +454,8 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
           <div className="mt-8 flex flex-col gap-3 rounded-lg border border-slate-200 bg-slate-950 p-5 text-white sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm font-semibold leading-7 text-slate-200">
-              Senden Sie jetzt Ort, Termin, Fotos und die wichtigsten Eckdaten. FLOXANT prüft
-              den nächsten Schritt ohne Preis- oder Sofortgarantie.
+              Beschreiben Sie kurz, welche Arbeit Sie abgeben möchten. Wir stimmen
+              Umfang, Preis und Termin persönlich mit Ihnen ab.
             </p>
             <Link
               href={bookingHref}
@@ -463,10 +464,10 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
               data-region={config.cityKey}
               data-service={bookingLead.trackingService}
               data-city={bookingLead.trackingCity}
-              data-cta-label="Angebot prüfen lassen"
+              data-cta-label="Angebot anfragen"
               data-destination={bookingHref}
             >
-              Angebot prüfen lassen
+              Angebot anfragen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
@@ -478,7 +479,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           <ServiceAreaBlock
             compact={false}
             title={`${config.serviceName} in Regensburg und Umgebung`}
-            intro="Für Reinigungsservices ist FLOXANT auf Regensburg und den Umkreis bis 50 km fokussiert. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben."
+            intro="FLOXANT reinigt in Regensburg und im Umkreis von 75 km Luftlinie. Einsatzadresse, Zugang und Anfahrt stimmen wir persönlich mit Ihnen ab."
           />
           <RelatedServicesBlock
             currentHref={config.path}
@@ -568,7 +569,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         serviceKey={proofServiceKey}
         locationKey={config.cityKey}
         title={`Was Sie bei ${config.serviceName} in ${config.cityName} erwarten können`}
-        intro="Diese lokale Seite arbeitet mit prüfbaren Angaben statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte bleiben sichtbar."
+        intro="Sie erhalten ein Angebot mit vereinbarten Aufgaben, Zugang und Termin. Eine Kontaktperson begleitet die Abstimmung."
       />
 
       <ServiceProofChecklist
@@ -604,7 +605,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           "Fotos zeigen Zustand, Menge, Fläche oder Zugang.",
           "Ein vorhandenes Angebot kann vor der Zusage eingeordnet werden.",
           isRegensburgCleaningPage
-            ? "FLOXANT trennt Reinigungsanfragen klar auf Regensburg und den 50-km-Umkreis."
+            ? "FLOXANT reinigt in Regensburg und 75 km Umgebung als Luftlinie."
             : "FLOXANT trennt Regionen und Leistungen nach passendem Serviceweg.",
         ]}
         usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rückmeldung gebraucht wird"]}

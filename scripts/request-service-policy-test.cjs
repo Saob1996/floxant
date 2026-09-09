@@ -427,11 +427,11 @@ test("Unsicherer Standort bietet und löst jedes neutrale Serviceprofil auf", ()
 
 test("Alle Formularprofile besitzen exakt die sichtbaren Mindestfelder", () => {
   const expectedCoreFields = {
-    cleaning: ["cityOrZip", "objectType", "areaSize", "scope"],
+    cleaning: ["cityOrZip", "scope"],
     moving: ["startLocation", "destinationLocation", "scope"],
     furniture: ["startLocation", "destinationLocation", "itemDescription"],
     piano: ["startLocation", "destinationLocation", "instrumentType"],
-    clearance: ["cityOrZip", "objectType", "areaSize"],
+    clearance: ["cityOrZip", "areaSize"],
     offer_check: ["cityOrZip", "scope"],
     general: ["cityOrZip", "scope"],
   };
@@ -441,6 +441,8 @@ test("Alle Formularprofile besitzen exakt die sichtbaren Mindestfelder", () => {
     assert.ok(REQUEST_FORM_PROFILES[profileName].optionalFields.includes("desiredDate"), profileName);
   }
   assert.ok(REQUEST_FORM_PROFILES.cleaning.optionalFields.includes("frequency"));
+  assert.ok(REQUEST_FORM_PROFILES.cleaning.optionalFields.includes("objectType"));
+  assert.ok(REQUEST_FORM_PROFILES.cleaning.optionalFields.includes("areaSize"));
   assert.ok(REQUEST_FORM_PROFILES.clearance.optionalFields.includes("floor"));
   assert.ok(REQUEST_FORM_PROFILES.clearance.optionalFields.includes("elevator"));
 });
@@ -602,7 +604,7 @@ test("Manipulierte Intent-, Pfad- und Kampagnenwerte steuern den Service nicht u
   assert.equal(context.campaign.length, 120);
 });
 
-test("Das zentrale Formular deklariert exakt drei Profil-Schritte", () => {
+test("Das zentrale Formular zeigt drei Schritte oder zwei bei gültiger Vorauswahl", () => {
   const formSource = read(formPath);
   const sourceFile = ts.createSourceFile(
     formPath,
@@ -613,6 +615,7 @@ test("Das zentrale Formular deklariert exakt drei Profil-Schritte", () => {
   );
   let requestStepValues = null;
   let progressLabels = null;
+  let prefilledLabels = null;
 
   function visit(node) {
     if (ts.isTypeAliasDeclaration(node) && node.name.text === "RequestStep") {
@@ -628,9 +631,12 @@ test("Das zentrale Formular deklariert exakt drei Profil-Schritte", () => {
       ts.isIdentifier(node.name) &&
       node.name.text === "labels" &&
       node.initializer &&
-      ts.isArrayLiteralExpression(node.initializer)
+      ts.isConditionalExpression(node.initializer)
     ) {
-      const values = node.initializer.elements
+      assert.ok(ts.isArrayLiteralExpression(node.initializer.whenTrue));
+      assert.ok(ts.isArrayLiteralExpression(node.initializer.whenFalse));
+      prefilledLabels = node.initializer.whenTrue.elements.filter(ts.isStringLiteral).map((element) => element.text);
+      const values = node.initializer.whenFalse.elements
         .filter(ts.isStringLiteral)
         .map((element) => element.text);
       if (values.includes("Standort und Leistung")) progressLabels = values;
@@ -640,13 +646,14 @@ test("Das zentrale Formular deklariert exakt drei Profil-Schritte", () => {
   visit(sourceFile);
 
   assert.deepEqual(requestStepValues, [1, 2, 3]);
+  assert.deepEqual(prefilledLabels, ["Eckdaten", "Kontakt und Zusammenfassung"]);
   assert.deepEqual(progressLabels, [
     "Standort und Leistung",
     "Eckdaten",
     "Kontakt und Zusammenfassung",
   ]);
   assert.match(formSource, /Schritt \{number\}/);
-  assert.match(formSource, /Schritt \$\{step\} von 3/);
+  assert.match(formSource, /Schritt \$\{visibleStep\} von \$\{labels\.length\}/);
   assert.doesNotMatch(formSource, /step\s*===\s*[4-9]|setStep\(\s*[4-9]\s*\)|von\s+[4-9]/);
 });
 

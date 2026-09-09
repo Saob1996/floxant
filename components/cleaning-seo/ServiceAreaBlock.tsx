@@ -11,7 +11,7 @@ export function ServiceAreaBlock({
   className = "",
   compact = true,
   title = "Reinigungs-Servicegebiet Regensburg und Umgebung",
-  intro = "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigene Reinigungsziele beworben.",
+  intro = "FLOXANT prüft Reinigungsanfragen für Regensburg und den Umkreis bis 75 km. Nennen Sie den Einsatzort, die gewünschten Arbeiten und Ihren Terminwunsch.",
 }: ServiceAreaBlockProps) {
   return (
     <div className={`bg-white px-5 py-14 sm:px-8 lg:px-10 ${className}`}>

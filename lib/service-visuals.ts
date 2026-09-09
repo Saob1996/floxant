@@ -34,9 +34,6 @@ type VisualLookupInput = {
   serviceLabel?: string;
 };
 
-const commercialCleaningImage = "/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp";
-const offerCheckImage = "/assets/gewerbereinigung/reinigungsanfrage-checkliste-regensburg.webp";
-const staircaseImage = "/assets/gewerbereinigung/schluessel-treppenhausreinigung-regensburg.webp";
 const cleaningImage = "/assets/service-cleaning.webp";
 const movingImage = "/assets/service-moving.webp";
 const clearanceImage = "/assets/service-clearance.webp";
@@ -47,9 +44,9 @@ export const serviceVisuals = {
     id: "regensburg-commercial-cleaning",
     region: "duesseldorf",
     category: "commercial-cleaning",
-    src: commercialCleaningImage,
-    alt: "Gepflegter gewerblicher Raum für Reinigung in Regensburg",
-    title: "Reinigung für Unternehmen in Regensburg",
+    src: cleaningImage,
+    alt: "Gepflegter gewerblicher Raum für Reinigung in Düsseldorf",
+    title: "Reinigung für Unternehmen in Düsseldorf",
     caption:
       "Sichtbare Flächen, Sanitärbereiche, Küchen, Empfang und Arbeitsbereiche werden nach Objekt, Turnus und Zeitfenster eingeordnet.",
     width: 1200,
@@ -61,8 +58,8 @@ export const serviceVisuals = {
     id: "regensburg-office-cleaning",
     region: "duesseldorf",
     category: "office-cleaning",
-    src: commercialCleaningImage,
-    alt: "Ordentlicher Bürobereich für Büroreinigung in Regensburg",
+    src: cleaningImage,
+    alt: "Ordentlicher Bürobereich für Büroreinigung in Düsseldorf",
     title: "Büroreinigung mit klarer Raumliste",
     caption:
       "Arbeitsplätze, Besprechungsräume, Küche, Sanitär und Randzeiten lassen sich mit Fotos und Eckdaten schnell vorsortieren.",
@@ -75,8 +72,8 @@ export const serviceVisuals = {
     id: "regensburg-medical-cleaning",
     region: "duesseldorf",
     category: "medical-cleaning",
-    src: commercialCleaningImage,
-    alt: "Ruhiger Praxisbereich für Praxisreinigung in Regensburg",
+    src: cleaningImage,
+    alt: "Ruhiger Praxisbereich für Praxisreinigung in Düsseldorf",
     title: "Praxisnahe Reinigung vorsichtig abstimmen",
     caption:
       "Empfang, Wartebereich und allgemeine Praxisflächen werden nach Nutzung, Zeitfenster und klaren Grenzen geprüft.",
@@ -90,7 +87,7 @@ export const serviceVisuals = {
     region: "duesseldorf",
     category: "residential-cleaning",
     src: cleaningImage,
-    alt: "Gepflegter Wohnbereich für Wohnungsreinigung in Regensburg",
+    alt: "Gepflegter Wohnbereich für Wohnungsreinigung in Düsseldorf",
     title: "Wohnungsreinigung nach Zustand und Ziel",
     caption:
       "Küche, Bad, Boden, Fensternähe und Übergabepunkte werden anhand von Fotos und Terminwunsch realistisch eingeordnet.",
@@ -103,8 +100,8 @@ export const serviceVisuals = {
     id: "regensburg-staircase-cleaning",
     region: "duesseldorf",
     category: "staircase-cleaning",
-    src: staircaseImage,
-    alt: "Treppenhaus und Schlüssel für Treppenhausreinigung in Regensburg",
+    src: cleaningImage,
+    alt: "Gepflegtes Treppenhaus für Treppenhausreinigung in Düsseldorf",
     title: "Treppenhaus, Zugang und Hausordnung klären",
     caption:
       "Etagen, Laufwege, Eingangsbereich, Kellerzugang und Schlüsselregelung gehören direkt in die Anfrage.",
@@ -118,7 +115,7 @@ export const serviceVisuals = {
     region: "duesseldorf",
     category: "final-cleaning",
     src: cleaningImage,
-    alt: "Leere saubere Wohnung für Endreinigung in Regensburg",
+    alt: "Leere saubere Wohnung für Endreinigung in Düsseldorf",
     title: "Endreinigung vor Übergabe",
     caption:
       "Auszug, Renovierung, Leerstand oder Übergabe lassen sich besser prüfen, wenn Fläche, Zustand und Fotos vorliegen.",
@@ -131,8 +128,8 @@ export const serviceVisuals = {
     id: "duesseldorf-offer-check",
     region: "duesseldorf",
     category: "offer-check",
-    src: offerCheckImage,
-    alt: "Reinigungsangebot und Eckdaten für Angebotsprüfung in Regensburg",
+    src: cleaningImage,
+    alt: "Reinigungsangebot und Eckdaten für Angebotsprüfung in Düsseldorf",
     title: "Angebot oder Eckdaten senden",
     caption:
       "Ein vorhandenes Angebot, eine Raumliste oder Fotos helfen, den Bedarf sachlich und ohne Preisversprechen zu prüfen.",
@@ -145,8 +142,8 @@ export const serviceVisuals = {
     id: "regensburg-premium-cleaning",
     region: "duesseldorf",
     category: "premium-cleaning",
-    src: commercialCleaningImage,
-    alt: "Diskret gepflegter Raum für Premium-Reinigung in Regensburg",
+    src: cleaningImage,
+    alt: "Diskret gepflegter Innenraum für Premium-Reinigung in Düsseldorf",
     title: "Diskrete Reinigung für anspruchsvolle Objekte",
     caption:
       "Bei hochwertigen oder sensiblen Flächen zählen ruhige Abstimmung, Materialhinweise, Zugang und klare Prioritäten.",

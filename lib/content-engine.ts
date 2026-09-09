@@ -7,7 +7,7 @@ export interface GeneratedContent {
  slug: string;
  category: 'city_guide' | 'micro_article' | 'case_story';
  htmlBlob: string;
- metadata: Record<string, any>;
+ metadata: Record<string, unknown>;
 }
 
 /**
@@ -18,20 +18,23 @@ export async function generateCityContent(city: string, service: string): Promis
  const normalizedService = service.replace(/-/g, " ");
  const displayCity = germanizeText(city);
  const serviceCap = germanizeText(normalizedService.charAt(0).toUpperCase() + normalizedService.slice(1));
+ const subject = normalizedService === "umzug" ? "Ein Umzug" : `Eine ${serviceCap}`;
  const title = `Alles über ${serviceCap} in ${displayCity} - Kosten, Ablauf und Hinweise`;
  const slug = `${service}-${city.toLowerCase().replace(/ /g, '-')}`;
 
  const htmlBlob = `
   <article class="prose prose-invert max-w-none text-white/70">
-   <p class="text-xl text-white font-light mb-6">Ein <strong>${serviceCap} in ${displayCity}</strong> braucht eine saubere Planung und einen realistischen Kostenrahmen. Der tatsächliche Aufwand hängt meist von Zugang, Volumen, Terminlage und gewünschten Zusatzleistungen ab.</p>
+   <p class="text-xl text-white font-light mb-6"><strong>${subject} in ${displayCity}</strong> braucht eine sorgfältige Planung und einen realistischen Kostenrahmen. Der tatsächliche Aufwand hängt von Umfang, Zugang, Termin und gewünschten Zusatzleistungen ab.</p>
    
    <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Kostenübersicht für ${displayCity}</h2>
-   <p class="mb-6">Im Raum ${displayCity} variieren Preise vor allem nach Zugang, Terminlage, Volumen und Zusatzaufwand. FLOXANT prüft diese Punkte vor einer verbindlichen Planung, damit aus einer ersten Anfrage kein unrealistisch niedriger Lockpreis wird.</p>
+   <p class="mb-6">Für ein Angebot sind Umfang, Zugang, Termin und Zusatzaufwand entscheidend. Klären Sie diese Punkte mit dem ausführenden Betrieb, bevor Sie Leistungen, Preis und Termin vereinbaren.</p>
    
    <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Was Sie in ${displayCity} beachten sollten</h2>
    <ul class="list-disc pl-5 space-y-3 mb-8">
     <li><strong>Zugangssituation:</strong> Prüfen Sie früh, wie Ladeweg, Etage und Parkmöglichkeit in ${displayCity} realistisch aussehen.</li>
-    <li><strong>Volumenberechnung:</strong> Geben Sie Mengen und besondere Stücke möglichst genau an, damit Fahrzeuggröße, Teamstärke und Zeitfenster realistisch geplant werden können.</li>
+    ${normalizedService === "reinigung"
+      ? "<li><strong>Leistungsumfang:</strong> Nennen Sie die Räume, ungefähren Flächen und gewünschten Reinigungsarbeiten. Geben Sie auch besondere Oberflächen und stärkere Verschmutzungen an.</li>"
+      : "<li><strong>Volumenberechnung:</strong> Geben Sie Mengen und besondere Stücke möglichst genau an, damit Fahrzeuggröße, Teamstärke und Zeitfenster realistisch geplant werden können.</li>"}
     <li><strong>Zugänge und Besonderheiten:</strong> Weisen Sie früh auf Aufzüge, lange Wege, sensible Möbel oder enge Treppenhäuser hin, damit der Ablauf sauber vorbereitet werden kann.</li>
    </ul>
 

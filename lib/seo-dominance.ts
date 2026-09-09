@@ -298,7 +298,7 @@ const moneySnippets: Record<string, Snippet> = {
 "/reinigung-moeblierte-wohnung-regensburg": {
  title: "Ferienwohnung-Reinigung Regensburg | Gästewechsel",
  description:
-  "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche im 50-km-Umkreis klären.",
+  "Ferienwohnung oder möbliertes Apartment in Regensburg reinigen lassen: Checkout, Check-in, Zugang, Fläche, Fotos und Zusatzwünsche im 75-km-Umkreis klären.",
  cluster: "money",
  intent: "Ferienwohnung, möbliertes Apartment oder Gästewechsel-Reinigung in Regensburg anfragen",
 },

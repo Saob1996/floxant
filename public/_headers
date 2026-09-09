@@ -11,9 +11,29 @@
 
 /opengraph-image
   Cache-Control: public, max-age=86400
+  Content-Type: image/png
 
 /twitter-image
   Cache-Control: public, max-age=86400
+  Content-Type: image/png
 
 /images/*
   Cache-Control: public, max-age=86400
+
+/dashboard/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/dashboard
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/admin
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/login
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/login/*
+  X-Robots-Tag: noindex, nofollow, noarchive

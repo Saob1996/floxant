@@ -61,7 +61,7 @@ const needs = [
 const routes = [
   {
     title: "Büroreinigung Regensburg",
-    text: "Kanonische B2B-Zielseite für Büroreinigung in Regensburg mit Fläche, Turnus, Reinigungszeiten und Angebotseinordnung.",
+    text: "Büroreinigung für Firmen in Regensburg: Aufgaben, Turnus und Reinigungszeiten passend zu Ihren Räumen abstimmen.",
     href: "/regensburg/bueroreinigung",
   },
   {
@@ -83,10 +83,6 @@ export const metadata: Metadata = {
     "B2B-Büroreinigung vorbereiten: Fläche, Turnus, Reinigungszeiten, Objektart und Ansprechpartner nennen. Angebot optional prüfen lassen.",
   alternates: {
     canonical: canonicalPath,
-    languages: {
-      "de-DE": canonicalPath,
-      "x-default": canonicalPath,
-    },
   },
   robots: {
     index: false,

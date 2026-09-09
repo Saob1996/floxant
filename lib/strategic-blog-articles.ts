@@ -117,7 +117,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Typische Situationen aus der Praxis",
+        title: "Beispiele für die Planung",
         paragraphs: [
           "Das Komplettpaket ist oft nicht wegen einer großen Einzelaufgabe sinnvoll, sondern wegen vieler kleiner offener Punkte. Ein niedriger Preis hilft wenig, wenn dadurch am Einsatztag Zeit, Fahrzeug, Personal oder Zuständigkeit fehlen.",
         ],
@@ -3500,7 +3500,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       "Entrümpelungsfirma finden: Regensburg, Germering und Bayern mit Fotos realistisch prüfen",
     metaTitle: "Entrümpelungsfirma finden Regensburg & Bayern | FLOXANT",
     description:
-      "Wie Kunden eine Entrümpelungsfirma für Regensburg, Germering und Regensburg mit Menge, Fotos, Zugang, Termin und Reinigung danach sauber anfragen.",
+      "Wie Kunden eine Entrümpelung in Regensburg mit Menge, Fotos, Zugang, Termin und Reinigung danach anfragen.",
     intro:
       "Wer eine Entrümpelungsfirma finden möchte, braucht meist schnell Klarheit: Welche Menge ist es, wie ist der Zugang, was darf weg, was bleibt, und muss danach gereinigt oder übergeben werden?",
     about: ["Entrümpelung", "Wohnungsauflösung", "Regensburg", "Germering", "Bayern"],
@@ -3868,8 +3868,8 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
     date: "31. Mai 2026",
     datePublished: "2026-05-31",
     title:
-      "Reinigungsfirma in Regensburg oder Regensburg anfragen: Was Kunden wirklich senden sollten",
-    metaTitle: "Reinigungsfirma Regensburg Regensburg anfragen | FLOXANT",
+      "Reinigungsfirma in Regensburg anfragen: Was Kunden wirklich senden sollten",
+    metaTitle: "Reinigungsfirma Regensburg anfragen | FLOXANT",
     description:
       "Kundennaher Leitfaden für Reinigungsanfragen mit Fläche, Zustand, Fotos, Termin, Schlüssel und Angebot.",
     intro:
@@ -4674,7 +4674,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Eine Praxisentrümpelung in Regensburg lässt sich gut prüfen, wenn Räume, Möbel, Technik, Restmengen, Etage, Zugang, Fotos, Termin und gewünschter Endzustand klar sind. FLOXANT ordnet den Auftrag praktisch ein und trennt Entsorgung, Tragearbeit und mögliche Reinigung danach.",
+          "Für eine Praxisentrümpelung sollten Räume, Möbel, Technik, Restmengen, Etage, Zugang, Termin und gewünschter Endzustand beschrieben werden. Diese Hinweise helfen auch bei der Auswahl eines Betriebs in Nürnberg. Das lokale FLOXANT-Angebot für Entrümpelung gilt für Regensburg und 75 km Umgebung; Nürnberg liegt außerhalb dieses Gebiets.",
         ],
       },
       {
@@ -4687,7 +4687,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Welche Angaben wichtig sind",
         paragraphs: [
-          "FLOXANT braucht keine perfekte Liste, aber sichtbare Orientierung. Fotos und eine kurze Raumübersicht sind meist wertvoller als eine grobe Schätzung.",
+          "Eine kurze Raumübersicht hilft dem ausführenden Betrieb, den Umfang zu verstehen. Fotos können ergänzen, was aus der Beschreibung noch nicht hervorgeht.",
         ],
         bullets: [
           "Praxisart, Räume und Flächen",
@@ -4699,30 +4699,30 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Praxisentrümpelung Nürnberg sollte nicht als pauschaler Sperrmüllfall behandelt werden. Mit Fotos, Raumliste und Freigabe kann FLOXANT prüfen, welcher Ablauf sinnvoll ist.",
+          "Praxisentrümpelung in Nürnberg sollte nicht als pauschaler Sperrmüllfall behandelt werden. Stimmen Sie Raumliste, Freigabe und Umgang mit einzelnen Gegenständen mit einem örtlich tätigen Betrieb ab. Für Objekte in Regensburg und 75 km Umgebung können Sie das lokale Entrümpelungsangebot von FLOXANT anfragen.",
         ],
       },
     ],
-    highlightTitle: "Praxisentrümpelung braucht Freigabe und Fotos",
+    highlightTitle: "Praxisentrümpelung braucht klare Freigaben",
     highlightPoints: [
       "Räume, Möbel und Technik sollten sichtbar eingeordnet werden.",
       "Akten und sensible Gegenstände müssen klar getrennt werden.",
       "Reinigung danach kann ein eigener Abschlussbaustein sein.",
     ],
     ctas: [
-      { href: "/entruempelung-nuernberg", label: "Entrümpelung Nürnberg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung in Regensburg und 75 km Umgebung" },
       { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
       { href: "/entruempelung", label: "Entrümpelung allgemein" },
     ],
     faqTitle: "FAQ zu Praxisentrümpelung Nürnberg",
     faqItems: [
       {
-        q: "Was braucht FLOXANT für Praxisentrümpelung?",
-        a: "Fotos, Räume, Möbel, Technik, Menge, Etage, Zugang, Freigabe, Termin und gewünschten Endzustand.",
+        q: "Welche Angaben helfen bei der Anfrage?",
+        a: "Beschreiben Sie Räume, Möbel, Technik, Menge, Etage, Zugang, Freigabe, Termin und gewünschten Endzustand. Fotos sind eine freiwillige Ergänzung. Eine Anfrage an FLOXANT zur örtlichen Entrümpelung richtet sich an den Raum Regensburg und 75 km Umgebung.",
       },
       {
         q: "Werden Akten oder sensible Gegenstände bewertet?",
-        a: "Nein. Sensible Gegenstände müssen vorab getrennt und freigegeben werden. FLOXANT prüft die praktische Räumung und Entsorgung nach klarer Freigabe.",
+        a: "Sensible Gegenstände müssen vorab getrennt und Zuständigkeiten geklärt werden. Stimmen Sie mit dem ausführenden Betrieb ab, welche Gegenstände nach Ihrer Freigabe entfernt werden dürfen.",
       },
       {
         q: "Kann ein vorhandenes Angebot geprüft werden?",
@@ -4865,7 +4865,7 @@ const allStrategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Warum Nähe allein nicht reicht",
         paragraphs: [
-          "Eine Reinigung in der Nähe ist nur hilfreich, wenn der Auftrag machbar ist. Altstadt, Stadtamhof, Galgenberg, Westenviertel, Regensburg oder Regensburg können unterschiedliche Laufwege, Parkmöglichkeiten und Zeitfenster bedeuten.",
+          "Eine Reinigung in der Nähe ist nur hilfreich, wenn der Auftrag machbar ist. Altstadt, Stadtamhof, Galgenberg und Westenviertel können unterschiedliche Laufwege, Parkmöglichkeiten und Zeitfenster bedeuten.",
         ],
       },
       {

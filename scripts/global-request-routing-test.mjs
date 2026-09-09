@@ -32,12 +32,12 @@ function test(name, check) {
 }
 
 test("1. Desktop-Header öffnet den neutralen Einstieg", () => {
-  assert.match(navigation, /headerOfferHref = buildGlobalRequestHref\("global_header"\)/);
-  assert.match(resolver, /\/kontakt\?mode=neutral&source=\$\{source\}/);
+  assert.match(navigation, /headerOfferHref = buildRequestHref\(\{ source: "global_header", entryPage: pathname/);
+  assert.match(resolver, /if \(!context\.location\) params\.set\("mode", "neutral"\)/);
 });
 
 test("2. Mobile Navigation öffnet den neutralen Einstieg", () => {
-  assert.match(navigation, /mobileOfferHref = buildGlobalRequestHref\("global_mobile_header"\)/);
+  assert.match(navigation, /mobileOfferHref = buildRequestHref\(\{ source: "global_mobile_header", entryPage: pathname/);
   assert.match(navigation, /href=\{mobileOfferHref\}/);
 });
 
@@ -121,9 +121,9 @@ test("15. Angebotscheck ist im zentralen Anfrageprozess verfügbar", () => {
   assert.doesNotMatch(contact, /window\.location\.assign/);
 });
 
-test("16. Budget nennen bleibt eine getrennte Route", () => {
-  assert.match(navigation, /headerBudgetHref = "\/umzug-mit-preisvorstellung"/);
-  assert.match(navigation, /href=\{headerBudgetHref\}/);
+test("16. Budget nennen bleibt über seine bestehende Route erreichbar", () => {
+  assert.ok(fs.existsSync(path.join(root, "app/umzug-mit-preisvorstellung/page.tsx")));
+  assert.match(navigation, /href=\{headerOfferHref\}/);
 });
 
 test("17. Desktop- und Mobile-Trackingquellen stimmen", () => {
@@ -145,20 +145,27 @@ test("19. Düsseldorf und Regensburg werden nicht vermischt", () => {
 });
 
 test("20. Desktop, Mobile und Footer nutzen dieselbe zentrale Routinglogik", () => {
-  assert.match(navigation, /buildGlobalRequestHref/);
-  assert.match(footer, /buildGlobalRequestHref\("global_footer"\)/);
-  assert.equal((navigation.match(/buildGlobalRequestHref\(/g) || []).length, 2);
+  assert.match(navigation, /buildRequestHref/);
+  const footerRequest = footer.match(/buildRequestHref\(\{([^}]+)\}\)/)?.[1] || "";
+  assert.match(footerRequest, /location: routeContext\.location/);
+  assert.match(footerRequest, /service: routeContext\.service/);
+  assert.match(footerRequest, /intent: routeContext\.intent/);
+  assert.match(footerRequest, /source: "global_footer"/);
+  assert.match(footer, /getPublicRouteContext\(pathname\)/);
+  assert.equal((navigation.match(/buildRequestHref\(/g) || []).length, 2);
 });
 
 test("404-Anfrage nutzt den neutralen Einstieg", () => {
-  assert.match(notFound, /buildGlobalRequestHref\("global_404"\)/);
+  assert.match(notFound, /buildRequestHref\(\{ source: "global_404", entryPage: "\/404"/);
 });
 
-test("Kontaktformular hat genau drei klar benannte Schritte", () => {
+test("Kontaktformular hat drei Schritte oder zwei bei gültiger Vorauswahl", () => {
   assert.match(form, /Standort und Leistung/);
   assert.match(form, /Eckdaten/);
   assert.match(form, /Kontakt und Zusammenfassung/);
-  assert.match(form, /Schritt \$\{step\} von 3/);
+  assert.match(form, /const labels = prefilled/);
+  assert.match(form, /Schritt \$\{visibleStep\} von \$\{labels\.length\}/);
+  assert.match(form, /<Progress step=\{step\} prefilled=\{context\.valid\}/);
 });
 
 test("Kontakt-Metadaten und Canonical sind neutral", () => {
@@ -218,11 +225,11 @@ test("Kontextseiten setzen Standort und kanonische Registry-Service-ID", () => {
   }
 
   assert.match(duesseldorfCleaningPages, /import \{ buildLeadHref \} from "@\/lib\/lead-intents"/);
-  assert.match(duesseldorfCleaningPages, /buildLeadHref\(\{ service, city: "duesseldorf", intent \}\)/);
-  assert.match(duesseldorfCleaningPages, /requestHref\("grundreinigung", "grundreinigung-duesseldorf"\)/);
+  assert.match(duesseldorfCleaningPages, /buildLeadHref\(\{\s*path,\s*service,\s*city: "duesseldorf",\s*intent,/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("grundreinigung", "grundreinigung-duesseldorf", "\/duesseldorf\/grundreinigung"\)/);
   assert.match(duesseldorfCleaningPages, /\/duesseldorf\/buchen\?service=bauendreinigung/);
-  assert.match(duesseldorfCleaningPages, /requestHref\("treppenhausreinigung", "treppenhausreinigung-duesseldorf"\)/);
-  assert.match(duesseldorfCleaningPages, /requestHref\("gewerbereinigung", "gewerbereinigung-duesseldorf"\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("treppenhausreinigung", "treppenhausreinigung-duesseldorf", "\/duesseldorf\/treppenhausreinigung"\)/);
+  assert.match(duesseldorfCleaningPages, /requestHref\("gewerbereinigung", "gewerbereinigung-duesseldorf", "\/duesseldorf\/gewerbereinigung"\)/);
   assert.doesNotMatch(
     duesseldorfCleaningPages,
     /requestHref\("(?:solarreinigung|hausverwaltung-reinigung|gebaeudereinigung)"/,

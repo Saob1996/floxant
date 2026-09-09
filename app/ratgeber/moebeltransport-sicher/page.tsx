@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/moebeltransport-sicher',
     title: "Möbeltransport sicher organisieren | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Moebeltransport vorbereiten",
+    description: "Möbeltransport vorbereiten: Möbel demontieren, Schrauben beschriften, empfindliche Teile polstern und Ladung sichern. Schäden und Kontaktwege dokumentieren.",
   });
 }
 export default async function Article() {
@@ -47,7 +47,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Versicherung</h2>
-            <p className="text-muted-foreground leading-relaxed">Prüfen Sie die Transportversicherung Ihrer Umzugsfirma. FLOXANT bietet vollen Versicherungsschutz für Ihr Mobiliar während des gesamten Transports.</p>
+            <p className="text-muted-foreground leading-relaxed">Klären Sie vor der Beauftragung, welcher Versicherungsschutz für Ihren Transport gilt und welche Gegenstände er umfasst. Maßgeblich sind die vereinbarten Vertragsbedingungen; halten Sie besondere Werte und vorhandene Schäden vorab fest.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>

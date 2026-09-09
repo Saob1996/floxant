@@ -19,7 +19,9 @@ assert.deepEqual(ADMIN_BOOKING_STATUSES, [
   "new",
   "in_progress",
   "contacted",
+  "quote_prepared",
   "quote_sent",
+  "follow_up",
   "appointment_scheduled",
   "details_missing",
   "under_review",
@@ -49,7 +51,7 @@ assert.deepEqual(ADMIN_BOOKING_STATUSES, [
   "completed",
 ]);
 
-function context({ status = "contacted", origin = "https://www.floxant.de", requestOrigin = origin } = {}) {
+function context({ status = "contacted", workflow = {}, origin = "https://www.floxant.de", requestOrigin = origin } = {}) {
   return {
     env,
     params: { id: bookingId },
@@ -60,7 +62,7 @@ function context({ status = "contacted", origin = "https://www.floxant.de", requ
         Origin: origin,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ status }),
+      body: JSON.stringify({ status, workflow }),
     }),
   };
 }
@@ -126,7 +128,7 @@ function jsonResponse(body, status = 200) {
 {
   let storedStatus = "new";
   const calls = [];
-  const response = await handleAdminBookingStatusUpdate(context({ status: "quote_sent" }), async (url, init = {}) => {
+  const response = await handleAdminBookingStatusUpdate(context({ status: "quote_sent", workflow: { nextActionAt: "2026-09-10T09:00:00.000Z" } }), async (url, init = {}) => {
     const target = String(url);
     const method = String(init.method || "GET").toUpperCase();
     calls.push({ target, method, init });
@@ -148,6 +150,7 @@ function jsonResponse(body, status = 200) {
   assert.equal(result.status, "quote_sent");
   assert.equal(result.details.configuration.round3Workflow.statusHistory.length, 1);
   assert.equal(result.details.configuration.round3Workflow.statusHistory[0].previousStatus, "new");
+  assert.equal(result.details.configuration.round3Workflow.nextActionAt, "2026-09-10T09:00:00.000Z");
   assert.equal(storedStatus, "quote_sent", "status must be durably written before the response");
   assert.deepEqual(calls.map((call) => call.method), ["GET", "GET", "PATCH"]);
   assert.equal(calls[2].init.headers.Authorization, authorization, "the admin JWT must exercise bookings RLS");

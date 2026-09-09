@@ -1,675 +1,142 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Clock3, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
-import { generatePageSEO } from "@/lib/seo";
-import {
-  buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
-  buildWebPageJsonLd,
-} from "@/lib/structured-data";
-import { blogPosts } from "@/lib/blog-posts";
 import { company } from "@/lib/company";
-import { germanizeDeep } from "@/lib/german-text";
-import { roundThreeGermanBlogArticles } from "@/lib/round3/blog-articles";
+import { practicalGuides } from "@/lib/practical-guides";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generatePageSEO({
-    lang: "de",
-    path: "blog",
-    title: "Blog für Umzug, Reinigung, Preisrahmen und Servicewissen | FLOXANT",
-    description:
-      "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung.",
-  });
-}
+const path = "/blog";
+const canonical = `${company.url}${path}`;
 
-export default function BlogHubPage() {
-  const normalizedBlogPosts = germanizeDeep(blogPosts);
-  const allHubArticles = [...roundThreeGermanBlogArticles, ...normalizedBlogPosts];
-  const featuredPosts = normalizedBlogPosts.filter((post) => post.featured);
-  const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
-  const topicRoutes = [
-    {
-      href: "#empfohlen",
-      title: "Empfohlene Artikel",
-      text: "Die hilfreichsten Startpunkte für Preisrahmen, Servicewahl und direkte Entscheidungen.",
-    },
-    {
-      href: "/blog/floxant-services-nach-situation-finden",
-      title: "Service nach Situation",
-      text: "Wenn Sie nicht wissen, ob Reinigung, Umzug, Entrümpelung, Übergabe oder Signature Service passt.",
-    },
-    {
-      href: "/blog/nicht-vor-ort-schluessel-fotos-uebergabe-floxant",
-      title: "Nicht vor Ort",
-      text: "Wenn Schlüssel, Fotos, Reinigung, Restpunkte oder Übergabe trotzdem sauber geklärt werden müssen.",
-    },
-    {
-      href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
-      title: "Regensburg Reinigung",
-      text: "Klare Auswahlhilfe für Büro, Praxis und gewerbliche Reinigung im 50-km-Umkreis.",
-    },
-    {
-      href: "#lokale-antworten",
-      title: "Regionale Antworten",
-      text: "Beiträge für Regensburg, den 50-km-Reinigungsradius und die Frage, welcher Service vor Ort wirklich passt.",
-    },
-    {
-      href: "#alle-beitraege",
-      title: "Alle Beiträge",
-      text: "Alle Ratgeber an einem Ort: Umzug, Reinigung, Entrümpelung, Preise und Übergabe.",
-    },
-    {
-      href: "/property-operations",
-      title: "Immobilienbetreuung",
-      text: "Hilfe bei Leerstand, Schlüssel, Übergaben, Kontrolle und Aufgaben vor Ort.",
-    },
-    {
-      href: "#faq",
-      title: "FAQ",
-      text: "Häufige Fragen direkt vor Rechner, Buchung oder Kontakt schneller klären.",
-    },
-  ];
-  const nextStepLinks = [
-    {
-      href: "/rechner",
-      title: "Preisrahmen prüfen",
-      text: "Wenn aus dem Lesen direkt eine erste Größenordnung für Aufwand und Budget werden soll.",
-    },
-    {
-      href: "/buchung",
-      title: "Anfrage sauber starten",
-      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den kurzen Einstieg sind.",
-    },
-    {
-      href: "/kontakt?mode=neutral&source=website",
-      title: "Rückfragen klären",
-      text: "Wenn Sonderfälle, Erreichbarkeit, Fotos oder Standortthemen vorab abgestimmt werden müssen.",
-    },
-  ];
+export const metadata: Metadata = {
+  metadataBase: new URL(company.url),
+  title: "FLOXANT Ratgeber: Umzug, Reinigung & Räumung",
+  description:
+    "Kompakte Ratgeber zu Umzug, Reinigung, Entrümpelung, Kostenfaktoren und Übergabe in Düsseldorf und Regensburg.",
+  alternates: {
+    canonical,
+    languages: { "de-DE": path, en: "/en/blog", "x-default": path },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: canonical,
+    title: "FLOXANT Ratgeber für konkrete Servicefragen",
+    description: "Ausgewählte Antworten zu Vorbereitung, Kostenfaktoren und Leistungsumfang.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "FLOXANT Ratgeber" }],
+  },
+};
 
-  const blogHubFaqItems = [
-    {
-      q: "Welche FLOXANT Ratgeber helfen vor einer Anfrage am meisten?",
-      a: "Am hilfreichsten sind Beiträge zu Preisrahmen, Service-Kombination, Umzugskosten, Gewerbereinigung, Endreinigung, Beiladung und Preisvorstellung. Sie erklären die Entscheidung, bevor der Rechner oder die Anfrage startet.",
-    },
-    {
-      q: "Warum gibt es Artikel zu Preisrahmen statt nur Preislisten?",
-      a: "Weil Umzug, Reinigung und Entrümpelung stark von Zugang, Umfang, Region, Terminlage und Zusatzleistungen abhängen. Der Blog erklärt diese Faktoren in Kundensprache statt mit Scheingenauigkeit.",
-    },
-    {
-      q: "Gibt es hier auch Themen für Firmen, Hotels oder gehobene Privatkunden?",
-      a: "Ja. Der Blog erweitert gezielt Themen für Büroumzug, Firmenentsorgung, Gewerbereinigung, Private Client und Buchung über direkte Kontaktwege statt Vergleichsportale.",
-    },
-    {
-      q: "Wie geht es nach dem Lesen weiter?",
-      a: "Je nach Thema führt der nächste Schritt zum Rechner, zur Preisvorstellung, zur Buchungsseite, zur B2B-Reinigungsseite oder direkt zur passenden Service-Hauptseite.",
-    },
-    {
-      q: "Hilft der Blog auch bei der Auswahl eines lokalen Dienstleisters?",
-      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg und dem lokalen Umfeld. Für Reinigung gilt der 50-km-Umkreis um Regensburg.",
-    },
-    {
-      q: "Welche Artikel helfen kurz vor einer Entscheidung am meisten?",
-      a: "Besonders stark sind die Beiträge zur Auswahl eines Umzugsunternehmens in Regensburg, zur Auswahl einer Reinigungsfirma für Büro und Praxis, zum direkten Buchungslink und zu klaren B2B-Anfragen.",
-    },
-    {
-      q: "Kann der Blog helfen, wenn ich noch nicht weiß, welche Leistung ich brauche?",
-      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung im Regensburger Umfeld.",
-    },
-    {
-      q: "Welche FLOXANT Leistungen werden hier erklärt?",
-      a: "FLOXANT steht in Regensburg für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Reinigungsanfragen werden lokal auf Regensburg plus 50 km begrenzt.",
-    },
-    {
-      q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
-      a: "Weil Kunden konkrete Situationen besser verstehen als reine Wortlisten. Deshalb erklären die Artikel Fälle wie Umzug mit Reinigung, Entrümpelung vor Übergabe oder Reinigung im Raum Regensburg anhand echter Fragen.",
-    },
-    {
-      q: "Gibt es einen Artikel, der alle FLOXANT Services nach Situation einordnet?",
-      a: "Ja. Der Ratgeber zu FLOXANT Services nach Situation erklärt, wann Umzug, Reinigung, Entrümpelung, Entsorgung, Objektservice, Angebotsprüfung oder Signature Services passen und welche Region gemeint ist.",
-    },
-    {
-      q: "Welche Artikel helfen bei Spezialfällen wie Villa, Private Client, Plan B oder Objektservice?",
-      a: "Dafür gibt es eigene Ratgeber zu FLOXANT Signature Services und zu Objektservice, Hausverwaltung, Mieterwechsel und Leerstand. Sie erklären Extra- und Spezialservices ohne übertriebene Versprechen.",
-    },
-    {
-      q: "Warum erklärt FLOXANT Leistungen nach Situationen statt nur nach Kategorien?",
-      a: "Weil Kunden meistens mit einer konkreten Lage starten: Auszug, Übergabe, Büroreinigung, Entrümpelung, Angebot prüfen oder nicht selbst vor Ort sein. Die Artikel zeigen, welcher Startpunkt dann passt und welche Angaben helfen.",
-    },
-    {
-      q: "Was ist der richtige Artikel, wenn ich nicht selbst vor Ort sein kann?",
-      a: "Der Artikel zum Nicht-vor-Ort-Fall erklärt, wie Schlüsselweg, Fotos, Reinigung, Restpunkte, Berechtigung und Übergabe sauber vorbereitet werden.",
-    },
-    {
-      q: "Gibt es einen Ratgeber für Entrümpelung mit Endreinigung in Regensburg?",
-      a: "Ja. Der Regensburg-Ratgeber zu Entrümpelung, Endreinigung und Übergabe erklärt, warum Restmengen, Reinigung, Fotos und Schlüssel in der richtigen Reihenfolge geplant werden sollten.",
-    },
-    {
-      q: "Welcher Inhalt hilft Hausverwaltungen, WEGs oder Vermietern?",
-      a: "Der Ratgeber zu Hausverwaltung, WEG, Mieterwechsel und Objektbetreuung erklärt praktische Vor-Ort-Hilfe ohne formale Hausverwaltungsversprechen.",
-    },
-  ];
+const topics = [
+  {
+    title: "Umzug planen",
+    description: "Strecke, Volumen, Zugang und Kostenfaktoren vor einer Anfrage besser einschätzen.",
+    articles: [
+      ["Umzugskosten in Regensburg realistisch einordnen", "/blog/umzug-kosten-regensburg", "Kostenfaktoren"],
+      ["Umzug-Checkliste: die wichtigsten Schritte", "/blog/umzug-checkliste", "Checkliste"],
+      ["Büroumzug in Regensburg: Kostenfaktoren und Checkliste", "/blog/bueroumzug-regensburg-kostenfaktoren-checkliste", "Firmenumzug"],
+      ["Beiladung in Bayern: Wann sie sich lohnt", "/blog/beiladung-bayern-wann-lohnt-es-sich", "Transport"],
+    ],
+  },
+  {
+    title: "Reinigung beschreiben",
+    description: "Objekt, Fläche, Turnus, Zugang und Zielzustand so benennen, dass Angebote vergleichbar werden.",
+    articles: [
+      ["Reinigung vor Übergabe: Checkliste", "/blog/reinigung-checkliste-uebergabe", "Übergabe"],
+      ["Büroreinigung in Regensburg richtig anfragen", "/blog/bueroreinigung-regensburg-angebot-einholen", "Büro"],
+      ["Treppenhausreinigung für Hausverwaltungen", "/blog/hausverwaltung-treppenhausreinigung-regensburg", "Objekt"],
+      ["Reinigungsfirma für Büro und Praxis auswählen", "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", "Auswahl"],
+    ],
+  },
+  {
+    title: "Räumung und Übergabe",
+    description: "Freigaben, persönliche Gegenstände, Endzustand und Übergabe in der richtigen Reihenfolge vorbereiten.",
+    articles: [
+      ["Wohnungsauflösung: Was jetzt zu tun ist", "/blog/wohnungsaufloesung-was-tun", "Auflösung"],
+      ["Entrümpelungskosten realistisch einordnen", "/blog/entrumpelung-kosten-bayern", "Kosten"],
+      ["Fotodokumentation bei Umzug und Übergabe", "/blog/fotodokumentation-umzug-reinigung", "Dokumentation"],
+      ["Umzug, Reinigung und Entrümpelung kombinieren", "/blog/service-kombination-umzug-reinigung-entruempelung", "Kombination"],
+    ],
+  },
+] as const;
 
-  const jsonLd = {
+function JsonLd() {
+  const graph = {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "FLOXANT Blog",
-        description:
-          "Blogbeiträge zu Umzug, Reinigung im 50-km-Umkreis Regensburg, Entrümpelung, Beiladung, Preisvorstellung, Buchung, Gewerbereinigung und Private Client.",
-        path: "/blog",
-        about: [
-          "Umzug",
-          "Reinigung",
-          "Entrümpelung",
-          "Preisvorstellung",
-          "Gewerbereinigung",
-          "Private Client",
-          "Regensburg",
-          "Bayern",
-        ],
+        name: "FLOXANT Ratgeber",
+        description: metadata.description as string,
+        path,
+        about: ["Umzug", "Reinigung", "Entrümpelung", "Übergabe"],
       }),
       buildBreadcrumbJsonLd([
-        { name: "FLOXANT", item: "/" },
-        { name: "Blog", item: "/blog" },
+        { name: "Startseite", item: "/" },
+        { name: "Ratgeber", item: path },
       ]),
-      buildFaqJsonLd(blogHubFaqItems.slice(0, 8)),
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: "FLOXANT Blogartikel",
-        itemListElement: allHubArticles.map((post, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          url: `https://www.floxant.de/blog/${post.slug}`,
-          name: post.title,
-          description: post.description,
-        })),
-      },
     ],
   };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} />;
+}
 
+export default function BlogHubPage() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <Breadcrumbs items={[{ label: "Blog" }]} />
-
-      <section className="px-6 pb-12 pt-8">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-slate-200 bg-white px-8 py-12 shadow-[0_28px_90px_rgba(15,23,42,0.08)] md:px-12 md:py-16">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
-                <BookOpen className="h-4 w-4" />
-                FLOXANT Blog
-              </div>
-              <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
-                Leitfäden für Services, Preisrahmen und klare Entscheidungen
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
-                Hier erklären wir Umzug, Reinigung, Entrümpelung, Gewerbereinigung,
-                Preisvorstellung, Buchung und Zusatzleistungen so, dass echte Kunden schnell
-                verstehen, was sinnvoll ist und welcher nächste Schritt wirklich passt.
-              </p>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-500">
-                Verständlich, freundlich und ohne großes Blabla. Wenn&apos;s pressiert, gern direkt
-                weiterlesen und danach einfach anfragen.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/rechner"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
-                >
-                  Zum Rechner
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/buchung"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
-                >
-                  Buchung starten
-                </Link>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-[#25D366]/25 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-[#25D366] hover:bg-[#25D366]/5"
-                >
-                  <MessageCircle className="h-4 w-4 text-[#25D366]" />
-                  Kurz per WhatsApp
-                </a>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1">
-              {[
-                "Klare Artikel für Umzug, Reinigung und Entrümpelung",
-                "Eigene Beiträge für Gewerbereinigung, Buchung und Private Client",
-                "Saubere Wege vom Lesen zur Anfrage statt Sackgassen",
-                "Mehr lokale Antworten für Regensburg, Bayern und direkte Kundensignale",
-              ].map((point) => (
-                <div
-                  key={point}
-                  className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-5 shadow-sm shadow-slate-950/5"
-                >
-                  <Sparkles className="mb-3 h-5 w-5 text-blue-600" />
-                  <p className="text-sm leading-relaxed text-slate-600">{point}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 pb-10">
-        <div className="mx-auto mb-4 grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {topicRoutes.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200"
-            >
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Schnellstart
-              </div>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 transition-colors group-hover:text-blue-700">
-                {item.title}
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
-            </a>
-          ))}
-        </div>
-        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-5">
-          {[
-            {
-              href: "/umzug",
-              title: "Umzug",
-              text: "Kosten, Ablauf, Beiladung und Expressfälle besser verstehen.",
-            },
-            {
-              href: "/regensburg/gewerbereinigung",
-              title: "Gewerbereinigung",
-              text: "Büro, Praxis, Hotel und Objektbetrieb gezielt einordnen.",
-            },
-            {
-              href: "/property-operations",
-              title: "Immobilienbetreuung",
-              text: "Schlüssel, Übergaben, Leerstand, Reinigung und Fotos als klarer Ablauf.",
-            },
-            {
-              href: "/objekt-springer",
-              title: "Objektvertretung",
-              text: "Kurzfristige Hilfe bei Personalausfall, Hausmeisterlücke oder Objektstress.",
-            },
-            {
-              href: "/human-api",
-              title: "Vor-Ort-Prüfung",
-              text: "Jemand fährt hin, prüft den Zustand, macht Fotos und meldet zurück.",
-            },
-            {
-              href: "/private-client-service",
-              title: "Private Client",
-              text: "Diskreter Service für gehobene Privathaushalte und Anwesen.",
-            },
-            {
-              href: "/buchung",
-              title: "Buchung",
-              text: "Direkt anfragen, statt erst lange nach dem richtigen Startpunkt zu suchen.",
-            },
-            {
-              href: "/angebot-guenstiger-pruefen",
-              title: "Angebote prüfen",
-              text: "Vorhandenes Umzugs-, Reinigungs- oder Entsorgungsangebot prüfen und Alternative anfragen.",
-            },
-            {
-              href: "/standorte",
-              title: "Standorte",
-              text: "Regensburg, Bayern und lokale Einsatzgebiete schnell einordnen.",
-            },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200"
-            >
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Themenpfad
-              </div>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-950">
-                {item.title}
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section id="lokale-antworten" className="px-6 pb-12">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 md:p-9">
-          <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Lokale Antworten
-              </div>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Beiträge für Regensburg, Google Maps und direkte Einordnung
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-              Diese Artikel helfen Lesern, FLOXANT regional sauber einzuordnen und schneller
-              den passenden nächsten Schritt zu finden.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {[
-              {
-                href: "/blog/lokaler-dienstleister-regensburg-vorteile",
-                title: "Lokaler Dienstleister in Regensburg",
-                text: "Warum regionale Nähe bei Planung, Rückfragen und Umsetzung oft ein echter Vorteil ist.",
-              },
-              {
-                href: "/blog/google-unternehmensprofil-buchungslink-regensburg",
-                title: "Google-Unternehmensprofil & Buchungslink",
-                text: "Welcher direkte Link für Maps, Suche und lokale Empfehlungen Kunden wirklich weiterhilft.",
-              },
-              {
-                href: "/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis",
-                title: "Große Reinigungsaufträge Regensburg",
-                text: "Gezielter B2B-Content für Büro, Praxis, Hotel und größere gewerbliche Objekte.",
-              },
-              {
-                href: "/blog/umzugsunternehmen-regensburg-auswahl",
-                title: "Umzugsunternehmen Regensburg auswählen",
-                text: "Woran Kunden in Regensburg seriöse Planung, klare Vorprüfung und saubere Ansprechpartner erkennen.",
-              },
-              {
-                href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
-                title: "Reinigungsfirma für Büro und Praxis",
-                text: "Welche Angaben bei gewerblicher Reinigung wirklich zählen, damit B2B-Anfragen schneller richtig eingeordnet werden.",
-              },
-              {
-                href: "/blog/bueroreinigung-regensburg-angebot-einholen",
-                title: "Büroreinigung Angebot anfragen",
-                text: "Welche Angaben zu Fläche, Turnus, Zugang und Randzeiten ein belastbares Angebot deutlich schneller machen.",
-              },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:bg-white"
-              >
-                <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <PsychologicalCleaningInternalLinks
-        title="Neue Reinigungsratgeber mit direkter Anfrage"
-        intro="Die Blogartikel stuetzen diese Problemseiten. Wer beim Lesen merkt, dass es konkret wird, landet ohne Umweg bei Buchung, WhatsApp oder Telefon."
-        focusSlugs={[
-          "vermieter-schockschutz-reinigung",
-          "sichtbar-sauber-protokoll",
-          "geruchslos-protokoll",
-          "anti-scham-reinigung",
-          "montagmorgen-effekt",
-          "baustaub-ende",
-        ]}
-        limit={6}
-      />
-
-      <section className="px-6 pb-12">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-50/85 p-7 shadow-sm shadow-slate-950/5 md:p-9">
-          <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Schnellantworten
-              </div>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Was Kunden hier schnell verstehen sollen
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-              Klare Fragen, klare Antworten, klare Anschlusswege. Genau so entsteht mehr
-              Vertrauen, bevor jemand Rechner, Buchung oder Kontakt öffnet.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              {
-                title: "Was ist FLOXANT?",
-                text: "Ein lokaler Dienstleister aus Regensburg für Umzug, Reinigung im 50-km-Umkreis, Entrümpelung, Büroumzug und Direktanfragen mit klaren Eckdaten.",
-              },
-              {
-                title: "Für wen ist der Blog?",
-                text: "Für Privatkunden, Unternehmen, Verwaltungen und sensible Spezialanfragen, die vor der Anfrage zuerst sauber einordnen möchten.",
-              },
-              {
-                title: "Wann hilft der Blog am meisten?",
-                text: "Wenn Preisrahmen, Ablauf, Zugang, Region oder die passende Anfrageseite noch nicht ganz klar sind.",
-              },
-              {
-                title: "Was ist der nächste Schritt?",
-                text: "Je nach Thema direkt zu Buchung, Rechner, Gewerbereinigung, Private Client oder Kontakt wechseln.",
-              },
-            ].map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[1.5rem] border border-white bg-white p-5 shadow-sm shadow-slate-950/5"
-              >
-                <h3 className="text-lg font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 pb-12">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(59,130,246,0.08),rgba(255,255,255,0.92))] p-7 md:p-9">
-          <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Lesen mit nächstem Schritt
-              </div>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Vom Ratgeber direkt zur passenden Entscheidung
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-              Die Artikel sind nicht als Textarchiv gedacht, sondern als klare Wege vom Problem
-              zur Vorprüfung.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-4">
-            {[
-              {
-                step: "01",
-                title: "Problem verstehen",
-                text: "Kosten, Ablauf, Region oder Zusatzservice einordnen.",
-              },
-              {
-                step: "02",
-                title: "Passenden Service wählen",
-                text: "Umzug, Reinigung, B2B, Entrümpelung oder Spezialweg.",
-              },
-              {
-                step: "03",
-                title: "Preisrahmen prüfen",
-                text: "Rechner oder Preisvorstellung ohne harte Preisversprechen.",
-              },
-              {
-                step: "04",
-                title: "Anfrage sauber starten",
-                text: "Daten so erfassen, dass FLOXANT realistisch planen kann.",
-              },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="rounded-[1.5rem] border border-white bg-white p-5 shadow-sm shadow-slate-950/5"
-              >
-                <div className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
-                  {item.step}
-                </div>
-                <h3 className="mt-4 text-xl font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 pb-12">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-50/85 p-7 shadow-sm shadow-slate-950/5 md:p-9">
-          <div className="mb-7 max-w-2xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Nach dem Lesen
-            </div>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Vom Artikel direkt in den passenden Anschlussweg
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              Der Blog soll nicht in einer Leseschleife enden. Diese Wege helfen, aus Information direkt eine sinnvolle nächste Aktion zu machen.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {nextStepLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
-              >
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Nächster Schritt
-                </div>
-                <h3 className="mt-4 flex items-center gap-2 text-xl font-semibold text-slate-950 transition-colors group-hover:text-blue-700">
-                  {item.title}
-                  <ArrowRight className="h-4 w-4" />
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="empfohlen" className="px-6 pb-12">
+    <main className="overflow-x-clip bg-white text-slate-950">
+      <JsonLd />
+      <section className="bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex items-end justify-between gap-6">
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                Empfohlen
-              </div>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Die stärksten Artikel für den schnellen Start
-              </h2>
-            </div>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {featuredPosts.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/blog/${article.slug}`}
-                className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200"
-              >
-                <div className="flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  <span>{article.category}</span>
-                  <span className="inline-flex items-center gap-1">
-                    <Clock3 className="h-3.5 w-3.5" />
-                    {article.readTime}
-                  </span>
-                </div>
-                <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950 transition-colors group-hover:text-blue-700">
-                  {article.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                  {article.description}
-                </p>
-                <span className="mt-6 inline-flex text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Artikel lesen
-                </span>
-              </Link>
-            ))}
-          </div>
+          <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-cyan-300"><BookOpen className="h-4 w-4" /> Ratgeber</p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">Praktische Hilfe für Reinigung, Umzug und Entrümpelung.</h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Was gehört dazu, wie planen Sie den Ablauf und welche Arbeit können Sie abgeben? Unsere Ratgeber helfen Ihnen, die nächsten Schritte für Ihr Zuhause oder Ihren Betrieb zu ordnen.</p>
+          <a href="#themen" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-lg bg-cyan-400 px-5 text-sm font-black text-slate-950 hover:bg-cyan-300">Thema auswählen <ArrowRight className="h-4 w-4" /></a>
         </div>
       </section>
 
-      <section id="alle-beitraege" className="px-6 pb-20">
+      <section className="px-5 py-14 sm:px-8 lg:px-10" aria-labelledby="current-guides-title">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Alle Beiträge
-            </div>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Alle Ratgeber auf einen Blick
-            </h2>
+          <p className="text-sm font-bold text-blue-800">Aktualisiert am 9. September 2026</p>
+          <h2 id="current-guides-title" className="mt-3 text-3xl font-bold">Acht Fragen aus dem Alltag</h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {practicalGuides.map((guide) => <article key={guide.slug} className="rounded-xl border border-slate-200 p-6">
+              <p className="text-sm font-semibold text-blue-800">{guide.region === "duesseldorf" ? "Düsseldorf" : "Regensburg"}</p>
+              <h3 className="mt-2 text-xl font-bold leading-7"><Link href={`/blog/${guide.slug}`} className="hover:text-blue-800">{guide.title}</Link></h3>
+              <p className="mt-3 leading-7 text-slate-600">{guide.description}</p>
+              <Link href={`/blog/${guide.slug}`} className="mt-4 inline-flex min-h-11 items-center gap-2 font-bold text-blue-800">Ratgeber lesen <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            </article>)}
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {allHubArticles.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/blog/${article.slug}`}
-                prefetch={false}
-                className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50/40"
-              >
-                <div className="flex items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  <span>{article.category}</span>
-                  <span className="inline-flex items-center gap-1">
-                    <Clock3 className="h-3.5 w-3.5" />
-                    {article.readTime}
-                  </span>
+        </div>
+      </section>
+
+      <section id="themen" className="px-5 py-16 sm:px-8 lg:px-10" aria-labelledby="guide-topics-title">
+        <div className="mx-auto max-w-7xl">
+          <h2 id="guide-topics-title" className="text-3xl font-black sm:text-4xl">Weitere Ratgeber nach Thema</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-600">Checklisten und Entscheidungshilfen für Ihre Planung, Kostenfragen und die nächsten Schritte.</p>
+          <div className="mt-9 grid gap-8">
+            {topics.map((topic) => (
+              <section key={topic.title} className="rounded-xl border border-slate-200 bg-slate-50 p-6" aria-labelledby={`topic-${topic.title.replace(/\s+/g, "-").toLowerCase()}`}>
+                <h3 id={`topic-${topic.title.replace(/\s+/g, "-").toLowerCase()}`} className="text-2xl font-black">{topic.title}</h3>
+                <p className="mt-3 max-w-3xl leading-7 text-slate-600">{topic.description}</p>
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  {topic.articles.map(([title, href, label]) => (
+                    <article key={href} className="rounded-lg border border-slate-200 bg-white p-5">
+                      <p className="text-xs font-black uppercase tracking-wide text-blue-700">{label}</p>
+                      <h4 className="mt-2 text-lg font-black leading-7">{title}</h4>
+                      <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500"><Clock3 className="h-4 w-4" aria-hidden="true" /> Kurzratgeber</p>
+                      <Link href={href} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-black text-blue-700 hover:text-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Ratgeber lesen <ArrowRight className="h-4 w-4" /></Link>
+                    </article>
+                  ))}
                 </div>
-                <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950 transition-colors group-hover:text-blue-700">
-                  {article.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                  {article.description}
-                </p>
-                <span className="mt-6 inline-flex text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Weiterlesen
-                </span>
-              </Link>
+              </section>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="faq" className="border-t border-slate-200 px-6 py-20">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-8">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              FAQ
-            </div>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Häufige Fragen zu den FLOXANT Ratgebern
-            </h2>
-          </div>
-          <div className="space-y-4">
-            {blogHubFaqItems.slice(0, 8).map((item, index) => (
-              <details
-                key={item.q}
-                open={index === 0}
-                className="group rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
-              >
-                <summary className="cursor-pointer list-none text-lg font-semibold text-slate-950">
-                  <span className="flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-xl leading-none text-blue-700 transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
-              </details>
-            ))}
-          </div>
+      <section className="border-t border-slate-200 bg-blue-800 px-5 py-14 text-white sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div><h2 className="text-3xl font-black">Genug gelesen – jetzt Eckdaten senden</h2><p className="mt-3 max-w-2xl text-blue-100">Wählen Sie Standort und Leistung. Danach fragt FLOXANT nur die dafür relevanten Angaben ab.</p></div>
+          <Link href="/leistungen" className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-blue-900">Leistung wählen <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </section>
     </main>

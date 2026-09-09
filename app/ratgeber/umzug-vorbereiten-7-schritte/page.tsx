@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-vorbereiten-7-schritte',
     title: "Umzug vorbereiten: 7 Schritte | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzug in 7 Schritten vorbereiten",
+    description: "Umzug in sieben Schritten vorbereiten: Budget und Termin festlegen, Inventar sortieren, packen, Zugänge klären und Übergabe sowie Nachbereitung organisieren.",
   });
 }
 export default async function Article() {

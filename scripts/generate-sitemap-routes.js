@@ -2,10 +2,13 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const workspaceRoot = process.cwd();
+const localRouteAreaPolicy = require(path.join(workspaceRoot, "data", "local-route-area-policy.json"));
+const outsideLocalServiceAreaRoutes = new Set(localRouteAreaPolicy.excludedRoutes.map((entry) => entry.path));
 const appDirectory = path.join(workspaceRoot, "app");
 const regensburgCleaningArea = require(path.join(workspaceRoot, "data", "serviceAreas", "regensburgCleaning.json"));
 const dynamicLocalRoutesFile = path.join(workspaceRoot, "lib", "local-seo-routes.ts");
 const dynamicBlogSourceFiles = [
+  path.join(workspaceRoot, "lib", "practical-guides.ts"),
   path.join(workspaceRoot, "lib", "ai-recommendation-blog-articles.ts"),
   path.join(workspaceRoot, "lib", "offer-check-blog-articles.ts"),
   path.join(workspaceRoot, "lib", "strategic-blog-articles.ts"),
@@ -20,6 +23,7 @@ const growthServicePagesFile = path.join(workspaceRoot, "lib", "growth-service-p
 const structuredLocalSeoPagesFile = path.join(workspaceRoot, "lib", "local-seo", "localSeoPages.ts");
 const englishLocalSeoPagesFile = path.join(workspaceRoot, "lib", "local-seo", "englishLocalSeoPages.ts");
 const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
+const redirectsFile = path.join(workspaceRoot, "public", "_redirects");
 
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
 const nonHtmlSitemapExtensionPattern = /\.(?:txt|json|xml|png|jpe?g|webp|avif|svg|ico|gif|pdf|webmanifest)$/i;
@@ -83,7 +87,25 @@ const canonicalAliasRoutes = new Set([
   "/duesseldorf/entsorgung",
   "/seniorenumzug",
 ]);
+const permanentRedirectRoutes = new Set(
+  fs.existsSync(redirectsFile)
+    ? fs
+        .readFileSync(redirectsFile, "utf8")
+        .split(/\r?\n/)
+        .map((line) => line.trim().split(/\s+/))
+        .filter(([source, , status]) =>
+          Boolean(source) &&
+          !source.startsWith("#") &&
+          !source.includes("*") &&
+          !source.includes(":") &&
+          ["301", "308"].includes(status),
+        )
+        .map(([source]) => source)
+    : [],
+);
 const allowedDuesseldorfCleaningRoutes = new Set([
+  "/duesseldorf/endreinigung",
+  "/duesseldorf/hotelreinigung",
   "/duesseldorf/reinigung",
   "/duesseldorf/bueroreinigung",
   "/duesseldorf/gewerbereinigung",
@@ -234,8 +256,11 @@ function getRouteFromDirectory(directory) {
 }
 
 function isIndexableRoute(route) {
+  if (outsideLocalServiceAreaRoutes.has(route)) return false;
   if (verifiedApartmentCleaningRoutes.has(route)) return true;
   if (nonHtmlSitemapExtensionPattern.test(route)) return false;
+  if (permanentRedirectRoutes.has(route)) return false;
+  if (localRouteAreaPolicy.routeExceptions.includes(route)) return true;
   if (legacyRedirectRoutes.has(route)) return false;
   if (canonicalAliasRoutes.has(route)) return false;
   if (consciouslyExcludedSignatureLandingRoutes.has(route)) return false;
@@ -286,8 +311,13 @@ function isCleaningRouteAllowed(route) {
 
   if (normalizedRoute.startsWith("blog/")) {
     return (
+      normalizedRoute === "blog/grundreinigung-oder-unterhaltsreinigung" ||
+      normalizedRoute === "blog/wohnung-nach-renovierung-reinigen" ||
+      normalizedRoute === "blog/entruempelung-vor-wohnungsuebergabe" ||
       normalizedRoute.includes("regensburg") ||
       normalizedRoute.includes("duesseldorf") ||
+      normalizedRoute.includes("75-km") ||
+      normalizedRoute.includes("75km") ||
       normalizedRoute.includes("50-km") ||
       normalizedRoute.includes("50km")
     );

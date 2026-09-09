@@ -33,7 +33,7 @@ import type {
   CalculatorEnquiryTransfer,
   CalculatorType,
 } from "@/lib/calculator/types";
-import { trackGenerateLead } from "@/lib/analytics/google-tag";
+import { trackGenerateLead, trackRequestStart } from "@/lib/analytics/google-tag";
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import { getBookingServiceForLead } from "@/lib/lead-intents";
 import type { RequestContext } from "@/lib/lead-intents/resolve-request-context";
@@ -193,14 +193,17 @@ function Field({
   );
 }
 
-function Progress({ step }: { step: RequestStep }) {
-  const labels = ["Standort und Leistung", "Eckdaten", "Kontakt und Zusammenfassung"];
+function Progress({ step, prefilled }: { step: RequestStep; prefilled: boolean }) {
+  const labels = prefilled
+    ? ["Eckdaten", "Kontakt und Zusammenfassung"]
+    : ["Standort und Leistung", "Eckdaten", "Kontakt und Zusammenfassung"];
+  const visibleStep = prefilled ? Math.max(1, step - 1) : step;
   return (
-    <ol className="grid grid-cols-3 gap-2" aria-label={`Schritt ${step} von 3`}>
+    <ol className={`grid gap-2 ${prefilled ? "grid-cols-2" : "grid-cols-3"}`} aria-label={`Schritt ${visibleStep} von ${labels.length}`}>
       {labels.map((label, index) => {
-        const number = (index + 1) as RequestStep;
-        const active = number === step;
-        const complete = number < step;
+        const number = index + 1;
+        const active = number === visibleStep;
+        const complete = number < visibleStep;
         return (
           <li
             key={label}
@@ -316,9 +319,7 @@ export function ProfessionalRequestForm({
   const [areaSize, setAreaSize] = useState("");
   const [frequency, setFrequency] = useState("");
   const [desiredDate, setDesiredDate] = useState("");
-  const [startLocation, setStartLocation] = useState(() =>
-    context.location === "regensburg" ? "Regensburg" : "",
-  );
+  const [startLocation, setStartLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
   const [startFloor, setStartFloor] = useState("");
   const [destinationFloor, setDestinationFloor] = useState("");
@@ -359,8 +360,10 @@ export function ProfessionalRequestForm({
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
   const hasMountedStepRef = useRef(false);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const successRef = useRef<HTMLElement>(null);
   const pendingErrorFocusRef = useRef("");
   const submitLockRef = useRef(false);
+  const formStartedRef = useRef(false);
   const submissionAttemptKeyRef = useRef("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previousContextRef = useRef({
@@ -391,6 +394,12 @@ export function ProfessionalRequestForm({
   }, [submissionIssue]);
 
   useEffect(() => {
+    if (status !== "success" || !successRef.current) return;
+    successRef.current.focus({ preventScroll: true });
+    successRef.current.scrollIntoView({ behavior: "instant", block: "start" });
+  }, [status]);
+
+  useEffect(() => {
     const previous = previousContextRef.current;
     if (previous.location === context.location && previous.serviceKey === context.serviceKey) return;
 
@@ -404,7 +413,7 @@ export function ProfessionalRequestForm({
             ? "Regensburg"
             : "",
       );
-      setStartLocation(context.location === "regensburg" ? "Regensburg" : "");
+      setStartLocation("");
     }
 
     if (!context.valid) {
@@ -441,7 +450,7 @@ export function ProfessionalRequestForm({
       setAreaSize("");
       setFrequency("");
       setDesiredDate("");
-      setStartLocation(context.location === "regensburg" ? "Regensburg" : "");
+      setStartLocation("");
       setDestinationLocation("");
       setStartFloor("");
       setDestinationFloor("");
@@ -557,8 +566,7 @@ export function ProfessionalRequestForm({
       if (scope.trim().length < 2) next.scope = "Bitte beschreiben Sie kurz Ihr Anliegen.";
     } else {
       if (cityOrZip.trim().length < 2) next.cityOrZip = "Bitte Ort oder PLZ eintragen.";
-      if (objectType.trim().length < 2) next.objectType = "Bitte Objektart auswählen.";
-      if (areaSize.trim().length < 2) {
+      if (group === "clearance" && areaSize.trim().length < 2) {
         next.areaSize =
           group === "clearance"
             ? "Bitte ungefähre Größe oder Umfang angeben."
@@ -1049,6 +1057,8 @@ export function ProfessionalRequestForm({
           source: context.sourceLabel,
           entryPage,
           locale: context.locale,
+          ctaComponent: context.ctaComponent,
+          ctaPosition: context.ctaPosition,
           ...attribution,
         },
       },
@@ -1063,6 +1073,8 @@ export function ProfessionalRequestForm({
           landingPage,
           campaign: context.campaign,
           locale: context.locale,
+          ctaComponent: context.ctaComponent,
+          ctaPosition: context.ctaPosition,
           ...attribution,
         },
       },
@@ -1073,7 +1085,8 @@ export function ProfessionalRequestForm({
       lead_type: "professional_request",
       leadSource: context.sourceLabel,
       source: context.sourceLabel,
-      sourceComponent: "ProfessionalRequestForm",
+      sourceComponent: context.ctaComponent || "ProfessionalRequestForm",
+      ctaPosition: context.ctaPosition,
       sourcePage,
       landingPage,
       service: bookingService,
@@ -1302,8 +1315,8 @@ export function ProfessionalRequestForm({
       <Field id="request-city" label="Ort oder PLZ" required error={errors.cityOrZip}>
         <input id="request-city" name="cityOrZip" value={cityOrZip} onChange={(event) => { setCityOrZip(event.target.value); clearFieldErrors("cityOrZip"); }} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.cityOrZip)} aria-describedby={errors.cityOrZip ? "request-city-error" : undefined} />
       </Field>
-      <Field id="request-object" label="Objektart" required error={errors.objectType}>
-        <select id="request-object" name="objectType" value={objectType} onChange={(event) => { setObjectType(event.target.value); clearFieldErrors("objectType"); }} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.objectType)} aria-describedby={errors.objectType ? "request-object-error" : undefined}>
+      <Field id="request-object" label="Objektart (optional)" error={errors.objectType}>
+        <select id="request-object" name="objectType" value={objectType} onChange={(event) => { setObjectType(event.target.value); clearFieldErrors("objectType"); }} className={inputClass} aria-invalid={Boolean(errors.objectType)} aria-describedby={errors.objectType ? "request-object-error" : undefined}>
           <option value="">Bitte auswählen</option>
           <option value="wohnung">Wohnung</option>
           <option value="haus">Haus</option>
@@ -1314,8 +1327,8 @@ export function ProfessionalRequestForm({
           <option value="sonstiges">Andere Objektart</option>
         </select>
       </Field>
-      <Field id="request-area" label={group === "clearance" ? "Ungefähre Größe oder Umfang" : "Ungefähr zu bearbeitende Fläche"} required error={errors.areaSize}>
-        <input id="request-area" name="areaSize" value={areaSize} onChange={(event) => { setAreaSize(event.target.value); clearFieldErrors("areaSize"); }} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.areaSize)} aria-describedby={errors.areaSize ? "request-area-error" : undefined} placeholder="z. B. 85 m² oder 3 Räume" />
+      <Field id="request-area" label={group === "clearance" ? "Ungefähre Größe oder Umfang" : "Ungefähre Fläche (optional)"} required={group === "clearance"} error={errors.areaSize}>
+        <input id="request-area" name="areaSize" value={areaSize} onChange={(event) => { setAreaSize(event.target.value); clearFieldErrors("areaSize"); }} className={inputClass} aria-required={group === "clearance"} aria-invalid={Boolean(errors.areaSize)} aria-describedby={errors.areaSize ? "request-area-error" : undefined} placeholder="z. B. 85 m² oder 3 Räume" />
       </Field>
       {group === "clearance" ? (
         <>
@@ -1376,7 +1389,10 @@ export function ProfessionalRequestForm({
   if (status === "success") {
     return (
       <section
-        className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950"
+        ref={successRef}
+        tabIndex={-1}
+        className="scroll-mt-28 rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 outline-none focus:ring-2 focus:ring-emerald-600"
+        aria-label="Anfrage erfolgreich gesendet"
         aria-live="polite"
         role="status"
         data-request-success
@@ -1406,7 +1422,7 @@ export function ProfessionalRequestForm({
       data-professional-request-form
       data-request-group={group}
     >
-      <Progress step={step} />
+      <Progress step={step} prefilled={context.valid} />
 
       {status === "error" && Object.keys(errors).length ? (
         <div id="request-error-summary" ref={errorSummaryRef} tabIndex={-1} role="alert" className="mt-5 rounded-lg border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-800 outline-none focus:ring-2 focus:ring-red-600">
@@ -1458,6 +1474,11 @@ export function ProfessionalRequestForm({
 
       <form
         data-booking-field-errors="managed"
+        onFocusCapture={() => {
+          if (!formStartedRef.current) {
+            formStartedRef.current = trackRequestStart(context.analyticsServiceType, context.location || "unsicher");
+          }
+        }}
         onSubmit={handleSubmit}
         noValidate
         aria-busy={status === "submitting"}

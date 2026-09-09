@@ -1,4 +1,5 @@
 import regensburgCleaningAreaData from "@/data/serviceAreas/regensburgCleaning.json";
+import { LOCAL_SERVICE_RADIUS_KM, SERVICE_AREA_CENTRES } from "@/lib/service-area-policy";
 
 type Coordinates = {
   latitude: number;
@@ -14,9 +15,9 @@ type CleaningPlaceInput = {
 export const regensburgCleaningServiceArea = regensburgCleaningAreaData;
 
 export const cleaningServiceAreaName = regensburgCleaningAreaData.serviceAreaName;
-export const cleaningServiceAreaRadiusKm = regensburgCleaningAreaData.radiusKm;
-export const regensburgCleaningCenter = regensburgCleaningAreaData.center;
-export const regensburgCleaningAreaLabel = "Regensburg und Umgebung bis 50 km";
+export const cleaningServiceAreaRadiusKm = LOCAL_SERVICE_RADIUS_KM;
+export const regensburgCleaningCenter = SERVICE_AREA_CENTRES.regensburg;
+export const regensburgCleaningAreaLabel = `Regensburg und Umgebung bis ${LOCAL_SERVICE_RADIUS_KM} km`;
 
 const umlautMap: Record<string, string> = {
   ä: "ae",
@@ -94,7 +95,7 @@ export function distanceToRegensburgKm(coordinates: Coordinates): number {
 }
 
 export function isWithinRegensburgCleaningRadius(coordinates: Coordinates): boolean {
-  return distanceToRegensburgKm(coordinates) <= regensburgCleaningAreaData.radiusKm;
+  return distanceToRegensburgKm(coordinates) <= LOCAL_SERVICE_RADIUS_KM;
 }
 
 export function isCleaningPlaceAllowed(input: CleaningPlaceInput): boolean {
@@ -179,10 +180,18 @@ export function isCleaningRouteAllowed(path: string): boolean {
   if (!isCleaningRoutePath(path)) return true;
 
   const normalizedPath = path.replace(/^\/+|\/+$/g, "").toLowerCase();
+  // Both established locations offer cleaning. Do not apply Regensburg's place
+  // whitelist to the independent Düsseldorf service pages or translations.
+  if (normalizedPath.startsWith("duesseldorf/") || normalizedPath.startsWith("en/duesseldorf/")) return true;
   if (normalizedPath.startsWith("blog/")) {
     return (
+      normalizedPath === "blog/grundreinigung-oder-unterhaltsreinigung" ||
+      normalizedPath === "blog/wohnung-nach-renovierung-reinigen" ||
+      normalizedPath === "blog/entruempelung-vor-wohnungsuebergabe" ||
       normalizedPath.includes("regensburg") ||
       normalizedPath.includes("duesseldorf") ||
+      normalizedPath.includes("75-km") ||
+      normalizedPath.includes("75km") ||
       normalizedPath.includes("50-km") ||
       normalizedPath.includes("50km")
     );

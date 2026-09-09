@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         path: "regensburg/reinigung",
         title: "Gebäudereinigung Regensburg mit Objekt und Angebot",
         description:
-            "Reinigung Regensburg anfragen: Objekt, Fläche, Zustand, Fotos, Termin, Zielzustand und Angebot im 50-km-Umkreis klären.",
+            "Reinigung Regensburg anfragen: Objekt, Fläche, Zustand, Fotos, Termin, Zielzustand und Angebot im 75-km-Umkreis klären.",
     });
 }
 
@@ -111,7 +111,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Wohnungsübergabe Reinigung",
                     "kurzfristige Reinigung Regensburg",
                     "Regensburg",
-                    "Regensburg plus 50 km",
+                    "Regensburg plus 75 km",
                 ],
                 potentialActions: [
                     { name: "Reinigung in Regensburg anfragen", target: "/buchung?service=reinigung&city=regensburg#buchungssystem", type: "ContactAction" },
@@ -208,7 +208,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Angebot Reinigung",
                     "Angebot für Reinigungsarbeiten",
                     "Reinigung nach Umzug",
-                    "Reinigung Regensburg plus 50 km",
+                    "Reinigung Regensburg plus 75 km",
                     "Schlüsselübergabeprotokoll Reinigungsfirma",
                 ],
                 sameAs: company.sameAs,
@@ -322,8 +322,8 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 <LocalProofPanel location="regensburg" />
                 <RegensburgCleaningServiceHub />
                 <ServiceAreaBlock
-                    title="Reinigungs-Servicegebiet Regensburg bis 50 km"
-                    intro="Der Reinigungshub bündelt Regensburg, Stadtteile und Orte im Umkreis bis 50 km. Weiter entfernte Orte werden nicht als eigene Reinigungsziele aufgebaut."
+                    title="Reinigungs-Servicegebiet Regensburg bis 75 km"
+                    intro="Der Reinigungshub bündelt Regensburg, Stadtteile und Orte im Umkreis bis 75 km. Weiter entfernte Orte werden nicht als eigene Reinigungsziele aufgebaut."
                 />
                 <LocalTrustBlock
                     ctaHref="/buchung?service=reinigung&city=regensburg#buchungssystem"

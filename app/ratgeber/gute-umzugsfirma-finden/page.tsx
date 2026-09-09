@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/gute-umzugsfirma-finden',
     title: "Gute Umzugsfirma finden: Prüfkriterien | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzugsfirma finden",
+    description: "Eine passende Umzugsfirma auswählen: Angebote und Leistungsumfang vergleichen, Versicherungsnachweise prüfen sowie Bewertungen und Erfahrung einordnen.",
   });
 }
 export default async function Article() {

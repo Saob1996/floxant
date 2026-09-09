@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   title: "FLOXANT Objektbrief | Anfrage klar vorbereiten",
   description:
     "Mit dem FLOXANT Objektbrief Reinigung, Umzug, Entrümpelung, Haushaltsauflösung oder Übergabe besser anfragen: Region, Ziel, Fotos, Zugang, Termin und Budgetrahmen senden.",
-  alternates: { canonical },
+  alternates: { canonical, languages: { "de-DE": path, en: "/en/create-request", "x-default": path } },
   openGraph: {
     type: "website",
     locale: "de_DE",

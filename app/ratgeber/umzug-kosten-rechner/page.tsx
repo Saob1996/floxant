@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-kosten-rechner',
     title: "Umzugskosten-Rechner richtig nutzen | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzugskosten realistisch einordnen",
+    description: "Umzugskosten-Rechner verstehen: Welche Angaben zu Fläche, Etagen, Strecke und Sonderstücken zählen und wo eine Schätzung ihre Grenzen hat.",
   });
 }
 export default async function Article() {

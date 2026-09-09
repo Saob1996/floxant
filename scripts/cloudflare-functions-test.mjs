@@ -817,9 +817,25 @@ try {
     assert(result.response.status === 201 && result.body.ok === true, "largest legitimate offer FormData must return 201");
   });
 
+  await test("offer-cta-provenance-formdata-roundtrip-201", async () => {
+    const formData = largestActiveOfferFormData();
+    formData.set("ctaComponent", "offer_check_page");
+    formData.set("ctaPosition", "content");
+    const result = await submitFormData(formData);
+    assert(result.response.status === 201 && result.body.ok === true, "known CTA provenance must be accepted with the offer request");
+    const lastInsert = calls.filter((call) => call.url.includes("/rest/v1/bookings") && call.method === "POST").at(-1);
+    const stored = JSON.parse(lastInsert.body)[0];
+    assert(stored.details.configuration.rawFields.ctaComponent === "offer_check_page", "CTA component must survive storage");
+    assert(stored.details.configuration.rawFields.ctaPosition === "content", "CTA position must survive storage");
+  });
+
   await test("duesseldorf-cleaning-minimal-formdata-201", async () => {
     const formData = duesseldorfCleaningFormData();
+    formData.delete("objectType");
+    formData.delete("areaSize");
     for (const omitted of [
+      "objectType",
+      "areaSize",
       "desiredDate",
       "frequency",
       "cleaningFrequency",
@@ -859,7 +875,7 @@ try {
         profile: "cleaning",
         serviceId: "reinigung",
         location: "duesseldorf",
-        fields: { cityOrZip: "Düsseldorf", objectType: "Wohnung", areaSize: "85 m²", scope: "Wohnräume reinigen" },
+        fields: { cityOrZip: "Düsseldorf", scope: "Wohnräume reinigen" },
       },
       {
         profile: "moving",
@@ -883,7 +899,7 @@ try {
         profile: "clearance",
         serviceId: "entruempelung",
         location: "regensburg",
-        fields: { cityOrZip: "93047 Regensburg", objectType: "Keller", areaSize: "25 m²" },
+        fields: { cityOrZip: "93047 Regensburg", areaSize: "25 m²" },
       },
       {
         profile: "offer_check",

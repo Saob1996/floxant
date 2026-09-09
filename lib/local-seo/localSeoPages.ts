@@ -53,10 +53,6 @@ const indexableM1: LocalSeoMaturitySnapshot = {
   ],
 };
 
-function getRegionNoun(_region: LocalSeoRegionKey) {
-  return "Regensburger";
-}
-
 function getOfferHref(_region: LocalSeoRegionKey) {
   return "/regensburg/angebot-vergleichen";
 }
@@ -103,10 +99,10 @@ function getProcess(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKey): 
 
   return [
     "Ort, Stadtteil, Objektart, Fläche, Zustand und Terminwunsch senden.",
-    "Fotos von Küche, Bad, Boden, Zugang, Treppenhaus oder Gewerbeflächen ergänzen.",
-    "FLOXANT prüft Umfang, Turnus, Zeitfenster, Material und gewünschtes Ergebnis.",
-    "Ein vorhandenes Angebot kann mit denselben Eckdaten sachlich geprüft werden.",
-    `Die Anfrage bleibt im ${getRegionNoun(region)} Leistungsbereich und wird nicht künstlich mit anderen Regionen vermischt.`,
+    "Fotos können Sie freiwillig ergänzen, wenn sie den Zustand oder Zugang zeigen.",
+    "Wir stimmen Aufgaben, Material, Zeiten und Zugang mit Ihnen ab.",
+    "Sie erhalten ein persönliches Angebot und bestätigen den vereinbarten Termin.",
+    `Unser Team übernimmt die vereinbarten Arbeiten und bespricht anschließend das Ergebnis mit Ihnen.`,
   ];
 }
 
@@ -170,7 +166,7 @@ function buildGenericSections(
         `${city.specialCases.join(". ")}. Diese Situationen brauchen unterschiedliche Rückfragen und dürfen nicht in einen einzigen Pauschalpreis gedrückt werden.`,
       ),
       section(
-        "Regionale Einordnung ohne Standortbehauptung",
+        "Ihr Einsatzort und die Anfahrt",
         `${serviceAreas.correctWording} Relevante Nachbarorte sind ${city.nearbyCities.slice(0, 5).join(", ")}.`,
       ),
     ];
@@ -196,9 +192,9 @@ function buildGenericSections(
 
   return [
     section(
-      `${service.displayName} in ${city.displayName} konkret einordnen`,
+      `${service.displayName} für Ihre Räume in ${city.displayName}`,
       `${city.localIntro} Für den Start reichen Ort, Objektart, Flächen, Zustand, Zugang, Fotos, Termin und gewünschtes Ergebnis.`,
-      `Typische Schwerpunkte sind ${city.serviceFocus.slice(0, 6).join(", ")}. FLOXANT prüft, welcher Weg wirklich passt, statt nur einen Ortsnamen in einen Standardtext zu setzen.`,
+      `Wir übernehmen die vereinbarten Aufgaben. Besondere Flächen, zusätzliche Arbeiten und gewünschte Zeiten besprechen wir vor Beginn.`,
     ),
     section(
       "Leistungsumfang und Zielgruppen",
@@ -261,7 +257,7 @@ function createPage(input: {
     eyebrow: input.eyebrow || `FLOXANT ${input.city.displayName}`,
     heroText:
       input.heroText ||
-      `${service.displayName} in ${input.city.displayName} anfragen: mit Ort, Fotos, Umfang, Termin und vorhandenen Angeboten sauber prüfen lassen.`,
+      `Wir übernehmen ${service.displayName} in ${input.city.displayName} im vereinbarten Umfang. Beschreiben Sie kurz Ihr Anliegen; Aufgaben, Termin und persönliches Angebot stimmen wir mit Ihnen ab.`,
     localIntro: input.city.localIntro,
     localProofNotes: input.city.localProofNotes,
     serviceFocus: input.city.serviceFocus,
@@ -319,23 +315,23 @@ function createRegionHub(region: LocalSeoRegionKey): LocalSeoPageConfig {
     metaDescription:
       `${regionRecord.displayName}: ausgewählte Leistungen, Städte und Angebotsprüfung im Einsatzgebiet ${radius}.`,
     h1: `${regionRecord.displayName}: Einsatzgebiet, Leistungen und passende Anfragewege`,
-    eyebrow: "FLOXANT Region-Hub",
+    eyebrow: "FLOXANT Einsatzgebiet",
     heroText:
-      `${regionRecord.positioning} Diese Seite hilft, Stadt, Leistung und Angebotsprüfung sinnvoll auszuwählen, ohne eine lange Linkwand zu erzeugen.`,
+      `FLOXANT übernimmt vereinbarte Leistungen in ${regionRecord.displayName} und im Umkreis von 75 km Luftlinie. Wählen Sie die Unterstützung für Ihr Zuhause oder Ihren Betrieb.`,
     maturity: indexableM2,
     sections: [
       section(
-        "Warum dieser Region-Hub existiert",
-        `${regionRecord.displayName} bündelt nicht einfach Städte. Der Hub erklärt, welche Leistungen in welchem regionalen Kontext sinnvoll sind und wann eine direkte Angebotsprüfung besser ist.`,
-        `Der Radius ist ${radius}. Für Städte ohne echten Standort wird sauber formuliert: FLOXANT betreut Anfragen im Rahmen des regionalen Einsatzgebiets.`,
+        "Unterstützung in Ihrer Umgebung",
+        `Beschreiben Sie kurz, welche Arbeit Sie abgeben möchten. Wir stimmen Umfang, Zugang, Anfahrt und Termin passend zu Ihrer Einsatzadresse ab.`,
+        `Unser lokales Einsatzgebiet reicht bis 75 km Luftlinie um den Standort. Die konkrete Anfahrt wird im Angebot berücksichtigt.`,
       ),
       section(
-        "Leistungsbereiche getrennt halten",
-        `Schwerpunkte sind ${regionRecord.primaryFocus.join(", ")}. Diese Bereiche werden in eigenen Seiten und internen Links geführt, damit Reinigung, Umzug, Räumung und Angebotsprüfung nicht verschwimmen.`,
+        "Die passende Leistung auswählen",
+        `Schwerpunkte sind ${regionRecord.primaryFocus.join(", ")}. Umfang und mögliche Ergänzungen vereinbaren wir gemeinsam.`,
       ),
       section(
         "Gezielt ausgewählte Städte im Servicegebiet",
-        `Zuerst sichtbar sind ${regionRecord.strategicCities.slice(0, 10).join(", ")}. Weitere Orte werden erst indexiert, wenn sie die M1-Kriterien erfüllen.`,
+        `Auch kleinere Orte und Stadtteile innerhalb des Einsatzgebiets können Sie anfragen. Nennen Sie dafür einfach Ihre Einsatzadresse und die gewünschte Arbeit.`,
       ),
     ],
     faq: region === "regensburg" ? buildCleaningFaq("Region Regensburg") : buildMovingFaq("Region Regensburg"),
@@ -442,10 +438,12 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "reinigung-nach-umzug",
     path: "/regensburg/reinigung-nach-umzug",
-    metaTitle: "Reinigung nach Umzug Regensburg | Uebergabe vorbereiten",
+    metaTitle: "Endreinigung Regensburg nach dem Umzug | FLOXANT",
     metaDescription:
-      "Reinigung nach Umzug in Regensburg fuer Auszug, Endreinigung, Uebergabe, Restpunkte und Fotos unverbindlich pruefen.",
-    h1: "Reinigung nach Umzug Regensburg fuer Auszug, Endreinigung und Uebergabe",
+      "Wohnung nach dem Auszug reinigen lassen: Böden, Bad, Küche und vereinbarte Oberflächen. FLOXANT übernimmt Ihre Endreinigung in Regensburg und Umgebung.",
+    h1: "Endreinigung in Regensburg: Wir kümmern uns um Ihre bisherige Wohnung.",
+    heroText: "Nach dem Auszug übernehmen wir die vereinbarte Reinigung, während Sie Ihr neues Zuhause einrichten. Böden, Bad, Küche und Oberflächen stimmen wir auf den Zustand und Ihren Übergabetermin ab.",
+    sections: [section("Was zur Endreinigung gehört", "Wir reinigen vereinbarte Böden, zugängliche Oberflächen, Küche und Sanitärbereiche. Türen, Schalter und zugängliche Einbauten können eingeplant werden. Eine möglichst leere Wohnung erleichtert die Arbeit.", "Fenster, Rahmen, Falze, Schrank- und Geräteinnenräume ergänzen wir auf Wunsch. Diese Aufgaben werden im Angebot benannt."), section("Was den Preis beeinflusst", "Fläche, Zustand, Möblierung, Küche, Bad und zusätzliche Detailarbeiten bestimmen den Aufwand. Hinzu kommen Zugang, Termin und Anfahrt. Für den Erstkontakt reichen eine kurze Beschreibung und Ihr Terminwunsch; Fotos sind freiwillig."), section("Reinigung und Übergabe abstimmen", "Planen Sie die Reinigung nach der letzten Möbelabholung und vor der Übergabe. Wir vereinbaren Zugang, Aufgaben und Termin mit Ihnen. Eine Reinigung beseitigt keine Schäden oder Abnutzung und ersetzt keine Entscheidung der Beteiligten über die Wohnungsabnahme."), section("Regensburg und Umgebung", "Wir reinigen in Regensburg und im Umkreis von 75 km Luftlinie. Die konkrete Einsatzadresse und Anfahrt werden im persönlichen Angebot berücksichtigt.")],
     internalLinks: [
       { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Zum zentralen Reinigungsangebot für Wohnung, Büro und Objekt." },
       { href: "/regensburg/entruempelung", label: "Entrümpelung vor der Reinigung", text: "Restmengen und Räumung getrennt vom Reinigungsumfang klären." },
@@ -496,11 +494,11 @@ const globalOfferPage = createPage({
   path: "/angebot-pruefen",
   metaTitle: "Angebot prüfen lassen | Regensburg | FLOXANT",
   metaDescription:
-    "Angebot prüfen lassen in Regensburg: Reinigung im 50-km-Umkreis, Umzug, Entrümpelung oder Wohnungsauflösung sachlich einordnen.",
+    "Angebot prüfen lassen in Regensburg: Reinigung im 75-km-Umkreis, Umzug, Entrümpelung oder Wohnungsauflösung sachlich einordnen.",
   h1: "Angebot in Regensburg prüfen lassen, bevor Umfang oder Preis unklar bleibt",
   eyebrow: "FLOXANT Angebotsprüfung",
   heroText:
-    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Reinigung wird nur für Regensburg und den Umkreis bis 50 km eingeordnet.",
+    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Reinigung wird nur für Regensburg und den Umkreis bis 75 km eingeordnet.",
   maturity: indexableM2,
   sections: [
     section(
@@ -510,7 +508,7 @@ const globalOfferPage = createPage({
     ),
     section(
       "Reinigung lokal begrenzen",
-      "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km.",
+      "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 75 km.",
       "Umzug, Wohnungsauflösung und Entrümpelung werden weiterhin getrennt nach Ort, Umfang und Machbarkeit eingeordnet.",
     ),
   ],

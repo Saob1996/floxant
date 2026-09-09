@@ -35,7 +35,7 @@ export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = germanizeDeep([
   { href: "/umzug-nuernberg-ziegelstein", label: "Umzug Nuernberg Ziegelstein", note: "Noerdlicher Stadtteilpfad mit direktem Maps- und Servicebezug." },
   { href: "/entruempelung-muenchen", label: "Entruempelung Muenchen", note: "Verdichteter Pfad fuer Entsorgung im Metropolraum." },
   { href: "/bueroumzug-muenchen", label: "Bueroumzug Muenchen", note: "B2B-Startpunkt fuer Teams, Archive und Standortwechsel." },
-  { href: "/umzug-augsburg", label: "Umzug Augsburg", note: "Wichtiger Westen-Bayern-Hub." },
+  { href: "/umzug-augsburg", label: "Umzug Augsburg", note: "Umzugsstrecken zwischen dem Regensburger Einsatzgebiet und Augsburg nach Absprache." },
   { href: "/bueroumzug-augsburg", label: "Bueroumzug Augsburg", note: "Starker Firmenpfad in Schwaben." },
   { href: "/entruempelung-augsburg", label: "Entruempelung Augsburg", note: "Raeumung, Entsorgung und Uebergabevorbereitung im Westen Bayerns." },
   { href: "/umzug-freising", label: "Umzug Freising", note: "Oberbayerischer Nahraum mit hoher Wohn- und Firmenbewegung." },
@@ -276,7 +276,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = germanizeDeep([
     title: "Reinigung",
     query: "reinigung, reinigungsfirma, endreinigung",
     description:
-      "Klarer Startpunkt fuer Wohnungsreinigung, Uebergabe, Objektpflege und lokale Reinigungsanfragen im 50-km-Umkreis um Regensburg.",
+      "Klarer Startpunkt fuer Wohnungsreinigung, Uebergabe, Objektpflege und lokale Reinigungsanfragen im 75-km-Umkreis um Regensburg.",
     primary: { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
     supporting: [
       { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },

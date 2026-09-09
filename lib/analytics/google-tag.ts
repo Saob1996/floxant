@@ -121,6 +121,17 @@ export function isGoogleAnalyticsAllowed() {
   return readStoredConsent().analytics === true;
 }
 
+export function trackRequestStart(serviceType: string, location: string) {
+  if (!isGoogleAnalyticsAllowed() || !ensureGoogleCommandQueue()) return false;
+  configureGoogleTag();
+  window.gtag?.("event", "form_start", {
+    form_name: "central_professional_request",
+    service_type: ["cleaning", "moving", "furniture_transport", "piano_transport", "clearance", "offer_check", "general"].includes(serviceType) ? serviceType : "general",
+    location: location === "duesseldorf" || location === "regensburg" ? location : "unsicher",
+  });
+  return true;
+}
+
 export function trackGenerateLead(parameters: GenerateLeadParameters, eventKey?: string) {
   if (!isGoogleAnalyticsAllowed() || !ensureGoogleCommandQueue()) return false;
   if (eventKey && trackedLeadKeys.has(eventKey)) return false;

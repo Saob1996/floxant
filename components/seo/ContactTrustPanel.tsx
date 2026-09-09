@@ -43,9 +43,9 @@ export const contactEntryPoints = [
 ];
 
 const mapsRankingSignals = [
-  "Adresse, Telefonnummer und Kontaktwege bleiben klar auffindbar.",
-  "Der lokale Schwerpunkt wird dort genannt, wo er für Anfahrt und Terminplanung relevant ist.",
-  "Kontakt, Rechner und Buchung führen ohne Sackgassen zu echten nächsten Schritten.",
+  "Reinigung, Umzug und Entrümpelung für Privatkunden und Unternehmen.",
+  "Persönliche Abstimmung zu Umfang, Zugang und Termin.",
+  "Telefon, WhatsApp und Anfrageformular als direkte Kontaktwege.",
 ];
 
 export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
@@ -191,10 +191,10 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
 
             <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                Lokale Vertrauenspunkte
+                Persönlich für Sie da
               </div>
               <h3 className="mt-3 text-xl font-semibold text-foreground">
-                Was den lokalen Eindruck stärkt
+                So unterstützen wir Sie
               </h3>
               <div className="mt-4 grid gap-3">
                 {mapsRankingSignals.map((signal) => (
@@ -212,16 +212,15 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
               <div className="mb-3 flex items-center gap-2 text-blue-700">
                 <ShieldCheck className="h-4 w-4" />
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em]">
-                  Lokale Einordnung
+                  In Regensburg und Umgebung
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">
-                Lokal erreichbar, regional realistisch
+                Ihr Auftrag, mit uns abgestimmt
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                FLOXANT prüft Anfragen nach Serviceart, Ort, Umfang, Zugang, Terminlage und
-                gewünschtem Kontaktweg. So bleibt die Reichweite realistisch und die Anfrage
-                für Kunden verständlich.
+                Wir übernehmen Reinigung, Umzug und Entrümpelung in Regensburg und im Umkreis von 75 km.
+                Beschreiben Sie kurz Ihr Anliegen. Gemeinsam klären wir Umfang und Termin und erstellen Ihr persönliches Angebot.
               </p>
             </div>
           </div>

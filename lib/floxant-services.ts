@@ -544,7 +544,7 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     id: "regensburg-reinigung-stadtamhof",
     title: "Reinigung Regensburg-Stadtamhof",
     shortDescription:
-      "Lokaler Einstieg für Stadtamhof, Lörick, Westenviertel, Neutraubling und Umgebung mit Objekt, Fotos und Angebot.",
+      "Lokaler Einstieg für Stadtamhof, Westenviertel, Neutraubling und Umgebung mit Objekt, Fotos und Angebot.",
     region: "regensburg",
     category: "normal",
     href: "/regensburg/reinigung",

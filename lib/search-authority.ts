@@ -19,7 +19,7 @@ export const searchAuthorityPages = {
     shortTitle: "FLOXANT",
     headline: "Reinigung in Düsseldorf. Umzug und Service in Regensburg.",
     description:
-      "FLOXANT für Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg. Auftrag mit Ort, Umfang, Termin und Fotos anfragen.",
+      "Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg. Beschreiben Sie Ort und Umfang und fragen Sie Ihr Angebot bei FLOXANT an.",
     ogTitle: "FLOXANT Dienstleistungen in Düsseldorf und Regensburg",
     ogDescription:
       "Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg klar anfragen.",
@@ -29,14 +29,14 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/reinigung": {
-    seoTitle: "Reinigung Düsseldorf | Büro, Praxis & Wohnung",
+    seoTitle: "Reinigung Düsseldorf für Wohnung & Büro | FLOXANT",
     shortTitle: "Reinigung Düsseldorf",
-    headline: "Reinigung in Düsseldorf für Wohnung, Büro und Objekt anfragen",
+    headline: "Reinigung in Düsseldorf, die Ihnen Arbeit abnimmt.",
     description:
-      "Reinigung in Düsseldorf für Wohnung, Büro, Praxis oder Gewerbe anfragen. Objektart, Fläche, Turnus, Termin und Fotos senden und Angebot klären.",
-    ogTitle: "Reinigung in Düsseldorf für Wohnung, Büro und Objekt",
+      "FLOXANT reinigt Wohnungen, Büros, Praxen und Fenster in Düsseldorf und 75 km Umgebung. Umfang persönlich abstimmen und Reinigungsangebot anfragen.",
+    ogTitle: "Reinigung Düsseldorf für Wohnung & Büro | FLOXANT",
     ogDescription:
-      "Reinigungsanfrage mit Objektart, Fläche, Turnus, Termin und Fotos verständlich vorbereiten.",
+      "FLOXANT reinigt Wohnungen, Büros, Praxen und Fenster in Düsseldorf und 75 km Umgebung. Umfang persönlich abstimmen und Reinigungsangebot anfragen.",
     primaryQuery: "reinigung düsseldorf",
     secondaryQueries: [
       "reinigungsdienst düsseldorf",
@@ -49,56 +49,56 @@ export const searchAuthorityPages = {
     locale: "de-DE",
   },
   "/duesseldorf/bueroreinigung": {
-    seoTitle: "Büroreinigung Düsseldorf: Turnus & Angebot | FLOXANT",
+    seoTitle: "Büroreinigung Düsseldorf – passend zum Büroalltag | FLOXANT",
     shortTitle: "Büroreinigung Düsseldorf",
-    headline: "Büroreinigung in Düsseldorf planbar und klar anfragen",
+    headline: "Büroreinigung in Düsseldorf, passend zu Ihrem Arbeitsalltag.",
     description:
-      "Büroreinigung in Düsseldorf für Arbeitsplätze, Küche, Sanitär und Besprechungsräume. Fläche, Turnus, Reinigungszeiten und Zugang angeben.",
-    ogTitle: "Büroreinigung Düsseldorf mit Turnus und Leistungsumfang",
+      "Gepflegte Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche. FLOXANT stimmt Reinigungsumfang, Rhythmus und Zeiten mit Ihrem Büro ab.",
+    ogTitle: "Büroreinigung Düsseldorf – passend zum Büroalltag | FLOXANT",
     ogDescription:
-      "Bürofläche, Raumliste, Reinigungszeiten, Zugang und vorhandenes Angebot nachvollziehbar klären.",
+      "Gepflegte Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche. FLOXANT stimmt Reinigungsumfang, Rhythmus und Zeiten mit Ihrem Büro ab.",
     primaryQuery: "büroreinigung düsseldorf",
     secondaryQueries: ["büroreinigung duesseldorf", "büro putzen düsseldorf", "putzfirma büro düsseldorf"],
     searchIntent: "B2B-Büroreinigung anfragen oder Angebot prüfen",
     locale: "de-DE",
   },
   "/duesseldorf/gewerbereinigung": {
-    seoTitle: "Gewerbereinigung Düsseldorf: Objekt & Turnus | FLOXANT",
+    seoTitle: "Gewerbereinigung Düsseldorf für Ihren Betrieb | FLOXANT",
     shortTitle: "Gewerbereinigung Düsseldorf",
-    headline: "Gewerbereinigung in Düsseldorf nach Objekt und Nutzung planen",
+    headline: "Gewerbereinigung in Düsseldorf, passend zu Ihrem Betrieb.",
     description:
-      "Gewerbereinigung in Düsseldorf für Laden, Studio und Objektfläche. Nutzung, Fläche, Zeitfenster, Turnus, Zugang und Leistungsumfang angeben.",
-    ogTitle: "Gewerbereinigung Düsseldorf nach Objekt und Nutzung",
+      "Reinigung für Ladenflächen, Studios und gewerbliche Räume in Düsseldorf. Aufgaben und Zeiten auf Nutzung, Kundenverkehr und Bodenbeläge abstimmen.",
+    ogTitle: "Gewerbereinigung Düsseldorf für Ihren Betrieb | FLOXANT",
     ogDescription:
-      "Gewerbefläche, Nutzungszeiten, Sonderbereiche und Turnus vor einem Angebot sauber einordnen.",
+      "Reinigung für Ladenflächen, Studios und gewerbliche Räume in Düsseldorf. Aufgaben und Zeiten auf Nutzung, Kundenverkehr und Bodenbeläge abstimmen.",
     primaryQuery: "gewerbereinigung düsseldorf",
     secondaryQueries: ["commercial cleaning düsseldorf", "reinigung gewerbefläche düsseldorf"],
     searchIntent: "Gewerbliche Objekt-Reinigung anfragen",
     locale: "de-DE",
   },
   "/duesseldorf/praxisreinigung": {
-    seoTitle: "Praxisreinigung Düsseldorf: Räume & Turnus | FLOXANT",
+    seoTitle: "Praxisreinigung Düsseldorf – nach Ihrem Ablauf | FLOXANT",
     shortTitle: "Praxisreinigung Düsseldorf",
-    headline: "Praxisreinigung in Düsseldorf mit Räumen und Zeiten anfragen",
+    headline: "Praxisreinigung in Düsseldorf mit klaren Abläufen.",
     description:
-      "Praxisreinigung in Düsseldorf für Empfang, Wartebereich, Sanitär und Nebenräume. Raumliste, Turnus, Reinigungszeiten und Zugang angeben.",
-    ogTitle: "Praxisreinigung Düsseldorf mit Raumliste und Turnus",
+      "FLOXANT reinigt Empfang, Warte-, Behandlungs- und Nebenräume nach vereinbartem Umfang. Turnus, Zeitfenster und Ihre Praxisvorgaben persönlich abstimmen.",
+    ogTitle: "Praxisreinigung Düsseldorf – nach Ihrem Ablauf | FLOXANT",
     ogDescription:
-      "Praxisräume, Zeitfenster, sensible Bereiche und Ansprechpartner sachlich abstimmen.",
+      "FLOXANT reinigt Empfang, Warte-, Behandlungs- und Nebenräume nach vereinbartem Umfang. Turnus, Zeitfenster und Ihre Praxisvorgaben persönlich abstimmen.",
     primaryQuery: "praxisreinigung düsseldorf",
     secondaryQueries: ["professionelle praxisreinigung düsseldorf", "arztpraxis reinigung düsseldorf"],
     searchIntent: "Praxisreinigung ohne unbelegte Hygieneversprechen anfragen",
     locale: "de-DE",
   },
   "/duesseldorf/fensterreinigung": {
-    seoTitle: "Fensterreinigung Düsseldorf: Glasflächen & Angebot",
+    seoTitle: "Fensterreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
     shortTitle: "Fensterreinigung Düsseldorf",
-    headline: "Fensterreinigung in Düsseldorf mit Glasflächen und Zugang anfragen",
+    headline: "Fensterreinigung in Düsseldorf für einen klaren Ausblick.",
     description:
-      "Fensterreinigung in Düsseldorf anfragen: Fensterzahl, Glasflächen, Innen- oder Außenseite, Rahmen, Etage, Zugang, Turnus und Fotos angeben.",
-    ogTitle: "Fensterreinigung Düsseldorf für Glas, Rahmen und Zugang",
+      "Fenster und Glasflächen in Wohnung, Büro oder Laden reinigen lassen. Innen- und Außenseiten, Rahmen und Falze nach Wunsch vereinbaren.",
+    ogTitle: "Fensterreinigung Düsseldorf für Wohnung & Gewerbe | FLOXANT",
     ogDescription:
-      "Fensterzahl, Glasflächen, Erreichbarkeit, Rahmenwunsch und Termin verständlich beschreiben.",
+      "Fenster und Glasflächen in Wohnung, Büro oder Laden reinigen lassen. Innen- und Außenseiten, Rahmen und Falze nach Wunsch vereinbaren.",
     primaryQuery: "fensterreinigung düsseldorf",
     secondaryQueries: ["fensterreiniger düsseldorf", "glasreinigung düsseldorf", "fenster putzen düsseldorf"],
     searchIntent: "Fenster- und Glasreinigung anfragen",

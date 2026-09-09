@@ -144,7 +144,7 @@ function JsonLd() {
           "Wohnungsreinigung",
           "Treppenhausreinigung",
           "Regensburg",
-          "Reinigung Regensburg 50 km",
+          "Reinigung Regensburg 75 km",
         ],
         potentialActions: [
           { name: "Reinigungsangebot anfragen", target: leadHref, type: "ContactAction" },

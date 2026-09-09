@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Methodik für Service-, FAQ- und Ratgeberinhalte mit Faktenprüfung, lokalem Kontext und klaren Grenzen.",
   alternates: {
     canonical: `${company.url}/methodik`,
-    languages: { "de-DE": `${company.url}/methodik`, "en-DE": `${company.url}/en/methodology`, "x-default": `${company.url}/methodik` },
+    languages: { "de-DE": `${company.url}/methodik`, en: `${company.url}/en/methodology`, "x-default": `${company.url}/methodik` },
   },
 };
 

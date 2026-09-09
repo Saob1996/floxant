@@ -1,129 +1,51 @@
 "use client";
 
-import { BadgeEuro, ClipboardCheck, FileSearch, Mail, Phone } from "lucide-react";
+import { ClipboardCheck, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
-
-import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
-import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { floxantLocations, type FloxantLocationKey } from "@/lib/floxant-locations";
+import { getPublicRouteContext } from "@/lib/public-route-context";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
-export default function MobileFloatingContact() {
+export default function MobileFloatingContact({ location: locationOverride }: { location?: FloxantLocationKey } = {}) {
   const pathname = usePathname() || "/";
-  const isPrivatePath =
-    pathname.startsWith("/dashboard") ||
-    pathname.startsWith("/admin") ||
-    pathname === "/login";
-
-  if (isPrivatePath) return null;
-
-  const requestHref = buildGlobalRequestHref("global_floating");
-  const offerHref = "/angebot-guenstiger-pruefen";
-  const budgetHref = "/umzug-mit-preisvorstellung";
-  const whatsappHref = buildWhatsAppHref(
-    company.phoneRaw,
-    "Hallo FLOXANT, ich möchte eine Anfrage stellen.",
-  );
-
+  const { location: routeLocation, service, intent, isEnglish } = getPublicRouteContext(pathname);
+  if (/^\/(?:dashboard|admin|login)(?:\/|$)/.test(pathname)) return null;
+  const location = locationOverride || routeLocation;
+  const contact = location ? floxantLocations[location] : null;
+  const phoneRaw = contact?.phoneRaw || company.phoneRaw;
+  const name = contact?.displayName || company.name;
+  const params = new URLSearchParams({ source: "global_floating", entryPage: pathname });
+  if (location) params.set(isEnglish ? "city" : "location", location);
+  if (service) params.set("service", service);
+  if (intent) params.set("intent", intent);
+  const isContactPage = pathname === "/kontakt" || pathname === "/en/contact";
+  // A same-page anchor preserves an in-progress request; other channels open independently.
+  const requestHref = isContactPage ? (isEnglish ? "#english-service-request-form" : "#direktanfrage")
+    : `${isEnglish ? "/en/contact" : "/kontakt"}?${params.toString()}${isEnglish ? "#english-service-request-form" : "#direktanfrage"}`;
+  const whatsappHref = buildWhatsAppHref(phoneRaw,
+    isEnglish ? `Hello ${name}, I would like to discuss a service enquiry.`
+      : `Hallo ${name}, ich möchte mein Anliegen besprechen.`);
   return (
-    <div className="flox-mobile-action-wrap flox-universal-action-wrap" aria-label="FLOXANT Schnellkontakt">
+    <nav className="flox-mobile-action-wrap flox-universal-action-wrap" data-nosnippet
+      data-contact-location={location || "both"} aria-label={isEnglish ? "Contact FLOXANT" : "FLOXANT Schnellkontakt"}>
       <div className="flox-mobile-action-shell safe-area-bottom">
         <div className="flox-mobile-action-grid">
-          <Link
-            href={requestHref}
-            className="flox-mobile-action flox-mobile-action-primary"
-            aria-label="Anfrage an FLOXANT senden"
-            data-event="request_cta_click"
-            data-source="global_floating"
-            data-cta-label="Anfrage"
-            data-destination={requestHref}
-          >
-            <ClipboardCheck aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anfrage</span>
-              <span className="flox-mobile-action-note">Fall schildern</span>
-            </span>
-          </Link>
-
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flox-mobile-action flox-mobile-action-whatsapp"
-            aria-label="FLOXANT per WhatsApp schreiben"
-            data-event="whatsapp_click"
-            data-source="floating_contact"
-            data-destination={whatsappHref}
-          >
-            <WhatsAppMark aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">WhatsApp</span>
-              <span className="flox-mobile-action-note">Fotos senden</span>
-            </span>
+          <a href={`tel:${phoneRaw}`} className="flox-mobile-action flox-mobile-action-light"
+            aria-label={isEnglish ? `Call ${name}` : `${name} anrufen`} data-event="phone_click" data-contact-channel="phone" data-source="floating_contact">
+            <Phone aria-hidden="true" /><span>{isEnglish ? "Call" : "Anrufen"}</span>
           </a>
-
-          <a
-            href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
-            className="flox-mobile-action flox-mobile-action-light"
-            aria-label="FLOXANT anrufen"
-            data-event="phone_click"
-            data-source="floating_contact"
-          >
-            <Phone aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Anrufen</span>
-              <span className="flox-mobile-action-note">Kurz klären</span>
-            </span>
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flox-mobile-action flox-mobile-action-whatsapp"
+            aria-label={isEnglish ? `Message ${name} on WhatsApp` : `${name} per WhatsApp schreiben`} data-event="whatsapp_click" data-contact-channel="whatsapp" data-source="floating_contact">
+            <WhatsAppMark aria-hidden="true" /><span>WhatsApp</span>
           </a>
-
-          <a
-            href={`mailto:${company.email}`}
-            className="flox-mobile-action flox-mobile-action-email"
-            aria-label={`FLOXANT per E-Mail an ${company.email} schreiben`}
-            data-event="email_click"
-            data-source="floating_contact"
-            data-contact-channel="email"
-            data-destination={`mailto:${company.email}`}
-          >
-            <Mail aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">E-Mail</span>
-              <span className="flox-mobile-action-note">{company.email}</span>
-            </span>
+          <a href={requestHref} className="flox-mobile-action flox-mobile-action-primary"
+            aria-label={isEnglish ? `Request a quote from ${name}` : `Angebot von ${name} anfragen`} data-event="request_cta_click" data-contact-channel="form" data-source="global_floating">
+            <ClipboardCheck aria-hidden="true" /><span>{isEnglish ? "Get a quote" : "Angebot"}</span>
           </a>
-
-          <Link
-            href={offerHref}
-            className="flox-mobile-action flox-mobile-action-offer"
-            aria-label="Vorhandenes Angebot prüfen lassen"
-            data-event="service_card_click"
-            data-source="floating_contact"
-            data-destination={offerHref}
-          >
-            <FileSearch aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Angebot</span>
-              <span className="flox-mobile-action-note">Prüfen lassen</span>
-            </span>
-          </Link>
-
-          <Link
-            href={budgetHref}
-            className="flox-mobile-action flox-mobile-action-dark"
-            aria-label="Budget oder Preisrahmen nennen"
-            data-event="service_card_click"
-            data-source="floating_contact"
-            data-destination={budgetHref}
-          >
-            <BadgeEuro aria-hidden="true" />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Budget</span>
-              <span className="flox-mobile-action-note">Nennen</span>
-            </span>
-          </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

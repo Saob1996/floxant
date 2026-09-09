@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: "umzug-bayern",
-    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+    title: "Umzug in Bayern ab oder nach Regensburg | FLOXANT",
+    description: "Ihren Umzug mit Start oder Ziel im Raum Regensburg vorbereiten. Wir stimmen Strecke, Möbel, Etagen und benötigte Hilfe für ein persönliches Angebot ab.",
   });
 }
 export default async function UmzugBayernPage({ params }: PageProps) {
@@ -38,8 +38,8 @@ export default async function UmzugBayernPage({ params }: PageProps) {
         dict={localeDict}
         city={city}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-        heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-        heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
+        heroTitle="Umzug in Bayern ab oder nach Regensburg"
+        heroText="Sie ziehen aus dem Raum Regensburg weg oder hierher? Wir stimmen Strecke, Möbel, Etagen und benötigte Hilfe mit Ihnen ab. Fernumzugsziele gehören zum vereinbarten Transportweg; unser lokales Einsatzgebiet bleibt bei 75 km um Regensburg."
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
         breadcrumbs={[
           { label: "Home", href: "/" },

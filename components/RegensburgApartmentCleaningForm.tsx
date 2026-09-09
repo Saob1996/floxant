@@ -84,7 +84,7 @@ export function RegensburgApartmentCleaningForm() {
         </div>
         <span className="inline-flex items-center gap-2 rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs font-black text-emerald-800">
           <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-          Regensburg + 50 km
+          Regensburg + 75 km
         </span>
       </div>
 
@@ -117,7 +117,7 @@ export function RegensburgApartmentCleaningForm() {
         </label>
         <label className="space-y-2 text-sm font-semibold text-slate-800">
           Objektort
-          <input name="objectLocation" required className={inputClass} placeholder="Regensburg, Stadtteil oder Ort im 50-km-Umkreis" />
+          <input name="objectLocation" required className={inputClass} placeholder="Regensburg, Stadtteil oder Ort im 75-km-Umkreis" />
         </label>
         <label className="space-y-2 text-sm font-semibold text-slate-800">
           PLZ

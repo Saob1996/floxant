@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: pageMeta.seoTitle,
   description: pageMeta.description,
-  alternates: { canonical: `${company.url}${path}`, languages: { "de-DE": `${company.url}${path}`, en: `${company.url}/en/service-finder`, "x-default": `${company.url}${path}` } },
+  alternates: { canonical: `${company.url}${path}`, languages: { "de-DE": `${company.url}${path}`, "x-default": `${company.url}${path}` } },
   openGraph: { type: "website", locale: "de_DE", url: `${company.url}${path}`, siteName: company.name, title: pageMeta.ogTitle, description: pageMeta.ogDescription },
 };
 

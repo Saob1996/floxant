@@ -1,5 +1,7 @@
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { germanizeText } from "@/lib/german-text";
+import { LOCAL_SERVICE_RADIUS_KM } from "@/lib/service-area-policy";
+import { getPublicRouteContext } from "@/lib/public-route-context";
 
 type BreadcrumbEntry = {
   name: string;
@@ -84,7 +86,8 @@ function schemaPlaceType(area: string) {
     normalized.includes("oberpfalz") ||
     normalized.includes("niederbayern") ||
     normalized.includes("umgebung") ||
-    normalized.includes("200 km") ||
+    /\d+\s*km/.test(normalized) ||
+    normalized.includes("landkreis") ||
     normalized.includes("nahbereich") ||
     normalized.includes("servicegebiet") ||
     normalized.includes("nach verfügbarkeit") ||
@@ -142,20 +145,32 @@ export function buildServiceJsonLd({
   description,
   path,
   serviceType,
-  areaServed = ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+  areaServed,
   availableLanguage = ["de"],
   provider,
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
+  const { location } = getPublicRouteContext(path);
+  const regionalCompany = location === "duesseldorf" ? duesseldorfCompany : company;
+  const serviceAreas = areaServed || (location
+    ? [regionalCompany.city, `${regionalCompany.city} plus ${LOCAL_SERVICE_RADIUS_KM} km`]
+    : ["Düsseldorf", "Regensburg"]);
   const serviceProvider = provider || {
-    name: company.name,
-    url: company.url,
-    phoneRaw: company.phoneRaw,
-    streetAddress: company.streetAddress,
-    postalCode: company.postalCode,
-    city: company.city,
-    countryCode: company.countryCode,
+    name: regionalCompany.name,
+    url: regionalCompany.url,
+    phoneRaw: regionalCompany.phoneRaw,
+    streetAddress: regionalCompany.streetAddress,
+    postalCode: regionalCompany.postalCode,
+    city: regionalCompany.city,
+    countryCode: regionalCompany.countryCode,
   };
+  const providerEntity = provider
+    ? {
+        "@id": `${serviceProvider.url}#localbusiness`,
+      }
+    : {
+        "@id": `${company.url}/#organization`,
+      };
 
   return {
     "@context": "https://schema.org",
@@ -165,7 +180,7 @@ export function buildServiceJsonLd({
     description: clean(description),
     serviceType: clean(serviceType || name),
     url,
-    areaServed: areaServed.map((area) =>
+    areaServed: serviceAreas.map((area) =>
       typeof area === "string"
         ? {
             "@type": schemaPlaceType(area),
@@ -182,20 +197,7 @@ export function buildServiceJsonLd({
       },
       availableLanguage,
     },
-    provider: {
-      "@type": "LocalBusiness",
-      "@id": `${serviceProvider.url}#localbusiness`,
-      name: serviceProvider.name,
-      url: serviceProvider.url,
-      telephone: serviceProvider.phoneRaw,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: serviceProvider.streetAddress,
-        addressLocality: serviceProvider.city,
-        postalCode: serviceProvider.postalCode,
-        addressCountry: serviceProvider.countryCode,
-      },
-    },
+    provider: providerEntity,
   };
 }
 
@@ -204,7 +206,6 @@ export function buildWebPageJsonLd({
   description,
   path,
   inLanguage = "de",
-  about = [],
   potentialActions = [],
 }: WebPageJsonLdInput) {
   return {
@@ -216,15 +217,8 @@ export function buildWebPageJsonLd({
     url: absoluteUrl(path),
     inLanguage,
     isPartOf: {
-      "@type": "WebSite",
       "@id": `${company.url}/#website`,
-      name: company.name,
-      url: company.url,
     },
-    about: about.map((entry) => ({
-      "@type": "Thing",
-      name: clean(entry),
-    })),
     ...(potentialActions.length
       ? {
          potentialAction: potentialActions.map((action) => ({
@@ -256,20 +250,10 @@ export function buildArticleJsonLd({
     inLanguage,
     image: `${company.url}/opengraph-image`,
     author: {
-      "@type": "Organization",
       "@id": `${company.url}/#organization`,
-      name: company.name,
-      url: company.url,
     },
     publisher: {
-      "@type": "Organization",
       "@id": `${company.url}/#organization`,
-      name: company.name,
-      url: company.url,
-      logo: {
-        "@type": "ImageObject",
-        url: `${company.url}/logo_v10.png`,
-      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

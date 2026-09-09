@@ -39,9 +39,9 @@ export type LocalServiceSeoPageConfig = {
 
 const commonProcess = [
   "Anfrage mit Ort, Service, Terminwunsch und kurzer Beschreibung senden.",
-  "Bilder oder Videos hochladen oder eine Online-Besichtigung abstimmen.",
-  "FLOXANT prüft Umfang, Zugang, Risiken, Zeitdruck und offene Zusatzleistungen.",
-  "Sie erhalten eine transparente Einschätzung und bestätigen erst danach den Termin.",
+  "Fotos können Sie freiwillig ergänzen. Offene Punkte besprechen wir persönlich.",
+  "Wir stimmen Aufgaben, Zugang, Material und gewünschte Ergänzungen mit Ihnen ab.",
+  "Sie erhalten ein persönliches Angebot und bestätigen Umfang und Termin.",
   "Das Team führt den Auftrag nach abgestimmtem Umfang sauber und nachvollziehbar aus.",
 ] as const;
 
@@ -438,18 +438,18 @@ export const localServiceSeoPages = {
       "Umzugsreinigung Regensburg",
       "Reinigungsangebot prüfen Regensburg",
     ],
-    metaTitle: "Gebäudereinigung Regensburg | Floxant",
+    metaTitle: "Reinigung Regensburg für Wohnung & Gewerbe | FLOXANT",
     metaDescription:
-      "Gebäudereinigung in Regensburg für Büro, Praxis, Treppenhaus und Wohnung: Servicegebiet bis 50 km, Fotos senden, Umfang klären.",
+      "Reinigung für Wohnung, Büro und Gewerbe in Regensburg und 75 km Umgebung. FLOXANT übernimmt einmalige oder regelmäßige Aufgaben nach Vereinbarung.",
     titleAlternatives: [
       "Reinigung Regensburg | Fotos senden, Aufwand klären",
       "Reinigungsfirma Regensburg | Schnell einschätzen lassen",
       "Reinigung in Regensburg | Angebot sauber klären",
     ],
-    headline: "Gebäudereinigung in Regensburg und Umgebung",
+    headline: "Reinigung in Regensburg: saubere Räume, weniger Arbeit für Sie.",
     intro:
-      "FLOXANT prüft Gebäudereinigung in Regensburg und im Umkreis bis 50 km nach Objektart, Fläche, Räumen, Zustand, Zugang, Termin und gewünschtem Ergebnis. Für laufende Büro- oder Gewerbereinigung führen die passenden B2B-Seiten weiter.",
-    primaryCta: "Gebäudereinigung in Regensburg anfragen",
+      "Ob nach dem Umzug, im laufenden Büroalltag oder für Ihre Wohnung: Wir übernehmen die vereinbarte Reinigung. Gemeinsam legen wir fest, welche Räume und Flächen gereinigt werden sollen und welcher Termin zu Ihnen passt.",
+    primaryCta: "Reinigungsangebot anfragen",
     secondaryCta: "Fotos zum Zustand senden",
     bookingHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
     whatsappMessage:
@@ -457,20 +457,20 @@ export const localServiceSeoPages = {
     proofItems: [
       "Wohnung, Treppenhaus, Endreinigung oder Reinigung nach Umzug in Regensburg.",
       "Fotos, Fläche und Zielzustand machen die Einschätzung schneller.",
-      "Büro- und Gewerbereinigung sind als eigene Leistungswege mit passendem Umfang verlinkt.",
+      "Büro- und Gewerberäume reinigen wir mit einem abgestimmten Aufgabenplan.",
     ],
-    problemTitle: "Wenn Reinigung nicht nur Putzen heißt",
+    problemTitle: "Die Reinigung, die zu Ihren Räumen passt",
     problemText: [
-      "Kunden suchen häufig schnelle Hilfe, weil Übergabe, Umzug, Nachmieter, Besuch oder ein Objekttermin näher rückt. Dann zählt nicht nur ein Preis, sondern die Frage, welche Bereiche wirklich gereinigt werden müssen.",
-      "FLOXANT ordnet Küche, Bad, Böden, Fensterbereiche, Treppenhaus, Restmengen, Zugang und Zeitdruck getrennt ein. Wenn Büro, Turnus oder Gewerbefläche im Mittelpunkt stehen, führt die Seite bewusst weiter.",
-    ],
-    scopeTitle: "Welche Reinigung in Regensburg geprüft wird",
+  "Im Alltag fehlt oft die Zeit für eine gründliche Reinigung. Nach einem Auszug oder einer Räumung kommen weitere Aufgaben hinzu. FLOXANT kümmert sich um den besprochenen Umfang, damit Sie Ihre Räume wieder nutzen oder für die Übergabe vorbereiten können.",
+  "Eine einmalige Reinigung kann Böden, Bad, Küche und Oberflächen umfassen. Für Büros und Gewerbe stimmen wir einen regelmäßigen Plan ab. Fenster, Einbauten und stärkere Rückstände werden nach Bedarf ergänzt."
+],
+    scopeTitle: "Diese Reinigung übernehmen wir in Regensburg",
     scopeItems: [
-      "Wohnungsreinigung, Endreinigung, Übergabereinigung und Reinigung nach Umzug.",
-      "Private Reinigung, Umzugsreinigung, Übergabereinigung, Treppenhaus und objektbezogene Reinigung.",
-      "Küche, Bad, Böden, sichtbare Rückstände, Fensterbereiche und stark genutzte Flächen.",
-      "Vorhandene Angebote, Budgetrahmen und Kombi-Anfragen mit Umzug oder Entrümpelung.",
-    ],
+  "Böden und frei zugängliche Oberflächen reinigen",
+  "Küche, Bad und Sanitärbereiche nach Vereinbarung pflegen",
+  "Büro- und Gemeinschaftsräume einmalig oder regelmäßig reinigen",
+  "Fenster und weitere Detailarbeiten auf Wunsch ergänzen"
+],
     process: commonProcess,
     costFactors: [
       "Fläche, Raumanzahl, Objektart und gewünschtes Ergebnis.",
@@ -478,15 +478,15 @@ export const localServiceSeoPages = {
       "Etage, Zugang, Parkmöglichkeit, Schlüsselweg und Zeitdruck.",
       "Zusatzleistungen wie Entrümpelung, Restmengen, Endreinigung oder Fotodokumentation.",
     ],
-    localTitle: "Regensburg: Reinigung nach Stadtteil und Objekt einordnen",
+    localTitle: "Unser Einsatzgebiet für Ihre Reinigung",
     localText:
-      "In der Altstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen, Reinhausen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug. Für Reinigungsservices bleibt FLOXANT bei Regensburg plus 50 km.",
+      "Wir reinigen in Regensburg und im Umkreis von 75 km Luftlinie. Zum Stadtgebiet gehören etwa Stadtamhof, Kumpfmühl, Prüfening und Burgweinting. Für Ihren Termin stimmen wir die konkrete Einsatzadresse, Zugang und Anfahrt mit Ihnen ab.",
     districts: regensburgDistricts,
     trustItems: [
-      "Klare Einschätzung statt pauschaler Reinigungsgarantie.",
+      "Ein persönliches Angebot mit klar benannten Aufgaben.",
       "Online-Besichtigung und Vor-Ort-Besichtigung in Regensburg nach Bedarf.",
       "Direkte Kombination mit Umzug, Entrümpelung oder Haushaltsauflösung möglich.",
-      "Keine Abnahme- oder Kautionsgarantie.",
+      "Termin und Zugang werden vor der Reinigung vereinbart.",
     ],
     relatedLinks: [
       {
@@ -528,8 +528,8 @@ export const localServiceSeoPages = {
         a: "Ja, wenn Umfang und Termin passen. Räumung, Entsorgung und Reinigung werden getrennt eingeordnet.",
       },
       {
-        q: "Bietet FLOXANT Reinigung außerhalb von 50 km an?",
-        a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
+        q: "Bietet FLOXANT Reinigung außerhalb von 75 km an?",
+        a: "Unser lokales Reinigungsgebiet reicht bis 75 km Luftlinie um Regensburg. Nennen Sie Ihre konkrete Einsatzadresse; Anfahrt und Termin werden im Angebot abgestimmt.",
       },
       {
         q: "Ist eine Vor-Ort-Besichtigung möglich?",
@@ -554,18 +554,18 @@ export const localServiceSeoPages = {
       "Reinigungsangebot Regensburg",
       "Büroreinigung Angebot Regensburg",
     ],
-    metaTitle: "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
+    metaTitle: "Gewerbereinigung Regensburg für Ihren Betrieb | FLOXANT",
     metaDescription:
-      "Gewerbereinigung Regensburg für Firmen: Objektart, Fläche, Turnus, Reinigungszeiten, Leistungsumfang und Angebot einordnen.",
+      "FLOXANT reinigt Büros, Laden- und Gewerberäume in Regensburg und 75 km Umgebung. Leistungsumfang, Turnus und Zeiten persönlich abstimmen.",
     titleAlternatives: [
       "Gewerbereinigung Regensburg | Raumliste senden",
       "Büroreinigung Regensburg | Turnus & Räume klären",
       "Reinigungsfirma Regensburg | Büro und Objekt prüfen",
     ],
-    headline: "Gewerbereinigung Regensburg mit konkreten Eckdaten anfragen",
+    headline: "Gewerbereinigung in Regensburg, passend zu Ihrem Betrieb.",
     intro:
-      "Bei Gewerbereinigung in Regensburg zählen Objektart, Fläche, Reinigungszeiten, Leistungsumfang, Turnus und Zugang. FLOXANT hilft, die Anfrage klar vorzubereiten und vorhandene Angebote besser einzuordnen. Eine Anfrage ist noch keine Beauftragung.",
-    primaryCta: "Gewerbereinigung Regensburg anfragen",
+      "Wir sorgen für gepflegte Büro-, Laden- und Gewerberäume. Aufgaben, Reinigungsrhythmus und Zugang stimmen wir auf die Nutzung Ihrer Flächen ab, damit die Reinigung in Ihren Betriebsablauf passt.",
+    primaryCta: "Gewerbereinigung anfragen",
     secondaryCta: "Objektangaben senden",
     bookingHref: "/kontakt?service=gewerbereinigung&city=regensburg&intent=gewerbereinigung-regensburg&source=website",
     whatsappMessage:
@@ -579,7 +579,7 @@ export const localServiceSeoPages = {
     problemTitle: "Wenn Gewerbereinigung planbar sein muss",
     problemText: [
       "Bei Büros, Praxen, Kanzleien, Studios, Ladenflächen oder Hausverwaltungen reicht ein kurzer Satz selten aus. Entscheidend sind Objektart, Räume, Nutzung, Sanitär, Küche, Boden, Zugang, Schlüsselweg und ob die Reinigung vor Öffnung, nach Feierabend oder am Wochenende stattfinden soll.",
-      "FLOXANT macht daraus eine prüfbare Anfrage: Welche Bereiche sind wichtig, wie oft soll gereinigt werden, wer ist Ansprechpartner und welche Punkte müssen im Angebot sichtbar sein?",
+      "FLOXANT übernimmt die vereinbarte Reinigung mit einem Aufgabenplan für Ihren Betrieb. Gemeinsam legen wir Bereiche, Rhythmus, Ansprechpartner und mögliche Ergänzungen fest.",
     ],
     scopeTitle: "Was zur Gewerbereinigung gehören kann",
     scopeItems: [
@@ -597,7 +597,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Gewerbeflächen unterschiedlich einordnen",
     localText:
-      "In Altstadt, Stadtamhof und Innenstadt sind Zugang und Zeitfenster oft entscheidend. Im Westenviertel, in Prüfening, Galgenberg, Burgweinting, Reinhausen oder im Kasernenviertel zählen vor allem Raumliste, Parkmöglichkeit, Turnus und ein klarer Ansprechpartner.",
+      "Unser Einsatzgebiet umfasst Regensburg und 75 km Umgebung als Luftlinie. Nennen Sie Ihre Einsatzadresse und mögliche Reinigungszeiten; Anfahrt und Zugang werden im Angebot berücksichtigt.",
     districts: regensburgDistricts,
     trustItems: [
       "Anfrage mit Raumliste, Fotos und gewünschtem Leistungsumfang.",
@@ -651,7 +651,7 @@ export const localServiceSeoPages = {
       },
       {
         q: "Welches Gebiet deckt die Gewerbereinigung ab?",
-        a: "Gewerbereinigung wird für Regensburg und den Umkreis bis 50 km eingeordnet. Der Radius hilft, Anfahrt, Randzeiten und laufende Betreuung realistisch zu planen.",
+        a: "Gewerbereinigung wird für Regensburg und den Umkreis bis 75 km eingeordnet. Der Radius hilft, Anfahrt, Randzeiten und laufende Betreuung realistisch zu planen.",
       },
       {
         q: "Kann ein bestehendes Angebot geprüft werden?",

@@ -303,7 +303,7 @@ const urgentArticles: PsychologicalCleaningArticleSeed[] = [
     title: "Notfallreinigung ohne falsche Versprechen: was Kunden erwarten duerfen",
     metaTitle: "Notfallreinigung realistisch pruefen | FLOXANT",
     description:
-      "Warum eine ehrliche Prüfung besser ist als eine ungeprüfte Terminzusage und wie FLOXANT im Regensburger Umkreis bis 50 Kilometer vorgeht.",
+      "Warum eine ehrliche Prüfung besser ist als eine ungeprüfte Terminzusage und wie FLOXANT im Regensburger Umkreis bis 75 Kilometer vorgeht.",
     intro:
       "Notfallreinigung klingt nach sofortiger Rettung. Seriös wird sie erst, wenn klar ist, ob Umfang, Zeitfenster und Team wirklich zusammenpassen.",
     keywordFocus: ["Notfallreinigung", "Express Reinigung Regensburg"],
@@ -1117,7 +1117,7 @@ const psychologicalCleaningLandingPageSeeds = [
     category: "Kurzfristige Reinigung",
     seoTitle: "Kurzfristige Reinigung Regensburg prüfen | FLOXANT",
     metaDescription:
-      "Kurzfristige Reinigung in Regensburg und im Umkreis bis 50 Kilometer für Besuch, Übergabe, Besichtigung oder dringenden Termin prüfen lassen.",
+      "Kurzfristige Reinigung in Regensburg und im Umkreis bis 75 Kilometer für Besuch, Übergabe, Besichtigung oder dringenden Termin prüfen lassen.",
     heroHeadline: "Wenn morgen jemand kommt, muss heute Ruhe rein.",
     heroSubheadline:
       "FLOXANT prueft kurzfristige Reinigung ohne falsche Versprechen: Was ist in der Zeit machbar, was zaehlt zuerst und wie wird der Termin ruhiger?",
@@ -1934,7 +1934,7 @@ function buildBlogArticle(
     metaTitle: seed.metaTitle,
     description: seed.description,
     intro: seed.intro,
-    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "50 km Umkreis"],
+    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "75 km Umkreis"],
     keywords: [...seed.keywordFocus, ...page.searchIntents, "FLOXANT"].slice(0, 12),
     sections: [
       {

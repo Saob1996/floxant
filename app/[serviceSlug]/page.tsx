@@ -7,6 +7,8 @@ import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { GrowthServiceLandingPage } from "@/components/GrowthServiceLandingPage";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { company } from "@/lib/company";
+import { ServiceAreaNotice, buildServiceAreaNoticeMetadata } from "@/components/ServiceAreaNotice";
+import { getOutsideLocalServiceAreaDecision } from "@/lib/local-route-area-policy";
 import {
   buildGrowthServiceMetadata,
   getGrowthServicePageBySlug,
@@ -244,10 +246,11 @@ function getServiceType(slug: ServiceSlug): string {
 function getProviderSchemaType(slug: ServiceSlug): string | string[] {
   switch (slug) {
     case "reinigung":
-      return "HouseCleaningService";
+      return "LocalBusiness";
     case "entruempelung":
-      return ["LocalBusiness", "ProfessionalService"];
+      return "LocalBusiness";
     case "montage":
+      return "LocalBusiness";
     default:
       return "MovingCompany";
   }
@@ -533,18 +536,23 @@ function renderLocalGscOpportunity(route: DynamicLocalSeoRoute, city: string) {
 }
 
 async function generateLocalSeoMetadata(route: DynamicLocalSeoRoute): Promise<Metadata> {
-  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-    locale: "de",
-    baseKey: route.baseKey,
-    city: route.city,
-  });
-  const resolvedCity = germanizeText(city);
+  const resolvedCity = germanizeText(route.city);
+  const service = germanizeText(route.label);
+  const details: Record<DynamicLocalSeoRoute["service"], { title: string; description: string }> = {
+    umzug: { title: "Ihren Umzug passend planen", description: "Transport, Möbel und Packhilfe nach Bedarf abstimmen. Strecke, Etagen und Termin helfen uns, ein persönliches Angebot zu erstellen." },
+    reinigung: { title: "Reinigung nach Ihrem Bedarf", description: "Räume, Flächen und gewünschten Reinigungsumfang gemeinsam festlegen. Beschreiben Sie Ihr Anliegen für ein persönliches Reinigungsangebot." },
+    entruempelung: { title: "Platz in Keller und Räumen schaffen", description: "Einzelne Räume oder ausgewählte Gegenstände räumen lassen. Umfang, Trennung, Zugang und anschließende Reinigung besprechen wir vorab." },
+    wohnungsaufloesung: { title: "Einen Haushalt geordnet auflösen", description: "Eine ganze Wohnung auflösen: Was bleiben soll, was weitergegeben wird und was entfernt werden soll, stimmen wir mit Ihnen ab." },
+    bueroumzug: { title: "Den Firmenumzug vorbereiten", description: "Arbeitsplätze, Möbel, Zugang und zeitlichen Ablauf für Ihren Bürostandort abstimmen. Aus den Eckdaten erstellen wir ein individuelles Angebot." },
+    klaviertransport: { title: "Instrument und Transportweg abstimmen", description: "Klavier oder Flügel transportieren lassen. Instrument, Etagen, Treppen und Stellplatz entscheiden über die benötigte Vorbereitung." },
+    seniorenumzug: { title: "Unterstützung beim Wohnungswechsel", description: "Vorbereitung, Packhilfe, Möbel und Transport gemeinsam abstimmen. Angehörige können Organisation und Kontakt übernehmen." },
+  };
 
   const metadata = generatePageSEO({
     lang: "de",
     path: route.route.replace(/^\//, ""),
-    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, resolvedCity, "de"),
-    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, resolvedCity, "de"),
+    title: `${service} ${resolvedCity} – ${details[route.service].title} | FLOXANT`,
+    description: `${service} in ${resolvedCity}: ${details[route.service].description}`,
   });
 
   if (!DEPRIORITIZED_DYNAMIC_CITY_SLUGS.has(route.citySlug)) {
@@ -642,6 +650,8 @@ export async function generateMetadata({
   params: Promise<{ serviceSlug: string }>;
 }): Promise<Metadata> {
   const { serviceSlug } = await params;
+  const outsideArea = getOutsideLocalServiceAreaDecision(serviceSlug);
+  if (outsideArea) return buildServiceAreaNoticeMetadata(outsideArea.path, germanizeText(outsideArea.serviceLabel), outsideArea.city);
   const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return generateLocalSeoMetadata(localSeoRoute);
@@ -666,6 +676,8 @@ export async function generateMetadata({
 }
 export default async function CoreServicePage({ params }: PageProps) {
   const { serviceSlug } = await params;
+  const outsideArea = getOutsideLocalServiceAreaDecision(serviceSlug);
+  if (outsideArea) return <ServiceAreaNotice city={outsideArea.city} service={germanizeText(outsideArea.serviceLabel)} moving={["umzug", "bueroumzug", "klaviertransport", "seniorenumzug"].includes(outsideArea.service)} />;
   const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return renderLocalSeoPage(localSeoRoute);
@@ -698,8 +710,7 @@ export default async function CoreServicePage({ params }: PageProps) {
   const canonicalUrl = `${company.url}/${serviceSlug}`;
   const regensburgServiceArea = [
     { "@type": "City", name: "Regensburg" },
-    { "@type": "AdministrativeArea", name: "Umgebung Regensburg ca. 200 km" },
-    { "@type": "State", name: "Bayern" },
+    { "@type": "GeoCircle", geoMidpoint: { "@type": "GeoCoordinates", latitude: 49.01343, longitude: 12.10162 }, geoRadius: 75000 },
   ];
   const faqJsonLd =
     faqs.length > 0

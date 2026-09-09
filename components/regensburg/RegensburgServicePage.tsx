@@ -240,9 +240,9 @@ function getServiceContent(config: RegensburgServicePageConfig): ServiceContent 
   if (isRegensburgCleaningServiceSlug(config.slug)) {
     return {
       eyebrow: "Kurz beantwortet",
-      title: "Reinigung wird mit Fläche, Zustand und Zeitfenster konkret.",
+      title: "Gepflegte Räume im Alltag und vor der Übergabe.",
       answer:
-        "Nennen Sie die gewünschten Räume, den aktuellen Zustand und ob die Reinigung einmalig oder wiederkehrend stattfinden soll. Fotos helfen bei besonderen Flächen und Verschmutzungen.",
+        "Wir übernehmen die vereinbarten Reinigungsarbeiten in Ihren Räumen. Einmalige Aufgaben oder ein regelmäßiger Plan werden passend zur Nutzung abgestimmt; Fenster und weitere Details können Sie ergänzen.",
       suitableTitle: `Für wen eignet sich ${config.serviceType}?`,
       suitableFor: config.suitableFor.slice(0, 6),
       scopeTitle: "Welche Bereiche können angefragt werden?",
@@ -318,35 +318,18 @@ function JsonLd({
             type: "ContactAction",
           },
           {
-            name: "Fotos per WhatsApp senden",
+            name: "Per WhatsApp besprechen",
             target: whatsappHref,
             type: "ContactAction",
           },
         ],
       }),
       {
-        "@type": "LocalBusiness",
-        "@id": `${company.url}/regensburg#localbusiness`,
-        name: company.name,
-        url: `${company.url}/regensburg`,
-        telephone: company.phoneRaw,
-        email: company.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: company.streetAddress,
-          postalCode: company.postalCode,
-          addressLocality: company.city,
-          addressRegion: company.state,
-          addressCountry: company.countryCode,
-        },
-        areaServed: localAreaServed,
-      },
-      {
         "@type": "Service",
         "@id": `${canonical}#service`,
         name: config.serviceType,
         serviceType: config.serviceType,
-        provider: { "@id": `${company.url}/regensburg#localbusiness` },
+        provider: { "@id": `${company.url}/#organization` },
         areaServed: isCleaningServicePage
           ? localAreaServed
           : "Regensburg und Umgebung",
@@ -514,10 +497,10 @@ export function RegensburgServicePage({
 
           <aside className="self-end rounded-lg border border-white/15 bg-white/[0.08] p-5 backdrop-blur sm:p-6">
             <p className="text-sm font-black uppercase tracking-normal text-cyan-200">
-              Für die erste Rückmeldung
+              Das übernehmen wir
             </p>
             <div className="mt-4">
-              <CheckList items={content.neededDetails.slice(0, 4)} dark />
+              <CheckList items={content.scope.slice(0, 4)} dark />
             </div>
           </aside>
         </div>
@@ -605,7 +588,7 @@ export function RegensburgServicePage({
             Nächster Schritt
           </p>
           <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
-            So geht es nach Ihrer Anfrage weiter.
+            So läuft Ihr Auftrag ab.
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {config.process.slice(0, 4).map((step, index) => (
@@ -684,7 +667,7 @@ export function RegensburgServicePage({
               Antworten zu {config.serviceType}.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Noch etwas offen? Senden Sie Ihre Eckdaten oder rufen Sie uns an.
+              Wir arbeiten in Regensburg und 75 km Umgebung als Luftlinie. Für weiter entfernte Umzugsziele wird die Strecke separat vereinbart. Noch etwas offen? Schreiben Sie uns kurz oder rufen Sie an.
             </p>
             <a
               href={`tel:${company.phoneRaw}`}

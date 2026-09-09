@@ -41,6 +41,8 @@ export type RequestContextInput = {
   entryPage?: string | null;
   campaign?: string | null;
   locale?: string | null;
+  ctaComponent?: string | null;
+  ctaPosition?: string | null;
 };
 
 export type RequestContext = {
@@ -62,6 +64,8 @@ export type RequestContext = {
   entryPage: string;
   campaign: string;
   locale: "de" | "en";
+  ctaComponent: string;
+  ctaPosition: string;
   availableServices: readonly RequestServiceOption[];
   leadIntent: LeadIntent;
 };
@@ -76,6 +80,22 @@ function isSafeRequestToken(value: string | null | undefined) {
 
 export function buildGlobalRequestHref(source: GlobalRequestSource) {
   return `/kontakt?mode=neutral&source=${source}`;
+}
+
+export function buildRequestHref(input: RequestContextInput) {
+  const context = resolveRequestContext(input);
+  const params = new URLSearchParams();
+  if (context.location) params.set("location", context.location);
+  if (context.valid) params.set("service", context.serviceKey);
+  if (!context.location) params.set("mode", "neutral");
+  if (input.intent && isSafeRequestToken(input.intent)) params.set("intent", input.intent.trim());
+  if (input.source) params.set("source", context.sourceLabel);
+  if (context.entryPage) params.set("entryPage", context.entryPage);
+  if (input.priority && isSafeRequestToken(input.priority)) params.set("priority", input.priority.trim());
+  if (input.locale) params.set("locale", context.locale);
+  if (context.ctaComponent) params.set("ctaComponent", context.ctaComponent);
+  if (context.ctaPosition) params.set("ctaPosition", context.ctaPosition);
+  return `/kontakt?${params.toString()}#direktanfrage`;
 }
 
 function normalizeLocation(value: string | null | undefined): RequestLocation | "" {
@@ -94,7 +114,7 @@ function normalizeSource(value: string | null | undefined) {
   const source = normalizeRouteToken(value);
   if (!source) return "kontakt";
   if (
-    /^(?:global-(?:header|mobile-header|floating|footer|404)|seo|website|service-finder|contact-selector|kontakt|booking|buchung|homepage|google-ads|google-maps|navigation|footer|mobile-nav|decision-compass|english-intent|b2b|calculator|direct)$/.test(
+    /^(?:global-(?:header|mobile-header|floating|footer|404|homepage)|seo|website|service-page|location-hub|offer-check|budget-request|service-finder|contact-selector|kontakt|booking|buchung|homepage|google-ads|google-maps|navigation|footer|mobile-nav|decision-compass|english-intent|b2b|calculator|direct)$/.test(
       source,
     )
   ) {
@@ -115,6 +135,11 @@ function normalizeEntryPage(value: string | null | undefined) {
 
 function normalizeCampaign(value: string | null | undefined) {
   return String(value || "").trim().slice(0, 120);
+}
+
+function normalizeAttributionToken(value: string | null | undefined) {
+  const normalized = normalizeRouteToken(value).replace(/-/g, "_");
+  return /^[a-z0-9_]{1,80}$/.test(normalized) ? normalized : "";
 }
 
 function neutralContext(
@@ -149,6 +174,8 @@ function neutralContext(
     entryPage: normalizeEntryPage(input.entryPage),
     campaign: normalizeCampaign(input.campaign),
     locale: normalizeLocale(input.locale),
+    ctaComponent: normalizeAttributionToken(input.ctaComponent),
+    ctaPosition: normalizeAttributionToken(input.ctaPosition),
     availableServices: location ? requestServiceOptionsByLocation[location] : [],
     leadIntent,
   };
@@ -235,6 +262,8 @@ export function resolveRequestContext(input: RequestContextInput = {}): RequestC
     entryPage: normalizeEntryPage(input.entryPage),
     campaign: normalizeCampaign(input.campaign),
     locale: normalizeLocale(input.locale),
+    ctaComponent: normalizeAttributionToken(input.ctaComponent),
+    ctaPosition: normalizeAttributionToken(input.ctaPosition),
     availableServices: options,
     leadIntent,
   };

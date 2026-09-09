@@ -11,7 +11,7 @@ type CleaningProcessBlockProps = {
 const processSteps: readonly { title: string; text: string; icon: LucideIcon }[] = [
   {
     title: "Objekt und Ort",
-    text: "Regensburg, Stadtteil oder Ort im 50-km-Umkreis, Objektart, Fläche und Zugang nennen.",
+    text: "Regensburg, Stadtteil oder Ort im 75-km-Umkreis, Objektart, Fläche und Zugang nennen.",
     icon: MapPin,
   },
   {

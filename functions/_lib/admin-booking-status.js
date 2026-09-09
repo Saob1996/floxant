@@ -4,7 +4,9 @@ export const ADMIN_BOOKING_STATUSES = Object.freeze([
   "new",
   "in_progress",
   "contacted",
+  "quote_prepared",
   "quote_sent",
+  "follow_up",
   "appointment_scheduled",
   "details_missing",
   "under_review",
@@ -35,6 +37,8 @@ export const ADMIN_BOOKING_STATUSES = Object.freeze([
 ]);
 
 const STATUS_SET = new Set(ADMIN_BOOKING_STATUSES);
+const ORDER_STATUS_SET = new Set(["not_scheduled", "scheduled", "completed", "billing_open", "paid", "cancelled"]);
+const LOST_REASON_SET = new Set(["price", "no_contact", "date_unavailable", "competitor", "service_or_distance", "customer_cancelled", "duplicate", "other"]);
 
 function json(status, body) {
   return new Response(JSON.stringify(body), {
@@ -121,7 +125,8 @@ export async function handleAdminBookingStatusUpdate(context, fetchImpl = fetch)
   } catch {
     return json(400, { ok: false, code: "INVALID_JSON" });
   }
-  const status = text(record(payload).status);
+  const payloadRecord = record(payload);
+  const status = text(payloadRecord.status);
   if (!STATUS_SET.has(status)) {
     return json(400, { ok: false, code: "INVALID_STATUS" });
   }
@@ -146,25 +151,68 @@ export async function handleAdminBookingStatusUpdate(context, fetchImpl = fetch)
   const currentDetails = record(currentRows[0]?.details);
   const currentConfiguration = record(currentDetails.configuration);
   const currentWorkflow = record(currentConfiguration.round3Workflow);
+  const workflowInput = record(payloadRecord.workflow);
+  const nextAction = text(workflowInput.nextAction).slice(0, 240);
+  const rawNextActionAt = text(workflowInput.nextActionAt);
+  const nextActionAt = rawNextActionAt && Number.isFinite(Date.parse(rawNextActionAt))
+    ? new Date(rawNextActionAt).toISOString()
+    : "";
+  const orderStatus = text(workflowInput.orderStatus);
+  const lostReason = text(workflowInput.lostReason);
+  const hasQuoteValueGross = Object.prototype.hasOwnProperty.call(workflowInput, "quoteValueGross") && text(workflowInput.quoteValueGross) !== "";
+  const quoteValueGross = Number(workflowInput.quoteValueGross);
+  const assignedTo = text(workflowInput.assignedTo).slice(0, 120);
+  const internalNote = text(workflowInput.internalNote).slice(0, 2000);
+  const lostReasonNote = text(workflowInput.lostReasonNote).slice(0, 400);
+  const contactAttemptAt = text(workflowInput.contactAttemptAt);
+  const effectiveNextActionAt = nextActionAt || text(currentWorkflow.nextActionAt);
+  const effectiveLostReason = lostReason || text(currentWorkflow.lostReason);
+  if (status === "quote_sent" && !effectiveNextActionAt) {
+    return json(400, { ok: false, code: "FOLLOW_UP_REQUIRED" });
+  }
+  if (status === "lost" && !LOST_REASON_SET.has(effectiveLostReason)) {
+    return json(400, { ok: false, code: "LOST_REASON_REQUIRED" });
+  }
+  if (orderStatus && !ORDER_STATUS_SET.has(orderStatus)) {
+    return json(400, { ok: false, code: "INVALID_ORDER_STATUS" });
+  }
+  if (lostReason && !LOST_REASON_SET.has(lostReason)) {
+    return json(400, { ok: false, code: "INVALID_LOST_REASON" });
+  }
+  if (hasQuoteValueGross && (!Number.isFinite(quoteValueGross) || quoteValueGross < 0 || quoteValueGross > 10000000)) {
+    return json(400, { ok: false, code: "INVALID_QUOTE_VALUE" });
+  }
   const statusHistory = Array.isArray(currentWorkflow.statusHistory)
     ? currentWorkflow.statusHistory.filter((entry) => entry && typeof entry === "object").slice(-99)
     : [];
+  const activityHistory = Array.isArray(currentWorkflow.activityHistory)
+    ? currentWorkflow.activityHistory.filter((entry) => entry && typeof entry === "object").slice(-99)
+    : [];
+  const now = new Date().toISOString();
+  const previousStatus = text(currentRows[0]?.status) || "new";
+  const nextWorkflow = {
+    ...currentWorkflow,
+    ...(nextAction ? { nextAction } : {}),
+    ...(nextActionAt ? { nextActionAt } : {}),
+    ...(assignedTo ? { assignedTo } : {}),
+    ...(orderStatus ? { orderStatus } : {}),
+    ...(lostReason ? { lostReason } : {}),
+    ...(lostReasonNote ? { lostReasonNote } : {}),
+    ...(internalNote ? { internalNote } : {}),
+    ...(hasQuoteValueGross ? { quoteValueGross } : {}),
+    ...(contactAttemptAt && Number.isFinite(Date.parse(contactAttemptAt)) ? { lastContactAt: new Date(contactAttemptAt).toISOString() } : {}),
+    statusHistory: status === previousStatus
+      ? statusHistory
+      : [...statusHistory, { status, previousStatus, at: now, source: "admin_dashboard" }],
+    activityHistory: workflowInput && Object.keys(workflowInput).length
+      ? [...activityHistory, { at: now, type: contactAttemptAt ? "contact_attempt" : "workflow_update", source: "admin_dashboard" }]
+      : activityHistory,
+  };
   const details = {
     ...currentDetails,
     configuration: {
       ...currentConfiguration,
-      round3Workflow: {
-        ...currentWorkflow,
-        statusHistory: [
-          ...statusHistory,
-          {
-            status,
-            previousStatus: text(currentRows[0]?.status) || "new",
-            at: new Date().toISOString(),
-            source: "admin_dashboard",
-          },
-        ],
-      },
+      round3Workflow: nextWorkflow,
     },
   };
 

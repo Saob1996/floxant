@@ -115,11 +115,11 @@ export default async function RatgeberPage() {
 
      <aside className="space-y-6">
       <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-6">
-       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Content Hub</p>
+       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Weitere Ratgeber</p>
        <h2 className="mt-4 text-2xl font-semibold text-white">Mehr aktuelle Blogthemen</h2>
        <p className="mt-3 text-sm leading-relaxed text-white/45">
-        Neben dem Ratgeber gibt es jetzt auch einen zentralen Blog-Hub mit neuen Beitragen zu Beiladung,
-        Endreinigung und regionaler Einsatzplanung.
+        Im Blog finden Sie weitere praktische Tipps zu Beiladung, Endreinigung
+        und der Planung Ihres Umzugs.
        </p>
        <Link
         href="/blog"

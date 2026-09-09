@@ -215,7 +215,7 @@ const jsonLd = {
         "Praktische Räumung, Entsorgung und Reinigung von Kellerbereichen, Müllraeumen und Nebenflächen nach Absprache. Keine Gefahrstoff- oder Rechtspruefung.",
       path,
       serviceType: "Keller-/Müllraum-Räumung, Entsorgung und Reinigung nach Absprache",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Umgebung Regensburg bis 75 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

@@ -110,9 +110,9 @@ export default function EinsatzradarRegensburgPage() {
             <div className="mt-7 grid gap-2 text-sm font-bold text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 "Regensburg direkt",
-                "Umgebung ca. 200 km",
-                "Bayern nach Verfügbarkeit",
-                "Düsseldorf passend zum Anliegen",
+                "Umgebung bis 75 km",
+                "Fernumzüge nach Streckenprüfung",
+                "Düsseldorf: Reinigung bis 75 km",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-950/5">
                   {item}

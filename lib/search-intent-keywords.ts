@@ -363,7 +363,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       longTail: [
         "Treppenhausreinigung Regensburg für Hausverwaltung, WEG und Mietshaus mit Fotos prüfen",
-        "Treppenreinigung Regensburg oder Regensburg nach Machbarkeit mit Eingang, Etagen und Turnus anfragen",
+        "Treppenreinigung Regensburg mit Eingang, Etagen und Turnus anfragen",
         "Hauseingang reinigen Regensburg mit Kellerflur, Aufzug, Müllraum und Zugang klären",
       ],
       localTriggers: [

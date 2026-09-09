@@ -1,3 +1,6 @@
+import { organizationSocialUrls, getLocationSocialUrls } from "@/lib/social-profiles";
+import { LOCAL_SERVICE_RADIUS_KM } from "@/lib/service-area-policy";
+
 export const company = {
   name: "FLOXANT",
   email: "info@floxant.de",
@@ -24,14 +27,12 @@ export const company = {
     lat: 49.0134,
     lng: 12.1016,
   },
-  sameAs: [
-    "https://www.instagram.com/floxant_logistik",
-    "https://www.facebook.com/floxant",
-  ],
+  sameAs: organizationSocialUrls,
+  serviceRadiusKm: LOCAL_SERVICE_RADIUS_KM,
   primaryServiceAreas: [
     "Regensburg",
     "Landkreis Regensburg",
-    "Regensburg plus 50 km",
+    `Regensburg plus ${LOCAL_SERVICE_RADIUS_KM} km`,
     "Neutraubling",
     "Lappersdorf",
     "Pentling",
@@ -42,7 +43,7 @@ export const company = {
   keyGeoTargets: [
     "Regensburg",
     "Landkreis Regensburg",
-    "Regensburg plus 50 km",
+    `Regensburg plus ${LOCAL_SERVICE_RADIUS_KM} km`,
     "Neutraubling",
     "Lappersdorf",
     "Pentling",
@@ -100,4 +101,6 @@ export const duesseldorfCompany = {
   country: "Deutschland",
   countryCode: "DE",
   url: "https://www.floxant.de/duesseldorf",
+  serviceRadiusKm: LOCAL_SERVICE_RADIUS_KM,
+  sameAs: getLocationSocialUrls("duesseldorf"),
 };

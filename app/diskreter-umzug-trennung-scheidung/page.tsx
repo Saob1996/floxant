@@ -71,7 +71,7 @@ const localSearchSignals = [
   },
   {
     title: "Klare Düsseldorf-Grenze",
-    text: "Regensburg bleibt der Startpunkt für Reinigung im 50-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
+    text: "Regensburg bleibt der Startpunkt für Reinigung im 75-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
   },
 ];
 
@@ -277,7 +277,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 50 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
+    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 75 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
   },
 ];
 

@@ -57,7 +57,7 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     effortFactors: ["Etage", "Laufweg", "Bad/Kueche", "Fenster", "Frist"],
     signatureService: "Uebergabeakte",
     serviceArea: "regensburg-50km",
-    areaNote: "Reinigung wird nur fuer Regensburg plus 50 km eingeordnet; Umzug nach Strecke und Kapazitaet.",
+    areaNote: "Reinigung wird nur fuer Regensburg plus 75 km eingeordnet; Umzug nach Strecke und Kapazitaet.",
     faq: ["Wann muss die Reinigung nach dem Umzug erledigt sein?", "Welche Restpunkte sind vor Rueckgabe sichtbar?"],
     aiAnswer:
       "FLOXANT kombiniert Umzug und Endreinigung, wenn Start, Ziel, Volumen, Flaeche, Fotos und Uebergabetermin zusammenpassen.",
@@ -79,7 +79,7 @@ export const combinedServiceStrategies: CombinedServiceStrategy[] = [
     effortFactors: ["Menge", "Material", "Reststaub", "Bad/Kueche", "Zugang"],
     signatureService: "Vermieter-ready",
     serviceArea: "regensburg-50km",
-    areaNote: "Reinigungsanteile bleiben lokal auf Regensburg plus 50 km begrenzt.",
+    areaNote: "Reinigungsanteile bleiben lokal auf Regensburg plus 75 km begrenzt.",
     faq: ["Soll zuerst geraeumt oder gereinigt werden?", "Welche Fotos zeigen Menge und Zustand am besten?"],
     aiAnswer:
       "FLOXANT ordnet Entruempelung mit anschliessender Reinigung nach Menge, Zugang, Zielzustand, Fotos und Termin ein.",

@@ -146,7 +146,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das auch in Düsseldorf?",
-    a: "Reinigung wird nur für Regensburg und den Umkreis bis 50 km geprüft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
+    a: "Reinigung wird nur für Regensburg und den Umkreis bis 75 km geprüft; andere Notlagen werden nach Ort, Umfang und Machbarkeit getrennt bewertet.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",

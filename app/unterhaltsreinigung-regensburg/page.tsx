@@ -137,8 +137,8 @@ const faqItems = [
     a: "Ja, wenn Schlüsselzugang, Verantwortliche, Alarmanlage, Zeitfenster und Ablauf sauber geklärt sind. Viele B2B-Anfragen laufen früh, spät oder in betriebsruhigen Zeiten.",
   },
   {
-    q: "Bietet FLOXANT Unterhaltsreinigung außerhalb von 50 km an?",
-    a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
+    q: "Bietet FLOXANT Unterhaltsreinigung außerhalb von 75 km an?",
+    a: "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 75 km. Orte außerhalb dieses Radius werden nicht als eigenes Reinigungsgebiet beworben.",
   },
   {
     q: "Welche Angaben braucht FLOXANT für ein Angebot?",
@@ -172,7 +172,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "unterhaltsreinigung-regensburg",
     title: "Unterhaltsreinigung Regensburg | Floxant",
     description:
-      "Unterhaltsreinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Turnus, Raumliste, Fotos und Angebot im 50-km-Umkreis prüfen.",
+      "Unterhaltsreinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Turnus, Raumliste, Fotos und Angebot im 75-km-Umkreis prüfen.",
   });
 }
 
@@ -360,7 +360,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
           <CleaningServiceArea
             compact
             title="Unterhaltsreinigung in Regensburg und Umgebung"
-            intro="Für laufende Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt für Büro, Praxis, Kanzlei, Treppenhaus und andere regelmäßig gereinigte Objekte."
+            intro="Für laufende Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 75 km. Das gilt für Büro, Praxis, Kanzlei, Treppenhaus und andere regelmäßig gereinigte Objekte."
           />
         </div>
       </section>

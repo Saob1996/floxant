@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     canonical: config.path,
     languages: {
       "de-DE": config.path,
+      en: "/en/regensburg/house-clearance",
       "x-default": config.path,
     },
   },

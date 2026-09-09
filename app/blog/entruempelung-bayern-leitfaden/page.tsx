@@ -13,7 +13,7 @@ export default function BlogPost() {
   return (
     <main className="min-h-screen bg-[#0A0B10] py-24 text-white">
       <div className="mx-auto max-w-4xl px-6">
-        <Breadcrumbs lang="de" items={[
+        <Breadcrumbs lang="de" tone="dark" items={[
           { label: "Home", href: "/" },
           { label: "Blog", href: "/blog" },
           { label: "Entrümpelung Bayern Leitfaden" }

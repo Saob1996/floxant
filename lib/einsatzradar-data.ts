@@ -143,11 +143,11 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = ([
   },
   {
     id: "bayern_verfuegbarkeit",
-    title: "Bayern nach Verfügbarkeit",
-    label: "Erweiterte Region",
-    description: "Bayern ist keine pauschale Sofortzusage, sondern eine erweiterte Einsatzregion fuer planbare Anfragen und Streckenlogik nach Verfuegbarkeit.",
+    title: "Fernumzüge in Bayern",
+    label: "Strecke abstimmen",
+    description: "Umzüge und Transporte über das lokale 75-km-Gebiet hinaus werden als Strecke ab oder nach Regensburg abgestimmt.",
     examples: ["Muenchen", "Nuernberg", "Ingolstadt", "Landshut", "Passau", "Augsburg"],
-    services: ["Umzug", "Transport", "Rueckfahrt", "Diskrete Abstimmung", "Kombi-Service"],
+    services: ["Umzug", "Transport", "Rueckfahrt"],
   },
   {
     id: "duesseldorf_separat",
@@ -290,9 +290,9 @@ export const einsatzradarEntries: EinsatzradarEntry[] = ([
     id: "diskrete-abstimmung-bayern",
     title: "Diskrete Abstimmung mit Rueckruf",
     service_type: "premium",
-    region_zone: "bayern_verfuegbarkeit",
-    approximate_location: "Regensburg / Bayern nach Absprache",
-    direction_or_area: "Erweiterte Einsatzregion",
+    region_zone: "direkte_umgebung",
+    approximate_location: "Regensburg und Umgebung bis 75 km",
+    direction_or_area: "Lokales Servicegebiet",
     timeframe_label: "Typische Einsatzart, keine Live-Daten",
     description: "Sensible Objekt- oder Auszugssituation braucht Rueckruf, Planung, Reinigung, Uebergabe und klare Abstimmung.",
     included_services: ["Rueckruf", "Planung", "Reinigung", "Uebergabe"],
@@ -366,11 +366,11 @@ export const einsatzradarFaq = [
   },
   {
     q: "Welche Regionen deckt FLOXANT ab?",
-    a: "Regensburg ist der feste Ausgangspunkt. Die direkte Umgebung und Streckenbereiche werden nach Ort, Termin, Umfang und Kapazitaet geprueft. Bayern ist nach Verfuegbarkeit moeglich.",
+    a: "Die lokalen Servicegebiete reichen jeweils bis 75 km Luftlinie um Düsseldorf und Regensburg. Fernumzüge ab oder nach Regensburg stimmen wir nach Strecke, Umfang und Termin gesondert ab.",
   },
   {
     q: "Was bedeutet Duesseldorf separat?",
-    a: "Regensburg bleibt bei FLOXANT klar getrennt fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung. Deshalb erscheinen dort passende lokale Beispiele je Leistung.",
+    a: "In Düsseldorf liegt der Schwerpunkt auf Reinigung. In Regensburg bieten wir Reinigung, Umzug und Entrümpelung an. Für beide Standorte gilt ein lokaler Radius von 75 km.",
   },
   {
     q: "Kann ich meinen Fall mit Fotos senden?",

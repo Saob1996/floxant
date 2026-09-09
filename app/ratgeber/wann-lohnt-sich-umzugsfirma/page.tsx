@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/wann-lohnt-sich-umzugsfirma',
     title: "Wann lohnt sich eine Umzugsfirma? | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Wann eine Umzugsfirma sinnvoll ist",
+    description: "Selbst umziehen oder eine Umzugsfirma beauftragen? Zeitbedarf, verfügbare Helfer, Zugang, Ausrüstung und Schadensrisiken für Ihre Entscheidung abwägen.",
   });
 }
 export default async function Article() {

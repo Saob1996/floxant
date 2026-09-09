@@ -36,7 +36,7 @@ const variantCopy = {
       "Düsseldorf bleibt ein echter Standort. Servicegebiete im Umkreis werden nur als Einsatzgebiet erklärt, nicht als weitere Niederlassung.",
   },
   regensburg: {
-    heading: "Regensburg: Servicezentrum plus 50 km",
+    heading: "Regensburg: Servicezentrum plus 75 km",
     intro:
       "Regensburg ist der stärkste Hub für Reinigung, Umzug, Entrümpelung, Klaviertransport, B2B-Reinigung und Angebotsprüfung.",
   },

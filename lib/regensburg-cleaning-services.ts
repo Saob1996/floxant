@@ -562,7 +562,7 @@ export const regensburgCleaningDecisionProofs = [
   },
   {
     label: "Regensburg konkret",
-    text: "Stadtteil, Zugang, Parken, Etage und Orte im 50-km-Umkreis werden natürlich abgefragt, weil sie den Ablauf verändern.",
+    text: "Stadtteil, Zugang, Parken, Etage und Orte im 75-km-Umkreis werden natürlich abgefragt, weil sie den Ablauf verändern.",
   },
   {
     label: "Ehrliche Bewertungen",

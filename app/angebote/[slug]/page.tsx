@@ -9,6 +9,15 @@ import { germanizeText } from "@/lib/german-text";
 const STATIC_OFFER_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
 const STATIC_OFFER_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
 
+function citySlug(value: string) {
+  return value
+    .toLowerCase()
+    .replaceAll("ä", "ae")
+    .replaceAll("ö", "oe")
+    .replaceAll("ü", "ue")
+    .replaceAll("ß", "ss");
+}
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -130,7 +139,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
       {['München', 'Augsburg', 'Ingolstadt', 'Regensburg', 'Nürnberg'].filter(c => c !== city).map(c => (
        <a 
         key={c} 
-        href={`/angebote/${serviceType}-${c.toLowerCase()}-kosten`}
+        href={`/angebote/${serviceType}-${citySlug(c)}-kosten`}
         className="px-5 py-2.5 rounded-full border border-white/10 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/30 transition-all text-sm"
        >
         {serviceType} in {c}

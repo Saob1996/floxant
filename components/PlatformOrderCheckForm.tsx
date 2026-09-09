@@ -247,7 +247,7 @@ export function PlatformOrderCheckForm() {
             Region*
             <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="regensburg">Regensburg</option>
-              <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
+              <option value="regensburg_200km">Regensburg und 75 km Umgebung</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
               <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>

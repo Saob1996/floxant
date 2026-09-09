@@ -38,6 +38,10 @@ export type LeadIntentInput = {
   intent?: string | null;
   priority?: string | null;
   ctaLabel?: string | null;
+  source?: string | null;
+  entryPage?: string | null;
+  ctaComponent?: string | null;
+  ctaPosition?: string | null;
 };
 
 export type LeadIntent = {
@@ -1113,7 +1117,7 @@ export function buildLeadHref(input: LeadIntentInput = {}, destination = "/konta
     : requestedCity === "regensburg"
       ? "regensburg"
       : "";
-  const source = "website";
+  const source = clean(input.source || "website").replace(/[^a-z0-9_-]+/g, "-") || "website";
 
   if (!location) {
     return `${destination}?mode=neutral&source=${source}`;
@@ -1150,6 +1154,12 @@ export function buildLeadHref(input: LeadIntentInput = {}, destination = "/konta
   params.set("city", location);
   if (lead.intent) params.set("intent", lead.intent);
   params.set("source", source);
+  if (destination === "/kontakt") {
+    const entryPage = String(input.entryPage || input.path || "").trim();
+    if (entryPage.startsWith("/") && !entryPage.startsWith("//")) params.set("entryPage", entryPage);
+    params.set("ctaComponent", clean(input.ctaComponent || "service_cta").replace(/[^a-z0-9_-]+/g, "-") || "service_cta");
+    params.set("ctaPosition", clean(input.ctaPosition || "content").replace(/[^a-z0-9_-]+/g, "-") || "content");
+  }
 
   const query = params.toString();
   return query ? `${destination}?${query}` : destination;

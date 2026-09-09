@@ -43,11 +43,11 @@ for (const field of ["leadSource", "sourcePage", "landingPage", "city"]) {
 }
 for (const service of ["reinigung", "bueroreinigung", "praxisreinigung", "grundreinigung", "baureinigung"]) {
   assert.ok(
-    duesseldorfServices.includes(`"${service}"`) &&
-      duesseldorfServices.includes("localBookingServices = new Set"),
-    `${service}: local booking CTA routing missing`,
+    duesseldorfServices.includes(`"${service}"`),
+    `${service}: public service configuration missing`,
   );
 }
+assert.match(duesseldorfServices, /buildLeadHref\(\{\s*path,\s*service,\s*city: "duesseldorf",\s*intent,/);
 for (const question of [
   "Was kostet eine Büroreinigung in Düsseldorf?",
   "Was wird bei einer Praxisreinigung gereinigt?",
@@ -55,18 +55,18 @@ for (const question of [
 ]) {
   assert.ok(duesseldorfServices.includes(question), `${question}: direct answer missing`);
 }
-assert.match(seoMeta, /Büroreinigung Düsseldorf \| Angebot anfragen \| FLOXANT/);
-assert.match(seoMeta, /Praxisreinigung Düsseldorf \| Angebot anfragen \| FLOXANT/);
-assert.match(seoMeta, /Grundreinigung Düsseldorf für Wohnung & Haus \| FLOXANT/);
-assert.match(seoMeta, /Bauendreinigung Düsseldorf \| Angebot anfragen \| FLOXANT/);
+assert.match(seoMeta, /Büroreinigung Düsseldorf – passend zum Büroalltag \| FLOXANT/);
+assert.match(seoMeta, /Praxisreinigung Düsseldorf – nach Ihrem Ablauf \| FLOXANT/);
+assert.match(seoMeta, /Grundreinigung Düsseldorf für Wohnung & Gewerbe \| FLOXANT/);
+assert.match(seoMeta, /Baureinigung Düsseldorf nach Umbau & Renovierung \| FLOXANT/);
 assert.match(seoMeta, /Klaviertransport Regensburg \| Angebot anfragen \| FLOXANT/);
-assert.match(seoMeta, /Umzugshilfe Regensburg \| Umzug anfragen \| FLOXANT/);
+assert.match(seoMeta, /Umzug Regensburg – passende Hilfe für Ihren Umzug \| FLOXANT/);
 
 assert.match(pianoPage, /\/regensburg\/buchen\?service=klaviertransport/);
 assert.match(pianoPage, /Was kostet ein Klaviertransport in Regensburg\?/);
 assert.match(pianoPage, /Wie wird ein Wunschtermin angefragt\?/);
-assert.match(movingPage, /\/regensburg\/buchen\?service=umzug/);
-assert.match(movingPage, /\/regensburg\/buchen\?service=moebelmontage/);
+assert.match(movingPage, /buildRequestHref\(\{ location: "regensburg", service: "umzug"/);
+assert.match(movingPage, /buildRequestHref\(\{ location: "regensburg", service: "moebeltransport", intent: "moebelmontage-regensburg"/);
 assert.match(movingPage, /Was kostet eine Umzugshilfe in Regensburg\?/);
 assert.match(duesseldorfServices, /Was kostet ein Reinigungsdienst in Düsseldorf\?/);
 assert.match(duesseldorfServices, /id="umzugsreinigung"/);

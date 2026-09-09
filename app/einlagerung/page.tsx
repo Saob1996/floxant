@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     lang: "de",
     path: `einlagerung`,
     title: "Einlagerung in Bayern anfragen | FLOXANT",
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    description: "Möbel vorübergehend einlagern: Gegenstände, Platzbedarf, Lagerdauer und gewünschten Ort nennen. Abholung, Zugang und Verfügbarkeit individuell prüfen lassen.",
   });
 }
 export default async function EinlagerungPage({ params }: PageProps) {

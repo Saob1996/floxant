@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "Kann ich Entsorgung mit weiteren Arbeiten kombinieren?",
-    a: "Weitere Arbeiten werden nur nach Ort, Umfang, Fotos und Verfügbarkeit geprüft. Reinigung wird bei FLOXANT auf Regensburg und den 50-km-Umkreis begrenzt.",
+    a: "Weitere Arbeiten werden nach Ort, Umfang, Fotos und Verfügbarkeit geprüft. Reinigungsanfragen können Sie für Düsseldorf und den 75-km-Umkreis stellen.",
   },
   {
     q: "Welche Leistungen werden ausgeschlossen?",
@@ -88,7 +88,7 @@ const faqs = [
   },
   {
     q: "Was passiert nach der Entsorgung?",
-    a: "Nach der Entsorgung kann der Zielzustand dokumentiert werden. Reinigungsanfragen nimmt FLOXANT nur für Regensburg und den Umkreis bis 50 km an.",
+    a: "Nach der Entsorgung kann der Zielzustand dokumentiert werden. Eine anschließende Reinigung in Düsseldorf und im Umkreis bis 75 km können Sie mit dem gewünschten Umfang anfragen.",
   },
 ] as const;
 

@@ -4,7 +4,7 @@ import { m, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-const statuses = ["Hub Regensburg aktiv", "Einsatzgebiet Bayern", "Anfrageannahme offen"] as const;
+const statuses = ["Standort Regensburg", "75 km lokales Einsatzgebiet", "Termin nach Vereinbarung"] as const;
 
 export function OperatingStatusBar({ className }: { className?: string }) {
   const prefersReducedMotion = useReducedMotion();
@@ -15,7 +15,7 @@ export function OperatingStatusBar({ className }: { className?: string }) {
         "mt-6 flex flex-wrap gap-2 rounded-[1.25rem] border border-slate-200 bg-white/82 p-2 shadow-sm shadow-slate-950/5 backdrop-blur",
         className,
       )}
-      aria-label="FLOXANT Betriebsstatus"
+      aria-label="FLOXANT Standort und Anfrage"
     >
       {statuses.map((status, index) => (
         <m.div

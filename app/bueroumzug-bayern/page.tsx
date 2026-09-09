@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `bueroumzug-bayern`,
-    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, "Bayern", "de"),
-    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, "Bayern", "de"),
+    title: "Büroumzug in Bayern ab oder nach Regensburg | FLOXANT",
+    description: "Firmenumzug mit Bezug zu Regensburg planen: Arbeitsplätze, Möbel, Zugänge und Zeitfenster abstimmen. Ein persönliches Angebot klärt Umfang und Strecke.",
   });
 }
 
@@ -44,9 +44,9 @@ export default async function BueroUmzugBayernPage({ params }: PageProps) {
       dict={localeDict}
       city={city}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle="Büroumzug in Bayern planen"
+      heroTitle="Büroumzug in Bayern ab oder nach Regensburg planen"
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
-      heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
+      heroText="Für Ihren Firmenumzug mit Start oder Ziel im Raum Regensburg stimmen wir Arbeitsplätze, Möbel, Zugänge und den Zeitplan ab. Längere Strecken in Bayern prüfen wir als Fernumzug."
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
       heroImage="/assets/service-moving.webp"
       breadcrumbs={[

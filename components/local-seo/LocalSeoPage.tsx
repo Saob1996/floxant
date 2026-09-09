@@ -13,6 +13,7 @@ import {
 
 import { PriorityFaqSection } from "@/components/editorial/PriorityFaqSection";
 import { company, duesseldorfCompany } from "@/lib/company";
+import { floxantLocations } from "@/lib/floxant-locations";
 import { getActivePriorityFaqAssignment } from "@/lib/content/faq-registry";
 import {
   buildBreadcrumbJsonLd,
@@ -38,7 +39,7 @@ function getProvider(page: LocalSeoPageConfig) {
     city: provider.city,
     state: provider.state,
     countryCode: provider.countryCode,
-    url: company.url,
+    url: `${company.url}/${page.region}`,
   };
 }
 
@@ -46,29 +47,29 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
   if (page.locale === "en") {
     return {
       localChecked: "Request details",
-      whatsappWithPhotos: "WhatsApp with photos",
+      whatsappWithPhotos: "Talk to us on WhatsApp",
       localCheckLabel: "Service area",
-      firstFeedbackTitle: "What matters for the first reply",
-      firstFeedbackItems: ["city/district", "photos", "timing", "scope", "existing quote"],
+      firstFeedbackTitle: "Start with a short message",
+      firstFeedbackItems: ["your location", "the work you need", "your preferred date", "photos are optional"],
       localEntryLabel: "Local context",
       localEntryHeading: `${page.city.displayName} service area and practical details`,
       scopeHeading: "Service scope and customer value",
       scopeText:
-        "This page focuses on concrete services, local context, typical customer situations and the right next step: direct request, WhatsApp with photos or a clear quote review.",
+        "We agree the tasks, timing and access with you, then carry out the work included in your quote. Tell us about any additional tasks you would like us to include.",
       processLabel: "Process",
-      processHeading: "First facts, then a clear next step.",
+      processHeading: "From your first message to the agreed work.",
       offerCheckLabel: "Quote review",
       offerCheckButton: "Review quote",
       linksLabel: "Related services",
       linksHeading: "Continue with the service that fits your request.",
       linksText:
-        "You will find links to the region, the main service, nearby services, quote review and contact options.",
+        "Explore related services for your home, your business or your move.",
       openLabel: "Open",
       faqLabel: "FAQ",
       faqHeading: `Common questions about ${page.serviceName} in ${page.city.displayName}`,
       nextStepLabel: "Next step",
       nextStepText:
-        "Send city, photos, timing and, if available, an existing quote. FLOXANT checks the request based on the details provided.",
+        "Tell us briefly what help you need. We will agree the scope and a personal quote with you. Photos are optional.",
       languageSwitchLabel: "Deutsch",
       whatsappShort: "WhatsApp",
     } as const;
@@ -76,29 +77,29 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
 
   return {
     localChecked: "Anfrage mit Ortsangabe",
-    whatsappWithPhotos: "WhatsApp mit Fotos",
+    whatsappWithPhotos: "Per WhatsApp besprechen",
     localCheckLabel: "Einsatzgebiet",
-    firstFeedbackTitle: "Was für die erste Rückmeldung zählt",
-    firstFeedbackItems: ["Ort/PLZ", "Fotos", "Termin", "Umfang", "vorhandenes Angebot"],
+    firstFeedbackTitle: "Eine kurze Nachricht genügt",
+    firstFeedbackItems: ["Einsatzort", "gewünschte Arbeit", "Terminwunsch", "Fotos sind freiwillig"],
     localEntryLabel: "Lokaler Einstieg",
-    localEntryHeading: `${page.city.displayName} ohne falsche Standortbehauptung einordnen`,
+    localEntryHeading: `Ihr Auftrag in ${page.city.displayName}`,
     scopeHeading: "Leistungsumfang und Kundennutzen",
     scopeText:
-      "Hier geht es um konkrete Leistungen, lokale Einordnung, typische Kundensituationen und den passenden nächsten Schritt: direkte Anfrage, WhatsApp mit Fotos oder sachliche Angebotsprüfung.",
+      "Wir stimmen Aufgaben, Termin und Zugang mit Ihnen ab und übernehmen die vereinbarten Arbeiten. Zusätzliche Wünsche nehmen wir in den Leistungsumfang auf.",
     processLabel: "Ablauf",
-    processHeading: "Erst Eckdaten, dann Entscheidung.",
+    processHeading: "Von der ersten Nachricht zum vereinbarten Auftrag.",
     offerCheckLabel: "Angebotsprüfung",
     offerCheckButton: "Angebot prüfen",
     linksLabel: "Passende Leistungen",
     linksHeading: "Mit der passenden Leistung fortfahren.",
     linksText:
-      "Zur Auswahl stehen die Region, die Hauptleistung, nahe Leistungen, die Angebotsprüfung und der direkte Kontakt.",
+      "Entdecken Sie passende Unterstützung für Ihre Räume, Ihren Betrieb oder Ihren Umzug.",
     openLabel: "Öffnen",
     faqLabel: "FAQ",
     faqHeading: `Häufige Fragen zu ${page.serviceName} in ${page.city.displayName}`,
     nextStepLabel: "Nächster Schritt",
     nextStepText:
-      "Senden Sie Ort, Fotos, Termin und bei Bedarf ein vorhandenes Angebot. FLOXANT prüft die Anfrage sachlich und ohne erfundene lokale Versprechen.",
+      "Beschreiben Sie kurz, welche Arbeit Sie abgeben möchten. Umfang und persönliches Angebot stimmen wir mit Ihnen ab. Fotos sind freiwillig.",
     languageSwitchLabel: "English",
     whatsappShort: "WhatsApp",
   } as const;
@@ -131,12 +132,13 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         ],
       }),
       {
-        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@type": "LocalBusiness",
         "@id": `${provider.url}#localbusiness`,
         name: provider.name,
         url: provider.url,
         telephone: provider.phoneRaw,
         email: provider.email,
+        sameAs: floxantLocations[page.region].sameAs,
         address: {
           "@type": "PostalAddress",
           streetAddress: provider.streetAddress,

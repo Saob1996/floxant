@@ -11,7 +11,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
     telephone: company.phoneRaw,
     logo: `${company.url}/logo_v10.png`,
     description:
-      "FLOXANT bearbeitet Reinigungsanfragen in Düsseldorf sowie Umzug, Transport, Entrümpelung und Wohnungsauflösung in Regensburg.",
+      "FLOXANT übernimmt Reinigung in Düsseldorf sowie Reinigung, Umzug und Entrümpelung in Regensburg. Das lokale Einsatzgebiet umfasst jeweils 75 km um beide Städte.",
     knowsAbout: [
       "Reinigung",
       "Büroreinigung",

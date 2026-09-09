@@ -320,7 +320,7 @@ const faqPairSeeds: readonly FaqPairSeed[] = [
       shortAnswer:
         "Objektart, Fläche, Zustand, Terminfenster, Zugang und gewünschter Zielzustand sollten von Anfang an genannt werden.",
       detailedAnswer:
-        "Nennen Sie Ort, Fläche, Zimmer, Bäder, Möblierung und aktuellen Zustand. Bei einem Gästewechsel gehören Checkout, nächster Check-in, Schlüsselweg und mögliche Wünsche zu Wäsche, Fotos oder Inventar dazu. Für Reinigungsservices bleibt die Prüfung auf Regensburg und den Umkreis bis 50 Kilometer begrenzt.",
+        "Nennen Sie Ort, Fläche, Zimmer, Bäder, Möblierung und aktuellen Zustand. Bei einem Gästewechsel gehören Checkout, nächster Check-in, Schlüsselweg und mögliche Wünsche zu Wäsche, Fotos oder Inventar dazu. Für Reinigungsservices bleibt die Prüfung auf Regensburg und den Umkreis bis 75 Kilometer begrenzt.",
       relatedArticle: null,
       relatedService: "/reinigung-moeblierte-wohnung-regensburg",
       CTA: {

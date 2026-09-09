@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     lang: "de",
     path: "akteneinlagerung-regensburg",
     title: "Aktenlagerung in Regensburg anfragen | FLOXANT",
-    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+    description: "Akteneinlagerung in Regensburg anfragen: Umfang, Kartons, Lagerdauer und gewünschte Abholung schildern. Anforderungen und Verfügbarkeit gemeinsam klären.",
   });
 }
 export default async function AkteneinlagerungRegensburgPage({ params }: PageProps) {

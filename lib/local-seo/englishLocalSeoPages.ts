@@ -63,18 +63,18 @@ function getCity(region: LocalSeoRegionKey, citySlug?: keyof typeof localSeoCiti
 
 function buildEnglishLocalIntro(input: EnglishPageInput, city: LocalSeoCityRecord) {
   if (localSeoServices[input.serviceKey].category === "cleaning") {
-    return `FLOXANT accepts cleaning requests in ${city.displayName}. The useful first details are district, property type, access, photos, timing and desired result.`;
+    return `We clean agreed areas in ${city.displayName} and within a 75 km radius measured in a straight line. Tell us briefly what help you need; we agree the tasks, access and travel arrangements with you.`;
   }
 
-  return `FLOXANT accepts moving, clearance and cleaning-after-moving requests in ${city.displayName}. The useful first details are volume, access, photos, timing and the handover situation.`;
+  return `FLOXANT helps with agreed moving, clearance and cleaning tasks in ${city.displayName} and within a local 75 km radius. Longer moving routes are arranged separately.`;
 }
 
 function buildEnglishLocalProofNotes(input: EnglishPageInput, city: LocalSeoCityRecord) {
   if (localSeoServices[input.serviceKey].category === "cleaning") {
     return [
-      `Requests are assessed from the property type, scope, access, timing and photos provided.`,
+      `Your quote sets out the agreed cleaning tasks and any additional work.`,
       `Districts such as ${city.districts.slice(0, 4).join(", ")} can affect access and scheduling.`,
-      "Availability, final scope and price are confirmed only after the request details have been checked.",
+      "We agree a cleaning time and access arrangements before the work starts.",
     ];
   }
 
@@ -89,7 +89,7 @@ function buildEnglishFaq(input: EnglishPageInput, city: LocalSeoCityRecord): Loc
   return [
     {
       q: `What information do you need for ${input.serviceName} in ${city.displayName}?`,
-      a: "Please send the city or district, property type, approximate size, current condition, timing, access details and photos. If you already have a quote, include it so the scope can be checked fairly.",
+      a: "Start with your location, the work you need and a preferred date. Approximate size and access details help us prepare your quote. Photos are optional.",
     },
     {
       q: "Can I send photos by WhatsApp?",
@@ -101,7 +101,7 @@ function buildEnglishFaq(input: EnglishPageInput, city: LocalSeoCityRecord): Loc
     },
     {
       q: `Which local areas around ${city.displayName} are relevant?`,
-      a: `The first focus is ${city.displayName}. Nearby areas such as ${city.nearbyCities.slice(0, 4).join(", ")} can be checked depending on scope and timing.`,
+      a: `Our local service area covers ${city.displayName} and a radius of 75 km measured in a straight line. We agree the travel arrangements for your address. Longer moving routes are quoted separately.`,
     },
     {
       q: "Can I use this page to contact FLOXANT in English?",
@@ -130,10 +130,10 @@ function buildProcess(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKey)
   }
 
   return [
-    "Send city, district, property type, size, condition, access, timing and photos.",
-    "FLOXANT checks whether the request is a regular clean, deep clean, move-out clean or commercial service.",
-    "Existing offers can be reviewed with the same facts, without artificial underbidding promises.",
-    "You receive the next sensible step: request, WhatsApp clarification or quote review.",
+    "Tell us briefly about your property, the work you need and your preferred date. Photos are optional.",
+    "We agree the rooms, surfaces, cleaning tasks and any extra work with you.",
+    "You receive a personal quote with the agreed scope, access and timing.",
+    "Our team carries out the agreed cleaning and discusses the result with you.",
   ];
 }
 
@@ -343,11 +343,13 @@ const duesseldorfEnglishSpecs = [
 }[];
 
 const duesseldorfEnglishPages = duesseldorfEnglishSpecs.map((spec) => {
-  const metadata = getSearchAuthorityMetadata(spec.path) ?? {
-    seoTitle: `${spec.serviceName} Düsseldorf | English Request | FLOXANT`,
-    description: `${spec.serviceName} in Düsseldorf: send property, scope, access, timing and photos in English for a realistic assessment.`,
-    headline: `${spec.serviceName} in Düsseldorf with a clear scope`,
-    ogDescription: `Request ${spec.serviceName.toLowerCase()} in Düsseldorf with the facts needed to assess scope, access and timing.`,
+  const metadata = spec.serviceKey === "angebot-vergleichen" ? getSearchAuthorityMetadata(spec.path) ?? {
+    seoTitle: "Cleaning quote review Düsseldorf | FLOXANT", description: "Understand the tasks and extras in your cleaning quote.", headline: "Cleaning quote review in Düsseldorf", ogDescription: "Send your existing quote and the points you would like to clarify."
+  } : {
+    seoTitle: `${spec.serviceName} Düsseldorf | FLOXANT`,
+    description: `${spec.serviceName} in Düsseldorf and within 75 km. Agree cleaning tasks, access and timing with FLOXANT. Request your personal quote in English.`,
+    headline: `${spec.serviceName} in Düsseldorf, planned around your needs.`,
+    ogDescription: `We take care of the agreed ${spec.serviceName.toLowerCase()} so you have more time for your home or business. We agree the tasks, access and timing with you.`,
   };
 
   return createEnglishPage({
@@ -360,22 +362,22 @@ const duesseldorfEnglishPages = duesseldorfEnglishSpecs.map((spec) => {
     metaTitle: metadata.seoTitle,
     metaDescription: metadata.description,
     h1: metadata.headline,
-    heroText: `${metadata.ogDescription} Send the details in English and receive a clear reply about the next realistic step.`,
+    heroText: `${metadata.ogDescription} Tell us briefly what you need in English; photos are optional.`,
     scope: spec.scope,
     customerTypes: spec.customerTypes,
     typicalCases: spec.typicalCases,
     sections: [
       section(
         `${spec.serviceName} in Düsseldorf with a clear scope`,
-        `A useful request explains ${spec.scope.slice(0, 4).join(", ")}. District, approximate size, current condition and timing help prevent vague assumptions.`,
+        `The agreed scope can cover ${spec.scope.slice(0, 4).join(", ")}. We make a task list for your property and separate routine work from additional jobs.`,
       ),
       section(
         "What to include in the first message",
-        "Send the property type, approximate area, rooms or surfaces, preferred date, access situation and photos. For recurring cleaning, include frequency and acceptable time windows.",
+        "Tell us the property type, approximate area and the work you need. For recurring cleaning, add your preferred frequency and time windows. Photos are optional.",
       ),
       section(
-        "A realistic reply before any promise",
-        `Typical situations include ${spec.typicalCases.join(", ")}. FLOXANT checks feasibility and missing information before confirming price or availability.`,
+        "What affects the price",
+        "Size, room layout, condition, surfaces and any extra tasks affect the cleaning time. Access, travel and the agreed schedule also matter. A short description helps us prepare an individual quote.",
       ),
     ],
     internalLinks: duesseldorfCleaningLinks,
@@ -509,10 +511,10 @@ const allEnglishLocalSeoPages = [
     serviceName: "Cleaning service",
     metaTitle: "Cleaning Service Regensburg | English Quote & WhatsApp",
     metaDescription:
-      "English cleaning service in Regensburg for apartment, office, practice and commercial spaces. Send photos, timing and an existing quote for review.",
+      "Cleaning for homes, offices and commercial premises in Regensburg and within 75 km. Agree the tasks and timing with FLOXANT in English.",
     h1: "Cleaning service in Regensburg for apartment, office and practice",
     heroText:
-      "For English-speaking customers in Regensburg who need cleaning, clear scope, photos by WhatsApp and a realistic first assessment before booking.",
+      "We take care of the agreed cleaning in your home, office or commercial premises. Tell us what work you would like to hand over; we agree the scope, timing and a personal quote in English.",
     scope: ["apartment cleaning", "office cleaning", "practice cleaning", "commercial cleaning", "quote review"],
     customerTypes: ["expats", "office managers", "property managers", "tenants", "landlords"],
     typicalCases: ["move-out cleaning", "office before Monday", "practice rooms", "existing cleaning quote"],
@@ -543,12 +545,12 @@ const allEnglishLocalSeoPages = [
     region: "regensburg",
     serviceKey: "bueroreinigung",
     serviceName: "Office cleaning",
-    metaTitle: "Office Cleaning Regensburg | English Request & Quote Review",
+    metaTitle: "Office Cleaning Regensburg | FLOXANT",
     metaDescription:
-      "Office cleaning in Regensburg for workplaces, kitchen, sanitary areas and after-hours access. Send photos and review an existing cleaning quote.",
-    h1: "Office cleaning in Regensburg with scope, timing and quote review",
+      "Office cleaning in Regensburg for workspaces, meeting rooms, kitchens and sanitary areas. Agree a cleaning schedule that fits your business.",
+    h1: "Office cleaning in Regensburg, planned around your working day.",
     heroText:
-      "For offices, studios, agencies, practices and commercial spaces where cleaning scope, access, timing and recurring tasks need to be clear before pricing.",
+      "We clean the agreed workspaces, meeting rooms, kitchen and sanitary areas. Tasks, frequency and access are arranged around your office routine.",
     scope: ["workplaces", "kitchen", "sanitary areas", "meeting rooms", "after-hours access"],
     customerTypes: ["office managers", "founders", "property managers", "practice teams"],
     typicalCases: ["weekly office cleaning", "commercial space before opening", "quote comparison", "cleaning after renovation"],

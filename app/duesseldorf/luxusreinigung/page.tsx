@@ -152,16 +152,7 @@ function JsonLd() {
         name: "Premium-Reinigung Düsseldorf",
         serviceType: "Premium-Reinigung für anspruchsvolle Objekte",
         provider: {
-          "@type": "LocalBusiness",
-          name: duesseldorfCompany.name,
-          telephone: duesseldorfCompany.phoneRaw,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: duesseldorfCompany.streetAddress,
-            postalCode: duesseldorfCompany.postalCode,
-            addressLocality: duesseldorfCompany.city,
-            addressCountry: duesseldorfCompany.countryCode,
-          },
+          "@id": `${company.url}/#organization`,
         },
         areaServed: "Düsseldorf und Umgebung",
         url: canonical,

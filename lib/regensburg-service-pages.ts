@@ -109,13 +109,18 @@ export const regensburgServicePages = {
     metaDescription: regensburgClearanceMeta.description,
     eyebrow: "FLOXANT Regensburg",
     description:
-      "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garage, Nachlass, Menge, Zugang, Fotos und gewünschtem Endzustand. Was bleibt, was raus soll und ob danach gereinigt wird, wird vorab getrennt geklärt.",
+      "Wir räumen freigegebene Möbel, Hausrat und Restgegenstände aus Ihrer Wohnung, dem Keller oder vereinbarten Nebenräumen. Sie entscheiden, was bleibt; wir übernehmen die vereinbarten Räum- und Transportarbeiten. Eine anschließende Reinigung lässt sich ergänzen.",
     primaryCta: "Entrümpelung anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte eine Entrümpelung in Regensburg anfragen. Fotos, Ort, Umfang und Termin kann ich senden.",
     serviceType: "Entrümpelung Regensburg",
     suitableFor: ["Wohnungen", "Keller", "Nebenräume", "Nachlass", "Objektflächen", "Räumung vor Übergabe"],
-    scope: ["Wohnung, Keller, Dachboden, Garage oder Nebenraum", "Menge, Fotos und Materialarten", "Was bleibt und was raus soll", "Zugang, Etage, Freigabe und Termin"],
+    scope: [
+  "Freigegebene Möbel und Gegenstände aus den vereinbarten Räumen räumen",
+  "Vereinbarte Demontage und Abtransport übernehmen",
+  "Materialarten und Entsorgungswege vor Beginn abstimmen",
+  "Böden und Räume auf Wunsch anschließend reinigen"
+],
     process: [
       "Sie senden Fotos, Ort, Räume, Menge und was entfernt werden soll.",
       "FLOXANT prüft Zugang, Umfang, Material und Terminfenster.",
@@ -123,10 +128,10 @@ export const regensburgServicePages = {
       "Sie erhalten eine unverbindliche Rückmeldung zum nächsten Schritt.",
     ],
     trust: [
-      "Keine Zusage für Gefahrstoffe oder besondere Situationen ohne Prüfung.",
-      "Fotos beschleunigen die Einschätzung deutlich.",
-      "Räumung und Reinigung werden sauber voneinander abgegrenzt.",
-    ],
+  "Sie bestimmen, welche Gegenstände bleiben und welche entfernt werden.",
+  "Leistungen und Kosten werden vor dem Auftrag vereinbart.",
+  "Eine Kontaktperson stimmt Räume, Zugang und Abschluss mit Ihnen ab."
+],
     faq: [
       {
         q: "Kann ich Fotos per WhatsApp senden?",
@@ -276,13 +281,13 @@ export const regensburgServicePages = {
   endreinigung: {
     slug: "endreinigung",
     path: "/regensburg/endreinigung",
-    title: "Endreinigung vor Übergabe in Regensburg - Wohnung, Zustand und Frist klären",
-    metaTitle: "Endreinigung Regensburg | Übergabe & Auszug vorbereiten",
+    title: "Endreinigung in Regensburg für Ihre Wohnungsübergabe.",
+    metaTitle: "Endreinigung Regensburg – Wohnung zur Übergabe reinigen | FLOXANT",
     metaDescription:
-      "Endreinigung in Regensburg vor Übergabe, nach Auszug oder Entrümpelung: Fotos, Fläche, Zustand, Frist und Restmengen prüfen lassen.",
+      "FLOXANT reinigt Ihre Wohnung vor der Übergabe: Böden, Bad, Küche und vereinbarte Oberflächen. Fenster und Einbauten auf Wunsch ergänzen.",
     eyebrow: "FLOXANT Regensburg",
     description:
-      "FLOXANT prüft Endreinigung, Übergabereinigung und Reinigung nach Entrümpelung, wenn eine Wohnung oder ein Objekt für Vermieter, Verwaltung, Besichtigung oder Nachnutzung vorbereitet werden soll. Abnahme, Kaution oder rechtliche Bewertung werden nicht versprochen.",
+      "Nach dem Auszug übernehmen wir die vereinbarte Reinigung Ihrer Wohnung. Wir kümmern uns um Böden, Bad, Küche und besprochene Oberflächen, damit Sie mehr Zeit für Ihren Umzug und die Übergabe haben.",
     primaryCta: "Endreinigung vor Übergabe prüfen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte eine Endreinigung vor Übergabe in Regensburg anfragen. Fläche, Zustand, Frist, Restmengen und Fotos kann ich senden.",
@@ -296,12 +301,11 @@ export const regensburgServicePages = {
       "Besichtigung oder Nachnutzung",
     ],
     scope: [
-      "Fläche, Raumanzahl und Objektart",
-      "Fotos von Küche, Bad, Böden und Restmengen",
-      "Übergabetermin, Schlüsselweg und Ansprechpartner",
-      "Zielzustand: besenrein, gereinigt oder bezugsnah vorbereitet",
-      "Zusatzbedarf wie Objektbrief, Übergabeakte oder Angebotsprüfung",
-    ],
+  "Böden und erreichbare Oberflächen reinigen",
+  "Küche und Bad nach vereinbartem Umfang reinigen",
+  "Türen, Schalter und zugängliche Einbauten einplanen",
+  "Fenster, Rahmen oder Geräteinnenräume auf Wunsch ergänzen"
+],
     process: [
       "Sie senden Fläche, Zustand, Fotos, Frist und vorhandene Vereinbarungen zur Übergabe.",
       "FLOXANT trennt Reinigung, Restmengen, Entrümpelung und mögliche Dokumentationspunkte.",
@@ -449,19 +453,24 @@ export const regensburgServicePages = {
   bueroreinigung: {
     slug: "bueroreinigung",
     path: "/regensburg/bueroreinigung",
-    title: "Büroreinigung Regensburg für Firmen mit konkreten Eckdaten anfragen",
-    metaTitle: "Büroreinigung Regensburg für Firmen anfragen",
+    title: "Büroreinigung in Regensburg für einen gepflegten Arbeitsalltag.",
+    metaTitle: "Büroreinigung Regensburg – passend zum Büroalltag | FLOXANT",
     metaDescription:
-      "Büroreinigung Regensburg für Firmen: Fläche, Raumliste, Turnus, Reinigungszeiten und vorhandenes Angebot anhand der Eckdaten klären.",
+      "Arbeitsplätze, Besprechungsräume, Küche und Sanitärbereiche reinigen lassen. FLOXANT stimmt Turnus und Zeiten mit Ihrem Büro in Regensburg ab.",
     eyebrow: "FLOXANT B2B Büroreinigung Regensburg",
     description:
-      "FLOXANT ordnet Büroreinigung in Regensburg für Firmen nach Fläche, Raumliste, Turnus, Reinigungszeiten, Objektart, Ansprechpartner, Zugang und vorhandenem Angebot ein. Eine Anfrage ist noch keine Beauftragung.",
+      "Wir kümmern uns um die Reinigung Ihrer Büros, damit Ihr Team in gepflegten Räumen arbeiten kann. Arbeitsplätze, Besprechungsräume, Laufwege, Küche und Sanitärbereiche werden nach dem vereinbarten Plan gereinigt.",
     primaryCta: "Büroreinigung Regensburg anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Büroreinigung in Regensburg anfragen. Fläche, Räume, Turnus, Randzeit, Zugang und Fotos kann ich senden.",
     serviceType: "Büroreinigung Regensburg",
     suitableFor: ["Büros", "Agenturen", "Kanzleien", "Studios", "Firmen mit festen Arbeitsplätzen", "B2B-Anfragen mit Raumliste"],
-    scope: ["Arbeitsplätze und Besprechungsräume", "Empfang, Teeküche, Sanitär und Böden", "Turnus, Reinigungszeiten und Schlüsselweg", "Zugang, Fotos, Ansprechpartner und Angebot"],
+    scope: [
+  "Böden und frei zugängliche Oberflächen reinigen",
+  "Küche und Sanitärbereiche im vereinbarten Umfang pflegen",
+  "Besprechungsräume, Empfang und Laufwege einbeziehen",
+  "Fenster oder intensive Bodenreinigung bei Bedarf ergänzen"
+],
     process: [
       "Firma oder Ansprechpartner, Objektart und Ort nennen.",
       "Fläche, Raumliste, Turnus und gewünschte Reinigungszeiten beschreiben.",
@@ -489,7 +498,7 @@ export const regensburgServicePages = {
       },
       {
         q: "Ist Büroreinigung auch im Umland möglich?",
-        a: "Ja, wenn das Objekt im Regensburger Umkreis bis 50 km liegt. FLOXANT prüft dabei Anfahrt, Randzeit, Schlüsselweg und laufende Betreuung realistisch.",
+        a: "Ja, wenn das Objekt im Regensburger Umkreis bis 75 km liegt. FLOXANT prüft dabei Anfahrt, Randzeit, Schlüsselweg und laufende Betreuung realistisch.",
       },
       {
         q: "Welche Angaben beschleunigen die Anfrage?",

@@ -6,7 +6,7 @@
       "name": "Düsseldorf",
       "type": "real-location",
       "primaryUrl": "/duesseldorf",
-      "serviceAreaLabel": "Düsseldorf plus ca. 50 km, manuell zu bestätigen",
+      "serviceAreaLabel": "Düsseldorf plus ca. 75 km, manuell zu bestätigen",
       "serviceAreaCandidates": ["Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Krefeld", "Mettmann", "Duisburg", "Essen", "Mönchengladbach", "Wuppertal", "Leverkusen", "Köln nur bei realistischer Bedienung"],
       "confirmedScope": "Umzug, Entrümpelung, Haushaltsauflösung, Entsorgung und Angebotsprüfung bleiben als Düsseldorfer Anfragewege sichtbar. Reinigungsunterseiten sind im Worktree kritisch und werden nicht blind wiederhergestellt.",
       "mapsRisk": "GBP/NAP muss manuell geprüft werden. Keine neue Adresse oder Öffnungszeit erfinden."
@@ -16,7 +16,7 @@
       "name": "Regensburg",
       "type": "real-location",
       "primaryUrl": "/regensburg",
-      "serviceAreaLabel": "Regensburg plus ca. 50 km",
+      "serviceAreaLabel": "Regensburg plus ca. 75 km",
       "serviceAreaCandidates": ["Neutraubling", "Lappersdorf", "Regenstauf", "Wenzenbach", "Bad Abbach", "Kelheim", "Hemau", "Nittendorf", "Burglengenfeld", "Schwandorf", "Straubing nur bei realistischer Bedienung", "Neumarkt i.d.OPf. nur bei realistischer Bedienung", "Cham nur bei realistischer Bedienung"],
       "confirmedScope": "Regensburg ist der stärkste Hub für Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Klaviertransport, B2B-Reinigung, Solar/PV und Angebotsprüfung.",
       "mapsRisk": "GBP/NAP mit vorhandenen Unternehmensdaten abgleichen, keine Ranking-Versprechen."
@@ -32,7 +32,7 @@
       "duesseldorfUrl": "/duesseldorf",
       "regensburgUrl": "/regensburg/reinigung",
       "components": ["LocalServiceSeoPage", "RegensburgCleaningServiceHub", "CleaningServiceArea"],
-      "cityReferences": ["Düsseldorf als Anfragezentrum", "Regensburg", "Regensburg 50 km"],
+      "cityReferences": ["Düsseldorf als Anfragezentrum", "Regensburg", "Regensburg 75 km"],
       "duesseldorfAvailable": "hub-only",
       "duesseldorfArea50": "manual",
       "regensburgAvailable": "yes",

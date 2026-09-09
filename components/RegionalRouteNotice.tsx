@@ -20,15 +20,14 @@ export function RegionalRouteNotice({ pathname }: RegionalRouteNoticeProps) {
         <div className="min-w-0">
           <p className="inline-flex items-center gap-2 rounded-md border border-cyan-100/20 bg-cyan-100/12 px-3 py-2 text-xs font-black uppercase tracking-normal text-cyan-100">
             <MapPin className="h-4 w-4" aria-hidden="true" />
-            Regensburg-Seite neu eingeordnet
+            FLOXANT Regensburg
           </p>
           <h2 className="mt-3 text-xl font-black leading-snug tracking-normal text-white md:text-2xl">
             {policy.label}
           </h2>
           <p className="mt-2 max-w-4xl text-sm font-semibold leading-7 text-slate-200">
-            {policy.customerNeed} Regensburg bleibt bei FLOXANT getrennt auf Reinigung
-            ausgerichtet; diese Seite gehört zum Regensburg-Bereich und wird nach
-            Objekt, Fotos, Umfang und Termin geprüft.
+            {policy.customerNeed} Wir übernehmen Reinigung, Umzug und Entrümpelung
+            in Regensburg und im Umkreis von 75 km. Besprechen Sie Ihr Anliegen direkt mit uns.
           </p>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 md:min-w-[26rem]">

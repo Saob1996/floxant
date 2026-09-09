@@ -199,7 +199,7 @@ await test("form-separates-validation-from-technical-errors", () => {
   assert.match(source, /submissionAttemptKeyRef\.current\s*\|\|/);
   assert.match(source, /trackGenerateLead\([\s\S]*?attemptKey/);
   assert.match(source, /<fieldset[\s\S]*?disabled=\{status === "submitting"\}/);
-  assert.match(source, /<form[\s\S]{0,180}?onSubmit=\{handleSubmit\}[\s\S]{0,80}?noValidate/);
+  assert.match(source, /<form[\s\S]*?onSubmit=\{handleSubmit\}\s+noValidate/);
   for (const field of [
     "condition",
     "accessPath",

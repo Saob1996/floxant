@@ -238,7 +238,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service möglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 50 km geprüft; weitere Leistungen werden nach Verfügbarkeit getrennt bewertet.",
+    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 75 km geprüft; weitere Leistungen werden nach Verfügbarkeit getrennt bewertet.",
   },
 ];
 

@@ -14,13 +14,15 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 export { viewport };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return generatePageSEO({
+  const defaults = generatePageSEO({
     lang: "de",
     path: "",
     title: "FLOXANT | Reinigung Düsseldorf & Umzug Regensburg",
     description:
       "Reinigung in Düsseldorf sowie Umzug, Entrümpelung, Auflösung, Transport und Reinigung in Regensburg verständlich auswählen und direkt anfragen.",
   });
+  // Canonical and language alternatives belong to each page, not the shared layout.
+  return { ...defaults, alternates: undefined };
 }
 
 export default function RootLayout({

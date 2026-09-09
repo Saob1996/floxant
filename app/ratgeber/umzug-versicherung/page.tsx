@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-versicherung',
     title: "Umzugsversicherung: Schutz und Grenzen | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzug und Versicherung",
+    description: "Versicherung beim Umzug einordnen: Haftungsgrenzen, mögliche Zusatzdeckung und Ausschlüsse unterscheiden und den konkreten Schutz vor dem Auftrag klären.",
   });
 }
 export default async function Article() {

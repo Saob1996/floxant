@@ -241,7 +241,7 @@ const jsonLd = {
         "Organisatorische Dokumentation nach Absprache für erledigte Leistungen, Fotos, Schlüsselstatus und Hinweise rund um Auszug und Übergabe.",
       path,
       serviceType: "Übergabeakte und organisatorische Wohnungsübergabe-Dokumentation",
-      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 50 km"],
+      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 75 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

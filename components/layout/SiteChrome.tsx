@@ -7,13 +7,14 @@ import { DeferredSiteWidgets } from "@/components/DeferredSiteWidgets";
 import { JsonLd } from "@/components/JsonLd";
 import { Footer } from "@/components/Footer";
 import { PublicHeader } from "@/components/PublicHeader";
-import { RegionalRouteNotice } from "@/components/RegionalRouteNotice";
 import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
 import { EnglishFooter } from "@/components/english/EnglishFooter";
 import { EnglishHeader } from "@/components/english/EnglishHeader";
 import { AdsLandingFooter, AdsLandingHeader } from "@/components/ads/AdsLandingChrome";
+import { GoogleReviews } from "@/components/GoogleReviews";
+import { getPublicRouteContext } from "@/lib/public-route-context";
 
 export function SiteChrome({
   children,
@@ -21,6 +22,8 @@ export function SiteChrome({
   children: ReactNode;
 }) {
   const pathname = usePathname();
+  const routeContext = getPublicRouteContext(pathname);
+  const hasOwnPublicFooter = pathname === "/private-client-service" || pathname === "/villenservice";
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
   const isEnglishSection = pathname === "/en" || pathname.startsWith("/en/");
   const adsLandingKind =
@@ -30,7 +33,6 @@ export function SiteChrome({
         ? "moving-regensburg"
         : null;
   const isAdsLanding = adsLandingKind !== null;
-  const hasFocusedEnquiryFlow = pathname === "/kontakt" || isAdsLanding;
 
   useEffect(() => {
     document.documentElement.lang = isEnglishSection ? "en" : "de";
@@ -48,8 +50,8 @@ export function SiteChrome({
       <a href="#main-content" className="skip-to-content">
         {isEnglishSection ? "Skip to main content" : "Direkt zum Inhalt springen"}
       </a>
-      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
-      {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
+      {!isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
+      {!isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
       {isAdsLanding ? (
         <AdsLandingHeader kind={adsLandingKind} />
       ) : isEnglishSection ? (
@@ -60,7 +62,6 @@ export function SiteChrome({
           variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
         />
       )}
-      {!isEnglishSection && !isAdsLanding ? <RegionalRouteNotice pathname={pathname} /> : null}
       <div
         id="main-content"
         lang={isEnglishSection ? "en" : "de"}
@@ -69,9 +70,10 @@ export function SiteChrome({
       >
         {children}
       </div>
-      {isAdsLanding ? <AdsLandingFooter /> : isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
+      {!isPrivateSection && !isDuesseldorfSection && !hasOwnPublicFooter ? <GoogleReviews location={routeContext.location} english={isEnglishSection} /> : null}
+      {isDuesseldorfSection ? null : isAdsLanding ? <AdsLandingFooter /> : isEnglishSection ? <EnglishFooter location={routeContext.location} /> : <Footer />}
       {!isEnglishSection && !isAdsLanding ? <GlobalRequestCenter /> : null}
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection && !hasFocusedEnquiryFlow} />
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection} />
     </>
   );
 }

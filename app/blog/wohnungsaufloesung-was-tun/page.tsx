@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pageLocale,
     path: 'blog/wohnungsaufloesung-was-tun',
     title: "Wohnungsauflösung im Todesfall: Leitfaden | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung im Todesfall",
+    description: "Wohnungsauflösung nach einem Todesfall vorbereiten: Unterlagen sichern, Zuständigkeiten, Mietwohnung, Erinnerungsstücke, Kosten und Räumung klären.",
   });
 }
 export default async function BlogWohnungsaufloesungTodesfall() {
@@ -54,7 +54,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
               Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sinnvoll sein kann.
             </p>
             <div className="bg-amber-50 border border-amber-200 p-6 rounded-2xl my-8">
-              <h3 className="flex items-center gap-2 mt-0 text-amber-900"><Scale className="w-6 h-6" /> Wichtiger Haftungsausschluss</h3>
+              <h2 className="flex items-center gap-2 mt-0 text-amber-900"><Scale className="w-6 h-6" /> Wichtiger Haftungsausschluss</h2>
               <p className="text-sm text-amber-800 m-0">Die folgenden Informationen basieren auf unserer langjährigen logistischen Branchenerfahrung und stellen <strong>keine rechtsverbindliche Beratung</strong> dar. Konsultieren Sie in komplizierten Erbstreitigkeiten immer eine Kanzlei für Erbrecht.</p>
             </div>
             <h2>Schritt 1: Der rechtliche Status (Wer erbt die Wohnung?)</h2>
@@ -89,7 +89,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             </p>
             <h2>Schritt 3: Die praktische Umsetzung der Wohnungsauflösung</h2>
             <p>
-              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/regensburg/entruempelung`}>Regensburg, München und ganz Bayern</a> am besten vor:
+              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie bei einer <a href="/regensburg/entruempelung">Wohnungsauflösung in Regensburg</a> am besten vor:
             </p>
             <ol>
               <li>

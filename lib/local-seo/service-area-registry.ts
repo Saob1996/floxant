@@ -1,4 +1,5 @@
 import regensburgCleaning from "@/data/serviceAreas/regensburgCleaning.json";
+import { SERVICE_AREA_CENTRES } from "@/lib/service-area-policy";
 
 export type ServiceHub = "duesseldorf" | "regensburg";
 export type AreaKind = "hub" | "city" | "district" | "municipality";
@@ -40,10 +41,7 @@ export interface ServiceAreaRecord {
   sourceUrls: readonly string[];
 }
 
-const HUBS: Record<ServiceHub, AreaCoordinates> = {
-  duesseldorf: { latitude: 51.2277, longitude: 6.7735 },
-  regensburg: { latitude: 49.01343, longitude: 12.10162 },
-};
+const HUBS: Record<ServiceHub, AreaCoordinates> = SERVICE_AREA_CENTRES;
 
 const SERVICES = {
   duesseldorf: ["reinigung", "bueroreinigung", "praxisreinigung", "grundreinigung"],

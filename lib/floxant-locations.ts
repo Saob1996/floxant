@@ -1,8 +1,11 @@
 import { company, duesseldorfCompany } from "@/lib/company";
 import { buildServiceContactHref } from "@/lib/service-routing";
+import { LOCAL_SERVICE_RADIUS_KM, SERVICE_AREA_CENTRES } from "@/lib/service-area-policy";
+import { getLocationSocialUrls } from "@/lib/social-profiles";
+import { googleReviewProfiles } from "@/lib/google-reviews";
 
 export type FloxantLocationKey = "duesseldorf" | "regensburg";
-export type LocationDataStatus = "confirmed_from_code" | "needs_manual_confirmation";
+export type LocationDataStatus = "confirmed_from_code" | "confirmed_from_google" | "needs_manual_confirmation";
 
 export type FloxantLocation = {
   locationKey: FloxantLocationKey;
@@ -17,6 +20,9 @@ export type FloxantLocation = {
   email: string | null;
   openingHours: string | null;
   serviceArea: readonly string[];
+  serviceRadiusKm: number;
+  serviceAreaCenter: { latitude: number; longitude: number };
+  sameAs: readonly string[];
   googleBusinessProfileUrl: string | null;
   mapsUrl: string | null;
   localLandingPage: string;
@@ -54,6 +60,9 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     phoneRaw: duesseldorfCompany.phoneRaw,
     email: duesseldorfCompany.email,
     openingHours: null,
+    serviceRadiusKm: LOCAL_SERVICE_RADIUS_KM,
+    serviceAreaCenter: SERVICE_AREA_CENTRES.duesseldorf,
+    sameAs: getLocationSocialUrls("duesseldorf"),
     serviceArea: [
       "Düsseldorf",
       "Neuss",
@@ -61,10 +70,10 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       "Meerbusch",
       "Mettmann",
       "Duisburg",
-      "Umgebung nach Prüfung",
+      `Umkreis bis ${LOCAL_SERVICE_RADIUS_KM} km`,
     ],
-    googleBusinessProfileUrl: null,
-    mapsUrl: null,
+    googleBusinessProfileUrl: googleReviewProfiles.duesseldorf.profileUrl,
+    mapsUrl: "https://www.google.com/maps/place//data=!4m2!3m1!1s0x47b8cbf6712047e7:0xaf7d07ef895953fd",
     localLandingPage: "/duesseldorf",
     primaryServices: [
       "Reinigung",
@@ -76,13 +85,7 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       "Treppenhausreinigung",
       "Endreinigung",
     ],
-    secondaryServices: [
-      "Umzug",
-      "Entrümpelung",
-      "Haushaltsauflösung",
-      "Entsorgung",
-      "Solarreinigung nach manueller Prüfung",
-    ],
+    secondaryServices: [],
     signatureServices: [
       "FLOXANT Angebotscheck",
       "FLOXANT Fairpreis-Check",
@@ -93,34 +96,34 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     ],
     localFaq: [
       {
-        q: "Welche FLOXANT Leistungen sind für Düsseldorf zentral?",
-        a: "Düsseldorf ist vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
+        q: "Welche Reinigung übernimmt FLOXANT in Düsseldorf?",
+        a: "Wir reinigen Wohnungen, Büros, Praxen, Gewerberäume, Fenster und Treppenhäuser. Umfang und Rhythmus stimmen wir mit Ihnen ab.",
       },
       {
-        q: "Sind Öffnungszeiten für Düsseldorf hinterlegt?",
-        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in öffentlich als Öffnungszeit ausgegeben.",
+        q: "Wie weit reicht das Einsatzgebiet um Düsseldorf?",
+        a: "Wir sind in Düsseldorf und im Umkreis von 75 km Luftlinie tätig. Termin und Anfahrt stimmen wir für Ihre konkrete Adresse ab.",
       },
       {
         q: "Wie frage ich eine Leistung in Düsseldorf an?",
-        a: "Nutzen Sie das Kontaktformular und nennen Sie Ort, Umfang und Termin. Wir prüfen die Angaben vor einer Zusage.",
+        a: "Rufen Sie an, schreiben Sie per WhatsApp oder senden Sie eine kurze Anfrage. Beschreiben Sie Ihr Anliegen; Fotos können die Einschätzung erleichtern.",
       },
     ],
     localTrustNotes: [
-      "Die Düsseldorfer Adresse und Kontaktdaten stimmen mit der offiziellen FLOXANT-Website überein.",
-      "Düsseldorfer Reinigung bleibt von den Regensburger Leistungsbereichen getrennt.",
-      "Keine Öffnungszeiten oder Maps-Links ohne manuelle Bestätigung.",
+      "Persönliche Abstimmung zu Umfang, Reinigungsrhythmus und Zugang.",
+      "Ein individuelles Angebot passend zu Ihrem Objekt.",
+      "Direkter Kontakt per Telefon, WhatsApp und Anfrageformular.",
     ],
     dataStatus: {
       address: "confirmed_from_code",
       phone: "confirmed_from_code",
       email: "confirmed_from_code",
       openingHours: "needs_manual_confirmation",
-      mapsUrl: "needs_manual_confirmation",
-      googleBusinessProfileUrl: "needs_manual_confirmation",
+      mapsUrl: "confirmed_from_google",
+      googleBusinessProfileUrl: "confirmed_from_google",
     },
     localSchemaData: {
       schemaId: `${company.url}/duesseldorf#localbusiness`,
-      businessTypes: ["LocalBusiness", "HouseCleaningService", "ProfessionalService"],
+      businessTypes: ["LocalBusiness"],
       addressRegion: "DE-NW",
       areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg"],
     },
@@ -137,9 +140,12 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     phoneRaw: company.phoneRaw,
     email: company.email,
     openingHours: null,
+    serviceRadiusKm: LOCAL_SERVICE_RADIUS_KM,
+    serviceAreaCenter: SERVICE_AREA_CENTRES.regensburg,
+    sameAs: getLocationSocialUrls("regensburg"),
     serviceArea: company.primaryServiceAreas,
-    googleBusinessProfileUrl: null,
-    mapsUrl: company.mapsSearchUrl,
+    googleBusinessProfileUrl: googleReviewProfiles.regensburg.profileUrl,
+    mapsUrl: "https://www.google.com/maps/place//data=!4m2!3m1!1s0x2d18af8c882f718f:0x65b3f9030c90cc4e",
     localLandingPage: "/regensburg",
     primaryServices: [
       "Umzug",
@@ -157,7 +163,6 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       "Büroumzug",
       "Kleintransport",
       "Rückfahrt",
-      "Solarreinigung nach manueller Prüfung",
     ],
     signatureServices: [
       "FLOXANT Angebotscheck",
@@ -173,34 +178,34 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     ],
     localFaq: [
       {
-        q: "Welche FLOXANT Leistungen sind für Regensburg zentral?",
-        a: "Regensburg ist im Code als Hauptstandort für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Büroreinigung, Gewerbereinigung und Klaviertransport gepflegt.",
+        q: "Wobei hilft FLOXANT in Regensburg?",
+        a: "Wir übernehmen Reinigung, Umzug und Entrümpelung für Privatkunden und Unternehmen. Auch Büroreinigung, Wohnungsauflösung und Reinigung zur Übergabe können Sie mit uns abstimmen.",
       },
       {
-        q: "Sind Öffnungszeiten für Regensburg hinterlegt?",
-        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in öffentlich als Öffnungszeit ausgegeben.",
+        q: "Wie weit reicht das Einsatzgebiet um Regensburg?",
+        a: "Unser lokales Einsatzgebiet umfasst Regensburg und 75 km Umkreis als Luftlinie. Bei Umzügen besprechen wir zusätzlich die Strecke zum Zielort.",
       },
       {
         q: "Wie finde ich FLOXANT in Regensburg?",
-        a: "Nutzen Sie die hinterlegte Adresse und den Kartensuchlink. Termine werden passend zur Anfrage abgestimmt.",
+        a: "Sie erreichen uns unter +49 1577 1105087, per WhatsApp oder über das Anfrageformular. Termine stimmen wir persönlich mit Ihnen ab.",
       },
     ],
     localTrustNotes: [
-      "Die Regensburger Kontaktdaten stammen aus den zentral gepflegten Unternehmensangaben.",
-      "Kartenlink und Standortangaben werden aus den vorhandenen Daten übernommen.",
-      "Öffnungszeiten oder Profilangaben werden nur nach Bestätigung veröffentlicht.",
+      "Reinigung, Umzug und Entrümpelung persönlich abstimmen.",
+      "Ein Angebot, das Umfang, Zugang und Termin berücksichtigt.",
+      "Telefon, WhatsApp und Anfrageformular als direkte Kontaktwege.",
     ],
     dataStatus: {
       address: "confirmed_from_code",
       phone: "confirmed_from_code",
       email: "confirmed_from_code",
       openingHours: "needs_manual_confirmation",
-      mapsUrl: "confirmed_from_code",
-      googleBusinessProfileUrl: "needs_manual_confirmation",
+      mapsUrl: "confirmed_from_google",
+      googleBusinessProfileUrl: "confirmed_from_google",
     },
     localSchemaData: {
       schemaId: `${company.url}/regensburg#localbusiness`,
-      businessTypes: ["LocalBusiness", "MovingCompany", "HouseCleaningService", "ProfessionalService"],
+      businessTypes: ["LocalBusiness", "MovingCompany"],
       addressRegion: "DE-BY",
       areaServed: company.primaryServiceAreas,
     },

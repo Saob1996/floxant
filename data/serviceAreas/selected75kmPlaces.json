@@ -1,0 +1,377 @@
+{
+  "attribution": "GeoNames, CC BY 4.0",
+  "checkedOn": "2026-09-09",
+  "duesseldorf": [
+    {
+      "name": "Düsseldorf",
+      "geonameId": "2934246",
+      "latitude": 51.22319,
+      "longitude": 6.77927,
+      "distanceKm": 0.643,
+      "featureCode": "PPLA",
+      "source": "https://www.geonames.org/2934246/"
+    },
+    {
+      "name": "Neuss",
+      "geonameId": "2864118",
+      "latitude": 51.19807,
+      "longitude": 6.68504,
+      "distanceKm": 6.987,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2864118/"
+    },
+    {
+      "name": "Meerbusch",
+      "geonameId": "2872504",
+      "latitude": 51.25268,
+      "longitude": 6.68807,
+      "distanceKm": 6.564,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2872504/"
+    },
+    {
+      "name": "Ratingen",
+      "geonameId": "2850174",
+      "latitude": 51.29724,
+      "longitude": 6.84929,
+      "distanceKm": 9.36,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2850174/"
+    },
+    {
+      "name": "Erkrath",
+      "geonameId": "2929600",
+      "latitude": 51.22235,
+      "longitude": 6.90831,
+      "distanceKm": 9.407,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2929600/"
+    },
+    {
+      "name": "Kaarst",
+      "geonameId": "2894375",
+      "latitude": 51.22929,
+      "longitude": 6.61883,
+      "distanceKm": 10.771,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2894375/"
+    },
+    {
+      "name": "Mettmann",
+      "geonameId": "2871535",
+      "latitude": 51.2504,
+      "longitude": 6.97536,
+      "distanceKm": 14.278,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2871535/"
+    },
+    {
+      "name": "Hilden",
+      "geonameId": "2904795",
+      "latitude": 51.16818,
+      "longitude": 6.93093,
+      "distanceKm": 12.811,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2904795/"
+    },
+    {
+      "name": "Duisburg",
+      "geonameId": "2934691",
+      "latitude": 51.43247,
+      "longitude": 6.76516,
+      "distanceKm": 22.777,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2934691/"
+    },
+    {
+      "name": "Krefeld",
+      "geonameId": "2884509",
+      "latitude": 51.33645,
+      "longitude": 6.55381,
+      "distanceKm": 19.486,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2884509/"
+    },
+    {
+      "name": "Essen",
+      "geonameId": "2928810",
+      "latitude": 51.45657,
+      "longitude": 7.01228,
+      "distanceKm": 30.377,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2928810/"
+    },
+    {
+      "name": "Wuppertal",
+      "geonameId": "2805753",
+      "latitude": 51.25627,
+      "longitude": 7.14816,
+      "distanceKm": 26.273,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2805753/"
+    },
+    {
+      "name": "Solingen",
+      "geonameId": "2831580",
+      "latitude": 51.17343,
+      "longitude": 7.0845,
+      "distanceKm": 22.493,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2831580/"
+    },
+    {
+      "name": "Leverkusen",
+      "geonameId": "2878234",
+      "latitude": 51.0303,
+      "longitude": 6.98432,
+      "distanceKm": 26.424,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2878234/"
+    },
+    {
+      "name": "Köln",
+      "geonameId": "2886242",
+      "latitude": 50.93333,
+      "longitude": 6.95,
+      "distanceKm": 34.978,
+      "featureCode": "PPLA2",
+      "source": "https://www.geonames.org/2886242/"
+    },
+    {
+      "name": "Mönchengladbach",
+      "geonameId": "2869894",
+      "latitude": 51.18539,
+      "longitude": 6.44172,
+      "distanceKm": 23.587,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2869894/"
+    },
+    {
+      "name": "Bilk",
+      "geonameId": "10242958",
+      "latitude": 51.20078,
+      "longitude": 6.77959,
+      "distanceKm": 3.023,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/10242958/"
+    },
+    {
+      "name": "Oberkassel",
+      "geonameId": "2860103",
+      "latitude": 51.23011,
+      "longitude": 6.74698,
+      "distanceKm": 1.866,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/2860103/"
+    },
+    {
+      "name": "Gerresheim",
+      "geonameId": "2920958",
+      "latitude": 51.23333,
+      "longitude": 6.86667,
+      "distanceKm": 6.517,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/2920958/"
+    },
+    {
+      "name": "Benrath",
+      "geonameId": "2950994",
+      "latitude": 51.16338,
+      "longitude": 6.86521,
+      "distanceKm": 9.591,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/2950994/"
+    },
+    {
+      "name": "Kaiserswerth",
+      "geonameId": "2893993",
+      "latitude": 51.30147,
+      "longitude": 6.73624,
+      "distanceKm": 8.603,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/2893993/"
+    }
+  ],
+  "regensburg": [
+    {
+      "name": "Regensburg",
+      "geonameId": "2849483",
+      "latitude": 49.01513,
+      "longitude": 12.10161,
+      "distanceKm": 0.189,
+      "featureCode": "PPLA2",
+      "source": "https://www.geonames.org/2849483/"
+    },
+    {
+      "name": "Lappersdorf",
+      "geonameId": "2880425",
+      "latitude": 49.04694,
+      "longitude": 12.0913,
+      "distanceKm": 3.801,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2880425/"
+    },
+    {
+      "name": "Neutraubling",
+      "geonameId": "2863953",
+      "latitude": 48.98737,
+      "longitude": 12.201,
+      "distanceKm": 7.807,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2863953/"
+    },
+    {
+      "name": "Pentling",
+      "geonameId": "2854928",
+      "latitude": 48.98343,
+      "longitude": 12.0587,
+      "distanceKm": 4.575,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2854928/"
+    },
+    {
+      "name": "Obertraubling",
+      "geonameId": "2858773",
+      "latitude": 48.96667,
+      "longitude": 12.16667,
+      "distanceKm": 7.04,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2858773/"
+    },
+    {
+      "name": "Regenstauf",
+      "geonameId": "2849476",
+      "latitude": 49.12014,
+      "longitude": 12.13027,
+      "distanceKm": 12.048,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2849476/"
+    },
+    {
+      "name": "Bad Abbach",
+      "geonameId": "2953559",
+      "latitude": 48.93754,
+      "longitude": 12.04494,
+      "distanceKm": 9.398,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2953559/"
+    },
+    {
+      "name": "Sinzing",
+      "geonameId": "2831847",
+      "latitude": 49,
+      "longitude": 12.03333,
+      "distanceKm": 5.2,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2831847/"
+    },
+    {
+      "name": "Nittendorf",
+      "geonameId": "2862347",
+      "latitude": 49.02459,
+      "longitude": 11.96126,
+      "distanceKm": 10.31,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2862347/"
+    },
+    {
+      "name": "Wenzenbach",
+      "geonameId": "2811013",
+      "latitude": 49.07561,
+      "longitude": 12.19954,
+      "distanceKm": 9.937,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2811013/"
+    },
+    {
+      "name": "Tegernheim",
+      "geonameId": "2823682",
+      "latitude": 49.02394,
+      "longitude": 12.17303,
+      "distanceKm": 5.337,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2823682/"
+    },
+    {
+      "name": "Donaustauf",
+      "geonameId": "2936259",
+      "latitude": 49.03258,
+      "longitude": 12.20459,
+      "distanceKm": 7.804,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2936259/"
+    },
+    {
+      "name": "Barbing",
+      "geonameId": "2952842",
+      "latitude": 49,
+      "longitude": 12.2,
+      "distanceKm": 7.33,
+      "featureCode": "PPLA4",
+      "source": "https://www.geonames.org/2952842/"
+    },
+    {
+      "name": "Kelheim",
+      "geonameId": "2891834",
+      "latitude": 48.91725,
+      "longitude": 11.88618,
+      "distanceKm": 19.019,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2891834/"
+    },
+    {
+      "name": "Straubing",
+      "geonameId": "2826099",
+      "latitude": 48.88126,
+      "longitude": 12.57385,
+      "distanceKm": 37.487,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2826099/"
+    },
+    {
+      "name": "Cham",
+      "geonameId": "2940204",
+      "latitude": 49.22565,
+      "longitude": 12.65501,
+      "distanceKm": 46.677,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2940204/"
+    },
+    {
+      "name": "Amberg",
+      "geonameId": "2956656",
+      "latitude": 49.44287,
+      "longitude": 11.86267,
+      "distanceKm": 50.806,
+      "featureCode": "PPLA3",
+      "source": "https://www.geonames.org/2956656/"
+    },
+    {
+      "name": "Landshut",
+      "geonameId": "2881485",
+      "latitude": 48.52961,
+      "longitude": 12.16179,
+      "distanceKm": 53.979,
+      "featureCode": "PPLA2",
+      "source": "https://www.geonames.org/2881485/"
+    },
+    {
+      "name": "Burgweinting",
+      "geonameId": "2941057",
+      "latitude": 48.98909,
+      "longitude": 12.1407,
+      "distanceKm": 3.931,
+      "featureCode": "PPL",
+      "source": "https://www.geonames.org/2941057/"
+    },
+    {
+      "name": "Reinhausen",
+      "geonameId": "2848766",
+      "latitude": 49.03092,
+      "longitude": 12.11329,
+      "distanceKm": 2.123,
+      "featureCode": "PPLX",
+      "source": "https://www.geonames.org/2848766/"
+    }
+  ]
+}

@@ -10,8 +10,8 @@ const regensburgCleaningLinks: LocalSeoLink[] = [
 ];
 
 const regensburgServiceLinks: LocalSeoLink[] = [
-  { href: "/regensburg", label: "Regensburg-Hub", text: "Lokaler Einstieg fuer Regensburg." },
-  { href: "/region-regensburg", label: "Region Regensburg", text: "Regensburg und Umgebung bis 50 km fuer Reinigung." },
+  { href: "/regensburg", label: "Leistungen in Regensburg", text: "Reinigung, Umzug und Entrümpelung in Regensburg und Umgebung." },
+  { href: "/region-regensburg", label: "Region Regensburg", text: "Regensburg und Umgebung bis 75 km fuer Reinigung." },
   { href: "/regensburg/umzug", label: "Umzug Regensburg", text: "Umzug getrennt von Reinigung einordnen." },
   { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg", text: "Raeumung und Entsorgung separat klaeren." },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg", text: "Aufloesung, Restmengen und Uebergabe planen." },

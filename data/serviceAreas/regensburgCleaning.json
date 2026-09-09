@@ -1,11 +1,11 @@
 {
-  "serviceAreaName": "Regensburg und 50 km Umkreis",
+  "serviceAreaName": "Regensburg und 75 km Umkreis",
   "center": {
     "name": "Regensburg Zentrum",
     "latitude": 49.01343,
     "longitude": 12.10162
   },
-  "radiusKm": 50,
+  "radiusKm": 75,
   "allowedForCleaning": true,
   "allowedCitiesAndMunicipalities": [
     "Regensburg",
@@ -160,7 +160,7 @@
     "Fensterreinigung Regensburg",
     "Baureinigung Regensburg",
     "Reinigung Landkreis Regensburg",
-    "Reinigung Regensburg 50 km Umkreis",
+    "Reinigung Regensburg 75 km Umkreis",
     "Reinigungsfirma Regensburg und Umgebung",
     "Reinigung Neutraubling",
     "Reinigung Lappersdorf",

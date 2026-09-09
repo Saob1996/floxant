@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "reinigung",
     title: "Reinigungsarten Regensburg: Objekt und Umfang klären",
     description:
-      "Professionelle Reinigung in Regensburg, allen Stadtteilen und im 50-km-Umkreis. Für Büros, Praxen, Gewerbe und Immobilien.",
+      "Professionelle Reinigung in Regensburg, allen Stadtteilen und im 75-km-Umkreis. Für Büros, Praxen, Gewerbe und Immobilien.",
   });
 }
 
@@ -44,7 +44,7 @@ export default async function ReinigungPillarPage() {
   const faqItems = [
     {
       q: "Welche Reinigungsleistungen bietet FLOXANT an?",
-      a: "FLOXANT bietet Endreinigung, Wohnungsreinigung, Gebäudereinigung sowie Reinigungslösungen für Büros und gewerbliche Objekte in Regensburg und Umgebung bis 50 km.",
+      a: "FLOXANT bietet Endreinigung, Wohnungsreinigung, Gebäudereinigung sowie Reinigungslösungen für Büros und gewerbliche Objekte in Regensburg und Umgebung bis 75 km.",
     },
     {
       q: "Für wen ist die Reinigung sinnvoll?",
@@ -56,7 +56,7 @@ export default async function ReinigungPillarPage() {
     },
     {
       q: "Wie starte ich die Anfrage?",
-      a: "Über den FLOXANT Rechner oder die Buchungsseite. Dort lassen sich Ort, Fläche, Objekttyp, Zustand, Extras und Terminwunsch erfassen, damit der Aufwand für Regensburg und den 50-km-Umkreis realistisch geprüft werden kann.",
+      a: "Über den FLOXANT Rechner oder die Buchungsseite. Dort lassen sich Ort, Fläche, Objekttyp, Zustand, Extras und Terminwunsch erfassen, damit der Aufwand für Regensburg und den 75-km-Umkreis realistisch geprüft werden kann.",
     },
     {
       q: "Warum ist eine Wohnungsübergabe mehr als nur Reinigung?",
@@ -64,7 +64,7 @@ export default async function ReinigungPillarPage() {
     },
     {
       q: "Bietet FLOXANT Reinigung in ganz Regensburg an?",
-      a: "Ja. FLOXANT prüft Reinigungsanfragen für Regensburg, alle Stadtteile und den Umkreis bis 50 km.",
+      a: "Ja. FLOXANT prüft Reinigungsanfragen für Regensburg, alle Stadtteile und den Umkreis bis 75 km.",
     },
     {
       q: "Welche Stadtteile in Regensburg deckt FLOXANT ab?",
@@ -72,11 +72,11 @@ export default async function ReinigungPillarPage() {
     },
     {
       q: "Fährt FLOXANT auch nach Neutraubling, Lappersdorf oder Pentling?",
-      a: "Ja. Neutraubling, Lappersdorf, Pentling, Obertraubling, Regenstauf, Kelheim, Schwandorf, Straubing und weitere Orte im 50-km-Umkreis können für Reinigung geprüft werden.",
+      a: "Ja. Neutraubling, Lappersdorf, Pentling, Obertraubling, Regenstauf, Kelheim, Schwandorf, Straubing und weitere Orte im 75-km-Umkreis können für Reinigung geprüft werden.",
     },
     {
-      q: "Gibt es Reinigungsservice außerhalb von 50 km?",
-      a: "Für Reinigungsservices konzentriert sich Floxant auf Regensburg und den Umkreis bis 50 km.",
+      q: "Gibt es Reinigungsservice außerhalb von 75 km?",
+      a: "Für Reinigungsservices konzentriert sich Floxant auf Regensburg und den Umkreis bis 75 km.",
     },
   ];
 
@@ -88,18 +88,18 @@ export default async function ReinigungPillarPage() {
         { name: "Reinigung", item: "/reinigung" },
       ]),
       buildServiceJsonLd({
-        name: "Reinigung in Regensburg und 50 km Umkreis",
+        name: "Reinigung in Regensburg und 75 km Umkreis",
         description:
-          "Endreinigung, Gebäudereinigung und Objektservice mit FLOXANT in Regensburg und Umgebung bis 50 km.",
+          "Endreinigung, Gebäudereinigung und Objektservice mit FLOXANT in Regensburg und Umgebung bis 75 km.",
         path: "/reinigung",
         areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
-        name: "Reinigung in Regensburg und 50 km Umkreis | FLOXANT",
+        name: "Reinigung in Regensburg und 75 km Umkreis | FLOXANT",
         description:
-          "Service-Definition, Einsatzgebiet, Ablauf und direkte Anfrage für Reinigung in Regensburg und Umgebung bis 50 km.",
+          "Service-Definition, Einsatzgebiet, Ablauf und direkte Anfrage für Reinigung in Regensburg und Umgebung bis 75 km.",
         path: "/reinigung",
-        about: ["Reinigung", "Endreinigung", "Gebäudereinigung", "Regensburg", "50 km Umkreis"],
+        about: ["Reinigung", "Endreinigung", "Gebäudereinigung", "Regensburg", "75 km Umkreis"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -111,15 +111,15 @@ export default async function ReinigungPillarPage() {
       <PillarServicePage
         dict={dict}
         breadcrumbs={breadcrumbs}
-        heroBadge="Reinigung in Regensburg und Umgebung bis 50 km"
-        heroTitle="Reinigungsarten für Regensburg und den 50-km-Umkreis"
-        heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für Regensburg, alle Stadtteile und Orte im 50-km-Umkreis. Der Fokus liegt nicht auf einer vagen Oberflächenreinigung, sondern auf einem Ergebnis, das vor Schlüsselübergabe, Wohnungsabnahme oder Neuvermietung planbar ist."
+        heroBadge="Reinigung in Regensburg und Umgebung bis 75 km"
+        heroTitle="Reinigungsarten für Regensburg und den 75-km-Umkreis"
+        heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für Regensburg, alle Stadtteile und Orte im 75-km-Umkreis. Der Fokus liegt nicht auf einer vagen Oberflächenreinigung, sondern auf einem Ergebnis, das vor Schlüsselübergabe, Wohnungsabnahme oder Neuvermietung planbar ist."
         heroImageSrc="/assets/service-cleaning.webp"
-        heroImageAlt="FLOXANT Reinigung in Regensburg und Umgebung bis 50 km"
+        heroImageAlt="FLOXANT Reinigung in Regensburg und Umgebung bis 75 km"
         heroCards={[
           { label: "Objekt", value: "Fläche, Zustand und Extras definiert" },
           { label: "Ablauf", value: "Übergabeorientiert statt vage" },
-          { label: "Region", value: "Regensburg und 50 km Umkreis" },
+          { label: "Region", value: "Regensburg und 75 km Umkreis" },
         ]}
         visualVariant="cleaning"
         definitionCards={[
@@ -170,7 +170,7 @@ export default async function ReinigungPillarPage() {
         faqTitle="Häufige Fragen zur Reinigung"
         faqItems={faqItems}
         bookingTitle="Reinigung in Regensburg und Umgebung anfragen"
-        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, ob es um Übergabe, Auszug, Neuvermietung oder laufende Objektbetreuung im 50-km-Umkreis um Regensburg geht."
+        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, ob es um Übergabe, Auszug, Neuvermietung oder laufende Objektbetreuung im 75-km-Umkreis um Regensburg geht."
         serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um Reinigung"
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },
@@ -186,7 +186,7 @@ export default async function ReinigungPillarPage() {
           { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
           { href: "/umzug", label: "Umzug und Reinigung zusammen denken" },
         ]}
-        cityLinksTitle="Reinigung im 50-km-Umkreis um Regensburg"
+        cityLinksTitle="Reinigung im 75-km-Umkreis um Regensburg"
         cityLinks={[
           { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
           { href: "/reinigung-neutraubling", label: "Reinigung Neutraubling" },

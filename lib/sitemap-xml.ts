@@ -11,6 +11,8 @@ import {
   HUB_PAGES,
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
+import { practicalGuides } from "./practical-guides";
+import { isOutsideLocalServiceAreaRoute, localMovingRouteExceptions } from "./local-route-area-policy";
 import { dominanceEnglishArticles } from "./content/dominance-articles";
 import { roundThreeEnglishBlogArticles, roundThreeGermanBlogArticles } from "./round3/blog-articles";
 import { roundThreeServiceMatrix } from "./round3/service-matrix";
@@ -27,7 +29,7 @@ import {
 } from "./local-seo/englishLocalSeoPages";
 import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { isCleaningRouteAllowed } from "./regensburg-cleaning-service-area";
-import { existsSync, readdirSync, statSync } from "fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { execFileSync } from "child_process";
 
@@ -68,6 +70,7 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "umzug-reinigung-regensburg",
   "endreinigung-regensburg",
   "seo-gone",
+  "duesseldorf/reinigung/anfrage",
   "duesseldorf/angebot-vergleichen",
   "duesseldorf/umzug",
   "regensburg/reinigungsfirma",
@@ -88,6 +91,23 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "fairpreis-check",
   "en/regensburg/moving-company",
 ]);
+
+const redirectsFile = join(process.cwd(), "public", "_redirects");
+const PERMANENT_REDIRECT_ROUTES = new Set(
+  existsSync(redirectsFile)
+    ? readFileSync(redirectsFile, "utf8")
+        .split(/\r?\n/)
+        .map((line) => line.trim().split(/\s+/))
+        .filter(([source, , status]) =>
+          Boolean(source) &&
+          !source.startsWith("#") &&
+          !source.includes("*") &&
+          !source.includes(":") &&
+          ["301", "308"].includes(status),
+        )
+        .map(([source]) => source.replace(/^\/+|\/+$/g, ""))
+    : [],
+);
 
 const ROUND_THREE_SERVICE_ROUTES = new Set(
   Object.values(roundThreeServiceMatrix).flatMap((service) => [
@@ -119,6 +139,8 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
 ] as const;
 
 const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
+  "duesseldorf/endreinigung",
+  "duesseldorf/hotelreinigung",
   "duesseldorf/reinigung",
   "duesseldorf/bueroreinigung",
   "duesseldorf/gewerbereinigung",
@@ -307,7 +329,10 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  if (isOutsideLocalServiceAreaRoute(normalizedRoute)) return true;
   if (normalizedRoute.startsWith("seniorenumzug-")) return true;
+  if (PERMANENT_REDIRECT_ROUTES.has(normalizedRoute)) return true;
+  if (localMovingRouteExceptions.includes(`/${normalizedRoute}`)) return false;
   if (LEGACY_REDIRECT_ROUTES.has(normalizedRoute)) return true;
   if (ROUND_THREE_SERVICE_ROUTES.has(normalizedRoute)) return false;
   if (englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`)) return false;
@@ -628,6 +653,11 @@ function addEntries(
 }
 
 function addBlogEntries(urls: SitemapUrl[]): void {
+  for (const post of practicalGuides) {
+    const route = `blog/${post.slug}`;
+    if (shouldSkipSitemapRoute(route)) continue;
+    urls.push({ pagePath: route, loc: buildAbsoluteUrl(route), lastmod: "2026-09-09", changefreq: "monthly", priority: "0.68" });
+  }
   for (const post of roundThreeGermanBlogArticles) {
     const route = `blog/${post.slug}`;
     if (shouldSkipSitemapRoute(route)) continue;

@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-09-09",
+  "source": {
+    "provider": "GeoNames",
+    "downloadUrl": "https://download.geonames.org/export/dump/DE.zip",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "GeoNames, geonames.org",
+    "coordinateSystem": "WGS84",
+    "matching": "Exactly one current populated-place match in Bavaria across normalized original, ASCII or alternate name; no fuzzy matches; name collisions remain unresolved.",
+    "bavariaAdminEvidence": {
+      "geonamesId": 2951839,
+      "countryCode": "DE",
+      "admin1": "02",
+      "codeUrl": "https://download.geonames.org/export/dump/admin1CodesASCII.txt"
+    },
+    "evidenceReport": "reports/seo/geonames-additional-outside-candidates.json"
+  },
+  "minimumOutsideDistanceKm": 76,
+  "places": [
+    {
+      "citySlug": "auerbach-in-der-oberpfalz",
+      "name": "Auerbach",
+      "geonamesId": 2954603,
+      "latitude": 49.69201,
+      "longitude": 11.63327,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2954603/",
+      "sourceLine": 150282,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "alternatenames",
+          "value": "Auerbach in der Oberpfalz",
+          "normalised": "auerbach-in-der-oberpfalz"
+        }
+      ]
+    },
+    {
+      "citySlug": "coburg",
+      "name": "Coburg",
+      "geonamesId": 2939951,
+      "latitude": 50.25937,
+      "longitude": 10.96384,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2939951/",
+      "sourceLine": 135730,
+      "sourceModified": "2016-06-15",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Coburg",
+          "normalised": "coburg"
+        },
+        {
+          "field": "asciiname",
+          "value": "Coburg",
+          "normalised": "coburg"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Coburg",
+          "normalised": "coburg"
+        }
+      ]
+    },
+    {
+      "citySlug": "dachau",
+      "name": "Dachau",
+      "geonamesId": 2939623,
+      "latitude": 48.26,
+      "longitude": 11.43402,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2939623/",
+      "sourceLine": 135404,
+      "sourceModified": "2018-09-12",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Dachau",
+          "normalised": "dachau"
+        },
+        {
+          "field": "asciiname",
+          "value": "Dachau",
+          "normalised": "dachau"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Dachau",
+          "normalised": "dachau"
+        }
+      ]
+    },
+    {
+      "citySlug": "eggenfelden",
+      "name": "Eggenfelden",
+      "geonamesId": 2933115,
+      "latitude": 48.40509,
+      "longitude": 12.75752,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2933115/",
+      "sourceLine": 128928,
+      "sourceModified": "2022-09-03",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Eggenfelden",
+          "normalised": "eggenfelden"
+        },
+        {
+          "field": "asciiname",
+          "value": "Eggenfelden",
+          "normalised": "eggenfelden"
+        }
+      ]
+    },
+    {
+      "citySlug": "erding",
+      "name": "Erding",
+      "geonamesId": 2929715,
+      "latitude": 48.30603,
+      "longitude": 11.90686,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2929715/",
+      "sourceLine": 125548,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Erding",
+          "normalised": "erding"
+        },
+        {
+          "field": "asciiname",
+          "value": "Erding",
+          "normalised": "erding"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Erding",
+          "normalised": "erding"
+        }
+      ]
+    },
+    {
+      "citySlug": "eschenbach-in-der-oberpfalz",
+      "name": "Eschenbach in der Oberpfalz",
+      "geonamesId": 2929076,
+      "latitude": 49.7554,
+      "longitude": 11.83306,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2929076/",
+      "sourceLine": 124913,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Eschenbach in der Oberpfalz",
+          "normalised": "eschenbach-in-der-oberpfalz"
+        },
+        {
+          "field": "asciiname",
+          "value": "Eschenbach in der Oberpfalz",
+          "normalised": "eschenbach-in-der-oberpfalz"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Eschenbach in der Oberpfalz",
+          "normalised": "eschenbach-in-der-oberpfalz"
+        }
+      ]
+    },
+    {
+      "citySlug": "feucht",
+      "name": "Feucht",
+      "geonamesId": 2927054,
+      "latitude": 49.37597,
+      "longitude": 11.21433,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2927054/",
+      "sourceLine": 122901,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Feucht",
+          "normalised": "feucht"
+        },
+        {
+          "field": "asciiname",
+          "value": "Feucht",
+          "normalised": "feucht"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Feucht",
+          "normalised": "feucht"
+        }
+      ]
+    },
+    {
+      "citySlug": "freyung",
+      "name": "Freyung",
+      "geonamesId": 2924850,
+      "latitude": 48.80952,
+      "longitude": 13.54768,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2924850/",
+      "sourceLine": 120708,
+      "sourceModified": "2014-01-09",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Freyung",
+          "normalised": "freyung"
+        },
+        {
+          "field": "asciiname",
+          "value": "Freyung",
+          "normalised": "freyung"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Freyung",
+          "normalised": "freyung"
+        }
+      ]
+    },
+    {
+      "citySlug": "friedberg",
+      "name": "Friedberg",
+      "geonamesId": 2924803,
+      "latitude": 48.35693,
+      "longitude": 10.98461,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2924803/",
+      "sourceLine": 120661,
+      "sourceModified": "2026-05-08",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Friedberg",
+          "normalised": "friedberg"
+        },
+        {
+          "field": "asciiname",
+          "value": "Friedberg",
+          "normalised": "friedberg"
+        }
+      ]
+    },
+    {
+      "citySlug": "fuerstenfeldbruck",
+      "name": "Fürstenfeldbruck",
+      "geonamesId": 2923625,
+      "latitude": 48.17904,
+      "longitude": 11.2547,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2923625/",
+      "sourceLine": 119496,
+      "sourceModified": "2019-09-05",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Fürstenfeldbruck",
+          "normalised": "fuerstenfeldbruck"
+        },
+        {
+          "field": "asciiname",
+          "value": "Fuerstenfeldbruck",
+          "normalised": "fuerstenfeldbruck"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Fuerstenfeldbruck",
+          "normalised": "fuerstenfeldbruck"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Fürstenfeldbruck",
+          "normalised": "fuerstenfeldbruck"
+        }
+      ]
+    },
+    {
+      "citySlug": "gersthofen",
+      "name": "Gersthofen",
+      "geonamesId": 2920891,
+      "latitude": 48.42432,
+      "longitude": 10.87273,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2920891/",
+      "sourceLine": 116767,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Gersthofen",
+          "normalised": "gersthofen"
+        },
+        {
+          "field": "asciiname",
+          "value": "Gersthofen",
+          "normalised": "gersthofen"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Gersthofen",
+          "normalised": "gersthofen"
+        }
+      ]
+    },
+    {
+      "citySlug": "grafenau",
+      "name": "Grafenau",
+      "geonamesId": 2918365,
+      "latitude": 48.85768,
+      "longitude": 13.3974,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2918365/",
+      "sourceLine": 114250,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Grafenau",
+          "normalised": "grafenau"
+        },
+        {
+          "field": "asciiname",
+          "value": "Grafenau",
+          "normalised": "grafenau"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Grafenau",
+          "normalised": "grafenau"
+        }
+      ]
+    },
+    {
+      "citySlug": "grafenwoehr",
+      "name": "Grafenwöhr",
+      "geonamesId": 2918258,
+      "latitude": 49.71728,
+      "longitude": 11.90645,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2918258/",
+      "sourceLine": 114143,
+      "sourceModified": "2020-06-10",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Grafenwöhr",
+          "normalised": "grafenwoehr"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Grafenwoehr",
+          "normalised": "grafenwoehr"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Grafenwöhr",
+          "normalised": "grafenwoehr"
+        }
+      ]
+    },
+    {
+      "citySlug": "herzogenaurach",
+      "name": "Herzogenaurach",
+      "geonamesId": 2905457,
+      "latitude": 49.56798,
+      "longitude": 10.88565,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2905457/",
+      "sourceLine": 101408,
+      "sourceModified": "2026-05-08",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Herzogenaurach",
+          "normalised": "herzogenaurach"
+        },
+        {
+          "field": "asciiname",
+          "value": "Herzogenaurach",
+          "normalised": "herzogenaurach"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Herzogenaurach",
+          "normalised": "herzogenaurach"
+        }
+      ]
+    },
+    {
+      "citySlug": "kaufbeuren",
+      "name": "Kaufbeuren",
+      "geonamesId": 2892080,
+      "latitude": 47.88238,
+      "longitude": 10.62192,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2892080/",
+      "sourceLine": 88107,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Kaufbeuren",
+          "normalised": "kaufbeuren"
+        },
+        {
+          "field": "asciiname",
+          "value": "Kaufbeuren",
+          "normalised": "kaufbeuren"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Kaufbeuren",
+          "normalised": "kaufbeuren"
+        }
+      ]
+    },
+    {
+      "citySlug": "kempten",
+      "name": "Kempten (Allgäu)",
+      "geonamesId": 2891621,
+      "latitude": 47.72674,
+      "longitude": 10.31389,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2891621/",
+      "sourceLine": 87650,
+      "sourceModified": "2023-11-15",
+      "matchedNames": [
+        {
+          "field": "alternatenames",
+          "value": "Kempten",
+          "normalised": "kempten"
+        }
+      ]
+    },
+    {
+      "citySlug": "kissing",
+      "name": "Kissing",
+      "geonamesId": 2890202,
+      "latitude": 48.30375,
+      "longitude": 10.97088,
+      "featureClass": "P",
+      "featureCode": "PPLA4",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2890202/",
+      "sourceLine": 86241,
+      "sourceModified": "2011-04-25",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Kissing",
+          "normalised": "kissing"
+        },
+        {
+          "field": "asciiname",
+          "value": "Kissing",
+          "normalised": "kissing"
+        }
+      ]
+    },
+    {
+      "citySlug": "koenigsbrunn",
+      "name": "Königsbrunn",
+      "geonamesId": 2885908,
+      "latitude": 48.27506,
+      "longitude": 10.89178,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2885908/",
+      "sourceLine": 81978,
+      "sourceModified": "2026-05-08",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Königsbrunn",
+          "normalised": "koenigsbrunn"
+        },
+        {
+          "field": "asciiname",
+          "value": "Koenigsbrunn",
+          "normalised": "koenigsbrunn"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Königsbrunn",
+          "normalised": "koenigsbrunn"
+        }
+      ]
+    },
+    {
+      "citySlug": "lauf-an-der-pegnitz",
+      "name": "Lauf an der Pegnitz",
+      "geonamesId": 2880144,
+      "latitude": 49.51386,
+      "longitude": 11.28247,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2880144/",
+      "sourceLine": 76253,
+      "sourceModified": "2014-01-16",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Lauf an der Pegnitz",
+          "normalised": "lauf-an-der-pegnitz"
+        },
+        {
+          "field": "asciiname",
+          "value": "Lauf an der Pegnitz",
+          "normalised": "lauf-an-der-pegnitz"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Lauf an der Pegnitz",
+          "normalised": "lauf-an-der-pegnitz"
+        }
+      ]
+    },
+    {
+      "citySlug": "mammendorf",
+      "name": "Mammendorf",
+      "geonamesId": 2874006,
+      "latitude": 48.20836,
+      "longitude": 11.16326,
+      "featureClass": "P",
+      "featureCode": "PPLA4",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2874006/",
+      "sourceLine": 70155,
+      "sourceModified": "2017-04-26",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Mammendorf",
+          "normalised": "mammendorf"
+        },
+        {
+          "field": "asciiname",
+          "value": "Mammendorf",
+          "normalised": "mammendorf"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Mammendorf",
+          "normalised": "mammendorf"
+        }
+      ]
+    },
+    {
+      "citySlug": "memmingen",
+      "name": "Memmingen",
+      "geonamesId": 2871992,
+      "latitude": 47.98372,
+      "longitude": 10.18527,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2871992/",
+      "sourceLine": 68148,
+      "sourceModified": "2026-05-07",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Memmingen",
+          "normalised": "memmingen"
+        },
+        {
+          "field": "asciiname",
+          "value": "Memmingen",
+          "normalised": "memmingen"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Memmingen",
+          "normalised": "memmingen"
+        }
+      ]
+    },
+    {
+      "citySlug": "neu-ulm",
+      "name": "Neu-Ulm",
+      "geonamesId": 2863941,
+      "latitude": 48.39279,
+      "longitude": 10.01112,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2863941/",
+      "sourceLine": 60174,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Neu-Ulm",
+          "normalised": "neu-ulm"
+        },
+        {
+          "field": "asciiname",
+          "value": "Neu-Ulm",
+          "normalised": "neu-ulm"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Neu Ulm",
+          "normalised": "neu-ulm"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Neu-Ulm",
+          "normalised": "neu-ulm"
+        }
+      ]
+    },
+    {
+      "citySlug": "neusaess",
+      "name": "Neusäß",
+      "geonamesId": 2864252,
+      "latitude": 48.39249,
+      "longitude": 10.83333,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2864252/",
+      "sourceLine": 60465,
+      "sourceModified": "2026-01-27",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Neusäß",
+          "normalised": "neusaess"
+        },
+        {
+          "field": "asciiname",
+          "value": "Neusaess",
+          "normalised": "neusaess"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Neusaess",
+          "normalised": "neusaess"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Neusäß",
+          "normalised": "neusaess"
+        }
+      ]
+    },
+    {
+      "citySlug": "neustadt-an-der-waldnaab",
+      "name": "Neustadt an der Waldnaab",
+      "geonamesId": 2864055,
+      "latitude": 49.73287,
+      "longitude": 12.17773,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2864055/",
+      "sourceLine": 60285,
+      "sourceModified": "2014-02-08",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Neustadt an der Waldnaab",
+          "normalised": "neustadt-an-der-waldnaab"
+        },
+        {
+          "field": "asciiname",
+          "value": "Neustadt an der Waldnaab",
+          "normalised": "neustadt-an-der-waldnaab"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Neustadt an der Waldnaab",
+          "normalised": "neustadt-an-der-waldnaab"
+        }
+      ]
+    },
+    {
+      "citySlug": "olching",
+      "name": "Olching",
+      "geonamesId": 2857472,
+      "latitude": 48.2,
+      "longitude": 11.33333,
+      "featureClass": "P",
+      "featureCode": "PPLA4",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2857472/",
+      "sourceLine": 53736,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Olching",
+          "normalised": "olching"
+        },
+        {
+          "field": "asciiname",
+          "value": "Olching",
+          "normalised": "olching"
+        }
+      ]
+    },
+    {
+      "citySlug": "pfarrkirchen",
+      "name": "Pfarrkirchen",
+      "geonamesId": 2854179,
+      "latitude": 48.43205,
+      "longitude": 12.93812,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2854179/",
+      "sourceLine": 50463,
+      "sourceModified": "2014-01-17",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Pfarrkirchen",
+          "normalised": "pfarrkirchen"
+        },
+        {
+          "field": "asciiname",
+          "value": "Pfarrkirchen",
+          "normalised": "pfarrkirchen"
+        }
+      ]
+    },
+    {
+      "citySlug": "schwabach",
+      "name": "Schwabach",
+      "geonamesId": 2835537,
+      "latitude": 49.33047,
+      "longitude": 11.02346,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2835537/",
+      "sourceLine": 31951,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Schwabach",
+          "normalised": "schwabach"
+        },
+        {
+          "field": "asciiname",
+          "value": "Schwabach",
+          "normalised": "schwabach"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Schwabach",
+          "normalised": "schwabach"
+        }
+      ]
+    },
+    {
+      "citySlug": "schweinfurt",
+      "name": "Schweinfurt",
+      "geonamesId": 2834498,
+      "latitude": 50.04937,
+      "longitude": 10.22175,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2834498/",
+      "sourceLine": 30917,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Schweinfurt",
+          "normalised": "schweinfurt"
+        },
+        {
+          "field": "asciiname",
+          "value": "Schweinfurt",
+          "normalised": "schweinfurt"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Schweinfurt",
+          "normalised": "schweinfurt"
+        }
+      ]
+    },
+    {
+      "citySlug": "simbach-am-inn",
+      "name": "Simbach am Inn",
+      "geonamesId": 2832043,
+      "latitude": 48.26548,
+      "longitude": 13.02309,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2832043/",
+      "sourceLine": 28480,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Simbach am Inn",
+          "normalised": "simbach-am-inn"
+        },
+        {
+          "field": "asciiname",
+          "value": "Simbach am Inn",
+          "normalised": "simbach-am-inn"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Simbach am Inn",
+          "normalised": "simbach-am-inn"
+        }
+      ]
+    },
+    {
+      "citySlug": "tirschenreuth",
+      "name": "Tirschenreuth",
+      "geonamesId": 2822100,
+      "latitude": 49.88263,
+      "longitude": 12.33112,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2822100/",
+      "sourceLine": 18585,
+      "sourceModified": "2014-01-18",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Tirschenreuth",
+          "normalised": "tirschenreuth"
+        },
+        {
+          "field": "asciiname",
+          "value": "Tirschenreuth",
+          "normalised": "tirschenreuth"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Tirschenreuth",
+          "normalised": "tirschenreuth"
+        }
+      ]
+    },
+    {
+      "citySlug": "traunstein",
+      "name": "Traunstein",
+      "geonamesId": 2821515,
+      "latitude": 47.86825,
+      "longitude": 12.64335,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2821515/",
+      "sourceLine": 18003,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Traunstein",
+          "normalised": "traunstein"
+        },
+        {
+          "field": "asciiname",
+          "value": "Traunstein",
+          "normalised": "traunstein"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Traunstein",
+          "normalised": "traunstein"
+        }
+      ]
+    },
+    {
+      "citySlug": "unterhaching",
+      "name": "Unterhaching",
+      "geonamesId": 2819465,
+      "latitude": 48.06598,
+      "longitude": 11.61564,
+      "featureClass": "P",
+      "featureCode": "PPLA4",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2819465/",
+      "sourceLine": 15964,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Unterhaching",
+          "normalised": "unterhaching"
+        },
+        {
+          "field": "asciiname",
+          "value": "Unterhaching",
+          "normalised": "unterhaching"
+        }
+      ]
+    },
+    {
+      "citySlug": "weilheim-in-oberbayern",
+      "name": "Weilheim",
+      "geonamesId": 2812515,
+      "latitude": 47.84147,
+      "longitude": 11.15484,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2812515/",
+      "sourceLine": 9048,
+      "sourceModified": "2024-08-19",
+      "matchedNames": [
+        {
+          "field": "alternatenames",
+          "value": "Weilheim in Oberbayern",
+          "normalised": "weilheim-in-oberbayern"
+        }
+      ]
+    },
+    {
+      "citySlug": "windischeschenbach",
+      "name": "Windischeschenbach",
+      "geonamesId": 2808148,
+      "latitude": 49.80108,
+      "longitude": 12.1571,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2808148/",
+      "sourceLine": 4701,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Windischeschenbach",
+          "normalised": "windischeschenbach"
+        },
+        {
+          "field": "asciiname",
+          "value": "Windischeschenbach",
+          "normalised": "windischeschenbach"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Windischeschenbach",
+          "normalised": "windischeschenbach"
+        }
+      ]
+    },
+    {
+      "citySlug": "zwiesel",
+      "name": "Zwiesel",
+      "geonamesId": 2803537,
+      "latitude": 49.01693,
+      "longitude": 13.23765,
+      "featureClass": "P",
+      "featureCode": "PPL",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2803537/",
+      "sourceLine": 114,
+      "sourceModified": "2013-02-19",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Zwiesel",
+          "normalised": "zwiesel"
+        },
+        {
+          "field": "asciiname",
+          "value": "Zwiesel",
+          "normalised": "zwiesel"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Zwiesel",
+          "normalised": "zwiesel"
+        }
+      ]
+    }
+  ],
+  "addressReviewPlaces": [
+    {
+      "citySlug": "regen",
+      "name": "Regen",
+      "geonamesId": 2849495,
+      "latitude": 48.9719,
+      "longitude": 13.12824,
+      "featureClass": "P",
+      "featureCode": "PPLA3",
+      "countryCode": "DE",
+      "admin1": "02",
+      "sourceUrl": "https://www.geonames.org/2849495/",
+      "sourceLine": 45802,
+      "sourceModified": "2014-01-16",
+      "matchedNames": [
+        {
+          "field": "name",
+          "value": "Regen",
+          "normalised": "regen"
+        },
+        {
+          "field": "asciiname",
+          "value": "Regen",
+          "normalised": "regen"
+        },
+        {
+          "field": "alternatenames",
+          "value": "Regen",
+          "normalised": "regen"
+        }
+      ]
+    }
+  ]
+}

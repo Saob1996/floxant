@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     lang: "de",
     path: `malerarbeiten`,
     title: "Malerarbeiten in Bayern anfragen | FLOXANT",
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    description: "Malerarbeiten anfragen: Räume, Wand- und Deckenflächen, Untergrund und gewünschten Anstrich beschreiben. Vorarbeiten, Material und Termin gemeinsam prüfen.",
   });
 }
 export default async function MalerarbeitenPage({ params }: PageProps) {

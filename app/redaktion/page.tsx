@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Wie FLOXANT Inhalte prüft, AI-Unterstützung kennzeichnet und unbelegte Aussagen vermeidet.",
   alternates: {
     canonical: `${company.url}/redaktion`,
-    languages: { "de-DE": `${company.url}/redaktion`, "en-DE": `${company.url}/en/editorial-policy`, "x-default": `${company.url}/redaktion` },
+    languages: { "de-DE": `${company.url}/redaktion`, en: `${company.url}/en/editorial-policy`, "x-default": `${company.url}/redaktion` },
   },
 };
 

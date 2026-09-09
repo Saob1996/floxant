@@ -27,7 +27,7 @@ const faqItems = [
   },
   {
     q: "Für welche Richtungen ist der Service gedacht?",
-    a: "Der Schwerpunkt liegt auf Rückfahrten Richtung Regensburg, Zielorten im Umkreis von etwa 200 km und Bayern nach Verfügbarkeit. Besonders interessant sind flexible Termine, wenn Route, Ladefläche und Zeitfenster ohnehin zusammenpassen.",
+    a: "Der Schwerpunkt liegt auf Rückfahrten Richtung Regensburg und dem lokalen Einsatzgebiet von 75 km Luftlinie. Weiter entfernte Start- oder Zielorte besprechen wir als eigene Strecke. Entscheidend ist, ob Route, freie Ladefläche und Zeitfenster zusammenpassen.",
   },
   {
     q: "Ist der Service auch für Firmen und große Büros geeignet?",
@@ -97,7 +97,7 @@ export default async function LeerfahrtRueckfahrtPage() {
           "Faire Rückfahrt-Preise für Umzugsgut, Firmeninventar, Möbel, Kartons, Paletten und Teilmengen, wenn Route und freie Fahrzeugkapazität passen.",
         path: "/leerfahrt-rueckfahrt",
         serviceType: "Leer-Rückfahrt",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Nürnberg", "München"],
+        areaServed: ["Regensburg", "Regensburg und 75 km Umgebung"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -164,7 +164,7 @@ export default async function LeerfahrtRueckfahrtPage() {
             <div className="grid gap-4">
               {[
                 { icon: Route, label: "Richtung", value: "Richtung Regensburg und Bayern" },
-                { icon: MapPin, label: "Zielgebiet", value: "Regensburg + ca. 200 km Umkreis" },
+                { icon: MapPin, label: "Lokales Einsatzgebiet", value: "Regensburg und 75 km Umgebung" },
                 { icon: PackageOpen, label: "Geeignet für", value: "Büroinventar, Möbel, Kartons, Paletten" },
                 { icon: CalendarClock, label: "Preislogik", value: "fair, wenn Route und Termin passen" },
               ].map((item) => {
@@ -269,7 +269,7 @@ export default async function LeerfahrtRueckfahrtPage() {
           </div>
           <dl className="mt-8 grid gap-4 md:grid-cols-3">
             {[
-              ["Einsatzgebiet", "Richtung Regensburg, Umgebung etwa 200 km und Bayern nach Verfügbarkeit"],
+              ["Einsatzgebiet", "Regensburg und 75 km Umgebung; weiter entfernte Ziele nach Streckenabsprache"],
               ["Benötigte Angaben", "Start, Ziel, Datum, Zeitfenster, Volumen, Gewicht, Fotos, Etage und Zugang"],
               ["Klare Grenze", "Keine erfundene Tour, keine Verfügbarkeitsgarantie und kein Festpreis ohne Prüfung"],
             ].map(([term, description]) => (

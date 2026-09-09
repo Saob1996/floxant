@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/wohnungsaufloesung-tipps',
     title: "Wohnungsauflösung: Tipps und Kosten | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung vorbereiten",
+    description: "Wohnungsauflösung organisieren: Hausstand sichten, Erinnerungsstücke sichern und Räumung vorbereiten. Welche Faktoren Ablauf und Kosten bestimmen.",
   });
 }
 export default async function Article() {

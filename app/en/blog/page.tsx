@@ -156,7 +156,7 @@ export default function EnglishGuidesHubPage() {
           <aside className="mt-12 rounded-3xl bg-cyan-50 p-6 sm:p-8">
             <h2 className="text-2xl font-black">Need a direct answer first?</h2>
             <ul className="mt-4 grid gap-3 font-semibold text-slate-700 sm:grid-cols-2">
-              <li className="flex gap-2"><CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-800" aria-hidden="true" />Use the questions hub for process and scope answers.</li>
+              <li className="flex gap-2"><CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-800" aria-hidden="true" />Find answers about the work involved and how to arrange it.</li>
               <li className="flex gap-2"><CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-cyan-800" aria-hidden="true" />Use the service finder for local, non-binding guidance.</li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-3">

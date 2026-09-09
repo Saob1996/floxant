@@ -288,7 +288,7 @@ const jsonLd = {
         "Praktische und organisatorische Vorbereitung von Wohnungen, Haeusern und Nebenflaechen vor Verkauf, Besichtigung, Expose oder Eigentuemerwechsel durch Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache. Keine Maklerleistung, keine Bewertung und keine Verkaufsgarantie.",
       path,
       serviceType: "Objektvorbereitung vor Immobilienverkauf oder Besichtigung",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit"],
+      areaServed: ["Regensburg", "Umgebung Regensburg bis 75 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },

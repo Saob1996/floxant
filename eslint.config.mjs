@@ -18,6 +18,8 @@ const config = [
       ".next/**",
       "out/**",
       "build/**",
+      "reports/seo/baseline-export/**",
+      "reports/seo/lighthouse-*/**",
       "next-env.d.ts",
     ],
   },

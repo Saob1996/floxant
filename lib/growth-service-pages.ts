@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { company } from "@/lib/company";
 import { sitemapRoutes } from "@/lib/sitemap-routes";
+import { getLanguageAlternatesForPath } from "@/lib/local-seo/hreflangMap";
 
 const INDEXABLE_GROWTH_ROUTE_SET = new Set<string>(sitemapRoutes);
 
@@ -45,10 +46,10 @@ export type GrowthServicePageConfig = {
 };
 
 const baseProcess = [
-  "Sie senden Ort, Terminwunsch, Fotos und eine kurze Beschreibung.",
-  "FLOXANT prüft Umfang, Zugang, Material, Zeitdruck und sinnvolle Grenzen.",
-  "Offene Punkte werden nachgefragt, bevor ein Preisrahmen oder Termin zugesagt wird.",
-  "Sie entscheiden erst nach der Rückmeldung, ob der Auftrag weiter vorbereitet werden soll.",
+  "Sie nennen kurz Einsatzort, gewünschte Arbeit und Terminwunsch. Fotos sind freiwillig.",
+  "Wir stimmen Aufgaben, Zugang, Material und gewünschte Zusatzleistungen mit Ihnen ab.",
+  "Sie erhalten ein persönliches Angebot mit dem vereinbarten Umfang und Termin.",
+  "Nach Ihrer Bestätigung übernimmt unser Team die vereinbarten Arbeiten.",
 ] as const;
 
 const cleaningRelated = [
@@ -2067,6 +2068,7 @@ export function buildGrowthServiceMetadata(config: GrowthServicePageConfig): Met
     description: config.metaDescription,
     alternates: {
       canonical,
+      languages: indexable ? Object.fromEntries(getLanguageAlternatesForPath(config.path).map(({ hreflang, path }) => [hreflang, path])) : undefined,
     },
     robots: {
       index: indexable,

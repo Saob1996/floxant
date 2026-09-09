@@ -1,7 +1,7 @@
 "use client";
 
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
-import { BadgeEuro, ChevronDown, FileSearch, FileText, Menu, X } from "lucide-react";
+import { ChevronDown, FileText, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,22 +10,19 @@ import { FloxServicesMegaMenu } from "@/components/FloxServicesMegaMenu";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { HeaderSearch } from "@/components/search/HeaderSearch";
 import { company } from "@/lib/company";
-import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { cn } from "@/lib/utils";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
 type DesktopMenu = "services" | "locations" | "special" | "knowledge" | null;
 
-const headerOfferHref = buildGlobalRequestHref("global_header");
-const mobileOfferHref = buildGlobalRequestHref("global_mobile_header");
-const headerBudgetHref = "/umzug-mit-preisvorstellung";
 const headerWhatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich möchte eine Anfrage stellen.")}`;
 
 const locationLinks = [
   {
     label: "Düsseldorf",
     href: "/duesseldorf",
-    text: "Reinigung, Büro und Gewerbe, Umzug und Entrümpelung",
+    text: "Reinigung für Wohnungen, Büros, Praxen und Gewerbeflächen",
   },
   {
     label: "Regensburg",
@@ -58,6 +55,8 @@ export function PublicHeader({
   variant?: PublicHeaderVariant;
 }) {
   const pathname = usePathname() || "/";
+  const headerOfferHref = buildRequestHref({ source: "global_header", entryPage: pathname, ctaComponent: "header", ctaPosition: "header" });
+  const mobileOfferHref = buildRequestHref({ source: "global_mobile_header", entryPage: pathname, ctaComponent: "mobile_menu", ctaPosition: "header" });
   const [openMenu, setOpenMenu] = useState<DesktopMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -173,35 +172,35 @@ export function PublicHeader({
 
   const menuButtonClass = (active: boolean) =>
     cn(
-      "inline-flex h-11 items-center gap-1.5 rounded-lg px-3 text-sm font-black transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:px-4",
+      "inline-flex h-11 items-center gap-1.5 rounded-lg px-3 text-sm font-black transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
       active ? "bg-slate-100 text-slate-950" : "text-slate-700 hover:bg-slate-100 hover:text-slate-950",
     );
 
   return (
-    <header ref={headerRef} className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
+    <header ref={headerRef} data-nosnippet className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
       <div
         className={cn(
           "mx-auto w-full max-w-[1380px] rounded-xl border border-white/75 bg-white/95 px-3 py-2.5 shadow-[0_18px_55px_rgba(15,23,42,0.14)] backdrop-blur-xl transition sm:px-4",
           scrolled && "border-slate-200 bg-white shadow-[0_14px_40px_rgba(15,23,42,0.18)]",
         )}
       >
-        <div className="flex min-h-12 items-center gap-2">
+        <div className="flex min-h-12 items-center justify-between gap-2">
           <Link
             href="/"
             onClick={() => closeDesktopMenu()}
-            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:max-w-[14rem]"
+            className="group flex shrink-0 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             aria-label="FLOXANT Startseite"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950 text-white">
               <BrandLogo size={26} />
             </span>
-            <span className="hidden min-w-0 sm:block">
+            <span className="hidden sm:block">
               <span className="block text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</span>
-              <span className="mt-0.5 block truncate text-[10px] font-semibold text-slate-500">Einfach anfragen</span>
+              <span className="mt-0.5 block truncate text-[10px] font-semibold text-slate-700">Einfach anfragen</span>
             </span>
           </Link>
 
-          <nav aria-label="Hauptnavigation" className="hidden items-center xl:flex">
+          <nav aria-label="Hauptnavigation" className="hidden flex-1 items-center justify-center 2xl:flex">
             <div className="relative">
               <button
                 type="button"
@@ -318,34 +317,24 @@ export function PublicHeader({
             data-source="global_header"
             data-cta-label="Anfrage senden"
             data-destination={headerOfferHref}
-            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="ml-auto hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 sm:inline-flex 2xl:hidden"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             Anfrage senden
           </Link>
 
-          <div className="hidden shrink-0 items-center gap-2 xl:flex">
-            <Link
-              href={headerBudgetHref}
-              data-event="service_card_click"
-              data-source="header"
-              data-destination={headerBudgetHref}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-950 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <BadgeEuro className="h-4 w-4" aria-hidden="true" />
-              Budget nennen
-            </Link>
+          <div className="hidden shrink-0 items-center gap-2 2xl:flex">
             <Link
               href={headerOfferHref}
               onClick={resetNeutralRequestState}
               data-event="request_cta_click"
               data-source="global_header"
-              data-cta-label="Angebot anfragen"
+              data-cta-label="Anfrage senden"
               data-destination={headerOfferHref}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-black text-slate-950 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
-              <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Angebot anfragen
+              <FileText className="h-4 w-4" aria-hidden="true" />
+              Anfrage senden
             </Link>
             <a
               href={headerWhatsappHref}
@@ -365,7 +354,7 @@ export function PublicHeader({
             ref={mobileTriggerRef}
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 2xl:hidden"
             aria-label="Menü öffnen"
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
@@ -376,7 +365,7 @@ export function PublicHeader({
       </div>
 
       {mobileOpen ? (
-        <div id="mobile-navigation" className="fixed inset-0 z-[9001] bg-white xl:hidden" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div id="mobile-navigation" className="fixed inset-0 z-[9001] bg-white 2xl:hidden" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
           <div ref={mobilePanelRef} className="h-full overflow-y-auto px-5 pb-8 pt-4 text-slate-950">
             <div className="mx-auto max-w-2xl">
               <div className="flex min-h-14 items-center justify-between border-b border-slate-200 pb-3">
@@ -420,11 +409,11 @@ export function PublicHeader({
                 }}
                 data-event="request_cta_click"
                 data-source="global_mobile_header"
-                data-cta-label="Angebot anfragen"
+                data-cta-label="Anfrage senden"
                 data-destination={mobileOfferHref}
                 className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
               >
-                Angebot anfragen
+                Anfrage senden
                 <FileText className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>

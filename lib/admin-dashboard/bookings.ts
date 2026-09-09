@@ -32,36 +32,13 @@ export const BOOKING_SELECT = [
 
 export const EDITABLE_STATUSES = [
   { value: "new", label: "Neu" },
-  { value: "in_progress", label: "In Bearbeitung" },
-  { value: "contacted", label: "Kontaktiert" },
-  { value: "quote_sent", label: "Angebot gesendet" },
-  { value: "appointment_scheduled", label: "Termin vereinbart" },
+  { value: "contacted", label: "Kontakt läuft" },
   { value: "details_missing", label: "Angaben fehlen" },
-  { value: "under_review", label: "In Prüfung" },
-  { value: "budget_feasible", label: "Budget machbar" },
-  { value: "reduced_scope_proposed", label: "Reduzierter Umfang vorgeschlagen" },
-  { value: "counter_offer_sent", label: "Gegenvorschlag gesendet" },
-  { value: "not_feasible", label: "Nicht machbar" },
-  { value: "customer_confirmed", label: "Kunde bestätigt" },
-  { value: "declined", label: "Abgelehnt" },
-  { value: "expired", label: "Abgelaufen" },
-  { value: "order_created", label: "Auftrag erstellt" },
-  { value: "not_applied", label: "Noch nicht beantragt" },
-  { value: "cost_estimate_created", label: "Kostenvoranschlag erstellt" },
-  { value: "submitted_to_payer", label: "Beim Kostenträger eingereicht" },
-  { value: "payer_question", label: "Rückfrage des Kostenträgers" },
-  { value: "partially_approved", label: "Teilweise bewilligt" },
-  { value: "fully_approved", label: "Vollständig bewilligt" },
-  { value: "rejected", label: "Abgelehnt durch Kostenträger" },
-  { value: "billing_open", label: "Abrechnung offen" },
-  { value: "paid", label: "Bezahlt" },
-  { value: "backhaul_matching", label: "Rückfahrt wird abgeglichen" },
-  { value: "backhaul_notified", label: "Rückfahrt-Rückmeldung gesendet" },
-  { value: "backhaul_accepted", label: "Rückfahrt zugesagt" },
-  { value: "backhaul_declined", label: "Rückfahrt abgelehnt" },
-  { value: "won", label: "Auftrag gewonnen" },
-  { value: "lost", label: "Auftrag verloren" },
-  { value: "completed", label: "Erledigt" },
+  { value: "quote_prepared", label: "Angebot in Arbeit" },
+  { value: "quote_sent", label: "Angebot gesendet" },
+  { value: "follow_up", label: "Nachfassen" },
+  { value: "won", label: "Gewonnen" },
+  { value: "lost", label: "Verloren" },
 ] as const;
 
 export type EditableBookingStatus = (typeof EDITABLE_STATUSES)[number]["value"];
@@ -69,7 +46,9 @@ export type EditableBookingStatus = (typeof EDITABLE_STATUSES)[number]["value"];
 const STATUS_LABELS: Record<string, string> = {
   new: "Neu",
   in_progress: "In Bearbeitung",
-  contacted: "Kontaktiert",
+  contacted: "Kontakt läuft",
+  quote_prepared: "Angebot in Arbeit",
+  follow_up: "Nachfassen",
   quote_sent: "Angebot gesendet",
   appointment_scheduled: "Termin vereinbart",
   details_missing: "Angaben fehlen",
@@ -138,10 +117,16 @@ function normalizedTopLevel(value: string | null | undefined): string {
 
 export function getLeadSourceLabel(source: string | null | undefined): string {
   const normalized = normalizedTopLevel(source).toLowerCase().replace(/[ -]+/g, "_");
-  if (["google_maps", "google_business_profile", "gbp"].includes(normalized)) {
-    return "Google-Unternehmensprofil";
-  }
-  return normalizedTopLevel(source);
+  if (!normalized) return "Andere Quelle";
+  if (["google_maps", "google_business_profile", "gbp"].includes(normalized)) return "Google Business Profile";
+  if (["google", "organic", "google_organic", "seo"].includes(normalized)) return "Organische Google-Suche";
+  if (["google_ads", "googleads", "ads"].includes(normalized)) return "Google Ads";
+  if (["check24", "check_24"].includes(normalized)) return "CHECK24";
+  if (["whatsapp", "wa"].includes(normalized)) return "WhatsApp";
+  if (["telefon", "phone", "call"].includes(normalized)) return "Telefon";
+  if (["empfehlung", "referral", "recommendation"].includes(normalized)) return "Empfehlung";
+  if (["direct", "direkt", "direktzugriff"].includes(normalized)) return "Direktzugriff";
+  return normalizedTopLevel(source) || "Andere Quelle";
 }
 
 export function getStatusLabel(status: string | null | undefined): string {

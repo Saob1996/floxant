@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-tipps-familien',
     title: "Umzug mit Familie: praktische Tipps | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzug mit Familie vorbereiten",
+    description: "Umzug mit Kindern organisieren: Die neue Wohnung gemeinsam kennenlernen, Betreuung und Umzugstasche vorbereiten und das Einleben am neuen Ort erleichtern.",
   });
 }
 export default async function Article() {

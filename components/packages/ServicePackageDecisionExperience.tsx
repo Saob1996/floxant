@@ -106,7 +106,7 @@ const variantCopy: Record<
 const effortSignals = [
   {
     title: "Ort und Gebiet",
-    text: "Regensburg plus 50 km ist fuer Reinigung relevant; Transporte und Plan B werden nach Strecke und Kapazitaet geprueft.",
+    text: "Regensburg plus 75 km ist fuer Reinigung relevant; Transporte und Plan B werden nach Strecke und Kapazitaet geprueft.",
   },
   {
     title: "Umfang und Zustand",
@@ -278,7 +278,7 @@ export function ServicePackageDecisionExperience({
               <ul className="mt-4 grid gap-3 text-sm font-semibold leading-6 text-slate-200">
                 <li className="flex gap-2">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-                  Reinigung wird für Regensburg plus 50 km sichtbar begrenzt.
+                  Reinigung wird für Regensburg plus 75 km sichtbar begrenzt.
                 </li>
                 <li className="flex gap-2">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />

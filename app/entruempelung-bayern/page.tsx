@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `entruempelung-bayern`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    title: "Entrümpelung in Bayern: Raum Regensburg | FLOXANT",
+    description: "FLOXANT räumt Keller, Räume und Haushalte im lokalen Gebiet bis 75 km um Regensburg. Umfang, Trennung, Zugang und Termin gemeinsam abstimmen.",
   });
 }
 export default async function EntrümpelungBayernPage({ params }: PageProps) {
@@ -43,8 +43,8 @@ export default async function EntrümpelungBayernPage({ params }: PageProps) {
         dict={localeDict}
         city={city}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-        heroTitle="Entrümpelung in Bayern mit klaren Eckdaten anfragen"
-        heroText="Beschreiben Sie Ort, Räume, Menge, Zugang, Fotos und gewünschten Endzustand. FLOXANT prüft von Regensburg aus, ob Strecke, Umfang und Zeitraum umsetzbar sind."
+        heroTitle="Entrümpelung im Raum Regensburg anfragen"
+        heroText="Unser lokales Einsatzgebiet reicht bis 75 km Luftlinie um Regensburg. Beschreiben Sie Räume, Menge, Zugang und den gewünschten Endzustand. Daraus klären wir die benötigte Hilfe und ein persönliches Angebot."
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
         breadcrumbs={[
           { label: "Home", href: "/" },

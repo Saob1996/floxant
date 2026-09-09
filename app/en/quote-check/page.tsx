@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${company.url}${path}`,
     languages: {
-      "de-DE": `${company.url}/angebotscheck`,
+      "de-DE": `${company.url}/angebot-guenstiger-pruefen`,
       en: `${company.url}${path}`,
-      "x-default": `${company.url}/angebotscheck`,
+      "x-default": `${company.url}/angebot-guenstiger-pruefen`,
     },
   },
   openGraph: {

@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: `kleintransporte`,
     title: "Kleintransporte in Bayern anfragen | FLOXANT",
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    description: "Kleintransport für einzelne Möbel oder Kartons anfragen: Maße, Gewicht, Abhol- und Zielort, Etagen und Termin nennen. Strecke und Aufwand persönlich abstimmen.",
   });
 }
 export default async function KleintransportePage() {

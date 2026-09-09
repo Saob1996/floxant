@@ -5,16 +5,13 @@ import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { company } from "@/lib/company";
-import { floxantLocations } from "@/lib/floxant-locations";
-import {
-  floxantRegions,
-  getServicesByRegion,
-  type FloxantRegion,
-} from "@/lib/floxant-services";
+import { floxantLocations, type FloxantLocationKey } from "@/lib/floxant-locations";
 import { germanText } from "@/lib/german-text";
-import { buildGlobalRequestHref } from "@/lib/lead-intents/resolve-request-context";
+import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { SocialLinks } from "@/components/SocialLinks";
+import { getPublicRouteContext } from "@/lib/public-route-context";
 
 const legalLinks = [
   { href: "/impressum", label: "Impressum" },
@@ -56,24 +53,24 @@ export function Footer({ dic }: { dic?: any } = {}) {
     ].join("\n"),
   );
 
-  const isDuesseldorfContext = pathname.includes("duesseldorf");
-  const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
-  const regionsToShow: FloxantRegion[] = [];
-  const locationsToShow: FloxantRegion[] = isDuesseldorfContext
+  const routeContext = getPublicRouteContext(pathname);
+  const isDuesseldorfContext = routeContext.location === "duesseldorf";
+  const isRegensburgContext = routeContext.location === "regensburg";
+  const locationsToShow: FloxantLocationKey[] = isDuesseldorfContext
     ? ["duesseldorf"]
     : isRegensburgContext
       ? ["regensburg"]
       : ["duesseldorf", "regensburg"];
   const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
   const footerIntro = isDuesseldorfContext
-    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
+    ? "Wir übernehmen Wohnungs-, Büro-, Praxis- und Gewerbereinigung in Düsseldorf und im Umkreis von 75 km."
     : isRegensburgContext
-      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
-      : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
-  const footerContactHref = buildGlobalRequestHref("global_footer");
+      ? "Reinigung, Umzug und Entrümpelung in Regensburg und im Umkreis von 75 km – persönlich mit Ihnen abgestimmt."
+      : "Wir unterstützen Sie mit Reinigung in Düsseldorf sowie Reinigung, Umzug und Entrümpelung in Regensburg. Rund um beide Standorte sind wir im Umkreis von 75 km tätig.";
+  const footerContactHref = pathname === "/kontakt" ? "#direktanfrage" : buildRequestHref({ location: routeContext.location, service: routeContext.service, intent: routeContext.intent, source: "global_footer", entryPage: pathname, ctaComponent: "footer", ctaPosition: "footer" });
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
+    <footer data-nosnippet className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
@@ -81,7 +78,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </p>
             <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
-              Klare Anfrage statt langer Suchwege.
+              Wir kümmern uns um Ihr Anliegen.
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
               {footerIntro}
@@ -99,6 +96,8 @@ export function Footer({ dic }: { dic?: any } = {}) {
             </Link>
             <a
               href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
               data-event="whatsapp_click"
               data-source="global_footer"
               data-destination={whatsappHref}
@@ -109,14 +108,13 @@ export function Footer({ dic }: { dic?: any } = {}) {
             </a>
             <Link
               href={footerContactHref}
-              onClick={() => window.dispatchEvent(new CustomEvent("floxant:neutral-request-entry"))}
               data-event="seo_cta_click"
               data-source="global_footer"
-              data-cta-label="Kontakt oeffnen"
+              data-cta-label="Angebot anfragen"
               data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
-              Kontakt öffnen
+              Angebot anfragen
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -166,6 +164,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 </div>
               ))}
             </div>
+            <SocialLinks location={routeContext.location} />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -176,7 +175,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                   {group.links.map((item) => (
                     <Link
                       key={item.href}
-                      href={item.href}
+                      href={item.href.startsWith("/kontakt?mode=neutral") ? footerContactHref : item.href}
                       prefetch={false}
                       className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
                     >
@@ -188,52 +187,6 @@ export function Footer({ dic }: { dic?: any } = {}) {
             ))}
           </div>
 
-          <div className={`grid gap-5${regionsToShow.length > 1 ? " lg:grid-cols-2" : ""}`}>
-            {regionsToShow.map((regionId) => {
-              const region = floxantRegions[regionId];
-              const services = getServicesByRegion(regionId).slice(0, 6);
-
-              return (
-                <div key={regionId} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-lg font-black">{germanText(region.label, region.label)}</h3>
-                      <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                        {germanText(region.shortDescription, region.shortDescription)}
-                      </p>
-                    </div>
-                    <Link
-                      href={region.href}
-                      prefetch={false}
-                      data-event="region_select"
-                      data-region={regionId}
-                      data-source="global_footer"
-                      className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-slate-950"
-                      aria-label={`${germanText(region.label, region.label)} öffnen`}
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.id}
-                        href={service.href}
-                        prefetch={false}
-                        data-event="service_card_click"
-                        data-service={service.id}
-                        data-region={service.region}
-                        data-source="global_footer"
-                        className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
-                      >
-                        {germanText(service.title, service.title)}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </section>
 
         <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">

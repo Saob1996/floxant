@@ -7,6 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadata = await generatePrimaryMetadata();
   return {
     ...metadata,
+    alternates: { ...metadata.alternates, languages: undefined },
     robots: {
       index: false,
       follow: true,

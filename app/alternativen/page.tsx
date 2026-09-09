@@ -33,7 +33,7 @@ export default async function AlternativenLandingPage() {
               href={`/alternativen/${item.slug}`}
               className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-orange-500/30 transition-all"
             >
-              <h3 className="text-xl font-medium mb-2 group-hover:text-orange-400 transition-colors">{item.title}</h3>
+              <h2 className="text-xl font-medium mb-2 group-hover:text-orange-400 transition-colors">{item.title}</h2>
               <p className="text-white/40 text-sm mb-4">{item.desc}</p>
               <div className="flex items-center gap-2 text-orange-400 font-medium">
                 Zum Vergleich <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

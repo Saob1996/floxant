@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/reinigung-nach-umzug',
     title: "Reinigung nach dem Umzug: Übergabe | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Reinigung nach dem Umzug",
+    description: "Reinigung vor der Wohnungsübergabe planen: Küche, Bad, Böden, Fenster und Nebenräume prüfen, Umfang abstimmen und typische Rückstände berücksichtigen.",
   });
 }
 export default async function Article() {

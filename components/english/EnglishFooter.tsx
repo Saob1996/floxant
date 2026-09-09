@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { SocialLinks } from "@/components/SocialLinks";
+import type { FloxantLocationKey } from "@/lib/floxant-locations";
 
 const serviceLinks = [
   { href: "/en/services", label: "All English services" },
@@ -26,9 +28,9 @@ const trustLinks = [
   { href: "/impressum", label: "Legal notice (German)" },
 ] as const;
 
-export function EnglishFooter() {
+export function EnglishFooter({ location }: { location?: FloxantLocationKey } = {}) {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 px-5 py-12 text-white sm:px-8 lg:px-10">
+    <footer data-nosnippet className="border-t border-slate-800 bg-slate-950 px-5 py-12 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-9 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
           <div>
@@ -36,8 +38,8 @@ export function EnglishFooter() {
               FLOXANT
             </Link>
             <p className="mt-4 max-w-lg text-sm font-semibold leading-7 text-slate-300">
-              Public English information for reviewed cleaning, moving, clearance and quote-check
-              routes. Scope, region, access and timing are assessed before a next step is confirmed.
+              Cleaning in Düsseldorf and Regensburg, plus moving and house clearance in Regensburg.
+              Tell us what you need and we will prepare a personal quote. Our local service areas extend 75 km around each city.
             </p>
             <div className="mt-5 grid gap-3 text-sm font-bold text-slate-200">
               <a href={`tel:${company.phoneRaw}`} className="inline-flex items-center gap-2 hover:text-white">
@@ -50,7 +52,7 @@ export function EnglishFooter() {
               </a>
               <span className="inline-flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" aria-hidden="true" />
-                Reviewed services for Düsseldorf and Regensburg, Germany
+                Düsseldorf and Regensburg, Germany
               </span>
             </div>
             <Link
@@ -60,6 +62,7 @@ export function EnglishFooter() {
               Contact FLOXANT
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
+            <SocialLinks location={location} english />
           </div>
 
           <FooterNavigation title="Services" links={serviceLinks} />

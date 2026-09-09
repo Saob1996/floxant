@@ -303,7 +303,7 @@ export default function ReinigungNachVeranstaltungPage() {
                   { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
                   { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
                   { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
-                  { href: "/regensburg/reinigung", label: "Regensburg Stadtteile und 50-km-Umkreis" },
+                  { href: "/regensburg/reinigung", label: "Regensburg Stadtteile und 75-km-Umkreis" },
                 ].map((link) => (
                   <Link
                     key={link.href}

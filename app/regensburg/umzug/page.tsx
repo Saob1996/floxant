@@ -16,6 +16,7 @@ import {
 import { NoPrefetchLink as Link } from "@/components/NoPrefetchLink";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { company } from "@/lib/company";
+import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { getPrioritySeoMeta } from "@/lib/content/seo-meta-registry";
 import {
   buildBreadcrumbJsonLd,
@@ -25,10 +26,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const canonicalPath = "/regensburg/umzug";
-const moveContactHref = "/regensburg/buchen?service=umzug&intent=umzug-regensburg&source=website";
-const furnitureAssemblyHref = "/regensburg/buchen?service=moebelmontage&intent=moebelmontage-regensburg&source=website";
-const offerCheckHref =
-  "/kontakt?service=umzug&city=regensburg&intent=umzugsangebot-pruefen&source=website";
+const moveContactHref = buildRequestHref({ location: "regensburg", service: "umzug", intent: "umzug-regensburg", source: "service_page", entryPage: canonicalPath, ctaComponent: "regensburg_move_page", ctaPosition: "hero" });
+const furnitureAssemblyHref = buildRequestHref({ location: "regensburg", service: "moebeltransport", intent: "moebelmontage-regensburg", source: "service_page", entryPage: canonicalPath, ctaComponent: "regensburg_move_page", ctaPosition: "content" });
+const offerCheckHref = "/angebot-guenstiger-pruefen?location=regensburg&service=umzug&intent=umzugsangebot-pruefen&source=service_page&entryPage=%2Fregensburg%2Fumzug&ctaComponent=regensburg_move_page&ctaPosition=content";
 const pageMeta = getPrioritySeoMeta(canonicalPath);
 const pageTitle = pageMeta.seoTitle;
 const pageDescription = pageMeta.description;
@@ -49,6 +49,7 @@ export const metadata: Metadata = {
     canonical: canonicalPath,
     languages: {
       "de-DE": canonicalPath,
+      en: "/en/regensburg/moving",
       "x-default": canonicalPath,
     },
   },
@@ -67,9 +68,9 @@ export const metadata: Metadata = {
 };
 
 const heroFacts = [
-  "Start, Ziel und gewünschter Termin",
-  "Etage, Aufzug und Trageweg",
-  "Möbelumfang, Kartons und Fotos",
+  "Vereinbarte Trage- und Transportarbeiten",
+  "Packhilfe und Montage auf Wunsch",
+  "Persönliche Abstimmung von Umfang und Termin",
 ] as const;
 
 const moveTypes = [
@@ -293,9 +294,9 @@ export default function RegensburgUmzugPage() {
               {pageMeta.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-              Ob kompletter Umzug, Tragehilfe, Möbeltransport oder Montage: Senden Sie
-              Start, Ziel, Etagen, Aufzug, Zimmer, Wohnfläche, Möbel, Kartons, Fotos und
-              Terminwunsch. FLOXANT prüft Umfang und mögliche Zusatzleistungen.
+              Ob Wohnungswechsel, Tragehilfe oder Möbeltransport: Wir übernehmen die
+              vereinbarten Arbeiten und stimmen den Ablauf mit Ihnen ab. Packhilfe,
+              Montage oder anschließende Reinigung lassen sich passend ergänzen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -313,7 +314,7 @@ export default function RegensburgUmzugPage() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Fotos für eine Einschätzung senden
+                Per WhatsApp besprechen
               </a>
               <a
                 href={`tel:${company.phoneRaw}`}
@@ -328,7 +329,7 @@ export default function RegensburgUmzugPage() {
           <aside className="rounded-lg border border-white/15 bg-white/[0.07] p-5 backdrop-blur sm:p-6">
             <Truck className="h-7 w-7 text-cyan-200" aria-hidden="true" />
             <h2 className="mt-4 text-2xl font-black">
-              Für die erste Rückmeldung
+              Das übernehmen wir
             </h2>
             <div className="mt-5 grid gap-3">
               {heroFacts.map((item) => (

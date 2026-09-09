@@ -314,7 +314,7 @@ export const footerNavigationGroups = [
     links: [
       { label: "Düsseldorf", href: "/duesseldorf" },
       { label: "Regensburg", href: "/regensburg" },
-      { label: "Servicegebiet ca. 50 km", href: "/regensburg" },
+      { label: "Servicegebiet ca. 75 km", href: "/regensburg" },
     ],
   },
   {

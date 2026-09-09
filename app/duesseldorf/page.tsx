@@ -75,7 +75,7 @@ const faqItems = [
     a: "FLOXANT ist in Düsseldorf unter Breite Str. 22, 40213 Düsseldorf geführt. Für eine Reinigungsanfrage können Sie Telefon, WhatsApp oder das Formular nutzen.",
   },
   {
-    q: "Gibt es eine 50-km-Umgebung um Düsseldorf?",
+    q: "Gibt es eine 75-km-Umgebung um Düsseldorf?",
     a: "Die Umgebung wird nur als möglicher Servicebereich erklärt. Orte wie Neuss, Ratingen, Meerbusch, Hilden, Erkrath, Krefeld, Mettmann oder Duisburg sind keine zusätzlichen Niederlassungen.",
   },
   {
@@ -135,7 +135,7 @@ function JsonLd() {
           "Gewerbereinigung Düsseldorf",
           "Praxisreinigung Düsseldorf",
           "Fensterreinigung Düsseldorf",
-          "Düsseldorf 50 km Servicegebiet",
+          "Düsseldorf 75 km Servicegebiet",
         ],
         potentialActions: [
           { name: "Angebot prüfen", target: offerHref, type: "ContactAction" },
@@ -158,6 +158,7 @@ function JsonLd() {
           addressLocality: duesseldorfCompany.city,
           addressCountry: duesseldorfCompany.countryCode,
         },
+        parentOrganization: { "@id": `${company.url}/#organization` },
         areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Krefeld", "Mettmann"],
       },
       buildFaqJsonLd(faqItems),
@@ -282,7 +283,7 @@ export default function DuesseldorfHubPage() {
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
               <MapPin className="h-4 w-4" aria-hidden="true" />
-              50-km-Umgebung
+              75-km-Umgebung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Umgebung als Einsatzgebiet, nicht als neue Niederlassung.

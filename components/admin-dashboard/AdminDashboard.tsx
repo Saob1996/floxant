@@ -84,6 +84,67 @@ function whatsappHref(phone: string): string {
 }
 
 type LocationFilter = "all" | "duesseldorf" | "regensburg" | "other";
+type PeriodFilter = "today" | "7" | "30" | "90" | "all";
+
+type SalesWorkflow = {
+  nextAction?: string;
+  nextActionAt?: string;
+  assignedTo?: string;
+  quoteValueGross?: number;
+  orderStatus?: string;
+  lostReason?: string;
+  lostReasonNote?: string;
+  internalNote?: string;
+  lastContactAt?: string;
+};
+
+function asRecord(value: unknown): Record<string, unknown> {
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed as Record<string, unknown> : {};
+    } catch {
+      return {};
+    }
+  }
+  return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function getSalesWorkflow(booking: BookingRecord): SalesWorkflow {
+  const details = asRecord(booking.details);
+  const configuration = asRecord(details.configuration);
+  return asRecord(configuration.round3Workflow) as SalesWorkflow;
+}
+
+function toDateTimeLocal(value?: string) {
+  if (!value || !Number.isFinite(Date.parse(value))) return "";
+  const date = new Date(value);
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offset).toISOString().slice(0, 16);
+}
+
+function followUpDate(days: number) {
+  const date = new Date(Date.now() + days * 86400000);
+  date.setHours(9, 0, 0, 0);
+  return toDateTimeLocal(date.toISOString());
+}
+
+function isOpenSalesStatus(status: string) {
+  return !["won", "lost", "completed", "erledigt", "paid", "deleted"].includes(status);
+}
+
+function salesPriority(booking: BookingRecord, now = Date.now()) {
+  const status = booking.status || "new";
+  const workflow = getSalesWorkflow(booking);
+  const nextActionTime = workflow.nextActionAt ? Date.parse(workflow.nextActionAt) : Number.NaN;
+  if (isOpenSalesStatus(status) && Number.isFinite(nextActionTime) && nextActionTime < now) return 0;
+  if (status === "new") return 1;
+  if (isOpenSalesStatus(status) && Number.isFinite(nextActionTime) && nextActionTime < now + 86400000) return 2;
+  if (status === "quote_sent" || status === "follow_up") return 3;
+  if (status === "won" && ["scheduled", "not_scheduled"].includes(workflow.orderStatus || "not_scheduled")) return 4;
+  if (workflow.orderStatus === "billing_open") return 5;
+  return 6;
+}
 
 function getLocationFilterValues(booking: BookingRecord): Array<Exclude<LocationFilter, "all">> {
   const location = getBookingSummary(booking).location.toLocaleLowerCase("de-DE");
@@ -158,7 +219,10 @@ export function AdminDashboard() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [serviceFilter, setServiceFilter] = useState("all");
+  const [sourceFilter, setSourceFilter] = useState("all");
+  const [ownerFilter, setOwnerFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState<LocationFilter>("all");
+  const [periodFilter, setPeriodFilter] = useState<PeriodFilter>("30");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [deleteCandidate, setDeleteCandidate] = useState<BookingRecord | null>(null);
@@ -258,23 +322,60 @@ export function AdminDashboard() {
     () => [...new Set(bookings.map((booking) => booking.service).filter((value): value is string => Boolean(value)))].sort(),
     [bookings],
   );
+  const sourceOptions = useMemo(
+    () => [...new Set(bookings.map((booking) => getBookingSummary(booking).source).filter(Boolean))].sort(),
+    [bookings],
+  );
+  const ownerOptions = useMemo(
+    () => [...new Set(bookings.map((booking) => getSalesWorkflow(booking).assignedTo || "").filter(Boolean))].sort(),
+    [bookings],
+  );
   const filteredBookings = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("de-DE");
+    const now = Date.now();
+    const periodStart = periodFilter === "all"
+      ? 0
+      : periodFilter === "today"
+        ? new Date(new Date().setHours(0, 0, 0, 0)).getTime()
+        : now - Number(periodFilter) * 86400000;
     return bookings.filter((booking) => {
       if (statusFilter !== "all" && (booking.status || "new") !== statusFilter) return false;
       if (serviceFilter !== "all" && booking.service !== serviceFilter) return false;
+      if (sourceFilter !== "all" && getBookingSummary(booking).source !== sourceFilter) return false;
+      if (ownerFilter !== "all" && getSalesWorkflow(booking).assignedTo !== ownerFilter) return false;
       if (locationFilter !== "all" && !getLocationFilterValues(booking).includes(locationFilter)) return false;
+      if (periodStart && Date.parse(booking.timestamp || booking.created_at || "") < periodStart) return false;
       return !normalizedQuery || getBookingSearchText(booking).includes(normalizedQuery);
+    }).sort((left, right) => {
+      const priorityDifference = salesPriority(left, now) - salesPriority(right, now);
+      if (priorityDifference) return priorityDifference;
+      return Date.parse(right.timestamp || right.created_at || "") - Date.parse(left.timestamp || left.created_at || "");
     });
-  }, [bookings, locationFilter, query, serviceFilter, statusFilter]);
+  }, [bookings, locationFilter, ownerFilter, periodFilter, query, serviceFilter, sourceFilter, statusFilter]);
 
   const selectedBooking = selectedId
     ? bookings.find((booking) => booking.id === selectedId) || null
     : null;
+  const now = Date.now();
+  const responseDurations = bookings.flatMap((booking) => {
+    const receivedAt = Date.parse(booking.timestamp || booking.created_at || "");
+    const contactedAt = Date.parse(getSalesWorkflow(booking).lastContactAt || "");
+    return Number.isFinite(receivedAt) && Number.isFinite(contactedAt) && contactedAt >= receivedAt
+      ? [(contactedAt - receivedAt) / 3600000]
+      : [];
+  });
   const counts = {
     new: bookings.filter((booking) => (booking.status || "new") === "new").length,
-    inProgress: bookings.filter((booking) => ["in_progress", "contacted", "quote_sent", "appointment_scheduled", "in_bearbeitung"].includes(booking.status || "")).length,
-    done: bookings.filter((booking) => ["completed", "erledigt"].includes(booking.status || "")).length,
+    unanswered: bookings.filter((booking) => (booking.status || "new") === "new" && !getSalesWorkflow(booking).lastContactAt).length,
+    overdue: bookings.filter((booking) => {
+      const nextActionAt = getSalesWorkflow(booking).nextActionAt;
+      return isOpenSalesStatus(booking.status || "new") && Boolean(nextActionAt) && Date.parse(nextActionAt || "") < now;
+    }).length,
+    quotes: bookings.filter((booking) => ["quote_sent", "follow_up"].includes(booking.status || "")).length,
+    won: bookings.filter((booking) => (booking.status || "") === "won").length,
+    openQuoteValue: bookings.reduce((sum, booking) => isOpenSalesStatus(booking.status || "new") ? sum + (Number(getSalesWorkflow(booking).quoteValueGross) || 0) : sum, 0),
+    wonRevenue: bookings.reduce((sum, booking) => (booking.status || "") === "won" ? sum + (Number(getSalesWorkflow(booking).quoteValueGross) || 0) : sum, 0),
+    averageResponseHours: responseDurations.length ? responseDurations.reduce((sum, value) => sum + value, 0) / responseDurations.length : null,
   };
 
   async function updateStatus(bookingId: string, status: EditableBookingStatus) {
@@ -283,6 +384,32 @@ export function AdminDashboard() {
 
     setUpdatingId(bookingId);
     setError("");
+
+    const currentBooking = bookings.find((booking) => booking.id === bookingId);
+    const existingWorkflow = currentBooking ? getSalesWorkflow(currentBooking) : {};
+    const workflow: Record<string, string> = {};
+    if (status === "contacted") workflow.contactAttemptAt = new Date().toISOString();
+    if (status === "quote_sent" && !existingWorkflow.nextActionAt) {
+      workflow.nextAction = "Angebot nachfassen";
+      workflow.nextActionAt = new Date(Date.now() + 2 * 86400000).toISOString();
+    }
+    if (status === "lost") {
+      const choice = window.prompt("Verlustgrund wählen: 1 Preis, 2 kein Kontakt, 3 Termin, 4 Konkurrenz, 5 Leistung/Entfernung, 6 Kunde abgesagt, 7 Dublette, 8 sonstiger Grund");
+      const reasons: Record<string, string> = { "1": "price", "2": "no_contact", "3": "date_unavailable", "4": "competitor", "5": "service_or_distance", "6": "customer_cancelled", "7": "duplicate", "8": "other" };
+      if (!choice || !reasons[choice.trim()]) {
+        setUpdatingId(null);
+        return;
+      }
+      workflow.lostReason = reasons[choice.trim()];
+      if (choice.trim() === "8") {
+        const note = window.prompt("Kurzer Verlustgrund:")?.trim() || "";
+        if (!note) {
+          setUpdatingId(null);
+          return;
+        }
+        workflow.lostReasonNote = note.slice(0, 400);
+      }
+    }
 
     const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
     const accessToken = sessionData.session?.access_token;
@@ -302,7 +429,7 @@ export function AdminDashboard() {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status, workflow }),
       });
       result = await response.json().catch(() => null) as { bookingId?: string; status?: string; details?: unknown } | null;
     } catch {
@@ -317,6 +444,36 @@ export function AdminDashboard() {
       );
     }
 
+    setUpdatingId(null);
+  }
+
+  async function updateSalesWorkflow(bookingId: string, status: EditableBookingStatus, workflow: Record<string, string>) {
+    const supabase = getDashboardSupabaseClient();
+    if (!supabase) return;
+    setUpdatingId(bookingId);
+    setError("");
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    const accessToken = sessionData.session?.access_token;
+    if (sessionError || !accessToken) {
+      setError("Die Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.");
+      setUpdatingId(null);
+      return;
+    }
+    try {
+      const response = await fetch(`/api/admin/bookings/${encodeURIComponent(bookingId)}`, {
+        method: "PATCH",
+        headers: { Accept: "application/json", Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ status, workflow }),
+      });
+      const result = await response.json().catch(() => null) as { bookingId?: string; status?: string; details?: unknown; code?: string } | null;
+      if (!response.ok || result?.bookingId !== bookingId) {
+        setError(result?.code === "FOLLOW_UP_REQUIRED" ? "Bei ‚Angebot gesendet‘ ist ein Nachfassdatum erforderlich." : result?.code === "LOST_REASON_REQUIRED" ? "Bei ‚Verloren‘ ist ein Verlustgrund erforderlich." : "Verkaufsdaten konnten nicht gespeichert werden.");
+      } else {
+        setBookings((current) => current.map((booking) => booking.id === bookingId ? { ...booking, status: result?.status || status, details: result?.details ?? booking.details } : booking));
+      }
+    } catch {
+      setError("Verkaufsdaten konnten wegen eines Verbindungsfehlers nicht gespeichert werden.");
+    }
     setUpdatingId(null);
   }
 
@@ -436,7 +593,7 @@ export function AdminDashboard() {
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">Interne Übersicht</p>
             <h1 className="mt-3 text-3xl font-black tracking-[-0.03em] sm:text-5xl">Kundenanfragen</h1>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-400 sm:text-base">
-              Neueste Anfragen zuerst. Statusänderungen werden geschützt gespeichert und sind nach dem Neuladen weiterhin verfügbar.
+              Zuerst erscheinen überfällige Follow-ups, neue unbeantwortete Anfragen und heute fällige Aufgaben. Änderungen werden geschützt gespeichert.
             </p>
           </div>
           <button
@@ -450,28 +607,20 @@ export function AdminDashboard() {
           </button>
         </section>
 
-        <section id="leerrueckfahrten-verwalten" className="mt-8 scroll-mt-6" aria-labelledby="leerrueckfahrten-heading">
-          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Touren und freie Kapazitäten</p>
-              <h2 id="leerrueckfahrten-heading" className="mt-2 text-2xl font-black tracking-[-0.02em]">Leerrückfahrten veröffentlichen und verwalten</h2>
-            </div>
-            <p className="max-w-xl text-sm font-semibold leading-6 text-slate-400">
-              Reale Touren anlegen, veröffentlichen, reservieren, pausieren, abschließen oder archivieren. Veröffentlichte und noch gültige Fahrten erscheinen automatisch auf der Kundenseite.
-            </p>
-          </div>
-          <AdminBackhaulPanel />
-        </section>
-
-        <section className="mt-8 grid gap-3 sm:grid-cols-3">
+        <section className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <MetricCard label="Neue Anfragen" value={counts.new} icon={<CircleDot className="h-5 w-5" />} tone="cyan" />
-          <MetricCard label="In Bearbeitung" value={counts.inProgress} icon={<Clock3 className="h-5 w-5" />} tone="amber" />
-          <MetricCard label="Erledigt" value={counts.done} icon={<CheckCircle2 className="h-5 w-5" />} tone="emerald" />
+          <MetricCard label="Unbeantwortet" value={counts.unanswered} icon={<Inbox className="h-5 w-5" />} tone="amber" />
+          <MetricCard label="Follow-up überfällig" value={counts.overdue} icon={<Clock3 className="h-5 w-5" />} tone="amber" />
+          <MetricCard label="Angebote offen" value={counts.quotes} icon={<MessageSquareText className="h-5 w-5" />} tone="cyan" />
+          <MetricCard label="Gewonnen" value={counts.won} icon={<CheckCircle2 className="h-5 w-5" />} tone="emerald" />
+          <MetricCard label="Offener Angebotswert" value={`${counts.openQuoteValue.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €`} icon={<Megaphone className="h-5 w-5" />} tone="emerald" />
+          <MetricCard label="Gewonnener Umsatz" value={`${counts.wonRevenue.toLocaleString("de-DE", { maximumFractionDigits: 0 })} €`} icon={<CheckCircle2 className="h-5 w-5" />} tone="emerald" />
+          <MetricCard label="Ø Reaktionszeit" value={counts.averageResponseHours === null ? "Keine Daten" : `${counts.averageResponseHours.toLocaleString("de-DE", { maximumFractionDigits: 1 })} Std.`} icon={<Clock3 className="h-5 w-5" />} tone="cyan" />
         </section>
 
         <section className="mt-8 rounded-2xl border border-white/10 bg-white/[0.045] shadow-[0_24px_80px_rgba(0,0,0,0.2)]">
-          <div className="grid gap-3 border-b border-white/10 p-4 lg:grid-cols-[minmax(18rem,1fr)_12rem_13rem_12rem_auto] lg:p-5">
-            <label className="flex min-h-11 items-center gap-3 rounded-xl border border-white/10 bg-black/20 px-4 focus-within:border-cyan-200/40 focus-within:ring-2 focus-within:ring-cyan-300/10">
+          <div className="grid gap-3 border-b border-white/10 p-4 md:grid-cols-2 xl:grid-cols-4 lg:p-5">
+            <label className="flex min-h-11 items-center gap-3 rounded-xl border border-white/10 bg-black/20 px-4 focus-within:border-cyan-200/40 focus-within:ring-2 focus-within:ring-cyan-300/10 md:col-span-2">
               <Search className="h-4 w-4 shrink-0 text-slate-500" aria-hidden="true" />
               <span className="sr-only">Anfragen durchsuchen</span>
               <input
@@ -521,6 +670,34 @@ export function AdminDashboard() {
                 ))}
               </select>
             </label>
+            <label>
+              <span className="sr-only">Nach Quelle filtern</span>
+              <select value={sourceFilter} onChange={(event) => setSourceFilter(event.target.value)} className="min-h-11 w-full rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-bold text-white outline-none focus:border-cyan-200/40 focus:ring-2 focus:ring-cyan-300/10">
+                <option value="all">Alle Quellen</option>
+                {sourceOptions.map((source) => <option key={source} value={source}>{source}</option>)}
+              </select>
+            </label>
+            <label>
+              <span className="sr-only">Nach verantwortlicher Person filtern</span>
+              <select value={ownerFilter} onChange={(event) => setOwnerFilter(event.target.value)} className="min-h-11 w-full rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-bold text-white outline-none focus:border-cyan-200/40 focus:ring-2 focus:ring-cyan-300/10">
+                <option value="all">Alle Verantwortlichen</option>
+                {ownerOptions.map((owner) => <option key={owner} value={owner}>{owner}</option>)}
+              </select>
+            </label>
+            <label>
+              <span className="sr-only">Zeitraum filtern</span>
+              <select
+                value={periodFilter}
+                onChange={(event) => setPeriodFilter(event.target.value as PeriodFilter)}
+                className="min-h-11 w-full rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-bold text-white outline-none focus:border-cyan-200/40 focus:ring-2 focus:ring-cyan-300/10"
+              >
+                <option value="today">Heute</option>
+                <option value="7">7 Tage</option>
+                <option value="30">30 Tage</option>
+                <option value="90">90 Tage</option>
+                <option value="all">Gesamt</option>
+              </select>
+            </label>
             <div className="flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm font-black text-slate-300">
               {filteredBookings.length} von {bookings.length}
             </div>
@@ -548,7 +725,7 @@ export function AdminDashboard() {
           ) : (
             <>
               <div className="hidden overflow-x-auto lg:block">
-                <table className="w-full min-w-[1500px] border-collapse text-left">
+                <table className="w-full min-w-[1760px] border-collapse text-left">
                   <thead>
                     <tr className="border-b border-white/10 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
                       <th className="px-5 py-4">Name</th>
@@ -558,14 +735,17 @@ export function AdminDashboard() {
                       <th className="px-5 py-4">Telefon</th>
                       <th className="px-5 py-4">E-Mail</th>
                       <th className="px-5 py-4">Quelle</th>
+                      <th className="px-5 py-4">Nächste Aktion</th>
+                      <th className="px-5 py-4">Wert</th>
                       <th className="px-5 py-4">Status</th>
                       <th className="px-5 py-4 text-right">Schnellaktionen</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredBookings.map((booking) => {
-                      const summary = getBookingSummary(booking);
-                      return (
+                 {filteredBookings.map((booking) => {
+                   const summary = getBookingSummary(booking);
+                   const workflow = getSalesWorkflow(booking);
+                   return (
                         <tr key={booking.id} className="border-b border-white/[0.07] align-top transition hover:bg-white/[0.035]">
                           <td className="px-5 py-5">
                             <p className="font-black text-white">{summary.name}</p>
@@ -586,6 +766,13 @@ export function AdminDashboard() {
                           </td>
                           <td className="px-5 py-5 text-sm font-bold text-slate-300">
                             <p className="max-w-48 truncate">{summary.source || "Nicht angegeben"}</p>
+                          </td>
+                          <td className="px-5 py-5 text-sm font-bold text-slate-300">
+                            <p className="max-w-64 truncate text-slate-100">{workflow.nextAction || "Noch offen"}</p>
+                            <p className="mt-1 whitespace-nowrap text-xs text-slate-500">{workflow.nextActionAt ? formatBookingDate(workflow.nextActionAt) : "Kein Termin"}</p>
+                          </td>
+                          <td className="whitespace-nowrap px-5 py-5 text-sm font-black text-slate-200">
+                            {Number.isFinite(Number(workflow.quoteValueGross)) && Number(workflow.quoteValueGross) > 0 ? `${Number(workflow.quoteValueGross).toLocaleString("de-DE")} €` : "—"}
                           </td>
                           <td className="px-5 py-5">
                             <select
@@ -617,6 +804,7 @@ export function AdminDashboard() {
               <div className="divide-y divide-white/[0.07] lg:hidden">
                 {filteredBookings.map((booking) => {
                   const summary = getBookingSummary(booking);
+                  const workflow = getSalesWorkflow(booking);
                   return (
                     <article key={booking.id} className="p-4 sm:p-5">
                       <div className="flex items-start justify-between gap-3">
@@ -633,6 +821,8 @@ export function AdminDashboard() {
                         <p className="flex items-start gap-2 text-slate-400"><Phone className="mt-0.5 h-4 w-4 shrink-0" />{summary.phone || "Telefon nicht angegeben"}</p>
                         <p className="flex items-start gap-2 text-slate-400"><Mail className="mt-0.5 h-4 w-4 shrink-0" />{summary.email || "E-Mail nicht angegeben"}</p>
                         <p className="flex items-start gap-2 text-slate-400"><Megaphone className="mt-0.5 h-4 w-4 shrink-0" />{summary.source || "Quelle nicht angegeben"}</p>
+                        <p className="flex items-start gap-2 text-slate-200"><ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />{workflow.nextAction || "Nächste Aktion noch offen"}{workflow.nextActionAt ? ` · ${formatBookingDate(workflow.nextActionAt)}` : ""}</p>
+                        <p className="text-slate-300">Angebotswert: {Number.isFinite(Number(workflow.quoteValueGross)) && Number(workflow.quoteValueGross) > 0 ? `${Number(workflow.quoteValueGross).toLocaleString("de-DE")} € brutto` : "Keine Daten"}</p>
                       </div>
                       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                         {summary.phone ? <a href={phoneHref(summary.phone)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-3 text-xs font-black text-cyan-100"><Phone className="h-4 w-4" />Anrufen</a> : null}
@@ -659,6 +849,19 @@ export function AdminDashboard() {
             </>
           )}
         </section>
+
+        <section id="leerrueckfahrten-verwalten" className="mt-8 scroll-mt-6" aria-labelledby="leerrueckfahrten-heading">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Touren und freie Kapazitäten</p>
+              <h2 id="leerrueckfahrten-heading" className="mt-2 text-2xl font-black tracking-[-0.02em]">Leerrückfahrten veröffentlichen und verwalten</h2>
+            </div>
+            <p className="max-w-xl text-sm font-semibold leading-6 text-slate-400">
+              Reale Touren anlegen, veröffentlichen, reservieren, pausieren, abschließen oder archivieren. Veröffentlichte und noch gültige Fahrten erscheinen automatisch auf der Kundenseite.
+            </p>
+          </div>
+          <AdminBackhaulPanel />
+        </section>
       </div>
 
       {selectedBooking ? (
@@ -667,7 +870,7 @@ export function AdminDashboard() {
           updating={updatingId === selectedBooking.id}
           obscured={Boolean(deleteCandidate)}
           onClose={() => setSelectedId(null)}
-          onStatusChange={(status) => void updateStatus(selectedBooking.id, status)}
+          onWorkflowSave={(status, workflow) => void updateSalesWorkflow(selectedBooking.id, status, workflow)}
           onDeleteRequest={dashboardSupabaseConfig.adminDeleteEnabled
             ? () => {
                 if (deletingId === selectedBooking.id) return;
@@ -695,7 +898,7 @@ export function AdminDashboard() {
   );
 }
 
-function MetricCard({ label, value, icon, tone }: { label: string; value: number; icon: React.ReactNode; tone: "cyan" | "amber" | "emerald" }) {
+function MetricCard({ label, value, icon, tone }: { label: string; value: number | string; icon: React.ReactNode; tone: "cyan" | "amber" | "emerald" }) {
   const classes = {
     cyan: "border-cyan-200/15 bg-cyan-200/[0.07] text-cyan-100",
     amber: "border-amber-200/15 bg-amber-200/[0.07] text-amber-100",
@@ -729,19 +932,54 @@ function BookingDetail({
   updating,
   obscured,
   onClose,
-  onStatusChange,
+  onWorkflowSave,
   onDeleteRequest,
 }: {
   booking: BookingRecord;
   updating: boolean;
   obscured: boolean;
   onClose: () => void;
-  onStatusChange: (status: EditableBookingStatus) => void;
+  onWorkflowSave: (status: EditableBookingStatus, workflow: Record<string, string>) => void;
   onDeleteRequest?: () => void;
 }) {
   const dialogRef = useModalFocus();
   const summary = getBookingSummary(booking);
   const currentEditableStatus = EDITABLE_STATUSES.some((item) => item.value === summary.status) ? summary.status : "";
+  const savedWorkflow = getSalesWorkflow(booking);
+  const [salesStatus, setSalesStatus] = useState<EditableBookingStatus>((currentEditableStatus || "new") as EditableBookingStatus);
+  const [nextAction, setNextAction] = useState(savedWorkflow.nextAction || "");
+  const [nextActionAt, setNextActionAt] = useState(toDateTimeLocal(savedWorkflow.nextActionAt));
+  const [assignedTo, setAssignedTo] = useState(savedWorkflow.assignedTo || "");
+  const [quoteValueGross, setQuoteValueGross] = useState(savedWorkflow.quoteValueGross ? String(savedWorkflow.quoteValueGross) : "");
+  const [orderStatus, setOrderStatus] = useState(savedWorkflow.orderStatus || "not_scheduled");
+  const [lostReason, setLostReason] = useState(savedWorkflow.lostReason || "");
+  const [lostReasonNote, setLostReasonNote] = useState(savedWorkflow.lostReasonNote || "");
+  const [internalNote, setInternalNote] = useState(savedWorkflow.internalNote || "");
+
+  useEffect(() => {
+    const workflow = getSalesWorkflow(booking);
+    const status = getBookingSummary(booking).status;
+    setSalesStatus((EDITABLE_STATUSES.some((item) => item.value === status) ? status : "new") as EditableBookingStatus);
+    setNextAction(workflow.nextAction || "");
+    setNextActionAt(toDateTimeLocal(workflow.nextActionAt));
+    setAssignedTo(workflow.assignedTo || "");
+    setQuoteValueGross(workflow.quoteValueGross ? String(workflow.quoteValueGross) : "");
+    setOrderStatus(workflow.orderStatus || "not_scheduled");
+    setLostReason(workflow.lostReason || "");
+    setLostReasonNote(workflow.lostReasonNote || "");
+    setInternalNote(workflow.internalNote || "");
+  }, [booking]);
+
+  const workflowPayload = () => ({
+    nextAction: nextAction.trim(),
+    nextActionAt: nextActionAt ? new Date(nextActionAt).toISOString() : "",
+    assignedTo: assignedTo.trim(),
+    quoteValueGross: quoteValueGross.trim(),
+    orderStatus,
+    lostReason,
+    lostReasonNote: lostReasonNote.trim(),
+    internalNote: internalNote.trim(),
+  });
   const detailView = buildAdminBookingDetailView(booking);
   const sectionOrder = ["contact", "round-three-workflow", "service", "calculator", "location", "schedule", "description"];
   const customerSections = sectionOrder
@@ -787,6 +1025,35 @@ function BookingDetail({
             </a>
           ) : null}
         </div>
+
+        <section className="mt-6 rounded-2xl border border-cyan-200/20 bg-cyan-200/[0.07] p-5 sm:p-6" aria-labelledby="sales-quick-title">
+          <h3 id="sales-quick-title" className="text-lg font-black text-cyan-50">Verkaufsstatus und nächste Aktion</h3>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-black text-slate-200">Verkaufsstatus
+              <select value={salesStatus} onChange={(event) => setSalesStatus(event.target.value as EditableBookingStatus)} disabled={updating} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-black text-white outline-none focus:ring-2 focus:ring-cyan-300/20">
+                {EDITABLE_STATUSES.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Angebotswert brutto
+              <input type="number" min="0" step="0.01" value={quoteValueGross} onChange={(event) => setQuoteValueGross(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="Keine Daten" />
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Nächste konkrete Aktion
+              <input value={nextAction} onChange={(event) => setNextAction(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="z. B. Angebot telefonisch nachfassen" />
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Fällig am
+              <input type="datetime-local" value={nextActionAt} onChange={(event) => setNextActionAt(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" />
+            </label>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button type="button" onClick={() => { setNextAction("Nachfassen"); setNextActionAt(followUpDate(1)); }} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-cyan-100 hover:bg-white/[0.06]">Follow-up morgen</button>
+            <button type="button" onClick={() => { setNextAction("Nachfassen"); setNextActionAt(followUpDate(2)); }} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-cyan-100 hover:bg-white/[0.06]">In zwei Tagen</button>
+            <button type="button" onClick={() => onWorkflowSave("contacted", { ...workflowPayload(), contactAttemptAt: new Date().toISOString() })} disabled={updating} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-emerald-100 hover:bg-white/[0.06] disabled:opacity-60">Kontakt protokollieren</button>
+            <button type="button" onClick={() => onWorkflowSave(salesStatus, workflowPayload())} disabled={updating || (salesStatus === "quote_sent" && !nextActionAt) || salesStatus === "lost"} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-cyan-300 px-5 text-xs font-black text-slate-950 disabled:cursor-not-allowed disabled:opacity-50">
+              {updating ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />} Speichern
+            </button>
+          </div>
+          {salesStatus === "lost" ? <p className="mt-3 text-xs font-semibold text-amber-100">Den Verlustgrund bitte im Abschnitt „Verkauf und nächste Aktion“ ergänzen.</p> : null}
+        </section>
 
         {customerSections.map((section) => (
           <DetailSectionCard key={section.id} section={section} />
@@ -875,21 +1142,52 @@ function BookingDetail({
           </details>
         ) : null}
 
-        <section className="mt-6 rounded-2xl border border-cyan-200/15 bg-cyan-200/[0.06] p-5">
-          <label className="block text-sm font-black text-cyan-50" htmlFor={`detail-status-${booking.id}`}>Status ändern</label>
-          <div className="mt-3 flex items-center gap-3">
-            <select
-              id={`detail-status-${booking.id}`}
-              value={currentEditableStatus}
-              onChange={(event) => onStatusChange(event.target.value as EditableBookingStatus)}
-              disabled={updating}
-              className="min-h-12 min-w-0 flex-1 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-black text-white outline-none focus:ring-2 focus:ring-cyan-300/20 disabled:opacity-60"
-            >
-              {!currentEditableStatus ? <option value="">{getStatusLabel(summary.status)}</option> : null}
-              {EDITABLE_STATUSES.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
-            </select>
-            {updating ? <Loader2 className="h-5 w-5 animate-spin text-cyan-200" aria-label="Status wird gespeichert" /> : null}
+        <section className="mt-6 rounded-2xl border border-cyan-200/15 bg-cyan-200/[0.06] p-5 sm:p-6" aria-labelledby="sales-workflow-title">
+          <h3 id="sales-workflow-title" className="text-lg font-black text-cyan-50">Verkauf und nächste Aktion</h3>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-black text-slate-200">Verkaufsstatus
+              <select value={salesStatus} onChange={(event) => setSalesStatus(event.target.value as EditableBookingStatus)} disabled={updating} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-black text-white outline-none focus:ring-2 focus:ring-cyan-300/20">
+                {EDITABLE_STATUSES.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Verantwortliche Person
+              <input value={assignedTo} onChange={(event) => setAssignedTo(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="Name oder Kürzel" />
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Nächste konkrete Aktion
+              <input value={nextAction} onChange={(event) => setNextAction(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="z. B. Angebot telefonisch nachfassen" />
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Fällig am
+              <input type="datetime-local" value={nextActionAt} onChange={(event) => setNextActionAt(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" />
+            </label>
+            <label className="grid gap-2 text-sm font-black text-slate-200">Angebotswert brutto
+              <input type="number" min="0" step="0.01" value={quoteValueGross} onChange={(event) => setQuoteValueGross(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="0,00" />
+            </label>
+            {salesStatus === "won" ? <label className="grid gap-2 text-sm font-black text-slate-200">Auftragsstatus
+              <select value={orderStatus} onChange={(event) => setOrderStatus(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20">
+                <option value="not_scheduled">Noch nicht terminiert</option><option value="scheduled">Terminiert</option><option value="completed">Erledigt</option><option value="billing_open">Rechnung offen</option><option value="paid">Bezahlt</option><option value="cancelled">Storniert</option>
+              </select>
+            </label> : null}
+            {salesStatus === "lost" ? <>
+              <label className="grid gap-2 text-sm font-black text-slate-200">Verlustgrund
+                <select value={lostReason} onChange={(event) => setLostReason(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20">
+                  <option value="">Bitte wählen</option><option value="price">Preis</option><option value="no_contact">Kein weiterer Kontakt</option><option value="date_unavailable">Termin nicht verfügbar</option><option value="competitor">Konkurrenz gewählt</option><option value="service_or_distance">Leistung oder Entfernung nicht passend</option><option value="customer_cancelled">Kunde hat abgesagt</option><option value="duplicate">Dublette</option><option value="other">Sonstiger Grund</option>
+                </select>
+              </label>
+              {lostReason === "other" ? <label className="grid gap-2 text-sm font-black text-slate-200">Kurzer Verlustgrund<input value={lostReasonNote} onChange={(event) => setLostReasonNote(event.target.value)} className="min-h-12 min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" /></label> : null}
+            </> : null}
+            <label className="grid gap-2 text-sm font-black text-slate-200 sm:col-span-2">Interne Notiz
+              <textarea rows={3} value={internalNote} onChange={(event) => setInternalNote(event.target.value)} className="min-w-0 rounded-xl border border-white/10 bg-[#0b1727] px-4 py-3 text-sm font-semibold text-white outline-none focus:ring-2 focus:ring-cyan-300/20" placeholder="Nur intern sichtbar" />
+            </label>
           </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button type="button" onClick={() => { setNextAction("Nachfassen"); setNextActionAt(followUpDate(1)); }} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-cyan-100 hover:bg-white/[0.06]">Follow-up morgen</button>
+            <button type="button" onClick={() => { setNextAction("Nachfassen"); setNextActionAt(followUpDate(2)); }} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-cyan-100 hover:bg-white/[0.06]">In zwei Tagen</button>
+            <button type="button" onClick={() => onWorkflowSave("contacted", { ...workflowPayload(), contactAttemptAt: new Date().toISOString() })} disabled={updating} className="min-h-11 rounded-xl border border-white/10 px-4 text-xs font-black text-emerald-100 hover:bg-white/[0.06] disabled:opacity-60">Kontaktversuch protokollieren</button>
+            <button type="button" onClick={() => onWorkflowSave(salesStatus, workflowPayload())} disabled={updating || (salesStatus === "quote_sent" && !nextActionAt) || (salesStatus === "lost" && (!lostReason || (lostReason === "other" && !lostReasonNote.trim())))} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-cyan-300 px-5 text-xs font-black text-slate-950 disabled:cursor-not-allowed disabled:opacity-50">
+              {updating ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />} Speichern
+            </button>
+          </div>
+          {salesStatus === "quote_sent" && !nextActionAt ? <p className="mt-3 text-xs font-semibold text-amber-100">Bei „Angebot gesendet“ ist ein Nachfassdatum erforderlich.</p> : null}
         </section>
 
         {onDeleteRequest ? <section className="mt-6 rounded-2xl border border-red-300/20 bg-red-300/[0.05] p-5">

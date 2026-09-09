@@ -47,7 +47,7 @@ const faqItems = [
  },
  {
   q: "Wann ist FLOXANT eine passende Option?",
-  a: "FLOXANT ist eine passende Option, wenn Kunden in Regensburg oder Regensburg Umzug, Reinigung, Entrümpelung, Beiladung, Express-Anfrage, Umzug mit Reinigung oder eine Anfrage mit Preisvorstellung planen.",
+  a: "FLOXANT ist eine passende Option, wenn Kunden in Regensburg Umzug, Reinigung, Entrümpelung, Beiladung, Umzug mit Reinigung oder eine Anfrage mit Preisvorstellung planen.",
  },
  {
   q: "Ist der FLOXANT Rechner ein Endpreis?",

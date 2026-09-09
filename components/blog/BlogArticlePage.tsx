@@ -8,15 +8,12 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import {
   BlogLocalLinks,
-  BlogOfferCheckCTA,
-  BlogQuickAnswer,
   BlogRelatedArticles,
   BlogRelatedServices,
 } from "@/components/blog/BlogSupportBlocks";
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 
 type FaqItem = {
@@ -65,34 +62,6 @@ function toAnchorId(value: string) {
     .slice(0, 64);
 }
 
-function resolveStoryVariant(title: string, intro: string) {
-  const signal = germanizeText(`${title} ${intro}`).toLowerCase();
-
-  if (
-    signal.includes("angebot") ||
-    signal.includes("preis") ||
-    signal.includes("vergleich") ||
-    signal.includes("plattform") ||
-    signal.includes("red flag")
-  ) {
-    return "offer" as const;
-  }
-  if (signal.includes("reinigung") || signal.includes("übergabe") || signal.includes("büro")) {
-    return "cleaning" as const;
-  }
-  if (
-    signal.includes("entrümp") ||
-    signal.includes("entsorgung") ||
-    signal.includes("wohnungsauflösung") ||
-    signal.includes("nachlass") ||
-    signal.includes("keller")
-  ) {
-    return "clearance" as const;
-  }
-
-  return "operations" as const;
-}
-
 export function BlogArticlePage({
   breadcrumbs,
   date,
@@ -107,7 +76,9 @@ export function BlogArticlePage({
   faqItems,
   reviewedAt,
 }: BlogArticlePageProps) {
-  const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
+  const signal = germanizeText(`${title} ${intro}`).toLowerCase();
+  const contact = signal.includes("düsseldorf") || signal.includes("duesseldorf") ? duesseldorfCompany : company;
+  const whatsappUrl = `https://wa.me/${contact.phoneRaw.replace(/\D/g, "")}`;
   const normalizedBreadcrumbs = germanizeDeep(breadcrumbs);
   const normalizedSections = germanizeDeep(sections);
   const normalizedCtas = germanizeDeep(ctas);
@@ -117,7 +88,6 @@ export function BlogArticlePage({
     ...section,
     id: `${toAnchorId(section.title) || "abschnitt"}-${index + 1}`,
   }));
-  const storyVariant = resolveStoryVariant(title, intro);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
@@ -154,62 +124,13 @@ export function BlogArticlePage({
             >
               {germanizeText(intro)}
             </p>
-            <p
-              className="flox-blog-article-note mt-4 break-words text-sm leading-relaxed text-slate-500"
-            >
-              Hier geht es um die praktische Frage: Was ist wirklich gemeint, welche Angaben
-              braucht FLOXANT und welcher nächste Schritt passt, ohne vorschnelle Versprechen.
-            </p>
             {reviewedAt ? (
               <p className="mt-3 text-sm font-bold text-slate-600">
                 FLOXANT Redaktion · Zuletzt geprüft: <time dateTime={reviewedAt}>{reviewedAt}</time>
               </p>
             ) : null}
 
-            <BlogQuickAnswer title={title} intro={intro} ctas={normalizedCtas} />
-
-            <div className="mt-8 grid gap-3 md:grid-cols-3">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Wann passt es?
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Sie erkennen schnell, ob Ihr Fall zu Reinigung, Übergabe, Angebot prüfen oder
-                  einer Spezialseite gehört.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Was senden?
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Fotos, Ort, Fläche, Zugang, Termin und Ziel reichen oft für eine erste saubere
-                  Einordnung.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Klarer Weg
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Am Ende führen die Links direkt zur passenden FLOXANT-Seite oder zur
-                  Angebotsprüfung.
-                </p>
-              </div>
-            </div>
           </header>
-
-          <FloxantStorytellingSection
-            variant={storyVariant}
-            eyebrow="FLOXANT ordnet den Fall ein"
-            title="Aus einer unklaren Situation wird eine prüfbare Anfrage."
-            intro="Der Beitrag zeigt, welche Angaben wirklich helfen und welcher FLOXANT-Weg danach sinnvoll ist: passende Spezialseite öffnen, vorhandenes Angebot prüfen lassen oder den Fall direkt schildern."
-            primaryHref={normalizedCtas[0]?.href || "/buchung"}
-            primaryLabel={normalizedCtas[0]?.label || "Direkt anfragen"}
-            secondaryHref="/angebot-guenstiger-pruefen"
-            secondaryLabel="Angebot prüfen"
-            className="border-b border-slate-200 py-10"
-          />
 
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="p-6 sm:p-8 md:p-12">
@@ -288,7 +209,6 @@ export function BlogArticlePage({
                 </section>
               ) : null}
 
-              <BlogOfferCheckCTA ctas={normalizedCtas} />
 
               <section className="mt-14 border-t border-slate-200 pt-10">
                 <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
@@ -320,8 +240,8 @@ export function BlogArticlePage({
                     Nächster Schritt
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                    Wenn das Thema gerade passt, geht es von hier direkt weiter zum Rechner, zur
-                    passenden Spezialseite oder zu einer kurzen Anfrage.
+                    Sie möchten eine dieser Arbeiten abgeben? Hier finden Sie die passende
+                    Leistung und können uns Ihr Anliegen kurz beschreiben.
                   </p>
                   <div className="mt-6 space-y-3">
                     {normalizedCtas.map((item) => (
@@ -373,17 +293,7 @@ export function BlogArticlePage({
                   </div>
                 ) : null}
 
-                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
-                  <div className="text-sm font-semibold text-slate-950">So arbeitet FLOXANT</div>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                    Erst den Fall verstehen, dann den passenden Weg nennen: Service, Umfang,
-                    Zugang, Region und Preisrahmen werden klar getrennt.
-                  </p>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                    Kurz gesagt: lieber ehrlich prüfen als vorschnell etwas versprechen. So bleibt
-                    die Anfrage für Kunden und FLOXANT belastbarer.
-                  </p>
-                </div>
+
               </div>
             </aside>
           </div>

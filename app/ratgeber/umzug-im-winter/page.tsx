@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-im-winter',
     title: "Umzug im Winter: Vor- und Nachteile | FLOXANT",
-    description: dict.seo?.dynamic_city_desc || "Umzug im Winter vorbereiten",
+    description: "Umzug im Winter vorbereiten: Glätte, kurze Tage und Kälte einplanen, Laufwege sichern, Kartons trocken halten und empfindliche Gegenstände schützen.",
   });
 }
 export default async function Article() {

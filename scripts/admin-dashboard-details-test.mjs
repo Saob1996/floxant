@@ -469,7 +469,7 @@ for (const testCase of cases) {
     },
   });
   const summary = getBookingSummary(gbpBooking);
-  assert.equal(summary.source, "Google-Unternehmensprofil");
+  assert.equal(summary.source, "Google Business Profile");
   assert.equal(summary.location, "Düsseldorf");
   assert.equal(summary.entryPoint, "/duesseldorf/buchen");
   const detailView = buildAdminBookingDetailView(gbpBooking);

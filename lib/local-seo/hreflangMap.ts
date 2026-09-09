@@ -12,10 +12,10 @@ const allLocalSeoHreflangPairs = [
   { de: "/duesseldorf/praxisreinigung", en: "/en/duesseldorf/practice-cleaning" },
   { de: "/duesseldorf/fensterreinigung", en: "/en/duesseldorf/window-cleaning" },
   { de: "/duesseldorf/grundreinigung", en: "/en/duesseldorf/deep-cleaning" },
+  { de: "/duesseldorf/endreinigung", en: "/en/duesseldorf/move-out-cleaning" },
   { de: "/duesseldorf/baureinigung", en: "/en/duesseldorf/post-construction-cleaning" },
   { de: "/duesseldorf/unterhaltsreinigung", en: "/en/duesseldorf/maintenance-cleaning" },
   { de: "/duesseldorf/treppenhausreinigung", en: "/en/duesseldorf/stairwell-cleaning" },
-  { de: "/angebot-vergleichen-duesseldorf", en: "/en/duesseldorf/cleaning-quote-review" },
   { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/bueroreinigung", en: "/en/regensburg/office-cleaning" },
   { de: "/regensburg/gewerbereinigung", en: "/en/regensburg/commercial-cleaning" },
@@ -24,7 +24,6 @@ const allLocalSeoHreflangPairs = [
   { de: "/baureinigung-regensburg", en: "/en/regensburg/post-construction-cleaning" },
   { de: "/grundreinigung-regensburg", en: "/en/regensburg/deep-cleaning" },
   { de: "/treppenhausreinigung-regensburg", en: "/en/regensburg/stairwell-cleaning" },
-  { de: "/regensburg/angebot-vergleichen", en: "/en/regensburg/cleaning-quote-review" },
   { de: "/regensburg/umzug", en: "/en/regensburg/moving" },
   { de: "/regensburg/umzug-kosten", en: "/en/regensburg/moving-costs" },
   { de: "/kleintransport-regensburg", en: "/en/regensburg/transport-service" },
@@ -34,7 +33,6 @@ const allLocalSeoHreflangPairs = [
   { de: "/regensburg/wohnungsaufloesung", en: "/en/regensburg/house-clearance" },
   { de: "/regensburg/entruempelung", en: "/en/regensburg/apartment-clearance" },
   { de: "/regensburg/reinigung-nach-umzug", en: "/en/regensburg/cleaning-after-moving" },
-  { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/moving-quote-review" },
   { de: "/signature-services", en: "/en/signature-services" },
   { de: "/europa-umzug-ab-deutschland", en: "/en/moving-from-germany-to-europe" },
   { de: "/umzug-mit-preisvorstellung", en: "/en/moving-with-a-budget" },
@@ -43,16 +41,7 @@ const allLocalSeoHreflangPairs = [
   { de: "/kontakt", en: "/en/contact" },
 ] as const satisfies readonly HreflangPair[];
 
-export const localSeoHreflangPairs = allLocalSeoHreflangPairs.filter(
-  (pair) =>
-    pair.de.includes("regensburg") ||
-    pair.de.includes("duesseldorf") ||
-    pair.de === "/angebot-vergleichen-regensburg" ||
-    pair.de.startsWith("/europa-umzug") ||
-    pair.de.startsWith("/umzug-mit-preisvorstellung") ||
-    pair.de.startsWith("/hilfe-in-schwierigen") ||
-    pair.de.startsWith("/kostenuebernahme-fuer-umzug"),
-) as readonly HreflangPair[];
+export const localSeoHreflangPairs = allLocalSeoHreflangPairs as readonly HreflangPair[];
 
 const pairByPath = new Map<string, HreflangPair>();
 

@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 
 import { LocalServiceSeoPage } from "@/components/LocalServiceSeoPage";
 import { company } from "@/lib/company";
-import { getCentralSeoEntry } from "@/lib/content/seo-matrix";
 import { getLocalServiceSeoPage } from "@/lib/local-service-seo-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
 
 const config = getLocalServiceSeoPage("regensburg-reinigung");
-const seo = getCentralSeoEntry(config.path);
+const seo = { activeTitle: config.metaTitle, metaDescription: config.metaDescription, ogTitle: config.metaTitle, ogDescription: config.metaDescription };
 const socialVisual = getServiceVisual({
   region: config.cityKey,
   slug: config.key,

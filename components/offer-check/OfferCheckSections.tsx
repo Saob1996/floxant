@@ -184,7 +184,7 @@ const relatedBlogs = germanizeDeep([
 const localLinks = germanizeDeep([
   {
     href: "/regensburg",
-    title: "Regensburg Hub",
+    title: "Leistungen in Regensburg",
     text: "Lokale Wege fuer Reinigung, Gewerbe, Umzug, Entruempelung und Angebotsprüfung.",
   },
   {
@@ -194,7 +194,7 @@ const localLinks = germanizeDeep([
   },
   {
     href: "/regensburg",
-    title: "Regensburg Hub",
+    title: "FLOXANT Regensburg",
     text: "FLOXANT Schwerpunkt für Umzug, Reinigung, Entrümpelung und Umgebung nach Machbarkeit.",
   },
   {
