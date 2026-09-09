@@ -408,6 +408,7 @@ export const generatedPageRouteInventory = [
   { route: "/duesseldorf/buchen", locale: "de", indexable: false, sitemap: false, canonicalRoute: "/duesseldorf/buchen" },
   { route: "/duesseldorf/bueroreinigung", locale: "de", indexable: true, sitemap: true, canonicalRoute: "/duesseldorf/bueroreinigung" },
   { route: "/duesseldorf/entsorgung", locale: "de", indexable: false, sitemap: false, canonicalRoute: "/entsorgung-duesseldorf" },
+  { route: "/duesseldorf/entruempelung", locale: "de", indexable: true, sitemap: true, canonicalRoute: "/duesseldorf/entruempelung" },
   { route: "/duesseldorf/fensterreinigung", locale: "de", indexable: true, sitemap: true, canonicalRoute: "/duesseldorf/fensterreinigung" },
   { route: "/duesseldorf/gewerbereinigung", locale: "de", indexable: true, sitemap: true, canonicalRoute: "/duesseldorf/gewerbereinigung" },
   { route: "/duesseldorf/grundreinigung", locale: "de", indexable: true, sitemap: true, canonicalRoute: "/duesseldorf/grundreinigung" },

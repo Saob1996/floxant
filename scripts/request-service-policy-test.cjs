@@ -278,6 +278,20 @@ test("Englische Service-Aliase normalisieren auf aktive Registry-IDs", () => {
   }
 });
 
+test("Bestätigte ergänzende Standortleistungen behalten ihr eigenes Formularprofil", () => {
+  for (const [location, service, profile] of [
+    ["duesseldorf", "entruempelung", "clearance"],
+    ["regensburg", "reinigung", "cleaning"],
+  ]) {
+    const context = resolveRequestContext({ location, service, source: "website" });
+    assert.equal(context.valid, true);
+    assert.equal(context.location, location);
+    assert.equal(context.serviceKey, service);
+    assert.equal(getRequestService(location, service).formProfile, profile);
+  }
+  assert.equal(isAllowedRequestCombination("duesseldorf", "umzug"), false);
+});
+
 test("Lokale Buchungs-Aliase lösen nur auf freigegebene Registry-Services auf", () => {
   const aliases = [
     ["moebelmontage", "moebeltransport", "regensburg"],

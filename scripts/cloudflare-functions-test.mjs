@@ -971,7 +971,7 @@ try {
         assert(inserted.details.configuration.formProfile === entry.formProfile, `${location}/${entry.id} must persist its registry profile`);
       }
     }
-    assert(combinations === 44, `expected 44 active registry combinations, got ${combinations}`);
+    assert(combinations === 45, `expected 45 active registry combinations, got ${combinations}`);
     metrics.activeRegistryCombinations = combinations;
   });
 

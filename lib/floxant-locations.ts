@@ -85,7 +85,7 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       "Treppenhausreinigung",
       "Endreinigung",
     ],
-    secondaryServices: [],
+    secondaryServices: ["Entrümpelung"],
     signatureServices: [
       "FLOXANT Angebotscheck",
       "FLOXANT Fairpreis-Check",

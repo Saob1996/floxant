@@ -184,6 +184,7 @@ export const sitemapRoutes = [
   "/duesseldorf/baureinigung",
   "/duesseldorf/bueroreinigung",
   "/duesseldorf/endreinigung",
+  "/duesseldorf/entruempelung",
   "/duesseldorf/fensterreinigung",
   "/duesseldorf/gewerbereinigung",
   "/duesseldorf/grundreinigung",

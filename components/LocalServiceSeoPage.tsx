@@ -731,7 +731,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         </div>
       </section>
 
-      {config.cityKey === "regensburg" ? (
+      {config.cityKey === "regensburg" && config.key !== "regensburg-reinigung" ? (
         <div className="fixed inset-x-3 bottom-3 z-40 md:hidden">
           <Link
             href={bookingHref}

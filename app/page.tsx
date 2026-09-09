@@ -11,13 +11,13 @@ import {
   Languages,
   MapPin,
   PackageOpen,
-  ShieldCheck,
   Sparkles,
   Truck,
 } from "lucide-react";
 
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
+import { GoogleReviewSummary } from "@/components/GoogleReviews";
 import { company } from "@/lib/company";
 import { buildRequestHref } from "@/lib/lead-intents/resolve-request-context";
 import { generatePageSEO } from "@/lib/seo";
@@ -49,9 +49,9 @@ const mainServices = [
     icon: Sparkles,
   },
   {
-    title: "Räumung in Regensburg",
+    title: "Entrümpelung in Regensburg",
     text: "Keller, Wohnung, Haushalt oder Gewerbefläche räumen – auf Wunsch mit anschließender Reinigung.",
-    cta: "Räumung in Regensburg ansehen",
+    cta: "Entrümpelung in Regensburg ansehen",
     href: "/regensburg/entruempelung",
     icon: PackageOpen,
   },
@@ -63,33 +63,42 @@ const mainServices = [
     icon: BriefcaseBusiness,
   },
   {
-    title: "Angebot prüfen",
-    text: "Vorhandenes Angebot prüfen lassen, wenn Preis, Leistungsumfang oder mögliche Zusatzkosten unklar sind.",
-    cta: "Angebot prüfen lassen",
-    href: offerHref,
-    icon: FileSearch,
+    title: "Reinigung in Regensburg",
+    text: "Wohnung, Büro oder Gewerberäume einmalig oder regelmäßig reinigen lassen – auch unabhängig von einem Umzug.",
+    cta: "Reinigung in Regensburg ansehen",
+    href: "/regensburg/reinigung",
+    icon: Sparkles,
   },
   {
-    title: "Besondere Situationen",
-    text: "Diskrete Fälle, kurzfristiger Plan B, Übergabe oder Objektbrief passend zur Situation anfragen.",
-    cta: "Besondere Lösungen ansehen",
-    href: "/signature-services",
-    icon: ShieldCheck,
+    title: "Entrümpelung in Düsseldorf",
+    text: "Wieder Platz im Keller, in einzelnen Räumen oder der Wohnung schaffen. Umfang, Abtransport und eine anschließende Reinigung persönlich abstimmen.",
+    cta: "Entrümpelung in Düsseldorf ansehen",
+    href: "/duesseldorf/entruempelung",
+    icon: PackageOpen,
   },
 ] as const;
 
 const locations = [
   {
     title: "Düsseldorf",
-    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Fenster sowie Prüfung vorhandener Reinigungsangebote.",
-    cta: "Leistungen in Düsseldorf",
+    headline: "Reinigung für Ihren Alltag. Unterstützung beim Entrümpeln.",
+    text: "Ob Wohnung, Büro, Praxis oder Fenster: Wir übernehmen die Reinigung, die zu Ihrem Objekt passt. Auch wenn Sie Keller, einzelne Räume oder eine Wohnung entrümpeln lassen möchten, ist FLOXANT in Düsseldorf Ihr Ansprechpartner.",
     href: "/duesseldorf",
+    links: [
+      { href: "/duesseldorf/reinigung", label: "Reinigung in Düsseldorf" },
+      { href: "/duesseldorf/entruempelung", label: "Entrümpelung in Düsseldorf" },
+    ],
   },
   {
     title: "Regensburg",
-    text: "Umzug, Reinigung, Entrümpelung, Klaviertransport, Seniorenumzug und Wohnungsauflösung.",
-    cta: "Leistungen in Regensburg",
+    headline: "Ihr Umzug im Mittelpunkt. Reinigung und Entrümpelung gleich mitgedacht.",
+    text: "Wir unterstützen Sie beim Wohnungswechsel und Möbeltransport. Auch ohne Umzug können Sie unsere Reinigung für Wohnung, Büro oder Gewerberäume buchen. Entrümpelung und Endreinigung lassen sich bei Bedarf ergänzen.",
     href: "/regensburg",
+    links: [
+      { href: "/regensburg/umzug", label: "Umzug in Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung in Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung in Regensburg" },
+    ],
   },
 ] as const;
 
@@ -119,11 +128,11 @@ const specialSolutions = [
 const faqItems = [
   {
     q: "Welche Leistungen bietet FLOXANT an?",
-    a: "Zu den Hauptleistungen gehören Umzug und Transport, Reinigung, Entrümpelung und Auflösung. Für Unternehmen sowie besondere oder sensible Situationen gibt es passende Kontaktwege.",
+    a: "In Düsseldorf übernehmen wir Reinigung und Entrümpelung. In Regensburg liegt unser Schwerpunkt auf Umzügen; Reinigung und Entrümpelung können Sie dort ebenfalls eigenständig beauftragen.",
   },
   {
     q: "Arbeitet FLOXANT in Düsseldorf und Regensburg?",
-    a: "Ja, FLOXANT nimmt Anfragen für Düsseldorf und Regensburg an. Liegt Ihr Einsatzort im Umfeld, nennen Sie ihn einfach im Formular.",
+    a: "Ja, wir arbeiten in Düsseldorf und Regensburg sowie jeweils 75 km Umgebung. Nennen Sie Ihren Einsatzort, damit wir Anfahrt und Termin mit Ihnen abstimmen können.",
   },
   {
     q: "Kann ich Fotos mitsenden?",
@@ -194,8 +203,8 @@ function JsonLd() {
         path,
         about: ["Umzug", "Reinigung", "Entrümpelung", "Angebotsprüfung"],
         potentialActions: [
-          { name: "Anfrage senden", target: requestHref, type: "ContactAction" },
-          { name: "Angebot prüfen", target: offerHref, type: "Action" },
+          { name: "Mein Anliegen besprechen", target: requestHref, type: "ContactAction" },
+          { name: "Vorhandenes Angebot vergleichen", target: offerHref, type: "Action" },
         ],
       }),
       buildServiceJsonLd({
@@ -250,14 +259,15 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <p className="inline-flex items-center gap-2 text-sm font-black text-cyan-200">
               <MapPin className="h-4 w-4" aria-hidden="true" />
-              Düsseldorf und Regensburg
+              Düsseldorf und Regensburg · jeweils 75 km Umgebung
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               {homepageAuthority.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben Sie kurz Ihren Auftrag oder senden Sie ein vorhandenes Angebot zur Prüfung.
+              FLOXANT nimmt Ihnen Arbeit ab: mit Reinigung und Entrümpelung in Düsseldorf sowie Umzug, Reinigung und Entrümpelung in Regensburg. Für Ihre Wohnung, Ihr Büro und den nächsten Wohnungswechsel.
             </p>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200">Erzählen Sie uns kurz, was ansteht. Wir besprechen Umfang und Termin mit Ihnen und erstellen ein persönliches Angebot.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href={requestHref}
@@ -265,26 +275,27 @@ export default function HomePage() {
                 data-event="seo_cta_click"
                 data-source="homepage_hero"
                 data-service="sonstiges"
-                data-cta-label="Anfrage senden"
+                data-cta-label="Mein Anliegen besprechen"
                 data-destination={requestHref}
                 className={primaryButton}
               >
-                Anfrage senden
+                Mein Anliegen besprechen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href={offerHref} data-home-offer-cta data-event="service_card_click" data-source="homepage_hero" className={secondaryButton}>
-                Angebot prüfen
+                Vorhandenes Angebot vergleichen
                 <FileSearch className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
             <ul className="mt-8 grid max-w-2xl gap-3 text-sm font-bold text-slate-200 sm:grid-cols-3" aria-label="Hinweise zur Anfrage">
-              {["Leistung passend vorausgewählt", "Standortbezogene Bearbeitung", "Direkter persönlicher Kontakt"].map((item) => (
+              {["Persönlicher Kontakt", "Leistungen nach Ihrem Bedarf", "Einmalige und regelmäßige Reinigung"].map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" aria-hidden="true" />
                   {item}
                 </li>
               ))}
             </ul>
+            <GoogleReviewSummary />
           </div>
         </div>
       </section>
@@ -328,15 +339,17 @@ export default function HomePage() {
           </div>
           <div className="mt-9 grid gap-4 md:grid-cols-2">
             {locations.map((location) => (
-              <Link key={location.href} href={location.href} data-home-card data-home-location={location.title} className="group rounded-xl border border-white/15 bg-white/10 p-6 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:p-8">
+              <article key={location.href} data-home-card data-home-location={location.title} className="group rounded-xl border border-white/15 bg-white/10 p-6 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:p-8">
                 <Building2 className="h-6 w-6 text-cyan-200" aria-hidden="true" />
                 <h3 className="mt-5 text-2xl font-black">{location.title}</h3>
+                <p className="mt-3 text-lg font-bold leading-7">{location.headline}</p>
                 <p className="mt-3 max-w-xl text-sm font-semibold leading-7 text-slate-200">{location.text}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-200">{location.cta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" /></span>
-              </Link>
+                <div className="mt-5 grid gap-1">{location.links.map((link) => <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center gap-2 rounded text-sm font-black text-cyan-200 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200">{link.label}<ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" /></Link>)}</div>
+                <Link href={location.href} className="mt-3 inline-flex min-h-11 items-center rounded text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Alle Leistungen in {location.title}</Link>
+              </article>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-300">Liegt der Einsatzort im Umfeld? Geben Sie den Ort im Anfrageformular an. Wir sehen nach, ob die Leistung dort möglich ist.</p>
+          <p className="mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-300">Für beide Standorte gilt: jeweils 75 km Umgebung. Geben Sie Ihren Einsatzort an, damit wir Anfahrt und Termin mit Ihnen abstimmen können.</p>
         </div>
       </section>
 

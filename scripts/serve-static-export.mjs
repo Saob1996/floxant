@@ -104,7 +104,6 @@ const gonePaths = new Set([
   "/seo-gone",
   "/umzug-duesseldorf",
   "/duesseldorf/umzug",
-  "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
 ]);
 

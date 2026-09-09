@@ -15,16 +15,16 @@ export type SearchAuthorityMetadata = {
 
 export const searchAuthorityPages = {
   "/": {
-    seoTitle: "FLOXANT | Reinigung Düsseldorf & Services Regensburg",
+    seoTitle: "FLOXANT Düsseldorf & Regensburg | Reinigung, Umzug & Entrümpelung",
     shortTitle: "FLOXANT",
-    headline: "Reinigung in Düsseldorf. Umzug und Service in Regensburg.",
+    headline: "Reinigung & Entrümpelung in Düsseldorf. Umzug & Reinigung in Regensburg.",
     description:
-      "Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg. Beschreiben Sie Ort und Umfang und fragen Sie Ihr Angebot bei FLOXANT an.",
+      "Reinigung und Entrümpelung in Düsseldorf. Umzug, Reinigung und Entrümpelung in Regensburg. Jeweils 75 km Umgebung. Persönliches Angebot anfragen.",
     ogTitle: "FLOXANT Dienstleistungen in Düsseldorf und Regensburg",
     ogDescription:
-      "Reinigung in Düsseldorf sowie Umzug, Räumung und Reinigung in Regensburg klar anfragen.",
+      "Reinigung und Entrümpelung in Düsseldorf. Umzug, Reinigung und Entrümpelung in Regensburg. Jeweils 75 km Umgebung.",
     primaryQuery: "FLOXANT Dienstleistungen",
-    secondaryQueries: ["Reinigung Düsseldorf", "Umzug Regensburg", "Entrümpelung Regensburg"],
+    secondaryQueries: ["Reinigung Düsseldorf", "Entrümpelung Düsseldorf", "Umzug Regensburg", "Reinigung Regensburg", "Entrümpelung Regensburg"],
     searchIntent: "Marke, Standortwahl und Dienstleistungsanfrage",
     locale: "de-DE",
   },

@@ -10,6 +10,7 @@ import { SocialLinks } from "@/components/SocialLinks";
 const coreLinks = [
   { href: "/duesseldorf", label: "Düsseldorf im Überblick" },
   { href: "/duesseldorf/reinigung", label: "Reinigung" },
+  { href: "/duesseldorf/entruempelung", label: "Entrümpelung" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
   { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung" },
   { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung" },
@@ -19,7 +20,7 @@ const coreLinks = [
 export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   const whatsappHref = buildWhatsAppHref(
     duesseldorfCompany.phoneRaw,
-    "Hallo FLOXANT Düsseldorf, ich möchte eine Reinigungsleistung anfragen.",
+    "Hallo FLOXANT Düsseldorf, ich möchte mein Anliegen mit Ihnen besprechen.",
   );
 
   return (
@@ -33,10 +34,10 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               FLOXANT Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Reinigung persönlich abstimmen.
+              Ihr Anliegen persönlich besprechen.
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-600">
-              Nennen Sie Objekt, Fläche, gewünschten Umfang und Termin. Offene Fragen lassen sich auch telefonisch oder per WhatsApp klären.
+              Beschreiben Sie kurz Ihr Anliegen, den gewünschten Umfang und Termin. Offene Fragen lassen sich auch telefonisch oder per WhatsApp klären.
             </p>
             <div className="mt-6 flex flex-col gap-3 text-sm font-bold text-slate-700 sm:flex-row sm:flex-wrap sm:gap-5">
               <span className="inline-flex items-center gap-2">
