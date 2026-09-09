@@ -6423,7 +6423,7 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
   box-shadow: var(--flox-focus-ring);
 }
 
-/* Essential contact: immediate, three usable links at every viewport width. */
+/* Essential contact: five immediate options, two rows on small screens. */
 .flox-universal-action-wrap {
   position: fixed;
   inset: auto 0 0;
@@ -6439,7 +6439,9 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
   border: 1px solid #cbd5e1;
   box-shadow: 0 -3px 16px rgb(15 23 42 / .10);
 }
-.flox-universal-action-wrap .flox-mobile-action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+.flox-universal-action-wrap .flox-mobile-action-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .4rem; }
+.flox-universal-action-wrap .flox-mobile-action { grid-column: span 2; }
+.flox-universal-action-wrap .flox-mobile-action:nth-child(n+4) { grid-column: span 3; }
 .flox-universal-action-wrap .flox-mobile-action {
   min-height: 3rem;
   padding: .5rem .25rem;
@@ -6453,15 +6455,19 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
 .flox-universal-action-wrap .flox-mobile-action svg { width: 1rem; height: 1rem; }
 .flox-universal-action-wrap .flox-mobile-action-whatsapp::before { display: none; }
 .flox-universal-action-wrap .flox-mobile-action-whatsapp > svg { display: block; }
-body:has(.flox-universal-action-wrap) { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
-body:has(.flox-universal-action-wrap) .flox-cookie-banner { bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
-.flox-cookie-banner > div { max-height: calc(100dvh - 11rem); }
-:where(input, textarea, select, button, a, [tabindex]) { scroll-margin-block: 7rem; }
+body:has(.flox-universal-action-wrap) { --flox-contact-clearance: calc(8rem + env(safe-area-inset-bottom)); padding-bottom: var(--flox-contact-clearance); }
+body:has(.flox-universal-action-wrap) .flox-cookie-banner { bottom: var(--flox-contact-clearance); }
+body:has(.flox-universal-action-wrap) .flox-cookie-settings-trigger { bottom: calc(var(--flox-contact-clearance) + .5rem); }
+.flox-cookie-banner > div { max-height: calc(100dvh - 15rem); }
+:where(input, textarea, select, button, a, [tabindex]) { scroll-margin-block: 7rem 9rem; }
 @media (min-width: 768px) {
-  .flox-universal-action-wrap { left: 50%; right: auto; bottom: .6rem; width: min(33rem, calc(100vw - 2rem)); transform: translateX(-50%); }
+  .flox-universal-action-wrap { left: 50%; right: auto; bottom: .6rem; width: min(48rem, calc(100vw - 2rem)); transform: translateX(-50%); }
   .flox-universal-action-wrap .flox-mobile-action-shell { border-radius: .75rem; }
+  .flox-universal-action-wrap .flox-mobile-action-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .flox-universal-action-wrap .flox-mobile-action:nth-child(n) { grid-column: auto; }
   .flox-universal-action-wrap .flox-mobile-action { font-size: .9rem; }
-  body:has(.flox-universal-action-wrap) .flox-cookie-banner { bottom: calc(5rem + env(safe-area-inset-bottom)); }
+  body:has(.flox-universal-action-wrap) { --flox-contact-clearance: calc(5rem + env(safe-area-inset-bottom)); }
+  .flox-cookie-banner > div { max-height: calc(100dvh - 11rem); }
 }
 @media (max-height: 480px) {
   /* Keep focused form controls clear of browser keyboards and short landscape views. */

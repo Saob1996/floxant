@@ -1,5 +1,7 @@
 "use client";
 
+import { useBudgetRequestFocus } from "@/components/useBudgetRequestFocus";
+
 import type { FormEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, FileUp, Send } from "lucide-react";
@@ -120,6 +122,8 @@ export function EnglishRequestForm({
   const [offerConcern, setOfferConcern] = useState("");
   const [desiredDate, setDesiredDate] = useState("");
   const [details, setDetails] = useState(initialDetails);
+  const [budget, setBudget] = useState("");
+  useBudgetRequestFocus(Boolean(region && service), setStep);
   const [files, setFiles] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -267,6 +271,7 @@ export function EnglishRequestForm({
       estimatedVolume: estimatedVolume.trim(),
       offerConcern: offerConcern.trim(),
       desiredDate,
+      budget: budget.trim(),
       details: details.trim(),
       scope: details.trim(),
       preferredContactMethod: contactMethod,
@@ -380,6 +385,7 @@ export function EnglishRequestForm({
             {serviceGroup === "offer" ? <label className="grid gap-2 text-sm font-bold text-slate-800">What should be checked? *<input value={offerConcern} onChange={(event) => setOfferConcern(event.target.value)} placeholder="Scope, extra items, assumptions…" className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" /></label> : null}
             <label className="grid gap-2 text-sm font-bold text-slate-800">Preferred date or deadline<input type="date" value={desiredDate} onChange={(event) => setDesiredDate(event.target.value)} className="min-h-12 rounded-lg border border-slate-300 px-4 font-semibold" /></label>
             <label className="grid gap-2 text-sm font-bold text-slate-800">Scope, condition, access and timing *<textarea value={details} onChange={(event) => setDetails(event.target.value)} rows={6} className="rounded-lg border border-slate-300 px-4 py-3 font-semibold leading-7" /></label>
+            <label className="grid gap-2 text-sm font-bold text-slate-800">Your budget (optional)<input id="request-budget" name="budget" value={budget} onChange={(event) => setBudget(event.target.value)} maxLength={80} placeholder="e.g. up to €500" className="min-h-12 rounded-lg border border-slate-300 px-4 py-3 font-semibold" /><span className="font-normal leading-6 text-slate-600">Share your preferred budget. We will discuss what scope is possible within it.</span></label>
             <label className="grid gap-2 text-sm font-bold text-slate-800"><span className="inline-flex items-center gap-2"><FileUp className="h-4 w-4" aria-hidden="true" />Photos or documents (optional)</span>
               <input type="file" multiple accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(event) => selectFiles(Array.from(event.currentTarget.files || []))} className="block w-full text-sm font-semibold file:mr-3 file:rounded-lg file:border-0 file:bg-blue-700 file:px-4 file:py-2 file:font-black file:text-white" />
               <span className="text-xs font-medium leading-5 text-slate-600">Up to {REQUEST_ATTACHMENT_RULES.maxFiles} files; JPG, PNG, WebP or PDF; 8 MB each and 24 MB total. Do not upload IDs, access codes or unnecessary personal documents.</span>

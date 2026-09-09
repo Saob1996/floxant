@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+import { useBudgetRequestFocus } from "@/components/useBudgetRequestFocus";
 import {
   REQUEST_ATTACHMENT_RULES,
   validateRequestContact,
@@ -308,6 +309,8 @@ export function ProfessionalRequestForm({
   const group = useMemo(() => requestGroup(context), [context]);
   const pageContent = useMemo(() => resolveRequestPageContent(context), [context]);
   const [step, setStep] = useState<RequestStep>(() => (context.valid ? 2 : 1));
+  useBudgetRequestFocus(context.valid, setStep);
+  const [budget, setBudget] = useState("");
   const [objectType, setObjectType] = useState("");
   const [cityOrZip, setCityOrZip] = useState(() =>
     context.location === "duesseldorf"
@@ -1020,10 +1023,12 @@ export function ProfessionalRequestForm({
         selectedServices: extras,
         cleaningRequested: group === "clearance" ? cleaningRequested : undefined,
         calculatorTransfer: calculatorTransfer || undefined,
+        budget: budget.trim(),
         message: message.trim(),
         preferredContactMethod: contactMethod,
         privacyConsent: true,
         rawFields: {
+          budget: budget.trim(),
           cityOrZip: cityOrZip.trim(),
           objectType,
           areaSize: areaSize.trim(),
@@ -1132,6 +1137,7 @@ export function ProfessionalRequestForm({
       selectedAddons: extras,
       cleaningRequested: group === "clearance" ? cleaningRequested : undefined,
       message: message.trim(),
+      budget: budget.trim(),
       privacyConsent: true,
       formStartedAt: Date.now() - startedAt <= 24 * 60 * 60 * 1000 ? String(startedAt) : undefined,
       timestamp: now,
@@ -1516,6 +1522,11 @@ export function ProfessionalRequestForm({
               ? routeCoreFields
               : locationCoreFields}
 
+            <Field id="request-budget" label="Ihr Budget / Ihre Preisvorstellung (optional)">
+              <input id="request-budget" name="budget" value={budget} onChange={(event) => setBudget(event.target.value)} maxLength={80} placeholder="z. B. bis 500 €" className={inputClass} aria-describedby="request-budget-help" />
+              <p id="request-budget-help" className="text-sm font-normal leading-6 text-slate-600">Nennen Sie Ihren gewünschten Rahmen. Wir besprechen mit Ihnen, welcher Umfang dazu möglich ist.</p>
+            </Field>
+
             <section className="rounded-lg border border-slate-200 bg-slate-50">
               <button
                 type="button"
@@ -1630,8 +1641,9 @@ export function ProfessionalRequestForm({
                   <h4 id="request-summary-additions" className="font-black text-slate-950">Zusatzangaben, Dateien und Nachricht</h4>
                   <button type="button" onClick={() => { setOptionalOpen(true); setStep(2); }} className="min-h-11 rounded-lg px-3 text-sm font-black text-blue-800 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Zusatzangaben ändern</button>
                 </div>
-                {extras.length || files.length || message ? (
+                {extras.length || files.length || message || budget ? (
                   <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {budget ? <div><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Budget / Preisvorstellung</dt><dd className="mt-1 font-semibold text-slate-900">{budget}</dd></div> : null}
                     {extras.length ? <div><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Zusatzleistungen</dt><dd className="mt-1 font-semibold text-slate-900"><ul className="list-inside list-disc">{extras.map((extra) => <li key={extra}>{extra}</li>)}</ul></dd></div> : null}
                     {files.length ? <div><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Dateien</dt><dd className="mt-1 font-semibold text-slate-900"><ul className="list-inside list-disc">{files.map((file) => <li key={`${file.name}-${file.size}`}>{file.name}</li>)}</ul></dd></div> : null}
                     {message ? <div className="sm:col-span-2"><dt className="text-xs font-black uppercase tracking-wide text-slate-500">Nachricht</dt><dd className="mt-1 whitespace-pre-wrap break-words font-semibold text-slate-900">{message}</dd></div> : null}

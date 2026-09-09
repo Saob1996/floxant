@@ -1396,6 +1396,21 @@ try {
     assert(calls.filter((call) => call.url.includes("/rest/v1/bookings")).length === insertCallsBefore, "path-like policy tokens must never reach Supabase");
   });
 
+  await test("professional-optional-budget-retains-service-and-location-201", async () => {
+    const before = calls.length;
+    const result = await submit(professionalPayload("entruempelung", "duesseldorf", {
+      cityOrZip: "40213 Düsseldorf",
+      areaSize: "25 m²",
+      budget: "bis 500 €",
+    }));
+    assert(result.response.status === 201, "an optional budget must not change the clearance request profile");
+    const inserts = calls.slice(before).filter((call) => call.url.includes("/rest/v1/bookings") && call.method === "POST");
+    assert(inserts.length === 1, "one budget request must insert exactly once");
+    const configuration = JSON.parse(inserts[0].body)[0].details.configuration;
+    assert(configuration.rawFields.budget === "bis 500 €", "the optional budget must remain available in the stored request");
+    assert(configuration.serviceId === "entruempelung" && configuration.locationId === "duesseldorf", "budget entry must preserve service and location");
+  });
+
   await test("professional-contact-method-required-400", async () => {
     const postsBefore = calls.filter(
       (call) => call.url.includes("/rest/v1/bookings") && call.method === "POST",

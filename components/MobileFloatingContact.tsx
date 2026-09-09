@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardCheck, Phone } from "lucide-react";
+import { ClipboardCheck, Mail, Phone, Wallet } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
@@ -15,6 +15,7 @@ export default function MobileFloatingContact({ location: locationOverride }: { 
   const location = locationOverride || routeLocation;
   const contact = location ? floxantLocations[location] : null;
   const phoneRaw = contact?.phoneRaw || company.phoneRaw;
+  const email = contact?.email || company.email;
   const name = contact?.displayName || company.name;
   const params = new URLSearchParams({ source: "global_floating", entryPage: pathname });
   if (location) params.set(isEnglish ? "city" : "location", location);
@@ -24,6 +25,12 @@ export default function MobileFloatingContact({ location: locationOverride }: { 
   // A same-page anchor preserves an in-progress request; other channels open independently.
   const requestHref = isContactPage ? (isEnglish ? "#english-service-request-form" : "#direktanfrage")
     : `${isEnglish ? "/en/contact" : "/kontakt"}?${params.toString()}${isEnglish ? "#english-service-request-form" : "#direktanfrage"}`;
+  const budgetParams = new URLSearchParams(params);
+  budgetParams.set("source", "budget-request");
+  budgetParams.set("intent", "budget-request");
+  const budgetHref = isContactPage ? "#request-budget"
+    : `${isEnglish ? "/en/contact" : "/kontakt"}?${budgetParams.toString()}${isEnglish ? "#english-service-request-form" : "#direktanfrage"}`;
+  const emailHref = `mailto:${email}?subject=${encodeURIComponent(isEnglish ? `Service enquiry – ${name}` : `Anfrage – ${name}`)}`;
   const whatsappHref = buildWhatsAppHref(phoneRaw,
     isEnglish ? `Hello ${name}, I would like to discuss a service enquiry.`
       : `Hallo ${name}, ich möchte mein Anliegen besprechen.`);
@@ -43,6 +50,15 @@ export default function MobileFloatingContact({ location: locationOverride }: { 
           <a href={requestHref} className="flox-mobile-action flox-mobile-action-primary"
             aria-label={isEnglish ? `Request a quote from ${name}` : `Angebot von ${name} anfragen`} data-event="request_cta_click" data-contact-channel="form" data-source="global_floating">
             <ClipboardCheck aria-hidden="true" /><span>{isEnglish ? "Get a quote" : "Angebot"}</span>
+          </a>
+          <a href={budgetHref} className="flox-mobile-action flox-mobile-action-light"
+            onClick={(event) => { if (isContactPage) { event.preventDefault(); window.dispatchEvent(new Event("floxant:budget-request")); } }}
+            aria-label={isEnglish ? `Share your budget with ${name}` : `${name} Ihr Budget nennen`} data-event="request_cta_click" data-contact-channel="budget" data-source="global_floating">
+            <Wallet aria-hidden="true" /><span>{isEnglish ? "Your budget" : "Budget nennen"}</span>
+          </a>
+          <a href={emailHref} className="flox-mobile-action flox-mobile-action-light"
+            aria-label={isEnglish ? `Email ${name}` : `${name} per E-Mail kontaktieren`} data-event="email_click" data-contact-channel="email" data-source="global_floating">
+            <Mail aria-hidden="true" /><span>{isEnglish ? "Email" : "E-Mail"}</span>
           </a>
         </div>
       </div>
