@@ -190,7 +190,6 @@ const REDIRECT_EXPECTATIONS = [
 const GONE_EXPECTATIONS = [
   "/umzug-duesseldorf",
   "/duesseldorf/umzug",
-  "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
   "/seo-gone",
 ];

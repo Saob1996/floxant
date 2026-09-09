@@ -139,6 +139,7 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
 ] as const;
 
 const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
+  "duesseldorf/entruempelung",
   "duesseldorf/endreinigung",
   "duesseldorf/hotelreinigung",
   "duesseldorf/reinigung",
